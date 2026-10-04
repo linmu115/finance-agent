@@ -85,7 +85,7 @@ def main():
     powershell = system/'System32/WindowsPowerShell/v1.0/powershell.exe'
     env = {k: v for k, v in os.environ.items() if k.upper() in {
         'SYSTEMROOT', 'WINDIR', 'TEMP', 'TMP', 'USERPROFILE', 'LOCALAPPDATA', 'APPDATA',
-        'COMSPEC', 'PROGRAMFILES', 'PROGRAMFILES(X86)', 'PROGRAMDATA', 'HOMEDRIVE', 'HOMEPATH'}}
+        'COMSPEC', 'PATHEXT', 'SYSTEMDRIVE', 'PROGRAMFILES', 'PROGRAMFILES(X86)', 'PROGRAMDATA', 'HOMEDRIVE', 'HOMEPATH'}}
     env['PATH'] = ';'.join(str(p) for p in [system/'System32', system, powershell.parent, system/'System32/Wbem'])
     env['PYTHONNOUSERSITE'] = '1'
     env['PYTHONDONTWRITEBYTECODE'] = '1'
@@ -97,7 +97,7 @@ def main():
         run_count += 1
         command = [str(powershell), '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File',
                    str(package/'scripts/manage.ps1'), '-Action', action, '-Port', str(port or args.port), '-NoBrowser', *map(str, extra)]
-        result = subprocess.run(command, cwd=package, env=env, capture_output=True, timeout=150)
+        result = subprocess.run(command, cwd=package, env=env, capture_output=True, timeout=300)
         (evidence/f'{run_count:02}-{action}.stdout.log').write_bytes(result.stdout)
         (evidence/f'{run_count:02}-{action}.stderr.log').write_bytes(result.stderr)
         if (result.returncode == 0) != success:

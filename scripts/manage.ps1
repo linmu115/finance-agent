@@ -31,7 +31,7 @@ function Test-Installation {
     foreach ($file in @($nodeExe,$pythonExe,$entry,(Join-Path $projectRoot 'web/dist/index.html'),(Join-Path $projectRoot 'node_modules/@modelcontextprotocol/sdk/package.json'))) {
         if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { throw "Missing file: $file. Extract the complete Windows release ZIP, or follow the source-build section in README.md." }
     }
-    $nodeVersion = (& $nodeExe --version).Trim()
+    $nodeVersion = ([string](& $nodeExe --version)).Trim()
     if ($LASTEXITCODE -ne 0 -or $nodeVersion -notmatch '^v(2[4-9]|[3-9][0-9])\.') { throw 'Node.js 24 or newer is required.' }
     & $pythonExe -B -c "import sys,sqlite3,fitz,pandas,openpyxl,rapidocr_onnxruntime,onnxruntime,mcp,langextract; assert sys.version_info[:2] == (3,12); print('Python 3.12 and document dependencies: OK')"
     if ($LASTEXITCODE -ne 0) { throw 'Python runtime check failed. See README.md for repair instructions.' }
@@ -92,7 +92,8 @@ function Start-Instance {
     if (-not $processInfo) { throw "Service exited during startup. Check $logRoot." }
     $record = @{ processId=$process.Id; createdTicks=([datetime]$processInfo.CreationDate).ToUniversalTime().Ticks.ToString(); node=$nodeExe; root=$projectRoot; data=$dataRoot; port=$Port; version='0.1.0' }
     $record | ConvertTo-Json | Set-Content -LiteralPath $recordPath -Encoding UTF8
-    $ready = $false; $deadline = (Get-Date).AddSeconds(45)
+    Write-Host 'Starting the local service. First launch may take up to three minutes while Windows checks the bundled dependencies...'
+    $ready = $false; $deadline = (Get-Date).AddSeconds(180)
     while ((Get-Date) -lt $deadline) {
         if (Test-Ready) { $ready = $true; break }
         $process.Refresh()
