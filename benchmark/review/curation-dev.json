@@ -1,0 +1,2310 @@
+{
+  "schema": "finqa-semantic-curation-v1-proposal",
+  "reviewer_type": "independent AI agent source-material review; not human annotation",
+  "phase": "completed_development_semantic_review",
+  "independent_completed_at": "2026-10-03T05:33:58.721948+00:00",
+  "scope": "All40developmentFinQA cases reviewed. No acceptance labels or model predictions read during this curation. Firstfivewerepreviouslyreviewed; remaining35 source-only calculations saved before legacy comparison.",
+  "cases": [
+    {
+      "id": "finqa_43830ad76931bfb1",
+      "split": "dev",
+      "question": "what was the net change in ending available for sale investment securities from 2017 to 2018?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_43830ad76931bfb1.json",
+      "material_sha256": "13c40051f55b6191ff74fcd09aa7b71aed15cbfd9e66fa029abfa0ddbef68efb",
+      "canonical_answer": "28434",
+      "answer_unit": "million_USD",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "228681-200247",
+      "evidence_sets": [
+        [
+          "finqa_43830ad76931bfb1:table_5"
+        ],
+        [
+          "finqa_43830ad76931bfb1:text_14"
+        ],
+        [
+          "finqa_43830ad76931bfb1:text_30"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_43830ad76931bfb1:table_0"
+      ],
+      "label_status": "verified",
+      "rationale": "Use period-end AFS securities, not average balance. Both long text paragraphs repeat the complete table and each independently suffices.",
+      "source_warnings": [],
+      "legacy_answer": "28434.0",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(228681, 200247)",
+      "legacy_recomputed": "28434",
+      "legacy_citations": [
+        "finqa_43830ad76931bfb1:table_5"
+      ],
+      "upstream_human_answer": "28434",
+      "upstream_original_id": "JPM/2018/page_110.pdf-2",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "28434",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_d4b0e9055d8200b7",
+      "split": "dev",
+      "question": "what portion of the company owned facilities are located in europe?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_d4b0e9055d8200b7.json",
+      "material_sha256": "16c65b00b65029bbbfca614f8280e3b21c3d24dae17906450f36cc678722d148",
+      "canonical_answer": "0.132530120481927710843373493975903614457831325",
+      "answer_unit": "ratio",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "11/(43+3+11+26) =11/83",
+      "evidence_sets": [
+        [
+          "finqa_d4b0e9055d8200b7:table_3",
+          "finqa_d4b0e9055d8200b7:text_10"
+        ],
+        [
+          "finqa_d4b0e9055d8200b7:table_1",
+          "finqa_d4b0e9055d8200b7:table_2",
+          "finqa_d4b0e9055d8200b7:table_3",
+          "finqa_d4b0e9055d8200b7:table_4"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_d4b0e9055d8200b7:table_0",
+        "finqa_d4b0e9055d8200b7:text_9",
+        "finqa_d4b0e9055d8200b7:text_11"
+      ],
+      "label_status": "verified",
+      "rationale": "Owned facilities denominator83 excludes4 leased. Either direct narrative total83 or sum owned geographic counts.",
+      "source_warnings": [],
+      "legacy_answer": "0.13253",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(11, 83)",
+      "legacy_recomputed": "0.1325301204819277108433734939759036144578",
+      "legacy_citations": [
+        "finqa_d4b0e9055d8200b7:table_3",
+        "finqa_d4b0e9055d8200b7:text_10"
+      ],
+      "upstream_human_answer": "13.3%",
+      "upstream_original_id": "KHC/2016/page_23.pdf-1",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "0.1325301204819277108433734939759036144578",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_85a0d7447e34de21",
+      "split": "dev",
+      "question": "how much higher is net revenue in 2017 than 2016 ? ( in millions )",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_85a0d7447e34de21.json",
+      "material_sha256": "2b9cdf194324fb6f32b84ce113bb9fa1ba049497bd0cfe7327e1ed30050d32ed",
+      "canonical_answer": "2.1",
+      "answer_unit": "million_USD",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "1522.6-1520.5",
+      "evidence_sets": [
+        [
+          "finqa_85a0d7447e34de21:table_1",
+          "finqa_85a0d7447e34de21:table_7"
+        ],
+        [
+          "finqa_85a0d7447e34de21:table_2",
+          "finqa_85a0d7447e34de21:table_3",
+          "finqa_85a0d7447e34de21:table_4",
+          "finqa_85a0d7447e34de21:table_5",
+          "finqa_85a0d7447e34de21:table_6"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_85a0d7447e34de21:table_0",
+        "finqa_85a0d7447e34de21:text_3",
+        "finqa_85a0d7447e34de21:text_4"
+      ],
+      "label_status": "verified",
+      "rationale": "Endpoint difference and signed bridge components33.8+5.6-14.8-29+6.5 both yield2.1.",
+      "source_warnings": [],
+      "legacy_answer": "2.1",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(1522.6, 1520.5)",
+      "legacy_recomputed": "2.1",
+      "legacy_citations": [
+        "finqa_85a0d7447e34de21:table_1",
+        "finqa_85a0d7447e34de21:table_7",
+        "finqa_85a0d7447e34de21:text_4"
+      ],
+      "upstream_human_answer": "2.1",
+      "upstream_original_id": "ETR/2017/page_316.pdf-4",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "2.1",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "removed_redundant_mandatory_context",
+      "evidence_rationale": "text_4 only repeats units already in table_0. Endpointrows or namedbridgecomponents suffice; do not require unitpreambleplusrows.",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_0b57b84f867ca21c",
+      "split": "dev",
+      "question": "what is the total possible purchase price for impella including potential contingent payments , in millions?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_0b57b84f867ca21c.json",
+      "material_sha256": "a172682b3a75af9f97cb4ff5edd17ad68942de8223ae51bf90b4323213503bac",
+      "canonical_answer": "61.9",
+      "answer_unit": "million_USD",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "45.1+5.6+11.2",
+      "evidence_sets": [
+        [
+          "finqa_0b57b84f867ca21c:text_3",
+          "finqa_0b57b84f867ca21c:text_4"
+        ]
+      ],
+      "valid_context_citations": [],
+      "label_status": "corrected",
+      "rationale": "Purchase price45.1 explicitly excludes the5.6 contingent payment already made; additional potential payments up to11.2 must also be included. Maximum total61.9, not56.3. Values approximate.",
+      "source_warnings": [
+        "Approximate initial purchase price and maximum contingent amount."
+      ],
+      "legacy_answer": "56.3",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "add(11.2, 45.1)",
+      "legacy_recomputed": "56.3",
+      "legacy_citations": [
+        "finqa_0b57b84f867ca21c:text_3",
+        "finqa_0b57b84f867ca21c:text_4"
+      ],
+      "upstream_human_answer": "56.3",
+      "upstream_original_id": "ABMD/2007/page_52.pdf-1",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "56.3",
+        "note": "Missing already-paid5.6million contingent payment explicitly excluded from45.1million base.",
+        "semantic_match": false
+      },
+      "numeric_label_status": "corrected",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_7dbd1abd9c17e815",
+      "split": "dev",
+      "question": "in 2014 what was the ratio of the cash used for investment to the cash from operations",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_7dbd1abd9c17e815.json",
+      "material_sha256": "e45a8db75e1661b927c89c4b916366ef5dba304303688a40f2dc0f16b84139ae",
+      "canonical_answer": "0.575355450236966824644549763033175355450236967",
+      "answer_unit": "ratio",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "abs(-4249)/7385",
+      "evidence_sets": [
+        [
+          "finqa_7dbd1abd9c17e815:table_1",
+          "finqa_7dbd1abd9c17e815:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_7dbd1abd9c17e815:table_0"
+      ],
+      "label_status": "corrected",
+      "rationale": "2014 column; cash used means positive amount of outflow compared with positive operating inflow. Signed net cash-flow ratio would be negative only if explicitly requested.",
+      "source_warnings": [],
+      "legacy_answer": "0.49905",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(3405, 6823)",
+      "legacy_recomputed": "0.4990473398798182617616884068591528653085",
+      "legacy_citations": [
+        "finqa_7dbd1abd9c17e815:table_1",
+        "finqa_7dbd1abd9c17e815:table_2"
+      ],
+      "upstream_human_answer": "0.499",
+      "upstream_original_id": "UNP/2015/page_35.pdf-1",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "0.4990473398798182617616884068591528653085",
+        "note": "Uses2013 operands3405/6823 instead of requested2014 operands4249/7385.",
+        "semantic_match": false
+      },
+      "numeric_label_status": "corrected",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_5f0b090bd8ed4940",
+      "split": "dev",
+      "question": "what percent of inventory is ready for liquidation ( sale ) in 2003?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_5f0b090bd8ed4940.json",
+      "material_sha256": "1468cf93f8bbfc6725a67cd8843c44df42cd0bf45ddddc31890dde0e85ac198d",
+      "canonical_answer": "72.8254690164866401364411597498578737919272314",
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "384.3/527.7*100",
+      "evidence_sets": [
+        [
+          "finqa_5f0b090bd8ed4940:table_1",
+          "finqa_5f0b090bd8ed4940:table_4"
+        ],
+        [
+          "finqa_5f0b090bd8ed4940:table_1",
+          "finqa_5f0b090bd8ed4940:text_23"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_5f0b090bd8ed4940:table_0",
+        "finqa_5f0b090bd8ed4940:text_19",
+        "finqa_5f0b090bd8ed4940:text_20"
+      ],
+      "label_status": "verified",
+      "rationale": "Treat ready for sale as the finished-goods accounting category; fraction of net inventory384.3/527.7. This does not prove all finished goods can be immediately liquidated. Inventory step-up is part of total carrying value, not a separately established ready-for-sale category.",
+      "source_warnings": [
+        "Narrative columns are interleaved in upstream extraction; table operands remain clear.",
+        "Ready for liquidation interpreted as finished goods; not a liquidity guarantee."
+      ],
+      "legacy_answer": "0.72825",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(384.3, 527.7)",
+      "legacy_recomputed": "0.7282546901648664013644115974985787379193",
+      "legacy_citations": [
+        "finqa_5f0b090bd8ed4940:table_1",
+        "finqa_5f0b090bd8ed4940:table_4"
+      ],
+      "upstream_human_answer": "72.83%",
+      "upstream_original_id": "ZBH/2003/page_58.pdf-3",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "100",
+        "legacy_recomputed_in_canonical_convention": "72.8254690164866401364411597498578737919300",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_1a50bce8ba864905",
+      "split": "dev",
+      "question": "what was the difference in operating profit margins as adjusted between 2017 and 2018?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_1a50bce8ba864905.json",
+      "material_sha256": "81cbad80418a26d9a47c35fd0758c6279dcc18d78a154a14b44acc45f11825b4",
+      "canonical_answer": "0.6",
+      "answer_unit": "percentage_points",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "abs(15.1-15.7)",
+      "evidence_sets": [
+        [
+          "finqa_1a50bce8ba864905:table_6"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_1a50bce8ba864905:table_0"
+      ],
+      "label_status": "verified",
+      "rationale": "Undirected difference is0.6 percentage points; direction is a decrease from2017 to2018. If asked for signed change it is-0.6pp; relative change is a different measure.",
+      "source_warnings": [
+        "Question says difference rather than signed change; reviewed contract uses nonnegative magnitude for undirected difference."
+      ],
+      "legacy_answer": "-0.006",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(15.1%, 15.7%)",
+      "legacy_recomputed": "-0.006",
+      "legacy_citations": [
+        "finqa_1a50bce8ba864905:table_6"
+      ],
+      "upstream_human_answer": "-.6%",
+      "upstream_original_id": "MAS/2018/page_35.pdf-2",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "-100",
+        "legacy_recomputed_in_canonical_convention": "0.600",
+        "note": "Explicit v0.2 convention: undirected difference/decline magnitude is nonnegative; signed chronological change retained separately. This is a sign/reporting convention change, not an arithmetic error.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "signed_change": {
+        "answer": "-0.6",
+        "unit": "percentage_points",
+        "from_period": "2017",
+        "to_period": "2018"
+      },
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_d65017ea9e7a0f59",
+      "split": "dev",
+      "question": "what is the book to market ratio of the commercial mortgage-backed securities",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_d65017ea9e7a0f59.json",
+      "material_sha256": "854f28033691480cf3620163ad8f2450d20c9d0f9ac0b8e3a6f90e0c05d59643",
+      "canonical_answer": "0.994742771310552009012392039053698835899361622",
+      "answer_unit": "ratio",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "264.9/266.3",
+      "evidence_sets": [
+        [
+          "finqa_d65017ea9e7a0f59:text_7"
+        ]
+      ],
+      "valid_context_citations": [],
+      "label_status": "verified",
+      "rationale": "Book value264.9million divided by market value266.3million; units cancel.",
+      "source_warnings": [],
+      "legacy_answer": "0.99474",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(264.9, 266.3)",
+      "legacy_recomputed": "0.9947427713105520090123920390536988358994",
+      "legacy_citations": [
+        "finqa_d65017ea9e7a0f59:text_7"
+      ],
+      "upstream_human_answer": "0.99",
+      "upstream_original_id": "RE/2015/page_33.pdf-1",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "0.9947427713105520090123920390536988358994",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_6934edf192b1c9f7",
+      "split": "dev",
+      "question": "what was the difference in total additions between 2006 and 2007 in millions?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_6934edf192b1c9f7.json",
+      "material_sha256": "20539facd729e7f34e76b3e8d61258a65a58e4d59cc344801852c8b2ebd9f595",
+      "canonical_answer": "994",
+      "answer_unit": "million_USD",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "3133-2139",
+      "evidence_sets": [
+        [
+          "finqa_6934edf192b1c9f7:table_6"
+        ],
+        [
+          "finqa_6934edf192b1c9f7:table_4",
+          "finqa_6934edf192b1c9f7:table_5"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_6934edf192b1c9f7:table_0",
+        "finqa_6934edf192b1c9f7:text_30"
+      ],
+      "label_status": "verified",
+      "rationale": "2007 total additions3133 minus2006 total2139. Sum originations and purchases by year is equivalent.",
+      "source_warnings": [],
+      "legacy_answer": "994.0",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(3133, 2139)",
+      "legacy_recomputed": "994",
+      "legacy_citations": [
+        "finqa_6934edf192b1c9f7:table_6"
+      ],
+      "upstream_human_answer": "994",
+      "upstream_original_id": "JPM/2007/page_157.pdf-2",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "994",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_bb4bc8b486d971a9",
+      "split": "dev",
+      "question": "what is the average number of shares per registered holder as of february 11 , 2011?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_bb4bc8b486d971a9.json",
+      "material_sha256": "6cfa08ae66b87702e3f46f26f5a842c1891d90a95e4e7e2d5942050077e62c8a",
+      "canonical_answer": "858775.151187904967602591792656587473002159827",
+      "answer_unit": "shares_per_registered_holder",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "397612895/463",
+      "evidence_sets": [
+        [
+          "finqa_bb4bc8b486d971a9:text_3"
+        ]
+      ],
+      "valid_context_citations": [],
+      "label_status": "verified",
+      "rationale": "Outstanding share count divided by registered holder count on the same date. Not estimate of beneficial ownership.",
+      "source_warnings": [],
+      "legacy_answer": "858775.15119",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(397612895, 463)",
+      "legacy_recomputed": "858775.1511879049676025917926565874730022",
+      "legacy_citations": [
+        "finqa_bb4bc8b486d971a9:text_3"
+      ],
+      "upstream_human_answer": "858775",
+      "upstream_original_id": "AMT/2010/page_34.pdf-3",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "858775.1511879049676025917926565874730022",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_53295df2e598efa3",
+      "split": "dev",
+      "question": "what was the percentage growth in the total long-term debt from 2016 to 2017",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_53295df2e598efa3.json",
+      "material_sha256": "af613f1df70036851fdd18ed9dea6d02cc20f6ab917d0ef43e213a38dc23601e",
+      "canonical_answer": "5.34553839703724407798197190971979596114876668",
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "(1507.6-1431.1)/1431.1*100",
+      "evidence_sets": [
+        [
+          "finqa_53295df2e598efa3:table_6"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_53295df2e598efa3:table_0",
+        "finqa_53295df2e598efa3:text_0",
+        "finqa_53295df2e598efa3:table_4"
+      ],
+      "label_status": "corrected",
+      "rationale": "Percentage growth requires divide by2016 base and multiply100. table_4 corroborates identical total debt but explicit long-term row6 is definitive; corrupted current-portion cells must not be read as2014.",
+      "source_warnings": [],
+      "legacy_answer": "76.5",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(1507.6, 1431.1)",
+      "legacy_recomputed": "76.5",
+      "legacy_citations": [
+        "finqa_53295df2e598efa3:table_6"
+      ],
+      "upstream_human_answer": "5.34%",
+      "upstream_original_id": "FBHS/2017/page_76.pdf-2",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "76.5",
+        "note": "Stops at76.5million absolute increase; omits division by2016debt and percentage conversion.",
+        "semantic_match": false
+      },
+      "numeric_label_status": "corrected",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_f2a774528953be61",
+      "split": "dev",
+      "question": "what percentage of total other assets in 2012 was comprised of goodwill and identifiable intangible assets?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_f2a774528953be61.json",
+      "material_sha256": "b9fa6ec600988ecff5ffb2e81916c54701ec3fa0f5d7d547a2464034ab189336",
+      "canonical_answer": "12.8687883300103475254271508972061681346692578",
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "5099/39623*100",
+      "evidence_sets": [
+        [
+          "finqa_f2a774528953be61:table_2",
+          "finqa_f2a774528953be61:table_6"
+        ],
+        [
+          "finqa_f2a774528953be61:table_1",
+          "finqa_f2a774528953be61:table_2",
+          "finqa_f2a774528953be61:table_3",
+          "finqa_f2a774528953be61:table_4",
+          "finqa_f2a774528953be61:table_5"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_f2a774528953be61:table_0",
+        "finqa_f2a774528953be61:text_1",
+        "finqa_f2a774528953be61:text_2"
+      ],
+      "label_status": "verified",
+      "rationale": "2012 goodwill/intangibles5099 divided by total other assets39623; denominator also equals sum of five categories.",
+      "source_warnings": [],
+      "legacy_answer": "0.12869",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(5099, 39623)",
+      "legacy_recomputed": "0.1286878833001034752542715089720616813467",
+      "legacy_citations": [
+        "finqa_f2a774528953be61:table_2",
+        "finqa_f2a774528953be61:table_6"
+      ],
+      "upstream_human_answer": "13%",
+      "upstream_original_id": "GS/2012/page_165.pdf-1",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "100",
+        "legacy_recomputed_in_canonical_convention": "12.8687883300103475254271508972061681346700",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_f8b859ba95f18765",
+      "split": "dev",
+      "question": "what is the ratio of the total flight attendants to passenger service personnel",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_f8b859ba95f18765.json",
+      "material_sha256": "c5125a1b14b358122552751e7f12037c4c29483de81ecff8b33e586b1b49fd0d",
+      "canonical_answer": "1.08296943231441048034934497816593886462882096",
+      "answer_unit": "ratio",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "24800/22900",
+      "evidence_sets": [
+        [
+          "finqa_f8b859ba95f18765:table_2",
+          "finqa_f8b859ba95f18765:table_5"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_f8b859ba95f18765:table_0",
+        "finqa_f8b859ba95f18765:text_5"
+      ],
+      "label_status": "verified",
+      "rationale": "Use Total column for both flight attendants and passenger service FTEs.",
+      "source_warnings": [],
+      "legacy_answer": "1.08297",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(24800, 22900)",
+      "legacy_recomputed": "1.082969432314410480349344978165938864629",
+      "legacy_citations": [
+        "finqa_f8b859ba95f18765:table_2",
+        "finqa_f8b859ba95f18765:table_5"
+      ],
+      "upstream_human_answer": "1.08",
+      "upstream_original_id": "AAL/2013/page_15.pdf-3",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "1.082969432314410480349344978165938864629",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_98f4ecc8df038359",
+      "split": "dev",
+      "question": "what was the change in industry segment operating profits between 2003 and 2004?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_98f4ecc8df038359.json",
+      "material_sha256": "8879ec6ea9632d384320f46eb97461bf04ff383896c320b7fa75e48178d5be0b",
+      "canonical_answer": "306",
+      "answer_unit": "million_USD",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "2040-1734",
+      "evidence_sets": [
+        [
+          "finqa_98f4ecc8df038359:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_98f4ecc8df038359:table_0",
+        "finqa_98f4ecc8df038359:text_20"
+      ],
+      "label_status": "verified",
+      "rationale": "Absolute signed change2004 minus2003. Question does not ask percentage.",
+      "source_warnings": [],
+      "legacy_answer": "306.0",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(2040, 1734)",
+      "legacy_recomputed": "306",
+      "legacy_citations": [
+        "finqa_98f4ecc8df038359:table_1"
+      ],
+      "upstream_human_answer": "306",
+      "upstream_original_id": "IP/2005/page_19.pdf-2",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "306",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_31c1495a1b036845",
+      "split": "dev",
+      "question": "what is the change in total debt to be repaid in the contractual obligations for future payments under existing debt and lease commitments and purchase obligations at december 31 , 2005 between 2009 and 2008?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_31c1495a1b036845.json",
+      "material_sha256": "28c2994d080ff0e6efd4d501c9f97d1f5261b5b40a1bb25f6514f8ad3e3953ac",
+      "canonical_answer": "2022",
+      "answer_unit": "million_USD",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "2330-308",
+      "evidence_sets": [
+        [
+          "finqa_31c1495a1b036845:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_31c1495a1b036845:table_0",
+        "finqa_31c1495a1b036845:text_0"
+      ],
+      "label_status": "verified",
+      "rationale": "Debt payments scheduled for2009 relative to2008 increase2022; exclude lease/purchase obligations. Between wording interpreted chronological later-minus-earlier for change.",
+      "source_warnings": [],
+      "legacy_answer": "2022.0",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(2330, 308)",
+      "legacy_recomputed": "2022",
+      "legacy_citations": [
+        "finqa_31c1495a1b036845:table_1"
+      ],
+      "upstream_human_answer": "2022",
+      "upstream_original_id": "IP/2005/page_35.pdf-1",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "2022",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_0950db29929b6db3",
+      "split": "dev",
+      "question": "what portion of the fixed income is related to americas?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_0950db29929b6db3.json",
+      "material_sha256": "4119e665337beaa3b3aac1100a82d234eb8aa50c480a2c811a1d4a344bf806cf",
+      "canonical_answer": "0.878743001625428932635000903016073686111612787",
+      "answer_unit": "ratio",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "121640/138425",
+      "evidence_sets": [
+        [
+          "finqa_0950db29929b6db3:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_0950db29929b6db3:table_0",
+        "finqa_0950db29929b6db3:text_0"
+      ],
+      "label_status": "verified",
+      "rationale": "Americas fixed-income AUM divided by total fixed-income AUM; do not use all-asset Americas74% figure.",
+      "source_warnings": [],
+      "legacy_answer": "0.87874",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(121640, 138425)",
+      "legacy_recomputed": "0.8787430016254289326350009030160736861116",
+      "legacy_citations": [
+        "finqa_0950db29929b6db3:table_2"
+      ],
+      "upstream_human_answer": "87.9%",
+      "upstream_original_id": "BLK/2012/page_37.pdf-3",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "0.8787430016254289326350009030160736861116",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_b5dc2735a14ca549",
+      "split": "dev",
+      "question": "what portion of the total acquisition price of suros is dedicated to goodwill?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_b5dc2735a14ca549.json",
+      "material_sha256": "abf48ffaec844d7c76a173a5bf3d96ea405597731b6d0ac0fabd3e751fca65e3",
+      "canonical_answer": "0.756271059528266566828903032572070385623362037",
+      "answer_unit": "ratio",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "202000/267100",
+      "evidence_sets": [
+        [
+          "finqa_b5dc2735a14ca549:table_6",
+          "finqa_b5dc2735a14ca549:table_7"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_b5dc2735a14ca549:text_1",
+        "finqa_b5dc2735a14ca549:text_13",
+        "finqa_b5dc2735a14ca549:text_21"
+      ],
+      "label_status": "verified",
+      "rationale": "Use estimated total allocated purchase price267100 in the Suros table, not initial aggregate248100 before subsequent allocation. Both amounts thousandsUSD; ratio unitless.",
+      "source_warnings": [
+        "Approximate purchase-price allocation."
+      ],
+      "legacy_answer": "0.75627",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(202000, 267100)",
+      "legacy_recomputed": "0.7562710595282665668289030325720703856234",
+      "legacy_citations": [
+        "finqa_b5dc2735a14ca549:table_7",
+        "finqa_b5dc2735a14ca549:table_6"
+      ],
+      "upstream_human_answer": "75.6%",
+      "upstream_original_id": "HOLX/2007/page_129.pdf-2",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "0.7562710595282665668289030325720703856234",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_14c82d92c1d3ddb8",
+      "split": "dev",
+      "question": "what is the change in the balance of liability for restructuring 2003 program from 2006 to 2008 , ( in millions ) ?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_14c82d92c1d3ddb8.json",
+      "material_sha256": "4784bdbeb423dcfc9f9c782ace083e36426761415b1bd896139351aeff3ef366",
+      "canonical_answer": "-6.9",
+      "answer_unit": "million_USD",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "5.7-12.6",
+      "evidence_sets": [
+        [
+          "finqa_14c82d92c1d3ddb8:table_1",
+          "finqa_14c82d92c1d3ddb8:table_7"
+        ],
+        [
+          "finqa_14c82d92c1d3ddb8:table_2",
+          "finqa_14c82d92c1d3ddb8:table_3",
+          "finqa_14c82d92c1d3ddb8:table_5",
+          "finqa_14c82d92c1d3ddb8:table_6"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_14c82d92c1d3ddb8:table_0",
+        "finqa_14c82d92c1d3ddb8:text_0",
+        "finqa_14c82d92c1d3ddb8:text_1"
+      ],
+      "label_status": "verified",
+      "rationale": "2003-program column only. Liability2008 minus2006=-6.9; intervening changes sum-0.5-3.1+0.8-4.1=-6.9.",
+      "source_warnings": [],
+      "legacy_answer": "-6.9",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(5.7, 12.6)",
+      "legacy_recomputed": "-6.9",
+      "legacy_citations": [
+        "finqa_14c82d92c1d3ddb8:table_1",
+        "finqa_14c82d92c1d3ddb8:table_7"
+      ],
+      "upstream_human_answer": "-6.9",
+      "upstream_original_id": "IPG/2008/page_62.pdf-3",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "-6.9",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_7aa47a6f7b1f1cac",
+      "split": "dev",
+      "question": "what is the five year total return on ball stock?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_7aa47a6f7b1f1cac.json",
+      "material_sha256": "a86b74bb90ceccd10013ed6eef3075c5e461b49415d8dbef42132fcdde181d48",
+      "canonical_answer": "78.9300",
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "(178.93/100-1)*100",
+      "evidence_sets": [
+        [
+          "finqa_7aa47a6f7b1f1cac:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_7aa47a6f7b1f1cac:table_0",
+        "finqa_7aa47a6f7b1f1cac:text_0",
+        "finqa_7aa47a6f7b1f1cac:text_1"
+      ],
+      "label_status": "corrected",
+      "rationale": "Five-year cumulative total shareholder return includes reinvested dividends: ending index178.93 over starting100 gives78.93%, not ending wealth178.93%.",
+      "source_warnings": [],
+      "legacy_answer": "34.96",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(134.96, 100.00)",
+      "legacy_recomputed": "34.96",
+      "legacy_citations": [
+        "finqa_7aa47a6f7b1f1cac:table_1"
+      ],
+      "upstream_human_answer": "34.96",
+      "upstream_original_id": "BLL/2010/page_28.pdf-3",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "34.96",
+        "note": "Uses2009 wealth134.96 instead of2010 wealth178.93 for the five-year2005-2010 period.",
+        "semantic_match": false
+      },
+      "numeric_label_status": "corrected",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_0c9a75b30acde1aa",
+      "split": "dev",
+      "question": "what is the difference in payments between entergy arkansas and entergy new orleans , in millions?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_0c9a75b30acde1aa.json",
+      "material_sha256": "d6bacbb236aa284b8e315140c1d2bf84f73507190a1ffad0d6257035e0c03d14",
+      "canonical_answer": "66",
+      "answer_unit": "million_USD",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "68-2",
+      "evidence_sets": [
+        [
+          "finqa_0c9a75b30acde1aa:table_1",
+          "finqa_0c9a75b30acde1aa:table_4"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_0c9a75b30acde1aa:table_0"
+      ],
+      "label_status": "verified",
+      "rationale": "Both are payments; subtract New Orleans2 from Arkansas68.",
+      "source_warnings": [],
+      "legacy_answer": "66.0",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(68, 2)",
+      "legacy_recomputed": "66",
+      "legacy_citations": [
+        "finqa_0c9a75b30acde1aa:table_1",
+        "finqa_0c9a75b30acde1aa:table_4"
+      ],
+      "upstream_human_answer": "66",
+      "upstream_original_id": "ETR/2015/page_109.pdf-1",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "66",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_02bc71b11e6462bf",
+      "split": "dev",
+      "question": "what was the percentage change in the the fair value of our foreign currency forward contracts from 2008 to 2009",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_02bc71b11e6462bf.json",
+      "material_sha256": "2b75c0b0e16ba75787294272c057ffa3cc614cb38e4083d724831779f70ebf65",
+      "canonical_answer": "-75.00",
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "(0.3-1.2)/1.2*100",
+      "evidence_sets": [
+        [
+          "finqa_02bc71b11e6462bf:text_9"
+        ]
+      ],
+      "valid_context_citations": [],
+      "label_status": "verified",
+      "rationale": "Fair-value stock values0.3 and1.2million, not income-statement derivative gains/losses. Signed percent change=-75%.",
+      "source_warnings": [],
+      "legacy_answer": "-0.75",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(0.3, 1.2), divide(#0, 1.2)",
+      "legacy_recomputed": "-0.75",
+      "legacy_citations": [
+        "finqa_02bc71b11e6462bf:text_3",
+        "finqa_02bc71b11e6462bf:text_9"
+      ],
+      "upstream_human_answer": "-75%",
+      "upstream_original_id": "UA/2009/page_50.pdf-2",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "100",
+        "legacy_recomputed_in_canonical_convention": "-75.00",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "removed_redundant_mandatory_context",
+      "evidence_rationale": "text_9 supplies both fair values andyears. text_3 merely states historicaluseofderivatives and is not an additionaloperand.",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_b050839ebe47f949",
+      "split": "dev",
+      "question": "what is the growth rate in rent expense and certain office equipment expense in 2013 compare to 2012?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_b050839ebe47f949.json",
+      "material_sha256": "798aeda3da3fb253df5df246e24535ca1ebe2c5cb152e10b7795e44182bb3102",
+      "canonical_answer": "3.00751879699248120300751879699248120300751880",
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "(137-133)/133*100",
+      "evidence_sets": [
+        [
+          "finqa_b050839ebe47f949:text_7"
+        ]
+      ],
+      "valid_context_citations": [],
+      "label_status": "verified",
+      "rationale": "Growth rate of same rental/equipment expense categories2013 versus2012; future-commitment table is irrelevant.",
+      "source_warnings": [],
+      "legacy_answer": "0.03008",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(137, 133), divide(#0, 133)",
+      "legacy_recomputed": "0.03007518796992481203007518796992481203008",
+      "legacy_citations": [
+        "finqa_b050839ebe47f949:text_7"
+      ],
+      "upstream_human_answer": "3.0%",
+      "upstream_original_id": "BLK/2013/page_125.pdf-3",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "100",
+        "legacy_recomputed_in_canonical_convention": "3.00751879699248120300751879699248120300800",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_7d739a72e962e5b8",
+      "split": "dev",
+      "question": "what was the percentage change in the fair value from 2010 to 2011",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_7d739a72e962e5b8.json",
+      "material_sha256": "319844d9bbab26fd89104acc7f2a35a5428b228385ff9d7767c52ed6e408c4b4",
+      "canonical_answer": "21.9232789047520181727140606489906083218329038",
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "(99832-81881)/81881*100",
+      "evidence_sets": [
+        [
+          "finqa_7d739a72e962e5b8:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_7d739a72e962e5b8:table_0",
+        "finqa_7d739a72e962e5b8:text_0"
+      ],
+      "label_status": "verified",
+      "rationale": "Fair-value row2011 versus2010, not amortized cost or unrealized loss.",
+      "source_warnings": [],
+      "legacy_answer": "0.21923",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(99832, 81881), divide(#0, 81881)",
+      "legacy_recomputed": "0.2192327890475201817271406064899060832183",
+      "legacy_citations": [
+        "finqa_7d739a72e962e5b8:table_1"
+      ],
+      "upstream_human_answer": "21.9%",
+      "upstream_original_id": "STT/2011/page_83.pdf-2",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "100",
+        "legacy_recomputed_in_canonical_convention": "21.9232789047520181727140606489906083218300",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_f4d6b16d6013cd72",
+      "split": "dev",
+      "question": "in millions , what is the total impact on the change in net revenue from the reserve equalization , the purchased power capacity , and the transmission revenue?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_f4d6b16d6013cd72.json",
+      "material_sha256": "8a1a81484e4c7e5b7073a1476710a93998e18770976b2854cd65ee1456b5cff7",
+      "canonical_answer": "33.7",
+      "answer_unit": "million_USD",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "14.3+12.4+7.0",
+      "evidence_sets": [
+        [
+          "finqa_f4d6b16d6013cd72:table_2",
+          "finqa_f4d6b16d6013cd72:table_3",
+          "finqa_f4d6b16d6013cd72:table_4"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_f4d6b16d6013cd72:table_0",
+        "finqa_f4d6b16d6013cd72:text_3",
+        "finqa_f4d6b16d6013cd72:text_4"
+      ],
+      "label_status": "verified",
+      "rationale": "Only the three named positive net-revenue bridge components; total33.7 differs from overall revenue change7.0.",
+      "source_warnings": [],
+      "legacy_answer": "33.7",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "add(14.3, 12.4), add(#0, const_7)",
+      "legacy_recomputed": "33.7",
+      "legacy_citations": [
+        "finqa_f4d6b16d6013cd72:table_2",
+        "finqa_f4d6b16d6013cd72:table_3",
+        "finqa_f4d6b16d6013cd72:table_4"
+      ],
+      "upstream_human_answer": "33.7",
+      "upstream_original_id": "ETR/2016/page_418.pdf-1",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "33.7",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_7271cc2025a02d5b",
+      "split": "dev",
+      "question": "what was the percentage cumulative total return for the five year period ended 31-dec-2017 of citi common stock?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_7271cc2025a02d5b.json",
+      "material_sha256": "8d55b3129c4e6dc6c9751ae0c04d42b7a19a3391658285b046e687bfa58e2e91",
+      "canonical_answer": "93.500",
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "(193.5/100-1)*100",
+      "evidence_sets": [
+        [
+          "finqa_7271cc2025a02d5b:table_1",
+          "finqa_7271cc2025a02d5b:table_6"
+        ],
+        [
+          "finqa_7271cc2025a02d5b:text_1",
+          "finqa_7271cc2025a02d5b:table_6"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_7271cc2025a02d5b:table_0",
+        "finqa_7271cc2025a02d5b:text_0",
+        "finqa_7271cc2025a02d5b:text_2"
+      ],
+      "label_status": "verified",
+      "rationale": "Five-year cumulative total return is gain relative to100 investment,93.5%; table end index193.5 is wealth not percent gain.",
+      "source_warnings": [],
+      "legacy_answer": "0.935",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(193.5, const_100), divide(#0, const_100)",
+      "legacy_recomputed": "0.935",
+      "legacy_citations": [
+        "finqa_7271cc2025a02d5b:table_1",
+        "finqa_7271cc2025a02d5b:table_6"
+      ],
+      "upstream_human_answer": "93.5%",
+      "upstream_original_id": "C/2017/page_328.pdf-1",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "100",
+        "legacy_recomputed_in_canonical_convention": "93.500",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_b6bf66a7f8b39233",
+      "split": "dev",
+      "question": "what was the difference in percentage cumulative return for lkq corporation and the s&p 500 index for the five years ended 12/31/2016?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_b6bf66a7f8b39233.json",
+      "material_sha256": "348f3f18837e546294f8d038bda036139a41696572e563a5dd0bc681b0e4c210",
+      "canonical_answer": "26.00",
+      "answer_unit": "percentage_points",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "(204/100-1)*100-(178/100-1)*100",
+      "evidence_sets": [
+        [
+          "finqa_b6bf66a7f8b39233:table_1",
+          "finqa_b6bf66a7f8b39233:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_b6bf66a7f8b39233:table_0"
+      ],
+      "label_status": "verified",
+      "rationale": "LKQ cumulative return104% minus S&P78%=26percentagepoints, not relative excess return26/78.",
+      "source_warnings": [
+        "Narrative title mentions Nasdaq while explicit table row and question identify S&P500; use table row label."
+      ],
+      "legacy_answer": "0.26",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(204, 100), divide(#0, 100), subtract(178, 100), divide(#2, 100), subtract(#1, #3)",
+      "legacy_recomputed": "0.26",
+      "legacy_citations": [
+        "finqa_b6bf66a7f8b39233:table_1",
+        "finqa_b6bf66a7f8b39233:table_2"
+      ],
+      "upstream_human_answer": "26%",
+      "upstream_original_id": "LKQ/2016/page_26.pdf-2",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "100",
+        "legacy_recomputed_in_canonical_convention": "26.00",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_fd56dcfb388be54d",
+      "split": "dev",
+      "question": "what percentage of amounts expensed in 2009 came from discretionary company contributions?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_fd56dcfb388be54d.json",
+      "material_sha256": "0ae315b40f0eda4f2ceeafbf87a73695a7102bf5b08598ea2f77ae18575ee008",
+      "canonical_answer": null,
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": null,
+      "evidence_sets": [
+        [
+          "finqa_fd56dcfb388be54d:text_14",
+          "finqa_fd56dcfb388be54d:text_15"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_fd56dcfb388be54d:text_0",
+        "finqa_fd56dcfb388be54d:text_11",
+        "finqa_fd56dcfb388be54d:text_12",
+        "finqa_fd56dcfb388be54d:text_13"
+      ],
+      "label_status": "ambiguous",
+      "rationale": "Ambiguous gross versus net attribution. Expense includes gross discretionary company contribution3.8 and offset participant forfeiture2.7. Question does not say whether to net forfeiture against discretionary contribution, and total expense35.1 covers savings plans. Do not silently choose one.",
+      "source_warnings": [],
+      "legacy_answer": "10.82621",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(3.8, 35.1), multiply(#0, const_100)",
+      "legacy_recomputed": "10.82621082621082621082621082621082621083",
+      "legacy_citations": [
+        "finqa_fd56dcfb388be54d:text_14",
+        "finqa_fd56dcfb388be54d:text_15"
+      ],
+      "upstream_human_answer": "10.83%",
+      "upstream_original_id": "IPG/2009/page_85.pdf-3",
+      "conditioned_answers": [
+        {
+          "condition": "gross discretionary contribution / total expense",
+          "formula": "3.8/35.1*100",
+          "answer": "10.8262108262108262108262108262108262108262108",
+          "unit": "percent"
+        },
+        {
+          "condition": "net discretionary expense after participant forfeitures",
+          "formula": "(3.8-2.7)/35.1*100",
+          "answer": "3.13390313390313390313390313390313390313390313",
+          "unit": "percent"
+        }
+      ],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "10.82621082621082621082621082621082621083",
+        "note": "Legacy selects one interpretation or an incomplete program; it must not settle ambiguity in public source/question.",
+        "semantic_match": "not_unique",
+        "conditional_agreement": "Legacy selects gross3.8/35.1percentage; no explicit net-versus-gross instruction in question."
+      },
+      "required_response_status": "insufficient_evidence",
+      "reason_code": "ambiguous_question_or_source",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_32b3e7393e3b1325",
+      "split": "dev",
+      "question": "what was the total of u.s . dollar notes issued in 2014 , in millions?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_32b3e7393e3b1325.json",
+      "material_sha256": "88db953c4e64918e68ba2b593f1af198296a1abb4afc53da14b5eada9566ecef",
+      "canonical_answer": "2000",
+      "answer_unit": "million_USD",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "500+750+750",
+      "evidence_sets": [
+        [
+          "finqa_32b3e7393e3b1325:table_6",
+          "finqa_32b3e7393e3b1325:table_7",
+          "finqa_32b3e7393e3b1325:table_8"
+        ],
+        [
+          "finqa_32b3e7393e3b1325:text_0",
+          "finqa_32b3e7393e3b1325:text_1",
+          "finqa_32b3e7393e3b1325:text_2",
+          "finqa_32b3e7393e3b1325:text_3"
+        ],
+        [
+          "finqa_32b3e7393e3b1325:text_15",
+          "finqa_32b3e7393e3b1325:text_16",
+          "finqa_32b3e7393e3b1325:text_17",
+          "finqa_32b3e7393e3b1325:text_18"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_32b3e7393e3b1325:table_0",
+        "finqa_32b3e7393e3b1325:text_0",
+        "finqa_32b3e7393e3b1325:text_15"
+      ],
+      "label_status": "verified",
+      "rationale": "Sum only USD-denominated note principal issued2014. Foreign-currency notes with approximateUSDtranslations do not count. Duplicate narrative blocks are alternatives, not cumulative required evidence.",
+      "source_warnings": [],
+      "legacy_answer": "2000.0",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "add(750, 750), add(#0, 500)",
+      "legacy_recomputed": "2000",
+      "legacy_citations": [
+        "finqa_32b3e7393e3b1325:table_6",
+        "finqa_32b3e7393e3b1325:table_7",
+        "finqa_32b3e7393e3b1325:table_8"
+      ],
+      "upstream_human_answer": "2000",
+      "upstream_original_id": "PM/2014/page_67.pdf-1",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "2000",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_082d75164302804d",
+      "split": "dev",
+      "question": "what was the percent of the change in the net revenues from dec . 282012 dec . 29 2013",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_082d75164302804d.json",
+      "material_sha256": "930c68347a0d999a8121605e178d54b18cd8ef61e9d2c20d88af2271addd54bb",
+      "canonical_answer": null,
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": null,
+      "evidence_sets": [
+        [
+          "finqa_082d75164302804d:table_0",
+          "finqa_082d75164302804d:table_1",
+          "finqa_082d75164302804d:text_19"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_082d75164302804d:table_0",
+        "finqa_082d75164302804d:text_7",
+        "finqa_082d75164302804d:text_18",
+        "finqa_082d75164302804d:text_19"
+      ],
+      "label_status": "ambiguous",
+      "rationale": "Question reverses day-of-month labels versus public source (asksDec28,2012 toDec29,2013; table showsDec29,2012 andDec28,2013) and normalized header incorrectly calls annual totals three-months. Annual2013-versus2012 intent is inferable, but exact requested dates are unsupported; require a versioned clarification, not silent gold substitution.",
+      "source_warnings": [],
+      "legacy_answer": "-0.01187",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(52708, 53341), divide(#0, 53341)",
+      "legacy_recomputed": "-0.01186704411240884122907332071014791623704",
+      "legacy_citations": [
+        "finqa_082d75164302804d:table_1"
+      ],
+      "upstream_human_answer": "-1.2%",
+      "upstream_original_id": "INTC/2013/page_33.pdf-1",
+      "conditioned_answers": [
+        {
+          "condition": "annual fiscal2013 vs fiscal2012 (correct source datesDec28,2013 vsDec29,2012)",
+          "formula": "(52708-53341)/53341*100",
+          "answer": "-1.18670441124088412290733207101479162370409254",
+          "unit": "percent"
+        }
+      ],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "-0.01186704411240884122907332071014791623704",
+        "note": "Legacy selects one interpretation or an incomplete program; it must not settle ambiguity in public source/question.",
+        "semantic_match": "not_unique",
+        "conditional_agreement": "Legacy execution agrees with annual2013vs2012 interpretation after scaling topercent; date typos and corrupted annual header remain."
+      },
+      "required_response_status": "insufficient_evidence",
+      "reason_code": "ambiguous_question_or_source",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_2fb7edbed7295ccf",
+      "split": "dev",
+      "question": "what is the percent change in fair value between 2010 and 2011?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_2fb7edbed7295ccf.json",
+      "material_sha256": "2e76de6c6db4ef740d11af78953a687df35fca40b6bd8fa624e93817743f0481",
+      "canonical_answer": "21.9232789047520181727140606489906083218329038",
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "(99832-81881)/81881*100",
+      "evidence_sets": [
+        [
+          "finqa_2fb7edbed7295ccf:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_2fb7edbed7295ccf:table_0",
+        "finqa_2fb7edbed7295ccf:text_0"
+      ],
+      "label_status": "verified",
+      "rationale": "Same material and effective question as case22; duplicate withindev, not independent evidence of capability.",
+      "source_warnings": [],
+      "legacy_answer": "0.21923",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(99832, 81881), divide(#0, 81881)",
+      "legacy_recomputed": "0.2192327890475201817271406064899060832183",
+      "legacy_citations": [
+        "finqa_2fb7edbed7295ccf:table_1"
+      ],
+      "upstream_human_answer": "15.8%",
+      "upstream_original_id": "STT/2011/page_83.pdf-3",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "100",
+        "legacy_recomputed_in_canonical_convention": "21.9232789047520181727140606489906083218300",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true,
+        "upstream_human_answer_error": "Text15.8% conflicts with source and correct program;21.9232789...% is supported."
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_b60f5cb9d1c5146a",
+      "split": "dev",
+      "question": "what percent higher is the average var for foreign exchange products than that of interest rate products?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_b60f5cb9d1c5146a.json",
+      "material_sha256": "acfb31f53ba212b1cacb90adce09af6c5c0073acefaf1760f661f7f5292e5bb6",
+      "canonical_answer": null,
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": null,
+      "evidence_sets": [
+        [
+          "finqa_b60f5cb9d1c5146a:table_1",
+          "finqa_b60f5cb9d1c5146a:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_b60f5cb9d1c5146a:table_0",
+        "finqa_b60f5cb9d1c5146a:text_0",
+        "finqa_b60f5cb9d1c5146a:text_3"
+      ],
+      "label_status": "ambiguous",
+      "rationale": "Year/aggregation unspecified; normalized header incorrectly labels both years2008. Current-year2008 yields63.636...%, mean of both annual averages yields44%; no unique answer without period/aggregation clarification. Original QA label must not supply missing intent.",
+      "source_warnings": [],
+      "legacy_answer": "1.25",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "add(1.1, 1.4), divide(#0, const_2)",
+      "legacy_recomputed": "1.25",
+      "legacy_citations": [
+        "finqa_b60f5cb9d1c5146a:table_2",
+        "finqa_b60f5cb9d1c5146a:text_0"
+      ],
+      "upstream_human_answer": "44%",
+      "upstream_original_id": "STT/2008/page_83.pdf-2",
+      "conditioned_answers": [
+        {
+          "condition": "mean of2008/2007 annual averages (original table identifiesyears)",
+          "formula": "(1.8-(1.1+1.4)/2)/((1.1+1.4)/2)*100",
+          "answer": "44",
+          "unit": "percent"
+        },
+        {
+          "condition": "current2008 annual averages",
+          "formula": "(1.8-1.1)/1.1*100",
+          "answer": "63.6363636363636363636363636363636363636363636",
+          "unit": "percent"
+        },
+        {
+          "condition": "second annual-average block",
+          "formula": "(1.8-1.4)/1.4*100",
+          "answer": "28.5714285714285714285714285714285714285714286",
+          "unit": "percent"
+        }
+      ],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "1.25",
+        "note": "Legacy selects one interpretation or an incomplete program; it must not settle ambiguity in public source/question.",
+        "semantic_match": "not_unique",
+        "upstream_program_error": "Only calculates interest-rate mean1.25million; never computes FX comparison. Human44% reflects two-year interpretation not stated clearly in question."
+      },
+      "required_response_status": "insufficient_evidence",
+      "reason_code": "ambiguous_question_or_source",
+      "evidence_label_status": "corrected_semantic_evidence",
+      "evidence_rationale": "FXrowtable_1 is required to compareFX/IR; legacy omits it and substitutes genericintrotext_0.",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_5d27e65ff333d7ae",
+      "split": "dev",
+      "question": "what was the average annual creation of new stores for aap from 2008 to 2012?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_5d27e65ff333d7ae.json",
+      "material_sha256": "0db415363857339dcb26e397912971c662b154e405a20c1cbd7134434e16e3af",
+      "canonical_answer": "101",
+      "answer_unit": "stores_per_year",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "(116+95+110+75+109)/5",
+      "evidence_sets": [
+        [
+          "finqa_5d27e65ff333d7ae:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_5d27e65ff333d7ae:table_0",
+        "finqa_5d27e65ff333d7ae:text_0",
+        "finqa_5d27e65ff333d7ae:text_1"
+      ],
+      "label_status": "corrected",
+      "rationale": "Gross new openings across all five inclusiveyears; footnote excludes relocations, but does not add an operand.",
+      "source_warnings": [],
+      "legacy_answer": "112.5",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "add(116, 109), divide(#0, const_2)",
+      "legacy_recomputed": "112.5",
+      "legacy_citations": [
+        "finqa_5d27e65ff333d7ae:table_2",
+        "finqa_5d27e65ff333d7ae:text_0",
+        "finqa_5d27e65ff333d7ae:text_1"
+      ],
+      "upstream_human_answer": "101 stores created per year",
+      "upstream_original_id": "AAP/2012/page_12.pdf-3",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "112.5",
+        "note": "Averages only two endpoints instead of allfiveyears; recorded upstream intermediate addition is also wrong.",
+        "semantic_match": false
+      },
+      "numeric_label_status": "corrected",
+      "required_response_status": "ok",
+      "evidence_label_status": "removed_redundant_mandatory_context",
+      "evidence_rationale": "Table row and headers supply five yearlycounts. text_0 repeats five-yearscope; text_1 explains exclusion of relocations. Both are validoptionalcontext, not additionalnecessaryfacts.",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_d38a3b84fe4650ee",
+      "split": "dev",
+      "question": "as part of the employee stock purchase plan what was the percent of the decline in issuance under this plan from 2016 to 2017",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_d38a3b84fe4650ee.json",
+      "material_sha256": "a8425a1e6bd841e850285f4d2149a9aa8f98d0048600e702f2be15b460866720",
+      "canonical_answer": "12.4103470807548910327862551408694315255409924",
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "(130085-113941)/130085*100",
+      "evidence_sets": [
+        [
+          "finqa_d38a3b84fe4650ee:text_3"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_d38a3b84fe4650ee:text_1",
+        "finqa_d38a3b84fe4650ee:text_2"
+      ],
+      "label_status": "verified",
+      "rationale": "Question asks magnitude of decline, so positive12.410...%. Signed year-on-year change would negative; denominator is2016 issuance. Repurchases table is unrelated.",
+      "source_warnings": [],
+      "legacy_answer": "-0.1241",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(113941, 130085), divide(#0, 130085)",
+      "legacy_recomputed": "-0.1241034708075489103278625514086943152554",
+      "legacy_citations": [
+        "finqa_d38a3b84fe4650ee:text_3"
+      ],
+      "upstream_human_answer": "-12.4%",
+      "upstream_original_id": "RSG/2017/page_142.pdf-1",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "-100",
+        "legacy_recomputed_in_canonical_convention": "12.4103470807548910327862551408694315255400",
+        "note": "Explicit v0.2 convention: undirected difference/decline magnitude is nonnegative; signed chronological change retained separately. This is a sign/reporting convention change, not an arithmetic error.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "signed_change": {
+        "answer": "-12.4103470807548910327862551408694315255409924",
+        "unit": "percent",
+        "from_period": "2016",
+        "to_period": "2017"
+      },
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_f1f6386471885fc4",
+      "split": "dev",
+      "question": "what portion of the equity compensation plan approved by security holders is to be issued upon the exercise of options warrants and rights?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_f1f6386471885fc4.json",
+      "material_sha256": "db693588b4a46c748e0f4570c5697efff15691c7e7313cda9507c5e411261499",
+      "canonical_answer": "0.0989450772697393510250094457202841166851760166",
+      "answer_unit": "ratio",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "448859/(448859+4087587)",
+      "evidence_sets": [
+        [
+          "finqa_f1f6386471885fc4:table_1"
+        ],
+        [
+          "finqa_f1f6386471885fc4:text_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_f1f6386471885fc4:table_0",
+        "finqa_f1f6386471885fc4:text_0",
+        "finqa_f1f6386471885fc4:table_3",
+        "finqa_f1f6386471885fc4:text_7"
+      ],
+      "label_status": "verified",
+      "rationale": "Outstanding awards448859 as share of total approved-plan securities outstanding plus remaining4087587. Column(c) explicitly excludes(a), so denominator sums disjoint categories. Ratio to only remaining pool would be a different measure.",
+      "source_warnings": [],
+      "legacy_answer": "0.09895",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "add(448859, 4087587), divide(448859, #0)",
+      "legacy_recomputed": "0.09894507726973935102500944572028411668518",
+      "legacy_citations": [
+        "finqa_f1f6386471885fc4:table_1"
+      ],
+      "upstream_human_answer": "9.9%",
+      "upstream_original_id": "HII/2017/page_124.pdf-1",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "0.09894507726973935102500944572028411668518",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_ed8e3b849aea5272",
+      "split": "dev",
+      "question": "without the us , what would the total net revenue be for 2017?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_ed8e3b849aea5272.json",
+      "material_sha256": "0925f04f6aa0e78d3b24b3e4985a617eab7752a144e8c0770ae96fdf1b9613eb",
+      "canonical_answer": "7301",
+      "answer_unit": "million_USD",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "10530-3229",
+      "evidence_sets": [
+        [
+          "finqa_ed8e3b849aea5272:table_8",
+          "finqa_ed8e3b849aea5272:table_1"
+        ],
+        [
+          "finqa_ed8e3b849aea5272:table_2",
+          "finqa_ed8e3b849aea5272:table_3",
+          "finqa_ed8e3b849aea5272:table_4",
+          "finqa_ed8e3b849aea5272:table_5",
+          "finqa_ed8e3b849aea5272:table_6",
+          "finqa_ed8e3b849aea5272:table_7"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_ed8e3b849aea5272:table_0",
+        "finqa_ed8e3b849aea5272:text_11",
+        "finqa_ed8e3b849aea5272:text_22",
+        "finqa_ed8e3b849aea5272:text_24",
+        "finqa_ed8e3b849aea5272:text_25"
+      ],
+      "label_status": "verified",
+      "rationale": "Mechanical exclusion of US SBU from reported consolidated revenue gives7301million, preserving existing corporate/elimination entries. This is not a pro-forma divestiture forecast; intersegment eliminations would require additional data for economic counterfactual.",
+      "source_warnings": [],
+      "legacy_answer": "7301000000.0",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(10530, 3229), multiply(#0, const_1000000)",
+      "legacy_recomputed": "7301000000",
+      "legacy_citations": [
+        "finqa_ed8e3b849aea5272:table_8",
+        "finqa_ed8e3b849aea5272:table_1"
+      ],
+      "upstream_human_answer": "7304000000",
+      "upstream_original_id": "AES/2017/page_157.pdf-3",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "0.000001",
+        "legacy_recomputed_in_canonical_convention": "7301.000000",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true,
+        "upstream_human_answer_error": "Text7304000000 conflicts with table/program7301000000USD. Canonical retains source millionUSDscale7301."
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_a6c3b4883a923ab7",
+      "split": "dev",
+      "question": "in 2016 based on the increase in the net sales what was the ratio of the increasing factor to the offsetting factors that reduced sales",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_a6c3b4883a923ab7.json",
+      "material_sha256": "b9f6cf81b2cc20cde27db73b26d8d9890e7214716b4a978e54f466ed73b1c33d",
+      "canonical_answer": "40.7272727272727272727272727272727272727272727",
+      "answer_unit": "ratio",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "(1700+290+250)/55",
+      "evidence_sets": [
+        [
+          "finqa_a6c3b4883a923ab7:text_15",
+          "finqa_a6c3b4883a923ab7:text_16"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_a6c3b4883a923ab7:text_14"
+      ],
+      "label_status": "corrected",
+      "rationale": "Normalize1.7billion to1700million. Add the three2016 positive sales drivers and divide by55million C-5 decrease; unrelated2015 unfavorable550million is wrong.",
+      "source_warnings": [
+        "All source driver amounts approximate."
+      ],
+      "legacy_answer": "0.98491",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "add(1.7, 290), add(#0, 250), divide(#1, 550)",
+      "legacy_recomputed": "0.9849090909090909090909090909090909090909",
+      "legacy_citations": [
+        "finqa_a6c3b4883a923ab7:text_14",
+        "finqa_a6c3b4883a923ab7:text_15",
+        "finqa_a6c3b4883a923ab7:text_9"
+      ],
+      "upstream_human_answer": "40.7",
+      "upstream_original_id": "LMT/2016/page_48.pdf-2",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "0.9849090909090909090909090909090909090909",
+        "note": "Mixes1.7billion with290/250million and uses unrelated2015expense550 instead of2016salesoffset55.",
+        "semantic_match": false
+      },
+      "numeric_label_status": "corrected",
+      "required_response_status": "ok",
+      "evidence_label_status": "corrected_semantic_evidence",
+      "evidence_rationale": "Numerator text_15 plus denominator text_16 is sufficient. Legacy text_9 is differentyear,segment,andmetric and should be invalid, while text_14 is optionaloverview.",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_3816e154b20a808d",
+      "split": "dev",
+      "question": "what is the total amount of cash outflow used for shares repurchased during november 2007 , in millions?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_3816e154b20a808d.json",
+      "material_sha256": "c7e4ffad0820a996006301f78d9934e814bf65dfdde983d633b98d078f3d0ad5",
+      "canonical_answer": null,
+      "answer_unit": "million_USD",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": null,
+      "evidence_sets": [
+        [
+          "finqa_3816e154b20a808d:table_2",
+          "finqa_3816e154b20a808d:table_3",
+          "finqa_3816e154b20a808d:text_14"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_3816e154b20a808d:table_0",
+        "finqa_3816e154b20a808d:text_12",
+        "finqa_3816e154b20a808d:text_13"
+      ],
+      "label_status": "ambiguous",
+      "rationale": "Exact calendar-November cash outflow is unsupported. Reporting row spansOct29-Nov25 and next rowNov26-Dec31; no daily allocation. Footnote includes shares retained for employee tax withholding, so shares-times-average-price need not equal pure cash purchases. Conditional fiscal-period estimate may be reported, not exactcalendar-month answer.",
+      "source_warnings": [],
+      "legacy_answer": "20.74359",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "multiply(431170, 48.11), divide(#0, const_1000000)",
+      "legacy_recomputed": "20.7435887",
+      "legacy_citations": [
+        "finqa_3816e154b20a808d:table_2"
+      ],
+      "upstream_human_answer": "20.7",
+      "upstream_original_id": "BLL/2007/page_35.pdf-3",
+      "conditioned_answers": [
+        {
+          "condition": "Approximate cost for disclosedOct29-Nov25 fiscal repurchase period, assumingallcounts cash-paid",
+          "formula": "431170*48.11/1000000",
+          "answer": "20.7435887",
+          "unit": "million_USD",
+          "rounding_uncertainty_from_average_price": "0.00215585"
+        }
+      ],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "20.7435887",
+        "note": "Legacy selects one interpretation or an incomplete program; it must not settle ambiguity in public source/question.",
+        "semantic_match": "not_unique",
+        "conditional_agreement": "Legacy approximates disclosedOct29-Nov25period cost; cannot establish requested calendar-November pure cash outflow."
+      },
+      "required_response_status": "insufficient_evidence",
+      "reason_code": "ambiguous_question_or_source",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_95ddecd6ea91200e",
+      "split": "dev",
+      "question": "how much did net rental expense increase from 2007 to 2009?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_95ddecd6ea91200e.json",
+      "material_sha256": "7e9135ca1356cf8c0bc52e12ef6fc00e802fec38cf1cbe87b778577dfa87fa53",
+      "canonical_answer": "15",
+      "answer_unit": "million_USD",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "257-242",
+      "evidence_sets": [
+        [
+          "finqa_95ddecd6ea91200e:table_3"
+        ],
+        [
+          "finqa_95ddecd6ea91200e:table_1",
+          "finqa_95ddecd6ea91200e:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_95ddecd6ea91200e:table_0",
+        "finqa_95ddecd6ea91200e:text_1"
+      ],
+      "label_status": "corrected",
+      "rationale": "How much increased means absolute increase15million; if percentage were explicitly requested it would15/242*100. Net rentals equal minimum plus contingent, giving alternative evidence.",
+      "source_warnings": [],
+      "legacy_answer": "0.06198",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(257, 242), divide(#0, 242)",
+      "legacy_recomputed": "0.06198347107438016528925619834710743801653",
+      "legacy_citations": [
+        "finqa_95ddecd6ea91200e:table_3"
+      ],
+      "upstream_human_answer": "6.2%",
+      "upstream_original_id": "MRO/2009/page_139.pdf-1",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "0.06198347107438016528925619834710743801653",
+        "note": "Returns relative growth although question asks how much net rental expense increased; amount15million under the uniform absolute-change convention.",
+        "semantic_match": false
+      },
+      "numeric_label_status": "corrected",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_02eaffe84f4f614c",
+      "split": "dev",
+      "question": "goodwill comprises what percentage of total assets acquired?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_02eaffe84f4f614c.json",
+      "material_sha256": "d095736c5db530d24e540254ad8a8ddcf0c2ba61e13cb632087522bd6b54cc6e",
+      "canonical_answer": "1.69694706290530431394788590503459134720675736",
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "14722/867558*100",
+      "evidence_sets": [
+        [
+          "finqa_02eaffe84f4f614c:table_5",
+          "finqa_02eaffe84f4f614c:table_6"
+        ],
+        [
+          "finqa_02eaffe84f4f614c:table_2",
+          "finqa_02eaffe84f4f614c:table_3",
+          "finqa_02eaffe84f4f614c:table_4",
+          "finqa_02eaffe84f4f614c:table_5"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_02eaffe84f4f614c:text_13",
+        "finqa_02eaffe84f4f614c:text_14",
+        "finqa_02eaffe84f4f614c:text_15",
+        "finqa_02eaffe84f4f614c:text_17"
+      ],
+      "label_status": "corrected",
+      "rationale": "Use goodwill and total-assets-acquired rows of MarkWinkler acquisition table. Table units thousandsUSD cancel; do not mix separate Bremner39million goodwill.",
+      "source_warnings": [],
+      "legacy_answer": "1.69695",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(14722, 867558), multiply(#0, const_100)",
+      "legacy_recomputed": "1.696947062905304313947885905034591347207",
+      "legacy_citations": [
+        "finqa_02eaffe84f4f614c:table_5",
+        "finqa_02eaffe84f4f614c:table_6",
+        "finqa_02eaffe84f4f614c:text_10"
+      ],
+      "upstream_human_answer": "1.70%",
+      "upstream_original_id": "DRE/2007/page_59.pdf-2",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "1",
+        "legacy_recomputed_in_canonical_convention": "1.696947062905304313947885905034591347207",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "corrected_semantic_evidence",
+      "evidence_rationale": "Legacy text_10 describes separateBremner47.1million consideration, not table MarkWinkler goodwill14722/thousands or assets867558. It must not be required or treated as support for this ratio.",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    },
+    {
+      "id": "finqa_d9828b1778922f40",
+      "split": "dev",
+      "question": "what is the percentage change in weighted average discount rate for postretirement plans from 2017 to 2018?",
+      "source_material": "benchmark\\agent_input\\finqa\\finqa_d9828b1778922f40.json",
+      "material_sha256": "dcbe4a93ea92909c8ea8c362aacedf0c5107cc0a233daa1f281f4b3fedf00547",
+      "canonical_answer": "4.74934036939313984168865435356200527704485488",
+      "answer_unit": "percent",
+      "abs_tolerance": "0.000006",
+      "rel_tolerance": "0",
+      "formula": "(3.97-3.79)/3.79*100",
+      "evidence_sets": [
+        [
+          "finqa_d9828b1778922f40:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_d9828b1778922f40:table_0",
+        "finqa_d9828b1778922f40:text_30"
+      ],
+      "label_status": "verified",
+      "rationale": "Percentage change in a percentage rate is relative:4.749...%. Absolute difference0.18percentagepoints is a distinct measure.",
+      "source_warnings": [],
+      "legacy_answer": "0.04749",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(3.97, 3.79), divide(#0, 3.79)",
+      "legacy_recomputed": "0.04749340369393139841688654353562005277045",
+      "legacy_citations": [
+        "finqa_d9828b1778922f40:table_2"
+      ],
+      "upstream_human_answer": "4.7%",
+      "upstream_original_id": "PM/2018/page_31.pdf-2",
+      "conditioned_answers": [],
+      "legacy_comparison": {
+        "scale_and_sign_factor_for_comparison": "100",
+        "legacy_recomputed_in_canonical_convention": "4.74934036939313984168865435356200527704500",
+        "note": "Question interpretation and source calculation reviewed independently; normalization only changes declared display unit/sign convention where recorded.",
+        "semantic_match": true
+      },
+      "numeric_label_status": "verified",
+      "required_response_status": "ok",
+      "evidence_label_status": "alternatives_curated",
+      "citation_semantics": "Table-row locator is displayed with its original table header/year/unit context. evidence_sets are alternative sufficient operand sets; valid_context_citations may be included without precision penalty. Ambiguous cases cite evidence of the ambiguity, not a unique scalar."
+    }
+  ],
+  "completed_at": "2026-10-03T05:37:31.002965+00:00",
+  "provenance": {
+    "independent_snapshot": "benchmark\\review\\curation-dev-independent.json",
+    "independent_snapshot_sha256": "25f19e7be6480c6348395e27bf181ae0e756271734d19da0300cb64cceb81ba2",
+    "upstream_commit": "0f16e2867befa6840783e58be38c9efb9229d742",
+    "upstream_source": "benchmark/sources/finqa/dev.json",
+    "official_gold_policy": "Existing evaluator/gold.jsonl unchanged; only40matchingdevrows decoded; split assertion on everyrow.",
+    "not_for_agent_input": true,
+    "runtime_source_modified": false,
+    "gold_modified": false,
+    "scorer_modified": false,
+    "prompts_modified": false,
+    "labels_are_proposals_until_versioned_and_frozen": true
+  },
+  "unit_policy": {
+    "scope": "适用于全部120道FinQA的统一v0.2提案。本文件只含40道dev的独立复核，不含acceptance标签。",
+    "arithmetic": "使用Decimal的45位有效数字，对源材料明确展示的操作数计算，保存公式和来源。默认绝对误差0.000006（canonical单位），相对误差0。近似披露金额仍是近似值；验收对象是披露数字上的算术，不是不可观察的真实精度。",
+    "percent": "题目明确问percent/percentage、growth rate或累计回报时，使用percent，数值为分数乘100。5.34 percent表示5.34%，不能写为0.0534 percent。",
+    "ratio": "问ratio/portion/share且未要求百分比时，使用ratio。若回答明确声明了等价percent单位，可按固定100倍换算；禁止根据数值大小或接近gold程度猜单位。",
+    "rate_difference": "百分比水平之差使用percentage_points；对某一利率的相对百分比变化使用percent，两者不是同一问题。",
+    "direction": "from A to B的change为B-A；percent change为(B-A)/A*100。明确问下降幅度时用非负的(A-B)/A*100；未指定方向的difference用绝对差。有歧义时保留条件结果和null主答案，不由官方program补齐缺失语义。",
+    "money": "优先保留题目指定的货币和数量级；否则保留源表或段落的数量级。USD/thousand_USD/million_USD/billion_USD按固定数量级换算，禁止混币种或把十亿和百万直接相加。",
+    "counts": "保留number、shares、stores等单位。两项计数之比用ratio；每年/每持有人平均值使用stores_per_year、shares_per_registered_holder等明确派生单位。",
+    "signed_values": "有符号现金流或变动保留括号负号。cash used、decline、cost outflow按题目所问的支出或降幅使用正的幅度，同时说明方向，不能用同一规则反转所有负数。",
+    "duplicates": "重复叙述或整表是替代证据，不是额外必须引用的事实。本次也识别出dev内两道STT fair-value问题重复。"
+  },
+  "response_and_scoring_proposal": {
+    "retain_all_cases": true,
+    "planned_dataset_size": 186,
+    "legacy_score": "保留原v0.1 gold和scorer，以legacy执行兼容性单列报告，不把历史失败回写成通过。",
+    "semantic_score": "为v0.2冻结canonical答案、单位、evidence_sets和歧义规则。保持186题完整清单；歧义题仍计入验收，测试是否给出有依据的保留判断。所有标签、规则、源文件哈希和评分器须在新一轮执行前冻结。",
+    "ambiguous_contract": {
+      "status": "insufficient_evidence",
+      "answer": null,
+      "reason_code": "ambiguous_question_or_source",
+      "citations": "必须用一组充分的证据说明歧义，可解释conditioned_answers，但不能擅自选一个作为唯一主答案。"
+    },
+    "citation_sufficiency": "命中至少一个完整evidence_set即可；每组本身足以支持结论或歧义，不要求所有替代集合的并集。表格行引用须连同真实表头显示。",
+    "citation_precision": "支持结论的事实定位和valid_context_citations内的真实上下文不应罚分；不同年份、范围、指标的无关事实仍应判错。替代定位必须核验事实等价，不能仅凭数值相同。",
+    "unit_conversion": "根据明确返回的单位和问题量纲，使用公开固定换算；不采用靠近答案的猜测。percentage_points和相对percent变化严格区分。",
+    "thresholds": "不降低现有阈值来掩盖标签错误；同时报告语义得分、legacy得分、逐题修订原因及歧义处理，分母保留全部清单。",
+    "leakage": "复核标签仅留可信宿主benchmark/review，不挂载给模型，不经工具暴露，不复制到agent_input。Agent只收到统一输出协议和原始公开材料，不收到逐题ambiguous标记、gold、program或答案引用标签。",
+    "review_disclosure": "这是独立AI代理对源材料的复核，不是人工标注。争议题需二次复核后才能冻结新版本。"
+  },
+  "summary": {
+    "cases": 40,
+    "label_status_counts": {
+      "verified": 28,
+      "corrected": 8,
+      "ambiguous": 4
+    },
+    "numeric_semantic_corrections": [
+      "finqa_0b57b84f867ca21c",
+      "finqa_7dbd1abd9c17e815",
+      "finqa_53295df2e598efa3",
+      "finqa_7aa47a6f7b1f1cac",
+      "finqa_5d27e65ff333d7ae",
+      "finqa_a6c3b4883a923ab7",
+      "finqa_95ddecd6ea91200e"
+    ],
+    "ambiguous_ids": [
+      "finqa_fd56dcfb388be54d",
+      "finqa_082d75164302804d",
+      "finqa_b60f5cb9d1c5146a",
+      "finqa_3816e154b20a808d"
+    ],
+    "duplicate_material_question_groups": [
+      [
+        "finqa_7d739a72e962e5b8",
+        "finqa_2fb7edbed7295ccf"
+      ]
+    ],
+    "citation_semantic_corrections": [
+      "finqa_b60f5cb9d1c5146a",
+      "finqa_a6c3b4883a923ab7",
+      "finqa_02eaffe84f4f614c"
+    ]
+  },
+  "validation": {
+    "checked_at": "2026-10-03T05:39:30.884217+00:00",
+    "all40cases_pass": true,
+    "checks": [
+      {
+        "id": "finqa_43830ad76931bfb1",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_d4b0e9055d8200b7",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_85a0d7447e34de21",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_0b57b84f867ca21c",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_7dbd1abd9c17e815",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_5f0b090bd8ed4940",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_1a50bce8ba864905",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_d65017ea9e7a0f59",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_6934edf192b1c9f7",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_bb4bc8b486d971a9",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_53295df2e598efa3",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_f2a774528953be61",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_f8b859ba95f18765",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_98f4ecc8df038359",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_31c1495a1b036845",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_0950db29929b6db3",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_b5dc2735a14ca549",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_14c82d92c1d3ddb8",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_7aa47a6f7b1f1cac",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_0c9a75b30acde1aa",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_02bc71b11e6462bf",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_b050839ebe47f949",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_7d739a72e962e5b8",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_f4d6b16d6013cd72",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_7271cc2025a02d5b",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_b6bf66a7f8b39233",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_fd56dcfb388be54d",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS conditioned answers; canonical null"
+      },
+      {
+        "id": "finqa_32b3e7393e3b1325",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_082d75164302804d",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS conditioned answers; canonical null"
+      },
+      {
+        "id": "finqa_2fb7edbed7295ccf",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_b60f5cb9d1c5146a",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS conditioned answers; canonical null"
+      },
+      {
+        "id": "finqa_5d27e65ff333d7ae",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_d38a3b84fe4650ee",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_f1f6386471885fc4",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_ed8e3b849aea5272",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_a6c3b4883a923ab7",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_3816e154b20a808d",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS conditioned answers; canonical null"
+      },
+      {
+        "id": "finqa_95ddecd6ea91200e",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_02eaffe84f4f614c",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      },
+      {
+        "id": "finqa_d9828b1778922f40",
+        "source_sha256_unchanged": true,
+        "locators_exist_and_sets_max8": true,
+        "formula_recomputation": "PASS"
+      }
+    ]
+  }
+}

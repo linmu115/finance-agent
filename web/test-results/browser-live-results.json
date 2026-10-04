@@ -1,0 +1,99 @@
+{
+  "checkedAt": "2026-10-03T05:46:57.515Z",
+  "scope": "Real frontend + local Node API + Python parser. Four synthetic fixtures. Does not prove real LLM success or benchmark accuracy.",
+  "projectId": "293e2ce8-69a0-442b-af47-21db78ab7766",
+  "passed": 9,
+  "checks": [
+    {
+      "name": "真实本地服务启动并通过前端代理连接",
+      "status": "passed",
+      "evidence": {
+        "base": "http://127.0.0.1:5173"
+      }
+    },
+    {
+      "name": "真实创建独立项目",
+      "status": "passed",
+      "evidence": {
+        "projectId": "293e2ce8-69a0-442b-af47-21db78ab7766",
+        "name": "前端联调验收 2026-10-03T05:46:51.964Z"
+      }
+    },
+    {
+      "name": "CSV/TSV/XLSX/PDF 四种真实上传、解析与状态回显",
+      "status": "passed",
+      "evidence": {
+        "documents": [
+          {
+            "id": "6435cc6ce7c848788477fc90c71034fb",
+            "name": "finance.pdf",
+            "status": "ready",
+            "pageCount": 1
+          },
+          {
+            "id": "da939912969b4358a86519f69f3b1e5d",
+            "name": "finance.xlsx",
+            "status": "ready",
+            "pageCount": 1
+          },
+          {
+            "id": "93c128cf288f4f5b9d6464a6c69b8e58",
+            "name": "finance.tsv",
+            "status": "ready",
+            "pageCount": 1
+          },
+          {
+            "id": "8531a80eabd34ca299a0fcafb12db62f",
+            "name": "finance.csv",
+            "status": "ready",
+            "pageCount": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "Excel 单元格由后端解析、项目资料展示实际表格",
+      "status": "passed",
+      "evidence": {
+        "documentId": "da939912969b4358a86519f69f3b1e5d"
+      }
+    },
+    {
+      "name": "Excel 原文读取和可追溯展示",
+      "status": "passed",
+      "evidence": {
+        "source": "实际数据库页记录"
+      }
+    },
+    {
+      "name": "PDF 原文、真实渲染页图像和来源地址",
+      "status": "passed",
+      "evidence": {
+        "documentId": "6435cc6ce7c848788477fc90c71034fb"
+      }
+    },
+    {
+      "name": "真实原件下载",
+      "status": "passed",
+      "evidence": {
+        "filename": "finance.pdf"
+      }
+    },
+    {
+      "name": "真实设置读取与无改动保存，服务端返回脱敏设置",
+      "status": "passed",
+      "evidence": {
+        "secretAccess": "none",
+        "externalRequests": "none"
+      }
+    },
+    {
+      "name": "真实服务联调无浏览器异常",
+      "status": "passed",
+      "evidence": {
+        "pageErrors": []
+      }
+    }
+  ],
+  "pageErrors": []
+}

@@ -1,0 +1,125 @@
+{
+  "runner": {
+    "available": true,
+    "reason": null,
+    "version": "28.3.3",
+    "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+    "repo_digests": [],
+    "transport": "ssh-local-vm",
+    "isolation": "Docker in Linux VM"
+  },
+  "cases": [
+    {
+      "id": "S08",
+      "status": "PASS",
+      "scope": "actual sandbox run/status/artifact/cancel project boundary",
+      "run_id": "9e73bb111afe49e0a613ad250052ebe1",
+      "owner_project": "isolation-A",
+      "attempted_project": "isolation-B",
+      "denials": [
+        {
+          "method": "status",
+          "denied": true,
+          "reason": "Run not found in this project"
+        },
+        {
+          "method": "artifact",
+          "denied": true,
+          "reason": "Run not found in this project"
+        },
+        {
+          "method": "cancel",
+          "denied": true,
+          "reason": "Run not found in this project"
+        }
+      ],
+      "audit_events": [
+        {
+          "at": 1791003486.9049375,
+          "event": "access_denied",
+          "run_id": "9e73bb111afe49e0a613ad250052ebe1",
+          "requested_project_id": "isolation-B",
+          "owner_project_id": "isolation-A"
+        },
+        {
+          "at": 1791003487.1027977,
+          "event": "access_denied",
+          "run_id": "9e73bb111afe49e0a613ad250052ebe1",
+          "requested_project_id": "isolation-B",
+          "owner_project_id": "isolation-A"
+        },
+        {
+          "at": 1791003487.2476199,
+          "event": "access_denied",
+          "run_id": "9e73bb111afe49e0a613ad250052ebe1",
+          "requested_project_id": "isolation-B",
+          "owner_project_id": "isolation-A"
+        }
+      ]
+    },
+    {
+      "id": "S11",
+      "status": "PASS",
+      "scope": "actual Linux host runner SIGKILL and orphan-container recovery",
+      "run_id": "5dbb03ee63de458888423bd4112d105c",
+      "killed_owner_pid": 9391,
+      "kill_exit_code": 0,
+      "interrupted_transport_state": {
+        "run_id": "5dbb03ee63de458888423bd4112d105c",
+        "project_id": "recovery-A",
+        "status": "failed",
+        "artifacts": [],
+        "error": "Portable VM returned no valid host response",
+        "elapsed_seconds": 0.775
+      },
+      "recovered_state": {
+        "run_id": "5dbb03ee63de458888423bd4112d105c",
+        "project_id": "recovery-A",
+        "status": "failed",
+        "exit_code": null,
+        "artifacts": [],
+        "error": "Host runner interrupted; unfinished artifacts withheld",
+        "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+        "created_at": 1791003487.6493127,
+        "elapsed_seconds": 0,
+        "input_sha256": {},
+        "timeout_seconds": 120,
+        "owner_pid": 9391,
+        "owner_token": "958582",
+        "host_platform": "linux",
+        "host_name": "finance-vm",
+        "repo_digests": [],
+        "code_sha256": "a02a0ecf017a77b83450313091702f5ed76d3301b43ddef6fa58d38a7f050de1",
+        "started_at": 1791003488.0099087,
+        "container_removed": true,
+        "cleanup_pending": false,
+        "recovered_at": 1791003488.5353656
+      },
+      "unfinished_artifact_withheld": true,
+      "container_absent": true,
+      "audit_events": [
+        {
+          "at": 1791003487.649721,
+          "event": "queued",
+          "project_id": "recovery-A"
+        },
+        {
+          "at": 1791003487.7959785,
+          "event": "container_created",
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8"
+        },
+        {
+          "at": 1791003488.0133235,
+          "event": "running"
+        },
+        {
+          "at": 1791003488.5358655,
+          "event": "orphan_recovered",
+          "run_id": "5dbb03ee63de458888423bd4112d105c",
+          "container_removed": true
+        }
+      ]
+    }
+  ],
+  "created_at": 1791003482.9217243
+}

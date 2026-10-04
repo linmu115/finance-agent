@@ -1,0 +1,993 @@
+{
+  "reviewer": "independent Codex frontend agent",
+  "gold_seen": false,
+  "predictions_seen": false,
+  "createdAt": "2026-10-03T05:34:30.618377+00:00",
+  "items": [
+    {
+      "id": "finqa_8b771ce7915ac9d6",
+      "canonical_answer": null,
+      "calculation": null,
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_8b771ce7915ac9d6:table_0",
+          "finqa_8b771ce7915ac9d6:table_6",
+          "finqa_8b771ce7915ac9d6:table_7"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_8b771ce7915ac9d6:text_8"
+      ],
+      "label_status": "ambiguous",
+      "rationale": "The question asks 2018. The 2007 report groups all years after 2012 into 285 million; 2018 alone is not disclosed. Neither 2008=108 nor the aggregate after-2012=285 can be assigned to 2018.",
+      "abs_tolerance": "0.00001",
+      "conditioned_answers": [
+        {
+          "condition": "2018 share without additional allocation detail",
+          "answer": null,
+          "bound": "0 <= share <= 285/619",
+          "answer_unit": "ratio"
+        },
+        {
+          "condition": "Only if the question is explicitly changed from 2018 to 2008",
+          "answer": "0.17447495961227786752827140549273021001615508885299",
+          "calculation": "D('108')/D('619')",
+          "answer_unit": "ratio"
+        }
+      ]
+    },
+    {
+      "id": "finqa_8c22662d2e6299b0",
+      "canonical_answer": null,
+      "calculation": null,
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_8c22662d2e6299b0:text_5",
+          "finqa_8c22662d2e6299b0:text_6",
+          "finqa_8c22662d2e6299b0:text_9",
+          "finqa_8c22662d2e6299b0:text_10"
+        ]
+      ],
+      "valid_context_citations": [],
+      "label_status": "ambiguous",
+      "rationale": "The requested US pension contributions are not separately given. Both 2011=517 and 2013=476 refer to US AND international plans; their ratio is not identifiable as the US-only ratio.",
+      "abs_tolerance": "0.00001",
+      "conditioned_answers": [
+        {
+          "condition": "Use the disclosed combined US-and-international pension contributions",
+          "answer": "1.0861344537815126050420168067226890756302521008403",
+          "calculation": "D('517')/D('476')",
+          "answer_unit": "ratio"
+        },
+        {
+          "condition": "US-only contributions as asked",
+          "answer": null,
+          "reason": "No geographic breakdown in allowed source",
+          "answer_unit": "ratio"
+        }
+      ]
+    },
+    {
+      "id": "finqa_8c53f74d0f636d69",
+      "canonical_answer": "0.36161187698833510074231177094379639448568398727466",
+      "calculation": "D('1364')/D('3772')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_8c53f74d0f636d69:table_1",
+          "finqa_8c53f74d0f636d69:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_8c53f74d0f636d69:text_1",
+        "finqa_8c53f74d0f636d69:text_2"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "2007 energy purchase commitments divided by total two-year commitments; the common thousands unit cancels.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_90ba52df25a5dd53",
+      "canonical_answer": "0.81571652404483548270459202121248644088224659515488",
+      "calculation": "D('13536')/D('16594')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_90ba52df25a5dd53:table_1",
+          "finqa_90ba52df25a5dd53:table_9"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_90ba52df25a5dd53:table_0",
+        "finqa_90ba52df25a5dd53:text_11"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Goodwill is divided by net assets acquired, not gross assets; both values are in thousands.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_91a57be8973b10f4",
+      "canonical_answer": "0.29457364341085271317829457364341085271317829457364",
+      "calculation": "D('38')/D('129')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_91a57be8973b10f4:table_0",
+          "finqa_91a57be8973b10f4:table_2",
+          "finqa_91a57be8973b10f4:table_5"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_91a57be8973b10f4:text_14"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Select the 2016 column: euro impact 38 divided by total impact 129.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_973a3fef3994b761",
+      "canonical_answer": "9.4",
+      "calculation": "(D('156')-D('15'))/D('15')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_973a3fef3994b761:table_0",
+          "finqa_973a3fef3994b761:table_3"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_973a3fef3994b761:text_2"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Total tax expense increases from 15 in 2017 to 156 in 2018, so growth is 9.4 (940%).",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_98beba26f9952db2",
+      "canonical_answer": "-0.5",
+      "calculation": "D('5.8')-D('6.3')",
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_98beba26f9952db2:text_3"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_98beba26f9952db2:text_0",
+        "finqa_98beba26f9952db2:text_4",
+        "finqa_98beba26f9952db2:text_5"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "The disclosed excess of current FIFO cost over LIFO cost changes from 6.3 million at January 2005 to 5.8 million at February 2006: a 0.5 million decrease, signed change -0.5.",
+      "abs_tolerance": "0.005"
+    },
+    {
+      "id": "finqa_a66e162c6b7c7502",
+      "canonical_answer": "0.017413688673531193216232586311326468806783767413689",
+      "calculation": "D('230')/D('13208')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_a66e162c6b7c7502:table_0",
+          "finqa_a66e162c6b7c7502:table_2",
+          "finqa_a66e162c6b7c7502:table_6"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_a66e162c6b7c7502:text_21",
+        "finqa_a66e162c6b7c7502:text_22"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Total capital lease obligations 230 divided by total contractual obligations 13208 in the total column, not a payment-period column.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_a787b0c78f0eda64",
+      "canonical_answer": "279",
+      "calculation": "(D('279')+D('280')+D('278'))/D('3')",
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_a787b0c78f0eda64:table_0",
+          "finqa_a787b0c78f0eda64:table_1",
+          "finqa_a787b0c78f0eda64:table_9"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_a787b0c78f0eda64:text_0",
+        "finqa_a787b0c78f0eda64:text_1",
+        "finqa_a787b0c78f0eda64:text_7"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "The question requests the liability, not just the subset that would affect the effective tax rate. Total year-end balances are 279 (2018), 280 (2017), and 278 (2016, equal to January 1 2017 opening balance). Their average is 279 million; 228/219/240 in text_1 are explicitly only included amounts and are not total liabilities.",
+      "abs_tolerance": "0.005"
+    },
+    {
+      "id": "finqa_a83f5a07ad6802c7",
+      "canonical_answer": "0.10963890819712072462002594070899827300804735254283",
+      "calculation": "D('15.3')*D('1000')/D('139549')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_a83f5a07ad6802c7:text_3",
+          "finqa_a83f5a07ad6802c7:table_6",
+          "finqa_a83f5a07ad6802c7:text_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_a83f5a07ad6802c7:text_0"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Convert accrued interest and penalties of 15.3 million to 15300 thousand to match the exact table ending balance 139549 thousand (rounded in prose to 139.5 million). The denominator excludes interest and penalties as the question explicitly asks the table ending balance.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_adcdfef877f97441",
+      "canonical_answer": "-0.83097418817651956702747710241465445462114904246461",
+      "calculation": "(D('1201')-D('2199'))/D('1201')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_adcdfef877f97441:table_0",
+          "finqa_adcdfef877f97441:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_adcdfef877f97441:text_14",
+        "finqa_adcdfef877f97441:text_22",
+        "finqa_adcdfef877f97441:text_23"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Loss magnitude increased from 1201 to 2199. The requested decline is negative: (old loss minus new loss)/old loss = -0.830974..., meaning an 83.0974% widening, not an actual decline. A positive decline claim is contradicted by text_23.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_afc3120537250639",
+      "canonical_answer": "0.16919739696312364425162689804772234273318872017354",
+      "calculation": "D('1014')/D('5993')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_afc3120537250639:table_0",
+          "finqa_afc3120537250639:table_2",
+          "finqa_afc3120537250639:table_7"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_afc3120537250639:text_13"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Select 2007 scalable infrastructure of 1014 and 2007 total cable capital expenditures of 5993.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_b01abd707f1633de",
+      "canonical_answer": null,
+      "calculation": null,
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_b01abd707f1633de:text_4",
+          "finqa_b01abd707f1633de:text_5",
+          "finqa_b01abd707f1633de:table_0",
+          "finqa_b01abd707f1633de:table_1",
+          "finqa_b01abd707f1633de:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_b01abd707f1633de:text_0",
+        "finqa_b01abd707f1633de:text_1",
+        "finqa_b01abd707f1633de:text_2"
+      ],
+      "label_status": "ambiguous",
+      "rationale": "No as-of year is supplied. Both 2012 and 2011 carrying amounts are discussed, and fair-value AFS must be combined with amortized-cost HTM, rather than using an all-amortized-cost or all-fair-value total. The duplicated 2012 label in table_0 is resolved only by dated prose; the question itself does not select a year.",
+      "abs_tolerance": "0.00001",
+      "conditioned_answers": [
+        {
+          "condition": "As of December 31 2012, using exact table amounts",
+          "answer": "0.16861544474481321043546233267107448783506497736378",
+          "calculation": "D('10354')/(D('51052')+D('10354'))",
+          "answer_unit": "ratio"
+        },
+        {
+          "condition": "As of December 31 2011, using exact table amounts",
+          "answer": "0.19899726226209717320315334630735231058482039779662",
+          "calculation": "D('12066')/(D('48568')+D('12066'))",
+          "answer_unit": "ratio"
+        },
+        {
+          "condition": "As of 2012, rounded prose amounts",
+          "answer": "0.16938110749185667752442996742671009771986970684039",
+          "calculation": "D('10.4')/D('61.4')",
+          "answer_unit": "ratio"
+        },
+        {
+          "condition": "As of 2011, rounded prose amounts",
+          "answer": "0.19801980198019801980198019801980198019801980198020",
+          "calculation": "D('12.0')/D('60.6')",
+          "answer_unit": "ratio"
+        }
+      ]
+    },
+    {
+      "id": "finqa_b46d057fcbb2e1ca",
+      "canonical_answer": "0.64098709758236252035575598146060378303895778529375",
+      "calculation": "D('511.7')/D('798.3')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_b46d057fcbb2e1ca:table_7",
+          "finqa_b46d057fcbb2e1ca:table_9"
+        ],
+        [
+          "finqa_b46d057fcbb2e1ca:text_6",
+          "finqa_b46d057fcbb2e1ca:text_17"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_b46d057fcbb2e1ca:table_0",
+        "finqa_b46d057fcbb2e1ca:text_13"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Goodwill divided by total purchase consideration including debt repayment, as defined explicitly in text_6; net seller proceeds 605.5 are not the total acquisition price.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_b5b38de430c5e94e",
+      "canonical_answer": null,
+      "calculation": null,
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_b5b38de430c5e94e:table_0",
+          "finqa_b5b38de430c5e94e:table_9"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_b5b38de430c5e94e:text_0",
+        "finqa_b5b38de430c5e94e:text_5"
+      ],
+      "label_status": "ambiguous",
+      "rationale": "The question supplies neither the beginning nor ending year. The table gives 2016, 2017, and 2018 balances and supports materially different annual or full-period changes.",
+      "abs_tolerance": "0.00001",
+      "conditioned_answers": [
+        {
+          "condition": "2017 to 2018",
+          "answer": "-0.14640698455339153794492948287441235728676964405641",
+          "calculation": "(D('127.1')-D('148.9'))/D('148.9')",
+          "answer_unit": "ratio"
+        },
+        {
+          "condition": "2016 to 2017",
+          "answer": "-0.10731414868105515587529976019184652278177458033573",
+          "calculation": "(D('148.9')-D('166.8'))/D('166.8')",
+          "answer_unit": "ratio"
+        },
+        {
+          "condition": "2016 to 2018",
+          "answer": "-0.23800959232613908872901678657074340527577937649880",
+          "calculation": "(D('127.1')-D('166.8'))/D('166.8')",
+          "answer_unit": "ratio"
+        }
+      ]
+    },
+    {
+      "id": "finqa_b807c4d7285fe529",
+      "canonical_answer": "0.51282051282051282051282051282051282051282051282051",
+      "calculation": "D('34')/D('66.3')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_b807c4d7285fe529:text_26"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_b807c4d7285fe529:text_24",
+        "finqa_b807c4d7285fe529:text_25"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Of the 2008 net deferred loss of 66.3 million, approximately 34 million is subject to future amortization. Its share is 34/66.3. This is the amortizable portion, not a single-year amortization expense or a yearly rate.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_bb99661e0cc14aa6",
+      "canonical_answer": "0.15695033313143549364021804966686856450635978195033",
+      "calculation": "D('2073')/D('13208')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_bb99661e0cc14aa6:table_0",
+          "finqa_bb99661e0cc14aa6:table_3",
+          "finqa_bb99661e0cc14aa6:table_6"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_bb99661e0cc14aa6:text_21"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Use the total column for operating leases where Marriott is primary obligor and total contractual obligations.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_bbaa0a59cea53d0a",
+      "canonical_answer": "0.50195191158708741348240321155377307403886844437470",
+      "calculation": "D('390239')/D('777443')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_bbaa0a59cea53d0a:table_4",
+          "finqa_bbaa0a59cea53d0a:table_5",
+          "finqa_bbaa0a59cea53d0a:table_6"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_bbaa0a59cea53d0a:text_0"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "After 2015 is the thereafter row following 2015. Denominator is total minimum payments, not net minimum payments or their present value.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_c52d56ffd438f93c",
+      "canonical_answer": null,
+      "calculation": null,
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_c52d56ffd438f93c:text_5",
+          "finqa_c52d56ffd438f93c:text_8",
+          "finqa_c52d56ffd438f93c:text_15",
+          "finqa_c52d56ffd438f93c:text_18",
+          "finqa_c52d56ffd438f93c:table_0",
+          "finqa_c52d56ffd438f93c:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_c52d56ffd438f93c:text_4",
+        "finqa_c52d56ffd438f93c:text_17"
+      ],
+      "label_status": "ambiguous",
+      "rationale": "The 45% top-five-customer figure occurs in the preceding segment discussion (2006 earnings 787), before the Enterprise Mobility Solutions heading. The 5400 million sales table is for Enterprise Mobility Solutions (2006 earnings 958). Applying the preceding segment percentage to this different segment mixes scopes; its actual total sales are absent.",
+      "abs_tolerance": "0.005",
+      "conditioned_answers": [
+        {
+          "condition": "Top five customers of the segment described in text_8",
+          "answer": null,
+          "reason": "Its 2006 net-sales denominator is not in the provided excerpt",
+          "answer_unit": "million_USD"
+        },
+        {
+          "condition": "Only under the unsupported assumption that 45% applies to Enterprise Mobility Solutions",
+          "answer": "2430.00",
+          "calculation": "D('5400')*D('0.45')",
+          "answer_unit": "million_USD"
+        }
+      ]
+    },
+    {
+      "id": "finqa_c8f95d62fc9dc283",
+      "canonical_answer": null,
+      "calculation": null,
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_c8f95d62fc9dc283:text_10"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_c8f95d62fc9dc283:text_11"
+      ],
+      "label_status": "ambiguous",
+      "rationale": "The 2007 figure is explicitly the predecessor period, whereas 2006 is a year. The question asks change from 2006 to 2007 without restricting 2007 to the predecessor period. The successor-period charge and full-year total are absent.",
+      "abs_tolerance": "0.005",
+      "conditioned_answers": [
+        {
+          "condition": "Compare 2007 predecessor period with full 2006 as disclosed",
+          "answer": "-9.2",
+          "calculation": "D('0.2')-D('9.4')",
+          "answer_unit": "million_USD"
+        },
+        {
+          "condition": "Compare full calendar/fiscal 2007 with full 2006",
+          "answer": null,
+          "reason": "2007 successor-period impairment charge is not disclosed here",
+          "answer_unit": "million_USD"
+        }
+      ]
+    },
+    {
+      "id": "finqa_ca188c838d36b385",
+      "canonical_answer": null,
+      "calculation": null,
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_ca188c838d36b385:table_0",
+          "finqa_ca188c838d36b385:table_2",
+          "finqa_ca188c838d36b385:table_3",
+          "finqa_ca188c838d36b385:table_7",
+          "finqa_ca188c838d36b385:text_7"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_ca188c838d36b385:text_1",
+        "finqa_ca188c838d36b385:text_2"
+      ],
+      "label_status": "ambiguous",
+      "rationale": "Hard assets is not a defined subtotal in the excerpt. Property/equipment alone is identifiable, but physical rental-library and merchandise inventory are also described and are not separately valued within current assets. A hard-asset share including those assets cannot be computed uniquely.",
+      "abs_tolerance": "0.00001",
+      "conditioned_answers": [
+        {
+          "condition": "Define hard assets narrowly as property and equipment only",
+          "answer": "0.12270960339749297897116240838413589971915884649634",
+          "calculation": "D('28663')/D('233584')",
+          "answer_unit": "ratio"
+        },
+        {
+          "condition": "Define hard assets as all physical assets including rental-library and merchandise inventory",
+          "answer": null,
+          "reason": "Inventory and rental-library values are not disaggregated from current assets",
+          "answer_unit": "ratio"
+        }
+      ]
+    },
+    {
+      "id": "finqa_ca1ba8d4461e86fa",
+      "canonical_answer": "1.8888888888888888888888888888888888888888888888889",
+      "calculation": "D('1700000')/D('900000')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_ca1ba8d4461e86fa:text_18",
+          "finqa_ca1ba8d4461e86fa:text_20"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_ca1ba8d4461e86fa:text_19"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Use the specifically labeled US regional office space of 1.7 million square feet and Bellevue headquarters space of 0.9 million square feet, rather than summing unlike facilities.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_d07905615b17cf32",
+      "canonical_answer": "0.15527638190954773869346733668341708542713567839196",
+      "calculation": "(D('459.8')-D('398.0'))/D('398.0')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_d07905615b17cf32:text_23"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_d07905615b17cf32:text_22"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Port costs 2012=459.8 and 2010=398.0 million; use 2010 as the growth denominator.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_d416315c58ccdbe6",
+      "canonical_answer": "-62.259",
+      "calculation": "(D('139549')-D('201808'))/D('1000')",
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_d416315c58ccdbe6:table_0",
+          "finqa_d416315c58ccdbe6:table_6",
+          "finqa_d416315c58ccdbe6:text_1"
+        ],
+        [
+          "finqa_d416315c58ccdbe6:table_1",
+          "finqa_d416315c58ccdbe6:table_2",
+          "finqa_d416315c58ccdbe6:table_3",
+          "finqa_d416315c58ccdbe6:table_4",
+          "finqa_d416315c58ccdbe6:table_5",
+          "finqa_d416315c58ccdbe6:text_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_d416315c58ccdbe6:text_0"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Exact ending minus opening gross liability is -62259 in table units. The narrative 139.5 million for a table balance 139549 establishes thousands in the table, yielding -62.259 million USD. Flow sum independently gives 14009+11350-81213-3512-2893=-62259 thousand.",
+      "abs_tolerance": "0.005"
+    },
+    {
+      "id": "finqa_d692a37a21a57c48",
+      "canonical_answer": "-71",
+      "calculation": "D('63')-D('134')",
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_d692a37a21a57c48:table_8",
+          "finqa_d692a37a21a57c48:table_12",
+          "finqa_d692a37a21a57c48:text_1"
+        ],
+        [
+          "finqa_d692a37a21a57c48:table_9",
+          "finqa_d692a37a21a57c48:table_10",
+          "finqa_d692a37a21a57c48:table_11",
+          "finqa_d692a37a21a57c48:text_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_d692a37a21a57c48:text_0",
+        "finqa_d692a37a21a57c48:text_2"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "2007 closing liability 63 minus 2006 closing/opening-2007 balance 134 equals -71 million; 38-110+1 gives the same net change.",
+      "abs_tolerance": "0.005"
+    },
+    {
+      "id": "finqa_d9dd07b1615e50a9",
+      "canonical_answer": "0.34806629834254143646408839779005524861878453038674",
+      "calculation": "D('6.3')/D('18.1')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_d9dd07b1615e50a9:table_0",
+          "finqa_d9dd07b1615e50a9:table_1",
+          "finqa_d9dd07b1615e50a9:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_d9dd07b1615e50a9:text_18",
+        "finqa_d9dd07b1615e50a9:text_19"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "2010 benefit magnitude of 6.3 divided by cost of 18.1. The benefit is an expense reduction, presented with negative accounting sign, but the question asks what percentage of cost the benefit represents, so report positive benefit magnitude 34.8066%.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_dfd8c3bdadc9e10d",
+      "canonical_answer": "0.18421052631578947368421052631578947368421052631579",
+      "calculation": "D('2.8')/D('15.2')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_dfd8c3bdadc9e10d:text_17",
+          "finqa_dfd8c3bdadc9e10d:text_18"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_dfd8c3bdadc9e10d:text_8",
+        "finqa_dfd8c3bdadc9e10d:text_16"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "2015 reserves total 15.2 million; the specifically quantified remediation subset for previously disposed sites is 2.8 million. Use reserves, not annual remediation expense 4.4 million.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_e0353bf6c9440e8b",
+      "canonical_answer": "362400",
+      "calculation": "D('362400')",
+      "answer_unit": "number",
+      "evidence_sets": [
+        [
+          "finqa_e0353bf6c9440e8b:table_8",
+          "finqa_e0353bf6c9440e8b:text_60",
+          "finqa_e0353bf6c9440e8b:text_61",
+          "finqa_e0353bf6c9440e8b:text_62"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_e0353bf6c9440e8b:text_0",
+        "finqa_e0353bf6c9440e8b:text_40",
+        "finqa_e0353bf6c9440e8b:text_41",
+        "finqa_e0353bf6c9440e8b:text_42"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "The beneficial-ownership total is 362400. Footnote 10 says it INCLUDES the 2000 indirectly held shares and 100000 exercisable-option shares; adding the 2000 again would double-count them. This uses the table beneficial-ownership definition, including exercisable options.",
+      "abs_tolerance": "0"
+    },
+    {
+      "id": "finqa_e2b86b40fe001674",
+      "canonical_answer": null,
+      "calculation": null,
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_e2b86b40fe001674:table_0",
+          "finqa_e2b86b40fe001674:table_1",
+          "finqa_e2b86b40fe001674:text_0",
+          "finqa_e2b86b40fe001674:text_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_e2b86b40fe001674:text_2"
+      ],
+      "label_status": "ambiguous",
+      "rationale": "A four-year weighted-average useful life does not establish a constant annual amortization rate. The policy expressly uses the pattern of economic-benefit consumption, and individual useful lives range from 1 to 13 years. Neither a uniform four-year life nor straight-line consumption is established.",
+      "abs_tolerance": "0.00001",
+      "conditioned_answers": [
+        {
+          "condition": "Assume one uniform four-year straight-line asset with no residual value",
+          "answer": "0.25",
+          "calculation": "D('1')/D('4')",
+          "answer_unit": "ratio"
+        },
+        {
+          "condition": "Actual annual amortization under disclosed economic-benefit pattern",
+          "answer": null,
+          "reason": "Asset-level lives, carrying amounts and consumption schedules are absent",
+          "answer_unit": "ratio"
+        }
+      ]
+    },
+    {
+      "id": "finqa_e2faeed6df02aa75",
+      "canonical_answer": "0.75799086757990867579908675799086757990867579908676",
+      "calculation": "D('166000')/D('219000')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_e2faeed6df02aa75:table_0",
+          "finqa_e2faeed6df02aa75:table_1",
+          "finqa_e2faeed6df02aa75:text_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_e2faeed6df02aa75:text_1",
+        "finqa_e2faeed6df02aa75:text_3"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "The 166000 square feet excluded from leased facilities divided by Alpharetta total 219000. This is the non-leased ownership portion, not evidence of vacant space available to lease; no vacancy claim is supported.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_e3e308dacbe8ef66",
+      "canonical_answer": "0.029333333333333333333333333333333333333333333333333",
+      "calculation": "(D('2.1')+D('3.7')+D('3.0'))/D('3')/D('100')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_e3e308dacbe8ef66:table_0",
+          "finqa_e3e308dacbe8ef66:table_1",
+          "finqa_e3e308dacbe8ef66:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_e3e308dacbe8ef66:text_11",
+        "finqa_e3e308dacbe8ef66:text_12"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "The tax reconciliation uses percentage-rate units, including the state-tax row despite omitted percent signs. Average 2.1%, 3.7%, and 3.0% gives 2.933333...%, or 0.029333333... as a ratio. Do not misreport 2.9333 as a ratio (293.33%).",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_e457b43057203b2b",
+      "canonical_answer": "0.28712534059945504087193460490463215258855585831063",
+      "calculation": "D('843')/D('2936')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_e457b43057203b2b:table_0",
+          "finqa_e457b43057203b2b:table_1",
+          "finqa_e457b43057203b2b:table_8"
+        ],
+        [
+          "finqa_e457b43057203b2b:table_0",
+          "finqa_e457b43057203b2b:table_8",
+          "finqa_e457b43057203b2b:text_24"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_e457b43057203b2b:text_22"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "The question explicitly selects 2011: fair-value commercial mortgages 843 divided by all loans held for sale 2936.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_e5c4903978ecb993",
+      "canonical_answer": "3.4",
+      "calculation": "D('36.3')-D('32.9')",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_e5c4903978ecb993:table_0",
+          "finqa_e5c4903978ecb993:table_9"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_e5c4903978ecb993:text_15",
+        "finqa_e5c4903978ecb993:text_17"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Effective tax rate fell from 36.3% in 2015 to 32.9% in 2016. The amount of the rate decrease is positive 3.4 percentage points (0.034 ratio units), not a 3.4 percent relative decline. A signed change would instead be -3.4 percentage points.",
+      "abs_tolerance": "0.005"
+    },
+    {
+      "id": "finqa_e6b02630cc1129ce",
+      "canonical_answer": "26.8",
+      "calculation": "D('12.1')+D('9.0')+D('5.7')",
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_e6b02630cc1129ce:text_12"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_e6b02630cc1129ce:text_6",
+        "finqa_e6b02630cc1129ce:text_11"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Sum restricted-stock compensation expense for fiscal 2010, 2009, and 2008. Vested-award fair value and unrecognized future cost are different measures.",
+      "abs_tolerance": "0.005"
+    },
+    {
+      "id": "finqa_ea3f099abd3b3e6a",
+      "canonical_answer": null,
+      "calculation": null,
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_ea3f099abd3b3e6a:table_0",
+          "finqa_ea3f099abd3b3e6a:table_1",
+          "finqa_ea3f099abd3b3e6a:table_2",
+          "finqa_ea3f099abd3b3e6a:table_3",
+          "finqa_ea3f099abd3b3e6a:text_1",
+          "finqa_ea3f099abd3b3e6a:text_2",
+          "finqa_ea3f099abd3b3e6a:text_3"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_ea3f099abd3b3e6a:text_4"
+      ],
+      "label_status": "ambiguous",
+      "rationale": "The question asks for the percentage of plans, but the table counts securities underlying options and securities available for issuance, not the number of plans. Several approved plans are mentioned, without a complete count of unapproved plans. A securities-weighted share is computable but is not a plan-count share.",
+      "abs_tolerance": "0.00001",
+      "conditioned_answers": [
+        {
+          "condition": "Share of securities issuable on exercise of outstanding options from unapproved plans (column a)",
+          "answer": "0.0049115905485157186508161472852740195921358681675856",
+          "calculation": "D('5978')/D('1217121')",
+          "answer_unit": "ratio"
+        },
+        {
+          "condition": "Fraction of equity compensation plans by number of plans, as worded",
+          "answer": null,
+          "reason": "Table gives securities counts, not plan counts",
+          "answer_unit": "ratio"
+        }
+      ]
+    },
+    {
+      "id": "finqa_ee2eb03c33e9476a",
+      "canonical_answer": "0.038157597651840144502144953714156694513434183788666",
+      "calculation": "(D('459.8')-D('442.9'))/D('442.9')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_ee2eb03c33e9476a:text_23"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_ee2eb03c33e9476a:text_22"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "2011 to 2012 port-cost increase uses 442.9 million as base and 459.8 million as ending amount.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_eff00d6a4b851b1b",
+      "canonical_answer": "0.70203359858532272325375773651635720601237842617153",
+      "calculation": "(D('1925')-D('1131'))/D('1131')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_eff00d6a4b851b1b:text_10"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_eff00d6a4b851b1b:text_12",
+        "finqa_eff00d6a4b851b1b:text_13"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "2016 cash flows from operations of 1925 less 2015 amount 1131, divided by 1131. The prose independently states the 794 increase.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_f036232828c0c2a6",
+      "canonical_answer": "-312",
+      "calculation": "D('262')-D('472')-D('102')",
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_f036232828c0c2a6:table_0",
+          "finqa_f036232828c0c2a6:table_1",
+          "finqa_f036232828c0c2a6:table_2",
+          "finqa_f036232828c0c2a6:table_3"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_f036232828c0c2a6:text_24"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Sum the disclosed 2016 operating, investing and financing net cash flows: 262-472-102=-312 million. This is the net change from the disclosed activities; the excerpt does not separately provide FX effects or 2015 ending cash for balance reconciliation.",
+      "abs_tolerance": "0.005"
+    },
+    {
+      "id": "finqa_f3cbd9a651499f2c",
+      "canonical_answer": "0.39007092198581560283687943262411347517730496453901",
+      "calculation": "(D('39.2')-D('28.2'))/D('28.2')",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_f3cbd9a651499f2c:table_0",
+          "finqa_f3cbd9a651499f2c:table_3"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_f3cbd9a651499f2c:text_12",
+        "finqa_f3cbd9a651499f2c:text_13"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "Relative increase in expected volatility is (39.2%-28.2%)/28.2%=0.3900709..., distinct from the 11 percentage-point absolute increase.",
+      "abs_tolerance": "0.00001"
+    },
+    {
+      "id": "finqa_f59393851b2e7525",
+      "canonical_answer": "75",
+      "calculation": "D('45')/D('0.6')",
+      "answer_unit": "USD_per_share",
+      "evidence_sets": [
+        [
+          "finqa_f59393851b2e7525:text_7"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_f59393851b2e7525:text_6"
+      ],
+      "label_status": "pending_gold_comparison",
+      "rationale": "2018 repurchases cost 45 million USD for 0.6 million shares, giving approximately 75 USD per share. Both inputs are rounded to the displayed precision; do not select the 2017 pair.",
+      "abs_tolerance": "0.005"
+    }
+  ],
+  "completedBeforeGoldAt": "2026-10-03T05:40:50.507899+00:00",
+  "source_sha256": {
+    "benchmark/agent_input/finqa/finqa_8b771ce7915ac9d6.json": "13b47458bf91bf92559570968b68814e275b66e162a117cc706e08dc1757c0c2",
+    "benchmark/agent_input/finqa/finqa_8c22662d2e6299b0.json": "450c5f3343efc72349228da0bfd370a1e064592cda0f03f70635a5326c701829",
+    "benchmark/agent_input/finqa/finqa_8c53f74d0f636d69.json": "e1aa6e214e61f7bc85a6ef80da943967b4245a0e80cda62a022dc94d8028fa63",
+    "benchmark/agent_input/finqa/finqa_90ba52df25a5dd53.json": "26a7b948d48bd4f7545041da28ebb3d221b540218829abdfa6e69da3afdb2615",
+    "benchmark/agent_input/finqa/finqa_91a57be8973b10f4.json": "41763da13e707e5645a88fec2da529dad6b342c3c9d582a6a6e545e90cabdbd6",
+    "benchmark/agent_input/finqa/finqa_973a3fef3994b761.json": "741fe9f2f13b91dc86830942d4e191c6a56be4dd75a0fbb8e1e7a637171ee51f",
+    "benchmark/agent_input/finqa/finqa_98beba26f9952db2.json": "fc7e349c0dd91fc5a604cb9514a411875a49599f6a5441ecc938bfc8bebf240b",
+    "benchmark/agent_input/finqa/finqa_a66e162c6b7c7502.json": "8700a9da6f5f2155730de6c1ba3f4de8c296bbf86e628d21bb07f4d57afe97d3",
+    "benchmark/agent_input/finqa/finqa_a787b0c78f0eda64.json": "bcabf7fec9fd5e732bad045cb8878444d5d334c98090eba43517377de737bca3",
+    "benchmark/agent_input/finqa/finqa_a83f5a07ad6802c7.json": "66b2f5d86a7293639b0e96d7a88ab17afec318f2b34c9e4dac4cd1f95572b3e2",
+    "benchmark/agent_input/finqa/finqa_adcdfef877f97441.json": "85cbc01b6921d650df25deab36f80ac1b513be28901823c42953b91987a55afd",
+    "benchmark/agent_input/finqa/finqa_afc3120537250639.json": "3ca58d1df889d446652d116195e9b97bf4ef74e4277e61d603da267676ff2a64",
+    "benchmark/agent_input/finqa/finqa_b01abd707f1633de.json": "7fcd41e3cb468374831326e5aa475e935d9bc1b22fd951fcb1d84bc0aa6ddc5c",
+    "benchmark/agent_input/finqa/finqa_b46d057fcbb2e1ca.json": "d4dcda5155a27734da70ced0d502db13516b67f8b672a361e661db03c674e5ec",
+    "benchmark/agent_input/finqa/finqa_b5b38de430c5e94e.json": "62a0e9d94501356ae5a5e826afd56de03112fcf4696fd41fbdeea150d4cb3243",
+    "benchmark/agent_input/finqa/finqa_b807c4d7285fe529.json": "1b3bb780255c11ba1ce4b5ac615936ffd758540895db27e09ffe3e36d94ec8c2",
+    "benchmark/agent_input/finqa/finqa_bb99661e0cc14aa6.json": "e2a6043849257d5cb34149fbc4a80dcd0ff9864fdc3fb3cf99183e4a264a8338",
+    "benchmark/agent_input/finqa/finqa_bbaa0a59cea53d0a.json": "6f3cc2e340a65b4d2c73b01cdcb3877339f1f9f332a75d910b8af3c7f46c4b26",
+    "benchmark/agent_input/finqa/finqa_c52d56ffd438f93c.json": "32dd045bf7fffc1af121e7f134e30cbab1dda7a86600753a0cd11e24bc965223",
+    "benchmark/agent_input/finqa/finqa_c8f95d62fc9dc283.json": "ce258fcdc53e09d6519313a18ceb1bf82c708f464dd56b3df35e0dd88f971502",
+    "benchmark/agent_input/finqa/finqa_ca188c838d36b385.json": "1e47d1119a1b46828e49144b1d63383c50352f731c5a21cccf4cf4bb4a2d0fa0",
+    "benchmark/agent_input/finqa/finqa_ca1ba8d4461e86fa.json": "aa9c9b8bbc4eca046031b9e19c38dad5197228e3e5b7f1072d53da112998e634",
+    "benchmark/agent_input/finqa/finqa_d07905615b17cf32.json": "a35fad62fc2feea936695bf0c4887eecd0216b1701e0a5c3d0edcf39ee666ffb",
+    "benchmark/agent_input/finqa/finqa_d416315c58ccdbe6.json": "49c965c906667ff0480aac3e4852de5638537b82b14b0223fa5fa648dfcb00cf",
+    "benchmark/agent_input/finqa/finqa_d692a37a21a57c48.json": "2a1bd91bfa9cafde99e26e94467c4527969c9be6ea4e717faa48f88a6cf88b7f",
+    "benchmark/agent_input/finqa/finqa_d9dd07b1615e50a9.json": "cf2a7029540b953244a60dffb9cf67f7c00c4da746f5ad58a323716139cf865d",
+    "benchmark/agent_input/finqa/finqa_dfd8c3bdadc9e10d.json": "b2181598724bac3e497332828e3eaf8a1df8b3708709b07afb41773248fec183",
+    "benchmark/agent_input/finqa/finqa_e0353bf6c9440e8b.json": "c7c2e859eb9bd46e821e6d014e05a81b1e055ec3c5ddbf0ce4327433c72fc546",
+    "benchmark/agent_input/finqa/finqa_e2b86b40fe001674.json": "c84fdc363932bb3f01726868166863146da9fcdc24c486605b0c640ab8c233b8",
+    "benchmark/agent_input/finqa/finqa_e2faeed6df02aa75.json": "ccdfc39b3725285bdc89ed72bfe98f19fea0c29c651afeae6cf2900e99e224b9",
+    "benchmark/agent_input/finqa/finqa_e3e308dacbe8ef66.json": "1f535ae624332edbbfc912f141063674de7a1f667c76435312c08465f9ba6890",
+    "benchmark/agent_input/finqa/finqa_e457b43057203b2b.json": "79706efc8659a1dbea73b2c2bb1e6bc69b80c7c624c32c4d5a097aa8f46d5f89",
+    "benchmark/agent_input/finqa/finqa_e5c4903978ecb993.json": "5e8ce49520fc7d86e1c91a6dadfb5676235c7a8f5fe84dc6b6dce8ef7241d4d5",
+    "benchmark/agent_input/finqa/finqa_e6b02630cc1129ce.json": "fd3db74ef4ef6f195534cbae9be5059da067df5b3bfccec4003830aee6fb436c",
+    "benchmark/agent_input/finqa/finqa_ea3f099abd3b3e6a.json": "eb313cfaf2a2b5f0b29a4deb35614aa3b9c08acdf5139565f02e96ff91048391",
+    "benchmark/agent_input/finqa/finqa_ee2eb03c33e9476a.json": "5da7c0d7d029705f175918339e99b1432c5c8715cb8182889d739831be1d364b",
+    "benchmark/agent_input/finqa/finqa_eff00d6a4b851b1b.json": "8e4e54971678f365333756a9353a1e169eb9657b1d67726c340e8490b24825bb",
+    "benchmark/agent_input/finqa/finqa_f036232828c0c2a6.json": "e32c55ff8878c45294991e620d47aa1423dd5cf3b81bbe7b0ee1dd265760e3e7",
+    "benchmark/agent_input/finqa/finqa_f3cbd9a651499f2c.json": "a0a9b7dd9cb169a2f77179567c3fbb53bd62710310a6aca5e98096dbd794531c",
+    "benchmark/agent_input/finqa/finqa_f59393851b2e7525.json": "bffb6f74a1f31cf90694b0bdba1778d8837743e386ab4edb6374e00b62d959fb"
+  }
+}

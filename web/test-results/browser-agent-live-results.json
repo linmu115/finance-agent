@@ -1,0 +1,510 @@
+{
+  "checkedAt": "2026-10-03T05:00:35.220Z",
+  "scope": "Real browser + Node Pi harness + configured official DeepSeek + Python service. Synthetic developer fixture, NOT benchmark gold or accuracy dataset.",
+  "model": {
+    "model": "deepseek-flash",
+    "baseUrl": "https://api.deepseek.com"
+  },
+  "projectId": "91630631-a022-4894-ad93-55de5f0acf76",
+  "conversationId": "67f5f60f-6dda-45fc-81d8-4adaa22498cb",
+  "firstRun": "c4bea679-c4ff-4d9c-928f-5d4554560182",
+  "passed": 9,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "真实 Excel 上传成为对话附件",
+      "status": "passed",
+      "evidence": {
+        "projectId": "91630631-a022-4894-ad93-55de5f0acf76",
+        "uploadedDocumentId": "07027089ca0240afb75b85d1ec8dfb03",
+        "initialParseStatus": "queued"
+      }
+    },
+    {
+      "name": "SSE 连接与真实运行阶段展示",
+      "status": "passed",
+      "evidence": {
+        "stages": [
+          "等待开始",
+          "准备任务",
+          "等待附件解析",
+          "分析资料",
+          "执行工具"
+        ],
+        "runId": "c4bea679-c4ff-4d9c-928f-5d4554560182"
+      }
+    },
+    {
+      "name": "真实工具执行状态展示",
+      "status": "passed",
+      "evidence": {
+        "tools": [
+          "list_documents",
+          "get_document",
+          "get_source_table",
+          "get_source_page",
+          "calculate_financial_metrics",
+          "get_financial_metrics"
+        ]
+      }
+    },
+    {
+      "name": "真实 Agent 完成同比计算并持久化来源",
+      "status": "passed",
+      "evidence": {
+        "runId": "c4bea679-c4ff-4d9c-928f-5d4554560182",
+        "result": "## 结论\n\n**2024年度营业收入同比增长率 = 10.0%**（2024年度 110，2023年度 100）\n\n## 一、读取到的原文数据（事实）\n\n来源文件：`finance.xlsx`，工作表「收入表」，物理第 1 页，表 ID `07027089ca0240afb75b85d1ec8dfb03:t0`（[07027089ca0240afb75b85d1ec8dfb03]）\n\n| 项目 | 2024年度 | 2023年度 |\n|---|---|---|\n| 营业收入 | 110 | 100 |\n| 归属于上市公司股东的净利润 | 22 | 20 |\n\n原文行（文字层原文，非OCR）：\n```\n项目\t2024年度\t2023年度\n营业收入\t110\t100\n归属于上市公司股东的净利润\t22\t20\n```\n引用：[07027089ca0240afb75b85d1ec8dfb03]（表 `...:t0`，sheet「收入表」，物理页 1）\n\n⚠️ 口径说明（重要）：该 Excel 仅给出「营业收入 2024年度/2023年度」两列，**表中未标注币种、金额单位、以及合并/母公司口径**。因此上表数值 110 与 100 只能按“表内原始计量单位（未标注）”列示；本报告不做单位假设。另：`get_financial_metrics` 对该文档返回 `insufficient_evidence`（fact_count=0），即该表未被解析为结构化财务事实，数值完全以原始表格为准。\n\n## 二、计算过程（工具结果，非心算）\n\n1. 直接同比（工具 `yoy`）：\n   - 公式：`(current - previous) / previous * 100`\n   - 输入：current=110，previous=100\n   - 结果：**10.0（单位 %）**\n\n2. 按用户指定形式 `(本年/上年-1)*100` 逐步复核：\n   - `divide(110, 100)` = 1.1\n   - `subtract(1.1, 1)` = 0.1\n   - `multiply(0.1, 100)` = 10.0\n\n两种路径结果一致：**2024年营业收入同比增长率 = (110/100 − 1) × 100 = 10.0%**（即同比增加 10 个原始单位）。\n\n## 三、事实与推论区分\n\n- 事实：Excel 表中营业收入 2024年度=110、2023年度=100；同比增速按指定公式计算得 10.0%。\n- 推论（需用户确认）：若该表单位为“万元”，则同比增加 10 万元；若为“亿元”，则增加 10 亿元。单位、币种及合并/母公司口径在材料中**未披露**，故不代为认定。\n- 未覆盖内容：仅有两期营业收入与归母净利润，无营业成本、现金流等，故无法据此计算毛利率、净利率等其他指标。\n\n## 四、可核对痕迹\n\n- 读取：`get_source_table` → trace_id `5edebb1a0bc1446497780b632753b409`；`get_source_page` → trace_id `7652b4ab64414eed859ac74223d1df44`\n- 计算：`yoy` → trace_id `99253359c09845c18ac84ff0ff904705`；`divide` → `8b34248946e44735a89d40163ffa97ad`；`subtract` → `43307db9789a417ea1861a1a5f3087e6`；`multiply` → `ef913c92659147619894d2a5d657967a`",
+        "sources": [
+          {
+            "documentId": "07027089ca0240afb75b85d1ec8dfb03",
+            "page": 1,
+            "sourceId": "07027089ca0240afb75b85d1ec8dfb03:p1"
+          },
+          {
+            "documentId": "07027089ca0240afb75b85d1ec8dfb03",
+            "page": 1,
+            "tableId": "07027089ca0240afb75b85d1ec8dfb03:t0",
+            "sourceId": "07027089ca0240afb75b85d1ec8dfb03:p1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "回答呈现多个真实增量片段",
+      "status": "passed",
+      "evidence": {
+        "observedLengths": [
+          0,
+          1,
+          36,
+          46,
+          48,
+          60,
+          69,
+          79,
+          93,
+          100,
+          103,
+          109,
+          110,
+          118,
+          129,
+          132,
+          136,
+          153,
+          178,
+          194,
+          207,
+          215,
+          221,
+          224,
+          230,
+          241,
+          259,
+          244,
+          250,
+          263,
+          265,
+          274,
+          277,
+          279,
+          282,
+          284,
+          289,
+          300,
+          308,
+          312,
+          329,
+          335,
+          338,
+          340,
+          354,
+          372,
+          375,
+          380,
+          388,
+          392,
+          397,
+          402,
+          409,
+          414,
+          424,
+          429,
+          433,
+          440,
+          446,
+          451,
+          455,
+          457,
+          459,
+          464,
+          472,
+          474,
+          477,
+          481,
+          491,
+          493,
+          498,
+          502,
+          507,
+          512,
+          516,
+          518,
+          520,
+          549,
+          572,
+          576,
+          587,
+          589,
+          591,
+          597,
+          607,
+          609,
+          616,
+          621,
+          622,
+          626,
+          629,
+          633,
+          636,
+          638,
+          643,
+          646,
+          653,
+          663,
+          688,
+          691,
+          692,
+          695,
+          703,
+          719,
+          725,
+          732,
+          735,
+          738,
+          742,
+          744,
+          747,
+          752,
+          758,
+          761,
+          763,
+          778,
+          785,
+          789,
+          790,
+          795,
+          804,
+          808,
+          810,
+          812,
+          814,
+          826,
+          831,
+          833,
+          843,
+          848,
+          855,
+          866,
+          871,
+          880,
+          891,
+          894,
+          898,
+          901,
+          907,
+          911,
+          919,
+          922,
+          930,
+          937,
+          948,
+          959,
+          964,
+          965,
+          967,
+          972,
+          980,
+          984,
+          990,
+          992,
+          996,
+          999,
+          1004,
+          1009,
+          1016,
+          1023,
+          1032,
+          1033,
+          1038,
+          1045,
+          1047,
+          1050,
+          1053,
+          1054,
+          1056,
+          1060,
+          1061,
+          1065,
+          1069,
+          1070,
+          1074,
+          1075,
+          1076,
+          1084,
+          1090,
+          1093,
+          1099,
+          1102,
+          1104,
+          1106,
+          1109,
+          1113,
+          1116,
+          1118,
+          1123,
+          1150,
+          1156,
+          1164,
+          1172,
+          1180,
+          1188,
+          1210,
+          1218,
+          1226,
+          1236,
+          1243,
+          1245,
+          1249,
+          1255,
+          1261,
+          1272,
+          1280,
+          1290,
+          1299,
+          1308,
+          1313,
+          1324,
+          1333,
+          1340,
+          1352,
+          1362,
+          1363,
+          1373,
+          1377,
+          1381,
+          1385,
+          1394,
+          1398,
+          1411,
+          1419,
+          1427,
+          1378
+        ]
+      }
+    },
+    {
+      "name": "最终回答的原文来源抽屉",
+      "status": "passed",
+      "evidence": {
+        "originalDocument": "finance.xlsx"
+      }
+    },
+    {
+      "name": "刷新页面后从真实持久化历史恢复对话",
+      "status": "passed",
+      "evidence": {
+        "conversationId": "67f5f60f-6dda-45fc-81d8-4adaa22498cb"
+      }
+    },
+    {
+      "name": "真实模型运行可由对话停止按钮取消",
+      "status": "passed",
+      "evidence": {
+        "runId": "b448b52f-86fe-412d-9f5f-383cba3f39b1",
+        "status": "cancelled"
+      }
+    },
+    {
+      "name": "真实 Agent 全流程无浏览器异常",
+      "status": "passed",
+      "evidence": {
+        "errors": []
+      }
+    }
+  ],
+  "runEvidence": [
+    {
+      "id": "c4bea679-c4ff-4d9c-928f-5d4554560182",
+      "conversationId": "67f5f60f-6dda-45fc-81d8-4adaa22498cb",
+      "projectId": "91630631-a022-4894-ad93-55de5f0acf76",
+      "status": "completed",
+      "stage": "完成",
+      "createdAt": "2026-10-03T05:00:18.273Z",
+      "tools": [
+        {
+          "name": "list_documents",
+          "status": "started",
+          "toolCallId": "call_00_ET_fNKzdQAZ0idBAUByL4SY2508",
+          "timestamp": "2026-10-03T05:00:21.038Z"
+        },
+        {
+          "name": "get_document",
+          "status": "started",
+          "toolCallId": "call_01_ET_6Nq5zti0EQSLHWfnwoW33993",
+          "timestamp": "2026-10-03T05:00:21.039Z"
+        },
+        {
+          "name": "get_document",
+          "status": "completed",
+          "toolCallId": "call_01_ET_6Nq5zti0EQSLHWfnwoW33993",
+          "timestamp": "2026-10-03T05:00:21.089Z",
+          "summary": "ok"
+        },
+        {
+          "name": "list_documents",
+          "status": "completed",
+          "toolCallId": "call_00_ET_fNKzdQAZ0idBAUByL4SY2508",
+          "timestamp": "2026-10-03T05:00:21.117Z",
+          "summary": "ok"
+        },
+        {
+          "name": "get_source_table",
+          "status": "started",
+          "toolCallId": "call_00_07J0lJIDYN69jyqmNeUE6366",
+          "timestamp": "2026-10-03T05:00:22.259Z"
+        },
+        {
+          "name": "get_source_page",
+          "status": "started",
+          "toolCallId": "call_01_YU5odSDeHvXOMRmPuX5W5303",
+          "timestamp": "2026-10-03T05:00:22.259Z"
+        },
+        {
+          "name": "get_source_page",
+          "status": "completed",
+          "toolCallId": "call_01_YU5odSDeHvXOMRmPuX5W5303",
+          "timestamp": "2026-10-03T05:00:22.299Z",
+          "summary": "ok"
+        },
+        {
+          "name": "get_source_table",
+          "status": "completed",
+          "toolCallId": "call_00_07J0lJIDYN69jyqmNeUE6366",
+          "timestamp": "2026-10-03T05:00:22.307Z",
+          "summary": "ok"
+        },
+        {
+          "name": "calculate_financial_metrics",
+          "status": "started",
+          "toolCallId": "call_00_gYtE4VTrjEZxbtk8cyIa4027",
+          "timestamp": "2026-10-03T05:00:24.314Z"
+        },
+        {
+          "name": "get_financial_metrics",
+          "status": "started",
+          "toolCallId": "call_01_PCST4KRxIqZKr94TZylV1631",
+          "timestamp": "2026-10-03T05:00:24.314Z"
+        },
+        {
+          "name": "calculate_financial_metrics",
+          "status": "completed",
+          "toolCallId": "call_00_gYtE4VTrjEZxbtk8cyIa4027",
+          "timestamp": "2026-10-03T05:00:24.325Z",
+          "summary": "ok"
+        },
+        {
+          "name": "get_financial_metrics",
+          "status": "completed",
+          "toolCallId": "call_01_PCST4KRxIqZKr94TZylV1631",
+          "timestamp": "2026-10-03T05:00:24.355Z",
+          "summary": "insufficient_evidence"
+        },
+        {
+          "name": "calculate_financial_metrics",
+          "status": "started",
+          "toolCallId": "call_00_UZb7XlXJX65oQ6nr24Cz0615",
+          "timestamp": "2026-10-03T05:00:26.631Z"
+        },
+        {
+          "name": "calculate_financial_metrics",
+          "status": "started",
+          "toolCallId": "call_01_ngR2FMG6S98pH73r169d4064",
+          "timestamp": "2026-10-03T05:00:26.632Z"
+        },
+        {
+          "name": "calculate_financial_metrics",
+          "status": "completed",
+          "toolCallId": "call_00_UZb7XlXJX65oQ6nr24Cz0615",
+          "timestamp": "2026-10-03T05:00:26.656Z",
+          "summary": "ok"
+        },
+        {
+          "name": "calculate_financial_metrics",
+          "status": "completed",
+          "toolCallId": "call_01_ngR2FMG6S98pH73r169d4064",
+          "timestamp": "2026-10-03T05:00:26.664Z",
+          "summary": "ok"
+        },
+        {
+          "name": "calculate_financial_metrics",
+          "status": "started",
+          "toolCallId": "call_00_ET_i6XC1aIepqdguWQdtC787325",
+          "timestamp": "2026-10-03T05:00:27.781Z"
+        },
+        {
+          "name": "calculate_financial_metrics",
+          "status": "completed",
+          "toolCallId": "call_00_ET_i6XC1aIepqdguWQdtC787325",
+          "timestamp": "2026-10-03T05:00:27.801Z",
+          "summary": "ok"
+        }
+      ],
+      "usage": {
+        "input": 19156,
+        "output": 1767,
+        "calls": 6,
+        "costUsd": null
+      },
+      "model": "deepseek-flash",
+      "configHash": "9de55fdcc51f9f821a0d1c37931ee4bf41e2733324fd36f0879b026665de97bc",
+      "messageId": "b146bcc9-20b6-4aad-9ffe-434c0d8b67d3",
+      "finishedAt": "2026-10-03T05:00:31.705Z"
+    },
+    {
+      "id": "b448b52f-86fe-412d-9f5f-383cba3f39b1",
+      "conversationId": "67f5f60f-6dda-45fc-81d8-4adaa22498cb",
+      "projectId": "91630631-a022-4894-ad93-55de5f0acf76",
+      "status": "cancelled",
+      "stage": "已停止",
+      "createdAt": "2026-10-03T05:00:33.313Z",
+      "tools": [
+        {
+          "name": "list_documents",
+          "status": "started",
+          "toolCallId": "call_00_6wSBzEOmxsukZQlQ9YXw0669",
+          "timestamp": "2026-10-03T05:00:33.834Z"
+        },
+        {
+          "name": "list_documents",
+          "status": "completed",
+          "toolCallId": "call_00_6wSBzEOmxsukZQlQ9YXw0669",
+          "timestamp": "2026-10-03T05:00:33.870Z",
+          "summary": "ok"
+        }
+      ],
+      "usage": {
+        "input": 2886,
+        "output": 40,
+        "calls": 2,
+        "costUsd": null
+      },
+      "model": "deepseek-flash",
+      "configHash": "9de55fdcc51f9f821a0d1c37931ee4bf41e2733324fd36f0879b026665de97bc",
+      "messageId": "6eaa7ac3-3b1c-4dc9-b7c8-993ca1670172",
+      "error": "用户取消任务",
+      "finishedAt": "2026-10-03T05:00:34.616Z"
+    }
+  ],
+  "pageErrors": []
+}

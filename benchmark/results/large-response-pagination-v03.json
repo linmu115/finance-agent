@@ -1,0 +1,111 @@
+{
+  "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+  "at": "2026-10-03T15:09:38.105Z",
+  "expected_facts": 3294,
+  "loaded_facts": 3294,
+  "pages": [
+    {
+      "offset": 0,
+      "count": 200,
+      "bytes": 340397
+    },
+    {
+      "offset": 200,
+      "count": 200,
+      "bytes": 354270
+    },
+    {
+      "offset": 400,
+      "count": 200,
+      "bytes": 359235
+    },
+    {
+      "offset": 600,
+      "count": 200,
+      "bytes": 350307
+    },
+    {
+      "offset": 800,
+      "count": 200,
+      "bytes": 367602
+    },
+    {
+      "offset": 1000,
+      "count": 200,
+      "bytes": 361798
+    },
+    {
+      "offset": 1200,
+      "count": 200,
+      "bytes": 347717
+    },
+    {
+      "offset": 1400,
+      "count": 200,
+      "bytes": 336050
+    },
+    {
+      "offset": 1600,
+      "count": 200,
+      "bytes": 350049
+    },
+    {
+      "offset": 1800,
+      "count": 200,
+      "bytes": 346616
+    },
+    {
+      "offset": 2000,
+      "count": 200,
+      "bytes": 336152
+    },
+    {
+      "offset": 2200,
+      "count": 200,
+      "bytes": 354067
+    },
+    {
+      "offset": 2400,
+      "count": 200,
+      "bytes": 368775
+    },
+    {
+      "offset": 2600,
+      "count": 200,
+      "bytes": 425146
+    },
+    {
+      "offset": 2800,
+      "count": 200,
+      "bytes": 339177
+    },
+    {
+      "offset": 3000,
+      "count": 200,
+      "bytes": 343299
+    },
+    {
+      "offset": 3200,
+      "count": 94,
+      "bytes": 167490
+    }
+  ],
+  "checks": [
+    {
+      "name": "large requested limit returns complete bounded pages",
+      "passed": true
+    },
+    {
+      "name": "MCP remains connected after full pagination and CSV export",
+      "passed": true
+    },
+    {
+      "name": "CSV parser confirms every exported record",
+      "passed": true,
+      "rows": 3294
+    }
+  ],
+  "csv_path": "D:\\codex\\金融\\data\\runtime\\pagination-verification.csv",
+  "csv_bytes": 4298412,
+  "csv_sha256": "90695b371840de5ad745cb220080193322703b64b7f8f0b83ac2014b46f98a65"
+}

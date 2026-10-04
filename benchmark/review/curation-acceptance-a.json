@@ -1,0 +1,1545 @@
+{
+  "schema_version": "finance-source-curation-0.2",
+  "reviewer": "Codex independent agent /root/financial_service; not human double annotation",
+  "scope": "Acceptance FinQA by lexicographic ID, first 40 of 80",
+  "created_at": "2026-10-03T05:56:40.593082+00:00",
+  "workflow": "Read only agent_input and independently solve all 40; persist Decimal answers and hash; only then compare legacy evaluator gold. No model predictions read.",
+  "independent_completed_at": "2026-10-03T05:44:59.570489+00:00",
+  "independent_solution_sha256": "018fc4bf3046883672dc6916282e92dca10bc34501785963e73bda0beb5f737f",
+  "legacy_gold_sha256": "1b97cacda9e54ef0c27ff9befae7811ae1b34e9f2191b9754e74a495be97d76e",
+  "original_assets_modified": false,
+  "legacy_labels_modified": false,
+  "model_predictions_accessed": false,
+  "label_policy": "verified: same financial quantity after declared unit normalization; corrected: wrong operation, target, year or scale; ambiguous: no unique unconditional answer from supplied source. Every row is retained.",
+  "counts": {
+    "verified": 26,
+    "corrected": 8,
+    "ambiguous": 6
+  },
+  "items": [
+    {
+      "id": "finqa_017b044817c34d88",
+      "independent_status": "solved",
+      "formula": "509 - 707",
+      "answer_unit": "thousand_shares",
+      "evidence_sets": [
+        [
+          "finqa_017b044817c34d88:table_1",
+          "finqa_017b044817c34d88:table_5"
+        ],
+        [
+          "finqa_017b044817c34d88:table_2",
+          "finqa_017b044817c34d88:table_3",
+          "finqa_017b044817c34d88:table_4"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_017b044817c34d88:table_0",
+        "finqa_017b044817c34d88:text_15"
+      ],
+      "rationale": "净变化为年末减年初，509−707=−198千股；203−379−22给出同一结果，题目chance按明显拼写错误解释为change。",
+      "question": "what is the net chance in non-vested performance awards in 2012 , ( in thousands ) ?",
+      "input_sha256": "1f2bea70c3dbc1f0001a864d75f6ecaf56344f88a8cdf0d8992a26b56f22ddb7",
+      "canonical_answer": "-198",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "1f2bea70c3dbc1f0001a864d75f6ecaf56344f88a8cdf0d8992a26b56f22ddb7",
+      "legacy_answer": "-198.0",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "add(203, -379), add(#0, -22)",
+      "legacy_recomputed": "-198",
+      "legacy_citations": [
+        "finqa_017b044817c34d88:table_2",
+        "finqa_017b044817c34d88:table_3",
+        "finqa_017b044817c34d88:table_4"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "-198",
+      "label_status": "verified",
+      "legacy_comparison": "Independent answer agrees with legacy recomputation; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_03c3f090394da5de",
+      "independent_status": "solved",
+      "formula": "(1.11 - 1.08) / 1.08 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_03c3f090394da5de:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_03c3f090394da5de:table_0"
+      ],
+      "rationale": "以2006年实际现金股息1.08为基期，2007年实际支付1.11；不能用11月宣布的季度股息增幅11.1%替代全年实际支付额增长。 旧程序把1.11与1.08相加再除基期；百分比变化必须先相减。",
+      "question": "what was the percentage change in the cash dividends paid per common share from 2006 to 2007",
+      "input_sha256": "932e9b333edb51c7c20fe0cd64643ade381636744fae8c16be3e898e85882bc6",
+      "canonical_answer": "2.7777777777777777777777777777777777777777777777778",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "932e9b333edb51c7c20fe0cd64643ade381636744fae8c16be3e898e85882bc6",
+      "legacy_answer": "2.02778",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "add(1.11, 1.08), divide(#0, 1.08)",
+      "legacy_recomputed": "2.027777777777777777777777777777777777778",
+      "legacy_citations": [
+        "finqa_03c3f090394da5de:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "2.027777777777777777777777778",
+      "label_status": "corrected",
+      "legacy_comparison": "旧程序把1.11与1.08相加再除基期；百分比变化必须先相减。"
+    },
+    {
+      "id": "finqa_03c86a2b5c37e2c1",
+      "independent_status": "solved",
+      "formula": "(9.60 - 13.25) / 13.25 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_03c86a2b5c37e2c1:text_19"
+        ]
+      ],
+      "valid_context_citations": [],
+      "rationale": "2011授予期权估计公允值13.25美元、2012为9.60美元，按2011为基期计算下降率。",
+      "question": "what is the percent change of weighted-average estimated fair value of employee stock options between 2011 and 2012?",
+      "input_sha256": "18b704d32b4332dde0e195f9ec947cc294df731f12b463f2f394214419197b97",
+      "canonical_answer": "-27.547169811320754716981132075471698113207547169811",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "18b704d32b4332dde0e195f9ec947cc294df731f12b463f2f394214419197b97",
+      "legacy_answer": "-0.27547",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(9.60, 13.25), divide(#0, 13.25)",
+      "legacy_recomputed": "-0.2754716981132075471698113207547169811321",
+      "legacy_citations": [
+        "finqa_03c86a2b5c37e2c1:text_5",
+        "finqa_03c86a2b5c37e2c1:text_19"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "100",
+      "legacy_answer_in_canonical_units": "-27.54716981132075471698113208",
+      "label_status": "verified",
+      "legacy_comparison": "Same financial quantity after explicit ratio-to-percentage normalization; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_050e4b7e14850aa0",
+      "independent_status": "solved",
+      "formula": "(9981 + 6788) / 93033",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_050e4b7e14850aa0:table_4",
+          "finqa_050e4b7e14850aa0:table_7",
+          "finqa_050e4b7e14850aa0:table_13"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_050e4b7e14850aa0:table_0",
+        "finqa_050e4b7e14850aa0:text_8"
+      ],
+      "rationale": "消费者相关两行业为consumer discretionary与consumer staples，相加后除总企业贷款敞口；无百分数要求，统一以ratio输出，并可公开单位元数据。",
+      "question": "consumer related loans make up how much of the companies total corporate lending exposure?",
+      "input_sha256": "4d56db13baebb30aa55d0ce8b710c1803ddae8d32df3a83773eba576fc8a1154",
+      "canonical_answer": "0.18024786903571850848623606677200563241000505197081",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "4d56db13baebb30aa55d0ce8b710c1803ddae8d32df3a83773eba576fc8a1154",
+      "legacy_answer": "0.18025",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "add(9981, 6788), divide(#0, 93033)",
+      "legacy_recomputed": "0.1802478690357185084862360667720056324100",
+      "legacy_citations": [
+        "finqa_050e4b7e14850aa0:table_4",
+        "finqa_050e4b7e14850aa0:table_7",
+        "finqa_050e4b7e14850aa0:table_13"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "0.1802478690357185084862360668",
+      "label_status": "verified",
+      "legacy_comparison": "Independent answer agrees with legacy recomputation; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_094360ad0c1479fc",
+      "independent_status": "solved",
+      "formula": "231 / 6304",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_094360ad0c1479fc:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_094360ad0c1479fc:table_0"
+      ],
+      "rationale": "题目明确2015 restructuring programs，对应第一项目行而非total restructuring charges行；facility closure成本231/该项目总额6304。",
+      "question": "what portion of the total 2015 restructuring programs is related to facility closer costs?",
+      "input_sha256": "d7360d8cb0029de3b9091a411459e6f02f276b920a46613cfe3166342f8fdf97",
+      "canonical_answer": "0.036643401015228426395939086294416243654822335025381",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "d7360d8cb0029de3b9091a411459e6f02f276b920a46613cfe3166342f8fdf97",
+      "legacy_answer": "0.03664",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(231, 6304)",
+      "legacy_recomputed": "0.03664340101522842639593908629441624365482",
+      "legacy_citations": [
+        "finqa_094360ad0c1479fc:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "0.03664340101522842639593908629",
+      "label_status": "verified",
+      "legacy_comparison": "Independent answer agrees with legacy recomputation; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_0b4b8ca1bab7ce37",
+      "independent_status": "solved",
+      "formula": "503000 / 298",
+      "answer_unit": "berths_per_ship",
+      "evidence_sets": [
+        [
+          "finqa_0b4b8ca1bab7ce37:text_9"
+        ]
+      ],
+      "valid_context_citations": [],
+      "rationale": "2016年底全球船队503000泊位、298艘船；不用未来2017—2021投运船只或旅客数。",
+      "question": "at the end of 2016 , what was the average number of berths per ship in the global cruise fleet?",
+      "input_sha256": "9b1e96c75648400237eb7665e9d45ae8bdb9295abb4eb5202bb3fecda7c51566",
+      "canonical_answer": "1687.9194630872483221476510067114093959731543624161",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "9b1e96c75648400237eb7665e9d45ae8bdb9295abb4eb5202bb3fecda7c51566",
+      "legacy_answer": "1687.91946",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(503000, 298)",
+      "legacy_recomputed": "1687.919463087248322147651006711409395973",
+      "legacy_citations": [
+        "finqa_0b4b8ca1bab7ce37:text_9"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "1687.919463087248322147651007",
+      "label_status": "verified",
+      "legacy_comparison": "Independent answer agrees with legacy recomputation; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_0ca2428051283baa",
+      "independent_status": "solved",
+      "formula": "(224.65 - 100) / 100 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_0ca2428051283baa:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_0ca2428051283baa:table_0",
+        "finqa_0ca2428051283baa:text_9"
+      ],
+      "rationale": "五年累计股东总回报是期末224.65相对初始100的净增幅，124.65%；期末指数224.65不是收益率。",
+      "question": "what was the percentage cumulative total shareholder return on disca common stock for the five year period ended december 31 , 2014?",
+      "input_sha256": "c3eb3e7ccfc3ee57b159b18135321245ea587a9d5457c4f59e2089f6e3d8dfdd",
+      "canonical_answer": "124.6500",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "c3eb3e7ccfc3ee57b159b18135321245ea587a9d5457c4f59e2089f6e3d8dfdd",
+      "legacy_answer": "1.2465",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(224.65, const_100), divide(#0, const_100)",
+      "legacy_recomputed": "1.2465",
+      "legacy_citations": [
+        "finqa_0ca2428051283baa:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "100",
+      "legacy_answer_in_canonical_units": "124.6500",
+      "label_status": "verified",
+      "legacy_comparison": "Same financial quantity after explicit ratio-to-percentage normalization; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_0d857e531e718fef",
+      "independent_status": "ambiguous",
+      "formula": null,
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_0d857e531e718fef:table_0",
+          "finqa_0d857e531e718fef:table_1",
+          "finqa_0d857e531e718fef:table_2",
+          "finqa_0d857e531e718fef:table_3",
+          "finqa_0d857e531e718fef:text_16",
+          "finqa_0d857e531e718fef:text_20"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_0d857e531e718fef:text_19"
+      ],
+      "conditioned_answers": [
+        {
+          "condition": "Use stated current liabilities based on intent and ability to pay during 2017; this is not explicitly mandatory contractual maturity",
+          "formula": "175 / 3081",
+          "answer_unit": "ratio",
+          "canonical_answer": "0.056799740344044141512495942875689711132749107432652"
+        },
+        {
+          "condition": "Read the supplied 2017 table entry '$ 2014' literally as 2014 million despite inconsistency with total debt",
+          "formula": "2014 / 3081",
+          "answer_unit": "ratio",
+          "canonical_answer": "0.65368386887374229146381045115222330412203829925349"
+        },
+        {
+          "condition": "Interpret '2014' in the 2017 maturity row as an encoding-corrupted dash and therefore no scheduled 2017 maturity; later maturities sum to 3081",
+          "formula": "0 / 3081",
+          "answer_unit": "ratio",
+          "canonical_answer": "0"
+        }
+      ],
+      "rationale": "来源在2017合同到期表列示'$ 2014'，但后续年度150+175+2756已等于总贷款3081，2014疑为长破折号编码污染；正文另称按意图与能力于2017偿还而列流动负债175，并非明确合同到期额。问due next12months无法在提供材料上唯一确定，不能硬选一个比例。",
+      "question": "what portion of total outstanding term loan is due in the next 12 months as of december 31 , 2016?",
+      "input_sha256": "36c9f3416c690ea06ed7f652458b7b71e2e06e40e9416d1c8374d41b971777f5",
+      "canonical_answer": null,
+      "abs_tolerance": "0.000001",
+      "source_sha256": "36c9f3416c690ea06ed7f652458b7b71e2e06e40e9416d1c8374d41b971777f5",
+      "legacy_answer": "0.0568",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(175, 3081)",
+      "legacy_recomputed": "0.05679974034404414151249594287568971113275",
+      "legacy_citations": [
+        "finqa_0d857e531e718fef:text_16",
+        "finqa_0d857e531e718fef:text_20"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "label_status": "ambiguous",
+      "status": "insufficient_evidence",
+      "reason_code": "ambiguous_question_or_source",
+      "legacy_comparison": "Legacy selected one interpretation despite underspecified target, period, or source."
+    },
+    {
+      "id": "finqa_15ca68bffe15852f",
+      "independent_status": "solved",
+      "formula": "(4.0 - 3.9) / 4.0 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_15ca68bffe15852f:text_24"
+        ]
+      ],
+      "valid_context_citations": [],
+      "rationale": "问最大潜在敞口下降幅度，4.0降至3.9十亿美元，下降2.5%；不使用贷款余额或准备金变化。",
+      "question": "by what percentage did the potential maximum exposure decrease by the end of 2012?",
+      "input_sha256": "ac5284817ec0ef8c64d914503ae9279c3a068a7cdf6233a5108ef3af2edf06e0",
+      "canonical_answer": "2.500",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "ac5284817ec0ef8c64d914503ae9279c3a068a7cdf6233a5108ef3af2edf06e0",
+      "legacy_answer": "2.5",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(const_4, 3.9), divide(#0, const_4), multiply(#1, const_100)",
+      "legacy_recomputed": "2.500",
+      "legacy_citations": [
+        "finqa_15ca68bffe15852f:text_24"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "2.500",
+      "label_status": "verified",
+      "legacy_comparison": "Independent answer agrees with legacy recomputation; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_1af7ad0c011c7bf3",
+      "independent_status": "solved",
+      "formula": "(5.8 - 6.3) / 6.3 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_1af7ad0c011c7bf3:text_3"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_1af7ad0c011c7bf3:text_0"
+      ],
+      "rationale": "2006年2月3日5.8百万与2005年1月28日6.3百万比较，以2005为基期，变化为负。",
+      "question": "what was the percentage change in the excess of current cost over lifo cost was approximately between 2006 and 2005 .",
+      "input_sha256": "b8dc9aa733573b42f21ecbbeec3503f776037d14a20034ecde8bb2d72a81c273",
+      "canonical_answer": "-7.9365079365079365079365079365079365079365079365079",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "b8dc9aa733573b42f21ecbbeec3503f776037d14a20034ecde8bb2d72a81c273",
+      "legacy_answer": "-0.07937",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(5.8, 6.3), divide(#0, 6.3)",
+      "legacy_recomputed": "-0.07936507936507936507936507936507936507937",
+      "legacy_citations": [
+        "finqa_1af7ad0c011c7bf3:text_3"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "100",
+      "legacy_answer_in_canonical_units": "-7.936507936507936507936507937",
+      "label_status": "verified",
+      "legacy_comparison": "Same financial quantity after explicit ratio-to-percentage normalization; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_1f6f92c826dcd4c6",
+      "independent_status": "solved",
+      "formula": "(44.11 - 39.03) / 39.03 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_1f6f92c826dcd4c6:table_5"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_1f6f92c826dcd4c6:table_0"
+      ],
+      "rationale": "2013每份期权公允价值39.03，2014为44.11；与无风险利率、波动率无关。 旧程序仅给44.11−39.03=5.08美元价差；原问明确percentage increase，必须再除39.03并转百分数。",
+      "question": "what is the percentage increase in the fair value of option granted from 2013 to 2014?",
+      "input_sha256": "7b901db9e6000bfaeec89e5762fda86cfd5b0082d34bd4e73c76d44ddff77a34",
+      "canonical_answer": "13.015629003330771201639764283884191647450678964899",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "7b901db9e6000bfaeec89e5762fda86cfd5b0082d34bd4e73c76d44ddff77a34",
+      "legacy_answer": "5.08",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(44.11, 39.03)",
+      "legacy_recomputed": "5.08",
+      "legacy_citations": [
+        "finqa_1f6f92c826dcd4c6:table_5"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "5.08",
+      "label_status": "corrected",
+      "legacy_comparison": "旧程序仅给44.11−39.03=5.08美元价差；原问明确percentage increase，必须再除39.03并转百分数。"
+    },
+    {
+      "id": "finqa_205bdd9bb438341a",
+      "independent_status": "solved",
+      "formula": "(96.67 - 100) / 100",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_205bdd9bb438341a:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_205bdd9bb438341a:table_0",
+        "finqa_205bdd9bb438341a:text_5"
+      ],
+      "rationale": "2013年10月投入，2年后为2015年10月，累计价值100到96.67；ROI定义净收益/初始投资，−0.0333即−3.33%。",
+      "question": "what is the roi for applied materials if the investment made on october 2013 was sold 2 years later?",
+      "input_sha256": "1a32ffaa57e842c3225ec5a9da0eb781545c2585c5ef5418a52442d14b410f5b",
+      "canonical_answer": "-0.0333",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "1a32ffaa57e842c3225ec5a9da0eb781545c2585c5ef5418a52442d14b410f5b",
+      "legacy_answer": "-0.0333",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(96.67, const_100), divide(#0, const_100)",
+      "legacy_recomputed": "-0.0333",
+      "legacy_citations": [
+        "finqa_205bdd9bb438341a:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "-0.0333",
+      "label_status": "verified",
+      "legacy_comparison": "Independent answer agrees with legacy recomputation; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_263a3b4ab3524fda",
+      "independent_status": "solved",
+      "formula": "(182.87 - 149.70) / 149.70",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_263a3b4ab3524fda:table_4",
+          "finqa_263a3b4ab3524fda:table_6"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_263a3b4ab3524fda:table_0",
+        "finqa_263a3b4ab3524fda:text_3"
+      ],
+      "rationale": "2005年底S&P500指数149.70，2007年底182.87，持有期回报为差额/149.70，不能套用2002的100基数。",
+      "question": "what is the roi in s&p500 if the investment was made at the end of 2005 and sold at the end of 2007?",
+      "input_sha256": "2ddb0f07a45e76756ee9451ef0c32ee68d8a63085476ab8b9565adfed2ed8379",
+      "canonical_answer": "0.22157648630594522378089512358049432197728790915164",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "2ddb0f07a45e76756ee9451ef0c32ee68d8a63085476ab8b9565adfed2ed8379",
+      "legacy_answer": "0.22158",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(182.87, 149.70), divide(#0, 149.70)",
+      "legacy_recomputed": "0.2215764863059452237808951235804943219773",
+      "legacy_citations": [
+        "finqa_263a3b4ab3524fda:table_3",
+        "finqa_263a3b4ab3524fda:table_4",
+        "finqa_263a3b4ab3524fda:table_5",
+        "finqa_263a3b4ab3524fda:table_6"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "0.2215764863059452237808951236",
+      "label_status": "verified",
+      "legacy_comparison": "Independent answer agrees with legacy recomputation; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_28a9321caf486b54",
+      "independent_status": "solved",
+      "formula": "2408 + 1364",
+      "answer_unit": "thousand_USD",
+      "evidence_sets": [
+        [
+          "finqa_28a9321caf486b54:table_2"
+        ],
+        [
+          "finqa_28a9321caf486b54:table_0",
+          "finqa_28a9321caf486b54:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_28a9321caf486b54:text_0",
+        "finqa_28a9321caf486b54:text_2"
+      ],
+      "rationale": "下一两年是2006与2007，表中总额3772千美元可直接引用或两年金额相加。",
+      "question": "total purchase commitments over the next two years are what ( in thousands ) ?\\\\n\\\\n\\\\n",
+      "input_sha256": "34292b16832fbb3dec84a6cc2e90d83ca42520423412aef215ba1857342e2165",
+      "canonical_answer": "3772",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "34292b16832fbb3dec84a6cc2e90d83ca42520423412aef215ba1857342e2165",
+      "legacy_answer": "3772.0",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "add(2408, 1364)",
+      "legacy_recomputed": "3772",
+      "legacy_citations": [
+        "finqa_28a9321caf486b54:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "3772",
+      "label_status": "verified",
+      "legacy_comparison": "Independent answer agrees with legacy recomputation; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_2b3abd65fef6f461",
+      "independent_status": "solved",
+      "formula": "4.25 - 3.71",
+      "answer_unit": "USD_per_share",
+      "evidence_sets": [
+        [
+          "finqa_2b3abd65fef6f461:table_5"
+        ],
+        [
+          "finqa_2b3abd65fef6f461:table_1",
+          "finqa_2b3abd65fef6f461:table_2",
+          "finqa_2b3abd65fef6f461:table_3",
+          "finqa_2b3abd65fef6f461:table_4"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_2b3abd65fef6f461:table_0",
+        "finqa_2b3abd65fef6f461:text_6",
+        "finqa_2b3abd65fef6f461:text_9"
+      ],
+      "rationale": "题目询问股息支付增加额而未要求百分比，2018年度每股4.25−2017每股3.71=0.54美元/股；不能把按季度宣布金额替代全年。 旧程序回答相对增长率0.14555，原问未要求百分比。按增加额口径为0.54美元/股，单位元数据须公开以固定该口径。",
+      "question": "what is the increase observed in the payment of dividends during 2017 and 2018?",
+      "input_sha256": "2ead2af274f0c29b193636958afa70eedca8dd470915e422c7e0d18797322708",
+      "canonical_answer": "0.54",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "2ead2af274f0c29b193636958afa70eedca8dd470915e422c7e0d18797322708",
+      "legacy_answer": "0.14555",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(4.25, 3.71), subtract(#0, const_1)",
+      "legacy_recomputed": "0.145552560646900269541778975741239892183",
+      "legacy_citations": [
+        "finqa_2b3abd65fef6f461:table_5"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "0.1455525606469002695417789757",
+      "label_status": "corrected",
+      "legacy_comparison": "旧程序回答相对增长率0.14555，原问未要求百分比。按增加额口径为0.54美元/股，单位元数据须公开以固定该口径。"
+    },
+    {
+      "id": "finqa_2f2bed49d355c369",
+      "independent_status": "solved",
+      "formula": "130.66 / 152.42",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_2f2bed49d355c369:table_3"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_2f2bed49d355c369:table_0",
+        "finqa_2f2bed49d355c369:text_3"
+      ],
+      "rationale": "2004同一表行的Snap-on表现指数130.66与同行指数152.42取比；题目问表现比而非净收益率之比。",
+      "question": "in 2004 what was the ratio of the snap-on incorporated to the peer group perfomance",
+      "input_sha256": "7cbbda0d5c265e281e52b303cc5141365282b50611f81d6a27f30fce080d6da4",
+      "canonical_answer": "0.85723658312557407164414118882036478152473428683900",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "7cbbda0d5c265e281e52b303cc5141365282b50611f81d6a27f30fce080d6da4",
+      "legacy_answer": "0.85724",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(130.66, 152.42)",
+      "legacy_recomputed": "0.8572365831255740716441411888203647815247",
+      "legacy_citations": [
+        "finqa_2f2bed49d355c369:table_3"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "0.8572365831255740716441411888",
+      "label_status": "verified",
+      "legacy_comparison": "Independent answer agrees with legacy recomputation; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_333d7fba4a1c3a0d",
+      "independent_status": "solved",
+      "formula": "(26.3 - 28.4) / 28.4 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_333d7fba4a1c3a0d:text_14"
+        ]
+      ],
+      "valid_context_citations": [],
+      "rationale": "问题要2004至2005折旧摊销费用变化，用28.4→26.3百万；表中2006/2005累计折旧存量不对应本题年度费用。",
+      "question": "what was the percent change in depreciation and amortization expense between 2004 and 2005?",
+      "input_sha256": "fe807878fceb8cac98cdf5e82f4d65e07199b50f228c285f34a57fc4e8ab601e",
+      "canonical_answer": "-7.3943661971830985915492957746478873239436619718310",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "fe807878fceb8cac98cdf5e82f4d65e07199b50f228c285f34a57fc4e8ab601e",
+      "legacy_answer": "-0.07394",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(26.3, 28.4), divide(#0, 28.4)",
+      "legacy_recomputed": "-0.07394366197183098591549295774647887323944",
+      "legacy_citations": [
+        "finqa_333d7fba4a1c3a0d:text_14"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "100",
+      "legacy_answer_in_canonical_units": "-7.394366197183098591549295775",
+      "label_status": "verified",
+      "legacy_comparison": "Same financial quantity after explicit ratio-to-percentage normalization; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_35435991030d34be",
+      "independent_status": "solved",
+      "formula": "(7729 + 5400 + 5038) / 3",
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_35435991030d34be:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_35435991030d34be:table_0",
+        "finqa_35435991030d34be:text_15",
+        "finqa_35435991030d34be:text_17"
+      ],
+      "rationale": "2005—2007连续三年segment net sales分别5038、5400、7729百万，算术平均；不使用另一分部前文2006经营利润。",
+      "question": "what was the average segment net sales from 2005 to 2007 in millions",
+      "input_sha256": "313c1855f646e25db621e01c81a3add46add15c6e68149d3643a215cc0ab4971",
+      "canonical_answer": "6055.6666666666666666666666666666666666666666666667",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "313c1855f646e25db621e01c81a3add46add15c6e68149d3643a215cc0ab4971",
+      "legacy_answer": "6055.66667",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "add(7729, 5400), add(5038, #0), divide(#1, const_3)",
+      "legacy_recomputed": "6055.666666666666666666666666666666666667",
+      "legacy_citations": [
+        "finqa_35435991030d34be:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "6055.666666666666666666666667",
+      "label_status": "verified",
+      "legacy_comparison": "Independent answer agrees with legacy recomputation; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_35b4ad38dc0fedd3",
+      "independent_status": "ambiguous",
+      "formula": null,
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_35b4ad38dc0fedd3:text_13",
+          "finqa_35b4ad38dc0fedd3:text_15"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_35b4ad38dc0fedd3:text_10",
+        "finqa_35b4ad38dc0fedd3:text_11"
+      ],
+      "conditioned_answers": [
+        {
+          "condition": "The final total cash purchase price upon completion, including amounts already paid",
+          "formula": "1.345 * 1000 + 30",
+          "answer_unit": "million_USD",
+          "canonical_answer": "1375.000"
+        },
+        {
+          "condition": "The final unpaid cash installment that will actually be paid upon closing",
+          "formula": "30",
+          "answer_unit": "million_USD",
+          "canonical_answer": "30"
+        }
+      ],
+      "rationale": "正文已付13.45亿美元，尚余3000万美元于交割时支付。题目'final cash purchase price ... paid upon closing'既可指交割完成后的总价1375百万，也可指交割时最后一笔30百万，缺少total或remaining限定；两种目标不同，不能强定唯一标量。上方233584千的表属于Blockbuster而非TerreStar。",
+      "question": "for the terrestar acquisition what will the final cash purchase price be in millions paid upon closing?",
+      "input_sha256": "8b131b36eb5269be71b4a020409b83e9d0d593c9dfc3fe5097998517d3e8cf40",
+      "canonical_answer": null,
+      "abs_tolerance": "0.000001",
+      "source_sha256": "8b131b36eb5269be71b4a020409b83e9d0d593c9dfc3fe5097998517d3e8cf40",
+      "legacy_answer": "1375.0",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "multiply(1.345, const_1000), add(#0, 30)",
+      "legacy_recomputed": "1375.000",
+      "legacy_citations": [
+        "finqa_35b4ad38dc0fedd3:text_15",
+        "finqa_35b4ad38dc0fedd3:text_13"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "label_status": "ambiguous",
+      "status": "insufficient_evidence",
+      "reason_code": "ambiguous_question_or_source",
+      "legacy_comparison": "Legacy selected one interpretation despite underspecified target, period, or source."
+    },
+    {
+      "id": "finqa_367cfd2e381e1833",
+      "independent_status": "solved",
+      "formula": "247 / 1676 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_367cfd2e381e1833:table_2",
+          "finqa_367cfd2e381e1833:table_7"
+        ],
+        [
+          "finqa_367cfd2e381e1833:table_2",
+          "finqa_367cfd2e381e1833:text_23"
+        ],
+        [
+          "finqa_367cfd2e381e1833:text_24",
+          "finqa_367cfd2e381e1833:text_26",
+          "finqa_367cfd2e381e1833:table_7"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_367cfd2e381e1833:table_0",
+        "finqa_367cfd2e381e1833:text_25"
+      ],
+      "rationale": "商誉247/净资产1676；商誉与其他无形资产合计370不能直接当商誉。替代路径为370−123=247。",
+      "question": "what percentage of the net assets acquired is goodwill?",
+      "input_sha256": "7cff8a4f5e662b235cdf48c0a2b21ce8e7f7e49345234c6e91690dc7c57b9966",
+      "canonical_answer": "14.737470167064439140811455847255369928400954653938",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "7cff8a4f5e662b235cdf48c0a2b21ce8e7f7e49345234c6e91690dc7c57b9966",
+      "legacy_answer": "0.14737",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(247, 1676)",
+      "legacy_recomputed": "0.1473747016706443914081145584725536992840",
+      "legacy_citations": [
+        "finqa_367cfd2e381e1833:table_2",
+        "finqa_367cfd2e381e1833:table_7"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "100",
+      "legacy_answer_in_canonical_units": "14.73747016706443914081145585",
+      "label_status": "verified",
+      "legacy_comparison": "Same financial quantity after explicit ratio-to-percentage normalization; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_3a404a3f65d496dc",
+      "independent_status": "solved",
+      "formula": "294 / 30",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_3a404a3f65d496dc:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_3a404a3f65d496dc:table_0",
+        "finqa_3a404a3f65d496dc:text_2"
+      ],
+      "rationale": "只取reclassifying certain separate accounts对应其他综合收益294与净利润30，OCI/NI=9.8；不使用合计292/−23。",
+      "question": "in the adoption of the prospective method what was the ratio of the other comprehensive income to the net income reclassifying certain separate accounts to general account",
+      "input_sha256": "fdc7ab2088cb8fd8d3204c19ea9b6a8fcde141e2d9f6f75d01e252acf37171e0",
+      "canonical_answer": "9.8",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "fdc7ab2088cb8fd8d3204c19ea9b6a8fcde141e2d9f6f75d01e252acf37171e0",
+      "legacy_answer": "9.8",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(294, 30)",
+      "legacy_recomputed": "9.8",
+      "legacy_citations": [
+        "finqa_3a404a3f65d496dc:table_2"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "9.8",
+      "label_status": "verified",
+      "legacy_comparison": "Independent answer agrees with legacy recomputation; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_4011dd78a1ec4db1",
+      "independent_status": "solved",
+      "formula": "(99 - 110) / 110 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_4011dd78a1ec4db1:table_9"
+        ],
+        [
+          "finqa_4011dd78a1ec4db1:text_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_4011dd78a1ec4db1:table_0",
+        "finqa_4011dd78a1ec4db1:text_0"
+      ],
+      "rationale": "未确认税收优惠应计负债的年末余额110降至99百万，净变化−10%；不以2007年初77作为2007年底基数。",
+      "question": "what was the percentage net change in the accrued liability for unrecognized tax benefits from 2007 to 2008?",
+      "input_sha256": "fb60be0fbd0c2f182bb15b06fe9b5171b62645a25b1593866ae07af968162707",
+      "canonical_answer": "-10.0",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "fb60be0fbd0c2f182bb15b06fe9b5171b62645a25b1593866ae07af968162707",
+      "legacy_answer": "-0.1",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(99, 110), divide(#0, 110)",
+      "legacy_recomputed": "-0.1",
+      "legacy_citations": [
+        "finqa_4011dd78a1ec4db1:table_9"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "100",
+      "legacy_answer_in_canonical_units": "-10.0",
+      "label_status": "verified",
+      "legacy_comparison": "Same financial quantity after explicit ratio-to-percentage normalization; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_4585aea13484426d",
+      "independent_status": "solved",
+      "formula": "1432 / 875",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_4585aea13484426d:table_0",
+          "finqa_4585aea13484426d:table_3"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_4585aea13484426d:text_0"
+      ],
+      "rationale": "截至2014年底列示的2015到期1432与2018到期875取比，不能将2015至2018合计当分子。",
+      "question": "at december 31 , 2014 what was the ratio of the debt maturities scheduled for 2015 to 2018",
+      "input_sha256": "11cfe5d7c1189b8b7673db02fcc077794f1438f8080be48cc99a13dbc4e109a8",
+      "canonical_answer": "1.6365714285714285714285714285714285714285714285714",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "11cfe5d7c1189b8b7673db02fcc077794f1438f8080be48cc99a13dbc4e109a8",
+      "legacy_answer": "1.63657",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(1432, 875)",
+      "legacy_recomputed": "1.636571428571428571428571428571428571429",
+      "legacy_citations": [
+        "finqa_4585aea13484426d:table_3"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "1.636571428571428571428571429",
+      "label_status": "verified",
+      "legacy_comparison": "Independent answer agrees with legacy recomputation; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_46844b9144456a2e",
+      "independent_status": "solved",
+      "formula": "829",
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_46844b9144456a2e:table_7"
+        ],
+        [
+          "finqa_46844b9144456a2e:table_1",
+          "finqa_46844b9144456a2e:table_2",
+          "finqa_46844b9144456a2e:table_3",
+          "finqa_46844b9144456a2e:table_4",
+          "finqa_46844b9144456a2e:table_5",
+          "finqa_46844b9144456a2e:table_6"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_46844b9144456a2e:table_0",
+        "finqa_46844b9144456a2e:text_6"
+      ],
+      "rationale": "2006所得税费用为provision for income taxes=829百万；expected tax987仅为调节起点。各项调节987+86−224+11−12−19同样等于829。 829本身已经是所得税费用，旧程序又乘29%形成240.41，重复施加税率。",
+      "question": "what was the 2006 tax expense?",
+      "input_sha256": "4eea8ae2ddc7fdb81b79e63ea4937aad3f00a5e58269eac3546a6d4cd368e209",
+      "canonical_answer": "829",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "4eea8ae2ddc7fdb81b79e63ea4937aad3f00a5e58269eac3546a6d4cd368e209",
+      "legacy_answer": "240.41",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "multiply(829, 29%)",
+      "legacy_recomputed": "240.41",
+      "legacy_citations": [
+        "finqa_46844b9144456a2e:table_7",
+        "finqa_46844b9144456a2e:table_8"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "240.41",
+      "label_status": "corrected",
+      "legacy_comparison": "829本身已经是所得税费用，旧程序又乘29%形成240.41，重复施加税率。"
+    },
+    {
+      "id": "finqa_47593c3344dff71c",
+      "independent_status": "solved",
+      "formula": "(1279337 - 1019953) / 1019953 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_47593c3344dff71c:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_47593c3344dff71c:table_0",
+        "finqa_47593c3344dff71c:text_1"
+      ],
+      "rationale": "2015营运资本1019953千、2016为1279337千，按2015基期计算；现金或存货并非营运资本。",
+      "question": "what was the percentage change in working capital from 2015 to 2016?",
+      "input_sha256": "0604df0c873552054a70f45840a27014244b3517bbba01c0fdcdb05ae7af6db4",
+      "canonical_answer": "25.430975741039047877696325222828895056929093791577",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "0604df0c873552054a70f45840a27014244b3517bbba01c0fdcdb05ae7af6db4",
+      "legacy_answer": "0.25431",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(1279337, 1019953), divide(#0, 1019953)",
+      "legacy_recomputed": "0.2543097574103904787769632522282889505693",
+      "legacy_citations": [
+        "finqa_47593c3344dff71c:table_2"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "100",
+      "legacy_answer_in_canonical_units": "25.43097574103904787769632522",
+      "label_status": "verified",
+      "legacy_comparison": "Same financial quantity after explicit ratio-to-percentage normalization; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_4bb8fb6f35b38b71",
+      "independent_status": "ambiguous",
+      "formula": null,
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_4bb8fb6f35b38b71:table_0",
+          "finqa_4bb8fb6f35b38b71:table_3"
+        ],
+        [
+          "finqa_4bb8fb6f35b38b71:table_3",
+          "finqa_4bb8fb6f35b38b71:text_19"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_4bb8fb6f35b38b71:table_0",
+        "finqa_4bb8fb6f35b38b71:text_21",
+        "finqa_4bb8fb6f35b38b71:text_22",
+        "finqa_4bb8fb6f35b38b71:text_24"
+      ],
+      "conditioned_answers": [
+        {
+          "condition": "Treat the annual change in portfolio balances as a return by additionally assuming no contributions, withdrawals, or distributed income",
+          "formula": "(8690 - 7943) / 7943 * 100",
+          "answer_unit": "percentage_points",
+          "canonical_answer": "9.4045071131814176004028704519702883041671912375677"
+        },
+        {
+          "condition": "Actual investment return allowing unspecified plan contributions, benefit payments, and cash income",
+          "canonical_answer": null,
+          "formula": "(ending_value - beginning_value - net_external_flows + distributed_income) / beginning_value * 100",
+          "answer_unit": "percentage_points"
+        }
+      ],
+      "rationale": "表只给递延薪酬计划资产两个年末公允价值，不披露期间投入、福利支付或分配收入，余额增幅不能无条件视为投资年收益率。原文还称交易证券损益不重大，与把全部余额增长当收益并不等价；零资金流假设下可算9.4%左右，但真实return无法唯一识别。",
+      "question": "based on the table , what would be the annual percent return for the companies investments?",
+      "input_sha256": "0d65d79d8f73360e9785962ebad8970a6e6ea5617b44478b6c29b4c57db9cb35",
+      "canonical_answer": null,
+      "abs_tolerance": "0.000001",
+      "source_sha256": "0d65d79d8f73360e9785962ebad8970a6e6ea5617b44478b6c29b4c57db9cb35",
+      "legacy_answer": "0.09405",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(8690, 7943), divide(#0, 7943)",
+      "legacy_recomputed": "0.09404507113181417600402870451970288304167",
+      "legacy_citations": [
+        "finqa_4bb8fb6f35b38b71:table_3",
+        "finqa_4bb8fb6f35b38b71:text_19",
+        "finqa_4bb8fb6f35b38b71:text_20",
+        "finqa_4bb8fb6f35b38b71:text_21"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "label_status": "ambiguous",
+      "status": "insufficient_evidence",
+      "reason_code": "ambiguous_question_or_source",
+      "legacy_comparison": "Legacy selected one interpretation despite underspecified target, period, or source."
+    },
+    {
+      "id": "finqa_4cb050de64bd3113",
+      "independent_status": "solved",
+      "formula": "(151 - 136) / 136 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_4cb050de64bd3113:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_4cb050de64bd3113:table_0",
+        "finqa_4cb050de64bd3113:text_20",
+        "finqa_4cb050de64bd3113:text_21"
+      ],
+      "rationale": "New Jersey Chrome reserve从2017年136增至2018年151百万，只计算该类准备金。",
+      "question": "what was the percentage increase in the new jersey chrome environmental reserve in 2018?",
+      "input_sha256": "4f81514af496fc8dc3ad08142d475be2ec548dfed7f9a4e88db445029ef0e28b",
+      "canonical_answer": "11.029411764705882352941176470588235294117647058824",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "4f81514af496fc8dc3ad08142d475be2ec548dfed7f9a4e88db445029ef0e28b",
+      "legacy_answer": "0.11029",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(151, 136), divide(#0, 136)",
+      "legacy_recomputed": "0.1102941176470588235294117647058823529412",
+      "legacy_citations": [
+        "finqa_4cb050de64bd3113:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "100",
+      "legacy_answer_in_canonical_units": "11.02941176470588235294117647",
+      "label_status": "verified",
+      "legacy_comparison": "Same financial quantity after explicit ratio-to-percentage normalization; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_52acd239eb94cdc2",
+      "independent_status": "solved",
+      "formula": "(311.81 - 100) / 100 * 100000",
+      "answer_unit": "USD",
+      "evidence_sets": [
+        [
+          "finqa_52acd239eb94cdc2:table_1",
+          "finqa_52acd239eb94cdc2:text_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_52acd239eb94cdc2:table_0"
+      ],
+      "rationale": "金融定义的total return为含股息再投资的净收益；10万美元由基准100增至311.81，期末财富311810，净收益211810美元。题目给初始美元金额，因此以美元净收益统一输出而非期末本金加收益。 题目投资100000美元，旧程序使用const_1000000，导致净收益被放大10倍。",
+      "question": "what is the total return if $ 100000 are invested in fidelity national information system in 12/11 and sold in 12/16?",
+      "input_sha256": "44c14bf4d33c51d16b71b1ba456dee04a617bf2dd7f4915bdecef1f13c86aafc",
+      "canonical_answer": "211810.0000",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "44c14bf4d33c51d16b71b1ba456dee04a617bf2dd7f4915bdecef1f13c86aafc",
+      "legacy_answer": "2118100.0",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(311.81, const_100), divide(const_1000000, const_100), multiply(#1, #0)",
+      "legacy_recomputed": "2118100.00",
+      "legacy_citations": [
+        "finqa_52acd239eb94cdc2:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "2118100.00",
+      "label_status": "corrected",
+      "legacy_comparison": "题目投资100000美元，旧程序使用const_1000000，导致净收益被放大10倍。"
+    },
+    {
+      "id": "finqa_5ba7df31a29dba59",
+      "independent_status": "solved",
+      "formula": "(24 - 15) / 15 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_5ba7df31a29dba59:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_5ba7df31a29dba59:table_0",
+        "finqa_5ba7df31a29dba59:text_0"
+      ],
+      "rationale": "2006净衍生收益15至2007年24百万，增长60%；不是全部其他综合收益变化。",
+      "question": "what is the percentual increase observed in the net derivative gains during 2006 and 2007?",
+      "input_sha256": "1073993ba449aef8fd9634b19ab98fff33d85bf2d56917a70052b34d5540bd4e",
+      "canonical_answer": "60.0",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "1073993ba449aef8fd9634b19ab98fff33d85bf2d56917a70052b34d5540bd4e",
+      "legacy_answer": "0.6",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(24, 15), subtract(#0, const_1)",
+      "legacy_recomputed": "0.6",
+      "legacy_citations": [
+        "finqa_5ba7df31a29dba59:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "100",
+      "legacy_answer_in_canonical_units": "60.0",
+      "label_status": "verified",
+      "legacy_comparison": "Same financial quantity after explicit ratio-to-percentage normalization; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_5ca955244644fc76",
+      "independent_status": "solved",
+      "formula": "(8985 - 11057) / 11057 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_5ca955244644fc76:table_0",
+          "finqa_5ca955244644fc76:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_5ca955244644fc76:text_0"
+      ],
+      "rationale": "预期最低租赁支付2014年11057，2015年8985，按2014为基期计算负变化率。 旧程序只计算支付额差−2072，原问明确percentage change，必须除11057并转百分数。",
+      "question": "what is the percentage change in the expected minimum payments from 2014 to 2015?",
+      "input_sha256": "045efe0cc918eb636300c09ab279bd3d4a65c27cce6267a91f7b9facc254839f",
+      "canonical_answer": "-18.739260197160170028036537939766663651985167767025",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "045efe0cc918eb636300c09ab279bd3d4a65c27cce6267a91f7b9facc254839f",
+      "legacy_answer": "-2072.0",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(8985, 11057)",
+      "legacy_recomputed": "-2072",
+      "legacy_citations": [
+        "finqa_5ca955244644fc76:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "-2072",
+      "label_status": "corrected",
+      "legacy_comparison": "旧程序只计算支付额差−2072，原问明确percentage change，必须除11057并转百分数。"
+    },
+    {
+      "id": "finqa_607950265807c588",
+      "independent_status": "ambiguous",
+      "formula": null,
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_607950265807c588:table_0"
+        ],
+        [
+          "finqa_607950265807c588:table_0",
+          "finqa_607950265807c588:table_2",
+          "finqa_607950265807c588:text_8"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_607950265807c588:text_0",
+        "finqa_607950265807c588:text_4",
+        "finqa_607950265807c588:table_2",
+        "finqa_607950265807c588:text_8"
+      ],
+      "conditioned_answers": [
+        {
+          "condition": "If the question's 2014 were corrected to 2004 and the first pair of columns selected, difference as absolute fair-value excess",
+          "formula": "875 - 848",
+          "answer_unit": "million_USD",
+          "canonical_answer": "27"
+        },
+        {
+          "condition": "If the duplicate 2004 header's second pair were selected, difference as absolute fair-value excess",
+          "formula": "1487 - 1373",
+          "answer_unit": "million_USD",
+          "canonical_answer": "114"
+        },
+        {
+          "condition": "Answer the question for actual 2014 without repairing the year or the duplicated table header",
+          "canonical_answer": null,
+          "answer_unit": "million_USD"
+        }
+      ],
+      "rationale": "问题要2014，但提供表头两对都标2004，正文也为2004/2003，没有2014信息。即便擅自把问题改成2004，表头重复还使两对列产生27与114两个金额；必须标注来源/问题歧义，不能把旧年份差额冒充2014。",
+      "question": "what is the difference of between the carrying amount and the fair value of long-term debt and other long-term liabilities in 2014?",
+      "input_sha256": "73dab6fbd794011edd633f0c11795f32295b6978f15980d250df1796222075ba",
+      "canonical_answer": null,
+      "abs_tolerance": "0.000001",
+      "source_sha256": "73dab6fbd794011edd633f0c11795f32295b6978f15980d250df1796222075ba",
+      "legacy_answer": "27.0",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(875, 848)",
+      "legacy_recomputed": "27",
+      "legacy_citations": [
+        "finqa_607950265807c588:table_2"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "label_status": "ambiguous",
+      "status": "insufficient_evidence",
+      "reason_code": "ambiguous_question_or_source",
+      "legacy_comparison": "Legacy selected one interpretation despite underspecified target, period, or source."
+    },
+    {
+      "id": "finqa_60e48d03d031952a",
+      "independent_status": "solved",
+      "formula": "(47267 - 48047) / 48047 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_60e48d03d031952a:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_60e48d03d031952a:table_0"
+      ],
+      "rationale": "2012总销售额47267，基期2011为48047百万；不是2013对2012的变化。",
+      "question": "what is the growth rate in total sales in 2012?",
+      "input_sha256": "1a349aa09192fac9a7f74c96e91c00eba2f9de03e52d645ccd981c55f4d97e7a",
+      "canonical_answer": "-1.6234104106395820758840302204091826752971049181010",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "1a349aa09192fac9a7f74c96e91c00eba2f9de03e52d645ccd981c55f4d97e7a",
+      "legacy_answer": "-0.01623",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(47267, 48047), divide(#0, 48047)",
+      "legacy_recomputed": "-0.01623410410639582075884030220409182675297",
+      "legacy_citations": [
+        "finqa_60e48d03d031952a:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "100",
+      "legacy_answer_in_canonical_units": "-1.623410410639582075884030220",
+      "label_status": "verified",
+      "legacy_comparison": "Same financial quantity after explicit ratio-to-percentage normalization; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_669bfb264dae390e",
+      "independent_status": "solved",
+      "formula": "(119 - 86) / 86 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_669bfb264dae390e:text_5"
+        ]
+      ],
+      "valid_context_citations": [],
+      "rationale": "原文按2016/2015/2014排列78/119/86百万，目标2014→2015使用86到119。 旧程序最终等于119/2=59.5，与2014至2015研发费用百分比变化无关。",
+      "question": "what was the percentage change in the the research and development costs from 2014 to 2015",
+      "input_sha256": "125a62e2385dba023b1b815ef69e2100c45dc92db8457c70ec0b7154a232a252",
+      "canonical_answer": "38.372093023255813953488372093023255813953488372093",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "125a62e2385dba023b1b815ef69e2100c45dc92db8457c70ec0b7154a232a252",
+      "legacy_answer": "59.5",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(119, 86), add(#0, 86), divide(#1, const_2)",
+      "legacy_recomputed": "59.5",
+      "legacy_citations": [
+        "finqa_669bfb264dae390e:text_5"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "59.5",
+      "label_status": "corrected",
+      "legacy_comparison": "旧程序最终等于119/2=59.5，与2014至2015研发费用百分比变化无关。"
+    },
+    {
+      "id": "finqa_68b8c79b36d3eae5",
+      "independent_status": "ambiguous",
+      "formula": null,
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_68b8c79b36d3eae5:text_0"
+        ],
+        [
+          "finqa_68b8c79b36d3eae5:table_0",
+          "finqa_68b8c79b36d3eae5:text_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_68b8c79b36d3eae5:text_2",
+        "finqa_68b8c79b36d3eae5:table_1"
+      ],
+      "conditioned_answers": [
+        {
+          "condition": "Interpret 'four years' as the four calendar-year labels 2000–2003, using the actual IPO date July 27 2000 to December 26 2003",
+          "formula": "(43.81 - 100) / 100 * 100",
+          "answer_unit": "percentage_points",
+          "canonical_answer": "-56.1900"
+        },
+        {
+          "condition": "A literal four-year holding period ending December 26 2003, beginning December 26 1999",
+          "canonical_answer": null,
+          "answer_unit": "percentage_points"
+        }
+      ],
+      "rationale": "题目要求截至2003年的四年累计回报，但原材料明确始于2000年7月27日IPO、终于2003年12月26日，只有约3.4年。−56.19%可以描述所示IPO以来区间，无法据此声称完整四年收益；无1999年基值，原题期间粒度不足。",
+      "question": "what was the cumulative total stockholder return percentage for illumina inc . common stock for the four years end 2003?",
+      "input_sha256": "0bc3fb55058a0c8846e99af826644b7d1811984b3ce69ce6dd2207d73765e77e",
+      "canonical_answer": null,
+      "abs_tolerance": "0.000001",
+      "source_sha256": "0bc3fb55058a0c8846e99af826644b7d1811984b3ce69ce6dd2207d73765e77e",
+      "legacy_answer": "-0.5619",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(43.81, const_100), divide(#0, const_100)",
+      "legacy_recomputed": "-0.5619",
+      "legacy_citations": [
+        "finqa_68b8c79b36d3eae5:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "label_status": "ambiguous",
+      "status": "insufficient_evidence",
+      "reason_code": "ambiguous_question_or_source",
+      "legacy_comparison": "Legacy selected one interpretation despite underspecified target, period, or source."
+    },
+    {
+      "id": "finqa_6f9fd728b8427771",
+      "independent_status": "solved",
+      "formula": "(243.7 - 247.9) / 247.9 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_6f9fd728b8427771:table_8"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_6f9fd728b8427771:table_0",
+        "finqa_6f9fd728b8427771:text_10"
+      ],
+      "rationale": "总其他应计负债由2012年247.9降至2013年243.7百万；不能只取名为other的子项目132.6/117.9。",
+      "question": "what was the percent of the change in the total other accrued liabilities from 2012 to 2013",
+      "input_sha256": "88fde4cc875cc83cffbc4ee54d72b3963c85721fb483afcd06b5a78eb5a37d2a",
+      "canonical_answer": "-1.6942315449778136345300524405002016942315449778136",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "88fde4cc875cc83cffbc4ee54d72b3963c85721fb483afcd06b5a78eb5a37d2a",
+      "legacy_answer": "-0.01694",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(243.7, 247.9), divide(#0, 247.9)",
+      "legacy_recomputed": "-0.01694231544977813634530052440500201694232",
+      "legacy_citations": [
+        "finqa_6f9fd728b8427771:table_8"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "100",
+      "legacy_answer_in_canonical_units": "-1.694231544977813634530052441",
+      "label_status": "verified",
+      "legacy_comparison": "Same financial quantity after explicit ratio-to-percentage normalization; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_70ff9af1deeeadfc",
+      "independent_status": "solved",
+      "formula": "3629455 / (1708928 + 3629455)",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_70ff9af1deeeadfc:table_1"
+        ],
+        [
+          "finqa_70ff9af1deeeadfc:text_9"
+        ],
+        [
+          "finqa_70ff9af1deeeadfc:text_22"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_70ff9af1deeeadfc:table_0"
+      ],
+      "rationale": "按表内仍待发行的股东批准计划证券总数口径，分母为已授予待行权1708928加未来可授予3629455；表头明确后者排除前者。不能把1708928当作包含剩余额度的总数。该比例不主张覆盖历史已发行股数。",
+      "question": "what portion of the total number of securities approved by security holders remains available for future issuance?",
+      "input_sha256": "92290a36935d4b669a2eeb7b4ed0a474e17f7a4ee88376ca8702bd64be4ef62d",
+      "canonical_answer": "0.67987909447486251923101058878690419926783072701977",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "92290a36935d4b669a2eeb7b4ed0a474e17f7a4ee88376ca8702bd64be4ef62d",
+      "legacy_answer": "0.67988",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "add(1708928, 3629455), divide(3629455, #0)",
+      "legacy_recomputed": "0.6798790944748625192310105887869041992678",
+      "legacy_citations": [
+        "finqa_70ff9af1deeeadfc:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "0.6798790944748625192310105888",
+      "label_status": "verified",
+      "legacy_comparison": "Independent answer agrees with legacy recomputation; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_7746be73e86dab55",
+      "independent_status": "solved",
+      "formula": "(4566 - 3846) / 3846 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_7746be73e86dab55:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_7746be73e86dab55:table_0",
+        "finqa_7746be73e86dab55:text_0",
+        "finqa_7746be73e86dab55:text_1"
+      ],
+      "rationale": "IFS分部2015年收入3846、2016年4566百万，按2015基期；不是GFS或合并收入增幅。",
+      "question": "what is the growth rate for the ifs segment in 2016?",
+      "input_sha256": "8b41db1ed2965ddc8e73069afe0e1252fd58976cf278e4dd4d6c2c10e0f6d315",
+      "canonical_answer": "18.720748829953198127925117004680187207488299531981",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "8b41db1ed2965ddc8e73069afe0e1252fd58976cf278e4dd4d6c2c10e0f6d315",
+      "legacy_answer": "0.18721",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(4566, 3846), divide(#0, 3846)",
+      "legacy_recomputed": "0.1872074882995319812792511700468018720749",
+      "legacy_citations": [
+        "finqa_7746be73e86dab55:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "100",
+      "legacy_answer_in_canonical_units": "18.72074882995319812792511700",
+      "label_status": "verified",
+      "legacy_comparison": "Same financial quantity after explicit ratio-to-percentage normalization; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_7a8b01fd3108b560",
+      "independent_status": "solved",
+      "formula": "(17057.4 - 16772.9) / 16772.9 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_7a8b01fd3108b560:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_7a8b01fd3108b560:table_0",
+        "finqa_7a8b01fd3108b560:text_14",
+        "finqa_7a8b01fd3108b560:text_19"
+      ],
+      "rationale": "按提供的未经审计、假设自2017年初收购Blue Buffalo的备考净销售额计算2017→2018增幅；不能把这一结果表述为已审计实际合并收入增长。 旧程序仅计算销售额差284.5，原问growth rate必须再除2017的16772.9。",
+      "question": "what is the sales growth rate from 2017 to 2018?",
+      "input_sha256": "2df158209ad118b7a55ae21a0ec0c90df41fa8b87550818bad440d86b86b8f31",
+      "canonical_answer": "1.6961884945358286283230687597255096017981386641547",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "2df158209ad118b7a55ae21a0ec0c90df41fa8b87550818bad440d86b86b8f31",
+      "legacy_answer": "284.5",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "subtract(17057.4, 16772.9)",
+      "legacy_recomputed": "284.5",
+      "legacy_citations": [
+        "finqa_7a8b01fd3108b560:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "1",
+      "legacy_answer_in_canonical_units": "284.5",
+      "label_status": "corrected",
+      "legacy_comparison": "旧程序仅计算销售额差284.5，原问growth rate必须再除2017的16772.9。"
+    },
+    {
+      "id": "finqa_7c7a806e549ed995",
+      "independent_status": "solved",
+      "formula": "2963 / 23556 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_7c7a806e549ed995:table_6",
+          "finqa_7c7a806e549ed995:table_8"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_7c7a806e549ed995:table_0",
+        "finqa_7c7a806e549ed995:text_2",
+        "finqa_7c7a806e549ed995:text_12",
+        "finqa_7c7a806e549ed995:text_17"
+      ],
+      "rationale": "按披露表的总额口径，养老金资金承诺2963/合同义务及承诺23556百万。该表未计2015年以后无法合理确定的最低养老金要求，结果仅针对所披露承诺。",
+      "question": "what percentage of contractual obligations and commitments in total are pension funding?",
+      "input_sha256": "d9dd3d509f5cacdc077318072532d1384979c8042378445ed325b1cc90da93fe",
+      "canonical_answer": "12.578536254032942774664628969264730854134827644761",
+      "abs_tolerance": "0.000001",
+      "source_sha256": "d9dd3d509f5cacdc077318072532d1384979c8042378445ed325b1cc90da93fe",
+      "legacy_answer": "0.12579",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "divide(2963, 23556)",
+      "legacy_recomputed": "0.1257853625403294277466462896926473085413",
+      "legacy_citations": [
+        "finqa_7c7a806e549ed995:table_6",
+        "finqa_7c7a806e549ed995:table_8"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "status": "ok",
+      "legacy_unit_scale_to_canonical": "100",
+      "legacy_answer_in_canonical_units": "12.57853625403294277466462897",
+      "label_status": "verified",
+      "legacy_comparison": "Same financial quantity after explicit ratio-to-percentage normalization; new answer retains full Decimal precision."
+    },
+    {
+      "id": "finqa_89afb9b2cb627013",
+      "independent_status": "ambiguous",
+      "formula": null,
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_89afb9b2cb627013:table_0",
+          "finqa_89afb9b2cb627013:table_1"
+        ],
+        [
+          "finqa_89afb9b2cb627013:table_1",
+          "finqa_89afb9b2cb627013:text_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_89afb9b2cb627013:text_0",
+        "finqa_89afb9b2cb627013:text_8"
+      ],
+      "conditioned_answers": [
+        {
+          "condition": "Interpret total value as the aggregate cash exercise price payable if the January 1 2000 outstanding options were exercised",
+          "formula": "6569200 * 4.55 / 1000000",
+          "answer_unit": "million_USD",
+          "canonical_answer": "29.88986"
+        },
+        {
+          "condition": "Interpret total option value as fair value or intrinsic value of the options themselves",
+          "canonical_answer": null,
+          "answer_unit": "million_USD"
+        }
+      ],
+      "rationale": "原表只有6569200份期权及加权平均行权价4.55美元；乘积29.88986百万是总行权支付额，不是期权自身公允价值或内在价值。题目仅称total value of balance of options，未指明行权金额，也缺少估值所需市场价/期权公允值，存在实质目标歧义。",
+      "question": "what is the total value of the balance of options as of january 1 , 2000 , in millions?",
+      "input_sha256": "e5c2b9ecf2770927683ddfb1938b41d762db7a53223e051b9eb1766a02652a54",
+      "canonical_answer": null,
+      "abs_tolerance": "0.000001",
+      "source_sha256": "e5c2b9ecf2770927683ddfb1938b41d762db7a53223e051b9eb1766a02652a54",
+      "legacy_answer": "29.88986",
+      "legacy_unit": "finqa_execution",
+      "legacy_program": "multiply(6569200, 4.55), divide(#0, const_1000000)",
+      "legacy_recomputed": "29.88986",
+      "legacy_citations": [
+        "finqa_89afb9b2cb627013:table_1"
+      ],
+      "legacy_abs_tolerance": "0.000006",
+      "label_status": "ambiguous",
+      "status": "insufficient_evidence",
+      "reason_code": "ambiguous_question_or_source",
+      "legacy_comparison": "Legacy selected one interpretation despite underspecified target, period, or source."
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "created_at": "2026-10-04T05:35:27.945Z",
+  "kind": "read_only_effective_context_review",
+  "original_status": "failed",
+  "original_report_sha256": "ac7e910e655f9a6b8fec07aab6e9aca9f1da3d29bd3393be6c02ed3743c4e154",
+  "correction": "The first assertion searched only the checkpoint recovery index. Pi kept the final source tool message as recent verbatim history, so the source need not occur in the compressed prefix index. Verify the reconstructed effective context at the checkpoint instead. The original failed report is unchanged.",
+  "checks": [
+    {
+      "name": "all_other_original_assertions_pass",
+      "enabled": false,
+      "passed": true
+    },
+    {
+      "name": "final_answer_marks_missing_ebit_interest_evidence",
+      "enabled": false,
+      "passed": true
+    },
+    {
+      "name": "saved_source_in_effective_context_at_checkpoint",
+      "conversation_id": "5dbd4c9c-2b09-4a74-bf28-0c1e5b43e0c0",
+      "checkpoint_id": "aade9a22",
+      "first_kept_entry_id": "bc85cb74",
+      "source_id": "web_f34cddc6-52c8-41ea-a7e1-f290981805af",
+      "retained_tool_names": [
+        "fetch_research_source"
+      ],
+      "passed": true
+    },
+    {
+      "name": "all_other_original_assertions_pass",
+      "enabled": true,
+      "passed": true
+    },
+    {
+      "name": "final_answer_marks_missing_ebit_interest_evidence",
+      "enabled": true,
+      "passed": true
+    }
+  ],
+  "status": "passed",
+  "usage": {
+    "disabled": {
+      "input": 34963,
+      "cacheRead": 105600,
+      "cacheWrite": 0,
+      "output": 1210,
+      "summaryInput": 0,
+      "summaryOutput": 0,
+      "calls": 4,
+      "total_input": 140563
+    },
+    "enabled": {
+      "input": 17289,
+      "cacheRead": 39936,
+      "cacheWrite": 0,
+      "output": 2132,
+      "summaryInput": 4393,
+      "summaryOutput": 786,
+      "calls": 5,
+      "total_input": 57225
+    },
+    "input_reduction_fraction": 0.5928871751456642,
+    "cost_usd": null
+  },
+  "limits": "One short real-history fork comparison with a lowered 16k trigger, sequential cache conditions and no pricing configured. It does not establish monetary savings, default-96k behavior, artifact revision recovery, document table recovery, held-out accuracy or the entire six-stage product acceptance."
+}

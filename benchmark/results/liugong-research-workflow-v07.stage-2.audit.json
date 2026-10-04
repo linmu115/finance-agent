@@ -1,0 +1,4190 @@
+[
+  {
+    "at": "2026-10-04T01:17:41.545Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "attached",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 93.543,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 11,
+        "settled_calls": 11,
+        "input_tokens": 850633,
+        "output_tokens": 22024,
+        "total_tokens": 872657,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:17:41.619Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "run_config",
+    "data": {
+      "model": "deepseek-flash",
+      "baseUrl": "https://api.deepseek.com",
+      "configHash": "09ab794adbd68591d6ab8480d67b4516e3f6e304eb6c1bc0518945b42229d0bd",
+      "promptHash": "b21699f79eb4e1428a0f4e14038ed5f69157f07a4bd6d1fb7c666ca91b2d792f",
+      "profile": "financial",
+      "evaluation": {
+        "profile": "financial",
+        "budget_group_id": "liugong-research-1791076567651",
+        "budget": {
+          "max_model_calls": 48,
+          "max_input_tokens": 2484631,
+          "max_output_tokens": 423210,
+          "max_total_tokens": 2907841,
+          "max_wall_seconds": 1641
+        },
+        "started_at": "2026-10-04T01:16:07.978Z",
+        "deadline_at": "2026-10-04T01:43:28.978Z",
+        "elapsed_seconds": 93.568,
+        "input_limit_enforcement": "post_usage_soft_cap",
+        "usage": {
+          "model_calls": 11,
+          "settled_calls": 11,
+          "input_tokens": 850633,
+          "output_tokens": 22024,
+          "total_tokens": 872657,
+          "failed_calls": 0,
+          "unknown_usage_calls": 0
+        },
+        "reserved": {
+          "model_calls": 0,
+          "output_tokens": 0
+        },
+        "unknown_output_charge": 0,
+        "denied_calls": 0,
+        "in_flight": [],
+        "overage": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0
+        },
+        "stopped_reason": null
+      },
+      "tools": [
+        "search_web",
+        "fetch_research_source",
+        "read_research_source",
+        "list_research_sources",
+        "run_financial_model",
+        "save_research_report",
+        "get_research_report_schema",
+        "list_research_artifacts",
+        "read_research_artifact",
+        "list_documents",
+        "prepare_document_sources",
+        "get_data_catalog",
+        "get_document_index",
+        "query_financial_data",
+        "get_normalization_details",
+        "get_document",
+        "get_source_page",
+        "get_source_table",
+        "search_evidence",
+        "get_financial_metrics",
+        "calculate_financial_metrics",
+        "run_analysis",
+        "get_analysis_status",
+        "get_artifact",
+        "get_research_model_schema",
+        "process_documents"
+      ],
+      "piVersion": "1.0.0",
+      "persistentSession": true,
+      "conversationId": "fe8dc438-8410-4473-afa1-e5a882052bd6"
+    }
+  },
+  {
+    "at": "2026-10-04T01:17:41.666Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "a8bf351d-cedb-41a1-85b5-22053a841c15",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 93.654,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 12,
+        "settled_calls": 11,
+        "input_tokens": 850633,
+        "output_tokens": 22024,
+        "total_tokens": 872657,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 32768
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "a8bf351d-cedb-41a1-85b5-22053a841c15",
+          "run_id": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+          "max_output_tokens": 32768,
+          "created_at": "2026-10-04T01:17:41.632Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:17:44.875Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "model_usage",
+    "data": {
+      "requestId": "a8bf351d-cedb-41a1-85b5-22053a841c15",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 694,
+        "output": 499,
+        "cacheRead": 134272,
+        "cacheWrite": 0,
+        "reasoning": 387,
+        "totalTokens": 135465,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-04T01:17:44.927Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "a8bf351d-cedb-41a1-85b5-22053a841c15",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 96.9,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 12,
+        "settled_calls": 12,
+        "input_tokens": 985599,
+        "output_tokens": 22523,
+        "total_tokens": 1008122,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:17:44.933Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_request",
+    "data": {
+      "name": "get_research_model_schema",
+      "toolCallId": "call_00_rlWxRECKJnCaCKT8nSoQ5002",
+      "args": {
+        "kind": "manufacturing_scenario",
+        "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:17:44.933Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_request",
+    "data": {
+      "name": "get_research_model_schema",
+      "toolCallId": "call_01_0FRi5zABI4JJu3PmKaJZ9801",
+      "args": {
+        "kind": "dcf",
+        "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:17:44.933Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_request",
+    "data": {
+      "name": "get_research_report_schema",
+      "toolCallId": "call_02_D8KKESKm1CKFjhW8wEdt5232",
+      "args": {
+        "kind": "industry_chain",
+        "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:17:44.951Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_result",
+    "data": {
+      "name": "get_research_report_schema",
+      "toolCallId": "call_02_D8KKESKm1CKFjhW8wEdt5232",
+      "result": {
+        "status": "ok",
+        "data": {
+          "kind": "industry_chain",
+          "schema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "properties": {
+              "industry": {
+                "type": "string",
+                "minLength": 1
+              },
+              "as_of": {
+                "type": "string",
+                "minLength": 1
+              },
+              "nodes": {
+                "minItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9_-]{1,100}$"
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "role": {
+                      "type": "string",
+                      "enum": [
+                        "upstream",
+                        "company",
+                        "downstream",
+                        "macro"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "role"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "edges": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9_-]{1,100}$"
+                    },
+                    "to": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9_-]{1,100}$"
+                    },
+                    "mechanism": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "direction": {
+                      "type": "string",
+                      "enum": [
+                        "positive",
+                        "negative",
+                        "conditional",
+                        "unknown"
+                      ]
+                    },
+                    "evidence": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "source",
+                              "document",
+                              "artifact"
+                            ]
+                          },
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9_-]{1,100}$"
+                          },
+                          "revision_id": {
+                            "description": "仅用于artifact，指定已保存版本；省略时固定该报告第一次读取此成果的版本。",
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9_-]{1,100}$"
+                          },
+                          "locator": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 400,
+                            "description": "source使用p1或p1,p2段落ID；document使用page:物理页码；artifact例如tables.scenario[0].scenario_ebit、results.scenario_valuation.value_per_share、results.value_per_share，不能使用results.tables。"
+                          },
+                          "quote": {
+                            "description": "可选：所选字段或段落的逐字原文，不填写自行概括的解释。",
+                            "type": "string",
+                            "maxLength": 5000
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "id",
+                          "locator"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "assumptions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          },
+                          "unit": {
+                            "type": "string"
+                          },
+                          "basis": {
+                            "type": "string",
+                            "enum": [
+                              "disclosed",
+                              "analyst_assumption"
+                            ]
+                          },
+                          "rationale": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "value",
+                          "unit",
+                          "basis",
+                          "rationale"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "from",
+                    "to",
+                    "mechanism",
+                    "direction",
+                    "evidence",
+                    "assumptions"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "claims": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9_-]{1,100}$"
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "fact",
+                        "calculation",
+                        "inference",
+                        "assumption"
+                      ]
+                    },
+                    "evidence": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "source",
+                              "document",
+                              "artifact"
+                            ]
+                          },
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9_-]{1,100}$"
+                          },
+                          "revision_id": {
+                            "description": "仅用于artifact，指定已保存版本；省略时固定该报告第一次读取此成果的版本。",
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9_-]{1,100}$"
+                          },
+                          "locator": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 400,
+                            "description": "source使用p1或p1,p2段落ID；document使用page:物理页码；artifact例如tables.scenario[0].scenario_ebit、results.scenario_valuation.value_per_share、results.value_per_share，不能使用results.tables。"
+                          },
+                          "quote": {
+                            "description": "可选：所选字段或段落的逐字原文，不填写自行概括的解释。",
+                            "type": "string",
+                            "maxLength": 5000
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "id",
+                          "locator"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "confidence": {
+                      "type": "string",
+                      "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "text",
+                    "type",
+                    "evidence"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "scenario_model_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]{1,100}$"
+              }
+            },
+            "required": [
+              "industry",
+              "as_of",
+              "nodes",
+              "edges",
+              "claims"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "c1ac95ef-1fe2-4976-826f-94cefb49aeca"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:17:44.958Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_result",
+    "data": {
+      "name": "get_research_model_schema",
+      "toolCallId": "call_00_rlWxRECKJnCaCKT8nSoQ5002",
+      "result": {
+        "status": "ok",
+        "data": {
+          "kind": "manufacturing_scenario",
+          "schema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "properties": {
+              "currency": {
+                "type": "string",
+                "minLength": 1,
+                "description": "One currency for all subject amounts, e.g. CNY. No automatic currency conversion."
+              },
+              "amount_scale": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "description": "Positive multiplier for all aggregate amounts and scenario unit prices. '1'=base currency, '10000'=ten-thousands, '1000000'=millions. Value per share is ALWAYS base currency / one share."
+              },
+              "input_basis": {
+                "type": "object",
+                "description": "Optional per-input basis map using dot JSON paths, e.g. base.revenue, forecast.0.ebit_margin, dcf.discount.wacc. Disclosed means stated by an identified source; derived means computed from cited inputs; assumption means an explicitly proposed research choice. Each entry requires a rationale. Put citations only in source_refs at the SAME path; do not duplicate references here. Missing metadata means unclassified, never implicitly disclosed. After manually changing a sourced value, mark the new draft value as assumption unless independently re-established from a cited source.",
+                "propertyNames": {
+                  "pattern": "^[A-Za-z0-9_]+(?:\\.[A-Za-z0-9_]+)*$"
+                },
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "basis": {
+                      "enum": [
+                        "disclosed",
+                        "derived",
+                        "assumption"
+                      ]
+                    },
+                    "rationale": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "basis",
+                    "rationale"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "source_refs": {
+                "type": "object",
+                "description": "Map input JSON paths to arrays of {kind:'source'|'document'|'artifact',id,locator,quote?,revision_id?}. Use source paragraph IDs such as p1,p2; document page:physical-page; artifact existing fields such as results.value_per_share or tables.forecast[0].revenue (not results.tables). Optional quote must occur literally at that location, not be a paraphrase. The host verifies new structured locations/quotes and fixes the artifact revision actually read; revision_id is optional and only for artifact references. This checks citation existence, NOT whether the parameter value/meaning or disclosed classification is correct. Legacy references without locator remain dependency_only_unverified. The calculator itself preserves references without retrieval. source_model imports inherit the selected immutable scenario's original source audit and dependency versions, never rebind old evidence to latest. Analyst assumptions must be labeled explicitly; do not invent source IDs."
+              },
+              "base_year": {
+                "type": "integer"
+              },
+              "base": {
+                "type": "object",
+                "properties": {
+                  "revenue": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                  },
+                  "net_working_capital": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Operating non-cash working capital, excluding interest-bearing debt. Negative working capital is supported."
+                  }
+                },
+                "required": [
+                  "revenue",
+                  "net_working_capital"
+                ]
+              },
+              "volume_unit": {
+                "type": "string",
+                "minLength": 1
+              },
+              "baseline": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "integer"
+                    },
+                    "volume": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "unit_price": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "material_cost_per_unit": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "other_variable_cost_per_unit": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "fixed_cash_opex": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "da": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "capex": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "nwc_ratio": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "tax_rate": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    }
+                  },
+                  "required": [
+                    "year",
+                    "volume",
+                    "unit_price",
+                    "material_cost_per_unit",
+                    "other_variable_cost_per_unit",
+                    "fixed_cash_opex",
+                    "da",
+                    "capex",
+                    "nwc_ratio",
+                    "tax_rate"
+                  ]
+                }
+              },
+              "scenario": {
+                "type": "object",
+                "properties": {
+                  "exposed_material_share": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Explicit share (0..1) of baseline raw-material cost exposed to this shock; never inferred from company name."
+                  },
+                  "pass_through_rate": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "0..1 fraction of exposed absolute unit-cost change passed into selling price."
+                  },
+                  "lag_years": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Whole annual periods; pre-horizon material cost changes are explicitly assumed zero."
+                  },
+                  "price_elasticity": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Explicit nonpositive coefficient for linear demand change relative to baseline; 0 means no demand effect."
+                  },
+                  "material_cost_changes": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "description": "One value per baseline year. Level relative to that year's baseline, not cumulative increment. Must exceed -1."
+                  },
+                  "volume_changes": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "description": "One value per baseline year. Level relative to that year's baseline, not cumulative increment. Must exceed -1."
+                  },
+                  "autonomous_price_changes": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "description": "One value per baseline year. Level relative to that year's baseline, not cumulative increment. Must exceed -1."
+                  }
+                },
+                "required": [
+                  "exposed_material_share",
+                  "pass_through_rate",
+                  "lag_years",
+                  "price_elasticity",
+                  "material_cost_changes",
+                  "volume_changes",
+                  "autonomous_price_changes"
+                ]
+              },
+              "dcf": {
+                "type": "object",
+                "properties": {
+                  "cash_tax_policy": {
+                    "enum": [
+                      "floor_at_zero",
+                      "immediate_credit"
+                    ],
+                    "description": "floor_at_zero taxes only positive EBIT. immediate_credit allows same-year loss credits. Neither models NOL carryforwards."
+                  },
+                  "discount": {
+                    "type": "object",
+                    "properties": {
+                      "wacc": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ],
+                        "description": "Positive annual WACC, consistent currency/inflation with FCFF; terminal growth must be lower."
+                      },
+                      "cashflow_timing": {
+                        "enum": [
+                          "year_end",
+                          "mid_year"
+                        ],
+                        "description": "mid_year discounts explicit year t at t-0.5; terminal value is always measured/discounted at year n end."
+                      }
+                    },
+                    "required": [
+                      "wacc",
+                      "cashflow_timing"
+                    ]
+                  },
+                  "terminal": {
+                    "type": "object",
+                    "properties": {
+                      "growth": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ],
+                        "description": "Stable annual growth: 0 <= g < WACC and g <= ROIC. Negative-growth/liquidation models are outside this model."
+                      },
+                      "roic": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ],
+                        "description": "Explicit positive stable after-tax return on invested capital. Reinvestment fraction = g/ROIC."
+                      },
+                      "ebit_margin": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ],
+                        "description": "Explicit normalized stable EBIT/revenue, after D&A, greater than zero and <=1."
+                      },
+                      "tax_rate": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ],
+                        "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                      }
+                    },
+                    "required": [
+                      "growth",
+                      "roic",
+                      "ebit_margin",
+                      "tax_rate"
+                    ]
+                  },
+                  "bridge": {
+                    "type": "object",
+                    "properties": {
+                      "net_debt": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ],
+                        "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                      },
+                      "non_controlling_interest": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ],
+                        "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                      },
+                      "preferred_equity": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ],
+                        "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                      },
+                      "non_operating_assets_ex_cash": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ],
+                        "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                      }
+                    },
+                    "required": [
+                      "net_debt",
+                      "non_controlling_interest",
+                      "preferred_equity",
+                      "non_operating_assets_ex_cash"
+                    ],
+                    "additionalProperties": false,
+                    "description": "All four amounts must be explicit, including zero. Net debt is debt less excess cash, and may be negative. Add only non-operating assets EXCLUDING that cash. NCI/preferred/non-operating assets are nonnegative. Consolidated operating valuation must deduct outside owners' claims. Debt/lease and earnings treatment must be consistent."
+                  },
+                  "shares": {
+                    "type": "object",
+                    "properties": {
+                      "count": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ],
+                        "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                      },
+                      "scale": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ],
+                        "description": "Positive multiplier for share count: count='100', scale='1000000' means 100 million shares. Use diluted ordinary shares consistent with earnings; never use monetary amount_scale for shares implicitly."
+                      }
+                    },
+                    "required": [
+                      "count",
+                      "scale"
+                    ]
+                  },
+                  "sensitivity": {
+                    "type": "object",
+                    "properties": {
+                      "wacc": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                          "oneOf": [
+                            {
+                              "type": "string",
+                              "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                        }
+                      },
+                      "growth": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                          "oneOf": [
+                            {
+                              "type": "string",
+                              "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                        }
+                      }
+                    },
+                    "required": [
+                      "wacc",
+                      "growth"
+                    ]
+                  }
+                },
+                "required": [
+                  "cash_tax_policy",
+                  "discount",
+                  "terminal",
+                  "bridge",
+                  "shares"
+                ]
+              }
+            },
+            "required": [
+              "currency",
+              "amount_scale",
+              "base_year",
+              "base",
+              "volume_unit",
+              "baseline",
+              "scenario",
+              "dcf"
+            ],
+            "description": "Explicit manufacturing cost/price/volume scenario. Returns baseline/scenario operating forecasts and directly runnable DCF specs. Other variable unit costs, fixed costs, D&A, capex, NWC ratio and terminal policies are held at supplied baseline. No estimated exposure, elasticity or causal effects."
+          },
+          "synthetic_example": {
+            "currency": "CNY",
+            "amount_scale": "1",
+            "base_year": 2024,
+            "base": {
+              "revenue": "1000",
+              "net_working_capital": "100"
+            },
+            "volume_unit": "units",
+            "baseline": [
+              {
+                "year": 2025,
+                "volume": "100",
+                "unit_price": "10",
+                "material_cost_per_unit": "4",
+                "other_variable_cost_per_unit": "2",
+                "fixed_cash_opex": "100",
+                "da": "50",
+                "capex": "50",
+                "nwc_ratio": "0.1",
+                "tax_rate": "0.25"
+              },
+              {
+                "year": 2026,
+                "volume": "100",
+                "unit_price": "10",
+                "material_cost_per_unit": "4",
+                "other_variable_cost_per_unit": "2",
+                "fixed_cash_opex": "100",
+                "da": "50",
+                "capex": "50",
+                "nwc_ratio": "0.1",
+                "tax_rate": "0.25"
+              }
+            ],
+            "scenario": {
+              "exposed_material_share": "0.5",
+              "pass_through_rate": "0.5",
+              "lag_years": 1,
+              "price_elasticity": "-1",
+              "material_cost_changes": [
+                "0.2",
+                "0.2"
+              ],
+              "volume_changes": [
+                "0",
+                "0"
+              ],
+              "autonomous_price_changes": [
+                "0",
+                "0"
+              ]
+            },
+            "dcf": {
+              "cash_tax_policy": "floor_at_zero",
+              "discount": {
+                "wacc": "0.1",
+                "cashflow_timing": "year_end"
+              },
+              "terminal": {
+                "growth": "0",
+                "roic": "0.2",
+                "ebit_margin": "0.2",
+                "tax_rate": "0.25"
+              },
+              "bridge": {
+                "net_debt": "200",
+                "non_controlling_interest": "20",
+                "preferred_equity": "10",
+                "non_operating_assets_ex_cash": "30"
+              },
+              "shares": {
+                "count": "100",
+                "scale": "1"
+              },
+              "sensitivity": {
+                "wacc": [
+                  "0.08",
+                  "0.1",
+                  "0.12"
+                ],
+                "growth": [
+                  "0",
+                  "0.02"
+                ]
+              }
+            },
+            "input_basis": {
+              "currency": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "amount_scale": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "base_year": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "base.revenue": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "base.net_working_capital": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "volume_unit": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.0.year": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.0.volume": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.0.unit_price": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.0.material_cost_per_unit": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.0.other_variable_cost_per_unit": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.0.fixed_cash_opex": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.0.da": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.0.capex": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.0.nwc_ratio": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.0.tax_rate": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.1.year": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.1.volume": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.1.unit_price": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.1.material_cost_per_unit": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.1.other_variable_cost_per_unit": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.1.fixed_cash_opex": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.1.da": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.1.capex": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.1.nwc_ratio": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "baseline.1.tax_rate": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "scenario.exposed_material_share": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "scenario.pass_through_rate": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "scenario.lag_years": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "scenario.price_elasticity": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "scenario.material_cost_changes.0": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "scenario.material_cost_changes.1": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "scenario.volume_changes.0": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "scenario.volume_changes.1": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "scenario.autonomous_price_changes.0": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "scenario.autonomous_price_changes.1": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.cash_tax_policy": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.discount.wacc": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.discount.cashflow_timing": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.terminal.growth": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.terminal.roic": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.terminal.ebit_margin": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.terminal.tax_rate": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.bridge.net_debt": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.bridge.non_controlling_interest": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.bridge.preferred_equity": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.bridge.non_operating_assets_ex_cash": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.shares.count": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.shares.scale": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.sensitivity.wacc.0": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.sensitivity.wacc.1": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.sensitivity.wacc.2": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.sensitivity.growth.0": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "dcf.sensitivity.growth.1": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              }
+            }
+          }
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "bcfee98b73f244ca8135471d77110a6b"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:17:44.972Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_result",
+    "data": {
+      "name": "get_research_model_schema",
+      "toolCallId": "call_01_0FRi5zABI4JJu3PmKaJZ9801",
+      "result": {
+        "status": "ok",
+        "data": {
+          "kind": "dcf",
+          "schema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "properties": {
+              "currency": {
+                "type": "string",
+                "minLength": 1,
+                "description": "One currency for all subject amounts, e.g. CNY. No automatic currency conversion."
+              },
+              "amount_scale": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "description": "Positive multiplier for all aggregate amounts and scenario unit prices. '1'=base currency, '10000'=ten-thousands, '1000000'=millions. Value per share is ALWAYS base currency / one share."
+              },
+              "input_basis": {
+                "type": "object",
+                "description": "Optional per-input basis map using dot JSON paths, e.g. base.revenue, forecast.0.ebit_margin, dcf.discount.wacc. Disclosed means stated by an identified source; derived means computed from cited inputs; assumption means an explicitly proposed research choice. Each entry requires a rationale. Put citations only in source_refs at the SAME path; do not duplicate references here. Missing metadata means unclassified, never implicitly disclosed. After manually changing a sourced value, mark the new draft value as assumption unless independently re-established from a cited source.",
+                "propertyNames": {
+                  "pattern": "^[A-Za-z0-9_]+(?:\\.[A-Za-z0-9_]+)*$"
+                },
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "basis": {
+                      "enum": [
+                        "disclosed",
+                        "derived",
+                        "assumption"
+                      ]
+                    },
+                    "rationale": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "basis",
+                    "rationale"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "source_refs": {
+                "type": "object",
+                "description": "Map input JSON paths to arrays of {kind:'source'|'document'|'artifact',id,locator,quote?,revision_id?}. Use source paragraph IDs such as p1,p2; document page:physical-page; artifact existing fields such as results.value_per_share or tables.forecast[0].revenue (not results.tables). Optional quote must occur literally at that location, not be a paraphrase. The host verifies new structured locations/quotes and fixes the artifact revision actually read; revision_id is optional and only for artifact references. This checks citation existence, NOT whether the parameter value/meaning or disclosed classification is correct. Legacy references without locator remain dependency_only_unverified. The calculator itself preserves references without retrieval. source_model imports inherit the selected immutable scenario's original source audit and dependency versions, never rebind old evidence to latest. Analyst assumptions must be labeled explicitly; do not invent source IDs."
+              },
+              "cash_tax_policy": {
+                "enum": [
+                  "floor_at_zero",
+                  "immediate_credit"
+                ],
+                "description": "floor_at_zero taxes only positive EBIT. immediate_credit allows same-year loss credits. Neither models NOL carryforwards."
+              },
+              "discount": {
+                "type": "object",
+                "properties": {
+                  "wacc": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Positive annual WACC, consistent currency/inflation with FCFF; terminal growth must be lower."
+                  },
+                  "cashflow_timing": {
+                    "enum": [
+                      "year_end",
+                      "mid_year"
+                    ],
+                    "description": "mid_year discounts explicit year t at t-0.5; terminal value is always measured/discounted at year n end."
+                  }
+                },
+                "required": [
+                  "wacc",
+                  "cashflow_timing"
+                ]
+              },
+              "terminal": {
+                "type": "object",
+                "properties": {
+                  "growth": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Stable annual growth: 0 <= g < WACC and g <= ROIC. Negative-growth/liquidation models are outside this model."
+                  },
+                  "roic": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Explicit positive stable after-tax return on invested capital. Reinvestment fraction = g/ROIC."
+                  },
+                  "ebit_margin": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Explicit normalized stable EBIT/revenue, after D&A, greater than zero and <=1."
+                  },
+                  "tax_rate": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                  }
+                },
+                "required": [
+                  "growth",
+                  "roic",
+                  "ebit_margin",
+                  "tax_rate"
+                ]
+              },
+              "bridge": {
+                "type": "object",
+                "properties": {
+                  "net_debt": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                  },
+                  "non_controlling_interest": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                  },
+                  "preferred_equity": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                  },
+                  "non_operating_assets_ex_cash": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                  }
+                },
+                "required": [
+                  "net_debt",
+                  "non_controlling_interest",
+                  "preferred_equity",
+                  "non_operating_assets_ex_cash"
+                ],
+                "additionalProperties": false,
+                "description": "All four amounts must be explicit, including zero. Net debt is debt less excess cash, and may be negative. Add only non-operating assets EXCLUDING that cash. NCI/preferred/non-operating assets are nonnegative. Consolidated operating valuation must deduct outside owners' claims. Debt/lease and earnings treatment must be consistent."
+              },
+              "shares": {
+                "type": "object",
+                "properties": {
+                  "count": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                  },
+                  "scale": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Positive multiplier for share count: count='100', scale='1000000' means 100 million shares. Use diluted ordinary shares consistent with earnings; never use monetary amount_scale for shares implicitly."
+                  }
+                },
+                "required": [
+                  "count",
+                  "scale"
+                ]
+              },
+              "sensitivity": {
+                "type": "object",
+                "properties": {
+                  "wacc": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    }
+                  },
+                  "growth": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    }
+                  }
+                },
+                "required": [
+                  "wacc",
+                  "growth"
+                ]
+              },
+              "base_year": {
+                "type": "integer",
+                "minimum": 1900
+              },
+              "base": {
+                "type": "object",
+                "properties": {
+                  "revenue": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                  },
+                  "net_working_capital": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "description": "Operating non-cash working capital, excluding interest-bearing debt. Negative working capital is supported."
+                  }
+                },
+                "required": [
+                  "revenue",
+                  "net_working_capital"
+                ]
+              },
+              "forecast": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "integer",
+                      "minimum": 1900
+                    },
+                    "revenue": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "revenue_growth": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "ebit": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "ebit_margin": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "gross_margin": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "opex_ratio": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "tax_rate": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "da": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "da_ratio": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "capex": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "capex_ratio": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "net_working_capital": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    },
+                    "nwc_ratio": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?$"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "description": "Finite decimal; use a decimal string to preserve digits. Ratios use fractions: 0.10 means 10%, not 10."
+                    }
+                  },
+                  "required": [
+                    "year",
+                    "tax_rate"
+                  ],
+                  "description": "Contiguous full fiscal years starting base_year+1. EBIT is after D&A; gross margin and opex must include relevant D&A once. No capex disposal proceeds modeled. Costs/capex/D&A nonnegative; EBIT may be negative. NWC may be negative. Choose each pair/mode explicitly.",
+                  "allOf": [
+                    {
+                      "oneOf": [
+                        {
+                          "required": [
+                            "revenue"
+                          ],
+                          "not": {
+                            "required": [
+                              "revenue_growth"
+                            ]
+                          }
+                        },
+                        {
+                          "required": [
+                            "revenue_growth"
+                          ],
+                          "not": {
+                            "required": [
+                              "revenue"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "oneOf": [
+                        {
+                          "required": [
+                            "ebit"
+                          ],
+                          "not": {
+                            "anyOf": [
+                              {
+                                "required": [
+                                  "ebit_margin"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "gross_margin"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "opex_ratio"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "required": [
+                            "ebit_margin"
+                          ],
+                          "not": {
+                            "anyOf": [
+                              {
+                                "required": [
+                                  "ebit"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "gross_margin"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "opex_ratio"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "required": [
+                            "gross_margin",
+                            "opex_ratio"
+                          ],
+                          "not": {
+                            "anyOf": [
+                              {
+                                "required": [
+                                  "ebit"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "ebit_margin"
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "oneOf": [
+                        {
+                          "required": [
+                            "da"
+                          ],
+                          "not": {
+                            "required": [
+                              "da_ratio"
+                            ]
+                          }
+                        },
+                        {
+                          "required": [
+                            "da_ratio"
+                          ],
+                          "not": {
+                            "required": [
+                              "da"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "oneOf": [
+                        {
+                          "required": [
+                            "capex"
+                          ],
+                          "not": {
+                            "required": [
+                              "capex_ratio"
+                            ]
+                          }
+                        },
+                        {
+                          "required": [
+                            "capex_ratio"
+                          ],
+                          "not": {
+                            "required": [
+                              "capex"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "oneOf": [
+                        {
+                          "required": [
+                            "net_working_capital"
+                          ],
+                          "not": {
+                            "required": [
+                              "nwc_ratio"
+                            ]
+                          }
+                        },
+                        {
+                          "required": [
+                            "nwc_ratio"
+                          ],
+                          "not": {
+                            "required": [
+                              "net_working_capital"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "currency",
+              "amount_scale",
+              "base_year",
+              "base",
+              "forecast",
+              "cash_tax_policy",
+              "discount",
+              "terminal",
+              "bridge",
+              "shares"
+            ],
+            "description": "Non-financial operating business FCFF DCF, end of base_year valuation, one constant WACC, explicit annual horizon plus stable ROIC-linked terminal phase."
+          },
+          "synthetic_example": {
+            "currency": "CNY",
+            "amount_scale": "1",
+            "base_year": 2024,
+            "base": {
+              "revenue": "1000",
+              "net_working_capital": "100"
+            },
+            "forecast": [
+              {
+                "year": 2025,
+                "revenue_growth": "0",
+                "ebit_margin": "0.2",
+                "tax_rate": "0.25",
+                "da_ratio": "0.05",
+                "capex_ratio": "0.05",
+                "nwc_ratio": "0.1"
+              }
+            ],
+            "cash_tax_policy": "floor_at_zero",
+            "discount": {
+              "wacc": "0.1",
+              "cashflow_timing": "year_end"
+            },
+            "terminal": {
+              "growth": "0",
+              "roic": "0.2",
+              "ebit_margin": "0.2",
+              "tax_rate": "0.25"
+            },
+            "bridge": {
+              "net_debt": "200",
+              "non_controlling_interest": "20",
+              "preferred_equity": "10",
+              "non_operating_assets_ex_cash": "30"
+            },
+            "shares": {
+              "count": "100",
+              "scale": "1"
+            },
+            "sensitivity": {
+              "wacc": [
+                "0.08",
+                "0.1",
+                "0.12"
+              ],
+              "growth": [
+                "0",
+                "0.02"
+              ]
+            },
+            "source_refs": {
+              "base.revenue": [
+                {
+                  "type": "synthetic_example",
+                  "note": "Illustrative input; not an observed company value"
+                }
+              ]
+            },
+            "input_basis": {
+              "currency": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "amount_scale": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "base_year": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "base.revenue": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "base.net_working_capital": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "forecast.0.year": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "forecast.0.revenue_growth": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "forecast.0.ebit_margin": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "forecast.0.tax_rate": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "forecast.0.da_ratio": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "forecast.0.capex_ratio": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "forecast.0.nwc_ratio": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "cash_tax_policy": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "discount.wacc": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "discount.cashflow_timing": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "terminal.growth": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "terminal.roic": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "terminal.ebit_margin": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "terminal.tax_rate": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "bridge.net_debt": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "bridge.non_controlling_interest": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "bridge.preferred_equity": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "bridge.non_operating_assets_ex_cash": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "shares.count": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "shares.scale": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "sensitivity.wacc.0": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "sensitivity.wacc.1": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "sensitivity.wacc.2": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "sensitivity.growth.0": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              },
+              "sensitivity.growth.1": {
+                "basis": "assumption",
+                "rationale": "合成示例的明确设定，用于演示模型；不是任何实际公司的披露数据。"
+              }
+            }
+          }
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "992961e778574b3292abb9bb400fdab4"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:17:45.211Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "0862e884-29cf-4787-8a13-55ab2ac56ebd",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 97.201,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 13,
+        "settled_calls": 12,
+        "input_tokens": 985599,
+        "output_tokens": 22523,
+        "total_tokens": 1008122,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 32768
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "0862e884-29cf-4787-8a13-55ab2ac56ebd",
+          "run_id": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+          "max_output_tokens": 32768,
+          "created_at": "2026-10-04T01:17:45.179Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:18:20.110Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "model_usage",
+    "data": {
+      "requestId": "0862e884-29cf-4787-8a13-55ab2ac56ebd",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 12599,
+        "output": 7549,
+        "cacheRead": 135424,
+        "cacheWrite": 0,
+        "reasoning": 7474,
+        "totalTokens": 155572,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-04T01:18:20.163Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "0862e884-29cf-4787-8a13-55ab2ac56ebd",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 132.136,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 13,
+        "settled_calls": 13,
+        "input_tokens": 1133622,
+        "output_tokens": 30072,
+        "total_tokens": 1163694,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:18:20.171Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_request",
+    "data": {
+      "name": "get_source_page",
+      "toolCallId": "call_00_iTMb8MIhw9cfY6gznXAK8905",
+      "args": {
+        "document_id": "f0703e7591bd4f0b8040ffa44e656f42",
+        "page": 77,
+        "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:18:20.820Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_result",
+    "data": {
+      "name": "get_source_page",
+      "toolCallId": "call_00_iTMb8MIhw9cfY6gznXAK8905",
+      "result": {
+        "status": "ok",
+        "data": {
+          "document_id": "f0703e7591bd4f0b8040ffa44e656f42",
+          "page": 77,
+          "text": "                                   广西柳工机械股份有限公司2025 年半年度报告全文\n\n\n\n项目               附注七             期末余额         期初余额\n长期借款                                               37           390,074,162.19           631,489,983.79\n应付债券                                               38         2,567,789,790.26         2,597,453,405.59\n其中：优先股                                                                     -                        -\n   永续债                                                                     -                        -\n租赁负债                                               39           147,139,960.38           121,118,881.70\n长期应付款                                             40           189,781,976.75           197,279,904.84\n长期应付职工薪酬                                       41            98,244,292.95           102,840,659.47\n预计负债                                               42           844,454,159.90           706,828,903.39\n递延收益                                               43           871,735,050.31           872,586,797.47\n递延所得税负债                                         23            74,279,549.61            43,774,956.20\n其他非流动负债                                                                   -                        -\n非流动负债合计                                                    5,183,498,942.35         5,273,373,492.45\n负债合计                                                         31,383,452,597.00        28,791,658,939.19\n所有者权益：                                                                     -                        -\n股本                                                   44         2,019,243,764.00         2,019,231,263.00\n其他权益工具                                           45            84,407,721.27            84,410,920.97\n其中：优先股                                                                     -                        -\n   永续债                                                                     -                        -\n资本公积                                               46         6,567,825,505.57         6,547,970,405.13\n减：库存股                                             47           599,880,949.56           316,315,008.55\n其他综合收益                                           48          -347,046,190.04          -410,633,990.67\n专项储备                                               49           122,317,966.27           109,253,779.60\n盈余公积                                               50         1,128,464,804.94         1,128,464,804.94\n一般风险准备                                                                     -                        -\n未分配利润                                             51         9,084,674,543.59         8,407,053,285.26\n归属于母公司所有者权益合计                                       18,060,007,166.04        17,569,435,459.68\n少数股东权益                                                      1,453,339,255.75         1,546,063,616.23\n所有者权益合计                                                   19,513,346,421.79        19,115,499,075.91\n负债和所有者权益总计                                             50,896,799,018.79        47,907,158,015.10\n\n\n\n  法定代表人：郑津    主管会计工作负责人：罗国兵    会计机构负责人：樊丽\n\n君\n\n\n\n\n\n                            第77 页共199 页",
+          "printed_page": null,
+          "width": 595.3499755859375,
+          "height": 842,
+          "ocr": 0,
+          "segments": [],
+          "image_relative_path": "artifacts\\0187cd2c-0f4c-40b1-8ec1-c58d65964c84\\f0703e7591bd4f0b8040ffa44e656f42\\page-77.png"
+        },
+        "source_refs": [
+          {
+            "document_id": "f0703e7591bd4f0b8040ffa44e656f42",
+            "page": 77,
+            "printed_page": null
+          }
+        ],
+        "warnings": [],
+        "trace_id": "7528f0788bf74089a08a0d37338ecfb3"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:18:20.940Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "88398d14-5988-40c3-92fe-8faf6249c5b3",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 132.928,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 14,
+        "settled_calls": 13,
+        "input_tokens": 1133622,
+        "output_tokens": 30072,
+        "total_tokens": 1163694,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 32768
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "88398d14-5988-40c3-92fe-8faf6249c5b3",
+          "run_id": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+          "max_output_tokens": 32768,
+          "created_at": "2026-10-04T01:18:20.906Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:18:54.270Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "model_usage",
+    "data": {
+      "requestId": "88398d14-5988-40c3-92fe-8faf6249c5b3",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 917,
+        "output": 7577,
+        "cacheRead": 155520,
+        "cacheWrite": 0,
+        "reasoning": 5954,
+        "totalTokens": 164014,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-04T01:18:54.315Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "88398d14-5988-40c3-92fe-8faf6249c5b3",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 166.297,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 14,
+        "settled_calls": 14,
+        "input_tokens": 1290059,
+        "output_tokens": 37649,
+        "total_tokens": 1327708,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:18:54.320Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_request",
+    "data": {
+      "name": "run_analysis",
+      "toolCallId": "call_00_ew7EjYrCYdTzESiD1Zam8544",
+      "args": {
+        "code": "\nfrom decimal import Decimal as D, getcontext\nimport json\ngetcontext().prec = 50\n\ndef d(x): return D(str(x))\nS = lambda x: format(x, 'f')\n\n# ---- 已披露 2025H1（合并，元），来自 document f0703e7591bd4f0b8040ffa44e656f42 ----\nrev_h1 = d('18181039589.02')      # p.81 营业总收入\ncogs_h1 = d('14122571351.06')     # p.81 营业成本\nop_profit_h1 = d('1372866154.73') # p.81 营业利润\ndep_h1 = d('324169416.26'); rou_h1 = d('20449840.18')\namort_i_h1 = d('33575313.69'); amort_lt_h1 = d('2210361.15')   # p.164\ncapex_h1 = d('186255639.63')      # p.86 购建固定资产等支付现金\ncash_eq_end = d('8267960825.87')  # p.164 现金及现金等价物期末\n\n# ---- 2025-06-30 营运资本（合并）p.75/76，定义：应收类+存货+预付+合同资产-应付类 ----\nar = d('12876792917.79'); notes_r = d('180156805.69'); fin_r = d('358166330.58')\nprepaid = d('373096953.94'); other_r = d('1056782783.56')\ninv = d('8517310372.76'); contract_a = d('185604352.52')\nap = d('7620788262.01'); notes_p = d('6420491177.46')\ncontract_l = d('589177904.10'); advance = d('42572797.60')\nwc_assets = ar+notes_r+fin_r+prepaid+other_r+inv+contract_a\nwc_liab = ap+notes_p+contract_l+advance\nnwc_h1 = wc_assets - wc_liab\n\n# ---- 有息负债（2025-06-30 合并）p.76/77 ----\nst_loan = d('7575873070.78'); cur_lt = d('543144087.70')\nother_cur_bond = d('33156669.51')   # t177 其他流动负债中的短期应付债券\nlt_loan = d('390074162.19'); bonds = d('2567789790.26')  # 应付债券（含柳工转2债务成分）\nlease = d('147139960.38')\ndebt = st_loan+cur_lt+other_cur_bond+lt_loan+bonds+lease\n\nnci = d('1453349255.75')            # 少数股东权益 p.77\nother_eq_instr = d('84407721.27')   # 其他权益工具（无优先股/永续债）p.77\nshares = d('2019243764')            # 股本（面值1元）p.77\n\n# ---- 2025 全年基期：H1 x 2 年化（研究假设） ----\nscale = D(2)\nrev_fy = rev_h1*scale\ncogs_fy = cogs_h1*scale\nop_profit_fy = op_profit_h1*scale\nda_fy = (dep_h1+rou_h1+amort_i_h1+amort_lt_h1)*scale\nda_in_cogs = da_fy*d('0.6')          # 假设60%折旧计入营业成本\ncash_cogs_fy = cogs_fy - da_in_cogs\nfixed_bucket_fy = rev_fy - cash_cogs_fy - da_fy - op_profit_fy\n\nasp = d('250000')                    # 假设整体等效均价（元/台）\nvolume_fy = rev_fy/asp\nmat_share = d('0.65'); oth_share = d('0.35')\nmat_unit = cash_cogs_fy*mat_share/volume_fy\noth_unit = cash_cogs_fy*oth_share/volume_fy\nnwc_ratio = nwc_h1/rev_fy\n\n# ---- 基线预测 2026-2030 ----\nyears = [2026,2027,2028,2029,2030]\ngrowth = [d('0.08'),d('0.07'),d('0.06'),d('0.055'),d('0.05')]\ncapex_ratio = d('0.0105')\nda_ratio = da_fy/rev_fy\nfixed_g = d('0.04')\ntax = d('0.17')\nrows=[]; prev=rev_fy; fc=[]; fa=[]\nfor y,g in zip(years,growth):\n    r = prev*(D(1)+g); prev=r\n    v = r/asp\n    fx = fixed_bucket_fy*(D(1)+fixed_g)**D(years.index(y)+1)\n    rows.append(dict(year=y, revenue=S(r), volume=S(v), unit_price=S(asp),\n        material_cost_per_unit=S(mat_unit), other_variable_cost_per_unit=S(oth_unit),\n        fixed_cash_opex=S(fx), da=S(r*da_ratio), capex=S(r*capex_ratio),\n        nwc_ratio=S(nwc_ratio), tax_rate=S(tax)))\n    fc.append(r*da_ratio)\nebit_fy = rev_fy - cash_cogs_fy - fixed_bucket_fy - da_fy\nout = dict(\n  disclosed_h1=dict(revenue=S(rev_h1),cogs=S(cogs_h1),op_profit=S(op_profit_h1)),\n  fy2025e=dict(revenue=S(rev_fy), cogs=S(cogs_fy), da=S(da_fy), da_in_cogs=S(da_in_cogs),\n     cash_cogs=S(cash_cogs_fy), op_profit_target=S(op_profit_fy), fixed_bucket=S(fixed_bucket_fy),\n     ebit_check=S(ebit_fy), volume=S(volume_fy), mat_unit=S(mat_unit), other_unit=S(oth_unit),\n     nwc_end_2025e=S(nwc_h1), nwc_ratio=S(nwc_ratio), da_ratio=S(da_ratio)),\n  base_balances=dict(wc_assets=S(wc_assets), wc_liab=S(wc_liab), nwc=S(nwc_h1)),\n  bridge=dict(debt=S(debt), cash=S(cash_eq_end), net_debt=S(debt-cash_eq_end),\n     nci=S(nci), other_equity_instruments=S(other_eq_instr), shares=S(shares)),\n  forecast=rows)\nprint(json.dumps(out, ensure_ascii=False, indent=1))\nopen('/output/scenario_inputs.json','w').write(json.dumps(out, ensure_ascii=False, indent=1))\n",
+        "timeout_seconds": 120,
+        "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+        "raw_only": false
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:09.465Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_result",
+    "data": {
+      "name": "run_analysis",
+      "toolCallId": "call_00_ew7EjYrCYdTzESiD1Zam8544",
+      "result": {
+        "status": "accepted",
+        "data": {
+          "run_id": "a149ea063b984b50b092af150d66931b",
+          "state": "queued"
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "ef9ecc7ce6e74caebb6c07dcf337ca5e"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:09.644Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "cc00982f-f4cc-4938-9941-e946506e9a41",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 181.632,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 15,
+        "settled_calls": 14,
+        "input_tokens": 1290059,
+        "output_tokens": 37649,
+        "total_tokens": 1327708,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 32768
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "cc00982f-f4cc-4938-9941-e946506e9a41",
+          "run_id": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+          "max_output_tokens": 32768,
+          "created_at": "2026-10-04T01:19:09.610Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:10.628Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "model_usage",
+    "data": {
+      "requestId": "cc00982f-f4cc-4938-9941-e946506e9a41",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 255,
+        "output": 59,
+        "cacheRead": 163840,
+        "cacheWrite": 0,
+        "reasoning": 3,
+        "totalTokens": 164154,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:10.681Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "cc00982f-f4cc-4938-9941-e946506e9a41",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 182.653,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 15,
+        "settled_calls": 15,
+        "input_tokens": 1454154,
+        "output_tokens": 37708,
+        "total_tokens": 1491862,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:10.686Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_request",
+    "data": {
+      "name": "get_analysis_status",
+      "toolCallId": "call_00_PEyVKGRwPrst1gnaSBJt2110",
+      "args": {
+        "run_id": "a149ea063b984b50b092af150d66931b",
+        "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:11.395Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_result",
+    "data": {
+      "name": "get_analysis_status",
+      "toolCallId": "call_00_PEyVKGRwPrst1gnaSBJt2110",
+      "result": {
+        "status": "ok",
+        "data": {
+          "run_id": "a149ea063b984b50b092af150d66931b",
+          "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+          "status": "queued",
+          "artifacts": [],
+          "error": null,
+          "state": "queued"
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "af93c1a7757241b49792a7a0c95920b9"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:11.492Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "38dc9c03-f0ae-4545-b500-a165899cf675",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 183.488,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 16,
+        "settled_calls": 15,
+        "input_tokens": 1454154,
+        "output_tokens": 37708,
+        "total_tokens": 1491862,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 32768
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "38dc9c03-f0ae-4545-b500-a165899cf675",
+          "run_id": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+          "max_output_tokens": 32768,
+          "created_at": "2026-10-04T01:19:11.466Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:13.325Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "model_usage",
+    "data": {
+      "requestId": "38dc9c03-f0ae-4545-b500-a165899cf675",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 182,
+        "output": 275,
+        "cacheRead": 164096,
+        "cacheWrite": 0,
+        "reasoning": 120,
+        "totalTokens": 164553,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:13.360Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "38dc9c03-f0ae-4545-b500-a165899cf675",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 185.352,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 16,
+        "settled_calls": 16,
+        "input_tokens": 1618432,
+        "output_tokens": 37983,
+        "total_tokens": 1656415,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:13.365Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_request",
+    "data": {
+      "name": "get_analysis_status",
+      "toolCallId": "call_00_JaG1KhdA8IWv7doFlPA18355",
+      "args": {
+        "run_id": "a149ea063b984b50b092af150d66931b",
+        "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:13.365Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_request",
+    "data": {
+      "name": "search_web",
+      "toolCallId": "call_01_X8UBiyujoudituB146bY0554",
+      "args": {
+        "query": "三一重工 徐工机械 中联重科 2025年半年度报告 每股收益 市盈率 2025年9月",
+        "as_of": "2025-09-08",
+        "max_results": 8,
+        "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:13.706Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_result",
+    "data": {
+      "name": "get_analysis_status",
+      "toolCallId": "call_00_JaG1KhdA8IWv7doFlPA18355",
+      "result": {
+        "status": "ok",
+        "data": {
+          "run_id": "a149ea063b984b50b092af150d66931b",
+          "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+          "status": "running",
+          "exit_code": 0,
+          "artifacts": [
+            {
+              "name": "scenario_inputs.json",
+              "size": 3798,
+              "sha256": "fb0abe27faa5fd2ccb93107523827f213b055e472a932976daf6cd370fa44a80"
+            }
+          ],
+          "error": null,
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791076752.355215,
+          "elapsed_seconds": 1.743,
+          "input_sha256": {
+            "tables.json": "fbcc16973ca78ea800b7ace57af5cfd88b6a8f5d98a3042f2c4cf9e3fb9d0e29",
+            "facts.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "pages.json": "65f35eafc6b465eea288b7d768556467bc626de4de5a439c4863c9c9046c05a2"
+          },
+          "timeout_seconds": 120,
+          "owner_pid": 5292,
+          "owner_token": "5790860",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "5c1d4d838ec140eeef2adb1acd8932928917b5975f918d8096efef2f56226f5e",
+          "started_at": 1791076753.5307927,
+          "execution_seconds": 0.352,
+          "oom_killed": false,
+          "container_removed": true,
+          "finished_at": 1791076754.098718,
+          "phase": "exporting_artifacts",
+          "state": "running"
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "d7d1c2cdbe4f4e89bfa9e92bcdd24cd2"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:16.154Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_result",
+    "data": {
+      "name": "search_web",
+      "toolCallId": "call_01_X8UBiyujoudituB146bY0554",
+      "result": {
+        "status": "ok",
+        "data": {
+          "query_id": "query_d5de2875-aa52-44bd-8e8a-de92086264e7",
+          "provider": "tavily",
+          "query": "三一重工 徐工机械 中联重科 2025年半年度报告 每股收益 市盈率 2025年9月",
+          "search_depth": "basic",
+          "retrieved_at": "2026-10-04T01:19:16.150Z",
+          "as_of": "2025-09-08",
+          "results": [
+            {
+              "title": "混改释放经营活力，国际化&拓品类助力成长柳工深度报告——",
+              "url": "http://pdf.dfcfw.com/pdf/H3_AP202412181641339056_1.pdf",
+              "snippet": "10 斗山山猫 74.83 3.10% 35 阿斯太克 13.38 0.50% 11 山特维克 72.71 3.00% 36 安迈 12.84 0.50% 12 中联重科 58.13 2.40% 37 铁建重工 9.83 0.40% 13 美卓奥图泰 56.83 2.30% 38 宝峨 9.31 0.40% 14 安百拓 55.91 2.30% 39 鼎力 8.81 0.40% 15 特雷克斯 51.52 2.10% 40 斯凯杰科 8.66 0.40% 16 豪士科-捷尔杰 49.9 2.00% 41 山河智能 8.49 0.30% 17 久保田 42.95 1.80% 42 欧历胜 8.3 0.30% 18 凯斯纽荷兰 39 1.60% 43 同力重工 8.18 0.30% 19 柳工 38.42 1.60% 44 Hidromek 7.57 0.30% 20 HD Hyundai Infracore 35.7 1.50% 45 森尼伯根 7.47 0.30% 21 现代 29.3 1.20% 46 贝尔设备 7.45 0.30% 22 神钢建机 28.89 1.20% 47 [...] 守正 出奇 宁静 致远 报告摘要 盈利预测与投资建议：预计2024年-2026年公司营业收入分别为301.93亿元、350.01亿元和411.62亿元，归母净利润分 别为15.75亿元、21.50亿元和27.45亿元，对应EPS分别为0.78元、1.07元、1.37元。公司不断纵横拓展产品品类、坚定 推进国际化战略、同时混改成效明显，助力公司盈利能力持续改善，成长确定性强，给予“买入”评级，6个月目标价 16.04元，相当于2025年15倍动态市盈率。 风险提示：国内市场需求不及预期；海外市场开拓不及预期；市场竞争加剧等。 财务摘要 资料来源：携宁，太平洋证券整理 2023 2024E 2025E 2026E 营业收入（百万元） 27519 30193 35001 41162 营业收入增长率(%) 3.9% 9.7% 15.9% 17.6% 归母净利（百万元） 868 1575 2150 2745 净利润增长率(%) 44.8% 81.5% 36.5% 27.7% 摊薄每股收益（元） 0.44 0.78 1.07 1.37 市盈率（PE） 15.2 14.1 10.3 8.1 n [...] 419亿美元，份额占比仅17.2%，与海外龙头相比，卡特、小松份额分别为16.8%、10.4%，仍有很 大差距，因此，尽管这两年国产厂商在海外收入规模快速放大，但份额提升空间依旧广阔。 排名 公司 2023年销售额（亿美元）市场份额 排名 公司 2023年销售额（亿美元）市场份额 1 卡特彼勒 410 16.80% 26 住友 25.85 1.10% 2 小松 253.02 10.40% 27 法亚集团 22.72 0.90% 3 迪尔 147.95 6.10% 28 马尼托瓦克 22.28 0.90% 4 徐工集团 129.64 5.30% 29 多田野 19.96 0.80% 5 利勃海尔 103.2 4.20% 30 希尔博 15.86 0.70% 6 三一重工 102.24 4.20% 31 山推 14.72 0.60% 7 沃尔沃 98.92 4.10% 32 龙工 14.69 0.60% 8 日立建机 91.05 3.70% 33 竹内 14.59 0.60% 9 杰西博 80.82 3.30% 34 临工重机 14 0.60% 10 斗山山猫 74.83 3.10%",
+              "published_at": "Wed, 18 Dec 2024 00:00:00 GMT",
+              "date_basis": "search_provider",
+              "score": 0.32472825
+            },
+            {
+              "title": "- 股市动态分析周刊官方网站",
+              "url": "https://www.gsdtfx.com/srv/lst/5",
+              "snippet": "0.47% 7.11% 帝科股份 300842 -5.79% 22.58% 0.47% 22.11% 柳工 000528 -11.90% 0.24% 0.47% -0.23% 蓝色光标 300058 -8.91% 4.07% 0.47% 3.60% 江瀚新材 603281 -0.28% 2.41% 0.47% 1.94% 伊利股份 600887 -5.61% 1.14% 0.47% 0.67% 注：期间收益率为：上期《内参》发布日2025年3月16日至本内参发布日2025年3月31日        最高涨幅为：期间该股股价达到最高位除以上一期内参发布日收盘价 本期个股包括：宜安科技（300328）、东土科技（300353）、海峡股份（002320）、金禾实业（002597）、快手（01024.HK）、翰森制药（03692.HK）   1、宜安科技（300328）：华为和苹果折叠机主力供应商 [...] 都在等一利空落地 ◆ 第六期策略：以大为美 规避小票 全球资本市场都在等4月2日美国的关税新政落地。A股表现算强的，指数依然是周K以上级别的震荡行情，牛市预期还在，趋势也还完整。调整是正常调整，只是结构上，资金主要流向大票，短期要注意小票的调整风险，关税+量化新政+业绩窗口期都还在发酵。 ◆第六期热点或行业：化工、可控核聚变 近期有条暗线悄然上涨，就是涨价品种，不少化工品因节后需求恢复、行业自律协同、美国关税政策等因素出现涨价行情，我们梳理近期涨价的一些主流化工品种。可控核聚变是过去半个月市场的热点之一，相比虚无缥缈的常温超导，这个板块产业进度更快些，不是完全纯题材纯情绪炒作。 ◆第六期个股：宜安科技（300328）、东土科技（300353）、海峡股份（002320）、金禾实业（002597）、快手（01024.HK）、翰森制药（03692.HK）   2025年第六期个股组合参考 2025年第五期《内参》个股表现： 股票名称 股票代码 期间涨幅 最高涨幅 同期沪深300最高涨幅 超越大盘 景旺电子 603228 -11.09% 7.58% 0.47% 7.11% 帝科股份 [...] 66.36%，成为盈利改善的核心驱动力。 在政策推动工业控制系统自主化的背景下，东土科技凭借技术先发优势，加速抢占国产化替代市场。其工业OS已深度参与5G全连接工厂项目，通过 TSN（时间敏感网络）技术满足工业场景低时延、高可靠性需求，在汽车制造、能源等领域打开增量空间。同时，公司积极拓展海外市场，通过中东、拉美等地区的布局，弥补美国订单转移影响，工业网络通信业务保持稳定增长。 总结来看，公司原主业有国产替代亮点，近期发布的机器人国产操作系统则契合当下热点。机器人产业链从硬件的整机炒到零部件再到最上游的材料（电子皮肤、柔轮材料等），但在软件领域鲜有可选标的。东土科技新发布的国产机器人系统技术壁垒较高，市场地位独特，率先进入实际应用阶段，后续或将成为机器人行情新核心。   3、海峡股份（002320）：海南封关在即 客运龙头充分受益 主要看点：1）海南板块4月可能有利好刺激。海南题材近期刺激事件较多，先是3月22日的赛马会，而后是3月25日-28日一年一度的博鳌论坛，随后4月13日-18日又有一个重要的消费会议。从3月下旬开始-4月中旬，海南将一次次登上热搜和各大媒体重要版面。",
+              "published_at": "Sat, 15 Mar 2025 00:00:00 GMT",
+              "date_basis": "search_provider",
+              "score": 0.21910389
+            },
+            {
+              "title": "湖南星邦智能装备股份有限公司首次公开发行股票并在主板 ...",
+              "url": "http://pdf.dfcfw.com/pdf/H2_AN202303041584047877_1.pdf",
+              "snippet": "专业权威的高空作业平台行业设备制造厂商的排名 榜单 JCB 指 全球主要工程机械制造商，包括JCB Access Limited 和JCB Service 等成员企业 湖南星邦智能装备股份有限公司 招股说明书 1-1-9 Terex、特雷克斯 指 Terex Corporation，全球主要工程机械制造商 JLG、捷尔杰 指 JLG Industries, Inc.，全球主要工程机械制造商 Haulotte、欧历胜 指 Haulotte Group，全球主要工程机械制造商 Skyjack、斯凯杰科 指 Skyjack Inc.，全球主要工程机械制造商 浙江鼎力 指 浙江鼎力机械股份有限公司 临工重机 指 临工集团济南重机有限公司 中联重科 指 中联重科股份有限公司 徐工机械 指 徐工集团工程机械股份有限公司 三一重工 指 三一重工股份有限公司 山河智能 指 山河智能装备股份有限公司 铁建重工 指 中国铁建重工集团股份有限公司 众能联合 指 众能联合数字技术有限公司 招科易租 指 深圳市招科易租设备租赁有限公司 联顺租赁 指 湖南联顺高空设备租赁有限公司 瀚宇机械 指 [...] 24 十一、其他对发行人有重大影响的事项 ····························································· 26 第三节 风险因素 ·································································································· 27 一、与行业相关的风险 ··················································································· 27 二、与发行人相关的风险 ················································································ 29 三、其他风险 ······························································································· 34 [...] 瀚宇机械 指 湖南瀚宇机械设备有限公司 天诚包装 指 宁乡市天诚包装有限公司 三通物流 指 长沙三通物流有限公司 联保担保 指 湖南联保融资担保集团有限公司，原名湖南联保担 保集团有限公司 华运金租 指 华运金融租赁股份有限公司 湘江时代 指 湖南湘江时代融资租赁有限公司 中国康富 指 中国康富国际租赁股份有限公司 上海歆华 指 上海歆华融资租赁有限公司 厦门海翼 指 厦门海翼融资租赁有限公司 山工租赁 指 山东山工租赁有限公司 海西金租 指 福建海西金融租赁有限责任公司 苏州金租 指 苏州金融租赁股份有限公司 融和电科 指 上海融和电科融资租赁有限公司 海通恒信小微 指 海通恒信小微融资租赁（上海）有限公司，原名贵 安恒信融资租赁（上海）有限公司 海通恒信国际 指 海通恒信国际融资租赁股份有限公司 中铁租赁 指 中铁融资租赁有限公司 浙银金租 指 浙江浙银金融租赁股份有限公司 三井住友 指 三井住友融资租赁（中国）有限公司 中建投租赁 指 中建投租赁股份有限公司 湖南星邦智能装备股份有限公司 招股说明书 1-1-10 中电投融和 指 中电投融和融资租赁有限公司 普洛斯 指",
+              "published_at": "Sat, 04 Mar 2023 00:00:00 GMT",
+              "date_basis": "search_provider",
+              "score": 0.18042447
+            },
+            {
+              "title": "中国铁建重工集团股份有限公司首次公开发行股票并在科创 ...",
+              "url": "https://pdf.dfcfw.com/pdf/H2_AN202105311495169251_1.pdf?1622497405000.pdf=",
+              "snippet": "110 一、主营业务和主要产品情况..................................................................................... 110 二、发行人所处行业基本情况及市场竞争状况......................................................... 136 三、销售情况和主要客户............................................................................................. 175 四、采购情况和主要供应商......................................................................................... 190 [...] 68 四、发行人的分公司、控股子公司及参股公司情况................................................... 71 五、公司主要股东和实际控制人的基本情况............................................................... 85 六、公司的股本情况....................................................................................................... 87 七、董事、监事、高级管理人员及核心技术人员的简要情况................................... 89 八、董事、监事、高级管理人员及核心技术人员所签定的对投资者作出价值判断和 投资决策有重大影响的协议......................................................................................... 101 [...] 21 三、发行人主要财务数据和财务指标........................................................................... 23 四、发行人的主营业务经营情况................................................................................... 24 五、发行人的技术先进性、研发技术产业化以及未来发展战略............................... 25 六、发行人选择的具体上市标准................................................................................... 27 七、发行人公司治理特殊安排....................................................................................... 28",
+              "published_at": "Tue, 01 Jun 2021 00:00:00 GMT",
+              "date_basis": "search_provider",
+              "score": 0.074157745
+            },
+            {
+              "title": "北京海博思创科技股份有限公司",
+              "url": "https://static.sse.com.cn/stock/disclosure/announcement/c/202410/001855_20241011_F3R6.pdf",
+              "snippet": "259 十一、经营成果分析..................................................................................................... 261 十二、资产质量分析..................................................................................................... 293 十三、偿债能力、流动性与持续经营能力分析......................................................... 328 十四、报告期重大投资或资本性支出等事项的基本情况......................................... 346 十五、资产负债表日后事项、或有事项及其他重要事项......................................... 346 [...] 125 三、发行人所处行业竞争地位..................................................................................... 149 四、发行人销售情况和主要客户................................................................................. 158 五、发行人采购情况和主要供应商............................................................................. 162 六、发行人的主要固定资产和无形资产等资源要素................................................. 167 七、发行人的核心技术和研发情况............................................................................. 174 [...] 346 十六、盈利预测披露情况............................................................................................. 347 第七节 募集资金运用与未来发展规划 ............................................................................. 348 一、本次募集资金运用方案......................................................................................... 348 二、募集资金投资项目基本情况................................................................................. 350",
+              "published_at": "Fri, 11 Oct 2024 00:00:00 GMT",
+              "date_basis": "search_provider",
+              "score": 0.072564535
+            },
+            {
+              "title": "思看科技（杭州）股份有限公司首次公开发行股票并在 ...",
+              "url": "https://static.sse.com.cn/stock/disclosure/announcement/c/202408/001845_20240816_R2YE.pdf",
+              "snippet": "316 十、资产质量分析 ............................................................................................ 357 十一、偿债能力、流动性与持续经营能力分析 ............................................ 386 十二、报告期重大投资或资本性支出等事项的基本情况 ............................ 393 十三、资产负债表日后事项、或有事项、其他重要事项及重大担保、诉讼等 事项 .................................................................................................................... 394 十四、盈利预测报告 ........................................................................................ 394 [...] 285 五、重要会计政策及会计估计 ........................................................................ 287 六、非经常性损益 ............................................................................................ 312 七、报告期内执行的主要税收政策及缴纳的主要税种 ................................ 313 八、主要财务指标 ............................................................................................ 315 九、经营成果分析 ............................................................................................ 316 十、资产质量分析 [...] 53 十、公司股本情况 .............................................................................................. 59 十一、董事、监事、高级管理人员及核心技术人员的情况 .......................... 73 十二、公司与董事、监事、高级管理人员及核心技术人员签署的协议 ...... 77 十三、公司与董事、监事、高级管理人员及核心技术人员所持股份质押、冻 结或发生重大诉讼纠纷的情况 .......................................................................... 77 十四、董事、监事、高级管理人员和核心技术人员最近三年的变动情况及影 响 .......................................................................................................................... 77",
+              "published_at": "Fri, 16 Aug 2024 00:00:00 GMT",
+              "date_basis": "search_provider",
+              "score": 0.050691362
+            },
+            {
+              "title": "消费界 |《消费界》官方网站",
+              "url": "https://www.eeeck.com/sitemap.html",
+              "snippet": "Android | iOS\n\n下载APP\n\nAlternate Text\n\n|  |  |\n --- |\n| 资讯 | 资讯 数码科技 家居 地产 潮流 生活 游戏 健康 汽车 旅游 酒店 教育 投资 食品餐饮 亲子 体育 文化艺术 公益 娱乐 宠物 农业 音乐 环保 电商 企业 人物 保险 酒业 |\n| 城市 | 江苏 浙江 广东 上海 北京 贵州 甘肃 福建 海南 河南 河北 江西 陕西 山西 山东 湖北 湖南 四川 安徽 重庆 西藏 内蒙古 新疆 云南 宁夏 黑龙江 吉林 辽宁 青海 天津 广西 |\n\n证券代码：600272 证券简称:开实业 公告编号：2023-023\n\n900943\n\n消费界本网站所刊载信息，来源于网络，仅供免费学习参考使用，并不代表本媒体观点。本文所涉及的信息、数据和分析均来自公开渠道，如有任何不实之处、涉及版权问题，请联系我们及时处理。本文仅供读者参考，任何人不得将本文用于非法用途，由此产生的法律后果由使用者自负。\n\n合作官方邮箱: hezuo@eeeck.com\n\n投诉举报邮箱：Jubao\\_404@163.com [...] 招聘官方邮箱: rcrt@eeeck.com\n\n关于我们\n\n商务合作\n\n免责声明\n\n网站地图\n\nAndroid | iOS\n\n未经书面授权不得复制或建立镜像，违者必究。\n\nCopyright &copy; 2012 -2023  CONSUMER TIMES.　All Rights Reserved.\n\n深圳市赢销网络科技有限公司版权所有\n\n备案图标.png 粤公网安备 44030702005336号\n\n备案图标.png",
+              "published_at": "Mon, 30 Jun 2025 00:00:00 GMT",
+              "date_basis": "search_provider",
+              "score": 0.041172247
+            },
+            {
+              "title": "深圳市金福翔五金制品有限公司",
+              "url": "http://www.kingfeal.com",
+              "snippet": "深圳市金福翔五金制品有限公司© 2010   电话：0755-82595119  传真：0755- 82597252    \n 邮箱：info@kingfeal.com  粤ICP备11036736号  技术支持：蒸蒸科技 [...] 首    页关于我们产品中心客户服务合作伙伴新闻资讯留言反馈联系我们\n\n## 关于我们\n\n\n\n  \n        深圳市金福翔五金制品有限公司是一家从事  \n通讯、电子类产品结构配件、零部件销售及生产  \n的公司，公司致力于将国外的先进产品、技术引  \n入国内推广及使用，为国内各企业提供低价优质  \n的产品，以提高生产厂商的生产效率与品质。自  \n成立以来，主要致力于欧美世界知名品牌五金紧  \n固件产品的服务.... (about.asp)\n\n## 产品中心\n\n\n\n:   56-弹簧柱塞\n\n:   PEM LK系列自锁螺母\n\n:   PEM压铆螺母柱\n\n:   PEM压铆螺钉\n\n## 新闻资讯\n\n\n\n|  |\n\n| 金福翔公司2018年春节放假通知 |\n| 预测：全球紧固件市场需求将出现大幅上扬 |\n| 跨国公司挤压中国紧固件企业生存空间 |\n| 美国希尔曼收购紧固件商Servalite |\n| 欢迎光临我们公司的网站 |",
+              "published_at": "Sun, 02 Jan 2011 00:00:00 GMT",
+              "date_basis": "search_provider",
+              "score": 0.017020823
+            }
+          ],
+          "usage": {
+            "credits": 1
+          },
+          "provider_request_id": "f58dc709-65cf-41ce-8ac6-a583449b4004"
+        },
+        "source_refs": [],
+        "trace_id": "ed452f1e-0f8a-4135-b5c0-940dfc99b19c"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:16.266Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "dfc1c723-381f-4f48-b161-2992fb0fb13c",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 188.252,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 17,
+        "settled_calls": 16,
+        "input_tokens": 1618432,
+        "output_tokens": 37983,
+        "total_tokens": 1656415,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 32768
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "dfc1c723-381f-4f48-b161-2992fb0fb13c",
+          "run_id": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+          "max_output_tokens": 32768,
+          "created_at": "2026-10-04T01:19:16.230Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:17.779Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "model_usage",
+    "data": {
+      "requestId": "dfc1c723-381f-4f48-b161-2992fb0fb13c",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 5427,
+        "output": 167,
+        "cacheRead": 164480,
+        "cacheWrite": 0,
+        "reasoning": 92,
+        "totalTokens": 170074,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:17.826Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "dfc1c723-381f-4f48-b161-2992fb0fb13c",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 189.805,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 17,
+        "settled_calls": 17,
+        "input_tokens": 1788339,
+        "output_tokens": 38150,
+        "total_tokens": 1826489,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:17.831Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_request",
+    "data": {
+      "name": "get_artifact",
+      "toolCallId": "call_00_VWWdCpilsjkMOim8VWD68800",
+      "args": {
+        "run_id": "a149ea063b984b50b092af150d66931b",
+        "name": "scenario_inputs.json",
+        "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:18.356Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_result",
+    "data": {
+      "name": "get_artifact",
+      "toolCallId": "call_00_VWWdCpilsjkMOim8VWD68800",
+      "result": {
+        "status": "ok",
+        "data": {
+          "name": "scenario_inputs.json",
+          "relative_path": "analysis\\a149ea063b984b50b092af150d66931b\\output\\scenario_inputs.json",
+          "sha256": "fb0abe27faa5fd2ccb93107523827f213b055e472a932976daf6cd370fa44a80",
+          "size": 3798,
+          "mime_type": "application/json"
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "8a1f11cf704b4908997ad202e172dd26"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:18.454Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "bc498b0f-0ce5-4baf-aa5c-31e7beb8e410",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 190.446,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 18,
+        "settled_calls": 17,
+        "input_tokens": 1788339,
+        "output_tokens": 38150,
+        "total_tokens": 1826489,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 32768
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "bc498b0f-0ce5-4baf-aa5c-31e7beb8e410",
+          "run_id": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+          "max_output_tokens": 32768,
+          "created_at": "2026-10-04T01:19:18.424Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:20.512Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "model_usage",
+    "data": {
+      "requestId": "bc498b0f-0ce5-4baf-aa5c-31e7beb8e410",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 229,
+        "output": 225,
+        "cacheRead": 169984,
+        "cacheWrite": 0,
+        "reasoning": 169,
+        "totalTokens": 170438,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:20.572Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "bc498b0f-0ce5-4baf-aa5c-31e7beb8e410",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 192.54,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 18,
+        "settled_calls": 18,
+        "input_tokens": 1958552,
+        "output_tokens": 38375,
+        "total_tokens": 1996927,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:20.576Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_request",
+    "data": {
+      "name": "get_analysis_status",
+      "toolCallId": "call_00_VLHjndOH9P48oKaFqg5v6679",
+      "args": {
+        "run_id": "a149ea063b984b50b092af150d66931b",
+        "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:20.606Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_result",
+    "data": {
+      "name": "get_analysis_status",
+      "toolCallId": "call_00_VLHjndOH9P48oKaFqg5v6679",
+      "result": {
+        "status": "ok",
+        "data": {
+          "run_id": "a149ea063b984b50b092af150d66931b",
+          "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+          "status": "succeeded",
+          "exit_code": 0,
+          "artifacts": [
+            {
+              "name": "scenario_inputs.json",
+              "size": 3798,
+              "sha256": "fb0abe27faa5fd2ccb93107523827f213b055e472a932976daf6cd370fa44a80"
+            }
+          ],
+          "error": null,
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791076752.355215,
+          "elapsed_seconds": 1.743,
+          "input_sha256": {
+            "tables.json": "fbcc16973ca78ea800b7ace57af5cfd88b6a8f5d98a3042f2c4cf9e3fb9d0e29",
+            "facts.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "pages.json": "65f35eafc6b465eea288b7d768556467bc626de4de5a439c4863c9c9046c05a2"
+          },
+          "timeout_seconds": 120,
+          "owner_pid": 5292,
+          "owner_token": "5790860",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "5c1d4d838ec140eeef2adb1acd8932928917b5975f918d8096efef2f56226f5e",
+          "started_at": 1791076753.5307927,
+          "execution_seconds": 0.352,
+          "oom_killed": false,
+          "container_removed": true,
+          "finished_at": 1791076754.098718,
+          "state": "succeeded"
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "adcb9736a0af4447b10adcb1fffa4c5f"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:20.722Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "b8b50c6f-eb64-4314-bb5a-0c3f153d6073",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 192.707,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 19,
+        "settled_calls": 18,
+        "input_tokens": 1958552,
+        "output_tokens": 38375,
+        "total_tokens": 1996927,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 32768
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "b8b50c6f-eb64-4314-bb5a-0c3f153d6073",
+          "run_id": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+          "max_output_tokens": 32768,
+          "created_at": "2026-10-04T01:19:20.685Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:32.353Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "model_usage",
+    "data": {
+      "requestId": "b8b50c6f-eb64-4314-bb5a-0c3f153d6073",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 585,
+        "output": 2578,
+        "cacheRead": 170368,
+        "cacheWrite": 0,
+        "reasoning": 2479,
+        "totalTokens": 173531,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:32.415Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "b8b50c6f-eb64-4314-bb5a-0c3f153d6073",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 204.381,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 19,
+        "settled_calls": 19,
+        "input_tokens": 2129505,
+        "output_tokens": 40953,
+        "total_tokens": 2170458,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:32.425Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_request",
+    "data": {
+      "name": "run_analysis",
+      "toolCallId": "call_00_uwxmXj4nAQrX5znqIY597797",
+      "args": {
+        "code": "\nimport json\npayload = {\"probe\": \"A\"*1200 + \"END\"}\nraise RuntimeError(\"MARKER_START\" + json.dumps(payload) + \"MARKER_END\")\n",
+        "timeout_seconds": 60,
+        "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+        "raw_only": false
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:46.747Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_result",
+    "data": {
+      "name": "run_analysis",
+      "toolCallId": "call_00_uwxmXj4nAQrX5znqIY597797",
+      "result": {
+        "status": "accepted",
+        "data": {
+          "run_id": "1e73bc44f80d4264a5176b190ec494fb",
+          "state": "queued"
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "e57dfb7b282049ddaa5214bb7e1f2ba8"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:46.929Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "527a9bd1-5408-4285-bd01-47b5bc6664c3",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 218.911,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 20,
+        "settled_calls": 19,
+        "input_tokens": 2129505,
+        "output_tokens": 40953,
+        "total_tokens": 2170458,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 32768
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "527a9bd1-5408-4285-bd01-47b5bc6664c3",
+          "run_id": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+          "max_output_tokens": 32768,
+          "created_at": "2026-10-04T01:19:46.889Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:48.126Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "model_usage",
+    "data": {
+      "requestId": "527a9bd1-5408-4285-bd01-47b5bc6664c3",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 175,
+        "output": 58,
+        "cacheRead": 173440,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "totalTokens": 173673,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:48.159Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "527a9bd1-5408-4285-bd01-47b5bc6664c3",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 220.15,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 20,
+        "settled_calls": 20,
+        "input_tokens": 2303120,
+        "output_tokens": 41011,
+        "total_tokens": 2344131,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:48.162Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_request",
+    "data": {
+      "name": "get_analysis_status",
+      "toolCallId": "call_00_ET_ptK73f0aVqW060T3PKuF8403",
+      "args": {
+        "run_id": "1e73bc44f80d4264a5176b190ec494fb",
+        "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:48.528Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_result",
+    "data": {
+      "name": "get_analysis_status",
+      "toolCallId": "call_00_ET_ptK73f0aVqW060T3PKuF8403",
+      "result": {
+        "status": "ok",
+        "data": {
+          "run_id": "1e73bc44f80d4264a5176b190ec494fb",
+          "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+          "status": "queued",
+          "artifacts": [],
+          "error": null,
+          "state": "queued"
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "f0968bde549246b0ab41be3b1825a6fd"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:48.636Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "8c6f7217-d558-4b97-90bf-8aac159bdc1e",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 220.627,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 21,
+        "settled_calls": 20,
+        "input_tokens": 2303120,
+        "output_tokens": 41011,
+        "total_tokens": 2344131,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 32768
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "8c6f7217-d558-4b97-90bf-8aac159bdc1e",
+          "run_id": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+          "max_output_tokens": 32768,
+          "created_at": "2026-10-04T01:19:48.605Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:49.992Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "model_usage",
+    "data": {
+      "requestId": "8c6f7217-d558-4b97-90bf-8aac159bdc1e",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 230,
+        "output": 61,
+        "cacheRead": 173568,
+        "cacheWrite": 0,
+        "reasoning": 3,
+        "totalTokens": 173859,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:50.031Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "8c6f7217-d558-4b97-90bf-8aac159bdc1e",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 222.017,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 21,
+        "settled_calls": 21,
+        "input_tokens": 2476918,
+        "output_tokens": 41072,
+        "total_tokens": 2517990,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:50.034Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_request",
+    "data": {
+      "name": "get_analysis_status",
+      "toolCallId": "call_00_nQwYF2uYJURVc4mJPmPT8594",
+      "args": {
+        "run_id": "1e73bc44f80d4264a5176b190ec494fb",
+        "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:50.399Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "tool_result",
+    "data": {
+      "name": "get_analysis_status",
+      "toolCallId": "call_00_nQwYF2uYJURVc4mJPmPT8594",
+      "result": {
+        "status": "ok",
+        "data": {
+          "run_id": "1e73bc44f80d4264a5176b190ec494fb",
+          "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+          "status": "running",
+          "exit_code": null,
+          "artifacts": [],
+          "error": null,
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791076790.1839106,
+          "elapsed_seconds": 0,
+          "input_sha256": {
+            "tables.json": "fbcc16973ca78ea800b7ace57af5cfd88b6a8f5d98a3042f2c4cf9e3fb9d0e29",
+            "facts.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "pages.json": "65f35eafc6b465eea288b7d768556467bc626de4de5a439c4863c9c9046c05a2"
+          },
+          "timeout_seconds": 60,
+          "owner_pid": 5500,
+          "owner_token": "5794586",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "aa04c695c96b671740cbab77a870c6513297f8852084802d99715a9f2d641f26",
+          "started_at": 1791076790.9302661,
+          "state": "running"
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "618e29f2907d4b3388d9fb4a7536defa"
+      }
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:50.510Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "f2e57c33-5a96-422d-99d8-4dd84dc87378",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 222.501,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 22,
+        "settled_calls": 21,
+        "input_tokens": 2476918,
+        "output_tokens": 41072,
+        "total_tokens": 2517990,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 32768
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "f2e57c33-5a96-422d-99d8-4dd84dc87378",
+          "run_id": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+          "max_output_tokens": 32768,
+          "created_at": "2026-10-04T01:19:50.479Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:51.981Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "model_usage",
+    "data": {
+      "requestId": "f2e57c33-5a96-422d-99d8-4dd84dc87378",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 463,
+        "output": 58,
+        "cacheRead": 173824,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "totalTokens": 174345,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:52.029Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "f2e57c33-5a96-422d-99d8-4dd84dc87378",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 224.01,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 22,
+        "settled_calls": 22,
+        "input_tokens": 2651205,
+        "output_tokens": 41130,
+        "total_tokens": 2692335,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 166574,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": "max_input_tokens"
+    }
+  },
+  {
+    "at": "2026-10-04T01:19:52.098Z",
+    "runId": "fd99e92a-58d2-4986-a311-7c89f5e76770",
+    "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "run_finished",
+      "profile": "financial",
+      "budget_group_id": "liugong-research-1791076567651",
+      "budget": {
+        "max_model_calls": 48,
+        "max_input_tokens": 2484631,
+        "max_output_tokens": 423210,
+        "max_total_tokens": 2907841,
+        "max_wall_seconds": 1641
+      },
+      "started_at": "2026-10-04T01:16:07.978Z",
+      "deadline_at": "2026-10-04T01:43:28.978Z",
+      "elapsed_seconds": 224.095,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 22,
+        "settled_calls": 22,
+        "input_tokens": 2651205,
+        "output_tokens": 41130,
+        "total_tokens": 2692335,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 166574,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": "max_input_tokens"
+    }
+  }
+]

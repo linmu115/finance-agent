@@ -1,0 +1,26 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>竞赛定位与后续升级</title><style>
+*{box-sizing:border-box}body{margin:0;background:#fafafa;color:#262626;font:15px/1.85 system-ui,"Microsoft YaHei",sans-serif}main{max-width:1060px;margin:auto;padding:42px 24px 80px}h1{font-size:31px;line-height:1.45}h2{font-size:21px;margin-top:34px}a{color:#333}p{color:#555}table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:13px;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}th{background:#eee}.box{background:white;border:1px solid #ddd;border-radius:12px;padding:20px;margin:15px 0}.row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.node{border:1px solid #ddd;padding:18px;border-radius:10px;background:white;text-align:center}.dark{background:#272727;color:white}.node small{display:block;color:#777}.dark small{color:#ddd}.arrow{text-align:center;color:#777;padding:7px}.muted{font-size:13px;color:#777}@media(max-width:720px){main{padding:24px 16px}.row{grid-template-columns:1fr}td,th{padding:8px;font-size:13px}}
+</style></head><body><main><div class="muted">金融研究工作台 · 路线建议 · 2026-10-03</div><h1>先做深研究能力，再扩展平台规模</h1>
+<p><a href="http://127.0.0.1:3001">工作台</a> · <a href="architecture.html">当前实现架构</a> · <a href="../benchmark/design.html">Benchmark 设计</a></p>
+<div class="box"><b>竞赛交付要求：可运行的投研智能体原型。</b><p>通知允许 Web 或命令行，没有要求必须建设企业级平台，也没有限定为个人工作台。核心是可复现的任务流程和结构化成果，并提交源码、运行说明、最终报告及现场样例。<a href="https://jw.beijing.gov.cn/gjc/tzgg_15688/202608/t20260827_4839055.html">北京市教委原通知</a></p><p>建议定位：面向研究员的小团队投研工作台。以完整专业研究流程作为竞赛展示主体，企业级协作与运维作为后续路线。这是产品建议，不是官方指定形态。</p></div>
+<div class="box"><b>当前先补齐基础准确性。</b><p><a href="../benchmark/results/current-review.html">本轮真实验收</a>尚未通过。下一版首先处理无框线表格覆盖、表头与单位语义、中文请求传输、并发缓存引用及过大的复核上下文。高阶报告需要建立在可验证的数据上。</p></div>
+<h2>优先补哪些高阶能力</h2><table><thead><tr><th>顺序</th><th>能力</th><th>交付物与检验方法</th></tr></thead><tbody>
+<tr><td>第一</td><td>业绩归因与盈利质量</td><td>收入/利润变化拆解，利润与现金流背离，非经常项目与口径调整。每个解释对应证据与计算；区分相关关系和因果判断。</td></tr>
+<tr><td>第一</td><td>研报纠错与反向核验</td><td>逐项检查草稿数字、单位、同比、口径、倍数与引用，输出可执行的修改。用预先植入且独立标注的错误测漏报和误报。</td></tr>
+<tr><td>第二</td><td>可调整的估值模型</td><td>假设表、预测表、估值区间、敏感性图联动。修改假设后重算；将来源事实与研究判断分别标注。</td></tr>
+<tr><td>第二</td><td>投资观点与反证条件</td><td>买方备忘录附带“什么事实会推翻判断”、待核实事项和持续跟踪指标。不能只生成支持性叙事。</td></tr>
+<tr><td>后续</td><td>同行比较、事件更新和产业链传导</td><td>建立可比口径；新披露仅重算受影响数据与结论；用供需和价格等假设计算传播情景，并说明适用边界。</td></tr>
+</tbody></table>
+<p>官方允许从财务分析、产业链影响、估值、研报纠错、投资备忘录及报告质量评估等方向中选一项或多项。上表是基于现有底座的优先级建议，没有虚构官方评分权重。<a href="https://jw.beijing.gov.cn/gjc/tzgg_15688/202608/t20260827_4839055.html">选题与评测要求</a></p>
+<h2>规模扩大后的运行结构</h2><div class="box"><div class="node"><b>研究员工作台</b><small>会话、项目、资料、分析假设、证据和产物</small></div><div class="arrow">↕</div><div class="node dark"><b>每个会话自己的 Pi 运行核心</b><small>理解任务、组织步骤、选择工具、汇总结果；上下文独立</small></div><div class="arrow">↓ 可追踪任务与有界并发</div><div class="row"><div class="node"><b>资料处理工作进程</b><small>公司/报告/章节分片<br>模型理解、增量更新、断点续做</small></div><div class="node"><b>数据查询与批量计算</b><small>跨公司筛选、聚合、同行比较<br>精确计算、结果缓存</small></div><div class="node"><b>分析容器</b><small>统计、预测、估值、制图<br>保存假设、代码与产物版本</small></div></div><div class="arrow">↕</div><div class="node"><b>共享金融数据层</b><small>原文件与证据存储 · 财务事实与定义 · 披露/重述版本 · 分析快照</small></div></div>
+<p>模型先查目录和结构化数据，再读相关证据；长上下文用于深入研究少量公司。查询数千家公司时，筛选和聚合由数据层完成。同份报告只处理一次，多个会话共享成果；任务队列属于底层执行设施，用户仍从会话发起任务。</p>
+<h2>扩容时按瓶颈升级</h2><table><thead><tr><th>瓶颈</th><th>对应升级</th></tr></thead><tbody>
+<tr><td>共享写入与数据服务并发</td><td>从本地 SQLite 迁移到适合服务端并发的数据库；保留来源、定义和版本模型。</td></tr>
+<tr><td>跨公司大范围聚合</td><td>分析引擎与列式数据副本；数据库返回筛选结果，不把所有财报送进模型上下文。</td></tr>
+<tr><td>模型吞吐和费用</td><td>工作队列、分阶段预算、有界并发、复用已完成抽取；按源文件与处理版本判断是否需要重算。</td></tr>
+<tr><td>长会话与大工具响应</td><td>工具返回任务标识、简短摘要和数据引用，明细按需分页读取；Pi保存任务关系，已完成的长表不反复进入后续模型请求。</td></tr>
+<tr><td>多会话复用与取消</td><td>缓存使用不可变结果版本并保留原始调用引用；共享任务与会话订阅分开，取消一个会话不会破坏其他会话依赖的结果。</td></tr>
+<tr><td>新公告与重述</td><td>保存报告期和披露时间，支持当时可见数据快照；只更新依赖受影响数据的分析与报告。</td></tr>
+<tr><td>多人协作与企业运维</td><td>组织权限、资料授权、配额、备份恢复、审计与服务监控。随真实使用需求引入。</td></tr>
+</tbody></table><p class="muted">本页描述未来能力与架构建议，不表示这些功能已实现，也不是本轮新增施工清单。</p>
+</main></body></html>

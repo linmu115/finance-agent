@@ -1,0 +1,1535 @@
+{
+  "benchmark": "finance-agent-bench-0.2.0",
+  "split": "dev",
+  "evaluated_cases": 62,
+  "received_predictions": 62,
+  "dataset_gate_pass": true,
+  "full_system_acceptance": false,
+  "runtime_gate": "NOT_RUN: require separate trusted sandbox, chart, isolation and reproducibility checks",
+  "metrics": {
+    "cn_extract": {
+      "n": 10,
+      "answer_accuracy": 1,
+      "grounded_accuracy": 1,
+      "target_answer_accuracy": 0.95,
+      "pass": true
+    },
+    "cn_calculate": {
+      "n": 4,
+      "answer_accuracy": 1,
+      "grounded_accuracy": 1,
+      "target_answer_accuracy": 0.95,
+      "pass": true
+    },
+    "cn_audit": {
+      "n": 4,
+      "answer_accuracy": 1,
+      "grounded_accuracy": 1,
+      "target_answer_accuracy": 0.9,
+      "pass": true
+    },
+    "cn_abstain": {
+      "n": 2,
+      "answer_accuracy": 1,
+      "grounded_accuracy": 1,
+      "target_answer_accuracy": 1,
+      "pass": true
+    },
+    "cn_ocr": {
+      "n": 2,
+      "answer_accuracy": 1,
+      "grounded_accuracy": 1,
+      "target_answer_accuracy": 0.9,
+      "pass": true
+    },
+    "finqa_single": {
+      "n": 20,
+      "answer_accuracy": 1,
+      "grounded_accuracy": 0.85,
+      "target_answer_accuracy": 0.85,
+      "pass": true
+    },
+    "finqa_multi": {
+      "n": 20,
+      "answer_accuracy": 0.8,
+      "grounded_accuracy": 0.75,
+      "target_answer_accuracy": 0.75,
+      "pass": true
+    }
+  },
+  "citation_recall": 0.9833333333333333,
+  "citation_precision": 0.9555555555555556,
+  "grounded_accuracy": 0.8709677419354839,
+  "protocol_errors": [],
+  "cases": [
+    {
+      "id": "moutai_2024_extract_revenue_2024",
+      "track": "cn_extract",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_extract_revenue_2023",
+      "track": "cn_extract",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_extract_net_profit_parent_2024",
+      "track": "cn_extract",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_extract_net_profit_parent_2023",
+      "track": "cn_extract",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_extract_operating_cash_flow_2024",
+      "track": "cn_extract",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_extract_operating_cash_flow_2023",
+      "track": "cn_extract",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_extract_assets_2024",
+      "track": "cn_extract",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_extract_assets_2023",
+      "track": "cn_extract",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_extract_equity_parent_2024",
+      "track": "cn_extract",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_extract_equity_parent_2023",
+      "track": "cn_extract",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_growth_revenue",
+      "track": "cn_calculate",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_growth_net_profit_parent",
+      "track": "cn_calculate",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_growth_operating_cash_flow",
+      "track": "cn_calculate",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_cash_profit_ratio",
+      "track": "cn_calculate",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_true_revenue",
+      "track": "cn_audit",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_false_year",
+      "track": "cn_audit",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_false_unit",
+      "track": "cn_audit",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_true_profit",
+      "track": "cn_audit",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_missing_2026",
+      "track": "cn_abstain",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": null,
+      "citation_recall": null,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_missing_2027",
+      "track": "cn_abstain",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": null,
+      "citation_recall": null,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_ocr_revenue",
+      "track": "cn_ocr",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_ocr_net_profit_parent",
+      "track": "cn_ocr",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_43830ad76931bfb1",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_d4b0e9055d8200b7",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_85a0d7447e34de21",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_0b57b84f867ca21c",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_7dbd1abd9c17e815",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_5f0b090bd8ed4940",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_1a50bce8ba864905",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": false,
+      "citation_precision": 0.5,
+      "citation_recall": 1,
+      "errors": [
+        "irrelevant_or_invalid_evidence"
+      ]
+    },
+    {
+      "id": "finqa_d65017ea9e7a0f59",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_6934edf192b1c9f7",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_bb4bc8b486d971a9",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": false,
+      "citation_precision": 0.5,
+      "citation_recall": 1,
+      "errors": [
+        "irrelevant_or_invalid_evidence"
+      ]
+    },
+    {
+      "id": "finqa_53295df2e598efa3",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_f2a774528953be61",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_f8b859ba95f18765",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_98f4ecc8df038359",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_31c1495a1b036845",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_0950db29929b6db3",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_b5dc2735a14ca549",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_14c82d92c1d3ddb8",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_7aa47a6f7b1f1cac",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_0c9a75b30acde1aa",
+      "track": "finqa_single",
+      "answer_ok": true,
+      "grounded_ok": false,
+      "citation_precision": 0.6666666666666666,
+      "citation_recall": 1,
+      "errors": [
+        "irrelevant_or_invalid_evidence"
+      ]
+    },
+    {
+      "id": "finqa_02bc71b11e6462bf",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_b050839ebe47f949",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_7d739a72e962e5b8",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_f4d6b16d6013cd72",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_7271cc2025a02d5b",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_b6bf66a7f8b39233",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_fd56dcfb388be54d",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": [
+        "status",
+        "must_abstain",
+        "reason_code"
+      ]
+    },
+    {
+      "id": "finqa_32b3e7393e3b1325",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_082d75164302804d",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": [
+        "status",
+        "must_abstain",
+        "reason_code"
+      ]
+    },
+    {
+      "id": "finqa_2fb7edbed7295ccf",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_b60f5cb9d1c5146a",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": [
+        "status",
+        "must_abstain",
+        "reason_code"
+      ]
+    },
+    {
+      "id": "finqa_5d27e65ff333d7ae",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_d38a3b84fe4650ee",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_f1f6386471885fc4",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_ed8e3b849aea5272",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_a6c3b4883a923ab7",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_3816e154b20a808d",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "status",
+        "must_abstain",
+        "reason_code",
+        "missing_expected_evidence",
+        "irrelevant_or_invalid_evidence"
+      ]
+    },
+    {
+      "id": "finqa_95ddecd6ea91200e",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_02eaffe84f4f614c",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "finqa_d9828b1778922f40",
+      "track": "finqa_multi",
+      "answer_ok": true,
+      "grounded_ok": false,
+      "citation_precision": 0.6666666666666666,
+      "citation_recall": 1,
+      "errors": [
+        "irrelevant_or_invalid_evidence"
+      ]
+    }
+  ],
+  "round": 1,
+  "model": "deepseek-flash",
+  "configHash": "69e57a5de5088479b73cf489a9b2e9a4699a57dc62e41f79c4422fb3a787e023",
+  "promptHash": "261c1051a4802ae9b34d3912e1245cf566f6cf5bfab89ef687aacb739c0da452",
+  "codeHash": "93d368e523fe72b2a39ce1c330bb6841fe80d1dc84f009cab49acc1218af5120",
+  "selectedCases": 62,
+  "subset": false,
+  "wallTimeMs": 370268,
+  "aggregateCaseTimeMs": 928774,
+  "modelCalls": 239,
+  "inputTokens": 2544854,
+  "outputTokens": 44461,
+  "traces": [
+    {
+      "id": "moutai_2024_extract_revenue_2024",
+      "runId": "46003891-d1ca-4fc2-be26-d20d253449d8",
+      "status": "completed",
+      "elapsedMs": 30029,
+      "usage": {
+        "input": 18657,
+        "output": 490,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_extract_revenue_2023",
+      "runId": "7b56da6d-559f-4524-97ad-becf68173d71",
+      "status": "completed",
+      "elapsedMs": 31553,
+      "usage": {
+        "input": 293856,
+        "output": 363,
+        "calls": 3,
+        "costUsd": null
+      },
+      "toolCalls": 3,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_extract_net_profit_parent_2024",
+      "runId": "ca06652b-cb09-40ae-9fd9-f2969881f748",
+      "status": "completed",
+      "elapsedMs": 28721,
+      "usage": {
+        "input": 10578,
+        "output": 419,
+        "calls": 3,
+        "costUsd": null
+      },
+      "toolCalls": 3,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_extract_net_profit_parent_2023",
+      "runId": "f91059c4-ea3e-4c54-b2aa-b5d972f1628b",
+      "status": "completed",
+      "elapsedMs": 30229,
+      "usage": {
+        "input": 18759,
+        "output": 574,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_extract_operating_cash_flow_2024",
+      "runId": "8d262369-1d93-445d-8689-cdbf841388c1",
+      "status": "completed",
+      "elapsedMs": 31277,
+      "usage": {
+        "input": 273869,
+        "output": 515,
+        "calls": 3,
+        "costUsd": null
+      },
+      "toolCalls": 4,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_extract_operating_cash_flow_2023",
+      "runId": "e752134d-1a92-47cb-bb96-1e7bfa2a0f1a",
+      "status": "completed",
+      "elapsedMs": 29953,
+      "usage": {
+        "input": 17597,
+        "output": 530,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_extract_assets_2024",
+      "runId": "02b3d8dc-e3e7-43bb-b3ce-025d0da427ea",
+      "status": "completed",
+      "elapsedMs": 28914,
+      "usage": {
+        "input": 20104,
+        "output": 497,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_extract_assets_2023",
+      "runId": "21e3e673-35d3-4073-bf06-c6d7226f22a6",
+      "status": "completed",
+      "elapsedMs": 31920,
+      "usage": {
+        "input": 274865,
+        "output": 602,
+        "calls": 3,
+        "costUsd": null
+      },
+      "toolCalls": 4,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_extract_equity_parent_2024",
+      "runId": "8c348349-ed0b-4d29-8358-86306d05152a",
+      "status": "completed",
+      "elapsedMs": 27167,
+      "usage": {
+        "input": 11183,
+        "output": 341,
+        "calls": 3,
+        "costUsd": null
+      },
+      "toolCalls": 4,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_extract_equity_parent_2023",
+      "runId": "3b703e29-a841-436c-a318-6c53ed91befa",
+      "status": "completed",
+      "elapsedMs": 29766,
+      "usage": {
+        "input": 304447,
+        "output": 422,
+        "calls": 3,
+        "costUsd": null
+      },
+      "toolCalls": 3,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_growth_revenue",
+      "runId": "e5d9a44b-2d71-4058-afc7-798ed3910cc1",
+      "status": "completed",
+      "elapsedMs": 28116,
+      "usage": {
+        "input": 19506,
+        "output": 549,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_growth_net_profit_parent",
+      "runId": "dc453315-a287-48d2-94ad-8c9075b69bc4",
+      "status": "completed",
+      "elapsedMs": 28332,
+      "usage": {
+        "input": 11213,
+        "output": 550,
+        "calls": 3,
+        "costUsd": null
+      },
+      "toolCalls": 3,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_growth_operating_cash_flow",
+      "runId": "fe1fea26-658a-48c8-a678-fa09e36a986e",
+      "status": "completed",
+      "elapsedMs": 31235,
+      "usage": {
+        "input": 30713,
+        "output": 1006,
+        "calls": 6,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_cash_profit_ratio",
+      "runId": "4a67ede3-3fcb-4eeb-8779-c204ccdabd94",
+      "status": "completed",
+      "elapsedMs": 27610,
+      "usage": {
+        "input": 18282,
+        "output": 535,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_true_revenue",
+      "runId": "04a54cb6-51de-433f-bc88-73f5aa333401",
+      "status": "completed",
+      "elapsedMs": 29442,
+      "usage": {
+        "input": 24292,
+        "output": 641,
+        "calls": 5,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_false_year",
+      "runId": "b2266a1f-330f-4f09-b840-5ad1814e0c92",
+      "status": "completed",
+      "elapsedMs": 28881,
+      "usage": {
+        "input": 14710,
+        "output": 685,
+        "calls": 3,
+        "costUsd": null
+      },
+      "toolCalls": 4,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_false_unit",
+      "runId": "8418d47c-6c82-4249-8bf8-9b188daaaf00",
+      "status": "completed",
+      "elapsedMs": 26031,
+      "usage": {
+        "input": 10109,
+        "output": 395,
+        "calls": 3,
+        "costUsd": null
+      },
+      "toolCalls": 3,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_true_profit",
+      "runId": "26e8cd15-2399-4867-a625-a8c36dc4f123",
+      "status": "completed",
+      "elapsedMs": 29086,
+      "usage": {
+        "input": 18823,
+        "output": 863,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_missing_2026",
+      "runId": "126bdff6-730f-443f-b8fd-33cf8c64872f",
+      "status": "completed",
+      "elapsedMs": 24831,
+      "usage": {
+        "input": 5864,
+        "output": 243,
+        "calls": 2,
+        "costUsd": null
+      },
+      "toolCalls": 2,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_missing_2027",
+      "runId": "332226be-de71-492f-9b9c-1f8287f1d835",
+      "status": "completed",
+      "elapsedMs": 25458,
+      "usage": {
+        "input": 7047,
+        "output": 314,
+        "calls": 2,
+        "costUsd": null
+      },
+      "toolCalls": 3,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_ocr_revenue",
+      "runId": "f8db7e6a-ff83-43c0-8ee1-628f23b1713a",
+      "status": "completed",
+      "elapsedMs": 18042,
+      "usage": {
+        "input": 17612,
+        "output": 712,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "moutai_2024_ocr_net_profit_parent",
+      "runId": "5f337991-6b6e-4b71-b509-7275c20db0f8",
+      "status": "completed",
+      "elapsedMs": 16036,
+      "usage": {
+        "input": 15683,
+        "output": 668,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_43830ad76931bfb1",
+      "runId": "749f2383-227b-489e-82da-fd44e324d813",
+      "status": "completed",
+      "elapsedMs": 11527,
+      "usage": {
+        "input": 31794,
+        "output": 659,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_d4b0e9055d8200b7",
+      "runId": "33e2252e-efdb-45ae-b4bc-d8a6cf0be014",
+      "status": "completed",
+      "elapsedMs": 8479,
+      "usage": {
+        "input": 29041,
+        "output": 1025,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_85a0d7447e34de21",
+      "runId": "43092a10-e801-4979-8a8c-cec2bc80ef2b",
+      "status": "completed",
+      "elapsedMs": 6084,
+      "usage": {
+        "input": 23455,
+        "output": 454,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_0b57b84f867ca21c",
+      "runId": "41142322-9b94-4690-adb1-490d2998df1c",
+      "status": "completed",
+      "elapsedMs": 8391,
+      "usage": {
+        "input": 26785,
+        "output": 592,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 3,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_7dbd1abd9c17e815",
+      "runId": "83b870df-6e72-4709-b408-85bd6582b3f3",
+      "status": "completed",
+      "elapsedMs": 6356,
+      "usage": {
+        "input": 24155,
+        "output": 467,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_5f0b090bd8ed4940",
+      "runId": "0ca5dcf3-3e42-42ce-8d9f-8fab423befa2",
+      "status": "completed",
+      "elapsedMs": 8366,
+      "usage": {
+        "input": 56325,
+        "output": 820,
+        "calls": 6,
+        "costUsd": null
+      },
+      "toolCalls": 7,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_1a50bce8ba864905",
+      "runId": "5e2df46e-7eee-455f-9ef0-76c2c97f9f7b",
+      "status": "completed",
+      "elapsedMs": 6616,
+      "usage": {
+        "input": 26810,
+        "output": 647,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_d65017ea9e7a0f59",
+      "runId": "bcd7280b-8bf1-4cbc-87d3-c4f762e76714",
+      "status": "completed",
+      "elapsedMs": 7497,
+      "usage": {
+        "input": 26915,
+        "output": 754,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_6934edf192b1c9f7",
+      "runId": "41e5d00d-b689-4962-be0a-ae4c3377cfba",
+      "status": "completed",
+      "elapsedMs": 7968,
+      "usage": {
+        "input": 32529,
+        "output": 881,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 4,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_bb4bc8b486d971a9",
+      "runId": "355c6534-3d5e-4927-8b75-3e0dd7a0894e",
+      "status": "completed",
+      "elapsedMs": 6491,
+      "usage": {
+        "input": 23116,
+        "output": 459,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_53295df2e598efa3",
+      "runId": "06867afc-f365-436d-857d-9c1fc019f9b1",
+      "status": "completed",
+      "elapsedMs": 6133,
+      "usage": {
+        "input": 27791,
+        "output": 483,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_f2a774528953be61",
+      "runId": "35eee93c-81c7-4b5d-ac6a-9d67ae08feac",
+      "status": "completed",
+      "elapsedMs": 8006,
+      "usage": {
+        "input": 38047,
+        "output": 609,
+        "calls": 5,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_f8b859ba95f18765",
+      "runId": "3c1ac517-1bcd-4585-b87d-6a3d885ca586",
+      "status": "completed",
+      "elapsedMs": 6551,
+      "usage": {
+        "input": 21607,
+        "output": 668,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_98f4ecc8df038359",
+      "runId": "4725ae3f-5998-40fc-bae3-54ff4cb25596",
+      "status": "completed",
+      "elapsedMs": 6146,
+      "usage": {
+        "input": 29639,
+        "output": 434,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_31c1495a1b036845",
+      "runId": "d363d162-97ed-4b3a-9d58-51da063fe406",
+      "status": "completed",
+      "elapsedMs": 7106,
+      "usage": {
+        "input": 30659,
+        "output": 568,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_0950db29929b6db3",
+      "runId": "ffbeb284-67f7-4614-aeb6-64283c6d135a",
+      "status": "completed",
+      "elapsedMs": 7824,
+      "usage": {
+        "input": 28963,
+        "output": 753,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_b5dc2735a14ca549",
+      "runId": "4cea6a05-e832-4a75-a110-87c917f5bb5b",
+      "status": "completed",
+      "elapsedMs": 7795,
+      "usage": {
+        "input": 21448,
+        "output": 850,
+        "calls": 3,
+        "costUsd": null
+      },
+      "toolCalls": 4,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_14c82d92c1d3ddb8",
+      "runId": "60a13059-d1b7-48d5-a9aa-7d1474f8c1d0",
+      "status": "completed",
+      "elapsedMs": 6937,
+      "usage": {
+        "input": 19216,
+        "output": 590,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 3,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_7aa47a6f7b1f1cac",
+      "runId": "3834a1dc-1e96-46ce-a672-b94e0cdee233",
+      "status": "completed",
+      "elapsedMs": 8402,
+      "usage": {
+        "input": 23548,
+        "output": 679,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_0c9a75b30acde1aa",
+      "runId": "0f559073-e844-4b8b-a71d-11a894b1b79d",
+      "status": "completed",
+      "elapsedMs": 6193,
+      "usage": {
+        "input": 26982,
+        "output": 513,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_02bc71b11e6462bf",
+      "runId": "cc3c3231-34b1-4a2d-a44c-eaca632af4c5",
+      "status": "completed",
+      "elapsedMs": 6816,
+      "usage": {
+        "input": 24652,
+        "output": 625,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_b050839ebe47f949",
+      "runId": "a37f3cd8-7845-4383-ba1c-62db54ba3395",
+      "status": "completed",
+      "elapsedMs": 6248,
+      "usage": {
+        "input": 30636,
+        "output": 422,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_7d739a72e962e5b8",
+      "runId": "21662bfe-29e6-407b-af46-39ca35f3fb7c",
+      "status": "completed",
+      "elapsedMs": 6054,
+      "usage": {
+        "input": 28491,
+        "output": 401,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_f4d6b16d6013cd72",
+      "runId": "92f3d9f3-94e8-4658-b7da-892d33b3bced",
+      "status": "completed",
+      "elapsedMs": 6793,
+      "usage": {
+        "input": 23374,
+        "output": 473,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_7271cc2025a02d5b",
+      "runId": "1cb27cf2-e7f6-4eb5-a808-17af99b85c57",
+      "status": "completed",
+      "elapsedMs": 8066,
+      "usage": {
+        "input": 20651,
+        "output": 1041,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_b6bf66a7f8b39233",
+      "runId": "faa033e0-1c4c-4f90-9a44-315cd6a6e793",
+      "status": "completed",
+      "elapsedMs": 7294,
+      "usage": {
+        "input": 19546,
+        "output": 823,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_fd56dcfb388be54d",
+      "runId": "079eb30c-715c-4b27-bab2-99ada24d35bb",
+      "status": "completed",
+      "elapsedMs": 11862,
+      "usage": {
+        "input": 40981,
+        "output": 1732,
+        "calls": 5,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_32b3e7393e3b1325",
+      "runId": "c825adc9-f77a-4446-bfad-5380ce1ece27",
+      "status": "completed",
+      "elapsedMs": 6936,
+      "usage": {
+        "input": 32769,
+        "output": 438,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_082d75164302804d",
+      "runId": "5d970b73-a8a3-44cb-93e9-4c10358fc47f",
+      "status": "completed",
+      "elapsedMs": 11743,
+      "usage": {
+        "input": 29765,
+        "output": 1770,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_2fb7edbed7295ccf",
+      "runId": "68ba8613-038c-4284-a4a2-5e628e02fcf4",
+      "status": "completed",
+      "elapsedMs": 8349,
+      "usage": {
+        "input": 27068,
+        "output": 807,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_b60f5cb9d1c5146a",
+      "runId": "782f6063-c43e-4122-81e3-e1e217a0c2db",
+      "status": "completed",
+      "elapsedMs": 11324,
+      "usage": {
+        "input": 21025,
+        "output": 1861,
+        "calls": 3,
+        "costUsd": null
+      },
+      "toolCalls": 3,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_5d27e65ff333d7ae",
+      "runId": "d7e178ad-e677-46a6-952d-b0c3616c808f",
+      "status": "completed",
+      "elapsedMs": 6745,
+      "usage": {
+        "input": 26548,
+        "output": 586,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_d38a3b84fe4650ee",
+      "runId": "2bc93c91-1ff1-4245-aef7-20d1f3aed9b5",
+      "status": "completed",
+      "elapsedMs": 8097,
+      "usage": {
+        "input": 26191,
+        "output": 878,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_f1f6386471885fc4",
+      "runId": "af30fb9b-5bf9-41fa-9d37-d93d8868533f",
+      "status": "completed",
+      "elapsedMs": 8988,
+      "usage": {
+        "input": 22167,
+        "output": 1217,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_ed8e3b849aea5272",
+      "runId": "55aeee43-3423-4d53-a43a-8adab2addd6a",
+      "status": "completed",
+      "elapsedMs": 6214,
+      "usage": {
+        "input": 28917,
+        "output": 545,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_a6c3b4883a923ab7",
+      "runId": "02601913-b6b9-4b5f-91ed-525512ae9a85",
+      "status": "completed",
+      "elapsedMs": 7440,
+      "usage": {
+        "input": 21911,
+        "output": 1019,
+        "calls": 3,
+        "costUsd": null
+      },
+      "toolCalls": 4,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_3816e154b20a808d",
+      "runId": "e12d6501-2fae-453d-8740-357ad622d233",
+      "status": "completed",
+      "elapsedMs": 17302,
+      "usage": {
+        "input": 30235,
+        "output": 3133,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 6,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_95ddecd6ea91200e",
+      "runId": "006dd489-5a22-46e0-9206-ac368351ef2f",
+      "status": "completed",
+      "elapsedMs": 5476,
+      "usage": {
+        "input": 28633,
+        "output": 416,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_02eaffe84f4f614c",
+      "runId": "b38d6754-a517-4535-a534-20059c08d4e5",
+      "status": "completed",
+      "elapsedMs": 8318,
+      "usage": {
+        "input": 26362,
+        "output": 868,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    },
+    {
+      "id": "finqa_d9828b1778922f40",
+      "runId": "10a54b8e-45c4-458d-b6c4-393070bfa602",
+      "status": "completed",
+      "elapsedMs": 7212,
+      "usage": {
+        "input": 28338,
+        "output": 587,
+        "calls": 4,
+        "costUsd": null
+      },
+      "toolCalls": 5,
+      "configHash": "39f33f2b06b7a2125d7cb4df75a162cc8e9783865120fe638bbbec4824a7be27"
+    }
+  ],
+  "name": "agent-2026-10-03T05-59-01-524Z round 1",
+  "status": "passed",
+  "mode": "pi_agent_real_model"
+}

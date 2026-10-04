@@ -1,0 +1,86 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>金融研究 Agent · 收尾交接</title><style>
+:root{color-scheme:light;font-family:Inter,"Segoe UI","Microsoft YaHei",sans-serif;color:#242424;background:#f5f5f5;font-size:16px;line-height:1.85}
+*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #e4e4e4;padding:18px max(24px,calc((100vw - 1050px)/2));display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+header strong{margin-right:auto}header a{font-size:14px;color:#444}main{max-width:1050px;margin:32px auto 80px;background:white;border:1px solid #e4e4e4;border-radius:16px;padding:46px 52px;overflow-wrap:anywhere}
+h1{font-size:30px;line-height:1.4;letter-spacing:-.5px;margin:0 0 20px}h2{font-size:22px;border-top:1px solid #e6e6e6;padding-top:26px;margin-top:36px}h3{font-size:18px;margin-top:28px}p{margin:16px 0}a{color:#294f8a;text-underline-offset:3px}code{font:13px/1.6 Consolas,monospace;background:#f0f0f0;border-radius:4px;padding:2px 5px}pre{background:#f5f5f5;border:1px solid #e5e5e5;padding:18px;border-radius:10px;overflow:auto;line-height:1.6}pre code{background:none;padding:0;white-space:pre}
+table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.75;margin:20px 0}th,td{text-align:left;vertical-align:top;border:1px solid #dedede;padding:11px 13px}th{background:#f4f4f4;font-weight:600}th:first-child,td:first-child{min-width:130px}li{margin:8px 0}strong{font-weight:650}
+@media(max-width:700px){main{margin:12px;padding:24px 18px;border-radius:12px}header{padding:14px 24px}h1{font-size:25px}h2{font-size:20px}table{display:block;overflow-x:auto}td,th{min-width:170px}code{word-break:break-word}}
+@media print{body{background:white}header{display:none}main{border:0;margin:0;padding:0;max-width:none}a{color:inherit}pre,table{break-inside:avoid}}
+</style></head><body><header><strong>金融研究工作台 · 交接</strong><a href="http://127.0.0.1:3001/">本机应用</a><a href="benchmark/design.html">Benchmark 设计</a><a href="HANDOFF.md">Markdown 原稿</a></header><main><h1>金融研究 Agent · 收尾交接</h1>
+<p>交接日期：2026-10-04。<strong>当前运行版本为 v07；本次交付的源码为 v08 候选版，尚未部署、尚未完成真实 DeepSeek 验收。</strong> 本轮按用户要求收尾，没有继续发起付费模型或搜索任务。六阶段升级目标仍未全部完成。</p>
+<h2>1. 先看这几个入口</h2>
+<table><thead><tr><th>入口</th><th>用途</th></tr></thead><tbody><tr><td><a href="http://127.0.0.1:3001/">本机应用</a></td><td>当前 v07：对话、附件、财报看板、研究成果、API 配置</td></tr><tr><td><a href="WORK_STATUS.md">当前状态</a></td><td>最新完成项及未完成项</td></tr><tr><td><a href="benchmark/design.html">Benchmark 设计</a></td><td>原验收设计；实际执行状态以本文为准</td></tr><tr><td><a href="benchmark/results/liugong-research-workflow-v07.independent.html">柳工独立复核</a></td><td>4 项金融语义问题、1 项数字转写错误及证据</td></tr><tr><td><a href="goal_requirements.json">需求台账</a></td><td>原逐项要求、验收标准和历史证据；未用本次组件测试上调状态</td></tr><tr><td><a href="benchmark/results/handoff-v08-verification.json">候选版检查记录</a></td><td>本次检查结果、源码变化和版本指纹</td></tr><tr><td><a href="design/architecture.html">架构</a>、<a href="design/roadmap.html">路线</a></td><td>已确认的总体设计；这些页面保留 v07 时代内容</td></tr></tbody></table>
+<p><code>paper/</code> 中论文和旧 <code>deliverables/</code> 交付包属于历史版本，不能当作 v08 已完成验收的证明。应用显示的软件包版本仍为 0.3.0；这里的 v07/v08 是开发批次。</p>
+<h2>2. 系统是什么</h2>
+<p>项目共享数据，对话独立运行。每段对话持有持久化 Pi AgentSession；上传附件只登记文件，用户发送任务后，Pi 在同一工具循环中选择解析、LangExtract 语义清洗、入库、查询、搜索、估值和绘图。没有另设独立的“入库 Agent”。</p>
+<pre><code class="language-text">对话前端 / 同项目的多个会话
+    └─ 各自独立的 Pi AgentSession + 官方 DeepSeek
+        ├─ PDF / 表格解析 → LangExtract 模型理解 → SQLite
+        ├─ 目录 / 分页 YAML / 全文及财务查询
+        ├─ Tavily 搜索 → 网页原文归档 → 可定位证据
+        ├─ 财务分析 / 情景 / DCF / 相对估值 → 有版本的研究成果
+        └─ 独立容器内的科学计算与绘图
+项目层共享：原文件、索引、事实、原文快照、研究成果、看板
+会话层独立：消息、Pi 历史、取消、调用用量、运行状态
+</code></pre>
+<p>数据库和原文才是事实来源；压缩摘要不是证据。Embedding 暂不启用，无本地主模型。现有配置记录为官方 <code>https://api.deepseek.com</code>、模型 ID <code>deepseek-flash</code>，实际窗口 1,048,576、最大输出 32,768；续接时先读应用中的当前配置，不能把用户早期提到的版本名称直接当 API ID。</p>
+<h2>3. 本次候选版改了什么</h2>
+<table><thead><tr><th>部分</th><th>当前实现</th><th>验证边界</th></tr></thead><tbody><tr><td>Pi 上下文压缩</td><td>原生 compact/checkpoint；默认触发 96,000 tokens，保留近期 24,000，摘要最多 8,192；实际阈值受模型窗口及输出预留约束</td><td>真实 Pi + 本地固定 HTTP 响应测试通过；真实 DeepSeek 摘要质量、成本变化未测</td></tr><tr><td>压缩记忆与计费</td><td>保留任务约束、文档/页/表、来源及成果版本定位；摘要调用同一主模型，关闭思考；单独 phase，仍计入总预算</td><td>完整历史保留；恢复、取消、隔离、失败不落 checkpoint 已测试</td></tr><tr><td>工具返回体</td><td>历史大索引改为可恢复的定位提示；财务查询去除重复抽取元数据；保存研究成果返回已保存输入的精确版本定位</td><td>数值、单位、冲突、来源位置及完整 source_validation 保留；原始会话日志不重写</td></tr><tr><td>YAML 导航</td><td><code>get_document_index</code> 提供 overview/pages/tables、关键词、页范围及分页；默认 40，最多 100；原完整 YAML 不变</td><td>合成 123 页/246 表：默认响应 66,008→7,432 字节；分页无漏项/重复；不是实际 token 或模型费用降幅</td></tr><tr><td>金融定义</td><td>显式选择“报表营业利润”或 EBIT；要求利润范围和 EBIT 依据/调节；财务费用保留正负号，利息收支单列</td><td>组件测试通过；旧错误成果未自动改写，新模型仍须实测</td></tr><tr><td>配置界面</td><td>API 配置的运行设置内新增“长会话·上下文压缩”入口</td><td>类型检查及独立构建通过；尚未上线及做新增界面的浏览器验收</td></tr><tr><td>本地测试入口</td><td>Python 测试通过 Node 按平台定位解释器，修复 Windows npm 下前斜杠路径无法启动的问题</td><td>原失败日志与修复后完整结果均保留</td></tr></tbody></table>
+<p>实现主要在 <code>server/context-compaction.ts</code>、<code>server/runs.ts</code>、<code>server/model-context.ts</code>、<code>server/config.ts</code>；索引在 <code>service/processing.py</code>；财务合同在 <code>service/research_models.py</code>、<code>service/research_schema.py</code>；界面在 <code>web/src/ContextCompactionFields.tsx</code> 和 <code>ResearchWorkspace.tsx</code>。</p>
+<p>收尾检查：类型检查通过，Python <strong>309/309</strong>；Node 首次并行运行 <strong>146/147</strong>，一项启动检查超过原 15 秒上限。该项保持原断言隔离复跑通过，随后全套串行 <strong>147/147</strong> 通过，原失败日志保留。前端在独立目录构建通过。以上是本地工程测试，部分 HTTP 402/取消响应是固定测试服务模拟，不是新的官方付费调用。</p>
+<p>选型依据：<a href="https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/compaction.md">Pi 原生 compaction</a>、<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/compaction/compaction-basic/README.md">DeepSeek 官方 harness 压缩模块</a>。另参考社区 <a href="https://github.com/nijaru/pi-compactor">pi-compactor</a> 和 <a href="https://github.com/jjuraszek/pi-condense">pi-condense</a>。最终复用当前 Pi 的原生接口，没有安装第二套 harness 或额外本地模型。</p>
+<h2>4. 真实模型结果：什么通过，什么没通过</h2>
+<h3>旧茅台定义补全</h3>
+<p>真实运行 <code>f6713999-b12d-47a4-ac3c-2d2f8cc3e7b9</code> 已完成最后 5 组、8 条定义。合计 66/66 组、90 条定义，15/15 锚点、9/9 区分通过；全部 3,298 条事实的数值、期间、单位及原来源保持，复用的 82 条结果没有改 owner/hash。</p>
+<p>原主报告仍记录 failed：旧来源评分器缺失部分历史导出，另有旧引文对齐差异。重新导出真实历史后，独立 v2 为 13/13，90/90 来源与登记核对通过；原失败以及独立检查首次 12/13 都保留。<strong>它是旧公司开发复核，不是新公司泛化成绩。</strong></p>
+<p>证据：<a href="benchmark/results/pi-known-definition-existing-only-20261004-clean3.json">原运行</a>、<a href="benchmark/results/known-definition-clean3-independent-v2.json">独立 v2</a>、<a href="benchmark/results/known-definition-clean3-provenance-v2.json">来源复核</a>、<a href="benchmark/results/known-definition-clean3-evidence-export-v2.json">导出</a>。本轮 8 次模型调用，输入 1,411,615、输出 32,507；其中缓存输入 1,156,224，不能把全部输入说成新增材料。</p>
+<h3>柳工研究：失败并保留</h3>
+<p>v07 保存了两个盈利质量成果，后续阶段触发 <code>max_input_tokens</code>，产业链情景、DCF、备忘录和增量更新没有完成。独立复核虽然算术 71/71、字面引文 43/43，但仍有 4 项金融语义问题和 1 项数字转写错误，整体未通过：</p>
+<ol>
+<li>将报表营业利润直接当作 EBIT。</li>
+<li>将负财务费用解释成利息收入大于利息支出，原文不支持。</li>
+<li>从少数股东损益推导非经营因素强弱，论证不成立。</li>
+<li>将应收款余额变化当现金融资租赁投放，混淆存量与流量。</li>
+<li>工具结果 24.214 亿元被回答写成 24.12 亿元。</li>
+</ol>
+<p>v06+v07 共 34 次调用，输入 <strong>3,166,574</strong>、输出 67,920；原输入预算 3,000,000 已耗尽，额外 166,574 来自最后一笔进行中的调用。不得再把新试验称作“在原剩余预算下续跑”，后续须另立版本和预算，保留本次失败。</p>
+<p>证据：<a href="benchmark/results/liugong-research-workflow-v07.json">原运行</a>、<a href="benchmark/results/liugong-research-workflow-v07.independent.json">独立复核</a>。候选版修了相应合同与提示，但没有重验，也没有修改历史成果来制造通过。</p>
+<h3>为什么要压缩</h3>
+<p>此前 Pi 虽启用了原生压缩，但按约 100 万窗口减预留量触发，17–25 万的工作上下文一直未触发。一次完整 YAML 工具结果约 15.7 万字节，后续每步反复带入；还存在重复事实元数据和保存成果的整份输入回传。本次针对这些一般性原因处理，不向模型注入公司答案或 gold。</p>
+<h2>5. Benchmark 怎么交接</h2>
+<table><thead><tr><th>任务</th><th>数据与阈值</th><th>当前状态</th></tr></thead><tbody><tr><td>整表 v0.5</td><td>福耀玻璃、中海油；4 张逻辑表/5 区域/6 页，146 个数值格，33 个负例；精确率、召回率均 ≥95%，按公司/表分报</td><td>尚未首次执行；金融工作台与通用 Pi 同模型同预算对照</td></tr><tr><td>研报纠错 v0.1</td><td>12 个错误、16 条正确事实/计算、3 条合理观点；有效修改精确率 ≥95%、召回率 ≥90%</td><td>尚未执行；旧公司任务挑战，不称新公司盲测</td></tr><tr><td>旧 v0.4.1</td><td>首次 17/30，修正单位评分合同后只读 18/30</td><td>开发回归；保留首次失败，不再作为新盲测</td></tr><tr><td>本次压缩及分页</td><td>固定 HTTP / 合成表，来源与历史保持、分页完整、预算及取消行为</td><td>工程验证；未证明金融语义准确率或费用下降</td></tr></tbody></table>
+<p>入口：<a href="samples/financial-holdout-v0.5-evaluation.zip">v0.5 执行包</a>、<a href="samples/financial-report-correction-v0.1.zip">纠错包</a>、<a href="samples/%E6%97%A0%E9%9C%80OCR%E8%B4%A2%E6%8A%A5%E6%B5%8B%E8%AF%95%E5%8C%85-4%E4%BB%BD.zip">4 份无需 OCR 的财报</a>。原始 PDF 也在 <code>samples/native-pdf/</code>。</p>
+<p><code>benchmark/versions/</code> 内的 evaluator/gold 供验收器使用，不能发送给执行任务的 Agent。旧 v0.5 执行 ZIP 固定的是当时的验收脚本、核验器和数据，<strong>不含完整 v07 应用源码</strong>；在当前完整项目执行会调用当前服务。后续正式首跑前须单独冻结 v08 应用实现、核对执行器兼容性并更新执行包，锁定代码、模型、预算，<strong>原输入、gold、阈值和旧成绩不改</strong>。所有摘要、内部模型、失败与重试都计入用量；超过预算的失败不能换名抹除。</p>
+<p>v0.5 每个对照配置原预算：80 次调用、8,000,000 输入、1,000,000 输出、9,000,000 总 tokens、1,800 秒、2 个会话。原始冻结协议优先，脚本参数以各版本 README 为准。本次未启动这三个正式首跑锁。</p>
+<h2>6. 压缩包范围与本机状态</h2>
+<p>本包是<strong>源码、样本、验收器和证据交接包，不是整个运行数据的备份</strong>。包含当前源码/锁文件/测试、方案、完整 benchmark 版本、指定样本、原失败及新检查报告、逐文件 SHA-256 清单。完整性检查记录在 ZIP 内清单和包外验证文件。</p>
+<p>不包含 API 密钥及加密设置、<code>data/</code>、聊天运行目录、<code>.venv/</code>、<code>node_modules/</code>、VM 磁盘、SSH 材料、容器 wheelhouse，也不混入生产旧版 <code>web/dist</code>。新机器需要安装依赖并自行配置官方 API；不是解压即运行的离线镜像。</p>
+<p>本机数据仍在 <code>D:\codex\金融\data</code>：</p>
+<table><thead><tr><th>位置</th><th>内容</th></tr></thead><tbody><tr><td><code>finance.sqlite</code></td><td>项目、对话状态、文档及结构化事实</td></tr><tr><td><code>uploads/</code>、<code>documents/</code>、<code>indexes/</code></td><td>原附件、解析内容、索引</td></tr><tr><td><code>workspaces/&lt;项目&gt;/&lt;会话&gt;/sessions/</code></td><td>Pi 完整会话与后续压缩 checkpoint</td></tr><tr><td><code>audit/</code></td><td>原模型、工具调用和计费事件</td></tr><tr><td><code>research/</code></td><td>原文快照、研究成果及其版本依赖</td></tr><tr><td><code>settings.json</code></td><td>本机加密配置；不放入交接包</td></tr></tbody></table>
+<p>因此，在本机原工作区可继续原项目；在空目录解压只能审阅历史报告、重新建立数据，不能自动恢复原对话或独立重放所有历史运行。clean3 来源审计和部分研究回放依赖原 <code>data/audit</code>、<code>data/research</code>；包内 JSON 导出不是完整运行备份。需要迁移完整状态时另做一致性备份，不能在运行中仅复制 SQLite 主文件。</p>
+<p>本机 v07 端口为 3001。收尾检查时 PID 6428、健康接口 connected；PID 仅是本次观测。候选前端构建在 <code>deliverables/staging-v08/web-dist/</code>，没有覆盖生产 <code>web/dist/</code>，也不作为本包必需文件。</p>
+<h2>7. 新环境启动与本机续接</h2>
+<p>Windows 建议 Node.js ≥24、Python 3.12。在<strong>新解压目录</strong>执行：</p>
+<pre><code class="language-powershell">py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
+npm ci
+npm run typecheck
+npm test
+npm run test:service
+npm run build
+npm start
+</code></pre>
+<p>通过应用“API 配置”填写 DeepSeek 和 Tavily，保持 Embedding 关闭。科学计算容器需要按 <code>sandbox/README.md</code>、<code>sandbox/README.txt</code> 准备引擎/镜像；其磁盘和下载依赖不在包内。网页测试默认使用 Microsoft Edge，其他环境须调整浏览器配置。不要对正在运行的原目录照抄 <code>npm run build</code>，它会替换正在服务的前端。</p>
+<p>当前本机原服务保持运行。本轮没有重启或上线候选版；源码变化意味着下次重启会加载候选后端，因此部署前必须使后端与前端版本一致，先备份原运行数据并核验没有进行中的会话。</p>
+<p>原项目定位：</p>
+<table><thead><tr><th>案例</th><th>project / conversation / run</th></tr></thead><tbody><tr><td>茅台 clean3</td><td>project <code>3b4c43c9-51b8-432c-807d-2a15323f7a80</code>；conversation <code>1aec0d7e-6886-467e-be39-2cc3fead4a55</code>；run <code>f6713999-b12d-47a4-ac3c-2d2f8cc3e7b9</code></td></tr><tr><td>柳工 v07</td><td>project <code>0187cd2c-0f4c-40b1-8ec1-c58d65964c84</code>；conversation <code>fe8dc438-8410-4473-afa1-e5a882052bd6</code>；stage1 <code>0d9633cf-d1a1-4a74-b221-6f223e6893b7</code>；stage2 <code>fd99e92a-58d2-4986-a311-7c89f5e76770</code></td></tr></tbody></table>
+<h2>8. 下一位接手按这个顺序做</h2>
+<ol>
+<li>读本文和候选检查记录，核对 ZIP 清单；保留旧失败，不重新调用 clean3。</li>
+<li>完成候选配置页的浏览器验收、正式部署及前后端一致性检查；本轮没有替你执行这一步。</li>
+<li>在预先记录的新协议和预算下实测 DeepSeek 压缩：来源/任务约束/版本是否保留、压缩后能否回读原文、未完成任务能否继续；比较相同任务的实际 input/cache/output/摘要费用和金融正确性，不能只报字节缩减。</li>
+<li>对柳工重新进行金融语义复核并完成原产业链、估值、备忘录和跨会话更新。另保留未参与调试的公司与问题，避免只修这五个表面症状。</li>
+<li>冻结 v08 实现后进行 v0.5 双配置正式首跑及研报纠错验收，不改评分合同、不读取 gold 来调提示词。</li>
+<li>根据真实结果更新需求台账、进度页和论文，再生成正式发布包。现阶段不能宣称六阶段目标或竞赛产品已完整验收。</li>
+</ol>
+<p>所有付费执行留到后续工作。本次收尾的目的，是把可检查的代码、真实结果、失败原因和接续条件交清楚。</p></main></body></html>

@@ -1,0 +1,8 @@
+请检查附件中的所有财务表格，将原文数据理解、清洗并整理为可复用财务事实。保留原始数值、原单位、币种、规范数值、期间、版本、合并/母公司及编制准则口径、行列含义和原文来源。每一处原文数值分别保留来源；原文缺失的数值不要编造。完成后简述结果并给出 facts.json 下载链接。
+
+facts.json 是 UTF-8 JSON 对象：{"schema_version":"financial-facts-1","facts":[...]}。
+每条 fact 使用以下字段：company, metric, label, value, raw_value, raw_unit, currency, normalized_unit, unit_kind, period, period_start, period_end, scope, version, dimensions, definition, definition_scope, source_ref。
+value/raw_value 用字符串保留原精度。金额统一到币种基本单位；每股金额保留每股含义；百分比用其显示数值（例如原文 5% 存 value="5"，currency="percent"，normalized_unit="%"）。unit_kind 区分 ratio_percent 和 percentage_points，不把百分点差值解释成相对增长率。period 使用 YYYY、YYYY-Qn 或 YYYY-MM-DD；period_start/period_end 写实际覆盖起止日，时点值 period_start 为空。scope 区分 consolidated_CAS / parent_CAS / consolidated_IFRS / parent_IFRS / unspecified；version 标 original 或 restated，不能混淆。
+常用公开 metric 包括 revenue、net_profit_parent、net_profit、operating_cash_flow、assets、equity_parent、liabilities、cost_of_revenue、gross_profit、net_profit_excluding_nonrecurring、eps、roe；其他指标使用清楚稳定的英文 ID 和准确中文或英文 label/definition，不能把同名而范围不同的数值强行合并。
+source_ref 至少含 document_id、从 1 开始的输入 PDF 物理页 page，以及 [x0,y0,x1,y1] 格式、以 PDF 点为单位的原页 bbox；可同时包含 table_id、row、column、cell 和原文 text。使用工具返回的原文坐标，不凭空生成。不要把年份表头、附注编号当财务事实。
+在有隔离 Python 产物工具时，将最终 JSON 写到 /output/facts.json；不要只返回代码或口头声称已保存。数据量大时分批读取原文，最终合并所有属于本次附件的事实。

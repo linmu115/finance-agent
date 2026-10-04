@@ -1,0 +1,113 @@
+{
+  "kind": "isolated_http_pi_utf8_roundtrip",
+  "model_provider": "deterministic_local_fixture",
+  "official_api_calls": 0,
+  "started_at": "2026-10-03T18:38:15.104Z",
+  "status": "failed",
+  "data_dir": "D:\\codex\\金融\\tmp\\utf8-roundtrip-Axa0Ge",
+  "checks": [
+    {
+      "name": "multipart_filename_exact",
+      "status": "passed",
+      "details": {
+        "expected": "华𠮷💡_财报2024.csv",
+        "actual": "华𠮷💡_财报2024.csv"
+      }
+    },
+    {
+      "name": "real_pi_and_mcp_completed",
+      "status": "passed",
+      "details": {
+        "status": "completed"
+      }
+    },
+    {
+      "name": "database_exact_unicode",
+      "status": "passed",
+      "details": {
+        "company": "华𠮷制造,研究\n一期💡",
+        "label": "资产总额“合并”"
+      }
+    },
+    {
+      "name": "csv_escaped_multiline_and_unicode",
+      "status": "passed",
+      "details": {
+        "company": "华𠮷制造,研究\n一期💡",
+        "label": "资产总额“合并”"
+      }
+    },
+    {
+      "name": "original_bytes_unchanged",
+      "status": "passed",
+      "details": {
+        "sha256": "db0a5d95923726d9564791e6a7b3e819b7b0f35d6beee324ff0e8b66194352e1"
+      }
+    },
+    {
+      "name": "conversation_exact_unicode",
+      "status": "passed",
+      "details": {
+        "answer": "华𠮷制造,研究\n一期💡：资产总额“合并” 137.25元。"
+      }
+    },
+    {
+      "name": "restart_preserves_database_exports_chat_and_filename",
+      "status": "passed",
+      "details": {
+        "provider_calls_before": 5,
+        "provider_calls_after": 5
+      }
+    },
+    {
+      "name": "restart_and_read_make_no_model_calls",
+      "status": "passed",
+      "details": {
+        "calls": 5
+      }
+    },
+    {
+      "name": "no_replacement_character",
+      "status": "passed"
+    },
+    {
+      "name": "same_cache_key_has_one_inflight_inference",
+      "status": "passed",
+      "details": {
+        "held": 1,
+        "owner_run": "5f103587-205a-475a-bdd1-a61bf09e0e5e",
+        "waiter_run": "30349921-7abe-4190-be5a-fb0b519893b7"
+      }
+    },
+    {
+      "name": "cancelled_owner_does_not_cancel_waiter",
+      "status": "passed",
+      "details": {
+        "a": "cancelled",
+        "b": "completed"
+      }
+    },
+    {
+      "name": "surviving_private_pi_owns_actual_definition_response",
+      "status": "passed",
+      "details": {
+        "run_id": "30349921-7abe-4190-be5a-fb0b519893b7",
+        "extraction_count": 1
+      }
+    },
+    {
+      "name": "accepted_definition_cache_records_surviving_owner",
+      "status": "failed",
+      "details": {
+        "review_status": "needs_review",
+        "audits": []
+      }
+    }
+  ],
+  "project_id": "cdfcc369-8395-44ad-a4ce-611bca8268b7",
+  "conversation_id": "327b94e5-a60a-44a5-af04-261892a78020",
+  "document_id": "bb4560909b364707b2352755f71ea926",
+  "run_id": "76d13264-eae5-4678-a807-d0386f204ed7",
+  "error": "AssertionError [ERR_ASSERTION]: accepted_definition_cache_records_surviving_owner\n    at check (file:///D:/codex/%E9%87%91%E8%9E%8D/scripts/verify_utf8_roundtrip.mjs:20:103)\n    at file:///D:/codex/%E9%87%91%E8%9E%8D/scripts/verify_utf8_roundtrip.mjs:92:3\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+  "finished_at": "2026-10-03T18:38:57.546Z"
+}

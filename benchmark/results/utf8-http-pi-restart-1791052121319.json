@@ -1,0 +1,31 @@
+{
+  "kind": "isolated_http_pi_utf8_roundtrip",
+  "model_provider": "deterministic_local_fixture",
+  "official_api_calls": 0,
+  "started_at": "2026-10-03T18:28:41.321Z",
+  "status": "failed",
+  "data_dir": "D:\\codex\\金融\\tmp\\utf8-roundtrip-AqUGhv",
+  "checks": [
+    {
+      "name": "multipart_filename_exact",
+      "status": "passed",
+      "details": {
+        "expected": "华𠮷💡_财报2024.csv",
+        "actual": "华𠮷💡_财报2024.csv"
+      }
+    },
+    {
+      "name": "real_pi_and_mcp_completed",
+      "status": "passed",
+      "details": {
+        "status": "completed"
+      }
+    }
+  ],
+  "project_id": "3db85d06-d266-4ace-9a60-17b62bf9d905",
+  "conversation_id": "cf8497d5-9cb7-44a6-a037-95d5ab31aebb",
+  "document_id": "227079d5914243728a15e6558343ed9a",
+  "run_id": "732e0f6c-6539-4495-b81f-2f5773cc0ab3",
+  "error": "Error:   File \"<string>\", line 1\r\n    import csv,io,json,sys; sys.stdout.write(json.dumps(list(csv.DictReader(io.StringIO(sys.stdin.read().lstrip(\"\\ufeff\"))))),ensure_ascii=False))\r\n                                                                                                                                                 ^\r\nSyntaxError: unmatched ')'\r\n\n    at parseCsv (file:///D:/codex/%E9%87%91%E8%9E%8D/scripts/verify_utf8_roundtrip.mjs:50:560)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async file:///D:/codex/%E9%87%91%E8%9E%8D/scripts/verify_utf8_roundtrip.mjs:59:144",
+  "finished_at": "2026-10-03T18:29:06.929Z"
+}

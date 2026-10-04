@@ -1,0 +1,302 @@
+{
+  "scope": "Known period-error regression independently read from native PDF pages 68–69; not a blind or exhaustive annual-report accuracy benchmark.",
+  "source_pdf": "D:\\codex\\金融\\samples\\native-pdf\\贵州茅台2024年年度报告.pdf",
+  "source_sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+  "source_header": {
+    "page": 68,
+    "title": "母公司现金流量表",
+    "reporting_interval": "2024 年1—12 月",
+    "columns": [
+      "2024年度",
+      "2023年度"
+    ],
+    "unit": "元",
+    "currency": "人民币"
+  },
+  "opening_balance_convention": "Opening balance may use the first day of the financial year or the preceding year-end boundary, both as an instant with empty period_start. Year-long periods are rejected.",
+  "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+  "before_sha256": "b625e5622906acd89fdd6f8bec3414aaa81e85dfa7f95a46cce6e96d45d4a22f",
+  "after_sha256": "3da238281c441aaa5fedbf65ceda8f4e4d0fee0e9d0c842752473e1535780d17",
+  "checked_at": "2026-10-03T15:52:41.315Z",
+  "status": "passed",
+  "checks": [
+    {
+      "source": {
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "table_id": "39de9b118212463bbee6c2ab3c571432:t104",
+        "page": 69,
+        "row": 5,
+        "column": 3
+      },
+      "expected": {
+        "row": 5,
+        "column": 3,
+        "value": "71147917165.03",
+        "label": "期初现金及现金等价物余额",
+        "original_metric": "cash_and_cash_equivalents_beginning_balance",
+        "periods": [
+          "2024-01-01",
+          "2023-12-31"
+        ]
+      },
+      "before": [
+        {
+          "value": "71147917165.03",
+          "period": "2024-FY"
+        }
+      ],
+      "after": [
+        {
+          "value": "71147917165.03",
+          "period": "2024-01-01",
+          "start": "",
+          "end": "2024-01-01",
+          "original_metric": "cash_and_cash_equivalents_beginning_balance",
+          "scope": "parent_CAS",
+          "temporal_correction": {
+            "status": "reviewed",
+            "engine": "LangExtract",
+            "version": "temporal-langextract-0.3.0",
+            "model": "deepseek-flash",
+            "prompt_hash": "f976b741e95481c9bc4e1be2c11b368d30efc0f765e243620a3fd783fef196de",
+            "inference_config": {
+              "version": "temporal-correction-reasoning-1",
+              "reasoning_effort": "high"
+            },
+            "extraction_processing_id": "7d2e9c79abdd4ce0981797dabbc23071",
+            "owner_run_id": "6c872fc5-816b-44e3-9170-05e78b99cc5b",
+            "source_key": "63432781e76bf18688fb8576caea1fe25f8365b86cb42f4197e4e5d02abb1203",
+            "source_fingerprint": "8da889228482a0e13cf6d8d7aa21772fb66293a01cc13dbfa731cc68b63389f2",
+            "original_extraction_hash": "45cec5f1e32f3046002c110aaa052ed2ddd8d933aeb885ae86cc947a207df6de",
+            "before": {
+              "period": "2024-FY",
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
+            "after": {
+              "period": "2024-01-01",
+              "start": "",
+              "end": "2024-01-01"
+            },
+            "reason": "母公司现金流量表2024年度期初现金及现金等价物余额，属于时点，应改为2024-01-01。",
+            "evidence": "加：期初现金及现金等价物余额",
+            "span": [
+              42510,
+              42585
+            ]
+          }
+        }
+      ],
+      "status": "passed",
+      "errors": []
+    },
+    {
+      "source": {
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "table_id": "39de9b118212463bbee6c2ab3c571432:t104",
+        "page": 69,
+        "row": 5,
+        "column": 4
+      },
+      "expected": {
+        "row": 5,
+        "column": 4,
+        "value": "67960589067.53",
+        "label": "期初现金及现金等价物余额",
+        "original_metric": "cash_and_cash_equivalents_beginning_balance",
+        "periods": [
+          "2023-01-01",
+          "2022-12-31"
+        ]
+      },
+      "before": [
+        {
+          "value": "67960589067.53",
+          "period": "2023-FY"
+        }
+      ],
+      "after": [
+        {
+          "value": "67960589067.53",
+          "period": "2023-01-01",
+          "start": "",
+          "end": "2023-01-01",
+          "original_metric": "cash_and_cash_equivalents_beginning_balance",
+          "scope": "parent_CAS",
+          "temporal_correction": {
+            "status": "reviewed",
+            "engine": "LangExtract",
+            "version": "temporal-langextract-0.3.0",
+            "model": "deepseek-flash",
+            "prompt_hash": "f976b741e95481c9bc4e1be2c11b368d30efc0f765e243620a3fd783fef196de",
+            "inference_config": {
+              "version": "temporal-correction-reasoning-1",
+              "reasoning_effort": "high"
+            },
+            "extraction_processing_id": "7d2e9c79abdd4ce0981797dabbc23071",
+            "owner_run_id": "6c872fc5-816b-44e3-9170-05e78b99cc5b",
+            "source_key": "86247a85612b061b0d9a5d4c725d8cee2f70c0f2148775b32fb7bb3a18b45bca",
+            "source_fingerprint": "3cb3ffec14fd434905ce2c4a2fcd84bd98fe06ab198046c274358bc5c215ae22",
+            "original_extraction_hash": "45cec5f1e32f3046002c110aaa052ed2ddd8d933aeb885ae86cc947a207df6de",
+            "before": {
+              "period": "2023-FY",
+              "start": "2023-01-01",
+              "end": "2023-12-31"
+            },
+            "after": {
+              "period": "2023-01-01",
+              "start": "",
+              "end": "2023-01-01"
+            },
+            "reason": "母公司现金流量表2023年度期初现金及现金等价物余额，属于时点，应改为2023-01-01。",
+            "evidence": "加：期初现金及现金等价物余额",
+            "span": [
+              43616,
+              43691
+            ]
+          }
+        }
+      ],
+      "status": "passed",
+      "errors": []
+    },
+    {
+      "source": {
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "table_id": "39de9b118212463bbee6c2ab3c571432:t104",
+        "page": 69,
+        "row": 6,
+        "column": 3
+      },
+      "expected": {
+        "row": 6,
+        "column": 3,
+        "value": "76517140680.50",
+        "label": "期末现金及现金等价物余额",
+        "original_metric": "cash_and_cash_equivalents_ending_balance",
+        "periods": [
+          "2024-12-31"
+        ]
+      },
+      "before": [
+        {
+          "value": "76517140680.50",
+          "period": "2024-FY"
+        }
+      ],
+      "after": [
+        {
+          "value": "76517140680.50",
+          "period": "2024-12-31",
+          "start": "",
+          "end": "2024-12-31",
+          "original_metric": "cash_and_cash_equivalents_ending_balance",
+          "scope": "parent_CAS",
+          "temporal_correction": {
+            "status": "reviewed",
+            "engine": "LangExtract",
+            "version": "temporal-langextract-0.3.0",
+            "model": "deepseek-flash",
+            "prompt_hash": "f976b741e95481c9bc4e1be2c11b368d30efc0f765e243620a3fd783fef196de",
+            "inference_config": {
+              "version": "temporal-correction-reasoning-1",
+              "reasoning_effort": "high"
+            },
+            "extraction_processing_id": "7d2e9c79abdd4ce0981797dabbc23071",
+            "owner_run_id": "6c872fc5-816b-44e3-9170-05e78b99cc5b",
+            "source_key": "952805dde31f9fefba9b5f858870f821071df8591e7039ce2d700793604efb6f",
+            "source_fingerprint": "6b5bed16c930e06ecba4efe20918f304620faeeed81084507a90316ec0441911",
+            "original_extraction_hash": "a69e5d6acb9ee2d5c5a9dbe8d6fa8777710c195099ba17e3dbd561b5f2ee83b9",
+            "before": {
+              "period": "2024-FY",
+              "start": "2024-01-01",
+              "end": "2024-12-31"
+            },
+            "after": {
+              "period": "2024-12-31",
+              "start": "",
+              "end": "2024-12-31"
+            },
+            "reason": "母公司现金流量表2024年度期末现金及现金等价物余额，属于时点，应改为2024-12-31。",
+            "evidence": "六、期末现金及现金等价物余额",
+            "span": [
+              44722,
+              44797
+            ]
+          }
+        }
+      ],
+      "status": "passed",
+      "errors": []
+    },
+    {
+      "source": {
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "table_id": "39de9b118212463bbee6c2ab3c571432:t104",
+        "page": 69,
+        "row": 6,
+        "column": 4
+      },
+      "expected": {
+        "row": 6,
+        "column": 4,
+        "value": "71147917165.03",
+        "label": "期末现金及现金等价物余额",
+        "original_metric": "cash_and_cash_equivalents_ending_balance",
+        "periods": [
+          "2023-12-31"
+        ]
+      },
+      "before": [
+        {
+          "value": "71147917165.03",
+          "period": "2023-FY"
+        }
+      ],
+      "after": [
+        {
+          "value": "71147917165.03",
+          "period": "2023-12-31",
+          "start": "",
+          "end": "2023-12-31",
+          "original_metric": "cash_and_cash_equivalents_ending_balance",
+          "scope": "parent_CAS",
+          "temporal_correction": {
+            "status": "reviewed",
+            "engine": "LangExtract",
+            "version": "temporal-langextract-0.3.0",
+            "model": "deepseek-flash",
+            "prompt_hash": "f976b741e95481c9bc4e1be2c11b368d30efc0f765e243620a3fd783fef196de",
+            "inference_config": {
+              "version": "temporal-correction-reasoning-1",
+              "reasoning_effort": "high"
+            },
+            "extraction_processing_id": "7d2e9c79abdd4ce0981797dabbc23071",
+            "owner_run_id": "6c872fc5-816b-44e3-9170-05e78b99cc5b",
+            "source_key": "951b365e5dcd61e4416bff00c220315794e6c4905c3d40159443238ade76ab3f",
+            "source_fingerprint": "12319ebca3ec4b1a74f1cf3f54110397b49811ffc6439ee598cbda1aeed59eae",
+            "original_extraction_hash": "a69e5d6acb9ee2d5c5a9dbe8d6fa8777710c195099ba17e3dbd561b5f2ee83b9",
+            "before": {
+              "period": "2023-FY",
+              "start": "2023-01-01",
+              "end": "2023-12-31"
+            },
+            "after": {
+              "period": "2023-12-31",
+              "start": "",
+              "end": "2023-12-31"
+            },
+            "reason": "母公司现金流量表2023年度期末现金及现金等价物余额，属于时点，应改为2023-12-31。",
+            "evidence": "六、期末现金及现金等价物余额",
+            "span": [
+              45791,
+              45866
+            ]
+          }
+        }
+      ],
+      "status": "passed",
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-03T15:19:35.094Z",
+  "scope": "Read-only browser checks against actual local server and persisted LangExtract/DeepSeek outputs; no additional model calls, does not claim all fields correct.",
+  "projectId": "0df28e7b-1b79-42e8-914e-2dfb2e2e2ff4",
+  "counts": {
+    "documents": 2,
+    "facts": 73,
+    "pages": 3,
+    "tables": 6
+  },
+  "passed": 9,
+  "checks": [
+    {
+      "name": "看板从实际 SQLite 读取已由 LangExtract 处理的数据",
+      "passed": true
+    },
+    {
+      "name": "真实财报按公司、币种和年度筛选后生成三年收入图",
+      "passed": true
+    },
+    {
+      "name": "真实财报图表可下载 PNG，含指标、单位与图例",
+      "passed": true
+    },
+    {
+      "name": "实际 CSV 导出包含精确原始金额并遵循年度和币种筛选",
+      "passed": true
+    },
+    {
+      "name": "图中数值回到实际 PDF 提取页原文",
+      "passed": true
+    },
+    {
+      "name": "项目数据库和 YAML 索引路径可见",
+      "passed": true
+    },
+    {
+      "name": "三组真实资料与 benchmark 压缩包均可下载且为有效 ZIP",
+      "passed": true
+    },
+    {
+      "name": "实际配置页显示共用 DeepSeek API，密钥留空，Embedding 调用入口已移除",
+      "passed": true
+    },
+    {
+      "name": "全程只读，不启动模型请求，没有浏览器异常",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "mutations": []
+}

@@ -1,0 +1,379 @@
+{
+  "kind": "development_research_workflow",
+  "started_at": "2026-10-03T17:28:20.334Z",
+  "status": "failed",
+  "checks": [
+    {
+      "name": "真实 Pi 调用搜索与原文归档",
+      "status": "failed",
+      "evidence": {
+        "run_id": "70024220-f6b1-44e7-ae79-5d2824ae09f1",
+        "tools": [
+          "search_web",
+          "search_web",
+          "search_web",
+          "search_web"
+        ],
+        "usage": {
+          "input": 270526,
+          "output": 3655,
+          "calls": 13,
+          "costUsd": null
+        },
+        "error": "evaluation_budget_exceeded:max_input_tokens"
+      }
+    },
+    {
+      "name": "公司来源可从产品读取",
+      "status": "failed",
+      "evidence": []
+    },
+    {
+      "name": "已保存回复包含可打开网页快照引用",
+      "status": "failed",
+      "evidence": [
+        {
+          "content": "evaluation_budget_exceeded:max_input_tokens",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "id": "70024220-f6b1-44e7-ae79-5d2824ae09f1",
+      "conversationId": "2c0dd8d9-42a8-41f8-9864-57ec5cb3fcff",
+      "projectId": "3ce05f5b-9e58-48a2-a059-07ab3f3132ba",
+      "status": "failed",
+      "stage": "执行失败",
+      "createdAt": "2026-10-03T17:28:20.529Z",
+      "tools": [
+        {
+          "name": "search_web",
+          "status": "started",
+          "toolCallId": "call_00_xAvWvl98TSqG5udCLSNq9623",
+          "timestamp": "2026-10-03T17:28:23.704Z"
+        },
+        {
+          "name": "search_web",
+          "status": "started",
+          "toolCallId": "call_01_0YCbenfUSsYZXPW3HhrO1761",
+          "timestamp": "2026-10-03T17:28:23.704Z"
+        },
+        {
+          "name": "search_web",
+          "status": "completed",
+          "toolCallId": "call_00_xAvWvl98TSqG5udCLSNq9623",
+          "timestamp": "2026-10-03T17:28:25.624Z",
+          "summary": "ok"
+        },
+        {
+          "name": "search_web",
+          "status": "failed",
+          "toolCallId": "call_01_0YCbenfUSsYZXPW3HhrO1761",
+          "timestamp": "2026-10-03T17:28:34.231Z",
+          "summary": "fetch failed"
+        },
+        {
+          "name": "search_web",
+          "status": "started",
+          "toolCallId": "call_00_vbUe9cZATkW8XFHDzL943411",
+          "timestamp": "2026-10-03T17:28:35.613Z"
+        },
+        {
+          "name": "search_web",
+          "status": "started",
+          "toolCallId": "call_01_IX4Yq3l5UW6xlX7yf5VA3191",
+          "timestamp": "2026-10-03T17:28:35.613Z"
+        },
+        {
+          "name": "search_web",
+          "status": "completed",
+          "toolCallId": "call_01_IX4Yq3l5UW6xlX7yf5VA3191",
+          "timestamp": "2026-10-03T17:28:42.763Z",
+          "summary": "ok"
+        },
+        {
+          "name": "search_web",
+          "status": "completed",
+          "toolCallId": "call_00_vbUe9cZATkW8XFHDzL943411",
+          "timestamp": "2026-10-03T17:28:43.833Z",
+          "summary": "ok"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_00_LxeDAwUefNaPcE0afwpa6891",
+          "timestamp": "2026-10-03T17:28:44.801Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_00_LxeDAwUefNaPcE0afwpa6891",
+          "timestamp": "2026-10-03T17:28:44.891Z",
+          "summary": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_00_0uyK44g1RmZODAVV9HM25707",
+          "timestamp": "2026-10-03T17:28:46.381Z"
+        },
+        {
+          "name": "search_web",
+          "status": "started",
+          "toolCallId": "call_01_6swViuNldzlCyMIDgVcM6509",
+          "timestamp": "2026-10-03T17:28:46.381Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_00_0uyK44g1RmZODAVV9HM25707",
+          "timestamp": "2026-10-03T17:28:46.488Z",
+          "summary": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+        },
+        {
+          "name": "search_web",
+          "status": "completed",
+          "toolCallId": "call_01_6swViuNldzlCyMIDgVcM6509",
+          "timestamp": "2026-10-03T17:28:47.646Z",
+          "summary": "ok"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_00_XEOPuc7jRU6SWvukSOUu7698",
+          "timestamp": "2026-10-03T17:28:49.180Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_01_sFbU8AXmJmADbrpLRXDK4433",
+          "timestamp": "2026-10-03T17:28:49.180Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_00_XEOPuc7jRU6SWvukSOUu7698",
+          "timestamp": "2026-10-03T17:28:49.217Z",
+          "summary": "getaddrinfo ENOTFOUND liugong.com"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_01_sFbU8AXmJmADbrpLRXDK4433",
+          "timestamp": "2026-10-03T17:28:49.233Z",
+          "summary": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_00_clHqFYJKE8l0gmUtXPv17585",
+          "timestamp": "2026-10-03T17:28:52.084Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_01_tcbXLJOWzugEL8SqRBzk6190",
+          "timestamp": "2026-10-03T17:28:52.084Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_01_tcbXLJOWzugEL8SqRBzk6190",
+          "timestamp": "2026-10-03T17:28:52.141Z",
+          "summary": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_00_clHqFYJKE8l0gmUtXPv17585",
+          "timestamp": "2026-10-03T17:28:57.116Z",
+          "summary": "读取原文超时"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_00_CzXtHgwngJBj76L73oH72615",
+          "timestamp": "2026-10-03T17:28:59.430Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_01_KkiBCX4TRAYciFLXh1Oy9514",
+          "timestamp": "2026-10-03T17:28:59.430Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_00_CzXtHgwngJBj76L73oH72615",
+          "timestamp": "2026-10-03T17:28:59.466Z",
+          "summary": "getaddrinfo ENOTFOUND m.liugong.com"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_01_KkiBCX4TRAYciFLXh1Oy9514",
+          "timestamp": "2026-10-03T17:28:59.494Z",
+          "summary": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_00_booONfBq6HXtgZCEAuxS6376",
+          "timestamp": "2026-10-03T17:29:01.191Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_00_booONfBq6HXtgZCEAuxS6376",
+          "timestamp": "2026-10-03T17:29:06.221Z",
+          "summary": "读取原文超时"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_00_Opvse69flbLdn8qhuMlD4831",
+          "timestamp": "2026-10-03T17:29:07.622Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_01_CW6uwmnFsSTCw0aCC6KF6789",
+          "timestamp": "2026-10-03T17:29:07.623Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_01_CW6uwmnFsSTCw0aCC6KF6789",
+          "timestamp": "2026-10-03T17:29:07.686Z",
+          "summary": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_00_Opvse69flbLdn8qhuMlD4831",
+          "timestamp": "2026-10-03T17:29:12.656Z",
+          "summary": "读取原文超时"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_00_g0OVUnO2WmRFj3BGmjMh6289",
+          "timestamp": "2026-10-03T17:29:15.271Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_01_fnuYH5vIKD0UEQXVaPl21501",
+          "timestamp": "2026-10-03T17:29:15.271Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_01_fnuYH5vIKD0UEQXVaPl21501",
+          "timestamp": "2026-10-03T17:29:20.280Z",
+          "summary": "读取原文超时"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_00_g0OVUnO2WmRFj3BGmjMh6289",
+          "timestamp": "2026-10-03T17:29:35.315Z",
+          "summary": "原文服务器返回 HTTP 522"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_00_hEcicuGo2vv7OlAMbbiN4543",
+          "timestamp": "2026-10-03T17:29:36.773Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_01_Wh10KGwFWoSsPOTrI67f4641",
+          "timestamp": "2026-10-03T17:29:36.773Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_01_Wh10KGwFWoSsPOTrI67f4641",
+          "timestamp": "2026-10-03T17:29:37.529Z",
+          "summary": "原文服务器返回 HTTP 403"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_00_hEcicuGo2vv7OlAMbbiN4543",
+          "timestamp": "2026-10-03T17:29:58.963Z",
+          "summary": "原文服务器返回 HTTP 522"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_00_5id8A6IB5uEcn3iPqYMq1075",
+          "timestamp": "2026-10-03T17:30:00.704Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_00_5id8A6IB5uEcn3iPqYMq1075",
+          "timestamp": "2026-10-03T17:30:05.718Z",
+          "summary": "读取原文超时"
+        }
+      ],
+      "usage": {
+        "input": 270526,
+        "output": 3655,
+        "calls": 13,
+        "costUsd": null
+      },
+      "model": "deepseek-flash",
+      "configHash": "45e6ba77ed2b9d5c26493c7692b6e680e6dbec997cb7b5a000db58c6bf3c046e",
+      "messageId": "a13f5fcb-abce-46a9-b724-c67d35f5370f",
+      "evaluation": {
+        "profile": "financial",
+        "budget_group_id": "research-network-1791048500496",
+        "budget": {
+          "max_model_calls": 14,
+          "max_input_tokens": 250000,
+          "max_output_tokens": 100000,
+          "max_total_tokens": 350000,
+          "max_wall_seconds": 900
+        },
+        "started_at": "2026-10-03T17:28:20.529Z",
+        "deadline_at": "2026-10-03T17:43:20.529Z",
+        "elapsed_seconds": 108.717,
+        "input_limit_enforcement": "post_usage_soft_cap",
+        "usage": {
+          "model_calls": 13,
+          "settled_calls": 13,
+          "input_tokens": 270526,
+          "output_tokens": 3655,
+          "total_tokens": 274181,
+          "failed_calls": 0,
+          "unknown_usage_calls": 0
+        },
+        "reserved": {
+          "model_calls": 0,
+          "output_tokens": 0
+        },
+        "unknown_output_charge": 0,
+        "denied_calls": 0,
+        "in_flight": [],
+        "overage": {
+          "input_tokens": 20526,
+          "output_tokens": 0,
+          "total_tokens": 0
+        },
+        "stopped_reason": "max_input_tokens"
+      },
+      "error": "evaluation_budget_exceeded:max_input_tokens",
+      "finishedAt": "2026-10-03T17:30:09.146Z"
+    }
+  ],
+  "project_id": "3ce05f5b-9e58-48a2-a059-07ab3f3132ba",
+  "conversation_id": "2c0dd8d9-42a8-41f8-9864-57ec5cb3fcff",
+  "search_run_id": "70024220-f6b1-44e7-ae79-5d2824ae09f1",
+  "finished_at": "2026-10-03T17:30:09.308Z"
+}

@@ -1,0 +1,135 @@
+{
+  "checked_at": "2026-10-03T17:53:44.938Z",
+  "scope": "Controlled browser API fixtures only; no real model requests.",
+  "passed": 7,
+  "checks": [
+    {
+      "name": "首次打开数据集页面自动加载最新真实报告并显示逐项分数",
+      "passed": true
+    },
+    {
+      "name": "失败报告中通过项保持普通颜色，只有失败标题和失败项使用错误色",
+      "passed": true
+    },
+    {
+      "name": "历史报告按钮在当前页面加载流程和字段结果，不打开新页或重新运行",
+      "passed": true
+    },
+    {
+      "name": "回访时即使 localStorage 保存旧报告，也默认显示服务端最新报告",
+      "passed": true
+    },
+    {
+      "name": "运行进度使用各会话自然语言阶段，原始 JSON 和内部日志不出现在产品界面",
+      "passed": true
+    },
+    {
+      "name": "金融整表、通用Pi对照及研报纠错各发送正确独立模式，旧回归独立保留",
+      "passed": true
+    },
+    {
+      "name": "所有 API 均由浏览器 fixture 响应，无真实会话、模型调用或浏览器异常",
+      "passed": true
+    }
+  ],
+  "computedColors": {
+    "title": "rgb(158, 67, 67)",
+    "passed": "rgb(119, 119, 119)",
+    "failed": "rgb(163, 51, 51)"
+  },
+  "apiRequests": [
+    {
+      "path": "/api/projects",
+      "method": "GET"
+    },
+    {
+      "path": "/api/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/api/health",
+      "method": "GET"
+    },
+    {
+      "path": "/api/projects",
+      "method": "GET"
+    },
+    {
+      "path": "/api/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/api/health",
+      "method": "GET"
+    },
+    {
+      "path": "/api/projects/fixture/conversations",
+      "method": "GET"
+    },
+    {
+      "path": "/api/projects/fixture/documents",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/catalog",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/catalog",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/run/latest",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/run/older",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/catalog",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/catalog",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/run/latest",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/run",
+      "method": "POST"
+    },
+    {
+      "path": "/api/benchmark/run/fixture-running",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/run",
+      "method": "POST"
+    },
+    {
+      "path": "/api/benchmark/run/fixture-running",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/run",
+      "method": "POST"
+    },
+    {
+      "path": "/api/benchmark/run/fixture-running",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/run",
+      "method": "POST"
+    },
+    {
+      "path": "/api/benchmark/run/fixture-running",
+      "method": "GET"
+    }
+  ],
+  "pageErrors": []
+}

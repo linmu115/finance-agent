@@ -1,0 +1,90 @@
+{
+  "source_report": "benchmark/results/pi-workflow-4c1fddcc-8854-4415-b687-81fdc15ede67.json",
+  "reviewed_at": "2026-10-03T14:27:43.071Z",
+  "official_status": "failed",
+  "official_gold_score": "35/37",
+  "official_flow_score": "11/12",
+  "original_report_changed": false,
+  "gold_changed": false,
+  "new_model_calls": 0,
+  "findings": [
+    {
+      "id": "02_usd_million_cashflow_B6_2025-FY",
+      "classification": "benchmark_false_negative",
+      "reason": "The frozen label regex omits an equivalent Chinese wording for the original English PPE purchase cash-flow item. The actual dynamic metric, cash-flow direction, exact base-currency amount, period, currency and scope agree with the source. This observation does not overwrite the official automated failure.",
+      "original_cell_text": "Payments for acquisition of property plant and equipment | (2.375) | (1.625)",
+      "expected_label_regex": "购建|购置|固定资产|资本.*支出",
+      "actual_metric": "payments_for_acquisition_of_property_plant_and_equipment",
+      "actual_label": "购买物业、厂房及设备支付的现金",
+      "expected_value": "-2375000",
+      "actual_value": "-2375000.000",
+      "currency": "USD",
+      "scope": "parent_IFRS",
+      "period": "2025-FY"
+    },
+    {
+      "id": "native_assets_2024",
+      "classification": "application_period_error",
+      "reason": "Total assets are a stock at the reporting date. The date endpoint is present, but the stored period ID is a fiscal-year duration; date-filtered queries will not identify it as the expected balance-sheet instant. Correct the semantic period mapping without changing the raw numeric amount.",
+      "expected_period": "2024-12-31",
+      "actual_period": "2024-FY",
+      "actual_period_start": "",
+      "actual_period_end": "2024-12-31",
+      "expected_value": "298944579918.70",
+      "actual_value": "298944579918.70",
+      "physical_original_pdf_page": 5,
+      "source_ref": {
+        "document_id": "934ef1b9e0ec4648bd5cff804404f675",
+        "page": 1,
+        "table_id": "934ef1b9e0ec4648bd5cff804404f675:t1",
+        "row": 8,
+        "column": 2,
+        "cell": "B8",
+        "text": "总资产 | 298,944,579,918.70 | 272,699,660,092.25 | 9.62 | 254,500,826,096.02",
+        "normalization": {
+          "engine": "LangExtract",
+          "version": "langextract-finance-0.3.3",
+          "model": "deepseek-flash",
+          "label": "总资产",
+          "statement": "balance",
+          "period_start": "",
+          "period_end": "2024-12-31",
+          "restatement": "original",
+          "dimensions": {},
+          "scale": "1",
+          "char_interval": [
+            7489,
+            7498
+          ],
+          "row_metric": "assets",
+          "row_label": "总资产",
+          "column_metric": "assets",
+          "column_label": "总资产",
+          "dimension_labels": {},
+          "processing_id": "2128162333be402bb129955d67d5a0b5",
+          "original_metric": "assets",
+          "original_label": "总资产",
+          "canonical_alias": {
+            "status": "reviewed",
+            "engine": "LangExtract",
+            "version": "catalog-langextract-0.3.6",
+            "model": "deepseek-flash",
+            "catalog_hash": "f5f1775546ab9d779cc27f1df15e46c272de7290625e45d3c7c758996db25eab",
+            "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+            "source_metric": "assets",
+            "canonical_metric": "assets",
+            "canonical_label": "总资产",
+            "decision": "keep"
+          }
+        },
+        "bbox": [
+          205.12999725341797,
+          432.04998779296875,
+          306.16998291015625,
+          446.8299865722656
+        ]
+      }
+    }
+  ],
+  "scope": "Two narrowly identified differences in a frozen developer regression suite. The official score remains 35/37. No inference about exhaustive annual-report accuracy."
+}

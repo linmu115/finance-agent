@@ -1,0 +1,601 @@
+{
+  "protocol": {
+    "id": "v08-real-history-compaction-20261004",
+    "created_at": "2026-10-04T05:32:59.162Z",
+    "kind": "development_compaction_fork_comparison",
+    "original_run": "21ea36aa-ee78-4677-b411-b08e2bafecb6",
+    "original_session_sha256": "89f9d61c0dd80e051f2cc8d6271e8df10d0a2f97ced2e29cede9038db7f86166",
+    "tasks": [
+      "复核上一轮得到的两个财务指标。先用 read_research_source 回读对应的已归档新闻原文，再给出公司、报告期间、营业总收入和归母净利润及单位，附实际来源ID。只回读已保存原文，不联网、不下载PDF、不清洗，不把检索摘要当原文。回答简洁。",
+      "继续核对上轮的两个数值，并补充该新闻直接披露的同比增幅。再次回读已归档原文。指出这份新闻能否据此确定 EBIT 或利息收入与支出的大小关系，缺乏证据就明确说明。保持上一轮的单位与期间；不联网、不下载PDF、不清洗。回答简洁。"
+    ],
+    "per_arm_budget": {
+      "max_model_calls": 8,
+      "max_input_tokens": 180000,
+      "max_output_tokens": 32000,
+      "max_total_tokens": 212000,
+      "max_wall_seconds": 360
+    },
+    "order": [
+      "disabled",
+      "enabled"
+    ],
+    "model": "deepseek-flash",
+    "context_window": 1048576,
+    "max_output_tokens": 8192,
+    "policy": {
+      "targetTokens": 16000,
+      "keepRecentTokens": 4000,
+      "summaryMaxTokens": 2048
+    },
+    "boundary": "Two local forks of the same genuine provider/tool history; lower trigger is an engineering smoke test, not the production 96k threshold or a held-out-company accuracy benchmark. Sequential order/cache warmth is not controlled. No monetary savings claim without verified pricing. Failed arms remain in this report; no automatic rerun.",
+    "acceptance": [
+      "source reread in each turn",
+      "correct period, numbers and units",
+      "no new search/download/processing",
+      "enabled checkpoint exists and exact source pointers survive",
+      "history prefix unchanged",
+      "all summary usage counted in budget",
+      "follow-up continues after RunManager restart"
+    ]
+  },
+  "status": "failed",
+  "started_at": "2026-10-04T05:32:59.164Z",
+  "arms": [
+    {
+      "enabled": false,
+      "conversation_id": "3276b8eb-4f8f-43f2-a383-c2f658487f3e",
+      "history_sha256": "8fbcd0c3e0d08c82ea06e516aeeaa1145a2699429cbcd0cdf4421cfdcc18da87",
+      "runs": [
+        {
+          "id": "cbce5c4a-84bd-4ff6-840e-e23632e908af",
+          "status": "completed",
+          "usage": {
+            "input": 68313,
+            "output": 474,
+            "calls": 2,
+            "costUsd": null
+          },
+          "evaluation": {
+            "profile": "financial",
+            "budget_group_id": "compact-3276b8eb-4f8f-43f2-a383-c2f658487f3e",
+            "budget": {
+              "max_model_calls": 8,
+              "max_input_tokens": 180000,
+              "max_output_tokens": 32000,
+              "max_total_tokens": 212000,
+              "max_wall_seconds": 360
+            },
+            "started_at": "2026-10-04T05:33:04.201Z",
+            "deadline_at": "2026-10-04T05:39:04.201Z",
+            "elapsed_seconds": 6.155,
+            "input_limit_enforcement": "post_usage_soft_cap",
+            "usage": {
+              "model_calls": 2,
+              "settled_calls": 2,
+              "input_tokens": 68313,
+              "output_tokens": 474,
+              "total_tokens": 68787,
+              "failed_calls": 0,
+              "unknown_usage_calls": 0
+            },
+            "reserved": {
+              "model_calls": 0,
+              "output_tokens": 0
+            },
+            "unknown_output_charge": 0,
+            "denied_calls": 0,
+            "in_flight": [],
+            "overage": {
+              "input_tokens": 0,
+              "output_tokens": 0,
+              "total_tokens": 0
+            },
+            "stopped_reason": null
+          },
+          "tools": [
+            "read_research_source"
+          ],
+          "answer": "## 复核结果（仅回读已归档原文）\n\n来源：`web_f34cddc6-52c8-41ea-a7e1-f290981805af`\n- 标题：柳工公布上半年业绩：净利润12.3亿元，同比增长25.05%\n- 网址：https://www.liugong.com/newslist/925.html（柳工官网新闻，快照于 2026-10-04 保存；页面无可机器识别的发布日期，undated）\n\n| 项目 | 内容 |\n|---|---|\n| 公司 | 柳工（广西柳工机械股份有限公司，官网新闻正文表述） |\n| 报告期间 | 2025年半年度（报告期内；原文称\"8月27日，柳工发布2025年半年度报告\"） |\n| 营业总收入 | 181.81 亿元人民币（同比 +13.21%） |\n| 归母净利润 | 12.30 亿元人民币（同比 +25.05%） |\n| 单位 | 人民币亿元（官网新闻为亿元级两位小数表述） |\n\n原文引用：\"8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。\"[web_f34cddc6-52c8-41ea-a7e1-f290981805af]\n\n说明：数值与上一轮一致，本次未联网、未下载PDF、未清洗，仅离线回读该快照；官网新闻未标注合并/母公司口径，也未给出元级精确金额。",
+          "model_usage": [
+            {
+              "requestId": "ffca0733-4a8d-4648-93c0-c11755ebf2ce",
+              "phase": "main",
+              "stopReason": "toolUse",
+              "usage": {
+                "input": 32032,
+                "output": 101,
+                "cacheRead": 1408,
+                "cacheWrite": 0,
+                "reasoning": 39,
+                "totalTokens": 33541,
+                "cost": {
+                  "input": 0,
+                  "output": 0,
+                  "cacheRead": 0,
+                  "cacheWrite": 0,
+                  "total": 0
+                }
+              },
+              "usageKnown": true
+            },
+            {
+              "requestId": "1aa7251a-b607-4bd5-ab5a-70db79ae244b",
+              "phase": "main",
+              "stopReason": "stop",
+              "usage": {
+                "input": 1337,
+                "output": 373,
+                "cacheRead": 33536,
+                "cacheWrite": 0,
+                "reasoning": 0,
+                "totalTokens": 35246,
+                "cost": {
+                  "input": 0,
+                  "output": 0,
+                  "cacheRead": 0,
+                  "cacheWrite": 0,
+                  "total": 0
+                }
+              },
+              "usageKnown": true
+            }
+          ]
+        },
+        {
+          "id": "a5a8a193-b68b-4604-81dc-aced1f2374d9",
+          "status": "completed",
+          "usage": {
+            "input": 72250,
+            "output": 736,
+            "calls": 2,
+            "costUsd": null
+          },
+          "evaluation": {
+            "profile": "financial",
+            "budget_group_id": "compact-3276b8eb-4f8f-43f2-a383-c2f658487f3e",
+            "budget": {
+              "max_model_calls": 8,
+              "max_input_tokens": 180000,
+              "max_output_tokens": 32000,
+              "max_total_tokens": 212000,
+              "max_wall_seconds": 360
+            },
+            "started_at": "2026-10-04T05:33:04.201Z",
+            "deadline_at": "2026-10-04T05:39:04.201Z",
+            "elapsed_seconds": 11.796,
+            "input_limit_enforcement": "post_usage_soft_cap",
+            "usage": {
+              "model_calls": 4,
+              "settled_calls": 4,
+              "input_tokens": 140563,
+              "output_tokens": 1210,
+              "total_tokens": 141773,
+              "failed_calls": 0,
+              "unknown_usage_calls": 0
+            },
+            "reserved": {
+              "model_calls": 0,
+              "output_tokens": 0
+            },
+            "unknown_output_charge": 0,
+            "denied_calls": 0,
+            "in_flight": [],
+            "overage": {
+              "input_tokens": 0,
+              "output_tokens": 0,
+              "total_tokens": 0
+            },
+            "stopped_reason": null
+          },
+          "tools": [
+            "read_research_source"
+          ],
+          "answer": "## 核对结果（离线回读同一已归档快照）\n\n来源ID：`web_f34cddc6-52c8-41ea-a7e1-f290981805af`（https://www.liugong.com/newslist/925.html，标题《柳工公布上半年业绩：净利润12.3亿元，同比增长25.05%》，快照保存于 2026-10-04；页面无可机器识别的发布日期，undated）\n\n| 项目 | 数值 | 同比增幅 |\n|---|---|---|\n| 公司 | 柳工（广西柳工机械股份有限公司） | — |\n| 报告期间 | 2025年半年度——原文首句：\"8月27日，柳工发布2025年半年度报告\" | — |\n| 营业总收入 | 181.81 亿元人民币 | +13.21% |\n| 归母净利润 | 12.30 亿元人民币 | +25.05% |\n\n该新闻正文另行直接披露的同比增幅：\n- 国内收入 96.58 亿元，同比 +15.69%\n- 海外收入 85.23 亿元，同比 +10.52%\n- 装载机业务海内外销售收入同比增长均超20%；电动装载机全球销量增长193%；挖掘机业务销售收入同比增长25%、净利润增长超90%\n\n引用：\"……柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%……\"[web_f34cddc6-52c8-41ea-a7e1-f290981805af]\n\n## 关于 EBIT 与利息收支\n\n不能据此确定。原因（均为证据缺失，非数值冲突）：\n1. 该新闻全文（共3段）只披露营业总收入、归母净利润及分部收入/增幅，未披露营业利润、利润总额、财务费用、利息费用或利息收入的任何金额；无法计算 EBIT，也无从比较利息收入与利息支出的大小。\n2. 即使将来取到营业利润，报表\"营业利润\"也不自动等同 EBIT；归母净利润更属于税后、扣除少数股东损益之后的指标。\n3. 因此本次仅能确认上述收入与利润两项及其同比增幅，其余留缺项。\n\n本次未联网、未下载PDF、未清洗任何文档，仅回读已保存原文。",
+          "model_usage": [
+            {
+              "requestId": "79a3e4f2-ea07-41d1-b2bc-e0777e23da38",
+              "phase": "main",
+              "stopReason": "toolUse",
+              "usage": {
+                "input": 152,
+                "output": 214,
+                "cacheRead": 35200,
+                "cacheWrite": 0,
+                "reasoning": 152,
+                "totalTokens": 35566,
+                "cost": {
+                  "input": 0,
+                  "output": 0,
+                  "cacheRead": 0,
+                  "cacheWrite": 0,
+                  "total": 0
+                }
+              },
+              "usageKnown": true
+            },
+            {
+              "requestId": "79a04e9b-a40d-4f60-a5c5-1f1db783b4bb",
+              "phase": "main",
+              "stopReason": "stop",
+              "usage": {
+                "input": 1442,
+                "output": 522,
+                "cacheRead": 35456,
+                "cacheWrite": 0,
+                "reasoning": 0,
+                "totalTokens": 37420,
+                "cost": {
+                  "input": 0,
+                  "output": 0,
+                  "cacheRead": 0,
+                  "cacheWrite": 0,
+                  "total": 0
+                }
+              },
+              "usageKnown": true
+            }
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "name": "turn_1_completed",
+          "passed": true
+        },
+        {
+          "name": "turn_1_reread_original",
+          "passed": true
+        },
+        {
+          "name": "turn_1_no_new_sources",
+          "passed": true
+        },
+        {
+          "name": "turn_1_numbers_period_unit",
+          "passed": true
+        },
+        {
+          "name": "turn_2_completed",
+          "passed": true
+        },
+        {
+          "name": "turn_2_reread_original",
+          "passed": true
+        },
+        {
+          "name": "turn_2_no_new_sources",
+          "passed": true
+        },
+        {
+          "name": "turn_2_numbers_period_unit",
+          "passed": true
+        },
+        {
+          "name": "history_prefix_unchanged",
+          "passed": true
+        },
+        {
+          "name": "checkpoint_matches_policy",
+          "passed": true
+        },
+        {
+          "name": "audit_budget_calls_match",
+          "passed": true
+        }
+      ],
+      "usage": {
+        "input": 34963,
+        "cacheRead": 105600,
+        "cacheWrite": 0,
+        "output": 1210,
+        "summaryInput": 0,
+        "summaryOutput": 0,
+        "calls": 4
+      },
+      "status": "passed",
+      "checkpoints": []
+    },
+    {
+      "enabled": true,
+      "conversation_id": "5dbd4c9c-2b09-4a74-bf28-0c1e5b43e0c0",
+      "history_sha256": "2a8312eae1c38b3ae95c535dffa7c7f2d3430e9f80dc7cce0da84fbdddf43d5e",
+      "runs": [
+        {
+          "id": "34f197d1-e784-4936-b124-ae8a9a0d10ea",
+          "status": "completed",
+          "usage": {
+            "input": 28826,
+            "output": 1334,
+            "calls": 3,
+            "costUsd": null
+          },
+          "evaluation": {
+            "profile": "financial",
+            "budget_group_id": "compact-5dbd4c9c-2b09-4a74-bf28-0c1e5b43e0c0",
+            "budget": {
+              "max_model_calls": 8,
+              "max_input_tokens": 180000,
+              "max_output_tokens": 32000,
+              "max_total_tokens": 212000,
+              "max_wall_seconds": 360
+            },
+            "started_at": "2026-10-04T05:33:16.471Z",
+            "deadline_at": "2026-10-04T05:39:16.471Z",
+            "elapsed_seconds": 8.69,
+            "input_limit_enforcement": "post_usage_soft_cap",
+            "usage": {
+              "model_calls": 3,
+              "settled_calls": 3,
+              "input_tokens": 28826,
+              "output_tokens": 1334,
+              "total_tokens": 30160,
+              "failed_calls": 0,
+              "unknown_usage_calls": 0
+            },
+            "reserved": {
+              "model_calls": 0,
+              "output_tokens": 0
+            },
+            "unknown_output_charge": 0,
+            "denied_calls": 0,
+            "in_flight": [],
+            "overage": {
+              "input_tokens": 0,
+              "output_tokens": 0,
+              "total_tokens": 0
+            },
+            "stopped_reason": null
+          },
+          "tools": [
+            "read_research_source"
+          ],
+          "answer": "## 复核结果（仅回读已归档原文，未联网）\n\n来源ID：`web_f34cddc6-52c8-41ea-a7e1-f290981805af`\n网址：https://www.liugong.com/newslist/925.html（柳工官网新闻，快照获取时间 2026-10-04；页面无可识别标注发布日期，undated）\n\n| 项目 | 内容 |\n|---|---|\n| 公司 | 柳工（广西柳工机械股份有限公司，官网新闻自称\"柳工\"） |\n| 报告期间 | 2025年半年度（报告期，\"上半年\"） |\n| 营业总收入 | 181.81 亿元人民币，同比 +13.21% |\n| 归母净利润 | 12.30 亿元人民币（归属于上市公司股东的净利润），同比 +25.05% |\n\n原文（快照段落 p1）：\"8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。\"[web_f34cddc6-52c8-41ea-a7e1-f290981805af]\n\n口径与限制：\n- 两个指标均为该官网新闻原文直接披露值，与上一轮一致；本次复核仅确认数值、期间和单位，未改写任何数据。\n- 原文只按分部列示国内/海外收入，未标注\"合并/母公司\"字样，故按\"公司整体\"口径转述，不擅自补口径。\n- 原文为亿元、两位小数口径，无元级精确金额；本次未下载PDF、未清洗、未调用检索。\n\n事实与推论区分：公司、期间、181.81亿元、12.30亿元及其同比为披露事实；\"公司整体口径\"为本轮明示的转述处理，属限定说明而非新数据。",
+          "model_usage": [
+            {
+              "requestId": "e50e7f57-0c1f-43d7-a4b6-cd9415ec0725",
+              "phase": "compaction",
+              "stopReason": "stop",
+              "usage": {
+                "input": 4393,
+                "output": 786,
+                "cacheRead": 0,
+                "cacheWrite": 0,
+                "reasoning": 0,
+                "totalTokens": 5179,
+                "cost": {
+                  "input": 0,
+                  "output": 0,
+                  "cacheRead": 0,
+                  "cacheWrite": 0,
+                  "total": 0
+                }
+              },
+              "usageKnown": true
+            },
+            {
+              "requestId": "02aed832-9eae-471e-ab4c-f2dc4e161a21",
+              "phase": "main",
+              "stopReason": "toolUse",
+              "usage": {
+                "input": 9956,
+                "output": 112,
+                "cacheRead": 1536,
+                "cacheWrite": 0,
+                "reasoning": 50,
+                "totalTokens": 11604,
+                "cost": {
+                  "input": 0,
+                  "output": 0,
+                  "cacheRead": 0,
+                  "cacheWrite": 0,
+                  "total": 0
+                }
+              },
+              "usageKnown": true
+            },
+            {
+              "requestId": "fa621d1c-149e-4028-bace-c801714b81d6",
+              "phase": "main",
+              "stopReason": "stop",
+              "usage": {
+                "input": 1421,
+                "output": 436,
+                "cacheRead": 11520,
+                "cacheWrite": 0,
+                "reasoning": 0,
+                "totalTokens": 13377,
+                "cost": {
+                  "input": 0,
+                  "output": 0,
+                  "cacheRead": 0,
+                  "cacheWrite": 0,
+                  "total": 0
+                }
+              },
+              "usageKnown": true
+            }
+          ]
+        },
+        {
+          "id": "2b7277b2-3ccb-4b7f-8e73-3da672131700",
+          "status": "completed",
+          "usage": {
+            "input": 28399,
+            "output": 798,
+            "calls": 2,
+            "costUsd": null
+          },
+          "evaluation": {
+            "profile": "financial",
+            "budget_group_id": "compact-5dbd4c9c-2b09-4a74-bf28-0c1e5b43e0c0",
+            "budget": {
+              "max_model_calls": 8,
+              "max_input_tokens": 180000,
+              "max_output_tokens": 32000,
+              "max_total_tokens": 212000,
+              "max_wall_seconds": 360
+            },
+            "started_at": "2026-10-04T05:33:16.471Z",
+            "deadline_at": "2026-10-04T05:39:16.471Z",
+            "elapsed_seconds": 14.326,
+            "input_limit_enforcement": "post_usage_soft_cap",
+            "usage": {
+              "model_calls": 5,
+              "settled_calls": 5,
+              "input_tokens": 57225,
+              "output_tokens": 2132,
+              "total_tokens": 59357,
+              "failed_calls": 0,
+              "unknown_usage_calls": 0
+            },
+            "reserved": {
+              "model_calls": 0,
+              "output_tokens": 0
+            },
+            "unknown_output_charge": 0,
+            "denied_calls": 0,
+            "in_flight": [],
+            "overage": {
+              "input_tokens": 0,
+              "output_tokens": 0,
+              "total_tokens": 0
+            },
+            "stopped_reason": null
+          },
+          "tools": [
+            "read_research_source"
+          ],
+          "answer": "## 复核结果（再次回读已归档原文，未联网）\n\n来源ID：`web_f34cddc6-52c8-41ea-a7e1-f290981805af`（https://www.liugong.com/newslist/925.html）\n\n| 项目 | 内容 |\n|---|---|\n| 公司 | 柳工（广西柳工机械股份有限公司） |\n| 报告期间 | 2025年半年度（报告期） |\n| 营业总收入 | 181.81 亿元人民币，同比 +13.21% |\n| 归母净利润 | 12.30 亿元人民币，同比 +25.05% |\n\n新闻直接披露的同比增幅（同一段原文）：\n- 营业总收入同比 +13.21%；\n- 国内收入 96.58 亿元，同比 +15.69%；\n- 海外收入 85.23 亿元，同比 +10.52%；\n- 归母净利润同比 +25.05%。\n\n原文（p1）：\"8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。\"[web_f34cddc6-52c8-41ea-a7e1-f290981805af]\n\n另注（同页其他段落、非本次两项指标）：p3 提及海外整机销量、收入、毛利率和净利润均创同期新高，装载机海内外销售收入同比均超20%，电动装载机全球销量增长193%，挖掘机销售收入同比+25%、净利润增长超90%。[web_f34cddc6-52c8-41ea-a7e1-f290981805af]\n\n## 能否据此确定 EBIT 或利息收入与支出的大小关系\n\n不能。明确说明如下：\n- 该新闻全文（p1–p3）只披露营业总收入、分部收入、归母净利润及若干业务线的收入/利润增幅，**未出现营业利润、利润总额、EBIT、财务费用、利息收入或利息支出任何一项**，因此：\n  - **EBIT**：无法确定。原文无营业利润/利润总额，也没有利息或所得税数据，不能从\"营业总收入 + 归母净利润\"推导出 EBIT。\n  - **利息收入与利息支出的大小关系**：无法判断。原文没有财务费用或利息收支明细；即便未来取得财务费用净额（可能为负），也不能单独据此推出利息收入超过或低于利息支出。\n- 结论：就这两个问题，该来源属**证据不足（insufficient evidence）**，需另找公司半年度报告利润表及财务费用/利息收支附注原文，本次不做推断、不联网、不清洗。\n\n口径与限制：金额为亿元、两位小数口径；公司/期间/单位与上一轮一致；两个指标数值本轮复核未发生变化。原文未标注合并/母公司字样，按\"公司整体\"转述，不擅自补口径。事实（181.81亿元、12.30亿元及各同比增幅）与推论（上述\"不能判定\"仅为证据范围判断）已分开。",
+          "model_usage": [
+            {
+              "requestId": "2eea4976-97cb-44e3-bc2b-efc5aab5971d",
+              "phase": "main",
+              "stopReason": "toolUse",
+              "usage": {
+                "input": 171,
+                "output": 99,
+                "cacheRead": 13312,
+                "cacheWrite": 0,
+                "reasoning": 37,
+                "totalTokens": 13582,
+                "cost": {
+                  "input": 0,
+                  "output": 0,
+                  "cacheRead": 0,
+                  "cacheWrite": 0,
+                  "total": 0
+                }
+              },
+              "usageKnown": true
+            },
+            {
+              "requestId": "de268df5-afcc-42c6-8c74-00c8a82d7fc4",
+              "phase": "main",
+              "stopReason": "stop",
+              "usage": {
+                "input": 1348,
+                "output": 699,
+                "cacheRead": 13568,
+                "cacheWrite": 0,
+                "reasoning": 0,
+                "totalTokens": 15615,
+                "cost": {
+                  "input": 0,
+                  "output": 0,
+                  "cacheRead": 0,
+                  "cacheWrite": 0,
+                  "total": 0
+                }
+              },
+              "usageKnown": true
+            }
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "name": "turn_1_completed",
+          "passed": true
+        },
+        {
+          "name": "turn_1_reread_original",
+          "passed": true
+        },
+        {
+          "name": "turn_1_no_new_sources",
+          "passed": true
+        },
+        {
+          "name": "turn_1_numbers_period_unit",
+          "passed": true
+        },
+        {
+          "name": "turn_2_completed",
+          "passed": true
+        },
+        {
+          "name": "turn_2_reread_original",
+          "passed": true
+        },
+        {
+          "name": "turn_2_no_new_sources",
+          "passed": true
+        },
+        {
+          "name": "turn_2_numbers_period_unit",
+          "passed": true
+        },
+        {
+          "name": "history_prefix_unchanged",
+          "passed": true
+        },
+        {
+          "name": "checkpoint_matches_policy",
+          "passed": true
+        },
+        {
+          "name": "exact_saved_source_pointer_retained",
+          "passed": false
+        },
+        {
+          "name": "audit_budget_calls_match",
+          "passed": true
+        }
+      ],
+      "usage": {
+        "input": 17289,
+        "cacheRead": 39936,
+        "cacheWrite": 0,
+        "output": 2132,
+        "summaryInput": 4393,
+        "summaryOutput": 786,
+        "calls": 5
+      },
+      "status": "failed",
+      "checkpoints": [
+        {
+          "id": "aade9a22",
+          "summary": "No prior history.\n\n---\n\n**Turn Context (split turn):**\n\n## Original Request\n用户要求：查询柳工（LiuGong，000528）2025年半年度经营业绩的公司官方原文。具体步骤：\n1. 通过联网搜索找到公司官方网站（liugong.com）的新闻正文；\n2. 读取并保存来源快照；\n3. 依据这份保存的原文，给出营业总收入和归母净利润，并附引用。\n约束：只做此任务，不下载PDF，不清洗其他文档。\n\n## Progress So Far\n- 已完成多轮联网搜索（tavily provider），检索时间戳 retrieved_at 为 2026-10-04T05:28 左右，as_of 均为 null（用户未指定研究截止日）。\n- 第一轮搜索（无域名限制）找到第三方来源，包括：\n  - 证券时报网 stcn.com/article/detail/3270945.html：营业总收入181.81亿元，同比+13.21%；归母净利润12.3亿元，同比+25.05%。\n  - 腾讯新闻 news.qq.com/rain/a/20250827A03DII00：营业收入181.8亿元，同比+13.2%；归母净利润12.3亿元，同比+25.1%。\n  - 新浪财经公司公告页（2025年半年度报告）：营业收入 18,181,039,589.02 元，上年同期 16,060,005,052.72 元，+13.21%；归属于上市公司股东的净利润 1,229,940,076.97 元，上年同期 983,530,909.56 元，+25.05%。\n- 第二轮搜索限定官方域名 liugong.com，找到官方新闻正文候选：\n  - https://www.liugong.com/news/20250827 标题「柳工公布上半年业绩：净利润12.3亿元，同比增长25.05%」，正文载明：营业总收入181.81亿元，同比+13.21%；国内收入96.58亿元，同比+15.69%；海外收入85.23亿元，同比+10.52%；归母净利润12.30亿元，同比+25.05%。\n  - https://www.liugong.com/news/20250712 为业绩预告（归母净利润预增20%~30%），非半年报正式数据。\n  - 另检索到 https://www.liugong.com/newslist/1006.html（2025年年度报告一图读懂）与 https://www.liugong.com/newslist/1053.html（2026柳工半年度报告），均非本次目标。\n\n## Context Needed to Continue\n- 目标官方原文 URL 已定位为 https://www.liugong.com/news/20250827（柳工官网新闻正文，2025年半年度业绩）。\n- 尚未完成：对该官方页面执行读取并保存来源快照（source snapshot），尚未产出保存后的 source_id / artifact_id 等标识符。\n- 尚未完成：基于「保存的官方原文」给出营业总收入与归母净利润并附引用（当前数值来自搜索结果摘要，尚未经保存快照核对）。\n- 口径说明：营业总收入 181.81亿元（合并口径，同比+13.21%）；归母净利润 12.30亿元（归属于上市公司股东的净利润，同比+25.05%）。上述为披露事实，需以保存的官方原文为准复核。\n- 用户输出格式契约：需给出营业总收入与归母净利润两项，并附引用来源。\n- 注意：以上数值均来自搜索摘要，属待核验状态；恢复后须通过资料/成果读取工具读取已保存的官方原文快照核对，不得直接以摘要作为最终证据。\n\n可恢复资料索引（实际工具记录；索引与摘要均不能代替原文核验）：\n{\"documents\":[],\"sources\":[],\"artifacts\":[],\"analysis_runs\":[]}",
+          "details": {
+            "readFiles": [],
+            "modifiedFiles": [],
+            "version": "finance-context-v1",
+            "profile": "financial",
+            "project_id": "b43ae45c-d96b-43b6-ab5b-04306c0eb142",
+            "conversation_id": "5dbd4c9c-2b09-4a74-bf28-0c1e5b43e0c0",
+            "recoveryReferences": {
+              "documents": [],
+              "sources": [],
+              "artifacts": [],
+              "analysis_runs": []
+            }
+          },
+          "tokensBefore": 33320
+        }
+      ]
+    }
+  ],
+  "original_history_unchanged": true,
+  "finished_at": "2026-10-04T05:33:30.883Z"
+}

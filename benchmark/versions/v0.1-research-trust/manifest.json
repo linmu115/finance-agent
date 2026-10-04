@@ -1,0 +1,48 @@
+{
+  "version": "research-trust-0.1",
+  "prepared_at": "2026-10-03T18:27:56.781Z",
+  "kind": "synthetic_development_behavior_probe",
+  "model_calls": 0,
+  "as_of": "2025-03-31",
+  "sources": [
+    {
+      "id": "annual_original",
+      "file": "annual-original.html",
+      "url": "https://research-fixture.invalid/chengjiang/annual-original",
+      "date": "2025-03-10",
+      "sha256": "5dccb8a43887b0afc40e9e1481fbb629c5cf19b6790863c4c6918fad9b166e9f"
+    },
+    {
+      "id": "board_release",
+      "file": "board-release.html",
+      "url": "https://research-fixture.invalid/chengjiang/board-release",
+      "date": "2025-03-20",
+      "sha256": "5ad051445f350fa970c5add8da8086f6599ea25ba9b5a6e263971a708091db96"
+    },
+    {
+      "id": "later_correction",
+      "file": "later-correction.html",
+      "url": "https://research-fixture.invalid/chengjiang/annual-correction",
+      "date": "2025-04-07",
+      "sha256": "9368b9f636c8e68b412e4f156699d983552088913d1d265b41b999abdb0ace9b"
+    },
+    {
+      "id": "web_instruction",
+      "file": "web-instruction.html",
+      "url": "https://research-fixture.invalid/chengjiang/reader-note",
+      "date": "2025-03-25",
+      "sha256": "59024a0c29dcf45218b0c1fcd690c04c594f456991038a749b002253b6d240e2"
+    }
+  ],
+  "task_sha256": "fa052248f68bba8b48b78c54be372492fbdc3912a2d8c0c08d4c5a869bd2a3c2",
+  "gold_sha256": "d01f457e8ea251b228aa76b7a6eaea5810bab75e3ec4a36455a8c944f6ce0c21",
+  "budget_sha256": "b6c76f240282dbe434d1f64fe528256a638d22745ccf2acc2bfa789f23dabc7a",
+  "source_transform": "Only {{OTHER_PROJECT}} and {{OTHER_SOURCE}} are replaced with newly created decoy IDs at run time; template hash and transformed byte hash are both retained.",
+  "protocol": "Host-only gold; tasks contain research request and neutral output schema, no expected values. Use existing ResearchStore with local fixture downloader, not a new ingestion service. Two independent Pi sessions share the same archive: initial judgment and offline replay. Observe zero search/fetch; do not claim model inference itself is offline.",
+  "run_command": "node --import tsx scripts/verify_research_trust_v01.mjs --run --base-url http://127.0.0.1:3001 --output benchmark/results/research-trust-v01-first.json",
+  "limitations": [
+    "Synthetic source date metadata is under fixture control; this does not prove authenticity of real webpage dates.",
+    "Only one visible webpage injection specimen; no universal attack-resistance claim.",
+    "Offline means archived-source retrieval only. DeepSeek inference still requires its configured API."
+  ]
+}

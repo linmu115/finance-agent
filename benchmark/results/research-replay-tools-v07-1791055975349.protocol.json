@@ -1,0 +1,99 @@
+{
+  "kind": "frozen_official_snapshot_calculation_replay_protocol",
+  "created_at": "2026-10-03T19:32:55.360Z",
+  "execution": "Production ResearchStore.read + production service.server MCP calculate_financial_metrics. No application host and no Pi/model execution.",
+  "input": {
+    "project_id": "6f664280-4448-4e8f-a900-70de7eebe73a",
+    "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+    "url": "https://www.liugong.com/newslist/925.html",
+    "source_file_sha256": "1126032c3e779fe188f927e45cf842c9186bc303bcd58c55a54bc1bcca0ede11",
+    "raw_sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+    "locator": "p1",
+    "period": "2025年上半年",
+    "currency": "CNY",
+    "amount_unit": "亿元",
+    "accounting_scope": "company news wording; consolidated scope is not inferred",
+    "published_at": null,
+    "retrieved_at": "2026-10-03T18:42:59.640Z",
+    "disclosed": [
+      {
+        "id": "total",
+        "value": "181.81",
+        "literal": "营业总收入181.81亿元"
+      },
+      {
+        "id": "domestic",
+        "value": "96.58",
+        "literal": "国内收入96.58亿元"
+      },
+      {
+        "id": "overseas",
+        "value": "85.23",
+        "literal": "海外收入85.23亿元"
+      }
+    ]
+  },
+  "operations": [
+    {
+      "id": "regions_sum",
+      "operation": "sum",
+      "inputs": {
+        "values": [
+          "96.58",
+          "85.23"
+        ],
+        "unit": "亿元"
+      },
+      "source_inputs": [
+        "domestic",
+        "overseas"
+      ]
+    },
+    {
+      "id": "regions_minus_total",
+      "operation": "subtract",
+      "inputs": {
+        "a": "181.81",
+        "b": "181.81",
+        "unit": "亿元"
+      },
+      "source_inputs": [
+        "regions_sum",
+        "total"
+      ]
+    },
+    {
+      "id": "domestic_share",
+      "operation": "ratio",
+      "inputs": {
+        "numerator": "96.58",
+        "denominator": "181.81"
+      },
+      "source_inputs": [
+        "domestic",
+        "total"
+      ]
+    },
+    {
+      "id": "overseas_share",
+      "operation": "ratio",
+      "inputs": {
+        "numerator": "85.23",
+        "denominator": "181.81"
+      },
+      "source_inputs": [
+        "overseas",
+        "total"
+      ]
+    }
+  ],
+  "independent_reference": "Python Fraction from frozen disclosed decimal strings, without production imports. Exact sums/differences, ratio absolute tolerance 5e-41 for the current 40-significant-digit calculator output.",
+  "isolation": "Private DATA contains only a copied source JSON/blob and newly created empty database/project. No live DB/settings/key/task copy. Node network entry points denied; Python socket audit hook denies DNS/connect/bind; MCP is stdio.",
+  "replay": "Read archived source and calculate twice, with network denied for both runs. Compare exact source metadata/paragraphs and calculation data, excluding per-call trace_id.",
+  "limitations": [
+    "No new LLM or search call: does not retest model interpretation or source discovery.",
+    "Shares are derived from rounded news figures, not more precise company disclosures. No yuan-level precision is claimed.",
+    "No use of parent-attributable profit as consolidated profit. No external date or accounting scope is inferred.",
+    "Scalar calculation calls do not automatically attach webpage citations; this report records the explicit source locator/literal/value-to-input ledger."
+  ]
+}

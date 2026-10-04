@@ -1,0 +1,644 @@
+from __future__ import annotations
+import hashlib
+import json
+import math
+import mimetypes
+import os
+import re
+import shutil
+import threading
+import time
+import uuid
+from concurrent.futures import ThreadPoolExecutor
+from decimal import Decimal, localcontext
+from pathlib import Path
+from urllib.parse import urlparse
+
+from .normalization import METRICS, decimal_value, metric_id, number_text, tokens
+from .parser import PARSER_VERSION, extract_facts, parse_document
+from .store import Store, dumps, utcnow
+from .processing import ProcessingMixin
+
+def response(data=None, source_refs=None, warnings=None, status="ok"):
+    return {"status":status,"data":data if data is not None else {},"source_refs":source_refs or [],
+            "warnings":warnings or [],"trace_id":uuid.uuid4().hex}
+
+def safe_api_url(url):
+    parsed = urlparse(url)
+    if parsed.username or parsed.password or not parsed.hostname or parsed.query or parsed.fragment:
+        raise ValueError("invalid_api_url")
+    if parsed.scheme != "https" and not (parsed.scheme == "http" and parsed.hostname in {"localhost","127.0.0.1","::1"}):
+        raise ValueError("api_requires_https_or_loopback")
+    return url.rstrip("/")
+
+class FinanceService(ProcessingMixin):
+    def __init__(self, data_dir):
+        self.store = Store(data_dir)
+        self.configs = {}  # Secrets stay in memory; app host restores encrypted configuration.
+        self.config_lock = threading.Lock()
+        self.pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="document-parser")
+        self.analysis_pool = ThreadPoolExecutor(max_workers=2, thread_name_prefix="analysis")
+        self.embedding_pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="embedding-index")
+        self.embedding_lock = threading.RLock()
+        self.embedding_jobs = {}
+        self.embedding_states = {}
+        self.analysis_flags = {}
+        self.analysis_futures = {}
+        self.cancel_flags = {}
+        self.ingest_lock = threading.Lock()
+        self.sandbox = None
+        self._init_processing()
+
+    def create_project(self, project_id, name):
+        if not re.fullmatch(r"[A-Za-z0-9_-]{1,100}", project_id or ""):
+            raise ValueError("invalid_project_id")
+        if not isinstance(name,str) or not name.strip() or len(name)>200:
+            raise ValueError("invalid_project_name")
+        with self.store.connect(write=True) as db:
+            db.execute("INSERT INTO projects(project_id,name,created_at) VALUES(?,?,?) ON CONFLICT(project_id) DO UPDATE SET name=excluded.name",
+                       (project_id,name,utcnow()))
+        return response(self.store.project(project_id))
+
+    def list_projects(self):
+        with self.store.connect() as db:
+            items = [dict(r) for r in db.execute("SELECT p.*,(SELECT count(*) FROM documents d WHERE d.project_id=p.project_id) document_count FROM projects p ORDER BY created_at")]
+        return response({"items":items})
+
+    def list_documents(self, project_id):
+        self.store.project(project_id)
+        with self.store.connect() as db:
+            ids = [r[0] for r in db.execute("SELECT document_id FROM documents WHERE project_id=? ORDER BY created_at DESC",(project_id,))]
+        return response({"items":[self.get_document(project_id,i)["data"] for i in ids]})
+
+    def get_document(self, project_id, document_id):
+        doc = self.store.document(project_id,document_id)
+        with self.store.connect() as db:
+            doc["table_count"] = db.execute("SELECT count(*) FROM source_tables WHERE document_id=?",(document_id,)).fetchone()[0]
+            doc["fact_count"] = db.execute("SELECT count(*) FROM facts WHERE document_id=?",(document_id,)).fetchone()[0]
+            doc["normalized_fact_count"] = db.execute("SELECT count(*) FROM facts WHERE document_id=? AND json_extract(source_json,'$.normalization.engine')='LangExtract'",(document_id,)).fetchone()[0]
+            doc["legacy_fact_count"] = doc["fact_count"]-doc["normalized_fact_count"]
+            has_semantic = db.execute("SELECT 1 FROM normalization_batches WHERE document_id=? LIMIT 1",(document_id,)).fetchone()
+            doc["normalization_engine"] = "LangExtract" if has_semantic else "legacy_rules" if doc["fact_count"] else "unprocessed"
+        return response(doc, warnings=doc["warnings"])
+
+    def configure_processing(self, project_id, embedding=None, ocr=None):
+        self.store.project(project_id)
+        current = dict(self.configs.get(project_id,{}))
+        for name, config in (("embedding",embedding),("ocr",ocr)):
+            if config is None:
+                continue
+            if not isinstance(config,dict):
+                raise ValueError("config_requires_object")
+            allowed = {"enabled","base_url","endpoint","model","api_key","dimensions","mode","max_chunks"}
+            if set(config) - allowed:
+                raise ValueError("unsupported_config_field")
+            clean = dict(config)
+            url = clean.get("base_url") or clean.get("endpoint")
+            if url:
+                clean["base_url"] = safe_api_url(url)
+            if name=="embedding" and clean.get("enabled"):
+                if not url or not clean.get("model"):
+                    raise ValueError("embedding_requires_endpoint_and_model")
+                if clean.get("dimensions") is not None and not 1 <= int(clean["dimensions"]) <= 65536:
+                    raise ValueError("invalid_embedding_dimensions")
+            if name=="ocr" and clean.get("mode","local") not in {"local","disabled","api"}:
+                raise ValueError("invalid_ocr_mode")
+            current[name] = clean
+        with self.config_lock:
+            self.configs[project_id] = current
+        self._schedule_embedding_index(project_id)
+        public = {name:{k:v for k,v in cfg.items() if k!="api_key"} | {"has_api_key":bool(cfg.get("api_key"))} for name,cfg in current.items()}
+        return response(public)
+
+    def ingest_document(self, project_id, path, original_name):
+        self.store.project(project_id)
+        source = self.store.upload_path(path)
+        if not isinstance(original_name,str) or Path(original_name).name!=original_name or len(original_name)>240:
+            raise ValueError("invalid_original_name")
+        ext = Path(original_name).suffix.lower()
+        if ext not in {".pdf",".xlsx",".xls",".csv",".tsv",".json",".png",".jpg",".jpeg",".webp"}:
+            raise ValueError("unsupported_document_type")
+        sha = hashlib.sha256(source.read_bytes()).hexdigest()
+        with self.ingest_lock:
+            with self.store.connect() as db:
+                prior = db.execute("SELECT document_id,state FROM documents WHERE project_id=? AND sha256=? AND parser_version=?",
+                                   (project_id,sha,PARSER_VERSION)).fetchone()
+                if prior and prior["state"] not in {"failed","cancelled"}:
+                    job = db.execute("SELECT * FROM jobs WHERE project_id=? AND document_id=? ORDER BY created_at DESC LIMIT 1",(project_id,prior["document_id"])).fetchone()
+                    return response(dict(job) | {"deduplicated":True}, status="accepted" if prior["state"] in {"queued","parsing","validating"} else "ok")
+            document_id = prior["document_id"] if prior else uuid.uuid4().hex
+            destination = self.store.root/"documents"/project_id/(document_id+ext)
+            destination.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(source,destination)
+            job_id = uuid.uuid4().hex
+            with self.store.connect(write=True) as db:
+                if prior:
+                    chunk_ids=[r[0] for r in db.execute("SELECT chunk_id FROM chunks WHERE document_id=?",(document_id,))]
+                    db.executemany("DELETE FROM chunks_fts WHERE chunk_id=?",[(x,) for x in chunk_ids])
+                    for table in ("facts","chunks","source_tables","pages"):
+                        db.execute(f"DELETE FROM {table} WHERE document_id=?",(document_id,))
+                    db.execute("UPDATE documents SET state='queued',warnings_json='[]' WHERE document_id=?",(document_id,))
+                else:
+                    db.execute("""INSERT INTO documents(document_id,project_id,original_name,sha256,relative_path,media_type,
+                                state,parser_version,created_at) VALUES(?,?,?,?,?,?,?,?,?)""",
+                               (document_id,project_id,original_name,sha,str(destination.relative_to(self.store.root)),
+                                mimetypes.guess_type(original_name)[0] or "application/octet-stream","queued",PARSER_VERSION,utcnow()))
+                db.execute("INSERT INTO jobs VALUES(?,?,?,?,?,?,?,?,?)",
+                           (job_id,project_id,document_id,"queued",0,"等待解析",None,utcnow(),utcnow()))
+            self.cancel_flags[job_id] = threading.Event()
+            self.pool.submit(self._parse_job,project_id,document_id,job_id,destination,original_name)
+        return response({"job_id":job_id,"document_id":document_id,"state":"queued","progress":0},status="accepted")
+
+    def _parse_job(self, project_id, document_id, job_id, path, name):
+        try:
+            flag = self.cancel_flags[job_id]
+            self.store.job_update(job_id,"parsing",0.01,"正在读取原文")
+            parsed = parse_document(path,name,
+                                    lambda p,m:self.store.job_update(job_id,"parsing",p,m),flag.is_set,
+                                    dict(self.configs.get(project_id,{})))
+            if flag.is_set():
+                raise InterruptedError("cancelled")
+            self.store.job_update(job_id,"validating",.9,"正在校验单位、期间与来源")
+            facts = extract_facts(parsed,document_id)
+            with self.store.connect(write=True) as db:
+                db.execute("UPDATE documents SET company=?,report_year=?,page_count=?,warnings_json=? WHERE document_id=?",
+                           (parsed["company"],parsed["report_year"],len(parsed["pages"]),dumps(parsed["warnings"]),document_id))
+                for page in parsed["pages"]:
+                    db.execute("INSERT INTO pages VALUES(?,?,?,?,?,?,?)",(document_id,page["page"],page["text"],page.get("printed_page"),page.get("width"),page.get("height"),int(page.get("ocr",False))))
+                    segments = page.get("segments")
+                    if segments is None:
+                        segments = [{"text":page["text"][start:start+1400],"source_id":None} for start in range(0,len(page["text"]),1200)]
+                    for seg in segments:
+                        if not seg["text"].strip(): continue
+                        ref = {"document_id":document_id,"page":page["page"]}
+                        if seg.get("source_id"): ref["source_id"] = seg["source_id"]
+                        self._insert_chunk(db,project_id,document_id,page["page"],seg["text"],ref)
+                for table in parsed["tables"]:
+                    table_id=f"{document_id}:t{table['index']}"
+                    db.execute("INSERT INTO source_tables VALUES(?,?,?,?,?,?,?)",
+                               (table_id,document_id,table["page"],table.get("sheet"),dumps(table.get("bbox")),dumps(table["rows"]),dumps(table.get("cells",{}))))
+                    for row_index,row in enumerate(table["rows"]):
+                        if not any(row):continue
+                        ref={"document_id":document_id,"page":table["page"],"table_id":table_id,"row":row_index+1}
+                        if table.get("sheet"):ref["sheet"]=table["sheet"]
+                        if table.get("source_rows"):ref["source_id"]=table["source_rows"][row_index]
+                        self._insert_chunk(db,project_id,document_id,table["page"]," | ".join(row),ref)
+                for fact in facts:
+                    db.execute("INSERT INTO facts VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                               (uuid.uuid4().hex,document_id,project_id,parsed["company"],fact["metric"],fact["year"],fact["period"],fact["scope"],fact["currency"],
+                                fact["raw_value"],fact["raw_unit"],fact["value"],dumps(fact["source"]),fact["priority"],fact["quality"]))
+            if flag.is_set():
+                raise InterruptedError("cancelled")
+            state = "needs_review" if parsed["warnings"] or any(f["quality"]=="ocr_review" for f in facts) else "ready"
+            self.store.job_update(job_id,state,1,f"已解析 {len(parsed['pages'])} 页、{len(parsed['tables'])} 表、{len(facts)} 条财务候选")
+            self._schedule_embedding_index(project_id)
+        except InterruptedError:
+            self.store.job_update(job_id,"cancelled",0,"任务已取消")
+        except Exception as exc:
+            # Do not persist arbitrary request objects/URLs that may contain credentials.
+            error = str(exc) if isinstance(exc,ValueError) and re.fullmatch("[a-z0-9_]+",str(exc)) else type(exc).__name__
+            diagnostics = getattr(exc, "local_ocr_diagnostics", None)
+            if diagnostics is not None:
+                # This diagnostic is produced only by the local OCR branch, without
+                # request configuration or frame locals. Never expose it as model evidence.
+                try:
+                    folder = self.store.root / "diagnostics"
+                    folder.mkdir(exist_ok=True)
+                    (folder / ("ingestion-" + job_id + ".json")).write_text(
+                        dumps({"job_id": job_id, "document_id": document_id, "project_id": project_id,
+                               "parser_version": PARSER_VERSION, "created_at": utcnow(), **diagnostics}), encoding="utf-8")
+                except OSError:
+                    pass  # Diagnostic I/O must not prevent the actual job becoming failed.
+            self.store.job_update(job_id,"failed",0,"解析失败",error)
+        finally:
+            self.cancel_flags.pop(job_id,None)
+
+    def _insert_chunk(self, db, project_id, document_id, page, text, ref):
+        chunk_id=uuid.uuid4().hex
+        db.execute("INSERT INTO chunks VALUES(?,?,?,?,?,?,?)",(chunk_id,project_id,document_id,page,ref.get("source_id"),text,dumps(ref)))
+        db.execute("INSERT INTO chunks_fts(chunk_id,tokens) VALUES(?,?)",(chunk_id,tokens(text)))
+
+    def get_ingestion_status(self, project_id, job_id):
+        self.store.project(project_id)
+        with self.store.connect() as db:
+            row=db.execute("SELECT * FROM jobs WHERE job_id=? AND project_id=?",(job_id,project_id)).fetchone()
+        if not row:raise ValueError("job_not_found_in_project")
+        return response(dict(row))
+
+    def cancel_ingestion(self, project_id, job_id):
+        state = self.get_ingestion_status(project_id,job_id)["data"]
+        if job_id in self.cancel_flags:self.cancel_flags[job_id].set()
+        return response(state|{"cancel_requested":job_id in self.cancel_flags})
+
+    def get_source_table(self, project_id, document_id, table_id=None):
+        self.store.document(project_id,document_id)
+        with self.store.connect() as db:
+            if table_id:
+                records=db.execute("SELECT * FROM source_tables WHERE document_id=? AND table_id=?",(document_id,table_id)).fetchall()
+            else:
+                records=db.execute("SELECT * FROM source_tables WHERE document_id=? ORDER BY page,table_id",(document_id,)).fetchall()
+            source_records=db.execute("SELECT source_json FROM chunks WHERE project_id=? AND document_id=? AND source_id IS NOT NULL AND source_id!='' ORDER BY rowid",(project_id,document_id)).fetchall()
+        if table_id and not records:raise ValueError("table_not_found_in_document")
+        row_sources={}
+        for source_record in source_records:
+            ref=json.loads(source_record["source_json"])
+            if ref.get("table_id") and isinstance(ref.get("row"),int):
+                row_sources[(ref["table_id"],ref["row"])]=ref
+        tables=[]
+        for record in records:
+            item=dict(record)
+            for field in ("bbox","rows","cells"):item[field]=json.loads(item.pop(field+"_json"))
+            item["row_source_refs"]=[]
+            for row_number in range(1,len(item["rows"])+1):
+                ref={"document_id":document_id,"page":item["page"],"table_id":item["table_id"],"row":row_number}
+                if item.get("sheet"):ref["sheet"]=item["sheet"]
+                item["row_source_refs"].append(row_sources.get((item["table_id"],row_number),ref))
+            item["source_rows"]=[ref.get("source_id") for ref in item["row_source_refs"]]
+            if not table_id:
+                item["row_count"]=len(item["rows"])
+                item["preview"]=item.pop("rows")[:5]
+                item["row_source_refs"]=item["row_source_refs"][:5]
+                item["source_rows"]=item["source_rows"][:5]
+                item.pop("cells",None)
+            tables.append(item)
+        refs=[{"document_id":document_id,"page":t["page"],"table_id":t["table_id"]} for t in tables]
+        refs.extend(ref for t in tables for ref in t["row_source_refs"] if ref.get("source_id"))
+        return response({"items":tables},refs)
+
+    def get_source_page(self, project_id, document_id, page):
+        doc=self.store.document(project_id,document_id)
+        if not isinstance(page,int) or page<1:raise ValueError("invalid_page")
+        with self.store.connect() as db:
+            row=db.execute("SELECT * FROM pages WHERE document_id=? AND page=?",(document_id,page)).fetchone()
+            chunks=db.execute("SELECT source_id,text,source_json FROM chunks WHERE project_id=? AND document_id=? AND page=? AND source_id IS NOT NULL AND source_id!='' ORDER BY rowid",(project_id,document_id,page)).fetchall()
+        if not row:raise ValueError("page_not_found")
+        data=dict(row)
+        data["segments"]=[{"source_id":chunk["source_id"],"text":chunk["text"],"source_ref":json.loads(chunk["source_json"])} for chunk in chunks]
+        original=self.store.root/doc["relative_path"]
+        if original.suffix.lower()==".pdf":
+            target=self.store.root/"artifacts"/project_id/document_id/f"page-{page}.png"
+            target.parent.mkdir(parents=True,exist_ok=True)
+            if not target.exists():
+                self._render_source_page(original,target,page)
+            data["image_relative_path"]=str(target.relative_to(self.store.root))
+        elif original.suffix.lower() in {".png",".jpg",".jpeg",".webp"}:
+            data["image_relative_path"]=doc["relative_path"]
+        return response(data,[{"document_id":document_id,"page":page,"printed_page":data.get("printed_page")},*[s["source_ref"] for s in data["segments"]]])
+
+    def get_financial_metrics(self, project_id, metrics, company=None, years=None, document_id=None, scope=None):
+        self.store.project(project_id)
+        if not isinstance(metrics,list) or not 1<=len(metrics)<=30:raise ValueError("invalid_metrics")
+        with self.store.connect() as db:
+            catalog={r[0] for r in db.execute("SELECT DISTINCT metric FROM facts WHERE project_id=?",(project_id,))}
+            labels={r[0]:r[1] for r in db.execute("SELECT json_extract(source_json,'$.normalization.label'),metric FROM facts WHERE project_id=?",(project_id,))}
+        resolved=self._resolve_metric_aliases(project_id,metrics)
+        canonical=[m if m in catalog else metric_id(m) or labels.get(m) for m in resolved]
+        if None in canonical:raise ValueError("unknown_metric_use_data_catalog")
+        if document_id:self.store.document(project_id,document_id)
+        query="SELECT f.* FROM facts f JOIN documents d USING(document_id) WHERE f.project_id=? AND f.metric IN ("+",".join("?"*len(canonical))+")"
+        args=[project_id,*canonical]
+        if company:query+=" AND f.company LIKE ?";args.append("%"+company+"%")
+        if years:
+            if len(years)>30 or any(not isinstance(y,int) or not 1900<=y<=2200 for y in years):raise ValueError("invalid_years")
+            query+=" AND f.year IN ("+",".join("?"*len(years))+")";args.extend(years)
+        if document_id:query+=" AND f.document_id=?";args.append(document_id)
+        if scope:
+            if scope not in {"consolidated_CAS","parent_CAS","consolidated_IFRS","parent_IFRS","unspecified"}:raise ValueError("invalid_scope")
+            query+=" AND f.scope=?";args.append(scope)
+        query+=" ORDER BY f.priority DESC,f.rowid"
+        with self.store.connect() as db:records=[dict(r) for r in db.execute(query,args)]
+        selected, warnings={},[]
+        for record in records:
+            record=self._expanded_fact(record)
+            ref=record["source_ref"]
+            key=(record["company"],record["metric"],record["period"],record["scope"],record["currency"],record["version"],dumps(record["dimensions"]))
+            if key in selected:
+                selected[key]["alternative_sources"].append(ref)
+                if record["priority"]==selected[key]["priority"] and record["value"]!=selected[key]["value"]:
+                    selected[key]["quality"]="conflict"
+                    selected[key].setdefault("conflicting_values",[]).append(record["value"])
+                    warnings.append("conflicting_financial_values_require_review")
+                continue
+            selected[key]=record|{"alternative_sources":[]}
+        items=list(selected.values())
+        return response({"items":items,"available_metrics":sorted(catalog | set(METRICS))},[r["source_ref"] for r in items],list(dict.fromkeys(warnings)),
+                        "ok" if items else "insufficient_evidence")
+
+    def calculate_financial_metrics(self, project_id, operation, inputs):
+        self.store.project(project_id)
+        if not isinstance(inputs,dict):raise ValueError("inputs_require_object")
+        refs=[]
+        def num(key):
+            val=inputs.get(key)
+            if isinstance(val,dict) and "fact_id" in val:
+                with self.store.connect() as db:
+                    row=db.execute("SELECT value,source_json FROM facts WHERE fact_id=? AND project_id=?",(val["fact_id"],project_id)).fetchone()
+                if not row:raise ValueError("fact_not_found_in_project")
+                refs.append(json.loads(row["source_json"]))
+                val=row["value"]
+            number=decimal_value(val)
+            if number is None:raise ValueError("invalid_numeric_input_"+key)
+            return number
+        with localcontext() as ctx:
+            ctx.prec=40
+            if operation in {"yoy","percentage_change"}:
+                current,previous=num("current"),num("previous")
+                if previous==0:return response({"reason_code":"zero_denominator"},warnings=["同比基期为零"],status="insufficient_evidence")
+                value=(current-previous)/previous*100;formula="(current - previous) / previous * 100";unit="%"
+            elif operation in {"ratio","margin","cash_conversion","debt_ratio"}:
+                numerator,denominator=num("numerator"),num("denominator")
+                if denominator==0:return response({"reason_code":"zero_denominator"},status="insufficient_evidence")
+                multiplier=100 if operation in {"margin","debt_ratio"} else 1
+                value=numerator/denominator*multiplier;formula="numerator / denominator"+(" * 100" if multiplier==100 else "");unit="%" if multiplier==100 else "ratio"
+            elif operation in {"add","subtract","multiply","divide"}:
+                a,b=num("a"),num("b")
+                if operation=="divide" and b==0:return response({"reason_code":"zero_denominator"},status="insufficient_evidence")
+                value={"add":lambda:a+b,"subtract":lambda:a-b,"multiply":lambda:a*b,"divide":lambda:a/b}[operation]()
+                formula=f"a {dict(add='+',subtract='-',multiply='*',divide='/')[operation]} b";unit=inputs.get("unit","number")
+            elif operation=="sum":
+                if not isinstance(inputs.get("values"),list) or not 1<=len(inputs["values"])<=10000:raise ValueError("invalid_values")
+                vals=[decimal_value(v) for v in inputs["values"]]
+                if None in vals:raise ValueError("invalid_numeric_value")
+                value=sum(vals,Decimal(0));formula="sum(values)";unit=inputs.get("unit","number")
+            else:raise ValueError("unsupported_operation")
+        return response({"operation":operation,"value":number_text(value),"unit":unit,"formula":formula,"inputs":inputs},refs)
+
+    def search_evidence(self, project_id, query, company=None, year=None, limit=8):
+        self.store.project(project_id)
+        if not isinstance(query,str) or not query.strip() or len(query)>3000:raise ValueError("invalid_search_query")
+        limit=max(1,min(int(limit),30))
+        terms=list(dict.fromkeys(tokens(query).split()))[:60]
+        match=" OR ".join('"'+t.replace('"','""')+'"' for t in terms)
+        sql="""SELECT c.*,bm25(chunks_fts) AS rank FROM chunks_fts JOIN chunks c ON c.chunk_id=chunks_fts.chunk_id
+                 JOIN documents d ON d.document_id=c.document_id WHERE chunks_fts MATCH ? AND c.project_id=?"""
+        args=[match,project_id]
+        if company:sql+=" AND d.company LIKE ?";args.append("%"+company+"%")
+        if year:sql+=" AND (d.report_year=? OR c.text LIKE ?)";args.extend([year,"%"+str(year)+"%"])
+        sql+=" ORDER BY rank LIMIT 100"
+        with self.store.connect() as db:
+            rows=[dict(r) for r in db.execute(sql,args)] if match else []
+        scores={r["chunk_id"]:1/(60+i) for i,r in enumerate(rows,1)}
+        by_id={r["chunk_id"]:r for r in rows}
+        warnings=[]
+        cfg=self.configs.get(project_id,{}).get("embedding",{})
+        retrieval="fts5"
+        if cfg.get("enabled"):
+            self._schedule_embedding_index(project_id)
+            try:
+                query_vec=self._embeddings(project_id,[query],cfg)[0]
+                with self.store.connect() as db:
+                    query2="SELECT c.*,d.company,d.report_year FROM chunks c JOIN documents d USING(document_id) WHERE c.project_id=? AND d.state IN ('ready','needs_review')"
+                    query_args=[project_id]
+                    if company:query2+=" AND d.company LIKE ?";query_args.append("%"+company+"%")
+                    if year:query2+=" AND (d.report_year=? OR c.text LIKE ?)";query_args.extend([year,"%"+str(year)+"%"])
+                    candidates=[dict(r) for r in db.execute(query2,query_args)]
+                    ranked=[]
+                    for row in candidates:
+                        key=self._embedding_key(project_id,row["text"],cfg)
+                        cached=db.execute("SELECT vector_json FROM embedding_cache WHERE cache_key=? AND project_id=?",(key,project_id)).fetchone()
+                        if cached:
+                            vec=json.loads(cached[0])
+                            if len(vec)==len(query_vec):
+                                dot=sum(x*y for x,y in zip(query_vec,vec))
+                                denom=math.sqrt(sum(x*x for x in query_vec)*sum(x*x for x in vec))
+                                ranked.append((dot/denom if denom else 0,row))
+                    for i,(_,row) in enumerate(sorted(ranked,key=lambda x:x[0],reverse=True)[:100],1):
+                        scores[row["chunk_id"]]=scores.get(row["chunk_id"],0)+1/(60+i)
+                        by_id[row["chunk_id"]]=row
+                if ranked:retrieval="hybrid_rrf"
+                if len(ranked)<len(candidates):warnings.append(f"embedding_index_partial:{len(ranked)}/{len(candidates)}; automatic_indexing")
+            except Exception as exc:
+                warnings.append("embedding_unavailable:"+type(exc).__name__)
+        items=[]
+        for chunk_id in sorted(scores,key=scores.get,reverse=True)[:limit]:
+            row=by_id[chunk_id]
+            ref=json.loads(row["source_json"])
+            items.append({"chunk_id":chunk_id,"text":row["text"],"score":scores[chunk_id],"source_ref":ref})
+        return response({"items":items,"retrieval":retrieval,"embedding_state":dict(self.embedding_states.get(project_id,{}))},[i["source_ref"] for i in items],warnings,
+                        status="ok" if items else "insufficient_evidence")
+
+    def _embedding_key(self, project_id, text, cfg):
+        return hashlib.sha256(dumps([project_id,cfg.get("base_url"),cfg.get("model"),cfg.get("dimensions"),text]).encode()).hexdigest()
+
+    def _schedule_embedding_index(self, project_id):
+        """Configured upload -> background index -> search. Configuration namespaces never mix."""
+        cfg=dict(self.configs.get(project_id,{}).get("embedding",{}))
+        if not cfg.get("enabled"):
+            return
+        generation=self._embedding_key(project_id,"__configuration__",cfg)
+        with self.embedding_lock:
+            prior=self.embedding_jobs.get((project_id,generation))
+            if prior and not prior.done():return
+            state=self.embedding_states.get(project_id,{})
+            # A failure has a short backoff rather than firing paid API requests on every search.
+            if state.get("generation")==generation and state.get("state")=="failed" and time.monotonic()-state.get("_failed_at",0)<30:return
+            self.embedding_states[project_id]={"state":"queued","generation":generation,"indexed":0}
+            self.embedding_jobs[(project_id,generation)]=self.embedding_pool.submit(self._automatic_embedding_index,project_id,generation,cfg)
+
+    def _automatic_embedding_index(self, project_id, generation, cfg):
+        indexed=0
+        try:
+            while self._embedding_key(project_id,"__configuration__",self.configs.get(project_id,{}).get("embedding",{}))==generation:
+                result=self._index_embeddings(project_id,500,cfg)
+                indexed+=result["data"]["indexed"]
+                remaining=result["data"]["remaining"]
+                if self._embedding_key(project_id,"__configuration__",self.configs.get(project_id,{}).get("embedding",{}))!=generation:
+                    break
+                self.embedding_states[project_id]={"state":"ready" if remaining==0 else "indexing","generation":generation,
+                                                   "indexed":indexed,"remaining":remaining,"total_chunks":result["data"]["total_chunks"]}
+                if remaining==0:break
+        except Exception as exc:
+            if self._embedding_key(project_id,"__configuration__",self.configs.get(project_id,{}).get("embedding",{}))==generation:
+                self.embedding_states[project_id]={"state":"failed","generation":generation,"indexed":indexed,
+                                                   "error":type(exc).__name__,"_failed_at":time.monotonic()}
+
+    def _embeddings(self, project_id, texts, cfg):
+        import httpx
+        base=cfg.get("base_url") or cfg.get("endpoint")
+        endpoint=base if base.endswith("/embeddings") else base.rstrip("/")+"/embeddings"
+        headers={"Authorization":"Bearer "+cfg["api_key"]} if cfg.get("api_key") else {}
+        body={"model":cfg["model"],"input":texts}
+        if cfg.get("dimensions"):body["dimensions"]=int(cfg["dimensions"])
+        with httpx.Client(timeout=45,trust_env=False) as client:
+            result=client.post(endpoint,headers=headers,json=body)
+            result.raise_for_status()
+            data=result.json()
+        vectors=[r["embedding"] for r in sorted(data["data"],key=lambda r:r["index"])]
+        if len(vectors)!=len(texts):raise ValueError("embedding_count_mismatch")
+        for vector in vectors:
+            if not isinstance(vector,list) or not 1<=len(vector)<=65536 or not all(isinstance(v,(int,float)) and math.isfinite(v) for v in vector):raise ValueError("invalid_embedding_vector")
+            if cfg.get("dimensions") and len(vector)!=int(cfg["dimensions"]):raise ValueError("embedding_dimensions_mismatch")
+        if len({len(v) for v in vectors}) != 1:raise ValueError("embedding_dimensions_mismatch")
+        with self.store.connect(write=True) as db:
+            for text,vector in zip(texts,vectors):
+                db.execute("INSERT OR REPLACE INTO embedding_cache VALUES(?,?,?,?,?,?)",
+                           (self._embedding_key(project_id,text,cfg),project_id,cfg["model"],len(vector),dumps(vector),utcnow()))
+        return vectors
+
+    def index_embeddings(self, project_id, max_chunks=500):
+        self.store.project(project_id)
+        cfg=self.configs.get(project_id,{}).get("embedding",{})
+        if not cfg.get("enabled"):return response({"indexed":0},warnings=["embedding_not_configured"],status="insufficient_evidence")
+        return self._index_embeddings(project_id,max_chunks,dict(cfg))
+
+    def _index_embeddings(self, project_id, max_chunks, cfg):
+        max_chunks=max(1,min(int(max_chunks),5000))
+        with self.store.connect() as db:
+            rows=db.execute("SELECT c.text FROM chunks c JOIN documents d USING(document_id) WHERE c.project_id=? AND d.state IN ('ready','needs_review')",(project_id,)).fetchall()
+            missing=[r[0] for r in rows if not db.execute("SELECT 1 FROM embedding_cache WHERE cache_key=? AND project_id=?",(self._embedding_key(project_id,r[0],cfg),project_id)).fetchone()]
+        selected=list(dict.fromkeys(missing))[:max_chunks]
+        for i in range(0,len(selected),24):self._embeddings(project_id,selected[i:i+24],cfg)
+        return response({"indexed":len(selected),"remaining":max(0,len(set(missing))-len(selected)),"total_chunks":len(rows)})
+
+    def get_app_state(self, project_id, kind, key):
+        self._app_args(project_id,kind,key)
+        with self.store.connect() as db:
+            row=db.execute("SELECT value_json,updated_at FROM app_state WHERE project_id=? AND kind=? AND key=?",(project_id,kind,key)).fetchone()
+        return response({"value":json.loads(row[0]) if row else None,"updated_at":row[1] if row else None})
+
+    def put_app_state(self, project_id, kind, key, value):
+        self._app_args(project_id,kind,key)
+        encoded=dumps(value)
+        if len(encoded)>4_000_000:raise ValueError("app_state_too_large")
+        with self.store.connect(write=True) as db:
+            db.execute("INSERT INTO app_state VALUES(?,?,?,?,?) ON CONFLICT(project_id,kind,key) DO UPDATE SET value_json=excluded.value_json,updated_at=excluded.updated_at",
+                       (project_id,kind,key,encoded,utcnow()))
+        return response({"key":key,"saved":True})
+
+    def list_app_state(self, project_id, kind):
+        self._app_args(project_id,kind,"_")
+        with self.store.connect() as db:
+            rows=db.execute("SELECT key,value_json,updated_at FROM app_state WHERE project_id=? AND kind=? ORDER BY updated_at DESC",(project_id,kind)).fetchall()
+        return response({"items":[{"key":r["key"],"value":json.loads(r["value_json"]),"updated_at":r["updated_at"]} for r in rows]})
+
+    def _app_args(self, project_id, kind, key):
+        self.store.project(project_id)
+        if kind not in {"conversations","runs","evaluation_budgets"}:raise ValueError("invalid_app_state_kind")
+        if not isinstance(key,str) or not re.fullmatch(r"[A-Za-z0-9_-]{1,120}",key):raise ValueError("invalid_app_state_key")
+
+    def _runner(self):
+        if self.sandbox is None:
+            from sandbox import create_runner
+            self.sandbox=create_runner(self.store.root/"analysis")
+        return self.sandbox
+
+    def run_analysis(self, project_id, code, document_ids=None, timeout_seconds=120, raw_only=False):
+        self.store.project(project_id)
+        if not isinstance(raw_only,bool):raise ValueError("invalid_analysis_input_mode")
+        if not isinstance(code,str) or not 1<=len(code)<=100000:raise ValueError("invalid_analysis_code")
+        if isinstance(timeout_seconds,bool) or not isinstance(timeout_seconds,int) or not 1<=timeout_seconds<=120:
+            raise ValueError("analysis_timeout_must_be_1_to_120")
+        ids=document_ids or [d["document_id"] for d in self.list_documents(project_id)["data"]["items"]]
+        if len(ids)>20:raise ValueError("too_many_analysis_documents")
+        run_id=uuid.uuid4().hex
+        export=self.store.root/"exports"/project_id/run_id
+        export.mkdir(parents=True,exist_ok=True)
+        records=[];pages=[]
+        for document_id in ids:
+            doc=self.store.document(project_id,document_id)
+            tables=self.get_source_table(project_id,document_id)["data"]["items"]
+            for table in tables:
+                records.extend(self.get_source_table(project_id,document_id,table["table_id"])["data"]["items"])
+            prepared=self._read_prepared(project_id,doc)
+            if prepared:
+                pages.extend({"document_id":document_id,"sha256":doc["sha256"],"page":page["page"],"text":page["text"],
+                              "width":page.get("width"),"height":page.get("height"),"words":page.get("words",[]),
+                              "ocr":page.get("ocr",False),"ocr_lines":page.get("ocr_lines",[])} for page in prepared["pages"])
+            else:
+                with self.store.connect() as db:
+                    pages.extend({**dict(row),"sha256":doc["sha256"],"words":[]} for row in db.execute("SELECT document_id,page,text,width,height,ocr FROM pages WHERE document_id=? ORDER BY page",(document_id,)))
+        table_path=export/"tables.json"
+        table_path.write_text(dumps(records),encoding="utf-8")
+        facts=[]
+        while not raw_only:
+            batch=self.query_financial_data(project_id,{"document_ids":ids},limit=10000,offset=len(facts))["data"]
+            facts.extend(batch["items"])
+            if len(facts)>=batch["total"]:break
+        facts_path=export/"facts.json"
+        facts_path.write_text(dumps(facts),encoding="utf-8")
+        pages_path=export/"pages.json"
+        pages_path.write_text(dumps(pages),encoding="utf-8")
+        runner=self._runner()
+        available=runner.availability()
+        if not available.get("available"):
+            result={"run_id":run_id,"project_id":project_id,"state":"runner_unavailable","status":"runner_unavailable","availability":available}
+            self._save_analysis_state(project_id,run_id,result)
+            return response(result,status="error")
+        self._save_analysis_state(project_id,run_id,{"run_id":run_id,"project_id":project_id,"status":"queued","artifacts":[]})
+        self.analysis_flags[run_id]=threading.Event()
+        self.analysis_futures[run_id]=self.analysis_pool.submit(self._analysis_job,runner,project_id,run_id,code,
+                                                              {"tables.json":table_path,"facts.json":facts_path,"pages.json":pages_path},timeout_seconds)
+        return response({"run_id":run_id,"state":"queued"},status="accepted")
+
+    def _save_analysis_state(self, project_id, run_id, state):
+        state=dict(state);state["state"]=state.get("status",state.get("state"))
+        with self.store.connect(write=True) as db:
+            db.execute("INSERT INTO analysis_jobs VALUES(?,?,?,?,?) ON CONFLICT(run_id) DO UPDATE SET state_json=excluded.state_json,updated_at=excluded.updated_at",
+                       (run_id,project_id,dumps(state),utcnow(),utcnow()))
+        return state
+
+    def _analysis_state(self, project_id, run_id):
+        self.store.project(project_id)
+        with self.store.connect() as db:
+            row=db.execute("SELECT state_json FROM analysis_jobs WHERE run_id=? AND project_id=?",(run_id,project_id)).fetchone()
+        if not row:raise ValueError("analysis_not_found_in_project")
+        return json.loads(row[0])
+
+    def _analysis_job(self, runner, project_id, run_id, code, inputs, timeout):
+        flag=self.analysis_flags[run_id]
+        try:
+            if flag.is_set():
+                result={"run_id":run_id,"project_id":project_id,"status":"cancelled","artifacts":[]}
+            else:
+                result=runner.run(code,inputs,project_id=project_id,run_id=run_id,timeout_seconds=timeout)
+        except Exception as exc:
+            result={"run_id":run_id,"project_id":project_id,"status":"failed","error":"runner_exception:"+type(exc).__name__,"artifacts":[]}
+        self._save_analysis_state(project_id,run_id,result)
+        self.analysis_flags.pop(run_id,None)
+        return result
+
+    def get_analysis_status(self, project_id, run_id):
+        saved=self._analysis_state(project_id,run_id)
+        if saved.get("status") not in {"queued","running"}:return response(saved)
+        try:
+            observed=self._runner().status(run_id,project_id=project_id)
+            return response(self._save_analysis_state(project_id,run_id,observed))
+        except Exception:
+            # A queued worker has not necessarily created its runner manifest yet.
+            future=self.analysis_futures.get(run_id)
+            if future is not None and not future.done():return response(saved)
+            latest=self._analysis_state(project_id,run_id)
+            if latest.get("status") not in {"queued","running"}:return response(latest)
+            # Reconcile persisted jobs after service restart instead of hanging forever.
+            failed=saved|{"status":"failed","error":"runner_state_unavailable_after_restart"}
+            return response(self._save_analysis_state(project_id,run_id,failed))
+
+    def cancel_analysis(self, project_id, run_id):
+        saved=self._analysis_state(project_id,run_id)
+        if saved.get("status") not in {"queued","running"}:return response(saved)
+        flag=self.analysis_flags.get(run_id)
+        if flag:flag.set()
+        future=self.analysis_futures.get(run_id)
+        if future and future.cancel():
+            return response(self._save_analysis_state(project_id,run_id,saved|{"status":"cancelled"}))
+        try:
+            observed=self._runner().cancel(run_id,project_id=project_id)
+            return response(observed)
+        except Exception:
+            # Cancellation may precede manifest creation; retry until the worker exits or is cancellable.
+            if future and not future.done():
+                threading.Thread(target=self._cancel_analysis_when_available,args=(project_id,run_id,future),daemon=True).start()
+            return response(saved|{"cancel_requested":True})
+
+    def _cancel_analysis_when_available(self, project_id, run_id, future):
+        while not future.done():
+            try:
+                self._runner().cancel(run_id,project_id=project_id)
+                return
+            except Exception:
+                time.sleep(.1)
+
+    def get_artifact(self, project_id, run_id, name):
+        self.store.project(project_id)
+        path=self._runner().artifact_path(run_id,name,project_id=project_id)
+        return response({"name":name,"relative_path":str(path.relative_to(self.store.root)),"sha256":hashlib.sha256(path.read_bytes()).hexdigest(),"size":path.stat().st_size,"mime_type":mimetypes.guess_type(name)[0] or "application/octet-stream"})

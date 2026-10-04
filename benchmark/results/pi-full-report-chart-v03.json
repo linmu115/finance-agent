@@ -1,0 +1,685 @@
+{
+  "status": "passed",
+  "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+  "conversation_id": "1aec0d7e-6886-467e-be39-2cc3fead4a55",
+  "document_id": "39de9b118212463bbee6c2ab3c571432",
+  "started_at": "2026-10-03T16:13:15.649Z",
+  "checks": [
+    {
+      "name": "已持久化Pi会话可继续查询并完成",
+      "status": "passed",
+      "evidence": {
+        "status": "completed"
+      }
+    },
+    {
+      "name": "使用结构化查询和真实容器工具",
+      "status": "passed",
+      "evidence": {
+        "tool_names": [
+          "query_financial_data",
+          "run_analysis",
+          "get_analysis_status",
+          "get_artifact",
+          "calculate_financial_metrics"
+        ]
+      }
+    },
+    {
+      "name": "返回JSON与PNG可下载产物",
+      "status": "passed",
+      "evidence": {
+        "artifacts": [
+          {
+            "id": "308cceb83deb4aaea168847ee7d24068_chart_data.json",
+            "name": "chart_data.json",
+            "mimeType": "application/json",
+            "url": "/api/projects/3b4c43c9-51b8-432c-807d-2a15323f7a80/artifacts/308cceb83deb4aaea168847ee7d24068/chart_data.json"
+          },
+          {
+            "id": "308cceb83deb4aaea168847ee7d24068_guizhou_maotai_2024_quarterly_revenue.png",
+            "name": "guizhou_maotai_2024_quarterly_revenue.png",
+            "mimeType": "image/png",
+            "url": "/api/projects/3b4c43c9-51b8-432c-807d-2a15323f7a80/artifacts/308cceb83deb4aaea168847ee7d24068/guizhou_maotai_2024_quarterly_revenue.png"
+          }
+        ]
+      }
+    },
+    {
+      "name": "四季度绘图数据与数据库原值一致",
+      "status": "passed",
+      "evidence": [
+        {
+          "period": "2024-Q1",
+          "chart": [
+            "45775517043.29"
+          ],
+          "source": [
+            {
+              "value": "45775517043.29",
+              "currency": "CNY",
+              "scope": "consolidated_CAS",
+              "source_ref": {
+                "document_id": "39de9b118212463bbee6c2ab3c571432",
+                "page": 6,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t10",
+                "row": 2,
+                "column": 2,
+                "cell": "B2",
+                "text": "营业收入 | 45,775,517,043.29 | 36,155,460,624.46 | 38,845,154,206.94 | 50,123,020,401.65",
+                "normalization": {
+                  "engine": "LangExtract",
+                  "version": "langextract-finance-0.3.4",
+                  "model": "deepseek-flash",
+                  "label": "营业收入",
+                  "statement": "income",
+                  "period_start": "2024-01-01",
+                  "period_end": "2024-03-31",
+                  "restatement": "original",
+                  "dimensions": {},
+                  "scale": "1",
+                  "char_interval": [
+                    4547,
+                    4557
+                  ],
+                  "row_metric": "revenue",
+                  "row_label": "营业收入",
+                  "column_metric": null,
+                  "column_label": null,
+                  "dimension_labels": {},
+                  "original_extraction_hash": "45f381a4ba63b31239f9a8b3c6becad745b68378f8d2c0c311e736015d20e7f3",
+                  "source_key": "27b1778badfe3b86e7d2555e195a615da674a8654638b9895b71f8e5aa39e38b",
+                  "source_fingerprint": "86e8bbef50157d645f6c38594adf506ed7f5d399415d69b1b63cd64e6c3789dd",
+                  "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+                  "original_metric": "revenue",
+                  "original_label": "营业收入",
+                  "canonical_alias": {
+                    "status": "reviewed",
+                    "engine": "LangExtract",
+                    "version": "catalog-langextract-0.3.7",
+                    "model": "deepseek-flash",
+                    "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+                    "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+                    "source_metric": "revenue",
+                    "canonical_metric": "revenue",
+                    "canonical_label": "营业收入",
+                    "decision": "keep"
+                  }
+                },
+                "bbox": [
+                  184.2199935913086,
+                  350.6899871826172,
+                  273.53001403808594,
+                  362.8099822998047
+                ]
+              }
+            }
+          ],
+          "passed": true
+        },
+        {
+          "period": "2024-Q2",
+          "chart": [
+            "36155460624.46"
+          ],
+          "source": [
+            {
+              "value": "36155460624.46",
+              "currency": "CNY",
+              "scope": "consolidated_CAS",
+              "source_ref": {
+                "document_id": "39de9b118212463bbee6c2ab3c571432",
+                "page": 6,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t10",
+                "row": 2,
+                "column": 3,
+                "cell": "C2",
+                "text": "营业收入 | 45,775,517,043.29 | 36,155,460,624.46 | 38,845,154,206.94 | 50,123,020,401.65",
+                "normalization": {
+                  "engine": "LangExtract",
+                  "version": "langextract-finance-0.3.4",
+                  "model": "deepseek-flash",
+                  "label": "营业收入",
+                  "statement": "income",
+                  "period_start": "2024-04-01",
+                  "period_end": "2024-06-30",
+                  "restatement": "original",
+                  "dimensions": {},
+                  "scale": "1",
+                  "char_interval": [
+                    4547,
+                    4557
+                  ],
+                  "row_metric": "revenue",
+                  "row_label": "营业收入",
+                  "column_metric": null,
+                  "column_label": null,
+                  "dimension_labels": {},
+                  "original_extraction_hash": "45f381a4ba63b31239f9a8b3c6becad745b68378f8d2c0c311e736015d20e7f3",
+                  "source_key": "00758be67008d6f2fc52e1a04ec069d7bc33bff1c0735cae10c8bc930207e31a",
+                  "source_fingerprint": "2bf1e3d5cd157f2745fd21d82bdf8c04d86735fb00538d893a1c0b6c89e9f015",
+                  "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+                  "original_metric": "revenue",
+                  "original_label": "营业收入",
+                  "canonical_alias": {
+                    "status": "reviewed",
+                    "engine": "LangExtract",
+                    "version": "catalog-langextract-0.3.7",
+                    "model": "deepseek-flash",
+                    "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+                    "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+                    "source_metric": "revenue",
+                    "canonical_metric": "revenue",
+                    "canonical_label": "营业收入",
+                    "decision": "keep"
+                  }
+                },
+                "bbox": [
+                  273.53001403808594,
+                  350.6899871826172,
+                  362.9499969482422,
+                  362.8099822998047
+                ]
+              }
+            }
+          ],
+          "passed": true
+        },
+        {
+          "period": "2024-Q3",
+          "chart": [
+            "38845154206.94"
+          ],
+          "source": [
+            {
+              "value": "38845154206.94",
+              "currency": "CNY",
+              "scope": "consolidated_CAS",
+              "source_ref": {
+                "document_id": "39de9b118212463bbee6c2ab3c571432",
+                "page": 6,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t10",
+                "row": 2,
+                "column": 4,
+                "cell": "D2",
+                "text": "营业收入 | 45,775,517,043.29 | 36,155,460,624.46 | 38,845,154,206.94 | 50,123,020,401.65",
+                "normalization": {
+                  "engine": "LangExtract",
+                  "version": "langextract-finance-0.3.4",
+                  "model": "deepseek-flash",
+                  "label": "营业收入",
+                  "statement": "income",
+                  "period_start": "2024-07-01",
+                  "period_end": "2024-09-30",
+                  "restatement": "original",
+                  "dimensions": {},
+                  "scale": "1",
+                  "char_interval": [
+                    4547,
+                    4557
+                  ],
+                  "row_metric": "revenue",
+                  "row_label": "营业收入",
+                  "column_metric": null,
+                  "column_label": null,
+                  "dimension_labels": {},
+                  "original_extraction_hash": "45f381a4ba63b31239f9a8b3c6becad745b68378f8d2c0c311e736015d20e7f3",
+                  "source_key": "6e94759ee05e4734bbef2c4522f5c7de45773d29b9d2b4c592bd1343a270222e",
+                  "source_fingerprint": "22f765eb703445a5361d37aa3a60c8f790f08a2afc33911aca1fec665794a78c",
+                  "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+                  "original_metric": "revenue",
+                  "original_label": "营业收入",
+                  "canonical_alias": {
+                    "status": "reviewed",
+                    "engine": "LangExtract",
+                    "version": "catalog-langextract-0.3.7",
+                    "model": "deepseek-flash",
+                    "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+                    "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+                    "source_metric": "revenue",
+                    "canonical_metric": "revenue",
+                    "canonical_label": "营业收入",
+                    "decision": "keep"
+                  }
+                },
+                "bbox": [
+                  362.9499969482422,
+                  350.6899871826172,
+                  452.13999938964844,
+                  362.8099822998047
+                ]
+              }
+            }
+          ],
+          "passed": true
+        },
+        {
+          "period": "2024-Q4",
+          "chart": [
+            "50123020401.65"
+          ],
+          "source": [
+            {
+              "value": "50123020401.65",
+              "currency": "CNY",
+              "scope": "consolidated_CAS",
+              "source_ref": {
+                "document_id": "39de9b118212463bbee6c2ab3c571432",
+                "page": 6,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t10",
+                "row": 2,
+                "column": 5,
+                "cell": "E2",
+                "text": "营业收入 | 45,775,517,043.29 | 36,155,460,624.46 | 38,845,154,206.94 | 50,123,020,401.65",
+                "normalization": {
+                  "engine": "LangExtract",
+                  "version": "langextract-finance-0.3.4",
+                  "model": "deepseek-flash",
+                  "label": "营业收入",
+                  "statement": "income",
+                  "period_start": "2024-10-01",
+                  "period_end": "2024-12-31",
+                  "restatement": "original",
+                  "dimensions": {},
+                  "scale": "1",
+                  "char_interval": [
+                    4547,
+                    4557
+                  ],
+                  "row_metric": "revenue",
+                  "row_label": "营业收入",
+                  "column_metric": null,
+                  "column_label": null,
+                  "dimension_labels": {},
+                  "original_extraction_hash": "45f381a4ba63b31239f9a8b3c6becad745b68378f8d2c0c311e736015d20e7f3",
+                  "source_key": "661f85755c608e978a414418b9042d86db3e326fb4d102335c73d59cb093175c",
+                  "source_fingerprint": "c1a520b7723f361e5ca01878bebe9ce134f0f9222488b1eefabb037a7321e303",
+                  "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+                  "original_metric": "revenue",
+                  "original_label": "营业收入",
+                  "canonical_alias": {
+                    "status": "reviewed",
+                    "engine": "LangExtract",
+                    "version": "catalog-langextract-0.3.7",
+                    "model": "deepseek-flash",
+                    "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+                    "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+                    "source_metric": "revenue",
+                    "canonical_metric": "revenue",
+                    "canonical_label": "营业收入",
+                    "decision": "keep"
+                  }
+                },
+                "bbox": [
+                  452.13999938964844,
+                  350.6899871826172,
+                  541.4599812825521,
+                  362.8099822998047
+                ]
+              }
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "图表第三季度数值同时符合独立原文金标准",
+      "status": "passed",
+      "evidence": {
+        "period": "2024-Q3",
+        "expected": "38845154206.94",
+        "actual": "38845154206.94",
+        "original_report_page": 6
+      }
+    },
+    {
+      "name": "图表下载返回有效PNG及实际尺寸",
+      "status": "passed",
+      "evidence": {
+        "bytes": 65658,
+        "width": 1290,
+        "height": 840,
+        "mime": "image/png"
+      }
+    }
+  ],
+  "run_id": "e2c5c64a-8d4b-45c5-9bab-dc936aec9e33",
+  "run": {
+    "id": "e2c5c64a-8d4b-45c5-9bab-dc936aec9e33",
+    "conversationId": "1aec0d7e-6886-467e-be39-2cc3fead4a55",
+    "projectId": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+    "status": "completed",
+    "stage": "完成",
+    "createdAt": "2026-10-03T16:13:15.740Z",
+    "tools": [
+      {
+        "name": "query_financial_data",
+        "status": "started",
+        "toolCallId": "call_00_ECMzaHNStn62XNpacGLR7605",
+        "timestamp": "2026-10-03T16:13:19.286Z"
+      },
+      {
+        "name": "query_financial_data",
+        "status": "completed",
+        "toolCallId": "call_00_ECMzaHNStn62XNpacGLR7605",
+        "timestamp": "2026-10-03T16:13:19.324Z",
+        "summary": "ok"
+      },
+      {
+        "name": "run_analysis",
+        "status": "started",
+        "toolCallId": "call_00_HE6QhdCxNJqKuGZJ5y8N8304",
+        "timestamp": "2026-10-03T16:13:26.437Z"
+      },
+      {
+        "name": "run_analysis",
+        "status": "completed",
+        "toolCallId": "call_00_HE6QhdCxNJqKuGZJ5y8N8304",
+        "timestamp": "2026-10-03T16:13:40.931Z",
+        "summary": "accepted"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_ET_6SxnP3JLAvgFA1ueAjn34735",
+        "timestamp": "2026-10-03T16:13:42.715Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_ET_6SxnP3JLAvgFA1ueAjn34735",
+        "timestamp": "2026-10-03T16:13:43.098Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_ET_MRdlTOB7cXJJR8bpdR2k5790",
+        "timestamp": "2026-10-03T16:13:44.921Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_ET_MRdlTOB7cXJJR8bpdR2k5790",
+        "timestamp": "2026-10-03T16:13:45.536Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_EDwp7yDQn26VYOVOIycl6013",
+        "timestamp": "2026-10-03T16:13:47.014Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_EDwp7yDQn26VYOVOIycl6013",
+        "timestamp": "2026-10-03T16:13:47.391Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_ET_MnIHkJhKkEOv47j9Q5EQ0712",
+        "timestamp": "2026-10-03T16:13:49.239Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_ET_MnIHkJhKkEOv47j9Q5EQ0712",
+        "timestamp": "2026-10-03T16:13:49.674Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_ET_PllkdxV8qkEtRIDy3zfg9421",
+        "timestamp": "2026-10-03T16:13:50.948Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_ET_PllkdxV8qkEtRIDy3zfg9421",
+        "timestamp": "2026-10-03T16:13:50.976Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_artifact",
+        "status": "started",
+        "toolCallId": "call_00_ET_tNuUCAq5xZSM2vtWaRwN2985",
+        "timestamp": "2026-10-03T16:13:52.275Z"
+      },
+      {
+        "name": "get_artifact",
+        "status": "completed",
+        "toolCallId": "call_00_ET_tNuUCAq5xZSM2vtWaRwN2985",
+        "timestamp": "2026-10-03T16:13:52.635Z",
+        "summary": "ok"
+      },
+      {
+        "name": "calculate_financial_metrics",
+        "status": "started",
+        "toolCallId": "call_00_a3Bl0AUUIpfNpV8xldW57195",
+        "timestamp": "2026-10-03T16:13:56.615Z"
+      },
+      {
+        "name": "calculate_financial_metrics",
+        "status": "completed",
+        "toolCallId": "call_00_a3Bl0AUUIpfNpV8xldW57195",
+        "timestamp": "2026-10-03T16:13:56.644Z",
+        "summary": "ok"
+      }
+    ],
+    "usage": {
+      "input": 2190853,
+      "output": 3472,
+      "calls": 10,
+      "costUsd": null
+    },
+    "model": "deepseek-flash",
+    "configHash": "c414577eccd90856be545fc8879b3931a9ba0c3e2c29578ea349df39439699f1",
+    "messageId": "3bf014c5-1659-4ebc-982b-20edf9c2579f",
+    "finishedAt": "2026-10-03T16:14:00.503Z"
+  },
+  "answer": {
+    "id": "3bf014c5-1659-4ebc-982b-20edf9c2579f",
+    "role": "assistant",
+    "content": "已完成，全部从项目已入库数据读取，未重新清洗。\n\n## 取数（合并口径，人民币元，分季度单季金额）\n\n| 期间 | 营业收入（元） | 亿元 |\n|---|---|---|\n| 2024-Q1 | 45,775,517,043.29 | 457.76 |\n| 2024-Q2 | 36,155,460,624.46 | 361.55 |\n| 2024-Q3 | 38,845,154,206.94 | 388.45 |\n| 2024-Q4 | 50,123,020,401.65 | 501.23 |\n\n- 口径：合并报表、人民币、2024年分季度（单季发生额，非累计、非同比增长率）\n- 来源：分季度主要财务数据表 [39de9b118212463bbee6c2ab3c571432, 第6页]\n- 交叉核对：四季合计 = **170,899,152,276.34 元**，与年报合并利润表全年营业收入一致（Decimal 精确求和）\n\n## 产物\n\n- 图表：`analysis\\308cceb83deb4aaea168847ee7d24068\\output\\guizhou_maotai_2024_quarterly_revenue.png`（中文字体，标题/坐标轴中文，**纵轴“营业收入（人民币亿元）”，零起点**，柱内标注原始元、柱顶标注亿元）\n- 数据：`analysis\\308cceb83deb4aaea168847ee7d24068\\output\\chart_data.json`\n\nchart_data.json 内容：\n\n```json\n{\n  \"unit\": \"CNY\",\n  \"data\": [\n    { \"period\": \"2024-Q1\", \"value\": \"45775517043.29\" },\n    { \"period\": \"2024-Q2\", \"value\": \"36155460624.46\" },\n    { \"period\": \"2024-Q3\", \"value\": \"38845154206.94\" },\n    { \"period\": \"2024-Q4\", \"value\": \"50123020401.65\" }\n  ]\n}\n```\n\n数值为原始“元”的精确十进制字符串（未四舍五入），亿元仅用于PNG纵轴与标注。\n\n## 说明\n\n1. 数据库中共有4条匹配事实（`metric=revenue`、`scope=consolidated_CAS`、`year=2024`、`period=2024-Q1..Q4`），无重复或冲突项，季度与年度金额自洽。\n2. 上一轮提交的 `review_metrics`（revenue / lease_liabilities / non_recurring_government_grants 三组定义复核）**未执行成功**（返回处理失败后会话中断），这三组指标的定义拆分/归并复核仍为待办；本次未重复清洗，也未改动任何已入库事实。需要时我可在同一会话重提该复核。",
+    "createdAt": "2026-10-03T16:13:15.740Z",
+    "status": "completed",
+    "sources": [
+      {
+        "documentId": "39de9b118212463bbee6c2ab3c571432",
+        "page": 6,
+        "tableId": "39de9b118212463bbee6c2ab3c571432:t10",
+        "cell": "B2",
+        "quote": "营业收入 | 45,775,517,043.29 | 36,155,460,624.46 | 38,845,154,206.94 | 50,123,020,401.65",
+        "sourceId": "39de9b118212463bbee6c2ab3c571432:p6"
+      },
+      {
+        "documentId": "39de9b118212463bbee6c2ab3c571432",
+        "page": 6,
+        "tableId": "39de9b118212463bbee6c2ab3c571432:t10",
+        "cell": "C2",
+        "quote": "营业收入 | 45,775,517,043.29 | 36,155,460,624.46 | 38,845,154,206.94 | 50,123,020,401.65",
+        "sourceId": "39de9b118212463bbee6c2ab3c571432:p6"
+      },
+      {
+        "documentId": "39de9b118212463bbee6c2ab3c571432",
+        "page": 6,
+        "tableId": "39de9b118212463bbee6c2ab3c571432:t10",
+        "cell": "D2",
+        "quote": "营业收入 | 45,775,517,043.29 | 36,155,460,624.46 | 38,845,154,206.94 | 50,123,020,401.65",
+        "sourceId": "39de9b118212463bbee6c2ab3c571432:p6"
+      },
+      {
+        "documentId": "39de9b118212463bbee6c2ab3c571432",
+        "page": 6,
+        "tableId": "39de9b118212463bbee6c2ab3c571432:t10",
+        "cell": "E2",
+        "quote": "营业收入 | 45,775,517,043.29 | 36,155,460,624.46 | 38,845,154,206.94 | 50,123,020,401.65",
+        "sourceId": "39de9b118212463bbee6c2ab3c571432:p6"
+      }
+    ],
+    "artifacts": [
+      {
+        "id": "308cceb83deb4aaea168847ee7d24068_chart_data.json",
+        "name": "chart_data.json",
+        "mimeType": "application/json",
+        "url": "/api/projects/3b4c43c9-51b8-432c-807d-2a15323f7a80/artifacts/308cceb83deb4aaea168847ee7d24068/chart_data.json"
+      },
+      {
+        "id": "308cceb83deb4aaea168847ee7d24068_guizhou_maotai_2024_quarterly_revenue.png",
+        "name": "guizhou_maotai_2024_quarterly_revenue.png",
+        "mimeType": "image/png",
+        "url": "/api/projects/3b4c43c9-51b8-432c-807d-2a15323f7a80/artifacts/308cceb83deb4aaea168847ee7d24068/guizhou_maotai_2024_quarterly_revenue.png"
+      }
+    ],
+    "tools": [
+      {
+        "name": "query_financial_data",
+        "status": "started",
+        "toolCallId": "call_00_ECMzaHNStn62XNpacGLR7605",
+        "timestamp": "2026-10-03T16:13:19.286Z"
+      },
+      {
+        "name": "query_financial_data",
+        "status": "completed",
+        "toolCallId": "call_00_ECMzaHNStn62XNpacGLR7605",
+        "timestamp": "2026-10-03T16:13:19.324Z",
+        "summary": "ok"
+      },
+      {
+        "name": "run_analysis",
+        "status": "started",
+        "toolCallId": "call_00_HE6QhdCxNJqKuGZJ5y8N8304",
+        "timestamp": "2026-10-03T16:13:26.437Z"
+      },
+      {
+        "name": "run_analysis",
+        "status": "completed",
+        "toolCallId": "call_00_HE6QhdCxNJqKuGZJ5y8N8304",
+        "timestamp": "2026-10-03T16:13:40.931Z",
+        "summary": "accepted"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_ET_6SxnP3JLAvgFA1ueAjn34735",
+        "timestamp": "2026-10-03T16:13:42.715Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_ET_6SxnP3JLAvgFA1ueAjn34735",
+        "timestamp": "2026-10-03T16:13:43.098Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_ET_MRdlTOB7cXJJR8bpdR2k5790",
+        "timestamp": "2026-10-03T16:13:44.921Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_ET_MRdlTOB7cXJJR8bpdR2k5790",
+        "timestamp": "2026-10-03T16:13:45.536Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_EDwp7yDQn26VYOVOIycl6013",
+        "timestamp": "2026-10-03T16:13:47.014Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_EDwp7yDQn26VYOVOIycl6013",
+        "timestamp": "2026-10-03T16:13:47.391Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_ET_MnIHkJhKkEOv47j9Q5EQ0712",
+        "timestamp": "2026-10-03T16:13:49.239Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_ET_MnIHkJhKkEOv47j9Q5EQ0712",
+        "timestamp": "2026-10-03T16:13:49.674Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_ET_PllkdxV8qkEtRIDy3zfg9421",
+        "timestamp": "2026-10-03T16:13:50.948Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_ET_PllkdxV8qkEtRIDy3zfg9421",
+        "timestamp": "2026-10-03T16:13:50.976Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_artifact",
+        "status": "started",
+        "toolCallId": "call_00_ET_tNuUCAq5xZSM2vtWaRwN2985",
+        "timestamp": "2026-10-03T16:13:52.275Z"
+      },
+      {
+        "name": "get_artifact",
+        "status": "completed",
+        "toolCallId": "call_00_ET_tNuUCAq5xZSM2vtWaRwN2985",
+        "timestamp": "2026-10-03T16:13:52.635Z",
+        "summary": "ok"
+      },
+      {
+        "name": "calculate_financial_metrics",
+        "status": "started",
+        "toolCallId": "call_00_a3Bl0AUUIpfNpV8xldW57195",
+        "timestamp": "2026-10-03T16:13:56.615Z"
+      },
+      {
+        "name": "calculate_financial_metrics",
+        "status": "completed",
+        "toolCallId": "call_00_a3Bl0AUUIpfNpV8xldW57195",
+        "timestamp": "2026-10-03T16:13:56.644Z",
+        "summary": "ok"
+      }
+    ],
+    "runId": "e2c5c64a-8d4b-45c5-9bab-dc936aec9e33"
+  },
+  "chart_data": {
+    "unit": "CNY",
+    "data": [
+      {
+        "period": "2024-Q1",
+        "value": "45775517043.29"
+      },
+      {
+        "period": "2024-Q2",
+        "value": "36155460624.46"
+      },
+      {
+        "period": "2024-Q3",
+        "value": "38845154206.94"
+      },
+      {
+        "period": "2024-Q4",
+        "value": "50123020401.65"
+      }
+    ]
+  },
+  "chart_data_sha256": "6610c9703bfe4d3d05b0174fdc57a34b49b054e0ffb0be36076f1d50affe420a",
+  "png_path": "D:\\codex\\金融\\benchmark\\results\\pi-full-report-chart-v03.png",
+  "png_sha256": "7f206380e4b79ab1daaca1fe9e786fa75d4bbca8675a0adda0daea266a7bae7c",
+  "finished_at": "2026-10-03T16:14:03.437Z"
+}

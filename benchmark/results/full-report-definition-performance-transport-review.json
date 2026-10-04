@@ -1,0 +1,133 @@
+{
+  "status": "observed_not_fixed",
+  "run_id": "39aad2b5-a4f7-48cd-a4f4-be8c42ff83d5",
+  "scope": "Read-only production source/audit review and one isolated Buffer decoding demonstration; no production modifications or extra model requests.",
+  "input_cost": {
+    "observations": [
+      {
+        "request_id": "4d60c19f-d870-422b-a0d6-de595861f021",
+        "input_characters": 92861,
+        "known_directory_characters": 67704,
+        "known_metric_count": 513,
+        "directory_fraction": 0.7291
+      },
+      {
+        "request_id": "4f244966-acd7-4c5d-af8b-5f47e957fa9f",
+        "input_characters": 99645,
+        "known_directory_characters": 67704,
+        "known_metric_count": 513,
+        "directory_fraction": 0.6795
+      },
+      {
+        "request_id": "7601e6f5-dfbc-450c-9699-172481e4eab8",
+        "input_characters": 112899,
+        "known_directory_characters": 67704,
+        "known_metric_count": 513,
+        "directory_fraction": 0.5997
+      }
+    ],
+    "construction_locations": [
+      "service/definition_semantics.py:78 collects all project metric records into known_metrics",
+      "service/definition_semantics.py:159 sizes only source groups for batch budgeting",
+      "service/definition_model.py:105 appends every known metric on each request"
+    ],
+    "implication": "The directory contains 513 current IDs, consuming 60%-73% of each initial definition request. The batch input limit excludes this directory.",
+    "recommendation": "Bound the entire rendered input, compact the shared directory and supply the selected concept family plus relevant confirmed definitions; keep every source in the requested family covered."
+  },
+  "utf8_transport": {
+    "location": "server/model-bridge.ts:25",
+    "code": "let raw=''; for await(const chunk of req) { raw += chunk; ... }",
+    "cause": "Each Buffer is decoded separately before concatenation, so an UTF-8 character split between TCP chunks is replaced by U+FFFD.",
+    "actual_first_request": "7601e6f5-dfbc-450c-9699-172481e4eab8",
+    "actual_retry_request": "b04ac73e-8275-4c6d-8a9a-d1d58a0c9aee",
+    "equal_input_lengths": true,
+    "input_characters": 112899,
+    "different_character_positions": [
+      91163,
+      91164,
+      91165,
+      91187,
+      91188,
+      91189,
+      91190,
+      91191,
+      91192,
+      91193,
+      91194
+    ],
+    "actual_windows": [
+      {
+        "first_difference": 91163,
+        "last_difference": 91194,
+        "start_character": 91103,
+        "end_character": 91259,
+        "first_request_text": "                       〈原数值已省略〉            〈原数值已省略〉\\n   其他系列酒                       〈原数值已���略〉            〈原数值已省略〉\\n   其他业务                            〈原数值已",
+        "retry_request_text": "                       〈原数值已省略〉            〈原数值已省略〉\\n   其他系列���                       〈原数值已省略〉            〈原数值已省略〉\\n   其他业务                            〈原数值已"
+      }
+    ],
+    "isolated_node_buffer_demonstration": {
+      "original": "其他系列酒",
+      "utf8_hex": "e585b6e4bb96e7b3bbe58897e98592",
+      "split_byte_index": 14,
+      "parts_hex": [
+        "e585b6e4bb96e7b3bbe58897e985",
+        "92"
+      ],
+      "current_per_buffer_decode": "其他系列��",
+      "concat_then_decode": "其他系列酒"
+    },
+    "recommendation": "Collect Buffer chunks under a byte limit then decode once, or use a streaming UTF-8 decoder; add a chunk-boundary regression. Not implemented in this frozen attempt."
+  },
+  "retry_layers": {
+    "python_sdk": {
+      "location": ".venv/Lib/site-packages/langextract/providers/openai.py:104",
+      "instance_timeout_seconds": 600,
+      "default_max_retries": 2,
+      "constants_location": ".venv/Lib/site-packages/openai/_constants.py:7",
+      "policy_location": ".venv/Lib/site-packages/openai/_base_client.py:905",
+      "policy": "Connection failures, 408,409,429,5xx can retry; 422 length errors are not retried by this status policy."
+    },
+    "definition_repair_loop": {
+      "location": "service/definition_model.py:225",
+      "attempts": 2,
+      "scope": "Validation repair only; an inference exception escapes this loop."
+    },
+    "application_error_loss": {
+      "locations": [
+        "service/processing.py:257",
+        "service/processing.py:274",
+        "server/runs.ts:176",
+        "server/runs.ts:196"
+      ],
+      "behavior": "Inference failure becomes generic InferenceRuntimeError then a generic retryable-looking task message; the main Pi receives status:error without a stable error classification or blocked same-input fingerprint."
+    },
+    "main_pi_repeat": {
+      "first_tool_call": "call_00_rpWfzzUcjKfKkI3nJABL2348",
+      "second_tool_call": "call_00_gmJ221AkB9Zstv3MMWz40658",
+      "same_review_metrics": [
+        "revenue",
+        "lease_liabilities",
+        "non_recurring_government_grants"
+      ],
+      "bounds": "Not literally infinite: the task has a two-hour limit and max tool calls. Within those limits the same failed request can be regenerated."
+    },
+    "recommendation": "Assign one retry budget, preserve timeout/truncation/validation error codes through every layer, reject same-input repetition unless configuration or partition changes, and terminate sibling inferences when the stage cannot complete."
+  },
+  "timeout_120s": {
+    "observed_duration_ms": [
+      120014,
+      120004,
+      119978
+    ],
+    "stop_reason": "aborted",
+    "known_abort_path": "server/model-bridge.ts:23 aborts its signal when the HTTP client disconnects; provider marks aborted only when its supplied signal is aborted.",
+    "origin_status": "not_yet_proven",
+    "ruled_out_defaults": {
+      "python_openai_seconds": 600,
+      "pi_node_openai_seconds": 600,
+      "node_server_socket_timeout_seconds": 0,
+      "node_server_request_timeout_seconds": 300
+    },
+    "note": "server/config.ts runtime.timeoutSeconds=120 controls analysis tools; it is not passed to this model call. Do not claim this setting caused the observed abort."
+  }
+}

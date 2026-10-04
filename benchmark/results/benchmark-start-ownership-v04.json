@@ -1,0 +1,33 @@
+{
+  "version": "benchmark-start-ownership-v04",
+  "created_at": "2026-10-03T18:09:39.722101+00:00",
+  "status": "passed",
+  "scope": "Temporary root, mock subprocess only; zero real model/API benchmark runs",
+  "model_calls": 0,
+  "tests": {
+    "command": "node --import tsx --test tests/benchmark-api.test.ts",
+    "passed": 5,
+    "failed": 0,
+    "duration_ms": 1155.736,
+    "cases": [
+      "Twelve simultaneous POSTs create one runner; killed runner keeps first-run lock and cannot restart",
+      "Legacy CLI lock with unknown owner is interrupted; actual terminal report is authoritative",
+      "Exit zero with no complete report is interrupted",
+      "Exit zero with failed report stays failed",
+      "Live CLI runner occupies shared slot for different formal mode"
+    ]
+  },
+  "implementation": {
+    "server/workspace-api.ts": "8ba30c5a19e03dcd50cdbaff076c268491ab7ea4ba04899d09aceef4f49c5eba",
+    "scripts/verify_holdout_v05.mjs": "5684b93a3a60cec8adbf62c240c0504bb2fc50c1fad6d9837915f7e218592571",
+    "scripts/verify_report_correction_v01.mjs": "787578dc670b05c59ac2c5cb2a01452ed7fa4e56e280727f305d546d6f74630e",
+    "tests/benchmark-api.test.ts": "a118071a44e7120b60f0085f0771b918f112dc680914700b4a3fcc2ffc0ab2e3",
+    "tests/fixtures/benchmark-api-runner.mjs": "03a676ae84d9aa631bd9011b9b25dd99eb319e8d13adfa4c282363b53debd98a"
+  },
+  "pre_run_runner_change": "Added runner_pid solely to new first-run lock metadata. Frozen gold, input, prompts and scoring logic untouched. Old locks never deleted or rewritten.",
+  "limit": "Cross-restart CLI liveness uses PID existence as a status hint; first-run immutability still prevents repeated models even if a PID were reused.",
+  "typecheck": {
+    "command": "npx tsc --noEmit -p server/tsconfig.json",
+    "exit_code": 0
+  }
+}

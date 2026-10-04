@@ -1,0 +1,1260 @@
+[
+  {
+    "name": "create_project",
+    "title": null,
+    "description": "Create or name a local research project. Host administration only.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "name"
+      ],
+      "title": "create_projectArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "create_projectDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "list_projects",
+    "title": null,
+    "description": "List local projects. Host administration only.",
+    "inputSchema": {
+      "properties": {},
+      "title": "list_projectsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "list_projectsDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "list_documents",
+    "title": null,
+    "description": "List only this project's documents and actual parsing state.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id"
+      ],
+      "title": "list_documentsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "list_documentsDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "register_document",
+    "title": null,
+    "description": "Host attachment registration only; processing starts explicitly inside a Pi session.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "original_name": {
+          "title": "Original Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "path",
+        "original_name"
+      ],
+      "title": "register_documentArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "register_documentDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "start_document_processing",
+    "title": null,
+    "description": "Host Pi tool bridge: start session-owned LangExtract normalization. Runtime credentials stay in memory.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Document Ids",
+          "type": "array"
+        },
+        "owner_run_id": {
+          "title": "Owner Run Id",
+          "type": "string"
+        },
+        "runtime": {
+          "additionalProperties": true,
+          "title": "Runtime",
+          "type": "object"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_ids",
+        "owner_run_id",
+        "runtime"
+      ],
+      "title": "start_document_processingArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "start_document_processingDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_processing_status",
+    "title": null,
+    "description": "Get session-owned document processing progress, coverage and committed fact count.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "processing_id": {
+          "title": "Processing Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "processing_id"
+      ],
+      "title": "get_processing_statusArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_processing_statusDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "cancel_processing",
+    "title": null,
+    "description": "Stop this processing invocation only; shared work owned by other sessions continues.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "processing_id": {
+          "title": "Processing Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "processing_id"
+      ],
+      "title": "cancel_processingArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "cancel_processingDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_data_catalog",
+    "title": null,
+    "description": "Discover actual database and file locations, indexed documents, dynamic metrics, periods, scopes and processing state.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id"
+      ],
+      "title": "get_data_catalogArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_data_catalogDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_document_index",
+    "title": null,
+    "description": "Read paginated YAML navigation, not the full catalog. section selects pages, tables, or both (overview).\n    Default 40 entries per section, maximum 100. pagination.pages/tables have separate filtered total,\n    returned, offset, limit, has_more and next_offset; totals are full document counts. Continue each\n    section separately with its next_offset. page_start/page_end are inclusive physical page numbers.\n    query matches all whitespace-separated terms, case-insensitively, in page headings or table IDs,\n    sheet names, page headings and saved table previews. This searches navigation, not full page text;\n    use search_evidence for body text. Table preview rows appear only with include_preview=true.\n    index_path/original_path locate full files. get_source_page/get_source_table read exact original content.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "section": {
+          "default": "overview",
+          "enum": [
+            "overview",
+            "pages",
+            "tables"
+          ],
+          "title": "Section",
+          "type": "string"
+        },
+        "query": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Query"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "limit": {
+          "default": 40,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "page_start": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page Start"
+        },
+        "page_end": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page End"
+        },
+        "include_preview": {
+          "default": false,
+          "title": "Include Preview",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_id"
+      ],
+      "title": "get_document_indexArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_document_indexDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "query_financial_data",
+    "title": null,
+    "description": "Query all standardized facts with exact values and citations. Filters: company/companies, metric/metrics,\n    period/periods, year/years, scope/scopes, currency/currencies, statement/statements,\n    document_id/document_ids, version or restatement, dimensions object. Discover labels using get_data_catalog.\n    Maximum 200 facts per page; use returned limit/offset/total to retrieve every page.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "filters": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Filters"
+        },
+        "limit": {
+          "default": 200,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id"
+      ],
+      "title": "query_financial_dataArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "query_financial_dataDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_dashboard",
+    "title": null,
+    "description": "Host dashboard data: documents, canonical facts and classified metric catalog.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id"
+      ],
+      "title": "get_dashboardArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_dashboardDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_normalization_details",
+    "title": null,
+    "description": "Read normalization summary and paginated LangExtract mappings (default 20, maximum 20 batches).\n    Filter table_id to inspect one table; total/offset support reading large reports without overflowing context.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "table_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Table Id"
+        },
+        "limit": {
+          "default": 20,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_id"
+      ],
+      "title": "get_normalization_detailsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_normalization_detailsDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "ingest_document",
+    "title": null,
+    "description": "Historical rule-based ingestion baseline only; v0.3 uploads use register_document and Pi process_documents.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "original_name": {
+          "title": "Original Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "path",
+        "original_name"
+      ],
+      "title": "ingest_documentArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "ingest_documentDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_ingestion_status",
+    "title": null,
+    "description": "Poll document parsing: queued/parsing/validating/ready/needs_review/failed/cancelled.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "job_id": {
+          "title": "Job Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "job_id"
+      ],
+      "title": "get_ingestion_statusArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_ingestion_statusDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "cancel_ingestion",
+    "title": null,
+    "description": "Request cancellation of an ingestion job belonging to the project.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "job_id": {
+          "title": "Job Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "job_id"
+      ],
+      "title": "cancel_ingestionArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "cancel_ingestionDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_document",
+    "title": null,
+    "description": "Get verified document ownership, hash, source path and quality counts.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_id"
+      ],
+      "title": "get_documentArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_documentDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_source_page",
+    "title": null,
+    "description": "Read a source page (1-based physical page) and render an image for citation review.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "page": {
+          "title": "Page",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_id",
+        "page"
+      ],
+      "title": "get_source_pageArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_source_pageDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_source_table",
+    "title": null,
+    "description": "List source tables or read one table's actual rows, cells, formulas and source coordinates.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "table_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Table Id"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_id"
+      ],
+      "title": "get_source_tableArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_source_tableDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "search_evidence",
+    "title": null,
+    "description": "Project-scoped FTS5 keyword search. Embeddings are disabled in the v0.3 Pi production path.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "query": {
+          "title": "Query",
+          "type": "string"
+        },
+        "company": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Company"
+        },
+        "year": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Year"
+        },
+        "limit": {
+          "default": 8,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id",
+        "query"
+      ],
+      "title": "search_evidenceArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "search_evidenceDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_financial_metrics",
+    "title": null,
+    "description": "Read exact decimal financial facts by dynamic metric ID, model-reviewed alias or Chinese label from get_data_catalog.\n    Missing data is insufficient_evidence; conflicting values require review. Never assume missing years.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "metrics": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "company": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Company"
+        },
+        "years": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Years"
+        },
+        "document_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Document Id"
+        },
+        "scope": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scope"
+        }
+      },
+      "required": [
+        "project_id",
+        "metrics"
+      ],
+      "title": "get_financial_metricsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_financial_metricsDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "calculate_financial_metrics",
+    "title": null,
+    "description": "Decimal formulas: yoy(current,previous); ratio/margin/cash_conversion/debt_ratio(numerator,denominator);\n    add/subtract/multiply/divide(a,b); sum(values). Numeric inputs may reference {fact_id:...}.\n    yoy/margin/debt_ratio returns percentage points; ratio/cash_conversion returns multiples.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "operation": {
+          "title": "Operation",
+          "type": "string"
+        },
+        "inputs": {
+          "additionalProperties": true,
+          "title": "Inputs",
+          "type": "object"
+        }
+      },
+      "required": [
+        "project_id",
+        "operation",
+        "inputs"
+      ],
+      "title": "calculate_financial_metricsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "calculate_financial_metricsDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "configure_processing",
+    "title": null,
+    "description": "Host configuration only. Secrets are kept in memory, never returned or persisted.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "embedding": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Embedding"
+        },
+        "ocr": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ocr"
+        }
+      },
+      "required": [
+        "project_id"
+      ],
+      "title": "configure_processingArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "configure_processingDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "index_embeddings",
+    "title": null,
+    "description": "Index missing project evidence using explicitly configured Embedding API. May incur API charges.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "max_chunks": {
+          "default": 500,
+          "title": "Max Chunks",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id"
+      ],
+      "title": "index_embeddingsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "index_embeddingsDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_app_state",
+    "title": null,
+    "description": "Host only. Read persisted conversations/runs JSON.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "key": {
+          "title": "Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "kind",
+        "key"
+      ],
+      "title": "get_app_stateArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_app_stateDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "put_app_state",
+    "title": null,
+    "description": "Host only. Write persisted conversations/runs JSON via database owner.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value"
+        }
+      },
+      "required": [
+        "project_id",
+        "kind",
+        "key",
+        "value"
+      ],
+      "title": "put_app_stateArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "put_app_stateDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "list_app_state",
+    "title": null,
+    "description": "Host only. List persisted conversations/runs JSON for this project.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "kind"
+      ],
+      "title": "list_app_stateArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "list_app_stateDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "run_analysis",
+    "title": null,
+    "description": "Run Python only in the isolated scientific container. /input/tables.json and /input/facts.json are project exports.\n    Write artifacts under /output. No network, no keys, no database; missing Docker fails closed. Returns run_id.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "document_ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Document Ids"
+        },
+        "timeout_seconds": {
+          "default": 120,
+          "title": "Timeout Seconds",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id",
+        "code"
+      ],
+      "title": "run_analysisArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "run_analysisDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_analysis_status",
+    "title": null,
+    "description": "Poll isolated analysis state and verified artifact manifest.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "run_id": {
+          "title": "Run Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "run_id"
+      ],
+      "title": "get_analysis_statusArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_analysis_statusDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "cancel_analysis",
+    "title": null,
+    "description": "Cancel an isolated analysis task belonging to this project.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "run_id": {
+          "title": "Run Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "run_id"
+      ],
+      "title": "cancel_analysisArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "cancel_analysisDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_artifact",
+    "title": null,
+    "description": "Get a successful sandbox artifact after project, path and hash verification.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "run_id": {
+          "title": "Run Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "run_id",
+        "name"
+      ],
+      "title": "get_artifactArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_artifactDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "rematerialize_documents",
+    "title": null,
+    "description": "Host maintenance only. Rebuild facts from saved LangExtract mappings with zero model calls; preserves extraction ownership. Never expose as an Agent task.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Document Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_ids"
+      ],
+      "title": "rematerialize_documentsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "rematerialize_documentsDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": null,
+    "meta": null,
+    "execution": null
+  }
+]

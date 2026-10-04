@@ -1,0 +1,13 @@
+{
+  "version": "v0.5-common-budget-1",
+  "scope": "One system arm across both input documents and their independent sessions, including every internal model call",
+  "max_model_calls": 80,
+  "max_input_tokens": 8000000,
+  "max_output_tokens": 1000000,
+  "max_total_tokens": 9000000,
+  "max_wall_seconds": 1800,
+  "poll_interval_ms": 1500,
+  "policy": "Shared observed-usage cap. Stop active sessions after a cap is observed. In-flight requests can exceed it; report actual overrun. Do not describe polling as a hard pre-request token limit.",
+  "baseline_policy": "Use this identical file and model/output/tool settings for specialized and generic Pi arms. No gold in either arm's model context; no specialized normalized database in generic inputs.",
+  "reason": "Pre-outcome cap informed only by prior development run cost, with room for complete tables and semantic review. Frozen before v0.5 prediction."
+}

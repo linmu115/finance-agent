@@ -1,0 +1,122 @@
+{
+  "name": "agent-2026-10-03T04-57-31-698Z",
+  "createdAt": "2026-10-03T04:57:31.702Z",
+  "split": "dev",
+  "repeat": 1,
+  "model": "deepseek-flash",
+  "configHash": "58c6410d40f34a4c0cfbb8f026d34dc0881361e7011a393d3f427e2da1474991",
+  "promptHash": "f3b4ab024543a418606a3ccb76b82fe521719c5e46ed1924372f373cb08772ae",
+  "settings": {
+    "llm": {
+      "provider": "openai-compatible",
+      "baseUrl": "https://api.deepseek.com",
+      "model": "deepseek-flash",
+      "contextWindow": 1048576,
+      "maxTokens": 8192,
+      "hasKey": true
+    },
+    "embedding": {
+      "enabled": false,
+      "baseUrl": "",
+      "model": "",
+      "hasKey": false
+    },
+    "ocr": {
+      "mode": "local",
+      "baseUrl": "",
+      "model": "",
+      "hasKey": false
+    },
+    "runtime": {
+      "maxToolCalls": 24,
+      "timeoutSeconds": 120
+    }
+  },
+  "caseIds": [
+    "moutai_2024_extract_revenue_2024"
+  ],
+  "subset": true,
+  "piVersion": "1.0.0",
+  "agentInputIsolated": true,
+  "status": "completed",
+  "finishedAt": "2026-10-03T04:58:10.200Z",
+  "repeatConsistency": null,
+  "datasetGateAllRuns": false,
+  "worstGroundedAccuracy": 0,
+  "runs": [
+    {
+      "benchmark": "finance-agent-bench-0.1.0",
+      "split": "dev",
+      "evaluated_cases": 62,
+      "received_predictions": 1,
+      "dataset_gate_pass": false,
+      "full_system_acceptance": false,
+      "runtime_gate": "NOT_RUN: require separate trusted sandbox, chart, isolation and reproducibility checks",
+      "metrics": {
+        "cn_extract": {
+          "n": 10,
+          "answer_accuracy": 0.1,
+          "grounded_accuracy": 0,
+          "target_answer_accuracy": 0.95,
+          "pass": false
+        },
+        "cn_calculate": {
+          "n": 4,
+          "answer_accuracy": 0,
+          "grounded_accuracy": 0,
+          "target_answer_accuracy": 0.95,
+          "pass": false
+        },
+        "cn_audit": {
+          "n": 4,
+          "answer_accuracy": 0,
+          "grounded_accuracy": 0,
+          "target_answer_accuracy": 0.9,
+          "pass": false
+        },
+        "cn_abstain": {
+          "n": 2,
+          "answer_accuracy": 0,
+          "grounded_accuracy": 0,
+          "target_answer_accuracy": 1,
+          "pass": false
+        },
+        "cn_ocr": {
+          "n": 2,
+          "answer_accuracy": 0,
+          "grounded_accuracy": 0,
+          "target_answer_accuracy": 0.9,
+          "pass": false
+        },
+        "finqa_single": {
+          "n": 20,
+          "answer_accuracy": 0,
+          "grounded_accuracy": 0,
+          "target_answer_accuracy": 0.85,
+          "pass": false
+        },
+        "finqa_multi": {
+          "n": 20,
+          "answer_accuracy": 0,
+          "grounded_accuracy": 0,
+          "target_answer_accuracy": 0.75,
+          "pass": false
+        }
+      },
+      "citation_recall": 0,
+      "citation_precision": 0,
+      "grounded_accuracy": 0,
+      "protocol_errors": [],
+      "round": 1,
+      "model": "deepseek-flash",
+      "configHash": "58c6410d40f34a4c0cfbb8f026d34dc0881361e7011a393d3f427e2da1474991",
+      "promptHash": "f3b4ab024543a418606a3ccb76b82fe521719c5e46ed1924372f373cb08772ae",
+      "selectedCases": 1,
+      "subset": true,
+      "wallTimeMs": 26407,
+      "modelCalls": 3,
+      "inputTokens": 10111,
+      "outputTokens": 532
+    }
+  ]
+}

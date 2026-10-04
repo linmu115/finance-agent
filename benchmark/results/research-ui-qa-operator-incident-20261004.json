@@ -1,0 +1,105 @@
+{
+  "kind": "development_operator_incident",
+  "recorded_at": "2026-10-03T17:37:54.623921+00:00",
+  "action": "Mistaken npm run dev from web directory resolved root script tsx watch server/main.ts; immediately interrupted when detected.",
+  "command": "npm run dev -- --host 127.0.0.1 --port 5174",
+  "cwd": "D:\\codex\\金融\\web",
+  "exec_session_id": 26859,
+  "pid": null,
+  "pid_note": "Tool did not return OS PID; process already exited. Do not substitute root listener PID.",
+  "time_window_utc": {
+    "lower_bound": "2026-10-03T17:35:02.300642+00:00",
+    "upper_bound": "2026-10-03T17:36:27.511472+00:00",
+    "precision": "Bracketing file timestamps, not exact process start/stop; initial tool wait was 10.006 seconds."
+  },
+  "termination": {
+    "method": "Ctrl-C sent to the mistaken exec session only",
+    "exit_code": 1
+  },
+  "captured_output_excerpt": [
+    "finance-research-agent@0.3.0 predev",
+    "node scripts/fix_dependency.mjs --check",
+    "finance-research-agent@0.3.0 dev",
+    "tsx watch server/main.ts --host 127.0.0.1 --port 5174",
+    "[finance-service] Processing request of type CallToolRequest",
+    "金融研究已启动 http://127.0.0.1:3001"
+  ],
+  "logs_note": "No durable full stdout file was configured. Excerpt above transcribed from exec tool output; returned output was truncated.",
+  "potential_effect": "Store initialization can update active processing_runs/documents/jobs to failed (service/store.py:60-67). Current records alone cannot prove absence of transient writes that another live worker later overwrote.",
+  "readonly_database_observation": [
+    {
+      "processing_id": "2fa03510cbb6403893359d12dcd738ae",
+      "owner_run_id": "3b971b6c-a2b7-4b76-99d1-5369d8fc5590",
+      "project_id": "f09b9bb1-7b81-4a13-9b4c-e24bb62acca9",
+      "created_at": "2026-10-03T17:28:27.381086+00:00",
+      "updated_at": "2026-10-03T17:35:22.133325+00:00",
+      "state": "failed",
+      "message": "部分资料处理失败，可在当前会话重试",
+      "errors": [
+        {
+          "code": "temporal_review_failed",
+          "error": "temporal_sources_invalid_after_repair"
+        }
+      ]
+    },
+    {
+      "processing_id": "beb84812c5e04e93acbc9b053b7e62aa",
+      "owner_run_id": "fcaa0612-214a-4ed7-bca8-b402a96d6fd6",
+      "project_id": "f09b9bb1-7b81-4a13-9b4c-e24bb62acca9",
+      "created_at": "2026-10-03T17:28:27.479912+00:00",
+      "updated_at": "2026-10-03T17:35:54.870309+00:00",
+      "state": "needs_review",
+      "message": "财报处理完成",
+      "errors": []
+    }
+  ],
+  "original_run_processing_audit": [
+    {
+      "owner_run_id": "3b971b6c-a2b7-4b76-99d1-5369d8fc5590",
+      "type": "tool_error",
+      "timestamp": "2026-10-03T17:35:22.626Z",
+      "message": "部分资料处理失败，可在当前会话重试",
+      "state": null,
+      "processing_id": null,
+      "errors": null
+    },
+    {
+      "owner_run_id": "3b971b6c-a2b7-4b76-99d1-5369d8fc5590",
+      "type": "tool_result",
+      "timestamp": "2026-10-03T17:35:34.665Z",
+      "message": null,
+      "state": null,
+      "processing_id": null,
+      "errors": null
+    },
+    {
+      "owner_run_id": "fcaa0612-214a-4ed7-bca8-b402a96d6fd6",
+      "type": "tool_error",
+      "timestamp": "2026-10-03T17:35:34.583Z",
+      "message": "运行中断，可在会话中继续处理",
+      "state": null,
+      "processing_id": null,
+      "errors": null
+    },
+    {
+      "owner_run_id": "fcaa0612-214a-4ed7-bca8-b402a96d6fd6",
+      "type": "tool_result",
+      "timestamp": "2026-10-03T17:35:37.543Z",
+      "message": null,
+      "state": null,
+      "processing_id": null,
+      "errors": null
+    },
+    {
+      "owner_run_id": "fcaa0612-214a-4ed7-bca8-b402a96d6fd6",
+      "type": "tool_result",
+      "timestamp": "2026-10-03T17:35:51.170Z",
+      "message": null,
+      "state": null,
+      "processing_id": null,
+      "errors": null
+    }
+  ],
+  "parent_observation": "Parent independently reports listener PID33208 belongs to root and both v041 API runs completed.",
+  "no_further_lifecycle_actions": "Only connect to parent-owned port 3001 for future QA; no server start/stop."
+}

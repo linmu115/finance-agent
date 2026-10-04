@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-10-03T17:06:23.698348+00:00",
+  "parser_version": "0.1.4",
+  "semantic_version": "langextract-finance-0.3.6",
+  "schema_hash": "24dca4f2f8fe06ce3215e34800161df7b111873a55ab64150676818bd1b36296",
+  "real_model_requests": 0,
+  "verification": {
+    "full_service_suite": {
+      "tests": 234,
+      "passed": 234,
+      "seconds": 57.515,
+      "log": "tmp/service-v036-regression.log"
+    },
+    "final_migration_subset": {
+      "tests": 10,
+      "passed": 10,
+      "includes_two_additional_cases": true
+    },
+    "unique_tests_with_pass_evidence": 236
+  },
+  "fixes": [
+    "native unruled PDF source-word geometry",
+    "mixed percentage row versus amount row source-unit handling",
+    "immutable extraction winner and provenance",
+    "transactional source parse migration and batch input fingerprint",
+    "percentage points versus percent unit kind",
+    "model-selected grounded numeric spans with Unicode codepoint offsets"
+  ],
+  "data_scope": "Old v0.4.1 failed holdout PDFs are development cases; new holdout was not read. No production financial data, old reports or gold were modified."
+}

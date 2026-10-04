@@ -1,0 +1,37 @@
+{
+  "kind": "independent_answer_evidence_review",
+  "at": "2026-10-03T18:16:32.846Z",
+  "original_report": "benchmark/results/research-workflow-v05-native-reader.json",
+  "original_automated_status": "passed",
+  "component_checks": "4/4 passed",
+  "status": "failed",
+  "findings": [
+    "The requested rounded revenue/net-profit figures match saved official text.",
+    "The answer additionally states precise yuan amounts without reading/archiving the cited half-year report. Exact numbers appearing in search snippets do not establish original-source evidence."
+  ],
+  "unverified_extra_numbers": [
+    {
+      "value": "18181039589.02",
+      "present_in_saved_originals": false,
+      "present_in_search_results": true
+    },
+    {
+      "value": "1229940076.97",
+      "present_in_saved_originals": false,
+      "present_in_search_results": true
+    }
+  ],
+  "sources": [
+    {
+      "id": "web_48210b9d-fe55-41ba-8160-73a1eed371e5",
+      "url": "https://www.liugong.com/newslist/925.html",
+      "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97"
+    },
+    {
+      "id": "web_87e8ac63-ea9b-471f-bcc3-7e043b8d25bc",
+      "url": "https://www.liugong.com/newslist/1006.html",
+      "sha256": "52eb605a768d8dc21fc769c96b935a53e818d34014df9676fe3657931cb3649b"
+    }
+  ],
+  "action": "Preserve the first run. Improve general answer evidence/precision discipline after the other frozen development runs end; no company-specific number rule."
+}

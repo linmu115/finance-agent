@@ -1,0 +1,30 @@
+暂存期间模块接入点（当前生产未改）
+
+1. 提升 semantics.py / model.py 为生产模块，或明确从当前暂存包导入；不引入MCP任务、常驻服务或队列。
+2. 原process_documents完成表格与目录归并后，调用：
+   review_project(self, project_id,
+      runtime | {"processing_id":processing_id,"owner_run_id":state["owner_run_id"]},
+      progress=lambda message:记录同一运行的normalizing进度,
+      cancelled=flag.is_set)
+   返回数据放state.temporal_review。needs_review须传递到整体运行状态；模型失败明确failed，已保存原事实与逐片成功修订保留。
+3. _commit_semantic_batch 的同一个写事务、插入新facts之前调用：
+   overlay_saved_corrections(db,project_id,document_id,facts,detail)
+   原抽取JSON不变；普通266批复用和host维护共用此commit，因此都会叠加源指纹仍相同的已审校期间。
+4. get_data_catalog增加temporal_review=temporal_review_status(self.store,project_id)。这是带completed_at的最近完成审校快照，包含覆盖数、待定项、并发新增来源及所属运行。
+5. query_financial_data已返回完整source_ref.normalization；period_start/end由现有_expanded_fact读取，无需另造工具。可按需提升temporal_correction为顶层便利字段。
+6. 单位years扩展只有units.py所示的标量单位规则。政策参数non-periodic方案另议，本步骤不把缺日期的原文或计划值强行制造为时间序列。
+
+证据位置
+temporal_review_cache: 两步LangExtract原输出与原模型owner。
+temporal_project_reviews: 全覆盖报告、分片cache_key和模型owner，以及候选/修改/未定统计。
+temporal_corrections: source坐标key、原始抽取hash/文件hash约束、before/after、reason、原文evidence、span及真实模型owner。
+事实source.normalization.temporal_correction复制上述可解释证据；原normalization_batches不改。
+
+计算预算
+2026-10-03 本次完整143页的3294条事实：1823组，1,167,142概览字符，20个概览片段；全部覆盖，无缺源映射。概览3并行；每片最多100组/约60k字符。
+定点复核只针对模型标出的组，按页/表排序，并按去重后的真实输入长度分片；公共页面/表头只发送一次。
+profile缓存不含临时fact_id、当前执行owner、bridge URL/token。correction缓存绑定真实来源与原抽取hash，同样排除临时fact_id/current/owner。
+
+回归
+.venv/Scripts/python.exe -m unittest service.staged_temporal.test_semantics service.staged_temporal.test_model service.staged_temporal.test_units -v
+覆盖一致错误（assets误FY但无冲突样本）、正确现金流区间不改、原值/币种/单位/口径不变、缓存真实owner、source指纹变动不覆盖、纯重放叠加、遗漏覆盖拒绝、取消不写、未知计划日期保留待定。

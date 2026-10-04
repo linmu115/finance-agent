@@ -1,0 +1,62 @@
+{
+  "kind": "official_snapshot_existing_tools_offline_replay",
+  "status": "failed",
+  "started_at": "2026-10-03T19:32:55.363Z",
+  "protocol_path": "D:\\codex\\金融\\benchmark\\results\\research-replay-tools-v07-1791055975349.protocol.json",
+  "protocol_sha256": "a9d6f1dcdf3b731ecbe70d133f7cabb07162392da40ff5f53fe5c2ed45bd7905",
+  "data_dir": "D:\\codex\\金融\\tmp\\research-replay-f4Vntl",
+  "live_app_contacted": false,
+  "model_calls": 0,
+  "search_calls": 0,
+  "new_web_fetches": 0,
+  "checks": [
+    {
+      "name": "original_blob_matches_frozen_snapshot",
+      "status": "passed",
+      "evidence": {
+        "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+        "bytes": 27309
+      }
+    },
+    {
+      "name": "private_data_and_empty_credentials",
+      "status": "passed",
+      "evidence": {
+        "data_dir": "D:\\codex\\金融\\tmp\\research-replay-f4Vntl"
+      }
+    },
+    {
+      "name": "private_mcp_process_exited",
+      "status": "passed",
+      "evidence": {}
+    }
+  ],
+  "tool_calls": [],
+  "rounds": [],
+  "protected_before": {
+    "D:\\codex\\金融\\data\\research\\6f664280-4448-4e8f-a900-70de7eebe73a\\sources\\web_3041e395-17aa-4fef-895c-7daf79dc1fde.json": "1126032c3e779fe188f927e45cf842c9186bc303bcd58c55a54bc1bcca0ede11",
+    "D:\\codex\\金融\\data\\research\\6f664280-4448-4e8f-a900-70de7eebe73a\\blobs\\2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97.bin": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+    "D:\\codex\\金融\\benchmark\\results\\research-workflow-v06-evidence-precision.json": "5c249a7177a3ca527d000a70fa4eee7ceea9bca6cd7c02bfc763d7a6780ebdb1",
+    "D:\\codex\\金融\\benchmark\\results\\research-workflow-v06-evidence-precision-review.json": "94ad87fc1d3f540038305d900403de73720ad2dce645b0753bc3ec05ee6fcd1e",
+    "D:\\codex\\金融\\benchmark\\results\\research-trust-v01-first.json": "08f1c7ad165835ad76871cdc68faa5fc65b97410c114a0f71e7f855e18f9a917",
+    "D:\\codex\\金融\\benchmark\\results\\research-trust-v01-first-diagnosis.json": "eac558fe0eb1df20354b47fa2805451848e810aca25fb7724b5a086553a95996"
+  },
+  "implementation_before": {
+    "D:\\codex\\金融\\server\\research.ts": "6c50e9000b0cb190d1fe15ee5123ada09a425310e6a58fe3246c0cdeed6e1c29",
+    "D:\\codex\\金融\\server\\config.ts": "beedcffcb7c93bc3925f0480adb2e34b98ae91f574939987487c95a4edc7a5ca",
+    "D:\\codex\\金融\\server\\mcp.ts": "d640c3bee2607dd1608e14c21e78758043f2ba9f886db46275a31086d1f5c9b1",
+    "D:\\codex\\金融\\service\\server.py": "ef2feab9bfcc73cd4e0b1314faa2df266f7227341503556b0dab80a6f652d407",
+    "D:\\codex\\金融\\service\\core.py": "92747e07ae4c1ee872a1604bb06d5deb80d12387f49f0c51a00e4338e6e2df0d",
+    "D:\\codex\\金融\\service\\store.py": "8e40a64e966a81ce8db7547ee72194631d533ef4ff092d2a3683247f3d2a3879",
+    "D:\\codex\\金融\\service\\lifecycle.py": "cae9830057fb57ba74f7807899f51488da2b8b1b614ba21ca37fc44a32664d58"
+  },
+  "limitations": [
+    "No new LLM or search call: does not retest model interpretation or source discovery.",
+    "Shares are derived from rounded news figures, not more precise company disclosures. No yuan-level precision is claimed.",
+    "No use of parent-attributable profit as consolidated profit. No external date or accounting scope is inferred.",
+    "Scalar calculation calls do not automatically attach webpage citations; this report records the explicit source locator/literal/value-to-input ledger."
+  ],
+  "error": "McpError: MCP error -32000: Connection closed\n    at McpError.fromError (D:\\codex\\金融\\node_modules\\@modelcontextprotocol\\sdk\\src\\types.ts:2330:16)\n    at Client._onclose (D:\\codex\\金融\\node_modules\\@modelcontextprotocol\\sdk\\src\\shared\\protocol.ts:667:32)\n    at StdioClientTransport._transport.onclose (D:\\codex\\金融\\node_modules\\@modelcontextprotocol\\sdk\\src\\shared\\protocol.ts:623:18)\n    at ChildProcess.<anonymous> (D:\\codex\\金融\\node_modules\\@modelcontextprotocol\\sdk\\src\\client\\stdio.ts:152:31)\n    at ChildProcess.emit (node:events:514:28)\n    at cp.emit (D:\\codex\\金融\\node_modules\\cross-spawn\\lib\\enoent.js:34:29)\n    at maybeClose (node:internal/child_process:1141:16)\n    at ChildProcess._handle.onexit (node:internal/child_process:306:5)",
+  "private_mcp_exited": true,
+  "finished_at": "2026-10-03T19:32:57.788Z"
+}

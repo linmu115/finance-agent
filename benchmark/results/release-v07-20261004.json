@@ -1,0 +1,162 @@
+{
+  "kind": "development_release_v07",
+  "deployed_at": "2026-10-03T19:22:47.316804+00:00",
+  "server_pid": 6428,
+  "checks": {
+    "node_full_suite": 142,
+    "python_full_suite": 295,
+    "followup_workspace_api_tests": 5,
+    "typecheck": "passed",
+    "build": "passed",
+    "rendered_links_and_downloads": "18/18",
+    "browser_top_entry_and_mobile": "passed",
+    "evidence": {
+      "tmp/node-v07-final.log": "389e19bc8a75b0f4626f106097e490959c31bd7250fef9b0580dd27169897c37",
+      "tmp/service-v07-final.log": "db7a68b13c822dc2d2eaa44070f1701651632130ef4f81ed3676231c3eadfd63",
+      "tmp/typecheck-v07-ui.log": "17ce50c23fcb1f4074e8f2f965a60dedb24472afa8a32b19011559cbe87140fb",
+      "tmp/build-v07-ui.log": "8ffd7ca08d447b3cb7e09a9ad918bd37df7f86ab3de9724b7a8843d7050e0bb6",
+      "benchmark/results/deployment-v07-browser-checks-v3.json": "0e84ab4dc1ae4ee63848c8210221b7449553137d6e1b8d3b12b4c2307f36c238",
+      "benchmark/results/deployment-v07-link-checks.json": "0fc3cd9c32da4df4e031e92a4ea4b404d4ccda1840561fdbfa60daae2561ad25"
+    }
+  },
+  "public_configuration": {
+    "llm": {
+      "provider": "openai-compatible",
+      "baseUrl": "https://api.deepseek.com",
+      "model": "deepseek-flash",
+      "contextWindow": 1048576,
+      "maxTokens": 32768,
+      "hasKey": true
+    },
+    "embedding": {
+      "enabled": false,
+      "baseUrl": "",
+      "model": "",
+      "hasKey": false
+    },
+    "ocr": {
+      "mode": "local",
+      "baseUrl": "",
+      "model": "",
+      "hasKey": false
+    },
+    "search": {
+      "provider": "tavily",
+      "baseUrl": "https://api.tavily.com",
+      "maxResults": 6,
+      "hasKey": true
+    },
+    "runtime": {
+      "maxToolCalls": 64,
+      "timeoutSeconds": 120
+    }
+  },
+  "implementation": {
+    "package-lock.json": "16844320bcb71508eca07c7e88fde651a9c8d5ef1d3bdd945fabe75e501070e0",
+    "package.json": "67220cbe2991a723c896f58f72bb2a9f79d47a5d57cfeb6d4c8b24e40d8d72fb",
+    "requirements.lock.txt": "6345372903ebf1b7091477271659f2a38feb0a299d768651d8d98bd841159fc3",
+    "server/config.ts": "beedcffcb7c93bc3925f0480adb2e34b98ae91f574939987487c95a4edc7a5ca",
+    "server/evaluation-budget.ts": "b5407d944adfd9fbc17b59366352a6807f7fbaebe99ea6a189cfd97cdf637662",
+    "server/immutable-files.ts": "23b14077539256ee57e2e04471b29c5e77d6665c3faeb0fb31f413e00e84b230",
+    "server/main.ts": "93982fed691d9c546efb1e0d1725329a04188e7bfc7fe6b4245c7bcf0e6e3dd7",
+    "server/mcp.ts": "d640c3bee2607dd1608e14c21e78758043f2ba9f886db46275a31086d1f5c9b1",
+    "server/model-bridge.ts": "1e33b5200c139157617b491f41bea37ceb6c38453bd975f910f67e43401f1373",
+    "server/model-context.ts": "5d63fbcb2666b9118381a4ed06063d30f2e330dc8b20c647c790fd92c1284eda",
+    "server/research-api.ts": "414c4a94ebf6a3d8d47f2b0f87a08063d493799de51e2f117c12f9bb94a4b5b3",
+    "server/research-artifacts.ts": "ebea8265aad9c208642bb2fa495c5bd30b98755a1958a0487ae4684bc20d516e",
+    "server/research.ts": "6c50e9000b0cb190d1fe15ee5123ada09a425310e6a58fe3246c0cdeed6e1c29",
+    "server/runs.ts": "0996b0efd7bef9a3bcd94b939d885808a444a99fe85b01ee084281682a781bfa",
+    "server/startup-guard.ts": "302e771538d53e90a19abbd8354cf52bc3ab6dc292f0554d01492eec0cb79c22",
+    "server/tsconfig.json": "5e58651b055c5c54e2953b178acb03a36e10521131556441f1cc11c88c67382b",
+    "server/types.ts": "628c54777688d2d4ee69851be90f891e4a62c794607c849a5328174d221ae84f",
+    "server/workspace-api.ts": "aa080e71d30d0eae879f26bfc139879262e75164efd263ab62bd458afc0f8575",
+    "service/__init__.py": "5bcfc2bc68f6de1b22074c28433e66e7660b3d541d7c499ac0f9b07143c1fe88",
+    "service/baseline.py": "57eda19ed660e2f2749ce52d8834c6b251c3ce7aeac63e76894d259560cf6271",
+    "service/catalog_model.py": "412964064badc45f0b9f4d70ac548d34de6ff155ea3f6eac7c73a043673fcab0",
+    "service/catalog_semantics.py": "ae2dc0e9d1ca8ff5e906ee8724be70423474dc9723cbd61aac7c3d1099f6e515",
+    "service/completed_document.py": "e212471cc39721a36f31ea8c4e17bbecc467b9af6b19661ceb31604b754f893a",
+    "service/core.py": "92747e07ae4c1ee872a1604bb06d5deb80d12387f49f0c51a00e4338e6e2df0d",
+    "service/definition_grounding.py": "a37f1868097a0d23a245562c85cc47ccfbb393fd568745ad52a243ee5dce1897",
+    "service/definition_history.py": "7f3d28035fedb16c16b3a49adc2e761c9417b1b23fa6b343c7b5b67644902183",
+    "service/definition_model.py": "9dc6f2b881c1f86e2e343437eff43e0d15702894beee78883063b0f497649f46",
+    "service/definition_semantics.py": "200083348e717afb2056df3d80c5ae65da2daf084710241e4b1da6c66e573ebc",
+    "service/existing_review.py": "9c138d00c1a2d4f720296334adf038cbc39f918308491b08456fca32c1f2e860",
+    "service/extraction_alignment.py": "dc6604ca51332e39ec81801681f4e77a75a9d9787891996c93852f34c5f05d79",
+    "service/inspect_ocr.py": "19a66a038264f63719be64b3ce3c7372ed6303cb25fa67055aed14e8fae13510",
+    "service/inspect_reports.py": "35a89ab2faf6feb1ea3ed0c4b1ae4eee46552fef42ffc343d83605cdaa159937",
+    "service/lifecycle.py": "cae9830057fb57ba74f7807899f51488da2b8b1b614ba21ca37fc44a32664d58",
+    "service/maintenance.py": "f8cda482de45fde776480dde06294b9713a0ff9006fefaef222351bb8a52d13f",
+    "service/native_tables.py": "64d3156d56b4dfae330b50ba113f26181876ee5ed69fe9fc0d84c4f61f16003d",
+    "service/normalization.py": "318c03650b0525ab0f753ef1690238571288161e8761bf2e063274a6485fbb71",
+    "service/parser.py": "01a2c95eb59bf099e98a32340b674302ce0aac5a24b993b063f98d8cdf106384",
+    "service/parser_worker.py": "adbe0745e5a44c1ab305672dcf3a80f144b7304a4291a38005cd0496ef3954fe",
+    "service/pi_provider.py": "e7049033e2708195dd097a46a287e10d0bb775df385132f502f95c31f7501362",
+    "service/processing.py": "daafaf645ab04c2b25897977b9292a64975609ca726b77a1329c1bb797f3f14d",
+    "service/research_evidence.py": "d8e3734ff76dedecba117d6eb241d4b301a850f1206be4898dfbd81c9fddbcb6",
+    "service/research_models.py": "1190020552bec9eac5ff7f49edfd300e22e79b06909df64448bf5f3c40a25434",
+    "service/research_schema.py": "88d3149914aca7f4795a0d2b8cf0eeef30bd6a1350cf06871483793978eb0eb5",
+    "service/review_cache.py": "c2b0a0ae6264b314b6bcb099abb4133d3a5466df245098229ed22eb021b6d0ba",
+    "service/semantic.py": "f5cd043587d7f48aeb09fafdec86d7a609290ec3ecdd409975e22347cb1f197e",
+    "service/server.py": "ef2feab9bfcc73cd4e0b1314faa2df266f7227341503556b0dab80a6f652d407",
+    "service/store.py": "8e40a64e966a81ce8db7547ee72194631d533ef4ff092d2a3683247f3d2a3879",
+    "service/temporal_model.py": "a6c804bd1ee262ae008c3595e425a205e1e9ad1ec6de605bfeac92f8c0d76c18",
+    "service/temporal_repair.py": "76c34f206097c5d259d5fbe93ca2f284e2e3050837c49698e81e4ffc49be8986",
+    "service/temporal_semantics.py": "c55dd15c01e12b2dcbb2dd8d6c3da462de5777a0f31dbf37225a4b2a07aaaa51",
+    "service/tool-schema.json": "df84575ce7d4da683f33f6331d09f9ade91771f9b9580588e560c3287b0c95c9",
+    "web/src/api.ts": "6a9cdf306aa578f5abef18910826143f711fe6c7c3572ebc36606021b9501196",
+    "web/src/App.tsx": "3e0c76630be9da14cdc5f2c8f8d25c6a0608eb2b7613096faad303d6a0b5a1ee",
+    "web/src/BenchmarkView.tsx": "65cd17fcdcf7c1aa5ef6e2cfa92ddce7c6a71fdd3fc506afcccc3ad865851151",
+    "web/src/chartValues.ts": "540894eb2172172e5686eadcb3afc31b6d5782a1bdd68b39652c240b1eb834e5",
+    "web/src/DatasetView.tsx": "504b268fadca99fe859ed8e21c1ac10e879155aaad5d90c4ae5249ae6617166f",
+    "web/src/DocumentDrawer.tsx": "d011b5b097e580b2f28f0f040e93a8ac30824c867f3d85e0e82007d8bedfa16f",
+    "web/src/FinancialDashboard.tsx": "f689db22b5b13ea490d85e998ecf08b1cbb5f61ca346b43f9e95965fb9c0b1a2",
+    "web/src/main.tsx": "e81aec37c1befe991a35934ed8b90b73e7262a01e4dffae60e1ce87967ff09b4",
+    "web/src/MessageView.tsx": "6e65343c4975539c89f3a1f7e404d46052c20ca709d00f6f98b83ab7666b4fe5",
+    "web/src/Modal.tsx": "67469b1c8b0bf8ab4cc46a2726ace80d729438d8d5fed78ac3f7f573345fdc9d",
+    "web/src/research-basis.ts": "519814263dc9445c8853433c5e0a368c56e2f3b76c83bce8bd10a4b1ddabcfe8",
+    "web/src/research.css": "948d67ae94ee161dbb64585fdb877d63e0b87111b3e2082e35d3b4a19ba7abc5",
+    "web/src/ResearchWorkspace.tsx": "f4546e9cc8d2a7d97b69e477fbd4b13e8798deff0d2cd31ba3c2f0a2cb7d4d7c",
+    "web/src/SettingsDialog.tsx": "cc22c7231786e31972d0cde91bea90dc58ffaccbe6aca21cf729caa23c101cc4",
+    "web/src/styles.css": "319623d641cd2c632c8c93f340d6b58dedd6d069d11b5af7faf92552e981adb6",
+    "web/src/types.ts": "f944f8c237459dd4510d4e4b117003c5ddc0c963c00767813a81e2c23531c1c7"
+  },
+  "changed_since_v06": [
+    "server/config.ts",
+    "server/model-bridge.ts",
+    "server/runs.ts",
+    "server/workspace-api.ts",
+    "service/definition_model.py",
+    "service/definition_semantics.py",
+    "web/src/DatasetView.tsx"
+  ],
+  "frontend_dist": {
+    "web/dist/index.html": "4c40a01452a4ac38cc3d45c206f28e63f9f920ef08a79b778fc756afc9c6831e",
+    "web/dist/assets/index-D9MDo_a5.js": "acb44882c9f2c9a1ee5320fb0044e44e94721a6b7cbbb994419b81a399d6eecc",
+    "web/dist/assets/index-Doh0reaR.css": "ac45acb716a1c0e34280930b460df2c071815d2a932993147b5f1fc9592f80b5"
+  },
+  "formal_holdout_started": false,
+  "holdout_execution_zip_sha256": "628ff471f46d9ee836946951764889b3af3814acd71fe044eabe4085167af352",
+  "official_model_calls_since_v06_balance_failure": 0,
+  "real_model_acceptance": "pending_new_balance_confirmation",
+  "changes": [
+    "Typed output limit enables finite group bisection; unrelated failures never trigger splitting.",
+    "A fully matched historical length request directly seeds smaller batches with zero new parent inference.",
+    "Original cached decisions are revalidated and registered without changing old owner or missing historical reports.",
+    "Main response limit32768/tools64; formal total budgets unchanged.",
+    "Research cutoff forwarding and financial scope instructions clarified without company values.",
+    "Continuation observer records actual or unknown spend; it never replaces missing usage with zero.",
+    "Dataset page has visible progress/design links; report links rendered by backend under existing CSP."
+  ],
+  "limitations": [
+    "No new official model run after HTTP402.",
+    "Real LiuGong workflow, formal whole-table financial/generic and report correction remain unexecuted or incomplete.",
+    "Original browser check found CSP blocked inline link conversion; original failed report retained, subsequent corrected checks separate."
+  ],
+  "newly_tracked_paths": [
+    "package-lock.json",
+    "package.json",
+    "requirements.lock.txt",
+    "service/definition_history.py"
+  ],
+  "hash_comparison_note": "Newly tracked dependency manifests have no v06 manifest baseline; their presence here does not imply a dependency version change."
+}

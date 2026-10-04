@@ -1,0 +1,75 @@
+{
+  "checkedAt": "2026-10-03T06:04:05.050Z",
+  "scope": "Read-only production UI validation of completed three-report demo; no new model invocation or application mutation.",
+  "baseUrl": "http://127.0.0.1:3001",
+  "projectId": "e9286da8-ec22-478a-85d2-256c2683db1e",
+  "conversationId": "8a8a88e5-579d-4cb0-9d1c-22356b1c9bff",
+  "passed": 5,
+  "checks": [
+    {
+      "name": "真实项目与已完成历史业务结果",
+      "status": "passed",
+      "assistantMessageId": "1fef2fc3-fc9f-49f7-809e-4f5399989684"
+    },
+    {
+      "name": "真实六项数据图表在正式页面加载，PNG与核对成果哈希一致",
+      "status": "passed",
+      "series": 6,
+      "companies": 3,
+      "years": [
+        2023,
+        2024
+      ],
+      "unit": "亿元",
+      "image": {
+        "width": 1500,
+        "height": 900,
+        "url": "/api/projects/e9286da8-ec22-478a-85d2-256c2683db1e/artifacts/e27c9d9e67bc41d9938af3a8e568179c/revenue_2023_2024.png"
+      },
+      "sha256": "07e7832acfe031e392c9c384ce45c9592966b722189faa15e1260c0f2cb8a830"
+    },
+    {
+      "name": "三家来源可打开真实页文本和原页图像",
+      "status": "passed",
+      "sourceCount": 10,
+      "sources": [
+        {
+          "label": "1. moutai_2024.pdf · 第 5 页",
+          "page": "第 5 页 / 143",
+          "textLength": 2328,
+          "textMatchesActualPageResponse": true,
+          "imageLoaded": true
+        },
+        {
+          "label": "3. midea_2024.pdf · 第 9 页",
+          "page": "第 9 页 / 295",
+          "textLength": 1588,
+          "textMatchesActualPageResponse": true,
+          "imageLoaded": true
+        },
+        {
+          "label": "5. yili_2024.pdf · 第 7 页",
+          "page": "第 7 页 / 270",
+          "textLength": 2280,
+          "textMatchesActualPageResponse": true,
+          "imageLoaded": true
+        }
+      ]
+    },
+    {
+      "name": "只读检查，无变更请求或浏览器错误",
+      "status": "passed",
+      "modelRequests": 0,
+      "mutatingRequests": 0
+    },
+    {
+      "name": "Codex视觉核对业务结论与六柱中文图",
+      "status": "passed",
+      "evidence": "截图显示贵州茅台、美的集团、伊利股份各2023/2024两柱，中文标题/图例/坐标与亿元单位可读，六个柱顶数值清晰。代理视觉核对，未经第二人复核。"
+    }
+  ],
+  "screenshot": "web/test-results/demo-live.png",
+  "visualReview": "passed: agent visual inspection, not human sign-off",
+  "errors": [],
+  "screenshotSha256": "463a2ad462f19e391e988bd8b6f637b0a840dcf05bef35202a9c6480e6d49ed2"
+}

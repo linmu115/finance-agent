@@ -1,0 +1,4157 @@
+{
+  "scope": "15 previously known Moutai disclosure-scope regressions; not holdout. Source facts preserved and accepted definitions independently traced to owning Pi requests. Definition-stage archived rows separately prove no money/date/source mutation.",
+  "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+  "checked_at": "2026-10-03T18:22:55.872Z",
+  "before_facts_sha256": "baf2ac8a098bcb1892b4c2386d1e6f13efc10c7fbf122a0e23e3984197059934",
+  "after_facts_sha256": "fdc46df1edf5cb2d684908caf39d381bd605d542d57133ddc9d4eed2b97f0790",
+  "oracle_sha256": "42abe444b6529a0adff3eca1da8a113eea562ecdeb2622184e3370cb4b20de0b",
+  "checks": [
+    {
+      "id": "main_direct",
+      "status": "failed",
+      "errors": [
+        "missing_main_business_definition"
+      ],
+      "expected": {
+        "id": "main_direct",
+        "meaning": "主营业务构成中的直销收入",
+        "value": "74843327030.79",
+        "raw_value": "74,843,327,030.79",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 17,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t33",
+          "row": 3,
+          "column": 2,
+          "row_text": "直销 | 74,843,327,030.79 | 11.32 | 3,493,952,839.59 | 14.52 | 95.33 | -0.13"
+        }
+      },
+      "actual": {
+        "fact_id": "f0bb4ab591824e93b90546719b8b4a46",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "revenue",
+        "year": 2024,
+        "period": "2024-FY",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "74,843,327,030.79",
+        "raw_unit": "元",
+        "value": "74843327030.79",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 17,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t33",
+          "row": 3,
+          "column": 2,
+          "cell": "B3",
+          "text": "直销 | 74,843,327,030.79 | 11.32 | 3,493,952,839.59 | 14.52 | 95.33 | -0.13",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "营业收入",
+            "statement": "segment",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {
+              "channel": "直销"
+            },
+            "scale": "1",
+            "char_interval": [
+              3198,
+              3208
+            ],
+            "row_metric": "revenue",
+            "row_label": "营业收入",
+            "column_metric": "revenue",
+            "column_label": "营业收入",
+            "dimension_labels": {},
+            "original_extraction_hash": "b02bc723de842d75f234d97633bcfa908bec77153e376927d44c3840e65fd912",
+            "source_key": "47ae06341adf228e81582333a0d1e8fcc3e41a915fd0600cbda018f27afe8335",
+            "source_fingerprint": "bfd2e26a955b506bee9693b72e06b0f2236f997abb45ddf789d8e8ef27575335",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "revenue",
+            "original_label": "营业收入",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "revenue",
+              "canonical_metric": "revenue",
+              "canonical_label": "营业收入",
+              "decision": "keep"
+            }
+          },
+          "bbox": [
+            145.94000244140625,
+            104.53997802734375,
+            237.7699966430664,
+            118.46002197265625
+          ]
+        },
+        "label": "营业收入",
+        "statement": "segment",
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31",
+        "dimensions": {
+          "channel": "直销"
+        },
+        "dimension_labels": {},
+        "unit_conversion": null,
+        "original_metric": "revenue",
+        "canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "revenue",
+          "canonical_metric": "revenue",
+          "canonical_label": "营业收入",
+          "decision": "keep"
+        },
+        "previous_canonical_alias": null,
+        "temporal_correction": null,
+        "definition_review": null,
+        "definition": null,
+        "definition_scope": null,
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "all_direct",
+      "status": "failed",
+      "errors": [
+        "missing_all_business_definition"
+      ],
+      "expected": {
+        "id": "all_direct",
+        "meaning": "全部营业收入分解中的直销收入，包含其他业务",
+        "value": "74911586867.82",
+        "raw_value": "74,911,586,867.82",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+          "row": 12,
+          "column": 4,
+          "row_text": "直销 |  |  | 74,911,586,867.82 | 3,580,638,287.95"
+        }
+      },
+      "actual": {
+        "fact_id": "15480524802648a59504220f23a75cba",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "revenue",
+        "year": 2024,
+        "period": "2024-FY",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "74,911,586,867.82",
+        "raw_unit": "元",
+        "value": "74911586867.82",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+          "row": 12,
+          "column": 4,
+          "cell": "D12",
+          "text": "直销 |  |  | 74,911,586,867.82 | 3,580,638,287.95",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "营业收入",
+            "statement": "notes",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {
+              "channel": "直销"
+            },
+            "scale": "1",
+            "char_interval": [
+              10005,
+              10017
+            ],
+            "row_metric": "revenue",
+            "row_label": "营业收入",
+            "column_metric": "revenue",
+            "column_label": "营业收入",
+            "dimension_labels": {},
+            "original_extraction_hash": "4d9b233e857bd37f31ef407ae25df6a1fc46e95cd04eaf5f6c77cf43b607625a",
+            "source_key": "7ba77bcada6d7fbb4b9435f6f08626135d1c9b2491245c1538f44bcbf1242208",
+            "source_fingerprint": "1a454dcf79324fa739c36768b56b421cf2af05127cb00bf05748ffcacd712443",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "revenue",
+            "original_label": "营业收入",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "revenue",
+              "canonical_metric": "revenue",
+              "canonical_label": "营业收入",
+              "decision": "keep"
+            }
+          },
+          "bbox": [
+            266.5699920654297,
+            738.219970703125,
+            385.3899841308594,
+            752.3759460449219
+          ]
+        },
+        "label": "营业收入",
+        "statement": "notes",
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31",
+        "dimensions": {
+          "channel": "直销"
+        },
+        "dimension_labels": {},
+        "unit_conversion": null,
+        "original_metric": "revenue",
+        "canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "revenue",
+          "canonical_metric": "revenue",
+          "canonical_label": "营业收入",
+          "decision": "keep"
+        },
+        "previous_canonical_alias": null,
+        "temporal_correction": null,
+        "definition_review": null,
+        "definition": null,
+        "definition_scope": null,
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "main_wholesale",
+      "status": "passed",
+      "errors": [],
+      "expected": {
+        "id": "main_wholesale",
+        "meaning": "主营业务构成中的批发代理收入",
+        "value": "95768511021.23",
+        "raw_value": "95,768,511,021.23",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 17,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t33",
+          "row": 2,
+          "column": 2,
+          "row_text": "批发代理 | 95,768,511,021.23 | 19.73 | 10,136,042,973.30 | 18.28 | 89.42 | 0.13"
+        }
+      },
+      "actual": {
+        "fact_id": "7530c62d71a34eed8122c7285315a1f3",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "main_business_revenue",
+        "year": 2024,
+        "period": "2024-FY",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "95,768,511,021.23",
+        "raw_unit": "元",
+        "value": "95768511021.23",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 17,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t33",
+          "row": 2,
+          "column": 2,
+          "cell": "B2",
+          "text": "批发代理 | 95,768,511,021.23 | 19.73 | 10,136,042,973.30 | 18.28 | 89.42 | 0.13",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "主营业务收入",
+            "statement": "segment",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {
+              "channel": "批发代理"
+            },
+            "scale": "1",
+            "char_interval": [
+              3090,
+              3100
+            ],
+            "row_metric": "revenue",
+            "row_label": "营业收入",
+            "column_metric": "revenue",
+            "column_label": "营业收入",
+            "dimension_labels": {},
+            "original_extraction_hash": "bb70e864215f3fd0ef1c924cc5c65c557a65a78e29c3208f1068e14e1c0c84c1",
+            "source_key": "5bdd60ee7f66d38f5309c3fb40a38a5a521641d690f3c57e7e419579b834a141",
+            "source_fingerprint": "12078dcfae9a05c57121e045f29c276324d1ce7457436fdae82eff3a10453db0",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "revenue",
+            "original_label": "营业收入",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "revenue",
+              "canonical_metric": "revenue",
+              "canonical_label": "营业收入",
+              "decision": "keep"
+            },
+            "definition_review": {
+              "review_id": "03447af2f2554abe901dfaaef7912844",
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "definition-langextract-0.2.0",
+              "model": "deepseek-flash",
+              "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+              "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+              "result_hash": "f1b4116291bd37bca429f450ac3246a5b454eadcb48fbd6b74289ad9690ae512",
+              "group_id": "2d2dd16ca4b9ac7e45dbed11dc84b9d16064c543b1e50ac341181001aee16fa9",
+              "source_key": "5bdd60ee7f66d38f5309c3fb40a38a5a521641d690f3c57e7e419579b834a141",
+              "source_fingerprint": "12078dcfae9a05c57121e045f29c276324d1ce7457436fdae82eff3a10453db0",
+              "original_extraction_hash": "bb70e864215f3fd0ef1c924cc5c65c557a65a78e29c3208f1068e14e1c0c84c1",
+              "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+              "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+              "before": {
+                "metric": "revenue",
+                "label": "营业收入"
+              },
+              "after": {
+                "metric": "main_business_revenue",
+                "label": "主营业务收入",
+                "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+                "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。"
+              },
+              "reason": "原文表题明确为按不同类型披露公司主营业务构成，列名为营业收入，实为主营业务收入；已有公共指标revenue为营业收入总额，含义更广，复用会使其含义变窄，故新建main_business_revenue。",
+              "grounded_quotes": [
+                {
+                  "evidence_id": "67fa51ca3297cfc3fa78f10ee26ee5a73a688ef81f3438a4e654c48f92e68d03",
+                  "text": "按不同类型披露公司主营业务构成"
+                },
+                {
+                  "evidence_id": "59ad834ee7f92e69308e564cee0aa646c9714969e6b2a2b1318805998c9c3757",
+                  "text": "原始行名：营业收入\n原始列名：营业收入\n本列完整表头："
+                },
+                {
+                  "evidence_id": "fb685db8862a7f278acaebddf80a55bfc24eb11cab1b65c3b4af26c8b75f0031",
+                  "text": "批发代理 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+                }
+              ],
+              "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601"
+            },
+            "directory_alias_superseded_by_definition": "03447af2f2554abe901dfaaef7912844"
+          },
+          "bbox": [
+            145.94000244140625,
+            90.5,
+            237.7699966430664,
+            104.53997802734375
+          ]
+        },
+        "label": "主营业务收入",
+        "statement": "segment",
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31",
+        "dimensions": {
+          "channel": "批发代理"
+        },
+        "dimension_labels": {},
+        "unit_conversion": null,
+        "original_metric": "revenue",
+        "canonical_alias": null,
+        "previous_canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "revenue",
+          "canonical_metric": "revenue",
+          "canonical_label": "营业收入",
+          "decision": "keep"
+        },
+        "temporal_correction": null,
+        "definition_review": {
+          "review_id": "03447af2f2554abe901dfaaef7912844",
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "definition-langextract-0.2.0",
+          "model": "deepseek-flash",
+          "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+          "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+          "result_hash": "f1b4116291bd37bca429f450ac3246a5b454eadcb48fbd6b74289ad9690ae512",
+          "group_id": "2d2dd16ca4b9ac7e45dbed11dc84b9d16064c543b1e50ac341181001aee16fa9",
+          "source_key": "5bdd60ee7f66d38f5309c3fb40a38a5a521641d690f3c57e7e419579b834a141",
+          "source_fingerprint": "12078dcfae9a05c57121e045f29c276324d1ce7457436fdae82eff3a10453db0",
+          "original_extraction_hash": "bb70e864215f3fd0ef1c924cc5c65c557a65a78e29c3208f1068e14e1c0c84c1",
+          "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+          "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+          "before": {
+            "metric": "revenue",
+            "label": "营业收入"
+          },
+          "after": {
+            "metric": "main_business_revenue",
+            "label": "主营业务收入",
+            "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+            "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。"
+          },
+          "reason": "原文表题明确为按不同类型披露公司主营业务构成，列名为营业收入，实为主营业务收入；已有公共指标revenue为营业收入总额，含义更广，复用会使其含义变窄，故新建main_business_revenue。",
+          "grounded_quotes": [
+            {
+              "evidence_id": "67fa51ca3297cfc3fa78f10ee26ee5a73a688ef81f3438a4e654c48f92e68d03",
+              "text": "按不同类型披露公司主营业务构成"
+            },
+            {
+              "evidence_id": "59ad834ee7f92e69308e564cee0aa646c9714969e6b2a2b1318805998c9c3757",
+              "text": "原始行名：营业收入\n原始列名：营业收入\n本列完整表头："
+            },
+            {
+              "evidence_id": "fb685db8862a7f278acaebddf80a55bfc24eb11cab1b65c3b4af26c8b75f0031",
+              "text": "批发代理 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+            }
+          ],
+          "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601"
+        },
+        "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+        "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。",
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "all_wholesale",
+      "status": "failed",
+      "errors": [
+        "missing_all_business_definition"
+      ],
+      "expected": {
+        "id": "all_wholesale",
+        "meaning": "全部营业收入分解中的批发代理收入",
+        "value": "95987565408.52",
+        "raw_value": "95,987,565,408.52",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+          "row": 11,
+          "column": 4,
+          "row_text": "批发代理 |  |  | 95,987,565,408.52 | 10,208,844,080.03"
+        }
+      },
+      "actual": {
+        "fact_id": "973e952ebd6845e98922617850eac6b5",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "revenue",
+        "year": 2024,
+        "period": "2024-FY",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "95,987,565,408.52",
+        "raw_unit": "元",
+        "value": "95987565408.52",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+          "row": 11,
+          "column": 4,
+          "cell": "D11",
+          "text": "批发代理 |  |  | 95,987,565,408.52 | 10,208,844,080.03",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "营业收入",
+            "statement": "notes",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {
+              "channel": "批发代理"
+            },
+            "scale": "1",
+            "char_interval": [
+              9926,
+              9938
+            ],
+            "row_metric": "revenue",
+            "row_label": "营业收入",
+            "column_metric": "revenue",
+            "column_label": "营业收入",
+            "dimension_labels": {},
+            "original_extraction_hash": "a53f1895046b67c169958a76183dfe58a6a97994fb6db1ce5c876fb4c4c91411",
+            "source_key": "64bf313fdc0bd46b0c60a5a938fd2c69a1a361bd82f6b16242a935e506992272",
+            "source_fingerprint": "708c62390504f1e0329727d38b67ab2184b13fda6f268bb24a801756d02116ba",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "revenue",
+            "original_label": "营业收入",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "revenue",
+              "canonical_metric": "revenue",
+              "canonical_label": "营业收入",
+              "decision": "keep"
+            }
+          },
+          "bbox": [
+            266.5699920654297,
+            724.0899963378906,
+            385.3899841308594,
+            738.219970703125
+          ]
+        },
+        "label": "营业收入",
+        "statement": "notes",
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31",
+        "dimensions": {
+          "channel": "批发代理"
+        },
+        "dimension_labels": {},
+        "unit_conversion": null,
+        "original_metric": "revenue",
+        "canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "revenue",
+          "canonical_metric": "revenue",
+          "canonical_label": "营业收入",
+          "decision": "keep"
+        },
+        "previous_canonical_alias": null,
+        "temporal_correction": null,
+        "definition_review": null,
+        "definition": null,
+        "definition_scope": null,
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "main_domestic",
+      "status": "passed",
+      "errors": [],
+      "expected": {
+        "id": "main_domestic",
+        "meaning": "主营业务构成中的国内收入",
+        "value": "165423308808.24",
+        "raw_value": "165,423,308,808.24",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 17,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t33",
+          "row": 6,
+          "column": 2,
+          "row_text": "国内 | 165,423,308,808.24 | 15.79 | 13,226,875,459.60 | 17.26 | 92.00 | -0.10"
+        }
+      },
+      "actual": {
+        "fact_id": "affa98beaef84b09b1554f149246287d",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "main_business_revenue",
+        "year": 2024,
+        "period": "2024-FY",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "165,423,308,808.24",
+        "raw_unit": "元",
+        "value": "165423308808.24",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 17,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t33",
+          "row": 6,
+          "column": 2,
+          "cell": "B6",
+          "text": "国内 | 165,423,308,808.24 | 15.79 | 13,226,875,459.60 | 17.26 | 92.00 | -0.10",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "主营业务收入",
+            "statement": "segment",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {
+              "region": "国内"
+            },
+            "scale": "1",
+            "char_interval": [
+              3468,
+              3478
+            ],
+            "row_metric": "revenue",
+            "row_label": "营业收入",
+            "column_metric": "revenue",
+            "column_label": "营业收入",
+            "dimension_labels": {},
+            "original_extraction_hash": "452d058957a4e6dd22d68cacd3df66f3504dbdb4b442811196bff67bb47bba2b",
+            "source_key": "e0a083e8937318a995ae0a432902feeff691b8435585098e55f58c0017ab689f",
+            "source_fingerprint": "d89b7b498d769702190aad98bb14d88f0b6d46ae0d11cf291833c4ba7107c972",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "revenue",
+            "original_label": "营业收入",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "revenue",
+              "canonical_metric": "revenue",
+              "canonical_label": "营业收入",
+              "decision": "keep"
+            },
+            "definition_review": {
+              "review_id": "03447af2f2554abe901dfaaef7912844",
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "definition-langextract-0.2.0",
+              "model": "deepseek-flash",
+              "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+              "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+              "result_hash": "f1b4116291bd37bca429f450ac3246a5b454eadcb48fbd6b74289ad9690ae512",
+              "group_id": "12fd2ce9edf0cd7bce57b928bdabf8a2b0067638aaa3a342b9c4197e8f045133",
+              "source_key": "e0a083e8937318a995ae0a432902feeff691b8435585098e55f58c0017ab689f",
+              "source_fingerprint": "d89b7b498d769702190aad98bb14d88f0b6d46ae0d11cf291833c4ba7107c972",
+              "original_extraction_hash": "452d058957a4e6dd22d68cacd3df66f3504dbdb4b442811196bff67bb47bba2b",
+              "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+              "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+              "before": {
+                "metric": "revenue",
+                "label": "营业收入"
+              },
+              "after": {
+                "metric": "main_business_revenue",
+                "label": "主营业务收入",
+                "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+                "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。"
+              },
+              "reason": "原文表题明确为按不同类型披露公司主营业务构成，列名为营业收入，实为主营业务收入；已有公共指标revenue为营业收入总额，含义更广，复用会使其含义变窄，故新建main_business_revenue。",
+              "grounded_quotes": [
+                {
+                  "evidence_id": "67fa51ca3297cfc3fa78f10ee26ee5a73a688ef81f3438a4e654c48f92e68d03",
+                  "text": "按不同类型披露公司主营业务构成"
+                },
+                {
+                  "evidence_id": "59ad834ee7f92e69308e564cee0aa646c9714969e6b2a2b1318805998c9c3757",
+                  "text": "原始行名：营业收入\n原始列名：营业收入\n本列完整表头："
+                },
+                {
+                  "evidence_id": "fb685db8862a7f278acaebddf80a55bfc24eb11cab1b65c3b4af26c8b75f0031",
+                  "text": "国内 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+                }
+              ],
+              "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601"
+            },
+            "directory_alias_superseded_by_definition": "03447af2f2554abe901dfaaef7912844"
+          },
+          "bbox": [
+            145.94000244140625,
+            146.53997802734375,
+            237.7699966430664,
+            160.46002197265625
+          ]
+        },
+        "label": "主营业务收入",
+        "statement": "segment",
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31",
+        "dimensions": {
+          "region": "国内"
+        },
+        "dimension_labels": {},
+        "unit_conversion": null,
+        "original_metric": "revenue",
+        "canonical_alias": null,
+        "previous_canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "revenue",
+          "canonical_metric": "revenue",
+          "canonical_label": "营业收入",
+          "decision": "keep"
+        },
+        "temporal_correction": null,
+        "definition_review": {
+          "review_id": "03447af2f2554abe901dfaaef7912844",
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "definition-langextract-0.2.0",
+          "model": "deepseek-flash",
+          "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+          "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+          "result_hash": "f1b4116291bd37bca429f450ac3246a5b454eadcb48fbd6b74289ad9690ae512",
+          "group_id": "12fd2ce9edf0cd7bce57b928bdabf8a2b0067638aaa3a342b9c4197e8f045133",
+          "source_key": "e0a083e8937318a995ae0a432902feeff691b8435585098e55f58c0017ab689f",
+          "source_fingerprint": "d89b7b498d769702190aad98bb14d88f0b6d46ae0d11cf291833c4ba7107c972",
+          "original_extraction_hash": "452d058957a4e6dd22d68cacd3df66f3504dbdb4b442811196bff67bb47bba2b",
+          "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+          "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+          "before": {
+            "metric": "revenue",
+            "label": "营业收入"
+          },
+          "after": {
+            "metric": "main_business_revenue",
+            "label": "主营业务收入",
+            "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+            "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。"
+          },
+          "reason": "原文表题明确为按不同类型披露公司主营业务构成，列名为营业收入，实为主营业务收入；已有公共指标revenue为营业收入总额，含义更广，复用会使其含义变窄，故新建main_business_revenue。",
+          "grounded_quotes": [
+            {
+              "evidence_id": "67fa51ca3297cfc3fa78f10ee26ee5a73a688ef81f3438a4e654c48f92e68d03",
+              "text": "按不同类型披露公司主营业务构成"
+            },
+            {
+              "evidence_id": "59ad834ee7f92e69308e564cee0aa646c9714969e6b2a2b1318805998c9c3757",
+              "text": "原始行名：营业收入\n原始列名：营业收入\n本列完整表头："
+            },
+            {
+              "evidence_id": "fb685db8862a7f278acaebddf80a55bfc24eb11cab1b65c3b4af26c8b75f0031",
+              "text": "国内 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+            }
+          ],
+          "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601"
+        },
+        "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+        "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。",
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "all_domestic",
+      "status": "passed",
+      "errors": [],
+      "expected": {
+        "id": "all_domestic",
+        "meaning": "全部营业收入分解中的国内收入",
+        "value": "165695304320.02",
+        "raw_value": "165,695,304,320.02",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+          "row": 8,
+          "column": 4,
+          "row_text": "国内 |  |  | 165,695,304,320.02 | 13,377,559,491.36"
+        }
+      },
+      "actual": {
+        "fact_id": "31881789805c46b99a2d993e25f78570",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "revenue",
+        "year": 2024,
+        "period": "2024-FY",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "165,695,304,320.02",
+        "raw_unit": "元",
+        "value": "165695304320.02",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+          "row": 8,
+          "column": 4,
+          "cell": "D8",
+          "text": "国内 |  |  | 165,695,304,320.02 | 13,377,559,491.36",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "营业收入",
+            "statement": "notes",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {
+              "region": "国内"
+            },
+            "scale": "1",
+            "char_interval": [
+              9729,
+              9740
+            ],
+            "row_metric": "revenue",
+            "row_label": "营业收入",
+            "column_metric": "revenue",
+            "column_label": "营业收入",
+            "dimension_labels": {},
+            "original_extraction_hash": "783862e30507e53059fbd632a1abb5c586c6a56e5d6049be62241e7cd8920e6f",
+            "source_key": "a904fb534afd98dd3ec1dae3b5866987acbaf4866b17e7e162ca211e222a44bb",
+            "source_fingerprint": "d09d8f8b6751b5930829721e7fe8165fcef28aa92e48776d02a90bd237947e5c",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "revenue",
+            "original_label": "营业收入",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "revenue",
+              "canonical_metric": "revenue",
+              "canonical_label": "营业收入",
+              "decision": "keep"
+            },
+            "definition_review": {
+              "review_id": "03447af2f2554abe901dfaaef7912844",
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "definition-langextract-0.2.0",
+              "model": "deepseek-flash",
+              "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+              "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+              "result_hash": "84dd518acbd12204887a791c951304a5868788e363b37f4030b5aaceded5f02e",
+              "group_id": "487f5bd124b599cfa4412d404abc6eb98f262355cbd51d3e3ec8c29d85fd0119",
+              "source_key": "a904fb534afd98dd3ec1dae3b5866987acbaf4866b17e7e162ca211e222a44bb",
+              "source_fingerprint": "d09d8f8b6751b5930829721e7fe8165fcef28aa92e48776d02a90bd237947e5c",
+              "original_extraction_hash": "783862e30507e53059fbd632a1abb5c586c6a56e5d6049be62241e7cd8920e6f",
+              "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+              "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+              "before": {
+                "metric": "revenue",
+                "label": "营业收入"
+              },
+              "after": {
+                "metric": "revenue",
+                "label": "营业收入",
+                "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+                "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+              },
+              "reason": "原文为营业收入分解信息中按经营地区分类的国内营业收入，列标题为营业收入，属于按CAS确认的营业收入，与已有公共指标revenue语义一致，region=国内由原事实保留，故保留revenue。",
+              "grounded_quotes": [
+                {
+                  "evidence_id": "3f6e459c84ed7e7859c987d919a37397e179288a594bec0754eb5c37bf5e1624",
+                  "text": "40、 营业收入和营业成本"
+                },
+                {
+                  "evidence_id": "2da843ec11a037939cfbd25bb8baf7387a319c6c819e39cf0dcd0c6732871c1d",
+                  "text": "国内 |  |  | 〈原数值已省略〉 | 〈原数值已省略〉"
+                },
+                {
+                  "evidence_id": "2da843ec11a037939cfbd25bb8baf7387a319c6c819e39cf0dcd0c6732871c1d",
+                  "text": "按经营地区分类"
+                },
+                {
+                  "evidence_id": "7d650131acbe307782894b1cc1a5fbccd7c009c53144384a7ca7dd6207b52236",
+                  "text": "原始行名：营业收入"
+                }
+              ],
+              "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5"
+            },
+            "directory_alias_superseded_by_definition": "03447af2f2554abe901dfaaef7912844"
+          },
+          "bbox": [
+            266.5699920654297,
+            681.8199768066406,
+            385.3899841308594,
+            695.8599853515625
+          ]
+        },
+        "label": "营业收入",
+        "statement": "notes",
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31",
+        "dimensions": {
+          "region": "国内"
+        },
+        "dimension_labels": {},
+        "unit_conversion": null,
+        "original_metric": "revenue",
+        "canonical_alias": null,
+        "previous_canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "revenue",
+          "canonical_metric": "revenue",
+          "canonical_label": "营业收入",
+          "decision": "keep"
+        },
+        "temporal_correction": null,
+        "definition_review": {
+          "review_id": "03447af2f2554abe901dfaaef7912844",
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "definition-langextract-0.2.0",
+          "model": "deepseek-flash",
+          "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+          "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+          "result_hash": "84dd518acbd12204887a791c951304a5868788e363b37f4030b5aaceded5f02e",
+          "group_id": "487f5bd124b599cfa4412d404abc6eb98f262355cbd51d3e3ec8c29d85fd0119",
+          "source_key": "a904fb534afd98dd3ec1dae3b5866987acbaf4866b17e7e162ca211e222a44bb",
+          "source_fingerprint": "d09d8f8b6751b5930829721e7fe8165fcef28aa92e48776d02a90bd237947e5c",
+          "original_extraction_hash": "783862e30507e53059fbd632a1abb5c586c6a56e5d6049be62241e7cd8920e6f",
+          "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+          "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+          "before": {
+            "metric": "revenue",
+            "label": "营业收入"
+          },
+          "after": {
+            "metric": "revenue",
+            "label": "营业收入",
+            "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+            "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+          },
+          "reason": "原文为营业收入分解信息中按经营地区分类的国内营业收入，列标题为营业收入，属于按CAS确认的营业收入，与已有公共指标revenue语义一致，region=国内由原事实保留，故保留revenue。",
+          "grounded_quotes": [
+            {
+              "evidence_id": "3f6e459c84ed7e7859c987d919a37397e179288a594bec0754eb5c37bf5e1624",
+              "text": "40、 营业收入和营业成本"
+            },
+            {
+              "evidence_id": "2da843ec11a037939cfbd25bb8baf7387a319c6c819e39cf0dcd0c6732871c1d",
+              "text": "国内 |  |  | 〈原数值已省略〉 | 〈原数值已省略〉"
+            },
+            {
+              "evidence_id": "2da843ec11a037939cfbd25bb8baf7387a319c6c819e39cf0dcd0c6732871c1d",
+              "text": "按经营地区分类"
+            },
+            {
+              "evidence_id": "7d650131acbe307782894b1cc1a5fbccd7c009c53144384a7ca7dd6207b52236",
+              "text": "原始行名：营业收入"
+            }
+          ],
+          "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5"
+        },
+        "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+        "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。",
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "main_total",
+      "status": "failed",
+      "errors": [
+        "missing_main_business_definition"
+      ],
+      "expected": {
+        "id": "main_total",
+        "meaning": "主营业务收入",
+        "value": "170611838052.02",
+        "raw_value": "170,611,838,052.02",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t192",
+          "row": 3,
+          "column": 2,
+          "row_text": "主营业务 | 170,611,838,052.02 | 13,629,995,812.89 | 147,218,996,281.04 | 11,620,203,653.32"
+        }
+      },
+      "actual": {
+        "fact_id": "325855f03fc242a8be8dcd4ff5e60e0d",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "revenue",
+        "year": 2024,
+        "period": "2024-FY",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "170,611,838,052.02",
+        "raw_unit": "元",
+        "value": "170611838052.02",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t192",
+          "row": 3,
+          "column": 2,
+          "cell": "B3",
+          "text": "主营业务 | 170,611,838,052.02 | 13,629,995,812.89 | 147,218,996,281.04 | 11,620,203,653.32",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "营业收入",
+            "statement": "notes",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {
+              "business_type": "主营业务",
+              "financial_item": "segment_revenue_and_cost"
+            },
+            "scale": "1",
+            "char_interval": [
+              6151,
+              6162
+            ],
+            "row_metric": "segment_revenue_and_cost",
+            "row_label": "主营业务",
+            "column_metric": "revenue",
+            "column_label": "营业收入",
+            "dimension_labels": {
+              "financial_item": "主营业务"
+            },
+            "original_extraction_hash": "2c0d0bfab5764e2ba8d309864d991a42dd447272ef21d8f28497b2dbed492fbb",
+            "source_key": "024f11a639aba42753ee9d40c9f0325ea9701ab1631b915f02cad7a7bc7e63b6",
+            "source_fingerprint": "567a0beb8883964772b7eee6182d891a0311769ed31d4b88a8c95a65c1e020da",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "revenue",
+            "original_label": "营业收入",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "revenue",
+              "canonical_metric": "revenue",
+              "canonical_label": "营业收入",
+              "decision": "keep"
+            }
+          },
+          "bbox": [
+            161.18000030517578,
+            481.62998962402344,
+            253.25,
+            493.8699951171875
+          ]
+        },
+        "label": "营业收入",
+        "statement": "notes",
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31",
+        "dimensions": {
+          "business_type": "主营业务",
+          "financial_item": "segment_revenue_and_cost"
+        },
+        "dimension_labels": {
+          "financial_item": "主营业务"
+        },
+        "unit_conversion": null,
+        "original_metric": "revenue",
+        "canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "revenue",
+          "canonical_metric": "revenue",
+          "canonical_label": "营业收入",
+          "decision": "keep"
+        },
+        "previous_canonical_alias": null,
+        "temporal_correction": null,
+        "definition_review": null,
+        "definition": null,
+        "definition_scope": null,
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "other_total",
+      "status": "failed",
+      "errors": [
+        "missing_other_business_definition"
+      ],
+      "expected": {
+        "id": "other_total",
+        "meaning": "其他业务收入，主要为酒店及冰淇淋",
+        "value": "287314224.32",
+        "raw_value": "287,314,224.32",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t192",
+          "row": 4,
+          "column": 2,
+          "row_text": "其他业务 | 287,314,224.32 | 159,486,555.09 | 474,608,713.10 | 247,070,198.46"
+        }
+      },
+      "actual": {
+        "fact_id": "65dc22bdc47149adbc6cb309ef1d0eaf",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "revenue",
+        "year": 2024,
+        "period": "2024-FY",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "287,314,224.32",
+        "raw_unit": "元",
+        "value": "287314224.32",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t192",
+          "row": 4,
+          "column": 2,
+          "cell": "B4",
+          "text": "其他业务 | 287,314,224.32 | 159,486,555.09 | 474,608,713.10 | 247,070,198.46",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "营业收入",
+            "statement": "notes",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {
+              "business_type": "其他业务",
+              "financial_item": "segment_revenue_and_cost"
+            },
+            "scale": "1",
+            "char_interval": [
+              6265,
+              6276
+            ],
+            "row_metric": "segment_revenue_and_cost",
+            "row_label": "其他业务",
+            "column_metric": "revenue",
+            "column_label": "营业收入",
+            "dimension_labels": {
+              "financial_item": "其他业务"
+            },
+            "original_extraction_hash": "387fd5ea677c59afbdc5221e17d816a4e689efd75768972c53be458839623ee2",
+            "source_key": "9bb9006ca7eba83db729892f0c0b6fbc56d566331f2bb53375730cf33f59ce94",
+            "source_fingerprint": "f9f16598f4693dda3371433b0cf56ac0bf6a734fb4bb5915cfbdf9d8b68640ae",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "revenue",
+            "original_label": "营业收入",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "revenue",
+              "canonical_metric": "revenue",
+              "canonical_label": "营业收入",
+              "decision": "keep"
+            }
+          },
+          "bbox": [
+            161.18000030517578,
+            493.8699951171875,
+            253.25,
+            505.989990234375
+          ]
+        },
+        "label": "营业收入",
+        "statement": "notes",
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31",
+        "dimensions": {
+          "business_type": "其他业务",
+          "financial_item": "segment_revenue_and_cost"
+        },
+        "dimension_labels": {
+          "financial_item": "其他业务"
+        },
+        "unit_conversion": null,
+        "original_metric": "revenue",
+        "canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "revenue",
+          "canonical_metric": "revenue",
+          "canonical_label": "营业收入",
+          "decision": "keep"
+        },
+        "previous_canonical_alias": null,
+        "temporal_correction": null,
+        "definition_review": null,
+        "definition": null,
+        "definition_scope": null,
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "all_total",
+      "status": "failed",
+      "errors": [
+        "missing_all_business_definition"
+      ],
+      "expected": {
+        "id": "all_total",
+        "meaning": "全部营业收入",
+        "value": "170899152276.34",
+        "raw_value": "170,899,152,276.34",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t192",
+          "row": 5,
+          "column": 2,
+          "row_text": "合计 | 170,899,152,276.34 | 13,789,482,367.98 | 147,693,604,994.14 | 11,867,273,851.78"
+        }
+      },
+      "actual": {
+        "fact_id": "270f30bfdb584618b21005edfd9b3d85",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "revenue",
+        "year": 2024,
+        "period": "2024-FY",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "170,899,152,276.34",
+        "raw_unit": "元",
+        "value": "170899152276.34",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t192",
+          "row": 5,
+          "column": 2,
+          "cell": "B5",
+          "text": "合计 | 170,899,152,276.34 | 13,789,482,367.98 | 147,693,604,994.14 | 11,867,273,851.78",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "营业收入",
+            "statement": "notes",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {
+              "financial_item": "segment_revenue_and_cost"
+            },
+            "scale": "1",
+            "char_interval": [
+              6365,
+              6376
+            ],
+            "row_metric": "segment_revenue_and_cost",
+            "row_label": "合计",
+            "column_metric": "revenue",
+            "column_label": "营业收入",
+            "dimension_labels": {
+              "financial_item": "合计"
+            },
+            "original_extraction_hash": "d27ecd660d914b51f01be00e0b7519fe6ad3b133a4b37f2bcb238a6b7f7d3824",
+            "source_key": "33221805124ede43654a2ca9374403ffd8912dd622e5f48b3717b8873b07cc12",
+            "source_fingerprint": "192f63146450700241b125c288fbd3f85fe808889fa7eb6fad4639f219802c1b",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "revenue",
+            "original_label": "营业收入",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "revenue",
+              "canonical_metric": "revenue",
+              "canonical_label": "营业收入",
+              "decision": "keep"
+            }
+          },
+          "bbox": [
+            161.18000030517578,
+            505.989990234375,
+            253.25,
+            518.2699788411459
+          ]
+        },
+        "label": "营业收入",
+        "statement": "notes",
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31",
+        "dimensions": {
+          "financial_item": "segment_revenue_and_cost"
+        },
+        "dimension_labels": {
+          "financial_item": "合计"
+        },
+        "unit_conversion": null,
+        "original_metric": "revenue",
+        "canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "revenue",
+          "canonical_metric": "revenue",
+          "canonical_label": "营业收入",
+          "decision": "keep"
+        },
+        "previous_canonical_alias": null,
+        "temporal_correction": null,
+        "definition_review": null,
+        "definition": null,
+        "definition_scope": null,
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "lease_noncurrent",
+      "status": "failed",
+      "errors": [
+        "missing_noncurrent_maturity"
+      ],
+      "expected": {
+        "id": "lease_noncurrent",
+        "meaning": "长期租赁负债，不含一年内到期部分",
+        "value": "313906415.76",
+        "raw_value": "313,906,415.76",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 106,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t184",
+          "row": 2,
+          "column": 2,
+          "row_text": "长期租赁负债 | 313,906,415.76 | 266,636,234.04"
+        }
+      },
+      "actual": {
+        "fact_id": "53fd7fe04d04402fa57533cceb78b924",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "lease_liabilities",
+        "year": 2024,
+        "period": "2024-12-31",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "313,906,415.76",
+        "raw_unit": "元",
+        "value": "313906415.76",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 106,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t184",
+          "row": 2,
+          "column": 2,
+          "cell": "B2",
+          "text": "长期租赁负债 | 313,906,415.76 | 266,636,234.04",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "租赁负债",
+            "statement": "notes",
+            "period_start": "",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {},
+            "scale": "1",
+            "char_interval": [
+              5302,
+              5313
+            ],
+            "row_metric": "lease_liabilities",
+            "row_label": "长期租赁负债",
+            "column_metric": null,
+            "column_label": null,
+            "dimension_labels": {},
+            "original_extraction_hash": "091c5b0dfbdbcc970f447c83aa4f305e328f7b8a21aae030d9aadc091e3870fb",
+            "source_key": "d206b3b430f190bbcfcc83fd9831d36ce85953f9d46dce98da3ee30bfe28b3bb",
+            "source_fingerprint": "7915c750014b0711459a0b9d4fe11331055cd178e8489794345df5a1ddb986af",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "lease_liabilities",
+            "original_label": "长期租赁负债",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "lease_liabilities",
+              "canonical_metric": "lease_liabilities",
+              "canonical_label": "租赁负债",
+              "decision": "keep"
+            }
+          },
+          "bbox": [
+            245.38999938964844,
+            573.7899780273438,
+            388.87001037597656,
+            587.9499816894531
+          ]
+        },
+        "label": "租赁负债",
+        "statement": "notes",
+        "period_start": "",
+        "period_end": "2024-12-31",
+        "dimensions": {},
+        "dimension_labels": {},
+        "unit_conversion": null,
+        "original_metric": "lease_liabilities",
+        "canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "lease_liabilities",
+          "canonical_metric": "lease_liabilities",
+          "canonical_label": "租赁负债",
+          "decision": "keep"
+        },
+        "previous_canonical_alias": null,
+        "temporal_correction": null,
+        "definition_review": null,
+        "definition": null,
+        "definition_scope": null,
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "lease_current",
+      "status": "passed",
+      "errors": [],
+      "expected": {
+        "id": "lease_current",
+        "meaning": "一年内到期的租赁负债",
+        "value": "111951112.20",
+        "raw_value": "111,951,112.20",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 106,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t182",
+          "row": 2,
+          "column": 2,
+          "row_text": "1 年内到期的租赁负债 | 111,951,112.20 | 57,054,879.48"
+        }
+      },
+      "actual": {
+        "fact_id": "0f47ad3e00a04dadafe75aabb0b71fcd",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "lease_liabilities_due_within_one_year",
+        "year": 2024,
+        "period": "2024-12-31",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "111,951,112.20",
+        "raw_unit": "元",
+        "value": "111951112.20",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 106,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t182",
+          "row": 2,
+          "column": 2,
+          "cell": "B2",
+          "text": "1 年内到期的租赁负债 | 111,951,112.20 | 57,054,879.48",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "一年内到期的租赁负债",
+            "statement": "notes",
+            "period_start": "",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {},
+            "scale": "1",
+            "char_interval": [
+              4699,
+              4710
+            ],
+            "row_metric": "lease_liabilities_due_within_one_year",
+            "row_label": "一年内到期的租赁负债",
+            "column_metric": null,
+            "column_label": null,
+            "dimension_labels": {},
+            "original_extraction_hash": "7ce1bf5ced0c62774330b08892d56347d0f4d71839bbd358a2347d22171499fd",
+            "source_key": "61c434f1187b927b3888937028895f0d29a36fe62dc0776a1568e66e0f7e23ec",
+            "source_fingerprint": "f6c86a021f7b3a364d0b9362be15b0b95866dee14d424a9b2bc6a08b024bcd1a",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "lease_liabilities_due_within_one_year",
+            "original_label": "一年内到期的租赁负债",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "lease_liabilities_due_within_one_year",
+              "canonical_metric": "lease_liabilities_due_within_one_year",
+              "canonical_label": "一年内到期的租赁负债",
+              "decision": "keep"
+            }
+          },
+          "bbox": [
+            232.49000295003256,
+            344.2099914550781,
+            379.18000411987305,
+            358.36997985839844
+          ]
+        },
+        "label": "一年内到期的租赁负债",
+        "statement": "notes",
+        "period_start": "",
+        "period_end": "2024-12-31",
+        "dimensions": {},
+        "dimension_labels": {},
+        "unit_conversion": null,
+        "original_metric": "lease_liabilities_due_within_one_year",
+        "canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "lease_liabilities_due_within_one_year",
+          "canonical_metric": "lease_liabilities_due_within_one_year",
+          "canonical_label": "一年内到期的租赁负债",
+          "decision": "keep"
+        },
+        "previous_canonical_alias": null,
+        "temporal_correction": null,
+        "definition_review": null,
+        "definition": null,
+        "definition_scope": null,
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "lease_all",
+      "status": "passed",
+      "errors": [],
+      "expected": {
+        "id": "lease_all",
+        "meaning": "租赁负债期末余额，包含一年内到期部分",
+        "value": "425857527.96",
+        "raw_value": "425,857,527.96",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 115,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t218",
+          "row": 3,
+          "column": 7,
+          "row_text": "租赁负债（包含\n一年内到期部\n分） | 323,691,113.52 |  | 233,621,275.11 | 104,365,721.31 | 27,089,139.36 | 425,857,527.96"
+        }
+      },
+      "actual": {
+        "fact_id": "0983d9ca72124b8c8405a3247e4e8f62",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "lease_liabilities_including_current_portion",
+        "year": 2024,
+        "period": "2024-12-31",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "425,857,527.96",
+        "raw_unit": "元",
+        "value": "425857527.96",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 115,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t218",
+          "row": 3,
+          "column": 7,
+          "cell": "G3",
+          "text": "租赁负债（包含\n一年内到期部\n分） | 323,691,113.52 |  | 233,621,275.11 | 104,365,721.31 | 27,089,139.36 | 425,857,527.96",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "租赁负债（包含一年内到期部分）",
+            "statement": "notes",
+            "period_start": "",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {
+              "movement": "closing_balance"
+            },
+            "scale": "1",
+            "char_interval": [
+              8503,
+              8514
+            ],
+            "row_metric": "lease_liabilities",
+            "row_label": "租赁负债（包含一年内到期部分）",
+            "column_metric": null,
+            "column_label": null,
+            "dimension_labels": {},
+            "original_extraction_hash": "19e18c4d0397922c25cd9c5af866ec58d06646537638c816912f50ee6c6abf1b",
+            "source_key": "ec9730bc54142b68e094c72f4ef80bfedec96927027163f2e421c2eee6a97e7e",
+            "source_fingerprint": "a4e11d279259da3c631c68815ae3c68ff7dcae9e459144b3dedbae297340a0e2",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "lease_liabilities",
+            "original_label": "租赁负债（包含一年内到期部分）",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "lease_liabilities",
+              "canonical_metric": "lease_liabilities",
+              "canonical_label": "租赁负债",
+              "decision": "keep"
+            },
+            "temporal_correction": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "temporal-langextract-0.3.0",
+              "model": "deepseek-flash",
+              "prompt_hash": "f976b741e95481c9bc4e1be2c11b368d30efc0f765e243620a3fd783fef196de",
+              "inference_config": {
+                "version": "temporal-correction-reasoning-1",
+                "reasoning_effort": "high"
+              },
+              "extraction_processing_id": "7d2e9c79abdd4ce0981797dabbc23071",
+              "owner_run_id": "6c872fc5-816b-44e3-9170-05e78b99cc5b",
+              "source_key": "ec9730bc54142b68e094c72f4ef80bfedec96927027163f2e421c2eee6a97e7e",
+              "source_fingerprint": "a4e11d279259da3c631c68815ae3c68ff7dcae9e459144b3dedbae297340a0e2",
+              "original_extraction_hash": "19e18c4d0397922c25cd9c5af866ec58d06646537638c816912f50ee6c6abf1b",
+              "before": {
+                "period": "2024-FY",
+                "start": "",
+                "end": "2024-12-31"
+              },
+              "after": {
+                "period": "2024-12-31",
+                "start": "",
+                "end": "2024-12-31"
+              },
+              "reason": "原表列示租赁负债期末余额，属于时点数；应改为2024年12月31日，而非FY期间。",
+              "evidence": "期末余额",
+              "span": [
+                36291,
+                36366
+              ]
+            },
+            "definition_review": {
+              "review_id": "03447af2f2554abe901dfaaef7912844",
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "definition-langextract-0.2.0",
+              "model": "deepseek-flash",
+              "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+              "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+              "result_hash": "c42c157bd5f2dc88322e11c74923409ce82bd14e12c0fdd71180f50a0f42a628",
+              "group_id": "5cd07f591d8713ea0554b3131456c36b327e02a53f0c34acb471269e6598dca1",
+              "source_key": "ec9730bc54142b68e094c72f4ef80bfedec96927027163f2e421c2eee6a97e7e",
+              "source_fingerprint": "a4e11d279259da3c631c68815ae3c68ff7dcae9e459144b3dedbae297340a0e2",
+              "original_extraction_hash": "19e18c4d0397922c25cd9c5af866ec58d06646537638c816912f50ee6c6abf1b",
+              "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+              "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+              "before": {
+                "metric": "lease_liabilities",
+                "label": "租赁负债"
+              },
+              "after": {
+                "metric": "lease_liabilities_including_current_portion",
+                "label": "租赁负债（包含一年内到期部分）",
+                "definition": "租赁负债（包含一年内到期部分），即企业尚未支付的租赁付款额现值，包含将在一年内到期的部分。",
+                "definition_scope": "包含一年内到期的租赁负债部分；不区分流动与非流动，与资产负债表单独列示的非流动租赁负债不同。"
+              },
+              "reason": "该组位于“筹资活动产生的各项负债变动情况”表中，行名为“租赁负债（包含一年内到期部分）”，列示为期末余额；其指标概念仍是包含一年内到期部分的租赁负债，与已知lease_liabilities_including_current_portion一致，变动表金额栏和期末余额维度保留。",
+              "grounded_quotes": [
+                {
+                  "evidence_id": "eb700890f41a35fc76e9314251ff70ab859df4224985ccb0de37f862ce9cc928",
+                  "text": "筹资活动产生的各项负债变动情况"
+                },
+                {
+                  "evidence_id": "aa930d22e322047178b4093aaec739d6ff2944d3a6fc2ba66043a71d2ee3969c",
+                  "text": "原始行名：租赁负债（包含一年内到期部分）"
+                },
+                {
+                  "evidence_id": "aa930d22e322047178b4093aaec739d6ff2944d3a6fc2ba66043a71d2ee3969c",
+                  "text": "本列完整表头：期末余额"
+                }
+              ],
+              "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9"
+            },
+            "directory_alias_superseded_by_definition": "03447af2f2554abe901dfaaef7912844"
+          },
+          "bbox": [
+            467.62001037597656,
+            533.949951171875,
+            531.3904900801809,
+            563.7099609375
+          ]
+        },
+        "label": "租赁负债（包含一年内到期部分）",
+        "statement": "notes",
+        "period_start": "",
+        "period_end": "2024-12-31",
+        "dimensions": {
+          "movement": "closing_balance"
+        },
+        "dimension_labels": {},
+        "unit_conversion": null,
+        "original_metric": "lease_liabilities",
+        "canonical_alias": null,
+        "previous_canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "lease_liabilities",
+          "canonical_metric": "lease_liabilities",
+          "canonical_label": "租赁负债",
+          "decision": "keep"
+        },
+        "temporal_correction": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "temporal-langextract-0.3.0",
+          "model": "deepseek-flash",
+          "prompt_hash": "f976b741e95481c9bc4e1be2c11b368d30efc0f765e243620a3fd783fef196de",
+          "inference_config": {
+            "version": "temporal-correction-reasoning-1",
+            "reasoning_effort": "high"
+          },
+          "extraction_processing_id": "7d2e9c79abdd4ce0981797dabbc23071",
+          "owner_run_id": "6c872fc5-816b-44e3-9170-05e78b99cc5b",
+          "source_key": "ec9730bc54142b68e094c72f4ef80bfedec96927027163f2e421c2eee6a97e7e",
+          "source_fingerprint": "a4e11d279259da3c631c68815ae3c68ff7dcae9e459144b3dedbae297340a0e2",
+          "original_extraction_hash": "19e18c4d0397922c25cd9c5af866ec58d06646537638c816912f50ee6c6abf1b",
+          "before": {
+            "period": "2024-FY",
+            "start": "",
+            "end": "2024-12-31"
+          },
+          "after": {
+            "period": "2024-12-31",
+            "start": "",
+            "end": "2024-12-31"
+          },
+          "reason": "原表列示租赁负债期末余额，属于时点数；应改为2024年12月31日，而非FY期间。",
+          "evidence": "期末余额",
+          "span": [
+            36291,
+            36366
+          ]
+        },
+        "definition_review": {
+          "review_id": "03447af2f2554abe901dfaaef7912844",
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "definition-langextract-0.2.0",
+          "model": "deepseek-flash",
+          "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+          "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+          "result_hash": "c42c157bd5f2dc88322e11c74923409ce82bd14e12c0fdd71180f50a0f42a628",
+          "group_id": "5cd07f591d8713ea0554b3131456c36b327e02a53f0c34acb471269e6598dca1",
+          "source_key": "ec9730bc54142b68e094c72f4ef80bfedec96927027163f2e421c2eee6a97e7e",
+          "source_fingerprint": "a4e11d279259da3c631c68815ae3c68ff7dcae9e459144b3dedbae297340a0e2",
+          "original_extraction_hash": "19e18c4d0397922c25cd9c5af866ec58d06646537638c816912f50ee6c6abf1b",
+          "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+          "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+          "before": {
+            "metric": "lease_liabilities",
+            "label": "租赁负债"
+          },
+          "after": {
+            "metric": "lease_liabilities_including_current_portion",
+            "label": "租赁负债（包含一年内到期部分）",
+            "definition": "租赁负债（包含一年内到期部分），即企业尚未支付的租赁付款额现值，包含将在一年内到期的部分。",
+            "definition_scope": "包含一年内到期的租赁负债部分；不区分流动与非流动，与资产负债表单独列示的非流动租赁负债不同。"
+          },
+          "reason": "该组位于“筹资活动产生的各项负债变动情况”表中，行名为“租赁负债（包含一年内到期部分）”，列示为期末余额；其指标概念仍是包含一年内到期部分的租赁负债，与已知lease_liabilities_including_current_portion一致，变动表金额栏和期末余额维度保留。",
+          "grounded_quotes": [
+            {
+              "evidence_id": "eb700890f41a35fc76e9314251ff70ab859df4224985ccb0de37f862ce9cc928",
+              "text": "筹资活动产生的各项负债变动情况"
+            },
+            {
+              "evidence_id": "aa930d22e322047178b4093aaec739d6ff2944d3a6fc2ba66043a71d2ee3969c",
+              "text": "原始行名：租赁负债（包含一年内到期部分）"
+            },
+            {
+              "evidence_id": "aa930d22e322047178b4093aaec739d6ff2944d3a6fc2ba66043a71d2ee3969c",
+              "text": "本列完整表头：期末余额"
+            }
+          ],
+          "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9"
+        },
+        "definition": "租赁负债（包含一年内到期部分），即企业尚未支付的租赁付款额现值，包含将在一年内到期的部分。",
+        "definition_scope": "包含一年内到期的租赁负债部分；不区分流动与非流动，与资产负债表单独列示的非流动租赁负债不同。",
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "grant_income",
+      "status": "passed",
+      "errors": [],
+      "expected": {
+        "id": "grant_income",
+        "meaning": "其他收益中与收益相关的政府补助",
+        "value": "4539419.20",
+        "raw_value": "4,539,419.20",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 111,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t201",
+          "row": 3,
+          "column": 2,
+          "row_text": "与收益相关的政府补助 | 4,539,419.20 | 17,137,523.89"
+        }
+      },
+      "actual": {
+        "fact_id": "551bff9fac2c4599b6a16a393fcbc58d",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "other_income_government_grants_related_to_income",
+        "year": 2024,
+        "period": "2024-FY",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "4,539,419.20",
+        "raw_unit": "元",
+        "value": "4539419.20",
+        "priority": 120,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 111,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t201",
+          "row": 3,
+          "column": 2,
+          "cell": "B3",
+          "text": "与收益相关的政府补助 | 4,539,419.20 | 17,137,523.89",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "与收益相关的政府补助",
+            "statement": "income",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {},
+            "scale": "1",
+            "char_interval": [
+              9863,
+              9874
+            ],
+            "row_metric": "other_income_government_grants_related_to_income",
+            "row_label": "与收益相关的政府补助",
+            "column_metric": null,
+            "column_label": null,
+            "dimension_labels": {},
+            "original_extraction_hash": "ebf4fb88e5e466fa74ab5f716e641da66ea8d6a3fddcf306979db12d9d8c1b68",
+            "source_key": "b99251fe872714b53923e88b7611648a122faea099a726e4df38eb91b1c3fb79",
+            "source_fingerprint": "3c0bfb7f18fb0421e15af1842768b9731b9b7d673fc08347ce74a911770630a7",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "other_income_government_grants_related_to_income",
+            "original_label": "与收益相关的政府补助",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "other_income_government_grants_related_to_income",
+              "canonical_metric": "non_recurring_government_grants",
+              "canonical_label": "计入当期损益的政府补助",
+              "decision": "alias",
+              "reason": "原表金额相同，均为计入当期损益的与收益相关政府补助",
+              "char_interval": [
+                207059,
+                207118
+              ],
+              "extraction_text": "[[METRIC:other_income_government_grants_related_to_income]]"
+            },
+            "definition_review": {
+              "review_id": "03447af2f2554abe901dfaaef7912844",
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "definition-langextract-0.2.0",
+              "model": "deepseek-flash",
+              "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+              "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+              "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+              "group_id": "6c0ec5b03d872ab359008d19b44419cc680b1b4350d49fd46b42a770828a75ec",
+              "source_key": "b99251fe872714b53923e88b7611648a122faea099a726e4df38eb91b1c3fb79",
+              "source_fingerprint": "3c0bfb7f18fb0421e15af1842768b9731b9b7d673fc08347ce74a911770630a7",
+              "original_extraction_hash": "ebf4fb88e5e466fa74ab5f716e641da66ea8d6a3fddcf306979db12d9d8c1b68",
+              "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+              "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+              "before": {
+                "metric": "non_recurring_government_grants",
+                "label": "计入当期损益的政府补助"
+              },
+              "after": {
+                "metric": "other_income_government_grants_related_to_income",
+                "label": "与收益相关的政府补助",
+                "definition": "计入其他收益的与收益相关的政府补助。",
+                "definition_scope": "其他收益按性质分类；仅列示与收益相关的政府补助，不包括代扣个人所得税手续费返还、其他项目及合计。"
+              },
+              "reason": "原文位于其他收益项目下按性质分类，行名为与收益相关的政府补助，与已有其他收益政府补助指标语义一致，故保留该ID。",
+              "grounded_quotes": [
+                {
+                  "evidence_id": "0d1f5e00a59bb19f040f609b01aca998c2123a2e16ed77a15851a5aa77e6b2ae",
+                  "text": "与收益相关的政府补助 | 〈原数值已省略〉 | 〈原数值已省略〉"
+                },
+                {
+                  "evidence_id": "a545fae5a7b26421c82b91cd6656863c2ebf4bb9693a49ede1bcd4a89e6fb5a6",
+                  "text": "按性质分类 | 本期发生额 | 上期发生额"
+                },
+                {
+                  "evidence_id": "bf4c1acae49f9e0b7164570adfcd72b7d4fb38c260e170fcace19c6d1183a6bb",
+                  "text": "原始行名：与收益相关的政府补助\n原始列名：\n本列完整表头：上期发生额"
+                }
+              ],
+              "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a"
+            },
+            "directory_alias_superseded_by_definition": "03447af2f2554abe901dfaaef7912844"
+          },
+          "bbox": [
+            237.16999053955078,
+            152.41998291015625,
+            384.3100128173828,
+            166.58001708984375
+          ]
+        },
+        "label": "与收益相关的政府补助",
+        "statement": "income",
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31",
+        "dimensions": {},
+        "dimension_labels": {},
+        "unit_conversion": null,
+        "original_metric": "other_income_government_grants_related_to_income",
+        "canonical_alias": null,
+        "previous_canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "other_income_government_grants_related_to_income",
+          "canonical_metric": "non_recurring_government_grants",
+          "canonical_label": "计入当期损益的政府补助",
+          "decision": "alias",
+          "reason": "原表金额相同，均为计入当期损益的与收益相关政府补助",
+          "char_interval": [
+            207059,
+            207118
+          ],
+          "extraction_text": "[[METRIC:other_income_government_grants_related_to_income]]"
+        },
+        "temporal_correction": null,
+        "definition_review": {
+          "review_id": "03447af2f2554abe901dfaaef7912844",
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "definition-langextract-0.2.0",
+          "model": "deepseek-flash",
+          "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+          "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+          "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+          "group_id": "6c0ec5b03d872ab359008d19b44419cc680b1b4350d49fd46b42a770828a75ec",
+          "source_key": "b99251fe872714b53923e88b7611648a122faea099a726e4df38eb91b1c3fb79",
+          "source_fingerprint": "3c0bfb7f18fb0421e15af1842768b9731b9b7d673fc08347ce74a911770630a7",
+          "original_extraction_hash": "ebf4fb88e5e466fa74ab5f716e641da66ea8d6a3fddcf306979db12d9d8c1b68",
+          "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+          "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+          "before": {
+            "metric": "non_recurring_government_grants",
+            "label": "计入当期损益的政府补助"
+          },
+          "after": {
+            "metric": "other_income_government_grants_related_to_income",
+            "label": "与收益相关的政府补助",
+            "definition": "计入其他收益的与收益相关的政府补助。",
+            "definition_scope": "其他收益按性质分类；仅列示与收益相关的政府补助，不包括代扣个人所得税手续费返还、其他项目及合计。"
+          },
+          "reason": "原文位于其他收益项目下按性质分类，行名为与收益相关的政府补助，与已有其他收益政府补助指标语义一致，故保留该ID。",
+          "grounded_quotes": [
+            {
+              "evidence_id": "0d1f5e00a59bb19f040f609b01aca998c2123a2e16ed77a15851a5aa77e6b2ae",
+              "text": "与收益相关的政府补助 | 〈原数值已省略〉 | 〈原数值已省略〉"
+            },
+            {
+              "evidence_id": "a545fae5a7b26421c82b91cd6656863c2ebf4bb9693a49ede1bcd4a89e6fb5a6",
+              "text": "按性质分类 | 本期发生额 | 上期发生额"
+            },
+            {
+              "evidence_id": "bf4c1acae49f9e0b7164570adfcd72b7d4fb38c260e170fcace19c6d1183a6bb",
+              "text": "原始行名：与收益相关的政府补助\n原始列名：\n本列完整表头：上期发生额"
+            }
+          ],
+          "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a"
+        },
+        "definition": "计入其他收益的与收益相关的政府补助。",
+        "definition_scope": "其他收益按性质分类；仅列示与收益相关的政府补助，不包括代扣个人所得税手续费返还、其他项目及合计。",
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "grant_all",
+      "status": "passed",
+      "errors": [],
+      "expected": {
+        "id": "grant_all",
+        "meaning": "计入当期损益的政府补助合计",
+        "value": "4539419.20",
+        "raw_value": "4,539,419.20",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 122,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t232",
+          "row": 3,
+          "column": 2,
+          "row_text": "合计 | 4,539,419.20 | 17,137,523.89"
+        }
+      },
+      "actual": {
+        "fact_id": "3f17e9d49ab446509460198e7c0b1ec4",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "government_grants_included_in_current_profit_or_loss_total",
+        "year": 2024,
+        "period": "2024-FY",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "4,539,419.20",
+        "raw_unit": "元",
+        "value": "4539419.20",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 122,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t232",
+          "row": 3,
+          "column": 2,
+          "cell": "B3",
+          "text": "合计 | 4,539,419.20 | 17,137,523.89",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "计入当期损益的政府补助合计",
+            "statement": "notes",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {},
+            "scale": "1",
+            "char_interval": [
+              11568,
+              11579
+            ],
+            "row_metric": "non_recurring_government_grants",
+            "row_label": "计入当期损益的政府补助合计",
+            "column_metric": null,
+            "column_label": null,
+            "dimension_labels": {},
+            "original_extraction_hash": "0a0195f0d1d7808b6a710274c8d52e31135d216944eda7eeaec6723dde396fb1",
+            "source_key": "a287484c30b81befef09aede8d702c6b793e90466c06c8adf711f5aa19184ec5",
+            "source_fingerprint": "8617bbf91b8b91b922f296f5b2b0595459ba2b699ebcde615d20952fa83f91f2",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "non_recurring_government_grants",
+            "original_label": "计入当期损益的政府补助合计",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "non_recurring_government_grants",
+              "canonical_metric": "non_recurring_government_grants",
+              "canonical_label": "计入当期损益的政府补助",
+              "decision": "keep"
+            },
+            "definition_review": {
+              "review_id": "03447af2f2554abe901dfaaef7912844",
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "definition-langextract-0.2.0",
+              "model": "deepseek-flash",
+              "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+              "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+              "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+              "group_id": "7e36dfbcaa28b63bfbe9c598cf513ffc0210740c39309c2b22a32a50d8b1bcd7",
+              "source_key": "a287484c30b81befef09aede8d702c6b793e90466c06c8adf711f5aa19184ec5",
+              "source_fingerprint": "8617bbf91b8b91b922f296f5b2b0595459ba2b699ebcde615d20952fa83f91f2",
+              "original_extraction_hash": "0a0195f0d1d7808b6a710274c8d52e31135d216944eda7eeaec6723dde396fb1",
+              "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+              "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+              "before": {
+                "metric": "non_recurring_government_grants",
+                "label": "计入当期损益的政府补助"
+              },
+              "after": {
+                "metric": "government_grants_included_in_current_profit_or_loss_total",
+                "label": "计入当期损益的政府补助合计",
+                "definition": "政府补助附注中按类型列示的、计入当期损益的政府补助的合计金额。",
+                "definition_scope": "政府补助附注'计入当期损益的政府补助'项目合计；包含表中所有类型（列示为与收益相关），本期发生额；不包括其他收益中的与收益相关的政府补助，也不包括非经常性损益中扣除持续影响补助后的金额。"
+              },
+              "reason": "原文为政府补助附注'计入当期损益的政府补助'项下的合计行，未含非经常性损益排除条款，与已有非经常性损益政府补助及其他收益政府补助包含范围不同，故新建合计指标。",
+              "grounded_quotes": [
+                {
+                  "evidence_id": "5dbf74d937392a094fc4daf9a52544d9e6cd57e4ea61ea3e12d6c83877c0c8b0",
+                  "text": "类型 | 本期发生额 | 上期发生额\n与收益相关 | 〈原数值已省略〉 | 〈原数值已省略〉\n合计 | 〈原数值已省略〉 | 〈原数值已省略〉"
+                },
+                {
+                  "evidence_id": "fe76e61e508abf99937bdfe80aecd220a61a8bc7843ebd8f1a3e32aa0a47b75e",
+                  "text": "原始行名：计入当期损益的政府补助合计\n原始列名：\n本列完整表头：本期发生额"
+                },
+                {
+                  "evidence_id": "e92035dd305e4e4778d89b8d75d1f1fc1e739d9e8df6f2ce0ca92c7b445251b9",
+                  "text": "3、 计入当期损益的政府补助"
+                }
+              ],
+              "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a"
+            },
+            "directory_alias_superseded_by_definition": "03447af2f2554abe901dfaaef7912844"
+          },
+          "bbox": [
+            230.09000396728516,
+            318.64996337890625,
+            380.7099914550781,
+            332.7499885559082
+          ]
+        },
+        "label": "计入当期损益的政府补助合计",
+        "statement": "notes",
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31",
+        "dimensions": {},
+        "dimension_labels": {},
+        "unit_conversion": null,
+        "original_metric": "non_recurring_government_grants",
+        "canonical_alias": null,
+        "previous_canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "non_recurring_government_grants",
+          "canonical_metric": "non_recurring_government_grants",
+          "canonical_label": "计入当期损益的政府补助",
+          "decision": "keep"
+        },
+        "temporal_correction": null,
+        "definition_review": {
+          "review_id": "03447af2f2554abe901dfaaef7912844",
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "definition-langextract-0.2.0",
+          "model": "deepseek-flash",
+          "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+          "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+          "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+          "group_id": "7e36dfbcaa28b63bfbe9c598cf513ffc0210740c39309c2b22a32a50d8b1bcd7",
+          "source_key": "a287484c30b81befef09aede8d702c6b793e90466c06c8adf711f5aa19184ec5",
+          "source_fingerprint": "8617bbf91b8b91b922f296f5b2b0595459ba2b699ebcde615d20952fa83f91f2",
+          "original_extraction_hash": "0a0195f0d1d7808b6a710274c8d52e31135d216944eda7eeaec6723dde396fb1",
+          "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+          "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+          "before": {
+            "metric": "non_recurring_government_grants",
+            "label": "计入当期损益的政府补助"
+          },
+          "after": {
+            "metric": "government_grants_included_in_current_profit_or_loss_total",
+            "label": "计入当期损益的政府补助合计",
+            "definition": "政府补助附注中按类型列示的、计入当期损益的政府补助的合计金额。",
+            "definition_scope": "政府补助附注'计入当期损益的政府补助'项目合计；包含表中所有类型（列示为与收益相关），本期发生额；不包括其他收益中的与收益相关的政府补助，也不包括非经常性损益中扣除持续影响补助后的金额。"
+          },
+          "reason": "原文为政府补助附注'计入当期损益的政府补助'项下的合计行，未含非经常性损益排除条款，与已有非经常性损益政府补助及其他收益政府补助包含范围不同，故新建合计指标。",
+          "grounded_quotes": [
+            {
+              "evidence_id": "5dbf74d937392a094fc4daf9a52544d9e6cd57e4ea61ea3e12d6c83877c0c8b0",
+              "text": "类型 | 本期发生额 | 上期发生额\n与收益相关 | 〈原数值已省略〉 | 〈原数值已省略〉\n合计 | 〈原数值已省略〉 | 〈原数值已省略〉"
+            },
+            {
+              "evidence_id": "fe76e61e508abf99937bdfe80aecd220a61a8bc7843ebd8f1a3e32aa0a47b75e",
+              "text": "原始行名：计入当期损益的政府补助合计\n原始列名：\n本列完整表头：本期发生额"
+            },
+            {
+              "evidence_id": "e92035dd305e4e4778d89b8d75d1f1fc1e739d9e8df6f2ce0ca92c7b445251b9",
+              "text": "3、 计入当期损益的政府补助"
+            }
+          ],
+          "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a"
+        },
+        "definition": "政府补助附注中按类型列示的、计入当期损益的政府补助的合计金额。",
+        "definition_scope": "政府补助附注'计入当期损益的政府补助'项目合计；包含表中所有类型（列示为与收益相关），本期发生额；不包括其他收益中的与收益相关的政府补助，也不包括非经常性损益中扣除持续影响补助后的金额。",
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    },
+    {
+      "id": "grant_nonrecurring",
+      "status": "passed",
+      "errors": [],
+      "expected": {
+        "id": "grant_nonrecurring",
+        "meaning": "排除与正常经营密切相关、按固定标准享有且持续影响损益的政府补助",
+        "value": "4539419.20",
+        "raw_value": "4,539,419.20",
+        "raw_unit": "元",
+        "currency": "CNY",
+        "scope": "consolidated_CAS",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "original_page": 142,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t273",
+          "row": 3,
+          "column": 2,
+          "row_text": "计入当期损益的政府补助，但与公司正常经\n营业务密切相关、符合国家政策规定、按照\n确定的标准享有、对公司损益产生持续影响\n的政府补助除外 | 4,539,419.20 | "
+        }
+      },
+      "actual": {
+        "fact_id": "36b95f4f5d2c43f999d22c6b5ca5e4ce",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "company": "贵州茅台酒股份有限公司",
+        "metric": "non_recurring_government_grants",
+        "year": 2024,
+        "period": "2024-FY",
+        "scope": "consolidated_CAS",
+        "currency": "CNY",
+        "raw_value": "4,539,419.20",
+        "raw_unit": "元",
+        "value": "4539419.20",
+        "priority": 100,
+        "quality": "llm_normalized",
+        "source_ref": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 142,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t273",
+          "row": 3,
+          "column": 2,
+          "cell": "B3",
+          "text": "计入当期损益的政府补助，但与公司正常经\n营业务密切相关、符合国家政策规定、按照\n确定的标准享有、对公司损益产生持续影响\n的政府补助除外 | 4,539,419.20 | ",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.4",
+            "model": "deepseek-flash",
+            "label": "计入当期损益的政府补助",
+            "statement": "notes",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {},
+            "scale": "1",
+            "char_interval": [
+              4924,
+              4935
+            ],
+            "row_metric": "non_recurring_government_grants",
+            "row_label": "计入当期损益的政府补助",
+            "column_metric": null,
+            "column_label": null,
+            "dimension_labels": {},
+            "original_extraction_hash": "8b5638a4404422c12dbcf859e1907c4148f6608b6bef6c3467d7c96111544a8a",
+            "source_key": "e57b8f3273348fd26a7c73b32c3ae47322549b29b30c8cb03f0394ce2e65b06f",
+            "source_fingerprint": "9102b15d46155435f207b0aa53b0a4451d26e8e4eb97fe59d78a2bad7e1db54c",
+            "processing_id": "61b9dc5d3a9a4642a8a9fa6a56f53ca1",
+            "original_metric": "non_recurring_government_grants",
+            "original_label": "计入当期损益的政府补助",
+            "canonical_alias": {
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "catalog-langextract-0.3.7",
+              "model": "deepseek-flash",
+              "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+              "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+              "source_metric": "non_recurring_government_grants",
+              "canonical_metric": "non_recurring_government_grants",
+              "canonical_label": "计入当期损益的政府补助",
+              "decision": "keep"
+            },
+            "definition_review": {
+              "review_id": "03447af2f2554abe901dfaaef7912844",
+              "status": "reviewed",
+              "engine": "LangExtract",
+              "version": "definition-langextract-0.2.0",
+              "model": "deepseek-flash",
+              "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+              "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+              "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+              "group_id": "ce799f147bc676a5889178b2e3fec969ce098ab935a32a8aef4b17a20aaa1adc",
+              "source_key": "e57b8f3273348fd26a7c73b32c3ae47322549b29b30c8cb03f0394ce2e65b06f",
+              "source_fingerprint": "9102b15d46155435f207b0aa53b0a4451d26e8e4eb97fe59d78a2bad7e1db54c",
+              "original_extraction_hash": "8b5638a4404422c12dbcf859e1907c4148f6608b6bef6c3467d7c96111544a8a",
+              "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+              "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+              "before": {
+                "metric": "non_recurring_government_grants",
+                "label": "计入当期损益的政府补助"
+              },
+              "after": {
+                "metric": "non_recurring_government_grants",
+                "label": "计入当期损益的政府补助",
+                "definition": "非经常性损益项目中列示的计入当期损益的政府补助，即计入当期损益的政府补助扣除与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助后的金额。",
+                "definition_scope": "非经常性损益项目；不包括与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助。"
+              },
+              "reason": "原文为补充资料当期非经常性损益明细表中的同一非经常性损益项目，排除条款与第1组一致，故复用同一指标。",
+              "grounded_quotes": [
+                {
+                  "evidence_id": "36acb996a24495398ba49bb323466aab80beca1eaea3928b3aac8e41e439a888",
+                  "text": "计入当期损益的政府补助，但与公司正常经\n营业务密切相关、符合国家政策规定、按照\n确定的标准享有、对公司损益产生持续影响\n的政府补助除外"
+                },
+                {
+                  "evidence_id": "69118738e6fc98b8ebc926cdb9213a908b6e0a249798f12f3f85d02be22b7f93",
+                  "text": "原始行名：计入当期损益的政府补助\n原始列名：\n本列完整表头：金额"
+                }
+              ],
+              "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a"
+            },
+            "directory_alias_superseded_by_definition": "03447af2f2554abe901dfaaef7912844"
+          },
+          "bbox": [
+            308.6900177001953,
+            376.0099639892578,
+            415.3899841308594,
+            430.96998596191406
+          ]
+        },
+        "label": "计入当期损益的政府补助",
+        "statement": "notes",
+        "period_start": "2024-01-01",
+        "period_end": "2024-12-31",
+        "dimensions": {},
+        "dimension_labels": {},
+        "unit_conversion": null,
+        "original_metric": "non_recurring_government_grants",
+        "canonical_alias": null,
+        "previous_canonical_alias": {
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "catalog-langextract-0.3.7",
+          "model": "deepseek-flash",
+          "catalog_hash": "e25dec8359ab4e58243481a1e1eb4351e110aa7a97c835a6f8a1fe5818f3712d",
+          "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+          "source_metric": "non_recurring_government_grants",
+          "canonical_metric": "non_recurring_government_grants",
+          "canonical_label": "计入当期损益的政府补助",
+          "decision": "keep"
+        },
+        "temporal_correction": null,
+        "definition_review": {
+          "review_id": "03447af2f2554abe901dfaaef7912844",
+          "status": "reviewed",
+          "engine": "LangExtract",
+          "version": "definition-langextract-0.2.0",
+          "model": "deepseek-flash",
+          "prompt_hash": "83c8a6d75ecd884b5735b9656568eb9b7070db6b55a556fe64622ce65ed499d4",
+          "cache_hash": "cf5ea4cac49210333043b6bae6eda1f20edd1bca24b1c6128103d4a411ae3402",
+          "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+          "group_id": "ce799f147bc676a5889178b2e3fec969ce098ab935a32a8aef4b17a20aaa1adc",
+          "source_key": "e57b8f3273348fd26a7c73b32c3ae47322549b29b30c8cb03f0394ce2e65b06f",
+          "source_fingerprint": "9102b15d46155435f207b0aa53b0a4451d26e8e4eb97fe59d78a2bad7e1db54c",
+          "original_extraction_hash": "8b5638a4404422c12dbcf859e1907c4148f6608b6bef6c3467d7c96111544a8a",
+          "extraction_processing_id": "a1790947503549f6933fcb80042cc4d5",
+          "owner_run_id": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+          "before": {
+            "metric": "non_recurring_government_grants",
+            "label": "计入当期损益的政府补助"
+          },
+          "after": {
+            "metric": "non_recurring_government_grants",
+            "label": "计入当期损益的政府补助",
+            "definition": "非经常性损益项目中列示的计入当期损益的政府补助，即计入当期损益的政府补助扣除与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助后的金额。",
+            "definition_scope": "非经常性损益项目；不包括与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助。"
+          },
+          "reason": "原文为补充资料当期非经常性损益明细表中的同一非经常性损益项目，排除条款与第1组一致，故复用同一指标。",
+          "grounded_quotes": [
+            {
+              "evidence_id": "36acb996a24495398ba49bb323466aab80beca1eaea3928b3aac8e41e439a888",
+              "text": "计入当期损益的政府补助，但与公司正常经\n营业务密切相关、符合国家政策规定、按照\n确定的标准享有、对公司损益产生持续影响\n的政府补助除外"
+            },
+            {
+              "evidence_id": "69118738e6fc98b8ebc926cdb9213a908b6e0a249798f12f3f85d02be22b7f93",
+              "text": "原始行名：计入当期损益的政府补助\n原始列名：\n本列完整表头：金额"
+            }
+          ],
+          "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a"
+        },
+        "definition": "非经常性损益项目中列示的计入当期损益的政府补助，即计入当期损益的政府补助扣除与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助后的金额。",
+        "definition_scope": "非经常性损益项目；不包括与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助。",
+        "version": "original",
+        "restatement": "original",
+        "normalization_engine": "LangExtract",
+        "unit_kind": "money",
+        "numeric_span": null,
+        "normalized_unit": "CNY"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "revenue_business_boundary",
+      "checks": [
+        {
+          "a": "main_direct",
+          "b": "all_direct",
+          "passed": false
+        },
+        {
+          "a": "main_wholesale",
+          "b": "all_wholesale",
+          "passed": false
+        },
+        {
+          "a": "main_domestic",
+          "b": "all_domestic",
+          "passed": true
+        },
+        {
+          "a": "main_total",
+          "b": "all_total",
+          "passed": false
+        }
+      ]
+    },
+    {
+      "id": "lease_maturity_boundary",
+      "checks": [
+        {
+          "a": "lease_noncurrent",
+          "b": "lease_current",
+          "passed": false
+        },
+        {
+          "a": "lease_noncurrent",
+          "b": "lease_all",
+          "passed": false
+        },
+        {
+          "a": "lease_current",
+          "b": "lease_all",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "grant_exclusion_boundary",
+      "checks": [
+        {
+          "a": "grant_income",
+          "b": "grant_nonrecurring",
+          "passed": true
+        },
+        {
+          "a": "grant_all",
+          "b": "grant_nonrecurring",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "source": "host_sqlite_readonly",
+    "status": "failed",
+    "reviewed_facts": 44,
+    "changed_metric_or_label": 26,
+    "checks": [
+      {
+        "source_key": "c97eeb6ce7a216a448f927a0df6fc2c9adc98bd8241c782f79cc6d76ad2e5bfc",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 122,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t232",
+          "row": 3,
+          "column": 3
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助"
+        },
+        "after": {
+          "metric": "government_grants_included_in_current_profit_or_loss_total",
+          "label": "计入当期损益的政府补助合计",
+          "definition": "政府补助附注中按类型列示的、计入当期损益的政府补助的合计金额。",
+          "definition_scope": "政府补助附注'计入当期损益的政府补助'项目合计；包含表中所有类型（列示为与收益相关），本期发生额；不包括其他收益中的与收益相关的政府补助，也不包括非经常性损益中扣除持续影响补助后的金额。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "a287484c30b81befef09aede8d702c6b793e90466c06c8adf711f5aa19184ec5",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 122,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t232",
+          "row": 3,
+          "column": 2
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助"
+        },
+        "after": {
+          "metric": "government_grants_included_in_current_profit_or_loss_total",
+          "label": "计入当期损益的政府补助合计",
+          "definition": "政府补助附注中按类型列示的、计入当期损益的政府补助的合计金额。",
+          "definition_scope": "政府补助附注'计入当期损益的政府补助'项目合计；包含表中所有类型（列示为与收益相关），本期发生额；不包括其他收益中的与收益相关的政府补助，也不包括非经常性损益中扣除持续影响补助后的金额。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "e083fa24507fa60d6a4be6f1110dcf7adaeb41644fccbf9b4628dd221e97942e",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 122,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t232",
+          "row": 2,
+          "column": 3
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助"
+        },
+        "after": {
+          "metric": "government_grants_related_to_income_included_in_current_profit_or_loss",
+          "label": "计入当期损益的政府补助（与收益相关）",
+          "definition": "政府补助附注中按类型列示的、计入当期损益的与收益相关的政府补助。",
+          "definition_scope": "政府补助附注'计入当期损益的政府补助'项下类型为与收益相关的金额；本期发生额；不包含合计行，也不包含其他收益中单独的与收益相关的政府补助。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "20a7c5a40be0bf895e0ac2bc3a8a34ad03695a030b82a93c0b4089c9185d52de",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 122,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t232",
+          "row": 2,
+          "column": 2
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助"
+        },
+        "after": {
+          "metric": "government_grants_related_to_income_included_in_current_profit_or_loss",
+          "label": "计入当期损益的政府补助（与收益相关）",
+          "definition": "政府补助附注中按类型列示的、计入当期损益的与收益相关的政府补助。",
+          "definition_scope": "政府补助附注'计入当期损益的政府补助'项下类型为与收益相关的金额；本期发生额；不包含合计行，也不包含其他收益中单独的与收益相关的政府补助。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "87bece98e1ae4bdb21cbf9b25ed03cf29b75098a9b1366105ec0fe9568f7a9ff",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 60,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t90",
+          "row": 29,
+          "column": 4
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债",
+          "definition": "资产负债表中的租赁负债项目，反映企业尚未支付的租赁付款额现值，扣除一年内到期部分后的非流动租赁负债。",
+          "definition_scope": "列示于非流动负债项下的租赁负债；一年内到期的部分在流动负债的“一年内到期的非流动负债”项目反映，本项目不包含该部分。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "de17904bc9c4b5651ac33d43af8c1247586f7c8d4de5f87851545b2de8ed17ac",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "911ae86ffa58e22dd8591253593f929417a5172d9787d2febc9d600c63b750c5",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 62,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t93",
+          "row": 33,
+          "column": 4
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债",
+          "definition": "资产负债表中的租赁负债项目，反映企业尚未支付的租赁付款额现值，扣除一年内到期部分后的非流动租赁负债。",
+          "definition_scope": "列示于非流动负债项下的租赁负债；一年内到期的部分在流动负债的“一年内到期的非流动负债”项目反映，本项目不包含该部分。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "ca5f08c6227bb7c9fc495ad561705f126746e1fa6adf884b057c345a5f6911c0",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 106,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t184",
+          "row": 2,
+          "column": 3
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债",
+          "definition": "资产负债表中的租赁负债项目，反映企业尚未支付的租赁付款额现值，扣除一年内到期部分后的非流动租赁负债。",
+          "definition_scope": "列示于非流动负债项下的租赁负债；一年内到期的部分在流动负债的“一年内到期的非流动负债”项目反映，本项目不包含该部分。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "bcf9b2bea954971a95216c3e6074d28c2ea4cae2fe4f9a366d725c43a87ddbcd",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 106,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t184",
+          "row": 3,
+          "column": 3
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债",
+          "definition": "资产负债表中的租赁负债项目，反映企业尚未支付的租赁付款额现值，扣除一年内到期部分后的非流动租赁负债。",
+          "definition_scope": "列示于非流动负债项下的租赁负债；一年内到期的部分在流动负债的“一年内到期的非流动负债”项目反映，本项目不包含该部分。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "9bb40cf8cbeacd5ec47b3473521a1cf1472aec6ddcd6e4c3ac7a17f4c07a51be",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 60,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t90",
+          "row": 29,
+          "column": 3
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债",
+          "definition": "资产负债表中的租赁负债项目，反映企业尚未支付的租赁付款额现值，扣除一年内到期部分后的非流动租赁负债。",
+          "definition_scope": "列示于非流动负债项下的租赁负债；一年内到期的部分在流动负债的“一年内到期的非流动负债”项目反映，本项目不包含该部分。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "de17904bc9c4b5651ac33d43af8c1247586f7c8d4de5f87851545b2de8ed17ac",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "16f3cd87567b3888a5b2c61ff56eb8fb4de0194ecc2d516451fe42e790dc8d78",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 62,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t93",
+          "row": 33,
+          "column": 3
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债",
+          "definition": "资产负债表中的租赁负债项目，反映企业尚未支付的租赁付款额现值，扣除一年内到期部分后的非流动租赁负债。",
+          "definition_scope": "列示于非流动负债项下的租赁负债；一年内到期的部分在流动负债的“一年内到期的非流动负债”项目反映，本项目不包含该部分。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "e4a6ee25d07febed7b43609dbfd33b18cb773ec6404a660fee6bf43387e15d80",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 106,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t184",
+          "row": 3,
+          "column": 2
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债",
+          "definition": "资产负债表中的租赁负债项目，反映企业尚未支付的租赁付款额现值，扣除一年内到期部分后的非流动租赁负债。",
+          "definition_scope": "列示于非流动负债项下的租赁负债；一年内到期的部分在流动负债的“一年内到期的非流动负债”项目反映，本项目不包含该部分。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "36167dd9b7c065a73230b822c580dde457aa0b06ee32fba7adfe48244f2e65ed",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 135,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t253",
+          "row": 32,
+          "column": 4
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities_including_current_portion",
+          "label": "租赁负债（包含一年内到期部分）",
+          "definition": "租赁负债（包含一年内到期部分），即企业尚未支付的租赁付款额现值，包含将在一年内到期的部分。",
+          "definition_scope": "包含一年内到期的租赁负债部分；不区分流动与非流动，与资产负债表单独列示的非流动租赁负债不同。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "39d865f9b7249e8432df998bd465935419ecc16745fc0b0f49d897105b0b9a5e",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 115,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t218",
+          "row": 3,
+          "column": 2
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities_including_current_portion",
+          "label": "租赁负债（包含一年内到期部分）",
+          "definition": "租赁负债（包含一年内到期部分），即企业尚未支付的租赁付款额现值，包含将在一年内到期的部分。",
+          "definition_scope": "包含一年内到期的租赁负债部分；不区分流动与非流动，与资产负债表单独列示的非流动租赁负债不同。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "ec9730bc54142b68e094c72f4ef80bfedec96927027163f2e421c2eee6a97e7e",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 115,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t218",
+          "row": 3,
+          "column": 7
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities_including_current_portion",
+          "label": "租赁负债（包含一年内到期部分）",
+          "definition": "租赁负债（包含一年内到期部分），即企业尚未支付的租赁付款额现值，包含将在一年内到期的部分。",
+          "definition_scope": "包含一年内到期的租赁负债部分；不区分流动与非流动，与资产负债表单独列示的非流动租赁负债不同。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "ef0361aef37ff79724e212e2e6bbccf36db62101e958fd92c3ebb4443e608117",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 135,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t253",
+          "row": 32,
+          "column": 3
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities_including_current_portion",
+          "label": "租赁负债（包含一年内到期部分）",
+          "definition": "租赁负债（包含一年内到期部分），即企业尚未支付的租赁付款额现值，包含将在一年内到期的部分。",
+          "definition_scope": "包含一年内到期的租赁负债部分；不区分流动与非流动，与资产负债表单独列示的非流动租赁负债不同。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "564d2361f817f0cef520729c6f64ed75e3e53d09a930c423457bb5e126f3ddd9",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 135,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t253",
+          "row": 33,
+          "column": 3
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities_including_current_portion",
+          "label": "租赁负债（包含一年内到期部分）",
+          "definition": "租赁负债（包含一年内到期部分），即企业尚未支付的租赁付款额现值，包含将在一年内到期的部分。",
+          "definition_scope": "包含一年内到期的租赁负债部分；不区分流动与非流动，与资产负债表单独列示的非流动租赁负债不同。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "2f0331f9c26116ffb99cedddc35eed55bb9682402abebb7a0b254f431e34a1c1",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 135,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t253",
+          "row": 35,
+          "column": 3
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities_including_current_portion",
+          "label": "租赁负债（包含一年内到期部分）",
+          "definition": "租赁负债（包含一年内到期部分），即企业尚未支付的租赁付款额现值，包含将在一年内到期的部分。",
+          "definition_scope": "包含一年内到期的租赁负债部分；不区分流动与非流动，与资产负债表单独列示的非流动租赁负债不同。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "d6a4f2fd89535789e9c4ee62951463de610169ed5c9f4c2190739f1635d48007",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 135,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t253",
+          "row": 36,
+          "column": 3
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities_including_current_portion",
+          "label": "租赁负债（包含一年内到期部分）",
+          "definition": "租赁负债（包含一年内到期部分），即企业尚未支付的租赁付款额现值，包含将在一年内到期的部分。",
+          "definition_scope": "包含一年内到期的租赁负债部分；不区分流动与非流动，与资产负债表单独列示的非流动租赁负债不同。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "0583e4489dc559deb564aa10c38e9d91cb90de5b5bdae9f0c94ef7d8aa44172e",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 115,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t218",
+          "row": 3,
+          "column": 4
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities_including_current_portion",
+          "label": "租赁负债（包含一年内到期部分）",
+          "definition": "租赁负债（包含一年内到期部分），即企业尚未支付的租赁付款额现值，包含将在一年内到期的部分。",
+          "definition_scope": "包含一年内到期的租赁负债部分；不区分流动与非流动，与资产负债表单独列示的非流动租赁负债不同。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "de17904bc9c4b5651ac33d43af8c1247586f7c8d4de5f87851545b2de8ed17ac",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "819fefbdd11db5cea2482e5974555f3669b32423be803397b28b41d5b29da069",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 115,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t218",
+          "row": 3,
+          "column": 5
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "lease_liabilities_including_current_portion",
+          "label": "租赁负债（包含一年内到期部分）",
+          "definition": "租赁负债（包含一年内到期部分），即企业尚未支付的租赁付款额现值，包含将在一年内到期的部分。",
+          "definition_scope": "包含一年内到期的租赁负债部分；不区分流动与非流动，与资产负债表单独列示的非流动租赁负债不同。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "de17904bc9c4b5651ac33d43af8c1247586f7c8d4de5f87851545b2de8ed17ac",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "e72ed47fd5e09997476aed99925d91435f535477efff779a2679dc36f0be51e3",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 16,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t32",
+          "row": 4,
+          "column": 2
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "revenue",
+          "label": "营业收入"
+        },
+        "after": {
+          "metric": "main_business_revenue",
+          "label": "主营业务收入",
+          "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+          "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "5bdd60ee7f66d38f5309c3fb40a38a5a521641d690f3c57e7e419579b834a141",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 17,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t33",
+          "row": 2,
+          "column": 2
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "revenue",
+          "label": "营业收入"
+        },
+        "after": {
+          "metric": "main_business_revenue",
+          "label": "主营业务收入",
+          "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+          "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "e0a083e8937318a995ae0a432902feeff691b8435585098e55f58c0017ab689f",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 17,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t33",
+          "row": 6,
+          "column": 2
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "revenue",
+          "label": "营业收入"
+        },
+        "after": {
+          "metric": "main_business_revenue",
+          "label": "主营业务收入",
+          "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+          "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "6eca6b8f4a5d44c21202cda2b33a74038fe9e8fd4e141c7723fcb7a8b50545fa",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 17,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t33",
+          "row": 8,
+          "column": 2
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "revenue",
+          "label": "营业收入"
+        },
+        "after": {
+          "metric": "main_business_revenue",
+          "label": "主营业务收入",
+          "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+          "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "7f523ef99bcd26d4819be99cd809226e7ec2b993dd687ee14af403a92be91597",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 6,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t11",
+          "row": 3,
+          "column": 5
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助"
+        },
+        "after": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助",
+          "definition": "非经常性损益项目中列示的计入当期损益的政府补助，即计入当期损益的政府补助扣除与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助后的金额。",
+          "definition_scope": "非经常性损益项目；不包括与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "c76bcced918080b94a49b7ea235a40ff6b81a7caebcea0b80ad3f93d654753e2",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 6,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t11",
+          "row": 3,
+          "column": 4
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助"
+        },
+        "after": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助",
+          "definition": "非经常性损益项目中列示的计入当期损益的政府补助，即计入当期损益的政府补助扣除与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助后的金额。",
+          "definition_scope": "非经常性损益项目；不包括与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "b6bb6c82bbf9adb62ef6a8d3d57480c37a64c18f5e5b0c0e10d266d381c17986",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 6,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t11",
+          "row": 3,
+          "column": 2
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助"
+        },
+        "after": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助",
+          "definition": "非经常性损益项目中列示的计入当期损益的政府补助，即计入当期损益的政府补助扣除与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助后的金额。",
+          "definition_scope": "非经常性损益项目；不包括与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "e57b8f3273348fd26a7c73b32c3ae47322549b29b30c8cb03f0394ce2e65b06f",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 142,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t273",
+          "row": 3,
+          "column": 2
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助"
+        },
+        "after": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助",
+          "definition": "非经常性损益项目中列示的计入当期损益的政府补助，即计入当期损益的政府补助扣除与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助后的金额。",
+          "definition_scope": "非经常性损益项目；不包括与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "9d46ea71bc81211da48ab56535723300a37f0ab0bbe2f31dfd1d181a8d980d3f",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 111,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t201",
+          "row": 3,
+          "column": 3
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助"
+        },
+        "after": {
+          "metric": "other_income_government_grants_related_to_income",
+          "label": "与收益相关的政府补助",
+          "definition": "计入其他收益的与收益相关的政府补助。",
+          "definition_scope": "其他收益按性质分类；仅列示与收益相关的政府补助，不包括代扣个人所得税手续费返还、其他项目及合计。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "b99251fe872714b53923e88b7611648a122faea099a726e4df38eb91b1c3fb79",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 111,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t201",
+          "row": 3,
+          "column": 2
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "non_recurring_government_grants",
+          "label": "计入当期损益的政府补助"
+        },
+        "after": {
+          "metric": "other_income_government_grants_related_to_income",
+          "label": "与收益相关的政府补助",
+          "definition": "计入其他收益的与收益相关的政府补助。",
+          "definition_scope": "其他收益按性质分类；仅列示与收益相关的政府补助，不包括代扣个人所得税手续费返还、其他项目及合计。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "b973ce8003fdf4c8c3036e233731c3b819d2c9b7c27b2636c9d0802263eeb19c",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 16,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t29",
+          "row": 2,
+          "column": 3
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "revenue",
+          "label": "上期销售收入"
+        },
+        "after": {
+          "metric": "revenue",
+          "label": "营业收入",
+          "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+          "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "ec48f441304d6b8c3bdae5c2399dc6fcfed01d057b178af0100891cc737b875e",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 16,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t31",
+          "row": 2,
+          "column": 4
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "revenue",
+          "label": "上期销售收入"
+        },
+        "after": {
+          "metric": "revenue",
+          "label": "营业收入",
+          "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+          "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "0b93b0675a692c48ce550f01447844db4ce231c0b2a122734032bf35e916f216",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 121,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t231",
+          "row": 3,
+          "column": 6
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "revenue",
+          "label": "营业收入"
+        },
+        "after": {
+          "metric": "revenue",
+          "label": "营业收入",
+          "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+          "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "423f70c043ad18e597427c33502b16dd2bb62594d6e3992cd5f58b3aed8884c4",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 16,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t29",
+          "row": 2,
+          "column": 2
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "revenue",
+          "label": "本期销售收入"
+        },
+        "after": {
+          "metric": "revenue",
+          "label": "营业收入",
+          "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+          "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "7f9156cbe881d1775a94bd03513b23a11e838a7ce420e97666d9164e62fbe69a",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 16,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t31",
+          "row": 2,
+          "column": 3
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "revenue",
+          "label": "本期销售收入"
+        },
+        "after": {
+          "metric": "revenue",
+          "label": "营业收入",
+          "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+          "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "009e2280c85a0387ade0a071a0528fafb2cf3d599e84ab89a563eb744813f51f",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+          "row": 6,
+          "column": 4
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "revenue",
+          "label": "营业收入"
+        },
+        "after": {
+          "metric": "revenue",
+          "label": "营业收入",
+          "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+          "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "a904fb534afd98dd3ec1dae3b5866987acbaf4866b17e7e162ca211e222a44bb",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+          "row": 8,
+          "column": 4
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "revenue",
+          "label": "营业收入"
+        },
+        "after": {
+          "metric": "revenue",
+          "label": "营业收入",
+          "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+          "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "ceccfe3fa159c80f9c9a377fb5ec3f13e8402dc39ea3d3b7b6365bbfaf5c634c",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 108,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+          "row": 9,
+          "column": 4
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "revenue",
+          "label": "营业收入"
+        },
+        "after": {
+          "metric": "revenue",
+          "label": "营业收入",
+          "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+          "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "ff5b0c319538b7b0963b8b164ff1073cff53d4bbdaffc4915a4e9de31c1f2859",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 121,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t231",
+          "row": 3,
+          "column": 2
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "revenue",
+          "label": "营业收入"
+        },
+        "after": {
+          "metric": "revenue",
+          "label": "营业收入",
+          "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+          "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "50c8a155cb8f94c88ef8299ab37ab8a0f99771c9fbc82c26978d23318605b6ea",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 141,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t270",
+          "row": 13,
+          "column": 4
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "revenue",
+          "label": "营业收入"
+        },
+        "after": {
+          "metric": "revenue",
+          "label": "营业收入",
+          "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+          "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "661f85755c608e978a414418b9042d86db3e326fb4d102335c73d59cb093175c",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 6,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t10",
+          "row": 2,
+          "column": 5
+        },
+        "changed_metric_or_label": false,
+        "before": {
+          "metric": "revenue",
+          "label": "营业收入"
+        },
+        "after": {
+          "metric": "revenue",
+          "label": "营业收入",
+          "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+          "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "0f5786335a7adf4506eeeda3afda92626127e2e85e9da1c3aedcb0fa011fa0a1",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 115,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t218",
+          "row": 4,
+          "column": 2
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "total_financing_liabilities",
+          "label": "合计",
+          "definition": "筹资活动产生的各项负债变动情况表中的合计行，反映筹资活动相关负债的总额。",
+          "definition_scope": "包含该表所列全部筹资活动产生的负债项目（本表为租赁负债（包含一年内到期部分））；不包含非筹资活动负债。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "de17904bc9c4b5651ac33d43af8c1247586f7c8d4de5f87851545b2de8ed17ac",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "3a1fb695e6d21b0e42c0ad5baac530601bc8828257f413acdd575c250f6bd1ab",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 115,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t218",
+          "row": 4,
+          "column": 7
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "total_financing_liabilities",
+          "label": "合计",
+          "definition": "筹资活动产生的各项负债变动情况表中的合计行，反映筹资活动相关负债的总额。",
+          "definition_scope": "包含该表所列全部筹资活动产生的负债项目（本表为租赁负债（包含一年内到期部分））；不包含非筹资活动负债。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "de17904bc9c4b5651ac33d43af8c1247586f7c8d4de5f87851545b2de8ed17ac",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      },
+      {
+        "source_key": "b5063804db7106d04035106c9f7f8dd684634c1cd7437dc1ba0056b40edbdb66",
+        "source": {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 115,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t218",
+          "row": 4,
+          "column": 6
+        },
+        "changed_metric_or_label": true,
+        "before": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债"
+        },
+        "after": {
+          "metric": "total_financing_liabilities",
+          "label": "合计",
+          "definition": "筹资活动产生的各项负债变动情况表中的合计行，反映筹资活动相关负债的总额。",
+          "definition_scope": "包含该表所列全部筹资活动产生的负债项目（本表为租赁负债（包含一年内到期部分））；不包含非筹资活动负债。"
+        },
+        "review_id": "03447af2f2554abe901dfaaef7912844",
+        "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+        "status": "failed",
+        "errors": [
+          "actual_pi_decision_missing",
+          "wrong_owner",
+          "before_definition_not_archived_source",
+          "after_definition:metric",
+          "after_definition:label",
+          "after_definition:definition",
+          "after_definition:definition_scope",
+          "decision_evidence_differs"
+        ]
+      }
+    ],
+    "cache_proofs": [],
+    "reports": []
+  },
+  "status": "failed"
+}

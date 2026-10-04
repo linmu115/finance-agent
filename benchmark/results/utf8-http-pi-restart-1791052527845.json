@@ -1,0 +1,80 @@
+{
+  "kind": "isolated_http_pi_utf8_roundtrip",
+  "model_provider": "deterministic_local_fixture",
+  "official_api_calls": 0,
+  "started_at": "2026-10-03T18:35:27.846Z",
+  "status": "failed",
+  "data_dir": "D:\\codex\\金融\\tmp\\utf8-roundtrip-oyyWxn",
+  "checks": [
+    {
+      "name": "multipart_filename_exact",
+      "status": "passed",
+      "details": {
+        "expected": "华𠮷💡_财报2024.csv",
+        "actual": "华𠮷💡_财报2024.csv"
+      }
+    },
+    {
+      "name": "real_pi_and_mcp_completed",
+      "status": "passed",
+      "details": {
+        "status": "completed"
+      }
+    },
+    {
+      "name": "database_exact_unicode",
+      "status": "passed",
+      "details": {
+        "company": "华𠮷制造,研究\n一期💡",
+        "label": "资产总额“合并”"
+      }
+    },
+    {
+      "name": "csv_escaped_multiline_and_unicode",
+      "status": "passed",
+      "details": {
+        "company": "华𠮷制造,研究\n一期💡",
+        "label": "资产总额“合并”"
+      }
+    },
+    {
+      "name": "original_bytes_unchanged",
+      "status": "passed",
+      "details": {
+        "sha256": "db0a5d95923726d9564791e6a7b3e819b7b0f35d6beee324ff0e8b66194352e1"
+      }
+    },
+    {
+      "name": "conversation_exact_unicode",
+      "status": "passed",
+      "details": {
+        "answer": "华𠮷制造,研究\n一期💡：资产总额“合并” 137.25元。"
+      }
+    },
+    {
+      "name": "restart_preserves_database_exports_chat_and_filename",
+      "status": "passed",
+      "details": {
+        "provider_calls_before": 5,
+        "provider_calls_after": 5
+      }
+    },
+    {
+      "name": "restart_and_read_make_no_model_calls",
+      "status": "passed",
+      "details": {
+        "calls": 5
+      }
+    },
+    {
+      "name": "no_replacement_character",
+      "status": "passed"
+    }
+  ],
+  "project_id": "e2268395-8fdc-4968-a69d-e21256557a5a",
+  "conversation_id": "9c5aa78c-0e47-4361-b2c0-12e156348819",
+  "document_id": "8f7039135aa94771ae31b60969199683",
+  "run_id": "318b3b35-c0ef-495c-8d2b-f07da3fabba4",
+  "error": "TypeError: until is not a function\n    at file:///D:/codex/%E9%87%91%E8%9E%8D/scripts/verify_utf8_roundtrip.mjs:77:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+  "finished_at": "2026-10-03T18:36:01.330Z"
+}

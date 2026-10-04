@@ -1,0 +1,181 @@
+{
+  "kind": "readonly_cutoff_diagnosis",
+  "created_at": "2026-10-03T19:06:03.716678+00:00",
+  "root_cause": "All five search requests and the PDF fetch request omitted supported optional as_of. No loss in PDF registration path.",
+  "observed_requests": [
+    {
+      "at": "2026-10-03T18:46:35.722Z",
+      "runId": "39d90d18-6b56-4f2e-841f-64fcf70c034c",
+      "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+      "type": "tool_request",
+      "data": {
+        "name": "search_web",
+        "toolCallId": "call_01_Q3ZoBwO0JWv1Y0oMdiNi0837",
+        "args": {
+          "query": "柳工 000528 2024年年度报告 巨潮资讯 PDF",
+          "max_results": 8,
+          "include_domains": [
+            "cninfo.com.cn"
+          ],
+          "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+        }
+      }
+    },
+    {
+      "at": "2026-10-03T18:46:46.805Z",
+      "runId": "39d90d18-6b56-4f2e-841f-64fcf70c034c",
+      "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+      "type": "tool_request",
+      "data": {
+        "name": "search_web",
+        "toolCallId": "call_00_hpLbA5soajWpnRYH9yRz8290",
+        "args": {
+          "query": "柳工 2024年年度报告 巨潮 000528",
+          "max_results": 8,
+          "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+        }
+      }
+    },
+    {
+      "at": "2026-10-03T18:46:55.896Z",
+      "runId": "39d90d18-6b56-4f2e-841f-64fcf70c034c",
+      "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+      "type": "tool_request",
+      "data": {
+        "name": "fetch_research_source",
+        "toolCallId": "call_00_Q3GLxyKxjjMB60hQ3JDz3631",
+        "args": {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-08-27/1224579412.PDF",
+          "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+        }
+      }
+    },
+    {
+      "at": "2026-10-03T18:46:55.896Z",
+      "runId": "39d90d18-6b56-4f2e-841f-64fcf70c034c",
+      "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+      "type": "tool_request",
+      "data": {
+        "name": "search_web",
+        "toolCallId": "call_01_3qbg0EVTb3ImFrQTi4my0060",
+        "args": {
+          "include_domains": [
+            "static.cninfo.com.cn"
+          ],
+          "max_results": 8,
+          "query": "柳工 2024年年度报告全文 static.cninfo.com.cn",
+          "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+        }
+      }
+    },
+    {
+      "at": "2026-10-03T18:47:02.883Z",
+      "runId": "39d90d18-6b56-4f2e-841f-64fcf70c034c",
+      "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+      "type": "tool_request",
+      "data": {
+        "name": "search_web",
+        "toolCallId": "call_00_DzPDlTRlba7zXAKQJweX5800",
+        "args": {
+          "query": "广西柳工机械股份有限公司2024年年度报告全文 定向增发 经营现金流",
+          "max_results": 6,
+          "include_domains": [
+            "static.cninfo.com.cn",
+            "cninfo.com.cn"
+          ],
+          "search_depth": "advanced",
+          "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+        }
+      }
+    },
+    {
+      "at": "2026-10-03T18:47:14.918Z",
+      "runId": "39d90d18-6b56-4f2e-841f-64fcf70c034c",
+      "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+      "type": "tool_request",
+      "data": {
+        "name": "search_web",
+        "toolCallId": "call_01_jb41IzFMCm1D7TdpErgW1865",
+        "args": {
+          "include_domains": [
+            "static.cninfo.com.cn"
+          ],
+          "max_results": 10,
+          "query": "柳工 2024 年年度报告 存货 应收账款 期末余额 合并资产负债表",
+          "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84"
+        }
+      }
+    }
+  ],
+  "source_metadata": {
+    "source_id": "web_7e60ff77-ccbc-46e8-a878-e0f575331d09",
+    "document_id": "f0703e7591bd4f0b8040ffa44e656f42",
+    "as_of": null,
+    "temporal_status": "no_cutoff",
+    "published_at": null,
+    "publication_evidence": null,
+    "retrieved_at": "2026-10-03T18:46:56.135Z",
+    "sha256": "f6a77ccd45a617c3a23362d69cc242dec9e87772ad2eed724a97391d6b96bf3e"
+  },
+  "code_locations": [
+    {
+      "file": "server/research.ts",
+      "lines": [
+        171,
+        172
+      ],
+      "finding": "Both tools expose optional as_of."
+    },
+    {
+      "file": "server/runs.ts",
+      "lines": [
+        288,
+        292,
+        294
+      ],
+      "finding": "Passes provided as_of unchanged; does not inherit a run cutoff."
+    },
+    {
+      "file": "server/research.ts",
+      "lines": [
+        152,
+        158,
+        160
+      ],
+      "finding": "Snapshot receives as_of before PDF registration; document registration appends document_id only."
+    },
+    {
+      "file": "server/research.ts",
+      "lines": [
+        119,
+        120,
+        123,
+        126,
+        142
+      ],
+      "finding": "Published date is extracted from HTML only. A PDF with cutoff still has undated status unless independently supported date evidence is introduced."
+    }
+  ],
+  "recommendations": [
+    {
+      "scope": "minimal prompt/tool description",
+      "change": "When the task supplies a cutoff, explicitly pass it on every search and fetch. Do not silently assume natural-language cutoff is bound to tool parameters."
+    },
+    {
+      "scope": "optional runtime contract",
+      "change": "Persist a validated per-conversation research_as_of; inherit on missing tool parameter, audit effective value and source, and handle explicit conflicting dates rather than silently overriding."
+    },
+    {
+      "scope": "PDF historical evidence",
+      "change": "Allow independently cited issuer publication-date claims linked to preserved source/document locations, without changing original immutable snapshots or pretending a URL path is publication proof."
+    }
+  ],
+  "no_production_changes": true,
+  "model_calls": 0,
+  "network_calls": 0,
+  "prior_audit_sha256": "0733d80b5eeaa5c3b3f38dc078517038391ed2bb7f47be27d4e5eceb30845cfe",
+  "code_sha256": {
+    "server/research.ts": "6c50e9000b0cb190d1fe15ee5123ada09a425310e6a58fe3246c0cdeed6e1c29",
+    "server/runs.ts": "2be140a4a886802748dbcdfda5dbe6aa58b7244aa378e97e0f634eb6a8c86c4a"
+  }
+}

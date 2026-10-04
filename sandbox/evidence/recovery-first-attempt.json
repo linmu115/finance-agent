@@ -1,0 +1,39 @@
+{
+  "runner": {
+    "available": true,
+    "reason": null,
+    "version": "28.3.3",
+    "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+    "repo_digests": [],
+    "transport": "ssh-local-vm",
+    "isolation": "Docker in Linux VM"
+  },
+  "cases": [
+    {
+      "id": "S08",
+      "status": "FAIL",
+      "run": {
+        "run_id": "22d2ccd8bf594a758b758bc6bd252f26",
+        "project_id": "isolation-A",
+        "status": "failed",
+        "exit_code": null,
+        "artifacts": [],
+        "error": "Container start failed: Error response from daemon: failed to create task for container: failed to initialize logging driver: compression cannot be enabled when max file count is 1\nError: failed to start containers: finance-22d2ccd8bf594a758b758bc6bd252f26\n",
+        "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+        "created_at": 1790975786.0376937,
+        "elapsed_seconds": 0.542,
+        "input_sha256": {},
+        "timeout_seconds": 120,
+        "owner_pid": 3289,
+        "owner_token": "932861",
+        "host_platform": "linux",
+        "host_name": "finance-vm",
+        "repo_digests": [],
+        "code_sha256": "6e0eac6f916e8f083c0edb0effa728f8a60f1a160832305c4743e703f89aa723",
+        "container_removed": true,
+        "finished_at": 1790975786.5793068
+      }
+    }
+  ],
+  "created_at": 1791003244.5908532
+}

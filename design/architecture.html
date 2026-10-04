@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>金融研究 · Pi 运行架构 v07</title><style>
+*{box-sizing:border-box}body{margin:0;color:#262626;background:#fafafa;font:15px/1.8 "Microsoft YaHei",system-ui,sans-serif}main{max-width:1100px;margin:auto;padding:50px 24px}h1{font-size:34px;line-height:1.4}h2{font-size:22px}h3{font-size:16px}p{color:#666}a{color:#333}small{color:#777}section{margin:28px 0;background:#fff;border:1px solid #e5e5e5;border-radius:15px;padding:28px}.actions{display:flex;gap:20px;align-items:center}.button{background:#222;color:#fff;padding:10px 18px;border-radius:9px;text-decoration:none}.diagram{background:#fafafa;border:1px solid #ececec;border-radius:12px;padding:22px;margin:22px 0}.node{border:1px solid #d9d9d9;border-radius:10px;padding:16px;text-align:center;background:white}.node b,.node small{display:block}.dark{background:#282828;color:white;border-color:#282828}.dark small{color:#ddd}.arrow{text-align:center;color:#777;padding:8px}.row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.two{grid-template-columns:repeat(2,1fr)}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid #e8e8e8;font-size:13px}th{background:#f8f8f8}code{font:12px Consolas,monospace;overflow-wrap:anywhere}li{margin:8px 0}.step{display:grid;grid-template-columns:36px 1fr;gap:15px;padding:12px 0}.number{border-radius:50%;background:#eee;width:30px;height:30px;text-align:center;line-height:30px}.muted{font-size:13px;color:#777}@media(max-width:700px){.row{grid-template-columns:1fr}main{padding:25px 14px}section{padding:18px}h1{font-size:27px}.actions{flex-wrap:wrap}td,th{padding:8px}}
+.notice{padding:18px 22px;border-left:3px solid #777;background:#f0f0f1;margin:24px 0;color:#444}.row{grid-template-columns:repeat(3,minmax(0,1fr))}.row.two{grid-template-columns:repeat(2,minmax(0,1fr))}.node{min-width:0}.actions{flex-wrap:wrap}table{table-layout:fixed}td,th{overflow-wrap:anywhere}th:first-child{width:36%}@media(max-width:700px){.row,.row.two{grid-template-columns:1fr}.diagram{padding:12px}.notice{padding:15px}td,th{font-size:12px}}</style></head><body><main>
+<small>金融研究工作台 · 开发发布 v07 · 2026-10-04</small><h1>一个 Pi 会话，完成证据到研究成果</h1>
+<p>附件清洗、联网取证、查询、财务建模、制图和报告保存，都是同一个 Pi Agent 可选择的工具。同项目共享资料、看板与研究版本，各会话独立保留上下文和运行。</p>
+<div class="actions"><a class="button" href="http://127.0.0.1:3001">打开正式应用</a><a href="../README.txt">启动与使用说明</a><a href="roadmap.html">已确认路线与进度</a><a href="architecture-v0.3-20261003.html">历史 v0.3 架构</a></div>
+<div class="notice"><b>功能已接入，准确性验收分开记录。</b><br>v07 已部署，工程检查已通过；合成研究联调已有真实模型记录。实际公司完整研究、正式整表留出对照与研报纠错验收仍未完成。<a href="../benchmark/results/release-v07-20261004.json">发布记录</a></div><section id="runtime"><h2>1. 运行结构</h2><div class="diagram">
+<div class="node"><b>ChatGPT 桌面式前端</b><small>新对话 · 附件 · 多会话切换 · 财报看板 · 研究成果 · API 配置 · 数据集与测试</small></div><div class="arrow">↕ 同源 HTTP / SSE</div>
+<div class="node"><b>Node 应用层</b><small>项目与会话、附件登记、来源归档、版本依赖、设置与下载</small></div><div class="arrow">↕ 每段会话自己的 AgentSession</div>
+<div class="node dark"><b>Pi harness + 统一 ModelRuntime</b><small>官方 DeepSeek · deepseek-flash · 会话历史、工具循环、模型调用、预算与取消</small></div><div class="arrow">↕ 同等级的业务工具</div>
+<div class="row tools-grid">
+<div class="node"><b>资料索引与清洗</b><small>PDF / Excel / CSV<br>原文索引、LangExtract 清洗<br>分批写库与登记看板</small></div>
+<div class="node"><b>联网取证</b><small>搜索公开资料、读取原文<br>保存网页正文或文件快照<br>网址、日期、段落与哈希</small></div>
+<div class="node"><b>查询与精确计算</b><small>发现目录与动态指标<br>全文、原页、原表<br>结构化查询与 Decimal</small></div>
+<div class="node"><b>财务模型</b><small>盈利质量与归因<br>制造业情景、FCFF DCF<br>PE / EV/EBITDA 可比估值</small></div>
+<div class="node"><b>研究成果与版本</b><small>产业链、投资备忘录、纠错<br>事实 / 推导 / 假设与引用<br>历史版本、依赖与过期状态</small></div>
+<div class="node"><b>自由分析与制图</b><small>独立 Docker 科学计算容器<br>统计、图表与数据文件<br>JSON / CSV / PNG 等产物</small></div></div>
+</div><p>LangExtract 是 <code>process_documents</code> 的内部实现。它需要的模型调用通过本次运行的私有桥接回所属 Pi ModelRuntime，统一使用配置、调用记录、预算和取消信号。固定财务公式由计算工具执行；无需为每项能力再建一个 Agent。</p></section>
+<section><h2>2. 一条带附件消息如何执行</h2>
+<div class="step"><div class="number">1</div><div><b>添加附件</b><br>只保存原文件并登记 document_id；此时不调用模型、不写入财务事实。</div></div>
+<div class="step"><div class="number">2</div><div><b>点击发送</b><br>当前 Pi Agent 收到用户任务和附件 ID。需要标准化财务数据时调用 process_documents；只阅读研究资料时可先用 prepare_document_sources 建立索引。</div></div>
+<div class="step"><div class="number">3</div><div><b>建立原文索引</b><br>PDF 独立解析进程提取逐页文字、表格和坐标；保存原文件、FTS 关键词索引与 YAML 目录。</div></div>
+<div class="step"><div class="number">4</div><div><b>模型理解并清洗</b><br>LangExtract 通过 Pi 调用 DeepSeek，结合表头、上下文解释指标、期间、单位、币种、口径、重述及分部。程序按原单元格验证数值和执行十进制换算；同一会话随后归并指标目录，并结合原文审校各事实的期间。</div></div>
+<div class="step"><div class="number">5</div><div><b>分批入库并更新看板</b><br>处理全部可提取的财务主表和附注表。每批提交后可查询，保留来源、原值、语义映射及版本。</div></div>
+<div class="step"><div class="number">6</div><div><b>继续同一次用户任务</b><br>同一 Pi Agent 接着取证、查表、运行财务模型或调用容器制图，保存研究成果后回复结论与引用。切换会话不打断处理。</div></div>
+</section>
+<section id="research-flow"><h2>3. 一条研究任务：证据 → 模型 → 备忘录</h2>
+<div class="diagram" role="group" aria-label="证据到研究成果流程图"><div class="row"><div class="node"><b>证据</b><small>用户附件 / 联网原文<br>原文定位、披露期间与口径</small></div><div class="node"><b>模型</b><small>可编辑假设 → 计算与情景<br>来源引用及固定版本</small></div><div class="node"><b>成果</b><small>图表、产业链、备忘录<br>结论、风险与反证条件</small></div></div><div class="arrow">同一次 Pi 工具循环继续执行，中间成果和最终版本均保存在项目内</div></div>
+<div class="step"><div class="number">1</div><div><b>取得可定位的原文。</b><br>搜索摘要只用于找链接；读取后保存原文快照。任务有研究截止日时传入检索与读取工具，发布日期未定则保留未定状态，不凭网址猜日期。</div></div>
+<div class="step"><div class="number">2</div><div><b>明确事实、推导和研究假设。</b><br>模型参数按路径保存 input_basis 和 source_refs。情景可把所选版本的完整输入直接传给 DCF，避免手抄；金额与股数倍率、期间、价值时点均明确保存。</div></div>
+<div class="step"><div class="number">3</div><div><b>保存可复核的研究成果。</b><br>同一 Agent 保存产业链、投资备忘录或逐处纠错，附真实来源、依赖版本和资料缺项，再返回结论与下载入口。</div></div>
+<div class="step"><div class="number">4</div><div><b>修改假设，定点更新下游。</b><br>“研究成果”可直接改参数并重算新版本。旧版本保留，下游显示“资料已有变化”；Agent 读取变化后更新相关 DCF 和备忘录，不自动改写旧结论。</div></div>
+<p class="muted">这是当前工具支持的路径。是否一次完成、数值和判断是否正确，仍须查看具体任务记录与独立核验。</p></section>
+<section><h2>4. 多会话与项目共享</h2><div class="diagram"><div class="row two"><div class="node"><b>会话 A / Pi Session A</b><small>独立上下文、工具记录与运行<br>例如：清洗刚上传的年报</small></div><div class="node"><b>会话 B / Pi Session B</b><small>独立上下文、工具记录与运行<br>例如：读取研究成果并修订假设</small></div></div><div class="arrow">↘ 同一 project_id ↙</div><div class="node dark"><b>项目共享数据</b><small>SQLite · 原文 / 网页快照 · YAML / FTS · 财报看板 · 模型 / 产业链 / 备忘录版本</small></div><div class="arrow">证据版本 → 情景版本 → DCF 版本 → 备忘录版本<br>上游变化标记 stale；旧版本与原始引用保留</div><div class="arrow">项目之间分别绑定访问范围</div><div class="node"><b>其他项目</b><small>独立资料、会话与看板</small></div></div>
+<p>同会话连续提问会保留 Pi 工具上下文；刷新恢复当前状态。停止只作用于当前会话。服务重启会标明中断状态，用户可以在原会话继续处理。相同文件按项目去重，共享处理中资料时保留各自取消行为。</p></section>
+<section><h2>5. 数据怎样保存和取回</h2><div class="diagram"><div class="node"><b>原始 PDF / Excel / CSV</b><small>data/documents/&lt;project&gt;/</small></div><div class="arrow">↓ 原文索引 + LLM 语义映射</div><div class="row"><div class="node"><b>可定位的证据</b><small>逐页文本、表格、单元格坐标<br>原页查看与来源引用</small></div><div class="node"><b>导航与全文检索</b><small>data/indexes/&lt;project&gt;/<br>YAML 目录 + SQLite FTS5</small></div><div class="node"><b>财务事实</b><small>data/finance.sqlite<br>动态指标、期间、维度与版本</small></div></div><div class="arrow">↓ 目录发现 → 条件查询 → 原文核对</div><div class="node dark"><b>对话回答与财报看板</b><small>公司 / 期间 / 口径 / 币种 / 版本 / 分部 → 选轴与指标 → 图表 / CSV / PNG / SVG</small></div></div><p>本阶段不调用 Embedding。Agent 可以查询实际数据库与目录位置，读取文档 YAML、全文和原表；数值检索使用结构化条件。看板分类包括利润表、资产负债表、现金流量表、财务比率、分部披露及附注。</p><p>联网查询、来源快照、模型与报告版本保存在 <code>data/research/&lt;project&gt;/</code>。保存原始文件字节或明确标识的提取正文，记录实际读取的来源和成果版本。模型保留输入、依据、公式与结果表，可按指定版本导出 JSON / CSV。引用位置或引文存在的校验，不等于参数语义和财务数值已通过独立验证。</p></section>
+<section id="tools"><h2>6. 模型工具与执行边界</h2><table><thead><tr><th>工具</th><th>职责</th></tr></thead><tbody>
+<tr><td><code>prepare_document_sources</code></td><td>只建立本项目文档的原文页、表格与导航索引；供按需阅读。</td></tr>
+<tr><td><code>process_documents</code></td><td>在当前 Pi 运行内读取、清洗并写入本项目；支持重新清洗。</td></tr>
+<tr><td><code>get_data_catalog / get_document_index</code></td><td>发现真实数据位置、字段、期间、处理状态与 YAML 导航。</td></tr>
+<tr><td><code>query_financial_data / get_normalization_details</code></td><td>动态指标与维度筛选；查看字段映射和数据来源。</td></tr>
+<tr><td><code>list_documents / get_document</code></td><td>查看当前项目资料。</td></tr>
+<tr><td><code>search_evidence / get_source_page / get_source_table</code></td><td>关键词检索，读取原页与原表。</td></tr>
+<tr><td><code>get_financial_metrics / calculate_financial_metrics</code></td><td>常用指标访问与精确计算。</td></tr>
+<tr><td><code>run_analysis / get_analysis_status / get_artifact</code></td><td>在独立科学计算容器执行分析与绘图，取回产物。</td></tr>
+<tr><td><code>search_web / fetch_research_source</code><br><code>list_research_sources / read_research_source</code></td><td>搜索、读取、归档公开原文，按需读取旧快照；保存日期、原网址和来源标识。</td></tr>
+<tr><td><code>get_research_model_schema / run_financial_model</code></td><td>按输入规范计算并保存盈利质量、制造业情景、DCF与可比估值。DCF可引用已保存情景版本直接导入。</td></tr>
+<tr><td><code>get_research_report_schema / save_research_report</code><br><code>list_research_artifacts / read_research_artifact</code></td><td>保存、读取产业链、备忘录和纠错，发现版本与依赖变化。</td></tr>
+</tbody></table><p>模型使用当前运行开放的业务工具。项目由宿主绑定；宿主负责附件登记、配置和持久化。自由分析容器预装 NumPy、pandas、SciPy、Matplotlib、Seaborn、statsmodels、scikit-learn、openpyxl 和中文字体，输入只读、输出限于本任务、默认断网，使用导出的数据副本。</p></section>
+<section id="verification"><h2>7. 入口与验证进度</h2><p><b>对话入口：</b>应用左侧“新对话”，直接发送任务或附加文件。<b>数据入口：</b>“财报看板”分类、筛选、选轴与制图。<b>成果入口：</b>“研究成果”的来源、模型、产业链、备忘录/纠错四个页签。<b>API 配置：</b>应用左下角或右上角。</p>
+<table><thead><tr><th>记录</th><th>实际范围与结论</th></tr></thead><tbody>
+<tr><td><a href="../benchmark/results/release-v07-20261004.json">v07 发布与部署记录</a></td><td>发布时 Node 142项、Python 295项、后续5项接口检查及类型检查、构建通过；网页链接与窄屏检查通过。只证明这些工程检查。</td></tr>
+<tr><td><a href="../benchmark/results/research-models-pi-workflow-v06.json">合成 Pi 研究联调</a><br><a href="../benchmark/results/research-models-pi-workflow-v06.independent.json">独立数值与元数据复核</a></td><td>10/10工作流检查、161/161数值参考及10/10元数据检查通过，覆盖情景→DCF、成果保存和跨会话读取依赖变化。仍记录宿主修改假设说明的瑕疵；这是合成开发用例，不是实际公司准确性验收。</td></tr>
+<tr><td><a href="../benchmark/results/liugong-research-workflow-v06.json">实际公司首轮失败记录</a><br><a href="../benchmark/results/liugong-research-workflow-v07.before.json">v07 冻结续做任务</a></td><td>首轮在阶段1达到工具上限，完整研究未完成。v07已准备续做并扣除前次花费；截至本次发布尚未执行。</td></tr>
+<tr><td><a href="../benchmark/results/upgrade-progress-v06.html">验收进度与证据</a><br><a href="../benchmark/design.html">Benchmark 设计</a></td><td>正式整表金融/通用对照、实际公司完整研究及研报纠错仍待验。能力存在不能自动计作准确性通过；旧失败报告独立保留。</td></tr>
+</tbody></table>
+<p class="muted">v07发布使用官方 DeepSeek API（deepseek-flash），输出上限32768，单条消息工具上限64。正式评测仍有独立冻结的总调用、token与时长预算；Embedding关闭。</p>
+<ul><li><a href="../samples/无需OCR财报测试包-4份.zip">4份无需OCR完整年报</a>，可从对话附件试用。</li><li><a href="../samples/normalization-benchmark-v0.3.1.zip">历史语义清洗回归材料 v0.3.1</a>，不代表新版正式留出成绩。</li><li><a href="architecture-v0.3-20261003.html">历史 v0.3 架构</a> · <a href="architecture-v0.2.html">历史 v0.2 架构</a></li></ul></section>
+<p class="muted">双击项目根目录 start-finance.cmd 可启动本机应用。API 配置入口位于正式应用左下角和右上角。</p>
+</main></body></html>

@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/opt/finance/entrypoint.py", line 11, in <module>
+    runpy.run_path('/input/__analysis__.py', run_name='__main__')
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/input/__analysis__.py", line 6, in <module>
+    found=[p for p in paths if Path(p).exists()]
+                               ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 860, in exists
+    self.stat(follow_symlinks=follow_symlinks)
+  File "/usr/local/lib/python3.12/pathlib.py", line 840, in stat
+    return os.stat(self, follow_symlinks=follow_symlinks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/root/.ssh'

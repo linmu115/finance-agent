@@ -1,0 +1,79 @@
+{
+  "version": "v0.3.1-normalization",
+  "created_date": "2026-10-03",
+  "kind": "developer_regression_not_competition_dataset",
+  "scope": "9 synthetic tables and 2 unchanged original annual-report pages; no OCR. Tests normalization and Pi workflow, not whole-report completeness or investment analysis accuracy.",
+  "gold_origin": "Synthetic expected values independently specified in the builder; public-PDF values transcribed from original table text. Not human blind-reviewed.",
+  "expected_facts": 37,
+  "forbidden_facts": 2,
+  "sources": [
+    {
+      "file": "10_moutai_2024_pages5-6.pdf",
+      "original": "samples/native-pdf/贵州茅台2024年年度报告.pdf",
+      "original_pages": [
+        5,
+        6
+      ],
+      "source_url": "https://static.cninfo.com.cn/finalpage/2025-04-03/1222993920.PDF",
+      "source_sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30"
+    }
+  ],
+  "inputs": [
+    {
+      "file": "01_current_prior_millions.csv",
+      "sha256": "892ceb354a908dff611485d424a3eba7034cf5bf89b13170262301c996e4c2d4",
+      "bytes": 295
+    },
+    {
+      "file": "02_usd_million_cashflow.csv",
+      "sha256": "97ace8c34990c8dd74e56c8ab069a94fac4261c7ee2b8c39fcf5a816efdc8c43",
+      "bytes": 338
+    },
+    {
+      "file": "03_hkd_thousand_balance.csv",
+      "sha256": "425ae03a90793aec7201e10cde1bd3cd4e8b696cc7b0da6d92ed635d485a64c1",
+      "bytes": 325
+    },
+    {
+      "file": "04_quarter_and_ytd.csv",
+      "sha256": "48018cf0e84dbbeca9cc2bb6f8fe128fe983237cf9f8ccf880e44121c261c408",
+      "bytes": 396
+    },
+    {
+      "file": "05_restatement_versions.csv",
+      "sha256": "9f811004a382296ea608ee780a71df2907f15993ab9fc6e13eacfa7c540dfdef",
+      "bytes": 332
+    },
+    {
+      "file": "06_segment_dimensions.csv",
+      "sha256": "3d50e5366f663c027a75b2f7439b9eb34153a9e4a83744979d55fb6672c1534b",
+      "bytes": 303
+    },
+    {
+      "file": "07_row_units.csv",
+      "sha256": "37f410a8bb83b80d0ea6a5dfa7e862b9e1037ee6fb07880636f770c28656fc0f",
+      "bytes": 359
+    },
+    {
+      "file": "08_sign_zero_missing.csv",
+      "sha256": "226f20d2fbf3574d4f12b5d2ed9cb4a4bec313c3b28a18d797d444eae2677f9c",
+      "bytes": 329
+    },
+    {
+      "file": "09_merged_headers.xlsx",
+      "sha256": "7c651d68eb114beeb65d5583eca9a8ccf1a009d6a26d062b41924b101d0c9b6c",
+      "bytes": 4148
+    },
+    {
+      "file": "10_moutai_2024_pages5-6.pdf",
+      "sha256": "603fdff69e2d8fd482338ae7d19a760343e6f865edc24bf30965429940518313",
+      "bytes": 605640
+    }
+  ],
+  "gold_revision": 2,
+  "parent_version": "v0.3-normalization",
+  "revision_file": "revision.json",
+  "gold_sha256": "5be0a8a53f62aee66666a9fb1f22606676aaceeda9bad86dc39e7296e4baad77",
+  "forbidden_sha256": "bb1a6ecfc23d30f77bec4169226cc49d1fe0012da2f62fb6a4e08b8989596942",
+  "label_regression_file": "label-equivalence-tests.json"
+}

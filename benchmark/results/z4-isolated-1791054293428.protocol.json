@@ -1,0 +1,38 @@
+{
+  "kind": "zero_model_z4_protocol",
+  "created_at": "2026-10-03T19:04:53.436Z",
+  "official_model_calls": 0,
+  "scenario_change": {
+    "material_cost_changes": [
+      "-0.2",
+      "-0.2",
+      "-0.2"
+    ],
+    "all_other_economic_assumptions": "unchanged from frozen v06 synthetic original"
+  },
+  "load": {
+    "clients": [
+      1,
+      2,
+      4
+    ],
+    "requests_per_client_per_query": 10,
+    "query_types": [
+      "catalog",
+      "financial_page_200",
+      "source_page_108",
+      "all_facts_csv"
+    ],
+    "quantile": "nearest-rank ceil(p*n)",
+    "warmup": "one excluded request for each route before every client-count block; first source-page GET may create a preview only inside private DATA",
+    "order": "client counts 1,2,4; query order as listed; clients simultaneous, each client serial",
+    "memory": "Windows working-set samples at1s; measured/OS peak, not guaranteed instantaneous peak",
+    "thresholds": "No latency/RSS throughput pass threshold; report observations only"
+  },
+  "isolation": "SQLite mode=ro backup; own temporary DATA, app_state/jobs/analysis removed only in copy; only the named public source PDF copied for page preview; no settings or secrets copied. Random loopback port, sentinel provider rejects/counts any call.",
+  "independent_reference": "Python fractions.Fraction, no production imports, exact rational formula from declared assumptions; tolerance1e-40 for decimal result serialization",
+  "limitations": [
+    "Synthetic scenario arithmetic and dependency control flow, not real-company source accuracy or model reasoning.",
+    "Single desktop observational load with warm cache; not saturation, capacity or database migration evidence."
+  ]
+}

@@ -1,0 +1,6387 @@
+{
+  "version": "0.5.0",
+  "kind": "whole_table_company_holdout",
+  "created_at": "2026-10-03T16:53:11.222678+00:00",
+  "tables": [
+    {
+      "id": "fy_annual",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "source_id": "fuyao_2025",
+      "original_page": 8,
+      "page": 2,
+      "bbox": [
+        84,
+        282,
+        537,
+        471
+      ],
+      "title": "主要会计数据",
+      "coverage": "All 7 financial rows, all 4 numeric columns including reported growth",
+      "complete": true
+    },
+    {
+      "id": "fy_ratios",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "source_id": "fuyao_2025",
+      "original_page": 8,
+      "page": 2,
+      "bbox": [
+        84,
+        505,
+        537,
+        632
+      ],
+      "title": "主要财务指标",
+      "coverage": "All 5 financial rows, all 4 numeric columns including percentage-point differences",
+      "complete": true
+    },
+    {
+      "id": "fy_quarters",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "source_id": "fuyao_2025",
+      "original_page": 9,
+      "page": 3,
+      "bbox": [
+        80,
+        571,
+        542,
+        671
+      ],
+      "title": "分季度主要财务数据",
+      "coverage": "All 4 financial rows and all 4 quarters",
+      "complete": true
+    },
+    {
+      "id": "cn_income_1",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "source_id": "cnooc_2025_en",
+      "original_page": 80,
+      "page": 2,
+      "bbox": [
+        70,
+        116,
+        554,
+        544
+      ],
+      "title": "Consolidated profit or loss and other comprehensive income, part 1",
+      "coverage": "Every printed amount; includes otherwise unlabeled subtotal and repeated attribution subtotal",
+      "complete": true
+    },
+    {
+      "id": "cn_income_2",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "source_id": "cnooc_2025_en",
+      "original_page": 81,
+      "page": 3,
+      "bbox": [
+        70,
+        116,
+        554,
+        444
+      ],
+      "title": "Consolidated profit or loss and other comprehensive income, part 2",
+      "coverage": "Every printed amount including EPS, continuation, and explicit dash annotations",
+      "complete": true
+    }
+  ],
+  "cells": [
+    {
+      "id": "fy_annual_r1_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "营业收入",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        239.39999,
+        312.81729,
+        304.86032,
+        326.52768
+      ],
+      "source_token": "45,787,435,563",
+      "raw_value": "45,787,435,563",
+      "value": "45787435563",
+      "metric": "revenue",
+      "definition_regex": "营业收入|revenue",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r1_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "营业收入",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        317.64001,
+        312.81729,
+        383.22064,
+        326.52768
+      ],
+      "source_token": "39,251,657,267",
+      "raw_value": "39,251,657,267",
+      "value": "39251657267",
+      "metric": "revenue",
+      "definition_regex": "营业收入|revenue",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r1_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "营业收入",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        431.04001,
+        312.81729,
+        454.62366,
+        326.52768
+      ],
+      "source_token": "16.65",
+      "raw_value": "16.65",
+      "value": "16.65",
+      "metric": null,
+      "definition_regex": "(?=.*(?:营业收入|revenue))(?=.*(?:同比|增减|增长|change|growth|year.over.year))",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_annual_r1_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "营业收入",
+      "source_column_label": "2023",
+      "glyph_bbox": [
+        465.84,
+        312.81729,
+        531.30035,
+        326.52768
+      ],
+      "source_token": "33,160,996,641",
+      "raw_value": "33,160,996,641",
+      "value": "33160996641",
+      "metric": "revenue",
+      "definition_regex": "营业收入|revenue",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2023",
+      "period_start": "2023-01-01",
+      "period_end": "2023-12-31",
+      "period_variants": [
+        "2023-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r2_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "利润总额",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        239.39999,
+        327.5773,
+        304.86032,
+        341.28769
+      ],
+      "source_token": "11,161,682,700",
+      "raw_value": "11,161,682,700",
+      "value": "11161682700",
+      "metric": null,
+      "definition_regex": "利润总额|profit.before.tax",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r2_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "利润总额",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        322.92001,
+        327.5773,
+        383.22095,
+        341.28769
+      ],
+      "source_token": "8,990,819,590",
+      "raw_value": "8,990,819,590",
+      "value": "8990819590",
+      "metric": null,
+      "definition_regex": "利润总额|profit.before.tax",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r2_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "利润总额",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        431.04001,
+        327.5773,
+        454.62366,
+        341.28769
+      ],
+      "source_token": "24.15",
+      "raw_value": "24.15",
+      "value": "24.15",
+      "metric": null,
+      "definition_regex": "(?=.*(?:利润总额|profit.before.tax))(?=.*(?:同比|增减|增长|change|growth|year.over.year))",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_annual_r2_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "利润总额",
+      "source_column_label": "2023",
+      "glyph_bbox": [
+        471.0,
+        327.5773,
+        531.30096,
+        341.28769
+      ],
+      "source_token": "6,716,021,914",
+      "raw_value": "6,716,021,914",
+      "value": "6716021914",
+      "metric": null,
+      "definition_regex": "利润总额|profit.before.tax",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2023",
+      "period_start": "2023-01-01",
+      "period_end": "2023-12-31",
+      "period_variants": [
+        "2023-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r3_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "归属于上市公司股东的净利润",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        244.55901,
+        342.33731,
+        304.85992,
+        356.0477
+      ],
+      "source_token": "9,312,304,150",
+      "raw_value": "9,312,304,150",
+      "value": "9312304150",
+      "metric": "net_profit_parent",
+      "definition_regex": "归母|归属于.*股东.*净利润|profit.*(?:equity|parent)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r3_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "归属于上市公司股东的净利润",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        322.92001,
+        342.33731,
+        383.22095,
+        356.0477
+      ],
+      "source_token": "7,497,976,123",
+      "raw_value": "7,497,976,123",
+      "value": "7497976123",
+      "metric": "net_profit_parent",
+      "definition_regex": "归母|归属于.*股东.*净利润|profit.*(?:equity|parent)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r3_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "归属于上市公司股东的净利润",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        431.04001,
+        342.33731,
+        454.62366,
+        356.0477
+      ],
+      "source_token": "24.20",
+      "raw_value": "24.20",
+      "value": "24.20",
+      "metric": null,
+      "definition_regex": "(?=.*(?:归母|归属于.*股东.*净利润|profit.*(?:equity|parent)))(?=.*(?:同比|增减|增长|change|growth|year.over.year))",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_annual_r3_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "归属于上市公司股东的净利润",
+      "source_column_label": "2023",
+      "glyph_bbox": [
+        471.0,
+        342.33731,
+        531.30096,
+        356.0477
+      ],
+      "source_token": "5,629,256,054",
+      "raw_value": "5,629,256,054",
+      "value": "5629256054",
+      "metric": "net_profit_parent",
+      "definition_regex": "归母|归属于.*股东.*净利润|profit.*(?:equity|parent)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2023",
+      "period_start": "2023-01-01",
+      "period_end": "2023-12-31",
+      "period_variants": [
+        "2023-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r4_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "归属于上市公司股东的扣除非经常性损益的净利润",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        244.55901,
+        363.5773,
+        304.85992,
+        377.28769
+      ],
+      "source_token": "9,164,684,348",
+      "raw_value": "9,164,684,348",
+      "value": "9164684348",
+      "metric": "net_profit_excluding_nonrecurring",
+      "definition_regex": "扣.*非|exclu.*non.?recurr",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r4_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "归属于上市公司股东的扣除非经常性损益的净利润",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        322.92001,
+        363.5773,
+        383.22095,
+        377.28769
+      ],
+      "source_token": "7,445,999,659",
+      "raw_value": "7,445,999,659",
+      "value": "7445999659",
+      "metric": "net_profit_excluding_nonrecurring",
+      "definition_regex": "扣.*非|exclu.*non.?recurr",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r4_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "归属于上市公司股东的扣除非经常性损益的净利润",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        431.04001,
+        363.5773,
+        454.62366,
+        377.28769
+      ],
+      "source_token": "23.08",
+      "raw_value": "23.08",
+      "value": "23.08",
+      "metric": null,
+      "definition_regex": "(?=.*(?:扣.*非|exclu.*non.?recurr))(?=.*(?:同比|增减|增长|change|growth|year.over.year))",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_annual_r4_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "归属于上市公司股东的扣除非经常性损益的净利润",
+      "source_column_label": "2023",
+      "glyph_bbox": [
+        471.0,
+        363.5773,
+        531.30096,
+        377.28769
+      ],
+      "source_token": "5,527,467,830",
+      "raw_value": "5,527,467,830",
+      "value": "5527467830",
+      "metric": "net_profit_excluding_nonrecurring",
+      "definition_regex": "扣.*非|exclu.*non.?recurr",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2023",
+      "period_start": "2023-01-01",
+      "period_end": "2023-12-31",
+      "period_variants": [
+        "2023-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r5_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "经营活动产生的现金流量净额",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        239.39999,
+        384.69632,
+        304.86032,
+        398.40671
+      ],
+      "source_token": "12,055,090,552",
+      "raw_value": "12,055,090,552",
+      "value": "12055090552",
+      "metric": "operating_cash_flow",
+      "definition_regex": "经营.*现金|operating.*cash",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r5_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "经营活动产生的现金流量净额",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        322.92001,
+        384.69632,
+        383.22095,
+        398.40671
+      ],
+      "source_token": "8,562,187,329",
+      "raw_value": "8,562,187,329",
+      "value": "8562187329",
+      "metric": "operating_cash_flow",
+      "definition_regex": "经营.*现金|operating.*cash",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r5_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "经营活动产生的现金流量净额",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        431.04001,
+        384.69632,
+        454.62366,
+        398.40671
+      ],
+      "source_token": "40.79",
+      "raw_value": "40.79",
+      "value": "40.79",
+      "metric": null,
+      "definition_regex": "(?=.*(?:经营.*现金|operating.*cash))(?=.*(?:同比|增减|增长|change|growth|year.over.year))",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_annual_r5_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "经营活动产生的现金流量净额",
+      "source_column_label": "2023",
+      "glyph_bbox": [
+        471.0,
+        384.69632,
+        531.30096,
+        398.40671
+      ],
+      "source_token": "7,624,580,890",
+      "raw_value": "7,624,580,890",
+      "value": "7624580890",
+      "metric": "operating_cash_flow",
+      "definition_regex": "经营.*现金|operating.*cash",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2023",
+      "period_start": "2023-01-01",
+      "period_end": "2023-12-31",
+      "period_variants": [
+        "2023-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_r6_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "归属于上市公司股东的净资产",
+      "source_column_label": "2025-12-31",
+      "glyph_bbox": [
+        239.39999,
+        440.8573,
+        304.86032,
+        454.56769
+      ],
+      "source_token": "37,556,465,111",
+      "raw_value": "37,556,465,111",
+      "value": "37556465111",
+      "metric": "equity_parent",
+      "definition_regex": "归母.*净资产|归属于.*(?:股东|母公司).*(?:净资产|权益)|equity.*(?:parent|shareholder)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-12-31",
+      "period_start": "",
+      "period_end": "2025-12-31",
+      "period_variants": []
+    },
+    {
+      "id": "fy_annual_r6_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "归属于上市公司股东的净资产",
+      "source_column_label": "2024-12-31",
+      "glyph_bbox": [
+        317.64001,
+        440.8573,
+        383.22064,
+        454.56769
+      ],
+      "source_token": "35,694,366,243",
+      "raw_value": "35,694,366,243",
+      "value": "35694366243",
+      "metric": "equity_parent",
+      "definition_regex": "归母.*净资产|归属于.*(?:股东|母公司).*(?:净资产|权益)|equity.*(?:parent|shareholder)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2024-12-31",
+      "period_start": "",
+      "period_end": "2024-12-31",
+      "period_variants": []
+    },
+    {
+      "id": "fy_annual_r6_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "归属于上市公司股东的净资产",
+      "source_column_label": "2025-12-31",
+      "glyph_bbox": [
+        436.32001,
+        440.8573,
+        454.62396,
+        454.56769
+      ],
+      "source_token": "5.22",
+      "raw_value": "5.22",
+      "value": "5.22",
+      "metric": null,
+      "definition_regex": "(?=.*(?:归母.*净资产|归属于.*(?:股东|母公司).*(?:净资产|权益)|equity.*(?:parent|shareholder)))(?=.*(?:同比|增减|增长|change|growth|year.over.year))",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-12-31",
+      "period_start": "",
+      "period_end": "2025-12-31",
+      "period_variants": [],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_annual_r6_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "归属于上市公司股东的净资产",
+      "source_column_label": "2023-12-31",
+      "glyph_bbox": [
+        465.84,
+        440.8573,
+        531.30035,
+        454.56769
+      ],
+      "source_token": "31,426,181,639",
+      "raw_value": "31,426,181,639",
+      "value": "31426181639",
+      "metric": "equity_parent",
+      "definition_regex": "归母.*净资产|归属于.*(?:股东|母公司).*(?:净资产|权益)|equity.*(?:parent|shareholder)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2023-12-31",
+      "period_start": "",
+      "period_end": "2023-12-31",
+      "period_variants": []
+    },
+    {
+      "id": "fy_annual_r7_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "总资产",
+      "source_column_label": "2025-12-31",
+      "glyph_bbox": [
+        239.39999,
+        455.25729,
+        304.86032,
+        468.96768
+      ],
+      "source_token": "70,062,354,686",
+      "raw_value": "70,062,354,686",
+      "value": "70062354686",
+      "metric": "assets",
+      "definition_regex": "总资产|资产总|total.assets",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-12-31",
+      "period_start": "",
+      "period_end": "2025-12-31",
+      "period_variants": []
+    },
+    {
+      "id": "fy_annual_r7_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "总资产",
+      "source_column_label": "2024-12-31",
+      "glyph_bbox": [
+        317.64001,
+        455.25729,
+        383.22064,
+        468.96768
+      ],
+      "source_token": "63,254,182,536",
+      "raw_value": "63,254,182,536",
+      "value": "63254182536",
+      "metric": "assets",
+      "definition_regex": "总资产|资产总|total.assets",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2024-12-31",
+      "period_start": "",
+      "period_end": "2024-12-31",
+      "period_variants": []
+    },
+    {
+      "id": "fy_annual_r7_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "总资产",
+      "source_column_label": "2025-12-31",
+      "glyph_bbox": [
+        431.04001,
+        455.25729,
+        454.62366,
+        468.96768
+      ],
+      "source_token": "10.76",
+      "raw_value": "10.76",
+      "value": "10.76",
+      "metric": null,
+      "definition_regex": "(?=.*(?:总资产|资产总|total.assets))(?=.*(?:同比|增减|增长|change|growth|year.over.year))",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-12-31",
+      "period_start": "",
+      "period_end": "2025-12-31",
+      "period_variants": [],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_annual_r7_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "总资产",
+      "source_column_label": "2023-12-31",
+      "glyph_bbox": [
+        465.84,
+        455.25729,
+        531.30035,
+        468.96768
+      ],
+      "source_token": "56,630,407,495",
+      "raw_value": "56,630,407,495",
+      "value": "56630407495",
+      "metric": "assets",
+      "definition_regex": "总资产|资产总|total.assets",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2023-12-31",
+      "period_start": "",
+      "period_end": "2023-12-31",
+      "period_variants": []
+    },
+    {
+      "id": "fy_ratios_r1_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "基本每股收益",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        293.04001,
+        533.13733,
+        311.34396,
+        546.84772
+      ],
+      "source_token": "3.57",
+      "raw_value": "3.57",
+      "value": "3.57",
+      "metric": "eps",
+      "definition_regex": "基本.*每股|basic.*(?:earnings|EPS)|每股.*基本",
+      "currency": "CNY/share",
+      "normalized_unit": "CNY/share",
+      "raw_unit_values": [
+        "元/股",
+        "人民币元/股",
+        "CNY/share"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "fy_ratios_r1_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "基本每股收益",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        359.28,
+        533.13733,
+        377.58395,
+        546.84772
+      ],
+      "source_token": "2.87",
+      "raw_value": "2.87",
+      "value": "2.87",
+      "metric": "eps",
+      "definition_regex": "基本.*每股|basic.*(?:earnings|EPS)|每股.*基本",
+      "currency": "CNY/share",
+      "normalized_unit": "CNY/share",
+      "raw_unit_values": [
+        "元/股",
+        "人民币元/股",
+        "CNY/share"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "fy_ratios_r1_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "基本每股收益",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        447.84,
+        533.13733,
+        471.42365,
+        546.84772
+      ],
+      "source_token": "24.39",
+      "raw_value": "24.39",
+      "value": "24.39",
+      "metric": null,
+      "definition_regex": "(?=.*(?:基本.*每股|basic.*(?:earnings|EPS)|每股.*基本))(?=.*(?:同比|增减|增长|change|growth|year.over.year))",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_ratios_r1_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "基本每股收益",
+      "source_column_label": "2023",
+      "glyph_bbox": [
+        513.0,
+        533.13733,
+        531.30396,
+        546.84772
+      ],
+      "source_token": "2.16",
+      "raw_value": "2.16",
+      "value": "2.16",
+      "metric": "eps",
+      "definition_regex": "基本.*每股|basic.*(?:earnings|EPS)|每股.*基本",
+      "currency": "CNY/share",
+      "normalized_unit": "CNY/share",
+      "raw_unit_values": [
+        "元/股",
+        "人民币元/股",
+        "CNY/share"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2023",
+      "period_start": "2023-01-01",
+      "period_end": "2023-12-31",
+      "period_variants": [
+        "2023-FY"
+      ]
+    },
+    {
+      "id": "fy_ratios_r2_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "稀释每股收益",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        293.04001,
+        547.29633,
+        311.34396,
+        561.00671
+      ],
+      "source_token": "3.57",
+      "raw_value": "3.57",
+      "value": "3.57",
+      "metric": null,
+      "definition_regex": "稀释|diluted",
+      "currency": "CNY/share",
+      "normalized_unit": "CNY/share",
+      "raw_unit_values": [
+        "元/股",
+        "人民币元/股",
+        "CNY/share"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "fy_ratios_r2_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "稀释每股收益",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        359.28,
+        547.29633,
+        377.58395,
+        561.00671
+      ],
+      "source_token": "2.87",
+      "raw_value": "2.87",
+      "value": "2.87",
+      "metric": null,
+      "definition_regex": "稀释|diluted",
+      "currency": "CNY/share",
+      "normalized_unit": "CNY/share",
+      "raw_unit_values": [
+        "元/股",
+        "人民币元/股",
+        "CNY/share"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "fy_ratios_r2_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "稀释每股收益",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        447.84,
+        547.29633,
+        471.42365,
+        561.00671
+      ],
+      "source_token": "24.39",
+      "raw_value": "24.39",
+      "value": "24.39",
+      "metric": null,
+      "definition_regex": "(?=.*(?:稀释|diluted))(?=.*(?:同比|增减|增长|change|growth|year.over.year))",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_ratios_r2_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "稀释每股收益",
+      "source_column_label": "2023",
+      "glyph_bbox": [
+        513.0,
+        547.29633,
+        531.30396,
+        561.00671
+      ],
+      "source_token": "2.16",
+      "raw_value": "2.16",
+      "value": "2.16",
+      "metric": null,
+      "definition_regex": "稀释|diluted",
+      "currency": "CNY/share",
+      "normalized_unit": "CNY/share",
+      "raw_unit_values": [
+        "元/股",
+        "人民币元/股",
+        "CNY/share"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2023",
+      "period_start": "2023-01-01",
+      "period_end": "2023-12-31",
+      "period_variants": [
+        "2023-FY"
+      ]
+    },
+    {
+      "id": "fy_ratios_r3_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "扣除非经常性损益后的基本每股收益",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        293.04001,
+        568.17731,
+        311.34396,
+        581.8877
+      ],
+      "source_token": "3.51",
+      "raw_value": "3.51",
+      "value": "3.51",
+      "metric": null,
+      "definition_regex": "扣.*非|exclu.*non.?recurr",
+      "currency": "CNY/share",
+      "normalized_unit": "CNY/share",
+      "raw_unit_values": [
+        "元/股",
+        "人民币元/股",
+        "CNY/share"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "fy_ratios_r3_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "扣除非经常性损益后的基本每股收益",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        359.28,
+        568.17731,
+        377.58395,
+        581.8877
+      ],
+      "source_token": "2.85",
+      "raw_value": "2.85",
+      "value": "2.85",
+      "metric": null,
+      "definition_regex": "扣.*非|exclu.*non.?recurr",
+      "currency": "CNY/share",
+      "normalized_unit": "CNY/share",
+      "raw_unit_values": [
+        "元/股",
+        "人民币元/股",
+        "CNY/share"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "fy_ratios_r3_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "扣除非经常性损益后的基本每股收益",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        447.84,
+        568.17731,
+        471.42365,
+        581.8877
+      ],
+      "source_token": "23.16",
+      "raw_value": "23.16",
+      "value": "23.16",
+      "metric": null,
+      "definition_regex": "(?=.*(?:扣.*非|exclu.*non.?recurr))(?=.*(?:同比|增减|增长|change|growth|year.over.year))",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_ratios_r3_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "扣除非经常性损益后的基本每股收益",
+      "source_column_label": "2023",
+      "glyph_bbox": [
+        513.0,
+        568.17731,
+        531.30396,
+        581.8877
+      ],
+      "source_token": "2.12",
+      "raw_value": "2.12",
+      "value": "2.12",
+      "metric": null,
+      "definition_regex": "扣.*非|exclu.*non.?recurr",
+      "currency": "CNY/share",
+      "normalized_unit": "CNY/share",
+      "raw_unit_values": [
+        "元/股",
+        "人民币元/股",
+        "CNY/share"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2023",
+      "period_start": "2023-01-01",
+      "period_end": "2023-12-31",
+      "period_variants": [
+        "2023-FY"
+      ]
+    },
+    {
+      "id": "fy_ratios_r4_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "加权平均净资产收益率",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        287.759,
+        589.17731,
+        311.34265,
+        602.8877
+      ],
+      "source_token": "25.56",
+      "raw_value": "25.56",
+      "value": "25.56",
+      "metric": "roe",
+      "definition_regex": "净资产收益率|return.on.equity|ROE",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_ratios_r4_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "加权平均净资产收益率",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        354.0,
+        589.17731,
+        377.58365,
+        602.8877
+      ],
+      "source_token": "22.72",
+      "raw_value": "22.72",
+      "value": "22.72",
+      "metric": "roe",
+      "definition_regex": "净资产收益率|return.on.equity|ROE",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_ratios_r4_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "加权平均净资产收益率",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        390.12,
+        589.17731,
+        471.36911,
+        602.8877
+      ],
+      "source_token": "增加2.84个百分点",
+      "raw_value": "增加2.84个百分点",
+      "value": "2.84",
+      "metric": null,
+      "definition_regex": "(?=.*(?:净资产收益率|return.on.equity|ROE))(?=.*(?:百分点|percentage.point|percentage_points))",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "个百分点",
+        "百分点",
+        "percentage points",
+        "pp"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ],
+      "unit_kind": "percentage_points"
+    },
+    {
+      "id": "fy_ratios_r4_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "加权平均净资产收益率",
+      "source_column_label": "2023",
+      "glyph_bbox": [
+        507.84,
+        589.17731,
+        531.30334,
+        602.8877
+      ],
+      "source_token": "18.97",
+      "raw_value": "18.97",
+      "value": "18.97",
+      "metric": "roe",
+      "definition_regex": "净资产收益率|return.on.equity|ROE",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2023",
+      "period_start": "2023-01-01",
+      "period_end": "2023-12-31",
+      "period_variants": [
+        "2023-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_ratios_r5_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "扣除非经常性损益后的加权平均净资产收益率",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        287.759,
+        610.05627,
+        311.34265,
+        623.76666
+      ],
+      "source_token": "25.16",
+      "raw_value": "25.16",
+      "value": "25.16",
+      "metric": null,
+      "definition_regex": "扣.*非|exclu.*non.?recurr",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_ratios_r5_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "扣除非经常性损益后的加权平均净资产收益率",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        354.0,
+        610.05627,
+        377.58365,
+        623.76666
+      ],
+      "source_token": "22.57",
+      "raw_value": "22.57",
+      "value": "22.57",
+      "metric": null,
+      "definition_regex": "扣.*非|exclu.*non.?recurr",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_ratios_r5_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "扣除非经常性损益后的加权平均净资产收益率",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        390.12,
+        609.93732,
+        471.36911,
+        623.64771
+      ],
+      "source_token": "增加2.59个百分点",
+      "raw_value": "增加2.59个百分点",
+      "value": "2.59",
+      "metric": null,
+      "definition_regex": "(?=.*(?:扣.*非|exclu.*non.?recurr))(?=.*(?:百分点|percentage.point|percentage_points))",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "个百分点",
+        "百分点",
+        "percentage points",
+        "pp"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ],
+      "unit_kind": "percentage_points"
+    },
+    {
+      "id": "fy_ratios_r5_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "source_row_label": "扣除非经常性损益后的加权平均净资产收益率",
+      "source_column_label": "2023",
+      "glyph_bbox": [
+        507.84,
+        610.05627,
+        531.30334,
+        623.76666
+      ],
+      "source_token": "18.63",
+      "raw_value": "18.63",
+      "value": "18.63",
+      "metric": null,
+      "definition_regex": "扣.*非|exclu.*non.?recurr",
+      "currency": "percent",
+      "normalized_unit": "%",
+      "raw_unit_values": [
+        "%",
+        "百分比",
+        "percent"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2023",
+      "period_start": "2023-01-01",
+      "period_end": "2023-12-31",
+      "period_variants": [
+        "2023-FY"
+      ],
+      "unit_kind": "ratio_percent"
+    },
+    {
+      "id": "fy_quarters_r1_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "营业收入",
+      "source_column_label": "2025-Q1",
+      "glyph_bbox": [
+        236.64,
+        598.77728,
+        296.94092,
+        612.48767
+      ],
+      "source_token": "9,910,012,731",
+      "raw_value": "9,910,012,731",
+      "value": "9910012731",
+      "metric": "revenue",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q1",
+      "period_start": "2025-01-01",
+      "period_end": "2025-03-31",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r1_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "营业收入",
+      "source_column_label": "2025-Q2",
+      "glyph_bbox": [
+        309.0,
+        598.77728,
+        374.58063,
+        612.48767
+      ],
+      "source_token": "11,537,378,985",
+      "raw_value": "11,537,378,985",
+      "value": "11537378985",
+      "metric": "revenue",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q2",
+      "period_start": "2025-04-01",
+      "period_end": "2025-06-30",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r1_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "营业收入",
+      "source_column_label": "2025-Q3",
+      "glyph_bbox": [
+        386.759,
+        598.77728,
+        452.33963,
+        612.48767
+      ],
+      "source_token": "11,854,516,214",
+      "raw_value": "11,854,516,214",
+      "value": "11854516214",
+      "metric": "revenue",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q3",
+      "period_start": "2025-07-01",
+      "period_end": "2025-09-30",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r1_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "营业收入",
+      "source_column_label": "2025-Q4",
+      "glyph_bbox": [
+        469.79999,
+        598.77728,
+        535.26031,
+        612.48767
+      ],
+      "source_token": "12,485,527,633",
+      "raw_value": "12,485,527,633",
+      "value": "12485527633",
+      "metric": "revenue",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q4",
+      "period_start": "2025-10-01",
+      "period_end": "2025-12-31",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r2_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "归属于上市公司股东的净利润",
+      "source_column_label": "2025-Q1",
+      "glyph_bbox": [
+        236.64,
+        612.93732,
+        296.94092,
+        626.64771
+      ],
+      "source_token": "2,029,740,416",
+      "raw_value": "2,029,740,416",
+      "value": "2029740416",
+      "metric": "net_profit_parent",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q1",
+      "period_start": "2025-01-01",
+      "period_end": "2025-03-31",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r2_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "归属于上市公司股东的净利润",
+      "source_column_label": "2025-Q2",
+      "glyph_bbox": [
+        314.28,
+        612.93732,
+        374.58093,
+        626.64771
+      ],
+      "source_token": "2,774,971,295",
+      "raw_value": "2,774,971,295",
+      "value": "2774971295",
+      "metric": "net_profit_parent",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q2",
+      "period_start": "2025-04-01",
+      "period_end": "2025-06-30",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r2_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "归属于上市公司股东的净利润",
+      "source_column_label": "2025-Q3",
+      "glyph_bbox": [
+        392.04001,
+        612.93732,
+        452.34094,
+        626.64771
+      ],
+      "source_token": "2,259,142,444",
+      "raw_value": "2,259,142,444",
+      "value": "2259142444",
+      "metric": "net_profit_parent",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q3",
+      "period_start": "2025-07-01",
+      "period_end": "2025-09-30",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r2_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "归属于上市公司股东的净利润",
+      "source_column_label": "2025-Q4",
+      "glyph_bbox": [
+        474.95901,
+        612.93732,
+        535.25995,
+        626.64771
+      ],
+      "source_token": "2,248,449,995",
+      "raw_value": "2,248,449,995",
+      "value": "2248449995",
+      "metric": "net_profit_parent",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q4",
+      "period_start": "2025-10-01",
+      "period_end": "2025-12-31",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r3_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "归属于上市公司股东的扣除非经常性损益后的净利润",
+      "source_column_label": "2025-Q1",
+      "glyph_bbox": [
+        236.64,
+        633.81732,
+        296.94092,
+        647.52771
+      ],
+      "source_token": "1,986,938,205",
+      "raw_value": "1,986,938,205",
+      "value": "1986938205",
+      "metric": "net_profit_excluding_nonrecurring",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q1",
+      "period_start": "2025-01-01",
+      "period_end": "2025-03-31",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r3_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "归属于上市公司股东的扣除非经常性损益后的净利润",
+      "source_column_label": "2025-Q2",
+      "glyph_bbox": [
+        314.28,
+        633.81732,
+        374.58093,
+        647.52771
+      ],
+      "source_token": "2,719,744,350",
+      "raw_value": "2,719,744,350",
+      "value": "2719744350",
+      "metric": "net_profit_excluding_nonrecurring",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q2",
+      "period_start": "2025-04-01",
+      "period_end": "2025-06-30",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r3_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "归属于上市公司股东的扣除非经常性损益后的净利润",
+      "source_column_label": "2025-Q3",
+      "glyph_bbox": [
+        392.04001,
+        633.81732,
+        452.34094,
+        647.52771
+      ],
+      "source_token": "2,214,951,522",
+      "raw_value": "2,214,951,522",
+      "value": "2214951522",
+      "metric": "net_profit_excluding_nonrecurring",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q3",
+      "period_start": "2025-07-01",
+      "period_end": "2025-09-30",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r3_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "归属于上市公司股东的扣除非经常性损益后的净利润",
+      "source_column_label": "2025-Q4",
+      "glyph_bbox": [
+        474.95901,
+        633.81732,
+        535.25995,
+        647.52771
+      ],
+      "source_token": "2,243,050,271",
+      "raw_value": "2,243,050,271",
+      "value": "2243050271",
+      "metric": "net_profit_excluding_nonrecurring",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q4",
+      "period_start": "2025-10-01",
+      "period_end": "2025-12-31",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r4_c1",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "经营活动产生的现金流量净额",
+      "source_column_label": "2025-Q1",
+      "glyph_bbox": [
+        236.64,
+        654.69629,
+        296.94092,
+        668.40668
+      ],
+      "source_token": "2,007,595,043",
+      "raw_value": "2,007,595,043",
+      "value": "2007595043",
+      "metric": "operating_cash_flow",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q1",
+      "period_start": "2025-01-01",
+      "period_end": "2025-03-31",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r4_c2",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "经营活动产生的现金流量净额",
+      "source_column_label": "2025-Q2",
+      "glyph_bbox": [
+        314.28,
+        654.69629,
+        374.58093,
+        668.40668
+      ],
+      "source_token": "3,346,880,772",
+      "raw_value": "3,346,880,772",
+      "value": "3346880772",
+      "metric": "operating_cash_flow",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q2",
+      "period_start": "2025-04-01",
+      "period_end": "2025-06-30",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r4_c3",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "经营活动产生的现金流量净额",
+      "source_column_label": "2025-Q3",
+      "glyph_bbox": [
+        392.04001,
+        654.69629,
+        452.34094,
+        668.40668
+      ],
+      "source_token": "4,530,153,839",
+      "raw_value": "4,530,153,839",
+      "value": "4530153839",
+      "metric": "operating_cash_flow",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q3",
+      "period_start": "2025-07-01",
+      "period_end": "2025-09-30",
+      "period_variants": []
+    },
+    {
+      "id": "fy_quarters_r4_c4",
+      "role": "fact",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "source_row_label": "经营活动产生的现金流量净额",
+      "source_column_label": "2025-Q4",
+      "glyph_bbox": [
+        474.95901,
+        654.69629,
+        535.25995,
+        668.40668
+      ],
+      "source_token": "2,170,460,898",
+      "raw_value": "2,170,460,898",
+      "value": "2170460898",
+      "metric": "operating_cash_flow",
+      "definition_regex": null,
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "元",
+        "人民币元",
+        "CNY"
+      ],
+      "scope": "consolidated_CAS",
+      "version": "original",
+      "period": "2025-Q4",
+      "period_start": "2025-10-01",
+      "period_end": "2025-12-31",
+      "period_variants": []
+    },
+    {
+      "id": "cn_income_1_r1_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Oil and gas sales",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        430.46722,
+        154.20709,
+        462.05331,
+        164.3221
+      ],
+      "source_token": "335,652",
+      "raw_value": "335,652",
+      "value": "335652000000",
+      "metric": null,
+      "definition_regex": "油气.*销售|石油.*天然气.*销售|oil.and.gas.sales",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r1_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Oil and gas sales",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        515.5097,
+        154.2581,
+        547.09564,
+        164.2966
+      ],
+      "source_token": "355,615",
+      "raw_value": "355,615",
+      "value": "355615000000",
+      "metric": null,
+      "definition_regex": "油气.*销售|石油.*天然气.*销售|oil.and.gas.sales",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r2_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Marketing revenues",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        435.33771,
+        164.70459,
+        462.05328,
+        174.8196
+      ],
+      "source_token": "53,684",
+      "raw_value": "53,684",
+      "value": "53684000000",
+      "metric": null,
+      "definition_regex": "贸易.*收入|营销.*收入|marketing.revenue",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r2_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Marketing revenues",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        520.38019,
+        164.7556,
+        547.09564,
+        174.7941
+      ],
+      "source_token": "55,142",
+      "raw_value": "55,142",
+      "value": "55142000000",
+      "metric": null,
+      "definition_regex": "贸易.*收入|营销.*收入|marketing.revenue",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r3_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Other revenue",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        440.20822,
+        175.20209,
+        462.05328,
+        185.31709
+      ],
+      "source_token": "8,884",
+      "raw_value": "8,884",
+      "value": "8884000000",
+      "metric": null,
+      "definition_regex": "其他.*收入|other.revenue",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r3_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Other revenue",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        525.25073,
+        175.2531,
+        547.0957,
+        185.2916
+      ],
+      "source_token": "9,749",
+      "raw_value": "9,749",
+      "value": "9749000000",
+      "metric": null,
+      "definition_regex": "其他.*收入|other.revenue",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r4_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Revenue subtotal",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        430.4776,
+        193.09216,
+        462.06369,
+        203.20717
+      ],
+      "source_token": "398,220",
+      "raw_value": "398,220",
+      "value": "398220000000",
+      "metric": "revenue",
+      "definition_regex": "营业收入|收入合计|总收入|revenue",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r4_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Revenue subtotal",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        515.52008,
+        193.14317,
+        547.10602,
+        203.18167
+      ],
+      "source_token": "420,506",
+      "raw_value": "420,506",
+      "value": "420506000000",
+      "metric": "revenue",
+      "definition_regex": "营业收入|收入合计|总收入|revenue",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r5_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Operating expenses",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        432.5412,
+        221.46967,
+        464.57776,
+        231.58467
+      ],
+      "source_token": "(40,273)",
+      "raw_value": "(40,273)",
+      "value": "-40273000000",
+      "metric": null,
+      "definition_regex": "作业.*费|经营.*费|运营.*费|operating.expense",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r5_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Operating expenses",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        518.05121,
+        221.52068,
+        549.15265,
+        231.55917
+      ],
+      "source_token": "(38,227)",
+      "raw_value": "(38,227)",
+      "value": "-38227000000",
+      "metric": null,
+      "definition_regex": "作业.*费|经营.*费|运营.*费|operating.expense",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r6_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Taxes other than income tax",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        432.5412,
+        231.96716,
+        464.57776,
+        242.08217
+      ],
+      "source_token": "(18,194)",
+      "raw_value": "(18,194)",
+      "value": "-18194000000",
+      "metric": null,
+      "definition_regex": "税金.*附加|所得税以外|其他税|taxes.other.than.income",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r6_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Taxes other than income tax",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        518.05121,
+        232.01817,
+        549.15265,
+        242.05667
+      ],
+      "source_token": "(20,276)",
+      "raw_value": "(20,276)",
+      "value": "-20276000000",
+      "metric": null,
+      "definition_regex": "税金.*附加|所得税以外|其他税|taxes.other.than.income",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r7_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Exploration expenses",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        432.5412,
+        242.46466,
+        464.57776,
+        252.57967
+      ],
+      "source_token": "(15,365)",
+      "raw_value": "(15,365)",
+      "value": "-15365000000",
+      "metric": null,
+      "definition_regex": "勘探.*费|exploration.expense",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r7_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Exploration expenses",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        518.05121,
+        242.51567,
+        549.15265,
+        252.55417
+      ],
+      "source_token": "(13,860)",
+      "raw_value": "(13,860)",
+      "value": "-13860000000",
+      "metric": null,
+      "definition_regex": "勘探.*费|exploration.expense",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r8_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Depreciation, depletion and amortisation",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        432.5412,
+        252.96216,
+        464.57776,
+        263.07718
+      ],
+      "source_token": "(79,771)",
+      "raw_value": "(79,771)",
+      "value": "-79771000000",
+      "metric": null,
+      "definition_regex": "折旧.*(?:折耗|损耗).*摊销|depreciation.*depletion.*amorti",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r8_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Depreciation, depletion and amortisation",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        518.05121,
+        253.01317,
+        549.15265,
+        263.05167
+      ],
+      "source_token": "(74,606)",
+      "raw_value": "(74,606)",
+      "value": "-74606000000",
+      "metric": null,
+      "definition_regex": "折旧.*(?:折耗|损耗).*摊销|depreciation.*depletion.*amorti",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r9_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Special oil gain levy",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        437.41174,
+        263.45966,
+        464.57779,
+        273.57468
+      ],
+      "source_token": "(2,044)",
+      "raw_value": "(2,044)",
+      "value": "-2044000000",
+      "metric": null,
+      "definition_regex": "石油特别收益金|special.oil.gain.levy",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r9_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Special oil gain levy",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        522.92175,
+        263.51065,
+        549.15271,
+        273.54916
+      ],
+      "source_token": "(8,297)",
+      "raw_value": "(8,297)",
+      "value": "-8297000000",
+      "metric": null,
+      "definition_regex": "石油特别收益金|special.oil.gain.levy",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r10_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Impairment and provision recognised, net",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        437.41174,
+        273.95715,
+        464.57779,
+        284.07217
+      ],
+      "source_token": "(3,809)",
+      "raw_value": "(3,809)",
+      "value": "-3809000000",
+      "metric": null,
+      "definition_regex": "减值.*准备|impairment.*provision",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r10_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Impairment and provision recognised, net",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        522.92175,
+        274.00815,
+        549.15271,
+        284.04666
+      ],
+      "source_token": "(8,047)",
+      "raw_value": "(8,047)",
+      "value": "-8047000000",
+      "metric": null,
+      "definition_regex": "减值.*准备|impairment.*provision",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r11_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Expected credit losses",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        454.52225,
+        284.45465,
+        464.56924,
+        294.56967
+      ],
+      "source_token": "(9)",
+      "raw_value": "(9)",
+      "value": "-9000000",
+      "metric": null,
+      "definition_regex": "预期信用损失|expected.credit.loss",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r11_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Expected credit losses",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        535.16174,
+        284.50565,
+        549.14423,
+        294.54416
+      ],
+      "source_token": "(29)",
+      "raw_value": "(29)",
+      "value": "-29000000",
+      "metric": null,
+      "definition_regex": "预期信用损失|expected.credit.loss",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r12_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Crude oil and product purchases",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        432.54971,
+        294.95215,
+        464.58627,
+        305.06717
+      ],
+      "source_token": "(47,646)",
+      "raw_value": "(47,646)",
+      "value": "-47646000000",
+      "metric": null,
+      "definition_regex": "原油.*(?:产品|成品油).*采购|原油.*购买|crude.oil.and.product.purchases",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r12_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Crude oil and product purchases",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        518.05969,
+        295.00314,
+        549.16113,
+        305.04166
+      ],
+      "source_token": "(50,035)",
+      "raw_value": "(50,035)",
+      "value": "-50035000000",
+      "metric": null,
+      "definition_regex": "原油.*(?:产品|成品油).*采购|原油.*购买|crude.oil.and.product.purchases",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r13_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Selling and administrative expenses",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        432.54968,
+        305.44965,
+        464.58624,
+        315.56467
+      ],
+      "source_token": "(12,039)",
+      "raw_value": "(12,039)",
+      "value": "-12039000000",
+      "metric": null,
+      "definition_regex": "销售.*(?:管理|行政).*费|selling.and.administrative",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r13_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Selling and administrative expenses",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        518.05969,
+        305.50064,
+        549.16113,
+        315.53915
+      ],
+      "source_token": "(11,140)",
+      "raw_value": "(11,140)",
+      "value": "-11140000000",
+      "metric": null,
+      "definition_regex": "销售.*(?:管理|行政).*费|selling.and.administrative",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r14_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Other expenses",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        437.4202,
+        315.94714,
+        464.58624,
+        326.06216
+      ],
+      "source_token": "(9,477)",
+      "raw_value": "(9,477)",
+      "value": "-9477000000",
+      "metric": null,
+      "definition_regex": "其他.*(?:费|支出)|other.*expense",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r14_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Other expenses",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        518.05969,
+        315.99814,
+        549.16113,
+        326.03665
+      ],
+      "source_token": "(11,284)",
+      "raw_value": "(11,284)",
+      "value": "-11284000000",
+      "metric": null,
+      "definition_regex": "其他.*(?:费|支出)|other.*expense",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r15_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Expenses subtotal",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        427.67819,
+        333.85229,
+        464.58527,
+        343.96732
+      ],
+      "source_token": "(228,627)",
+      "raw_value": "(228,627)",
+      "value": "-228627000000",
+      "metric": null,
+      "definition_regex": "费用.*(?:合计|总)|(?:合计|总).*费用|total.expenses|expenses.total",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r15_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Expenses subtotal",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        513.18817,
+        333.90329,
+        549.1601,
+        343.9418
+      ],
+      "source_token": "(235,801)",
+      "raw_value": "(235,801)",
+      "value": "-235801000000",
+      "metric": null,
+      "definition_regex": "费用.*(?:合计|总)|(?:合计|总).*费用|total.expenses|expenses.total",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r16_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Profit from operating activities",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        430.4758,
+        351.73239,
+        462.06189,
+        361.84741
+      ],
+      "source_token": "169,593",
+      "raw_value": "169,593",
+      "value": "169593000000",
+      "metric": null,
+      "definition_regex": "经营.*利润|营业利润|profit.from.operating|operating.profit",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r16_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Profit from operating activities",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        515.51831,
+        351.78339,
+        547.10425,
+        361.8219
+      ],
+      "source_token": "184,705",
+      "raw_value": "184,705",
+      "value": "184705000000",
+      "metric": null,
+      "definition_regex": "经营.*利润|营业利润|profit.from.operating|operating.profit",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r17_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Interest income",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        440.21683,
+        362.22989,
+        462.06189,
+        372.34491
+      ],
+      "source_token": "5,062",
+      "raw_value": "5,062",
+      "value": "5062000000",
+      "metric": null,
+      "definition_regex": "利息收入|interest.income",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r17_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Interest income",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        525.25934,
+        362.28088,
+        547.10431,
+        372.3194
+      ],
+      "source_token": "4,582",
+      "raw_value": "4,582",
+      "value": "4582000000",
+      "metric": null,
+      "definition_regex": "利息收入|interest.income",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r18_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Finance costs",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        437.4118,
+        372.72739,
+        464.57785,
+        382.84241
+      ],
+      "source_token": "(6,512)",
+      "raw_value": "(6,512)",
+      "value": "-6512000000",
+      "metric": null,
+      "definition_regex": "财务.*(?:成本|费用)|finance.cost",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r18_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Finance costs",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        522.92181,
+        372.77838,
+        549.15277,
+        382.81689
+      ],
+      "source_token": "(6,096)",
+      "raw_value": "(6,096)",
+      "value": "-6096000000",
+      "metric": null,
+      "definition_regex": "财务.*(?:成本|费用)|finance.cost",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r19_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Exchange gains/(losses), net",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        447.5863,
+        383.22488,
+        462.05334,
+        393.3399
+      ],
+      "source_token": "627",
+      "raw_value": "627",
+      "value": "627000000",
+      "metric": null,
+      "definition_regex": "汇兑.*(?:损|益)|exchange.*(?:gain|loss)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r19_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Exchange gains/(losses), net",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        522.92181,
+        383.27588,
+        549.15277,
+        393.31439
+      ],
+      "source_token": "(1,318)",
+      "raw_value": "(1,318)",
+      "value": "-1318000000",
+      "metric": null,
+      "definition_regex": "汇兑.*(?:损|益)|exchange.*(?:gain|loss)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r20_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Investment income",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        447.5863,
+        393.72238,
+        462.05334,
+        403.8374
+      ],
+      "source_token": "211",
+      "raw_value": "211",
+      "value": "211000000",
+      "metric": null,
+      "definition_regex": "投资收益|investment.income",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r20_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Investment income",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        525.25079,
+        393.77338,
+        547.09576,
+        403.81189
+      ],
+      "source_token": "5,258",
+      "raw_value": "5,258",
+      "value": "5258000000",
+      "metric": null,
+      "definition_regex": "投资收益|investment.income",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r21_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Share of profits of associates",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        447.58627,
+        404.21988,
+        462.05331,
+        414.3349
+      ],
+      "source_token": "582",
+      "raw_value": "582",
+      "value": "582000000",
+      "metric": null,
+      "definition_regex": "联营.*(?:利润|损益)|share.of.profits.of.associates",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r21_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Share of profits of associates",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        532.62878,
+        404.27087,
+        547.09576,
+        414.30939
+      ],
+      "source_token": "757",
+      "raw_value": "757",
+      "value": "757000000",
+      "metric": null,
+      "definition_regex": "联营.*(?:利润|损益)|share.of.profits.of.associates",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r22_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Share of (losses)/profits of a joint venture",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        437.42029,
+        414.71738,
+        464.58633,
+        424.8324
+      ],
+      "source_token": "(1,054)",
+      "raw_value": "(1,054)",
+      "value": "-1054000000",
+      "metric": null,
+      "definition_regex": "合营.*(?:利润|损益|损失)|joint.venture",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r22_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Share of (losses)/profits of a joint venture",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        525.25928,
+        414.76837,
+        547.10425,
+        424.80688
+      ],
+      "source_token": "1,079",
+      "raw_value": "1,079",
+      "value": "1079000000",
+      "metric": null,
+      "definition_regex": "合营.*(?:利润|损益|损失)|joint.venture",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r23_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Other income, net",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        440.21677,
+        425.21487,
+        462.06183,
+        435.3299
+      ],
+      "source_token": "1,130",
+      "raw_value": "1,130",
+      "value": "1130000000",
+      "metric": null,
+      "definition_regex": "其他.*(?:收益|收入).*净|other.income.*net",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r23_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Other income, net",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        525.25928,
+        425.26587,
+        547.10425,
+        435.30438
+      ],
+      "source_token": "1,009",
+      "raw_value": "1,009",
+      "value": "1009000000",
+      "metric": null,
+      "definition_regex": "其他.*(?:收益|收入).*净|other.income.*net",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r24_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Profit before tax",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        430.47577,
+        443.11249,
+        462.06186,
+        453.22751
+      ],
+      "source_token": "169,639",
+      "raw_value": "169,639",
+      "value": "169639000000",
+      "metric": null,
+      "definition_regex": "税前利润|利润总额|profit.before.tax",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r24_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Profit before tax",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        515.51825,
+        443.16348,
+        547.10419,
+        453.202
+      ],
+      "source_token": "189,976",
+      "raw_value": "189,976",
+      "value": "189976000000",
+      "metric": null,
+      "definition_regex": "税前利润|利润总额|profit.before.tax",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r25_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Income tax expense",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        432.54974,
+        453.60999,
+        464.5863,
+        463.72501
+      ],
+      "source_token": "(47,491)",
+      "raw_value": "(47,491)",
+      "value": "-47491000000",
+      "metric": null,
+      "definition_regex": "所得税.*(?:费|支出)|income.tax.expense",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r25_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Income tax expense",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        518.05975,
+        453.66098,
+        549.16119,
+        463.69949
+      ],
+      "source_token": "(51,994)",
+      "raw_value": "(51,994)",
+      "value": "-51994000000",
+      "metric": null,
+      "definition_regex": "所得税.*(?:费|支出)|income.tax.expense",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r26_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Profit for the year",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        430.47589,
+        471.49258,
+        462.06198,
+        481.6076
+      ],
+      "source_token": "122,148",
+      "raw_value": "122,148",
+      "value": "122148000000",
+      "metric": "net_profit",
+      "definition_regex": "净利润|本年利润|profit.for.the.year|net.profit",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r26_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Profit for the year",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        515.51837,
+        471.54358,
+        547.10431,
+        481.58209
+      ],
+      "source_token": "137,982",
+      "raw_value": "137,982",
+      "value": "137982000000",
+      "metric": "net_profit",
+      "definition_regex": "净利润|本年利润|profit.for.the.year|net.profit",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r27_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Profit attributable to equity shareholders",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        430.47589,
+        498.16937,
+        462.06198,
+        508.28439
+      ],
+      "source_token": "122,082",
+      "raw_value": "122,082",
+      "value": "122082000000",
+      "metric": "net_profit_parent",
+      "definition_regex": "归母|股东.*利润|profit.*(?:equity|shareholder|parent)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r27_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Profit attributable to equity shareholders",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        515.51837,
+        498.22037,
+        547.10431,
+        508.25888
+      ],
+      "source_token": "137,936",
+      "raw_value": "137,936",
+      "value": "137936000000",
+      "metric": "net_profit_parent",
+      "definition_regex": "归母|股东.*利润|profit.*(?:equity|shareholder|parent)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r28_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Profit attributable to non-controlling interests",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        452.45685,
+        508.66687,
+        462.05081,
+        518.78186
+      ],
+      "source_token": "66",
+      "raw_value": "66",
+      "value": "66000000",
+      "metric": null,
+      "definition_regex": "少数股东.*(?:损益|利润)|non.controlling.*(?:profit|interest)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r28_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Profit attributable to non-controlling interests",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        537.49933,
+        508.71786,
+        547.09332,
+        518.75635
+      ],
+      "source_token": "46",
+      "raw_value": "46",
+      "value": "46000000",
+      "metric": null,
+      "definition_regex": "少数股东.*(?:损益|利润)|non.controlling.*(?:profit|interest)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r29_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Profit attribution subtotal",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        430.47781,
+        526.55188,
+        462.0639,
+        536.66687
+      ],
+      "source_token": "122,148",
+      "raw_value": "122,148",
+      "value": "122148000000",
+      "metric": "net_profit",
+      "definition_regex": "净利润|利润.*合计|profit.*(?:year|total)|net.profit",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_1_r29_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "source_row_label": "Profit attribution subtotal",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        515.52032,
+        526.60291,
+        547.10626,
+        536.64136
+      ],
+      "source_token": "137,982",
+      "raw_value": "137,982",
+      "value": "137982000000",
+      "metric": "net_profit",
+      "definition_regex": "净利润|利润.*合计|profit.*(?:year|total)|net.profit",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r1_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Exchange differences on translation of foreign operations",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        437.40323,
+        175.20209,
+        464.56927,
+        185.31709
+      ],
+      "source_token": "(7,000)",
+      "raw_value": "(7,000)",
+      "value": "-7000000000",
+      "metric": null,
+      "definition_regex": "外币.*(?:折算|换算)|境外.*(?:折算|换算)|translation.of.foreign",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r1_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Exchange differences on translation of foreign operations",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        525.24225,
+        175.2531,
+        547.08722,
+        185.2916
+      ],
+      "source_token": "4,486",
+      "raw_value": "4,486",
+      "value": "4486000000",
+      "metric": null,
+      "definition_regex": "外币.*(?:折算|换算)|境外.*(?:折算|换算)|translation.of.foreign",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r2_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Share of other comprehensive income/(expense) of associates",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        452.43973,
+        196.19708,
+        462.03369,
+        206.31209
+      ],
+      "source_token": "49",
+      "raw_value": "49",
+      "value": "49000000",
+      "metric": null,
+      "definition_regex": "联营.*其他综合|associates.*comprehensive|comprehensive.*associates",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r2_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Share of other comprehensive income/(expense) of associates",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        535.14471,
+        196.24809,
+        549.1272,
+        206.28659
+      ],
+      "source_token": "(78)",
+      "raw_value": "(78)",
+      "value": "-78000000",
+      "metric": null,
+      "definition_regex": "联营.*其他综合|associates.*comprehensive|comprehensive.*associates",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r3_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Cash flow hedge reserves",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        457.3017,
+        206.69458,
+        462.02771,
+        216.80959
+      ],
+      "source_token": "5",
+      "raw_value": "5",
+      "value": "5000000",
+      "metric": null,
+      "definition_regex": "现金流.*套期|cash.flow.hedge",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r3_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Cash flow hedge reserves",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        537.47369,
+        206.74559,
+        547.06769,
+        216.78409
+      ],
+      "source_token": "15",
+      "raw_value": "15",
+      "value": "15000000",
+      "metric": null,
+      "definition_regex": "现金流.*套期|cash.flow.hedge",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r4_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Fair value change on equity investments designated as at fair value through other comprehensive income/(expense)",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        457.29321,
+        238.18707,
+        462.01923,
+        248.30208
+      ],
+      "source_token": "4",
+      "raw_value": "4",
+      "value": "4000000",
+      "metric": null,
+      "definition_regex": "权益.*公允价值|其他权益工具.*变动|fair.value.*equity",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r4_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Fair value change on equity investments designated as at fair value through other comprehensive income/(expense)",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        530.26575,
+        238.23808,
+        549.11871,
+        248.27658
+      ],
+      "source_token": "(175)",
+      "raw_value": "(175)",
+      "value": "-175000000",
+      "metric": null,
+      "definition_regex": "权益.*公允价值|其他权益工具.*变动|fair.value.*equity",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r5_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Change on remeasurement of defined benefit plan",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        447.56073,
+        248.68457,
+        462.02777,
+        258.79959
+      ],
+      "source_token": "349",
+      "raw_value": "349",
+      "value": "349000000",
+      "metric": null,
+      "definition_regex": "重新计量.*(?:受益|福利)|(?:受益|福利).*重新计量|remeasurement.of.defined.benefit",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r5_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Change on remeasurement of defined benefit plan",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        532.60321,
+        248.73558,
+        547.07019,
+        258.77408
+      ],
+      "source_token": "138",
+      "raw_value": "138",
+      "value": "138000000",
+      "metric": null,
+      "definition_regex": "重新计量.*(?:受益|福利)|(?:受益|福利).*重新计量|remeasurement.of.defined.benefit",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r6_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Other comprehensive expense/income for year net of tax",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        437.41159,
+        305.46967,
+        464.57764,
+        315.58469
+      ],
+      "source_token": "(6,593)",
+      "raw_value": "(6,593)",
+      "value": "-6593000000",
+      "metric": null,
+      "definition_regex": "其他综合.*(?:合计|总|税后|净)|other.comprehensive.*(?:year|net.of.tax)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r6_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Other comprehensive expense/income for year net of tax",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        525.25061,
+        305.52066,
+        547.09558,
+        315.55917
+      ],
+      "source_token": "4,386",
+      "raw_value": "4,386",
+      "value": "4386000000",
+      "metric": null,
+      "definition_regex": "其他综合.*(?:合计|总|税后|净)|other.comprehensive.*(?:year|net.of.tax)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r7_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Total comprehensive income for year",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        430.47559,
+        323.35229,
+        462.06168,
+        333.46732
+      ],
+      "source_token": "115,555",
+      "raw_value": "115,555",
+      "value": "115555000000",
+      "metric": null,
+      "definition_regex": "综合收益.*(?:总|合计)|综合收益总额|total.comprehensive",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r7_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Total comprehensive income for year",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        515.51807,
+        323.40329,
+        547.104,
+        333.4418
+      ],
+      "source_token": "142,368",
+      "raw_value": "142,368",
+      "value": "142368000000",
+      "metric": null,
+      "definition_regex": "综合收益.*(?:总|合计)|综合收益总额|total.comprehensive",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r8_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Comprehensive income attributable to equity shareholders",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        430.47559,
+        351.72989,
+        462.06168,
+        361.84491
+      ],
+      "source_token": "115,489",
+      "raw_value": "115,489",
+      "value": "115489000000",
+      "metric": null,
+      "definition_regex": "股东.*综合收益|归母.*综合|comprehensive.*(?:shareholder|parent|equity)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r8_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Comprehensive income attributable to equity shareholders",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        515.51807,
+        351.78088,
+        547.104,
+        361.8194
+      ],
+      "source_token": "142,322",
+      "raw_value": "142,322",
+      "value": "142322000000",
+      "metric": null,
+      "definition_regex": "股东.*综合收益|归母.*综合|comprehensive.*(?:shareholder|parent|equity)",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r9_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Comprehensive income attributable to non-controlling interests",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        452.45654,
+        362.22739,
+        462.05051,
+        372.34241
+      ],
+      "source_token": "66",
+      "raw_value": "66",
+      "value": "66000000",
+      "metric": null,
+      "definition_regex": "少数股东.*综合收益|综合收益.*少数股东|comprehensive.*non.controlling",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r9_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Comprehensive income attributable to non-controlling interests",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        537.49902,
+        362.27838,
+        547.09302,
+        372.31689
+      ],
+      "source_token": "46",
+      "raw_value": "46",
+      "value": "46000000",
+      "metric": null,
+      "definition_regex": "少数股东.*综合收益|综合收益.*少数股东|comprehensive.*non.controlling",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r10_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Comprehensive income attribution subtotal",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        430.4776,
+        380.11249,
+        462.06369,
+        390.22751
+      ],
+      "source_token": "115,555",
+      "raw_value": "115,555",
+      "value": "115555000000",
+      "metric": null,
+      "definition_regex": "综合收益.*(?:总|合计)|total.comprehensive",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r10_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Comprehensive income attribution subtotal",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        515.52008,
+        380.16348,
+        547.10602,
+        390.202
+      ],
+      "source_token": "142,368",
+      "raw_value": "142,368",
+      "value": "142368000000",
+      "metric": null,
+      "definition_regex": "综合收益.*(?:总|合计)|total.comprehensive",
+      "currency": "CNY",
+      "normalized_unit": "CNY",
+      "raw_unit_values": [
+        "人民币百万元",
+        "百万元",
+        "百万人民币",
+        "RMB million",
+        "RMB millions",
+        "millions of Renminbi",
+        "million RMB"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r11_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Basic earnings per share",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        445.07858,
+        417.28677,
+        462.05313,
+        427.40179
+      ],
+      "source_token": "2.57",
+      "raw_value": "2.57",
+      "value": "2.57",
+      "metric": "eps",
+      "definition_regex": "基本.*每股|basic.*(?:earnings|EPS)|每股.*基本",
+      "currency": "CNY/share",
+      "normalized_unit": "CNY/share",
+      "raw_unit_values": [
+        "元/股",
+        "人民币元/股",
+        "RMB Yuan",
+        "RMB/share",
+        "CNY/share"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r11_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Basic earnings per share",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        530.12109,
+        417.33777,
+        547.09558,
+        427.37628
+      ],
+      "source_token": "2.90",
+      "raw_value": "2.90",
+      "value": "2.90",
+      "metric": "eps",
+      "definition_regex": "基本.*每股|basic.*(?:earnings|EPS)|每股.*基本",
+      "currency": "CNY/share",
+      "normalized_unit": "CNY/share",
+      "raw_unit_values": [
+        "元/股",
+        "人民币元/股",
+        "RMB Yuan",
+        "RMB/share",
+        "CNY/share"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r12_c1",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Diluted earnings per share",
+      "source_column_label": "2025",
+      "glyph_bbox": [
+        445.0871,
+        427.78427,
+        462.06165,
+        437.89929
+      ],
+      "source_token": "2.57",
+      "raw_value": "2.57",
+      "value": "2.57",
+      "metric": null,
+      "definition_regex": "稀释|diluted",
+      "currency": "CNY/share",
+      "normalized_unit": "CNY/share",
+      "raw_unit_values": [
+        "元/股",
+        "人民币元/股",
+        "RMB Yuan",
+        "RMB/share",
+        "CNY/share"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2025",
+      "period_start": "2025-01-01",
+      "period_end": "2025-12-31",
+      "period_variants": [
+        "2025-FY"
+      ]
+    },
+    {
+      "id": "cn_income_2_r12_c2",
+      "role": "fact",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "source_row_label": "Diluted earnings per share",
+      "source_column_label": "2024",
+      "glyph_bbox": [
+        530.12958,
+        427.83527,
+        547.10406,
+        437.87378
+      ],
+      "source_token": "2.90",
+      "raw_value": "2.90",
+      "value": "2.90",
+      "metric": null,
+      "definition_regex": "稀释|diluted",
+      "currency": "CNY/share",
+      "normalized_unit": "CNY/share",
+      "raw_unit_values": [
+        "元/股",
+        "人民币元/股",
+        "RMB Yuan",
+        "RMB/share",
+        "CNY/share"
+      ],
+      "scope": "consolidated_IFRS",
+      "version": "original",
+      "period": "2024",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "period_variants": [
+        "2024-FY"
+      ]
+    },
+    {
+      "id": "fy_annual_nonfact_34",
+      "role": "header_or_note",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "glyph_bbox": [
+        256.07999,
+        291.79034,
+        287.65002,
+        302.24033
+      ],
+      "source_token": "2025年",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "fy_annual_nonfact_35",
+      "role": "header_or_note",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "glyph_bbox": [
+        333.72,
+        291.79034,
+        365.29001,
+        302.24033
+      ],
+      "source_token": "2024年",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "fy_annual_nonfact_38",
+      "role": "header_or_note",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "glyph_bbox": [
+        482.64001,
+        291.79034,
+        514.20898,
+        302.24033
+      ],
+      "source_token": "2023年",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "fy_annual_nonfact_65",
+      "role": "header_or_note",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "glyph_bbox": [
+        250.92,
+        412.77731,
+        292.80902,
+        426.4877
+      ],
+      "source_token": "2025年末",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "fy_annual_nonfact_66",
+      "role": "header_or_note",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "glyph_bbox": [
+        328.55899,
+        412.77731,
+        370.45001,
+        426.4877
+      ],
+      "source_token": "2024年末",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "fy_annual_nonfact_70",
+      "role": "header_or_note",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_annual",
+      "page": 2,
+      "original_page": 8,
+      "glyph_bbox": [
+        477.48001,
+        412.77731,
+        519.36987,
+        426.4877
+      ],
+      "source_token": "2023年末",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "fy_ratios_nonfact_84",
+      "role": "header_or_note",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "glyph_bbox": [
+        264.60001,
+        513.67035,
+        296.29001,
+        524.12036
+      ],
+      "source_token": "2025年",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "fy_ratios_nonfact_85",
+      "role": "header_or_note",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "glyph_bbox": [
+        334.07999,
+        513.67035,
+        365.65002,
+        524.12036
+      ],
+      "source_token": "2024年",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "fy_ratios_nonfact_88",
+      "role": "header_or_note",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_ratios",
+      "page": 2,
+      "original_page": 8,
+      "glyph_bbox": [
+        491.04001,
+        513.67035,
+        522.60901,
+        524.12036
+      ],
+      "source_token": "2023年",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "fy_quarters_nonfact_62",
+      "role": "header_or_note",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "glyph_bbox": [
+        236.03999,
+        586.15033,
+        262.3844,
+        596.60034
+      ],
+      "source_token": "（1-3",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "fy_quarters_nonfact_65",
+      "role": "header_or_note",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "glyph_bbox": [
+        310.92001,
+        586.15033,
+        337.2644,
+        596.60034
+      ],
+      "source_token": "（4-6",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "fy_quarters_nonfact_68",
+      "role": "header_or_note",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "glyph_bbox": [
+        388.55899,
+        586.15033,
+        414.90439,
+        596.60034
+      ],
+      "source_token": "（7-9",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "fy_quarters_nonfact_71",
+      "role": "header_or_note",
+      "input_file": "fuyao_2025_whole_tables.pdf",
+      "company_id": "fuyao_2025",
+      "table_id": "fy_quarters",
+      "page": 3,
+      "original_page": 9,
+      "glyph_bbox": [
+        463.67999,
+        586.15033,
+        500.46378,
+        596.60034
+      ],
+      "source_token": "（10-12",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_33",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        442.7193,
+        117.03278,
+        462.05685,
+        127.14778
+      ],
+      "source_token": "2025",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_34",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        527.76178,
+        117.08379,
+        547.09924,
+        127.12228
+      ],
+      "source_token": "2024",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_46",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        351.96121,
+        154.2581,
+        356.68723,
+        164.2966
+      ],
+      "source_token": "4",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_51",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        351.96121,
+        164.7556,
+        356.68723,
+        174.7941
+      ],
+      "source_token": "4",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_70",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        337.8002,
+        232.01817,
+        357.72424,
+        242.05667
+      ],
+      "source_token": "10(ii),",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_82",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        351.96121,
+        253.01317,
+        356.68723,
+        263.05167
+      ],
+      "source_token": "6",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_89",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        344.77023,
+        263.51065,
+        363.90378,
+        273.54916
+      ],
+      "source_token": "10(iii)",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_97",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        351.96976,
+        274.00815,
+        356.69577,
+        284.04666
+      ],
+      "source_token": "6",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_103",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        351.96976,
+        284.50565,
+        356.69577,
+        294.54416
+      ],
+      "source_token": "6",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_132",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        351.96982,
+        362.28088,
+        356.69583,
+        372.3194
+      ],
+      "source_token": "6",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_137",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        351.96982,
+        372.77838,
+        356.69583,
+        382.81689
+      ],
+      "source_token": "7",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_147",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        351.96982,
+        393.77338,
+        356.69583,
+        403.81189
+      ],
+      "source_token": "6",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_155",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        349.53027,
+        404.27087,
+        359.1268,
+        414.30939
+      ],
+      "source_token": "17",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_165",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        349.53879,
+        414.76837,
+        359.13531,
+        424.80688
+      ],
+      "source_token": "18",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_176",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        351.96979,
+        443.16348,
+        356.6958,
+        453.202
+      ],
+      "source_token": "6",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_1_nonfact_182",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_1",
+      "page": 2,
+      "original_page": 80,
+      "glyph_bbox": [
+        346.48724,
+        453.66098,
+        362.18677,
+        463.69949
+      ],
+      "source_token": "10(i)",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_2_nonfact_33",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "glyph_bbox": [
+        442.7193,
+        117.03278,
+        462.05685,
+        127.14778
+      ],
+      "source_token": "2025",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_2_nonfact_34",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "glyph_bbox": [
+        527.76178,
+        117.08379,
+        547.09924,
+        127.12228
+      ],
+      "source_token": "2024",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_2_nonfact_132",
+      "role": "unscored",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "glyph_bbox": [
+        457.79459,
+        277.08966,
+        462.04459,
+        287.20468
+      ],
+      "source_token": "–",
+      "reason": "Dash is not an explicit numeric value; zero interpretation is not scored",
+      "allowed_values": [
+        "0"
+      ]
+    },
+    {
+      "id": "cn_income_2_nonfact_133",
+      "role": "unscored",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "glyph_bbox": [
+        542.8371,
+        277.14066,
+        547.0871,
+        287.17917
+      ],
+      "source_token": "–",
+      "reason": "Dash is not an explicit numeric value; zero interpretation is not scored",
+      "allowed_values": [
+        "0"
+      ]
+    },
+    {
+      "id": "cn_income_2_nonfact_181",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "glyph_bbox": [
+        349.53009,
+        417.33777,
+        359.12662,
+        427.37628
+      ],
+      "source_token": "11",
+      "reason": "Year/range header or note reference, not a financial observation"
+    },
+    {
+      "id": "cn_income_2_nonfact_187",
+      "role": "header_or_note",
+      "input_file": "cnooc_2025_en_whole_tables.pdf",
+      "company_id": "cnooc_2025_en",
+      "table_id": "cn_income_2",
+      "page": 3,
+      "original_page": 81,
+      "glyph_bbox": [
+        349.5386,
+        427.83527,
+        359.13513,
+        437.87378
+      ],
+      "source_token": "11",
+      "reason": "Year/range header or note reference, not a financial observation"
+    }
+  ],
+  "decidable_cells": 146,
+  "unscored_cells": 2,
+  "negative_source_roles": 33
+}

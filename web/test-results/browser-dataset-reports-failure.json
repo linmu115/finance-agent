@@ -1,0 +1,55 @@
+{
+  "error": "AssertionError [ERR_ASSERTION]: failure title and explicitly failed items should use the same error color\n+ actual - expected\n\n+ 'rgb(158, 67, 67)'\n- 'rgb(163, 51, 51)'\n        ^\n\n    at D:\\codex\\金融\\web\\tests\\browser-dataset-reports.cjs:53:10",
+  "checks": [
+    {
+      "name": "首次打开数据集页面自动加载最新真实报告并显示逐项分数",
+      "passed": true
+    }
+  ],
+  "apiRequests": [
+    {
+      "path": "/api/projects",
+      "method": "GET"
+    },
+    {
+      "path": "/api/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/api/health",
+      "method": "GET"
+    },
+    {
+      "path": "/api/projects",
+      "method": "GET"
+    },
+    {
+      "path": "/api/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/api/health",
+      "method": "GET"
+    },
+    {
+      "path": "/api/projects/fixture/conversations",
+      "method": "GET"
+    },
+    {
+      "path": "/api/projects/fixture/documents",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/catalog",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/catalog",
+      "method": "GET"
+    },
+    {
+      "path": "/api/benchmark/run/latest",
+      "method": "GET"
+    }
+  ]
+}

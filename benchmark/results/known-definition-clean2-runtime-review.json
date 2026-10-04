@@ -1,0 +1,244 @@
+{
+  "kind": "clean2_readonly_runtime_diagnosis",
+  "run_id": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+  "status": "failed",
+  "not_a_new_model_run": true,
+  "model_calls_during_diagnosis": 0,
+  "database_writes": 0,
+  "definition_failure": {
+    "request_id": "a07cf8b8-af2c-424d-aaa7-d4c7c177e46a",
+    "stop_reason": "length",
+    "output_tokens": 32768,
+    "reasoning_tokens": 32768,
+    "response_json_present": false,
+    "duration_ms": 124624,
+    "groups_pending": 5,
+    "facts_pending": 8
+  },
+  "subsequent_main_failure": {
+    "http_status": 402,
+    "usage_known": false,
+    "state": "failed",
+    "original_error": "DeepSeek API 余额不足（HTTP 402）。已停止本会话，已完成的清洗批次保留；补充余额后可在原会话继续。"
+  },
+  "accepted": {
+    "prior_facts": 44,
+    "prior_reviews_exactly_preserved": true,
+    "new_facts": 38,
+    "total_reviewed_facts": 82
+  },
+  "first_main_input": {
+    "clean1": 224664,
+    "clean2": 211776,
+    "decrease": 12888,
+    "decrease_percent": 5.737,
+    "includes_cache_read_and_write": true
+  },
+  "main_requests": [
+    {
+      "at": "2026-10-03T18:42:41.155Z",
+      "requestId": "63b354e4-b125-48f9-a0ab-bc8f4be48de9",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 211264,
+        "output": 127,
+        "cacheRead": 512,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "totalTokens": 211903,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true,
+      "durationMs": null
+    },
+    {
+      "at": "2026-10-03T18:50:56.282Z",
+      "requestId": "f4e94d9f-30d9-4a67-90dc-5d4e8c7af39e",
+      "phase": "main",
+      "stopReason": "error",
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "totalTokens": 0,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": false,
+      "durationMs": null
+    }
+  ],
+  "definition_requests": [
+    {
+      "at": "2026-10-03T18:43:59.567Z",
+      "requestId": "f89d13db-39c0-45ca-bb7d-594d0e04a894",
+      "phase": null,
+      "stopReason": "stop",
+      "usage": {
+        "input": 163,
+        "output": 19350,
+        "cacheRead": 11520,
+        "cacheWrite": 0,
+        "reasoning": 17012,
+        "totalTokens": 31033,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": null,
+      "durationMs": 70793
+    },
+    {
+      "at": "2026-10-03T18:44:33.343Z",
+      "requestId": "360c166a-8545-494c-8e78-ddaacdc65732",
+      "phase": null,
+      "stopReason": "stop",
+      "usage": {
+        "input": 134,
+        "output": 28036,
+        "cacheRead": 11389,
+        "cacheWrite": 0,
+        "reasoning": 26224,
+        "totalTokens": 39559,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": null,
+      "durationMs": 104597
+    },
+    {
+      "at": "2026-10-03T18:45:42.431Z",
+      "requestId": "93ae34d8-e74f-4249-8b6f-8078bc657a9f",
+      "phase": null,
+      "stopReason": "stop",
+      "usage": {
+        "input": 8183,
+        "output": 18598,
+        "cacheRead": 3200,
+        "cacheWrite": 0,
+        "reasoning": 16236,
+        "totalTokens": 29981,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": null,
+      "durationMs": 66994
+    },
+    {
+      "at": "2026-10-03T18:47:12.882Z",
+      "requestId": "d12f4740-eba7-44d6-919a-dd4db2eac3fc",
+      "phase": null,
+      "stopReason": "stop",
+      "usage": {
+        "input": 11479,
+        "output": 24297,
+        "cacheRead": 1408,
+        "cacheWrite": 0,
+        "reasoning": 21519,
+        "totalTokens": 37184,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": null,
+      "durationMs": 88575
+    },
+    {
+      "at": "2026-10-03T18:48:48.195Z",
+      "requestId": "8cc4b2b3-e8e6-4205-b887-363d4756c7b5",
+      "phase": null,
+      "stopReason": "stop",
+      "usage": {
+        "input": 10990,
+        "output": 23072,
+        "cacheRead": 1536,
+        "cacheWrite": 0,
+        "reasoning": 21308,
+        "totalTokens": 35598,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": null,
+      "durationMs": 93534
+    },
+    {
+      "at": "2026-10-03T18:50:54.826Z",
+      "requestId": "a07cf8b8-af2c-424d-aaa7-d4c7c177e46a",
+      "phase": null,
+      "stopReason": "length",
+      "usage": {
+        "input": 10802,
+        "output": 32768,
+        "cacheRead": 1536,
+        "cacheWrite": 0,
+        "reasoning": 32768,
+        "totalTokens": 45106,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": null,
+      "durationMs": 124624
+    }
+  ],
+  "score": {
+    "anchors": {
+      "passed": 14,
+      "total": 15
+    },
+    "distinctions": {
+      "passed": 8,
+      "total": 9
+    }
+  },
+  "failed_anchor_ids": [
+    "all_wholesale"
+  ],
+  "all_3298_facts_conserved": true,
+  "implementation_changes": [],
+  "limitations": [
+    "Original 15/9 scorer and provenance outcome retained unchanged. Independent provenance v2 is separate.",
+    "The 402 final-answer failure does not explain the earlier definition length failure.",
+    "No automatic retry or new run was issued."
+  ]
+}

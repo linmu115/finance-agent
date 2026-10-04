@@ -1,0 +1,777 @@
+{
+  "benchmark": "finance-agent-bench-0.1.0",
+  "split": "dev",
+  "evaluated_cases": 62,
+  "received_predictions": 1,
+  "dataset_gate_pass": false,
+  "full_system_acceptance": false,
+  "runtime_gate": "NOT_RUN: require separate trusted sandbox, chart, isolation and reproducibility checks",
+  "metrics": {
+    "cn_extract": {
+      "n": 10,
+      "answer_accuracy": 0.1,
+      "grounded_accuracy": 0.1,
+      "target_answer_accuracy": 0.95,
+      "pass": false
+    },
+    "cn_calculate": {
+      "n": 4,
+      "answer_accuracy": 0,
+      "grounded_accuracy": 0,
+      "target_answer_accuracy": 0.95,
+      "pass": false
+    },
+    "cn_audit": {
+      "n": 4,
+      "answer_accuracy": 0,
+      "grounded_accuracy": 0,
+      "target_answer_accuracy": 0.9,
+      "pass": false
+    },
+    "cn_abstain": {
+      "n": 2,
+      "answer_accuracy": 0,
+      "grounded_accuracy": 0,
+      "target_answer_accuracy": 1,
+      "pass": false
+    },
+    "cn_ocr": {
+      "n": 2,
+      "answer_accuracy": 0,
+      "grounded_accuracy": 0,
+      "target_answer_accuracy": 0.9,
+      "pass": false
+    },
+    "finqa_single": {
+      "n": 20,
+      "answer_accuracy": 0,
+      "grounded_accuracy": 0,
+      "target_answer_accuracy": 0.85,
+      "pass": false
+    },
+    "finqa_multi": {
+      "n": 20,
+      "answer_accuracy": 0,
+      "grounded_accuracy": 0,
+      "target_answer_accuracy": 0.75,
+      "pass": false
+    }
+  },
+  "citation_recall": 0.016129032258064516,
+  "citation_precision": 0.016129032258064516,
+  "grounded_accuracy": 0.016129032258064516,
+  "protocol_errors": [],
+  "cases": [
+    {
+      "id": "moutai_2024_extract_revenue_2024",
+      "track": "cn_extract",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_extract_revenue_2023",
+      "track": "cn_extract",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_extract_net_profit_parent_2024",
+      "track": "cn_extract",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_extract_net_profit_parent_2023",
+      "track": "cn_extract",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_extract_operating_cash_flow_2024",
+      "track": "cn_extract",
+      "answer_ok": true,
+      "grounded_ok": true,
+      "citation_precision": 1,
+      "citation_recall": 1,
+      "errors": []
+    },
+    {
+      "id": "moutai_2024_extract_operating_cash_flow_2023",
+      "track": "cn_extract",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_extract_assets_2024",
+      "track": "cn_extract",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_extract_assets_2023",
+      "track": "cn_extract",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_extract_equity_parent_2024",
+      "track": "cn_extract",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_extract_equity_parent_2023",
+      "track": "cn_extract",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_growth_revenue",
+      "track": "cn_calculate",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_growth_net_profit_parent",
+      "track": "cn_calculate",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_growth_operating_cash_flow",
+      "track": "cn_calculate",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_cash_profit_ratio",
+      "track": "cn_calculate",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_true_revenue",
+      "track": "cn_audit",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_false_year",
+      "track": "cn_audit",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_false_unit",
+      "track": "cn_audit",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_true_profit",
+      "track": "cn_audit",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_missing_2026",
+      "track": "cn_abstain",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_missing_2027",
+      "track": "cn_abstain",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_ocr_revenue",
+      "track": "cn_ocr",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "moutai_2024_ocr_net_profit_parent",
+      "track": "cn_ocr",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_43830ad76931bfb1",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_d4b0e9055d8200b7",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_85a0d7447e34de21",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_0b57b84f867ca21c",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_7dbd1abd9c17e815",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_5f0b090bd8ed4940",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_1a50bce8ba864905",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_d65017ea9e7a0f59",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_6934edf192b1c9f7",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_bb4bc8b486d971a9",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_53295df2e598efa3",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_f2a774528953be61",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_f8b859ba95f18765",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_98f4ecc8df038359",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_31c1495a1b036845",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_0950db29929b6db3",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_b5dc2735a14ca549",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_14c82d92c1d3ddb8",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_7aa47a6f7b1f1cac",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_0c9a75b30acde1aa",
+      "track": "finqa_single",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_02bc71b11e6462bf",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_b050839ebe47f949",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_7d739a72e962e5b8",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_f4d6b16d6013cd72",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_7271cc2025a02d5b",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_b6bf66a7f8b39233",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_fd56dcfb388be54d",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_32b3e7393e3b1325",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_082d75164302804d",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_2fb7edbed7295ccf",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_b60f5cb9d1c5146a",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_5d27e65ff333d7ae",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_d38a3b84fe4650ee",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_f1f6386471885fc4",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_ed8e3b849aea5272",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_a6c3b4883a923ab7",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_3816e154b20a808d",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_95ddecd6ea91200e",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_02eaffe84f4f614c",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    },
+    {
+      "id": "finqa_d9828b1778922f40",
+      "track": "finqa_multi",
+      "answer_ok": false,
+      "grounded_ok": false,
+      "citation_precision": 0,
+      "citation_recall": 0,
+      "errors": [
+        "missing_prediction"
+      ]
+    }
+  ],
+  "round": 1,
+  "model": "deepseek-flash",
+  "configHash": "24f6914cfaba6e4edd44c6a6f6ada51e7745ee6d82babe0613dbd1885c05f7ff",
+  "promptHash": "f3b4ab024543a418606a3ccb76b82fe521719c5e46ed1924372f373cb08772ae",
+  "codeHash": "02389f48267adb58948ed2859108a7c2b5ce5fe6296455c57a15e0c8bbbde835",
+  "selectedCases": 1,
+  "subset": true,
+  "wallTimeMs": 41773,
+  "aggregateCaseTimeMs": 32530,
+  "modelCalls": 3,
+  "inputTokens": 11484,
+  "outputTokens": 570,
+  "traces": [
+    {
+      "id": "moutai_2024_extract_operating_cash_flow_2024",
+      "runId": "431cae52-3cf8-4d5c-b9ab-81979f6b82f6",
+      "status": "completed",
+      "elapsedMs": 32530,
+      "usage": {
+        "input": 11484,
+        "output": 570,
+        "calls": 3,
+        "costUsd": null
+      },
+      "toolCalls": 4,
+      "configHash": "9de55fdcc51f9f821a0d1c37931ee4bf41e2733324fd36f0879b026665de97bc"
+    }
+  ],
+  "name": "agent-2026-10-03T05-17-38-683Z round 1",
+  "status": "failed",
+  "mode": "pi_agent_real_model"
+}

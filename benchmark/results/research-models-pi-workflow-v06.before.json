@@ -1,0 +1,147 @@
+{
+  "kind": "development_research_models_workflow",
+  "accuracy_holdout": false,
+  "prepared_at": "2026-10-03T18:32:09.543Z",
+  "budget": {
+    "max_model_calls": 40,
+    "max_input_tokens": 2000000,
+    "max_output_tokens": 300000,
+    "max_total_tokens": 2300000,
+    "max_wall_seconds": 1200
+  },
+  "assumptions": {
+    "currency": "CNY",
+    "amount_scale": "1",
+    "base_year": 2024,
+    "base": {
+      "revenue": "1000",
+      "net_working_capital": "100"
+    },
+    "volume_unit": "件",
+    "baseline": [
+      {
+        "year": 2025,
+        "volume": "100",
+        "fixed_cash_opex": "100",
+        "da": "50",
+        "capex": "50",
+        "unit_price": "10",
+        "material_cost_per_unit": "4",
+        "other_variable_cost_per_unit": "2",
+        "nwc_ratio": "0.1",
+        "tax_rate": "0.25"
+      },
+      {
+        "year": 2026,
+        "volume": "110",
+        "fixed_cash_opex": "110",
+        "da": "55",
+        "capex": "55",
+        "unit_price": "10",
+        "material_cost_per_unit": "4",
+        "other_variable_cost_per_unit": "2",
+        "nwc_ratio": "0.1",
+        "tax_rate": "0.25"
+      },
+      {
+        "year": 2027,
+        "volume": "121",
+        "fixed_cash_opex": "121",
+        "da": "60.5",
+        "capex": "60.5",
+        "unit_price": "10",
+        "material_cost_per_unit": "4",
+        "other_variable_cost_per_unit": "2",
+        "nwc_ratio": "0.1",
+        "tax_rate": "0.25"
+      }
+    ],
+    "scenario": {
+      "exposed_material_share": "0.5",
+      "pass_through_rate": "0.5",
+      "lag_years": 1,
+      "price_elasticity": "-1",
+      "material_cost_changes": [
+        "0.2",
+        "0.2",
+        "0.2"
+      ],
+      "volume_changes": [
+        "0",
+        "0",
+        "0"
+      ],
+      "autonomous_price_changes": [
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "dcf": {
+      "cash_tax_policy": "floor_at_zero",
+      "discount": {
+        "wacc": "0.1",
+        "cashflow_timing": "year_end"
+      },
+      "terminal": {
+        "growth": "0.02",
+        "roic": "0.2",
+        "ebit_margin": "0.25",
+        "tax_rate": "0.25"
+      },
+      "bridge": {
+        "net_debt": "200",
+        "non_controlling_interest": "20",
+        "preferred_equity": "10",
+        "non_operating_assets_ex_cash": "30"
+      },
+      "shares": {
+        "count": "100",
+        "scale": "1"
+      },
+      "sensitivity": {
+        "wacc": [
+          "0.08",
+          "0.1",
+          "0.12"
+        ],
+        "growth": [
+          "0",
+          "0.02",
+          "0.03"
+        ]
+      }
+    }
+  },
+  "tasks": [
+    "这是研究工具的开发联调，独立合成公司“合成制造公司 WF-01”，不是真实公司精度测试。请在当前项目完成并保存以下四项可读取的成果：制造业原料成本/提价/销量/一年传导时滞情景；依据情景工具返回的 scenario_dcf_spec 保存一份独立 DCF；上游原料→制造企业→客户的产业链；投资备忘录。请先通过现有工具核对输入结构后运行，不只在回复里计算。\n所有经济数值均为我明确给出的分析假设，绝不是实际披露数据；不联网、不搜索、不读取任何其他项目或本地基准材料，不补造敞口或弹性。报告分析时点为2024年12月31日；股数与金额倍率独立声明，0.1是10%。冲击数组是各年相对当年基线的水平变化，非累计增幅。\n独立 DCF 明确依赖已保存情景成果。产业链明确依赖情景，备忘录明确依赖情景和独立 DCF；可定位计算主张引用成果中的具体字段，经济输入标为假设。备忘录要写主要判断、风险及可证伪指标/条件/观察期限，不给真实证券投资建议。产业链中的参数只取给定假设。模型结果保留在研究成果区，不需要生成其他文件。\n完整输入假设：{\"currency\":\"CNY\",\"amount_scale\":\"1\",\"base_year\":2024,\"base\":{\"revenue\":\"1000\",\"net_working_capital\":\"100\"},\"volume_unit\":\"件\",\"baseline\":[{\"year\":2025,\"volume\":\"100\",\"fixed_cash_opex\":\"100\",\"da\":\"50\",\"capex\":\"50\",\"unit_price\":\"10\",\"material_cost_per_unit\":\"4\",\"other_variable_cost_per_unit\":\"2\",\"nwc_ratio\":\"0.1\",\"tax_rate\":\"0.25\"},{\"year\":2026,\"volume\":\"110\",\"fixed_cash_opex\":\"110\",\"da\":\"55\",\"capex\":\"55\",\"unit_price\":\"10\",\"material_cost_per_unit\":\"4\",\"other_variable_cost_per_unit\":\"2\",\"nwc_ratio\":\"0.1\",\"tax_rate\":\"0.25\"},{\"year\":2027,\"volume\":\"121\",\"fixed_cash_opex\":\"121\",\"da\":\"60.5\",\"capex\":\"60.5\",\"unit_price\":\"10\",\"material_cost_per_unit\":\"4\",\"other_variable_cost_per_unit\":\"2\",\"nwc_ratio\":\"0.1\",\"tax_rate\":\"0.25\"}],\"scenario\":{\"exposed_material_share\":\"0.5\",\"pass_through_rate\":\"0.5\",\"lag_years\":1,\"price_elasticity\":\"-1\",\"material_cost_changes\":[\"0.2\",\"0.2\",\"0.2\"],\"volume_changes\":[\"0\",\"0\",\"0\"],\"autonomous_price_changes\":[\"0\",\"0\",\"0\"]},\"dcf\":{\"cash_tax_policy\":\"floor_at_zero\",\"discount\":{\"wacc\":\"0.1\",\"cashflow_timing\":\"year_end\"},\"terminal\":{\"growth\":\"0.02\",\"roic\":\"0.2\",\"ebit_margin\":\"0.25\",\"tax_rate\":\"0.25\"},\"bridge\":{\"net_debt\":\"200\",\"non_controlling_interest\":\"20\",\"preferred_equity\":\"10\",\"non_operating_assets_ex_cash\":\"30\"},\"shares\":{\"count\":\"100\",\"scale\":\"1\"},\"sensitivity\":{\"wacc\":[\"0.08\",\"0.1\",\"0.12\"],\"growth\":[\"0\",\"0.02\",\"0.03\"]}}}\n完成后简短列出四项成果ID、情景和独立DCF的每股价值、关键风险。如发生工具错误，保留真实失败说明；同参数失败不要反复重试。\n本轮使用现有 source_model 导入接口保存独立DCF：kind=dcf，source_model 指向已保存情景的 artifact_id 和实际 revision_id，variant=scenario，不同时提供spec。让宿主完整继承所有参数依据和固定来源版本，勿手抄或改写上游spec。",
+    "这是独立会话读取已保存研究成果的开发联调，不是精度留出测试。请使用工具列出并读取当前项目的研究成果，核对它们的依赖和版本状态。上一个会话已完成合成制造公司 WF-01 的情景、独立DCF、产业链和投资备忘录；随后宿主通过产品模型编辑接口只把情景 WACC 从0.10改为0.11，保存为新版本。\n请实际读取后说明：哪个成果是新版本，哪些下游成果已经 stale，分别是哪条依赖变化导致；区分仍可查看的历史结果与基于新参数的最新计算。不要重新计算或保存，不要搜索，不要把宿主的这段说明当读取结果。简短引用实际成果ID和读取到的 changed_dependencies，不要为通过测试猜状态。"
+  ],
+  "host_parameter_edit": {
+    "artifact_kind": "manufacturing_scenario",
+    "path": "dcf.discount.wacc",
+    "before": "0.1",
+    "after": "0.11"
+  },
+  "restrictions": [
+    "No holdout or real-company material",
+    "No search or model settings mutation",
+    "No automatic retry after terminal failure",
+    "All economic parameters are synthetic assumptions"
+  ],
+  "scoring_contract": {
+    "version": "v06",
+    "changes_from_v05": [
+      "Require actual source_model scenario import with the selected immutable artifact revision; all spec metadata must be preserved exactly.",
+      "Dependency-state evidence may come from list_research_artifacts OR read_research_artifact. Reading every full artifact is not required when the list already provides the same actual state and changed_dependencies.",
+      "The v05 failed report and its original read-every-artifact check are retained unchanged; scores across versions are not directly identical contracts."
+    ],
+    "unchanged": [
+      "Synthetic company and all economic assumptions",
+      "Same shared 40-call / 2M-input / 300k-output / 20-minute budget",
+      "Same two independent conversations and WACC edit",
+      "No accuracy-holdout claim"
+    ]
+  },
+  "task_sha256": "2744793febce258f4fbeba264095a7e844eff72b16f7ed8c9e662d3bd9b4ada5"
+}

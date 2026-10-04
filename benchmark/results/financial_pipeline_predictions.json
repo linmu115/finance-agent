@@ -1,0 +1,2046 @@
+{
+  "test_layer": "deterministic_document_parsing_and_financial_query",
+  "is_llm_agent_result": false,
+  "gold_accessed_by_driver": false,
+  "fresh_database_each_run": true,
+  "parser_version": "0.1.1",
+  "created_at": "2026-10-02T18:30:54.721399+00:00",
+  "runs": [
+    {
+      "run_id": "20261002T182430-6aca477d",
+      "data_dir": "benchmark\\runs\\financial-pipeline\\20261002T182430-6aca477d",
+      "elapsed_seconds": 121.938,
+      "documents": [
+        {
+          "source_id": "midea_2024",
+          "sha256": "bc82a1be9e09101ed2c2772844a44b8a356c87a4dbdc0fa44a55eeeabaf94455",
+          "document_id": "92ede3c20cc64dd8bccf064a869c5be1",
+          "project_id": "midea_2024-1",
+          "page_count": 295,
+          "persisted_page_count": 295,
+          "table_count": 114,
+          "fact_candidate_count": 21,
+          "state": "ready",
+          "warnings": []
+        },
+        {
+          "source_id": "moutai_2024",
+          "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+          "document_id": "0abfec8cd48a4bffb14328ba1da3450b",
+          "project_id": "moutai_2024-1",
+          "page_count": 143,
+          "persisted_page_count": 143,
+          "table_count": 275,
+          "fact_candidate_count": 29,
+          "state": "ready",
+          "warnings": []
+        },
+        {
+          "source_id": "yili_2024",
+          "sha256": "a82a81e52f52da3cd1b7f38ded08625dc18e3d4522b15d3ef76bf921e54c1f43",
+          "document_id": "807cdbab9e854add951bbf82264e2523",
+          "project_id": "yili_2024-1",
+          "page_count": 270,
+          "persisted_page_count": 270,
+          "table_count": 334,
+          "fact_candidate_count": 40,
+          "state": "ready",
+          "warnings": []
+        }
+      ],
+      "physical_pages_processed": 708,
+      "predictions": [
+        {
+          "id": "midea_2024_extract_revenue_2023",
+          "status": "ok",
+          "answer": "372037280000",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "92ede3c20cc64dd8bccf064a869c5be1",
+            "page": 9,
+            "table_id": "92ede3c20cc64dd8bccf064a869c5be1:t6",
+            "row": 2,
+            "column": 5,
+            "cell": "E2",
+            "text": "营业收入（千元）: 372,037,280 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_revenue_2024",
+          "status": "ok",
+          "answer": "407149600000",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "92ede3c20cc64dd8bccf064a869c5be1",
+            "page": 9,
+            "table_id": "92ede3c20cc64dd8bccf064a869c5be1:t6",
+            "row": 2,
+            "column": 4,
+            "cell": "D2",
+            "text": "营业收入（千元）: 407,149,600 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_net_profit_parent_2023",
+          "status": "ok",
+          "answer": "33719935000",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "92ede3c20cc64dd8bccf064a869c5be1",
+            "page": 9,
+            "table_id": "92ede3c20cc64dd8bccf064a869c5be1:t6",
+            "row": 3,
+            "column": 5,
+            "cell": "E3",
+            "text": "归属于上市公司股东的净利润（千元）: 33,719,935 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_net_profit_parent_2024",
+          "status": "ok",
+          "answer": "38537237000",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "92ede3c20cc64dd8bccf064a869c5be1",
+            "page": 9,
+            "table_id": "92ede3c20cc64dd8bccf064a869c5be1:t6",
+            "row": 3,
+            "column": 4,
+            "cell": "D3",
+            "text": "归属于上市公司股东的净利润（千元）: 38,537,237 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_operating_cash_flow_2023",
+          "status": "ok",
+          "answer": "57902611000",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "92ede3c20cc64dd8bccf064a869c5be1",
+            "page": 9,
+            "table_id": "92ede3c20cc64dd8bccf064a869c5be1:t6",
+            "row": 6,
+            "column": 5,
+            "cell": "E6",
+            "text": "经营活动产生的现金流量净额（千元）: 57,902,611 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_operating_cash_flow_2024",
+          "status": "ok",
+          "answer": "60511572000",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "92ede3c20cc64dd8bccf064a869c5be1",
+            "page": 9,
+            "table_id": "92ede3c20cc64dd8bccf064a869c5be1:t6",
+            "row": 6,
+            "column": 4,
+            "cell": "D6",
+            "text": "经营活动产生的现金流量净额（千元）: 60,511,572 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_assets_2023",
+          "status": "ok",
+          "answer": "486038184000",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p10"
+          ],
+          "source_ref": {
+            "document_id": "92ede3c20cc64dd8bccf064a869c5be1",
+            "page": 10,
+            "table_id": "92ede3c20cc64dd8bccf064a869c5be1:t7",
+            "row": 1,
+            "column": 5,
+            "cell": "E1",
+            "text": "总资产（千元）: 486,038,184 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_assets_2024",
+          "status": "ok",
+          "answer": "604351853000",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p10"
+          ],
+          "source_ref": {
+            "document_id": "92ede3c20cc64dd8bccf064a869c5be1",
+            "page": 10,
+            "table_id": "92ede3c20cc64dd8bccf064a869c5be1:t7",
+            "row": 1,
+            "column": 4,
+            "cell": "D1",
+            "text": "总资产（千元）: 604,351,853 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_equity_parent_2023",
+          "status": "ok",
+          "answer": "162878825000",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p10"
+          ],
+          "source_ref": {
+            "document_id": "92ede3c20cc64dd8bccf064a869c5be1",
+            "page": 10,
+            "table_id": "92ede3c20cc64dd8bccf064a869c5be1:t7",
+            "row": 2,
+            "column": 5,
+            "cell": "E2",
+            "text": "归属于上市公司股东的净资产（千元）: 162,878,825 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_equity_parent_2024",
+          "status": "ok",
+          "answer": "216750057000",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p10"
+          ],
+          "source_ref": {
+            "document_id": "92ede3c20cc64dd8bccf064a869c5be1",
+            "page": 10,
+            "table_id": "92ede3c20cc64dd8bccf064a869c5be1:t7",
+            "row": 2,
+            "column": 4,
+            "cell": "D2",
+            "text": "归属于上市公司股东的净资产（千元）: 216,750,057 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_revenue_2023",
+          "status": "ok",
+          "answer": "147693604994.14",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "0abfec8cd48a4bffb14328ba1da3450b",
+            "page": 5,
+            "table_id": "0abfec8cd48a4bffb14328ba1da3450b:t8",
+            "row": 2,
+            "column": 3,
+            "cell": "C2",
+            "text": "营业收入: 147,693,604,994.14 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_revenue_2024",
+          "status": "ok",
+          "answer": "170899152276.34",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "0abfec8cd48a4bffb14328ba1da3450b",
+            "page": 5,
+            "table_id": "0abfec8cd48a4bffb14328ba1da3450b:t8",
+            "row": 2,
+            "column": 2,
+            "cell": "B2",
+            "text": "营业收入: 170,899,152,276.34 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_net_profit_parent_2023",
+          "status": "ok",
+          "answer": "74734071550.75",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "0abfec8cd48a4bffb14328ba1da3450b",
+            "page": 5,
+            "table_id": "0abfec8cd48a4bffb14328ba1da3450b:t8",
+            "row": 3,
+            "column": 3,
+            "cell": "C3",
+            "text": "归属于上市公司股东的净\n利润: 74,734,071,550.75 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_net_profit_parent_2024",
+          "status": "ok",
+          "answer": "86228146421.62",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "0abfec8cd48a4bffb14328ba1da3450b",
+            "page": 5,
+            "table_id": "0abfec8cd48a4bffb14328ba1da3450b:t8",
+            "row": 3,
+            "column": 2,
+            "cell": "B3",
+            "text": "归属于上市公司股东的净\n利润: 86,228,146,421.62 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_operating_cash_flow_2023",
+          "status": "ok",
+          "answer": "66593247721.09",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "0abfec8cd48a4bffb14328ba1da3450b",
+            "page": 5,
+            "table_id": "0abfec8cd48a4bffb14328ba1da3450b:t8",
+            "row": 5,
+            "column": 3,
+            "cell": "C5",
+            "text": "经营活动产生的现金流量\n净额: 66,593,247,721.09 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_operating_cash_flow_2024",
+          "status": "ok",
+          "answer": "92463692168.43",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "0abfec8cd48a4bffb14328ba1da3450b",
+            "page": 5,
+            "table_id": "0abfec8cd48a4bffb14328ba1da3450b:t8",
+            "row": 5,
+            "column": 2,
+            "cell": "B5",
+            "text": "经营活动产生的现金流量\n净额: 92,463,692,168.43 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_assets_2023",
+          "status": "ok",
+          "answer": "272699660092.25",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "0abfec8cd48a4bffb14328ba1da3450b",
+            "page": 5,
+            "table_id": "0abfec8cd48a4bffb14328ba1da3450b:t8",
+            "row": 8,
+            "column": 3,
+            "cell": "C8",
+            "text": "总资产: 272,699,660,092.25 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_assets_2024",
+          "status": "ok",
+          "answer": "298944579918.70",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "0abfec8cd48a4bffb14328ba1da3450b",
+            "page": 5,
+            "table_id": "0abfec8cd48a4bffb14328ba1da3450b:t8",
+            "row": 8,
+            "column": 2,
+            "cell": "B8",
+            "text": "总资产: 298,944,579,918.70 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_equity_parent_2023",
+          "status": "ok",
+          "answer": "215668571607.43",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "0abfec8cd48a4bffb14328ba1da3450b",
+            "page": 5,
+            "table_id": "0abfec8cd48a4bffb14328ba1da3450b:t8",
+            "row": 7,
+            "column": 3,
+            "cell": "C7",
+            "text": "归属于上市公司股东的净\n资产: 215,668,571,607.43 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_equity_parent_2024",
+          "status": "ok",
+          "answer": "233105984399.47",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "0abfec8cd48a4bffb14328ba1da3450b",
+            "page": 5,
+            "table_id": "0abfec8cd48a4bffb14328ba1da3450b:t8",
+            "row": 7,
+            "column": 2,
+            "cell": "B7",
+            "text": "归属于上市公司股东的净\n资产: 233,105,984,399.47 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_revenue_2023",
+          "status": "ok",
+          "answer": "125758168916.51",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "807cdbab9e854add951bbf82264e2523",
+            "page": 7,
+            "table_id": "807cdbab9e854add951bbf82264e2523:t8",
+            "row": 2,
+            "column": 3,
+            "cell": "C2",
+            "text": "营业收入: 125,758,168,916.51 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_revenue_2024",
+          "status": "ok",
+          "answer": "115393310976.69",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "807cdbab9e854add951bbf82264e2523",
+            "page": 7,
+            "table_id": "807cdbab9e854add951bbf82264e2523:t8",
+            "row": 2,
+            "column": 2,
+            "cell": "B2",
+            "text": "营业收入: 115,393,310,976.69 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_net_profit_parent_2023",
+          "status": "ok",
+          "answer": "10428540457.94",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "807cdbab9e854add951bbf82264e2523",
+            "page": 7,
+            "table_id": "807cdbab9e854add951bbf82264e2523:t8",
+            "row": 3,
+            "column": 3,
+            "cell": "C3",
+            "text": "归属于上市公司股东的净利润: 10,428,540,457.94 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_net_profit_parent_2024",
+          "status": "ok",
+          "answer": "8452859993.18",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "807cdbab9e854add951bbf82264e2523",
+            "page": 7,
+            "table_id": "807cdbab9e854add951bbf82264e2523:t8",
+            "row": 3,
+            "column": 2,
+            "cell": "B3",
+            "text": "归属于上市公司股东的净利润: 8,452,859,993.18 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_operating_cash_flow_2023",
+          "status": "ok",
+          "answer": "18290357650.56",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "807cdbab9e854add951bbf82264e2523",
+            "page": 7,
+            "table_id": "807cdbab9e854add951bbf82264e2523:t8",
+            "row": 5,
+            "column": 3,
+            "cell": "C5",
+            "text": "经营活动产生的现金流量净额: 18,290,357,650.56 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_operating_cash_flow_2024",
+          "status": "ok",
+          "answer": "21739740393.38",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "807cdbab9e854add951bbf82264e2523",
+            "page": 7,
+            "table_id": "807cdbab9e854add951bbf82264e2523:t8",
+            "row": 5,
+            "column": 2,
+            "cell": "B5",
+            "text": "经营活动产生的现金流量净额: 21,739,740,393.38 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_assets_2023",
+          "status": "ok",
+          "answer": "151620252657.98",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "807cdbab9e854add951bbf82264e2523",
+            "page": 7,
+            "table_id": "807cdbab9e854add951bbf82264e2523:t8",
+            "row": 8,
+            "column": 3,
+            "cell": "C8",
+            "text": "总资产: 151,620,252,657.98 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_assets_2024",
+          "status": "ok",
+          "answer": "153718003927.97",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "807cdbab9e854add951bbf82264e2523",
+            "page": 7,
+            "table_id": "807cdbab9e854add951bbf82264e2523:t8",
+            "row": 8,
+            "column": 2,
+            "cell": "B8",
+            "text": "总资产: 153,718,003,927.97 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_equity_parent_2023",
+          "status": "ok",
+          "answer": "53539331413.16",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "807cdbab9e854add951bbf82264e2523",
+            "page": 7,
+            "table_id": "807cdbab9e854add951bbf82264e2523:t8",
+            "row": 7,
+            "column": 3,
+            "cell": "C7",
+            "text": "归属于上市公司股东的净资产: 53,539,331,413.16 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_equity_parent_2024",
+          "status": "ok",
+          "answer": "53179935140.80",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "807cdbab9e854add951bbf82264e2523",
+            "page": 7,
+            "table_id": "807cdbab9e854add951bbf82264e2523:t8",
+            "row": 7,
+            "column": 2,
+            "cell": "B7",
+            "text": "归属于上市公司股东的净资产: 53,179,935,140.80 元"
+          },
+          "quality": "parsed"
+        }
+      ]
+    },
+    {
+      "run_id": "20261002T182632-c2128b87",
+      "data_dir": "benchmark\\runs\\financial-pipeline\\20261002T182632-c2128b87",
+      "elapsed_seconds": 118.75,
+      "documents": [
+        {
+          "source_id": "midea_2024",
+          "sha256": "bc82a1be9e09101ed2c2772844a44b8a356c87a4dbdc0fa44a55eeeabaf94455",
+          "document_id": "b86b078783e54299b7b129da37238609",
+          "project_id": "midea_2024-2",
+          "page_count": 295,
+          "persisted_page_count": 295,
+          "table_count": 114,
+          "fact_candidate_count": 21,
+          "state": "ready",
+          "warnings": []
+        },
+        {
+          "source_id": "moutai_2024",
+          "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+          "document_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6",
+          "project_id": "moutai_2024-2",
+          "page_count": 143,
+          "persisted_page_count": 143,
+          "table_count": 275,
+          "fact_candidate_count": 29,
+          "state": "ready",
+          "warnings": []
+        },
+        {
+          "source_id": "yili_2024",
+          "sha256": "a82a81e52f52da3cd1b7f38ded08625dc18e3d4522b15d3ef76bf921e54c1f43",
+          "document_id": "4d5dad5d16c74daf9ae677292989edbc",
+          "project_id": "yili_2024-2",
+          "page_count": 270,
+          "persisted_page_count": 270,
+          "table_count": 334,
+          "fact_candidate_count": 40,
+          "state": "ready",
+          "warnings": []
+        }
+      ],
+      "physical_pages_processed": 708,
+      "predictions": [
+        {
+          "id": "midea_2024_extract_revenue_2023",
+          "status": "ok",
+          "answer": "372037280000",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "b86b078783e54299b7b129da37238609",
+            "page": 9,
+            "table_id": "b86b078783e54299b7b129da37238609:t6",
+            "row": 2,
+            "column": 5,
+            "cell": "E2",
+            "text": "营业收入（千元）: 372,037,280 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_revenue_2024",
+          "status": "ok",
+          "answer": "407149600000",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "b86b078783e54299b7b129da37238609",
+            "page": 9,
+            "table_id": "b86b078783e54299b7b129da37238609:t6",
+            "row": 2,
+            "column": 4,
+            "cell": "D2",
+            "text": "营业收入（千元）: 407,149,600 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_net_profit_parent_2023",
+          "status": "ok",
+          "answer": "33719935000",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "b86b078783e54299b7b129da37238609",
+            "page": 9,
+            "table_id": "b86b078783e54299b7b129da37238609:t6",
+            "row": 3,
+            "column": 5,
+            "cell": "E3",
+            "text": "归属于上市公司股东的净利润（千元）: 33,719,935 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_net_profit_parent_2024",
+          "status": "ok",
+          "answer": "38537237000",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "b86b078783e54299b7b129da37238609",
+            "page": 9,
+            "table_id": "b86b078783e54299b7b129da37238609:t6",
+            "row": 3,
+            "column": 4,
+            "cell": "D3",
+            "text": "归属于上市公司股东的净利润（千元）: 38,537,237 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_operating_cash_flow_2023",
+          "status": "ok",
+          "answer": "57902611000",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "b86b078783e54299b7b129da37238609",
+            "page": 9,
+            "table_id": "b86b078783e54299b7b129da37238609:t6",
+            "row": 6,
+            "column": 5,
+            "cell": "E6",
+            "text": "经营活动产生的现金流量净额（千元）: 57,902,611 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_operating_cash_flow_2024",
+          "status": "ok",
+          "answer": "60511572000",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "b86b078783e54299b7b129da37238609",
+            "page": 9,
+            "table_id": "b86b078783e54299b7b129da37238609:t6",
+            "row": 6,
+            "column": 4,
+            "cell": "D6",
+            "text": "经营活动产生的现金流量净额（千元）: 60,511,572 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_assets_2023",
+          "status": "ok",
+          "answer": "486038184000",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p10"
+          ],
+          "source_ref": {
+            "document_id": "b86b078783e54299b7b129da37238609",
+            "page": 10,
+            "table_id": "b86b078783e54299b7b129da37238609:t7",
+            "row": 1,
+            "column": 5,
+            "cell": "E1",
+            "text": "总资产（千元）: 486,038,184 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_assets_2024",
+          "status": "ok",
+          "answer": "604351853000",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p10"
+          ],
+          "source_ref": {
+            "document_id": "b86b078783e54299b7b129da37238609",
+            "page": 10,
+            "table_id": "b86b078783e54299b7b129da37238609:t7",
+            "row": 1,
+            "column": 4,
+            "cell": "D1",
+            "text": "总资产（千元）: 604,351,853 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_equity_parent_2023",
+          "status": "ok",
+          "answer": "162878825000",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p10"
+          ],
+          "source_ref": {
+            "document_id": "b86b078783e54299b7b129da37238609",
+            "page": 10,
+            "table_id": "b86b078783e54299b7b129da37238609:t7",
+            "row": 2,
+            "column": 5,
+            "cell": "E2",
+            "text": "归属于上市公司股东的净资产（千元）: 162,878,825 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_equity_parent_2024",
+          "status": "ok",
+          "answer": "216750057000",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p10"
+          ],
+          "source_ref": {
+            "document_id": "b86b078783e54299b7b129da37238609",
+            "page": 10,
+            "table_id": "b86b078783e54299b7b129da37238609:t7",
+            "row": 2,
+            "column": 4,
+            "cell": "D2",
+            "text": "归属于上市公司股东的净资产（千元）: 216,750,057 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_revenue_2023",
+          "status": "ok",
+          "answer": "147693604994.14",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6",
+            "page": 5,
+            "table_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6:t8",
+            "row": 2,
+            "column": 3,
+            "cell": "C2",
+            "text": "营业收入: 147,693,604,994.14 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_revenue_2024",
+          "status": "ok",
+          "answer": "170899152276.34",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6",
+            "page": 5,
+            "table_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6:t8",
+            "row": 2,
+            "column": 2,
+            "cell": "B2",
+            "text": "营业收入: 170,899,152,276.34 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_net_profit_parent_2023",
+          "status": "ok",
+          "answer": "74734071550.75",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6",
+            "page": 5,
+            "table_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6:t8",
+            "row": 3,
+            "column": 3,
+            "cell": "C3",
+            "text": "归属于上市公司股东的净\n利润: 74,734,071,550.75 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_net_profit_parent_2024",
+          "status": "ok",
+          "answer": "86228146421.62",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6",
+            "page": 5,
+            "table_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6:t8",
+            "row": 3,
+            "column": 2,
+            "cell": "B3",
+            "text": "归属于上市公司股东的净\n利润: 86,228,146,421.62 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_operating_cash_flow_2023",
+          "status": "ok",
+          "answer": "66593247721.09",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6",
+            "page": 5,
+            "table_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6:t8",
+            "row": 5,
+            "column": 3,
+            "cell": "C5",
+            "text": "经营活动产生的现金流量\n净额: 66,593,247,721.09 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_operating_cash_flow_2024",
+          "status": "ok",
+          "answer": "92463692168.43",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6",
+            "page": 5,
+            "table_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6:t8",
+            "row": 5,
+            "column": 2,
+            "cell": "B5",
+            "text": "经营活动产生的现金流量\n净额: 92,463,692,168.43 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_assets_2023",
+          "status": "ok",
+          "answer": "272699660092.25",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6",
+            "page": 5,
+            "table_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6:t8",
+            "row": 8,
+            "column": 3,
+            "cell": "C8",
+            "text": "总资产: 272,699,660,092.25 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_assets_2024",
+          "status": "ok",
+          "answer": "298944579918.70",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6",
+            "page": 5,
+            "table_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6:t8",
+            "row": 8,
+            "column": 2,
+            "cell": "B8",
+            "text": "总资产: 298,944,579,918.70 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_equity_parent_2023",
+          "status": "ok",
+          "answer": "215668571607.43",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6",
+            "page": 5,
+            "table_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6:t8",
+            "row": 7,
+            "column": 3,
+            "cell": "C7",
+            "text": "归属于上市公司股东的净\n资产: 215,668,571,607.43 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_equity_parent_2024",
+          "status": "ok",
+          "answer": "233105984399.47",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6",
+            "page": 5,
+            "table_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6:t8",
+            "row": 7,
+            "column": 2,
+            "cell": "B7",
+            "text": "归属于上市公司股东的净\n资产: 233,105,984,399.47 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_revenue_2023",
+          "status": "ok",
+          "answer": "125758168916.51",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4d5dad5d16c74daf9ae677292989edbc",
+            "page": 7,
+            "table_id": "4d5dad5d16c74daf9ae677292989edbc:t8",
+            "row": 2,
+            "column": 3,
+            "cell": "C2",
+            "text": "营业收入: 125,758,168,916.51 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_revenue_2024",
+          "status": "ok",
+          "answer": "115393310976.69",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4d5dad5d16c74daf9ae677292989edbc",
+            "page": 7,
+            "table_id": "4d5dad5d16c74daf9ae677292989edbc:t8",
+            "row": 2,
+            "column": 2,
+            "cell": "B2",
+            "text": "营业收入: 115,393,310,976.69 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_net_profit_parent_2023",
+          "status": "ok",
+          "answer": "10428540457.94",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4d5dad5d16c74daf9ae677292989edbc",
+            "page": 7,
+            "table_id": "4d5dad5d16c74daf9ae677292989edbc:t8",
+            "row": 3,
+            "column": 3,
+            "cell": "C3",
+            "text": "归属于上市公司股东的净利润: 10,428,540,457.94 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_net_profit_parent_2024",
+          "status": "ok",
+          "answer": "8452859993.18",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4d5dad5d16c74daf9ae677292989edbc",
+            "page": 7,
+            "table_id": "4d5dad5d16c74daf9ae677292989edbc:t8",
+            "row": 3,
+            "column": 2,
+            "cell": "B3",
+            "text": "归属于上市公司股东的净利润: 8,452,859,993.18 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_operating_cash_flow_2023",
+          "status": "ok",
+          "answer": "18290357650.56",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4d5dad5d16c74daf9ae677292989edbc",
+            "page": 7,
+            "table_id": "4d5dad5d16c74daf9ae677292989edbc:t8",
+            "row": 5,
+            "column": 3,
+            "cell": "C5",
+            "text": "经营活动产生的现金流量净额: 18,290,357,650.56 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_operating_cash_flow_2024",
+          "status": "ok",
+          "answer": "21739740393.38",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4d5dad5d16c74daf9ae677292989edbc",
+            "page": 7,
+            "table_id": "4d5dad5d16c74daf9ae677292989edbc:t8",
+            "row": 5,
+            "column": 2,
+            "cell": "B5",
+            "text": "经营活动产生的现金流量净额: 21,739,740,393.38 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_assets_2023",
+          "status": "ok",
+          "answer": "151620252657.98",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4d5dad5d16c74daf9ae677292989edbc",
+            "page": 7,
+            "table_id": "4d5dad5d16c74daf9ae677292989edbc:t8",
+            "row": 8,
+            "column": 3,
+            "cell": "C8",
+            "text": "总资产: 151,620,252,657.98 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_assets_2024",
+          "status": "ok",
+          "answer": "153718003927.97",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4d5dad5d16c74daf9ae677292989edbc",
+            "page": 7,
+            "table_id": "4d5dad5d16c74daf9ae677292989edbc:t8",
+            "row": 8,
+            "column": 2,
+            "cell": "B8",
+            "text": "总资产: 153,718,003,927.97 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_equity_parent_2023",
+          "status": "ok",
+          "answer": "53539331413.16",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4d5dad5d16c74daf9ae677292989edbc",
+            "page": 7,
+            "table_id": "4d5dad5d16c74daf9ae677292989edbc:t8",
+            "row": 7,
+            "column": 3,
+            "cell": "C7",
+            "text": "归属于上市公司股东的净资产: 53,539,331,413.16 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_equity_parent_2024",
+          "status": "ok",
+          "answer": "53179935140.80",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4d5dad5d16c74daf9ae677292989edbc",
+            "page": 7,
+            "table_id": "4d5dad5d16c74daf9ae677292989edbc:t8",
+            "row": 7,
+            "column": 2,
+            "cell": "B7",
+            "text": "归属于上市公司股东的净资产: 53,179,935,140.80 元"
+          },
+          "quality": "parsed"
+        }
+      ]
+    },
+    {
+      "run_id": "20261002T182831-dfec957c",
+      "data_dir": "benchmark\\runs\\financial-pipeline\\20261002T182831-dfec957c",
+      "elapsed_seconds": 143.515,
+      "documents": [
+        {
+          "source_id": "midea_2024",
+          "sha256": "bc82a1be9e09101ed2c2772844a44b8a356c87a4dbdc0fa44a55eeeabaf94455",
+          "document_id": "179f1dc3cf0a487e936dad49755d545d",
+          "project_id": "midea_2024-3",
+          "page_count": 295,
+          "persisted_page_count": 295,
+          "table_count": 114,
+          "fact_candidate_count": 21,
+          "state": "ready",
+          "warnings": []
+        },
+        {
+          "source_id": "moutai_2024",
+          "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+          "document_id": "5ce5063f7f414ab7b3f369df169a572f",
+          "project_id": "moutai_2024-3",
+          "page_count": 143,
+          "persisted_page_count": 143,
+          "table_count": 275,
+          "fact_candidate_count": 29,
+          "state": "ready",
+          "warnings": []
+        },
+        {
+          "source_id": "yili_2024",
+          "sha256": "a82a81e52f52da3cd1b7f38ded08625dc18e3d4522b15d3ef76bf921e54c1f43",
+          "document_id": "4da3a9c19d904339b501855b39aca8dc",
+          "project_id": "yili_2024-3",
+          "page_count": 270,
+          "persisted_page_count": 270,
+          "table_count": 334,
+          "fact_candidate_count": 40,
+          "state": "ready",
+          "warnings": []
+        }
+      ],
+      "physical_pages_processed": 708,
+      "predictions": [
+        {
+          "id": "midea_2024_extract_revenue_2023",
+          "status": "ok",
+          "answer": "372037280000",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "179f1dc3cf0a487e936dad49755d545d",
+            "page": 9,
+            "table_id": "179f1dc3cf0a487e936dad49755d545d:t6",
+            "row": 2,
+            "column": 5,
+            "cell": "E2",
+            "text": "营业收入（千元）: 372,037,280 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_revenue_2024",
+          "status": "ok",
+          "answer": "407149600000",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "179f1dc3cf0a487e936dad49755d545d",
+            "page": 9,
+            "table_id": "179f1dc3cf0a487e936dad49755d545d:t6",
+            "row": 2,
+            "column": 4,
+            "cell": "D2",
+            "text": "营业收入（千元）: 407,149,600 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_net_profit_parent_2023",
+          "status": "ok",
+          "answer": "33719935000",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "179f1dc3cf0a487e936dad49755d545d",
+            "page": 9,
+            "table_id": "179f1dc3cf0a487e936dad49755d545d:t6",
+            "row": 3,
+            "column": 5,
+            "cell": "E3",
+            "text": "归属于上市公司股东的净利润（千元）: 33,719,935 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_net_profit_parent_2024",
+          "status": "ok",
+          "answer": "38537237000",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "179f1dc3cf0a487e936dad49755d545d",
+            "page": 9,
+            "table_id": "179f1dc3cf0a487e936dad49755d545d:t6",
+            "row": 3,
+            "column": 4,
+            "cell": "D3",
+            "text": "归属于上市公司股东的净利润（千元）: 38,537,237 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_operating_cash_flow_2023",
+          "status": "ok",
+          "answer": "57902611000",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "179f1dc3cf0a487e936dad49755d545d",
+            "page": 9,
+            "table_id": "179f1dc3cf0a487e936dad49755d545d:t6",
+            "row": 6,
+            "column": 5,
+            "cell": "E6",
+            "text": "经营活动产生的现金流量净额（千元）: 57,902,611 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_operating_cash_flow_2024",
+          "status": "ok",
+          "answer": "60511572000",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p9"
+          ],
+          "source_ref": {
+            "document_id": "179f1dc3cf0a487e936dad49755d545d",
+            "page": 9,
+            "table_id": "179f1dc3cf0a487e936dad49755d545d:t6",
+            "row": 6,
+            "column": 4,
+            "cell": "D6",
+            "text": "经营活动产生的现金流量净额（千元）: 60,511,572 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_assets_2023",
+          "status": "ok",
+          "answer": "486038184000",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p10"
+          ],
+          "source_ref": {
+            "document_id": "179f1dc3cf0a487e936dad49755d545d",
+            "page": 10,
+            "table_id": "179f1dc3cf0a487e936dad49755d545d:t7",
+            "row": 1,
+            "column": 5,
+            "cell": "E1",
+            "text": "总资产（千元）: 486,038,184 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_assets_2024",
+          "status": "ok",
+          "answer": "604351853000",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p10"
+          ],
+          "source_ref": {
+            "document_id": "179f1dc3cf0a487e936dad49755d545d",
+            "page": 10,
+            "table_id": "179f1dc3cf0a487e936dad49755d545d:t7",
+            "row": 1,
+            "column": 4,
+            "cell": "D1",
+            "text": "总资产（千元）: 604,351,853 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_equity_parent_2023",
+          "status": "ok",
+          "answer": "162878825000",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p10"
+          ],
+          "source_ref": {
+            "document_id": "179f1dc3cf0a487e936dad49755d545d",
+            "page": 10,
+            "table_id": "179f1dc3cf0a487e936dad49755d545d:t7",
+            "row": 2,
+            "column": 5,
+            "cell": "E2",
+            "text": "归属于上市公司股东的净资产（千元）: 162,878,825 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "midea_2024_extract_equity_parent_2024",
+          "status": "ok",
+          "answer": "216750057000",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "midea_2024:p10"
+          ],
+          "source_ref": {
+            "document_id": "179f1dc3cf0a487e936dad49755d545d",
+            "page": 10,
+            "table_id": "179f1dc3cf0a487e936dad49755d545d:t7",
+            "row": 2,
+            "column": 4,
+            "cell": "D2",
+            "text": "归属于上市公司股东的净资产（千元）: 216,750,057 千元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_revenue_2023",
+          "status": "ok",
+          "answer": "147693604994.14",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "5ce5063f7f414ab7b3f369df169a572f",
+            "page": 5,
+            "table_id": "5ce5063f7f414ab7b3f369df169a572f:t8",
+            "row": 2,
+            "column": 3,
+            "cell": "C2",
+            "text": "营业收入: 147,693,604,994.14 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_revenue_2024",
+          "status": "ok",
+          "answer": "170899152276.34",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "5ce5063f7f414ab7b3f369df169a572f",
+            "page": 5,
+            "table_id": "5ce5063f7f414ab7b3f369df169a572f:t8",
+            "row": 2,
+            "column": 2,
+            "cell": "B2",
+            "text": "营业收入: 170,899,152,276.34 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_net_profit_parent_2023",
+          "status": "ok",
+          "answer": "74734071550.75",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "5ce5063f7f414ab7b3f369df169a572f",
+            "page": 5,
+            "table_id": "5ce5063f7f414ab7b3f369df169a572f:t8",
+            "row": 3,
+            "column": 3,
+            "cell": "C3",
+            "text": "归属于上市公司股东的净\n利润: 74,734,071,550.75 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_net_profit_parent_2024",
+          "status": "ok",
+          "answer": "86228146421.62",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "5ce5063f7f414ab7b3f369df169a572f",
+            "page": 5,
+            "table_id": "5ce5063f7f414ab7b3f369df169a572f:t8",
+            "row": 3,
+            "column": 2,
+            "cell": "B3",
+            "text": "归属于上市公司股东的净\n利润: 86,228,146,421.62 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_operating_cash_flow_2023",
+          "status": "ok",
+          "answer": "66593247721.09",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "5ce5063f7f414ab7b3f369df169a572f",
+            "page": 5,
+            "table_id": "5ce5063f7f414ab7b3f369df169a572f:t8",
+            "row": 5,
+            "column": 3,
+            "cell": "C5",
+            "text": "经营活动产生的现金流量\n净额: 66,593,247,721.09 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_operating_cash_flow_2024",
+          "status": "ok",
+          "answer": "92463692168.43",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "5ce5063f7f414ab7b3f369df169a572f",
+            "page": 5,
+            "table_id": "5ce5063f7f414ab7b3f369df169a572f:t8",
+            "row": 5,
+            "column": 2,
+            "cell": "B5",
+            "text": "经营活动产生的现金流量\n净额: 92,463,692,168.43 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_assets_2023",
+          "status": "ok",
+          "answer": "272699660092.25",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "5ce5063f7f414ab7b3f369df169a572f",
+            "page": 5,
+            "table_id": "5ce5063f7f414ab7b3f369df169a572f:t8",
+            "row": 8,
+            "column": 3,
+            "cell": "C8",
+            "text": "总资产: 272,699,660,092.25 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_assets_2024",
+          "status": "ok",
+          "answer": "298944579918.70",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "5ce5063f7f414ab7b3f369df169a572f",
+            "page": 5,
+            "table_id": "5ce5063f7f414ab7b3f369df169a572f:t8",
+            "row": 8,
+            "column": 2,
+            "cell": "B8",
+            "text": "总资产: 298,944,579,918.70 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_equity_parent_2023",
+          "status": "ok",
+          "answer": "215668571607.43",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "5ce5063f7f414ab7b3f369df169a572f",
+            "page": 5,
+            "table_id": "5ce5063f7f414ab7b3f369df169a572f:t8",
+            "row": 7,
+            "column": 3,
+            "cell": "C7",
+            "text": "归属于上市公司股东的净\n资产: 215,668,571,607.43 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "moutai_2024_extract_equity_parent_2024",
+          "status": "ok",
+          "answer": "233105984399.47",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "moutai_2024:p5"
+          ],
+          "source_ref": {
+            "document_id": "5ce5063f7f414ab7b3f369df169a572f",
+            "page": 5,
+            "table_id": "5ce5063f7f414ab7b3f369df169a572f:t8",
+            "row": 7,
+            "column": 2,
+            "cell": "B7",
+            "text": "归属于上市公司股东的净\n资产: 233,105,984,399.47 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_revenue_2023",
+          "status": "ok",
+          "answer": "125758168916.51",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4da3a9c19d904339b501855b39aca8dc",
+            "page": 7,
+            "table_id": "4da3a9c19d904339b501855b39aca8dc:t8",
+            "row": 2,
+            "column": 3,
+            "cell": "C2",
+            "text": "营业收入: 125,758,168,916.51 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_revenue_2024",
+          "status": "ok",
+          "answer": "115393310976.69",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4da3a9c19d904339b501855b39aca8dc",
+            "page": 7,
+            "table_id": "4da3a9c19d904339b501855b39aca8dc:t8",
+            "row": 2,
+            "column": 2,
+            "cell": "B2",
+            "text": "营业收入: 115,393,310,976.69 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_net_profit_parent_2023",
+          "status": "ok",
+          "answer": "10428540457.94",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4da3a9c19d904339b501855b39aca8dc",
+            "page": 7,
+            "table_id": "4da3a9c19d904339b501855b39aca8dc:t8",
+            "row": 3,
+            "column": 3,
+            "cell": "C3",
+            "text": "归属于上市公司股东的净利润: 10,428,540,457.94 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_net_profit_parent_2024",
+          "status": "ok",
+          "answer": "8452859993.18",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4da3a9c19d904339b501855b39aca8dc",
+            "page": 7,
+            "table_id": "4da3a9c19d904339b501855b39aca8dc:t8",
+            "row": 3,
+            "column": 2,
+            "cell": "B3",
+            "text": "归属于上市公司股东的净利润: 8,452,859,993.18 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_operating_cash_flow_2023",
+          "status": "ok",
+          "answer": "18290357650.56",
+          "unit": "CNY",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4da3a9c19d904339b501855b39aca8dc",
+            "page": 7,
+            "table_id": "4da3a9c19d904339b501855b39aca8dc:t8",
+            "row": 5,
+            "column": 3,
+            "cell": "C5",
+            "text": "经营活动产生的现金流量净额: 18,290,357,650.56 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_operating_cash_flow_2024",
+          "status": "ok",
+          "answer": "21739740393.38",
+          "unit": "CNY",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4da3a9c19d904339b501855b39aca8dc",
+            "page": 7,
+            "table_id": "4da3a9c19d904339b501855b39aca8dc:t8",
+            "row": 5,
+            "column": 2,
+            "cell": "B5",
+            "text": "经营活动产生的现金流量净额: 21,739,740,393.38 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_assets_2023",
+          "status": "ok",
+          "answer": "151620252657.98",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4da3a9c19d904339b501855b39aca8dc",
+            "page": 7,
+            "table_id": "4da3a9c19d904339b501855b39aca8dc:t8",
+            "row": 8,
+            "column": 3,
+            "cell": "C8",
+            "text": "总资产: 151,620,252,657.98 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_assets_2024",
+          "status": "ok",
+          "answer": "153718003927.97",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4da3a9c19d904339b501855b39aca8dc",
+            "page": 7,
+            "table_id": "4da3a9c19d904339b501855b39aca8dc:t8",
+            "row": 8,
+            "column": 2,
+            "cell": "B8",
+            "text": "总资产: 153,718,003,927.97 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_equity_parent_2023",
+          "status": "ok",
+          "answer": "53539331413.16",
+          "unit": "CNY",
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4da3a9c19d904339b501855b39aca8dc",
+            "page": 7,
+            "table_id": "4da3a9c19d904339b501855b39aca8dc:t8",
+            "row": 7,
+            "column": 3,
+            "cell": "C7",
+            "text": "归属于上市公司股东的净资产: 53,539,331,413.16 元"
+          },
+          "quality": "parsed"
+        },
+        {
+          "id": "yili_2024_extract_equity_parent_2024",
+          "status": "ok",
+          "answer": "53179935140.80",
+          "unit": "CNY",
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS",
+          "citations": [
+            "yili_2024:p7"
+          ],
+          "source_ref": {
+            "document_id": "4da3a9c19d904339b501855b39aca8dc",
+            "page": 7,
+            "table_id": "4da3a9c19d904339b501855b39aca8dc:t8",
+            "row": 7,
+            "column": 2,
+            "cell": "B7",
+            "text": "归属于上市公司股东的净资产: 53,179,935,140.80 元"
+          },
+          "quality": "parsed"
+        }
+      ]
+    }
+  ],
+  "repeat_values_and_citations_identical": true,
+  "total_elapsed_seconds": 384.203,
+  "implementation_sha256": {
+    "service\\parser.py": "2ad2c4020ab8fb3e51056444397ac1bfad47f1cc34e03d59d58780107c1b5e27",
+    "service\\normalization.py": "b4da08fc7895fda5042c95f671cff5a342d5a2b968a5bc4dae7b220f421622cb",
+    "service\\core.py": "a2fa5b01a1d72d452d6fc36ef5d19b097eb6ac541fe0f19311a40c589024948d",
+    "service\\store.py": "5474261263f79155b56d95954208332ec0615fa01c5dee5988d3b6057253b5b5"
+  }
+}

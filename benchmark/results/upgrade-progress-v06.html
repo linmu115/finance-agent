@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>金融工作台 · 本轮升级进度</title><style>
+*{box-sizing:border-box}body{margin:0;background:#fafafa;color:#242424;font:15px/1.8 system-ui,"Microsoft YaHei",sans-serif}main{max-width:1050px;margin:auto;padding:36px 24px 72px}h1{font-size:29px;line-height:1.4}h2{font-size:20px;margin-top:32px}p{color:#555}a{color:#333;text-underline-offset:3px}nav{display:flex;flex-wrap:wrap;gap:10px 22px;margin:22px 0}.note{border:1px solid #d8d8d8;border-radius:12px;background:#fff;padding:18px 22px}.muted{font-size:13px;color:#737373}.scroll{overflow:auto}table{border-collapse:collapse;width:100%;background:#fff}th,td{padding:13px 15px;text-align:left;vertical-align:top;border-bottom:1px solid #ddd}th{background:#eee}td:first-child{min-width:135px}li{margin:9px 0}.links a{display:inline-block;margin-right:15px}details{border-bottom:1px solid #ddd;padding:15px 0}summary{cursor:pointer;font-weight:600}@media(max-width:700px){main{padding:24px 16px}table{font-size:13px}th,td{padding:10px}}
+</style></head><body><main>
+<div class="muted">2026-10-04 · v06 真实运行结果 / v07 离线修复已部署 · 非竞赛官方评分</div>
+<h1>功能已扩展，整体验收仍未完成</h1>
+<p>Pi 中已经接入联网研究、原文归档、财务分析、估值模型和有版本的研究成果。以下分别列出实际通过的范围、真实失败和尚未运行的验收。</p>
+<nav><a href="http://127.0.0.1:3001/">打开工作台</a><a href="http://127.0.0.1:3001/api/benchmark/design">Benchmark 设计</a><a href="http://127.0.0.1:3001/api/benchmark/download/holdout-v05">下载整表测试包</a><a href="http://127.0.0.1:3001/api/benchmark/download/report-correction-v01">下载纠错测试包</a></nav>
+<div class="note"><b>当前待续：真实模型验收。</b><p>v06 最后一批定义复核因输出截断失败，随后主模型返回 HTTP 402。成功的 82 条定义、全部 3298 条财务事实及已下载的柳工原文均已保留。v07 已部署有限分批、旧截断记录核验、缓存复验登记及续跑用量记录修复；待余额恢复后实测。旧的 5 组截断输入已核对完全一致，续跑会先拆为 2＋3 组。</p><p>v07 共 142 项 Node、295 项 Python 测试通过，类型检查和构建通过。主会话输出上限为 32768，每次消息最多 64 次工具；正式验收的模型调用与 token 总预算保持不变。</p></div>
+<h2>本轮究竟优化了什么</h2>
+<div class="scroll"><table><thead><tr><th>部分</th><th>已有证据</th><th>尚未证明</th></tr></thead><tbody>
+<tr><td>原生 PDF 与语义清洗</td><td>无框线表可进入模型；修复混合单位表头误判。旧资料的 7 项真实漏抽在开发诊断中已补出。</td><td>该轮开发运行受第二服务进程干扰，保留为无效验收。新公司整表精确率、召回率尚未测。</td></tr>
+<tr><td>定义复核与恢复</td><td>旧茅台案例 14/15 个定义锚点、8/9 组区分通过；61/66 组完成。所有金额、单位、期间及原始来源保持不变。</td><td>最后 5 组、8 条事实尚未完成。82 条结果均能追溯实际模型调用，但其中 44 条历史结果缺原审计报告登记，重新验证登记待补。</td></tr>
+<tr><td>联网取证</td><td>真实 Pi 搜索官方柳工公告，归档并引用收入、归母净利润及同比；请求的数字与原文核对通过。</td><td>该回答额外使用了原公告未明确写出的“合并”口径标签；不能把整段回答都认定已逐项验证。</td></tr>
+<tr><td>产业链与估值</td><td>合成案例完成情景模型、DCF、产业链报告、备忘录及跨会话更新。独立核算 161/161 项通过，10/10 项模型输入与元数据检查通过。</td><td>合成案例不验证真实公司的经济假设。真实柳工研究第一阶段耗尽 24 次工具额度，尚无完成的分析成果。</td></tr>
+<tr><td>并发与中文</td><td>完整 HTTP/Pi/MCP/数据库/重启的中文特殊字符往返 9/9；取消同键任务的原持有会话后，另一会话继续，9/9 项独立持久化核验通过。</td><td>这两项使用确定性测试服务，证明运行流程，不代表 DeepSeek 财务判断准确。</td></tr>
+<tr><td>上下文与调用成本</td><td>同一合成任务从 15 次调用降到 12 次；输入从 560,014 降到 434,719 tokens。旧定义复核的第一主请求输入减少 5.7%。</td><td>任务提示和工具接口有版本差异，这是开发对比。不能直接推出普遍降本比例或独立泛化提升。</td></tr>
+</tbody></table></div>
+<h2>Benchmark 怎么设计，如何避免过拟合</h2>
+<p>补充本机负载观测：复制的 3298 条事实、143 页资料，在 1、2、4 个客户端下共 280 次只读请求全部成功。4 个客户端时，200 条数据分页 P95 为 409 毫秒，完整 CSV 导出为 5.08 秒；服务进程树 RSS 峰值约 713 MiB。隔离副本未配置真实模型密钥，模型调用为零。这不是独占机器测试，也没有事后设速度门槛；不能外推企业级容量。<a data-evidence href="z4-isolated-1791054293428.json">原始数据</a> · <a data-evidence href="z4-isolated-1791054293428.environment.json">测试环境与时间线</a></p>
+<ol>
+<li><b>开发材料与新公司分开。</b>茅台、神华、柳工以及合成任务已用于排错；新一轮整表验收另用两家公司，尚未运行模型。</li>
+<li><b>整表计分。</b>预定 4 张逻辑表、5 个区域，146 个全部数值格；33 个表头或脚注数值作负例，2 个横线不进入数值分母。遗漏、错误新增和重复分别计数。</li>
+<li><b>数字与语义一起核对。</b>金额、单位、期间、范围、概念及原文位置全部相符才算正确；精确率和召回率均须达到 95%，并分别报告每公司、每表及重大错误。</li>
+<li><b>同预算对照。</b>金融工作台与通用 Pi 使用同一主模型、原始资料及总预算；内部抽取、审校、失败和重试均计入。首次运行前锁定实现、配置、输入和评分器。</li>
+<li><b>保留失败。</b>原 17/30、只改单位评分合同的 18/30、后续运行事故和截断均保留原件。用于修改系统后，该批材料只能作为开发回归。</li>
+</ol>
+<p>研报纠错另设 12 个错误、16 条正确事实或计算、3 条合理观点，按有原文证据且能实际执行的修改计分。它使用旧公司资料，属于任务级挑战；目前也未执行。</p>
+<h2>原始记录</h2>
+<p class="muted">点击打开原报告；这些记录不会触发模型调用。自动检查的失败与其后的独立诊断分别保留。</p>
+<details open><summary>定义复核、失败原因与来源核验</summary><p class="links"><a data-evidence href="pi-known-definition-existing-only-20261004-clean2.json">原始失败报告</a><a data-evidence href="known-definition-clean2-runtime-review.json">截断与 402 时间线</a><a data-evidence href="known-definition-clean2-provenance-v2.json">82 条结果的来源核验</a></p></details>
+<details><summary>产业链与估值：合成成功、真实公司未完成</summary><p class="links"><a data-evidence href="research-models-pi-workflow-v06.json">合成任务原始报告</a><a data-evidence href="research-models-pi-workflow-v06.independent.json">161 项独立计算核对</a><a data-evidence href="liugong-research-workflow-v06.failure-diagnosis.json">真实柳工失败原因</a></p></details>
+<details><summary>联网证据、来源冲突与注入测试</summary><p class="links"><a data-evidence href="research-workflow-v06-evidence-precision-review.json">官方公告逐项核对</a><a data-evidence href="research-trust-v01-first.json">冲突与注入测试原评分</a><a data-evidence href="research-trust-v01-first-diagnosis.json">评分与行为差异诊断</a></p><p>两个真实会话的原自动评分仍为失败。独立诊断确认时点收入与利润冲突处理有依据、测试攻击已读到且无越权调用；同时发现评分合同对合法工具和表示格式限制过窄。该单一样例不构成普遍鲁棒性证明。</p></details>
+<details><summary>中文、取消、开发运行事故及版本</summary><p class="links"><a data-evidence href="utf8-http-pi-restart-1791052167616.json">中文往返</a><a data-evidence href="controlled-pi-cache-cancellation-v06.json">取消与缓存核验</a><a data-evidence href="development-v041-independent-review-20261004.json">旧来源开发诊断</a><a data-evidence href="release-v06-20261004.json">v06 源码与公开配置</a></p></details>
+<h2>你可以怎样试</h2>
+<p>打开工作台，在“数据集与测试”下载原始 PDF；新建项目和会话，添加附件并发送任务。看板按公司、期间、指标查看已经提交的数据；同项目另开会话继续查表和分析。正式测试按钮会调用 API，并保留首次结果，建议在余额恢复和版本冻结后执行。</p>
+<p><a href="http://127.0.0.1:3001/api/benchmark/download/native-pdf">下载 4 份无需 OCR 的原始年报</a></p>
+<p class="muted">本页记录截至 v06 的事实。115 项 Node 与 278 项 Python 组件测试通过，不替代真实财务语义验收。</p>
+</main></body></html>

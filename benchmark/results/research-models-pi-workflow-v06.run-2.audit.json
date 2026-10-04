@@ -1,0 +1,3379 @@
+[
+  {
+    "at": "2026-10-03T18:43:51.719Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "attached",
+      "profile": "financial",
+      "budget_group_id": "research-models-1791052965130",
+      "budget": {
+        "max_model_calls": 40,
+        "max_input_tokens": 2000000,
+        "max_output_tokens": 300000,
+        "max_total_tokens": 2300000,
+        "max_wall_seconds": 1200
+      },
+      "started_at": "2026-10-03T18:42:45.409Z",
+      "deadline_at": "2026-10-03T19:02:45.409Z",
+      "elapsed_seconds": 66.29,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 9,
+        "settled_calls": 9,
+        "input_tokens": 388042,
+        "output_tokens": 17538,
+        "total_tokens": 405580,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:51.790Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "run_config",
+    "data": {
+      "model": "deepseek-flash",
+      "baseUrl": "https://api.deepseek.com",
+      "configHash": "03e178f18bc92ce3ff3a100ffb30dfb0fcb1871a7dc72d25a8c7c4ad88f4d084",
+      "promptHash": "2e1a001051f51e987cfa1f045a709ca3f160bfd86d023dce60c030bf25cab01f",
+      "profile": "financial",
+      "evaluation": {
+        "profile": "financial",
+        "budget_group_id": "research-models-1791052965130",
+        "budget": {
+          "max_model_calls": 40,
+          "max_input_tokens": 2000000,
+          "max_output_tokens": 300000,
+          "max_total_tokens": 2300000,
+          "max_wall_seconds": 1200
+        },
+        "started_at": "2026-10-03T18:42:45.409Z",
+        "deadline_at": "2026-10-03T19:02:45.409Z",
+        "elapsed_seconds": 66.371,
+        "input_limit_enforcement": "post_usage_soft_cap",
+        "usage": {
+          "model_calls": 9,
+          "settled_calls": 9,
+          "input_tokens": 388042,
+          "output_tokens": 17538,
+          "total_tokens": 405580,
+          "failed_calls": 0,
+          "unknown_usage_calls": 0
+        },
+        "reserved": {
+          "model_calls": 0,
+          "output_tokens": 0
+        },
+        "unknown_output_charge": 0,
+        "denied_calls": 0,
+        "in_flight": [],
+        "overage": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0
+        },
+        "stopped_reason": null
+      },
+      "tools": [
+        "search_web",
+        "fetch_research_source",
+        "read_research_source",
+        "list_research_sources",
+        "run_financial_model",
+        "save_research_report",
+        "get_research_report_schema",
+        "list_research_artifacts",
+        "read_research_artifact",
+        "list_documents",
+        "prepare_document_sources",
+        "get_data_catalog",
+        "get_document_index",
+        "query_financial_data",
+        "get_normalization_details",
+        "get_document",
+        "get_source_page",
+        "get_source_table",
+        "search_evidence",
+        "get_financial_metrics",
+        "calculate_financial_metrics",
+        "run_analysis",
+        "get_analysis_status",
+        "get_artifact",
+        "get_research_model_schema",
+        "process_documents"
+      ],
+      "piVersion": "1.0.0",
+      "persistentSession": true,
+      "conversationId": "ed21bcb2-7929-4814-a12f-9d8c6f0e119d"
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:51.817Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "1190d584-cfb7-462e-96d7-308a2fc96b8e",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "research-models-1791052965130",
+      "budget": {
+        "max_model_calls": 40,
+        "max_input_tokens": 2000000,
+        "max_output_tokens": 300000,
+        "max_total_tokens": 2300000,
+        "max_wall_seconds": 1200
+      },
+      "started_at": "2026-10-03T18:42:45.409Z",
+      "deadline_at": "2026-10-03T19:02:45.409Z",
+      "elapsed_seconds": 66.386,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 10,
+        "settled_calls": 9,
+        "input_tokens": 388042,
+        "output_tokens": 17538,
+        "total_tokens": 405580,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 8192
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "1190d584-cfb7-462e-96d7-308a2fc96b8e",
+          "run_id": "7b893097-2488-4716-b07a-6983496be3fe",
+          "max_output_tokens": 8192,
+          "created_at": "2026-10-03T18:43:51.795Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:52.568Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "model_usage",
+    "data": {
+      "requestId": "1190d584-cfb7-462e-96d7-308a2fc96b8e",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 4414,
+        "output": 44,
+        "cacheRead": 1152,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "totalTokens": 5610,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:52.590Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "1190d584-cfb7-462e-96d7-308a2fc96b8e",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "research-models-1791052965130",
+      "budget": {
+        "max_model_calls": 40,
+        "max_input_tokens": 2000000,
+        "max_output_tokens": 300000,
+        "max_total_tokens": 2300000,
+        "max_wall_seconds": 1200
+      },
+      "started_at": "2026-10-03T18:42:45.409Z",
+      "deadline_at": "2026-10-03T19:02:45.409Z",
+      "elapsed_seconds": 67.161,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 10,
+        "settled_calls": 10,
+        "input_tokens": 393608,
+        "output_tokens": 17582,
+        "total_tokens": 411190,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:52.594Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "tool_request",
+    "data": {
+      "name": "list_research_artifacts",
+      "toolCallId": "call_00_ET_44dJwwPJpIOUueFsROcl3200",
+      "args": {
+        "project_id": "b0c8079e-5fa1-4b60-80b7-29458f9929af"
+      }
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:52.616Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "tool_result",
+    "data": {
+      "name": "list_research_artifacts",
+      "toolCallId": "call_00_ET_44dJwwPJpIOUueFsROcl3200",
+      "result": {
+        "status": "ok",
+        "data": {
+          "artifacts": [
+            {
+              "kind": "manufacturing_scenario",
+              "title": "合成制造公司 WF-01 原料成本/提价/销量传导情景（2025-2027，滞后1年）",
+              "dependencies": [],
+              "parent_revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+              "source_validation": {
+                "schema_version": 1,
+                "scope": "reference_location_and_literal_quote_only",
+                "semantic_accuracy_verified": false,
+                "mode": "checked",
+                "references": []
+              },
+              "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+              "revision_id": "revision_ae89791b-f753-462b-ace0-db40e7fad5c8",
+              "created_at": "2026-10-03T18:43:51.485Z",
+              "dependency_status": "current",
+              "changed_dependencies": []
+            },
+            {
+              "kind": "investment_memo",
+              "title": "合成制造公司 WF-01 投资备忘录（2024-12-31 分析时点，合成联调，非真实建议）",
+              "dependencies": [
+                {
+                  "kind": "artifact",
+                  "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                  "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa"
+                },
+                {
+                  "kind": "artifact",
+                  "id": "research_5ffa56bb-ee7b-424a-854a-e27063ebca0c",
+                  "version": "revision_616b6ea5-f2ea-4256-971f-65907d9c0610"
+                }
+              ],
+              "run_id": "b130ef47-be5a-463d-9acc-66127ae235e4",
+              "source_validation": {
+                "schema_version": 1,
+                "scope": "reference_location_and_literal_quote_only",
+                "semantic_accuracy_verified": false,
+                "mode": "checked",
+                "references": [
+                  {
+                    "path": "/content/claims/0/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[0].ebit_change",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "04f402bfd48254d9fc9650312d9e2103ceb0138c06983182059ebb228dcceef8"
+                  },
+                  {
+                    "path": "/content/claims/0/evidence/1",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[2].ebit_change",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "33b08c0e48b5d6236d669d0ee8dbd889f9222dfe35aea2cace75c1eefa5ef66b"
+                  },
+                  {
+                    "path": "/content/claims/1/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_5ffa56bb-ee7b-424a-854a-e27063ebca0c",
+                    "locator": "results.value_per_share",
+                    "revision_id": "revision_616b6ea5-f2ea-4256-971f-65907d9c0610",
+                    "version": "revision_616b6ea5-f2ea-4256-971f-65907d9c0610",
+                    "text_sha256": "f07faedc484d01facee52bb4191a5d12eada5ada1359d188cd64601e90c590e5"
+                  },
+                  {
+                    "path": "/content/claims/2/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_5ffa56bb-ee7b-424a-854a-e27063ebca0c",
+                    "locator": "results.terminal_value_share",
+                    "revision_id": "revision_616b6ea5-f2ea-4256-971f-65907d9c0610",
+                    "version": "revision_616b6ea5-f2ea-4256-971f-65907d9c0610",
+                    "text_sha256": "f359ccf093a44e73ffec4a9d11f237e98b29bff55a65bed8b9099d66c60bf4a6"
+                  },
+                  {
+                    "path": "/content/claims/3/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_5ffa56bb-ee7b-424a-854a-e27063ebca0c",
+                    "locator": "tables.sensitivity[0].value_per_share",
+                    "revision_id": "revision_616b6ea5-f2ea-4256-971f-65907d9c0610",
+                    "version": "revision_616b6ea5-f2ea-4256-971f-65907d9c0610",
+                    "text_sha256": "d551eade7665ac977878624caae9458c33bef36aeb8121e6c073fe64f457ca20"
+                  },
+                  {
+                    "path": "/content/claims/3/evidence/1",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_5ffa56bb-ee7b-424a-854a-e27063ebca0c",
+                    "locator": "tables.sensitivity[8].value_per_share",
+                    "revision_id": "revision_616b6ea5-f2ea-4256-971f-65907d9c0610",
+                    "version": "revision_616b6ea5-f2ea-4256-971f-65907d9c0610",
+                    "text_sha256": "e0b0cd4fd935e21c813013da3a5b063a0d0e4c3e8392866b385d03636a8ee619"
+                  },
+                  {
+                    "path": "/content/claims/4/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "results.equity_value_change",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "9f6602c4f07ab749fb76edc2c032df23acb6736b3ee65bbdb612b37454d2c7d7"
+                  },
+                  {
+                    "path": "/content/claims/5/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[0].exposed_material_cost_change_per_unit",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "f6eb732699f4598425a79ebbae28623e4a22944a9643c35dcb5acfd193684330"
+                  }
+                ]
+              },
+              "id": "research_eef6c683-c8ee-4149-a8e4-56173cad56c3",
+              "revision_id": "revision_e0bde12c-fed9-4358-82d4-bb20bd9cc5a9",
+              "created_at": "2026-10-03T18:43:43.375Z",
+              "dependency_status": "stale",
+              "changed_dependencies": [
+                {
+                  "kind": "artifact",
+                  "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                  "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                  "current_version": "revision_ae89791b-f753-462b-ace0-db40e7fad5c8",
+                  "reason": "changed"
+                },
+                {
+                  "kind": "artifact",
+                  "id": "research_5ffa56bb-ee7b-424a-854a-e27063ebca0c",
+                  "version": "revision_616b6ea5-f2ea-4256-971f-65907d9c0610",
+                  "reason": "upstream_stale"
+                }
+              ]
+            },
+            {
+              "kind": "industry_chain",
+              "title": "合成制造公司 WF-01 上游原料→制造企业→客户 产业链（2024-12-31 分析时点，合成联调）",
+              "dependencies": [
+                {
+                  "kind": "artifact",
+                  "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                  "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa"
+                }
+              ],
+              "run_id": "b130ef47-be5a-463d-9acc-66127ae235e4",
+              "source_validation": {
+                "schema_version": 1,
+                "scope": "reference_location_and_literal_quote_only",
+                "semantic_accuracy_verified": false,
+                "mode": "checked",
+                "references": [
+                  {
+                    "path": "/content/edges/0/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[0].exposed_material_cost_change_per_unit",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "f6eb732699f4598425a79ebbae28623e4a22944a9643c35dcb5acfd193684330"
+                  },
+                  {
+                    "path": "/content/edges/1/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[1].price_pass_through_per_unit",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "5ac93e2e0e3feb3ef9633098d541f903ae501169a2ae83e2881c1cfbde15d3fb"
+                  },
+                  {
+                    "path": "/content/edges/1/evidence/1",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[0].price_pass_through_per_unit",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "4014c3d0e11d4aaa175d13fae6d3384c6debe0b23301f1ceb1a019ef19bd30b0"
+                  },
+                  {
+                    "path": "/content/edges/2/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[1].demand_factor",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "4d45666433f83dc326b887cbf2e2909d582da416d27b27d7734daa4648599759"
+                  },
+                  {
+                    "path": "/content/edges/2/evidence/1",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[2].scenario_volume",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "68c089db18996b05042c38bee69bade0494e7a5f23c62c7fe14316822a85feed"
+                  },
+                  {
+                    "path": "/content/claims/0/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[0].exposed_material_cost_change_per_unit",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "f6eb732699f4598425a79ebbae28623e4a22944a9643c35dcb5acfd193684330"
+                  },
+                  {
+                    "path": "/content/claims/1/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[1].scenario_unit_price",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "398f5c110923d57b34974ab8338087710cd54e56241491011c7aefb9e7255bfc"
+                  },
+                  {
+                    "path": "/content/claims/1/evidence/1",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[1].demand_factor",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "4d45666433f83dc326b887cbf2e2909d582da416d27b27d7734daa4648599759"
+                  },
+                  {
+                    "path": "/content/claims/2/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[0].ebit_change",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "04f402bfd48254d9fc9650312d9e2103ceb0138c06983182059ebb228dcceef8"
+                  },
+                  {
+                    "path": "/content/claims/2/evidence/1",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[2].scenario_ebit",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "a6aa3a1f73ed02cf1b604b2667158bf3ff4d580c9cd281087efc5b718833c274"
+                  },
+                  {
+                    "path": "/content/claims/3/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "results.equity_value_change",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "9f6602c4f07ab749fb76edc2c032df23acb6736b3ee65bbdb612b37454d2c7d7"
+                  },
+                  {
+                    "path": "/content/claims/3/evidence/1",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "results.scenario_valuation.value_per_share",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "f07faedc484d01facee52bb4191a5d12eada5ada1359d188cd64601e90c590e5"
+                  },
+                  {
+                    "path": "/content/claims/4/evidence/0",
+                    "status": "locator_and_quote_match",
+                    "kind": "artifact",
+                    "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                    "locator": "tables.scenario[0].exposed_material_cost_change_per_unit",
+                    "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                    "text_sha256": "f6eb732699f4598425a79ebbae28623e4a22944a9643c35dcb5acfd193684330"
+                  }
+                ]
+              },
+              "id": "research_a4ac650d-36d1-4e7e-a054-977e41fe3260",
+              "revision_id": "revision_1127c945-de97-4372-976e-bddf6c6d8e44",
+              "created_at": "2026-10-03T18:43:21.767Z",
+              "dependency_status": "stale",
+              "changed_dependencies": [
+                {
+                  "kind": "artifact",
+                  "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                  "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                  "current_version": "revision_ae89791b-f753-462b-ace0-db40e7fad5c8",
+                  "reason": "changed"
+                }
+              ]
+            },
+            {
+              "kind": "dcf",
+              "title": "合成制造公司 WF-01 独立 DCF（继承情景版输入，2024-12-31 估值）",
+              "dependencies": [
+                {
+                  "kind": "artifact",
+                  "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                  "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa"
+                }
+              ],
+              "run_id": "b130ef47-be5a-463d-9acc-66127ae235e4",
+              "source_validation": {
+                "schema_version": 1,
+                "scope": "reference_location_and_literal_quote_only",
+                "semantic_accuracy_verified": false,
+                "mode": "inherited",
+                "inherited_from": {
+                  "artifact_id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                  "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                  "original_mode": "checked"
+                }
+              },
+              "source_model": {
+                "artifact_id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                "variant": "scenario",
+                "spec_sha256": "d9c9824a296f45155ebf63fe4a4ccc65e42c90b5812fd37c61854e540b26ad00"
+              },
+              "id": "research_5ffa56bb-ee7b-424a-854a-e27063ebca0c",
+              "revision_id": "revision_616b6ea5-f2ea-4256-971f-65907d9c0610",
+              "created_at": "2026-10-03T18:42:57.777Z",
+              "dependency_status": "stale",
+              "changed_dependencies": [
+                {
+                  "kind": "artifact",
+                  "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+                  "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+                  "current_version": "revision_ae89791b-f753-462b-ace0-db40e7fad5c8",
+                  "reason": "changed"
+                }
+              ]
+            }
+          ]
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "937bd1c2-42a8-4b48-b634-f474d9de926b"
+      }
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:52.687Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "99f16431-7320-459a-a6bd-459353e60a76",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "research-models-1791052965130",
+      "budget": {
+        "max_model_calls": 40,
+        "max_input_tokens": 2000000,
+        "max_output_tokens": 300000,
+        "max_total_tokens": 2300000,
+        "max_wall_seconds": 1200
+      },
+      "started_at": "2026-10-03T18:42:45.409Z",
+      "deadline_at": "2026-10-03T19:02:45.409Z",
+      "elapsed_seconds": 67.253,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 11,
+        "settled_calls": 10,
+        "input_tokens": 393608,
+        "output_tokens": 17582,
+        "total_tokens": 411190,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 8192
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "99f16431-7320-459a-a6bd-459353e60a76",
+          "run_id": "7b893097-2488-4716-b07a-6983496be3fe",
+          "max_output_tokens": 8192,
+          "created_at": "2026-10-03T18:43:52.662Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:53.821Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "model_usage",
+    "data": {
+      "requestId": "99f16431-7320-459a-a6bd-459353e60a76",
+      "phase": "main",
+      "stopReason": "toolUse",
+      "usage": {
+        "input": 5325,
+        "output": 170,
+        "cacheRead": 5504,
+        "cacheWrite": 0,
+        "reasoning": 32,
+        "totalTokens": 10999,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:53.847Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "99f16431-7320-459a-a6bd-459353e60a76",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "research-models-1791052965130",
+      "budget": {
+        "max_model_calls": 40,
+        "max_input_tokens": 2000000,
+        "max_output_tokens": 300000,
+        "max_total_tokens": 2300000,
+        "max_wall_seconds": 1200
+      },
+      "started_at": "2026-10-03T18:42:45.409Z",
+      "deadline_at": "2026-10-03T19:02:45.409Z",
+      "elapsed_seconds": 68.415,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 11,
+        "settled_calls": 11,
+        "input_tokens": 404437,
+        "output_tokens": 17752,
+        "total_tokens": 422189,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:53.851Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "tool_request",
+    "data": {
+      "name": "read_research_artifact",
+      "toolCallId": "call_00_Uzi0DgcjUpkGMG2JDG025558",
+      "args": {
+        "artifact_id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+        "project_id": "b0c8079e-5fa1-4b60-80b7-29458f9929af"
+      }
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:53.851Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "tool_request",
+    "data": {
+      "name": "read_research_artifact",
+      "toolCallId": "call_01_KTa46xjjRzGRHPiUl3YK0630",
+      "args": {
+        "artifact_id": "research_5ffa56bb-ee7b-424a-854a-e27063ebca0c",
+        "project_id": "b0c8079e-5fa1-4b60-80b7-29458f9929af"
+      }
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:53.856Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "tool_result",
+    "data": {
+      "name": "read_research_artifact",
+      "toolCallId": "call_00_Uzi0DgcjUpkGMG2JDG025558",
+      "result": {
+        "status": "ok",
+        "data": {
+          "kind": "manufacturing_scenario",
+          "title": "合成制造公司 WF-01 原料成本/提价/销量传导情景（2025-2027，滞后1年）",
+          "spec": {
+            "currency": "CNY",
+            "amount_scale": "1",
+            "base_year": 2024,
+            "base": {
+              "revenue": "1000",
+              "net_working_capital": "100"
+            },
+            "volume_unit": "件",
+            "baseline": [
+              {
+                "year": 2025,
+                "volume": "100",
+                "unit_price": "10",
+                "material_cost_per_unit": "4",
+                "other_variable_cost_per_unit": "2",
+                "fixed_cash_opex": "100",
+                "da": "50",
+                "capex": "50",
+                "nwc_ratio": "0.1",
+                "tax_rate": "0.25"
+              },
+              {
+                "year": 2026,
+                "volume": "110",
+                "unit_price": "10",
+                "material_cost_per_unit": "4",
+                "other_variable_cost_per_unit": "2",
+                "fixed_cash_opex": "110",
+                "da": "55",
+                "capex": "55",
+                "nwc_ratio": "0.1",
+                "tax_rate": "0.25"
+              },
+              {
+                "year": 2027,
+                "volume": "121",
+                "unit_price": "10",
+                "material_cost_per_unit": "4",
+                "other_variable_cost_per_unit": "2",
+                "fixed_cash_opex": "121",
+                "da": "60.5",
+                "capex": "60.5",
+                "nwc_ratio": "0.1",
+                "tax_rate": "0.25"
+              }
+            ],
+            "scenario": {
+              "exposed_material_share": "0.5",
+              "pass_through_rate": "0.5",
+              "lag_years": 1,
+              "price_elasticity": "-1",
+              "material_cost_changes": [
+                "0.2",
+                "0.2",
+                "0.2"
+              ],
+              "volume_changes": [
+                "0",
+                "0",
+                "0"
+              ],
+              "autonomous_price_changes": [
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "dcf": {
+              "cash_tax_policy": "floor_at_zero",
+              "discount": {
+                "wacc": "0.11",
+                "cashflow_timing": "year_end"
+              },
+              "terminal": {
+                "growth": "0.02",
+                "roic": "0.2",
+                "ebit_margin": "0.25",
+                "tax_rate": "0.25"
+              },
+              "bridge": {
+                "net_debt": "200",
+                "non_controlling_interest": "20",
+                "preferred_equity": "10",
+                "non_operating_assets_ex_cash": "30"
+              },
+              "shares": {
+                "count": "100",
+                "scale": "1"
+              },
+              "sensitivity": {
+                "wacc": [
+                  "0.08",
+                  "0.1",
+                  "0.12"
+                ],
+                "growth": [
+                  "0",
+                  "0.02",
+                  "0.03"
+                ]
+              }
+            },
+            "input_basis": {
+              "currency": {
+                "basis": "assumption",
+                "rationale": "用户明确给定的合成联调假设，非任何实际公司披露。"
+              },
+              "amount_scale": {
+                "basis": "assumption",
+                "rationale": "用户明确给定：金额倍率1，即基准货币单位。"
+              },
+              "base_year": {
+                "basis": "assumption",
+                "rationale": "用户给定基期2024年，估值时点2024-12-31。"
+              },
+              "base.revenue": {
+                "basis": "assumption",
+                "rationale": "用户给定2024基期收入1000（CNY，合并口径，假设值）。"
+              },
+              "base.net_working_capital": {
+                "basis": "assumption",
+                "rationale": "用户给定2024基期净营运资本100（不含带息负债）。"
+              },
+              "volume_unit": {
+                "basis": "assumption",
+                "rationale": "用户给定销量单位：件。"
+              },
+              "baseline.0.year": {
+                "basis": "assumption",
+                "rationale": "用户给定基线年份2025。"
+              },
+              "baseline.1.year": {
+                "basis": "assumption",
+                "rationale": "用户给定基线年份2026。"
+              },
+              "baseline.2.year": {
+                "basis": "assumption",
+                "rationale": "用户给定基线年份2027。"
+              },
+              "baseline.0.volume": {
+                "basis": "assumption",
+                "rationale": "用户给定2025基线销量100件。"
+              },
+              "baseline.1.volume": {
+                "basis": "assumption",
+                "rationale": "用户给定2026基线销量110件。"
+              },
+              "baseline.2.volume": {
+                "basis": "assumption",
+                "rationale": "用户给定2027基线销量121件。"
+              },
+              "baseline.0.unit_price": {
+                "basis": "assumption",
+                "rationale": "用户给定2025基线单价10 CNY/件。"
+              },
+              "baseline.1.unit_price": {
+                "basis": "assumption",
+                "rationale": "用户给定2026基线单价10 CNY/件。"
+              },
+              "baseline.2.unit_price": {
+                "basis": "assumption",
+                "rationale": "用户给定2027基线单价10 CNY/件。"
+              },
+              "baseline.0.material_cost_per_unit": {
+                "basis": "assumption",
+                "rationale": "用户给定2025基线单位原料成本4 CNY/件。"
+              },
+              "baseline.1.material_cost_per_unit": {
+                "basis": "assumption",
+                "rationale": "用户给定2026基线单位原料成本4 CNY/件。"
+              },
+              "baseline.2.material_cost_per_unit": {
+                "basis": "assumption",
+                "rationale": "用户给定2027基线单位原料成本4 CNY/件。"
+              },
+              "baseline.0.other_variable_cost_per_unit": {
+                "basis": "assumption",
+                "rationale": "用户给定2025基线其他单位变动成本2 CNY/件。"
+              },
+              "baseline.1.other_variable_cost_per_unit": {
+                "basis": "assumption",
+                "rationale": "用户给定2026基线其他单位变动成本2 CNY/件。"
+              },
+              "baseline.2.other_variable_cost_per_unit": {
+                "basis": "assumption",
+                "rationale": "用户给定2027基线其他单位变动成本2 CNY/件。"
+              },
+              "baseline.0.fixed_cash_opex": {
+                "basis": "assumption",
+                "rationale": "用户给定2025基线固定现金费用100。"
+              },
+              "baseline.1.fixed_cash_opex": {
+                "basis": "assumption",
+                "rationale": "用户给定2026基线固定现金费用110。"
+              },
+              "baseline.2.fixed_cash_opex": {
+                "basis": "assumption",
+                "rationale": "用户给定2027基线固定现金费用121。"
+              },
+              "baseline.0.da": {
+                "basis": "assumption",
+                "rationale": "用户给定2025基线折旧摊销50。"
+              },
+              "baseline.1.da": {
+                "basis": "assumption",
+                "rationale": "用户给定2026基线折旧摊销55。"
+              },
+              "baseline.2.da": {
+                "basis": "assumption",
+                "rationale": "用户给定2027基线折旧摊销60.5。"
+              },
+              "baseline.0.capex": {
+                "basis": "assumption",
+                "rationale": "用户给定2025基线资本开支50。"
+              },
+              "baseline.1.capex": {
+                "basis": "assumption",
+                "rationale": "用户给定2026基线资本开支55。"
+              },
+              "baseline.2.capex": {
+                "basis": "assumption",
+                "rationale": "用户给定2027基线资本开支60.5。"
+              },
+              "baseline.0.nwc_ratio": {
+                "basis": "assumption",
+                "rationale": "用户给定2025基线净营运资本占收入比0.1。"
+              },
+              "baseline.1.nwc_ratio": {
+                "basis": "assumption",
+                "rationale": "用户给定2026基线净营运资本占收入比0.1。"
+              },
+              "baseline.2.nwc_ratio": {
+                "basis": "assumption",
+                "rationale": "用户给定2027基线净营运资本占收入比0.1。"
+              },
+              "baseline.0.tax_rate": {
+                "basis": "assumption",
+                "rationale": "用户给定2025基线税率0.25。"
+              },
+              "baseline.1.tax_rate": {
+                "basis": "assumption",
+                "rationale": "用户给定2026基线税率0.25。"
+              },
+              "baseline.2.tax_rate": {
+                "basis": "assumption",
+                "rationale": "用户给定2027基线税率0.25。"
+              },
+              "scenario.exposed_material_share": {
+                "basis": "assumption",
+                "rationale": "用户给定暴露原料占比0.5，未从公司名称推断。"
+              },
+              "scenario.pass_through_rate": {
+                "basis": "assumption",
+                "rationale": "用户给定提价传导率0.5。"
+              },
+              "scenario.lag_years": {
+                "basis": "assumption",
+                "rationale": "用户给定传导滞后1年。"
+              },
+              "scenario.price_elasticity": {
+                "basis": "assumption",
+                "rationale": "用户给定需求价格弹性-1。"
+              },
+              "scenario.material_cost_changes.0": {
+                "basis": "assumption",
+                "rationale": "用户给定2025原料成本水平变化+0.2（相对当年基线，非累计）。"
+              },
+              "scenario.material_cost_changes.1": {
+                "basis": "assumption",
+                "rationale": "用户给定2026原料成本水平变化+0.2。"
+              },
+              "scenario.material_cost_changes.2": {
+                "basis": "assumption",
+                "rationale": "用户给定2027原料成本水平变化+0.2。"
+              },
+              "scenario.volume_changes.0": {
+                "basis": "assumption",
+                "rationale": "用户给定2025外生销量变化0。"
+              },
+              "scenario.volume_changes.1": {
+                "basis": "assumption",
+                "rationale": "用户给定2026外生销量变化0。"
+              },
+              "scenario.volume_changes.2": {
+                "basis": "assumption",
+                "rationale": "用户给定2027外生销量变化0。"
+              },
+              "scenario.autonomous_price_changes.0": {
+                "basis": "assumption",
+                "rationale": "用户给定2025自主提价0。"
+              },
+              "scenario.autonomous_price_changes.1": {
+                "basis": "assumption",
+                "rationale": "用户给定2026自主提价0。"
+              },
+              "scenario.autonomous_price_changes.2": {
+                "basis": "assumption",
+                "rationale": "用户给定2027自主提价0。"
+              },
+              "dcf.cash_tax_policy": {
+                "basis": "assumption",
+                "rationale": "用户给定现金税政策floor_at_zero（仅对正EBIT计税）。"
+              },
+              "dcf.discount.wacc": {
+                "basis": "assumption",
+                "rationale": "用户给定WACC=0.1。"
+              },
+              "dcf.discount.cashflow_timing": {
+                "basis": "assumption",
+                "rationale": "用户给定现金流时点year_end。"
+              },
+              "dcf.terminal.growth": {
+                "basis": "assumption",
+                "rationale": "用户给定永续增长0.02。"
+              },
+              "dcf.terminal.roic": {
+                "basis": "assumption",
+                "rationale": "用户给定稳定期ROIC=0.2。"
+              },
+              "dcf.terminal.ebit_margin": {
+                "basis": "assumption",
+                "rationale": "用户给定稳定期EBIT利润率0.25。"
+              },
+              "dcf.terminal.tax_rate": {
+                "basis": "assumption",
+                "rationale": "用户给定稳定期税率0.25。"
+              },
+              "dcf.bridge.net_debt": {
+                "basis": "assumption",
+                "rationale": "用户给定净债务200。"
+              },
+              "dcf.bridge.non_controlling_interest": {
+                "basis": "assumption",
+                "rationale": "用户给定少数股东权益20。"
+              },
+              "dcf.bridge.preferred_equity": {
+                "basis": "assumption",
+                "rationale": "用户给定优先股权益10。"
+              },
+              "dcf.bridge.non_operating_assets_ex_cash": {
+                "basis": "assumption",
+                "rationale": "用户给定非经营性资产（不含现金）30。"
+              },
+              "dcf.shares.count": {
+                "basis": "assumption",
+                "rationale": "用户给定股数100，独立倍率。"
+              },
+              "dcf.shares.scale": {
+                "basis": "assumption",
+                "rationale": "用户给定股数倍率1（独立于金额倍率）。"
+              },
+              "dcf.sensitivity.wacc.0": {
+                "basis": "assumption",
+                "rationale": "用户给定敏感性WACC=0.08。"
+              },
+              "dcf.sensitivity.wacc.1": {
+                "basis": "assumption",
+                "rationale": "用户给定敏感性WACC=0.1。"
+              },
+              "dcf.sensitivity.wacc.2": {
+                "basis": "assumption",
+                "rationale": "用户给定敏感性WACC=0.12。"
+              },
+              "dcf.sensitivity.growth.0": {
+                "basis": "assumption",
+                "rationale": "用户给定敏感性增长0。"
+              },
+              "dcf.sensitivity.growth.1": {
+                "basis": "assumption",
+                "rationale": "用户给定敏感性增长0.02。"
+              },
+              "dcf.sensitivity.growth.2": {
+                "basis": "assumption",
+                "rationale": "用户给定敏感性增长0.03。"
+              }
+            }
+          },
+          "result": {
+            "schema_version": "1.0",
+            "model_version": "research-models-1.0.1",
+            "kind": "manufacturing_scenario",
+            "input_assumptions": {
+              "currency": "CNY",
+              "amount_scale": "1",
+              "base_year": 2024,
+              "base": {
+                "revenue": "1000",
+                "net_working_capital": "100"
+              },
+              "volume_unit": "件",
+              "baseline": [
+                {
+                  "year": 2025,
+                  "volume": "100",
+                  "unit_price": "10",
+                  "material_cost_per_unit": "4",
+                  "other_variable_cost_per_unit": "2",
+                  "fixed_cash_opex": "100",
+                  "da": "50",
+                  "capex": "50",
+                  "nwc_ratio": "0.1",
+                  "tax_rate": "0.25"
+                },
+                {
+                  "year": 2026,
+                  "volume": "110",
+                  "unit_price": "10",
+                  "material_cost_per_unit": "4",
+                  "other_variable_cost_per_unit": "2",
+                  "fixed_cash_opex": "110",
+                  "da": "55",
+                  "capex": "55",
+                  "nwc_ratio": "0.1",
+                  "tax_rate": "0.25"
+                },
+                {
+                  "year": 2027,
+                  "volume": "121",
+                  "unit_price": "10",
+                  "material_cost_per_unit": "4",
+                  "other_variable_cost_per_unit": "2",
+                  "fixed_cash_opex": "121",
+                  "da": "60.5",
+                  "capex": "60.5",
+                  "nwc_ratio": "0.1",
+                  "tax_rate": "0.25"
+                }
+              ],
+              "scenario": {
+                "exposed_material_share": "0.5",
+                "pass_through_rate": "0.5",
+                "lag_years": 1,
+                "price_elasticity": "-1",
+                "material_cost_changes": [
+                  "0.2",
+                  "0.2",
+                  "0.2"
+                ],
+                "volume_changes": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "autonomous_price_changes": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "dcf": {
+                "cash_tax_policy": "floor_at_zero",
+                "discount": {
+                  "wacc": "0.11",
+                  "cashflow_timing": "year_end"
+                },
+                "terminal": {
+                  "growth": "0.02",
+                  "roic": "0.2",
+                  "ebit_margin": "0.25",
+                  "tax_rate": "0.25"
+                },
+                "bridge": {
+                  "net_debt": "200",
+                  "non_controlling_interest": "20",
+                  "preferred_equity": "10",
+                  "non_operating_assets_ex_cash": "30"
+                },
+                "shares": {
+                  "count": "100",
+                  "scale": "1"
+                },
+                "sensitivity": {
+                  "wacc": [
+                    "0.08",
+                    "0.1",
+                    "0.12"
+                  ],
+                  "growth": [
+                    "0",
+                    "0.02",
+                    "0.03"
+                  ]
+                }
+              },
+              "input_basis": {
+                "currency": {
+                  "basis": "assumption",
+                  "rationale": "用户明确给定的合成联调假设，非任何实际公司披露。"
+                },
+                "amount_scale": {
+                  "basis": "assumption",
+                  "rationale": "用户明确给定：金额倍率1，即基准货币单位。"
+                },
+                "base_year": {
+                  "basis": "assumption",
+                  "rationale": "用户给定基期2024年，估值时点2024-12-31。"
+                },
+                "base.revenue": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2024基期收入1000（CNY，合并口径，假设值）。"
+                },
+                "base.net_working_capital": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2024基期净营运资本100（不含带息负债）。"
+                },
+                "volume_unit": {
+                  "basis": "assumption",
+                  "rationale": "用户给定销量单位：件。"
+                },
+                "baseline.0.year": {
+                  "basis": "assumption",
+                  "rationale": "用户给定基线年份2025。"
+                },
+                "baseline.1.year": {
+                  "basis": "assumption",
+                  "rationale": "用户给定基线年份2026。"
+                },
+                "baseline.2.year": {
+                  "basis": "assumption",
+                  "rationale": "用户给定基线年份2027。"
+                },
+                "baseline.0.volume": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2025基线销量100件。"
+                },
+                "baseline.1.volume": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2026基线销量110件。"
+                },
+                "baseline.2.volume": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2027基线销量121件。"
+                },
+                "baseline.0.unit_price": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2025基线单价10 CNY/件。"
+                },
+                "baseline.1.unit_price": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2026基线单价10 CNY/件。"
+                },
+                "baseline.2.unit_price": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2027基线单价10 CNY/件。"
+                },
+                "baseline.0.material_cost_per_unit": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2025基线单位原料成本4 CNY/件。"
+                },
+                "baseline.1.material_cost_per_unit": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2026基线单位原料成本4 CNY/件。"
+                },
+                "baseline.2.material_cost_per_unit": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2027基线单位原料成本4 CNY/件。"
+                },
+                "baseline.0.other_variable_cost_per_unit": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2025基线其他单位变动成本2 CNY/件。"
+                },
+                "baseline.1.other_variable_cost_per_unit": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2026基线其他单位变动成本2 CNY/件。"
+                },
+                "baseline.2.other_variable_cost_per_unit": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2027基线其他单位变动成本2 CNY/件。"
+                },
+                "baseline.0.fixed_cash_opex": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2025基线固定现金费用100。"
+                },
+                "baseline.1.fixed_cash_opex": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2026基线固定现金费用110。"
+                },
+                "baseline.2.fixed_cash_opex": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2027基线固定现金费用121。"
+                },
+                "baseline.0.da": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2025基线折旧摊销50。"
+                },
+                "baseline.1.da": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2026基线折旧摊销55。"
+                },
+                "baseline.2.da": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2027基线折旧摊销60.5。"
+                },
+                "baseline.0.capex": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2025基线资本开支50。"
+                },
+                "baseline.1.capex": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2026基线资本开支55。"
+                },
+                "baseline.2.capex": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2027基线资本开支60.5。"
+                },
+                "baseline.0.nwc_ratio": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2025基线净营运资本占收入比0.1。"
+                },
+                "baseline.1.nwc_ratio": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2026基线净营运资本占收入比0.1。"
+                },
+                "baseline.2.nwc_ratio": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2027基线净营运资本占收入比0.1。"
+                },
+                "baseline.0.tax_rate": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2025基线税率0.25。"
+                },
+                "baseline.1.tax_rate": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2026基线税率0.25。"
+                },
+                "baseline.2.tax_rate": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2027基线税率0.25。"
+                },
+                "scenario.exposed_material_share": {
+                  "basis": "assumption",
+                  "rationale": "用户给定暴露原料占比0.5，未从公司名称推断。"
+                },
+                "scenario.pass_through_rate": {
+                  "basis": "assumption",
+                  "rationale": "用户给定提价传导率0.5。"
+                },
+                "scenario.lag_years": {
+                  "basis": "assumption",
+                  "rationale": "用户给定传导滞后1年。"
+                },
+                "scenario.price_elasticity": {
+                  "basis": "assumption",
+                  "rationale": "用户给定需求价格弹性-1。"
+                },
+                "scenario.material_cost_changes.0": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2025原料成本水平变化+0.2（相对当年基线，非累计）。"
+                },
+                "scenario.material_cost_changes.1": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2026原料成本水平变化+0.2。"
+                },
+                "scenario.material_cost_changes.2": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2027原料成本水平变化+0.2。"
+                },
+                "scenario.volume_changes.0": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2025外生销量变化0。"
+                },
+                "scenario.volume_changes.1": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2026外生销量变化0。"
+                },
+                "scenario.volume_changes.2": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2027外生销量变化0。"
+                },
+                "scenario.autonomous_price_changes.0": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2025自主提价0。"
+                },
+                "scenario.autonomous_price_changes.1": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2026自主提价0。"
+                },
+                "scenario.autonomous_price_changes.2": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2027自主提价0。"
+                },
+                "dcf.cash_tax_policy": {
+                  "basis": "assumption",
+                  "rationale": "用户给定现金税政策floor_at_zero（仅对正EBIT计税）。"
+                },
+                "dcf.discount.wacc": {
+                  "basis": "assumption",
+                  "rationale": "用户给定WACC=0.1。"
+                },
+                "dcf.discount.cashflow_timing": {
+                  "basis": "assumption",
+                  "rationale": "用户给定现金流时点year_end。"
+                },
+                "dcf.terminal.growth": {
+                  "basis": "assumption",
+                  "rationale": "用户给定永续增长0.02。"
+                },
+                "dcf.terminal.roic": {
+                  "basis": "assumption",
+                  "rationale": "用户给定稳定期ROIC=0.2。"
+                },
+                "dcf.terminal.ebit_margin": {
+                  "basis": "assumption",
+                  "rationale": "用户给定稳定期EBIT利润率0.25。"
+                },
+                "dcf.terminal.tax_rate": {
+                  "basis": "assumption",
+                  "rationale": "用户给定稳定期税率0.25。"
+                },
+                "dcf.bridge.net_debt": {
+                  "basis": "assumption",
+                  "rationale": "用户给定净债务200。"
+                },
+                "dcf.bridge.non_controlling_interest": {
+                  "basis": "assumption",
+                  "rationale": "用户给定少数股东权益20。"
+                },
+                "dcf.bridge.preferred_equity": {
+                  "basis": "assumption",
+                  "rationale": "用户给定优先股权益10。"
+                },
+                "dcf.bridge.non_operating_assets_ex_cash": {
+                  "basis": "assumption",
+                  "rationale": "用户给定非经营性资产（不含现金）30。"
+                },
+                "dcf.shares.count": {
+                  "basis": "assumption",
+                  "rationale": "用户给定股数100，独立倍率。"
+                },
+                "dcf.shares.scale": {
+                  "basis": "assumption",
+                  "rationale": "用户给定股数倍率1（独立于金额倍率）。"
+                },
+                "dcf.sensitivity.wacc.0": {
+                  "basis": "assumption",
+                  "rationale": "用户给定敏感性WACC=0.08。"
+                },
+                "dcf.sensitivity.wacc.1": {
+                  "basis": "assumption",
+                  "rationale": "用户给定敏感性WACC=0.1。"
+                },
+                "dcf.sensitivity.wacc.2": {
+                  "basis": "assumption",
+                  "rationale": "用户给定敏感性WACC=0.12。"
+                },
+                "dcf.sensitivity.growth.0": {
+                  "basis": "assumption",
+                  "rationale": "用户给定敏感性增长0。"
+                },
+                "dcf.sensitivity.growth.1": {
+                  "basis": "assumption",
+                  "rationale": "用户给定敏感性增长0.02。"
+                },
+                "dcf.sensitivity.growth.2": {
+                  "basis": "assumption",
+                  "rationale": "用户给定敏感性增长0.03。"
+                }
+              }
+            },
+            "formulas": {
+              "material_cost": "baseline_material_cost_per_unit * (1 + exposed_material_share * material_cost_change[t])",
+              "price": "baseline_price[t]*(1+autonomous_price_change[t]) + pass_through_rate * exposed_absolute_material_cost_change_per_unit[t-lag]; pre-horizon changes are zero",
+              "volume": "baseline_volume[t]*(1+exogenous_volume_change[t])*(1 + price_elasticity*(scenario_price[t]/baseline_price[t]-1))",
+              "ebitda": "volume*(unit_price-material_cost_per_unit-other_variable_cost_per_unit)-fixed_cash_opex",
+              "ebit": "EBITDA-D&A; forecast flows feed the same FCFF DCF function",
+              "shock_basis": "All shock arrays are levels relative to that year's explicit baseline, not cumulatively compounded increments"
+            },
+            "units": {
+              "currency": "CNY",
+              "amount_scale": "1",
+              "amount": "CNY x 1",
+              "ratios": "decimal fraction (0.10 = 10%)",
+              "multiple": "times",
+              "value_per_share": "CNY/share",
+              "days": "days",
+              "volume": "件",
+              "unit_price": "CNY x 1/件"
+            },
+            "precision": {
+              "arithmetic": "Decimal",
+              "significant_digits": 50,
+              "rounding": "ROUND_HALF_EVEN",
+              "output": "decimal strings; no additional display rounding"
+            },
+            "method_sources": [
+              "https://people.stern.nyu.edu/adamodar/pdfiles/valn2ed/ch15.pdf"
+            ],
+            "results": {
+              "baseline_dcf_spec": {
+                "cash_tax_policy": "floor_at_zero",
+                "discount": {
+                  "wacc": "0.11",
+                  "cashflow_timing": "year_end"
+                },
+                "terminal": {
+                  "growth": "0.02",
+                  "roic": "0.2",
+                  "ebit_margin": "0.25",
+                  "tax_rate": "0.25"
+                },
+                "bridge": {
+                  "net_debt": "200",
+                  "non_controlling_interest": "20",
+                  "preferred_equity": "10",
+                  "non_operating_assets_ex_cash": "30"
+                },
+                "shares": {
+                  "count": "100",
+                  "scale": "1"
+                },
+                "sensitivity": {
+                  "wacc": [
+                    "0.08",
+                    "0.1",
+                    "0.12"
+                  ],
+                  "growth": [
+                    "0",
+                    "0.02",
+                    "0.03"
+                  ]
+                },
+                "currency": "CNY",
+                "amount_scale": "1",
+                "base_year": 2024,
+                "base": {
+                  "revenue": "1000",
+                  "net_working_capital": "100"
+                },
+                "source_refs": {},
+                "scenario_assumptions": {
+                  "exposed_material_share": "0.5",
+                  "pass_through_rate": "0.5",
+                  "lag_years": 1,
+                  "price_elasticity": "-1",
+                  "material_cost_changes": [
+                    "0.2",
+                    "0.2",
+                    "0.2"
+                  ],
+                  "volume_changes": [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "autonomous_price_changes": [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                },
+                "forecast": [
+                  {
+                    "year": 2025,
+                    "da": "50",
+                    "capex": "50",
+                    "tax_rate": "0.25",
+                    "nwc_ratio": "0.1",
+                    "revenue": "1000",
+                    "ebit": "250"
+                  },
+                  {
+                    "year": 2026,
+                    "da": "55",
+                    "capex": "55",
+                    "tax_rate": "0.25",
+                    "nwc_ratio": "0.1",
+                    "revenue": "1100",
+                    "ebit": "275"
+                  },
+                  {
+                    "year": 2027,
+                    "da": "60.5",
+                    "capex": "60.5",
+                    "tax_rate": "0.25",
+                    "nwc_ratio": "0.1",
+                    "revenue": "1210",
+                    "ebit": "302.5"
+                  }
+                ],
+                "input_basis": {
+                  "currency": {
+                    "basis": "assumption",
+                    "rationale": "用户明确给定的合成联调假设，非任何实际公司披露。"
+                  },
+                  "amount_scale": {
+                    "basis": "assumption",
+                    "rationale": "用户明确给定：金额倍率1，即基准货币单位。"
+                  },
+                  "base_year": {
+                    "basis": "assumption",
+                    "rationale": "用户给定基期2024年，估值时点2024-12-31。"
+                  },
+                  "base.revenue": {
+                    "basis": "assumption",
+                    "rationale": "用户给定2024基期收入1000（CNY，合并口径，假设值）。"
+                  },
+                  "base.net_working_capital": {
+                    "basis": "assumption",
+                    "rationale": "用户给定2024基期净营运资本100（不含带息负债）。"
+                  },
+                  "cash_tax_policy": {
+                    "basis": "assumption",
+                    "rationale": "用户给定现金税政策floor_at_zero（仅对正EBIT计税）。"
+                  },
+                  "discount.wacc": {
+                    "basis": "assumption",
+                    "rationale": "用户给定WACC=0.1。"
+                  },
+                  "discount.cashflow_timing": {
+                    "basis": "assumption",
+                    "rationale": "用户给定现金流时点year_end。"
+                  },
+                  "terminal.growth": {
+                    "basis": "assumption",
+                    "rationale": "用户给定永续增长0.02。"
+                  },
+                  "terminal.roic": {
+                    "basis": "assumption",
+                    "rationale": "用户给定稳定期ROIC=0.2。"
+                  },
+                  "terminal.ebit_margin": {
+                    "basis": "assumption",
+                    "rationale": "用户给定稳定期EBIT利润率0.25。"
+                  },
+                  "terminal.tax_rate": {
+                    "basis": "assumption",
+                    "rationale": "用户给定稳定期税率0.25。"
+                  },
+                  "bridge.net_debt": {
+                    "basis": "assumption",
+                    "rationale": "用户给定净债务200。"
+                  },
+                  "bridge.non_controlling_interest": {
+                    "basis": "assumption",
+                    "rationale": "用户给定少数股东权益20。"
+                  },
+                  "bridge.preferred_equity": {
+                    "basis": "assumption",
+                    "rationale": "用户给定优先股权益10。"
+                  },
+                  "bridge.non_operating_assets_ex_cash": {
+                    "basis": "assumption",
+                    "rationale": "用户给定非经营性资产（不含现金）30。"
+                  },
+                  "shares.count": {
+                    "basis": "assumption",
+                    "rationale": "用户给定股数100，独立倍率。"
+                  },
+                  "shares.scale": {
+                    "basis": "assumption",
+                    "rationale": "用户给定股数倍率1（独立于金额倍率）。"
+                  },
+                  "sensitivity.wacc.0": {
+                    "basis": "assumption",
+                    "rationale": "用户给定敏感性WACC=0.08。"
+                  },
+                  "sensitivity.wacc.1": {
+                    "basis": "assumption",
+                    "rationale": "用户给定敏感性WACC=0.1。"
+                  },
+                  "sensitivity.wacc.2": {
+                    "basis": "assumption",
+                    "rationale": "用户给定敏感性WACC=0.12。"
+                  },
+                  "sensitivity.growth.0": {
+                    "basis": "assumption",
+                    "rationale": "用户给定敏感性增长0。"
+                  },
+                  "sensitivity.growth.1": {
+                    "basis": "assumption",
+                    "rationale": "用户给定敏感性增长0.02。"
+                  },
+                  "sensitivity.growth.2": {
+                    "basis": "assumption",
+                    "rationale": "用户给定敏感性增长0.03。"
+                  },
+                  "forecast.0.revenue": {
+                    "basis": "derived",
+                    "rationale": "由预测销量乘销售单价计算收入。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.0.ebit": {
+                    "basis": "derived",
+                    "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.0.year": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.0.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.0.da": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.0.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.0.capex": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.0.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.0.tax_rate": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.0.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.0.nwc_ratio": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.0.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.revenue": {
+                    "basis": "derived",
+                    "rationale": "由预测销量乘销售单价计算收入。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.ebit": {
+                    "basis": "derived",
+                    "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.year": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.1.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.da": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.1.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.capex": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.1.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.tax_rate": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.1.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.nwc_ratio": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.1.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.revenue": {
+                    "basis": "derived",
+                    "rationale": "由预测销量乘销售单价计算收入。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.ebit": {
+                    "basis": "derived",
+                    "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.year": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.2.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.da": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.2.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.capex": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.2.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.tax_rate": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.2.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.nwc_ratio": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.2.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  }
+                }
+              },
+              "scenario_dcf_spec": {
+                "cash_tax_policy": "floor_at_zero",
+                "discount": {
+                  "wacc": "0.11",
+                  "cashflow_timing": "year_end"
+                },
+                "terminal": {
+                  "growth": "0.02",
+                  "roic": "0.2",
+                  "ebit_margin": "0.25",
+                  "tax_rate": "0.25"
+                },
+                "bridge": {
+                  "net_debt": "200",
+                  "non_controlling_interest": "20",
+                  "preferred_equity": "10",
+                  "non_operating_assets_ex_cash": "30"
+                },
+                "shares": {
+                  "count": "100",
+                  "scale": "1"
+                },
+                "sensitivity": {
+                  "wacc": [
+                    "0.08",
+                    "0.1",
+                    "0.12"
+                  ],
+                  "growth": [
+                    "0",
+                    "0.02",
+                    "0.03"
+                  ]
+                },
+                "currency": "CNY",
+                "amount_scale": "1",
+                "base_year": 2024,
+                "base": {
+                  "revenue": "1000",
+                  "net_working_capital": "100"
+                },
+                "source_refs": {},
+                "scenario_assumptions": {
+                  "exposed_material_share": "0.5",
+                  "pass_through_rate": "0.5",
+                  "lag_years": 1,
+                  "price_elasticity": "-1",
+                  "material_cost_changes": [
+                    "0.2",
+                    "0.2",
+                    "0.2"
+                  ],
+                  "volume_changes": [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "autonomous_price_changes": [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                },
+                "forecast": [
+                  {
+                    "year": 2025,
+                    "da": "50",
+                    "capex": "50",
+                    "tax_rate": "0.25",
+                    "nwc_ratio": "0.1",
+                    "revenue": "1000",
+                    "ebit": "210.00"
+                  },
+                  {
+                    "year": 2026,
+                    "da": "55",
+                    "capex": "55",
+                    "tax_rate": "0.25",
+                    "nwc_ratio": "0.1",
+                    "revenue": "1099.560000",
+                    "ebit": "244.640000"
+                  },
+                  {
+                    "year": 2027,
+                    "da": "60.5",
+                    "capex": "60.5",
+                    "tax_rate": "0.25",
+                    "nwc_ratio": "0.1",
+                    "revenue": "1209.516000",
+                    "ebit": "269.104000"
+                  }
+                ],
+                "input_basis": {
+                  "currency": {
+                    "basis": "assumption",
+                    "rationale": "用户明确给定的合成联调假设，非任何实际公司披露。"
+                  },
+                  "amount_scale": {
+                    "basis": "assumption",
+                    "rationale": "用户明确给定：金额倍率1，即基准货币单位。"
+                  },
+                  "base_year": {
+                    "basis": "assumption",
+                    "rationale": "用户给定基期2024年，估值时点2024-12-31。"
+                  },
+                  "base.revenue": {
+                    "basis": "assumption",
+                    "rationale": "用户给定2024基期收入1000（CNY，合并口径，假设值）。"
+                  },
+                  "base.net_working_capital": {
+                    "basis": "assumption",
+                    "rationale": "用户给定2024基期净营运资本100（不含带息负债）。"
+                  },
+                  "cash_tax_policy": {
+                    "basis": "assumption",
+                    "rationale": "用户给定现金税政策floor_at_zero（仅对正EBIT计税）。"
+                  },
+                  "discount.wacc": {
+                    "basis": "assumption",
+                    "rationale": "用户给定WACC=0.1。"
+                  },
+                  "discount.cashflow_timing": {
+                    "basis": "assumption",
+                    "rationale": "用户给定现金流时点year_end。"
+                  },
+                  "terminal.growth": {
+                    "basis": "assumption",
+                    "rationale": "用户给定永续增长0.02。"
+                  },
+                  "terminal.roic": {
+                    "basis": "assumption",
+                    "rationale": "用户给定稳定期ROIC=0.2。"
+                  },
+                  "terminal.ebit_margin": {
+                    "basis": "assumption",
+                    "rationale": "用户给定稳定期EBIT利润率0.25。"
+                  },
+                  "terminal.tax_rate": {
+                    "basis": "assumption",
+                    "rationale": "用户给定稳定期税率0.25。"
+                  },
+                  "bridge.net_debt": {
+                    "basis": "assumption",
+                    "rationale": "用户给定净债务200。"
+                  },
+                  "bridge.non_controlling_interest": {
+                    "basis": "assumption",
+                    "rationale": "用户给定少数股东权益20。"
+                  },
+                  "bridge.preferred_equity": {
+                    "basis": "assumption",
+                    "rationale": "用户给定优先股权益10。"
+                  },
+                  "bridge.non_operating_assets_ex_cash": {
+                    "basis": "assumption",
+                    "rationale": "用户给定非经营性资产（不含现金）30。"
+                  },
+                  "shares.count": {
+                    "basis": "assumption",
+                    "rationale": "用户给定股数100，独立倍率。"
+                  },
+                  "shares.scale": {
+                    "basis": "assumption",
+                    "rationale": "用户给定股数倍率1（独立于金额倍率）。"
+                  },
+                  "sensitivity.wacc.0": {
+                    "basis": "assumption",
+                    "rationale": "用户给定敏感性WACC=0.08。"
+                  },
+                  "sensitivity.wacc.1": {
+                    "basis": "assumption",
+                    "rationale": "用户给定敏感性WACC=0.1。"
+                  },
+                  "sensitivity.wacc.2": {
+                    "basis": "assumption",
+                    "rationale": "用户给定敏感性WACC=0.12。"
+                  },
+                  "sensitivity.growth.0": {
+                    "basis": "assumption",
+                    "rationale": "用户给定敏感性增长0。"
+                  },
+                  "sensitivity.growth.1": {
+                    "basis": "assumption",
+                    "rationale": "用户给定敏感性增长0.02。"
+                  },
+                  "sensitivity.growth.2": {
+                    "basis": "assumption",
+                    "rationale": "用户给定敏感性增长0.03。"
+                  },
+                  "forecast.0.revenue": {
+                    "basis": "derived",
+                    "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.0.ebit": {
+                    "basis": "derived",
+                    "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.0.year": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.0.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.0.da": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.0.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.0.capex": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.0.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.0.tax_rate": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.0.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.0.nwc_ratio": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.0.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.revenue": {
+                    "basis": "derived",
+                    "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.ebit": {
+                    "basis": "derived",
+                    "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.year": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.1.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.da": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.1.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.capex": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.1.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.tax_rate": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.1.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.1.nwc_ratio": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.1.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.revenue": {
+                    "basis": "derived",
+                    "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.ebit": {
+                    "basis": "derived",
+                    "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.year": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.2.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.da": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.2.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.capex": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.2.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.tax_rate": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.2.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  },
+                  "forecast.2.nwc_ratio": {
+                    "basis": "derived",
+                    "rationale": "从 baseline.2.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                  }
+                }
+              },
+              "baseline_valuation": {
+                "enterprise_value": "2178.1140161344690197867699693850168649292097064193",
+                "equity_value": "1978.1140161344690197867699693850168649292097064193",
+                "value_per_share": "19.781140161344690197867699693850168649292097064193",
+                "shares_outstanding": "100",
+                "net_debt": "200",
+                "non_controlling_interest": "20",
+                "non_operating_assets_ex_cash": "30",
+                "preferred_equity": "10",
+                "explicit_forecast_pv": "486.04576088140733867541756511807644020938396394934",
+                "terminal_value": "2314.12500",
+                "terminal_pv": "1692.0682552530616811113524042669404247198257424700",
+                "terminal_value_share": "0.77685017529798559430318263930997005981742153553064",
+                "terminal_year": 2028,
+                "terminal_revenue": "1234.20",
+                "terminal_nopat": "231.412500",
+                "terminal_reinvestment": "23.1412500",
+                "terminal_reinvestment_rate": "0.1",
+                "terminal_fcff": "208.2712500",
+                "wacc": "0.11",
+                "terminal_growth": "0.02",
+                "cashflow_timing": "year_end",
+                "terminal_discount_exponent": 3
+              },
+              "scenario_valuation": {
+                "enterprise_value": "2113.6542971020691984899435593372773796440706594103",
+                "equity_value": "1913.6542971020691984899435593372773796440706594103",
+                "value_per_share": "19.136542971020691984899435593372773796440706594103",
+                "shares_outstanding": "100",
+                "net_debt": "200",
+                "non_controlling_interest": "20",
+                "non_operating_assets_ex_cash": "30",
+                "preferred_equity": "10",
+                "explicit_forecast_pv": "422.26286915110874205103569603204373109413284723730",
+                "terminal_value": "2313.19935000000",
+                "terminal_pv": "1691.3914279509604564389078633052336485499378121730",
+                "terminal_value_share": "0.80022141287245825243508392229293014561176366489665",
+                "terminal_year": 2028,
+                "terminal_revenue": "1233.70632000",
+                "terminal_nopat": "231.319935000000",
+                "terminal_reinvestment": "23.1319935000000",
+                "terminal_reinvestment_rate": "0.1",
+                "terminal_fcff": "208.1879415000000",
+                "wacc": "0.11",
+                "terminal_growth": "0.02",
+                "cashflow_timing": "year_end",
+                "terminal_discount_exponent": 3
+              },
+              "equity_value_change": "-64.4597190323998212968264100477394852851390470090"
+            },
+            "tables": {
+              "scenario": [
+                {
+                  "year": 2025,
+                  "baseline_volume": "100",
+                  "scenario_volume": "100",
+                  "baseline_unit_price": "10",
+                  "scenario_unit_price": "10",
+                  "exposed_material_cost_change_per_unit": "0.40",
+                  "price_pass_through_per_unit": "0",
+                  "demand_factor": "1",
+                  "baseline_revenue": "1000",
+                  "scenario_revenue": "1000",
+                  "baseline_ebitda": "300",
+                  "scenario_ebitda": "260.00",
+                  "baseline_ebit": "250",
+                  "scenario_ebit": "210.00",
+                  "revenue_change": "0",
+                  "ebit_change": "-40.00"
+                },
+                {
+                  "year": 2026,
+                  "baseline_volume": "110",
+                  "scenario_volume": "107.800",
+                  "baseline_unit_price": "10",
+                  "scenario_unit_price": "10.200",
+                  "exposed_material_cost_change_per_unit": "0.40",
+                  "price_pass_through_per_unit": "0.200",
+                  "demand_factor": "0.980",
+                  "baseline_revenue": "1100",
+                  "scenario_revenue": "1099.560000",
+                  "baseline_ebitda": "330",
+                  "scenario_ebitda": "299.640000",
+                  "baseline_ebit": "275",
+                  "scenario_ebit": "244.640000",
+                  "revenue_change": "-0.440000",
+                  "ebit_change": "-30.360000"
+                },
+                {
+                  "year": 2027,
+                  "baseline_volume": "121",
+                  "scenario_volume": "118.580",
+                  "baseline_unit_price": "10",
+                  "scenario_unit_price": "10.200",
+                  "exposed_material_cost_change_per_unit": "0.40",
+                  "price_pass_through_per_unit": "0.200",
+                  "demand_factor": "0.980",
+                  "baseline_revenue": "1210",
+                  "scenario_revenue": "1209.516000",
+                  "baseline_ebitda": "363",
+                  "scenario_ebitda": "329.604000",
+                  "baseline_ebit": "302.5",
+                  "scenario_ebit": "269.104000",
+                  "revenue_change": "-0.484000",
+                  "ebit_change": "-33.396000"
+                }
+              ],
+              "baseline_forecast": [
+                {
+                  "year": 2025,
+                  "revenue": "1000",
+                  "revenue_growth": "0",
+                  "gross_profit": null,
+                  "ebit": "250",
+                  "ebit_margin": "0.25",
+                  "ebitda": "300",
+                  "cash_tax": "62.50",
+                  "nopat": "187.50",
+                  "da": "50",
+                  "capex": "50",
+                  "net_working_capital": "100.0",
+                  "delta_nwc": "0.0",
+                  "fcff": "187.50",
+                  "discount_exponent": "1",
+                  "discount_factor": "0.90090090090090090090090090090090090090090090090090",
+                  "pv_fcff": "168.91891891891891891891891891891891891891891891892"
+                },
+                {
+                  "year": 2026,
+                  "revenue": "1100",
+                  "revenue_growth": "0.1",
+                  "gross_profit": null,
+                  "ebit": "275",
+                  "ebit_margin": "0.25",
+                  "ebitda": "330",
+                  "cash_tax": "68.75",
+                  "nopat": "206.25",
+                  "da": "55",
+                  "capex": "55",
+                  "net_working_capital": "110.0",
+                  "delta_nwc": "10.0",
+                  "fcff": "196.25",
+                  "discount_exponent": "2",
+                  "discount_factor": "0.81162243324405486567648729810891973054135216297378",
+                  "pv_fcff": "159.28090252414576738901063225387549711874036198360"
+                },
+                {
+                  "year": 2027,
+                  "revenue": "1210",
+                  "revenue_growth": "0.1",
+                  "gross_profit": null,
+                  "ebit": "302.5",
+                  "ebit_margin": "0.25",
+                  "ebitda": "363.0",
+                  "cash_tax": "75.625",
+                  "nopat": "226.875",
+                  "da": "60.5",
+                  "capex": "60.5",
+                  "net_working_capital": "121.0",
+                  "delta_nwc": "11.0",
+                  "fcff": "215.875",
+                  "discount_exponent": "3",
+                  "discount_factor": "0.73119138130095032943827684514317092841563257925566",
+                  "pv_fcff": "157.84593943834265236748801394528202417172468304682"
+                }
+              ],
+              "scenario_forecast": [
+                {
+                  "year": 2025,
+                  "revenue": "1000",
+                  "revenue_growth": "0",
+                  "gross_profit": null,
+                  "ebit": "210.00",
+                  "ebit_margin": "0.21",
+                  "ebitda": "260.00",
+                  "cash_tax": "52.5000",
+                  "nopat": "157.5000",
+                  "da": "50",
+                  "capex": "50",
+                  "net_working_capital": "100.0",
+                  "delta_nwc": "0.0",
+                  "fcff": "157.5000",
+                  "discount_exponent": "1",
+                  "discount_factor": "0.90090090090090090090090090090090090090090090090090",
+                  "pv_fcff": "141.89189189189189189189189189189189189189189189189"
+                },
+                {
+                  "year": 2026,
+                  "revenue": "1099.560000",
+                  "revenue_growth": "0.099560",
+                  "gross_profit": null,
+                  "ebit": "244.640000",
+                  "ebit_margin": "0.22248899559823929571828731492597038815526210484194",
+                  "ebitda": "299.640000",
+                  "cash_tax": "61.16000000",
+                  "nopat": "183.48000000",
+                  "da": "55",
+                  "capex": "55",
+                  "net_working_capital": "109.9560000",
+                  "delta_nwc": "9.9560000",
+                  "fcff": "173.52400000",
+                  "discount_exponent": "2",
+                  "discount_factor": "0.81162243324405486567648729810891973054135216297378",
+                  "pv_fcff": "140.83597110624137651164678191705218732245759272786"
+                },
+                {
+                  "year": 2027,
+                  "revenue": "1209.516000",
+                  "revenue_growth": "0.1",
+                  "gross_profit": null,
+                  "ebit": "269.104000",
+                  "ebit_margin": "0.22248899559823929571828731492597038815526210484194",
+                  "ebitda": "329.604000",
+                  "cash_tax": "67.27600000",
+                  "nopat": "201.82800000",
+                  "da": "60.5",
+                  "capex": "60.5",
+                  "net_working_capital": "120.9516000",
+                  "delta_nwc": "10.9956000",
+                  "fcff": "190.83240000",
+                  "discount_exponent": "3",
+                  "discount_factor": "0.73119138130095032943827684514317092841563257925566",
+                  "pv_fcff": "139.53500615297547364749702222309965187978336261755"
+                }
+              ]
+            },
+            "warnings": [
+              "This is a user-specified linear demand and cost-pass-through scenario, not an estimated causal relationship.",
+              "Other unit variable costs, fixed cash operating costs, D&A, capex and operating NWC/revenue ratios are held at each year's supplied baseline. Terminal margin/tax/ROIC assumptions are shared between scenarios."
+            ]
+          },
+          "dependencies": [],
+          "parent_revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+          "source_validation": {
+            "schema_version": 1,
+            "scope": "reference_location_and_literal_quote_only",
+            "semantic_accuracy_verified": false,
+            "mode": "checked",
+            "references": []
+          },
+          "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+          "revision_id": "revision_ae89791b-f753-462b-ace0-db40e7fad5c8",
+          "created_at": "2026-10-03T18:43:51.485Z",
+          "dependency_status": "current",
+          "changed_dependencies": []
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "1ea5f1af-8f56-45da-a2ec-a0f2ef650964"
+      }
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:53.863Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "tool_result",
+    "data": {
+      "name": "read_research_artifact",
+      "toolCallId": "call_01_KTa46xjjRzGRHPiUl3YK0630",
+      "result": {
+        "status": "ok",
+        "data": {
+          "kind": "dcf",
+          "title": "合成制造公司 WF-01 独立 DCF（继承情景版输入，2024-12-31 估值）",
+          "spec": {
+            "cash_tax_policy": "floor_at_zero",
+            "discount": {
+              "wacc": "0.1",
+              "cashflow_timing": "year_end"
+            },
+            "terminal": {
+              "growth": "0.02",
+              "roic": "0.2",
+              "ebit_margin": "0.25",
+              "tax_rate": "0.25"
+            },
+            "bridge": {
+              "net_debt": "200",
+              "non_controlling_interest": "20",
+              "preferred_equity": "10",
+              "non_operating_assets_ex_cash": "30"
+            },
+            "shares": {
+              "count": "100",
+              "scale": "1"
+            },
+            "sensitivity": {
+              "wacc": [
+                "0.08",
+                "0.1",
+                "0.12"
+              ],
+              "growth": [
+                "0",
+                "0.02",
+                "0.03"
+              ]
+            },
+            "currency": "CNY",
+            "amount_scale": "1",
+            "base_year": 2024,
+            "base": {
+              "revenue": "1000",
+              "net_working_capital": "100"
+            },
+            "source_refs": {},
+            "scenario_assumptions": {
+              "exposed_material_share": "0.5",
+              "pass_through_rate": "0.5",
+              "lag_years": 1,
+              "price_elasticity": "-1",
+              "material_cost_changes": [
+                "0.2",
+                "0.2",
+                "0.2"
+              ],
+              "volume_changes": [
+                "0",
+                "0",
+                "0"
+              ],
+              "autonomous_price_changes": [
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "forecast": [
+              {
+                "year": 2025,
+                "da": "50",
+                "capex": "50",
+                "tax_rate": "0.25",
+                "nwc_ratio": "0.1",
+                "revenue": "1000",
+                "ebit": "210.00"
+              },
+              {
+                "year": 2026,
+                "da": "55",
+                "capex": "55",
+                "tax_rate": "0.25",
+                "nwc_ratio": "0.1",
+                "revenue": "1099.560000",
+                "ebit": "244.640000"
+              },
+              {
+                "year": 2027,
+                "da": "60.5",
+                "capex": "60.5",
+                "tax_rate": "0.25",
+                "nwc_ratio": "0.1",
+                "revenue": "1209.516000",
+                "ebit": "269.104000"
+              }
+            ],
+            "input_basis": {
+              "currency": {
+                "basis": "assumption",
+                "rationale": "用户明确给定的合成联调假设，非任何实际公司披露。"
+              },
+              "amount_scale": {
+                "basis": "assumption",
+                "rationale": "用户明确给定：金额倍率1，即基准货币单位。"
+              },
+              "base_year": {
+                "basis": "assumption",
+                "rationale": "用户给定基期2024年，估值时点2024-12-31。"
+              },
+              "base.revenue": {
+                "basis": "assumption",
+                "rationale": "用户给定2024基期收入1000（CNY，合并口径，假设值）。"
+              },
+              "base.net_working_capital": {
+                "basis": "assumption",
+                "rationale": "用户给定2024基期净营运资本100（不含带息负债）。"
+              },
+              "cash_tax_policy": {
+                "basis": "assumption",
+                "rationale": "用户给定现金税政策floor_at_zero（仅对正EBIT计税）。"
+              },
+              "discount.wacc": {
+                "basis": "assumption",
+                "rationale": "用户给定WACC=0.1。"
+              },
+              "discount.cashflow_timing": {
+                "basis": "assumption",
+                "rationale": "用户给定现金流时点year_end。"
+              },
+              "terminal.growth": {
+                "basis": "assumption",
+                "rationale": "用户给定永续增长0.02。"
+              },
+              "terminal.roic": {
+                "basis": "assumption",
+                "rationale": "用户给定稳定期ROIC=0.2。"
+              },
+              "terminal.ebit_margin": {
+                "basis": "assumption",
+                "rationale": "用户给定稳定期EBIT利润率0.25。"
+              },
+              "terminal.tax_rate": {
+                "basis": "assumption",
+                "rationale": "用户给定稳定期税率0.25。"
+              },
+              "bridge.net_debt": {
+                "basis": "assumption",
+                "rationale": "用户给定净债务200。"
+              },
+              "bridge.non_controlling_interest": {
+                "basis": "assumption",
+                "rationale": "用户给定少数股东权益20。"
+              },
+              "bridge.preferred_equity": {
+                "basis": "assumption",
+                "rationale": "用户给定优先股权益10。"
+              },
+              "bridge.non_operating_assets_ex_cash": {
+                "basis": "assumption",
+                "rationale": "用户给定非经营性资产（不含现金）30。"
+              },
+              "shares.count": {
+                "basis": "assumption",
+                "rationale": "用户给定股数100，独立倍率。"
+              },
+              "shares.scale": {
+                "basis": "assumption",
+                "rationale": "用户给定股数倍率1（独立于金额倍率）。"
+              },
+              "sensitivity.wacc.0": {
+                "basis": "assumption",
+                "rationale": "用户给定敏感性WACC=0.08。"
+              },
+              "sensitivity.wacc.1": {
+                "basis": "assumption",
+                "rationale": "用户给定敏感性WACC=0.1。"
+              },
+              "sensitivity.wacc.2": {
+                "basis": "assumption",
+                "rationale": "用户给定敏感性WACC=0.12。"
+              },
+              "sensitivity.growth.0": {
+                "basis": "assumption",
+                "rationale": "用户给定敏感性增长0。"
+              },
+              "sensitivity.growth.1": {
+                "basis": "assumption",
+                "rationale": "用户给定敏感性增长0.02。"
+              },
+              "sensitivity.growth.2": {
+                "basis": "assumption",
+                "rationale": "用户给定敏感性增长0.03。"
+              },
+              "forecast.0.revenue": {
+                "basis": "derived",
+                "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.0.ebit": {
+                "basis": "derived",
+                "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.0.year": {
+                "basis": "derived",
+                "rationale": "从 baseline.0.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.0.da": {
+                "basis": "derived",
+                "rationale": "从 baseline.0.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.0.capex": {
+                "basis": "derived",
+                "rationale": "从 baseline.0.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.0.tax_rate": {
+                "basis": "derived",
+                "rationale": "从 baseline.0.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.0.nwc_ratio": {
+                "basis": "derived",
+                "rationale": "从 baseline.0.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.1.revenue": {
+                "basis": "derived",
+                "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.1.ebit": {
+                "basis": "derived",
+                "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.1.year": {
+                "basis": "derived",
+                "rationale": "从 baseline.1.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.1.da": {
+                "basis": "derived",
+                "rationale": "从 baseline.1.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.1.capex": {
+                "basis": "derived",
+                "rationale": "从 baseline.1.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.1.tax_rate": {
+                "basis": "derived",
+                "rationale": "从 baseline.1.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.1.nwc_ratio": {
+                "basis": "derived",
+                "rationale": "从 baseline.1.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.2.revenue": {
+                "basis": "derived",
+                "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.2.ebit": {
+                "basis": "derived",
+                "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.2.year": {
+                "basis": "derived",
+                "rationale": "从 baseline.2.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.2.da": {
+                "basis": "derived",
+                "rationale": "从 baseline.2.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.2.capex": {
+                "basis": "derived",
+                "rationale": "从 baseline.2.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.2.tax_rate": {
+                "basis": "derived",
+                "rationale": "从 baseline.2.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              },
+              "forecast.2.nwc_ratio": {
+                "basis": "derived",
+                "rationale": "从 baseline.2.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+              }
+            }
+          },
+          "result": {
+            "schema_version": "1.0",
+            "model_version": "research-models-1.0.1",
+            "kind": "dcf",
+            "input_assumptions": {
+              "cash_tax_policy": "floor_at_zero",
+              "discount": {
+                "wacc": "0.1",
+                "cashflow_timing": "year_end"
+              },
+              "terminal": {
+                "growth": "0.02",
+                "roic": "0.2",
+                "ebit_margin": "0.25",
+                "tax_rate": "0.25"
+              },
+              "bridge": {
+                "net_debt": "200",
+                "non_controlling_interest": "20",
+                "preferred_equity": "10",
+                "non_operating_assets_ex_cash": "30"
+              },
+              "shares": {
+                "count": "100",
+                "scale": "1"
+              },
+              "sensitivity": {
+                "wacc": [
+                  "0.08",
+                  "0.1",
+                  "0.12"
+                ],
+                "growth": [
+                  "0",
+                  "0.02",
+                  "0.03"
+                ]
+              },
+              "currency": "CNY",
+              "amount_scale": "1",
+              "base_year": 2024,
+              "base": {
+                "revenue": "1000",
+                "net_working_capital": "100"
+              },
+              "source_refs": {},
+              "scenario_assumptions": {
+                "exposed_material_share": "0.5",
+                "pass_through_rate": "0.5",
+                "lag_years": 1,
+                "price_elasticity": "-1",
+                "material_cost_changes": [
+                  "0.2",
+                  "0.2",
+                  "0.2"
+                ],
+                "volume_changes": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "autonomous_price_changes": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "forecast": [
+                {
+                  "year": 2025,
+                  "da": "50",
+                  "capex": "50",
+                  "tax_rate": "0.25",
+                  "nwc_ratio": "0.1",
+                  "revenue": "1000",
+                  "ebit": "210.00"
+                },
+                {
+                  "year": 2026,
+                  "da": "55",
+                  "capex": "55",
+                  "tax_rate": "0.25",
+                  "nwc_ratio": "0.1",
+                  "revenue": "1099.560000",
+                  "ebit": "244.640000"
+                },
+                {
+                  "year": 2027,
+                  "da": "60.5",
+                  "capex": "60.5",
+                  "tax_rate": "0.25",
+                  "nwc_ratio": "0.1",
+                  "revenue": "1209.516000",
+                  "ebit": "269.104000"
+                }
+              ],
+              "input_basis": {
+                "currency": {
+                  "basis": "assumption",
+                  "rationale": "用户明确给定的合成联调假设，非任何实际公司披露。"
+                },
+                "amount_scale": {
+                  "basis": "assumption",
+                  "rationale": "用户明确给定：金额倍率1，即基准货币单位。"
+                },
+                "base_year": {
+                  "basis": "assumption",
+                  "rationale": "用户给定基期2024年，估值时点2024-12-31。"
+                },
+                "base.revenue": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2024基期收入1000（CNY，合并口径，假设值）。"
+                },
+                "base.net_working_capital": {
+                  "basis": "assumption",
+                  "rationale": "用户给定2024基期净营运资本100（不含带息负债）。"
+                },
+                "cash_tax_policy": {
+                  "basis": "assumption",
+                  "rationale": "用户给定现金税政策floor_at_zero（仅对正EBIT计税）。"
+                },
+                "discount.wacc": {
+                  "basis": "assumption",
+                  "rationale": "用户给定WACC=0.1。"
+                },
+                "discount.cashflow_timing": {
+                  "basis": "assumption",
+                  "rationale": "用户给定现金流时点year_end。"
+                },
+                "terminal.growth": {
+                  "basis": "assumption",
+                  "rationale": "用户给定永续增长0.02。"
+                },
+                "terminal.roic": {
+                  "basis": "assumption",
+                  "rationale": "用户给定稳定期ROIC=0.2。"
+                },
+                "terminal.ebit_margin": {
+                  "basis": "assumption",
+                  "rationale": "用户给定稳定期EBIT利润率0.25。"
+                },
+                "terminal.tax_rate": {
+                  "basis": "assumption",
+                  "rationale": "用户给定稳定期税率0.25。"
+                },
+                "bridge.net_debt": {
+                  "basis": "assumption",
+                  "rationale": "用户给定净债务200。"
+                },
+                "bridge.non_controlling_interest": {
+                  "basis": "assumption",
+                  "rationale": "用户给定少数股东权益20。"
+                },
+                "bridge.preferred_equity": {
+                  "basis": "assumption",
+                  "rationale": "用户给定优先股权益10。"
+                },
+                "bridge.non_operating_assets_ex_cash": {
+                  "basis": "assumption",
+                  "rationale": "用户给定非经营性资产（不含现金）30。"
+                },
+                "shares.count": {
+                  "basis": "assumption",
+                  "rationale": "用户给定股数100，独立倍率。"
+                },
+                "shares.scale": {
+                  "basis": "assumption",
+                  "rationale": "用户给定股数倍率1（独立于金额倍率）。"
+                },
+                "sensitivity.wacc.0": {
+                  "basis": "assumption",
+                  "rationale": "用户给定敏感性WACC=0.08。"
+                },
+                "sensitivity.wacc.1": {
+                  "basis": "assumption",
+                  "rationale": "用户给定敏感性WACC=0.1。"
+                },
+                "sensitivity.wacc.2": {
+                  "basis": "assumption",
+                  "rationale": "用户给定敏感性WACC=0.12。"
+                },
+                "sensitivity.growth.0": {
+                  "basis": "assumption",
+                  "rationale": "用户给定敏感性增长0。"
+                },
+                "sensitivity.growth.1": {
+                  "basis": "assumption",
+                  "rationale": "用户给定敏感性增长0.02。"
+                },
+                "sensitivity.growth.2": {
+                  "basis": "assumption",
+                  "rationale": "用户给定敏感性增长0.03。"
+                },
+                "forecast.0.revenue": {
+                  "basis": "derived",
+                  "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.0.ebit": {
+                  "basis": "derived",
+                  "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.0.year": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.0.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.0.da": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.0.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.0.capex": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.0.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.0.tax_rate": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.0.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.0.nwc_ratio": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.0.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.1.revenue": {
+                  "basis": "derived",
+                  "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.1.ebit": {
+                  "basis": "derived",
+                  "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.1.year": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.1.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.1.da": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.1.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.1.capex": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.1.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.1.tax_rate": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.1.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.1.nwc_ratio": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.1.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.2.revenue": {
+                  "basis": "derived",
+                  "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.2.ebit": {
+                  "basis": "derived",
+                  "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.2.year": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.2.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.2.da": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.2.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.2.capex": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.2.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.2.tax_rate": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.2.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                },
+                "forecast.2.nwc_ratio": {
+                  "basis": "derived",
+                  "rationale": "从 baseline.2.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+                }
+              }
+            },
+            "formulas": {
+              "revenue": "revenue[t-1] * (1 + revenue_growth[t]), or explicit revenue[t]",
+              "ebit": "explicit EBIT; or revenue * EBIT margin; or revenue * (gross margin - opex ratio). EBIT is after D&A.",
+              "cash_tax": "floor_at_zero: max(EBIT,0)*tax_rate; immediate_credit: EBIT*tax_rate. No NOL carryforward is modeled.",
+              "fcff": "EBIT - cash_tax + D&A - capex - (operating NWC[t] - operating NWC[t-1])",
+              "nwc": "Operating non-cash, non-interest-bearing working capital. Negative balances are allowed.",
+              "forecast_pv": "FCFF[t]/(1+WACC)^t; mid_year uses exponent t-0.5 for explicit forecast only",
+              "terminal_fcff": "revenue[n]*(1+g)*terminal_EBIT_margin*(1-terminal_tax_rate)*(1-g/terminal_ROIC)",
+              "terminal_value": "terminal_FCFF/(WACC-g); always measured at end of year n, discounted by (1+WACC)^n",
+              "enterprise_value": "sum(explicit forecast PV) + terminal_value PV; value of operating assets",
+              "equity_value": "EV - net_debt - non_controlling_interest - preferred_equity + non_operating_assets_ex_cash",
+              "net_debt": "interest-bearing debt (consistent lease treatment) less excess cash; cash is not added again",
+              "value_per_share": "equity_value * amount_scale / (shares.count * shares.scale)"
+            },
+            "units": {
+              "currency": "CNY",
+              "amount_scale": "1",
+              "amount": "CNY x 1",
+              "ratios": "decimal fraction (0.10 = 10%)",
+              "multiple": "times",
+              "value_per_share": "CNY/share",
+              "days": "days"
+            },
+            "precision": {
+              "arithmetic": "Decimal",
+              "significant_digits": 50,
+              "rounding": "ROUND_HALF_EVEN",
+              "output": "decimal strings; no additional display rounding"
+            },
+            "method_sources": [
+              "https://people.stern.nyu.edu/adamodar/pdfiles/valn2ed/ch15.pdf",
+              "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/valquestions/noncashwc.htm",
+              "https://www.ifrs.org/content/dam/ifrs/supporting-implementation/ifrs-13/education-ifrs-13-eng.pdf"
+            ],
+            "results": {
+              "enterprise_value": "2385.1488119834710743801652892561983471074380165290",
+              "equity_value": "2185.1488119834710743801652892561983471074380165290",
+              "value_per_share": "21.85148811983471074380165289256198347107438016529",
+              "shares_outstanding": "100",
+              "net_debt": "200",
+              "non_controlling_interest": "20",
+              "non_operating_assets_ex_cash": "30",
+              "preferred_equity": "10",
+              "explicit_forecast_pv": "429.96528925619834710743801652892561983471074380165",
+              "terminal_value": "2602.34926875000",
+              "terminal_pv": "1955.1835227272727272727272727272727272727272727273",
+              "terminal_value_share": "0.81973230051895899126657139594504830283624254520390",
+              "terminal_year": 2028,
+              "terminal_revenue": "1233.70632000",
+              "terminal_nopat": "231.319935000000",
+              "terminal_reinvestment": "23.1319935000000",
+              "terminal_reinvestment_rate": "0.1",
+              "terminal_fcff": "208.1879415000000",
+              "wacc": "0.1",
+              "terminal_growth": "0.02",
+              "cashflow_timing": "year_end",
+              "terminal_discount_exponent": 3
+            },
+            "tables": {
+              "forecast": [
+                {
+                  "year": 2025,
+                  "revenue": "1000",
+                  "revenue_growth": "0",
+                  "gross_profit": null,
+                  "ebit": "210.00",
+                  "ebit_margin": "0.21",
+                  "ebitda": "260.00",
+                  "cash_tax": "52.5000",
+                  "nopat": "157.5000",
+                  "da": "50",
+                  "capex": "50",
+                  "net_working_capital": "100.0",
+                  "delta_nwc": "0.0",
+                  "fcff": "157.5000",
+                  "discount_exponent": "1",
+                  "discount_factor": "0.90909090909090909090909090909090909090909090909091",
+                  "pv_fcff": "143.18181818181818181818181818181818181818181818182"
+                },
+                {
+                  "year": 2026,
+                  "revenue": "1099.560000",
+                  "revenue_growth": "0.099560",
+                  "gross_profit": null,
+                  "ebit": "244.640000",
+                  "ebit_margin": "0.22248899559823929571828731492597038815526210484194",
+                  "ebitda": "299.640000",
+                  "cash_tax": "61.16000000",
+                  "nopat": "183.48000000",
+                  "da": "55",
+                  "capex": "55",
+                  "net_working_capital": "109.9560000",
+                  "delta_nwc": "9.9560000",
+                  "fcff": "173.52400000",
+                  "discount_exponent": "2",
+                  "discount_factor": "0.82644628099173553719008264462809917355371900826446",
+                  "pv_fcff": "143.40826446280991735537190082644628099173553719008"
+                },
+                {
+                  "year": 2027,
+                  "revenue": "1209.516000",
+                  "revenue_growth": "0.1",
+                  "gross_profit": null,
+                  "ebit": "269.104000",
+                  "ebit_margin": "0.22248899559823929571828731492597038815526210484194",
+                  "ebitda": "329.604000",
+                  "cash_tax": "67.27600000",
+                  "nopat": "201.82800000",
+                  "da": "60.5",
+                  "capex": "60.5",
+                  "net_working_capital": "120.9516000",
+                  "delta_nwc": "10.9956000",
+                  "fcff": "190.83240000",
+                  "discount_exponent": "3",
+                  "discount_factor": "0.75131480090157776108189331329827197595792637114951",
+                  "pv_fcff": "143.37520661157024793388429752066115702479338842975"
+                }
+              ],
+              "sensitivity": [
+                {
+                  "wacc": "0.08",
+                  "growth": "0",
+                  "status": "ok",
+                  "reason": null,
+                  "enterprise_value": "2696.4492241083676268861454046639231824417009602195",
+                  "equity_value": "2496.4492241083676268861454046639231824417009602195",
+                  "value_per_share": "24.964492241083676268861454046639231824417009602195"
+                },
+                {
+                  "wacc": "0.08",
+                  "growth": "0.02",
+                  "status": "ok",
+                  "reason": null,
+                  "enterprise_value": "3200.5294424439871970736168267032464563328760859625",
+                  "equity_value": "3000.5294424439871970736168267032464563328760859625",
+                  "value_per_share": "30.005294424439871970736168267032464563328760859625"
+                },
+                {
+                  "wacc": "0.08",
+                  "growth": "0.03",
+                  "status": "ok",
+                  "reason": null,
+                  "enterprise_value": "3598.3927576303155006858710562414266117969821673525",
+                  "equity_value": "3398.3927576303155006858710562414266117969821673525",
+                  "value_per_share": "33.983927576303155006858710562414266117969821673525"
+                },
+                {
+                  "wacc": "0.1",
+                  "growth": "0",
+                  "status": "ok",
+                  "reason": null,
+                  "enterprise_value": "2133.8289256198347107438016528925619834710743801652",
+                  "equity_value": "1933.8289256198347107438016528925619834710743801652",
+                  "value_per_share": "19.338289256198347107438016528925619834710743801652"
+                },
+                {
+                  "wacc": "0.1",
+                  "growth": "0.02",
+                  "status": "ok",
+                  "reason": null,
+                  "enterprise_value": "2385.1488119834710743801652892561983471074380165290",
+                  "equity_value": "2185.1488119834710743801652892561983471074380165290",
+                  "value_per_share": "21.85148811983471074380165289256198347107438016529"
+                },
+                {
+                  "wacc": "0.1",
+                  "growth": "0.03",
+                  "status": "ok",
+                  "reason": null,
+                  "enterprise_value": "2561.0118801652892561983471074380165289256198347108",
+                  "equity_value": "2361.0118801652892561983471074380165289256198347108",
+                  "value_per_share": "23.610118801652892561983471074380165289256198347108"
+                },
+                {
+                  "wacc": "0.12",
+                  "growth": "0",
+                  "status": "ok",
+                  "reason": null,
+                  "enterprise_value": "1759.9592505808126822157434402332361516034985422741",
+                  "equity_value": "1559.9592505808126822157434402332361516034985422741",
+                  "value_per_share": "15.599592505808126822157434402332361516034985422741"
+                },
+                {
+                  "wacc": "0.12",
+                  "growth": "0.02",
+                  "status": "ok",
+                  "reason": null,
+                  "enterprise_value": "1896.6286492973305393586005830903790087463556851312",
+                  "equity_value": "1696.6286492973305393586005830903790087463556851312",
+                  "value_per_share": "16.966286492973305393586005830903790087463556851312"
+                },
+                {
+                  "wacc": "0.12",
+                  "growth": "0.03",
+                  "status": "ok",
+                  "reason": null,
+                  "enterprise_value": "1985.0512392805894679300291545189504373177842565598",
+                  "equity_value": "1785.0512392805894679300291545189504373177842565598",
+                  "value_per_share": "17.850512392805894679300291545189504373177842565598"
+                }
+              ]
+            },
+            "warnings": [
+              "Stable terminal model requires nonnegative growth, positive ROIC, and normalized operating earnings; banking/insurance balance-sheet models are outside this model."
+            ]
+          },
+          "dependencies": [
+            {
+              "kind": "artifact",
+              "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+              "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa"
+            }
+          ],
+          "run_id": "b130ef47-be5a-463d-9acc-66127ae235e4",
+          "source_validation": {
+            "schema_version": 1,
+            "scope": "reference_location_and_literal_quote_only",
+            "semantic_accuracy_verified": false,
+            "mode": "inherited",
+            "inherited_from": {
+              "artifact_id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+              "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+              "original_mode": "checked"
+            }
+          },
+          "source_model": {
+            "artifact_id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+            "revision_id": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+            "variant": "scenario",
+            "spec_sha256": "d9c9824a296f45155ebf63fe4a4ccc65e42c90b5812fd37c61854e540b26ad00"
+          },
+          "id": "research_5ffa56bb-ee7b-424a-854a-e27063ebca0c",
+          "revision_id": "revision_616b6ea5-f2ea-4256-971f-65907d9c0610",
+          "created_at": "2026-10-03T18:42:57.777Z",
+          "dependency_status": "stale",
+          "changed_dependencies": [
+            {
+              "kind": "artifact",
+              "id": "research_0c4737f6-87ee-4863-976d-95025868e56f",
+              "version": "revision_74bb0b27-4196-482f-9f9b-1c2cea7715fa",
+              "current_version": "revision_ae89791b-f753-462b-ace0-db40e7fad5c8",
+              "reason": "changed"
+            }
+          ]
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "98b3b6f6-7505-4092-a298-51560070c6e6"
+      }
+    }
+  },
+  {
+    "at": "2026-10-03T18:43:53.976Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "reserved",
+      "requestId": "f8bb5566-1bd7-4a05-a448-98ee13ed45da",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "research-models-1791052965130",
+      "budget": {
+        "max_model_calls": 40,
+        "max_input_tokens": 2000000,
+        "max_output_tokens": 300000,
+        "max_total_tokens": 2300000,
+        "max_wall_seconds": 1200
+      },
+      "started_at": "2026-10-03T18:42:45.409Z",
+      "deadline_at": "2026-10-03T19:02:45.409Z",
+      "elapsed_seconds": 68.543,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 12,
+        "settled_calls": 11,
+        "input_tokens": 404437,
+        "output_tokens": 17752,
+        "total_tokens": 422189,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 1,
+        "output_tokens": 8192
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [
+        {
+          "id": "f8bb5566-1bd7-4a05-a448-98ee13ed45da",
+          "run_id": "7b893097-2488-4716-b07a-6983496be3fe",
+          "max_output_tokens": 8192,
+          "created_at": "2026-10-03T18:43:53.952Z"
+        }
+      ],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-03T18:44:09.214Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "model_usage",
+    "data": {
+      "requestId": "f8bb5566-1bd7-4a05-a448-98ee13ed45da",
+      "phase": "main",
+      "stopReason": "stop",
+      "usage": {
+        "input": 19402,
+        "output": 3653,
+        "cacheRead": 10880,
+        "cacheWrite": 0,
+        "reasoning": 1961,
+        "totalTokens": 33935,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "usageKnown": true
+    }
+  },
+  {
+    "at": "2026-10-03T18:44:09.255Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "settled",
+      "requestId": "f8bb5566-1bd7-4a05-a448-98ee13ed45da",
+      "phase": "main",
+      "profile": "financial",
+      "budget_group_id": "research-models-1791052965130",
+      "budget": {
+        "max_model_calls": 40,
+        "max_input_tokens": 2000000,
+        "max_output_tokens": 300000,
+        "max_total_tokens": 2300000,
+        "max_wall_seconds": 1200
+      },
+      "started_at": "2026-10-03T18:42:45.409Z",
+      "deadline_at": "2026-10-03T19:02:45.409Z",
+      "elapsed_seconds": 83.809,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 12,
+        "settled_calls": 12,
+        "input_tokens": 434719,
+        "output_tokens": 21405,
+        "total_tokens": 456124,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  {
+    "at": "2026-10-03T18:44:09.297Z",
+    "runId": "7b893097-2488-4716-b07a-6983496be3fe",
+    "projectId": "b0c8079e-5fa1-4b60-80b7-29458f9929af",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "run_finished",
+      "profile": "financial",
+      "budget_group_id": "research-models-1791052965130",
+      "budget": {
+        "max_model_calls": 40,
+        "max_input_tokens": 2000000,
+        "max_output_tokens": 300000,
+        "max_total_tokens": 2300000,
+        "max_wall_seconds": 1200
+      },
+      "started_at": "2026-10-03T18:42:45.409Z",
+      "deadline_at": "2026-10-03T19:02:45.409Z",
+      "elapsed_seconds": 83.852,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 12,
+        "settled_calls": 12,
+        "input_tokens": 434719,
+        "output_tokens": 21405,
+        "total_tokens": 456124,
+        "failed_calls": 0,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  }
+]

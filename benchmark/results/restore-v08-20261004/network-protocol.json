@@ -1,0 +1,20 @@
+{
+  "id": "v08-restore-network-20261004",
+  "kind": "development_research_workflow",
+  "frozen_before_run": true,
+  "model": "deepseek-flash",
+  "base_url": "https://api.deepseek.com",
+  "task": "Find Liugong's official 2025 half-year operating results, archive the original source, answer revenue and parent-attributable net profit with citations.",
+  "runner": "scripts/verify_research_workflow.mjs",
+  "output": "benchmark/results/restore-v08-20261004/network-workflow.json",
+  "budget": {
+    "max_model_calls": 14,
+    "max_input_tokens": 250000,
+    "max_output_tokens": 100000,
+    "max_total_tokens": 350000,
+    "max_wall_seconds": 900
+  },
+  "limits": "Input limit is post-usage; report any in-flight overrun. This is a new development run, not continuation of the exhausted v06/v07 budget and not an untouched-company holdout. No automatic retry with a fresh budget after a terminal failure.",
+  "separate_preflight": "One 10-token DeepSeek connection check and one Tavily search check occurred before this workflow and are recorded in connections.json. Search requests are recorded separately from model token usage.",
+  "acceptance": "Original runner assertions plus independent review of the saved source and answer. No claim of full financial workflow, compaction quality, or benchmark completion."
+}

@@ -1,0 +1,901 @@
+{
+  "started_at": 1791004629.1930885,
+  "status": "PASS",
+  "method": "actual configured application model; no model code supplied by harness",
+  "project_id": "fec8663c-a5e9-47da-bec6-2feb351c838c",
+  "input": {
+    "name": "agent-chart-input.csv",
+    "sha256": "0ee9362ca2c92f517cf8d7a92187536ce250458885ea58f221d1e5d77e0bf254",
+    "kind": "explicit synthetic acceptance fixture",
+    "expected_values_cny": [
+      120000000,
+      150000000
+    ]
+  },
+  "uploaded": {
+    "documents": [
+      {
+        "id": "7d2424c2368443edb9576c33d56e8d47",
+        "name": "agent-chart-input.csv",
+        "status": "queued",
+        "warnings": [],
+        "jobId": "1aa594c5bb674b499c46c90ce4be8e80"
+      }
+    ]
+  },
+  "conversation_id": "ef092940-4660-46ca-935c-92952764a957",
+  "agent_run_id": "74d74678-4422-4298-b293-5b547748d75e",
+  "prompt": "请只依据上传CSV，先调用工具读取实际表格，再调用run_analysis在隔离容器内绘制2023、2024两年的营业收入柱状对比图。金额统一显示为亿元，纵轴从0开始；中文标题和坐标使用容器预装的Noto Sans CJK JP字体。必须真正生成revenue.png和chart_data.json，不能只给代码或口头描述。chart_data.json格式为包含currency、source_unit、display_unit、years、values_cny的JSON对象；years按2023、2024排序，values_cny保持原始元金额。不要自行补数据；等待容器任务到终态后返回两份可下载产物，并简述趋势。",
+  "agent_run": {
+    "id": "74d74678-4422-4298-b293-5b547748d75e",
+    "conversationId": "ef092940-4660-46ca-935c-92952764a957",
+    "projectId": "fec8663c-a5e9-47da-bec6-2feb351c838c",
+    "status": "completed",
+    "stage": "完成",
+    "createdAt": "2026-10-03T05:17:09.758Z",
+    "tools": [
+      {
+        "name": "list_documents",
+        "status": "started",
+        "toolCallId": "call_00_ET_OluaY18GDv6avyplbcuA0659",
+        "timestamp": "2026-10-03T05:17:12.558Z"
+      },
+      {
+        "name": "get_document",
+        "status": "started",
+        "toolCallId": "call_01_ET_wBm0jw6FNwzpPulSlirq2788",
+        "timestamp": "2026-10-03T05:17:12.558Z"
+      },
+      {
+        "name": "list_documents",
+        "status": "completed",
+        "toolCallId": "call_00_ET_OluaY18GDv6avyplbcuA0659",
+        "timestamp": "2026-10-03T05:17:12.614Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_document",
+        "status": "completed",
+        "toolCallId": "call_01_ET_wBm0jw6FNwzpPulSlirq2788",
+        "timestamp": "2026-10-03T05:17:12.615Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_source_table",
+        "status": "started",
+        "toolCallId": "call_00_BtxjShoukL83PGOV1G1f8891",
+        "timestamp": "2026-10-03T05:17:13.544Z"
+      },
+      {
+        "name": "get_source_page",
+        "status": "started",
+        "toolCallId": "call_01_rgS6eBYuCEQj9JrClGXx7015",
+        "timestamp": "2026-10-03T05:17:13.544Z"
+      },
+      {
+        "name": "get_source_table",
+        "status": "completed",
+        "toolCallId": "call_00_BtxjShoukL83PGOV1G1f8891",
+        "timestamp": "2026-10-03T05:17:13.616Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_source_page",
+        "status": "completed",
+        "toolCallId": "call_01_rgS6eBYuCEQj9JrClGXx7015",
+        "timestamp": "2026-10-03T05:17:13.627Z",
+        "summary": "ok"
+      },
+      {
+        "name": "calculate_financial_metrics",
+        "status": "started",
+        "toolCallId": "call_00_qUmWyYEVfPQJK2hHmSqv4060",
+        "timestamp": "2026-10-03T05:17:17.302Z"
+      },
+      {
+        "name": "run_analysis",
+        "status": "started",
+        "toolCallId": "call_01_MN5EaV1QKe0uZTWvqQPm3996",
+        "timestamp": "2026-10-03T05:17:17.302Z"
+      },
+      {
+        "name": "calculate_financial_metrics",
+        "status": "completed",
+        "toolCallId": "call_00_qUmWyYEVfPQJK2hHmSqv4060",
+        "timestamp": "2026-10-03T05:17:17.320Z",
+        "summary": "ok"
+      },
+      {
+        "name": "run_analysis",
+        "status": "completed",
+        "toolCallId": "call_01_MN5EaV1QKe0uZTWvqQPm3996",
+        "timestamp": "2026-10-03T05:17:17.820Z",
+        "summary": "accepted"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_z3Sy8LhfzMgNMolYhlz49559",
+        "timestamp": "2026-10-03T05:17:18.506Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_z3Sy8LhfzMgNMolYhlz49559",
+        "timestamp": "2026-10-03T05:17:18.717Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_ET_lwkfajYZmbsNYKwqew6T2706",
+        "timestamp": "2026-10-03T05:17:19.624Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_ET_lwkfajYZmbsNYKwqew6T2706",
+        "timestamp": "2026-10-03T05:17:19.852Z",
+        "summary": "ok"
+      },
+      {
+        "name": "run_analysis",
+        "status": "started",
+        "toolCallId": "call_00_SR4NoxQawr8iV74VIsAb8592",
+        "timestamp": "2026-10-03T05:17:21.179Z"
+      },
+      {
+        "name": "run_analysis",
+        "status": "completed",
+        "toolCallId": "call_00_SR4NoxQawr8iV74VIsAb8592",
+        "timestamp": "2026-10-03T05:17:21.642Z",
+        "summary": "accepted"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_ET_y463V9xydX17vomif96L2469",
+        "timestamp": "2026-10-03T05:17:22.286Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_ET_y463V9xydX17vomif96L2469",
+        "timestamp": "2026-10-03T05:17:22.530Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_ET_mSjksH4V5vhCOQHDIh2e7666",
+        "timestamp": "2026-10-03T05:17:23.457Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_ET_mSjksH4V5vhCOQHDIh2e7666",
+        "timestamp": "2026-10-03T05:17:23.666Z",
+        "summary": "ok"
+      },
+      {
+        "name": "run_analysis",
+        "status": "started",
+        "toolCallId": "call_00_EHe3fVHSuzZf5DUW2t0R2756",
+        "timestamp": "2026-10-03T05:17:26.745Z"
+      },
+      {
+        "name": "run_analysis",
+        "status": "completed",
+        "toolCallId": "call_00_EHe3fVHSuzZf5DUW2t0R2756",
+        "timestamp": "2026-10-03T05:17:27.058Z",
+        "summary": "accepted"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_ET_bqYUbYE1gXlikdhDQtIg1451",
+        "timestamp": "2026-10-03T05:17:27.899Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_ET_bqYUbYE1gXlikdhDQtIg1451",
+        "timestamp": "2026-10-03T05:17:28.118Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_ET_pyMSebK8KpuHIv3Hzsx41443",
+        "timestamp": "2026-10-03T05:17:28.991Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_ET_pyMSebK8KpuHIv3Hzsx41443",
+        "timestamp": "2026-10-03T05:17:29.023Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_artifact",
+        "status": "started",
+        "toolCallId": "call_00_ET_B1b6gMHEHl6n46xzO56S4860",
+        "timestamp": "2026-10-03T05:17:29.713Z"
+      },
+      {
+        "name": "get_artifact",
+        "status": "completed",
+        "toolCallId": "call_00_ET_B1b6gMHEHl6n46xzO56S4860",
+        "timestamp": "2026-10-03T05:17:29.883Z",
+        "summary": "ok"
+      },
+      {
+        "name": "run_analysis",
+        "status": "started",
+        "toolCallId": "call_00_AUGkxHvt2OOoeZaZE8cZ9123",
+        "timestamp": "2026-10-03T05:17:47.736Z"
+      },
+      {
+        "name": "get_financial_metrics",
+        "status": "started",
+        "toolCallId": "call_01_NvhPesWnwUIkYNi20mb43591",
+        "timestamp": "2026-10-03T05:17:47.736Z"
+      },
+      {
+        "name": "get_financial_metrics",
+        "status": "failed",
+        "toolCallId": "call_01_NvhPesWnwUIkYNi20mb43591",
+        "timestamp": "2026-10-03T05:17:47.775Z",
+        "summary": "invalid_scope"
+      },
+      {
+        "name": "run_analysis",
+        "status": "completed",
+        "toolCallId": "call_00_AUGkxHvt2OOoeZaZE8cZ9123",
+        "timestamp": "2026-10-03T05:17:48.040Z",
+        "summary": "accepted"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_bMk3mu6yecLBTxOKD86q6620",
+        "timestamp": "2026-10-03T05:17:49.021Z"
+      },
+      {
+        "name": "get_financial_metrics",
+        "status": "started",
+        "toolCallId": "call_01_Ni1datFmDvYA2duuEyxR7223",
+        "timestamp": "2026-10-03T05:17:49.021Z"
+      },
+      {
+        "name": "get_financial_metrics",
+        "status": "completed",
+        "toolCallId": "call_01_Ni1datFmDvYA2duuEyxR7223",
+        "timestamp": "2026-10-03T05:17:49.046Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_bMk3mu6yecLBTxOKD86q6620",
+        "timestamp": "2026-10-03T05:17:49.267Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "started",
+        "toolCallId": "call_00_0AGCetzwHsfzSeuk2aDk0068",
+        "timestamp": "2026-10-03T05:17:50.558Z"
+      },
+      {
+        "name": "get_analysis_status",
+        "status": "completed",
+        "toolCallId": "call_00_0AGCetzwHsfzSeuk2aDk0068",
+        "timestamp": "2026-10-03T05:17:50.577Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_artifact",
+        "status": "started",
+        "toolCallId": "call_00_u72kdm4dlUvOW1JFyI8Q6142",
+        "timestamp": "2026-10-03T05:17:51.807Z"
+      },
+      {
+        "name": "get_artifact",
+        "status": "started",
+        "toolCallId": "call_01_t6f4bvbXGsFZM2xrnMtk1761",
+        "timestamp": "2026-10-03T05:17:51.807Z"
+      },
+      {
+        "name": "get_artifact",
+        "status": "completed",
+        "toolCallId": "call_01_t6f4bvbXGsFZM2xrnMtk1761",
+        "timestamp": "2026-10-03T05:17:52.021Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_artifact",
+        "status": "completed",
+        "toolCallId": "call_00_u72kdm4dlUvOW1JFyI8Q6142",
+        "timestamp": "2026-10-03T05:17:52.022Z",
+        "summary": "ok"
+      }
+    ],
+    "usage": {
+      "input": 131481,
+      "output": 8366,
+      "calls": 17,
+      "costUsd": null
+    },
+    "model": "deepseek-flash",
+    "configHash": "9de55fdcc51f9f821a0d1c37931ee4bf41e2733324fd36f0879b026665de97bc",
+    "messageId": "8324ca5a-2b33-4ae6-ae32-3349eb853336",
+    "finishedAt": "2026-10-03T05:17:57.154Z"
+  },
+  "conversation": {
+    "id": "ef092940-4660-46ca-935c-92952764a957",
+    "projectId": "fec8663c-a5e9-47da-bec6-2feb351c838c",
+    "title": "请只依据上传CSV，先调用工具读取实际表格，再调用run",
+    "messages": [
+      {
+        "id": "6421b560-bf11-4757-92bc-775e3bece260",
+        "role": "user",
+        "content": "请只依据上传CSV，先调用工具读取实际表格，再调用run_analysis在隔离容器内绘制2023、2024两年的营业收入柱状对比图。金额统一显示为亿元，纵轴从0开始；中文标题和坐标使用容器预装的Noto Sans CJK JP字体。必须真正生成revenue.png和chart_data.json，不能只给代码或口头描述。chart_data.json格式为包含currency、source_unit、display_unit、years、values_cny的JSON对象；years按2023、2024排序，values_cny保持原始元金额。不要自行补数据；等待容器任务到终态后返回两份可下载产物，并简述趋势。",
+        "createdAt": "2026-10-03T05:17:09.758Z",
+        "attachments": [
+          "7d2424c2368443edb9576c33d56e8d47"
+        ]
+      },
+      {
+        "id": "8324ca5a-2b33-4ae6-ae32-3349eb853336",
+        "role": "assistant",
+        "content": "## 任务完成情况\n\n**源数据（事实）：** 上传文件 `agent-chart-input.csv`（document_id `7d2424c2368443edb9576c33d56e8d47`，1 页 1 表 `…:t0`），实际表格内容（已通过 `get_source_table` 与 `get_source_page` 读取）[7d2424c2368443edb9576c33d56e8d47]：\n\n| 公司 | 指标 | 币种 | 单位 | 口径 | 2023 | 2024 |\n|---|---|---|---|---|---|---|\n| 验收示例公司 | 营业收入 | CNY | 元 | 合并 | 120,000,000 | 150,000,000 |\n\n项目侧精确十进制事实交叉核对一致：2023 年 120,000,000（单元格 F2）、2024 年 150,000,000（单元格 G2），币种 CNY、单位元、合并口径（consolidated_CAS）[7d2424c2368443edb9576c33d56e8d47]。未补任何数据。\n\n**同比计算（工具结果，非心算）：** `yoy(150000000, 120000000)` = **25.00%**，公式 (current − previous)/previous×100。\n\n## 容器产物（已到终态 succeeded，run_id `87121e2b46f54fdcb79ca0164e3f8640`）\n\n| 产物 | 大小 | sha256 |\n|---|---|---|\n| `revenue.png` | 48,183 B | df21e33dd2559564144c6fef06105f3cadd906f7b7d5b3110ca58deace35c17f |\n| `chart_data.json` | 430 B | 67320e23851724b1dc5f9ee22597a01f1063eb129b087d2759eb58cf5916c621 |\n| `run_summary.txt`（附带核对用） | 87 B | 4cca3923c5c2618ecd0c8f40d91f5a3dae1f4355b35e400375e0fb998e8341d2 |\n\n两份主产物均已通过 `get_artifact` 的项目/路径/哈希校验，可下载。脚本内置断言（数值必须解析成功、PNG > 10KB、回读 JSON 的 values_cny 与源值一致），运行 exit_code=0，两个断言均通过；首次尝试曾因表格导出结构解析不匹配而失败（exit 1），已改为通用结构遍历后成功——此过程如实说明，未用默认值掩盖。\n\n`chart_data.json` 关键字段（按约定格式）：`currency=\"CNY\"`、`source_unit=\"元\"`、`display_unit=\"亿元\"`、`years=[2023, 2024]`、`values_cny=[120000000, 150000000]`（保持原始元金额），并附 document_id、table_id、physical_page、scope、font_used 等溯源键。图表以亿元显示（1.20 与 1.50 亿元），纵轴自 0 起，中文标题/坐标。\n\n## 趋势结论\n\n- **事实：** 2023 年营业收入 120,000,000 元（1.20 亿元），2024 年 150,000,000 元（1.50 亿元），合并口径、CNY；同比增长 25.00%（工具计算）。\n- **推论：** 增幅来自单一报表口径内的绝对额提升（+30,000,000 元）；CSV 不含成本、利润或业务分部信息，故无法判断增长质量、单价/销量拆分或盈利能力变化。\n\n**一处需说明的歧义：** 关于容器预装字体，脚本优先请求 `Noto Sans CJK JP` 且未使用 `fallback_to_default`；图表实际选用的字体名记录在 `chart_data.json` 的 `font_used` 字段中，确切的字体字符串以该产物为准（因 `get_artifact` 仅返回文件清单元数据、不回传内容，我无法在此直接读出该字符串，故不作断言）。中文标题与坐标标签已按 CJK 字体渲染，未出现缺字方框报错。",
+        "createdAt": "2026-10-03T05:17:09.758Z",
+        "status": "completed",
+        "sources": [
+          {
+            "documentId": "7d2424c2368443edb9576c33d56e8d47",
+            "page": 1,
+            "tableId": "7d2424c2368443edb9576c33d56e8d47:t0",
+            "sourceId": "7d2424c2368443edb9576c33d56e8d47:p1"
+          },
+          {
+            "documentId": "7d2424c2368443edb9576c33d56e8d47",
+            "page": 1,
+            "sourceId": "7d2424c2368443edb9576c33d56e8d47:p1"
+          },
+          {
+            "documentId": "7d2424c2368443edb9576c33d56e8d47",
+            "page": 1,
+            "tableId": "7d2424c2368443edb9576c33d56e8d47:t0",
+            "cell": "F2",
+            "sheet": "agent-chart-input",
+            "quote": "营业收入: 120000000 元",
+            "sourceId": "7d2424c2368443edb9576c33d56e8d47:p1"
+          },
+          {
+            "documentId": "7d2424c2368443edb9576c33d56e8d47",
+            "page": 1,
+            "tableId": "7d2424c2368443edb9576c33d56e8d47:t0",
+            "cell": "G2",
+            "sheet": "agent-chart-input",
+            "quote": "营业收入: 150000000 元",
+            "sourceId": "7d2424c2368443edb9576c33d56e8d47:p1"
+          }
+        ],
+        "artifacts": [
+          {
+            "id": "1e08b85c225b462c8ad37dad9beb34e6_debug.json",
+            "name": "debug.json",
+            "mimeType": "application/octet-stream",
+            "url": "/api/projects/fec8663c-a5e9-47da-bec6-2feb351c838c/artifacts/1e08b85c225b462c8ad37dad9beb34e6/debug.json"
+          },
+          {
+            "id": "87121e2b46f54fdcb79ca0164e3f8640_chart_data.json",
+            "name": "chart_data.json",
+            "mimeType": "application/octet-stream",
+            "url": "/api/projects/fec8663c-a5e9-47da-bec6-2feb351c838c/artifacts/87121e2b46f54fdcb79ca0164e3f8640/chart_data.json"
+          },
+          {
+            "id": "87121e2b46f54fdcb79ca0164e3f8640_revenue.png",
+            "name": "revenue.png",
+            "mimeType": "application/octet-stream",
+            "url": "/api/projects/fec8663c-a5e9-47da-bec6-2feb351c838c/artifacts/87121e2b46f54fdcb79ca0164e3f8640/revenue.png"
+          },
+          {
+            "id": "87121e2b46f54fdcb79ca0164e3f8640_run_summary.txt",
+            "name": "run_summary.txt",
+            "mimeType": "application/octet-stream",
+            "url": "/api/projects/fec8663c-a5e9-47da-bec6-2feb351c838c/artifacts/87121e2b46f54fdcb79ca0164e3f8640/run_summary.txt"
+          }
+        ],
+        "tools": [
+          {
+            "name": "list_documents",
+            "status": "started",
+            "toolCallId": "call_00_ET_OluaY18GDv6avyplbcuA0659",
+            "timestamp": "2026-10-03T05:17:12.558Z"
+          },
+          {
+            "name": "get_document",
+            "status": "started",
+            "toolCallId": "call_01_ET_wBm0jw6FNwzpPulSlirq2788",
+            "timestamp": "2026-10-03T05:17:12.558Z"
+          },
+          {
+            "name": "list_documents",
+            "status": "completed",
+            "toolCallId": "call_00_ET_OluaY18GDv6avyplbcuA0659",
+            "timestamp": "2026-10-03T05:17:12.614Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_document",
+            "status": "completed",
+            "toolCallId": "call_01_ET_wBm0jw6FNwzpPulSlirq2788",
+            "timestamp": "2026-10-03T05:17:12.615Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_table",
+            "status": "started",
+            "toolCallId": "call_00_BtxjShoukL83PGOV1G1f8891",
+            "timestamp": "2026-10-03T05:17:13.544Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_01_rgS6eBYuCEQj9JrClGXx7015",
+            "timestamp": "2026-10-03T05:17:13.544Z"
+          },
+          {
+            "name": "get_source_table",
+            "status": "completed",
+            "toolCallId": "call_00_BtxjShoukL83PGOV1G1f8891",
+            "timestamp": "2026-10-03T05:17:13.616Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_01_rgS6eBYuCEQj9JrClGXx7015",
+            "timestamp": "2026-10-03T05:17:13.627Z",
+            "summary": "ok"
+          },
+          {
+            "name": "calculate_financial_metrics",
+            "status": "started",
+            "toolCallId": "call_00_qUmWyYEVfPQJK2hHmSqv4060",
+            "timestamp": "2026-10-03T05:17:17.302Z"
+          },
+          {
+            "name": "run_analysis",
+            "status": "started",
+            "toolCallId": "call_01_MN5EaV1QKe0uZTWvqQPm3996",
+            "timestamp": "2026-10-03T05:17:17.302Z"
+          },
+          {
+            "name": "calculate_financial_metrics",
+            "status": "completed",
+            "toolCallId": "call_00_qUmWyYEVfPQJK2hHmSqv4060",
+            "timestamp": "2026-10-03T05:17:17.320Z",
+            "summary": "ok"
+          },
+          {
+            "name": "run_analysis",
+            "status": "completed",
+            "toolCallId": "call_01_MN5EaV1QKe0uZTWvqQPm3996",
+            "timestamp": "2026-10-03T05:17:17.820Z",
+            "summary": "accepted"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "started",
+            "toolCallId": "call_00_z3Sy8LhfzMgNMolYhlz49559",
+            "timestamp": "2026-10-03T05:17:18.506Z"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "completed",
+            "toolCallId": "call_00_z3Sy8LhfzMgNMolYhlz49559",
+            "timestamp": "2026-10-03T05:17:18.717Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "started",
+            "toolCallId": "call_00_ET_lwkfajYZmbsNYKwqew6T2706",
+            "timestamp": "2026-10-03T05:17:19.624Z"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "completed",
+            "toolCallId": "call_00_ET_lwkfajYZmbsNYKwqew6T2706",
+            "timestamp": "2026-10-03T05:17:19.852Z",
+            "summary": "ok"
+          },
+          {
+            "name": "run_analysis",
+            "status": "started",
+            "toolCallId": "call_00_SR4NoxQawr8iV74VIsAb8592",
+            "timestamp": "2026-10-03T05:17:21.179Z"
+          },
+          {
+            "name": "run_analysis",
+            "status": "completed",
+            "toolCallId": "call_00_SR4NoxQawr8iV74VIsAb8592",
+            "timestamp": "2026-10-03T05:17:21.642Z",
+            "summary": "accepted"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "started",
+            "toolCallId": "call_00_ET_y463V9xydX17vomif96L2469",
+            "timestamp": "2026-10-03T05:17:22.286Z"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "completed",
+            "toolCallId": "call_00_ET_y463V9xydX17vomif96L2469",
+            "timestamp": "2026-10-03T05:17:22.530Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "started",
+            "toolCallId": "call_00_ET_mSjksH4V5vhCOQHDIh2e7666",
+            "timestamp": "2026-10-03T05:17:23.457Z"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "completed",
+            "toolCallId": "call_00_ET_mSjksH4V5vhCOQHDIh2e7666",
+            "timestamp": "2026-10-03T05:17:23.666Z",
+            "summary": "ok"
+          },
+          {
+            "name": "run_analysis",
+            "status": "started",
+            "toolCallId": "call_00_EHe3fVHSuzZf5DUW2t0R2756",
+            "timestamp": "2026-10-03T05:17:26.745Z"
+          },
+          {
+            "name": "run_analysis",
+            "status": "completed",
+            "toolCallId": "call_00_EHe3fVHSuzZf5DUW2t0R2756",
+            "timestamp": "2026-10-03T05:17:27.058Z",
+            "summary": "accepted"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "started",
+            "toolCallId": "call_00_ET_bqYUbYE1gXlikdhDQtIg1451",
+            "timestamp": "2026-10-03T05:17:27.899Z"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "completed",
+            "toolCallId": "call_00_ET_bqYUbYE1gXlikdhDQtIg1451",
+            "timestamp": "2026-10-03T05:17:28.118Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "started",
+            "toolCallId": "call_00_ET_pyMSebK8KpuHIv3Hzsx41443",
+            "timestamp": "2026-10-03T05:17:28.991Z"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "completed",
+            "toolCallId": "call_00_ET_pyMSebK8KpuHIv3Hzsx41443",
+            "timestamp": "2026-10-03T05:17:29.023Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_artifact",
+            "status": "started",
+            "toolCallId": "call_00_ET_B1b6gMHEHl6n46xzO56S4860",
+            "timestamp": "2026-10-03T05:17:29.713Z"
+          },
+          {
+            "name": "get_artifact",
+            "status": "completed",
+            "toolCallId": "call_00_ET_B1b6gMHEHl6n46xzO56S4860",
+            "timestamp": "2026-10-03T05:17:29.883Z",
+            "summary": "ok"
+          },
+          {
+            "name": "run_analysis",
+            "status": "started",
+            "toolCallId": "call_00_AUGkxHvt2OOoeZaZE8cZ9123",
+            "timestamp": "2026-10-03T05:17:47.736Z"
+          },
+          {
+            "name": "get_financial_metrics",
+            "status": "started",
+            "toolCallId": "call_01_NvhPesWnwUIkYNi20mb43591",
+            "timestamp": "2026-10-03T05:17:47.736Z"
+          },
+          {
+            "name": "get_financial_metrics",
+            "status": "failed",
+            "toolCallId": "call_01_NvhPesWnwUIkYNi20mb43591",
+            "timestamp": "2026-10-03T05:17:47.775Z",
+            "summary": "invalid_scope"
+          },
+          {
+            "name": "run_analysis",
+            "status": "completed",
+            "toolCallId": "call_00_AUGkxHvt2OOoeZaZE8cZ9123",
+            "timestamp": "2026-10-03T05:17:48.040Z",
+            "summary": "accepted"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "started",
+            "toolCallId": "call_00_bMk3mu6yecLBTxOKD86q6620",
+            "timestamp": "2026-10-03T05:17:49.021Z"
+          },
+          {
+            "name": "get_financial_metrics",
+            "status": "started",
+            "toolCallId": "call_01_Ni1datFmDvYA2duuEyxR7223",
+            "timestamp": "2026-10-03T05:17:49.021Z"
+          },
+          {
+            "name": "get_financial_metrics",
+            "status": "completed",
+            "toolCallId": "call_01_Ni1datFmDvYA2duuEyxR7223",
+            "timestamp": "2026-10-03T05:17:49.046Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "completed",
+            "toolCallId": "call_00_bMk3mu6yecLBTxOKD86q6620",
+            "timestamp": "2026-10-03T05:17:49.267Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "started",
+            "toolCallId": "call_00_0AGCetzwHsfzSeuk2aDk0068",
+            "timestamp": "2026-10-03T05:17:50.558Z"
+          },
+          {
+            "name": "get_analysis_status",
+            "status": "completed",
+            "toolCallId": "call_00_0AGCetzwHsfzSeuk2aDk0068",
+            "timestamp": "2026-10-03T05:17:50.577Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_artifact",
+            "status": "started",
+            "toolCallId": "call_00_u72kdm4dlUvOW1JFyI8Q6142",
+            "timestamp": "2026-10-03T05:17:51.807Z"
+          },
+          {
+            "name": "get_artifact",
+            "status": "started",
+            "toolCallId": "call_01_t6f4bvbXGsFZM2xrnMtk1761",
+            "timestamp": "2026-10-03T05:17:51.807Z"
+          },
+          {
+            "name": "get_artifact",
+            "status": "completed",
+            "toolCallId": "call_01_t6f4bvbXGsFZM2xrnMtk1761",
+            "timestamp": "2026-10-03T05:17:52.021Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_artifact",
+            "status": "completed",
+            "toolCallId": "call_00_u72kdm4dlUvOW1JFyI8Q6142",
+            "timestamp": "2026-10-03T05:17:52.022Z",
+            "summary": "ok"
+          }
+        ],
+        "runId": "74d74678-4422-4298-b293-5b547748d75e"
+      }
+    ],
+    "createdAt": "2026-10-03T05:17:09.604Z",
+    "updatedAt": "2026-10-03T05:17:57.154Z"
+  },
+  "downloads": [
+    {
+      "name": "debug.json",
+      "url": "/api/projects/fec8663c-a5e9-47da-bec6-2feb351c838c/artifacts/1e08b85c225b462c8ad37dad9beb34e6/debug.json",
+      "http_status": 200,
+      "mime_type": "application/json; charset=utf-8",
+      "size": 2847,
+      "sha256": "f535c529b61a90742ba692717c81d569d2ba9189d782d52a17466685e926aa85",
+      "file": "sandbox\\evidence\\agent-debug.json"
+    },
+    {
+      "name": "chart_data.json",
+      "url": "/api/projects/fec8663c-a5e9-47da-bec6-2feb351c838c/artifacts/87121e2b46f54fdcb79ca0164e3f8640/chart_data.json",
+      "http_status": 200,
+      "mime_type": "application/json; charset=utf-8",
+      "size": 430,
+      "sha256": "67320e23851724b1dc5f9ee22597a01f1063eb129b087d2759eb58cf5916c621",
+      "file": "sandbox\\evidence\\agent-chart_data.json"
+    },
+    {
+      "name": "revenue.png",
+      "url": "/api/projects/fec8663c-a5e9-47da-bec6-2feb351c838c/artifacts/87121e2b46f54fdcb79ca0164e3f8640/revenue.png",
+      "http_status": 200,
+      "mime_type": "image/png",
+      "size": 48183,
+      "sha256": "df21e33dd2559564144c6fef06105f3cadd906f7b7d5b3110ca58deace35c17f",
+      "file": "sandbox\\evidence\\agent-revenue.png"
+    },
+    {
+      "name": "run_summary.txt",
+      "url": "/api/projects/fec8663c-a5e9-47da-bec6-2feb351c838c/artifacts/87121e2b46f54fdcb79ca0164e3f8640/run_summary.txt",
+      "http_status": 200,
+      "mime_type": "text/plain; charset=utf-8",
+      "size": 87,
+      "sha256": "4cca3923c5c2618ecd0c8f40d91f5a3dae1f4355b35e400375e0fb998e8341d2",
+      "file": "sandbox\\evidence\\agent-run_summary.txt"
+    }
+  ],
+  "chart_data": {
+    "currency": "CNY",
+    "source_unit": "元",
+    "display_unit": "亿元",
+    "years": [
+      2023,
+      2024
+    ],
+    "values_cny": [
+      120000000,
+      150000000
+    ],
+    "company": "验收示例公司",
+    "metric": "营业收入",
+    "scope": "合并",
+    "document_id": "7d2424c2368443edb9576c33d56e8d47",
+    "physical_page": 1,
+    "table_id": "7d2424c2368443edb9576c33d56e8d47:t0",
+    "font_used": "Noto Sans CJK JP",
+    "yoy_pct": 25.0
+  },
+  "checks": {
+    "agent_completed": true,
+    "run_analysis_called": true,
+    "analysis_status_polled": true,
+    "png_http_verified": true,
+    "chart_data_matches_uploaded_source": true,
+    "real_docker_succeeded_and_cleaned": true,
+    "model_code_hash_matches_container": true
+  },
+  "finished_at": 1791004679.246094,
+  "model_config": {
+    "model": "deepseek-flash",
+    "baseUrl": "https://api.deepseek.com",
+    "thinkingLevel": "high",
+    "responseFormat": "text",
+    "configHash": "9de55fdcc51f9f821a0d1c37931ee4bf41e2733324fd36f0879b026665de97bc",
+    "promptHash": "f3b4ab024543a418606a3ccb76b82fe521719c5e46ed1924372f373cb08772ae",
+    "tools": [
+      "list_documents",
+      "get_document",
+      "get_source_page",
+      "get_source_table",
+      "search_evidence",
+      "get_financial_metrics",
+      "calculate_financial_metrics",
+      "run_analysis",
+      "get_analysis_status",
+      "get_artifact"
+    ],
+    "piVersion": "1.0.0"
+  },
+  "container_attempts": [
+    {
+      "run_id": "d1864d3fae804d6594682eeaf991d22d",
+      "status": "failed",
+      "exit_code": 1,
+      "error": "Analysis process exited with an error",
+      "elapsed_seconds": 1.658,
+      "execution_seconds": 1.002,
+      "container_removed": true,
+      "code_sha256": "c674fc2f8be0edc07c95a4a2e83f20f58479d7710ebaa0932c5a46aeb6b99b75",
+      "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8"
+    },
+    {
+      "run_id": "4b1152392ed7481a84650763e20ff619",
+      "status": "succeeded",
+      "exit_code": 0,
+      "error": null,
+      "elapsed_seconds": 1.28,
+      "execution_seconds": 0.608,
+      "container_removed": true,
+      "code_sha256": "69c0c51807e85485ba73059e46e32b3dafa3559a43d7e3d59e45b6271f11a740",
+      "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8"
+    },
+    {
+      "run_id": "1e08b85c225b462c8ad37dad9beb34e6",
+      "status": "succeeded",
+      "exit_code": 0,
+      "error": null,
+      "elapsed_seconds": 0.994,
+      "execution_seconds": 0.537,
+      "container_removed": true,
+      "code_sha256": "b60f9650ec29b2e0f7fdd6929a29795a88337437d6afef0b41ee248635f8742e",
+      "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8"
+    },
+    {
+      "run_id": "87121e2b46f54fdcb79ca0164e3f8640",
+      "status": "succeeded",
+      "exit_code": 0,
+      "error": null,
+      "elapsed_seconds": 1.398,
+      "execution_seconds": 0.899,
+      "container_removed": true,
+      "code_sha256": "d4b706e59bb48db45c9a2080d11024c54972ddcd80c6e7e056fe822c27ec874d",
+      "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8"
+    }
+  ],
+  "successful_container": {
+    "run_id": "87121e2b46f54fdcb79ca0164e3f8640",
+    "project_id": "fec8663c-a5e9-47da-bec6-2feb351c838c",
+    "status": "succeeded",
+    "exit_code": 0,
+    "artifacts": [
+      {
+        "name": "chart_data.json",
+        "size": 430,
+        "sha256": "67320e23851724b1dc5f9ee22597a01f1063eb129b087d2759eb58cf5916c621"
+      },
+      {
+        "name": "revenue.png",
+        "size": 48183,
+        "sha256": "df21e33dd2559564144c6fef06105f3cadd906f7b7d5b3110ca58deace35c17f"
+      },
+      {
+        "name": "run_summary.txt",
+        "size": 87,
+        "sha256": "4cca3923c5c2618ecd0c8f40d91f5a3dae1f4355b35e400375e0fb998e8341d2"
+      }
+    ],
+    "error": null,
+    "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+    "created_at": 1791004668.2863464,
+    "elapsed_seconds": 1.398,
+    "input_sha256": {
+      "tables.json": "cf1254b1b711c83591f64a8c1cd68eb11f610d9d286adfa05d5c694000f37c48",
+      "facts.json": "269d36aacebe16c09ab6cdc93518c678f936fc1695cc34cf90155f6f11aaee2e"
+    },
+    "timeout_seconds": 120,
+    "owner_pid": 14249,
+    "owner_token": "1076651",
+    "host_platform": "linux",
+    "host_name": "finance-vm",
+    "repo_digests": [],
+    "code_sha256": "d4b706e59bb48db45c9a2080d11024c54972ddcd80c6e7e056fe822c27ec874d",
+    "started_at": 1791004668.6989741,
+    "execution_seconds": 0.899,
+    "oom_killed": false,
+    "container_removed": true,
+    "finished_at": 1791004669.6844916
+  },
+  "model_code": {
+    "path": "sandbox\\evidence\\agent-analysis-code.py",
+    "sha256": "d4b706e59bb48db45c9a2080d11024c54972ddcd80c6e7e056fe822c27ec874d",
+    "provenance": "Copied unmodified from actual application tool_request audit after the model run completed"
+  },
+  "visual_review": {
+    "status": "PASS",
+    "method": "Host-opened actual HTTP-downloaded PNG",
+    "checks": [
+      "2023 1.20亿元 / 120000000元",
+      "2024 1.50亿元 / 150000000元",
+      "zero y-axis baseline",
+      "Chinese glyphs legible",
+      "title, units and tick labels not clipped"
+    ]
+  }
+}

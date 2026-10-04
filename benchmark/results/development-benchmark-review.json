@@ -1,0 +1,774 @@
+{
+  "scope": "only the five requested dev cases; no acceptance labels accessed",
+  "method": "independent reading and calculations committed before reading evaluator gold or original qa program",
+  "phase": "completed_readonly_review",
+  "independent_calculated_at": "2026-10-03T05:23:25.400138+00:00",
+  "cases": [
+    {
+      "id": "finqa_7dbd1abd9c17e815",
+      "split": "dev",
+      "question": "in 2014 what was the ratio of the cash used for investment to the cash from operations",
+      "answer_convention": "FinQA execution value: percent tokens are fractions; follow arithmetic result, do not multiply a ratio by 100 unless the question requires it. Return unit=finqa_execution.",
+      "material_sha256": "e45a8db75e1661b927c89c4b916366ef5dba304303688a40f2dc0f16b84139ae",
+      "independent": {
+        "formula": "4249 / 7385",
+        "value": "0.5753554502369668246445497630",
+        "unit": "dimensionless ratio of investment cash-use magnitude to operating inflow",
+        "signed_cashflow_ratio": "-0.5753554502369668246445497630",
+        "required_fact_groups": [
+          [
+            "table_2"
+          ],
+          [
+            "table_1"
+          ]
+        ],
+        "notes": "Cash used is normally discussed as positive amount used; literal signed net investing cash flow is negative. Report both interpretations."
+      },
+      "local_gold": {
+        "id": "finqa_7dbd1abd9c17e815",
+        "track": "finqa_single",
+        "split": "dev",
+        "status": "ok",
+        "answer": "0.49905",
+        "unit": "finqa_execution",
+        "citations": [
+          "finqa_7dbd1abd9c17e815:table_1",
+          "finqa_7dbd1abd9c17e815:table_2"
+        ],
+        "abs_tolerance": "0.000006",
+        "rel_tolerance": "0",
+        "original_id": "UNP/2015/page_35.pdf-1",
+        "program": "divide(3405, 6823)",
+        "recomputed": "0.4990473398798182617616884068591528653085"
+      },
+      "official_finqa": {
+        "id": "UNP/2015/page_35.pdf-1",
+        "human_answer": "0.499",
+        "explanation": "for every dollar of cash provided by operations 0.499 was used for investing activities",
+        "program": "divide(3405, 6823)",
+        "exe_ans": 0.49905,
+        "steps": [
+          {
+            "op": "divide1-1",
+            "arg1": "3405",
+            "arg2": "6823",
+            "res": "0.499"
+          }
+        ],
+        "gold_inds": {
+          "table_1": "millions the cash provided by operating activities of 2015 is $ 7344 ; the cash provided by operating activities of 2014 is $ 7385 ; the cash provided by operating activities of 2013 is $ 6823 ;",
+          "table_2": "millions the cash used in investing activities of 2015 is -4476 ( 4476 ) ; the cash used in investing activities of 2014 is -4249 ( 4249 ) ; the cash used in investing activities of 2013 is -3405 ( 3405 ) ;"
+        },
+        "original_table": [
+          [
+            "Millions",
+            "2015",
+            "2014",
+            "2013"
+          ],
+          [
+            "Cash provided by operating activities",
+            "$7,344",
+            "$7,385",
+            "$6,823"
+          ],
+          [
+            "Cash used in investing activities",
+            "(4,476)",
+            "(4,249)",
+            "(3,405)"
+          ],
+          [
+            "Cash used in financing activities",
+            "(3,063)",
+            "(2,982)",
+            "(3,049)"
+          ],
+          [
+            "Net change in cash and cash equivalents",
+            "$(195)",
+            "$154",
+            "$369"
+          ]
+        ]
+      },
+      "review": {
+        "verdict": "upstream_gold_wrong_year",
+        "severity": "high",
+        "correct_interpretation": "2014 cash-use magnitude / operating inflow =4249/7385=0.5753554502369668; dimensionless. Signed net-cash-flow ratio=-0.5753554502369668 if explicitly requested.",
+        "gold_error": "Official program3405/6823 and exe_ans0.49905 both use2013 values although the question explicitly says2014. Official human answer0.499 repeats the same wrong-year interpretation.",
+        "citation_review": "table_1 and table_2 are two different necessary facts, not duplicate requirements. Exact row citations both are justified; table_0 alone is only header and insufficient unless an application locator adapter actually maps it to the full table, which requires separate mapping repair."
+      },
+      "citation_only_probes": [
+        {
+          "purpose": "Controlled unit probe of citation logic only; scalar fixed to existing gold to isolate evidence effects. Not a model prediction or replacement benchmark score.",
+          "citations": [
+            "finqa_7dbd1abd9c17e815:table_1",
+            "finqa_7dbd1abd9c17e815:table_2"
+          ],
+          "scorer_result": {
+            "id": "finqa_7dbd1abd9c17e815",
+            "track": "finqa_single",
+            "answer_ok": true,
+            "grounded_ok": true,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "errors": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "finqa_53295df2e598efa3",
+      "split": "dev",
+      "question": "what was the percentage growth in the total long-term debt from 2016 to 2017",
+      "answer_convention": "FinQA execution value: percent tokens are fractions; follow arithmetic result, do not multiply a ratio by 100 unless the question requires it. Return unit=finqa_execution.",
+      "material_sha256": "af613f1df70036851fdd18ed9dea6d02cc20f6ab917d0ef43e213a38dc23601e",
+      "independent": {
+        "formula": "(1507.6 - 1431.1) / 1431.1",
+        "value": "0.05345538397037244077981971910",
+        "percent": "5.345538397037244077981971910",
+        "unit": "growth ratio or percent when multiplied by100",
+        "required_fact_groups": [
+          [
+            "table_6",
+            "table_4"
+          ]
+        ],
+        "notes": "table_6 is explicitly long-term debt; table_4 duplicates identical two-year amounts, with text_0 or table context establishing no current portion. Agent contract mixes execution value and question-requires-percent wording."
+      },
+      "local_gold": {
+        "id": "finqa_53295df2e598efa3",
+        "track": "finqa_single",
+        "split": "dev",
+        "status": "ok",
+        "answer": "76.5",
+        "unit": "finqa_execution",
+        "citations": [
+          "finqa_53295df2e598efa3:table_6"
+        ],
+        "abs_tolerance": "0.000006",
+        "rel_tolerance": "0",
+        "original_id": "FBHS/2017/page_76.pdf-2",
+        "program": "subtract(1507.6, 1431.1)",
+        "recomputed": "76.5"
+      },
+      "official_finqa": {
+        "id": "FBHS/2017/page_76.pdf-2",
+        "human_answer": "5.34%",
+        "explanation": "",
+        "program": "subtract(1507.6, 1431.1)",
+        "exe_ans": 76.5,
+        "steps": [
+          {
+            "op": "minus2-1",
+            "arg1": "1507.6",
+            "arg2": "1431.1",
+            "res": "76.5"
+          }
+        ],
+        "gold_inds": {
+          "table_6": "( in millions ) the total long-term debt of 2017 is $ 1507.6 ; the total long-term debt of 2016 is $ 1431.1 ;"
+        },
+        "original_table": [
+          [
+            "<i>(In millions)</i>",
+            "<i>2017</i>",
+            "2016"
+          ],
+          [
+            "$400 million unsecured senior note due June 2020",
+            "$398.3",
+            "$397.6"
+          ],
+          [
+            "$500 million unsecured senior note due June 2025",
+            "494.3",
+            "493.5"
+          ],
+          [
+            "$1,250 million revolving credit agreement due June 2021",
+            "615.0",
+            "540.0"
+          ],
+          [
+            "Total debt",
+            "1,507.6",
+            "1,431.1"
+          ],
+          [
+            "Less: current portion",
+            "—",
+            "—"
+          ],
+          [
+            "Total long-term debt",
+            "$1,507.6",
+            "$1,431.1"
+          ]
+        ]
+      },
+      "review": {
+        "verdict": "upstream_program_stops_at_absolute_change",
+        "severity": "high",
+        "correct_interpretation": "(1507.6-1431.1)/1431.1=0.05345538397037244, or5.345538397037244%. Absolute increase76.5 has unit USDmillion and does not answer percentage growth.",
+        "gold_error": "Program and exe_ans stop after subtraction. Official text answer5.34% indicates intended percentage; proper two-decimal rounding would5.35%, while5.34% is truncation.",
+        "citation_review": "Explicit table_6 alone contains both years and suffices. table_4 repeats the same amounts under total debt and is an alternate only with context that current portion is absent, best established by table_6 itself. The scorer cannot express this conditional equivalence, treating table_4 as unrelated. This case does not require both duplicate rows; it hard-codes one admissible row."
+      },
+      "citation_only_probes": [
+        {
+          "purpose": "Controlled unit probe of citation logic only; scalar fixed to existing gold to isolate evidence effects. Not a model prediction or replacement benchmark score.",
+          "citations": [
+            "finqa_53295df2e598efa3:table_6"
+          ],
+          "scorer_result": {
+            "id": "finqa_53295df2e598efa3",
+            "track": "finqa_single",
+            "answer_ok": true,
+            "grounded_ok": true,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "errors": []
+          }
+        },
+        {
+          "purpose": "Controlled unit probe of citation logic only; scalar fixed to existing gold to isolate evidence effects. Not a model prediction or replacement benchmark score.",
+          "citations": [
+            "finqa_53295df2e598efa3:table_4"
+          ],
+          "scorer_result": {
+            "id": "finqa_53295df2e598efa3",
+            "track": "finqa_single",
+            "answer_ok": true,
+            "grounded_ok": false,
+            "citation_precision": 0.0,
+            "citation_recall": 0.0,
+            "errors": [
+              "missing_expected_evidence",
+              "irrelevant_or_invalid_evidence"
+            ]
+          }
+        },
+        {
+          "purpose": "Controlled unit probe of citation logic only; scalar fixed to existing gold to isolate evidence effects. Not a model prediction or replacement benchmark score.",
+          "citations": [
+            "finqa_53295df2e598efa3:table_4",
+            "finqa_53295df2e598efa3:table_6"
+          ],
+          "scorer_result": {
+            "id": "finqa_53295df2e598efa3",
+            "track": "finqa_single",
+            "answer_ok": true,
+            "grounded_ok": false,
+            "citation_precision": 0.5,
+            "citation_recall": 1.0,
+            "errors": [
+              "irrelevant_or_invalid_evidence"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "finqa_b60f5cb9d1c5146a",
+      "split": "dev",
+      "question": "what percent higher is the average var for foreign exchange products than that of interest rate products?",
+      "answer_convention": "FinQA execution value: percent tokens are fractions; follow arithmetic result, do not multiply a ratio by 100 unless the question requires it. Return unit=finqa_execution.",
+      "material_sha256": "acfb31f53ba212b1cacb90adce09af6c5c0073acefaf1760f661f7f5292e5bb6",
+      "independent": {
+        "formula": "(1.8 - 1.1) / 1.1 for first year block",
+        "value": "0.6363636363636363636363636364",
+        "percent": "63.63636363636363636363636364",
+        "unit": "growth ratio or percent",
+        "alternatives": {
+          "second_year_block": "0.2857142857142857142857142857",
+          "average_two_annual_averages": "0.44"
+        },
+        "required_fact_groups": [
+          [
+            "table_1"
+          ],
+          [
+            "table_2"
+          ]
+        ],
+        "notes": "Question gives no year, table header repeats2008 in both blocks although prose mentions2008/2007. First-block current-year annual-average interpretation and averaging both years are both plausible; source needs disambiguation."
+      },
+      "local_gold": {
+        "id": "finqa_b60f5cb9d1c5146a",
+        "track": "finqa_multi",
+        "split": "dev",
+        "status": "ok",
+        "answer": "1.25",
+        "unit": "finqa_execution",
+        "citations": [
+          "finqa_b60f5cb9d1c5146a:table_2",
+          "finqa_b60f5cb9d1c5146a:text_0"
+        ],
+        "abs_tolerance": "0.000006",
+        "rel_tolerance": "0",
+        "original_id": "STT/2008/page_83.pdf-2",
+        "program": "add(1.1, 1.4), divide(#0, const_2)",
+        "recomputed": "1.25"
+      },
+      "official_finqa": {
+        "id": "STT/2008/page_83.pdf-2",
+        "human_answer": "44%",
+        "explanation": "this table is not the best for analysis but i did all i could",
+        "program": "add(1.1, 1.4), divide(#0, const_2)",
+        "exe_ans": 1.25,
+        "steps": [
+          {
+            "op": "add2-1",
+            "arg1": "1.1",
+            "arg2": "1.4",
+            "res": "2.5"
+          },
+          {
+            "op": "divide2-2",
+            "arg1": "#0",
+            "arg2": "const_2",
+            "res": "1.25"
+          }
+        ],
+        "gold_inds": {
+          "table_2": "years ended december 31 ( inmillions ) the interest-rate products of 2008 annual average is 1.1 ; the interest-rate products of 2008 maximum is 2.4 ; the interest-rate products of 2008 minimum is .6 ; the interest-rate products of 2008 annual average is 1.4 ; the interest-rate products of 2008 maximum is 3.7 ; the interest-rate products of minimum is .1 ;",
+          "text_0": "the following table presents var with respect to our trading activities , as measured by our var methodology for the periods indicated : value-at-risk ."
+        },
+        "original_table": [
+          [
+            "",
+            "2008",
+            "2007"
+          ],
+          [
+            "Years ended December 31, (Inmillions)",
+            "Annual Average",
+            "Maximum",
+            "Minimum",
+            "Annual Average",
+            "Maximum",
+            "Minimum"
+          ],
+          [
+            "Foreign exchange products",
+            "$1.8",
+            "$4.7",
+            "$.3",
+            "$1.8",
+            "$4.0",
+            "$.7"
+          ],
+          [
+            "Interest-rate products",
+            "1.1",
+            "2.4",
+            ".6",
+            "1.4",
+            "3.7",
+            ".1"
+          ]
+        ]
+      },
+      "review": {
+        "verdict": "upstream_incomplete_program_and_ambiguous_input",
+        "severity": "high",
+        "correct_interpretation": "Official textual44% is reproducible by averaging both annual-average columns: FX=(1.8+1.8)/2=1.8; IR=(1.1+1.4)/2=1.25; (1.8-1.25)/1.25=0.44. A current-year2008 reading gives0.6363636364; missing year and corrupted header make the public input ambiguous.",
+        "gold_error": "Program computes only IR annual-average mean1.25 USDmillion and never reads FX, subtracts, or divides by IR. exe_ans1.25 therefore has wrong quantity and unit. Original table_ori distinguishes2008 and2007, but public normalized table repeats2008 for both blocks.",
+        "citation_review": "For actual percent comparison both table_1(FX) and table_2(IR) are necessary. Gold omits required table_1 and includes generic text_0, which contributes no numeric operand. Correct two-row citation is penalized both for omitted generic preamble and for adding necessary FX row; this is semantic label error plus rigid all-label recall, not two duplicate quantitative facts."
+      },
+      "citation_only_probes": [
+        {
+          "purpose": "Controlled unit probe of citation logic only; scalar fixed to existing gold to isolate evidence effects. Not a model prediction or replacement benchmark score.",
+          "citations": [
+            "finqa_b60f5cb9d1c5146a:table_1",
+            "finqa_b60f5cb9d1c5146a:table_2"
+          ],
+          "scorer_result": {
+            "id": "finqa_b60f5cb9d1c5146a",
+            "track": "finqa_multi",
+            "answer_ok": true,
+            "grounded_ok": false,
+            "citation_precision": 0.5,
+            "citation_recall": 0.5,
+            "errors": [
+              "missing_expected_evidence",
+              "irrelevant_or_invalid_evidence"
+            ]
+          }
+        },
+        {
+          "purpose": "Controlled unit probe of citation logic only; scalar fixed to existing gold to isolate evidence effects. Not a model prediction or replacement benchmark score.",
+          "citations": [
+            "finqa_b60f5cb9d1c5146a:table_1",
+            "finqa_b60f5cb9d1c5146a:table_2",
+            "finqa_b60f5cb9d1c5146a:text_0"
+          ],
+          "scorer_result": {
+            "id": "finqa_b60f5cb9d1c5146a",
+            "track": "finqa_multi",
+            "answer_ok": true,
+            "grounded_ok": false,
+            "citation_precision": 0.6666666666666666,
+            "citation_recall": 1.0,
+            "errors": [
+              "irrelevant_or_invalid_evidence"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "finqa_5d27e65ff333d7ae",
+      "split": "dev",
+      "question": "what was the average annual creation of new stores for aap from 2008 to 2012?",
+      "answer_convention": "FinQA execution value: percent tokens are fractions; follow arithmetic result, do not multiply a ratio by 100 unless the question requires it. Return unit=finqa_execution.",
+      "material_sha256": "0db415363857339dcb26e397912971c662b154e405a20c1cbd7134434e16e3af",
+      "independent": {
+        "formula": "(116 + 95 + 110 + 75 + 109) / 5",
+        "value": "101",
+        "unit": "newly opened stores per year",
+        "alternative_net_growth": "84.6",
+        "required_fact_groups": [
+          [
+            "table_2"
+          ]
+        ],
+        "notes": "Direct new-stores row means gross openings,101/year. Net store-count growth including closures is84.6/year, a different measure. Header establishes2008..2012 inclusive5years."
+      },
+      "local_gold": {
+        "id": "finqa_5d27e65ff333d7ae",
+        "track": "finqa_multi",
+        "split": "dev",
+        "status": "ok",
+        "answer": "112.5",
+        "unit": "finqa_execution",
+        "citations": [
+          "finqa_5d27e65ff333d7ae:table_2",
+          "finqa_5d27e65ff333d7ae:text_0",
+          "finqa_5d27e65ff333d7ae:text_1"
+        ],
+        "abs_tolerance": "0.000006",
+        "rel_tolerance": "0",
+        "original_id": "AAP/2012/page_12.pdf-3",
+        "program": "add(116, 109), divide(#0, const_2)",
+        "recomputed": "112.5"
+      },
+      "official_finqa": {
+        "id": "AAP/2012/page_12.pdf-3",
+        "human_answer": "101 stores created per year",
+        "explanation": "to find the average number of stores created one must add up all the stores created between the years of 2008 to 2012 . then one would divide the answer by the number of years .",
+        "program": "add(116, 109), divide(#0, const_2)",
+        "exe_ans": 112.5,
+        "steps": [
+          {
+            "op": "add2-1",
+            "arg1": "116",
+            "arg2": "109",
+            "res": "202.0"
+          },
+          {
+            "op": "divide0-0",
+            "arg1": "#0",
+            "arg2": "const_2",
+            "res": "101"
+          }
+        ],
+        "gold_inds": {
+          "table_2": "the new stores ( 1 ) of 2012 is 116 ; the new stores ( 1 ) of 2011 is 95 ; the new stores ( 1 ) of 2010 is 110 ; the new stores ( 1 ) of 2009 is 75 ; the new stores ( 1 ) of 2008 is 109 ;",
+          "text_0": "the following table sets forth information concerning increases in the total number of our aap stores during the past five years: .",
+          "text_1": "( 1 ) does not include stores that opened as relocations of previously existing stores within the same general market area or substantial renovations of stores ."
+        },
+        "original_table": [
+          [
+            "",
+            "2012",
+            "2011",
+            "2010",
+            "2009",
+            "2008"
+          ],
+          [
+            "Beginning Stores",
+            "3,460",
+            "3,369",
+            "3,264",
+            "3,243",
+            "3,153"
+          ],
+          [
+            "New Stores<sup>(1)</sup>",
+            "116",
+            "95",
+            "110",
+            "75",
+            "109"
+          ],
+          [
+            "Stores Closed",
+            "—",
+            "(4)",
+            "(5)",
+            "(54)",
+            "(19)"
+          ],
+          [
+            "Ending Stores",
+            "3,576",
+            "3,460",
+            "3,369",
+            "3,264",
+            "3,243"
+          ]
+        ]
+      },
+      "review": {
+        "verdict": "upstream_program_averages_only_endpoints",
+        "severity": "high",
+        "correct_interpretation": "Gross openings for all five inclusive years:(116+95+110+75+109)/5=101 stores/year. Net ending-minus-beginning change84.6 stores/year is a different measure.",
+        "gold_error": "Official human answer101 and explanation are consistent with all five years. Program instead averages only endpoint years:(116+109)/2=112.5. Recorded upstream step116+109=202 is independently arithmetically wrong; the real sum225 explains exe_ans112.5.",
+        "citation_review": "table_2 contains every operand and column labels establish all five years. text_0 is redundant interval context. text_1 clarifies exclusion of relocations and can support a definition caveat, but supplies no extra operand. Requiring both prose labels for every numerical answer makes a sufficient one-row citation get recall1/3."
+      },
+      "citation_only_probes": [
+        {
+          "purpose": "Controlled unit probe of citation logic only; scalar fixed to existing gold to isolate evidence effects. Not a model prediction or replacement benchmark score.",
+          "citations": [
+            "finqa_5d27e65ff333d7ae:table_2"
+          ],
+          "scorer_result": {
+            "id": "finqa_5d27e65ff333d7ae",
+            "track": "finqa_multi",
+            "answer_ok": true,
+            "grounded_ok": false,
+            "citation_precision": 1.0,
+            "citation_recall": 0.3333333333333333,
+            "errors": [
+              "missing_expected_evidence"
+            ]
+          }
+        },
+        {
+          "purpose": "Controlled unit probe of citation logic only; scalar fixed to existing gold to isolate evidence effects. Not a model prediction or replacement benchmark score.",
+          "citations": [
+            "finqa_5d27e65ff333d7ae:table_0",
+            "finqa_5d27e65ff333d7ae:table_2"
+          ],
+          "scorer_result": {
+            "id": "finqa_5d27e65ff333d7ae",
+            "track": "finqa_multi",
+            "answer_ok": true,
+            "grounded_ok": false,
+            "citation_precision": 0.5,
+            "citation_recall": 0.3333333333333333,
+            "errors": [
+              "missing_expected_evidence",
+              "irrelevant_or_invalid_evidence"
+            ]
+          }
+        },
+        {
+          "purpose": "Controlled unit probe of citation logic only; scalar fixed to existing gold to isolate evidence effects. Not a model prediction or replacement benchmark score.",
+          "citations": [
+            "finqa_5d27e65ff333d7ae:table_2",
+            "finqa_5d27e65ff333d7ae:text_0",
+            "finqa_5d27e65ff333d7ae:text_1"
+          ],
+          "scorer_result": {
+            "id": "finqa_5d27e65ff333d7ae",
+            "track": "finqa_multi",
+            "answer_ok": true,
+            "grounded_ok": true,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "errors": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "finqa_a6c3b4883a923ab7",
+      "split": "dev",
+      "question": "in 2016 based on the increase in the net sales what was the ratio of the increasing factor to the offsetting factors that reduced sales",
+      "answer_convention": "FinQA execution value: percent tokens are fractions; follow arithmetic result, do not multiply a ratio by 100 unless the question requires it. Return unit=finqa_execution.",
+      "material_sha256": "b9f6cf81b2cc20cde27db73b26d8d9890e7214716b4a978e54f466ed73b1c33d",
+      "independent": {
+        "formula": "(1700 + 290 + 250) / 55",
+        "value": "40.72727272727272727272727273",
+        "unit": "dimensionless ratio of sales increases to decrease magnitude",
+        "required_fact_groups": [
+          [
+            "text_15"
+          ],
+          [
+            "text_16"
+          ]
+        ],
+        "notes": "Mixed billion/million values normalized to USDmillions. All three specified positive drivers total2240; offset55. Inputs approximate, so ratio is approximate."
+      },
+      "local_gold": {
+        "id": "finqa_a6c3b4883a923ab7",
+        "track": "finqa_multi",
+        "split": "dev",
+        "status": "ok",
+        "answer": "0.98491",
+        "unit": "finqa_execution",
+        "citations": [
+          "finqa_a6c3b4883a923ab7:text_14",
+          "finqa_a6c3b4883a923ab7:text_15",
+          "finqa_a6c3b4883a923ab7:text_9"
+        ],
+        "abs_tolerance": "0.000006",
+        "rel_tolerance": "0",
+        "original_id": "LMT/2016/page_48.pdf-2",
+        "program": "add(1.7, 290), add(#0, 250), divide(#1, 550)",
+        "recomputed": "0.9849090909090909090909090909090909090909"
+      },
+      "official_finqa": {
+        "id": "LMT/2016/page_48.pdf-2",
+        "human_answer": "40.7",
+        "explanation": "",
+        "program": "add(1.7, 290), add(#0, 250), divide(#1, 550)",
+        "exe_ans": 0.98491,
+        "steps": [
+          {
+            "op": "add2-1",
+            "arg1": "1.7",
+            "arg2": "290",
+            "res": "1.99"
+          },
+          {
+            "op": "add2-2",
+            "arg1": "#0",
+            "arg2": "250",
+            "res": "2.24"
+          },
+          {
+            "op": "divide2-3",
+            "arg1": "#1",
+            "arg2": "550",
+            "res": "40.7"
+          }
+        ],
+        "gold_inds": {
+          "text_14": "2016 compared to 2015 aeronautics 2019 net sales in 2016 increased $ 2.2 billion , or 14% ( 14 % ) , compared to 2015 .",
+          "text_15": "the increase was attributable to higher net sales of approximately $ 1.7 billion for the f-35 program due to increased volume on aircraft production and sustainment activities , partially offset by lower volume on development activities ; and approximately $ 290 million for the c-130 program due to increased deliveries ( 24 aircraft delivered in 2016 compared to 21 in 2015 ) and increased sustainment activities ; and approximately $ 250 million for the f-16 program primarily due to higher volume on aircraft modernization programs .",
+          "text_9": "the consolidated net adjustments for 2015 are inclusive of approximately $ 550 million in unfavorable items , which include reserves for performance matters on an international program at rms and on commercial satellite programs at space systems ."
+        },
+        "original_table": [
+          [
+            "",
+            "2016",
+            "2015",
+            "2014"
+          ],
+          [
+            "Net sales",
+            "$17,769",
+            "$15,570",
+            "$14,920"
+          ],
+          [
+            "Operating profit",
+            "1,887",
+            "1,681",
+            "1,649"
+          ],
+          [
+            "Operating margin",
+            "10.6%",
+            "10.8%",
+            "11.1%"
+          ],
+          [
+            "Backlog atyear-end",
+            "$34,200",
+            "$31,800",
+            "$27,600"
+          ]
+        ]
+      },
+      "review": {
+        "verdict": "upstream_program_mixes_units_and_wrong_fact",
+        "severity": "high",
+        "correct_interpretation": "2016 aeronautics sales increases:1.7billion=1700million, plus290million plus250million=2240million. Offset is55million from C-5. Ratio2240/55=40.7272727273, approximate because source operands are approximate.",
+        "gold_error": "Program(1.7+290+250)/550=0.984909... mixes billion and million and uses550million from unrelated2015 consolidated unfavorable adjustments(text_9), rather than2016 C-5 sales decrease55million(text_16). Official human40.7 is consistent with the independent correct quantity.",
+        "citation_review": "text_15 and text_16 supply all numerator/denominator facts. Gold wrongly omits text_16 and requires unrelated text_9, plus overview text_14. Correct evidence therefore cannot meet exact recall/precision; citing irrelevant text_9 improves score, a direct semantic defect."
+      },
+      "citation_only_probes": [
+        {
+          "purpose": "Controlled unit probe of citation logic only; scalar fixed to existing gold to isolate evidence effects. Not a model prediction or replacement benchmark score.",
+          "citations": [
+            "finqa_a6c3b4883a923ab7:text_15",
+            "finqa_a6c3b4883a923ab7:text_16"
+          ],
+          "scorer_result": {
+            "id": "finqa_a6c3b4883a923ab7",
+            "track": "finqa_multi",
+            "answer_ok": true,
+            "grounded_ok": false,
+            "citation_precision": 0.5,
+            "citation_recall": 0.3333333333333333,
+            "errors": [
+              "missing_expected_evidence",
+              "irrelevant_or_invalid_evidence"
+            ]
+          }
+        },
+        {
+          "purpose": "Controlled unit probe of citation logic only; scalar fixed to existing gold to isolate evidence effects. Not a model prediction or replacement benchmark score.",
+          "citations": [
+            "finqa_a6c3b4883a923ab7:text_14",
+            "finqa_a6c3b4883a923ab7:text_15",
+            "finqa_a6c3b4883a923ab7:text_16"
+          ],
+          "scorer_result": {
+            "id": "finqa_a6c3b4883a923ab7",
+            "track": "finqa_multi",
+            "answer_ok": true,
+            "grounded_ok": false,
+            "citation_precision": 0.6666666666666666,
+            "citation_recall": 0.6666666666666666,
+            "errors": [
+              "missing_expected_evidence",
+              "irrelevant_or_invalid_evidence"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "completed_at": "2026-10-03T05:27:12.147789+00:00",
+  "provenance": {
+    "upstream_commit": "0f16e2867befa6840783e58be38c9efb9229d742",
+    "official_source": "benchmark/sources/finqa/dev.json",
+    "gold_selection": "Only lines matching the five requested IDs were decoded; split=dev asserted for every selected row. benchmark/sources/finqa/test.json and acceptance labels not read.",
+    "scorer": "benchmark/evaluate.py",
+    "scorer_sha256": "3bd77e2e81b106b5d7363ac415ac4e881b3c4b9497b685a240d10938b611388c",
+    "builder": "benchmark/scripts/build_benchmark.py",
+    "builder_sha256": "14dccdf6b30a18d3335f1f8c8fb14e7a5565de239222155cb7619624ce4eeab3",
+    "runtime_source_modified": false,
+    "gold_modified": false,
+    "scorer_modified": false,
+    "prompts_modified": false
+  },
+  "summary": {
+    "reviewed_dev_cases": 5,
+    "cases_with_question_program_semantic_mismatch": 5,
+    "issues": [
+      "All five local gold values faithfully reproduce upstream executable programs, but those programs do not answer their natural-language questions. Executability checks are insufficient semantic quality control.",
+      "Current scorer requires recall=1 over every exact gold label and precision>=0.8, with no equivalent-evidence groups. A valid alternate locator or extra relevant header is treated as irrelevant unless listed.",
+      "For these five cases, the main citation defects are redundant contextual prose and incorrectly selected/missing operand evidence; there is not broad evidence that every repeated paragraph/table occurrence is required. Distinguish this from the more general missing alternative-evidence support.",
+      "The response contract says FinQA execution value but also says multiply by100 when the question requires it; percentage questions remain underspecified without a universal ratio-vs-percent rule.",
+      "Public STT normalized table corrupts the second-year header; original table_ori distinguishes2008/2007. Its question also omits which period/aggregation to use."
+    ],
+    "recommendations": [
+      "Preserve baseline results and this audit. Do not present agreement with these flawed execution labels as financial-answer correctness.",
+      "Before any subsequent frozen evaluation, use a versioned reviewed benchmark with human-checked operand, year, unit, and question-program consistency. Exclude ambiguous cases or publish corrected questions/labels as an explicit new benchmark version.",
+      "Represent necessary facts as AND groups with independently verified equivalent locators allowed within each group. Do not silently accept any same-number row; units, period, scope, and metric must match.",
+      "Assess citation precision against support for the actual claim, not simple membership in one annotation list. Preambles and notes should only be mandatory when they resolve a required assumption.",
+      "Normalize percent output contracts explicitly and separately report original FinQA execution compatibility versus task-semantic correctness.",
+      "These findings justify dev-data quality review; they are not permission to inspect acceptance labels, fit prompts to wrong answers, or retroactively convert this baseline into a pass."
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "version": "startup-single-instance-v04",
+  "created_at": "2026-10-03T17:49:09.600664+00:00",
+  "status": "passed",
+  "scope": "Isolated Windows temporary directories and subprocesses only; no real DATA host launched, no live 3001 stop/restart, no model calls",
+  "model_calls": 0,
+  "tests": {
+    "command": "node --import tsx --test tests/startup-guard.test.ts",
+    "passed": 5,
+    "failed": 0,
+    "duration_ms": 12231.8104,
+    "cases": [
+      "Public port acquired before DATA creation; same HTTP listener remains bound through activation",
+      "Same canonical DATA blocks different port and Windows junction; other DATA allowed; HTTP stop retains DATA ownership",
+      "Abrupt child crash then four concurrent successors produce one winner and one new initialization side effect",
+      "Actual main rejects occupied port or owned DATA before reading invalid settings or spawning MCP",
+      "Actual bootstrap failure releases both reservations for next startup"
+    ]
+  },
+  "typecheck": {
+    "command": "npx tsc --noEmit -p server/tsconfig.json",
+    "exit_code": 0
+  },
+  "implementation": {
+    "server/startup-guard.ts": "302e771538d53e90a19abbd8354cf52bc3ab6dc292f0554d01492eec0cb79c22",
+    "server/main.ts": "93982fed691d9c546efb1e0d1725329a04188e7bfc7fe6b4245c7bcf0e6e3dd7",
+    "tests/startup-guard.test.ts": "597a11ed9aa51be5689e5fadcc6b10d5c13ea716574871874b604829097616c0",
+    "tests/fixtures/startup-guard-child.ts": "d1a1e8c86758816660f73377fb4b8dd2f4bae0160268724ef2cb76d6d0ffe19f"
+  },
+  "ownership": "OS-owned Windows named pipe or Linux abstract Unix socket; no stale PID/lease file or deletion-based takeover",
+  "references": [
+    "https://github.com/nodejs/node/blob/main/doc/api/net.md"
+  ],
+  "limits": [
+    "Exercised on Windows; Linux abstract-socket branch is implemented but not executed on this machine. Other platforms fail before business initialization.",
+    "On first deployment, the currently running pre-guard host must be stopped normally by the root operator. Unguarded legacy versions or direct Store/MCP scripts do not participate in this lock.",
+    "Crash test proves host lock release and unique new host acquisition; it does not exercise orphaned long-running Python workers after an abrupt real host crash."
+  ]
+}

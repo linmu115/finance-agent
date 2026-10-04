@@ -1,0 +1,1029 @@
+{
+  "kind": "development_real_manufacturing_research",
+  "accuracy_holdout": false,
+  "acceptance_status": "not_evaluated",
+  "requires_independent_evidence_review": true,
+  "contract": {
+    "version": "liugong-v06-development",
+    "accuracy_holdout": false,
+    "automatic_scope": [
+      "Actual Pi tool events, source snapshots and saved artifact lineage",
+      "Frozen budget and 24-tool configuration",
+      "Exact source_model import and WACC-only computational edit",
+      "Actual stale dependency evidence before targeted revision"
+    ],
+    "independent_review_required": [
+      "Issuer facts: original text, publication cutoff, period, scope, units and nonrecurring classification",
+      "Profit/quality formulas and independent numeric recalculation",
+      "Explicit assumptions and aggregation limits for three operating scenarios",
+      "DCF timing, terminal reinvestment, EV/equity bridge and shares",
+      "Peer evidence date/basis and independent relative-valuation calculation if available",
+      "Chain mechanisms, memo evidence and falsification relevance",
+      "Export/recompute and historical revision evidence"
+    ],
+    "no_fake_pass": [
+      "Missing relative-valuation sources remain an explicit unverified capability",
+      "Artifact or tool existence never establishes factual or economic correctness",
+      "API completed does not mean full acceptance",
+      "No answer values, page positions, or benchmark gold are supplied to the agent"
+    ]
+  },
+  "task_sha256": "bd3ae53ce4fdf568869840c3247c7c1e0a0afc091f67a157dfd5ffed311e0b79",
+  "started_at": "2026-10-03T18:46:33.361Z",
+  "status": "failed",
+  "checks": [
+    {
+      "name": "阶段1真实Pi完成且使用共享预算",
+      "status": "failed",
+      "evidence": {
+        "id": "39d90d18-6b56-4f2e-841f-64fcf70c034c",
+        "status": "failed",
+        "usage": {
+          "input": 515369,
+          "output": 26790,
+          "calls": 12,
+          "costUsd": null
+        },
+        "evaluation": {
+          "profile": "financial",
+          "budget_group_id": "liugong-research-1791053193361",
+          "budget": {
+            "max_model_calls": 60,
+            "max_input_tokens": 3000000,
+            "max_output_tokens": 450000,
+            "max_total_tokens": 3450000,
+            "max_wall_seconds": 1800
+          },
+          "started_at": "2026-10-03T18:46:33.650Z",
+          "deadline_at": "2026-10-03T19:16:33.650Z",
+          "elapsed_seconds": 158.749,
+          "input_limit_enforcement": "post_usage_soft_cap",
+          "usage": {
+            "model_calls": 12,
+            "settled_calls": 12,
+            "input_tokens": 515369,
+            "output_tokens": 26790,
+            "total_tokens": 542159,
+            "failed_calls": 1,
+            "unknown_usage_calls": 0
+          },
+          "reserved": {
+            "model_calls": 0,
+            "output_tokens": 0
+          },
+          "unknown_output_charge": 0,
+          "denied_calls": 0,
+          "in_flight": [],
+          "overage": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "total_tokens": 0
+          },
+          "stopped_reason": null
+        }
+      },
+      "scope": "workflow_only"
+    },
+    {
+      "name": "阶段1保留24次工具限制",
+      "status": "passed",
+      "evidence": {
+        "tool_requests": 24,
+        "expected_max": 24
+      },
+      "scope": "workflow_only"
+    }
+  ],
+  "stages": [
+    {
+      "index": 1,
+      "conversation_id": "fe8dc438-8410-4473-afa1-e5a882052bd6",
+      "run": {
+        "id": "39d90d18-6b56-4f2e-841f-64fcf70c034c",
+        "conversationId": "fe8dc438-8410-4473-afa1-e5a882052bd6",
+        "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+        "status": "failed",
+        "stage": "执行失败",
+        "createdAt": "2026-10-03T18:46:33.650Z",
+        "tools": [
+          {
+            "name": "get_data_catalog",
+            "status": "started",
+            "toolCallId": "call_00_XXmy3uuXLGAtJQ8eMJwS6417",
+            "timestamp": "2026-10-03T18:46:35.722Z"
+          },
+          {
+            "name": "search_web",
+            "status": "started",
+            "toolCallId": "call_01_Q3ZoBwO0JWv1Y0oMdiNi0837",
+            "timestamp": "2026-10-03T18:46:35.722Z"
+          },
+          {
+            "name": "get_data_catalog",
+            "status": "completed",
+            "toolCallId": "call_00_XXmy3uuXLGAtJQ8eMJwS6417",
+            "timestamp": "2026-10-03T18:46:35.770Z",
+            "summary": "ok"
+          },
+          {
+            "name": "search_web",
+            "status": "failed",
+            "toolCallId": "call_01_Q3ZoBwO0JWv1Y0oMdiNi0837",
+            "timestamp": "2026-10-03T18:46:45.889Z",
+            "summary": "fetch failed"
+          },
+          {
+            "name": "search_web",
+            "status": "started",
+            "toolCallId": "call_00_hpLbA5soajWpnRYH9yRz8290",
+            "timestamp": "2026-10-03T18:46:46.805Z"
+          },
+          {
+            "name": "get_research_model_schema",
+            "status": "started",
+            "toolCallId": "call_01_Ov5RuwyaTUjqqszvZwYD9786",
+            "timestamp": "2026-10-03T18:46:46.805Z"
+          },
+          {
+            "name": "get_research_model_schema",
+            "status": "completed",
+            "toolCallId": "call_01_Ov5RuwyaTUjqqszvZwYD9786",
+            "timestamp": "2026-10-03T18:46:46.830Z",
+            "summary": "ok"
+          },
+          {
+            "name": "search_web",
+            "status": "completed",
+            "toolCallId": "call_00_hpLbA5soajWpnRYH9yRz8290",
+            "timestamp": "2026-10-03T18:46:54.150Z",
+            "summary": "ok"
+          },
+          {
+            "name": "fetch_research_source",
+            "status": "started",
+            "toolCallId": "call_00_Q3GLxyKxjjMB60hQ3JDz3631",
+            "timestamp": "2026-10-03T18:46:55.896Z"
+          },
+          {
+            "name": "search_web",
+            "status": "started",
+            "toolCallId": "call_01_3qbg0EVTb3ImFrQTi4my0060",
+            "timestamp": "2026-10-03T18:46:55.896Z"
+          },
+          {
+            "name": "fetch_research_source",
+            "status": "completed",
+            "toolCallId": "call_00_Q3GLxyKxjjMB60hQ3JDz3631",
+            "timestamp": "2026-10-03T18:46:56.560Z",
+            "summary": "ok"
+          },
+          {
+            "name": "search_web",
+            "status": "completed",
+            "toolCallId": "call_01_3qbg0EVTb3ImFrQTi4my0060",
+            "timestamp": "2026-10-03T18:46:58.951Z",
+            "summary": "ok"
+          },
+          {
+            "name": "search_web",
+            "status": "started",
+            "toolCallId": "call_00_DzPDlTRlba7zXAKQJweX5800",
+            "timestamp": "2026-10-03T18:47:02.883Z"
+          },
+          {
+            "name": "search_web",
+            "status": "completed",
+            "toolCallId": "call_00_DzPDlTRlba7zXAKQJweX5800",
+            "timestamp": "2026-10-03T18:47:06.136Z",
+            "summary": "ok"
+          },
+          {
+            "name": "prepare_document_sources",
+            "status": "started",
+            "toolCallId": "call_00_FsygIZNNXRZjYO2qQW6R0473",
+            "timestamp": "2026-10-03T18:47:14.918Z"
+          },
+          {
+            "name": "search_web",
+            "status": "started",
+            "toolCallId": "call_01_jb41IzFMCm1D7TdpErgW1865",
+            "timestamp": "2026-10-03T18:47:14.918Z"
+          },
+          {
+            "name": "search_web",
+            "status": "completed",
+            "toolCallId": "call_01_jb41IzFMCm1D7TdpErgW1865",
+            "timestamp": "2026-10-03T18:47:23.849Z",
+            "summary": "ok"
+          },
+          {
+            "name": "prepare_document_sources",
+            "status": "completed",
+            "toolCallId": "call_00_FsygIZNNXRZjYO2qQW6R0473",
+            "timestamp": "2026-10-03T18:47:31.817Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_document_index",
+            "status": "started",
+            "toolCallId": "call_00_wipnXNXvpbGyJsLwsfuI7571",
+            "timestamp": "2026-10-03T18:47:39.148Z"
+          },
+          {
+            "name": "get_document_index",
+            "status": "completed",
+            "toolCallId": "call_00_wipnXNXvpbGyJsLwsfuI7571",
+            "timestamp": "2026-10-03T18:47:39.767Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_00_xyevd8n62X3wVY4oLCCd1740",
+            "timestamp": "2026-10-03T18:47:50.473Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_01_ikd9fU9VY5WhxnjBh62u2168",
+            "timestamp": "2026-10-03T18:47:50.473Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_02_Bx75s5nbYRTNSEOT65ZK1293",
+            "timestamp": "2026-10-03T18:47:50.473Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_03_OfC5EXsPdqd31OBl6Ia55302",
+            "timestamp": "2026-10-03T18:47:50.473Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_04_rmcaxbTF6PamgwA7WgCv7260",
+            "timestamp": "2026-10-03T18:47:50.473Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_05_jrGVK7f5Fzxnx5Zk8KSb0111",
+            "timestamp": "2026-10-03T18:47:50.473Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_06_CeBKGomKbvMzptaezYM30976",
+            "timestamp": "2026-10-03T18:47:50.473Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_01_ikd9fU9VY5WhxnjBh62u2168",
+            "timestamp": "2026-10-03T18:47:50.848Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_05_jrGVK7f5Fzxnx5Zk8KSb0111",
+            "timestamp": "2026-10-03T18:47:50.854Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_06_CeBKGomKbvMzptaezYM30976",
+            "timestamp": "2026-10-03T18:47:50.856Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_00_xyevd8n62X3wVY4oLCCd1740",
+            "timestamp": "2026-10-03T18:47:50.858Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_02_Bx75s5nbYRTNSEOT65ZK1293",
+            "timestamp": "2026-10-03T18:47:50.862Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_04_rmcaxbTF6PamgwA7WgCv7260",
+            "timestamp": "2026-10-03T18:47:50.864Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_03_OfC5EXsPdqd31OBl6Ia55302",
+            "timestamp": "2026-10-03T18:47:50.870Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_00_fn4SxkM6u2Fe7Mq6QUKp4806",
+            "timestamp": "2026-10-03T18:47:59.582Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_01_uf2knbZkEfxtldCUVmDU2017",
+            "timestamp": "2026-10-03T18:47:59.582Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_02_BcEVK4i8yYvAecYufAqJ6953",
+            "timestamp": "2026-10-03T18:47:59.582Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_03_QLMQsU16EtZHkPeugmIx7120",
+            "timestamp": "2026-10-03T18:47:59.582Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_04_QCs7ZJEPLHGrI7kXjNO15973",
+            "timestamp": "2026-10-03T18:47:59.582Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_00_fn4SxkM6u2Fe7Mq6QUKp4806",
+            "timestamp": "2026-10-03T18:47:59.934Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_02_BcEVK4i8yYvAecYufAqJ6953",
+            "timestamp": "2026-10-03T18:47:59.949Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_01_uf2knbZkEfxtldCUVmDU2017",
+            "timestamp": "2026-10-03T18:47:59.953Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_04_QCs7ZJEPLHGrI7kXjNO15973",
+            "timestamp": "2026-10-03T18:47:59.959Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_03_QLMQsU16EtZHkPeugmIx7120",
+            "timestamp": "2026-10-03T18:47:59.973Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_research_model_schema",
+            "status": "started",
+            "toolCallId": "call_00_0k6sgLIszjjsxy0JG1Cr5755",
+            "timestamp": "2026-10-03T18:48:52.081Z"
+          },
+          {
+            "name": "calculate_financial_metrics",
+            "status": "started",
+            "toolCallId": "call_01_jj9WjXuKhRz9rgtzjDda6552",
+            "timestamp": "2026-10-03T18:48:52.081Z"
+          },
+          {
+            "name": "get_research_model_schema",
+            "status": "completed",
+            "toolCallId": "call_00_0k6sgLIszjjsxy0JG1Cr5755",
+            "timestamp": "2026-10-03T18:48:52.098Z",
+            "summary": "ok"
+          },
+          {
+            "name": "calculate_financial_metrics",
+            "status": "completed",
+            "toolCallId": "call_01_jj9WjXuKhRz9rgtzjDda6552",
+            "timestamp": "2026-10-03T18:48:52.108Z",
+            "summary": "ok"
+          }
+        ],
+        "usage": {
+          "input": 515369,
+          "output": 26790,
+          "calls": 12,
+          "costUsd": null
+        },
+        "model": "deepseek-flash",
+        "configHash": "03e178f18bc92ce3ff3a100ffb30dfb0fcb1871a7dc72d25a8c7c4ad88f4d084",
+        "messageId": "a44c48d6-e671-46a4-949a-6e8aa1404a0a",
+        "evaluation": {
+          "profile": "financial",
+          "budget_group_id": "liugong-research-1791053193361",
+          "budget": {
+            "max_model_calls": 60,
+            "max_input_tokens": 3000000,
+            "max_output_tokens": 450000,
+            "max_total_tokens": 3450000,
+            "max_wall_seconds": 1800
+          },
+          "started_at": "2026-10-03T18:46:33.650Z",
+          "deadline_at": "2026-10-03T19:16:33.650Z",
+          "elapsed_seconds": 158.749,
+          "input_limit_enforcement": "post_usage_soft_cap",
+          "usage": {
+            "model_calls": 12,
+            "settled_calls": 12,
+            "input_tokens": 515369,
+            "output_tokens": 26790,
+            "total_tokens": 542159,
+            "failed_calls": 1,
+            "unknown_usage_calls": 0
+          },
+          "reserved": {
+            "model_calls": 0,
+            "output_tokens": 0
+          },
+          "unknown_output_charge": 0,
+          "denied_calls": 0,
+          "in_flight": [],
+          "overage": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "total_tokens": 0
+          },
+          "stopped_reason": null
+        },
+        "error": "已达到工具调用上限",
+        "finishedAt": "2026-10-03T18:49:12.270Z"
+      },
+      "events_file": "liugong-research-workflow-v06.stage-1.audit.json",
+      "messages": [
+        {
+          "id": "a44c48d6-e671-46a4-949a-6e8aa1404a0a",
+          "role": "assistant",
+          "content": "已达到工具调用上限",
+          "createdAt": "2026-10-03T18:46:33.650Z",
+          "status": "failed",
+          "sources": [
+            {
+              "documentId": "f0703e7591bd4f0b8040ffa44e656f42",
+              "sourceId": "web_7e60ff77-ccbc-46e8-a878-e0f575331d09",
+              "url": "http://static.cninfo.com.cn/finalpage/2025-08-27/1224579412.PDF",
+              "title": "1224579412.PDF",
+              "snapshotUrl": "/api/projects/0187cd2c-0f4c-40b1-8ec1-c58d65964c84/research/sources/web_7e60ff77-ccbc-46e8-a878-e0f575331d09"
+            },
+            {
+              "documentId": "f0703e7591bd4f0b8040ffa44e656f42",
+              "page": 8,
+              "sourceId": "f0703e7591bd4f0b8040ffa44e656f42:p8"
+            },
+            {
+              "documentId": "f0703e7591bd4f0b8040ffa44e656f42",
+              "page": 82,
+              "sourceId": "f0703e7591bd4f0b8040ffa44e656f42:p82"
+            },
+            {
+              "documentId": "f0703e7591bd4f0b8040ffa44e656f42",
+              "page": 85,
+              "sourceId": "f0703e7591bd4f0b8040ffa44e656f42:p85"
+            },
+            {
+              "documentId": "f0703e7591bd4f0b8040ffa44e656f42",
+              "page": 7,
+              "sourceId": "f0703e7591bd4f0b8040ffa44e656f42:p7"
+            },
+            {
+              "documentId": "f0703e7591bd4f0b8040ffa44e656f42",
+              "page": 75,
+              "sourceId": "f0703e7591bd4f0b8040ffa44e656f42:p75"
+            },
+            {
+              "documentId": "f0703e7591bd4f0b8040ffa44e656f42",
+              "page": 81,
+              "sourceId": "f0703e7591bd4f0b8040ffa44e656f42:p81"
+            },
+            {
+              "documentId": "f0703e7591bd4f0b8040ffa44e656f42",
+              "page": 76,
+              "sourceId": "f0703e7591bd4f0b8040ffa44e656f42:p76"
+            },
+            {
+              "documentId": "f0703e7591bd4f0b8040ffa44e656f42",
+              "page": 164,
+              "sourceId": "f0703e7591bd4f0b8040ffa44e656f42:p164"
+            },
+            {
+              "documentId": "f0703e7591bd4f0b8040ffa44e656f42",
+              "page": 23,
+              "sourceId": "f0703e7591bd4f0b8040ffa44e656f42:p23"
+            },
+            {
+              "documentId": "f0703e7591bd4f0b8040ffa44e656f42",
+              "page": 24,
+              "sourceId": "f0703e7591bd4f0b8040ffa44e656f42:p24"
+            },
+            {
+              "documentId": "f0703e7591bd4f0b8040ffa44e656f42",
+              "page": 187,
+              "sourceId": "f0703e7591bd4f0b8040ffa44e656f42:p187"
+            },
+            {
+              "documentId": "f0703e7591bd4f0b8040ffa44e656f42",
+              "page": 12,
+              "sourceId": "f0703e7591bd4f0b8040ffa44e656f42:p12"
+            }
+          ],
+          "artifacts": [],
+          "tools": [
+            {
+              "name": "get_data_catalog",
+              "status": "started",
+              "toolCallId": "call_00_XXmy3uuXLGAtJQ8eMJwS6417",
+              "timestamp": "2026-10-03T18:46:35.722Z"
+            },
+            {
+              "name": "search_web",
+              "status": "started",
+              "toolCallId": "call_01_Q3ZoBwO0JWv1Y0oMdiNi0837",
+              "timestamp": "2026-10-03T18:46:35.722Z"
+            },
+            {
+              "name": "get_data_catalog",
+              "status": "completed",
+              "toolCallId": "call_00_XXmy3uuXLGAtJQ8eMJwS6417",
+              "timestamp": "2026-10-03T18:46:35.770Z",
+              "summary": "ok"
+            },
+            {
+              "name": "search_web",
+              "status": "failed",
+              "toolCallId": "call_01_Q3ZoBwO0JWv1Y0oMdiNi0837",
+              "timestamp": "2026-10-03T18:46:45.889Z",
+              "summary": "fetch failed"
+            },
+            {
+              "name": "search_web",
+              "status": "started",
+              "toolCallId": "call_00_hpLbA5soajWpnRYH9yRz8290",
+              "timestamp": "2026-10-03T18:46:46.805Z"
+            },
+            {
+              "name": "get_research_model_schema",
+              "status": "started",
+              "toolCallId": "call_01_Ov5RuwyaTUjqqszvZwYD9786",
+              "timestamp": "2026-10-03T18:46:46.805Z"
+            },
+            {
+              "name": "get_research_model_schema",
+              "status": "completed",
+              "toolCallId": "call_01_Ov5RuwyaTUjqqszvZwYD9786",
+              "timestamp": "2026-10-03T18:46:46.830Z",
+              "summary": "ok"
+            },
+            {
+              "name": "search_web",
+              "status": "completed",
+              "toolCallId": "call_00_hpLbA5soajWpnRYH9yRz8290",
+              "timestamp": "2026-10-03T18:46:54.150Z",
+              "summary": "ok"
+            },
+            {
+              "name": "fetch_research_source",
+              "status": "started",
+              "toolCallId": "call_00_Q3GLxyKxjjMB60hQ3JDz3631",
+              "timestamp": "2026-10-03T18:46:55.896Z"
+            },
+            {
+              "name": "search_web",
+              "status": "started",
+              "toolCallId": "call_01_3qbg0EVTb3ImFrQTi4my0060",
+              "timestamp": "2026-10-03T18:46:55.896Z"
+            },
+            {
+              "name": "fetch_research_source",
+              "status": "completed",
+              "toolCallId": "call_00_Q3GLxyKxjjMB60hQ3JDz3631",
+              "timestamp": "2026-10-03T18:46:56.560Z",
+              "summary": "ok"
+            },
+            {
+              "name": "search_web",
+              "status": "completed",
+              "toolCallId": "call_01_3qbg0EVTb3ImFrQTi4my0060",
+              "timestamp": "2026-10-03T18:46:58.951Z",
+              "summary": "ok"
+            },
+            {
+              "name": "search_web",
+              "status": "started",
+              "toolCallId": "call_00_DzPDlTRlba7zXAKQJweX5800",
+              "timestamp": "2026-10-03T18:47:02.883Z"
+            },
+            {
+              "name": "search_web",
+              "status": "completed",
+              "toolCallId": "call_00_DzPDlTRlba7zXAKQJweX5800",
+              "timestamp": "2026-10-03T18:47:06.136Z",
+              "summary": "ok"
+            },
+            {
+              "name": "prepare_document_sources",
+              "status": "started",
+              "toolCallId": "call_00_FsygIZNNXRZjYO2qQW6R0473",
+              "timestamp": "2026-10-03T18:47:14.918Z"
+            },
+            {
+              "name": "search_web",
+              "status": "started",
+              "toolCallId": "call_01_jb41IzFMCm1D7TdpErgW1865",
+              "timestamp": "2026-10-03T18:47:14.918Z"
+            },
+            {
+              "name": "search_web",
+              "status": "completed",
+              "toolCallId": "call_01_jb41IzFMCm1D7TdpErgW1865",
+              "timestamp": "2026-10-03T18:47:23.849Z",
+              "summary": "ok"
+            },
+            {
+              "name": "prepare_document_sources",
+              "status": "completed",
+              "toolCallId": "call_00_FsygIZNNXRZjYO2qQW6R0473",
+              "timestamp": "2026-10-03T18:47:31.817Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_document_index",
+              "status": "started",
+              "toolCallId": "call_00_wipnXNXvpbGyJsLwsfuI7571",
+              "timestamp": "2026-10-03T18:47:39.148Z"
+            },
+            {
+              "name": "get_document_index",
+              "status": "completed",
+              "toolCallId": "call_00_wipnXNXvpbGyJsLwsfuI7571",
+              "timestamp": "2026-10-03T18:47:39.767Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_source_page",
+              "status": "started",
+              "toolCallId": "call_00_xyevd8n62X3wVY4oLCCd1740",
+              "timestamp": "2026-10-03T18:47:50.473Z"
+            },
+            {
+              "name": "get_source_page",
+              "status": "started",
+              "toolCallId": "call_01_ikd9fU9VY5WhxnjBh62u2168",
+              "timestamp": "2026-10-03T18:47:50.473Z"
+            },
+            {
+              "name": "get_source_page",
+              "status": "started",
+              "toolCallId": "call_02_Bx75s5nbYRTNSEOT65ZK1293",
+              "timestamp": "2026-10-03T18:47:50.473Z"
+            },
+            {
+              "name": "get_source_page",
+              "status": "started",
+              "toolCallId": "call_03_OfC5EXsPdqd31OBl6Ia55302",
+              "timestamp": "2026-10-03T18:47:50.473Z"
+            },
+            {
+              "name": "get_source_page",
+              "status": "started",
+              "toolCallId": "call_04_rmcaxbTF6PamgwA7WgCv7260",
+              "timestamp": "2026-10-03T18:47:50.473Z"
+            },
+            {
+              "name": "get_source_page",
+              "status": "started",
+              "toolCallId": "call_05_jrGVK7f5Fzxnx5Zk8KSb0111",
+              "timestamp": "2026-10-03T18:47:50.473Z"
+            },
+            {
+              "name": "get_source_page",
+              "status": "started",
+              "toolCallId": "call_06_CeBKGomKbvMzptaezYM30976",
+              "timestamp": "2026-10-03T18:47:50.473Z"
+            },
+            {
+              "name": "get_source_page",
+              "status": "completed",
+              "toolCallId": "call_01_ikd9fU9VY5WhxnjBh62u2168",
+              "timestamp": "2026-10-03T18:47:50.848Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_source_page",
+              "status": "completed",
+              "toolCallId": "call_05_jrGVK7f5Fzxnx5Zk8KSb0111",
+              "timestamp": "2026-10-03T18:47:50.854Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_source_page",
+              "status": "completed",
+              "toolCallId": "call_06_CeBKGomKbvMzptaezYM30976",
+              "timestamp": "2026-10-03T18:47:50.856Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_source_page",
+              "status": "completed",
+              "toolCallId": "call_00_xyevd8n62X3wVY4oLCCd1740",
+              "timestamp": "2026-10-03T18:47:50.858Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_source_page",
+              "status": "completed",
+              "toolCallId": "call_02_Bx75s5nbYRTNSEOT65ZK1293",
+              "timestamp": "2026-10-03T18:47:50.862Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_source_page",
+              "status": "completed",
+              "toolCallId": "call_04_rmcaxbTF6PamgwA7WgCv7260",
+              "timestamp": "2026-10-03T18:47:50.864Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_source_page",
+              "status": "completed",
+              "toolCallId": "call_03_OfC5EXsPdqd31OBl6Ia55302",
+              "timestamp": "2026-10-03T18:47:50.870Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_source_page",
+              "status": "started",
+              "toolCallId": "call_00_fn4SxkM6u2Fe7Mq6QUKp4806",
+              "timestamp": "2026-10-03T18:47:59.582Z"
+            },
+            {
+              "name": "get_source_page",
+              "status": "started",
+              "toolCallId": "call_01_uf2knbZkEfxtldCUVmDU2017",
+              "timestamp": "2026-10-03T18:47:59.582Z"
+            },
+            {
+              "name": "get_source_page",
+              "status": "started",
+              "toolCallId": "call_02_BcEVK4i8yYvAecYufAqJ6953",
+              "timestamp": "2026-10-03T18:47:59.582Z"
+            },
+            {
+              "name": "get_source_page",
+              "status": "started",
+              "toolCallId": "call_03_QLMQsU16EtZHkPeugmIx7120",
+              "timestamp": "2026-10-03T18:47:59.582Z"
+            },
+            {
+              "name": "get_source_page",
+              "status": "started",
+              "toolCallId": "call_04_QCs7ZJEPLHGrI7kXjNO15973",
+              "timestamp": "2026-10-03T18:47:59.582Z"
+            },
+            {
+              "name": "get_source_page",
+              "status": "completed",
+              "toolCallId": "call_00_fn4SxkM6u2Fe7Mq6QUKp4806",
+              "timestamp": "2026-10-03T18:47:59.934Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_source_page",
+              "status": "completed",
+              "toolCallId": "call_02_BcEVK4i8yYvAecYufAqJ6953",
+              "timestamp": "2026-10-03T18:47:59.949Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_source_page",
+              "status": "completed",
+              "toolCallId": "call_01_uf2knbZkEfxtldCUVmDU2017",
+              "timestamp": "2026-10-03T18:47:59.953Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_source_page",
+              "status": "completed",
+              "toolCallId": "call_04_QCs7ZJEPLHGrI7kXjNO15973",
+              "timestamp": "2026-10-03T18:47:59.959Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_source_page",
+              "status": "completed",
+              "toolCallId": "call_03_QLMQsU16EtZHkPeugmIx7120",
+              "timestamp": "2026-10-03T18:47:59.973Z",
+              "summary": "ok"
+            },
+            {
+              "name": "get_research_model_schema",
+              "status": "started",
+              "toolCallId": "call_00_0k6sgLIszjjsxy0JG1Cr5755",
+              "timestamp": "2026-10-03T18:48:52.081Z"
+            },
+            {
+              "name": "calculate_financial_metrics",
+              "status": "started",
+              "toolCallId": "call_01_jj9WjXuKhRz9rgtzjDda6552",
+              "timestamp": "2026-10-03T18:48:52.081Z"
+            },
+            {
+              "name": "get_research_model_schema",
+              "status": "completed",
+              "toolCallId": "call_00_0k6sgLIszjjsxy0JG1Cr5755",
+              "timestamp": "2026-10-03T18:48:52.098Z",
+              "summary": "ok"
+            },
+            {
+              "name": "calculate_financial_metrics",
+              "status": "completed",
+              "toolCallId": "call_01_jj9WjXuKhRz9rgtzjDda6552",
+              "timestamp": "2026-10-03T18:48:52.108Z",
+              "summary": "ok"
+            }
+          ],
+          "runId": "39d90d18-6b56-4f2e-841f-64fcf70c034c"
+        }
+      ],
+      "artifacts": []
+    }
+  ],
+  "failures": [
+    {
+      "stage": 1,
+      "run_id": "39d90d18-6b56-4f2e-841f-64fcf70c034c",
+      "event": {
+        "at": "2026-10-03T18:46:45.889Z",
+        "runId": "39d90d18-6b56-4f2e-841f-64fcf70c034c",
+        "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+        "type": "tool_error",
+        "data": {
+          "name": "search_web",
+          "toolCallId": "call_01_Q3ZoBwO0JWv1Y0oMdiNi0837",
+          "message": "fetch failed"
+        }
+      }
+    },
+    {
+      "stage": 1,
+      "run_id": "39d90d18-6b56-4f2e-841f-64fcf70c034c",
+      "event": {
+        "at": "2026-10-03T18:48:36.034Z",
+        "runId": "39d90d18-6b56-4f2e-841f-64fcf70c034c",
+        "projectId": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+        "type": "model_usage",
+        "data": {
+          "requestId": "f50efa0d-e2c9-430f-b2cb-0e540df3923a",
+          "phase": "main",
+          "stopReason": "length",
+          "usage": {
+            "input": 5003,
+            "output": 8192,
+            "cacheRead": 109056,
+            "cacheWrite": 0,
+            "reasoning": 8192,
+            "totalTokens": 122251,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          },
+          "usageKnown": true
+        }
+      }
+    },
+    {
+      "at": "2026-10-03T18:49:12.444Z",
+      "message": "Stage 1 ended failed; no automatic retry or later stage"
+    }
+  ],
+  "budget_group_id": "liugong-research-1791053193361",
+  "preflight": {
+    "tool_limit": 24,
+    "model": "deepseek-flash",
+    "search_provider": "tavily"
+  },
+  "implementation_before": {
+    "server/config.ts": "15d8e8f7a91d8919b6a0e237b3dec80139b17c4aad790f5b00f6cc194b81cbd0",
+    "server/evaluation-budget.ts": "b5407d944adfd9fbc17b59366352a6807f7fbaebe99ea6a189cfd97cdf637662",
+    "server/immutable-files.ts": "23b14077539256ee57e2e04471b29c5e77d6665c3faeb0fb31f413e00e84b230",
+    "server/main.ts": "93982fed691d9c546efb1e0d1725329a04188e7bfc7fe6b4245c7bcf0e6e3dd7",
+    "server/mcp.ts": "d640c3bee2607dd1608e14c21e78758043f2ba9f886db46275a31086d1f5c9b1",
+    "server/model-bridge.ts": "146007a34092a16e24f85648fa366ab2da48ccbe046774160579a71fcc05edf2",
+    "server/model-context.ts": "5d63fbcb2666b9118381a4ed06063d30f2e330dc8b20c647c790fd92c1284eda",
+    "server/research-api.ts": "414c4a94ebf6a3d8d47f2b0f87a08063d493799de51e2f117c12f9bb94a4b5b3",
+    "server/research-artifacts.ts": "ebea8265aad9c208642bb2fa495c5bd30b98755a1958a0487ae4684bc20d516e",
+    "server/research.ts": "6c50e9000b0cb190d1fe15ee5123ada09a425310e6a58fe3246c0cdeed6e1c29",
+    "server/runs.ts": "cc72ef3b1ac4cf3d67629d82b0dd77817ac6f1d77431cbeec56d0e7aa3645b02",
+    "server/startup-guard.ts": "302e771538d53e90a19abbd8354cf52bc3ab6dc292f0554d01492eec0cb79c22",
+    "server/tsconfig.json": "5e58651b055c5c54e2953b178acb03a36e10521131556441f1cc11c88c67382b",
+    "server/types.ts": "628c54777688d2d4ee69851be90f891e4a62c794607c849a5328174d221ae84f",
+    "server/workspace-api.ts": "8ba30c5a19e03dcd50cdbaff076c268491ab7ea4ba04899d09aceef4f49c5eba",
+    "service/baseline.py": "57eda19ed660e2f2749ce52d8834c6b251c3ce7aeac63e76894d259560cf6271",
+    "service/catalog_model.py": "412964064badc45f0b9f4d70ac548d34de6ff155ea3f6eac7c73a043673fcab0",
+    "service/catalog_semantics.py": "ae2dc0e9d1ca8ff5e906ee8724be70423474dc9723cbd61aac7c3d1099f6e515",
+    "service/completed_document.py": "e212471cc39721a36f31ea8c4e17bbecc467b9af6b19661ceb31604b754f893a",
+    "service/core.py": "92747e07ae4c1ee872a1604bb06d5deb80d12387f49f0c51a00e4338e6e2df0d",
+    "service/definition_grounding.py": "a37f1868097a0d23a245562c85cc47ccfbb393fd568745ad52a243ee5dce1897",
+    "service/definition_model.py": "9df83fdbceae3dd29d0e3f41934b740e5700ab973f70f3e510420c89b7075203",
+    "service/definition_semantics.py": "b6ce3600ae72c017bb3fd97b3c4ae45817288825bd8866eb8feeb42021d2fef6",
+    "service/existing_review.py": "9c138d00c1a2d4f720296334adf038cbc39f918308491b08456fca32c1f2e860",
+    "service/extraction_alignment.py": "dc6604ca51332e39ec81801681f4e77a75a9d9787891996c93852f34c5f05d79",
+    "service/inspect_ocr.py": "19a66a038264f63719be64b3ce3c7372ed6303cb25fa67055aed14e8fae13510",
+    "service/inspect_reports.py": "35a89ab2faf6feb1ea3ed0c4b1ae4eee46552fef42ffc343d83605cdaa159937",
+    "service/lifecycle.py": "cae9830057fb57ba74f7807899f51488da2b8b1b614ba21ca37fc44a32664d58",
+    "service/maintenance.py": "f8cda482de45fde776480dde06294b9713a0ff9006fefaef222351bb8a52d13f",
+    "service/native_tables.py": "64d3156d56b4dfae330b50ba113f26181876ee5ed69fe9fc0d84c4f61f16003d",
+    "service/normalization.py": "318c03650b0525ab0f753ef1690238571288161e8761bf2e063274a6485fbb71",
+    "service/parser.py": "01a2c95eb59bf099e98a32340b674302ce0aac5a24b993b063f98d8cdf106384",
+    "service/parser_worker.py": "adbe0745e5a44c1ab305672dcf3a80f144b7304a4291a38005cd0496ef3954fe",
+    "service/pi_provider.py": "e7049033e2708195dd097a46a287e10d0bb775df385132f502f95c31f7501362",
+    "service/processing.py": "daafaf645ab04c2b25897977b9292a64975609ca726b77a1329c1bb797f3f14d",
+    "service/research_evidence.py": "d8e3734ff76dedecba117d6eb241d4b301a850f1206be4898dfbd81c9fddbcb6",
+    "service/research_models.py": "1190020552bec9eac5ff7f49edfd300e22e79b06909df64448bf5f3c40a25434",
+    "service/research_schema.py": "88d3149914aca7f4795a0d2b8cf0eeef30bd6a1350cf06871483793978eb0eb5",
+    "service/review_cache.py": "c2b0a0ae6264b314b6bcb099abb4133d3a5466df245098229ed22eb021b6d0ba",
+    "service/runs/chart_input.json": "292c918187750e5c25925ae1cd9f1c7a8ec1695bfa1f42130447d93430e897c9",
+    "service/runs/full-report-rematerialization-v033.json": "0865cb27ad44994bdb6baa4d2e7d3585f27e3c7b2989a7a59098b196a7696e14",
+    "service/runs/ocr-smoke/midea_p9.json": "5f367ee1766aed5e1d4ccb75400990d8a17ba3c2f340839b925810299d4daf59",
+    "service/runs/ocr-smoke/moutai_p5.json": "a613019259b811c4f5bb81437726ad882cd8bdf3430daa17c1ff99bd1046a6d4",
+    "service/runs/ocr-smoke/yili_p7.json": "2a60d05c1618be39a79201699a58adf226d52f3ed90af9e6651d1a66291be4e0",
+    "service/runs/parser-concurrency-baseline/summary.json": "a349e31bf7a44b23a16357ccb1a8cefd23e2353a8fe2d9b87d699522b65894c6",
+    "service/runs/parser-concurrency-baseline/worker-0.json": "e5afa4f0c632c988700f567caeb82e191c0197c2dd4877f224f1559ab4a82620",
+    "service/runs/parser-concurrency-baseline/worker-1.json": "dd703db304a577f1b2331d20f9cb1448a9296ea2f14425cb27ab475115cf4af6",
+    "service/runs/parser-concurrency-baseline/worker-2.json": "a8001349e9fcd827dac02a5da559c65ddd60706a4054bf38118ddd7c74c6fe51",
+    "service/runs/parser-concurrency-baseline/worker-3.json": "69cb8b4cf6f3ecb69d763efde4ee11774c97a7220be678867dff2ae3e6e1c885",
+    "service/runs/parser-concurrency-content.json": "1634d5e7bac34beaf52c10f740dc51b6049d3ed042eb052526d5ac087e94c3fd",
+    "service/runs/parser-concurrency-fixed-1/summary.json": "5ec0b5c5d2b39485bc95a97101134beaa8d2ac0020670b0e86c8ebb1ea51868f",
+    "service/runs/parser-concurrency-fixed-1/worker-0.json": "3a3a2d4dda798b6a36612f4d153bb32b6366ec3084f99352bd3aa8633bdf3bcc",
+    "service/runs/parser-concurrency-fixed-1/worker-1.json": "93c6eeb049a417803b51cb35b6294473f7c07893f4e4a7516111b7b4be933bdd",
+    "service/runs/parser-concurrency-fixed-1/worker-2.json": "2263c784e18bd210ca46d300f19dda5ae840b7bd9a233baa893fc29ddd4b87f8",
+    "service/runs/parser-concurrency-fixed-1/worker-3.json": "501dbff0a58d7fc4690b7166468940afb253c5a9c0a12449dcea4582152f3435",
+    "service/runs/parser-concurrency-fixed-2/resource-sample.json": "4d2fe5151abd11889e15c297a155f85abbe16823082bd50343a8c6a4403695a4",
+    "service/runs/parser-concurrency-fixed-2/summary.json": "48308c304513c698926ba81d746490772a43b07f81ea64ad1ab25de57d1e6c3d",
+    "service/runs/parser-concurrency-fixed-2/worker-0.json": "37d1e21c7f4afbd30e37f154be050faeca3d264ebc4b4d5138cb7bb0c2e0fd98",
+    "service/runs/parser-concurrency-fixed-2/worker-1.json": "6f13e09900a8d8b7162c276c427ca13ec03b0513dafe13def07f356164898580",
+    "service/runs/parser-concurrency-fixed-2/worker-2.json": "db915ece75e4d7c214d28d921bc0c852baaaa2eba36cd0ed7433443c6fa907ec",
+    "service/runs/parser-concurrency-fixed-2/worker-3.json": "b43bd4823f3aee76f478718b3f51d70eeb696d0870ad2a520056e9f9bcc84511",
+    "service/runs/parser-concurrency-service-baseline/summary.json": "0e4bd506d057c08b56f8cd85b1759af90a56d811e936b4049a2717cc78ea9843",
+    "service/runs/parser-concurrency-service-baseline/worker-0.json": "eb6794cfdddb9eada7136392f545cf1be061cc57dd326ef1476631aa41e85874",
+    "service/runs/parser-concurrency-service-baseline/worker-1.json": "505f10a3d86ad1880a90820ab286539cbc347d3238b37b6e30b9351b1fad7304",
+    "service/runs/parser-concurrency-service-baseline/worker-2.json": "42251eb9e8db4cb16447f47e6baccb80013b2462e10fb2024b68ef904450e346",
+    "service/runs/parser-concurrency-service-baseline/worker-3.json": "c27dc4ab1009a159be070eb2edddd0dc0d1f13c3e7d5e5e618f80351ef69b8b2",
+    "service/runs/parser-concurrency-threaded-baseline/summary.json": "bd7465f8d13ff719b0d5c2a2922758b936142a16cdc443dfd1a55fded70ef8d2",
+    "service/runs/parser-concurrency-threaded-baseline/worker-0.json": "09b727bbecbc3c8df22a6bd9e1483d83f15249625339ff6f24a99185da68e85c",
+    "service/runs/parser-concurrency-threaded-baseline/worker-1.json": "cda95eb9142d84123ce146b949d7e5d4a9d4121ac70645cab781f8c5a03bb86c",
+    "service/runs/parser-concurrency-threaded-baseline/worker-2.json": "5f5ede5927dfd23e01251c1c6d4b3d912b71819e096146ca748cff414a434f1b",
+    "service/runs/parser-concurrency-threaded-baseline/worker-3.json": "ffd692fde55935523192520e5016c908cc811b601e7ad1ffcd5b3f865a2daf9a",
+    "service/runs/parser-smoke/results.json": "d31f7f68113d4efe42bde7d2b8ab390c5c9972ed9b170bcc1b7aa4a67e9d045f",
+    "service/runs/repair_materialization_metadata_v034.py": "1d8d01794bedf8a0e82590cc997d4f07916ce0d03d22dedaba057e4262b72086",
+    "service/semantic.py": "f5cd043587d7f48aeb09fafdec86d7a609290ec3ecdd409975e22347cb1f197e",
+    "service/server.py": "ef2feab9bfcc73cd4e0b1314faa2df266f7227341503556b0dab80a6f652d407",
+    "service/store.py": "8e40a64e966a81ce8db7547ee72194631d533ef4ff092d2a3683247f3d2a3879",
+    "service/temporal_model.py": "a6c804bd1ee262ae008c3595e425a205e1e9ad1ec6de605bfeac92f8c0d76c18",
+    "service/temporal_repair.py": "76c34f206097c5d259d5fbe93ca2f284e2e3050837c49698e81e4ffc49be8986",
+    "service/temporal_semantics.py": "c55dd15c01e12b2dcbb2dd8d6c3da462de5777a0f31dbf37225a4b2a07aaaa51",
+    "service/tool-schema.json": "df84575ce7d4da683f33f6331d09f9ade91771f9b9580588e560c3287b0c95c9",
+    "service/__init__.py": "5bcfc2bc68f6de1b22074c28433e66e7660b3d541d7c499ac0f9b07143c1fe88",
+    "web/src/api.ts": "6a9cdf306aa578f5abef18910826143f711fe6c7c3572ebc36606021b9501196",
+    "web/src/App.tsx": "3e0c76630be9da14cdc5f2c8f8d25c6a0608eb2b7613096faad303d6a0b5a1ee",
+    "web/src/BenchmarkView.tsx": "65cd17fcdcf7c1aa5ef6e2cfa92ddce7c6a71fdd3fc506afcccc3ad865851151",
+    "web/src/chartValues.ts": "540894eb2172172e5686eadcb3afc31b6d5782a1bdd68b39652c240b1eb834e5",
+    "web/src/DatasetView.tsx": "4664e95244a74c6729fb0d64eaa05953a47435366e953f02a33e17ee0148cf3b",
+    "web/src/DocumentDrawer.tsx": "d011b5b097e580b2f28f0f040e93a8ac30824c867f3d85e0e82007d8bedfa16f",
+    "web/src/FinancialDashboard.tsx": "f689db22b5b13ea490d85e998ecf08b1cbb5f61ca346b43f9e95965fb9c0b1a2",
+    "web/src/main.tsx": "e81aec37c1befe991a35934ed8b90b73e7262a01e4dffae60e1ce87967ff09b4",
+    "web/src/MessageView.tsx": "6e65343c4975539c89f3a1f7e404d46052c20ca709d00f6f98b83ab7666b4fe5",
+    "web/src/Modal.tsx": "67469b1c8b0bf8ab4cc46a2726ace80d729438d8d5fed78ac3f7f573345fdc9d",
+    "web/src/research-basis.ts": "519814263dc9445c8853433c5e0a368c56e2f3b76c83bce8bd10a4b1ddabcfe8",
+    "web/src/research.css": "948d67ae94ee161dbb64585fdb877d63e0b87111b3e2082e35d3b4a19ba7abc5",
+    "web/src/ResearchWorkspace.tsx": "f4546e9cc8d2a7d97b69e477fbd4b13e8798deff0d2cd31ba3c2f0a2cb7d4d7c",
+    "web/src/SettingsDialog.tsx": "cc22c7231786e31972d0cde91bea90dc58ffaccbe6aca21cf729caa23c101cc4",
+    "web/src/styles.css": "319623d641cd2c632c8c93f340d6b58dedd6d069d11b5af7faf92552e981adb6",
+    "web/src/types.ts": "f944f8c237459dd4510d4e4b117003c5ddc0c963c00767813a81e2c23531c1c7"
+  },
+  "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+  "error": "Stage 1 ended failed; no automatic retry or later stage",
+  "finished_at": "2026-10-03T18:49:12.444Z"
+}

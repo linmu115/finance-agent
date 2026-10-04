@@ -1,0 +1,430 @@
+{
+  "started_at": 1791003967.5604107,
+  "status": "FAIL",
+  "method": "actual configured application model; no model code supplied by harness",
+  "project_id": "4d4308fc-aeab-44e4-96e1-ecd253e0ab47",
+  "input": {
+    "name": "agent-chart-input.csv",
+    "sha256": "0ee9362ca2c92f517cf8d7a92187536ce250458885ea58f221d1e5d77e0bf254",
+    "kind": "explicit synthetic acceptance fixture",
+    "expected_values_cny": [
+      120000000,
+      150000000
+    ]
+  },
+  "uploaded": {
+    "documents": [
+      {
+        "id": "48c5933794084e1c85a18b8d765d6006",
+        "name": "agent-chart-input.csv",
+        "status": "queued",
+        "warnings": [],
+        "jobId": "577e6dc2b3a941c2963f76debeb4ee8c"
+      }
+    ]
+  },
+  "conversation_id": "7b239f6f-aede-42e8-88d2-416881af4345",
+  "agent_run_id": "a2c37b44-8410-4ef3-8a3a-d8ddf27d411b",
+  "prompt": "请只依据上传CSV，先调用工具读取实际表格，再调用run_analysis在隔离容器内绘制2023、2024两年的营业收入柱状对比图。金额统一显示为亿元，纵轴从0开始；中文标题和坐标使用容器预装的Noto Sans CJK JP字体。必须真正生成revenue.png和chart_data.json，不能只给代码或口头描述。chart_data.json格式为包含currency、source_unit、display_unit、years、values_cny的JSON对象；years按2023、2024排序，values_cny保持原始元金额。不要自行补数据；等待容器任务到终态后返回两份可下载产物，并简述趋势。",
+  "agent_run": {
+    "id": "a2c37b44-8410-4ef3-8a3a-d8ddf27d411b",
+    "conversationId": "7b239f6f-aede-42e8-88d2-416881af4345",
+    "projectId": "4d4308fc-aeab-44e4-96e1-ecd253e0ab47",
+    "status": "completed",
+    "stage": "完成",
+    "createdAt": "2026-10-03T05:06:07.894Z",
+    "tools": [
+      {
+        "name": "list_documents",
+        "status": "started",
+        "toolCallId": "call_00_ET_Qj0Lmc0uLeLJYVQ8jRQx3529",
+        "timestamp": "2026-10-03T05:06:08.831Z"
+      },
+      {
+        "name": "get_document",
+        "status": "started",
+        "toolCallId": "call_01_ET_jDMM8b1F9H9WQtClgCzW0928",
+        "timestamp": "2026-10-03T05:06:08.832Z"
+      },
+      {
+        "name": "list_documents",
+        "status": "completed",
+        "toolCallId": "call_00_ET_Qj0Lmc0uLeLJYVQ8jRQx3529",
+        "timestamp": "2026-10-03T05:06:08.848Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_document",
+        "status": "completed",
+        "toolCallId": "call_01_ET_jDMM8b1F9H9WQtClgCzW0928",
+        "timestamp": "2026-10-03T05:06:08.871Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_source_table",
+        "status": "started",
+        "toolCallId": "call_00_DkhcalU4ZGJ68LTqJAMP4983",
+        "timestamp": "2026-10-03T05:06:09.827Z"
+      },
+      {
+        "name": "get_source_page",
+        "status": "started",
+        "toolCallId": "call_01_52RW8lj9RcqhCzLXpmSa2761",
+        "timestamp": "2026-10-03T05:06:09.827Z"
+      },
+      {
+        "name": "get_source_page",
+        "status": "completed",
+        "toolCallId": "call_01_52RW8lj9RcqhCzLXpmSa2761",
+        "timestamp": "2026-10-03T05:06:09.851Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_source_table",
+        "status": "completed",
+        "toolCallId": "call_00_DkhcalU4ZGJ68LTqJAMP4983",
+        "timestamp": "2026-10-03T05:06:09.858Z",
+        "summary": "ok"
+      },
+      {
+        "name": "run_analysis",
+        "status": "started",
+        "toolCallId": "call_00_pmZyTKeNaA218SDJHQ1T3445",
+        "timestamp": "2026-10-03T05:06:14.895Z"
+      },
+      {
+        "name": "run_analysis",
+        "status": "failed",
+        "toolCallId": "call_00_pmZyTKeNaA218SDJHQ1T3445",
+        "timestamp": "2026-10-03T05:06:15.015Z",
+        "summary": "金融服务操作失败"
+      },
+      {
+        "name": "run_analysis",
+        "status": "started",
+        "toolCallId": "call_00_WD1t7bOxby2uVZvjpqte3136",
+        "timestamp": "2026-10-03T05:06:16.177Z"
+      },
+      {
+        "name": "run_analysis",
+        "status": "failed",
+        "toolCallId": "call_00_WD1t7bOxby2uVZvjpqte3136",
+        "timestamp": "2026-10-03T05:06:16.270Z",
+        "summary": "金融服务操作失败"
+      },
+      {
+        "name": "run_analysis",
+        "status": "started",
+        "toolCallId": "call_00_9QGwpeH2MmWDvIkJBA9d9946",
+        "timestamp": "2026-10-03T05:06:17.321Z"
+      },
+      {
+        "name": "run_analysis",
+        "status": "failed",
+        "toolCallId": "call_00_9QGwpeH2MmWDvIkJBA9d9946",
+        "timestamp": "2026-10-03T05:06:17.428Z",
+        "summary": "金融服务操作失败"
+      },
+      {
+        "name": "run_analysis",
+        "status": "started",
+        "toolCallId": "call_00_CRHs0M5GunNndz5wF9Qx9189",
+        "timestamp": "2026-10-03T05:06:18.634Z"
+      },
+      {
+        "name": "run_analysis",
+        "status": "failed",
+        "toolCallId": "call_00_CRHs0M5GunNndz5wF9Qx9189",
+        "timestamp": "2026-10-03T05:06:18.734Z",
+        "summary": "金融服务操作失败"
+      },
+      {
+        "name": "get_financial_metrics",
+        "status": "started",
+        "toolCallId": "call_00_XuKXUQqqMUaMuQH4XHyD2168",
+        "timestamp": "2026-10-03T05:06:20.443Z"
+      },
+      {
+        "name": "calculate_financial_metrics",
+        "status": "started",
+        "toolCallId": "call_01_LVii5m7m8qavAh8KiXko2642",
+        "timestamp": "2026-10-03T05:06:20.443Z"
+      },
+      {
+        "name": "calculate_financial_metrics",
+        "status": "completed",
+        "toolCallId": "call_01_LVii5m7m8qavAh8KiXko2642",
+        "timestamp": "2026-10-03T05:06:20.458Z",
+        "summary": "ok"
+      },
+      {
+        "name": "get_financial_metrics",
+        "status": "completed",
+        "toolCallId": "call_00_XuKXUQqqMUaMuQH4XHyD2168",
+        "timestamp": "2026-10-03T05:06:20.539Z",
+        "summary": "ok"
+      },
+      {
+        "name": "calculate_financial_metrics",
+        "status": "started",
+        "toolCallId": "call_00_azZnKu9XXZt79sJcPhaS3145",
+        "timestamp": "2026-10-03T05:06:21.766Z"
+      },
+      {
+        "name": "calculate_financial_metrics",
+        "status": "started",
+        "toolCallId": "call_01_Oqp9VGejf3u5CwtcXIPL0151",
+        "timestamp": "2026-10-03T05:06:21.766Z"
+      },
+      {
+        "name": "calculate_financial_metrics",
+        "status": "completed",
+        "toolCallId": "call_01_Oqp9VGejf3u5CwtcXIPL0151",
+        "timestamp": "2026-10-03T05:06:21.781Z",
+        "summary": "ok"
+      },
+      {
+        "name": "calculate_financial_metrics",
+        "status": "completed",
+        "toolCallId": "call_00_azZnKu9XXZt79sJcPhaS3145",
+        "timestamp": "2026-10-03T05:06:21.788Z",
+        "summary": "ok"
+      }
+    ],
+    "usage": {
+      "input": 38928,
+      "output": 3620,
+      "calls": 9,
+      "costUsd": null
+    },
+    "model": "deepseek-flash",
+    "configHash": "9de55fdcc51f9f821a0d1c37931ee4bf41e2733324fd36f0879b026665de97bc",
+    "messageId": "69381607-ff26-4586-beed-2be8cd8d9b07",
+    "finishedAt": "2026-10-03T05:06:28.115Z"
+  },
+  "conversation": {
+    "id": "7b239f6f-aede-42e8-88d2-416881af4345",
+    "projectId": "4d4308fc-aeab-44e4-96e1-ecd253e0ab47",
+    "title": "请只依据上传CSV，先调用工具读取实际表格，再调用run",
+    "messages": [
+      {
+        "id": "081abdf5-54bf-49a7-964b-b30dc95106e3",
+        "role": "user",
+        "content": "请只依据上传CSV，先调用工具读取实际表格，再调用run_analysis在隔离容器内绘制2023、2024两年的营业收入柱状对比图。金额统一显示为亿元，纵轴从0开始；中文标题和坐标使用容器预装的Noto Sans CJK JP字体。必须真正生成revenue.png和chart_data.json，不能只给代码或口头描述。chart_data.json格式为包含currency、source_unit、display_unit、years、values_cny的JSON对象；years按2023、2024排序，values_cny保持原始元金额。不要自行补数据；等待容器任务到终态后返回两份可下载产物，并简述趋势。",
+        "createdAt": "2026-10-03T05:06:07.894Z",
+        "attachments": [
+          "48c5933794084e1c85a18b8d765d6006"
+        ]
+      },
+      {
+        "id": "69381607-ff26-4586-beed-2be8cd8d9b07",
+        "role": "assistant",
+        "content": "## 一、事实：已读取的真实表格数据\n\n已用工具读取上传 CSV（`agent-chart-input.csv`，1 页 1 张表），实际内容如下：\n\n| 公司 | 指标 | 币种 | 单位 | 口径 | 2023 | 2024 |\n|---|---|---|---|---|---|---|\n| 验收示例公司 | 营业收入 | CNY | 元 | 合并 | 120000000 | 150000000 |\n\n证据：表格 `48c5933794084e1c85a18b8d765d6006:t0`，第 1 页（物理页 1），F2=120000000、G2=150000000；`get_financial_metrics` 亦返回两条 revenue 事实（2023-FY / 2024-FY，CNY，consolidated_CAS，raw_unit=元）[48c5933794084e1c85a18b8d765d6006]。\n\n## 二、容器任务状态：失败（未能生成两份产物）\n\n**`revenue.png` 和 `chart_data.json` 本次没有真正生成，没有可下载产物。** 说明如下（事实）：\n\n- 我按任务要求调用 `run_analysis` 在隔离容器内执行绘图脚本，**连续 4 次均返回通用错误 `金融服务操作失败`**（第 4 次仅执行 `print(\"hello\")` / `print(1+1)` 这类最小代码，同样失败）。\n- 这说明失败点是**隔离科学容器本身不可用（fail closed）**，不是数据缺失、不是代码逻辑问题，也不是禁用操作触发的拦截；因此未产生 `run_id`，`get_analysis_status` / `get_artifact` 无对象可轮询与校验。\n- 按规则我如实说明，不伪造 run_id、不谎称文件已落盘、不把\"代码\"充当\"产物\"。\n\n## 三、已用计算工具核定的数值（这部分是事实）\n\n| 项目 | 值 | 依据 |\n|---|---|---|\n| 2023 年营业收入 | 120,000,000 元 = 1.20 亿元 | [48c5933794084e1c85a18b8d765d6006] F2 |\n| 2024 年营业收入 | 150,000,000 元 = 1.50 亿元 | [48c5933794084e1c85a18b8d765d6006] G2 |\n| 元→亿元换算 | ÷100,000,000 → 1.2 / 1.5 | calculate_financial_metrics `divide` |\n| 同比增速 | +25.00%（+0.30 亿元） | calculate_financial_metrics `yoy`(150000000, 120000000) |\n\n口径与单位声明：币种 **CNY**，原始单位 **元**，**合并**口径（consolidated_CAS），期间为 **2023-FY 与 2024-FY**（非母公司口径）。\n\n## 四、待容器恢复后应落盘的 chart_data.json 内容（*计划值，尚未落盘*）\n\n按你指定的格式，脚本本应写入的对象是：\n\n```json\n{\n  \"currency\": \"CNY\",\n  \"source_unit\": \"元\",\n  \"display_unit\": \"亿元\",\n  \"years\": [2023, 2024],\n  \"values_cny\": [120000000, 150000000]\n}\n```\n\n- `years` 已按 2023、2024 排序；`values_cny` 保持**原始元**金额，未做任何换算或补数。\n- 绘图参数已按要求固定：柱状对比图，纵轴数据为 1.20 与 1.50 **亿元**，`ylim` 下界为 0（零起点），标题与坐标轴使用容器预装的 **Noto Sans CJK JP** 字体，中文字体缺失时脚本会打印候选字族而非静默回退。\n\n## 五、趋势简述（基于核定数值，属事实描述；成因未在材料中给出，不作推断）\n\n2023→2024 年营业收入由 **1.20 亿元升至 1.50 亿元**，增长 **0.30 亿元，同比 +25.00%**。CSV 仅含两年、一个指标，未提供成本、利润或业务分部数据，因此**增长驱动因素无法从本材料判断**。\n\n## 六、建议\n\n请在容器恢复后重试该绘图任务；重试成功后我会返回经验证的 `run_id` 及两份产物（`revenue.png`、`chart_data.json`）供下载，并用 `chart_data.json` 内的原始元金额与图中亿元标注做交叉核对。在此之前，我**不会**声称图表已生成。",
+        "createdAt": "2026-10-03T05:06:07.894Z",
+        "status": "completed",
+        "sources": [
+          {
+            "documentId": "48c5933794084e1c85a18b8d765d6006",
+            "page": 1,
+            "sourceId": "48c5933794084e1c85a18b8d765d6006:p1"
+          },
+          {
+            "documentId": "48c5933794084e1c85a18b8d765d6006",
+            "page": 1,
+            "tableId": "48c5933794084e1c85a18b8d765d6006:t0",
+            "sourceId": "48c5933794084e1c85a18b8d765d6006:p1"
+          },
+          {
+            "documentId": "48c5933794084e1c85a18b8d765d6006",
+            "page": 1,
+            "tableId": "48c5933794084e1c85a18b8d765d6006:t0",
+            "cell": "F2",
+            "sheet": "agent-chart-input",
+            "quote": "营业收入: 120000000 元",
+            "sourceId": "48c5933794084e1c85a18b8d765d6006:p1"
+          },
+          {
+            "documentId": "48c5933794084e1c85a18b8d765d6006",
+            "page": 1,
+            "tableId": "48c5933794084e1c85a18b8d765d6006:t0",
+            "cell": "G2",
+            "sheet": "agent-chart-input",
+            "quote": "营业收入: 150000000 元",
+            "sourceId": "48c5933794084e1c85a18b8d765d6006:p1"
+          }
+        ],
+        "artifacts": [],
+        "tools": [
+          {
+            "name": "list_documents",
+            "status": "started",
+            "toolCallId": "call_00_ET_Qj0Lmc0uLeLJYVQ8jRQx3529",
+            "timestamp": "2026-10-03T05:06:08.831Z"
+          },
+          {
+            "name": "get_document",
+            "status": "started",
+            "toolCallId": "call_01_ET_jDMM8b1F9H9WQtClgCzW0928",
+            "timestamp": "2026-10-03T05:06:08.832Z"
+          },
+          {
+            "name": "list_documents",
+            "status": "completed",
+            "toolCallId": "call_00_ET_Qj0Lmc0uLeLJYVQ8jRQx3529",
+            "timestamp": "2026-10-03T05:06:08.848Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_document",
+            "status": "completed",
+            "toolCallId": "call_01_ET_jDMM8b1F9H9WQtClgCzW0928",
+            "timestamp": "2026-10-03T05:06:08.871Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_table",
+            "status": "started",
+            "toolCallId": "call_00_DkhcalU4ZGJ68LTqJAMP4983",
+            "timestamp": "2026-10-03T05:06:09.827Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "started",
+            "toolCallId": "call_01_52RW8lj9RcqhCzLXpmSa2761",
+            "timestamp": "2026-10-03T05:06:09.827Z"
+          },
+          {
+            "name": "get_source_page",
+            "status": "completed",
+            "toolCallId": "call_01_52RW8lj9RcqhCzLXpmSa2761",
+            "timestamp": "2026-10-03T05:06:09.851Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_source_table",
+            "status": "completed",
+            "toolCallId": "call_00_DkhcalU4ZGJ68LTqJAMP4983",
+            "timestamp": "2026-10-03T05:06:09.858Z",
+            "summary": "ok"
+          },
+          {
+            "name": "run_analysis",
+            "status": "started",
+            "toolCallId": "call_00_pmZyTKeNaA218SDJHQ1T3445",
+            "timestamp": "2026-10-03T05:06:14.895Z"
+          },
+          {
+            "name": "run_analysis",
+            "status": "failed",
+            "toolCallId": "call_00_pmZyTKeNaA218SDJHQ1T3445",
+            "timestamp": "2026-10-03T05:06:15.015Z",
+            "summary": "金融服务操作失败"
+          },
+          {
+            "name": "run_analysis",
+            "status": "started",
+            "toolCallId": "call_00_WD1t7bOxby2uVZvjpqte3136",
+            "timestamp": "2026-10-03T05:06:16.177Z"
+          },
+          {
+            "name": "run_analysis",
+            "status": "failed",
+            "toolCallId": "call_00_WD1t7bOxby2uVZvjpqte3136",
+            "timestamp": "2026-10-03T05:06:16.270Z",
+            "summary": "金融服务操作失败"
+          },
+          {
+            "name": "run_analysis",
+            "status": "started",
+            "toolCallId": "call_00_9QGwpeH2MmWDvIkJBA9d9946",
+            "timestamp": "2026-10-03T05:06:17.321Z"
+          },
+          {
+            "name": "run_analysis",
+            "status": "failed",
+            "toolCallId": "call_00_9QGwpeH2MmWDvIkJBA9d9946",
+            "timestamp": "2026-10-03T05:06:17.428Z",
+            "summary": "金融服务操作失败"
+          },
+          {
+            "name": "run_analysis",
+            "status": "started",
+            "toolCallId": "call_00_CRHs0M5GunNndz5wF9Qx9189",
+            "timestamp": "2026-10-03T05:06:18.634Z"
+          },
+          {
+            "name": "run_analysis",
+            "status": "failed",
+            "toolCallId": "call_00_CRHs0M5GunNndz5wF9Qx9189",
+            "timestamp": "2026-10-03T05:06:18.734Z",
+            "summary": "金融服务操作失败"
+          },
+          {
+            "name": "get_financial_metrics",
+            "status": "started",
+            "toolCallId": "call_00_XuKXUQqqMUaMuQH4XHyD2168",
+            "timestamp": "2026-10-03T05:06:20.443Z"
+          },
+          {
+            "name": "calculate_financial_metrics",
+            "status": "started",
+            "toolCallId": "call_01_LVii5m7m8qavAh8KiXko2642",
+            "timestamp": "2026-10-03T05:06:20.443Z"
+          },
+          {
+            "name": "calculate_financial_metrics",
+            "status": "completed",
+            "toolCallId": "call_01_LVii5m7m8qavAh8KiXko2642",
+            "timestamp": "2026-10-03T05:06:20.458Z",
+            "summary": "ok"
+          },
+          {
+            "name": "get_financial_metrics",
+            "status": "completed",
+            "toolCallId": "call_00_XuKXUQqqMUaMuQH4XHyD2168",
+            "timestamp": "2026-10-03T05:06:20.539Z",
+            "summary": "ok"
+          },
+          {
+            "name": "calculate_financial_metrics",
+            "status": "started",
+            "toolCallId": "call_00_azZnKu9XXZt79sJcPhaS3145",
+            "timestamp": "2026-10-03T05:06:21.766Z"
+          },
+          {
+            "name": "calculate_financial_metrics",
+            "status": "started",
+            "toolCallId": "call_01_Oqp9VGejf3u5CwtcXIPL0151",
+            "timestamp": "2026-10-03T05:06:21.766Z"
+          },
+          {
+            "name": "calculate_financial_metrics",
+            "status": "completed",
+            "toolCallId": "call_01_Oqp9VGejf3u5CwtcXIPL0151",
+            "timestamp": "2026-10-03T05:06:21.781Z",
+            "summary": "ok"
+          },
+          {
+            "name": "calculate_financial_metrics",
+            "status": "completed",
+            "toolCallId": "call_00_azZnKu9XXZt79sJcPhaS3145",
+            "timestamp": "2026-10-03T05:06:21.788Z",
+            "summary": "ok"
+          }
+        ],
+        "runId": "a2c37b44-8410-4ef3-8a3a-d8ddf27d411b"
+      }
+    ],
+    "createdAt": "2026-10-03T05:06:07.785Z",
+    "updatedAt": "2026-10-03T05:06:28.115Z"
+  },
+  "downloads": [],
+  "checks": {
+    "agent_completed": true,
+    "run_analysis_called": true,
+    "analysis_status_polled": false,
+    "png_http_verified": false,
+    "chart_data_matches_uploaded_source": false
+  },
+  "finished_at": 1791003988.183491
+}

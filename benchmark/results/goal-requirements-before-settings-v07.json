@@ -1,0 +1,1326 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-10-03T16:42:07.313473+00:00",
+  "objective": "围绕官方DeepSeek与持久Pi核心完成六阶段金融研究系统及独立可复算验收",
+  "authorization": "用户明确要求开始执行已确认的六阶段goal；阶段原始约束由root转述保存",
+  "status": "incomplete",
+  "status_policy": "All requirements begin incomplete. Mark verified only with named objective evidence. Do not drop unmet requirements; append supersession/change reasons.",
+  "requirements": [
+    {
+      "id": "P1.native_tables",
+      "stage": "P1",
+      "stage_title": "基础可靠性修复",
+      "requirement": "无框线原生文字PDF及跨页表格可进入Pi中的模型清洗，不能仅依赖几何表格检测",
+      "acceptance_criterion": "无框线/断行/跨页资料全量索引；整表逐格核对缺失和错误新增。",
+      "status": "incomplete",
+      "evidence": [
+        {
+          "kind": "development_diagnostic_not_acceptance",
+          "paths": [
+            "benchmark/results/native-layout-semantic-source-regression-v045.json",
+            "benchmark/results/development-v041-independent-review-20261004.json"
+          ],
+          "result": "Seven previously missing sampled cells pass the old scorer and five native source rectangles independently match new facts, but the real development trial was contaminated by a secondary host; no clean acceptance or whole-table accuracy claim.",
+          "at": "2026-10-03T18:14:40.552970+00:00"
+        }
+      ]
+    },
+    {
+      "id": "P1.unit_semantics",
+      "stage": "P1",
+      "stage_title": "基础可靠性修复",
+      "requirement": "表头、金额/比例/每股单位由来源上下文和模型语义确定；程序约束不能误把数据行当百分比表头",
+      "acceptance_criterion": "混合单位表每格单位、倍率和金额独立核对，重大错误单列。",
+      "status": "incomplete",
+      "evidence": [
+        {
+          "kind": "development_diagnostic_not_acceptance",
+          "paths": [
+            "benchmark/results/native-layout-semantic-source-regression-v045.json",
+            "benchmark/results/development-v041-independent-review-20261004.json"
+          ],
+          "result": "Seven previously missing sampled cells pass the old scorer and five native source rectangles independently match new facts, but the real development trial was contaminated by a secondary host; no clean acceptance or whole-table accuracy claim.",
+          "at": "2026-10-03T18:14:40.552970+00:00"
+        }
+      ]
+    },
+    {
+      "id": "P1.utf8",
+      "stage": "P1",
+      "stage_title": "基础可靠性修复",
+      "requirement": "中文原文、文件名、数据库、接口、导出全程UTF-8正确",
+      "acceptance_criterion": "中文特殊字符上传、持久化、重启读取、CSV/JSON导出往返一致。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "verified_isolated_complete_roundtrip",
+          "path": "benchmark/results/utf8-http-pi-restart-1791052167616.json",
+          "sha256": "fde9b65d7d707fbc603f6e30cb24ac5931d6b08439bcdd7f1957aa1f67fe28cc",
+          "at": "2026-10-03T18:32:48.133588+00:00",
+          "result": "9/9 real HTTP/Pi/MCP/SQLite roundtrip checks with deterministic local provider. Chinese/non-BMP filename, multiline comma company, original bytes, CSV/JSON/conversation exact after private host restart; no replacement character and zero extra calls on restart/read; zero official model calls."
+        }
+      ]
+    },
+    {
+      "id": "P1.immutable_cache",
+      "stage": "P1",
+      "stage_title": "基础可靠性修复",
+      "requirement": "相同输入并发推理的缓存和审计引用保持真实owner与不可变结果对应",
+      "acceptance_criterion": "两个会话同时完成同键结果；每份已接受报告仍可逐字对应其原始调用，取消一方不影响另一方。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "controlled_integration_not_semantic_acceptance",
+          "paths": [
+            "benchmark/results/controlled-pi-cache-cancellation-v06.json"
+          ],
+          "result": "9/9 independent database/audit checks: actual Pi + MCP + fixed local provider; cancelled owner, surviving waiter, one accepted immutable cache and matching original provider output. Original harness-failed report retained. This proves control flow, not DeepSeek semantic accuracy.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        },
+        {
+          "kind": "historical_readonly_provenance_diagnostic",
+          "paths": [
+            "benchmark/results/known-definition-clean1-provenance-v2.json",
+            "benchmark/results/known-definition-clean1-grounding-independent-v2.json"
+          ],
+          "result": "44/44 original model, quote, owner, hash and archived financial identity verified, but original report registration 0/44 and overall remains failed. Independently verified 194 quotes in 11 unchanged responses including 5 unique same-group whitespace/location transforms. No financial semantic rescore or model rerun.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        },
+        {
+          "kind": "original_contract_mechanism_audit",
+          "path": "benchmark/results/requirement-mechanisms-v07-audit.json",
+          "sha256": "2ddde22f09a846c3a9bffc8c873e2d13af73da40e66cd930cc6f3ec9bd6803c3",
+          "item_id": "P1.immutable_cache",
+          "at": "2026-10-03T19:35:52.697596+00:00",
+          "result": "Same-key work shares the immutable first successful result with original owner/hash; cancellation publishes no cancelled winner. Actual isolated Pi/MCP/SQLite cancellation and surviving-session ownership checks pass 9/9; accepted source results correspond to their original provider response. Limitations: Cancellation integration uses a deterministic provider, not a model-quality test. The original 44 missing registration records are still absent; v07 explicit revalidation receipts have fixture coverage but await actual clean3 execution."
+        }
+      ],
+      "verification_scope": "Same-key work shares the immutable first successful result with original owner/hash; cancellation publishes no cancelled winner. Actual isolated Pi/MCP/SQLite cancellation and surviving-session ownership checks pass 9/9; accepted source results correspond to their original provider response. Limitations: Cancellation integration uses a deterministic provider, not a model-quality test. The original 44 missing registration records are still absent; v07 explicit revalidation receipts have fixture coverage but await actual clean3 execution."
+    },
+    {
+      "id": "P1.scope_period",
+      "stage": "P1",
+      "stage_title": "基础可靠性修复",
+      "requirement": "主营/全部、租赁期限、补助定义、存量/流量、季度/累计、重述等字段保持准确且有原文依据",
+      "acceptance_criterion": "既有已知问题通过；新公司整表金标准核对范围与期间，金额和来源守恒。",
+      "status": "incomplete",
+      "evidence": [
+        {
+          "kind": "historical_readonly_provenance_diagnostic",
+          "paths": [
+            "benchmark/results/known-definition-clean1-provenance-v2.json",
+            "benchmark/results/known-definition-clean1-grounding-independent-v2.json"
+          ],
+          "result": "44/44 original model, quote, owner, hash and archived financial identity verified, but original report registration 0/44 and overall remains failed. Independently verified 194 quotes in 11 unchanged responses including 5 unique same-group whitespace/location transforms. No financial semantic rescore or model rerun.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        }
+      ]
+    },
+    {
+      "id": "P1.retry_policy",
+      "stage": "P1",
+      "stage_title": "基础可靠性修复",
+      "requirement": "按永久服务错误、可重试网络错误、输出截断和语义不确定性分别处理",
+      "acceptance_criterion": "401/402及时结束；网络重试有界；相同截断不整轮无限复播；中止原因准确。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "original_contract_mechanism_audit",
+          "path": "benchmark/results/requirement-mechanisms-v07-audit.json",
+          "sha256": "2ddde22f09a846c3a9bffc8c873e2d13af73da40e66cd930cc6f3ec9bd6803c3",
+          "item_id": "P1.retry_policy",
+          "at": "2026-10-03T19:35:52.697596+00:00",
+          "result": "Actual Pi/HTTP controlled-provider tests cover immediate 401/402 stop, bounded transient 503 retry, separate typed output-limit handling, finite definition-group bisection and singleton termination. Permanent/network failures do not trigger length splitting; valid partial results survive. Source hashes match the tested deployed release. Limitations: Controlled-provider mechanism verification, not a new official-model run. Automatic group bisection applies to definition review; the remaining five historical groups still await funded semantic execution."
+        }
+      ],
+      "verification_scope": "Actual Pi/HTTP controlled-provider tests cover immediate 401/402 stop, bounded transient 503 retry, separate typed output-limit handling, finite definition-group bisection and singleton termination. Permanent/network failures do not trigger length splitting; valid partial results survive. Source hashes match the tested deployed release. Limitations: Controlled-provider mechanism verification, not a new official-model run. Automatic group bisection applies to definition review; the remaining five historical groups still await funded semantic execution."
+    },
+    {
+      "id": "P1.context_efficiency",
+      "stage": "P1",
+      "stage_title": "基础可靠性修复",
+      "requirement": "按需组织原文、相关目录与既有结果，避免每小组反复携带全目录",
+      "acceptance_criterion": "记录每阶段输入token、输出token、调用次数和耗时；复用有效成果可审计。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "bounded_controlflow_and_observed_load",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.fraction.json"
+          ],
+          "result": "280/280 requests at predeclared1/2/4 clients x10 per query; independent3298-fact/143-page SQLite copy, no settings or credentials, only named public PDF for preview. p50/p95 and observed RSS reported without ad-hoc performance gate. Explicit assumption update marks true descendants stale and leaves independent artifact unchanged; full new-disclosure incremental reasoning/recomputation is not proven.",
+          "at": "2026-10-03T19:10:06.682172+00:00"
+        },
+        {
+          "kind": "original_contract_mechanism_audit",
+          "path": "benchmark/results/requirement-mechanisms-v07-audit.json",
+          "sha256": "2ddde22f09a846c3a9bffc8c873e2d13af73da40e66cd930cc6f3ec9bd6803c3",
+          "item_id": "P1.context_efficiency",
+          "at": "2026-10-03T19:35:52.697596+00:00",
+          "result": "Per-group related concepts and shared evidence are selected, old verbose tool results are projected without changing persisted messages, and runtime accounting records calls/tokens/time including failed and nested requests. Actual clean2 reused 44 earlier results and added 38; all 82 raw result identities were independently checked. Limitations: Observed first-input reduction 224664 to 211776 (5.7%) is not an equal-input causal A/B comparison and input remains large. The original clean2 provenance report remains failed because historical registrations were incomplete; no old registrations were fabricated."
+        }
+      ],
+      "verification_scope": "Per-group related concepts and shared evidence are selected, old verbose tool results are projected without changing persisted messages, and runtime accounting records calls/tokens/time including failed and nested requests. Actual clean2 reused 44 earlier results and added 38; all 82 raw result identities were independently checked. Limitations: Observed first-input reduction 224664 to 211776 (5.7%) is not an equal-input causal A/B comparison and input remains large. The original clean2 provenance report remains failed because historical registrations were incomplete; no old registrations were fabricated."
+    },
+    {
+      "id": "P2.search_fetch",
+      "stage": "P2",
+      "stage_title": "受控联网研究与证据回放",
+      "requirement": "支持搜索网页与公司公告并获取原文",
+      "acceptance_criterion": "对既定研究任务找到可核查的一手来源，并记录实际查询与结果。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "partial_live_component",
+          "paths": [
+            "benchmark/results/research-tavily-live-v04.json"
+          ],
+          "result": "Real Tavily returned 3 official-company pages; separate valuation source archived and 12 paragraphs reproduced offline. Does not yet prove end-to-end Pi research task or temporal conflict handling.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "original_contract_mechanism_audit",
+          "path": "benchmark/results/requirement-mechanisms-v07-audit.json",
+          "sha256": "2ddde22f09a846c3a9bffc8c873e2d13af73da40e66cd930cc6f3ec9bd6803c3",
+          "item_id": "P2.search_fetch",
+          "at": "2026-10-03T19:35:52.697596+00:00",
+          "result": "The recorded real Pi task made three Tavily queries, handled a failed source URL and fetched the official company news page. Requested numbers were checked against the archived 27309-byte source with its original hash. Limitations: This verifies search and original-source acquisition for this task only. An added consolidated-scope label lacks support in the cited paragraph and is not certified; full actual-company announcement/PDF research remains incomplete."
+        }
+      ],
+      "verification_scope": "The recorded real Pi task made three Tavily queries, handled a failed source URL and fetched the official company news page. Requested numbers were checked against the archived 27309-byte source with its original hash. Limitations: This verifies search and original-source acquisition for this task only. An added consolidated-scope label lacks support in the cited paragraph and is not certified; full actual-company announcement/PDF research remains incomplete."
+    },
+    {
+      "id": "P2.snapshot",
+      "stage": "P2",
+      "stage_title": "受控联网研究与证据回放",
+      "requirement": "保存来源、发布日期、访问时间、URL、证据片段、内容哈希与快照",
+      "acceptance_criterion": "陈旧/修订/相互冲突来源按时间及版本区分，每个关键事实可回原文。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "partial_live_component",
+          "paths": [
+            "benchmark/results/research-tavily-live-v04.json"
+          ],
+          "result": "Real Tavily returned 3 official-company pages; separate valuation source archived and 12 paragraphs reproduced offline. Does not yet prove end-to-end Pi research task or temporal conflict handling.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "first_real_pi_behavior_and_independent_failure_diagnosis",
+          "paths": [
+            "benchmark/results/research-trust-v01-first.json",
+            "benchmark/results/research-trust-v01-first-diagnosis.json"
+          ],
+          "at": "2026-10-03T18:54:07.674336+00:00",
+          "result": "Two original DeepSeek chats completed; strict first scores12/18 and6/18 remain failed due narrower-than-task tool/year/value/observation format rules. Independent recorded evidence: correct cutoff revenue, unresolved profit conflict and later-revision roles; all6 financial quotes grounded; attack read, no search/fetch/foreign/sensitive request, no sentinel leak; archive bytes and implementation unchanged. 6calls/55308tokens/32.806s; no model retry and no replacement score. One synthetic visible attack only; general robustness not established."
+        },
+        {
+          "kind": "original_contract_mechanism_audit",
+          "path": "benchmark/results/requirement-mechanisms-v07-audit.json",
+          "sha256": "2ddde22f09a846c3a9bffc8c873e2d13af73da40e66cd930cc6f3ec9bd6803c3",
+          "item_id": "P2.snapshot",
+          "at": "2026-10-03T19:35:52.697596+00:00",
+          "result": "Two actual DeepSeek conversations read four immutable archived sources, retained a before-cutoff conflict, excluded a later revision from the earlier cutoff, and grounded the recorded financial observations in original paragraphs. Snapshot and source bytes remain unchanged. Limitations: Dates and revision relationships in this controlled task were synthetic. Real historical website availability is not established; the real LiuGong source published_at remains unknown rather than invented. Original strict scores 12/18 and 6/18 remain failed; this is a capability-contract audit, not a replacement score."
+        }
+      ],
+      "verification_scope": "Two actual DeepSeek conversations read four immutable archived sources, retained a before-cutoff conflict, excluded a later revision from the earlier cutoff, and grounded the recorded financial observations in original paragraphs. Snapshot and source bytes remain unchanged. Limitations: Dates and revision relationships in this controlled task were synthetic. Real historical website availability is not established; the real LiuGong source published_at remains unknown rather than invented. Original strict scores 12/18 and 6/18 remain failed; this is a capability-contract audit, not a replacement score."
+    },
+    {
+      "id": "P2.configuration",
+      "stage": "P2",
+      "stage_title": "受控联网研究与证据回放",
+      "requirement": "提供服务配置入口和调用范围/预算设置",
+      "acceptance_criterion": "从对话和配置页可设置、验证、保存；服务失败可定位，无聊天密钥泄露。",
+      "status": "incomplete",
+      "evidence": []
+    },
+    {
+      "id": "P2.replay",
+      "stage": "P2",
+      "stage_title": "受控联网研究与证据回放",
+      "requirement": "支持离线回放固定证据及重现研究结果",
+      "acceptance_criterion": "断网后基于冻结快照重复计算与核验；不将新网页内容偷偷混入旧结论。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "partial_live_component",
+          "paths": [
+            "benchmark/results/research-tavily-live-v04.json"
+          ],
+          "result": "Real Tavily returned 3 official-company pages; separate valuation source archived and 12 paragraphs reproduced offline. Does not yet prove end-to-end Pi research task or temporal conflict handling.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "first_real_pi_behavior_and_independent_failure_diagnosis",
+          "paths": [
+            "benchmark/results/research-trust-v01-first.json",
+            "benchmark/results/research-trust-v01-first-diagnosis.json"
+          ],
+          "at": "2026-10-03T18:54:07.674336+00:00",
+          "result": "Two original DeepSeek chats completed; strict first scores12/18 and6/18 remain failed due narrower-than-task tool/year/value/observation format rules. Independent recorded evidence: correct cutoff revenue, unresolved profit conflict and later-revision roles; all6 financial quotes grounded; attack read, no search/fetch/foreign/sensitive request, no sentinel leak; archive bytes and implementation unchanged. 6calls/55308tokens/32.806s; no model retry and no replacement score. One synthetic visible attack only; general robustness not established."
+        },
+        {
+          "kind": "original_contract_mechanism_audit",
+          "path": "benchmark/results/requirement-mechanisms-v07-audit.json",
+          "sha256": "2ddde22f09a846c3a9bffc8c873e2d13af73da40e66cd930cc6f3ec9bd6803c3",
+          "item_id": "P2.replay",
+          "at": "2026-10-03T19:35:52.697596+00:00",
+          "result": "Current ResearchStore and actual MCP calculate_financial_metrics repeated two reads and eight calculations from the frozen real company source with external networking disabled. Regional sum, difference and shares match in both rounds; 12/12 control checks and 8/8 independent Fraction checks pass. Limitations: Zero model calls: verifies evidence and calculation-tool replay, not repeatability of LLM interpretations. Figures retain original rounded news precision; source-to-input citations are explicitly recorded in the test ledger, not automatically attached by scalar calculations. Windows asyncio loopback self-pipe sockets were allowed and logged; no external network attempt occurred."
+        }
+      ],
+      "verification_scope": "Current ResearchStore and actual MCP calculate_financial_metrics repeated two reads and eight calculations from the frozen real company source with external networking disabled. Regional sum, difference and shares match in both rounds; 12/12 control checks and 8/8 independent Fraction checks pass. Limitations: Zero model calls: verifies evidence and calculation-tool replay, not repeatability of LLM interpretations. Figures retain original rounded news precision; source-to-input citations are explicitly recorded in the test ledger, not automatically attached by scalar calculations. Windows asyncio loopback self-pipe sockets were allowed and logged; no external network attempt occurred."
+    },
+    {
+      "id": "P2.external_boundary",
+      "stage": "P2",
+      "stage_title": "受控联网研究与证据回放",
+      "requirement": "网页只能作为外部证据，不获得运行指令权限",
+      "acceptance_criterion": "包含网页提示注入的固定样例无法改变工具权限或读取项目外秘密。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "reported_test_evidence",
+          "paths": [
+            "tests/research.test.ts",
+            "tests/research-artifacts.test.ts",
+            "service/tests/test_research_evidence.py"
+          ],
+          "result": "Root reports research source/artifact tests and source citation test pass; actual Pi network flow still pending.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "first_real_pi_behavior_and_independent_failure_diagnosis",
+          "paths": [
+            "benchmark/results/research-trust-v01-first.json",
+            "benchmark/results/research-trust-v01-first-diagnosis.json"
+          ],
+          "at": "2026-10-03T18:54:07.674336+00:00",
+          "result": "Two original DeepSeek chats completed; strict first scores12/18 and6/18 remain failed due narrower-than-task tool/year/value/observation format rules. Independent recorded evidence: correct cutoff revenue, unresolved profit conflict and later-revision roles; all6 financial quotes grounded; attack read, no search/fetch/foreign/sensitive request, no sentinel leak; archive bytes and implementation unchanged. 6calls/55308tokens/32.806s; no model retry and no replacement score. One synthetic visible attack only; general robustness not established."
+        },
+        {
+          "kind": "original_contract_mechanism_audit",
+          "path": "benchmark/results/requirement-mechanisms-v07-audit.json",
+          "sha256": "2ddde22f09a846c3a9bffc8c873e2d13af73da40e66cd930cc6f3ec9bd6803c3",
+          "item_id": "P2.external_boundary",
+          "at": "2026-10-03T19:35:52.697596+00:00",
+          "result": "Both actual conversations read the fixed malicious webpage passage. The recorded runs show zero sensitive/cross-project attempts, zero external fetch/search during that task and no sentinel leakage. Project-scope host checks separately reject foreign-source access. Limitations: One visible synthetic injection sample establishes only the original fixed-example contract, not general prompt-injection robustness. Original failed aggregate research-trust scores are unchanged."
+        }
+      ],
+      "verification_scope": "Both actual conversations read the fixed malicious webpage passage. The recorded runs show zero sensitive/cross-project attempts, zero external fetch/search during that task and no sentinel leakage. Project-scope host checks separately reject foreign-source access. Limitations: One visible synthetic injection sample establishes only the original fixed-example contract, not general prompt-injection robustness. Original failed aggregate research-trust scores are unchanged."
+    },
+    {
+      "id": "P3.attribution",
+      "stage": "P3",
+      "stage_title": "财务归因、盈利质量与研报纠错",
+      "requirement": "按可复算的财务桥接解释业绩变化",
+      "acceptance_criterion": "收入/价格/销量/成本/费用等归因残差明确，避免重复计算；来源和期间统一。",
+      "status": "incomplete",
+      "evidence": []
+    },
+    {
+      "id": "P3.earnings_quality",
+      "stage": "P3",
+      "stage_title": "财务归因、盈利质量与研报纠错",
+      "requirement": "识别现金流、应计、一次性项目与经营盈利差异",
+      "acceptance_criterion": "使用独立来源案例核对现金利润差、营运资本变化及非经常性定义，不仅套文字模板。",
+      "status": "incomplete",
+      "evidence": []
+    },
+    {
+      "id": "P3.claim_review",
+      "stage": "P3",
+      "stage_title": "财务归因、盈利质量与研报纠错",
+      "requirement": "把研报拆成事实、计算、假设和观点逐项核查",
+      "acceptance_criterion": "错期间/口径/单位/计算/过期来源有证据指出；不能把合理观点分歧都判错。",
+      "status": "incomplete",
+      "evidence": [
+        {
+          "kind": "preparation_only",
+          "paths": [
+            "benchmark/versions/v0.1-report-correction/manifest.json",
+            "benchmark/versions/v0.1-report-correction/PROTOCOL.txt",
+            "scripts/score_report_correction_v01.mjs",
+            "tests/report-correction-v01.test.ts",
+            "tests/report-correction-runner.test.ts"
+          ],
+          "result": "12 frozen errors, 16 correct facts/calculations, 3 protected opinions; independent scorer 3 and private runner 1 tests passed; no provider calls",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        }
+      ]
+    },
+    {
+      "id": "P3.review_metrics",
+      "stage": "P3",
+      "stage_title": "财务归因、盈利质量与研报纠错",
+      "requirement": "研报纠错达到锁定precision与recall门槛",
+      "acceptance_criterion": "在包含正确主张和植入错误的独立集合上precision>=0.95、recall>=0.90，保留逐条结果。",
+      "status": "incomplete",
+      "evidence": [
+        {
+          "kind": "preparation_only",
+          "paths": [
+            "benchmark/versions/v0.1-report-correction/manifest.json",
+            "benchmark/versions/v0.1-report-correction/PROTOCOL.txt",
+            "scripts/score_report_correction_v01.mjs",
+            "tests/report-correction-v01.test.ts",
+            "tests/report-correction-runner.test.ts"
+          ],
+          "result": "12 frozen errors, 16 correct facts/calculations, 3 protected opinions; independent scorer 3 and private runner 1 tests passed; no provider calls",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        }
+      ]
+    },
+    {
+      "id": "P4.chain",
+      "stage": "P4",
+      "stage_title": "首条制造业产业链与情景分析",
+      "requirement": "建立首条制造业产业链的企业、业务、价格和成本关联",
+      "acceptance_criterion": "每条边有证据或明确假设；网页共同出现不能作为因果证据。",
+      "status": "incomplete",
+      "evidence": [
+        {
+          "kind": "synthetic_real_pi_workflow_not_company_accuracy",
+          "paths": [
+            "benchmark/results/research-models-pi-workflow-v06.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "New explicitly revised list/read contract 10/10; independent Fraction arithmetic 161/161 and source_model metadata/revision 10/10. Two true DeepSeek chats, shared budget, stale downstream after WACC edit. Original v05 8/10 failed retained. Synthetic assumptions; not real company financial/source correctness.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        }
+      ]
+    },
+    {
+      "id": "P4.drivers",
+      "stage": "P4",
+      "stage_title": "首条制造业产业链与情景分析",
+      "requirement": "支持价格、销量、传导比例与时间滞后",
+      "acceptance_criterion": "基线和冲击情景使用同一单位、时间轴；冲击方向和传导公式可独立计算。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "partial_live_component",
+          "paths": [
+            "web/test-results/research-live-api.json",
+            "tests/research-artifacts.test.ts"
+          ],
+          "result": "8 live local API/browser checks passed using explicit synthetic inputs and zero model calls: independently computed DCF13/PE14/scenario EBIT222.4, edits/revision preservation, real CSV/JSON downloads, sensitivity display, 409 concurrency. Does not establish actual-company assumptions or complete independent sensitivity reference table.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "isolated_http_mcp_and_independent_rational_reference",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.fraction.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "Verified bounded model capability: baseline/downside v06 independent reference plus cost-down upside214/214 Fraction/CSV/JSON checks; actual HTTP/MCP complete source_model spec/revision inheritance, model edit, immutable old version, only dependent artifacts stale and stale-write409. Formula/forecast/enterprise-to-equity/share bridge and9-cell sensitivity checked. Synthetic declared assumptions only; does not establish real-company input accuracy, source interpretation, or formal financial holdout performance. No paid/model requests.",
+          "at": "2026-10-03T19:10:06.682172+00:00"
+        }
+      ],
+      "verification_scope": "Financial calculation/export/dependency capability on explicit synthetic inputs; independent real-company factual correctness remains separately incomplete."
+    },
+    {
+      "id": "P4.editable_assumptions",
+      "stage": "P4",
+      "stage_title": "首条制造业产业链与情景分析",
+      "requirement": "提供可编辑假设及来源/估计标记",
+      "acceptance_criterion": "修改单一假设后仅依赖它的结果变化，输入版本和影响路径可追踪。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "partial_live_component",
+          "paths": [
+            "web/test-results/research-live-api.json",
+            "tests/research-artifacts.test.ts"
+          ],
+          "result": "8 live local API/browser checks passed using explicit synthetic inputs and zero model calls: independently computed DCF13/PE14/scenario EBIT222.4, edits/revision preservation, real CSV/JSON downloads, sensitivity display, 409 concurrency. Does not establish actual-company assumptions or complete independent sensitivity reference table.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "isolated_http_mcp_and_independent_rational_reference",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.fraction.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "Verified bounded model capability: baseline/downside v06 independent reference plus cost-down upside214/214 Fraction/CSV/JSON checks; actual HTTP/MCP complete source_model spec/revision inheritance, model edit, immutable old version, only dependent artifacts stale and stale-write409. Formula/forecast/enterprise-to-equity/share bridge and9-cell sensitivity checked. Synthetic declared assumptions only; does not establish real-company input accuracy, source interpretation, or formal financial holdout performance. No paid/model requests.",
+          "at": "2026-10-03T19:10:06.682172+00:00"
+        },
+        {
+          "kind": "actual_browser_and_deterministic_api_edit",
+          "paths": [
+            "web/test-results/research-live-api.json"
+          ],
+          "sha256": "1d61d5f83ddf45416c00197dff21148ec114caf3661cf92e2ea38ef366757d5a",
+          "result": "Actual browser/API synthetic model edit, revision history, exports and409 checks; complements independent Z4 arithmetic rather than substituting numerical proof.",
+          "at": "2026-10-03T19:10:33.038741+00:00"
+        }
+      ],
+      "verification_scope": "Financial calculation/export/dependency capability on explicit synthetic inputs; independent real-company factual correctness remains separately incomplete."
+    },
+    {
+      "id": "P4.financial_bridge",
+      "stage": "P4",
+      "stage_title": "首条制造业产业链与情景分析",
+      "requirement": "将产业链情景传入经营预测和财务结果",
+      "acceptance_criterion": "销量/价格/成本冲击映射收入、利润、营运资本、资本开支或现金流，避免重复传导。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "partial_live_component",
+          "paths": [
+            "web/test-results/research-live-api.json",
+            "tests/research-artifacts.test.ts"
+          ],
+          "result": "8 live local API/browser checks passed using explicit synthetic inputs and zero model calls: independently computed DCF13/PE14/scenario EBIT222.4, edits/revision preservation, real CSV/JSON downloads, sensitivity display, 409 concurrency. Does not establish actual-company assumptions or complete independent sensitivity reference table.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "synthetic_real_pi_workflow_not_company_accuracy",
+          "paths": [
+            "benchmark/results/research-models-pi-workflow-v06.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "New explicitly revised list/read contract 10/10; independent Fraction arithmetic 161/161 and source_model metadata/revision 10/10. Two true DeepSeek chats, shared budget, stale downstream after WACC edit. Original v05 8/10 failed retained. Synthetic assumptions; not real company financial/source correctness.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        },
+        {
+          "kind": "isolated_http_mcp_and_independent_rational_reference",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.fraction.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "Verified bounded model capability: baseline/downside v06 independent reference plus cost-down upside214/214 Fraction/CSV/JSON checks; actual HTTP/MCP complete source_model spec/revision inheritance, model edit, immutable old version, only dependent artifacts stale and stale-write409. Formula/forecast/enterprise-to-equity/share bridge and9-cell sensitivity checked. Synthetic declared assumptions only; does not establish real-company input accuracy, source interpretation, or formal financial holdout performance. No paid/model requests.",
+          "at": "2026-10-03T19:10:06.682172+00:00"
+        }
+      ],
+      "verification_scope": "Financial calculation/export/dependency capability on explicit synthetic inputs; independent real-company factual correctness remains separately incomplete."
+    },
+    {
+      "id": "P4.uncertainty",
+      "stage": "P4",
+      "stage_title": "首条制造业产业链与情景分析",
+      "requirement": "对未知弹性给出区间和反证条件",
+      "acceptance_criterion": "缺乏证据的关系不能伪装成确定事实；展示区间、敏感参数和失效条件。",
+      "status": "incomplete",
+      "evidence": []
+    },
+    {
+      "id": "P5.scope",
+      "stage": "P5",
+      "stage_title": "非金融企业估值与可复算模型",
+      "requirement": "实现适用于首个制造业样例的非金融企业DCF与相对估值",
+      "acceptance_criterion": "明确方法适用性和价值口径；不强制为所有行业套同一DCF。",
+      "status": "incomplete",
+      "evidence": []
+    },
+    {
+      "id": "P5.forecast",
+      "stage": "P5",
+      "stage_title": "非金融企业估值与可复算模型",
+      "requirement": "经营预测连接三类核心现金流驱动和估值输入",
+      "acceptance_criterion": "收入成本、税、营运资本、资本开支等独立参考表核对，单位期间一致。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "partial_live_component",
+          "paths": [
+            "web/test-results/research-live-api.json",
+            "tests/research-artifacts.test.ts"
+          ],
+          "result": "8 live local API/browser checks passed using explicit synthetic inputs and zero model calls: independently computed DCF13/PE14/scenario EBIT222.4, edits/revision preservation, real CSV/JSON downloads, sensitivity display, 409 concurrency. Does not establish actual-company assumptions or complete independent sensitivity reference table.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "synthetic_real_pi_workflow_not_company_accuracy",
+          "paths": [
+            "benchmark/results/research-models-pi-workflow-v06.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "New explicitly revised list/read contract 10/10; independent Fraction arithmetic 161/161 and source_model metadata/revision 10/10. Two true DeepSeek chats, shared budget, stale downstream after WACC edit. Original v05 8/10 failed retained. Synthetic assumptions; not real company financial/source correctness.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        },
+        {
+          "kind": "isolated_http_mcp_and_independent_rational_reference",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.fraction.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "Verified bounded model capability: baseline/downside v06 independent reference plus cost-down upside214/214 Fraction/CSV/JSON checks; actual HTTP/MCP complete source_model spec/revision inheritance, model edit, immutable old version, only dependent artifacts stale and stale-write409. Formula/forecast/enterprise-to-equity/share bridge and9-cell sensitivity checked. Synthetic declared assumptions only; does not establish real-company input accuracy, source interpretation, or formal financial holdout performance. No paid/model requests.",
+          "at": "2026-10-03T19:10:06.682172+00:00"
+        }
+      ],
+      "verification_scope": "Financial calculation/export/dependency capability on explicit synthetic inputs; independent real-company factual correctness remains separately incomplete."
+    },
+    {
+      "id": "P5.assumptions",
+      "stage": "P5",
+      "stage_title": "非金融企业估值与可复算模型",
+      "requirement": "估值假设可编辑、有依据和版本",
+      "acceptance_criterion": "折现率、终值、增长率、估值倍数及股数等输入完整可查。",
+      "status": "incomplete",
+      "evidence": [
+        {
+          "kind": "partial_live_component",
+          "paths": [
+            "web/test-results/research-live-api.json",
+            "tests/research-artifacts.test.ts"
+          ],
+          "result": "8 live local API/browser checks passed using explicit synthetic inputs and zero model calls: independently computed DCF13/PE14/scenario EBIT222.4, edits/revision preservation, real CSV/JSON downloads, sensitivity display, 409 concurrency. Does not establish actual-company assumptions or complete independent sensitivity reference table.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "synthetic_real_pi_workflow_not_company_accuracy",
+          "paths": [
+            "benchmark/results/research-models-pi-workflow-v06.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "New explicitly revised list/read contract 10/10; independent Fraction arithmetic 161/161 and source_model metadata/revision 10/10. Two true DeepSeek chats, shared budget, stale downstream after WACC edit. Original v05 8/10 failed retained. Synthetic assumptions; not real company financial/source correctness.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        }
+      ]
+    },
+    {
+      "id": "P5.value_bridge",
+      "stage": "P5",
+      "stage_title": "非金融企业估值与可复算模型",
+      "requirement": "企业价值到股权价值/每股价值完整桥接",
+      "acceptance_criterion": "净债务、非经营资产、少数股东及股数口径正确，不重复扣减。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "partial_live_component",
+          "paths": [
+            "web/test-results/research-live-api.json",
+            "tests/research-artifacts.test.ts"
+          ],
+          "result": "8 live local API/browser checks passed using explicit synthetic inputs and zero model calls: independently computed DCF13/PE14/scenario EBIT222.4, edits/revision preservation, real CSV/JSON downloads, sensitivity display, 409 concurrency. Does not establish actual-company assumptions or complete independent sensitivity reference table.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "synthetic_real_pi_workflow_not_company_accuracy",
+          "paths": [
+            "benchmark/results/research-models-pi-workflow-v06.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "New explicitly revised list/read contract 10/10; independent Fraction arithmetic 161/161 and source_model metadata/revision 10/10. Two true DeepSeek chats, shared budget, stale downstream after WACC edit. Original v05 8/10 failed retained. Synthetic assumptions; not real company financial/source correctness.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        },
+        {
+          "kind": "isolated_http_mcp_and_independent_rational_reference",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.fraction.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "Verified bounded model capability: baseline/downside v06 independent reference plus cost-down upside214/214 Fraction/CSV/JSON checks; actual HTTP/MCP complete source_model spec/revision inheritance, model edit, immutable old version, only dependent artifacts stale and stale-write409. Formula/forecast/enterprise-to-equity/share bridge and9-cell sensitivity checked. Synthetic declared assumptions only; does not establish real-company input accuracy, source interpretation, or formal financial holdout performance. No paid/model requests.",
+          "at": "2026-10-03T19:10:06.682172+00:00"
+        }
+      ],
+      "verification_scope": "Financial calculation/export/dependency capability on explicit synthetic inputs; independent real-company factual correctness remains separately incomplete."
+    },
+    {
+      "id": "P5.sensitivity",
+      "stage": "P5",
+      "stage_title": "非金融企业估值与可复算模型",
+      "requirement": "敏感性和情景分析可独立复算",
+      "acceptance_criterion": "二维敏感性表和至少基线/上行/下行结果对独立计算表逐项核对。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "partial_live_component",
+          "paths": [
+            "web/test-results/research-live-api.json",
+            "tests/research-artifacts.test.ts"
+          ],
+          "result": "8 live local API/browser checks passed using explicit synthetic inputs and zero model calls: independently computed DCF13/PE14/scenario EBIT222.4, edits/revision preservation, real CSV/JSON downloads, sensitivity display, 409 concurrency. Does not establish actual-company assumptions or complete independent sensitivity reference table.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "synthetic_real_pi_workflow_not_company_accuracy",
+          "paths": [
+            "benchmark/results/research-models-pi-workflow-v06.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "New explicitly revised list/read contract 10/10; independent Fraction arithmetic 161/161 and source_model metadata/revision 10/10. Two true DeepSeek chats, shared budget, stale downstream after WACC edit. Original v05 8/10 failed retained. Synthetic assumptions; not real company financial/source correctness.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        },
+        {
+          "kind": "isolated_http_mcp_and_independent_rational_reference",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.fraction.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "Verified bounded model capability: baseline/downside v06 independent reference plus cost-down upside214/214 Fraction/CSV/JSON checks; actual HTTP/MCP complete source_model spec/revision inheritance, model edit, immutable old version, only dependent artifacts stale and stale-write409. Formula/forecast/enterprise-to-equity/share bridge and9-cell sensitivity checked. Synthetic declared assumptions only; does not establish real-company input accuracy, source interpretation, or formal financial holdout performance. No paid/model requests.",
+          "at": "2026-10-03T19:10:06.682172+00:00"
+        }
+      ],
+      "verification_scope": "Financial calculation/export/dependency capability on explicit synthetic inputs; independent real-company factual correctness remains separately incomplete."
+    },
+    {
+      "id": "P5.export",
+      "stage": "P5",
+      "stage_title": "非金融企业估值与可复算模型",
+      "requirement": "导出可复算财务及估值产物",
+      "acceptance_criterion": "保留公式/精确数据/单位/来源/假设版本，脱离对话仍可验证。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "partial_live_component",
+          "paths": [
+            "web/test-results/research-live-api.json",
+            "tests/research-artifacts.test.ts"
+          ],
+          "result": "8 live local API/browser checks passed using explicit synthetic inputs and zero model calls: independently computed DCF13/PE14/scenario EBIT222.4, edits/revision preservation, real CSV/JSON downloads, sensitivity display, 409 concurrency. Does not establish actual-company assumptions or complete independent sensitivity reference table.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "isolated_http_mcp_and_independent_rational_reference",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.fraction.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "Verified bounded model capability: baseline/downside v06 independent reference plus cost-down upside214/214 Fraction/CSV/JSON checks; actual HTTP/MCP complete source_model spec/revision inheritance, model edit, immutable old version, only dependent artifacts stale and stale-write409. Formula/forecast/enterprise-to-equity/share bridge and9-cell sensitivity checked. Synthetic declared assumptions only; does not establish real-company input accuracy, source interpretation, or formal financial holdout performance. No paid/model requests.",
+          "at": "2026-10-03T19:10:06.682172+00:00"
+        }
+      ],
+      "verification_scope": "Financial calculation/export/dependency capability on explicit synthetic inputs; independent real-company factual correctness remains separately incomplete."
+    },
+    {
+      "id": "P5.chain_inputs",
+      "stage": "P5",
+      "stage_title": "非金融企业估值与可复算模型",
+      "requirement": "产业链模型的冲击进入估值模型",
+      "acceptance_criterion": "保持依赖关系、情景版本与基线不混用，不仅复制叙述结论。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "partial_live_component",
+          "paths": [
+            "web/test-results/research-live-api.json",
+            "tests/research-artifacts.test.ts"
+          ],
+          "result": "8 live local API/browser checks passed using explicit synthetic inputs and zero model calls: independently computed DCF13/PE14/scenario EBIT222.4, edits/revision preservation, real CSV/JSON downloads, sensitivity display, 409 concurrency. Does not establish actual-company assumptions or complete independent sensitivity reference table.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "synthetic_real_pi_workflow_not_company_accuracy",
+          "paths": [
+            "benchmark/results/research-models-pi-workflow-v06.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "New explicitly revised list/read contract 10/10; independent Fraction arithmetic 161/161 and source_model metadata/revision 10/10. Two true DeepSeek chats, shared budget, stale downstream after WACC edit. Original v05 8/10 failed retained. Synthetic assumptions; not real company financial/source correctness.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        },
+        {
+          "kind": "isolated_http_mcp_and_independent_rational_reference",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.fraction.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "Verified bounded model capability: baseline/downside v06 independent reference plus cost-down upside214/214 Fraction/CSV/JSON checks; actual HTTP/MCP complete source_model spec/revision inheritance, model edit, immutable old version, only dependent artifacts stale and stale-write409. Formula/forecast/enterprise-to-equity/share bridge and9-cell sensitivity checked. Synthetic declared assumptions only; does not establish real-company input accuracy, source interpretation, or formal financial holdout performance. No paid/model requests.",
+          "at": "2026-10-03T19:10:06.682172+00:00"
+        }
+      ],
+      "verification_scope": "Financial calculation/export/dependency capability on explicit synthetic inputs; independent real-company factual correctness remains separately incomplete."
+    },
+    {
+      "id": "P6.memo",
+      "stage": "P6",
+      "stage_title": "研究记忆、增量更新与并行运行",
+      "requirement": "保存研究结论、证据、假设和反证条件的memo",
+      "acceptance_criterion": "每条结论可解释支持依据和何种新证据会推翻它。",
+      "status": "incomplete",
+      "evidence": [
+        {
+          "kind": "synthetic_real_pi_workflow_not_company_accuracy",
+          "paths": [
+            "benchmark/results/research-models-pi-workflow-v06.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "New explicitly revised list/read contract 10/10; independent Fraction arithmetic 161/161 and source_model metadata/revision 10/10. Two true DeepSeek chats, shared budget, stale downstream after WACC edit. Original v05 8/10 failed retained. Synthetic assumptions; not real company financial/source correctness.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        }
+      ]
+    },
+    {
+      "id": "P6.incremental",
+      "stage": "P6",
+      "stage_title": "研究记忆、增量更新与并行运行",
+      "requirement": "新公告或新假设触发有依据的增量更新",
+      "acceptance_criterion": "标识受影响结论，保持未受影响成果，保存前后变化及来源。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "reported_test_evidence",
+          "paths": [
+            "tests/research.test.ts",
+            "tests/research-artifacts.test.ts",
+            "service/tests/test_research_evidence.py"
+          ],
+          "result": "Root reports research source/artifact tests and source citation test pass; actual Pi network flow still pending.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "synthetic_real_pi_workflow_not_company_accuracy",
+          "paths": [
+            "benchmark/results/research-models-pi-workflow-v06.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "New explicitly revised list/read contract 10/10; independent Fraction arithmetic 161/161 and source_model metadata/revision 10/10. Two true DeepSeek chats, shared budget, stale downstream after WACC edit. Original v05 8/10 failed retained. Synthetic assumptions; not real company financial/source correctness.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        },
+        {
+          "kind": "bounded_controlflow_and_observed_load",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.fraction.json"
+          ],
+          "result": "280/280 requests at predeclared1/2/4 clients x10 per query; independent3298-fact/143-page SQLite copy, no settings or credentials, only named public PDF for preview. p50/p95 and observed RSS reported without ad-hoc performance gate. Explicit assumption update marks true descendants stale and leaves independent artifact unchanged; full new-disclosure incremental reasoning/recomputation is not proven.",
+          "at": "2026-10-03T19:10:06.682172+00:00"
+        },
+        {
+          "kind": "confirmed_requirement_or_branch",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/research-models-pi-workflow-v06.json"
+          ],
+          "result": "The requirement permits new disclosure OR new assumptions. Verified new-assumption path: actual WACC edit creates an immutable revised scenario and updated valuation, only dependent artifacts become stale, unaffected artifact remains current. New-announcement acquisition -> parsing -> automatic research update is not yet validated.",
+          "at": "2026-10-03T19:10:33.038741+00:00"
+        }
+      ],
+      "verification_scope": "The requirement permits new disclosure OR new assumptions. Verified new-assumption path: actual WACC edit creates an immutable revised scenario and updated valuation, only dependent artifacts become stale, unaffected artifact remains current. New-announcement acquisition -> parsing -> automatic research update is not yet validated."
+    },
+    {
+      "id": "P6.bounded_parallel",
+      "stage": "P6",
+      "stage_title": "研究记忆、增量更新与并行运行",
+      "requirement": "采用分片和有界并发",
+      "acceptance_criterion": "单项失败不损坏其他成果；记录并发上限和资源/模型预算。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "isolated_component_verified",
+          "paths": [
+            "benchmark/results/startup-single-instance-v04.json",
+            "benchmark/results/service-lifecycle-v04.json"
+          ],
+          "result": "Host guard 5 tests and actual temporary MCP lifecycle 3 tests pass: conflicting host rejected before Store side effects, crash successor exclusive, EOF waits explicit/default executor final writes, no orphan on observed Windows kill. This does not replace live multi-conversation processing/cancellation acceptance.",
+          "at": "2026-10-03T18:14:40.552970+00:00"
+        },
+        {
+          "kind": "controlled_integration_not_semantic_acceptance",
+          "paths": [
+            "benchmark/results/controlled-pi-cache-cancellation-v06.json"
+          ],
+          "result": "9/9 independent database/audit checks: actual Pi + MCP + fixed local provider; cancelled owner, surviving waiter, one accepted immutable cache and matching original provider output. Original harness-failed report retained. This proves control flow, not DeepSeek semantic accuracy.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        },
+        {
+          "kind": "bounded_controlflow_and_observed_load",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.fraction.json"
+          ],
+          "result": "280/280 requests at predeclared1/2/4 clients x10 per query; independent3298-fact/143-page SQLite copy, no settings or credentials, only named public PDF for preview. p50/p95 and observed RSS reported without ad-hoc performance gate. Explicit assumption update marks true descendants stale and leaves independent artifact unchanged; full new-disclosure incremental reasoning/recomputation is not proven.",
+          "at": "2026-10-03T19:10:06.682172+00:00"
+        },
+        {
+          "kind": "original_contract_mechanism_audit",
+          "path": "benchmark/results/requirement-mechanisms-v07-audit.json",
+          "sha256": "2ddde22f09a846c3a9bffc8c873e2d13af73da40e66cd930cc6f3ec9bd6803c3",
+          "item_id": "P6.bounded_parallel",
+          "at": "2026-10-03T19:35:52.697596+00:00",
+          "result": "Finite parser/processing/extraction/review executors and shared model-budget reservations are implemented; controlled cancellation leaves the other task complete and successful results intact. Independent local 1/2/4-client observation reports 280 successful reads, latency and resource usage. Limitations: Per-executor bounds and a four-client local observation do not establish a global enterprise capacity limit or service SLA; no latency threshold was added after observing results."
+        }
+      ],
+      "verification_scope": "Finite parser/processing/extraction/review executors and shared model-budget reservations are implemented; controlled cancellation leaves the other task complete and successful results intact. Independent local 1/2/4-client observation reports 280 successful reads, latency and resource usage. Limitations: Per-executor bounds and a four-client local observation do not establish a global enterprise capacity limit or service SLA; no latency threshold was added after observing results."
+    },
+    {
+      "id": "P6.shared_results",
+      "stage": "P6",
+      "stage_title": "研究记忆、增量更新与并行运行",
+      "requirement": "同项目共享资料和研究成果，独立会话保留独立上下文",
+      "acceptance_criterion": "两会话可引用同项目已完成产物，不串会话指令或污染其他项目。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "controlled_integration_not_semantic_acceptance",
+          "paths": [
+            "benchmark/results/controlled-pi-cache-cancellation-v06.json"
+          ],
+          "result": "9/9 independent database/audit checks: actual Pi + MCP + fixed local provider; cancelled owner, surviving waiter, one accepted immutable cache and matching original provider output. Original harness-failed report retained. This proves control flow, not DeepSeek semantic accuracy.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        },
+        {
+          "kind": "synthetic_real_pi_workflow_not_company_accuracy",
+          "paths": [
+            "benchmark/results/research-models-pi-workflow-v06.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "New explicitly revised list/read contract 10/10; independent Fraction arithmetic 161/161 and source_model metadata/revision 10/10. Two true DeepSeek chats, shared budget, stale downstream after WACC edit. Original v05 8/10 failed retained. Synthetic assumptions; not real company financial/source correctness.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        },
+        {
+          "kind": "bounded_controlflow_and_observed_load",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.fraction.json"
+          ],
+          "result": "280/280 requests at predeclared1/2/4 clients x10 per query; independent3298-fact/143-page SQLite copy, no settings or credentials, only named public PDF for preview. p50/p95 and observed RSS reported without ad-hoc performance gate. Explicit assumption update marks true descendants stale and leaves independent artifact unchanged; full new-disclosure incremental reasoning/recomputation is not proven.",
+          "at": "2026-10-03T19:10:06.682172+00:00"
+        },
+        {
+          "kind": "original_contract_mechanism_audit",
+          "path": "benchmark/results/requirement-mechanisms-v07-audit.json",
+          "sha256": "2ddde22f09a846c3a9bffc8c873e2d13af73da40e66cd930cc6f3ec9bd6803c3",
+          "item_id": "P6.shared_results",
+          "at": "2026-10-03T19:35:52.697596+00:00",
+          "result": "Two real DeepSeek conversations used shared project research artifacts; the second read saved revisions and dependency status. Pi lifecycle and project-scope tests separately verify independent persistent histories and project isolation. Limitations: The actual two-chat research task used declared synthetic financial assumptions. Cross-chat sharing is verified; actual-company source interpretation and full research correctness remain incomplete."
+        }
+      ],
+      "verification_scope": "Two real DeepSeek conversations used shared project research artifacts; the second read saved revisions and dependency status. Pi lifecycle and project-scope tests separately verify independent persistent histories and project isolation. Limitations: The actual two-chat research task used declared synthetic financial assumptions. Cross-chat sharing is verified; actual-company source interpretation and full research correctness remain incomplete."
+    },
+    {
+      "id": "P6.on_demand_context",
+      "stage": "P6",
+      "stage_title": "研究记忆、增量更新与并行运行",
+      "requirement": "会话按需读取索引、memo、原文与计算产物",
+      "acceptance_criterion": "回答引用来自真实读取；大型历史不逐轮全量复制。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "original_contract_mechanism_audit",
+          "path": "benchmark/results/requirement-mechanisms-v07-audit.json",
+          "sha256": "2ddde22f09a846c3a9bffc8c873e2d13af73da40e66cd930cc6f3ec9bd6803c3",
+          "item_id": "P6.on_demand_context",
+          "at": "2026-10-03T19:35:52.697596+00:00",
+          "result": "The actual second conversation listed and read existing scenario/DCF artifacts and referenced their revisions. Page/table/index/artifact tools support selective retrieval; legacy verbose tool payload projection preserves persisted financial values and message history. Limitations: This verifies actual reads and selective context assembly, not that every answer is correct or context use is globally optimal."
+        }
+      ],
+      "verification_scope": "The actual second conversation listed and read existing scenario/DCF artifacts and referenced their revisions. Page/table/index/artifact tools support selective retrieval; legacy verbose tool payload projection preserves persisted financial values and message history. Limitations: This verifies actual reads and selective context assembly, not that every answer is correct or context use is globally optimal."
+    },
+    {
+      "id": "P6.cancel_resume",
+      "stage": "P6",
+      "stage_title": "研究记忆、增量更新与并行运行",
+      "requirement": "多会话独立取消、恢复和续跑",
+      "acceptance_criterion": "取消一方后另一方完成；重启可继续有效成果，不重复全量模型调用。",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "isolated_component_verified",
+          "paths": [
+            "benchmark/results/startup-single-instance-v04.json",
+            "benchmark/results/service-lifecycle-v04.json"
+          ],
+          "result": "Host guard 5 tests and actual temporary MCP lifecycle 3 tests pass: conflicting host rejected before Store side effects, crash successor exclusive, EOF waits explicit/default executor final writes, no orphan on observed Windows kill. This does not replace live multi-conversation processing/cancellation acceptance.",
+          "at": "2026-10-03T18:14:40.552970+00:00"
+        },
+        {
+          "kind": "controlled_integration_not_semantic_acceptance",
+          "paths": [
+            "benchmark/results/controlled-pi-cache-cancellation-v06.json"
+          ],
+          "result": "9/9 independent database/audit checks: actual Pi + MCP + fixed local provider; cancelled owner, surviving waiter, one accepted immutable cache and matching original provider output. Original harness-failed report retained. This proves control flow, not DeepSeek semantic accuracy.",
+          "at": "2026-10-03T18:50:20.479104+00:00"
+        },
+        {
+          "kind": "original_contract_mechanism_audit",
+          "path": "benchmark/results/requirement-mechanisms-v07-audit.json",
+          "sha256": "2ddde22f09a846c3a9bffc8c873e2d13af73da40e66cd930cc6f3ec9bd6803c3",
+          "item_id": "P6.cancel_resume",
+          "at": "2026-10-03T19:35:52.697596+00:00",
+          "result": "Actual isolated Pi/HTTP/MCP/SQLite integration verifies cancelled owner and completed surviving conversation; manager recovery retains independent histories. Actual clean2 reused 44 accepted prior facts and added 38 rather than replaying all model work. Limitations: Control-flow recovery uses deterministic provider fixtures; actual clean2 remains only 61/66 groups. v07 historical-length scheduling and new revalidation receipts await funded continuation."
+        }
+      ],
+      "verification_scope": "Actual isolated Pi/HTTP/MCP/SQLite integration verifies cancelled owner and completed surviving conversation; manager recovery retains independent histories. Actual clean2 reused 44 accepted prior facts and added 38 rather than replaying all model work. Limitations: Control-flow recovery uses deterministic provider fixtures; actual clean2 remains only 61/66 groups. v07 historical-length scheduling and new revalidation receipts await funded continuation."
+    }
+  ],
+  "cross_stage_constraints": [
+    {
+      "id": "C.pi_core",
+      "requirement": "所有清洗、查询、联网研究、计算、制图仍由同一Pi会话工具循环发起；不另建独立入库任务头",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "architecture_and_actual_runtime_or_ui_evidence",
+          "paths": [
+            "server/runs.ts",
+            "benchmark/results/research-models-pi-workflow-v06.run-1.audit.json",
+            "benchmark/results/pi-known-definition-existing-only-20261004-clean2.json",
+            "benchmark/results/pi-full-report-chart-v03.json",
+            "benchmark/results/research-workflow-v05-native-reader.json"
+          ],
+          "result": "createAgentSession/persistent Pi tool loop dispatches process_documents, query, search/fetch, run_financial_model/save_research_report and run_analysis. Actual cleaning audit, official research/model runs and real Docker chart validate tool ownership. Failures in particular financial meanings remain separate; architecture verification does not turn those runs into passed accuracy scores.",
+          "at": "2026-10-03T19:18:55.793424+00:00"
+        }
+      ],
+      "verification_scope": "Constraint implementation and observed product/runtime contract; not full financial or real-company task acceptance."
+    },
+    {
+      "id": "C.official_model",
+      "requirement": "使用同一官方DeepSeek模型配置，不部署本地主模型，不用Embedding",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "architecture_and_actual_runtime_or_ui_evidence",
+          "paths": [
+            "server/mcp.ts",
+            "server/config.ts",
+            "server/runs.ts",
+            "benchmark/results/research-models-pi-workflow-v06.run-1.audit.json",
+            "benchmark/results/research-trust-v01-first.json",
+            "web/test-results/browser-workbench-live-results.json"
+          ],
+          "result": "Actual Pi run_config records official https://api.deepseek.com and deepseek-flash, with persistentSession true; same project configuration feeds Pi extraction bridge. Product embedding is forced disabled and UI embedding entry removed. Isolated fixed-provider integration fixtures are explicitly test-only, not local model deployment. Formal same-budget comparison remains independently unrun.",
+          "at": "2026-10-03T19:18:55.793424+00:00"
+        }
+      ],
+      "verification_scope": "Constraint implementation and observed product/runtime contract; not full financial or real-company task acceptance."
+    },
+    {
+      "id": "C.ui",
+      "requirement": "前端从会话发起任务，产物区提供来源/表格/产业链/估值模型/研究报告入口",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "architecture_and_actual_runtime_or_ui_evidence",
+          "paths": [
+            "web/test-results/browser-workbench-live-results.json",
+            "web/test-results/browser-full-report-live-results.json",
+            "web/test-results/research-live-api.json",
+            "web/test-results/research-contract.json",
+            "benchmark/results/research-models-pi-workflow-v06.json"
+          ],
+          "result": "Conversation-driven actual Pi artifacts are saved for the product; actual browser/API checks cover database/source pages/charts, API settings, parameter edit/revision and CSV/JSON export. Controlled browser fixture separately confirms source, chain, memo and correction entry layouts. This verifies entrances and product wiring, not every result semantic conclusion.",
+          "at": "2026-10-03T19:18:55.793424+00:00"
+        }
+      ],
+      "verification_scope": "Constraint implementation and observed product/runtime contract; not full financial or real-company task acceptance."
+    },
+    {
+      "id": "C.scope",
+      "requirement": "首先覆盖一条制造业产业链和非金融企业估值；不是全行业DCF或企业平台",
+      "status": "incomplete",
+      "evidence": []
+    },
+    {
+      "id": "C.database",
+      "requirement": "数据库迁移由实际负载证据决定，不为扩架构而迁移",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "architecture_and_actual_runtime_or_ui_evidence",
+          "paths": [
+            "service/store.py",
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.environment.json"
+          ],
+          "result": "SQLite remains the actual store. Predeclared isolated-copy load observed3298facts/143pages at1/2/4 clients and280 successful read requests; no post-hoc pass threshold, enterprise-capacity claim or unsupported migration. Shared desktop/warm-cache limitations explicitly recorded. No migration performed for architectural expansion.",
+          "at": "2026-10-03T19:18:55.793424+00:00"
+        }
+      ],
+      "verification_scope": "Constraint implementation and observed product/runtime contract; not full financial or real-company task acceptance."
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "A.development",
+      "requirement": "旧v0.4.1在新一轮改动中降为开发回归；原17/30、只读18/30和其他历史失败报告不改",
+      "threshold": null,
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "benchmark/versions/v0.4.1-development-registration.json",
+          "supports": "Historical demotion record and immutable hashes only; no current runtime acceptance"
+        },
+        {
+          "kind": "verified_document_control",
+          "paths": [
+            "benchmark/versions/v0.4.1-development-registration.json",
+            "benchmark/results/development-v041-independent-review-20261004.json"
+          ],
+          "result": "Original 17/30, readonly 18/30, original gold/scorer/ZIP remain byte-identical. New development 24/30 retained and invalidated for operator interference; 25/30 unit-only diagnostic and five locator diagnoses separated.",
+          "at": "2026-10-03T18:14:40.552970+00:00"
+        }
+      ]
+    },
+    {
+      "id": "A.new_gold",
+      "requirement": "新公司原文和整表gold在模型运行前独立核对与锁定；包括错误新增，不向实现代理披露具体答案",
+      "threshold": null,
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "benchmark/versions/v0.5-holdout/manifest.json",
+          "sha256": "23239ff29404f2d550be70bbce453f8d7526b4d12997b545018d8fb30d8ea77c",
+          "supports": "Pre-run whole-table gold/input/source lock; formal model run not started"
+        },
+        {
+          "path": "benchmark/versions/v0.5-holdout/evidence/visual-review.json",
+          "supports": "Six original/excerpt renders identical and original pages visually checked"
+        },
+        {
+          "kind": "verified_pre_run_preparation",
+          "paths": [
+            "benchmark/versions/v0.5-holdout/manifest.json",
+            "benchmark/versions/v0.5-holdout/evidence/visual-review.json",
+            "tests/financial-tables-v05.test.ts"
+          ],
+          "result": "Original-page whole-table gold and input hashes rechecked unchanged; six original/excerpt images reviewed and identical. Scorer covers omissions, false additions and duplicates. Actual prediction precision/recall remains untested, so A.correctness stays incomplete.",
+          "at": "2026-10-03T18:14:40.552970+00:00"
+        }
+      ]
+    },
+    {
+      "id": "A.correctness",
+      "requirement": "可判定事实逐格正确率至少95%；同时列漏抽、错误新增与重大金额/单位/范围错误",
+      "threshold": {
+        "all_of": [
+          {
+            "metric": "exact_cell_precision",
+            "operator": ">=",
+            "value": 0.95
+          },
+          {
+            "metric": "exact_cell_recall",
+            "operator": ">=",
+            "value": 0.95
+          }
+        ]
+      },
+      "status": "incomplete",
+      "evidence": [
+        {
+          "kind": "preparation_only",
+          "paths": [
+            "benchmark/versions/v0.5-holdout/manifest.json",
+            "benchmark/versions/v0.5-holdout/BASELINE_PLAN.json",
+            "benchmark/versions/v0.5-holdout/BUDGET.json",
+            "scripts/verify_holdout_v05.mjs",
+            "tests/holdout-v05-runner.test.ts"
+          ],
+          "result": "Frozen 146-cell whole-table gold and same-budget financial/generic protocol; private runner shared-cancel and no-repeat lock verified; no formal model runs",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "execution_control_preparation",
+          "paths": [
+            "benchmark/results/benchmark-start-ownership-v04.json",
+            "benchmark/versions/v0.5-execution-release-2.json",
+            "benchmark/versions/report-correction-v0.1-execution-release-2.json"
+          ],
+          "result": "Five isolated API start/lock tests and three runner mock tests pass; repeated clicks do not re-run, dead/unknown owners are interrupted, exit 0 without passing report never becomes successful. Download bundles now include current runners with runner_pid; original input/gold/protocol/task/budget/scorer entries unchanged. Formal model evaluations have not started.",
+          "at": "2026-10-03T18:14:40.552970+00:00"
+        }
+      ],
+      "acceptance_criterion": "精确格级 precision >= 95% 且 recall >= 95%；错误新增/重复进入 precision 分母，全部可判定 gold 进入 recall 分母；每公司/每表报告，重大错误单列，已知重大问题须修复。"
+    },
+    {
+      "id": "A.major_errors",
+      "requirement": "重大金额/单位/范围错误单列，不用总体分数掩盖",
+      "threshold": null,
+      "status": "incomplete",
+      "evidence": []
+    },
+    {
+      "id": "A.review_precision",
+      "requirement": "研报纠错precision至少95%",
+      "threshold": {
+        "metric": "claim_correction_precision",
+        "operator": ">=",
+        "value": 0.95
+      },
+      "status": "incomplete",
+      "evidence": [
+        {
+          "kind": "preparation_only",
+          "paths": [
+            "benchmark/versions/v0.1-report-correction/manifest.json",
+            "benchmark/versions/v0.1-report-correction/PROTOCOL.txt",
+            "scripts/score_report_correction_v01.mjs",
+            "tests/report-correction-v01.test.ts",
+            "tests/report-correction-runner.test.ts"
+          ],
+          "result": "12 frozen errors, 16 correct facts/calculations, 3 protected opinions; independent scorer 3 and private runner 1 tests passed; no provider calls",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "execution_control_preparation",
+          "paths": [
+            "benchmark/results/benchmark-start-ownership-v04.json",
+            "benchmark/versions/v0.5-execution-release-2.json",
+            "benchmark/versions/report-correction-v0.1-execution-release-2.json"
+          ],
+          "result": "Five isolated API start/lock tests and three runner mock tests pass; repeated clicks do not re-run, dead/unknown owners are interrupted, exit 0 without passing report never becomes successful. Download bundles now include current runners with runner_pid; original input/gold/protocol/task/budget/scorer entries unchanged. Formal model evaluations have not started.",
+          "at": "2026-10-03T18:14:40.552970+00:00"
+        }
+      ]
+    },
+    {
+      "id": "A.review_recall",
+      "requirement": "研报纠错recall至少90%",
+      "threshold": {
+        "metric": "claim_correction_recall",
+        "operator": ">=",
+        "value": 0.9
+      },
+      "status": "incomplete",
+      "evidence": [
+        {
+          "kind": "preparation_only",
+          "paths": [
+            "benchmark/versions/v0.1-report-correction/manifest.json",
+            "benchmark/versions/v0.1-report-correction/PROTOCOL.txt",
+            "scripts/score_report_correction_v01.mjs",
+            "tests/report-correction-v01.test.ts",
+            "tests/report-correction-runner.test.ts"
+          ],
+          "result": "12 frozen errors, 16 correct facts/calculations, 3 protected opinions; independent scorer 3 and private runner 1 tests passed; no provider calls",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "execution_control_preparation",
+          "paths": [
+            "benchmark/results/benchmark-start-ownership-v04.json",
+            "benchmark/versions/v0.5-execution-release-2.json",
+            "benchmark/versions/report-correction-v0.1-execution-release-2.json"
+          ],
+          "result": "Five isolated API start/lock tests and three runner mock tests pass; repeated clicks do not re-run, dead/unknown owners are interrupted, exit 0 without passing report never becomes successful. Download bundles now include current runners with runner_pid; original input/gold/protocol/task/budget/scorer entries unchanged. Formal model evaluations have not started.",
+          "at": "2026-10-03T18:14:40.552970+00:00"
+        }
+      ]
+    },
+    {
+      "id": "A.valuation",
+      "requirement": "估值必须与独立参考计算表核对，包括公式、价值桥和敏感性",
+      "threshold": null,
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "partial_live_component",
+          "paths": [
+            "web/test-results/research-live-api.json",
+            "tests/research-artifacts.test.ts"
+          ],
+          "result": "8 live local API/browser checks passed using explicit synthetic inputs and zero model calls: independently computed DCF13/PE14/scenario EBIT222.4, edits/revision preservation, real CSV/JSON downloads, sensitivity display, 409 concurrency. Does not establish actual-company assumptions or complete independent sensitivity reference table.",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "isolated_http_mcp_and_independent_rational_reference",
+          "paths": [
+            "benchmark/results/z4-isolated-1791054293428.protocol.json",
+            "benchmark/results/z4-isolated-1791054293428.json",
+            "benchmark/results/z4-isolated-1791054293428.fraction.json",
+            "benchmark/results/research-models-pi-workflow-v06.independent.json"
+          ],
+          "result": "Verified bounded model capability: baseline/downside v06 independent reference plus cost-down upside214/214 Fraction/CSV/JSON checks; actual HTTP/MCP complete source_model spec/revision inheritance, model edit, immutable old version, only dependent artifacts stale and stale-write409. Formula/forecast/enterprise-to-equity/share bridge and9-cell sensitivity checked. Synthetic declared assumptions only; does not establish real-company input accuracy, source interpretation, or formal financial holdout performance. No paid/model requests.",
+          "at": "2026-10-03T19:10:06.682172+00:00"
+        }
+      ],
+      "verification_scope": "Financial calculation/export/dependency capability on explicit synthetic inputs; independent real-company factual correctness remains separately incomplete."
+    },
+    {
+      "id": "A.baseline",
+      "requirement": "相同DeepSeek和同一预算上限与通用Pi比较，固定任务及来源，记录tokens/calls/latency",
+      "threshold": null,
+      "status": "incomplete",
+      "evidence": [
+        {
+          "kind": "preparation_only",
+          "paths": [
+            "benchmark/versions/v0.5-holdout/manifest.json",
+            "benchmark/versions/v0.5-holdout/BASELINE_PLAN.json",
+            "benchmark/versions/v0.5-holdout/BUDGET.json",
+            "scripts/verify_holdout_v05.mjs",
+            "tests/holdout-v05-runner.test.ts"
+          ],
+          "result": "Frozen 146-cell whole-table gold and same-budget financial/generic protocol; private runner shared-cancel and no-repeat lock verified; no formal model runs",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "execution_control_preparation",
+          "paths": [
+            "benchmark/results/benchmark-start-ownership-v04.json",
+            "benchmark/versions/v0.5-execution-release-2.json",
+            "benchmark/versions/report-correction-v0.1-execution-release-2.json"
+          ],
+          "result": "Five isolated API start/lock tests and three runner mock tests pass; repeated clicks do not re-run, dead/unknown owners are interrupted, exit 0 without passing report never becomes successful. Download bundles now include current runners with runner_pid; original input/gold/protocol/task/budget/scorer entries unchanged. Formal model evaluations have not started.",
+          "at": "2026-10-03T18:14:40.552970+00:00"
+        }
+      ]
+    },
+    {
+      "id": "A.freeze",
+      "requirement": "正式新留出首次运行前锁定输入、gold、评分器、全部生产源码和模型配置；保留第一轮及全部失败/重试",
+      "threshold": null,
+      "status": "incomplete",
+      "evidence": [
+        {
+          "kind": "preparation_only",
+          "paths": [
+            "benchmark/versions/v0.5-holdout/manifest.json",
+            "benchmark/versions/v0.5-holdout/BASELINE_PLAN.json",
+            "benchmark/versions/v0.5-holdout/BUDGET.json",
+            "scripts/verify_holdout_v05.mjs",
+            "tests/holdout-v05-runner.test.ts"
+          ],
+          "result": "Frozen 146-cell whole-table gold and same-budget financial/generic protocol; private runner shared-cancel and no-repeat lock verified; no formal model runs",
+          "at": "2026-10-03T17:30:51.197807+00:00"
+        },
+        {
+          "kind": "execution_control_preparation",
+          "paths": [
+            "benchmark/results/benchmark-start-ownership-v04.json",
+            "benchmark/versions/v0.5-execution-release-2.json",
+            "benchmark/versions/report-correction-v0.1-execution-release-2.json"
+          ],
+          "result": "Five isolated API start/lock tests and three runner mock tests pass; repeated clicks do not re-run, dead/unknown owners are interrupted, exit 0 without passing report never becomes successful. Download bundles now include current runners with runner_pid; original input/gold/protocol/task/budget/scorer entries unchanged. Formal model evaluations have not started.",
+          "at": "2026-10-03T18:14:40.552970+00:00"
+        }
+      ]
+    }
+  ],
+  "historical_evidence_not_acceptance": [
+    "benchmark/results/current-review.html",
+    "benchmark/results/pi-workflow-119624da-d46c-4978-a7b4-dd7d476d69d1.json",
+    "benchmark/results/holdout-v041-first-run-diagnostics.json",
+    "benchmark/results/development-v041-independent-review-20261004.json",
+    "benchmark/results/research-ui-qa-operator-incident-20261004.json"
+  ],
+  "clarifications": [
+    {
+      "at": "2026-10-03T16:57:14.992571+00:00",
+      "requirement": "A.correctness",
+      "source": "root explicit pre-prediction protocol clarification",
+      "detail": "Use standard precision and recall with each >=95%, not a new joint accuracy formula. Preserve per-company/table denominators and major-error list."
+    },
+    {
+      "at": "2026-10-03T17:30:51.197807+00:00",
+      "requirement": "P3.review_metrics",
+      "source": "independent pre-prediction correction protocol",
+      "detail": "Primary metrics count valid located and evidenced replacements, not detection alone. Correct claims/opinions are protected. Source company was used in extraction development; task-level challenge only."
+    }
+  ],
+  "updated_at": "2026-10-03T19:35:52.697596+00:00"
+}

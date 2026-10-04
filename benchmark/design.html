@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>财报工作台 · Benchmark 设计</title><style>
+*{box-sizing:border-box}body{margin:0;background:#fafafa;color:#252525;font:15px/1.8 system-ui,"Microsoft YaHei",sans-serif}main{max-width:1000px;margin:auto;padding:40px 24px 80px}h1{font-size:30px;line-height:1.4}h2{font-size:20px;margin-top:36px}p{color:#555}table{width:100%;border-collapse:collapse;background:white}th,td{padding:14px;text-align:left;vertical-align:top;border-bottom:1px solid #ddd}th{background:#eee}a{color:#333}code{font:13px Consolas,monospace;overflow-wrap:anywhere}.note{background:#fff;border:1px solid #ddd;border-radius:10px;padding:18px}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.steps>div{padding:16px;border:1px solid #ddd;border-radius:10px;background:#fff}.steps b{display:block}.muted{font-size:13px;color:#777}@media(max-width:700px){main{padding:24px 16px}.steps{grid-template-columns:1fr}table{font-size:13px}th,td{padding:8px}}
+</style></head><body><main>
+<div class="muted">金融研究工作台 · 2026-10-04</div><h1>Benchmark 测什么，怎样防止过拟合</h1>
+<p><a href="http://127.0.0.1:3001/api/benchmark/report/progress">本轮升级进度与原始证据</a>：新公司整表及研报纠错正式测试尚未运行；开发结果与未完成项分别列出。</p>
+<div class="note"><b>历史 v0.4.1 首次结果：原评分 17/30，整体验收未通过。</b><p>仅纠正评分器把百分比显示单位“%”误要求为“percent”的问题后，同一次运行的只读复评为18/30；没有改标准答案或重新调用模型。原失败记录保留。<a href="http://127.0.0.1:3001/api/benchmark/run/119624da-d46c-4978-a7b4-dd7d476d69d1">查看锁定的首次原始报告</a></p></div>
+<p>检验真实对话中的上传、模型清洗、存储、查询和绘图。已用于修改程序的材料明确属于开发回归；独立留出材料用于检查冻结版本在未参与调参来源上的表现。</p>
+<p><a href="http://127.0.0.1:3001">打开工作台</a> · <a href="http://127.0.0.1:3001/api/benchmark/download/native-pdf">原始年报包</a> · <a href="http://127.0.0.1:3001/api/benchmark/download/normalization-v03">开发回归包</a> · <a href="http://127.0.0.1:3001/api/benchmark/download/holdout-v04">旧 v0.4.1 开发回归包</a> · <a href="http://127.0.0.1:3001/api/benchmark/download/holdout-v05">v0.5 整表完整执行包</a> · <a href="http://127.0.0.1:3001/api/benchmark/download/report-correction-v01">研报纠错执行包</a></p>
+<h2>各类结果分别报告</h2>
+<table><thead><tr><th>层次</th><th>材料与目标</th><th>不能由此推断</th></tr></thead><tbody>
+<tr><td>工程回归</td><td>上传前不清洗、多会话独立运行和取消、恢复、项目隔离、分页、最终回答持久化、容器执行。使用受控输入复现明确故障。</td><td>工具链通过，不代表财务语义正确。</td></tr>
+<tr><td>模型开发回归</td><td>v0.3.1：10份输入、37个目标事实、2个禁止错误检查。反复用于定位单位、期间、重述、分部和引用问题；保留每次失败。</td><td>这批材料参与过优化，不能作为泛化成绩。</td></tr>
+<tr><td>旧来源开发回归</td><td>v0.4.1：中国神华与柳工的30个源格、7张原页。首次17/30与只改单位评分器后的18/30均保留；其后用于排错，后续重跑只能称开发回归。</td><td>不能把调试后成绩当作新的独立留出成绩。</td></tr>
+<tr><td>新公司整表验收</td><td>v0.5：两家公司、4张逻辑整表、5个表格区域，6张原始输入页（含上下文）。冻结146个全部数值格、33个表头或脚注数值负例；2个横线不进入数值分母。原页不改字、不重排，运行前冻结输入、代码、模型配置及评分器。</td><td>评价范围是预先标注的整表，不是这两家公司全部年报。样本小且非随机；公开财报可能存在预训练污染，不能推出全行业准确率。</td></tr>
+<tr><td>研报纠错挑战</td><td>v0.1：12个植入错误，16条正确事实或计算，3条合理观点；需要原文定位、证据和可执行替换，实际重放修改。</td><td>源公司资料已参与抽取开发，这是任务级挑战，不是新公司盲测。发现疑点与正确修改分开计分。</td></tr>
+</tbody></table>
+<h2>独立验收的执行顺序</h2><div class="steps"><div><b>1 · 锁材料与答案</b>从原始PDF核对源格，保存原页、文件哈希和抽样依据。</div><div><b>2 · 冻结实现</b>记录代码、模型ID、提示与配置。实现人员不读取留出答案。</div><div><b>3 · 真实运行一次</b>新项目、新会话，只向模型提供报告材料和任务；标准答案留在评分端。</div><div><b>4 · 原样发布</b>保留成功、失败和全部分母。若据结果改代码，该集即降级为开发集。</div></div>
+<h2>逐个事实如何评分</h2>
+<table><thead><tr><th>项目</th><th>核对内容</th></tr></thead><tbody>
+<tr><td>数值</td><td>十进制原值、符号及原文单位换算。不能用“差不多”掩盖万元/元、百分比/金额错误。</td></tr>
+<tr><td>财务语义</td><td>公司、指标含义、期间或时点、合并/母公司、原始/重述、分类及必要的定义范围。金额相同不足以认定是同一事实。</td></tr>
+<tr><td>证据</td><td>文档、物理页、表格、行列与原单元格匹配；真实模型抽取能追溯到所属Pi运行。</td></tr>
+<tr><td>完整性</td><td>v0.5 对预定整表逐格核对；数值、单位、期间、口径、概念和来源全部符合才算正确。表内多抽、重复或不可验证来源进入预测分母；漏抽进入召回率分母。预定表外结果单列，不偷换为全报告精确率。</td></tr>
+<tr><td>流程</td><td>附件由对话触发处理，结果真正入库；同项目可跨会话查询，最终回答与下载文件可取回。</td></tr>
+</tbody></table>
+<h2>门槛、对照和费用如何记录</h2>
+<p>整表精确率 = 全维度正确事实 / 表内预测事实；召回率 = 全维度正确事实 / 146，两项都须达到95%。另列每家公司、每张表及重大错误，不能用总平均掩盖单表失败。研报纠错以有效修改为准，精确率至少95%、召回率至少90%；正确陈述与合理观点的误改另设检查。</p>
+<p>v0.5 金融工作台与通用 Pi 使用同一主模型、原始输入和总预算：最多80次模型调用、800万输入token、100万输出token、900万总token及1800秒。输入上限按服务返回用量观察，可能超出一次在途调用；超额如实记录。内部抽取、审校和重试全部计入，不能只报最后回答的费用。阶段化推理设置及工具集是被比较系统的组成部分，逐项冻结披露，不声称每个内部请求完全相同。</p>
+<p>在左侧“数据集与测试”选择“金融工作台”“通用 Pi 对照”或“研报纠错”。每组首次执行前写入锁；再次打开只返回同一份结果。开发调试使用单独新报告，保留所有失败与运行事故。未运行或未通过的项目不会被组件测试替代。</p>
+<h2>完整年报压力测试单独计数</h2>
+<p>茅台2024年报用于检查143页、275张原表、242张候选财务表及266批处理的覆盖、恢复与大量数据展示。独立源格抽查和修改前后金额比对另行记录。处理完全部批次不等于3298条事实全部正确。</p>
+<h2>这一轮修改的边界</h2>
+<p>本次修改针对无框线表漏检、单位校验误拒、中段日期证据缺失、中文分块传输、重复并发推理及来源owner不一致。模型接口修复本机代理导致的超时；按需发送相关目录并共享同键在途结果。财务语义修改使用原表定义、表头和排除条款，不能写入特定公司答案、依赖相同金额认定同义，或为通过留出验收修改gold。</p>
+<div class="note"><b>历史结果保持独立。</b>旧37项开发测试的一次观测修正、金标准等价表述修订和所有失败报告均保留原记录及说明。旧v0.2问答评测与新版清洗评测测的不是同一层能力，不能合并成一个通过率。</div>
+<p class="muted">运行结果以各版本逐项报告为准。本页说明设计与解释范围，不提前声明留出集通过。</p>
+</main></body></html>

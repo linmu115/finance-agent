@@ -1,0 +1,135 @@
+{
+  "checkedAt": "2026-10-03T07:14:43.898Z",
+  "status": "passed",
+  "scope": "Read-only production browser inspection of an existing completed demo. No new model call, no data mutation, no financial-answer scoring.",
+  "record": "benchmark/results/demo.json",
+  "baseUrl": "http://127.0.0.1:3001",
+  "checks": [
+    {
+      "name": "加载记录指定的真实项目、已完成历史对话与业务结果",
+      "status": "passed",
+      "evidence": {
+        "projectName": "财报示例 · 茅台、美的、伊利",
+        "assistantMessageId": "1fef2fc3-fc9f-49f7-809e-4f5399989684",
+        "documents": 3,
+        "pages": 708,
+        "snapshotContentMatches": true
+      }
+    },
+    {
+      "name": "PNG在既有回答中实际加载，下载按钮取得有效PNG",
+      "status": "passed",
+      "evidence": {
+        "images": [
+          {
+            "name": "revenue_2023_2024.png",
+            "width": 1500,
+            "height": 900,
+            "url": "http://127.0.0.1:3001/api/projects/e9286da8-ec22-478a-85d2-256c2683db1e/artifacts/e27c9d9e67bc41d9938af3a8e568179c/revenue_2023_2024.png",
+            "sha256": "07e7832acfe031e392c9c384ce45c9592966b722189faa15e1260c0f2cb8a830",
+            "bytes": 59266,
+            "suggestedFilename": "revenue_2023_2024.png",
+            "retainedCopy": "benchmark/results/demo-artifacts/revenue_2023_2024.png"
+          }
+        ]
+      }
+    },
+    {
+      "name": "每份资料的引用能打开实际页文本、原页图像与原件入口",
+      "status": "passed",
+      "evidence": {
+        "sourceCount": 10,
+        "sources": [
+          {
+            "documentId": "25ed9761d2224a13acb020fdfd8dbb86",
+            "label": "1. moutai_2024.pdf · 第 5 页",
+            "physicalPage": 5,
+            "textLength": 2328,
+            "textMatchesActualPageResponse": true,
+            "image": {
+              "width": 893,
+              "height": 1263,
+              "url": "http://127.0.0.1:3001/api/projects/e9286da8-ec22-478a-85d2-256c2683db1e/documents/25ed9761d2224a13acb020fdfd8dbb86/pages/5/image"
+            },
+            "originalStatus": 200
+          },
+          {
+            "documentId": "db45e409335d42bd84e047048029cd92",
+            "label": "3. midea_2024.pdf · 第 9 页",
+            "physicalPage": 9,
+            "textLength": 1588,
+            "textMatchesActualPageResponse": true,
+            "image": {
+              "width": 893,
+              "height": 1264,
+              "url": "http://127.0.0.1:3001/api/projects/e9286da8-ec22-478a-85d2-256c2683db1e/documents/db45e409335d42bd84e047048029cd92/pages/9/image"
+            },
+            "originalStatus": 200
+          },
+          {
+            "documentId": "24d97c1487584687b2688454a480ffd0",
+            "label": "5. yili_2024.pdf · 第 7 页",
+            "physicalPage": 7,
+            "textLength": 2280,
+            "textMatchesActualPageResponse": true,
+            "image": {
+              "width": 893,
+              "height": 1263,
+              "url": "http://127.0.0.1:3001/api/projects/e9286da8-ec22-478a-85d2-256c2683db1e/documents/24d97c1487584687b2688454a480ffd0/pages/7/image"
+            },
+            "originalStatus": 200
+          }
+        ]
+      }
+    },
+    {
+      "name": "刷新并重新选择项目后，同一持久化业务回复可恢复",
+      "status": "passed",
+      "evidence": {
+        "conversationId": "8a8a88e5-579d-4cb0-9d1c-22356b1c9bff"
+      }
+    },
+    {
+      "name": "全程仅同源GET/HEAD，无变更、模型调用或浏览器错误",
+      "status": "passed",
+      "evidence": {
+        "observedMethods": {
+          "GET": 42,
+          "HEAD": 3
+        },
+        "blockedRequests": 0
+      }
+    }
+  ],
+  "errors": [],
+  "blockedRequests": [],
+  "safety": {
+    "allowedMethods": [
+      "GET",
+      "HEAD"
+    ],
+    "sameOriginOnly": true,
+    "serviceWorkers": "blocked",
+    "modelRequests": 0,
+    "mutatingRequests": 0,
+    "observedMethods": {
+      "GET": 42,
+      "HEAD": 3
+    }
+  },
+  "visualReview": {
+    "status": "not_run",
+    "reason": "Automated loading checks do not establish Chinese label readability, six-bar semantics, or financial correctness; inspect the screenshot separately."
+  },
+  "recordSha256": "3b6c9d2266e22e73a0bf34e85162790934a655b32c3e013d73d9830985d5d5f3",
+  "projectId": "e9286da8-ec22-478a-85d2-256c2683db1e",
+  "conversationId": "8a8a88e5-579d-4cb0-9d1c-22356b1c9bff",
+  "runId": "5f387b18-caef-4590-8b84-dffa7b7bbbbd",
+  "assistantMessageId": "1fef2fc3-fc9f-49f7-809e-4f5399989684",
+  "answerScreenshot": "web/test-results/demo-legacy-live-answer-desktop.png",
+  "answerScreenshotSha256": "d5ea4e297914bf2fdd2e5832279e72ec335485caa584958de9b568d0c15e2093",
+  "screenshot": "web/test-results/demo-legacy-live-desktop.png",
+  "screenshotSha256": "9fb10b3658c8fd3aec339498399773dcbe0d50c952b0bb02468b3d11c2a0f457",
+  "passed": 5,
+  "failed": 0
+}

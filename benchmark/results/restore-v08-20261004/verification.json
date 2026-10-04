@@ -1,0 +1,168 @@
+{
+  "created_at": "2026-10-04T05:42:00.314325+00:00",
+  "workspace": "D:\\AI\\财报agent",
+  "deployment": {
+    "url": "http://127.0.0.1:3001/",
+    "batch": "v08 local continuation",
+    "database": "new project data",
+    "backend_changed": false,
+    "frontend_sha256": "7b694c190d4b1d0251fac68561003246d40640e516e1a6401aab52a3c10c1df6"
+  },
+  "engineering": {
+    "zip_files_verified": 2224,
+    "node_tests": {
+      "passed": 147,
+      "failed": 0,
+      "log": "restore-node-tests.log"
+    },
+    "python_tests": {
+      "passed": 309,
+      "failed": 0,
+      "log": "restore-python-tests.log"
+    },
+    "final_typecheck": "passed",
+    "final_build": "passed",
+    "build_warning": "bundle exceeds 500kB advisory threshold"
+  },
+  "ui": {
+    "method": "actual CUA browser interaction against port 3001",
+    "checks": [
+      "project expand/collapse",
+      "collapse keeps current conversation",
+      "direct cross-project conversation selection",
+      "fold state persists after reload",
+      "new project-relative conversation entry present",
+      "mobile conversation click dismisses navigation",
+      "project library name and project ownership shown",
+      "compression settings save and reload",
+      "invalid retention threshold rejected",
+      "390px settings navigation no horizontal overflow"
+    ],
+    "mobile_nav_before_height": 214.58,
+    "mobile_nav_after_height": 89.67,
+    "legacy_browser_scripts": "selectors migrated and syntax checked, not all re-executed",
+    "isolated_fixture_browser": "blocked at 3002; fixture host stopped, data retained"
+  },
+  "network_workflow": {
+    "status": "passed",
+    "run_id": "21ea36aa-ee78-4677-b411-b08e2bafecb6",
+    "usage": {
+      "input": 147768,
+      "output": 1757,
+      "calls": 6,
+      "costUsd": null
+    },
+    "search_tool_calls": 5,
+    "source_review": "Archived p1 supports both reported values and growth rates; source lacks EBIT and interest data."
+  },
+  "compaction": {
+    "original_report": "compaction-live.json",
+    "original_status": "failed",
+    "independent_review": "compaction-independent-review.json",
+    "independent_status": "passed",
+    "usage": {
+      "disabled": {
+        "input": 34963,
+        "cacheRead": 105600,
+        "cacheWrite": 0,
+        "output": 1210,
+        "summaryInput": 0,
+        "summaryOutput": 0,
+        "calls": 4,
+        "total_input": 140563
+      },
+      "enabled": {
+        "input": 17289,
+        "cacheRead": 39936,
+        "cacheWrite": 0,
+        "output": 2132,
+        "summaryInput": 4393,
+        "summaryOutput": 786,
+        "calls": 5,
+        "total_input": 57225
+      },
+      "input_reduction_fraction": 0.5928871751456642,
+      "cost_usd": null
+    },
+    "boundary": "One short real-history fork comparison with a lowered 16k trigger, sequential cache conditions and no pricing configured. It does not establish monetary savings, default-96k behavior, artifact revision recovery, document table recovery, held-out accuracy or the entire six-stage product acceptance."
+  },
+  "changed_original_files": [
+    {
+      "path": "WORK_STATUS.md",
+      "before_sha256": "9ff4b8078b25169691baabd49aa10aa38a040239c596ebc33298a149207ba994",
+      "after_sha256": "6251ee41f6b00010db5f71e78b055177e58a31661b75d26d15ac9701173db095"
+    },
+    {
+      "path": "scripts/dependency-evidence/repair-latest.json",
+      "before_sha256": "8ea012248f2a4a5a86f9da934c7c309334de5c23feed0ed2a48ddab4c39d255e",
+      "after_sha256": "38032968f70ff1741fd4cac901b160c988b0f8de61cc1ea4bce13c0506dd63ba"
+    },
+    {
+      "path": "web/src/App.tsx",
+      "before_sha256": "3e0c76630be9da14cdc5f2c8f8d25c6a0608eb2b7613096faad303d6a0b5a1ee",
+      "after_sha256": "f76006de14570df4a7676ed4131ec09bf9fdbd4c3f53f3c5ea86e5f7a7f4ebea"
+    },
+    {
+      "path": "web/src/DocumentDrawer.tsx",
+      "before_sha256": "d011b5b097e580b2f28f0f040e93a8ac30824c867f3d85e0e82007d8bedfa16f",
+      "after_sha256": "81ee23621f8a19192106465925fe50ec3ea66344832ed5ef7b8c2a6ea4d8d35a"
+    },
+    {
+      "path": "web/src/styles.css",
+      "before_sha256": "319623d641cd2c632c8c93f340d6b58dedd6d069d11b5af7faf92552e981adb6",
+      "after_sha256": "416cd63c899a489b7b79becb19617a137757d10ed91b962fc1051aef8697c699"
+    },
+    {
+      "path": "web/tests/browser-active-session-live.cjs",
+      "before_sha256": "f1be7af8c8ce9be5cb9b5c601f6fd86bfbe85d58f9231b63f93d93348e96f031",
+      "after_sha256": "6faec53df8c66d01b033fa3a1ff48e9117504a8ce7eb0b3088ebcbe241bd32bb"
+    },
+    {
+      "path": "web/tests/browser-agent-live.cjs",
+      "before_sha256": "85cb4794ac5c3d52a4c1b4465a8343a3fec8611189ed8f2d5bb9d41b7d46a8cf",
+      "after_sha256": "d3a6bff4f6b7e2b28d0716f221f486e904aec2be66bf9a416443f612b074ef4b"
+    },
+    {
+      "path": "web/tests/browser-contract.cjs",
+      "before_sha256": "4d588be79f11c65c5e2f810709484e87d47be42c007f09cf36110958b9675f38",
+      "after_sha256": "034b89ba9988a21833b355a82a9af0f4d3e94e0f837290eb4d0d78c8ea5bb501"
+    },
+    {
+      "path": "web/tests/browser-dashboard-dimensions-live.cjs",
+      "before_sha256": "20d206f075987d7f27f54f75eee4d2d3a1832a263955ed21ee378479616f0d22",
+      "after_sha256": "77dc5c3ef819413de1bab515464ac7bb5a83746bc7fb9c5382c26fab2201cff2"
+    },
+    {
+      "path": "web/tests/browser-demo-live.cjs",
+      "before_sha256": "245e9377f281ba2601101ad6a63cb6aa98644cd5319a66e14ef43aec35bdfcc0",
+      "after_sha256": "0a2492f896db86d38d0f46e7e9517ab068e639de1b13cb87cf7e583fbfba6279"
+    },
+    {
+      "path": "web/tests/browser-full-report-live.cjs",
+      "before_sha256": "5bb82b95e9c48c7cb6488931564539690a4560a77703b38af00fd9cef6ce9a78",
+      "after_sha256": "491e0993a9e337b760ef211ca5f358612a7cc041925afed841d47a8f7b5afc84"
+    },
+    {
+      "path": "web/tests/browser-live.cjs",
+      "before_sha256": "e27963aec72918d2e1d1394a3a16bcaa597cc4f0321316c9ef5db89d3cd701cf",
+      "after_sha256": "81e8add68630e66534dd924db5eae942648ab39d86c33c49486c47f7ee3c9c9a"
+    },
+    {
+      "path": "web/tests/browser-workbench-live.cjs",
+      "before_sha256": "d71980d10cb45af9aa77aff2292ec7b4e06fe2e5507a9e786ee85792ef9893b2",
+      "after_sha256": "b28e9970c6ce067ee5d1a90790d18d4ced6696846f7973539db01651d3cf4997"
+    },
+    {
+      "path": "web/tests/browser-workbench.cjs",
+      "before_sha256": "06a292027cb9ba22cfdf826c7e666b87ad90dbec2e83ee710e243425a23ee670",
+      "after_sha256": "49acf8f0389af2231ea43b250cad6851bb6ad62f5a11d13d9c60164f3b131c0b"
+    }
+  ],
+  "unperformed": [
+    "natural 96k compaction acceptance",
+    "full Liugong valuation workflow",
+    "formal v0.5 holdout first runs",
+    "report correction first run"
+  ],
+  "historical_failures_preserved": true
+}

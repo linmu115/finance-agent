@@ -1,0 +1,106 @@
+{
+  "scope": "Isolated local HTTP fixture. No model call or production data changes.",
+  "node": "v24.20.0",
+  "serverDefaults": {
+    "timeout": 0,
+    "requestTimeout": 300000,
+    "headersTimeout": 60000
+  },
+  "events": [
+    {
+      "event": "request_received",
+      "elapsedMs": 5691
+    },
+    {
+      "event": "response_closed",
+      "elapsedMs": 125688,
+      "finished": false
+    },
+    {
+      "event": "request_received",
+      "elapsedMs": 128142
+    },
+    {
+      "event": "destroyed_before_reply",
+      "elapsedMs": 130694
+    },
+    {
+      "event": "response_closed",
+      "elapsedMs": 248163,
+      "finished": false
+    },
+    {
+      "event": "request_received",
+      "elapsedMs": 251158
+    },
+    {
+      "event": "destroyed_before_reply",
+      "elapsedMs": 253156
+    },
+    {
+      "event": "response_closed",
+      "elapsedMs": 371167,
+      "finished": false
+    },
+    {
+      "event": "python_stderr",
+      "elapsedMs": 371173,
+      "text": "Traceback (most recent call last):\r\n  File \"D:\\codex\\����\\.venv\\Lib\\site-packages\\langextract\\providers\\openai.py\", line 168, in _process_single_prompt\r\n"
+    },
+    {
+      "event": "python_stderr",
+      "elapsedMs": 371174,
+      "text": "    response = self._client.chat.completions.create(**api_params)\r\n"
+    },
+    {
+      "event": "python_stderr",
+      "elapsedMs": 371175,
+      "text": "               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"D:\\codex\\����\\.venv\\Lib\\site-packages\\openai\\_utils\\_utils.py\", line 298, in wrapper\r\n"
+    },
+    {
+      "event": "python_stderr",
+      "elapsedMs": 371175,
+      "text": "    return func(*args, **kwargs)\r\n"
+    },
+    {
+      "event": "python_stderr",
+      "elapsedMs": 371175,
+      "text": "           ^^^^^^^^^^^^^^^^^^^^^\r\n  File \"D:\\codex\\����\\.venv\\Lib\\site-packages\\openai\\resources\\chat\\completions\\completions.py\", line 1318, in create\r\n"
+    },
+    {
+      "event": "python_stderr",
+      "elapsedMs": 371176,
+      "text": "    return self._post(\r\n           ^^^^^^^^^^^\r\n  File \"D:\\codex\\����\\.venv\\Lib\\site-packages\\openai\\_base_client.py\", line 1440, in post\r\n"
+    },
+    {
+      "event": "python_stderr",
+      "elapsedMs": 371178,
+      "text": "    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))\r\n"
+    },
+    {
+      "event": "python_stderr",
+      "elapsedMs": 371178,
+      "text": "                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"D:\\codex\\����\\.venv\\Lib\\site-packages\\openai\\_base_client.py\", line 1213, in request\r\n"
+    },
+    {
+      "event": "python_stderr",
+      "elapsedMs": 371179,
+      "text": "    raise self._make_status_error_from_response(err.response) from None\r\n"
+    },
+    {
+      "event": "python_stderr",
+      "elapsedMs": 371179,
+      "text": "openai.InternalServerError: Error code: 503\r\n\r\nThe above exception was the direct cause of the following exception:\r\n\r\nTraceback (most recent call last):\r\n  File \"<string>\", line 3, in <module>\r\n  File \"D:\\codex\\����\\.venv\\Lib\\site-packages\\langextract\\providers\\openai.py\", line 176, in _process_single_prompt\r\n"
+    },
+    {
+      "event": "python_stderr",
+      "elapsedMs": 371179,
+      "text": "    raise exceptions.InferenceRuntimeError(\r\nlangextract.core.exceptions.InferenceRuntimeError: OpenAI API error: Error code: 503\r\n"
+    },
+    {
+      "event": "python_exit",
+      "elapsedMs": 371693,
+      "code": 1
+    }
+  ]
+}

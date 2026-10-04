@@ -1,0 +1,50 @@
+{
+  "version": "v0.5-fixed-budget-system-comparison-1",
+  "status": "protocol_prepared_no_model_run",
+  "comparison_type": "Complete specialized system versus general Pi on the same task and source material; not a causal ablation of any one module",
+  "shared": {
+    "model": "Same official DeepSeek model ID and API endpoint from one frozen settings snapshot",
+    "budget_file": "BUDGET.json",
+    "model_settings": "Identical main-Pi model, temperature, context window, maximum output/reasoning settings and shared aggregate budget. Specialized inner calls retain their stage-specific frozen inference policies; these are part of the system being compared and their settings/usage must be reported, not claimed identical to generic main-Pi calls.",
+    "input_files": "Identical original PDF excerpts and SHA",
+    "raw_evidence": "Same version of deterministic parser output: original page text, words/coordinates, tables, YAML/index and original PDF page images",
+    "tools": "Project-scoped source discovery, page/table reading, keyword retrieval, isolated Python with identical libraries, and artifact output",
+    "task_and_output_contract": "Same user task and machine-readable facts.json schema. Gold and evaluator-only table boundaries never enter either model context.",
+    "isolation": "Separate fresh projects; no specialized canonical database or previous conclusions supplied to the generic arm",
+    "scoring": "Same engine-neutral exact financial cell scorer. Source engine, directory/temporal/definition provenance and operational reliability scored separately."
+  },
+  "generic_profile": {
+    "system_prompt": "You are a general-purpose assistant. Use the provided project tools to inspect sources, perform calculations and return the requested artifacts. Distinguish source evidence from inference.",
+    "allowed_tools": [
+      "prepare_document_sources",
+      "list_documents",
+      "get_document",
+      "get_document_index",
+      "get_source_page",
+      "get_source_table",
+      "search_evidence",
+      "run_analysis",
+      "get_analysis_status",
+      "get_artifact"
+    ],
+    "excluded_tools": [
+      "process_documents",
+      "query_financial_data",
+      "get_financial_metrics",
+      "get_normalization_details",
+      "calculate_financial_metrics",
+      "specialized industry-chain/valuation/review tools"
+    ],
+    "exclusion_reason": "These implement the specialized financial workflow being compared. Exclusion does not remove original evidence access or general computation."
+  },
+  "execution": {
+    "arms": [
+      "financial",
+      "generic"
+    ],
+    "sessions_per_arm": 2,
+    "budget_scope": "Shared across both sessions and all nested model calls within the arm",
+    "first_run_policy": "One first run per arm; preserve failed calls, cancellations and over-budget consumption. Do not tune one arm after reading this holdout outcome.",
+    "freeze": "Hash inputs, gold, protocol, runner/helpers, all production source and model configuration before and after each arm. If code differs, comparison not accepted."
+  }
+}

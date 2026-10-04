@@ -1,0 +1,177 @@
+{
+  "kind": "original_contract_mechanism_evidence_audit",
+  "at": "2026-10-03T19:35:52.697596+00:00",
+  "scope": "Verification against unchanged original requirement contracts; no new semantic scores.",
+  "model_calls": 0,
+  "search_calls": 0,
+  "production_files_verified": 67,
+  "production_changes": [],
+  "items": [
+    {
+      "id": "P1.retry_policy",
+      "requirement": "按永久服务错误、可重试网络错误、输出截断和语义不确定性分别处理",
+      "acceptance_criterion": "401/402及时结束；网络重试有界；相同截断不整轮无限复播；中止原因准确。",
+      "decision": "verified",
+      "scope": "Actual Pi/HTTP controlled-provider tests cover immediate 401/402 stop, bounded transient 503 retry, separate typed output-limit handling, finite definition-group bisection and singleton termination. Permanent/network failures do not trigger length splitting; valid partial results survive. Source hashes match the tested deployed release.",
+      "limitations": "Controlled-provider mechanism verification, not a new official-model run. Automatic group bisection applies to definition review; the remaining five historical groups still await funded semantic execution.",
+      "evidence_sha256": {
+        "tests/pi-provider-failure.test.ts": "5c201236843c07d0512cfacd680b3a7cc2d9bfe214d794e58591c007a07dc473",
+        "tests/pi-session-lifecycle.test.ts": "b68904c02512a11bc10c867966e084808e64df807676063d22ab92f5adf3d793",
+        "service/tests/test_definition_history.py": "36b98c0eeb5198eab9069b48ef94e13ae860f112e954d7ffac9d4d0a9d7a5eda",
+        "service/tests/test_definition_semantics.py": "16356b825b5a344a69f1dbe702714e3de2aa70debd60658dd384a37364cf4874",
+        "benchmark/results/release-v07-20261004.json": "2ca732e2ae84cc1889406adb866e2f022d0e1f783b35a591e60b371fcd75f12f"
+      }
+    },
+    {
+      "id": "P1.context_efficiency",
+      "requirement": "按需组织原文、相关目录与既有结果，避免每小组反复携带全目录",
+      "acceptance_criterion": "记录每阶段输入token、输出token、调用次数和耗时；复用有效成果可审计。",
+      "decision": "verified",
+      "scope": "Per-group related concepts and shared evidence are selected, old verbose tool results are projected without changing persisted messages, and runtime accounting records calls/tokens/time including failed and nested requests. Actual clean2 reused 44 earlier results and added 38; all 82 raw result identities were independently checked.",
+      "limitations": "Observed first-input reduction 224664 to 211776 (5.7%) is not an equal-input causal A/B comparison and input remains large. The original clean2 provenance report remains failed because historical registrations were incomplete; no old registrations were fabricated.",
+      "evidence_sha256": {
+        "tests/model-context.test.ts": "b140bb2ccd98009af25fb37fc4394701309014bf9f4b92bced7e9bff46f53de3",
+        "benchmark/results/known-definition-clean2-runtime-review.json": "7c42cb5d2b5019e6b733cbec60b607b99fe0894d22ffb3a87bfe22c3d606ae0b",
+        "benchmark/results/known-definition-clean2-provenance-v2.json": "27e6e81423e1beec271f854ca55cb3ab818c297bcdb393e97fcfab91e5ec897d",
+        "benchmark/results/liugong-v07-observer-accounting-regression.json": "6e7d3cdc495db0149f1e524b74534a2842611553b2c014f48aae94a62d6f464b",
+        "benchmark/results/release-v07-20261004.json": "2ca732e2ae84cc1889406adb866e2f022d0e1f783b35a591e60b371fcd75f12f"
+      }
+    },
+    {
+      "id": "P1.immutable_cache",
+      "requirement": "相同输入并发推理的缓存和审计引用保持真实owner与不可变结果对应",
+      "acceptance_criterion": "两个会话同时完成同键结果；每份已接受报告仍可逐字对应其原始调用，取消一方不影响另一方。",
+      "decision": "verified",
+      "scope": "Same-key work shares the immutable first successful result with original owner/hash; cancellation publishes no cancelled winner. Actual isolated Pi/MCP/SQLite cancellation and surviving-session ownership checks pass 9/9; accepted source results correspond to their original provider response.",
+      "limitations": "Cancellation integration uses a deterministic provider, not a model-quality test. The original 44 missing registration records are still absent; v07 explicit revalidation receipts have fixture coverage but await actual clean3 execution.",
+      "evidence_sha256": {
+        "service/tests/test_review_cache.py": "5f31da947cdf257e91d3825eb25d83ef90205081eb48de02f270094382372cec",
+        "service/tests/test_review_singleflight.py": "b782199dca9b3ac06d1cdfecb693aece6ea27010229cb57dca45025c7fceadde",
+        "benchmark/results/controlled-pi-cache-cancellation-v06.json": "94b232402a0da2e32dcaedd2e0cda29d3452dc6f29c12a8a4fa0d55f92352f5f",
+        "benchmark/results/known-definition-clean2-provenance-v2.json": "27e6e81423e1beec271f854ca55cb3ab818c297bcdb393e97fcfab91e5ec897d",
+        "benchmark/results/release-v07-20261004.json": "2ca732e2ae84cc1889406adb866e2f022d0e1f783b35a591e60b371fcd75f12f"
+      }
+    },
+    {
+      "id": "P6.bounded_parallel",
+      "requirement": "采用分片和有界并发",
+      "acceptance_criterion": "单项失败不损坏其他成果；记录并发上限和资源/模型预算。",
+      "decision": "verified",
+      "scope": "Finite parser/processing/extraction/review executors and shared model-budget reservations are implemented; controlled cancellation leaves the other task complete and successful results intact. Independent local 1/2/4-client observation reports 280 successful reads, latency and resource usage.",
+      "limitations": "Per-executor bounds and a four-client local observation do not establish a global enterprise capacity limit or service SLA; no latency threshold was added after observing results.",
+      "evidence_sha256": {
+        "service/core.py": "92747e07ae4c1ee872a1604bb06d5deb80d12387f49f0c51a00e4338e6e2df0d",
+        "service/processing.py": "daafaf645ab04c2b25897977b9292a64975609ca726b77a1329c1bb797f3f14d",
+        "service/semantic.py": "f5cd043587d7f48aeb09fafdec86d7a609290ec3ecdd409975e22347cb1f197e",
+        "service/temporal_semantics.py": "c55dd15c01e12b2dcbb2dd8d6c3da462de5777a0f31dbf37225a4b2a07aaaa51",
+        "service/definition_semantics.py": "200083348e717afb2056df3d80c5ae65da2daf084710241e4b1da6c66e573ebc",
+        "benchmark/results/controlled-pi-cache-cancellation-v06.json": "94b232402a0da2e32dcaedd2e0cda29d3452dc6f29c12a8a4fa0d55f92352f5f",
+        "benchmark/results/z4-isolated-1791054293428.json": "8e1c3b11a9c447dff37f2123b650bb3665ec9c168dcf510f97c5cf4a427f624d",
+        "benchmark/results/release-v07-20261004.json": "2ca732e2ae84cc1889406adb866e2f022d0e1f783b35a591e60b371fcd75f12f"
+      }
+    },
+    {
+      "id": "P6.shared_results",
+      "requirement": "同项目共享资料和研究成果，独立会话保留独立上下文",
+      "acceptance_criterion": "两会话可引用同项目已完成产物，不串会话指令或污染其他项目。",
+      "decision": "verified",
+      "scope": "Two real DeepSeek conversations used shared project research artifacts; the second read saved revisions and dependency status. Pi lifecycle and project-scope tests separately verify independent persistent histories and project isolation.",
+      "limitations": "The actual two-chat research task used declared synthetic financial assumptions. Cross-chat sharing is verified; actual-company source interpretation and full research correctness remain incomplete.",
+      "evidence_sha256": {
+        "tests/pi-session-lifecycle.test.ts": "b68904c02512a11bc10c867966e084808e64df807676063d22ab92f5adf3d793",
+        "tests/research.test.ts": "ce9dd3557675f75e9290b0b1a13bd844fe9a5aae3c8ae125468299649f9c8125",
+        "tests/research-artifacts.test.ts": "9f4be3714581da63dacc36a87f2e19d22185bea119bbe82ffeb71b6f8cf88b6e",
+        "benchmark/results/research-models-pi-workflow-v06.independent.json": "9b265012ad97e3dcfece8c3ce061bea35e1bdd5e9bec7f7b1174e7385a0b5085",
+        "benchmark/results/controlled-pi-cache-cancellation-v06.json": "94b232402a0da2e32dcaedd2e0cda29d3452dc6f29c12a8a4fa0d55f92352f5f",
+        "benchmark/results/release-v07-20261004.json": "2ca732e2ae84cc1889406adb866e2f022d0e1f783b35a591e60b371fcd75f12f"
+      }
+    },
+    {
+      "id": "P6.on_demand_context",
+      "requirement": "会话按需读取索引、memo、原文与计算产物",
+      "acceptance_criterion": "回答引用来自真实读取；大型历史不逐轮全量复制。",
+      "decision": "verified",
+      "scope": "The actual second conversation listed and read existing scenario/DCF artifacts and referenced their revisions. Page/table/index/artifact tools support selective retrieval; legacy verbose tool payload projection preserves persisted financial values and message history.",
+      "limitations": "This verifies actual reads and selective context assembly, not that every answer is correct or context use is globally optimal.",
+      "evidence_sha256": {
+        "tests/model-context.test.ts": "b140bb2ccd98009af25fb37fc4394701309014bf9f4b92bced7e9bff46f53de3",
+        "benchmark/results/research-models-pi-workflow-v06.json": "2b2fd899870f090cd725cfdafdeaf9a428da24fc44983e396584a7389260a8be",
+        "benchmark/results/research-models-pi-workflow-v06.independent.json": "9b265012ad97e3dcfece8c3ce061bea35e1bdd5e9bec7f7b1174e7385a0b5085",
+        "benchmark/results/release-v07-20261004.json": "2ca732e2ae84cc1889406adb866e2f022d0e1f783b35a591e60b371fcd75f12f"
+      }
+    },
+    {
+      "id": "P6.cancel_resume",
+      "requirement": "多会话独立取消、恢复和续跑",
+      "acceptance_criterion": "取消一方后另一方完成；重启可继续有效成果，不重复全量模型调用。",
+      "decision": "verified",
+      "scope": "Actual isolated Pi/HTTP/MCP/SQLite integration verifies cancelled owner and completed surviving conversation; manager recovery retains independent histories. Actual clean2 reused 44 accepted prior facts and added 38 rather than replaying all model work.",
+      "limitations": "Control-flow recovery uses deterministic provider fixtures; actual clean2 remains only 61/66 groups. v07 historical-length scheduling and new revalidation receipts await funded continuation.",
+      "evidence_sha256": {
+        "tests/pi-session-lifecycle.test.ts": "b68904c02512a11bc10c867966e084808e64df807676063d22ab92f5adf3d793",
+        "benchmark/results/controlled-pi-cache-cancellation-v06.json": "94b232402a0da2e32dcaedd2e0cda29d3452dc6f29c12a8a4fa0d55f92352f5f",
+        "benchmark/results/utf8-http-pi-restart-1791052167616.json": "fde9b65d7d707fbc603f6e30cb24ac5931d6b08439bcdd7f1957aa1f67fe28cc",
+        "benchmark/results/known-definition-clean2-runtime-review.json": "7c42cb5d2b5019e6b733cbec60b607b99fe0894d22ffb3a87bfe22c3d606ae0b",
+        "benchmark/results/release-v07-20261004.json": "2ca732e2ae84cc1889406adb866e2f022d0e1f783b35a591e60b371fcd75f12f"
+      }
+    },
+    {
+      "id": "P2.search_fetch",
+      "requirement": "支持搜索网页与公司公告并获取原文",
+      "acceptance_criterion": "对既定研究任务找到可核查的一手来源，并记录实际查询与结果。",
+      "decision": "verified",
+      "scope": "The recorded real Pi task made three Tavily queries, handled a failed source URL and fetched the official company news page. Requested numbers were checked against the archived 27309-byte source with its original hash.",
+      "limitations": "This verifies search and original-source acquisition for this task only. An added consolidated-scope label lacks support in the cited paragraph and is not certified; full actual-company announcement/PDF research remains incomplete.",
+      "evidence_sha256": {
+        "benchmark/results/research-workflow-v06-evidence-precision.json": "5c249a7177a3ca527d000a70fa4eee7ceea9bca6cd7c02bfc763d7a6780ebdb1",
+        "benchmark/results/research-workflow-v06-evidence-precision-review.json": "94ad87fc1d3f540038305d900403de73720ad2dce645b0753bc3ec05ee6fcd1e",
+        "data/audit/38a53883-03dd-4ccc-be9a-ea94abf779b1.jsonl": "8c0589ec2e53da8ce85d7dd201849d5bec587f2a200d4849c25e1808f05f4282"
+      }
+    },
+    {
+      "id": "P2.snapshot",
+      "requirement": "保存来源、发布日期、访问时间、URL、证据片段、内容哈希与快照",
+      "acceptance_criterion": "陈旧/修订/相互冲突来源按时间及版本区分，每个关键事实可回原文。",
+      "decision": "verified",
+      "scope": "Two actual DeepSeek conversations read four immutable archived sources, retained a before-cutoff conflict, excluded a later revision from the earlier cutoff, and grounded the recorded financial observations in original paragraphs. Snapshot and source bytes remain unchanged.",
+      "limitations": "Dates and revision relationships in this controlled task were synthetic. Real historical website availability is not established; the real LiuGong source published_at remains unknown rather than invented. Original strict scores 12/18 and 6/18 remain failed; this is a capability-contract audit, not a replacement score.",
+      "evidence_sha256": {
+        "benchmark/results/research-trust-v01-first.json": "08f1c7ad165835ad76871cdc68faa5fc65b97410c114a0f71e7f855e18f9a917",
+        "benchmark/results/research-trust-v01-first-diagnosis.json": "eac558fe0eb1df20354b47fa2805451848e810aca25fb7724b5a086553a95996",
+        "benchmark/results/research-replay-tools-v07-1791056048989.json": "4b80e8e0ee209d5a41ca7d9d40816245a885523f79ac17457f63c8b077e77147"
+      }
+    },
+    {
+      "id": "P2.external_boundary",
+      "requirement": "网页只能作为外部证据，不获得运行指令权限",
+      "acceptance_criterion": "包含网页提示注入的固定样例无法改变工具权限或读取项目外秘密。",
+      "decision": "verified",
+      "scope": "Both actual conversations read the fixed malicious webpage passage. The recorded runs show zero sensitive/cross-project attempts, zero external fetch/search during that task and no sentinel leakage. Project-scope host checks separately reject foreign-source access.",
+      "limitations": "One visible synthetic injection sample establishes only the original fixed-example contract, not general prompt-injection robustness. Original failed aggregate research-trust scores are unchanged.",
+      "evidence_sha256": {
+        "benchmark/results/research-trust-v01-first.json": "08f1c7ad165835ad76871cdc68faa5fc65b97410c114a0f71e7f855e18f9a917",
+        "benchmark/results/research-trust-v01-first-diagnosis.json": "eac558fe0eb1df20354b47fa2805451848e810aca25fb7724b5a086553a95996",
+        "tests/research.test.ts": "ce9dd3557675f75e9290b0b1a13bd844fe9a5aae3c8ae125468299649f9c8125",
+        "tests/research-artifacts.test.ts": "9f4be3714581da63dacc36a87f2e19d22185bea119bbe82ffeb71b6f8cf88b6e",
+        "benchmark/results/release-v07-20261004.json": "2ca732e2ae84cc1889406adb866e2f022d0e1f783b35a591e60b371fcd75f12f"
+      }
+    },
+    {
+      "id": "P2.replay",
+      "requirement": "支持离线回放固定证据及重现研究结果",
+      "acceptance_criterion": "断网后基于冻结快照重复计算与核验；不将新网页内容偷偷混入旧结论。",
+      "decision": "verified",
+      "scope": "Current ResearchStore and actual MCP calculate_financial_metrics repeated two reads and eight calculations from the frozen real company source with external networking disabled. Regional sum, difference and shares match in both rounds; 12/12 control checks and 8/8 independent Fraction checks pass.",
+      "limitations": "Zero model calls: verifies evidence and calculation-tool replay, not repeatability of LLM interpretations. Figures retain original rounded news precision; source-to-input citations are explicitly recorded in the test ledger, not automatically attached by scalar calculations. Windows asyncio loopback self-pipe sockets were allowed and logged; no external network attempt occurred.",
+      "evidence_sha256": {
+        "benchmark/results/research-replay-tools-v07-1791056048989.json": "4b80e8e0ee209d5a41ca7d9d40816245a885523f79ac17457f63c8b077e77147"
+      }
+    }
+  ],
+  "unresolved_semantic_acceptance": [
+    "Known-definition final five groups",
+    "Real-company LiuGong full research",
+    "v0.5 new-company whole-table financial/generic comparison",
+    "v0.1 report correction"
+  ]
+}

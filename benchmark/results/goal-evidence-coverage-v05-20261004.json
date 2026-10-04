@@ -1,0 +1,1326 @@
+{
+  "kind": "independent_readonly_goal_evidence_coverage",
+  "created_at": "2026-10-03T18:25:38.129107+00:00",
+  "scope": "All48 requirement/constraint/acceptance IDs mapped. No production, status, gold, or scoring changes; no tests, network calls or paid models executed by this audit.",
+  "goal_requirements_sha256": "6623820219060d8077256fd98c17f81f01168ed478404e26ff6120c8ac67c966",
+  "row_count": 48,
+  "already_verified_preparation_ids": [
+    "A.development",
+    "A.new_gold"
+  ],
+  "new_verified_ids": [],
+  "interpretation": [
+    "Test definitions and archived logs are distinguished from live real-provider outcomes.",
+    "A passed subcheck does not override a failed overall run or contaminated trial.",
+    "Current definition review was still running when inspected; this report is an evidence snapshot.",
+    "Repeated source correctness on old development inputs is not new-company generalization."
+  ],
+  "evidence_catalog": {
+    "legacy": {
+      "path": "benchmark/results/development-v041-independent-review-20261004.json",
+      "kind": "invalidated_development",
+      "summary": "Original24/30; unit-only25/30 diagnostic; seven prior omissions now pass; whole trial invalidated by secondary host. Five locator findings kept separate.",
+      "sha256_at_read": "da6e68d35f97f36cabefb93b0c4c3a44dde0c0040f0ddf9e2430e6fe9289ea57",
+      "bytes": 11577
+    },
+    "parser": {
+      "path": "benchmark/results/native-layout-semantic-source-regression-v045.json",
+      "kind": "deterministic_development",
+      "summary": "Native 27-row unruled table recovered; mixed-unit headers tested; no model calls.",
+      "sha256_at_read": "fbf140cb5cf4e533c8f952406a0f149e7de5d0d8464b52d7e8c22f477386b3d7",
+      "bytes": 1352
+    },
+    "utf8": {
+      "path": "tests/pi-bridge-utf8.test.ts",
+      "kind": "isolated_test_definition",
+      "summary": "Real private HTTP bridge split one byte at a time through Chinese/emoji; invalid UTF8 rejected before callback.",
+      "sha256_at_read": "95ab9f711ec9d8fdddf1d996c98788973c34812cf40a9699a23c76fc7d8d2b80",
+      "bytes": 1932
+    },
+    "singleflight": {
+      "path": "service/tests/test_review_singleflight.py",
+      "kind": "sqlite_threads_mock_inference",
+      "summary": "Six tests: same-key one inference, waiter cancellation, owner cancellation takeover, failed owner, parallel keys, invalid-cache rejection.",
+      "sha256_at_read": "b782199dca9b3ac06d1cdfecb693aece6ea27010229cb57dca45025c7fceadde",
+      "bytes": 5375
+    },
+    "cache": {
+      "path": "service/tests/test_review_cache.py",
+      "kind": "sqlite_threads_test",
+      "summary": "Accepted result immutable across competing writers; exact original owner and result hash retained.",
+      "sha256_at_read": "5f31da947cdf257e91d3825eb25d83ef90205081eb48de02f270094382372cec",
+      "bytes": 3275
+    },
+    "processing": {
+      "path": "service/tests/test_processing.py",
+      "kind": "service_mock_model_tests",
+      "summary": "Document owner/waiter cancellation, owner takeover, source/layout/mixed-unit provenance, saved extraction replay.",
+      "sha256_at_read": "74ef9c9a2f845641424cf1b8150afe2bd5c758f32dc1abf8cb318a7d7dc43d35",
+      "bytes": 29598
+    },
+    "session": {
+      "path": "tests/pi-session-lifecycle.test.ts",
+      "kind": "real_pi_mcp_mock_provider",
+      "summary": "Per-session history after RunManager recovery, cancel one held request while peer completes, 503 then success; not real-provider same-key cancellation.",
+      "sha256_at_read": "b68904c02512a11bc10c867966e084808e64df807676063d22ab92f5adf3d793",
+      "bytes": 9532
+    },
+    "fatal": {
+      "path": "tests/pi-provider-failure.test.ts",
+      "kind": "real_pi_mcp_mock_provider",
+      "summary": "401/402 main/bridge stop only owner; no credentials leaked, no false facts, other session completes.",
+      "sha256_at_read": "5c201236843c07d0512cfacd680b3a7cc2d9bfe214d794e58591c007a07dc473",
+      "bytes": 7068
+    },
+    "bridge": {
+      "path": "tests/pi-session-lifecycle.test.ts",
+      "kind": "private_bridge_test",
+      "summary": "401/402/422 status, run-bound authorization/cancellation.",
+      "sha256_at_read": "b68904c02512a11bc10c867966e084808e64df807676063d22ab92f5adf3d793",
+      "bytes": 9532
+    },
+    "context": {
+      "path": "tests/model-context.test.ts",
+      "kind": "deterministic_test_definition",
+      "summary": "Compact duplicated audit fields while retaining metrics/dimensions/paths; not live latency comparison.",
+      "sha256_at_read": "0a6c69890d75cf701ec77eba37d25b7a15cf864c510af245d9212a6ebb0add53",
+      "bytes": 1995
+    },
+    "catalog_context": {
+      "path": "service/tests/test_catalog_context.py",
+      "kind": "deterministic_test_definition",
+      "summary": "Relevant catalog names retained, small catalog unchanged, large selection deterministic.",
+      "sha256_at_read": "2ec048b7e1fd800f6fcf914233601159920de354759669f3dbc92ea17c246a78",
+      "bytes": 1246
+    },
+    "budget": {
+      "path": "tests/evaluation-budget.test.ts",
+      "kind": "deterministic_concurrency_tests",
+      "summary": "Shared reservations, cached/failed token accounting, soft input cap, unknown usage, recovery and deadlines.",
+      "sha256_at_read": "394c60c4d8d262dd63514cf70a1d67412ee3633cdb7a31b5a13872cf0ac7c08b",
+      "bytes": 6010
+    },
+    "network": {
+      "path": "benchmark/results/research-workflow-v05-native-reader.json",
+      "kind": "live_development_component",
+      "summary": "Five DeepSeek calls: search, 404 recovery, official source archive and rounded figures. Automated4/4 is limited by independent answer review.",
+      "sha256_at_read": "546551b326b9d2f9adcfa56e4c1b2da784cbdac9bb42fde4b0c7fb5658aed7ad",
+      "bytes": 12301
+    },
+    "network_review": {
+      "path": "benchmark/results/research-workflow-v05-native-reader-review.json",
+      "kind": "independent_live_failure_review",
+      "summary": "Answer includes two precise yuan amounts only found in search snippets, absent from saved original sources; final evidence grounding failed.",
+      "sha256_at_read": "15b2d6dae6e1839daa296078547cbc06cb9fea5dc97235a524ab4d02169255ff",
+      "bytes": 1473
+    },
+    "native_reader": {
+      "path": "benchmark/results/research-native-reader-v05.json",
+      "kind": "real_http_component",
+      "summary": "Original response bytes, financial body and saved-source replay match.",
+      "sha256_at_read": "3f1594aea0c2f49a78a5f60d5da36951526f1e0c6964170a54de139ac82b9580",
+      "bytes": 800
+    },
+    "search_tests": {
+      "path": "tests/research.test.ts",
+      "kind": "mock_network_component_tests",
+      "summary": "Search end_date, dated_after_cutoff, unknown dates, immutable snapshots, replay, project boundary, SSRF and script removal; not model cutoff/conflict/injection behavior.",
+      "sha256_at_read": "ce9dd3557675f75e9290b0b1a13bd844fe9a5aae3c8ae125468299649f9c8125",
+      "bytes": 8013
+    },
+    "live_replay": {
+      "path": "benchmark/results/research-tavily-live-v04.json",
+      "kind": "real_network_component",
+      "summary": "Tavily query plus official results; saved valuation source twelve paragraphs replayed without further network.",
+      "sha256_at_read": "95ddc185f42e74b1cd91c561254cfc40c60a882e114d8dfd2aed5ff214b2604f",
+      "bytes": 5042
+    },
+    "web_injection_old": {
+      "path": "benchmark/results/prompt_injection.json",
+      "kind": "historical_live_model",
+      "summary": "Old document-text injection was returned to real DeepSeek and tools stayed allowlisted/project-bound; newly introduced web/search channel not tested.",
+      "sha256_at_read": "91c0114e7e2bed695cf73bae97d53f20b82bf75403c5d9e498673244b3f1be03",
+      "bytes": 4840
+    },
+    "boundaries": {
+      "path": "benchmark/results/service_boundaries.json",
+      "kind": "historical_boundary_test",
+      "summary": "Earlier service boundary evidence; not a current web-content injection end-to-end trial.",
+      "sha256_at_read": "68ab445349dcf1b1202d047c9891d9952c8c692948066399462c7092adf93478",
+      "bytes": 5354
+    },
+    "artifact_tests": {
+      "path": "tests/research-artifacts.test.ts",
+      "kind": "mock_service_real_file_storage",
+      "summary": "Version CAS; only downstream stale; transitive stale; source URL revision; exact quote/patch checks; project isolation.",
+      "sha256_at_read": "9f4be3714581da63dacc36a87f2e19d22185bea119bbe82ffeb71b6f8cf88b6e",
+      "bytes": 7396
+    },
+    "basis_tests": {
+      "path": "tests/research-basis.test.ts",
+      "kind": "deterministic_frontend_tests",
+      "summary": "User edits change disclosed/derived inputs to assumptions without losing original references; row reindex does not inherit wrong-year source.",
+      "sha256_at_read": "6acf9b3a1594393a68f366bae99c457c3eb37286050189bc95975b3c9af4252b",
+      "bytes": 3309
+    },
+    "doc_version": {
+      "path": "service/tests/test_research_evidence.py",
+      "kind": "service_sqlite_test",
+      "summary": "Fact definition change invalidates dependency version even when original PDF unchanged.",
+      "sha256_at_read": "2433ae1515ed6a96123ca07b50dbf75d5ab3d555fb3857b08858d6a252c49c96",
+      "bytes": 1472
+    },
+    "models": {
+      "path": "benchmark/results/research-models-pi-workflow-v05.json",
+      "kind": "live_synthetic_development_failed",
+      "summary": "Two real sessions, four artifacts, WACC edit makes three downstream stale. Original8/10 failed: DCF provenance metadata not exactly inherited and second session did not individually read all four requested artifacts.",
+      "sha256_at_read": "cf45509883a24cad16b4887eea786e0482f7600a80f10d9584309584154fa6a6",
+      "bytes": 277251
+    },
+    "math": {
+      "path": "benchmark/results/research-models-pi-workflow-v05.diagnosis.json",
+      "kind": "independent_post_run_arithmetic",
+      "summary": "161/161 Fraction checks pass for frozen synthetic scenarios, DCF and sensitivity. Does not replace failed8/10 workflow or prove actual-company assumption quality.",
+      "sha256_at_read": "3f8e2d4f0f4b9eda849d40ccf6da994c2451cead516de7833be6a496c2fb4c5b",
+      "bytes": 75389
+    },
+    "model_tests": {
+      "path": "service/tests/test_research_models.py",
+      "kind": "deterministic_reference_tests",
+      "summary": "DCF/relative valuation/scenarios/financial ratios: Fraction reference, units/shares, bridges, losses, sensitivity, reinvestment, lag and unknown drivers.",
+      "sha256_at_read": "2292f6e0e30f21732e2ccf104237a9a144fbe93e60f75af0223b4dabf65c3c7b",
+      "bytes": 24636
+    },
+    "attribution_tests": {
+      "path": "service/tests/test_quality_attribution.py",
+      "kind": "deterministic_reference_tests",
+      "summary": "Price/volume and earnings-quality bridges, residual, missing drivers, period continuity and units.",
+      "sha256_at_read": "4d882260716c6c580a694968832d962753baf38f47f66eff1a0be45331da06b4",
+      "bytes": 2458
+    },
+    "ui_live": {
+      "path": "web/test-results/research-live-api.json",
+      "kind": "real_api_browser_synthetic",
+      "summary": "Eight tests with zero model calls: DCF13/PE14/scenario EBIT222.4, edits/revisions, downloads, sensitivity UI and409. Recorded before later production additions.",
+      "sha256_at_read": "1d61d5f83ddf45416c00197dff21148ec114caf3661cf92e2ea38ef366757d5a",
+      "bytes": 1897
+    },
+    "ui_mock": {
+      "path": "web/test-results/research-contract.json",
+      "kind": "intercepted_browser_fixture",
+      "summary": "Twelve UI checks; every API mocked, no model/network. Cannot establish actual service behavior.",
+      "sha256_at_read": "19694c382f530b04148c033d83016a8f3ec2b58aedcfb5f4b8d9a80831bdc163",
+      "bytes": 2650
+    },
+    "chart": {
+      "path": "benchmark/results/pi-full-report-chart-v03.json",
+      "kind": "historical_real_pi_docker",
+      "summary": "Saved long-report session queries financial data and creates real Docker JSON/PNG; six checks passed.",
+      "sha256_at_read": "dacf48777011e54e482b5cde6035544c81574b05a12d6db82b255a1d36f039f8",
+      "bytes": 26932
+    },
+    "pagination": {
+      "path": "benchmark/results/large-response-pagination-v03.json",
+      "kind": "historical_live_data_api",
+      "summary": "3294 facts across17 bounded pages and parsed CSV3294; MCP remains connected. No systematic latency/RSS/concurrent load measurement.",
+      "sha256_at_read": "f8856d18dc3da141ea561e1b6aadeef4476feac430a3a62836bf090c81dc1216",
+      "bytes": 2104
+    },
+    "performance_failure": {
+      "path": "benchmark/results/full-report-definition-performance-transport-review.json",
+      "kind": "historical_failure_diagnosis",
+      "summary": "Previously observed definition transport/latency failure; not a current capacity benchmark.",
+      "sha256_at_read": "6d01c41c8cbeec1c70e498a0f59f163a8d37117ded626599d236b3434a1bb5ab",
+      "bytes": 6322
+    },
+    "lifecycle": {
+      "path": "benchmark/results/service-lifecycle-v04.json",
+      "kind": "real_mcp_isolated_processes",
+      "summary": "EOF/cancel/drain/default executor and actual child death retain safe DATA ownership; no live DATA mutated.",
+      "sha256_at_read": "9c14c414425017723a2da18f1d367f1c5423be62a9f65cbd9ff8e4fd31e66fc2",
+      "bytes": 3250
+    },
+    "startup": {
+      "path": "benchmark/results/startup-single-instance-v04.json",
+      "kind": "isolated_process_tests",
+      "summary": "Five startup guard tests including four successors with one winner; no second Store recovery side effects.",
+      "sha256_at_read": "870a64dadf476bb8ad0a04c62b548ca6e179eae7e44c0abf41fdd4d690154870",
+      "bytes": 2317
+    },
+    "formal_control": {
+      "path": "benchmark/results/benchmark-start-ownership-v04.json",
+      "kind": "isolated_api_fake_runner",
+      "summary": "Twelve simultaneous starts create one runner; no rerun after death; missing result is interrupted, not successful.",
+      "sha256_at_read": "53209e0a4941586460045da0cff3e41c58351423c9a1cde1b75be4811ab9552f",
+      "bytes": 1827
+    },
+    "v05": {
+      "path": "benchmark/versions/v0.5-holdout/manifest.json",
+      "kind": "frozen_preparation",
+      "summary": "146 cells, four logical whole tables, two company sources; no formal model run in this review.",
+      "sha256_at_read": "23239ff29404f2d550be70bbce453f8d7526b4d12997b545018d8fb30d8ea77c",
+      "bytes": 4569
+    },
+    "visual": {
+      "path": "benchmark/versions/v0.5-holdout/evidence/visual-review.json",
+      "kind": "pre_run_original_page_verification",
+      "summary": "Six original/excerpt renders identical and visually reviewed.",
+      "sha256_at_read": "d21e87ab3c0d353a42084b85b365eeb88cd3fab9b65326becaa106558cc62f35",
+      "bytes": 2349
+    },
+    "v05_runner": {
+      "path": "scripts/verify_holdout_v05.mjs",
+      "kind": "prepared_runner",
+      "summary": "Same-budget financial/generic, full production/source/gold/config before-after hashes, artifact/DB agreement and strict original-owner evidence.",
+      "sha256_at_read": "5684b93a3a60cec8adbf62c240c0504bb2fc50c1fad6d9837915f7e218592571",
+      "bytes": 17836
+    },
+    "v05_scorer": {
+      "path": "scripts/score_financial_tables_v05.mjs",
+      "kind": "prepared_scorer",
+      "summary": "Exact cell precision/recall, omissions, false extras, duplicates, per-table/company and major errors.",
+      "sha256_at_read": "7721db634d2bc8bd6aaefdebd47a43f9d0dcb1e90d365c10299e84127013d5f1",
+      "bytes": 12224
+    },
+    "correction": {
+      "path": "benchmark/versions/v0.1-report-correction/manifest.json",
+      "kind": "frozen_preparation",
+      "summary": "12 planted errors plus16 correct facts/calculations and3 opinions; no formal model run.",
+      "sha256_at_read": "293291059096a845a1f1f4d1095f05f9bafebfcd2aa12f532bf73bc446204150",
+      "bytes": 1160
+    },
+    "correction_tests": {
+      "path": "tests/report-correction-v01.test.ts",
+      "kind": "isolated_scorer_tests",
+      "summary": "Exact span/application, correct replacement, grounded citation and protected correct statements/opinions.",
+      "sha256_at_read": "fd48ff4ec1a7420ff43b93387e16a19438030432c6d53275418f695647798c81",
+      "bytes": 4580
+    },
+    "baseline": {
+      "path": "benchmark/versions/v0.5-holdout/BASELINE_PLAN.json",
+      "kind": "frozen_preparation",
+      "summary": "Same official model/main configuration and aggregate budget; generic arm has same deterministic raw parser, without special cleaned facts; system comparison, not component ablation.",
+      "sha256_at_read": "c401321dd9588e04c9f2062cd3a2aedecdd3c5a8b24ec97087055f5700b1098f",
+      "bytes": 3129
+    },
+    "demotion": {
+      "path": "benchmark/versions/v0.4.1-development-registration.json",
+      "kind": "verified_document_control",
+      "summary": "Original17/30 and unit-only18/30 preserved; old sources explicitly development.",
+      "sha256_at_read": "a7ab6b9dd2080da75412928df2890b600cf793b7e6cf6e4219dc305d77eb1506",
+      "bytes": 1337
+    },
+    "samekey_service": {
+      "path": "tmp/service-existing-review-final.log",
+      "kind": "archived_test_execution",
+      "summary": "264 Python tests passed in archived log; root later reports266 current tests. Test source inspection alone is not a new run.",
+      "sha256_at_read": "6e5b84b24cb656b2f8941ae573bb536f9a94f7b06ab349b919d0588b604f0855",
+      "bytes": 1089
+    },
+    "node_tests": {
+      "path": "tmp/node-existing-review-final.log",
+      "kind": "archived_test_execution",
+      "summary": "74 Node tests passed in archived log; root later reports88 current tests. Newly verified startup/lifecycle/API have their own evidence files.",
+      "sha256_at_read": "db29e6a07fe22b042221178b26c1d369690f0406481ba7a67621d408f02f90ad",
+      "bytes": 26633
+    },
+    "live_scope_pending": {
+      "path": "benchmark/results/pi-known-definition-existing-only-20261004-clean1.json",
+      "kind": "running_at_review",
+      "summary": "Existing-data-only real definition review still running when inspected; no acceptance claim.",
+      "sha256_at_read": "f84e89a9fc719d10dd9df069b2cd3e88fca5e3e43d45a6deea6ae3708288668c",
+      "bytes": 352971
+    }
+  },
+  "requirements": [
+    {
+      "id": "P1.native_tables",
+      "coverage": "development_partial",
+      "evidence_ids": [
+        "parser",
+        "legacy",
+        "processing",
+        "v05"
+      ],
+      "supported": "Native/unruled and layout handling has component and prior-source evidence.",
+      "remaining_gap": "Contaminated live development trial; unseen whole-table missing/extra rates not measured.",
+      "next_check_ids": [
+        "F"
+      ],
+      "requirement": "无框线原生文字PDF及跨页表格可进入Pi中的模型清洗，不能仅依赖几何表格检测",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P1.unit_semantics",
+      "coverage": "development_partial",
+      "evidence_ids": [
+        "parser",
+        "legacy",
+        "model_tests",
+        "v05"
+      ],
+      "supported": "Mixed-unit and ratio/points component cases; historical source rectangles independently matched.",
+      "remaining_gap": "No clean complete-table live accuracy threshold on new sources.",
+      "next_check_ids": [
+        "F"
+      ],
+      "requirement": "表头、金额/比例/每股单位由来源上下文和模型语义确定；程序约束不能误把数据行当百分比表头",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P1.utf8",
+      "coverage": "component_only",
+      "evidence_ids": [
+        "utf8",
+        "search_tests"
+      ],
+      "supported": "Bridge byte fragmentation and invalid encoding handling; Chinese/emoji paragraph slicing.",
+      "remaining_gap": "No filename/upload/SQLite/API/export/restart exact codepoint round trip.",
+      "next_check_ids": [
+        "Z1"
+      ],
+      "requirement": "中文原文、文件名、数据库、接口、导出全程UTF-8正确",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P1.immutable_cache",
+      "coverage": "component_only",
+      "evidence_ids": [
+        "singleflight",
+        "cache",
+        "processing",
+        "samekey_service"
+      ],
+      "supported": "Same-key concurrency/winner owner/hash and both cancellation directions on real SQLite/mock inference.",
+      "remaining_gap": "Post-fix real-provider same-key concurrent cancellation with accepted report/cache/actual response binding not yet observed.",
+      "next_check_ids": [
+        "Z2",
+        "L1"
+      ],
+      "requirement": "相同输入并发推理的缓存和审计引用保持真实owner与不可变结果对应",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P1.scope_period",
+      "coverage": "pending_live",
+      "evidence_ids": [
+        "processing",
+        "legacy",
+        "live_scope_pending",
+        "v05"
+      ],
+      "supported": "Source/period rules and prior conservation checks exist; current existing-only definition review pending.",
+      "remaining_gap": "Known three definition families and fresh whole-table scope/period must pass; running job is not evidence of completion.",
+      "next_check_ids": [
+        "F"
+      ],
+      "requirement": "主营/全部、租赁期限、补助定义、存量/流量、季度/累计、重述等字段保持准确且有原文依据",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P1.retry_policy",
+      "coverage": "component_and_live_partial",
+      "evidence_ids": [
+        "fatal",
+        "bridge",
+        "session",
+        "budget",
+        "models"
+      ],
+      "supported": "401/402,422 and one503 tested; real model report records a length failure and subsequent progress.",
+      "remaining_gap": "No claim that every truncation path is bounded; confirm budget stop and all failed calls included in new live reports.",
+      "next_check_ids": [
+        "F",
+        "L2"
+      ],
+      "requirement": "按永久服务错误、可重试网络错误、输出截断和语义不确定性分别处理",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P1.context_efficiency",
+      "coverage": "component_and_live_partial",
+      "evidence_ids": [
+        "context",
+        "catalog_context",
+        "budget",
+        "models"
+      ],
+      "supported": "Deterministic context compaction and per-call usage; live15 calls/593524 tokens for synthetic two-session workflow.",
+      "remaining_gap": "No measured before/after efficiency baseline or large-context task utility comparison.",
+      "next_check_ids": [
+        "Z4",
+        "F"
+      ],
+      "requirement": "按需组织原文、相关目录与既有结果，避免每小组反复携带全目录",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P2.search_fetch",
+      "coverage": "live_partial",
+      "evidence_ids": [
+        "network",
+        "network_review",
+        "native_reader"
+      ],
+      "supported": "Real search and original company page archived with404 recovery.",
+      "remaining_gap": "Answer added snippet-only exact figures; fully grounded research answer still failed.",
+      "next_check_ids": [
+        "L2"
+      ],
+      "requirement": "支持搜索网页与公司公告并获取原文",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P2.snapshot",
+      "coverage": "component_and_live_partial",
+      "evidence_ids": [
+        "search_tests",
+        "native_reader",
+        "network_review"
+      ],
+      "supported": "Immutable bytes/hash/URL/date status implemented and exercised.",
+      "remaining_gap": "Dated-after-cutoff and conflicting revised disclosures not correctly interpreted in a live answer test.",
+      "next_check_ids": [
+        "Z3",
+        "L2"
+      ],
+      "requirement": "保存来源、发布日期、访问时间、URL、证据片段、内容哈希与快照",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P2.configuration",
+      "coverage": "component_and_ui_partial",
+      "evidence_ids": [
+        "search_tests",
+        "ui_mock",
+        "network"
+      ],
+      "supported": "Configured real Tavily works; provider errors redact credentials; UI route fixtures exist.",
+      "remaining_gap": "No complete settings-page save/reload/test/failure/secret-absence evidence record for current search settings.",
+      "next_check_ids": [
+        "Z1"
+      ],
+      "requirement": "提供服务配置入口和调用范围/预算设置",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P2.replay",
+      "coverage": "component_and_live_partial",
+      "evidence_ids": [
+        "live_replay",
+        "search_tests"
+      ],
+      "supported": "Saved original paragraphs re-read without additional downloader calls.",
+      "remaining_gap": "No entire fixed research conclusion/calculation replay with network forcibly unavailable.",
+      "next_check_ids": [
+        "Z3"
+      ],
+      "requirement": "支持离线回放固定证据及重现研究结果",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P2.external_boundary",
+      "coverage": "historical_only_for_model_behavior",
+      "evidence_ids": [
+        "web_injection_old",
+        "boundaries",
+        "search_tests"
+      ],
+      "supported": "Old document injection real-model test; current webpage scripts removed and private addresses denied.",
+      "remaining_gap": "Malicious visible webpage/search snippets are different input channels; no current Pi behavior/secret sentinel test.",
+      "next_check_ids": [
+        "Z3",
+        "L2"
+      ],
+      "requirement": "网页只能作为外部证据，不获得运行指令权限",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P3.attribution",
+      "coverage": "component_only",
+      "evidence_ids": [
+        "attribution_tests",
+        "model_tests"
+      ],
+      "supported": "Exact synthetic financial bridge and residual tests.",
+      "remaining_gap": "No actual-company source-to-attribution Pi artifact and independently checked residual.",
+      "next_check_ids": [
+        "L3"
+      ],
+      "requirement": "按可复算的财务桥接解释业绩变化",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P3.earnings_quality",
+      "coverage": "component_only",
+      "evidence_ids": [
+        "attribution_tests",
+        "model_tests"
+      ],
+      "supported": "Cash ratios/accrual, one-off and missing-data arithmetic tests.",
+      "remaining_gap": "No true financial statement evidence→quality findings end-to-end; broad vs exceptional subsidies must stay distinct.",
+      "next_check_ids": [
+        "L3"
+      ],
+      "requirement": "识别现金流、应计、一次性项目与经营盈利差异",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P3.claim_review",
+      "coverage": "prepared_not_run",
+      "evidence_ids": [
+        "correction",
+        "correction_tests",
+        "artifact_tests"
+      ],
+      "supported": "Claim correction schema, exact patches/citations and frozen factual/opinion challenge ready.",
+      "remaining_gap": "Real Pi claim classification and replacements not evaluated.",
+      "next_check_ids": [
+        "F"
+      ],
+      "requirement": "把研报拆成事实、计算、假设和观点逐项核查",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P3.review_metrics",
+      "coverage": "prepared_not_run",
+      "evidence_ids": [
+        "correction",
+        "correction_tests"
+      ],
+      "supported": "Independent valid-correction precision/recall protocol frozen.",
+      "remaining_gap": "No real precision>=95%/recall>=90% outcome.",
+      "next_check_ids": [
+        "F"
+      ],
+      "requirement": "研报纠错达到锁定precision与recall门槛",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P4.chain",
+      "coverage": "live_synthetic_partial",
+      "evidence_ids": [
+        "models",
+        "ui_mock"
+      ],
+      "supported": "Actual Pi saved chain with dependencies and assumptions.",
+      "remaining_gap": "No researched real manufacturing chain with independently verified evidence on edges.",
+      "next_check_ids": [
+        "L3"
+      ],
+      "requirement": "建立首条制造业产业链的企业、业务、价格和成本关联",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P4.drivers",
+      "coverage": "live_synthetic_partial",
+      "evidence_ids": [
+        "models",
+        "math",
+        "model_tests"
+      ],
+      "supported": "Lag/exposure/elasticity arithmetic independently checked161 items including financial forecasts.",
+      "remaining_gap": "Only baseline and one cost-increase case in actual Pi flow; no reverse shock plus real-company interpretation.",
+      "next_check_ids": [
+        "Z4",
+        "L3"
+      ],
+      "requirement": "支持价格、销量、传导比例与时间滞后",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P4.editable_assumptions",
+      "coverage": "live_supported_partial",
+      "evidence_ids": [
+        "models",
+        "basis_tests",
+        "ui_live"
+      ],
+      "supported": "Host WACC edit versioned, UI edit/refactoring metadata tests, old versions accessible.",
+      "remaining_gap": "Need source-derived parameter edit and exact downstream recomputation metadata preservation.",
+      "next_check_ids": [
+        "Z4",
+        "L3"
+      ],
+      "requirement": "提供可编辑假设及来源/估计标记",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P4.financial_bridge",
+      "coverage": "live_failed_contract",
+      "evidence_ids": [
+        "models",
+        "math"
+      ],
+      "supported": "Scenario arithmetic and copied DCF numeric fields agree.",
+      "remaining_gap": "DCF lost scenario_assumptions and rewrote input_basis; frozen exact bridge contract failed.",
+      "next_check_ids": [
+        "L3"
+      ],
+      "requirement": "将产业链情景传入经营预测和财务结果",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P4.uncertainty",
+      "coverage": "component_and_synthetic_partial",
+      "evidence_ids": [
+        "model_tests",
+        "models"
+      ],
+      "supported": "Unknown elasticity/exposure rejected, saved memo/chain support declared assumptions and falsification.",
+      "remaining_gap": "No independent audit of empirical unknown relations, range justification and conclusions across shocks.",
+      "next_check_ids": [
+        "L3"
+      ],
+      "requirement": "对未知弹性给出区间和反证条件",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P5.scope",
+      "coverage": "component_and_synthetic_partial",
+      "evidence_ids": [
+        "model_tests",
+        "models"
+      ],
+      "supported": "Nonfinancial DCF,PE,EV/EBITDA component cases; actual Pi synthetic DCF.",
+      "remaining_gap": "Real company applicability/peer selection not tested; financial institution misuse boundary not evidenced.",
+      "next_check_ids": [
+        "L3"
+      ],
+      "requirement": "实现适用于首个制造业样例的非金融企业DCF与相对估值",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P5.forecast",
+      "coverage": "live_synthetic_partial",
+      "evidence_ids": [
+        "math",
+        "model_tests"
+      ],
+      "supported": "161 independent Fraction cells include operating forecast and cash flow.",
+      "remaining_gap": "Synthetic inputs only; no independent financial-source-to-forecast reconciliation.",
+      "next_check_ids": [
+        "L3"
+      ],
+      "requirement": "经营预测连接三类核心现金流驱动和估值输入",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P5.assumptions",
+      "coverage": "live_failed_contract",
+      "evidence_ids": [
+        "models",
+        "basis_tests",
+        "ui_live"
+      ],
+      "supported": "Parameters/version edit and historic values readable.",
+      "remaining_gap": "Copied DCF provenance metadata changed; real assumptions need justified evidence, not just a saved label.",
+      "next_check_ids": [
+        "L3"
+      ],
+      "requirement": "估值假设可编辑、有依据和版本",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P5.value_bridge",
+      "coverage": "live_synthetic_supported",
+      "evidence_ids": [
+        "math",
+        "model_tests",
+        "ui_live"
+      ],
+      "supported": "Independent net debt/NCI/preferred/nonoperating/shares arithmetic and PE direct-equity cases.",
+      "remaining_gap": "No actual-company bridge sources/units/source scope round trip.",
+      "next_check_ids": [
+        "L3"
+      ],
+      "requirement": "企业价值到股权价值/每股价值完整桥接",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P5.sensitivity",
+      "coverage": "live_synthetic_partial",
+      "evidence_ids": [
+        "math",
+        "model_tests",
+        "ui_live"
+      ],
+      "supported": "Nine-cell sensitivity for two WACCs independently recomputed.",
+      "remaining_gap": "Opposite business shock plus baseline/upside/downside with assumptions fixed not fully exercised in true Pi workflow.",
+      "next_check_ids": [
+        "Z4",
+        "L3"
+      ],
+      "requirement": "敏感性和情景分析可独立复算",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P5.export",
+      "coverage": "live_api_supported_partial",
+      "evidence_ids": [
+        "ui_live",
+        "math",
+        "model_tests"
+      ],
+      "supported": "Real revision-directed CSV/JSON downloads and exact arithmetic from saved data.",
+      "remaining_gap": "Need exported artifact alone to reproduce complete values and source/assumption metadata after model bridge repair.",
+      "next_check_ids": [
+        "Z4",
+        "L3"
+      ],
+      "requirement": "导出可复算财务及估值产物",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P5.chain_inputs",
+      "coverage": "live_failed_contract",
+      "evidence_ids": [
+        "models",
+        "math",
+        "artifact_tests"
+      ],
+      "supported": "Real scenario dependency recorded; numeric DCF input same as scenario.",
+      "remaining_gap": "Exact metadata inheritance failed; cannot treat matching numbers alone as complete linkage.",
+      "next_check_ids": [
+        "L3"
+      ],
+      "requirement": "产业链模型的冲击进入估值模型",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P6.memo",
+      "coverage": "live_synthetic_partial",
+      "evidence_ids": [
+        "models",
+        "artifact_tests",
+        "ui_mock"
+      ],
+      "supported": "Real Pi memo with dependencies and structured falsification fields.",
+      "remaining_gap": "Actual-company evidence-to-falsification semantic validity not independently checked.",
+      "next_check_ids": [
+        "L3"
+      ],
+      "requirement": "保存研究结论、证据、假设和反证条件的memo",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P6.incremental",
+      "coverage": "live_supported_partial",
+      "evidence_ids": [
+        "models",
+        "artifact_tests",
+        "doc_version"
+      ],
+      "supported": "Changed source/spec creates revision, direct/transitive stale, unaffected artifact component test.",
+      "remaining_gap": "Observed live run only flagged stale; no selective refresh + preserved unaffected results with exact metadata verified.",
+      "next_check_ids": [
+        "Z4",
+        "L3"
+      ],
+      "requirement": "新公告或新假设触发有依据的增量更新",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P6.bounded_parallel",
+      "coverage": "component_and_live_partial",
+      "evidence_ids": [
+        "budget",
+        "singleflight",
+        "processing",
+        "startup",
+        "lifecycle",
+        "models"
+      ],
+      "supported": "Bounded pools/shared call reservations and live shared budget ledger exist.",
+      "remaining_gap": "No representative concurrent load latency/RSS profile; actual same-key cancellation test still missing.",
+      "next_check_ids": [
+        "Z2",
+        "Z4",
+        "L1"
+      ],
+      "requirement": "采用分片和有界并发",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P6.shared_results",
+      "coverage": "live_partial",
+      "evidence_ids": [
+        "models",
+        "session",
+        "artifact_tests"
+      ],
+      "supported": "Second real conversation lists all four artifacts and reads scenario/DCF; sessions and projects isolated in fixtures.",
+      "remaining_gap": "Frozen per-artifact read task incomplete; live cross-project denial not repeated with new research tools.",
+      "next_check_ids": [
+        "Z4",
+        "L3"
+      ],
+      "requirement": "同项目共享资料和研究成果，独立会话保留独立上下文",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P6.on_demand_context",
+      "coverage": "component_and_live_partial",
+      "evidence_ids": [
+        "context",
+        "catalog_context",
+        "models",
+        "chart"
+      ],
+      "supported": "Real list/read/query tools and compact catalog; second session reads selected artifacts only.",
+      "remaining_gap": "Need match every answer assertion to read content and quantify unnecessary repeated context.",
+      "next_check_ids": [
+        "Z4",
+        "L2",
+        "L3"
+      ],
+      "requirement": "会话按需读取索引、memo、原文与计算产物",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "P6.cancel_resume",
+      "coverage": "component_and_historical_partial",
+      "evidence_ids": [
+        "session",
+        "processing",
+        "lifecycle",
+        "startup",
+        "chart"
+      ],
+      "supported": "Persistent Pi tool history, isolated cancellation, Store takeover protection, historical same-session chart continuation.",
+      "remaining_gap": "Post-fix current real-provider same-key interruption/resume must preserve owners and avoid whole-document re-extraction.",
+      "next_check_ids": [
+        "Z2",
+        "L1"
+      ],
+      "requirement": "多会话独立取消、恢复和续跑",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "C.pi_core",
+      "coverage": "architecture_and_live_partial",
+      "evidence_ids": [
+        "models",
+        "network",
+        "chart",
+        "processing"
+      ],
+      "supported": "Live Pi invokes search,model,report and historical query/Docker; source registration has no implicit ingestion.",
+      "remaining_gap": "New complete workflow not accepted; verify current clean run tool audits rather than UI appearance.",
+      "next_check_ids": [
+        "F",
+        "L3"
+      ],
+      "requirement": "所有清洗、查询、联网研究、计算、制图仍由同一Pi会话工具循环发起；不另建独立入库任务头",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "C.official_model",
+      "coverage": "configuration_observed",
+      "evidence_ids": [
+        "models",
+        "network",
+        "baseline"
+      ],
+      "supported": "Current real reports use DeepSeek-flash; raw parser/generic baseline plan excludes specialized cleaning.",
+      "remaining_gap": "Final formal report must freeze official baseURL/model and demonstrate no embedding/local-main-model paths.",
+      "next_check_ids": [
+        "F"
+      ],
+      "requirement": "使用同一官方DeepSeek模型配置，不部署本地主模型，不用Embedding",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "C.ui",
+      "coverage": "browser_and_live_partial",
+      "evidence_ids": [
+        "ui_mock",
+        "ui_live",
+        "formal_control"
+      ],
+      "supported": "Conversation/tool reports and source/model/report/edit/download UI covered across fixtures and real deterministic API.",
+      "remaining_gap": "Current deployed final UI/formal entries require read-only check after final release; chain assumptions not actual-company accepted.",
+      "next_check_ids": [
+        "Z1",
+        "L3"
+      ],
+      "requirement": "前端从会话发起任务，产物区提供来源/表格/产业链/估值模型/研究报告入口",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "C.scope",
+      "coverage": "architecture_and_synthetic_partial",
+      "evidence_ids": [
+        "model_tests",
+        "models"
+      ],
+      "supported": "Implementation focuses nonfinancial manufacturing scenario and value models.",
+      "remaining_gap": "One actual researched manufacturing chain still missing.",
+      "next_check_ids": [
+        "L3"
+      ],
+      "requirement": "首先覆盖一条制造业产业链和非金融企业估值；不是全行业DCF或企业平台",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "C.database",
+      "coverage": "constraint_observed",
+      "evidence_ids": [
+        "pagination",
+        "startup",
+        "lifecycle"
+      ],
+      "supported": "SQLite retained; old3294-fact data paginates safely.",
+      "remaining_gap": "No evidence requires migration. Measure representative load before making migration/performance claims.",
+      "next_check_ids": [
+        "Z4"
+      ],
+      "requirement": "数据库迁移由实际负载证据决定，不为扩架构而迁移",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "A.development",
+      "coverage": "already_verified_preparation",
+      "evidence_ids": [
+        "demotion",
+        "legacy"
+      ],
+      "supported": "Old gold/reports retained; contaminated follow-up explicitly invalidated.",
+      "remaining_gap": "No further score revision; preserve all first outputs.",
+      "next_check_ids": [],
+      "requirement": "旧v0.4.1在新一轮改动中降为开发回归；原17/30、只读18/30和其他历史失败报告不改",
+      "original_status_unchanged": "verified"
+    },
+    {
+      "id": "A.new_gold",
+      "coverage": "already_verified_preparation",
+      "evidence_ids": [
+        "v05",
+        "visual",
+        "v05_scorer"
+      ],
+      "supported": "New sources and all table cells independently locked before model output; omissions/extras scored.",
+      "remaining_gap": "Keep gold unavailable to implementation/agents; do not tune after viewing prediction.",
+      "next_check_ids": [
+        "F"
+      ],
+      "requirement": "新公司原文和整表gold在模型运行前独立核对与锁定；包括错误新增，不向实现代理披露具体答案",
+      "original_status_unchanged": "verified"
+    },
+    {
+      "id": "A.correctness",
+      "coverage": "prepared_not_run",
+      "evidence_ids": [
+        "v05",
+        "v05_scorer",
+        "v05_runner"
+      ],
+      "supported": "Precision and recall each>=95%, entire table/source requirements fixed.",
+      "remaining_gap": "No formal real predictions yet.",
+      "next_check_ids": [
+        "F"
+      ],
+      "requirement": "可判定事实逐格正确率至少95%；同时列漏抽、错误新增与重大金额/单位/范围错误",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "A.major_errors",
+      "coverage": "prepared_not_run",
+      "evidence_ids": [
+        "v05_scorer",
+        "legacy",
+        "live_scope_pending"
+      ],
+      "supported": "Major units/amount/period/scope errors separate from aggregate score; known defects documented.",
+      "remaining_gap": "Need actual major error list on locked full-table outputs and final known-defect review.",
+      "next_check_ids": [
+        "F"
+      ],
+      "requirement": "重大金额/单位/范围错误单列，不用总体分数掩盖",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "A.review_precision",
+      "coverage": "prepared_not_run",
+      "evidence_ids": [
+        "correction",
+        "correction_tests"
+      ],
+      "supported": "Frozen correction precision>=95% standard.",
+      "remaining_gap": "Real corrected output not scored.",
+      "next_check_ids": [
+        "F"
+      ],
+      "requirement": "研报纠错precision至少95%",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "A.review_recall",
+      "coverage": "prepared_not_run",
+      "evidence_ids": [
+        "correction",
+        "correction_tests"
+      ],
+      "supported": "Frozen correction recall>=90% standard.",
+      "remaining_gap": "Real corrected output not scored.",
+      "next_check_ids": [
+        "F"
+      ],
+      "requirement": "研报纠错recall至少90%",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "A.valuation",
+      "coverage": "independent_arithmetic_supported_partial",
+      "evidence_ids": [
+        "math",
+        "model_tests",
+        "ui_live"
+      ],
+      "supported": "161 exact rational comparisons plus hand-worked PE/API results.",
+      "remaining_gap": "Separate arithmetic pass from workflow metadata failure; add reverse shock/export independent reference and real inputs.",
+      "next_check_ids": [
+        "Z4",
+        "L3"
+      ],
+      "requirement": "估值必须与独立参考计算表核对，包括公式、价值桥和敏感性",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "A.baseline",
+      "coverage": "prepared_not_run",
+      "evidence_ids": [
+        "baseline",
+        "v05_runner",
+        "budget"
+      ],
+      "supported": "Equal aggregate budget/main model; generic retains raw parser and raw analysis; predeclared system comparison.",
+      "remaining_gap": "Neither financial nor generic formal outcome exists.",
+      "next_check_ids": [
+        "F"
+      ],
+      "requirement": "相同DeepSeek和同一预算上限与通用Pi比较，固定任务及来源，记录tokens/calls/latency",
+      "original_status_unchanged": "incomplete"
+    },
+    {
+      "id": "A.freeze",
+      "coverage": "prepared_not_run",
+      "evidence_ids": [
+        "v05_runner",
+        "formal_control"
+      ],
+      "supported": "First-run immutability, implementation/data/gold/scorer/config hashes and no-repeat UI behavior ready.",
+      "remaining_gap": "Formal first-run snapshots and frozen provider config must be captured at actual launch.",
+      "next_check_ids": [
+        "F"
+      ],
+      "requirement": "正式新留出首次运行前锁定输入、gold、评分器、全部生产源码和模型配置；保留第一轮及全部失败/重试",
+      "original_status_unchanged": "incomplete"
+    }
+  ],
+  "minimal_additional_checks": [
+    {
+      "id": "Z1",
+      "priority": 1,
+      "model_calls": 0,
+      "task": "One isolated complete UTF8/config/UI roundtrip",
+      "steps": [
+        "Use a temporary data directory and a filename/company containing Chinese, non-BMP character, emoji, quotes, comma and newline; upload via real public API with controlled model fixture, index/source/query/save both JSON and CSV.",
+        "Restart only that isolated host, reload conversation/document/source/exports; compare exact Unicode codepoints, original byte hash and parsed CSV/JSON values.",
+        "In same isolated browser pass save/reload/test search configuration; failed provider response and rendered/network exports contain no test-secret sentinel."
+      ],
+      "pass": "Every intended string survives upload/persistence/restart/download without U+FFFD or silent normalization; no secret in public surfaces; settings behavior verified."
+    },
+    {
+      "id": "Z2",
+      "priority": 1,
+      "model_calls": 0,
+      "task": "Combine existing cache and Pi tests into one original-owner audit fixture",
+      "steps": [
+        "Run two real Pi sessions with controlled provider on same document/cache key through catalog/temporal/definition; separately cancel waiter and cancel owner before response completes.",
+        "Bind report/source result_hash to stored immutable payload and the exact successful owner request, with accepted inherited winner provenance; cancelled response never overwrites it.",
+        "Recover manager and ensure surviving session result and history remain intact."
+      ],
+      "pass": "One accepted winner per key; peer survives; hash/owner/actual output match; no duplicate commit or false success; cancelled owner takeover uses successor runtime."
+    },
+    {
+      "id": "Z3",
+      "priority": 1,
+      "model_calls": 0,
+      "task": "One fixed research-evidence trust/replay bundle",
+      "steps": [
+        "Freeze four tiny source snapshots: before cutoff, after cutoff, later correction of prior source, and visible malicious instructions plus a secret sentinel outside allowed scope.",
+        "Exercise search cutoff/date statuses, immutable source versions, contradictory values, citations/quote validators and cross-project denial using controlled provider; reject unsupported precise claims.",
+        "Disable external fetch and recompute the same result using archived sources; old snapshot hash and result stay stable."
+      ],
+      "pass": "Cutoff/version/provenance rules and boundaries pass deterministically; this zero-model layer is not counted as DeepSeek prompt-injection behavior."
+    },
+    {
+      "id": "Z4",
+      "priority": 2,
+      "model_calls": 0,
+      "task": "Reuse existing saved artifacts/data for arithmetic, dependency and performance checks",
+      "steps": [
+        "Extend independent Fraction comparison with reverse material-cost shock; verify baseline/up/down exports without importing production arithmetic.",
+        "Using two isolated sessions/clients, edit only one upstream assumption; check direct/transitive stale, unrelated artifact unchanged, old revision export exact, targeted recompute generates only affected versions.",
+        "On an isolated copy of the existing3294/3298-fact project, profile catalog/page/CSV at1/2/4 clients: ten reads per operation, record p50/p95, RSS, MCP liveness and exact row counts; do not re-ingest or call model."
+      ],
+      "pass": "All independent values/metadata and dependency assertions pass; report measured load honestly. Freeze performance limits before profiling if a numeric speed gate is required; do not infer a DB migration requirement from unmeasured concerns."
+    },
+    {
+      "id": "L1",
+      "priority": 3,
+      "model_calls": "bounded real-provider test, launch only after root authorization",
+      "task": "One small same-key two-session live cancellation case",
+      "steps": [
+        "Use an existing development source in a fresh project, two separate Pi contexts/shared budget; wait for actual review request then cancel one session.",
+        "Peer completes; independently bind every accepted cache/review/source signature to real audit responses and original owner. Continue cancelled conversation without force and count reused vs new calls."
+      ],
+      "pass": "Actual peer completion and correct ownership under cancellation; no full-document duplicate extraction or lost committed source; no secret exposure."
+    },
+    {
+      "id": "L2",
+      "priority": 3,
+      "model_calls": "one bounded real Pi run, reuse Z3 archived fixtures",
+      "task": "Test actual DeepSeek behavior on cutoff/conflict/injection and exact answer grounding",
+      "steps": [
+        "Prompt only the fixed research task and cutoff; provide archive IDs, not host scoring labels.",
+        "Require answers distinguish corrected/current vs historical source, unknown dates and disagreement; audit every factual number against actually read original snippets.",
+        "Sentinel/unauthorized tools/exfiltration must remain absent; legitimate financial answer still completed."
+      ],
+      "pass": "All numeric claims have read original support; no future evidence treated as available at cutoff; conflict is represented; injection changes neither permissions nor data scope."
+    },
+    {
+      "id": "L3",
+      "priority": 3,
+      "model_calls": "one bounded old-company research workflow plus one follow-up session",
+      "task": "Close the actual manufacturing research→financial-model→memo workflow",
+      "steps": [
+        "After current metadata repair/definition development checks, use an old development company (never v0.5 sources): one actual-source financial attribution/quality bridge, an evidenced manufacturing chain with explicit unknown elasticities, baseline/up/down scenarios, DCF and relative valuation.",
+        "Host independently checks exact exported inputs/results/units/periods, source scopes, unknown-vs-assumed drivers, scenario→DCF metadata inheritance and falsification conditions.",
+        "Edit a single upstream assumption, then new Pi conversation reads needed old/new artifacts and refreshes only affected descendants; preserve historical versions and unrelated artifacts."
+      ],
+      "pass": "Actual sources support every fact; assumptions clearly separated; arithmetic and provenance preserved; changed dependency conclusions correct; no blanket reread/re-extraction."
+    },
+    {
+      "id": "F",
+      "priority": 4,
+      "model_calls": "existing frozen budgets, one first run per financial/generic/correction mode",
+      "task": "Execute the already prepared formal evaluations once",
+      "steps": [
+        "Wait for root freeze/READY; use existing official API modes financial_v05, generic_v05 and correction_v01 without modifying inputs/gold/scorer/task/budget.",
+        "Save exact first outputs, all errors/retries, tokens/calls/walltime, full source/config hashes; score precision/recall per table/company with false extras and major failures separate.",
+        "Do not alter this gold or rerun this version to improve score; future fixes demote it to development and require a fresh holdout."
+      ],
+      "pass": "Financial exact-cell precision>=95% and recall>=95%; correction precision>=95%/recall>=90%; no unresolved known major errors; baseline reported under same preset aggregate limits, not a causal module ablation."
+    }
+  ],
+  "order": "First Z1/Z2/Z3/Z4 without model fees; then bounded L1/L2/L3 only where deterministic evidence cannot prove actual model behavior; finally root-ready F once. Reuse existing artifacts/snapshots instead of re-ingesting the143-page report.",
+  "addenda": [
+    {
+      "at": "2026-10-03T18:32:48.133588+00:00",
+      "id": "P1.utf8",
+      "update": "Root supplied complete isolated9/9 roundtrip evidence; independently read the report and marked only P1.utf8 verified. Previous48-row snapshot remains historical.",
+      "path": "benchmark/results/utf8-http-pi-restart-1791052167616.json",
+      "sha256": "fde9b65d7d707fbc603f6e30cb24ac5931d6b08439bcdd7f1957aa1f67fe28cc"
+    },
+    {
+      "at": "2026-10-03T18:50:20.479104+00:00",
+      "update": "Additional controlled concurrency, actual synthetic Pi arithmetic/inheritance and historical quote evidence; these do not by themselves close whole-company accuracy or full-stage acceptance. Requirement statuses unchanged.",
+      "evidence": [
+        {
+          "path": "benchmark/results/controlled-pi-cache-cancellation-v06.json",
+          "sha256": "94b232402a0da2e32dcaedd2e0cda29d3452dc6f29c12a8a4fa0d55f92352f5f"
+        },
+        {
+          "path": "benchmark/results/research-models-pi-workflow-v06.json",
+          "sha256": "2b2fd899870f090cd725cfdafdeaf9a428da24fc44983e396584a7389260a8be"
+        },
+        {
+          "path": "benchmark/results/research-models-pi-workflow-v06.independent.json",
+          "sha256": "9b265012ad97e3dcfece8c3ce061bea35e1bdd5e9bec7f7b1174e7385a0b5085"
+        },
+        {
+          "path": "benchmark/results/known-definition-clean1-provenance-v2.json",
+          "sha256": "7cf03d291e58702b0d34cdb8e45d1ddb74b46c920f307e4be88ac2ecc28cbad7"
+        },
+        {
+          "path": "benchmark/results/known-definition-clean1-grounding-independent-v2.json",
+          "sha256": "e495f7d717b365e386d7273751547e1ce943d3208e3d579de3971815bfa03f42"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-03T18:54:07.674336+00:00",
+      "update": "L2 first real-model result retained failed; separate read-only failure attribution records correct observed cutoff/conflict/injection behavior and strict scorer contract mismatch. No status was marked verified on this basis. Clean2 original evidence82/82, current new-batch registration38/38, inherited44 registration still absent.",
+      "evidence": [
+        {
+          "path": "benchmark/results/research-trust-v01-first.json",
+          "sha256": "08f1c7ad165835ad76871cdc68faa5fc65b97410c114a0f71e7f855e18f9a917"
+        },
+        {
+          "path": "benchmark/results/research-trust-v01-first-diagnosis.json",
+          "sha256": "eac558fe0eb1df20354b47fa2805451848e810aca25fb7724b5a086553a95996"
+        },
+        {
+          "path": "benchmark/results/known-definition-clean2-provenance-v2.json",
+          "sha256": "27e6e81423e1beec271f854ca55cb3ab818c297bcdb393e97fcfab91e5ec897d"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-03T19:10:06.682172+00:00",
+      "update": "Z4 verified explicitly scoped synthetic finance capabilities only; first incomplete-isolation setup failure retained. No latency threshold invented. Real-company/formal accuracy, correction, baseline comparison, and complete incremental disclosure workflow remain incomplete.",
+      "new_verified_ids": [
+        "A.valuation",
+        "P4.drivers",
+        "P4.editable_assumptions",
+        "P4.financial_bridge",
+        "P5.chain_inputs",
+        "P5.export",
+        "P5.forecast",
+        "P5.sensitivity",
+        "P5.value_bridge"
+      ],
+      "evidence": [
+        {
+          "path": "benchmark/results/z4-isolated-1791054293428.protocol.json",
+          "sha256": "ac6a202e35641382b672c19dbc45ce339cbe98126bb858f04e0283973341e0f4"
+        },
+        {
+          "path": "benchmark/results/z4-isolated-1791054293428.json",
+          "sha256": "8e1c3b11a9c447dff37f2123b650bb3665ec9c168dcf510f97c5cf4a427f624d"
+        },
+        {
+          "path": "benchmark/results/z4-isolated-1791054293428.fraction.json",
+          "sha256": "0d64bf014208005396883899c6ddefbda8aa4718f8cadde833bf12d3132993af"
+        },
+        {
+          "path": "benchmark/results/research-models-pi-workflow-v06.independent.json",
+          "sha256": "9b265012ad97e3dcfece8c3ce061bea35e1bdd5e9bec7f7b1174e7385a0b5085"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-03T19:10:33.038741+00:00",
+      "update": "P6.incremental verified under its explicit new-disclosure OR new-assumption contract; actual assumption path meets it, new-announcement automatic path remains unvalidated. P4.editable includes actual browser evidence. Load observations make no enterprise-capacity/database-migration claim.",
+      "new_verified_ids": [
+        "P6.incremental"
+      ],
+      "ui_path": "web/test-results/research-live-api.json",
+      "ui_sha256": "1d61d5f83ddf45416c00197dff21148ec114caf3661cf92e2ea38ef366757d5a"
+    },
+    {
+      "at": "2026-10-03T19:18:55.793424+00:00",
+      "new_verified_ids": [
+        "C.pi_core",
+        "C.official_model",
+        "C.ui",
+        "C.database"
+      ],
+      "update": "Architectural constraints reviewed against actual Pi/audit/UI/SQLite evidence. C.scope and full financial quality remain incomplete.",
+      "path": "benchmark/results/cross-stage-constraints-v07.json",
+      "sha256": "2e20f04192ca07231111ba98097ee7e0401481ce7f7058f1d1039c43de564d75"
+    }
+  ]
+}

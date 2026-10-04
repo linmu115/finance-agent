@@ -1,0 +1,136 @@
+{
+  "version": "v0.4-holdout",
+  "status": "locked_before_first_model_run",
+  "locked_at": "2026-10-03T15:40:07.118826+00:00",
+  "sampling": "Purposive stratified challenge set: two locally available 2024 reports unused for this iteration of model-driven implementation tuning; summary multirow restatements, ratios, lease maturity decomposition and grants/investment notes. Pages chosen by accounting concept coverage and native-text legibility, never by model predictions. Not random sampling.",
+  "pollution_limit": "Public annual reports may be in pretraining. File-download and native-text usability inspection predate this selection. Claim only implementation-frozen, not previously tuned source regression transfer; never claim contamination-free blindness or general population accuracy.",
+  "protocol": [
+    "Keep v0.3/v0.3.1 as development regression, with all prior failures preserved.",
+    "Freeze production, runtime model/configuration and all input/gold/scorer hashes before one real public-conversation run.",
+    "Gold and relations stay on the host, outside model inputs.",
+    "Score every one of the 30 cells with exact decimals plus period, unit, currency, scope, version, meaning and native source reference. No partial tolerance for wrong scale or sign.",
+    "Count missing cells, contradictory same-cell records, failed runs and retries explicitly.",
+    "If implementation changes after viewing outcomes, demote this suite to development regression and select a new untouched source set. Never revise these answers to match predictions."
+  ],
+  "input_count": 2,
+  "source_pages": 7,
+  "scored_cells": 30,
+  "inputs": [
+    {
+      "file": "yili_2024_holdout.pdf",
+      "company_id": "yili_2024",
+      "sha256": "dd9778c1db5e170e5c90d77b5607b52b4a542ba61b0badac81910ec2bece386d",
+      "source": {
+        "id": "yili_2024",
+        "title": "伊利股份2024年年度报告",
+        "source_url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223421123.PDF",
+        "filename": "伊利股份2024年年度报告.pdf",
+        "pages": 270,
+        "text_characters": 227789,
+        "minimum_page_text_characters": 56,
+        "low_text_pages": [],
+        "financial_statement_pages": [
+          83,
+          87,
+          91,
+          94,
+          109,
+          110,
+          111,
+          148
+        ],
+        "bytes": 1522472,
+        "sha256": "a82a81e52f52da3cd1b7f38ded08625dc18e3d4522b15d3ef76bf921e54c1f43",
+        "inspected_financial_statement_page": 87
+      },
+      "pages": [
+        {
+          "input_page": 1,
+          "original_page": 7,
+          "context_only": false
+        },
+        {
+          "input_page": 2,
+          "original_page": 199,
+          "context_only": false
+        }
+      ]
+    },
+    {
+      "file": "haier_2024_holdout.pdf",
+      "company_id": "haier_2024",
+      "sha256": "e44759a8b2603d0daea1d00a43d8429c079987e1398479ad3ae12fe08892bd39",
+      "source": {
+        "id": "haier_2024",
+        "title": "海尔智家2024年年度报告",
+        "source_url": "https://static.cninfo.com.cn/finalpage/2025-03-28/1222926246.PDF",
+        "filename": "海尔智家2024年年度报告.pdf",
+        "pages": 247,
+        "text_characters": 229331,
+        "minimum_page_text_characters": 25,
+        "low_text_pages": [],
+        "financial_statement_pages": [
+          94,
+          117,
+          121,
+          124,
+          136,
+          137,
+          138,
+          163
+        ],
+        "bytes": 5167345,
+        "sha256": "cb2830d04860a0c18a491b9998c0928d1b77e740f07824a34f7543d823f7b10b",
+        "inspected_financial_statement_page": 117
+      },
+      "pages": [
+        {
+          "input_page": 1,
+          "original_page": 10,
+          "context_only": false
+        },
+        {
+          "input_page": 2,
+          "original_page": 11,
+          "context_only": false
+        },
+        {
+          "input_page": 3,
+          "original_page": 193,
+          "context_only": true
+        },
+        {
+          "input_page": 4,
+          "original_page": 194,
+          "context_only": false
+        },
+        {
+          "input_page": 5,
+          "original_page": 202,
+          "context_only": false
+        }
+      ]
+    }
+  ],
+  "gold_sha256": "e7398abf9024d5297df4b70bda584def4f7e96ef8d840fcdd320f8ccd4acfa0f",
+  "relations_sha256": "6623cfcce9f57ddd6529f0d8f82881f0b9704679a5be25d75029359d106a48ca",
+  "coverage": [
+    "new companies",
+    "native multirow adjusted/unadjusted prior columns",
+    "annual flows vs year-end balances",
+    "CNY vs CNY/share vs percent",
+    "negative and positive displayed deduction conventions",
+    "lease gross/current/noncurrent meanings",
+    "income-related vs asset-related grants",
+    "negative disposal income",
+    "source-grounded citations"
+  ],
+  "not_covered": [
+    "full-report completeness",
+    "OCR",
+    "foreign currencies in this holdout",
+    "broad industry representativeness",
+    "all difficult accounting concepts",
+    "official competition grading"
+  ]
+}

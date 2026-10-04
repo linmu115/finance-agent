@@ -1,0 +1,51 @@
+{
+  "version": "v0.3",
+  "recorded_at": "2026-10-03T14:02:44.105Z",
+  "classification": "provider_balance_insufficient",
+  "http_status": 402,
+  "provider": "Official DeepSeek API",
+  "source_report": "benchmark/results/pi-workflow-0a2f1e99-5240-46f1-86c8-54e021f22ac4.json",
+  "report_url": "http://127.0.0.1:3001/api/benchmark/run/0a2f1e99-5240-46f1-86c8-54e021f22ac4",
+  "run_started_at": "2026-10-03T13:50:33.207Z",
+  "run_finished_at": "2026-10-03T13:56:20.030Z",
+  "end_to_end_status": "failed",
+  "completed_data": {
+    "documents": 10,
+    "facts": 113,
+    "gold_passed": 37,
+    "gold_total": 37,
+    "forbidden_failed": 0
+  },
+  "implementation_changed_during_run": false,
+  "failures": [
+    {
+      "run_id": "ce3cbd4d-8beb-4b76-884d-07e26ced83d8",
+      "conversation_id": "4fc6946a-5284-4d6c-bd8e-1af3aeb16272",
+      "status": "failed",
+      "finished_at": "2026-10-03T13:56:16.488Z",
+      "error": "402: {\"message\":\"Insufficient Balance (request_id: 48795082-fe11-4a8f-aa29-aef52f04131f)\",\"type\":\"unknown_error\",\"param\":null,\"code\":\"invalid_request_error\"}",
+      "audit_path": "data/audit/ce3cbd4d-8beb-4b76-884d-07e26ced83d8.jsonl",
+      "audit_error_events": [
+        {
+          "at": "2026-10-03T13:56:16.455Z",
+          "message": "402: {\"message\":\"Insufficient Balance (request_id: 48795082-fe11-4a8f-aa29-aef52f04131f)\",\"type\":\"unknown_error\",\"param\":null,\"code\":\"invalid_request_error\"}"
+        }
+      ]
+    },
+    {
+      "run_id": "86ac2cad-ffd9-4b89-b07d-0d5b29a9b52f",
+      "conversation_id": "114b624a-eccd-4665-baeb-c16e96c84583",
+      "status": "failed",
+      "finished_at": "2026-10-03T13:56:18.971Z",
+      "error": "402: {\"message\":\"Insufficient Balance (request_id: a2cfa672-b908-48de-8755-2240bea89f77)\",\"type\":\"unknown_error\",\"param\":null,\"code\":\"invalid_request_error\"}",
+      "audit_path": "data/audit/86ac2cad-ffd9-4b89-b07d-0d5b29a9b52f.jsonl",
+      "audit_error_events": [
+        {
+          "at": "2026-10-03T13:56:18.971Z",
+          "message": "402: {\"message\":\"Insufficient Balance (request_id: a2cfa672-b908-48de-8755-2240bea89f77)\",\"type\":\"unknown_error\",\"param\":null,\"code\":\"invalid_request_error\"}"
+        }
+      ]
+    }
+  ],
+  "scope": "Point-in-time evidence: extraction gold passed; complete conversation acceptance failed when the provider returned HTTP 402. This does not establish the current account balance. Preserved source report and historical passing report were not modified."
+}

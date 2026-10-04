@@ -1,0 +1,47 @@
+{
+  "kind": "offline_continuation_prepare_check",
+  "task_sha256": "bec8d362b9f53f2c1e8e29622a5a8526182500578711ea229f81f5c2042c296f",
+  "checks": {
+    "prior_report_hash_matches": true,
+    "prior_audit_hash_matches": true,
+    "same_project": true,
+    "same_first_conversation": true,
+    "same_research_cutoff": true,
+    "same_forecast_value_date": true,
+    "calls_subtracted": true,
+    "input_subtracted": true,
+    "output_subtracted": true,
+    "total_subtracted": true,
+    "active_time_conservative": true,
+    "explicit_config_change": true,
+    "three_stages_same_scope": true,
+    "no_v07_result": true
+  },
+  "model_calls": 0,
+  "network_guard": "prepare ran with global fetch disabled",
+  "original_budget": {
+    "max_model_calls": 60,
+    "max_input_tokens": 3000000,
+    "max_output_tokens": 450000,
+    "max_total_tokens": 3450000,
+    "max_wall_seconds": 1800
+  },
+  "prior_usage": {
+    "model_calls": 12,
+    "settled_calls": 12,
+    "input_tokens": 515369,
+    "output_tokens": 26790,
+    "total_tokens": 542159,
+    "failed_calls": 1,
+    "unknown_usage_calls": 0
+  },
+  "remaining_budget": {
+    "max_model_calls": 48,
+    "max_input_tokens": 2484631,
+    "max_output_tokens": 423210,
+    "max_total_tokens": 2907841,
+    "max_wall_seconds": 1641
+  },
+  "prior_report_unchanged": true,
+  "plan_note": "Prepared only. Wait for root deployment/configuration READY; no service lifecycle operation or model invocation."
+}

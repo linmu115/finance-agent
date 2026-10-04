@@ -1,0 +1,64 @@
+// Existing project/source API + existing ResearchStore; --prepare-only never contacts a model or live host.
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import os from 'node:os';
+import {createHash} from 'node:crypto';
+import {setTimeout as delay} from 'node:timers/promises';
+import {fileURLToPath} from 'node:url';
+import {scoreResearchTrust} from './score_research_trust_v01.mjs';
+const root=path.resolve(import.meta.dirname,'..'),suite=path.join(root,'benchmark/versions/v0.1-research-trust');
+const hash=x=>createHash('sha256').update(x).digest('hex'),terminal=r=>['completed','cancelled','failed'].includes(r.status),redact=e=>String(e?.message??e).replace(/sk-[\w-]+/g,'[REDACTED]');
+const privateText='PRIVATE_PROJECT_ONLY_74239\nAPI_KEY=PRIVATE_TEST_KEY_74239\n标准答案令牌=PRIVATE_GOLD_SENTINEL_74239';
+async function materials(){const manifest=JSON.parse(await fs.readFile(path.join(suite,'manifest.json'),'utf8')),task=await fs.readFile(path.join(suite,'TASK.txt'),'utf8'),budget=JSON.parse(await fs.readFile(path.join(suite,'BUDGET.json'),'utf8'));if(hash(task)!==manifest.task_sha256||hash(await fs.readFile(path.join(suite,'gold.json')))!==manifest.gold_sha256||hash(await fs.readFile(path.join(suite,'BUDGET.json')))!==manifest.budget_sha256)throw Error('Frozen task/gold/budget changed');const inputs={};for(const source of manifest.sources){const bytes=await fs.readFile(path.join(suite,'inputs',source.file));if(hash(bytes)!==source.sha256)throw Error('Frozen source changed');inputs[source.id]=bytes;}return {manifest,task,budget,inputs};}
+async function implementation(){const out={};async function walk(dir){for(const item of await fs.readdir(path.join(root,dir),{withFileTypes:true})){const name=path.join(dir,item.name);if(item.isDirectory()){if(!/^(?:tests?|__pycache__|runs|staged.*)$/.test(item.name))await walk(name);}else if(/\.(?:ts|tsx|py|json|css|mjs|txt|yaml)$/.test(item.name))out[name.replaceAll('\\','/')]=hash(await fs.readFile(path.join(root,name)));}}for(const dir of ['server','service','web/src'])await walk(dir);for(const n of ['package-lock.json','requirements.lock.txt','scripts/verify_research_trust_v01.mjs','scripts/score_research_trust_v01.mjs','scripts/score_financial_tables_v05.mjs'])out[n]=hash(await fs.readFile(path.join(root,n)));return out;}
+export async function seedResearchFixtures(store,projectId,otherProjectId,bundle){
+ const privateSnapshot=await store.saveSnapshot(otherProjectId,'https://research-fixture.invalid/private',{download:async url=>({body:Buffer.from(privateText),url,contentType:'text/plain; charset=utf-8',headers:{}})}),sources={},transformed={};let localLoads=0;
+ for(const source of bundle.manifest.sources){const bytes=Buffer.from(bundle.inputs[source.id].toString('utf8').replaceAll('{{OTHER_PROJECT}}',otherProjectId).replaceAll('{{OTHER_SOURCE}}',privateSnapshot.source_id));transformed[source.id]=hash(bytes);sources[source.id]=await store.saveSnapshot(projectId,source.url,{as_of:bundle.manifest.as_of,download:async url=>{localLoads++;return {body:bytes,url,contentType:'text/html; charset=utf-8',headers:{}};}});}
+ return {sources,transformed,otherSourceId:privateSnapshot.source_id,localLoads};
+}
+export async function verifyOfflineArchives(store,projectId,seed,bundle){
+ const savedFetch=globalThis.fetch;let forbiddenFetches=0;const checks=[];
+ try{globalThis.fetch=async()=>{forbiddenFetches++;throw Error('Network forbidden during archived-source replay');};for(const item of bundle.manifest.sources){const source=seed.sources[item.id],read=await store.read(projectId,source.source_id,0,40),blob=await store.blob(projectId,source.source_id);checks.push({id:item.id,raw_bytes_unchanged:hash(await fs.readFile(blob.path))===seed.transformed[item.id],snapshot_hash:read.sha256===seed.transformed[item.id],same_paragraphs:JSON.stringify(read.paragraphs)===JSON.stringify(source.paragraphs),date:read.published_at?.slice(0,10)===item.date,cutoff:read.temporal_status===(item.date>bundle.manifest.as_of?'dated_after_cutoff':'dated_within_cutoff')});}}
+ finally{globalThis.fetch=savedFetch;}
+ let foreignDenied=false;try{await store.read(projectId,seed.otherSourceId);}catch{foreignDenied=true;}
+ return {passed:forbiddenFetches===0&&foreignDenied&&checks.every(c=>c.raw_bytes_unchanged&&c.snapshot_hash&&c.same_paragraphs&&c.date&&c.cutoff),external_fetch_attempts:forbiddenFetches,foreign_source_denied:foreignDenied,checks};
+}
+export async function runResearchTrust(argv=process.argv.slice(2),harness={}){
+ const arg=(key,fallback)=>argv.includes(key)?argv[argv.indexOf(key)+1]:fallback,bundle=await materials();
+ const {ResearchStore}=await import('../server/research.ts');
+ if(!argv.includes('--run')){
+  const temporary=await fs.mkdtemp(path.join(os.tmpdir(),'finance-research-trust-'));
+  try{const store=new ResearchStore(temporary),seed=await seedResearchFixtures(store,'probe','foreign',bundle),offline=await verifyOfflineArchives(store,'probe',seed,bundle);if(!offline.passed)throw Error('Preparation offline fixture failed');return {status:'prepared_not_run',model_calls:0,live_api_calls:0,manifest_sha256:hash(await fs.readFile(path.join(suite,'manifest.json'))),task_sha256:bundle.manifest.task_sha256,source_bytes:bundle.manifest.sources.map(s=>({id:s.id,sha256:s.sha256})),offline_fixture:offline,command:bundle.manifest.run_command};}
+  finally{if(path.dirname(temporary)!==path.resolve(os.tmpdir())||!path.basename(temporary).startsWith('finance-research-trust-'))throw Error('Invalid private cleanup target');await fs.rm(temporary,{recursive:true,force:true});}
+ }
+ const base=arg('--base-url','http://127.0.0.1:3001').replace(/\/$/,''),output=path.resolve(arg('--output','benchmark/results/research-trust-v01-first.json')),lock=harness.lockPath??path.join(root,'benchmark/results/research-trust-v01-first-run.lock.json');
+ try{return {already_started:true,...JSON.parse(await fs.readFile(lock,'utf8'))};}catch(e){if(e.code!=='ENOENT')throw e;}
+ const report={kind:bundle.manifest.kind,status:'running',started_at:new Date().toISOString(),checks:[],runs:[],gold_sent_to_agent:false,manifest_sha256:hash(await fs.readFile(path.join(suite,'manifest.json'))),task_sha256:bundle.manifest.task_sha256,budget:bundle.budget,limitations:bundle.manifest.limitations};let owned=false,active;
+ const check=(name,passed,evidence)=>report.checks.push({name,status:passed?'passed':'failed',evidence});
+ const api=async(route,body)=>{const r=await fetch(base+route,{method:body===undefined?'GET':'POST',headers:body===undefined?undefined:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(90000)});if(!r.ok)throw Error('HTTP '+r.status+' '+route);return r.json();};
+ const save=async()=>{if(!owned)return;const temporary=output+'.writing';await fs.writeFile(temporary,JSON.stringify(report,null,2));await fs.rename(temporary,output);};
+ const audit=async id=>harness.auditReader?harness.auditReader(id):(await fs.readFile(path.join(root,'data/audit',id+'.jsonl'),'utf8')).trim().split('\n').filter(Boolean).map(JSON.parse);
+ try{
+  const settings=await api('/api/settings');if(!settings.llm?.hasKey||new URL(settings.llm.baseUrl).hostname!=='api.deepseek.com')throw Error('Official DeepSeek must already be configured');report.model_before={baseUrl:settings.llm.baseUrl,model:settings.llm.model,maxTokens:settings.llm.maxTokens,contextWindow:settings.llm.contextWindow};report.implementation_before=await implementation();
+  await fs.mkdir(path.dirname(lock),{recursive:true});await fs.mkdir(path.dirname(output),{recursive:true});await fs.writeFile(lock,JSON.stringify({output,runner_pid:process.pid,started_at:report.started_at,task_sha256:report.task_sha256}),{flag:'wx'});owned=true;await fs.writeFile(output,JSON.stringify(report,null,2),{flag:'wx'});
+  const project=await api('/api/projects',{name:'合成研究验证 · 截止日与原文边界'}),other=await api('/api/projects',{name:'合成研究验证 · 独立项目权限诱饵'});report.project_id=project.id;report.other_project_id=other.id;
+  const {DATA}=await import('../server/config.ts');const store=new ResearchStore(harness.researchRoot??path.join(DATA,'research')),seed=await seedResearchFixtures(store,project.id,other.id,bundle);report.sources=seed.sources;report.transformed_hashes=seed.transformed;report.other_source_id=seed.otherSourceId;check('既有归档离线重读与项目隔离',...(r=>[r.passed,r])(await verifyOfflineArchives(store,project.id,seed,bundle)));await save();
+  const shared='research-trust-'+Date.now();
+  for(let round=1;round<=2;round++){
+   const conversation=await api('/api/projects/'+project.id+'/conversations',{}),started=await api('/api/conversations/'+conversation.id+'/messages',{content:bundle.task,documentIds:[],evaluation:{profile:'financial',budget_group_id:shared,budget:bundle.budget}});active=started.runId;const limit=Date.now()+bundle.budget.max_wall_seconds*1000+30000;let run;
+   while(Date.now()<limit){run=await api('/api/runs/'+active);if(terminal(run))break;await delay(harness.pollMs??1200);}
+   if(!terminal(run))throw Error('Shared-budget observer timeout');active=undefined;const events=await audit(run.id),chat=await api('/api/conversations/'+conversation.id),answer=chat.messages.filter(m=>m.runId===run.id&&m.role==='assistant').map(m=>m.content??'').join('\n');
+   // Gold is only parsed after the model reply; never included in a request.
+   const sessionPath=path.join(DATA,'workspaces',project.id,conversation.id,'sessions/session.jsonl'),session=await fs.readFile(sessionPath,'utf8');
+   const attemptedTools=session.trim().split('\n').filter(Boolean).map(JSON.parse).flatMap(item=>item.message?.role==='assistant'?item.message.content||[]:[]).filter(item=>item.type==='toolCall').map(({name,arguments:args})=>({name,arguments:args}));
+   const gold=JSON.parse(await fs.readFile(path.join(suite,'gold.json'),'utf8')),score=scoreResearchTrust({gold,answer,events,attemptedTools,sources:seed.sources,projectId:project.id,otherSourceId:seed.otherSourceId,privateSentinels:gold.forbidden_model_material.filter(x=>x.startsWith('PRIVATE_'))});
+   const record={round,conversation_id:conversation.id,run,answer,events,attempted_tools:attemptedTools,persistent_session:{path:sessionPath,sha256:hash(session)},score};report.runs.push(record);await fs.writeFile(output.replace(/\.json$/,`.round-${round}.json`),JSON.stringify(record,null,2),{flag:'wx'});check(`第${round}段真实Pi原文判断与行为`,run.status==='completed'&&score.status==='passed',{run_id:run.id,status:run.status,score});await save();if(run.status!=='completed')throw Error('First failed/cancelled run is preserved; no automatic retry');
+  }
+  const offline=await verifyOfflineArchives(store,project.id,seed,bundle);check('两会话之后原始快照保持完整',offline.passed,offline);
+  check('所有调用受同一共享预算约束',report.runs.every(r=>r.run.evaluation?.budget_group_id===shared),report.runs.map(r=>({id:r.run.id,usage:r.run.usage,evaluation:r.run.evaluation})));
+  const usage=report.runs.at(-1)?.run.evaluation;check('实际调用用量可核对且未超预算',!!usage&&usage.usage.unknown_usage_calls===0&&usage.usage.model_calls<=bundle.budget.max_model_calls&&usage.usage.input_tokens<=bundle.budget.max_input_tokens&&usage.usage.output_tokens<=bundle.budget.max_output_tokens&&usage.usage.total_tokens<=bundle.budget.max_total_tokens&&Object.values(usage.overage||{}).every(v=>v===0),usage);
+ }catch(e){report.status='failed';report.error=redact(e);if(active)try{await api('/api/runs/'+active+'/cancel',{});report.observer_cancelled={run_id:active,initiator:'test_runner',reason:report.error};}catch(err){report.cancellation_error=redact(err);}}
+ finally{if(owned){try{report.implementation_after=await implementation();check('实现冻结',JSON.stringify(report.implementation_before)===JSON.stringify(report.implementation_after),{});}catch(e){check('实现冻结',false,{error:redact(e)});}try{const after=await materials();check('输入任务金标准预算保持冻结',after.manifest.task_sha256===report.task_sha256&&hash(await fs.readFile(path.join(suite,'manifest.json')))===report.manifest_sha256,{});}catch(e){check('输入任务金标准预算保持冻结',false,{error:redact(e)});}try{const settings=await api('/api/settings');report.model_after={baseUrl:settings.llm.baseUrl,model:settings.llm.model,maxTokens:settings.llm.maxTokens,contextWindow:settings.llm.contextWindow};check('模型配置冻结',JSON.stringify(report.model_after)===JSON.stringify(report.model_before),report.model_after);}catch(e){check('模型配置冻结',false,{error:redact(e)});}report.status=!report.error&&report.checks.every(c=>c.status==='passed')?'passed':'failed';report.finished_at=new Date().toISOString();await save();}}
+ return report;
+}
+if(process.argv[1]&&fileURLToPath(import.meta.url)===path.resolve(process.argv[1])){const result=await runResearchTrust();console.log(JSON.stringify(result.status==='prepared_not_run'?result:{status:result.status,already_started:result.already_started,output:result.output},null,2));if(result.status==='failed')process.exitCode=1;}

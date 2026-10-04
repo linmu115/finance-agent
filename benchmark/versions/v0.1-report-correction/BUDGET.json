@@ -1,0 +1,11 @@
+{
+  "version": "correction-v0.1-budget-1",
+  "max_model_calls": 80,
+  "max_input_tokens": 8000000,
+  "max_output_tokens": 1000000,
+  "max_total_tokens": 9000000,
+  "max_wall_seconds": 1800,
+  "poll_interval_ms": 1500,
+  "scope": "The entire single Pi run, including main replies, extraction and all review calls",
+  "enforcement": "Shared runtime output reservation plus observed actual usage; input is a soft post-usage cap and in-flight requests may overrun. Report actual excess."
+}

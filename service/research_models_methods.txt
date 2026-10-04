@@ -1,0 +1,133 @@
+金融研究计算核心 v1.0
+核对日期：2026-10-04
+
+接口与重现
+  service.research_models.evaluate_model(kind, spec)
+  kind: dcf | comparables | manufacturing_scenario | financial_quality
+  具名函数：value_dcf、value_comparables、manufacturing_scenario、financial_quality。
+  service.research_schema.get_model_schema(kind) 返回 JSON Schema 2020-12。
+  service.research_schema.get_model_example(kind) 返回可执行的合成样例。
+  export_json(result) 返回完整 JSON；export_csv(result, table) 返回指定结果表 CSV。
+  模块是纯函数，不访问数据库、联网、调用模型、写文件，也不自动寻找财报字段。
+  Pi 负责选择已清洗且期间/口径一致的事实、引用原文、提出并标明假设；本模块负责复算。
+  返回 schema_version、model_version、input_assumptions、formulas、method_sources、
+  results、tables、units、precision、warnings。相同输入可重现；输入对象不被修改。
+
+数值和单位
+  金额均使用输入 currency 和 amount_scale。amount_scale='10000' 表示输入的1是1万元。
+  shares.count='100'、shares.scale='1000000' 表示1亿股，与金额尺度彼此独立。
+  每股价值始终以原币/1股表示：equity_value*amount_scale/(count*scale)。
+  比率采用小数分数：'0.10'=10%；倍数'10'=10倍；天数单独标注。
+  推荐使用十进制字符串输入；内部 Decimal 50位有效数字、ROUND_HALF_EVEN。
+  输出没有额外展示取整，不声称无限精确；价格/金额展示位数由前端单独控制。
+  JSON 保存完整假设、公式和来源引用；CSV是选定表格的数值导出，不能替代完整JSON审计。
+  所有现金流和折现率须由调用者保持币种、名义/实际口径和估值时点一致。
+
+DCF约定
+  本模型用于非金融企业经营性FCFF。估值时点是base_year财年末；预测从下一完整财年起，
+  连续逐年输入。它不把银行的贷款余额机械套成制造业经营营运资本。
+  revenue 或 revenue_growth 二选一。EBIT、EBIT率、毛利率加期间经营费用率三选一。
+  EBIT已扣折旧摊销，毛利/经营费用口径也必须仅含一次相关D&A；现金流计算再加回D&A。
+  税率0..1；floor_at_zero只对正EBIT纳税，immediate_credit允许明确假设的同年亏损抵税。
+  没有擅自估计递延税资产或亏损结转。capex和D&A非负，资产处置收益未建模。
+  FCFF = EBIT - cash_tax + D&A - capex - Δoperating_NWC。
+  operating_NWC排除现金和有息债务，可为负；期初必须给出，不能把缺失期初当零。[1][2]
+  预测现金流可选年末t或年中t-0.5折现。年中选项只作用于明确预测期间；稳定阶段采用
+  次年末首次现金流，终值始终在第n年末计量并用n折现。整个模型只用一个明确WACC。
+  稳态EBIT率、税率、ROIC、g均必须显式提供。terminal_NOPAT=末期收入*(1+g)*稳态利润率*(1-税率)。
+  再投资率=g/ROIC；terminal_FCFF=NOPAT*(1-g/ROIC)，终值=terminal_FCFF/(WACC-g)。
+  该稳定再投资模型支持WACC>0、ROIC>0、0<=g<WACC、g<=ROIC；不把负增长/清算模型
+  偷换成增长永续模型。g=0时净再投资为零；g=ROIC时全部NOPAT再投资，终值FCFF为零。[1]
+  敏感性表对每格重新计算g相关再投资，而非固定终值现金流。非法格保留null与原因。
+
+价值桥接
+  EV指经营资产价值。普通股股权 = EV - net_debt - NCI - preferred_equity + non_operating_assets_ex_cash。
+  净债务已扣除超额现金，因此不再另加现金；非经营资产字段明确不含该现金。
+  所有桥接项必须输入，包括零；净现金以负net_debt表示，其他项非负。
+  NCI对应合并经营现金流中的外部持有人权益，优先股单列；债务和租赁口径须与EBITDA/FCFF一致。
+  应使用与估值目的相符的债务/权利价值，不能默认账面值等于公允价值。[3][7]
+  负股权残值原样报告并说明其是算术残值，不能解读为有限责任普通股的负市场价格。
+
+相对估值
+  P/E以普通股股东口径盈利乘倍数直接得到普通股价值，不再扣净债务。
+  EV/EBITDA先得到经营企业价值，再应用同一价值桥接；EBITDA并非自由现金流。
+  可输入已给定倍数，或P/E的price+eps、EV/EBITDA的enterprise_value+ebitda原始对。
+  每对内部币种与单位须一致；跨公司比较的是无量纲倍数，并非直接相加各国金额。
+  目标盈利/EBITDA<=0时明确拒绝；同类无效可比逐项排除并保留原因，全部无效则报错。
+  同行metric_basis须与目标显式一致，例如FY2027_forward_adjusted，避免混合TTM和预测倍数。
+  汇总支持等权中位数或算术平均；同名标签不证明公司商业模式/会计政策可比。[4]
+
+制造业情景
+  这是明确假设驱动的单位经济模型，并非拟合出的因果/需求模型；没有公司特例或自动弹性。
+  各年基线提供销量、单价、单位材料成本、单位其他变动成本、固定现金经营费用、D&A、
+  capex、营运资本/收入比、税率。D&A从EBITDA扣一次，再在FCFF加回。
+  明确exposed_material_share指定材料成本中受冲击的份额。单位增量成本=基线材料成本*份额*冲击。
+  价格=当年基线价*(1+自主提价)+传导率*第t-lag年单位增量成本。
+  滞后用整数财年；预测前冲击假设为零，不能描述为已观测历史事实。
+  销量=基线销量*(1+外生销量变化)*(1+价格弹性*(情景价/基线价-1))。
+  弹性显式<=0；线性近似导致非正销量时拒绝，不偷偷截成零。此线性关系是本产品建模约定，
+  未把它归因为下方估值教材的经验结论；情景大小须由使用者判断是否适合局部近似。
+  三组冲击是相对各年基线的水平，不是逐年累计变化。其他单位成本、固定现金费用、D&A、
+  capex、营运资本比率和稳态假设保持输入基线值；金额结果与这些假设一起保存。
+  同时返回两组预测、两份可直接提交value_dcf的spec，以及两组DCF价值；现金流采用[1]框架。
+  情景并未自动预测长期价格改变导致的资本开支、行业出清或竞争对手反应。
+
+财务质量
+  1.1.0起，利润桥必须显式给profit_bridge：anchor选reported_operating_profit或ebit，
+  definition记录实际会计/主体口径，opex_definition和other_operating_income_definition记录包含项目。
+  finance_expense_treatment选separate（单列扣减）、included_in_opex（已含费用，不重复扣）或excluded。
+  reported_operating_profit保留原报表营业利润名称；不能因其英文常译为operating profit就改称EBIT。
+  直接EBIT须给ebit_basis的disclosed/assumption及rationale；disclosed要求source_refs在
+  periods.N.ebit_basis给可定位引用。推导EBIT则给reported_operating_profit及ebit_adjustments，
+  每项有label、signed amount、basis、rationale；disclosed/derived在periods.N.ebit_adjustments.M
+  给可定位引用。系统复算EBIT=营业利润+调节合计，不自动把全部财务费用加回。
+  财务费用为有符号费用；利息费用/利息收入独立输入后才计算二者净额。负财务费用不能证明
+  利息收入超过支出，其余差额不自动命名为汇兑收益。费用计入桥一次，未解释差额明确保留。
+  长期应收款（含流动部分）余额变动不等于融资租赁现金投放；少数股东损益归属变动不证明
+  经常/非经常性质。上述判断需要各自的现金流、构成或性质披露，不能从汇总数替代推导。
+  既有成果的model_version、输入、结果与原标签保持不变；重算产生新版本，不静默迁移旧EBIT。
+  此口径区分参考财政部2018合并报表格式（财务费用在营业利润之前单列）及IFRS Foundation
+  IFRS 18 Effects Analysis第31页（EBIT实务定义不一）；按原财报适用准则解释，
+  不把IFRS 18对2027年起适用的规定追溯强加给采用其他准则的旧报表。
+  https://www.mof.gov.cn/gkml/caizhengwengao/wg201901/2019wg03/201907/P020190709345883677352.pdf
+  https://www.ifrs.org/content/dam/ifrs/publications/amendments/english/2024/effect-analysis-ifrs18-april2024.pdf
+  period_basis显式指定FY/H1等共同流量期间；各行year升序，days给该期间实际天数，允许53周年度。
+  期间口径及合并范围必须一致。两个年度间缺年不计算“同比”。
+  同比=(本期-上期)/上期，只在上期为正时返回百分比；负基数仅保留金额变化与不适用原因。
+  利润现金转换=CFO/净利润（利润正基数）；CFO利润率=CFO/收入；CFO-capex明确不称FCFF。
+  应收周转=赊销收入/平均应收；库存周转=COGS/平均库存；应付周转=采购额/平均应付。
+  平均余额取(期初+期末)/2。只有显式选revenue_proxy或cogs_proxy时才使用相应替代流量。[5]
+  DSO/DIO/DPO=期间天数/对应周转；现金转换周期=DSO+DIO-DPO。[5][6]
+  应计/资产=(净利润-CFO)/平均资产。缺失、零或负分母对应null+原因，不能拿零补缺口。
+  这些公式是描述性分析，不是舞弊定性，也没有“财务健康总分”。
+
+一手方法来源（访问于2026-10-04，未复制长段原文）
+  [1] Aswath Damodaran, NYU Stern, Chapter 15: Firm Valuation.
+      https://people.stern.nyu.edu/adamodar/pdfiles/valn2ed/ch15.pdf
+      重点：FCFF/WACC、稳定增长与再投资率g/ROC、经营价值和非经营资产。
+  [2] Aswath Damodaran, Working capital in valuation.
+      https://pages.stern.nyu.edu/~adamodar/New_Home_Page/valquestions/noncashwc.htm
+      重点：经营营运资本排除现金与有息债务，避免重复计价。
+  [3] IFRS Foundation, IFRS 13 educational material, Unquoted equity instruments.
+      https://www.ifrs.org/content/dam/ifrs/supporting-implementation/ifrs-13/education-ifrs-13-eng.pdf
+      重点：企业/权益价值倍数、净债务与非经营项目调整。本文档不是IFRS合规认证。
+  [4] CFA Institute, Market-Based Valuation: Price and Enterprise Value Multiples, 2026.
+      https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-based-valuation-price-enterprise-value-multiples
+      重点：P/E与EV/EBITDA的分子/分母匹配、非正EPS限制、同业均值/中位数。
+  [5] NYU Stern, Financial Statement Analysis ratio reference.
+      https://pages.stern.nyu.edu/~hfried/fsapdf/Ratios.PDF
+      重点：库存和应收周转、期初期末平均余额与天数换算。
+  [6] CFA Institute, Financial Analysis Techniques, 2026.
+      https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/financial-analysis-techniques
+      重点：活动效率比率与财务分析解释框架。
+
+  [7] Aswath Damodaran, Holdings in Other Firms.
+      https://pages.stern.nyu.edu/adamodar/New_Home_Page/valquestions/valcrosshold.htm
+      重点：合并现金流估值后扣除子公司外部股东权益的价值，而非盲用账面少数股东权益。
+
+独立验证
+  tests/test_research_models.py：手算恒定150现金流/10%永续的EV=1500；桥接股权=1300；
+  两年122与145.2现金流和2082.7125终值以Fraction独立核PV；21%年中折现用sqrt(1.21)=1.1；
+  100件产品、材料成本4、敞口50%、材料涨价20%、传导50%、延迟一年、弹性-1，手算
+  第二年98件、10.2单价、222.4 EBIT。另含单位、非法分母、零数据、时滞、敏感性回归。
+  所有案例均为合成示例，不使用任何实际留出公司数据或答案。

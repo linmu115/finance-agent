@@ -1,0 +1,98 @@
+{
+  "version": "v0.4.1-holdout",
+  "status": "locked_before_first_model_run",
+  "locked_at": "2026-10-03T15:57:33.181632+00:00",
+  "supersedes_withdrawn_proposal": "v0.4-holdout",
+  "sampling": "Company-held-out purposive stratified challenge. Two new companies selected before model predictions, one energy and one machinery manufacturer. General published financial statements, annual/quarterly periods, prior restatements, units, signed values and ordinary asset classification. Not tailored to the three known Moutai disclosure-definition failures; not random.",
+  "pollution_limit": "Public reports may occur in pretraining. Historical repository checks establish these company reports were not used in this project before holdout preparation, not contamination-free blindness.",
+  "input_count": 2,
+  "source_pages": 7,
+  "scored_cells": 30,
+  "inputs": [
+    {
+      "file": "shenhua_2024_holdout.pdf",
+      "company_id": "shenhua_2024",
+      "sha256": "4dc20e9c5a9aaa95389005093e9e87f95f332bccd77c3f0406771656d7e6b382",
+      "source": {
+        "id": "shenhua_2024",
+        "filename": "中国神华2024年年度报告.pdf",
+        "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0321/2025032101903_c.pdf",
+        "sha256": "f2cb9cef7d9a5244681114137d1d1477ccc4a811e6c56b533f9de3740fc796f6",
+        "pages": 445
+      },
+      "pages": [
+        {
+          "input_page": 1,
+          "original_page": 8
+        },
+        {
+          "input_page": 2,
+          "original_page": 9
+        },
+        {
+          "input_page": 3,
+          "original_page": 143
+        }
+      ]
+    },
+    {
+      "file": "liugong_2024_holdout.pdf",
+      "company_id": "liugong_2024",
+      "sha256": "874cca20b2ce869b9ef72eb3921fe50d9cfba5091378c902335dd56e219c970c",
+      "source": {
+        "id": "liugong_2024",
+        "filename": "柳工2024年年度报告.pdf",
+        "url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222950803.PDF",
+        "sha256": "5b6b52706465372908487d874156edbb741f00018619cab09e2fb07242fe38ac",
+        "pages": 313
+      },
+      "pages": [
+        {
+          "input_page": 1,
+          "original_page": 6
+        },
+        {
+          "input_page": 2,
+          "original_page": 7
+        },
+        {
+          "input_page": 3,
+          "original_page": 8
+        },
+        {
+          "input_page": 4,
+          "original_page": 138
+        }
+      ]
+    }
+  ],
+  "gold_sha256": "abca22003e3afc8c620aea516da0bf0fbd8c2a7fa73a65f3570dcedcb360732d",
+  "relations_sha256": "9c75834d64824384ec92e082c0432f55a091ef786ec9546b398a0c6a32c7587f",
+  "coverage": [
+    "new companies and industries",
+    "three-year multirow restatement columns",
+    "annual and individual-quarter flows",
+    "year-end balances",
+    "CNY million and base CNY",
+    "CNY/share and percent",
+    "parenthesized and minus-signed negatives",
+    "unknown ordinary financial concepts",
+    "cross-page quarter headings",
+    "grounded source citations"
+  ],
+  "not_covered": [
+    "exhaustive extraction precision/recall",
+    "OCR",
+    "foreign currencies",
+    "full-report completeness",
+    "industry-wide accuracy",
+    "official competition grading"
+  ],
+  "protocol": [
+    "One formal run after all production/scorer/model/input/gold hashes are frozen.",
+    "Gold remains host-side; only unannotated original page PDFs and a generic processing request enter Pi.",
+    "Thirty fixed cells scored by exact decimal plus period/units/currency/scope/version/concept/source.",
+    "Preserve every failure/retry and all first-run artifacts.",
+    "Any implementation correction after seeing outcomes demotes this suite to development; choose new untouched companies for another holdout."
+  ]
+}

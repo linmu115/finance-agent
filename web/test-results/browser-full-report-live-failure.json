@@ -1,0 +1,89 @@
+{
+  "checkedAt": "2026-10-03T16:15:31.168Z",
+  "projectId": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+  "scope": "Read-only UI/API verification of persisted full-report data; no model calls, not a claim of correctness for every extracted fact.",
+  "counts": {
+    "documents": 1,
+    "facts": 3298,
+    "pages": 143,
+    "tables": 275
+  },
+  "apiPagination": {
+    "pages": 17,
+    "sizes": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      98
+    ],
+    "total": 3298
+  },
+  "metricCount": 513,
+  "uiPagination": {
+    "selectedMetrics": [
+      "related_party_transaction_amount",
+      "beginning_balance",
+      "ending_balance"
+    ],
+    "records": 327,
+    "uiPages": 11,
+    "apiPages": 2
+  },
+  "error": "AssertionError [ERR_ASSERTION]: Annual-revenue chart is blocked: 正在读取完整筛选数据…\n+ actual - expected\n\n+ '正在读取完整筛选数据…'\n- null\n\n    at eval (eval at <anonymous> ([stdin]:7:1), <anonymous>:126:12)",
+  "checks": [
+    {
+      "name": "完整年报项目为143页，概览200条分页窗口与全库事实总数一致",
+      "passed": true,
+      "detail": {
+        "documents": 1,
+        "facts": 3298,
+        "pages": 143,
+        "tables": 275
+      }
+    },
+    {
+      "name": "逐页读取全部事实，无遗漏、重复或机械清洗记录",
+      "passed": true,
+      "detail": {
+        "pages": 17,
+        "records": 3298
+      }
+    },
+    {
+      "name": "纵轴动态指标选项覆盖全项目目录，包含概览200条以外的指标",
+      "passed": true,
+      "detail": {
+        "metrics": 513
+      }
+    },
+    {
+      "name": "三项高频指标明细逐页核对至最后一页，值与顺序均吻合API",
+      "passed": true,
+      "detail": {
+        "selectedMetrics": [
+          "related_party_transaction_amount",
+          "beginning_balance",
+          "ending_balance"
+        ],
+        "records": 327,
+        "uiPages": 11,
+        "apiPages": 2
+      }
+    }
+  ],
+  "errors": [],
+  "mutations": []
+}

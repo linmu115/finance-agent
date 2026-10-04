@@ -1,0 +1,301 @@
+{
+  "checked_at": "2026-10-03T16:14:01.506373+00:00",
+  "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+  "run_id": "39aad2b5-a4f7-48cd-a4f4-be8c42ff83d5",
+  "status": "failed_real_definition_review_stopped_by_root",
+  "termination": {
+    "actor": "root agent",
+    "reason": "Two truncated high-reasoning definition outputs and three 120-second aborted attempts; Pi then repeated the same process_documents tool. Root stopped repetition to avoid further spending.",
+    "cancel_api_message": "用户取消任务",
+    "clarification": "The cancel API uses a generic user-cancelled label; the human user did not issue this cancellation."
+  },
+  "actual_tool_calls": [
+    {
+      "at": "2026-10-03T16:05:33.660Z",
+      "name": "process_documents",
+      "toolCallId": "call_00_rpWfzzUcjKfKkI3nJABL2348",
+      "args": {
+        "document_ids": [
+          "39de9b118212463bbee6c2ab3c571432"
+        ],
+        "review_metrics": [
+          "revenue",
+          "lease_liabilities",
+          "non_recurring_government_grants"
+        ],
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80"
+      }
+    },
+    {
+      "at": "2026-10-03T16:11:57.423Z",
+      "name": "process_documents",
+      "toolCallId": "call_00_gmJ221AkB9Zstv3MMWz40658",
+      "args": {
+        "document_ids": [
+          "39de9b118212463bbee6c2ab3c571432"
+        ],
+        "review_metrics": [
+          "revenue",
+          "lease_liabilities",
+          "non_recurring_government_grants"
+        ],
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80"
+      }
+    }
+  ],
+  "inference_requests": [
+    {
+      "at": "2026-10-03T16:05:49.819Z",
+      "request_id": "4d60c19f-d870-422b-a0d6-de595861f021",
+      "reasoning_effort": "high",
+      "max_tokens": 32768,
+      "stop_reason": "length",
+      "duration_ms": 119829,
+      "usage": {
+        "input": 29268,
+        "output": 32768,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 32768,
+        "totalTokens": 62036,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "content_characters": 0
+    },
+    {
+      "at": "2026-10-03T16:05:49.837Z",
+      "request_id": "7601e6f5-dfbc-450c-9699-172481e4eab8",
+      "reasoning_effort": "high",
+      "max_tokens": 32768,
+      "stop_reason": "aborted",
+      "duration_ms": 120014,
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "totalTokens": 0,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "content_characters": 0
+    },
+    {
+      "at": "2026-10-03T16:05:49.845Z",
+      "request_id": "4f244966-acd7-4c5d-af8b-5f47e957fa9f",
+      "reasoning_effort": "high",
+      "max_tokens": 32768,
+      "stop_reason": "length",
+      "duration_ms": 118318,
+      "usage": {
+        "input": 31870,
+        "output": 32768,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 29057,
+        "totalTokens": 64638,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "content_characters": 8331
+    },
+    {
+      "at": "2026-10-03T16:07:52.302Z",
+      "request_id": "b04ac73e-8275-4c6d-8a9a-d1d58a0c9aee",
+      "reasoning_effort": "high",
+      "max_tokens": 32768,
+      "stop_reason": "aborted",
+      "duration_ms": 120004,
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "totalTokens": 0,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "content_characters": 0
+    },
+    {
+      "at": "2026-10-03T16:09:55.485Z",
+      "request_id": "7ca7e2e2-7a92-4176-a660-f55b7050c32d",
+      "reasoning_effort": "high",
+      "max_tokens": 32768,
+      "stop_reason": "aborted",
+      "duration_ms": 119978,
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "totalTokens": 0,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "content_characters": 0
+    },
+    {
+      "at": "2026-10-03T16:12:05.221Z",
+      "request_id": "1f6a2bec-c5d7-43aa-a84e-0b717a125f42",
+      "reasoning_effort": "high",
+      "max_tokens": 32768,
+      "stop_reason": "aborted",
+      "duration_ms": 12151,
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "totalTokens": 0,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "content_characters": 0
+    },
+    {
+      "at": "2026-10-03T16:12:05.224Z",
+      "request_id": "9fb00e7e-9e73-4bbb-abd6-3f585a84177c",
+      "reasoning_effort": "high",
+      "max_tokens": 32768,
+      "stop_reason": "aborted",
+      "duration_ms": 12148,
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "totalTokens": 0,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "content_characters": 0
+    },
+    {
+      "at": "2026-10-03T16:12:05.299Z",
+      "request_id": "6d571aaa-59af-4df5-a387-ff7dc2fb8007",
+      "reasoning_effort": "high",
+      "max_tokens": 32768,
+      "stop_reason": "aborted",
+      "duration_ms": 12073,
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "totalTokens": 0,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "content_characters": 0
+    }
+  ],
+  "execution_terminated": {
+    "outstanding_requests": [],
+    "processing_states": [
+      {
+        "processing_id": "06e681ef82fd4dac9502d812dfd73c41",
+        "state": "failed",
+        "errors": [
+          {
+            "code": "definition_review_failed",
+            "error": "InferenceRuntimeError"
+          }
+        ]
+      },
+      {
+        "processing_id": "7c9b076879f04ba0a7ff948be3144f15",
+        "state": "failed",
+        "errors": [
+          {
+            "code": "definition_review_failed",
+            "error": "InferenceRuntimeError"
+          }
+        ]
+      }
+    ],
+    "all_workers_terminal": true
+  },
+  "conservation": {
+    "fact_count": 3298,
+    "immutable_fields": [
+      "fact_id",
+      "document_id",
+      "company",
+      "scope",
+      "currency",
+      "raw_value",
+      "raw_unit",
+      "value",
+      "source.document_id",
+      "source.page",
+      "source.table_id",
+      "source.row",
+      "source.column",
+      "normalization.dimensions"
+    ],
+    "before_immutable_hash": "38f0d77013abc8c49e1f2091e9b9a24c6cb61cc34ef25e297f777ea78530ec2e",
+    "after_immutable_hash": "38f0d77013abc8c49e1f2091e9b9a24c6cb61cc34ef25e297f777ea78530ec2e",
+    "unchanged": true,
+    "before_temporal_count": 221,
+    "after_temporal_count": 221,
+    "before_temporal_hash": "729d915ebc80f279d76bcbb1af55a2e921d0bd2ef0d81b81d81bb5e9f5f0f74c",
+    "after_temporal_hash": "729d915ebc80f279d76bcbb1af55a2e921d0bd2ef0d81b81d81bb5e9f5f0f74c",
+    "original_temporal_evidence_unchanged": true
+  },
+  "definition_facts_committed": 0,
+  "temporal_resume_started": false,
+  "previous_temporal_review": {
+    "review_id": "17e2002f16e64a85abdca2e339272985",
+    "owner_run_id": "6c872fc5-816b-44e3-9170-05e78b99cc5b",
+    "profiles_reviewed": 1817,
+    "unresolved": 11
+  },
+  "remaining_gaps": [
+    "Selected 90 source facts in revenue, lease liability and government-grant families have not received successful definition review.",
+    "The planned 11-source targeted temporal continuation was not reached.",
+    "Original 221 temporal corrections are preserved; this run adds no new accepted correction."
+  ],
+  "observation_scope": "Read-only SQLite connection scoped to the existing complete annual-report project plus its Pi audit. No holdout answers read; no production implementation or prompt changed; no extra model calls."
+}

@@ -1,0 +1,2022 @@
+{
+  "kind": "post_run_readonly_diagnosis",
+  "accuracy_holdout": false,
+  "original_report": "benchmark\\results\\research-models-pi-workflow-v05.json",
+  "original_status_unchanged": "failed",
+  "original_checks": {
+    "passed": 8,
+    "total": 10
+  },
+  "limitations": [
+    "This diagnosis does not replace or relax the frozen first-run checks.",
+    "Synthetic arithmetic and workflow development verification only; no independent financial-data accuracy claim.",
+    "No application code imports, model calls, database access, or server lifecycle operations."
+  ],
+  "project_id": "00b1a91b-e967-4f41-8360-87be0570d599",
+  "task_sha256": "3b75b4e6155d67b36b008e44f71b551c74990d6d23cf02b266f678e80aa96376",
+  "runs": [
+    {
+      "id": "2de392ce-96ff-4d96-9781-369bbc368916",
+      "status": "completed",
+      "usage": {
+        "input": 500779,
+        "output": 31346,
+        "calls": 11,
+        "costUsd": null
+      }
+    },
+    {
+      "id": "31b4c024-36b3-4430-b6eb-aaa98cc3ef1e",
+      "status": "completed",
+      "usage": {
+        "input": 59235,
+        "output": 2164,
+        "calls": 4,
+        "costUsd": null
+      }
+    }
+  ],
+  "budget_last_event": {
+    "at": "2026-10-03T18:15:46.982Z",
+    "runId": "31b4c024-36b3-4430-b6eb-aaa98cc3ef1e",
+    "projectId": "00b1a91b-e967-4f41-8360-87be0570d599",
+    "type": "evaluation_budget",
+    "data": {
+      "action": "run_finished",
+      "profile": "financial",
+      "budget_group_id": "research-models-1791051210532",
+      "budget": {
+        "max_model_calls": 40,
+        "max_input_tokens": 2000000,
+        "max_output_tokens": 300000,
+        "max_total_tokens": 2300000,
+        "max_wall_seconds": 1200
+      },
+      "started_at": "2026-10-03T18:13:30.798Z",
+      "deadline_at": "2026-10-03T18:33:30.798Z",
+      "elapsed_seconds": 136.151,
+      "input_limit_enforcement": "post_usage_soft_cap",
+      "usage": {
+        "model_calls": 15,
+        "settled_calls": 15,
+        "input_tokens": 560014,
+        "output_tokens": 33510,
+        "total_tokens": 593524,
+        "failed_calls": 1,
+        "unknown_usage_calls": 0
+      },
+      "reserved": {
+        "model_calls": 0,
+        "output_tokens": 0
+      },
+      "unknown_output_charge": 0,
+      "denied_calls": 0,
+      "in_flight": [],
+      "overage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      "stopped_reason": null
+    }
+  },
+  "actual_failures": [
+    {
+      "run_id": "2de392ce-96ff-4d96-9781-369bbc368916",
+      "event": {
+        "at": "2026-10-03T18:14:06.977Z",
+        "runId": "2de392ce-96ff-4d96-9781-369bbc368916",
+        "projectId": "00b1a91b-e967-4f41-8360-87be0570d599",
+        "type": "tool_error",
+        "data": {
+          "name": "save_research_report",
+          "toolCallId": "call_00_XA02fklA15qugOnfnshG7606",
+          "message": "成果引用字段不存在：results.tables.scenario.0"
+        }
+      }
+    },
+    {
+      "run_id": "2de392ce-96ff-4d96-9781-369bbc368916",
+      "event": {
+        "at": "2026-10-03T18:14:06.987Z",
+        "runId": "2de392ce-96ff-4d96-9781-369bbc368916",
+        "projectId": "00b1a91b-e967-4f41-8360-87be0570d599",
+        "type": "tool_error",
+        "data": {
+          "name": "save_research_report",
+          "toolCallId": "call_01_ttXTC7OXd6upqtopVcbw5918",
+          "message": "引用文字未在所选来源位置找到：tables.sensitivity"
+        }
+      }
+    },
+    {
+      "run_id": "2de392ce-96ff-4d96-9781-369bbc368916",
+      "event": {
+        "at": "2026-10-03T18:14:41.463Z",
+        "runId": "2de392ce-96ff-4d96-9781-369bbc368916",
+        "projectId": "00b1a91b-e967-4f41-8360-87be0570d599",
+        "type": "model_usage",
+        "data": {
+          "requestId": "1d195ebe-b6ab-4bfc-99ac-607708aa3c89",
+          "phase": "main",
+          "stopReason": "length",
+          "usage": {
+            "input": 6089,
+            "output": 8192,
+            "cacheRead": 40960,
+            "cacheWrite": 0,
+            "reasoning": 6480,
+            "totalTokens": 55241,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          },
+          "usageKnown": true
+        }
+      }
+    },
+    {
+      "run_id": "2de392ce-96ff-4d96-9781-369bbc368916",
+      "event": {
+        "at": "2026-10-03T18:14:49.123Z",
+        "runId": "2de392ce-96ff-4d96-9781-369bbc368916",
+        "projectId": "00b1a91b-e967-4f41-8360-87be0570d599",
+        "type": "tool_error",
+        "data": {
+          "name": "save_research_report",
+          "toolCallId": "call_00_CGdVZWiCNFFIbT61Qsbh6297",
+          "message": "成果引用字段不存在：results.tables.scenario"
+        }
+      }
+    }
+  ],
+  "failure_diagnosis": [
+    {
+      "check": "Exact scenario-to-DCF input preservation",
+      "frozen_result": "failed",
+      "computational_fields_identical": true,
+      "computational_differences": [],
+      "all_spec_differences": [
+        {
+          "path": "input_basis.amount_scale",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户明确指定为1（货币基础单位）。"
+          }
+        },
+        {
+          "path": "input_basis.base.net_working_capital",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户给出的2024基期净营运资本假设100。"
+          }
+        },
+        {
+          "path": "input_basis.base.revenue",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户给出的2024基期收入假设1000。"
+          }
+        },
+        {
+          "path": "input_basis.base_year",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户指定分析时点2024-12-31，基年为2024。"
+          }
+        },
+        {
+          "path": "input_basis.bridge.net_debt",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的净债务假设200。"
+          }
+        },
+        {
+          "path": "input_basis.bridge.non_controlling_interest",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的少数股东权益假设20。"
+          }
+        },
+        {
+          "path": "input_basis.bridge.non_operating_assets_ex_cash",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的非经营性资产（不含现金）假设30。"
+          }
+        },
+        {
+          "path": "input_basis.bridge.preferred_equity",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的优先股假设10。"
+          }
+        },
+        {
+          "path": "input_basis.cash_tax_policy",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式指定floor_at_zero。"
+          }
+        },
+        {
+          "path": "input_basis.currency",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户明确给出的合成分析假设，非任何实际披露数据。"
+          }
+        },
+        {
+          "path": "input_basis.discount.cashflow_timing",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式指定年末现金流。"
+          }
+        },
+        {
+          "path": "input_basis.discount.wacc",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的折现率假设0.1。"
+          }
+        },
+        {
+          "path": "input_basis.forecast.0.capex.basis",
+          "change": "different",
+          "expected": "derived",
+          "actual": "assumption"
+        },
+        {
+          "path": "input_basis.forecast.0.capex.rationale",
+          "change": "different",
+          "expected": "从 baseline.0.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "情景基线中显式给定的资本开支假设。"
+        },
+        {
+          "path": "input_basis.forecast.0.da.basis",
+          "change": "different",
+          "expected": "derived",
+          "actual": "assumption"
+        },
+        {
+          "path": "input_basis.forecast.0.da.rationale",
+          "change": "different",
+          "expected": "从 baseline.0.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "情景基线中显式给定的折旧摊销假设。"
+        },
+        {
+          "path": "input_basis.forecast.0.ebit.note",
+          "change": "added",
+          "actual": "同forecast.0.revenue"
+        },
+        {
+          "path": "input_basis.forecast.0.ebit.rationale",
+          "change": "different",
+          "expected": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "取自已保存制造业情景成果的 scenario_dcf_spec。"
+        },
+        {
+          "path": "input_basis.forecast.0.nwc_ratio.basis",
+          "change": "different",
+          "expected": "derived",
+          "actual": "assumption"
+        },
+        {
+          "path": "input_basis.forecast.0.nwc_ratio.rationale",
+          "change": "different",
+          "expected": "从 baseline.0.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "情景基线中显式给定的NWC/收入比假设。"
+        },
+        {
+          "path": "input_basis.forecast.0.revenue.rationale",
+          "change": "different",
+          "expected": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "取自已保存制造业情景成果的 scenario_dcf_spec（提价0.2、需求弹性-1、一年传导时滞的合成结果）。"
+        },
+        {
+          "path": "input_basis.forecast.0.tax_rate.basis",
+          "change": "different",
+          "expected": "derived",
+          "actual": "assumption"
+        },
+        {
+          "path": "input_basis.forecast.0.tax_rate.rationale",
+          "change": "different",
+          "expected": "从 baseline.0.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "情景基线中显式给定的税率假设。"
+        },
+        {
+          "path": "input_basis.forecast.0.year",
+          "change": "missing",
+          "expected": {
+            "basis": "derived",
+            "rationale": "从 baseline.0.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+          }
+        },
+        {
+          "path": "input_basis.forecast.1.capex.basis",
+          "change": "different",
+          "expected": "derived",
+          "actual": "assumption"
+        },
+        {
+          "path": "input_basis.forecast.1.capex.rationale",
+          "change": "different",
+          "expected": "从 baseline.1.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "情景基线中显式给定的资本开支假设。"
+        },
+        {
+          "path": "input_basis.forecast.1.da.basis",
+          "change": "different",
+          "expected": "derived",
+          "actual": "assumption"
+        },
+        {
+          "path": "input_basis.forecast.1.da.rationale",
+          "change": "different",
+          "expected": "从 baseline.1.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "情景基线中显式给定的折旧摊销假设。"
+        },
+        {
+          "path": "input_basis.forecast.1.ebit.rationale",
+          "change": "different",
+          "expected": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "取自已保存制造业情景成果的 scenario_dcf_spec。"
+        },
+        {
+          "path": "input_basis.forecast.1.nwc_ratio.basis",
+          "change": "different",
+          "expected": "derived",
+          "actual": "assumption"
+        },
+        {
+          "path": "input_basis.forecast.1.nwc_ratio.rationale",
+          "change": "different",
+          "expected": "从 baseline.1.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "情景基线中显式给定的NWC/收入比假设。"
+        },
+        {
+          "path": "input_basis.forecast.1.revenue.rationale",
+          "change": "different",
+          "expected": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "取自已保存制造业情景成果的 scenario_dcf_spec。"
+        },
+        {
+          "path": "input_basis.forecast.1.tax_rate.basis",
+          "change": "different",
+          "expected": "derived",
+          "actual": "assumption"
+        },
+        {
+          "path": "input_basis.forecast.1.tax_rate.rationale",
+          "change": "different",
+          "expected": "从 baseline.1.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "情景基线中显式给定的税率假设。"
+        },
+        {
+          "path": "input_basis.forecast.1.year",
+          "change": "missing",
+          "expected": {
+            "basis": "derived",
+            "rationale": "从 baseline.1.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+          }
+        },
+        {
+          "path": "input_basis.forecast.2.capex.basis",
+          "change": "different",
+          "expected": "derived",
+          "actual": "assumption"
+        },
+        {
+          "path": "input_basis.forecast.2.capex.rationale",
+          "change": "different",
+          "expected": "从 baseline.2.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "情景基线中显式给定的资本开支假设。"
+        },
+        {
+          "path": "input_basis.forecast.2.da.basis",
+          "change": "different",
+          "expected": "derived",
+          "actual": "assumption"
+        },
+        {
+          "path": "input_basis.forecast.2.da.rationale",
+          "change": "different",
+          "expected": "从 baseline.2.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "情景基线中显式给定的折旧摊销假设。"
+        },
+        {
+          "path": "input_basis.forecast.2.ebit.rationale",
+          "change": "different",
+          "expected": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "取自已保存制造业情景成果的 scenario_dcf_spec。"
+        },
+        {
+          "path": "input_basis.forecast.2.nwc_ratio.basis",
+          "change": "different",
+          "expected": "derived",
+          "actual": "assumption"
+        },
+        {
+          "path": "input_basis.forecast.2.nwc_ratio.rationale",
+          "change": "different",
+          "expected": "从 baseline.2.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "情景基线中显式给定的NWC/收入比假设。"
+        },
+        {
+          "path": "input_basis.forecast.2.revenue.rationale",
+          "change": "different",
+          "expected": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "取自已保存制造业情景成果的 scenario_dcf_spec。"
+        },
+        {
+          "path": "input_basis.forecast.2.tax_rate.basis",
+          "change": "different",
+          "expected": "derived",
+          "actual": "assumption"
+        },
+        {
+          "path": "input_basis.forecast.2.tax_rate.rationale",
+          "change": "different",
+          "expected": "从 baseline.2.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。",
+          "actual": "情景基线中显式给定的税率假设。"
+        },
+        {
+          "path": "input_basis.forecast.2.year",
+          "change": "missing",
+          "expected": {
+            "basis": "derived",
+            "rationale": "从 baseline.2.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+          }
+        },
+        {
+          "path": "input_basis.sensitivity.growth.0",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的增长率敏感性数组。"
+          }
+        },
+        {
+          "path": "input_basis.sensitivity.growth.1",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的增长率敏感性数组。"
+          }
+        },
+        {
+          "path": "input_basis.sensitivity.growth.2",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的增长率敏感性数组。"
+          }
+        },
+        {
+          "path": "input_basis.sensitivity.wacc.0",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的WACC敏感性数组。"
+          }
+        },
+        {
+          "path": "input_basis.sensitivity.wacc.1",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的WACC敏感性数组。"
+          }
+        },
+        {
+          "path": "input_basis.sensitivity.wacc.2",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的WACC敏感性数组。"
+          }
+        },
+        {
+          "path": "input_basis.shares.count",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的股数假设100。"
+          }
+        },
+        {
+          "path": "input_basis.shares.scale",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式指定股数倍率为1（未与金额倍率混用）。"
+          }
+        },
+        {
+          "path": "input_basis.terminal.ebit_margin",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的永续EBIT率假设0.25。"
+          }
+        },
+        {
+          "path": "input_basis.terminal.growth",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的永续增长假设0.02。"
+          }
+        },
+        {
+          "path": "input_basis.terminal.roic",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的永续ROIC假设0.2。"
+          }
+        },
+        {
+          "path": "input_basis.terminal.tax_rate",
+          "change": "added",
+          "actual": {
+            "basis": "assumption",
+            "rationale": "用户显式给出的永续税率假设0.25。"
+          }
+        },
+        {
+          "path": "scenario_assumptions",
+          "change": "missing",
+          "expected": {
+            "exposed_material_share": "0.5",
+            "pass_through_rate": "0.5",
+            "lag_years": 1,
+            "price_elasticity": "-1",
+            "material_cost_changes": [
+              "0.2",
+              "0.2",
+              "0.2"
+            ],
+            "volume_changes": [
+              "0",
+              "0",
+              "0"
+            ],
+            "autonomous_price_changes": [
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "path": "source_refs.forecast",
+          "change": "added",
+          "actual": [
+            {
+              "kind": "artifact",
+              "id": "research_d71f04ae-d0c9-4b4f-a31e-4ab86c3f12c0",
+              "locator": "results.scenario_dcf_spec.forecast",
+              "quote": "情景口径预测收入与EBIT（2025:收入1000/EBIT210；2026:收入1099.56/EBIT244.64；2027:收入1209.516/EBIT269.104）"
+            }
+          ]
+        },
+        {
+          "path": "source_refs.scenario_assumptions",
+          "change": "added",
+          "actual": [
+            {
+              "kind": "artifact",
+              "id": "research_d71f04ae-d0c9-4b4f-a31e-4ab86c3f12c0",
+              "locator": "results.scenario_dcf_spec.scenario_assumptions",
+              "quote": "exposed_material_share=0.5; pass_through_rate=0.5; lag_years=1; price_elasticity=-1"
+            }
+          ]
+        }
+      ],
+      "explanation": "All calculation inputs were preserved. Pi omitted scenario_assumptions and forecast year basis, and rewrote basis/rationale for other fields. These provenance differences remain a real exact-preservation failure; numerical equivalence does not turn it into a pass."
+    },
+    {
+      "check": "Second conversation individually reads all four artifacts",
+      "frozen_result": "failed",
+      "listed_artifacts_with_real_dependency_state": [
+        {
+          "id": "research_d71f04ae-d0c9-4b4f-a31e-4ab86c3f12c0",
+          "kind": "manufacturing_scenario",
+          "revision_id": "revision_d04e6137-2a6d-462f-be1e-8bf9a162616e",
+          "dependency_status": "current",
+          "changed_dependencies": []
+        },
+        {
+          "id": "research_a432322d-458b-4134-b2e4-05fb32ed4748",
+          "kind": "investment_memo",
+          "revision_id": "revision_9ac3b5c6-609b-4626-b8a2-9f84b40d6e3f",
+          "dependency_status": "stale",
+          "changed_dependencies": [
+            {
+              "kind": "artifact",
+              "id": "research_d71f04ae-d0c9-4b4f-a31e-4ab86c3f12c0",
+              "version": "revision_1e5c9653-f406-4804-8a2c-1e715d23bf0d",
+              "current_version": "revision_d04e6137-2a6d-462f-be1e-8bf9a162616e",
+              "reason": "changed"
+            },
+            {
+              "kind": "artifact",
+              "id": "research_aed3dce3-e25e-454f-b27f-837e97edf9d4",
+              "version": "revision_609d7c30-5be0-4c04-81d4-09939f7a40ac",
+              "reason": "upstream_stale"
+            }
+          ]
+        },
+        {
+          "id": "research_58962e04-5536-43ba-b592-edfabd12b4d2",
+          "kind": "industry_chain",
+          "revision_id": "revision_600d89ba-60a7-452d-9a06-f28548741e1a",
+          "dependency_status": "stale",
+          "changed_dependencies": [
+            {
+              "kind": "artifact",
+              "id": "research_d71f04ae-d0c9-4b4f-a31e-4ab86c3f12c0",
+              "version": "revision_1e5c9653-f406-4804-8a2c-1e715d23bf0d",
+              "current_version": "revision_d04e6137-2a6d-462f-be1e-8bf9a162616e",
+              "reason": "changed"
+            }
+          ]
+        },
+        {
+          "id": "research_aed3dce3-e25e-454f-b27f-837e97edf9d4",
+          "kind": "dcf",
+          "revision_id": "revision_609d7c30-5be0-4c04-81d4-09939f7a40ac",
+          "dependency_status": "stale",
+          "changed_dependencies": [
+            {
+              "kind": "artifact",
+              "id": "research_d71f04ae-d0c9-4b4f-a31e-4ab86c3f12c0",
+              "version": "revision_1e5c9653-f406-4804-8a2c-1e715d23bf0d",
+              "current_version": "revision_d04e6137-2a6d-462f-be1e-8bf9a162616e",
+              "reason": "changed"
+            }
+          ]
+        }
+      ],
+      "individual_reads": [
+        {
+          "id": "research_d71f04ae-d0c9-4b4f-a31e-4ab86c3f12c0",
+          "kind": "manufacturing_scenario",
+          "revision_id": "revision_d04e6137-2a6d-462f-be1e-8bf9a162616e",
+          "dependency_status": "current",
+          "changed_dependencies": []
+        },
+        {
+          "id": "research_d71f04ae-d0c9-4b4f-a31e-4ab86c3f12c0",
+          "kind": "manufacturing_scenario",
+          "revision_id": "revision_1e5c9653-f406-4804-8a2c-1e715d23bf0d",
+          "dependency_status": "current",
+          "changed_dependencies": []
+        },
+        {
+          "id": "research_aed3dce3-e25e-454f-b27f-837e97edf9d4",
+          "kind": "dcf",
+          "revision_id": "revision_609d7c30-5be0-4c04-81d4-09939f7a40ac",
+          "dependency_status": "stale",
+          "changed_dependencies": [
+            {
+              "kind": "artifact",
+              "id": "research_d71f04ae-d0c9-4b4f-a31e-4ab86c3f12c0",
+              "version": "revision_1e5c9653-f406-4804-8a2c-1e715d23bf0d",
+              "current_version": "revision_d04e6137-2a6d-462f-be1e-8bf9a162616e",
+              "reason": "changed"
+            }
+          ]
+        }
+      ],
+      "not_individually_read": [
+        "research_58962e04-5536-43ba-b592-edfabd12b4d2",
+        "research_a432322d-458b-4134-b2e4-05fb32ed4748"
+      ],
+      "explanation": "The model obtained all four real dependency states from list_research_artifacts, and read scenario old/new revisions plus DCF. It did not individually read chain and memo content, so the original strict check remains failed. Its stale-status explanation nevertheless had real list-tool evidence."
+    }
+  ],
+  "independent_arithmetic": {
+    "method": "Python Fraction exact rational arithmetic from frozen synthetic assumptions; no production model implementation imported.",
+    "absolute_tolerance": "1e-40",
+    "checks": [
+      {
+        "path": "scenario.tables.scenario.0.scenario_volume",
+        "actual": "100",
+        "reference": "100",
+        "reference_fraction": "100",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario.0.scenario_unit_price",
+        "actual": "10",
+        "reference": "10",
+        "reference_fraction": "10",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario.0.price_pass_through_per_unit",
+        "actual": "0",
+        "reference": "0",
+        "reference_fraction": "0",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario.0.exposed_material_cost_change_per_unit",
+        "actual": "0.40",
+        "reference": "0.4",
+        "reference_fraction": "2/5",
+        "absolute_error": "0.00",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario.1.scenario_volume",
+        "actual": "107.800",
+        "reference": "107.8",
+        "reference_fraction": "539/5",
+        "absolute_error": "0.000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario.1.scenario_unit_price",
+        "actual": "10.200",
+        "reference": "10.2",
+        "reference_fraction": "51/5",
+        "absolute_error": "0.000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario.1.price_pass_through_per_unit",
+        "actual": "0.200",
+        "reference": "0.2",
+        "reference_fraction": "1/5",
+        "absolute_error": "0.000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario.1.exposed_material_cost_change_per_unit",
+        "actual": "0.40",
+        "reference": "0.4",
+        "reference_fraction": "2/5",
+        "absolute_error": "0.00",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario.2.scenario_volume",
+        "actual": "118.580",
+        "reference": "118.58",
+        "reference_fraction": "5929/50",
+        "absolute_error": "0.000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario.2.scenario_unit_price",
+        "actual": "10.200",
+        "reference": "10.2",
+        "reference_fraction": "51/5",
+        "absolute_error": "0.000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario.2.price_pass_through_per_unit",
+        "actual": "0.200",
+        "reference": "0.2",
+        "reference_fraction": "1/5",
+        "absolute_error": "0.000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario.2.exposed_material_cost_change_per_unit",
+        "actual": "0.40",
+        "reference": "0.4",
+        "reference_fraction": "2/5",
+        "absolute_error": "0.00",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.0.year",
+        "actual": "2025",
+        "reference": "2025",
+        "reference_fraction": "2025",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.0.revenue",
+        "actual": "1000",
+        "reference": "1000",
+        "reference_fraction": "1000",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.0.ebit",
+        "actual": "250",
+        "reference": "250",
+        "reference_fraction": "250",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.0.cash_tax",
+        "actual": "62.50",
+        "reference": "62.5",
+        "reference_fraction": "125/2",
+        "absolute_error": "0.00",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.0.nopat",
+        "actual": "187.50",
+        "reference": "187.5",
+        "reference_fraction": "375/2",
+        "absolute_error": "0.00",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.0.fcff",
+        "actual": "187.50",
+        "reference": "187.5",
+        "reference_fraction": "375/2",
+        "absolute_error": "0.00",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.0.net_working_capital",
+        "actual": "100.0",
+        "reference": "100",
+        "reference_fraction": "100",
+        "absolute_error": "0.0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.0.delta_nwc",
+        "actual": "0.0",
+        "reference": "0",
+        "reference_fraction": "0",
+        "absolute_error": "0.0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.1.year",
+        "actual": "2026",
+        "reference": "2026",
+        "reference_fraction": "2026",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.1.revenue",
+        "actual": "1100",
+        "reference": "1100",
+        "reference_fraction": "1100",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.1.ebit",
+        "actual": "275",
+        "reference": "275",
+        "reference_fraction": "275",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.1.cash_tax",
+        "actual": "68.75",
+        "reference": "68.75",
+        "reference_fraction": "275/4",
+        "absolute_error": "0.00",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.1.nopat",
+        "actual": "206.25",
+        "reference": "206.25",
+        "reference_fraction": "825/4",
+        "absolute_error": "0.00",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.1.fcff",
+        "actual": "196.25",
+        "reference": "196.25",
+        "reference_fraction": "785/4",
+        "absolute_error": "0.00",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.1.net_working_capital",
+        "actual": "110.0",
+        "reference": "110",
+        "reference_fraction": "110",
+        "absolute_error": "0.0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.1.delta_nwc",
+        "actual": "10.0",
+        "reference": "10",
+        "reference_fraction": "10",
+        "absolute_error": "0.0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.2.year",
+        "actual": "2027",
+        "reference": "2027",
+        "reference_fraction": "2027",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.2.revenue",
+        "actual": "1210",
+        "reference": "1210",
+        "reference_fraction": "1210",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.2.ebit",
+        "actual": "302.5",
+        "reference": "302.5",
+        "reference_fraction": "605/2",
+        "absolute_error": "0.0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.2.cash_tax",
+        "actual": "75.625",
+        "reference": "75.625",
+        "reference_fraction": "605/8",
+        "absolute_error": "0.000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.2.nopat",
+        "actual": "226.875",
+        "reference": "226.875",
+        "reference_fraction": "1815/8",
+        "absolute_error": "0.000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.2.fcff",
+        "actual": "215.875",
+        "reference": "215.875",
+        "reference_fraction": "1727/8",
+        "absolute_error": "0.000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.2.net_working_capital",
+        "actual": "121.0",
+        "reference": "121",
+        "reference_fraction": "121",
+        "absolute_error": "0.0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.baseline_forecast.2.delta_nwc",
+        "actual": "11.0",
+        "reference": "11",
+        "reference_fraction": "11",
+        "absolute_error": "0.0",
+        "passed": true
+      },
+      {
+        "path": "original.results.baseline_valuation.enterprise_value",
+        "actual": "2450.8006198347107438016528925619834710743801652892",
+        "reference": "2450.8006198347107438016528925619834710743801652892561983471074380",
+        "reference_fraction": "2372375/968",
+        "absolute_error": "5.61983471074380E-47",
+        "passed": true
+      },
+      {
+        "path": "original.results.baseline_valuation.equity_value",
+        "actual": "2250.8006198347107438016528925619834710743801652892",
+        "reference": "2250.8006198347107438016528925619834710743801652892561983471074380",
+        "reference_fraction": "2178775/968",
+        "absolute_error": "5.61983471074380E-47",
+        "passed": true
+      },
+      {
+        "path": "original.results.baseline_valuation.value_per_share",
+        "actual": "22.508006198347107438016528925619834710743801652892",
+        "reference": "22.508006198347107438016528925619834710743801652892561983471074380",
+        "reference_fraction": "87151/3872",
+        "absolute_error": "5.61983471074380E-49",
+        "passed": true
+      },
+      {
+        "path": "original.results.baseline_valuation.explicit_forecast_pv",
+        "actual": "494.83471074380165289256198347107438016528925619835",
+        "reference": "494.83471074380165289256198347107438016528925619834710743801652893",
+        "reference_fraction": "59875/121",
+        "absolute_error": "2.89256198347107E-48",
+        "passed": true
+      },
+      {
+        "path": "original.results.baseline_valuation.terminal_value",
+        "actual": "2603.390625",
+        "reference": "2603.390625",
+        "reference_fraction": "166617/64",
+        "absolute_error": "0.000000",
+        "passed": true
+      },
+      {
+        "path": "original.results.baseline_valuation.terminal_pv",
+        "actual": "1955.9659090909090909090909090909090909090909090909",
+        "reference": "1955.9659090909090909090909090909090909090909090909090909090909091",
+        "reference_fraction": "172125/88",
+        "absolute_error": "9.0909090909091E-48",
+        "passed": true
+      },
+      {
+        "path": "original.results.baseline_valuation.terminal_revenue",
+        "actual": "1234.20",
+        "reference": "1234.2",
+        "reference_fraction": "6171/5",
+        "absolute_error": "0.00",
+        "passed": true
+      },
+      {
+        "path": "original.results.baseline_valuation.terminal_nopat",
+        "actual": "231.412500",
+        "reference": "231.4125",
+        "reference_fraction": "18513/80",
+        "absolute_error": "0.000000",
+        "passed": true
+      },
+      {
+        "path": "original.results.baseline_valuation.terminal_reinvestment",
+        "actual": "23.1412500",
+        "reference": "23.14125",
+        "reference_fraction": "18513/800",
+        "absolute_error": "0E-7",
+        "passed": true
+      },
+      {
+        "path": "original.results.baseline_valuation.terminal_fcff",
+        "actual": "208.2712500",
+        "reference": "208.27125",
+        "reference_fraction": "166617/800",
+        "absolute_error": "0E-7",
+        "passed": true
+      },
+      {
+        "path": "edited.results.baseline_valuation.enterprise_value",
+        "actual": "2178.1140161344690197867699693850168649292097064193",
+        "reference": "2178.1140161344690197867699693850168649292097064193484938554332272",
+        "reference_fraction": "2978856250/1367631",
+        "absolute_error": "4.84938554332272E-47",
+        "passed": true
+      },
+      {
+        "path": "edited.results.baseline_valuation.equity_value",
+        "actual": "1978.1140161344690197867699693850168649292097064193",
+        "reference": "1978.1140161344690197867699693850168649292097064193484938554332272",
+        "reference_fraction": "2705330050/1367631",
+        "absolute_error": "4.84938554332272E-47",
+        "passed": true
+      },
+      {
+        "path": "edited.results.baseline_valuation.value_per_share",
+        "actual": "19.781140161344690197867699693850168649292097064193",
+        "reference": "19.781140161344690197867699693850168649292097064193484938554332272",
+        "reference_fraction": "54106601/2735262",
+        "absolute_error": "4.84938554332272E-49",
+        "passed": true
+      },
+      {
+        "path": "edited.results.baseline_valuation.explicit_forecast_pv",
+        "actual": "486.04576088140733867541756511807644020938396394934",
+        "reference": "486.04576088140733867541756511807644020938396394934013633794495738",
+        "reference_fraction": "664731250/1367631",
+        "absolute_error": "1.3633794495738E-49",
+        "passed": true
+      },
+      {
+        "path": "edited.results.baseline_valuation.terminal_value",
+        "actual": "2314.12500",
+        "reference": "2314.125",
+        "reference_fraction": "18513/8",
+        "absolute_error": "0.00000",
+        "passed": true
+      },
+      {
+        "path": "edited.results.baseline_valuation.terminal_pv",
+        "actual": "1692.0682552530616811113524042669404247198257424700",
+        "reference": "1692.0682552530616811113524042669404247198257424700083575174882699",
+        "reference_fraction": "257125000/151959",
+        "absolute_error": "8.3575174882699E-48",
+        "passed": true
+      },
+      {
+        "path": "edited.results.baseline_valuation.terminal_revenue",
+        "actual": "1234.20",
+        "reference": "1234.2",
+        "reference_fraction": "6171/5",
+        "absolute_error": "0.00",
+        "passed": true
+      },
+      {
+        "path": "edited.results.baseline_valuation.terminal_nopat",
+        "actual": "231.412500",
+        "reference": "231.4125",
+        "reference_fraction": "18513/80",
+        "absolute_error": "0.000000",
+        "passed": true
+      },
+      {
+        "path": "edited.results.baseline_valuation.terminal_reinvestment",
+        "actual": "23.1412500",
+        "reference": "23.14125",
+        "reference_fraction": "18513/800",
+        "absolute_error": "0E-7",
+        "passed": true
+      },
+      {
+        "path": "edited.results.baseline_valuation.terminal_fcff",
+        "actual": "208.2712500",
+        "reference": "208.27125",
+        "reference_fraction": "166617/800",
+        "absolute_error": "0E-7",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.0.year",
+        "actual": "2025",
+        "reference": "2025",
+        "reference_fraction": "2025",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.0.revenue",
+        "actual": "1000",
+        "reference": "1000",
+        "reference_fraction": "1000",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.0.ebit",
+        "actual": "210.00",
+        "reference": "210",
+        "reference_fraction": "210",
+        "absolute_error": "0.00",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.0.cash_tax",
+        "actual": "52.5000",
+        "reference": "52.5",
+        "reference_fraction": "105/2",
+        "absolute_error": "0.0000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.0.nopat",
+        "actual": "157.5000",
+        "reference": "157.5",
+        "reference_fraction": "315/2",
+        "absolute_error": "0.0000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.0.fcff",
+        "actual": "157.5000",
+        "reference": "157.5",
+        "reference_fraction": "315/2",
+        "absolute_error": "0.0000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.0.net_working_capital",
+        "actual": "100.0",
+        "reference": "100",
+        "reference_fraction": "100",
+        "absolute_error": "0.0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.0.delta_nwc",
+        "actual": "0.0",
+        "reference": "0",
+        "reference_fraction": "0",
+        "absolute_error": "0.0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.1.year",
+        "actual": "2026",
+        "reference": "2026",
+        "reference_fraction": "2026",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.1.revenue",
+        "actual": "1099.560000",
+        "reference": "1099.56",
+        "reference_fraction": "27489/25",
+        "absolute_error": "0.000000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.1.ebit",
+        "actual": "244.640000",
+        "reference": "244.64",
+        "reference_fraction": "6116/25",
+        "absolute_error": "0.000000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.1.cash_tax",
+        "actual": "61.16000000",
+        "reference": "61.16",
+        "reference_fraction": "1529/25",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.1.nopat",
+        "actual": "183.48000000",
+        "reference": "183.48",
+        "reference_fraction": "4587/25",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.1.fcff",
+        "actual": "173.52400000",
+        "reference": "173.524",
+        "reference_fraction": "43381/250",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.1.net_working_capital",
+        "actual": "109.9560000",
+        "reference": "109.956",
+        "reference_fraction": "27489/250",
+        "absolute_error": "0E-7",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.1.delta_nwc",
+        "actual": "9.9560000",
+        "reference": "9.956",
+        "reference_fraction": "2489/250",
+        "absolute_error": "0E-7",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.2.year",
+        "actual": "2027",
+        "reference": "2027",
+        "reference_fraction": "2027",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.2.revenue",
+        "actual": "1209.516000",
+        "reference": "1209.516",
+        "reference_fraction": "302379/250",
+        "absolute_error": "0.000000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.2.ebit",
+        "actual": "269.104000",
+        "reference": "269.104",
+        "reference_fraction": "33638/125",
+        "absolute_error": "0.000000",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.2.cash_tax",
+        "actual": "67.27600000",
+        "reference": "67.276",
+        "reference_fraction": "16819/250",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.2.nopat",
+        "actual": "201.82800000",
+        "reference": "201.828",
+        "reference_fraction": "50457/250",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.2.fcff",
+        "actual": "190.83240000",
+        "reference": "190.8324",
+        "reference_fraction": "477081/2500",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.2.net_working_capital",
+        "actual": "120.9516000",
+        "reference": "120.9516",
+        "reference_fraction": "302379/2500",
+        "absolute_error": "0E-7",
+        "passed": true
+      },
+      {
+        "path": "scenario.tables.scenario_forecast.2.delta_nwc",
+        "actual": "10.9956000",
+        "reference": "10.9956",
+        "reference_fraction": "27489/2500",
+        "absolute_error": "0E-7",
+        "passed": true
+      },
+      {
+        "path": "original.results.scenario_valuation.enterprise_value",
+        "actual": "2385.1488119834710743801652892561983471074380165290",
+        "reference": "2385.1488119834710743801652892561983471074380165289256198347107438",
+        "reference_fraction": "46176481/19360",
+        "absolute_error": "7.43801652892562E-47",
+        "passed": true
+      },
+      {
+        "path": "original.results.scenario_valuation.equity_value",
+        "actual": "2185.1488119834710743801652892561983471074380165290",
+        "reference": "2185.1488119834710743801652892561983471074380165289256198347107438",
+        "reference_fraction": "42304481/19360",
+        "absolute_error": "7.43801652892562E-47",
+        "passed": true
+      },
+      {
+        "path": "original.results.scenario_valuation.value_per_share",
+        "actual": "21.85148811983471074380165289256198347107438016529",
+        "reference": "21.851488119834710743801652892561983471074380165289256198347107438",
+        "reference_fraction": "42304481/1936000",
+        "absolute_error": "7.43801652892562E-49",
+        "passed": true
+      },
+      {
+        "path": "original.results.scenario_valuation.explicit_forecast_pv",
+        "actual": "429.96528925619834710743801652892561983471074380165",
+        "reference": "429.96528925619834710743801652892561983471074380165289256198347107",
+        "reference_fraction": "260129/605",
+        "absolute_error": "2.89256198347107E-48",
+        "passed": true
+      },
+      {
+        "path": "original.results.scenario_valuation.terminal_value",
+        "actual": "2602.34926875000",
+        "reference": "2602.34926875",
+        "reference_fraction": "416375883/160000",
+        "absolute_error": "0E-11",
+        "passed": true
+      },
+      {
+        "path": "original.results.scenario_valuation.terminal_pv",
+        "actual": "1955.1835227272727272727272727272727272727272727273",
+        "reference": "1955.1835227272727272727272727272727272727272727272727272727272727",
+        "reference_fraction": "3441123/1760",
+        "absolute_error": "2.72727272727273E-47",
+        "passed": true
+      },
+      {
+        "path": "original.results.scenario_valuation.terminal_revenue",
+        "actual": "1233.70632000",
+        "reference": "1233.70632",
+        "reference_fraction": "15421329/12500",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "original.results.scenario_valuation.terminal_nopat",
+        "actual": "231.319935000000",
+        "reference": "231.319935",
+        "reference_fraction": "46263987/200000",
+        "absolute_error": "0E-12",
+        "passed": true
+      },
+      {
+        "path": "original.results.scenario_valuation.terminal_reinvestment",
+        "actual": "23.1319935000000",
+        "reference": "23.1319935",
+        "reference_fraction": "46263987/2000000",
+        "absolute_error": "0E-13",
+        "passed": true
+      },
+      {
+        "path": "original.results.scenario_valuation.terminal_fcff",
+        "actual": "208.1879415000000",
+        "reference": "208.1879415",
+        "reference_fraction": "416375883/2000000",
+        "absolute_error": "0E-13",
+        "passed": true
+      },
+      {
+        "path": "edited.results.scenario_valuation.enterprise_value",
+        "actual": "2113.6542971020691984899435593372773796440706594103",
+        "reference": "2113.6542971020691984899435593372773796440706594103233986360355973",
+        "reference_fraction": "963566380/455877",
+        "absolute_error": "2.33986360355973E-47",
+        "passed": true
+      },
+      {
+        "path": "edited.results.scenario_valuation.equity_value",
+        "actual": "1913.6542971020691984899435593372773796440706594103",
+        "reference": "1913.6542971020691984899435593372773796440706594103233986360355973",
+        "reference_fraction": "872390980/455877",
+        "absolute_error": "2.33986360355973E-47",
+        "passed": true
+      },
+      {
+        "path": "edited.results.scenario_valuation.value_per_share",
+        "actual": "19.136542971020691984899435593372773796440706594103",
+        "reference": "19.136542971020691984899435593372773796440706594103233986360355973",
+        "reference_fraction": "43619549/2279385",
+        "absolute_error": "2.33986360355973E-49",
+        "passed": true
+      },
+      {
+        "path": "edited.results.scenario_valuation.explicit_forecast_pv",
+        "actual": "422.26286915110874205103569603204373109413284723730",
+        "reference": "422.26286915110874205103569603204373109413284723730304446155432277",
+        "reference_fraction": "192499930/455877",
+        "absolute_error": "3.04446155432277E-48",
+        "passed": true
+      },
+      {
+        "path": "edited.results.scenario_valuation.terminal_value",
+        "actual": "2313.19935000000",
+        "reference": "2313.19935",
+        "reference_fraction": "46263987/20000",
+        "absolute_error": "0E-11",
+        "passed": true
+      },
+      {
+        "path": "edited.results.scenario_valuation.terminal_pv",
+        "actual": "1691.3914279509604564389078633052336485499378121730",
+        "reference": "1691.3914279509604564389078633052336485499378121730203541744812746",
+        "reference_fraction": "85674050/50653",
+        "absolute_error": "2.03541744812746E-47",
+        "passed": true
+      },
+      {
+        "path": "edited.results.scenario_valuation.terminal_revenue",
+        "actual": "1233.70632000",
+        "reference": "1233.70632",
+        "reference_fraction": "15421329/12500",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "edited.results.scenario_valuation.terminal_nopat",
+        "actual": "231.319935000000",
+        "reference": "231.319935",
+        "reference_fraction": "46263987/200000",
+        "absolute_error": "0E-12",
+        "passed": true
+      },
+      {
+        "path": "edited.results.scenario_valuation.terminal_reinvestment",
+        "actual": "23.1319935000000",
+        "reference": "23.1319935",
+        "reference_fraction": "46263987/2000000",
+        "absolute_error": "0E-13",
+        "passed": true
+      },
+      {
+        "path": "edited.results.scenario_valuation.terminal_fcff",
+        "actual": "208.1879415000000",
+        "reference": "208.1879415",
+        "reference_fraction": "416375883/2000000",
+        "absolute_error": "0E-13",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.0.year",
+        "actual": "2025",
+        "reference": "2025",
+        "reference_fraction": "2025",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.0.revenue",
+        "actual": "1000",
+        "reference": "1000",
+        "reference_fraction": "1000",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.0.ebit",
+        "actual": "210.00",
+        "reference": "210",
+        "reference_fraction": "210",
+        "absolute_error": "0.00",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.0.cash_tax",
+        "actual": "52.5000",
+        "reference": "52.5",
+        "reference_fraction": "105/2",
+        "absolute_error": "0.0000",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.0.nopat",
+        "actual": "157.5000",
+        "reference": "157.5",
+        "reference_fraction": "315/2",
+        "absolute_error": "0.0000",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.0.fcff",
+        "actual": "157.5000",
+        "reference": "157.5",
+        "reference_fraction": "315/2",
+        "absolute_error": "0.0000",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.0.net_working_capital",
+        "actual": "100.0",
+        "reference": "100",
+        "reference_fraction": "100",
+        "absolute_error": "0.0",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.0.delta_nwc",
+        "actual": "0.0",
+        "reference": "0",
+        "reference_fraction": "0",
+        "absolute_error": "0.0",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.1.year",
+        "actual": "2026",
+        "reference": "2026",
+        "reference_fraction": "2026",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.1.revenue",
+        "actual": "1099.560000",
+        "reference": "1099.56",
+        "reference_fraction": "27489/25",
+        "absolute_error": "0.000000",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.1.ebit",
+        "actual": "244.640000",
+        "reference": "244.64",
+        "reference_fraction": "6116/25",
+        "absolute_error": "0.000000",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.1.cash_tax",
+        "actual": "61.16000000",
+        "reference": "61.16",
+        "reference_fraction": "1529/25",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.1.nopat",
+        "actual": "183.48000000",
+        "reference": "183.48",
+        "reference_fraction": "4587/25",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.1.fcff",
+        "actual": "173.52400000",
+        "reference": "173.524",
+        "reference_fraction": "43381/250",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.1.net_working_capital",
+        "actual": "109.9560000",
+        "reference": "109.956",
+        "reference_fraction": "27489/250",
+        "absolute_error": "0E-7",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.1.delta_nwc",
+        "actual": "9.9560000",
+        "reference": "9.956",
+        "reference_fraction": "2489/250",
+        "absolute_error": "0E-7",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.2.year",
+        "actual": "2027",
+        "reference": "2027",
+        "reference_fraction": "2027",
+        "absolute_error": "0",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.2.revenue",
+        "actual": "1209.516000",
+        "reference": "1209.516",
+        "reference_fraction": "302379/250",
+        "absolute_error": "0.000000",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.2.ebit",
+        "actual": "269.104000",
+        "reference": "269.104",
+        "reference_fraction": "33638/125",
+        "absolute_error": "0.000000",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.2.cash_tax",
+        "actual": "67.27600000",
+        "reference": "67.276",
+        "reference_fraction": "16819/250",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.2.nopat",
+        "actual": "201.82800000",
+        "reference": "201.828",
+        "reference_fraction": "50457/250",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.2.fcff",
+        "actual": "190.83240000",
+        "reference": "190.8324",
+        "reference_fraction": "477081/2500",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.2.net_working_capital",
+        "actual": "120.9516000",
+        "reference": "120.9516",
+        "reference_fraction": "302379/2500",
+        "absolute_error": "0E-7",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.forecast.2.delta_nwc",
+        "actual": "10.9956000",
+        "reference": "10.9956",
+        "reference_fraction": "27489/2500",
+        "absolute_error": "0E-7",
+        "passed": true
+      },
+      {
+        "path": "dcf.results.enterprise_value",
+        "actual": "2385.1488119834710743801652892561983471074380165290",
+        "reference": "2385.1488119834710743801652892561983471074380165289256198347107438",
+        "reference_fraction": "46176481/19360",
+        "absolute_error": "7.43801652892562E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.results.equity_value",
+        "actual": "2185.1488119834710743801652892561983471074380165290",
+        "reference": "2185.1488119834710743801652892561983471074380165289256198347107438",
+        "reference_fraction": "42304481/19360",
+        "absolute_error": "7.43801652892562E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.results.value_per_share",
+        "actual": "21.85148811983471074380165289256198347107438016529",
+        "reference": "21.851488119834710743801652892561983471074380165289256198347107438",
+        "reference_fraction": "42304481/1936000",
+        "absolute_error": "7.43801652892562E-49",
+        "passed": true
+      },
+      {
+        "path": "dcf.results.explicit_forecast_pv",
+        "actual": "429.96528925619834710743801652892561983471074380165",
+        "reference": "429.96528925619834710743801652892561983471074380165289256198347107",
+        "reference_fraction": "260129/605",
+        "absolute_error": "2.89256198347107E-48",
+        "passed": true
+      },
+      {
+        "path": "dcf.results.terminal_value",
+        "actual": "2602.34926875000",
+        "reference": "2602.34926875",
+        "reference_fraction": "416375883/160000",
+        "absolute_error": "0E-11",
+        "passed": true
+      },
+      {
+        "path": "dcf.results.terminal_pv",
+        "actual": "1955.1835227272727272727272727272727272727272727273",
+        "reference": "1955.1835227272727272727272727272727272727272727272727272727272727",
+        "reference_fraction": "3441123/1760",
+        "absolute_error": "2.72727272727273E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.results.terminal_revenue",
+        "actual": "1233.70632000",
+        "reference": "1233.70632",
+        "reference_fraction": "15421329/12500",
+        "absolute_error": "0E-8",
+        "passed": true
+      },
+      {
+        "path": "dcf.results.terminal_nopat",
+        "actual": "231.319935000000",
+        "reference": "231.319935",
+        "reference_fraction": "46263987/200000",
+        "absolute_error": "0E-12",
+        "passed": true
+      },
+      {
+        "path": "dcf.results.terminal_reinvestment",
+        "actual": "23.1319935000000",
+        "reference": "23.1319935",
+        "reference_fraction": "46263987/2000000",
+        "absolute_error": "0E-13",
+        "passed": true
+      },
+      {
+        "path": "dcf.results.terminal_fcff",
+        "actual": "208.1879415000000",
+        "reference": "208.1879415",
+        "reference_fraction": "416375883/2000000",
+        "absolute_error": "0E-13",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.0.enterprise_value",
+        "actual": "2696.4492241083676268861454046639231824417009602195",
+        "reference": "2696.4492241083676268861454046639231824417009602194787379972565158",
+        "reference_fraction": "125805535/46656",
+        "absolute_error": "2.12620027434842E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.0.equity_value",
+        "actual": "2496.4492241083676268861454046639231824417009602195",
+        "reference": "2496.4492241083676268861454046639231824417009602194787379972565158",
+        "reference_fraction": "116474335/46656",
+        "absolute_error": "2.12620027434842E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.0.value_per_share",
+        "actual": "24.964492241083676268861454046639231824417009602195",
+        "reference": "24.964492241083676268861454046639231824417009602194787379972565158",
+        "reference_fraction": "23294867/933120",
+        "absolute_error": "2.12620027434842E-49",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.1.enterprise_value",
+        "actual": "3200.5294424439871970736168267032464563328760859625",
+        "reference": "3200.5294424439871970736168267032464563328760859625057155921353452",
+        "reference_fraction": "447971705/139968",
+        "absolute_error": "5.7155921353452E-48",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.1.equity_value",
+        "actual": "3000.5294424439871970736168267032464563328760859625",
+        "reference": "3000.5294424439871970736168267032464563328760859625057155921353452",
+        "reference_fraction": "419978105/139968",
+        "absolute_error": "5.7155921353452E-48",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.1.value_per_share",
+        "actual": "30.005294424439871970736168267032464563328760859625",
+        "reference": "30.005294424439871970736168267032464563328760859625057155921353452",
+        "reference_fraction": "83995621/2799360",
+        "absolute_error": "5.7155921353452E-50",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.2.enterprise_value",
+        "actual": "3598.3927576303155006858710562414266117969821673525",
+        "reference": "3598.3927576303155006858710562414266117969821673525377229080932785",
+        "reference_fraction": "335773225/93312",
+        "absolute_error": "3.77229080932785E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.2.equity_value",
+        "actual": "3398.3927576303155006858710562414266117969821673525",
+        "reference": "3398.3927576303155006858710562414266117969821673525377229080932785",
+        "reference_fraction": "317110825/93312",
+        "absolute_error": "3.77229080932785E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.2.value_per_share",
+        "actual": "33.983927576303155006858710562414266117969821673525",
+        "reference": "33.983927576303155006858710562414266117969821673525377229080932785",
+        "reference_fraction": "12684433/373248",
+        "absolute_error": "3.77229080932785E-49",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.3.enterprise_value",
+        "actual": "2133.8289256198347107438016528925619834710743801652",
+        "reference": "2133.8289256198347107438016528925619834710743801652892561983471074",
+        "reference_fraction": "2581933/1210",
+        "absolute_error": "8.92561983471074E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.3.equity_value",
+        "actual": "1933.8289256198347107438016528925619834710743801652",
+        "reference": "1933.8289256198347107438016528925619834710743801652892561983471074",
+        "reference_fraction": "2339933/1210",
+        "absolute_error": "8.92561983471074E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.3.value_per_share",
+        "actual": "19.338289256198347107438016528925619834710743801652",
+        "reference": "19.338289256198347107438016528925619834710743801652892561983471074",
+        "reference_fraction": "2339933/121000",
+        "absolute_error": "8.92561983471074E-49",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.4.enterprise_value",
+        "actual": "2385.1488119834710743801652892561983471074380165290",
+        "reference": "2385.1488119834710743801652892561983471074380165289256198347107438",
+        "reference_fraction": "46176481/19360",
+        "absolute_error": "7.43801652892562E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.4.equity_value",
+        "actual": "2185.1488119834710743801652892561983471074380165290",
+        "reference": "2185.1488119834710743801652892561983471074380165289256198347107438",
+        "reference_fraction": "42304481/19360",
+        "absolute_error": "7.43801652892562E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.4.value_per_share",
+        "actual": "21.85148811983471074380165289256198347107438016529",
+        "reference": "21.851488119834710743801652892561983471074380165289256198347107438",
+        "reference_fraction": "42304481/1936000",
+        "absolute_error": "7.43801652892562E-49",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.5.enterprise_value",
+        "actual": "2561.0118801652892561983471074380165289256198347108",
+        "reference": "2561.0118801652892561983471074380165289256198347107438016528925620",
+        "reference_fraction": "4958119/1936",
+        "absolute_error": "5.61983471074380E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.5.equity_value",
+        "actual": "2361.0118801652892561983471074380165289256198347108",
+        "reference": "2361.0118801652892561983471074380165289256198347107438016528925620",
+        "reference_fraction": "4570919/1936",
+        "absolute_error": "5.61983471074380E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.5.value_per_share",
+        "actual": "23.610118801652892561983471074380165289256198347108",
+        "reference": "23.610118801652892561983471074380165289256198347107438016528925620",
+        "reference_fraction": "4570919/193600",
+        "absolute_error": "5.61983471074380E-49",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.6.enterprise_value",
+        "actual": "1759.9592505808126822157434402332361516034985422741",
+        "reference": "1759.9592505808126822157434402332361516034985422740524781341107872",
+        "reference_fraction": "1236308015/702464",
+        "absolute_error": "4.75218658892128E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.6.equity_value",
+        "actual": "1559.9592505808126822157434402332361516034985422741",
+        "reference": "1559.9592505808126822157434402332361516034985422740524781341107872",
+        "reference_fraction": "1095815215/702464",
+        "absolute_error": "4.75218658892128E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.6.value_per_share",
+        "actual": "15.599592505808126822157434402332361516034985422741",
+        "reference": "15.599592505808126822157434402332361516034985422740524781341107872",
+        "reference_fraction": "219163043/14049280",
+        "absolute_error": "4.75218658892128E-49",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.7.enterprise_value",
+        "actual": "1896.6286492973305393586005830903790087463556851312",
+        "reference": "1896.6286492973305393586005830903790087463556851311953352769679300",
+        "reference_fraction": "2664626695/1404928",
+        "absolute_error": "4.6647230320700E-48",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.7.equity_value",
+        "actual": "1696.6286492973305393586005830903790087463556851312",
+        "reference": "1696.6286492973305393586005830903790087463556851311953352769679300",
+        "reference_fraction": "2383641095/1404928",
+        "absolute_error": "4.6647230320700E-48",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.7.value_per_share",
+        "actual": "16.966286492973305393586005830903790087463556851312",
+        "reference": "16.966286492973305393586005830903790087463556851311953352769679300",
+        "reference_fraction": "476728219/28098560",
+        "absolute_error": "4.6647230320700E-50",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.8.enterprise_value",
+        "actual": "1985.0512392805894679300291545189504373177842565598",
+        "reference": "1985.0512392805894679300291545189504373177842565597667638483965015",
+        "reference_fraction": "5577708135/2809856",
+        "absolute_error": "3.32361516034985E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.8.equity_value",
+        "actual": "1785.0512392805894679300291545189504373177842565598",
+        "reference": "1785.0512392805894679300291545189504373177842565597667638483965015",
+        "reference_fraction": "5015736935/2809856",
+        "absolute_error": "3.32361516034985E-47",
+        "passed": true
+      },
+      {
+        "path": "dcf.tables.sensitivity.8.value_per_share",
+        "actual": "17.850512392805894679300291545189504373177842565598",
+        "reference": "17.850512392805894679300291545189504373177842565597667638483965015",
+        "reference_fraction": "1003147387/56197120",
+        "absolute_error": "3.32361516034985E-49",
+        "passed": true
+      }
+    ],
+    "passed": 161,
+    "total": 161
+  },
+  "implementation_changed_during_original_run": [],
+  "protected_file_hashes": {
+    "benchmark\\results\\research-models-pi-workflow-v05.before.json": "fc93e145e5deea0c3cedb92bdb78ef60d3f277111aea2459a258ed312d691846",
+    "benchmark\\results\\research-models-pi-workflow-v05.json": "cf45509883a24cad16b4887eea786e0482f7600a80f10d9584309584154fa6a6",
+    "benchmark\\results\\research-models-pi-workflow-v05.run-1.audit.json": "f77cdf328cbf10d3d1ac00bfad6cadc2d11cea28d4f11d0531a1134e7a50ab75",
+    "benchmark\\results\\research-models-pi-workflow-v05.run-2.audit.json": "43b22edf84d389472c63cd475a5e2a0896ad23f6c4b920487af77b8a49ce0caa"
+  },
+  "protected_files_unchanged": true
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "z4_observational_environment_note",
+  "created_at": "2026-10-03T19:11:44.809915+00:00",
+  "original_report": "benchmark/results/z4-isolated-1791054293428.json",
+  "original_report_sha256": "8e1c3b11a9c447dff37f2123b650bb3665ec9c168dcf510f97c5cf4a427f624d",
+  "root_other_tests_reported_by_root": {
+    "python_utc": [
+      "2026-10-03T19:03:52Z",
+      "2026-10-03T19:05:03Z"
+    ],
+    "node_ended_utc": "2026-10-03T19:04:23Z"
+  },
+  "z4_setup_started": "2026-10-03T19:04:53.438Z",
+  "earliest_measured_get_lower_bound": "2026-10-03T19:05:05.790Z",
+  "evidence": "The isolated API persisted edited_scenario at19:05:05.790Z. The driver awaited that POST, then old-revision GET and409 check, before entering the first load warmup and timed client loops. Therefore every timed load GET occurs after19:05:05.790Z, later than the root Python tests ended19:05:03Z. Setup/host startup overlapped their last~10s.",
+  "first_memory_sample_utc": "2026-10-03T19:05:05.530243+00:00",
+  "limitations": [
+    "Shared desktop, not an exclusive performance environment. Root also performed light reads and one page preview after full tests; these may influence latency/RSS.",
+    "Warm query/preview cache, only1/2/4 clients and3298facts; no saturation/capacity/migration inference.",
+    "No latency/RSS passing threshold was chosen after measurements. No rerun or deleted observation to improve performance figures."
+  ],
+  "model_calls": 0
+}

@@ -1,0 +1,5 @@
+请审核下列研究草稿，逐项核对随附原始年报页。原始PDF页5、6、15、16、17依次对应附件物理页1、2、3、4、5。只纠正可核实的事实、单位、期间、范围、公式或来源错误；明确的情景判断或合理观点不是事实错误。保留正确陈述，不为润色改写。
+先读取get_research_report_schema(kind=report_correction)，最终必须用save_research_report(kind=report_correction)保存成果。original_text必须逐字使用提供的草稿；issues按JavaScript UTF-16索引定位最小错误片段，start包含/end不含，保留非错误原句与数字精度；每个独立错误一个issue，给出正确replacement及真实文档page:N引用和原文quote。verified_claims用草稿Axx编号保留已核实正确陈述，并区分fact/calculation/inference；不要只在对话里口头报告。必要计算可用独立分析容器。
+本任务无需查询当前市价或联网，不补写材料之外的新事实。
+
+待审原文：

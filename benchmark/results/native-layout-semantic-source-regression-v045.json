@@ -1,0 +1,42 @@
+{
+  "parser_version": "0.1.4",
+  "semantic_version": "langextract-finance-0.3.5",
+  "schema_hash": "3051c6e3f89b514ca76da6bef9f154047858db183bcdd47a96b540b2b1d49670",
+  "real_model_requests": 0,
+  "old_reports_and_gold_modified": false,
+  "source_layout": {
+    "input": "benchmark/versions/v0.4.1-holdout/inputs/shenhua_2024_holdout.pdf",
+    "physical_page": 3,
+    "original_page": 143,
+    "recovered_tables": 1,
+    "recovered_rows": 27,
+    "year_headers_preserved": true,
+    "native_word_boxes_validated": true,
+    "notes": "Previously failed holdout is development evidence; no claim of unseen holdout success."
+  },
+  "mixed_units": {
+    "input": "benchmark/versions/v0.4.1-holdout/inputs/liugong_2024_holdout.pdf",
+    "physical_page": 2,
+    "table_index": 4,
+    "row": 9,
+    "source_cells": [
+      "D9",
+      "G9",
+      "M9"
+    ],
+    "earlier_percentage_rows_no_longer_treated_as_headers": true,
+    "own_source_percent_monetary_mismatch_still_rejected": true
+  },
+  "tests": {
+    "new_layout_and_semantic_tests": 14,
+    "existing_processing_tests": 18,
+    "result": "passed"
+  },
+  "implementation_files": [
+    "service/native_tables.py",
+    "service/parser.py",
+    "service/semantic.py",
+    "service/tests/test_native_tables.py",
+    "service/tests/test_semantic_sources.py"
+  ]
+}

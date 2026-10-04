@@ -1,0 +1,90 @@
+{
+  "status": "failed_immutable_audit_reference",
+  "project_id": "4e3e089a-a208-4c33-8440-ce5355333519",
+  "review_id": "0058454e29e645e481bd6f8dbb68252d",
+  "cache_key": "4b3714566bfc2da4d07852323272640578787450fc14a39b555cc0317b7ef460",
+  "original_report_completed_at": "2026-10-03T16:11:35.374995+00:00",
+  "original_report_audit": {
+    "cache_key": "4b3714566bfc2da4d07852323272640578787450fc14a39b555cc0317b7ef460",
+    "reviewed_count": 30,
+    "source_provenance": {
+      "processing_id": "9c28532d2db34c0ebfd0c9ff75cb4602",
+      "owner_run_id": "e0553aac-67e4-49dc-afea-e3d320fbb91a"
+    },
+    "prompt_hash": "65586343913a6253459de3e69ed8e98d550dfbc4ffb1daf116ebb5258964282e",
+    "inference_config": {
+      "version": "temporal-profile-reasoning-1",
+      "reasoning_effort": "low"
+    }
+  },
+  "current_cache_created_at": "2026-10-03T16:09:57.834263+00:00",
+  "current_cache_provenance": {
+    "processing_id": "aab0dd2eed00411481489331c1541ce1",
+    "owner_run_id": "454b9d6e-6803-453d-bed3-3c4eb3fcd20f"
+  },
+  "original_request": {
+    "owner_run_id": "e0553aac-67e4-49dc-afea-e3d320fbb91a",
+    "request_id": "e81224a0-e734-4a4f-8e20-0df39d0db1d3",
+    "result_at": "2026-10-03T16:09:53.965Z"
+  },
+  "overwriting_request": {
+    "owner_run_id": "454b9d6e-6803-453d-bed3-3c4eb3fcd20f",
+    "request_id": "f0b84d96-2476-4d7a-90e1-d7732c409608",
+    "result_at": "2026-10-03T16:09:57.499Z"
+  },
+  "original_matching_extractions": 1,
+  "current_cache_matches_new_owner_exactly": true,
+  "new_owner_matching_extractions": 4,
+  "differences": [
+    {
+      "original_accepted_response": {
+        "class": "temporal_candidate",
+        "text": "[[GROUP:d975ce0e5e1f73ff8f10b961ff0cc2187271ffba7290fa88a75cdde9bbfa386e]]",
+        "attributes": {
+          "reason": "资产负债表期末净资产余额，当前 period=2022-FY 且 start 为空，应核对是否应归属为 2022-12-31 年末时点，而非全年期间。"
+        }
+      },
+      "current_cache_response": {
+        "class": "temporal_candidate",
+        "text": "[[GROUP:d975ce0e5e1f73ff8f10b961ff0cc2187271ffba7290fa88a75cdde9bbfa386e]]",
+        "attributes": {
+          "reason": "归属于上市公司股东的净资产是资产负债表期末时点余额，当前却使用全年期间ID（2022-FY）且start为空；需核对是否应改为2022-12-31时点。"
+        }
+      }
+    },
+    {
+      "original_accepted_response": {
+        "class": "temporal_candidate",
+        "text": "[[GROUP:ebc33acec2f815a7d01d5701b874b420a00d3809c25b99e64c91fc7eda8846b8]]",
+        "attributes": {
+          "reason": "期末总股本为资产负债表时点余额，当前 period=2022-FY 且 start 为空，应核对是否应为 2022-12-31 时点，而非全年期间。"
+        }
+      },
+      "current_cache_response": {
+        "class": "temporal_candidate",
+        "text": "[[GROUP:ebc33acec2f815a7d01d5701b874b420a00d3809c25b99e64c91fc7eda8846b8]]",
+        "attributes": {
+          "reason": "期末总股本是资产负债表期末时点余额，当前却使用全年期间ID（2022-FY）且start为空；需核对是否应改为2022-12-31时点。"
+        }
+      }
+    },
+    {
+      "original_accepted_response": {
+        "class": "temporal_candidate",
+        "text": "[[GROUP:f8c27b72d50ae23f8810eb21da36a118fd4b40f8752422cc1a53264b7b5110fd]]",
+        "attributes": {
+          "reason": "期末总股本为资产负债表时点余额，当前 period=2023-FY 且 start 为空，应核对是否应为 2023-12-31 时点，而非全年期间。"
+        }
+      },
+      "current_cache_response": {
+        "class": "temporal_candidate",
+        "text": "[[GROUP:f8c27b72d50ae23f8810eb21da36a118fd4b40f8752422cc1a53264b7b5110fd]]",
+        "attributes": {
+          "reason": "期末总股本是资产负债表期末时点余额，当前却使用全年期间ID（2023-FY）且start为空；需核对是否应改为2023-12-31时点。"
+        }
+      }
+    }
+  ],
+  "diagnosis": "Concurrent review of identical profile input reused a logical cache key; INSERT OR REPLACE replaced its accepted result and owner, while the earlier project review still cites the old owner. This is an audit-reference conflict, not marker alignment or reason normalization.",
+  "scope": "Read-only cache, project review and actual Pi output lookup. No gold answers read and no production/cache writes."
+}

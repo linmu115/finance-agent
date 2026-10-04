@@ -1,0 +1,40 @@
+{
+  "id": "v08-real-history-compaction-20261004",
+  "created_at": "2026-10-04T05:32:59.162Z",
+  "kind": "development_compaction_fork_comparison",
+  "original_run": "21ea36aa-ee78-4677-b411-b08e2bafecb6",
+  "original_session_sha256": "89f9d61c0dd80e051f2cc8d6271e8df10d0a2f97ced2e29cede9038db7f86166",
+  "tasks": [
+    "复核上一轮得到的两个财务指标。先用 read_research_source 回读对应的已归档新闻原文，再给出公司、报告期间、营业总收入和归母净利润及单位，附实际来源ID。只回读已保存原文，不联网、不下载PDF、不清洗，不把检索摘要当原文。回答简洁。",
+    "继续核对上轮的两个数值，并补充该新闻直接披露的同比增幅。再次回读已归档原文。指出这份新闻能否据此确定 EBIT 或利息收入与支出的大小关系，缺乏证据就明确说明。保持上一轮的单位与期间；不联网、不下载PDF、不清洗。回答简洁。"
+  ],
+  "per_arm_budget": {
+    "max_model_calls": 8,
+    "max_input_tokens": 180000,
+    "max_output_tokens": 32000,
+    "max_total_tokens": 212000,
+    "max_wall_seconds": 360
+  },
+  "order": [
+    "disabled",
+    "enabled"
+  ],
+  "model": "deepseek-flash",
+  "context_window": 1048576,
+  "max_output_tokens": 8192,
+  "policy": {
+    "targetTokens": 16000,
+    "keepRecentTokens": 4000,
+    "summaryMaxTokens": 2048
+  },
+  "boundary": "Two local forks of the same genuine provider/tool history; lower trigger is an engineering smoke test, not the production 96k threshold or a held-out-company accuracy benchmark. Sequential order/cache warmth is not controlled. No monetary savings claim without verified pricing. Failed arms remain in this report; no automatic rerun.",
+  "acceptance": [
+    "source reread in each turn",
+    "correct period, numbers and units",
+    "no new search/download/processing",
+    "enabled checkpoint exists and exact source pointers survive",
+    "history prefix unchanged",
+    "all summary usage counted in budget",
+    "follow-up continues after RunManager restart"
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "kind": "dcf",
+  "title": "合成验收 · dcf",
+  "spec": {
+    "currency": "CNY",
+    "amount_scale": "1",
+    "base_year": 2024,
+    "base": {
+      "revenue": "1000",
+      "net_working_capital": "100"
+    },
+    "forecast": [
+      {
+        "year": 2025,
+        "revenue_growth": "0",
+        "ebit_margin": "0.2",
+        "tax_rate": "0.25",
+        "da_ratio": "0.05",
+        "capex_ratio": "0.05",
+        "nwc_ratio": "0.1"
+      }
+    ],
+    "cash_tax_policy": "floor_at_zero",
+    "discount": {
+      "wacc": "0.11",
+      "cashflow_timing": "year_end"
+    },
+    "terminal": {
+      "growth": "0",
+      "roic": "0.2",
+      "ebit_margin": "0.2",
+      "tax_rate": "0.25"
+    },
+    "bridge": {
+      "net_debt": "200",
+      "non_controlling_interest": "20",
+      "preferred_equity": "10",
+      "non_operating_assets_ex_cash": "30"
+    },
+    "shares": {
+      "count": "100",
+      "scale": "1"
+    },
+    "sensitivity": {
+      "wacc": [
+        "0.08",
+        "0.1",
+        "0.12"
+      ],
+      "growth": [
+        "0",
+        "0.02"
+      ]
+    },
+    "source_refs": {
+      "base.revenue": [
+        {
+          "type": "synthetic_example",
+          "note": "Illustrative input; not an observed company value"
+        }
+      ]
+    }
+  },
+  "result": {
+    "schema_version": "1.0",
+    "model_version": "research-models-1.0.0",
+    "kind": "dcf",
+    "input_assumptions": {
+      "currency": "CNY",
+      "amount_scale": "1",
+      "base_year": 2024,
+      "base": {
+        "revenue": "1000",
+        "net_working_capital": "100"
+      },
+      "forecast": [
+        {
+          "year": 2025,
+          "revenue_growth": "0",
+          "ebit_margin": "0.2",
+          "tax_rate": "0.25",
+          "da_ratio": "0.05",
+          "capex_ratio": "0.05",
+          "nwc_ratio": "0.1"
+        }
+      ],
+      "cash_tax_policy": "floor_at_zero",
+      "discount": {
+        "wacc": "0.11",
+        "cashflow_timing": "year_end"
+      },
+      "terminal": {
+        "growth": "0",
+        "roic": "0.2",
+        "ebit_margin": "0.2",
+        "tax_rate": "0.25"
+      },
+      "bridge": {
+        "net_debt": "200",
+        "non_controlling_interest": "20",
+        "preferred_equity": "10",
+        "non_operating_assets_ex_cash": "30"
+      },
+      "shares": {
+        "count": "100",
+        "scale": "1"
+      },
+      "sensitivity": {
+        "wacc": [
+          "0.08",
+          "0.1",
+          "0.12"
+        ],
+        "growth": [
+          "0",
+          "0.02"
+        ]
+      },
+      "source_refs": {
+        "base.revenue": [
+          {
+            "type": "synthetic_example",
+            "note": "Illustrative input; not an observed company value"
+          }
+        ]
+      }
+    },
+    "formulas": {
+      "revenue": "revenue[t-1] * (1 + revenue_growth[t]), or explicit revenue[t]",
+      "ebit": "explicit EBIT; or revenue * EBIT margin; or revenue * (gross margin - opex ratio). EBIT is after D&A.",
+      "cash_tax": "floor_at_zero: max(EBIT,0)*tax_rate; immediate_credit: EBIT*tax_rate. No NOL carryforward is modeled.",
+      "fcff": "EBIT - cash_tax + D&A - capex - (operating NWC[t] - operating NWC[t-1])",
+      "nwc": "Operating non-cash, non-interest-bearing working capital. Negative balances are allowed.",
+      "forecast_pv": "FCFF[t]/(1+WACC)^t; mid_year uses exponent t-0.5 for explicit forecast only",
+      "terminal_fcff": "revenue[n]*(1+g)*terminal_EBIT_margin*(1-terminal_tax_rate)*(1-g/terminal_ROIC)",
+      "terminal_value": "terminal_FCFF/(WACC-g); always measured at end of year n, discounted by (1+WACC)^n",
+      "enterprise_value": "sum(explicit forecast PV) + terminal_value PV; value of operating assets",
+      "equity_value": "EV - net_debt - non_controlling_interest - preferred_equity + non_operating_assets_ex_cash",
+      "net_debt": "interest-bearing debt (consistent lease treatment) less excess cash; cash is not added again",
+      "value_per_share": "equity_value * amount_scale / (shares.count * shares.scale)"
+    },
+    "units": {
+      "currency": "CNY",
+      "amount_scale": "1",
+      "amount": "CNY x 1",
+      "ratios": "decimal fraction (0.10 = 10%)",
+      "multiple": "times",
+      "value_per_share": "CNY/share",
+      "days": "days"
+    },
+    "precision": {
+      "arithmetic": "Decimal",
+      "significant_digits": 50,
+      "rounding": "ROUND_HALF_EVEN",
+      "output": "decimal strings; no additional display rounding"
+    },
+    "method_sources": [
+      "https://people.stern.nyu.edu/adamodar/pdfiles/valn2ed/ch15.pdf",
+      "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/valquestions/noncashwc.htm",
+      "https://www.ifrs.org/content/dam/ifrs/supporting-implementation/ifrs-13/education-ifrs-13-eng.pdf"
+    ],
+    "results": {
+      "enterprise_value": "1363.6363636363636363636363636363636363636363636364",
+      "equity_value": "1163.6363636363636363636363636363636363636363636364",
+      "value_per_share": "11.636363636363636363636363636363636363636363636364",
+      "shares_outstanding": "100",
+      "net_debt": "200",
+      "non_controlling_interest": "20",
+      "non_operating_assets_ex_cash": "30",
+      "preferred_equity": "10",
+      "explicit_forecast_pv": "135.13513513513513513513513513513513513513513513514",
+      "terminal_value": "1363.6363636363636363636363636363636363636363636364",
+      "terminal_pv": "1228.5012285012285012285012285012285012285012285013",
+      "terminal_value_share": "0.90090090090090090090090090090090090090090090090093",
+      "terminal_year": 2026,
+      "terminal_revenue": "1000",
+      "terminal_nopat": "150.000",
+      "terminal_reinvestment": "0.00",
+      "terminal_reinvestment_rate": "0",
+      "terminal_fcff": "150.000",
+      "wacc": "0.11",
+      "terminal_growth": "0",
+      "cashflow_timing": "year_end",
+      "terminal_discount_exponent": 1
+    },
+    "tables": {
+      "forecast": [
+        {
+          "year": 2025,
+          "revenue": "1000",
+          "revenue_growth": "0",
+          "gross_profit": null,
+          "ebit": "200.0",
+          "ebit_margin": "0.2",
+          "ebitda": "250.00",
+          "cash_tax": "50.000",
+          "nopat": "150.000",
+          "da": "50.00",
+          "capex": "50.00",
+          "net_working_capital": "100.0",
+          "delta_nwc": "0.0",
+          "fcff": "150.000",
+          "discount_exponent": "1",
+          "discount_factor": "0.90090090090090090090090090090090090090090090090090",
+          "pv_fcff": "135.13513513513513513513513513513513513513513513514"
+        }
+      ],
+      "sensitivity": [
+        {
+          "wacc": "0.08",
+          "growth": "0",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "1875.0000000000000000000000000000000000000000000000",
+          "equity_value": "1675.0000000000000000000000000000000000000000000000",
+          "value_per_share": "16.7500000000000000000000000000000000000000000000"
+        },
+        {
+          "wacc": "0.08",
+          "growth": "0.02",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "2263.8888888888888888888888888888888888888888888889",
+          "equity_value": "2063.8888888888888888888888888888888888888888888889",
+          "value_per_share": "20.638888888888888888888888888888888888888888888889"
+        },
+        {
+          "wacc": "0.1",
+          "growth": "0",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "1500.0000000000000000000000000000000000000000000000",
+          "equity_value": "1300.0000000000000000000000000000000000000000000000",
+          "value_per_share": "13.0000000000000000000000000000000000000000000000"
+        },
+        {
+          "wacc": "0.1",
+          "growth": "0.02",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "1701.1363636363636363636363636363636363636363636363",
+          "equity_value": "1501.1363636363636363636363636363636363636363636363",
+          "value_per_share": "15.011363636363636363636363636363636363636363636363"
+        },
+        {
+          "wacc": "0.12",
+          "growth": "0",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "1250.0000000000000000000000000000000000000000000000",
+          "equity_value": "1050.0000000000000000000000000000000000000000000000",
+          "value_per_share": "10.5000000000000000000000000000000000000000000000"
+        },
+        {
+          "wacc": "0.12",
+          "growth": "0.02",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "1363.3928571428571428571428571428571428571428571429",
+          "equity_value": "1163.3928571428571428571428571428571428571428571429",
+          "value_per_share": "11.633928571428571428571428571428571428571428571429"
+        }
+      ]
+    },
+    "warnings": [
+      "Stable terminal model requires nonnegative growth, positive ROIC, and normalized operating earnings; banking/insurance balance-sheet models are outside this model."
+    ]
+  },
+  "dependencies": [],
+  "parent_revision_id": "revision_3dcfc962-cc9d-4bc2-aa05-b2cdddb46a30",
+  "id": "research_fc42a4a8-0230-47ce-940d-c7d51124ed93",
+  "revision_id": "revision_9ad3a90e-c36c-46dc-a05a-9bab2f504cca",
+  "created_at": "2026-10-03T17:28:09.758Z",
+  "dependency_status": "current",
+  "changed_dependencies": []
+}

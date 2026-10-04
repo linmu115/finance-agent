@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-03T16:08:09.951Z",
+  "scope": "Read-only UI/download availability; ZIP contents and holdout answers not opened.",
+  "checks": [
+    "设计页 HTTP 200，返回 HTML",
+    "设计页面桌面和手机无水平溢出，明确区分开发回归与独立验收",
+    "4 个下载链接均返回完整附件 ZIP，大小与目录一致；未解压或读取留出答案",
+    "独立来源验收报告明确处于运行中，三个启动按钮禁用，未启动任何测试",
+    "无浏览器异常，无 POST/PUT/DELETE 请求"
+  ],
+  "downloads": [
+    {
+      "id": "native-pdf",
+      "status": 200,
+      "bytes": 11774325,
+      "zipMagic": true
+    },
+    {
+      "id": "normalization-v03",
+      "status": 200,
+      "bytes": 614575,
+      "zipMagic": true
+    },
+    {
+      "id": "holdout-v04",
+      "status": 200,
+      "bytes": 3327569,
+      "zipMagic": true
+    },
+    {
+      "id": "benchmark-v02",
+      "status": 200,
+      "bytes": 9349004,
+      "zipMagic": true
+    }
+  ],
+  "holdout": {
+    "id": "119624da-d46c-4978-a7b4-dd7d476d69d1",
+    "state": "running",
+    "mode": "holdout"
+  },
+  "pageErrors": [],
+  "mutations": []
+}

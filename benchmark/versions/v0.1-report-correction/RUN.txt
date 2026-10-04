@@ -1,0 +1,15 @@
+研报纠错测试包
+
+附件 inputs/moutai_2024_correction_sources.pdf 是官方年报的5页原样副本。TASK.txt 与 REPORT.txt 合并为对话任务；gold.json、PROTOCOL.txt 及 evidence/ 是人工核对及宿主评分材料，不能作为附件交给待测模型。
+
+项目宿主首次运行：
+node scripts/verify_report_correction_v01.mjs --base-url http://127.0.0.1:3001 --output benchmark/results/pi-report-correction-v01.json --job-id EXTERNAL_JOB_ID
+
+脚本只用正常上传、对话、成果下载API。首次锁：benchmark/results/report-correction-v01-first-run.lock.json。二次点击返回首次output/job关联，不再发模型请求；不能删除锁挑选最好的成绩。当前尚未执行真实测试，准备就绪不等于验收通过。
+
+脱离项目只读评分（Node内置库，不联网，不调用模型）：
+node scorer/score_report_correction_v01.mjs --suite . --artifact saved-report.json --document-id 实际上传文档ID --output 新评分.json
+
+saved-report.json应是应用“研究成果”中的report_correction JSON导出，包含original_text/issues/revised_text。独立评分器重新应用UTF-16 patch，核对页引用、正确替换与正确陈述保护。输出必须用新文件名，既有结果不能覆盖。
+
+这是旧公司原文上的任务级新挑战。新公司整表留出另见v0.5；两个成绩不能合并为一种泛化能力。预算软上限与在途超额见BUDGET.json。主指标为有效纠错precision和recall，不把仅发现疑点算作完整修正。

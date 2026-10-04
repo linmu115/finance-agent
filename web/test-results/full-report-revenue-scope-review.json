@@ -1,0 +1,240 @@
+{
+  "checkedAt": "2026-10-03T15:31:57.007Z",
+  "projectId": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+  "documentId": "39de9b118212463bbee6c2ab3c571432",
+  "status": "pending_semantic_scope_review",
+  "finding": "主营业务构成与全部营业收入分解共用同一revenue+channel/region目录维度，business_scope未完整表示；不同原始金额不能合并为同一点。",
+  "precisionFinding": "p16直销万元值换算与p17精确元值相差69.21元，超p16两位万元单项通常舍入半步50元；保留原值，不机械取最大或放宽阈值。",
+  "evidence": "p108同时列出主营业务170611838052.02、其他业务287314224.32和营业收入合计170899152276.34；其说明其他业务主要为酒店及冰淇淋。p17标题明确为主营业务构成。",
+  "productionChanges": "none",
+  "rows": [
+    {
+      "period": "2024-FY",
+      "source_page": 16,
+      "source_heading": "6、销售情况 / (2). 销售渠道（标题在第15页，表格第16页）",
+      "table_id": "39de9b118212463bbee6c2ab3c571432:t28",
+      "cell": "B2",
+      "row": 2,
+      "column": 2,
+      "statement": "segment",
+      "metric": "revenue",
+      "dimensions": {
+        "channel": "直销"
+      },
+      "value": "74843327100.00",
+      "raw_value": "7,484,332.71",
+      "raw_unit": "万元",
+      "scale": "10000",
+      "source_context_file": "full-report-page-16.txt"
+    },
+    {
+      "period": "2024-FY",
+      "source_page": 17,
+      "source_heading": "7、公司收入及成本分析 / (1). 按不同类型披露公司主营业务构成（标题在第16页，续表第17页）",
+      "table_id": "39de9b118212463bbee6c2ab3c571432:t33",
+      "cell": "B3",
+      "row": 3,
+      "column": 2,
+      "statement": "segment",
+      "metric": "revenue",
+      "dimensions": {
+        "channel": "直销"
+      },
+      "value": "74843327030.79",
+      "raw_value": "74,843,327,030.79",
+      "raw_unit": "元",
+      "scale": "1",
+      "source_context_file": "full-report-page-17.txt"
+    },
+    {
+      "period": "2024-FY",
+      "source_page": 108,
+      "source_heading": "40、营业收入和营业成本 / (2). 营业收入、营业成本的分解信息",
+      "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+      "cell": "D12",
+      "row": 12,
+      "column": 4,
+      "statement": "notes",
+      "metric": "revenue",
+      "dimensions": {
+        "channel": "直销"
+      },
+      "value": "74911586867.82",
+      "raw_value": "74,911,586,867.82",
+      "raw_unit": "元",
+      "scale": "1",
+      "source_context_file": "full-report-page-108.txt"
+    },
+    {
+      "period": "2024-FY",
+      "source_page": 16,
+      "source_heading": "6、销售情况 / (2). 销售渠道（标题在第15页，表格第16页）",
+      "table_id": "39de9b118212463bbee6c2ab3c571432:t28",
+      "cell": "B3",
+      "row": 3,
+      "column": 2,
+      "statement": "segment",
+      "metric": "revenue",
+      "dimensions": {
+        "channel": "批发代理"
+      },
+      "value": "95768511000.00",
+      "raw_value": "9,576,851.10",
+      "raw_unit": "万元",
+      "scale": "10000",
+      "source_context_file": "full-report-page-16.txt"
+    },
+    {
+      "period": "2024-FY",
+      "source_page": 17,
+      "source_heading": "7、公司收入及成本分析 / (1). 按不同类型披露公司主营业务构成（标题在第16页，续表第17页）",
+      "table_id": "39de9b118212463bbee6c2ab3c571432:t33",
+      "cell": "B2",
+      "row": 2,
+      "column": 2,
+      "statement": "segment",
+      "metric": "revenue",
+      "dimensions": {
+        "channel": "批发代理"
+      },
+      "value": "95768511021.23",
+      "raw_value": "95,768,511,021.23",
+      "raw_unit": "元",
+      "scale": "1",
+      "source_context_file": "full-report-page-17.txt"
+    },
+    {
+      "period": "2024-FY",
+      "source_page": 108,
+      "source_heading": "40、营业收入和营业成本 / (2). 营业收入、营业成本的分解信息",
+      "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+      "cell": "D11",
+      "row": 11,
+      "column": 4,
+      "statement": "notes",
+      "metric": "revenue",
+      "dimensions": {
+        "channel": "批发代理"
+      },
+      "value": "95987565408.52",
+      "raw_value": "95,987,565,408.52",
+      "raw_unit": "元",
+      "scale": "1",
+      "source_context_file": "full-report-page-108.txt"
+    },
+    {
+      "period": "2024-FY",
+      "source_page": 16,
+      "source_heading": "6、销售情况 / (3). 区域情况",
+      "table_id": "39de9b118212463bbee6c2ab3c571432:t29",
+      "cell": "B2",
+      "row": 2,
+      "column": 2,
+      "statement": "segment",
+      "metric": "revenue",
+      "dimensions": {
+        "region": "国内"
+      },
+      "value": "165423308800.00",
+      "raw_value": "16,542,330.88",
+      "raw_unit": "万元",
+      "scale": "10000",
+      "source_context_file": "full-report-page-16.txt"
+    },
+    {
+      "period": "2024-FY",
+      "source_page": 17,
+      "source_heading": "7、公司收入及成本分析 / (1). 按不同类型披露公司主营业务构成（标题在第16页，续表第17页）",
+      "table_id": "39de9b118212463bbee6c2ab3c571432:t33",
+      "cell": "B6",
+      "row": 6,
+      "column": 2,
+      "statement": "segment",
+      "metric": "revenue",
+      "dimensions": {
+        "region": "国内"
+      },
+      "value": "165423308808.24",
+      "raw_value": "165,423,308,808.24",
+      "raw_unit": "元",
+      "scale": "1",
+      "source_context_file": "full-report-page-17.txt"
+    },
+    {
+      "period": "2024-FY",
+      "source_page": 108,
+      "source_heading": "40、营业收入和营业成本 / (2). 营业收入、营业成本的分解信息",
+      "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+      "cell": "D8",
+      "row": 8,
+      "column": 4,
+      "statement": "notes",
+      "metric": "revenue",
+      "dimensions": {
+        "region": "国内"
+      },
+      "value": "165695304320.02",
+      "raw_value": "165,695,304,320.02",
+      "raw_unit": "元",
+      "scale": "1",
+      "source_context_file": "full-report-page-108.txt"
+    },
+    {
+      "period": "2024-FY",
+      "source_page": 16,
+      "source_heading": "6、销售情况 / (3). 区域情况",
+      "table_id": "39de9b118212463bbee6c2ab3c571432:t29",
+      "cell": "B3",
+      "row": 3,
+      "column": 2,
+      "statement": "segment",
+      "metric": "revenue",
+      "dimensions": {
+        "region": "国外"
+      },
+      "value": "5188529300.00",
+      "raw_value": "518,852.93",
+      "raw_unit": "万元",
+      "scale": "10000",
+      "source_context_file": "full-report-page-16.txt"
+    },
+    {
+      "period": "2024-FY",
+      "source_page": 17,
+      "source_heading": "7、公司收入及成本分析 / (1). 按不同类型披露公司主营业务构成（标题在第16页，续表第17页）",
+      "table_id": "39de9b118212463bbee6c2ab3c571432:t33",
+      "cell": "B7",
+      "row": 7,
+      "column": 2,
+      "statement": "segment",
+      "metric": "revenue",
+      "dimensions": {
+        "region": "国外"
+      },
+      "value": "5188529243.78",
+      "raw_value": "5,188,529,243.78",
+      "raw_unit": "元",
+      "scale": "1",
+      "source_context_file": "full-report-page-17.txt"
+    },
+    {
+      "period": "2024-FY",
+      "source_page": 108,
+      "source_heading": "40、营业收入和营业成本 / (2). 营业收入、营业成本的分解信息",
+      "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+      "cell": "D9",
+      "row": 9,
+      "column": 4,
+      "statement": "notes",
+      "metric": "revenue",
+      "dimensions": {
+        "region": "国外"
+      },
+      "value": "5203847956.32",
+      "raw_value": "5,203,847,956.32",
+      "raw_unit": "元",
+      "scale": "1",
+      "source_context_file": "full-report-page-108.txt"
+    }
+  ]
+}

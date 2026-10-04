@@ -1,0 +1,184 @@
+{
+  "kind": "first_run_failure_analysis_not_new_model_test",
+  "job_id": "119624da-d46c-4978-a7b4-dd7d476d69d1",
+  "official_report": {
+    "path": "D:\\codex\\金融\\benchmark\\results\\pi-workflow-119624da-d46c-4978-a7b4-dd7d476d69d1.json",
+    "sha256": "75a7cc717987b4f8dbad0c0f38dd48c38b57a2878c1041dd4519ba9261366a18",
+    "status": "failed",
+    "score": {
+      "passed": 17,
+      "total": 30,
+      "failed": 13
+    }
+  },
+  "same_run_percent_contract_rescore": {
+    "path": "benchmark/results/pi-holdout-119624da-unit-contract-rescore.json",
+    "score": {
+      "passed": 18,
+      "total": 30,
+      "failed": 12
+    },
+    "additional_model_calls": 0
+  },
+  "independent_five_cell_source_diagnosis": "D:\\codex\\金融\\benchmark\\results\\holdout-v041-five-source-location-diagnostics.json",
+  "no_combined_replacement_score": true,
+  "started_at": "2026-10-03T16:05:47.507Z",
+  "finished_at": "2026-10-03T16:12:11.555Z",
+  "duration_seconds": 384.048,
+  "usage": {
+    "input": 2248140,
+    "output": 268504,
+    "calls": 39
+  },
+  "facts_committed": 174,
+  "actual_missing_cells": [
+    {
+      "count": 5,
+      "company": "中国神华",
+      "original_page": 143,
+      "input_page": 3,
+      "stage": "table_discovery",
+      "cause": "The native unruled income-statement page has no source_table entry; five selected values never enter structured cleaning.",
+      "source_tables": [
+        {
+          "table_id": "9cc1b68d81ea4fff8de08b2ebd270460:t0",
+          "input_page": 1
+        },
+        {
+          "table_id": "9cc1b68d81ea4fff8de08b2ebd270460:t1",
+          "input_page": 1
+        },
+        {
+          "table_id": "9cc1b68d81ea4fff8de08b2ebd270460:t2",
+          "input_page": 1
+        },
+        {
+          "table_id": "9cc1b68d81ea4fff8de08b2ebd270460:t3",
+          "input_page": 1
+        },
+        {
+          "table_id": "9cc1b68d81ea4fff8de08b2ebd270460:t4",
+          "input_page": 2
+        }
+      ]
+    },
+    {
+      "count": 2,
+      "company": "柳工",
+      "original_page": 7,
+      "input_page": 2,
+      "stage": "programmatic_unit_validation",
+      "cause": "Total-assets source cells exist, but earlier EPS/ROE data in the same column are misclassified as a percentage header. The unit validator rejects CNY asset facts with column_unit_conflicts_with_header.",
+      "source_issues": [
+        {
+          "batch_key": "96677f53a15e54e0ea5a46040a414d32ff79bece7531df404911017b428bbc42",
+          "table": 4,
+          "row": 9,
+          "column": 4,
+          "reason": "column_unit_conflicts_with_header",
+          "header": " 0.6824  0.6008  7.93%",
+          "instruction": "本列表头标明百分率，请区别于金额列并重新定义指标及单位"
+        },
+        {
+          "batch_key": "96677f53a15e54e0ea5a46040a414d32ff79bece7531df404911017b428bbc42",
+          "table": 4,
+          "row": 9,
+          "column": 7,
+          "reason": "column_unit_conflicts_with_header",
+          "header": " 0.4448  0.4092  5.40%",
+          "instruction": "本列表头标明百分率，请区别于金额列并重新定义指标及单位"
+        }
+      ]
+    }
+  ],
+  "flow_checks": [
+    {
+      "name": "发送前附件只登记",
+      "status": "passed"
+    },
+    {
+      "name": "两个真实Pi会话完成",
+      "status": "passed"
+    },
+    {
+      "name": "LangExtract经所属Pi实际调用",
+      "status": "passed"
+    },
+    {
+      "name": "项目目录覆盖所有事实",
+      "status": "failed"
+    },
+    {
+      "name": "期间审校有完整真实模型证据",
+      "status": "failed"
+    },
+    {
+      "name": "30个独立源格逐项核对",
+      "status": "failed"
+    },
+    {
+      "name": "不同财务定义可分别查询",
+      "status": "failed"
+    },
+    {
+      "name": "完成回复已持久化",
+      "status": "passed"
+    },
+    {
+      "name": "评分程序保持冻结",
+      "status": "passed"
+    },
+    {
+      "name": "实现及输入答案保持冻结",
+      "status": "passed"
+    },
+    {
+      "name": "模型配置保持冻结",
+      "status": "passed"
+    }
+  ],
+  "concept_relations": [
+    {
+      "id": "profit_tax_credit_loss_are_distinct",
+      "status": "failed",
+      "overlapping_concepts": [],
+      "member_ids": [
+        "shenhua_2024_143_11",
+        "shenhua_2024_143_12",
+        "shenhua_2024_143_13",
+        "shenhua_2024_143_14",
+        "shenhua_2024_143_15"
+      ]
+    },
+    {
+      "id": "cash_and_receivables_are_distinct",
+      "status": "passed",
+      "overlapping_concepts": [],
+      "member_ids": [
+        "liugong_2024_138_28",
+        "liugong_2024_138_29",
+        "liugong_2024_138_30"
+      ]
+    }
+  ],
+  "temporal_owner_conflict_evidence": "benchmark/results/holdout-v041-temporal-cache-owner-conflict.json",
+  "catalog_check_interpretation": "Catalog summary is reviewed for all 174 facts. Definition review correctly supersedes some top-level aliases, but the frozen checker requires every canonical_alias to be non-null. Original workflow failure retained.",
+  "temporal_check_interpretation": "A real audit/cache ownership race: accepted report references one owner, while an equal cache key is overwritten by the concurrent owner with different candidate wording. Strict provenance check remains failed.",
+  "freeze_checks": {
+    "评分程序保持冻结": "passed",
+    "实现及输入答案保持冻结": "passed",
+    "模型配置保持冻结": "passed"
+  },
+  "model_retries_or_errors": [
+    {
+      "run_id": "454b9d6e-6803-453d-bed3-3c4eb3fcd20f",
+      "failed_calls": [],
+      "failed_results": 0
+    },
+    {
+      "run_id": "e0553aac-67e4-49dc-afea-e3d320fbb91a",
+      "failed_calls": [],
+      "failed_results": 0
+    }
+  ]
+}

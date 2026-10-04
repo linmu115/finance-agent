@@ -1,0 +1,58 @@
+{
+  "kind": "research_trust_preparation",
+  "at": "2026-10-03T18:49:01.013418+00:00",
+  "status": "prepared_not_run",
+  "official_api_calls": 0,
+  "live_host_calls": 0,
+  "source_count": 4,
+  "planned_sessions": 2,
+  "source_seed_method": "Existing ResearchStore.saveSnapshot with a local fixture downloader; actual project created only by the later --run command. No separate data service, no Store recovery.",
+  "scope": "Synthetic development behavior probe. Date cutoff, unresolved same-scope disclosure conflict, later correction, visible webpage instruction, private-project sentinel and immutable archive replay.",
+  "tools": "Existing list_research_sources/read_research_source; network search/fetch must not be requested in either round. Full Pi session tool attempts also inspected to catch attempts rejected before the regular tool audit.",
+  "offline_meaning": "Archived retrieval is tested with global fetch denied in a separate host process. Live inference still uses official DeepSeek; no claim that inference is offline.",
+  "checks": {
+    "command": "node --import tsx --test tests/research-trust-v01.test.ts",
+    "passed": 5,
+    "failed": 0,
+    "coverage": [
+      "Original HTML bytes and date metadata survive existing extractor/store/read; network denied and cross-project read rejected",
+      "Future-period substitution, conflict averaging, fake quote and extra fact rejected independently",
+      "Correct values do not hide unread attack text, network/foreign attempts or secret exposure",
+      "Prepare-only makes zero live API/model requests",
+      "Persistent Pi attempted-tool checks include requests rejected before the normal tool audit; terminal evidence persists even if freeze checks fail."
+    ]
+  },
+  "first_run_lock": "benchmark/results/research-trust-v01-first-run.lock.json",
+  "run_command": "node --import tsx scripts/verify_research_trust_v01.mjs --run --base-url http://127.0.0.1:3001 --output benchmark/results/research-trust-v01-first.json",
+  "budget": {
+    "max_model_calls": 12,
+    "max_input_tokens": 300000,
+    "max_output_tokens": 40000,
+    "max_total_tokens": 340000,
+    "max_wall_seconds": 600
+  },
+  "files_sha256": {
+    "scripts/prepare_research_trust_v01.mjs": "a7ace961331ea02ccbcc8c37377f62f99ab12a07edf534d49dc4ad0bbdc1abe2",
+    "scripts/verify_research_trust_v01.mjs": "c73eb53207e362c22b5c45c07a12bd6752899cd374d33362175f9db6e6352b96",
+    "scripts/score_research_trust_v01.mjs": "846559a9d60a20ded65ca4338a553b262583063373ad1471037795ff99bf735b",
+    "tests/research-trust-v01.test.ts": "8625b82c54c25739f40c3441236e63b5f8f01debd3113daa24a7de526155c215",
+    "benchmark/versions/v0.1-research-trust/BUDGET.json": "b6c76f240282dbe434d1f64fe528256a638d22745ccf2acc2bfa789f23dabc7a",
+    "benchmark/versions/v0.1-research-trust/gold.json": "d01f457e8ea251b228aa76b7a6eaea5810bab75e3ec4a36455a8c944f6ce0c21",
+    "benchmark/versions/v0.1-research-trust/manifest.json": "79bb2ba001dc86b323bd63fc29a8ea42dfe0efc398eb34e40360ce20a4b960ea",
+    "benchmark/versions/v0.1-research-trust/TASK.txt": "fa052248f68bba8b48b78c54be372492fbdc3912a2d8c0c08d4c5a869bd2a3c2",
+    "benchmark/versions/v0.1-research-trust/inputs/annual-original.html": "5dccb8a43887b0afc40e9e1481fbb629c5cf19b6790863c4c6918fad9b166e9f",
+    "benchmark/versions/v0.1-research-trust/inputs/board-release.html": "5ad051445f350fa970c5add8da8086f6599ea25ba9b5a6e263971a708091db96",
+    "benchmark/versions/v0.1-research-trust/inputs/later-correction.html": "9368b9f636c8e68b412e4f156699d983552088913d1d265b41b999abdb0ace9b",
+    "benchmark/versions/v0.1-research-trust/inputs/web-instruction.html": "59024a0c29dcf45218b0c1fcd690c04c594f456991038a749b002253b6d240e2"
+  },
+  "limitations": [
+    "One synthetic visible instruction only; not exhaustive adversarial robustness.",
+    "Explicit date metadata is fixture-controlled, not proof of real site historical availability.",
+    "Gold remains host-only; sources necessarily contain the financial evidence, while user task contains no expected financial values.",
+    "Formal v0.5 and correction suites unchanged and not executed."
+  ],
+  "previous_preparation": {
+    "path": "benchmark/results/research-trust-v01-preparation.json",
+    "sha256": "57ca6b3af08979b544b56fe547ed866e59855628d44fbb195e32cc7d53d6b2b8"
+  }
+}

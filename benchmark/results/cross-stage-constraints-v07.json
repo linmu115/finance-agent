@@ -1,0 +1,122 @@
+{
+  "kind": "cross_stage_constraint_evidence_review",
+  "at": "2026-10-03T19:18:55.793424+00:00",
+  "checks": [
+    {
+      "id": "C.pi_core",
+      "status": "verified",
+      "scope": "Constraint implementation and observed product/runtime contract; not full financial or real-company task acceptance.",
+      "finding": "createAgentSession/persistent Pi tool loop dispatches process_documents, query, search/fetch, run_financial_model/save_research_report and run_analysis. Actual cleaning audit, official research/model runs and real Docker chart validate tool ownership. Failures in particular financial meanings remain separate; architecture verification does not turn those runs into passed accuracy scores.",
+      "files": [
+        {
+          "path": "server/runs.ts",
+          "sha256": "0996b0efd7bef9a3bcd94b939d885808a444a99fe85b01ee084281682a781bfa"
+        },
+        {
+          "path": "benchmark/results/research-models-pi-workflow-v06.run-1.audit.json",
+          "sha256": "04b45c87a63c3ae7273058532cda10ac0327b88ae703a25ed9018db5b3c10d59"
+        },
+        {
+          "path": "benchmark/results/pi-known-definition-existing-only-20261004-clean2.json",
+          "sha256": "56be3635f2f57eb1c347b5d9391cbe79e44bcb6003fe5b60cfc45580f1cf90f3"
+        },
+        {
+          "path": "benchmark/results/pi-full-report-chart-v03.json",
+          "sha256": "dacf48777011e54e482b5cde6035544c81574b05a12d6db82b255a1d36f039f8"
+        },
+        {
+          "path": "benchmark/results/research-workflow-v05-native-reader.json",
+          "sha256": "546551b326b9d2f9adcfa56e4c1b2da784cbdac9bb42fde4b0c7fb5658aed7ad"
+        }
+      ]
+    },
+    {
+      "id": "C.official_model",
+      "status": "verified",
+      "scope": "Constraint implementation and observed product/runtime contract; not full financial or real-company task acceptance.",
+      "finding": "Actual Pi run_config records official https://api.deepseek.com and deepseek-flash, with persistentSession true; same project configuration feeds Pi extraction bridge. Product embedding is forced disabled and UI embedding entry removed. Isolated fixed-provider integration fixtures are explicitly test-only, not local model deployment. Formal same-budget comparison remains independently unrun.",
+      "files": [
+        {
+          "path": "server/mcp.ts",
+          "sha256": "d640c3bee2607dd1608e14c21e78758043f2ba9f886db46275a31086d1f5c9b1"
+        },
+        {
+          "path": "server/config.ts",
+          "sha256": "beedcffcb7c93bc3925f0480adb2e34b98ae91f574939987487c95a4edc7a5ca"
+        },
+        {
+          "path": "server/runs.ts",
+          "sha256": "0996b0efd7bef9a3bcd94b939d885808a444a99fe85b01ee084281682a781bfa"
+        },
+        {
+          "path": "benchmark/results/research-models-pi-workflow-v06.run-1.audit.json",
+          "sha256": "04b45c87a63c3ae7273058532cda10ac0327b88ae703a25ed9018db5b3c10d59"
+        },
+        {
+          "path": "benchmark/results/research-trust-v01-first.json",
+          "sha256": "08f1c7ad165835ad76871cdc68faa5fc65b97410c114a0f71e7f855e18f9a917"
+        },
+        {
+          "path": "web/test-results/browser-workbench-live-results.json",
+          "sha256": "df8878d51a79f3e26fdcda2768bf7331de2e42f9619f4922bdb0ddf0c8ff95b4"
+        }
+      ]
+    },
+    {
+      "id": "C.ui",
+      "status": "verified",
+      "scope": "Constraint implementation and observed product/runtime contract; not full financial or real-company task acceptance.",
+      "finding": "Conversation-driven actual Pi artifacts are saved for the product; actual browser/API checks cover database/source pages/charts, API settings, parameter edit/revision and CSV/JSON export. Controlled browser fixture separately confirms source, chain, memo and correction entry layouts. This verifies entrances and product wiring, not every result semantic conclusion.",
+      "files": [
+        {
+          "path": "web/test-results/browser-workbench-live-results.json",
+          "sha256": "df8878d51a79f3e26fdcda2768bf7331de2e42f9619f4922bdb0ddf0c8ff95b4"
+        },
+        {
+          "path": "web/test-results/browser-full-report-live-results.json",
+          "sha256": "980b6ccc881bed12c81a052d2fc638774a3c8a6677e3a7bc002159528833943a"
+        },
+        {
+          "path": "web/test-results/research-live-api.json",
+          "sha256": "1d61d5f83ddf45416c00197dff21148ec114caf3661cf92e2ea38ef366757d5a"
+        },
+        {
+          "path": "web/test-results/research-contract.json",
+          "sha256": "19694c382f530b04148c033d83016a8f3ec2b58aedcfb5f4b8d9a80831bdc163"
+        },
+        {
+          "path": "benchmark/results/research-models-pi-workflow-v06.json",
+          "sha256": "2b2fd899870f090cd725cfdafdeaf9a428da24fc44983e396584a7389260a8be"
+        }
+      ]
+    },
+    {
+      "id": "C.database",
+      "status": "verified",
+      "scope": "Constraint implementation and observed product/runtime contract; not full financial or real-company task acceptance.",
+      "finding": "SQLite remains the actual store. Predeclared isolated-copy load observed3298facts/143pages at1/2/4 clients and280 successful read requests; no post-hoc pass threshold, enterprise-capacity claim or unsupported migration. Shared desktop/warm-cache limitations explicitly recorded. No migration performed for architectural expansion.",
+      "files": [
+        {
+          "path": "service/store.py",
+          "sha256": "8e40a64e966a81ce8db7547ee72194631d533ef4ff092d2a3683247f3d2a3879"
+        },
+        {
+          "path": "benchmark/results/z4-isolated-1791054293428.protocol.json",
+          "sha256": "ac6a202e35641382b672c19dbc45ce339cbe98126bb858f04e0283973341e0f4"
+        },
+        {
+          "path": "benchmark/results/z4-isolated-1791054293428.json",
+          "sha256": "8e1c3b11a9c447dff37f2123b650bb3665ec9c168dcf510f97c5cf4a427f624d"
+        },
+        {
+          "path": "benchmark/results/z4-isolated-1791054293428.environment.json",
+          "sha256": "bdfc97cf09eb18cec6ab214678da639c91d189ec682dab692810d418eedd17c8"
+        }
+      ]
+    }
+  ],
+  "unverified": [
+    "C.scope"
+  ],
+  "limitation": "The initial real manufacturing-chain and company valuation workflow is still incomplete. Source accuracy, correction, formal holdout and baseline comparison are not inferred from these architectural checks."
+}

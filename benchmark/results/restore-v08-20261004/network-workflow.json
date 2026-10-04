@@ -1,0 +1,250 @@
+{
+  "kind": "development_research_workflow",
+  "started_at": "2026-10-04T05:27:59.610Z",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "真实 Pi 调用搜索与原文归档",
+      "status": "passed",
+      "evidence": {
+        "run_id": "21ea36aa-ee78-4677-b411-b08e2bafecb6",
+        "tools": [
+          "search_web",
+          "search_web",
+          "search_web",
+          "search_web",
+          "fetch_research_source",
+          "search_web",
+          "fetch_research_source"
+        ],
+        "usage": {
+          "input": 147768,
+          "output": 1757,
+          "calls": 6,
+          "costUsd": null
+        }
+      }
+    },
+    {
+      "name": "公司来源可从产品读取",
+      "status": "passed",
+      "evidence": [
+        {
+          "id": "web_f34cddc6-52c8-41ea-a7e1-f290981805af",
+          "url": "https://www.liugong.com/newslist/925.html",
+          "paragraphs": 3,
+          "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97"
+        },
+        {
+          "id": "web_7935f2a3-7a20-4bc6-9541-94cf597e3b65",
+          "url": "https://www.liugong.com/newslist/",
+          "paragraphs": 13,
+          "sha256": "ae886f4d8d38397a03eca7c3367d145ff8129fbed5c28b20de9fecad116f8b33"
+        }
+      ]
+    },
+    {
+      "name": "营业收入与归母净利润符合官方发布数值",
+      "status": "passed",
+      "evidence": {
+        "answer": "## 结果\n\n来源：柳工官网新闻《柳工公布上半年业绩：净利润12.3亿元，同比增长25.05%》\n- 网址：https://www.liugong.com/newslist/925.html\n- 来源ID：`web_f34cddc6-52c8-41ea-a7e1-f290981805af`（已保存快照，获取时间 2026-10-04；页面本身未标注可机器识别的发布日期，快照状态为 undated）\n- 原文首段：8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。[web_f34cddc6-52c8-41ea-a7e1-f290981805af]\n\n据此：\n\n| 指标 | 期间 | 金额 | 同比 |\n|---|---|---|---|\n| 营业总收入 | 2025年半年度（报告期） | 181.81 亿元人民币 | +13.21% |\n| 归母净利润（归属于上市公司股东的净利润） | 2025年半年度（报告期） | 12.30 亿元人民币 | +25.05% |\n\n说明：\n- 上述两项均为官网新闻正文直接披露值，为单家公司整体口径（官网新闻未标注合并/母公司字样，此处按\"公司整体\"转述，不擅自补口径）。原文同时列示了国内收入96.58亿元、海外收入85.23亿元，与181.81亿元为同一披露口径下的分部说明。\n- 官网新闻只给出亿元级（两位小数）表述，未给出元级的精确金额；本任务未下载PDF、未调用清洗，因此未取得报表原表的元级数值。\n- 本次仅检索、读取并保存该官网新闻快照一个来源，未处理其他文档。",
+        "reference": "Official company 2025H1 release, checked independently of the agent task; units and scope require human review."
+      }
+    },
+    {
+      "name": "已保存回复包含可打开网页快照引用",
+      "status": "passed",
+      "evidence": [
+        {
+          "content": "## 结果\n\n来源：柳工官网新闻《柳工公布上半年业绩：净利润12.3亿元，同比增长25.05%》\n- 网址：https://www.liugong.com/newslist/925.html\n- 来源ID：`web_f34cddc6-52c8-41ea-a7e1-f290981805af`（已保存快照，获取时间 2026-10-04；页面本身未标注可机器识别的发布日期，快照状态为 undated）\n- 原文首段：8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。[web_f34cddc6-52c8-41ea-a7e1-f290981805af]\n\n据此：\n\n| 指标 | 期间 | 金额 | 同比 |\n|---|---|---|---|\n| 营业总收入 | 2025年半年度（报告期） | 181.81 亿元人民币 | +13.21% |\n| 归母净利润（归属于上市公司股东的净利润） | 2025年半年度（报告期） | 12.30 亿元人民币 | +25.05% |\n\n说明：\n- 上述两项均为官网新闻正文直接披露值，为单家公司整体口径（官网新闻未标注合并/母公司字样，此处按\"公司整体\"转述，不擅自补口径）。原文同时列示了国内收入96.58亿元、海外收入85.23亿元，与181.81亿元为同一披露口径下的分部说明。\n- 官网新闻只给出亿元级（两位小数）表述，未给出元级的精确金额；本任务未下载PDF、未调用清洗，因此未取得报表原表的元级数值。\n- 本次仅检索、读取并保存该官网新闻快照一个来源，未处理其他文档。",
+          "sources": [
+            {
+              "documentId": "",
+              "quote": "产品中心",
+              "sourceId": "web_7935f2a3-7a20-4bc6-9541-94cf597e3b65",
+              "url": "https://www.liugong.com/newslist/",
+              "title": "柳工新闻",
+              "snapshotUrl": "/api/projects/b43ae45c-d96b-43b6-ab5b-04306c0eb142/research/sources/web_7935f2a3-7a20-4bc6-9541-94cf597e3b65"
+            },
+            {
+              "documentId": "",
+              "quote": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+              "sourceId": "web_f34cddc6-52c8-41ea-a7e1-f290981805af",
+              "url": "https://www.liugong.com/newslist/925.html",
+              "title": "柳工公布上半年业绩：净利润12.3亿元，同比增长25.05%",
+              "snapshotUrl": "/api/projects/b43ae45c-d96b-43b6-ab5b-04306c0eb142/research/sources/web_f34cddc6-52c8-41ea-a7e1-f290981805af"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "id": "21ea36aa-ee78-4677-b411-b08e2bafecb6",
+      "conversationId": "95495f8e-f035-48a6-bf0f-bae41d7adefd",
+      "projectId": "b43ae45c-d96b-43b6-ab5b-04306c0eb142",
+      "status": "completed",
+      "stage": "完成",
+      "createdAt": "2026-10-04T05:27:59.692Z",
+      "tools": [
+        {
+          "name": "search_web",
+          "status": "started",
+          "toolCallId": "call_00_9uyB8Acwvf9qQiZ9PjXc1196",
+          "timestamp": "2026-10-04T05:28:04.556Z"
+        },
+        {
+          "name": "search_web",
+          "status": "started",
+          "toolCallId": "call_01_xnjZHSz7m1bVZbn98jyJ7959",
+          "timestamp": "2026-10-04T05:28:04.556Z"
+        },
+        {
+          "name": "search_web",
+          "status": "completed",
+          "toolCallId": "call_00_9uyB8Acwvf9qQiZ9PjXc1196",
+          "timestamp": "2026-10-04T05:28:07.226Z",
+          "summary": "ok"
+        },
+        {
+          "name": "search_web",
+          "status": "completed",
+          "toolCallId": "call_01_xnjZHSz7m1bVZbn98jyJ7959",
+          "timestamp": "2026-10-04T05:28:07.537Z",
+          "summary": "ok"
+        },
+        {
+          "name": "search_web",
+          "status": "started",
+          "toolCallId": "call_00_W2ua48hHjAAV9VYcAkSU8762",
+          "timestamp": "2026-10-04T05:28:09.639Z"
+        },
+        {
+          "name": "search_web",
+          "status": "started",
+          "toolCallId": "call_01_2lg33BlqSuGORicGrXHt2928",
+          "timestamp": "2026-10-04T05:28:09.639Z"
+        },
+        {
+          "name": "search_web",
+          "status": "completed",
+          "toolCallId": "call_01_2lg33BlqSuGORicGrXHt2928",
+          "timestamp": "2026-10-04T05:28:12.237Z",
+          "summary": "ok"
+        },
+        {
+          "name": "search_web",
+          "status": "completed",
+          "toolCallId": "call_00_W2ua48hHjAAV9VYcAkSU8762",
+          "timestamp": "2026-10-04T05:28:13.926Z",
+          "summary": "ok"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_00_SIQSBwpmVu7lm1oRFAel6750",
+          "timestamp": "2026-10-04T05:28:15.824Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "failed",
+          "toolCallId": "call_00_SIQSBwpmVu7lm1oRFAel6750",
+          "timestamp": "2026-10-04T05:28:17.948Z",
+          "summary": "原文服务器返回 HTTP 404"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_00_I8YmQ5RRsN1JP8yKzxSr6867",
+          "timestamp": "2026-10-04T05:28:19.430Z"
+        },
+        {
+          "name": "search_web",
+          "status": "started",
+          "toolCallId": "call_01_pJVizq98MNvCWgncDH4M4245",
+          "timestamp": "2026-10-04T05:28:19.430Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "completed",
+          "toolCallId": "call_00_I8YmQ5RRsN1JP8yKzxSr6867",
+          "timestamp": "2026-10-04T05:28:20.734Z",
+          "summary": "ok"
+        },
+        {
+          "name": "search_web",
+          "status": "completed",
+          "toolCallId": "call_01_pJVizq98MNvCWgncDH4M4245",
+          "timestamp": "2026-10-04T05:28:23.625Z",
+          "summary": "ok"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "started",
+          "toolCallId": "call_00_lNmCpF9Y6UaEeGAcDZYI8676",
+          "timestamp": "2026-10-04T05:28:24.730Z"
+        },
+        {
+          "name": "fetch_research_source",
+          "status": "completed",
+          "toolCallId": "call_00_lNmCpF9Y6UaEeGAcDZYI8676",
+          "timestamp": "2026-10-04T05:28:25.323Z",
+          "summary": "ok"
+        }
+      ],
+      "usage": {
+        "input": 147768,
+        "output": 1757,
+        "calls": 6,
+        "costUsd": null
+      },
+      "model": "deepseek-flash",
+      "configHash": "c24d48113f323505356cfed22f6ab7cac433d38a88d242a51f4a4790537fc5c9",
+      "messageId": "b049cebd-33fb-412d-990f-223ee3c719f5",
+      "evaluation": {
+        "profile": "financial",
+        "budget_group_id": "research-network-1791091679676",
+        "budget": {
+          "max_model_calls": 14,
+          "max_input_tokens": 250000,
+          "max_output_tokens": 100000,
+          "max_total_tokens": 350000,
+          "max_wall_seconds": 900
+        },
+        "started_at": "2026-10-04T05:27:59.692Z",
+        "deadline_at": "2026-10-04T05:42:59.692Z",
+        "elapsed_seconds": 30.225,
+        "input_limit_enforcement": "post_usage_soft_cap",
+        "usage": {
+          "model_calls": 6,
+          "settled_calls": 6,
+          "input_tokens": 147768,
+          "output_tokens": 1757,
+          "total_tokens": 149525,
+          "failed_calls": 0,
+          "unknown_usage_calls": 0
+        },
+        "reserved": {
+          "model_calls": 0,
+          "output_tokens": 0
+        },
+        "unknown_output_charge": 0,
+        "denied_calls": 0,
+        "in_flight": [],
+        "overage": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0
+        },
+        "stopped_reason": null
+      },
+      "finishedAt": "2026-10-04T05:28:28.959Z"
+    }
+  ],
+  "requires_independent_evidence_review": true,
+  "project_id": "b43ae45c-d96b-43b6-ab5b-04306c0eb142",
+  "conversation_id": "95495f8e-f035-48a6-bf0f-bae41d7adefd",
+  "search_run_id": "21ea36aa-ee78-4677-b411-b08e2bafecb6",
+  "finished_at": "2026-10-04T05:28:29.939Z"
+}

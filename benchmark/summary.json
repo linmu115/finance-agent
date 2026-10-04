@@ -1,0 +1,33 @@
+{
+  "version": "0.1.0",
+  "date": "2026-10-03",
+  "cases": 186,
+  "by_track": {
+    "cn_extract": 30,
+    "cn_calculate": 12,
+    "cn_audit": 12,
+    "cn_abstain": 6,
+    "cn_ocr": 6,
+    "finqa_single": 60,
+    "finqa_multi": 60
+  },
+  "by_split": {
+    "dev": 62,
+    "acceptance": 124
+  },
+  "reference_facts": 30,
+  "source_report_pages": 708,
+  "finqa_exclusions": {
+    "outside supported arithmetic subset": 104,
+    "unsupported exponent": 3
+  },
+  "model_evaluated": false,
+  "selection": "deterministic SHA256 order; balanced single/multi arithmetic; company-disjoint dev/acceptance",
+  "limitations": [
+    "Small public regression set, not a private unbiased leaderboard test.",
+    "FinQA is an arithmetic subset, not the full official benchmark.",
+    "Chinese OCR images are clean rasterizations, not noisy physical scans.",
+    "Chinese facts visually checked by Codex, not independently double-reviewed.",
+    "No actual agent, retrieval, sandbox or chart generation has been evaluated."
+  ]
+}

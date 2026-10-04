@@ -1,0 +1,105 @@
+{
+  "kind": "production_settings_ui_unchanged_save",
+  "started_at": "2026-10-03T19:40:43.237Z",
+  "model_calls": 0,
+  "search_calls": 0,
+  "checks": [
+    {
+      "name": "configuration_opened_from_conversation_entry",
+      "status": "passed",
+      "evidence": {}
+    },
+    {
+      "name": "search_fields_match_public_configuration_and_key_not_returned",
+      "status": "passed",
+      "evidence": {}
+    },
+    {
+      "name": "runtime_fields_match_public_configuration",
+      "status": "passed",
+      "evidence": {}
+    },
+    {
+      "name": "one_unchanged_settings_save_succeeded",
+      "status": "passed",
+      "evidence": {}
+    },
+    {
+      "name": "reload_and_reopen_preserve_search_and_runtime_configuration",
+      "status": "passed",
+      "evidence": {}
+    },
+    {
+      "name": "all_public_settings_unchanged",
+      "status": "passed",
+      "evidence": {
+        "sha256": "1d183853c77841e83f3b116cd559dc160b869856e190770b54faf8fe478024e3",
+        "has_model_key": true,
+        "has_search_key": true
+      }
+    },
+    {
+      "name": "no_model_search_or_unrelated_write_request",
+      "status": "passed",
+      "evidence": {}
+    },
+    {
+      "name": "release_manifest_unchanged",
+      "status": "passed",
+      "evidence": {}
+    }
+  ],
+  "requests": [
+    {
+      "path": "/api/projects",
+      "method": "GET"
+    },
+    {
+      "path": "/api/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/api/health",
+      "method": "GET"
+    },
+    {
+      "path": "/api/projects/3b4c43c9-51b8-432c-807d-2a15323f7a80/conversations",
+      "method": "GET"
+    },
+    {
+      "path": "/api/projects/3b4c43c9-51b8-432c-807d-2a15323f7a80/documents",
+      "method": "GET"
+    },
+    {
+      "path": "/api/settings",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/projects",
+      "method": "GET"
+    },
+    {
+      "path": "/api/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/api/health",
+      "method": "GET"
+    },
+    {
+      "path": "/api/projects/3b4c43c9-51b8-432c-807d-2a15323f7a80/conversations",
+      "method": "GET"
+    },
+    {
+      "path": "/api/projects/3b4c43c9-51b8-432c-807d-2a15323f7a80/documents",
+      "method": "GET"
+    }
+  ],
+  "blocked_requests": [],
+  "limitations": [
+    "Runtime currency budget covers model usage, not Tavily credits. Search result count and total tool-call limits bound request scope.",
+    "The existing official Tavily connectivity record is reused; this UI test does not submit another search or inference."
+  ],
+  "status": "passed",
+  "finished_at": "2026-10-03T19:40:46.605Z"
+}

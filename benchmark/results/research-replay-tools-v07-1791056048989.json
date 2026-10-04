@@ -1,0 +1,1328 @@
+{
+  "kind": "official_snapshot_existing_tools_offline_replay",
+  "status": "passed",
+  "started_at": "2026-10-03T19:34:09.011Z",
+  "protocol_path": "D:\\codex\\金融\\benchmark\\results\\research-replay-tools-v07-1791056048989.protocol.json",
+  "protocol_sha256": "45c1c6358e0b07a877c523ab128a538930ab3b23f1f6d501c8fd6323228e46cc",
+  "data_dir": "D:\\codex\\金融\\tmp\\research-replay-qXClWZ",
+  "live_app_contacted": false,
+  "model_calls": 0,
+  "search_calls": 0,
+  "new_web_fetches": 0,
+  "checks": [
+    {
+      "name": "original_blob_matches_frozen_snapshot",
+      "status": "passed",
+      "evidence": {
+        "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+        "bytes": 27309
+      }
+    },
+    {
+      "name": "private_data_and_empty_credentials",
+      "status": "passed",
+      "evidence": {
+        "data_dir": "D:\\codex\\金融\\tmp\\research-replay-qXClWZ"
+      }
+    },
+    {
+      "name": "round_1_disclosed_inputs_are_in_actual_archived_read",
+      "status": "passed",
+      "evidence": [
+        {
+          "id": "total",
+          "value": "181.81",
+          "literal": "营业总收入181.81亿元",
+          "locator": "p1",
+          "quote": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+          "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+          "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+          "exact_literal_present": true
+        },
+        {
+          "id": "domestic",
+          "value": "96.58",
+          "literal": "国内收入96.58亿元",
+          "locator": "p1",
+          "quote": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+          "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+          "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+          "exact_literal_present": true
+        },
+        {
+          "id": "overseas",
+          "value": "85.23",
+          "literal": "海外收入85.23亿元",
+          "locator": "p1",
+          "quote": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+          "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+          "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+          "exact_literal_present": true
+        }
+      ]
+    },
+    {
+      "name": "round_2_disclosed_inputs_are_in_actual_archived_read",
+      "status": "passed",
+      "evidence": [
+        {
+          "id": "total",
+          "value": "181.81",
+          "literal": "营业总收入181.81亿元",
+          "locator": "p1",
+          "quote": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+          "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+          "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+          "exact_literal_present": true
+        },
+        {
+          "id": "domestic",
+          "value": "96.58",
+          "literal": "国内收入96.58亿元",
+          "locator": "p1",
+          "quote": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+          "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+          "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+          "exact_literal_present": true
+        },
+        {
+          "id": "overseas",
+          "value": "85.23",
+          "literal": "海外收入85.23亿元",
+          "locator": "p1",
+          "quote": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+          "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+          "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+          "exact_literal_present": true
+        }
+      ]
+    },
+    {
+      "name": "replay_source_exactly_identical",
+      "status": "passed",
+      "evidence": {
+        "source_sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97"
+      }
+    },
+    {
+      "name": "replay_calculator_exactly_identical",
+      "status": "passed",
+      "evidence": {
+        "operations": [
+          "regions_sum",
+          "regions_minus_total",
+          "domestic_share",
+          "overseas_share"
+        ],
+        "calls": 8
+      }
+    },
+    {
+      "name": "independent_fraction_verification",
+      "status": "passed",
+      "evidence": {
+        "checks": [
+          {
+            "round": 1,
+            "id": "regions_sum",
+            "actual": "18181/100",
+            "expected_fraction": "18181/100",
+            "absolute_error": "0",
+            "tolerance": "0",
+            "passed": true
+          },
+          {
+            "round": 1,
+            "id": "regions_minus_total",
+            "actual": "0",
+            "expected_fraction": "0",
+            "absolute_error": "0",
+            "tolerance": "0",
+            "passed": true
+          },
+          {
+            "round": 1,
+            "id": "domestic_share",
+            "actual": "531213904625708156867059017655794510753/1000000000000000000000000000000000000000",
+            "expected_fraction": "9658/18181",
+            "absolute_error": "293/18181000000000000000000000000000000000000000",
+            "tolerance": "1/20000000000000000000000000000000000000000",
+            "passed": true
+          },
+          {
+            "round": 1,
+            "id": "overseas_share",
+            "actual": "468786095374291843132940982344205489247/1000000000000000000000000000000000000000",
+            "expected_fraction": "8523/18181",
+            "absolute_error": "293/18181000000000000000000000000000000000000000",
+            "tolerance": "1/20000000000000000000000000000000000000000",
+            "passed": true
+          },
+          {
+            "round": 2,
+            "id": "regions_sum",
+            "actual": "18181/100",
+            "expected_fraction": "18181/100",
+            "absolute_error": "0",
+            "tolerance": "0",
+            "passed": true
+          },
+          {
+            "round": 2,
+            "id": "regions_minus_total",
+            "actual": "0",
+            "expected_fraction": "0",
+            "absolute_error": "0",
+            "tolerance": "0",
+            "passed": true
+          },
+          {
+            "round": 2,
+            "id": "domestic_share",
+            "actual": "531213904625708156867059017655794510753/1000000000000000000000000000000000000000",
+            "expected_fraction": "9658/18181",
+            "absolute_error": "293/18181000000000000000000000000000000000000000",
+            "tolerance": "1/20000000000000000000000000000000000000000",
+            "passed": true
+          },
+          {
+            "round": 2,
+            "id": "overseas_share",
+            "actual": "468786095374291843132940982344205489247/1000000000000000000000000000000000000000",
+            "expected_fraction": "8523/18181",
+            "absolute_error": "293/18181000000000000000000000000000000000000000",
+            "tolerance": "1/20000000000000000000000000000000000000000",
+            "passed": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "private_archive_bytes_unchanged",
+      "status": "passed",
+      "evidence": {}
+    },
+    {
+      "name": "original_sources_and_old_reports_unchanged",
+      "status": "passed",
+      "evidence": {
+        "paths": [
+          "D:\\codex\\金融\\data\\research\\6f664280-4448-4e8f-a900-70de7eebe73a\\sources\\web_3041e395-17aa-4fef-895c-7daf79dc1fde.json",
+          "D:\\codex\\金融\\data\\research\\6f664280-4448-4e8f-a900-70de7eebe73a\\blobs\\2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97.bin",
+          "D:\\codex\\金融\\benchmark\\results\\research-workflow-v06-evidence-precision.json",
+          "D:\\codex\\金融\\benchmark\\results\\research-workflow-v06-evidence-precision-review.json",
+          "D:\\codex\\金融\\benchmark\\results\\research-trust-v01-first.json",
+          "D:\\codex\\金融\\benchmark\\results\\research-trust-v01-first-diagnosis.json"
+        ]
+      }
+    },
+    {
+      "name": "production_files_unchanged",
+      "status": "passed",
+      "evidence": {}
+    },
+    {
+      "name": "no_network_provider_or_unapproved_tool_attempt",
+      "status": "passed",
+      "evidence": {
+        "network": {
+          "node_attempts": [],
+          "python_attempts": [
+            {
+              "event": "socket.bind",
+              "address": [
+                "127.0.0.1",
+                0
+              ],
+              "loopback_allowed": true
+            },
+            {
+              "event": "socket.connect",
+              "address": [
+                "127.0.0.1",
+                54891
+              ],
+              "loopback_allowed": true
+            }
+          ],
+          "policy": "deny_external_connect_dns_bind_in_python_and_network_entry_points_in_node; Windows asyncio local self-pipe sockets allowed and logged"
+        },
+        "tools": [
+          "create_project",
+          "calculate_financial_metrics",
+          "calculate_financial_metrics",
+          "calculate_financial_metrics",
+          "calculate_financial_metrics",
+          "calculate_financial_metrics",
+          "calculate_financial_metrics",
+          "calculate_financial_metrics",
+          "calculate_financial_metrics"
+        ]
+      }
+    },
+    {
+      "name": "private_mcp_process_exited",
+      "status": "passed",
+      "evidence": {
+        "pid": 36164
+      }
+    }
+  ],
+  "tool_calls": [
+    {
+      "name": "create_project",
+      "args": {
+        "project_id": "6f664280-4448-4e8f-a900-70de7eebe73a",
+        "name": "Private frozen official news replay"
+      },
+      "started_at": "2026-10-03T19:34:10.579Z",
+      "result": {
+        "status": "ok",
+        "data": {
+          "project_id": "6f664280-4448-4e8f-a900-70de7eebe73a",
+          "name": "Private frozen official news replay",
+          "created_at": "2026-10-03T19:34:10.586249+00:00"
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "65b51d69848544738f84e2ffaf6950c1"
+      }
+    },
+    {
+      "name": "calculate_financial_metrics",
+      "args": {
+        "project_id": "6f664280-4448-4e8f-a900-70de7eebe73a",
+        "operation": "sum",
+        "inputs": {
+          "values": [
+            "96.58",
+            "85.23"
+          ],
+          "unit": "亿元"
+        }
+      },
+      "started_at": "2026-10-03T19:34:10.615Z",
+      "result": {
+        "status": "ok",
+        "data": {
+          "operation": "sum",
+          "value": "181.81",
+          "unit": "亿元",
+          "formula": "sum(values)",
+          "inputs": {
+            "values": [
+              "96.58",
+              "85.23"
+            ],
+            "unit": "亿元"
+          }
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "095ed7c7ec3b43bbba4ee6662cf7d93d"
+      }
+    },
+    {
+      "name": "calculate_financial_metrics",
+      "args": {
+        "project_id": "6f664280-4448-4e8f-a900-70de7eebe73a",
+        "operation": "subtract",
+        "inputs": {
+          "a": "181.81",
+          "b": "181.81",
+          "unit": "亿元"
+        }
+      },
+      "started_at": "2026-10-03T19:34:10.627Z",
+      "result": {
+        "status": "ok",
+        "data": {
+          "operation": "subtract",
+          "value": "0.00",
+          "unit": "亿元",
+          "formula": "a - b",
+          "inputs": {
+            "a": "181.81",
+            "b": "181.81",
+            "unit": "亿元"
+          }
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "ac2b0112421a4753a2c52794c6b1c51c"
+      }
+    },
+    {
+      "name": "calculate_financial_metrics",
+      "args": {
+        "project_id": "6f664280-4448-4e8f-a900-70de7eebe73a",
+        "operation": "ratio",
+        "inputs": {
+          "numerator": "96.58",
+          "denominator": "181.81"
+        }
+      },
+      "started_at": "2026-10-03T19:34:10.637Z",
+      "result": {
+        "status": "ok",
+        "data": {
+          "operation": "ratio",
+          "value": "0.5312139046257081568670590176557945107530",
+          "unit": "ratio",
+          "formula": "numerator / denominator",
+          "inputs": {
+            "numerator": "96.58",
+            "denominator": "181.81"
+          }
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "aa567790027f4955a0f7f253906a94e0"
+      }
+    },
+    {
+      "name": "calculate_financial_metrics",
+      "args": {
+        "project_id": "6f664280-4448-4e8f-a900-70de7eebe73a",
+        "operation": "ratio",
+        "inputs": {
+          "numerator": "85.23",
+          "denominator": "181.81"
+        }
+      },
+      "started_at": "2026-10-03T19:34:10.646Z",
+      "result": {
+        "status": "ok",
+        "data": {
+          "operation": "ratio",
+          "value": "0.4687860953742918431329409823442054892470",
+          "unit": "ratio",
+          "formula": "numerator / denominator",
+          "inputs": {
+            "numerator": "85.23",
+            "denominator": "181.81"
+          }
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "09a92f0a398b47069ebcf2d0e4d0e0b1"
+      }
+    },
+    {
+      "name": "calculate_financial_metrics",
+      "args": {
+        "project_id": "6f664280-4448-4e8f-a900-70de7eebe73a",
+        "operation": "sum",
+        "inputs": {
+          "values": [
+            "96.58",
+            "85.23"
+          ],
+          "unit": "亿元"
+        }
+      },
+      "started_at": "2026-10-03T19:34:10.662Z",
+      "result": {
+        "status": "ok",
+        "data": {
+          "operation": "sum",
+          "value": "181.81",
+          "unit": "亿元",
+          "formula": "sum(values)",
+          "inputs": {
+            "values": [
+              "96.58",
+              "85.23"
+            ],
+            "unit": "亿元"
+          }
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "e451848571924de2b90f4bca984130f6"
+      }
+    },
+    {
+      "name": "calculate_financial_metrics",
+      "args": {
+        "project_id": "6f664280-4448-4e8f-a900-70de7eebe73a",
+        "operation": "subtract",
+        "inputs": {
+          "a": "181.81",
+          "b": "181.81",
+          "unit": "亿元"
+        }
+      },
+      "started_at": "2026-10-03T19:34:10.670Z",
+      "result": {
+        "status": "ok",
+        "data": {
+          "operation": "subtract",
+          "value": "0.00",
+          "unit": "亿元",
+          "formula": "a - b",
+          "inputs": {
+            "a": "181.81",
+            "b": "181.81",
+            "unit": "亿元"
+          }
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "0da28a72c3f04bf7807cada2b5e3b224"
+      }
+    },
+    {
+      "name": "calculate_financial_metrics",
+      "args": {
+        "project_id": "6f664280-4448-4e8f-a900-70de7eebe73a",
+        "operation": "ratio",
+        "inputs": {
+          "numerator": "96.58",
+          "denominator": "181.81"
+        }
+      },
+      "started_at": "2026-10-03T19:34:10.678Z",
+      "result": {
+        "status": "ok",
+        "data": {
+          "operation": "ratio",
+          "value": "0.5312139046257081568670590176557945107530",
+          "unit": "ratio",
+          "formula": "numerator / denominator",
+          "inputs": {
+            "numerator": "96.58",
+            "denominator": "181.81"
+          }
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "b45c276e09db4ecab84ba6291698e45b"
+      }
+    },
+    {
+      "name": "calculate_financial_metrics",
+      "args": {
+        "project_id": "6f664280-4448-4e8f-a900-70de7eebe73a",
+        "operation": "ratio",
+        "inputs": {
+          "numerator": "85.23",
+          "denominator": "181.81"
+        }
+      },
+      "started_at": "2026-10-03T19:34:10.689Z",
+      "result": {
+        "status": "ok",
+        "data": {
+          "operation": "ratio",
+          "value": "0.4687860953742918431329409823442054892470",
+          "unit": "ratio",
+          "formula": "numerator / denominator",
+          "inputs": {
+            "numerator": "85.23",
+            "denominator": "181.81"
+          }
+        },
+        "source_refs": [],
+        "warnings": [],
+        "trace_id": "ab8ab473f43c478290a55e2b1d74c664"
+      }
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "network_policy": "deny_all_external",
+      "source": {
+        "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+        "project_id": "6f664280-4448-4e8f-a900-70de7eebe73a",
+        "url": "https://www.liugong.com/newslist/925.html",
+        "requested_url": "https://www.liugong.com/newslist/925.html",
+        "title": "柳工公布上半年业绩：净利润12.3亿元，同比增长25.05%",
+        "kind": "web",
+        "retrieved_at": "2026-10-03T18:42:59.640Z",
+        "published_at": null,
+        "publication_evidence": null,
+        "modified_at": null,
+        "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+        "content_type": "text/html",
+        "byte_count": 27309,
+        "as_of": null,
+        "temporal_status": "no_cutoff",
+        "date_caveat": "页面日期来自发布者标注，不保证当前网页与历史时点内容相同；历史研究还需核验修订日期与当时披露版本。",
+        "content_representation": "original_response_bytes",
+        "paragraphs": [
+          {
+            "id": "p1",
+            "text": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+            "start": 0,
+            "end": 137
+          },
+          {
+            "id": "p2",
+            "text": "上半年，柳工顺利完成董事会换届。管理层在新一届董事会的带领下，坚持“传承创新、继往开来”的经营理念，凝心聚力、担当实干，取得“经营业绩稳中有进、全球市场持续开拓、技术创新多项突破、绿色转型扎实落地”的优秀成绩。",
+            "start": 139,
+            "end": 244
+          },
+          {
+            "id": "p3",
+            "text": "柳工海外业务实现逆周期增长，海外整机销量、收入、毛利率和净利润均创同期新高。装载机业务海内外销售收入同比增长均超20%，电动装载机量价齐增，全球销量增长193%；挖掘机业务销售收入同比增长25%，净利润增长超90%。起重机、矿山机械、高空机械、工业车辆、预应力业务均实现加速增长。",
+            "start": 246,
+            "end": 386
+          }
+        ],
+        "total": 3,
+        "offset": 0,
+        "next_offset": null,
+        "links": [
+          {
+            "title": "",
+            "url": "https://www.liugong.com/"
+          },
+          {
+            "title": "",
+            "url": "https://www.liugong.com/search/index.html"
+          },
+          {
+            "title": "产品中心",
+            "url": "https://www.liugong.com/product/"
+          },
+          {
+            "title": "解决方案",
+            "url": "https://www.liugong.com/industry/index.html"
+          },
+          {
+            "title": "施工案例",
+            "url": "https://www.liugong.com/case/index.html"
+          },
+          {
+            "title": "服务与配件",
+            "url": "https://www.liugong.com/service/"
+          },
+          {
+            "title": "新闻与活动",
+            "url": "https://www.liugong.com/newslist/index.html"
+          },
+          {
+            "title": "了解柳工",
+            "url": "https://www.liugong.com/aboutus/index.html"
+          },
+          {
+            "title": "加入柳工",
+            "url": "https://www.liugong.com/joinus/index.html"
+          },
+          {
+            "title": "柳工",
+            "url": "https://000528.ir-online.com.cn/"
+          },
+          {
+            "title": "快速链接",
+            "url": "https://www.liugong.com/newslist/925.html#"
+          },
+          {
+            "title": "供应商平台",
+            "url": "https://gsrm.liugong.com/"
+          },
+          {
+            "title": "柳工集团",
+            "url": "http://www.liugonggroup.com/"
+          },
+          {
+            "title": "柳工全球 Global English",
+            "url": "https://www.liugong.com/en"
+          },
+          {
+            "title": "柳工亚太 Asia Pacific",
+            "url": "https://apac.liugong.com/"
+          },
+          {
+            "title": "柳工澳大利亚 Australia",
+            "url": "https://liugongaustralia.com.au/"
+          },
+          {
+            "title": "柳工印尼 Indonesia",
+            "url": "https://www.liugong.id/"
+          },
+          {
+            "title": "柳工欧洲 Europe",
+            "url": "http://www.liugong-europe.com/"
+          },
+          {
+            "title": "柳工英国 UK",
+            "url": "https://liugong-europe.com/uk/"
+          },
+          {
+            "title": "柳工印度 India",
+            "url": "http://liugongindia.com/home/"
+          },
+          {
+            "title": "拉丁美洲（英文）Latin America (English)",
+            "url": "https://www.liugongla.com/"
+          },
+          {
+            "title": "拉丁美洲 （西班牙语）Latin America (Español)",
+            "url": "https://es.liugongla.com/"
+          },
+          {
+            "title": "拉丁美洲 （葡萄牙语）Latin America (Português)",
+            "url": "https://liugongla.com/"
+          },
+          {
+            "title": "柳工非洲中东 Africa Middle East",
+            "url": "https://mea.liugong.com/"
+          },
+          {
+            "title": "柳工北美 North America",
+            "url": "http://www.liugongna.com/"
+          }
+        ],
+        "total_links": 36,
+        "link_offset": 0,
+        "next_link_offset": 25
+      },
+      "source_inputs": [
+        {
+          "id": "total",
+          "value": "181.81",
+          "literal": "营业总收入181.81亿元",
+          "locator": "p1",
+          "quote": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+          "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+          "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+          "exact_literal_present": true
+        },
+        {
+          "id": "domestic",
+          "value": "96.58",
+          "literal": "国内收入96.58亿元",
+          "locator": "p1",
+          "quote": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+          "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+          "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+          "exact_literal_present": true
+        },
+        {
+          "id": "overseas",
+          "value": "85.23",
+          "literal": "海外收入85.23亿元",
+          "locator": "p1",
+          "quote": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+          "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+          "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+          "exact_literal_present": true
+        }
+      ],
+      "calculations": [
+        {
+          "id": "regions_sum",
+          "operation": "sum",
+          "inputs": {
+            "values": [
+              "96.58",
+              "85.23"
+            ],
+            "unit": "亿元"
+          },
+          "source_inputs": [
+            "domestic",
+            "overseas"
+          ],
+          "actual_inputs": {
+            "values": [
+              "96.58",
+              "85.23"
+            ],
+            "unit": "亿元"
+          },
+          "response": {
+            "status": "ok",
+            "data": {
+              "operation": "sum",
+              "value": "181.81",
+              "unit": "亿元",
+              "formula": "sum(values)",
+              "inputs": {
+                "values": [
+                  "96.58",
+                  "85.23"
+                ],
+                "unit": "亿元"
+              }
+            },
+            "source_refs": [],
+            "warnings": [],
+            "trace_id": "095ed7c7ec3b43bbba4ee6662cf7d93d"
+          }
+        },
+        {
+          "id": "regions_minus_total",
+          "operation": "subtract",
+          "inputs": {
+            "a": "181.81",
+            "b": "181.81",
+            "unit": "亿元"
+          },
+          "source_inputs": [
+            "regions_sum",
+            "total"
+          ],
+          "actual_inputs": {
+            "a": "181.81",
+            "b": "181.81",
+            "unit": "亿元"
+          },
+          "response": {
+            "status": "ok",
+            "data": {
+              "operation": "subtract",
+              "value": "0.00",
+              "unit": "亿元",
+              "formula": "a - b",
+              "inputs": {
+                "a": "181.81",
+                "b": "181.81",
+                "unit": "亿元"
+              }
+            },
+            "source_refs": [],
+            "warnings": [],
+            "trace_id": "ac2b0112421a4753a2c52794c6b1c51c"
+          }
+        },
+        {
+          "id": "domestic_share",
+          "operation": "ratio",
+          "inputs": {
+            "numerator": "96.58",
+            "denominator": "181.81"
+          },
+          "source_inputs": [
+            "domestic",
+            "total"
+          ],
+          "actual_inputs": {
+            "numerator": "96.58",
+            "denominator": "181.81"
+          },
+          "response": {
+            "status": "ok",
+            "data": {
+              "operation": "ratio",
+              "value": "0.5312139046257081568670590176557945107530",
+              "unit": "ratio",
+              "formula": "numerator / denominator",
+              "inputs": {
+                "numerator": "96.58",
+                "denominator": "181.81"
+              }
+            },
+            "source_refs": [],
+            "warnings": [],
+            "trace_id": "aa567790027f4955a0f7f253906a94e0"
+          }
+        },
+        {
+          "id": "overseas_share",
+          "operation": "ratio",
+          "inputs": {
+            "numerator": "85.23",
+            "denominator": "181.81"
+          },
+          "source_inputs": [
+            "overseas",
+            "total"
+          ],
+          "actual_inputs": {
+            "numerator": "85.23",
+            "denominator": "181.81"
+          },
+          "response": {
+            "status": "ok",
+            "data": {
+              "operation": "ratio",
+              "value": "0.4687860953742918431329409823442054892470",
+              "unit": "ratio",
+              "formula": "numerator / denominator",
+              "inputs": {
+                "numerator": "85.23",
+                "denominator": "181.81"
+              }
+            },
+            "source_refs": [],
+            "warnings": [],
+            "trace_id": "09a92f0a398b47069ebcf2d0e4d0e0b1"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "network_policy": "deny_all_external",
+      "source": {
+        "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+        "project_id": "6f664280-4448-4e8f-a900-70de7eebe73a",
+        "url": "https://www.liugong.com/newslist/925.html",
+        "requested_url": "https://www.liugong.com/newslist/925.html",
+        "title": "柳工公布上半年业绩：净利润12.3亿元，同比增长25.05%",
+        "kind": "web",
+        "retrieved_at": "2026-10-03T18:42:59.640Z",
+        "published_at": null,
+        "publication_evidence": null,
+        "modified_at": null,
+        "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+        "content_type": "text/html",
+        "byte_count": 27309,
+        "as_of": null,
+        "temporal_status": "no_cutoff",
+        "date_caveat": "页面日期来自发布者标注，不保证当前网页与历史时点内容相同；历史研究还需核验修订日期与当时披露版本。",
+        "content_representation": "original_response_bytes",
+        "paragraphs": [
+          {
+            "id": "p1",
+            "text": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+            "start": 0,
+            "end": 137
+          },
+          {
+            "id": "p2",
+            "text": "上半年，柳工顺利完成董事会换届。管理层在新一届董事会的带领下，坚持“传承创新、继往开来”的经营理念，凝心聚力、担当实干，取得“经营业绩稳中有进、全球市场持续开拓、技术创新多项突破、绿色转型扎实落地”的优秀成绩。",
+            "start": 139,
+            "end": 244
+          },
+          {
+            "id": "p3",
+            "text": "柳工海外业务实现逆周期增长，海外整机销量、收入、毛利率和净利润均创同期新高。装载机业务海内外销售收入同比增长均超20%，电动装载机量价齐增，全球销量增长193%；挖掘机业务销售收入同比增长25%，净利润增长超90%。起重机、矿山机械、高空机械、工业车辆、预应力业务均实现加速增长。",
+            "start": 246,
+            "end": 386
+          }
+        ],
+        "total": 3,
+        "offset": 0,
+        "next_offset": null,
+        "links": [
+          {
+            "title": "",
+            "url": "https://www.liugong.com/"
+          },
+          {
+            "title": "",
+            "url": "https://www.liugong.com/search/index.html"
+          },
+          {
+            "title": "产品中心",
+            "url": "https://www.liugong.com/product/"
+          },
+          {
+            "title": "解决方案",
+            "url": "https://www.liugong.com/industry/index.html"
+          },
+          {
+            "title": "施工案例",
+            "url": "https://www.liugong.com/case/index.html"
+          },
+          {
+            "title": "服务与配件",
+            "url": "https://www.liugong.com/service/"
+          },
+          {
+            "title": "新闻与活动",
+            "url": "https://www.liugong.com/newslist/index.html"
+          },
+          {
+            "title": "了解柳工",
+            "url": "https://www.liugong.com/aboutus/index.html"
+          },
+          {
+            "title": "加入柳工",
+            "url": "https://www.liugong.com/joinus/index.html"
+          },
+          {
+            "title": "柳工",
+            "url": "https://000528.ir-online.com.cn/"
+          },
+          {
+            "title": "快速链接",
+            "url": "https://www.liugong.com/newslist/925.html#"
+          },
+          {
+            "title": "供应商平台",
+            "url": "https://gsrm.liugong.com/"
+          },
+          {
+            "title": "柳工集团",
+            "url": "http://www.liugonggroup.com/"
+          },
+          {
+            "title": "柳工全球 Global English",
+            "url": "https://www.liugong.com/en"
+          },
+          {
+            "title": "柳工亚太 Asia Pacific",
+            "url": "https://apac.liugong.com/"
+          },
+          {
+            "title": "柳工澳大利亚 Australia",
+            "url": "https://liugongaustralia.com.au/"
+          },
+          {
+            "title": "柳工印尼 Indonesia",
+            "url": "https://www.liugong.id/"
+          },
+          {
+            "title": "柳工欧洲 Europe",
+            "url": "http://www.liugong-europe.com/"
+          },
+          {
+            "title": "柳工英国 UK",
+            "url": "https://liugong-europe.com/uk/"
+          },
+          {
+            "title": "柳工印度 India",
+            "url": "http://liugongindia.com/home/"
+          },
+          {
+            "title": "拉丁美洲（英文）Latin America (English)",
+            "url": "https://www.liugongla.com/"
+          },
+          {
+            "title": "拉丁美洲 （西班牙语）Latin America (Español)",
+            "url": "https://es.liugongla.com/"
+          },
+          {
+            "title": "拉丁美洲 （葡萄牙语）Latin America (Português)",
+            "url": "https://liugongla.com/"
+          },
+          {
+            "title": "柳工非洲中东 Africa Middle East",
+            "url": "https://mea.liugong.com/"
+          },
+          {
+            "title": "柳工北美 North America",
+            "url": "http://www.liugongna.com/"
+          }
+        ],
+        "total_links": 36,
+        "link_offset": 0,
+        "next_link_offset": 25
+      },
+      "source_inputs": [
+        {
+          "id": "total",
+          "value": "181.81",
+          "literal": "营业总收入181.81亿元",
+          "locator": "p1",
+          "quote": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+          "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+          "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+          "exact_literal_present": true
+        },
+        {
+          "id": "domestic",
+          "value": "96.58",
+          "literal": "国内收入96.58亿元",
+          "locator": "p1",
+          "quote": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+          "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+          "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+          "exact_literal_present": true
+        },
+        {
+          "id": "overseas",
+          "value": "85.23",
+          "literal": "海外收入85.23亿元",
+          "locator": "p1",
+          "quote": "8月27日，柳工发布2025年半年度报告，报告期内，柳工实现营业总收入181.81亿元，同比增长13.21%，其中，国内收入96.58亿元，同比增长15.69%，海外收入85.23亿元，同比增长10.52%；归母净利润12.30亿元，同比增长25.05%，盈利能力持续提升。",
+          "source_id": "web_3041e395-17aa-4fef-895c-7daf79dc1fde",
+          "sha256": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+          "exact_literal_present": true
+        }
+      ],
+      "calculations": [
+        {
+          "id": "regions_sum",
+          "operation": "sum",
+          "inputs": {
+            "values": [
+              "96.58",
+              "85.23"
+            ],
+            "unit": "亿元"
+          },
+          "source_inputs": [
+            "domestic",
+            "overseas"
+          ],
+          "actual_inputs": {
+            "values": [
+              "96.58",
+              "85.23"
+            ],
+            "unit": "亿元"
+          },
+          "response": {
+            "status": "ok",
+            "data": {
+              "operation": "sum",
+              "value": "181.81",
+              "unit": "亿元",
+              "formula": "sum(values)",
+              "inputs": {
+                "values": [
+                  "96.58",
+                  "85.23"
+                ],
+                "unit": "亿元"
+              }
+            },
+            "source_refs": [],
+            "warnings": [],
+            "trace_id": "e451848571924de2b90f4bca984130f6"
+          }
+        },
+        {
+          "id": "regions_minus_total",
+          "operation": "subtract",
+          "inputs": {
+            "a": "181.81",
+            "b": "181.81",
+            "unit": "亿元"
+          },
+          "source_inputs": [
+            "regions_sum",
+            "total"
+          ],
+          "actual_inputs": {
+            "a": "181.81",
+            "b": "181.81",
+            "unit": "亿元"
+          },
+          "response": {
+            "status": "ok",
+            "data": {
+              "operation": "subtract",
+              "value": "0.00",
+              "unit": "亿元",
+              "formula": "a - b",
+              "inputs": {
+                "a": "181.81",
+                "b": "181.81",
+                "unit": "亿元"
+              }
+            },
+            "source_refs": [],
+            "warnings": [],
+            "trace_id": "0da28a72c3f04bf7807cada2b5e3b224"
+          }
+        },
+        {
+          "id": "domestic_share",
+          "operation": "ratio",
+          "inputs": {
+            "numerator": "96.58",
+            "denominator": "181.81"
+          },
+          "source_inputs": [
+            "domestic",
+            "total"
+          ],
+          "actual_inputs": {
+            "numerator": "96.58",
+            "denominator": "181.81"
+          },
+          "response": {
+            "status": "ok",
+            "data": {
+              "operation": "ratio",
+              "value": "0.5312139046257081568670590176557945107530",
+              "unit": "ratio",
+              "formula": "numerator / denominator",
+              "inputs": {
+                "numerator": "96.58",
+                "denominator": "181.81"
+              }
+            },
+            "source_refs": [],
+            "warnings": [],
+            "trace_id": "b45c276e09db4ecab84ba6291698e45b"
+          }
+        },
+        {
+          "id": "overseas_share",
+          "operation": "ratio",
+          "inputs": {
+            "numerator": "85.23",
+            "denominator": "181.81"
+          },
+          "source_inputs": [
+            "overseas",
+            "total"
+          ],
+          "actual_inputs": {
+            "numerator": "85.23",
+            "denominator": "181.81"
+          },
+          "response": {
+            "status": "ok",
+            "data": {
+              "operation": "ratio",
+              "value": "0.4687860953742918431329409823442054892470",
+              "unit": "ratio",
+              "formula": "numerator / denominator",
+              "inputs": {
+                "numerator": "85.23",
+                "denominator": "181.81"
+              }
+            },
+            "source_refs": [],
+            "warnings": [],
+            "trace_id": "ab8ab473f43c478290a55e2b1d74c664"
+          }
+        }
+      ]
+    }
+  ],
+  "protected_before": {
+    "D:\\codex\\金融\\data\\research\\6f664280-4448-4e8f-a900-70de7eebe73a\\sources\\web_3041e395-17aa-4fef-895c-7daf79dc1fde.json": "1126032c3e779fe188f927e45cf842c9186bc303bcd58c55a54bc1bcca0ede11",
+    "D:\\codex\\金融\\data\\research\\6f664280-4448-4e8f-a900-70de7eebe73a\\blobs\\2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97.bin": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+    "D:\\codex\\金融\\benchmark\\results\\research-workflow-v06-evidence-precision.json": "5c249a7177a3ca527d000a70fa4eee7ceea9bca6cd7c02bfc763d7a6780ebdb1",
+    "D:\\codex\\金融\\benchmark\\results\\research-workflow-v06-evidence-precision-review.json": "94ad87fc1d3f540038305d900403de73720ad2dce645b0753bc3ec05ee6fcd1e",
+    "D:\\codex\\金融\\benchmark\\results\\research-trust-v01-first.json": "08f1c7ad165835ad76871cdc68faa5fc65b97410c114a0f71e7f855e18f9a917",
+    "D:\\codex\\金融\\benchmark\\results\\research-trust-v01-first-diagnosis.json": "eac558fe0eb1df20354b47fa2805451848e810aca25fb7724b5a086553a95996"
+  },
+  "implementation_before": {
+    "D:\\codex\\金融\\server\\research.ts": "6c50e9000b0cb190d1fe15ee5123ada09a425310e6a58fe3246c0cdeed6e1c29",
+    "D:\\codex\\金融\\server\\config.ts": "beedcffcb7c93bc3925f0480adb2e34b98ae91f574939987487c95a4edc7a5ca",
+    "D:\\codex\\金融\\server\\mcp.ts": "d640c3bee2607dd1608e14c21e78758043f2ba9f886db46275a31086d1f5c9b1",
+    "D:\\codex\\金融\\service\\server.py": "ef2feab9bfcc73cd4e0b1314faa2df266f7227341503556b0dab80a6f652d407",
+    "D:\\codex\\金融\\service\\core.py": "92747e07ae4c1ee872a1604bb06d5deb80d12387f49f0c51a00e4338e6e2df0d",
+    "D:\\codex\\金融\\service\\store.py": "8e40a64e966a81ce8db7547ee72194631d533ef4ff092d2a3683247f3d2a3879",
+    "D:\\codex\\金融\\service\\lifecycle.py": "cae9830057fb57ba74f7807899f51488da2b8b1b614ba21ca37fc44a32664d58"
+  },
+  "limitations": [
+    "No new LLM or search call: does not retest model interpretation or source discovery.",
+    "Shares are derived from rounded news figures, not more precise company disclosures. No yuan-level precision is claimed.",
+    "No use of parent-attributable profit as consolidated profit. No external date or accounting scope is inferred.",
+    "Scalar calculation calls do not automatically attach webpage citations; this report records the explicit source locator/literal/value-to-input ledger."
+  ],
+  "private_mcp_stderr": "D:\\codex\\金融\\.venv\\Lib\\site-packages\\pydantic_settings\\sources\\utils.py:47: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.\r\n  warnings.warn(\r\nProcessing request of type CallToolRequest\r\nProcessing request of type CallToolRequest\r\nProcessing request of type CallToolRequest\r\nProcessing request of type CallToolRequest\r\nProcessing request of type CallToolRequest\r\nProcessing request of type CallToolRequest\r\nProcessing request of type CallToolRequest\r\nProcessing request of type CallToolRequest\r\nProcessing request of type CallToolRequest\r\n",
+  "private_mcp_pid": 36164,
+  "independent": {
+    "method": "fractions.Fraction independent fixed disclosed-input reference",
+    "checks": [
+      {
+        "round": 1,
+        "id": "regions_sum",
+        "actual": "18181/100",
+        "expected_fraction": "18181/100",
+        "absolute_error": "0",
+        "tolerance": "0",
+        "passed": true
+      },
+      {
+        "round": 1,
+        "id": "regions_minus_total",
+        "actual": "0",
+        "expected_fraction": "0",
+        "absolute_error": "0",
+        "tolerance": "0",
+        "passed": true
+      },
+      {
+        "round": 1,
+        "id": "domestic_share",
+        "actual": "531213904625708156867059017655794510753/1000000000000000000000000000000000000000",
+        "expected_fraction": "9658/18181",
+        "absolute_error": "293/18181000000000000000000000000000000000000000",
+        "tolerance": "1/20000000000000000000000000000000000000000",
+        "passed": true
+      },
+      {
+        "round": 1,
+        "id": "overseas_share",
+        "actual": "468786095374291843132940982344205489247/1000000000000000000000000000000000000000",
+        "expected_fraction": "8523/18181",
+        "absolute_error": "293/18181000000000000000000000000000000000000000",
+        "tolerance": "1/20000000000000000000000000000000000000000",
+        "passed": true
+      },
+      {
+        "round": 2,
+        "id": "regions_sum",
+        "actual": "18181/100",
+        "expected_fraction": "18181/100",
+        "absolute_error": "0",
+        "tolerance": "0",
+        "passed": true
+      },
+      {
+        "round": 2,
+        "id": "regions_minus_total",
+        "actual": "0",
+        "expected_fraction": "0",
+        "absolute_error": "0",
+        "tolerance": "0",
+        "passed": true
+      },
+      {
+        "round": 2,
+        "id": "domestic_share",
+        "actual": "531213904625708156867059017655794510753/1000000000000000000000000000000000000000",
+        "expected_fraction": "9658/18181",
+        "absolute_error": "293/18181000000000000000000000000000000000000000",
+        "tolerance": "1/20000000000000000000000000000000000000000",
+        "passed": true
+      },
+      {
+        "round": 2,
+        "id": "overseas_share",
+        "actual": "468786095374291843132940982344205489247/1000000000000000000000000000000000000000",
+        "expected_fraction": "8523/18181",
+        "absolute_error": "293/18181000000000000000000000000000000000000000",
+        "tolerance": "1/20000000000000000000000000000000000000000",
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "protected_after": {
+    "D:\\codex\\金融\\data\\research\\6f664280-4448-4e8f-a900-70de7eebe73a\\sources\\web_3041e395-17aa-4fef-895c-7daf79dc1fde.json": "1126032c3e779fe188f927e45cf842c9186bc303bcd58c55a54bc1bcca0ede11",
+    "D:\\codex\\金融\\data\\research\\6f664280-4448-4e8f-a900-70de7eebe73a\\blobs\\2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97.bin": "2cc27e842374f04fac9c614dca291db4fbac07f3fd7b23657d2d9dbcf2c32b97",
+    "D:\\codex\\金融\\benchmark\\results\\research-workflow-v06-evidence-precision.json": "5c249a7177a3ca527d000a70fa4eee7ceea9bca6cd7c02bfc763d7a6780ebdb1",
+    "D:\\codex\\金融\\benchmark\\results\\research-workflow-v06-evidence-precision-review.json": "94ad87fc1d3f540038305d900403de73720ad2dce645b0753bc3ec05ee6fcd1e",
+    "D:\\codex\\金融\\benchmark\\results\\research-trust-v01-first.json": "08f1c7ad165835ad76871cdc68faa5fc65b97410c114a0f71e7f855e18f9a917",
+    "D:\\codex\\金融\\benchmark\\results\\research-trust-v01-first-diagnosis.json": "eac558fe0eb1df20354b47fa2805451848e810aca25fb7724b5a086553a95996"
+  },
+  "implementation_after": {
+    "D:\\codex\\金融\\server\\research.ts": "6c50e9000b0cb190d1fe15ee5123ada09a425310e6a58fe3246c0cdeed6e1c29",
+    "D:\\codex\\金融\\server\\config.ts": "beedcffcb7c93bc3925f0480adb2e34b98ae91f574939987487c95a4edc7a5ca",
+    "D:\\codex\\金融\\server\\mcp.ts": "d640c3bee2607dd1608e14c21e78758043f2ba9f886db46275a31086d1f5c9b1",
+    "D:\\codex\\金融\\service\\server.py": "ef2feab9bfcc73cd4e0b1314faa2df266f7227341503556b0dab80a6f652d407",
+    "D:\\codex\\金融\\service\\core.py": "92747e07ae4c1ee872a1604bb06d5deb80d12387f49f0c51a00e4338e6e2df0d",
+    "D:\\codex\\金融\\service\\store.py": "8e40a64e966a81ce8db7547ee72194631d533ef4ff092d2a3683247f3d2a3879",
+    "D:\\codex\\金融\\service\\lifecycle.py": "cae9830057fb57ba74f7807899f51488da2b8b1b614ba21ca37fc44a32664d58"
+  },
+  "network": {
+    "node_attempts": [],
+    "python_attempts": [
+      {
+        "event": "socket.bind",
+        "address": [
+          "127.0.0.1",
+          0
+        ],
+        "loopback_allowed": true
+      },
+      {
+        "event": "socket.connect",
+        "address": [
+          "127.0.0.1",
+          54891
+        ],
+        "loopback_allowed": true
+      }
+    ],
+    "policy": "deny_external_connect_dns_bind_in_python_and_network_entry_points_in_node; Windows asyncio local self-pipe sockets allowed and logged"
+  },
+  "private_mcp_exited": true,
+  "finished_at": "2026-10-03T19:34:10.934Z"
+}

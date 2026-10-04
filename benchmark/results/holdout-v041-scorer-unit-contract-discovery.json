@@ -1,0 +1,14 @@
+{
+  "discovered_at": "2026-10-03T16:10:38.256745+00:00",
+  "discovered_before_holdout_scoring": true,
+  "job_id": "119624da-d46c-4978-a7b4-dd7d476d69d1",
+  "kind": "independent_scorer_contract_defect",
+  "production_contract": "currency percent is exposed with normalized_unit %, as explicitly implemented by _expanded_fact",
+  "frozen_scorer_expectation": "normalized_unit equals currency for all values",
+  "correction_scope": "Only the normalized_unit mismatch for expected currency percent and actual currency percent / normalized_unit % is an erroneous rejection. All value/raw_unit/date/version/source/concept errors stay failed.",
+  "action": "Keep first-run report and frozen files unchanged; optional separately labelled read-only rescore, no additional model calls.",
+  "files": {
+    "service/processing.py": "cf04d3dc0e764caca6f5dca7431fed7c99cb40b48227c7473f1625e47fd82429",
+    "scripts/score_holdout.mjs": "a60839a3d1b25a8f88d186ebd1b041cbdf40d49d34d189a4a6471befe04b43d3"
+  }
+}

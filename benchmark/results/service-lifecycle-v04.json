@@ -1,0 +1,59 @@
+{
+  "version": "service-lifecycle-v04",
+  "created_at": "2026-10-03T18:09:39.718106+00:00",
+  "status": "passed",
+  "scope": "Private temporary DATA, real MCP child and Windows process termination only. Live DATA/3001 untouched.",
+  "model_calls": 0,
+  "results": {
+    "lifecycle": {
+      "command": "node --import tsx --test tests/service-lifecycle.test.ts",
+      "passed": 3,
+      "failed": 0,
+      "duration_ms": 17138.0633,
+      "cases": [
+        {
+          "mode": "stdin-eof",
+          "actual": "Processing cancellation observed; duplicate direct MCP service rejected before Store recovery; original final cancelled write retained; successor starts after child exit."
+        },
+        {
+          "mode": "node-crash",
+          "actual": "Windows launcher and real Python worker both terminated; original state remained normalizing; successor recovered interrupted job to failed, without invented completion."
+        },
+        {
+          "mode": "default-executor-eof",
+          "actual": "Unregistered ordinary asyncio.to_thread writer drained before ownership release; replacement rejected until original final completed write finished."
+        }
+      ]
+    },
+    "protocol": {
+      "command": ".venv/Scripts/python.exe -m unittest service.tests.test_mcp -v",
+      "passed": 1,
+      "failed": 0
+    },
+    "host_startup_guard": {
+      "evidence": "benchmark/results/startup-single-instance-v04.json",
+      "passed": 5
+    },
+    "typecheck": {
+      "command": "npx tsc --noEmit -p server/tsconfig.json",
+      "exit_code": 0
+    }
+  },
+  "implementation": {
+    "server/main.ts": "93982fed691d9c546efb1e0d1725329a04188e7bfc7fe6b4245c7bcf0e6e3dd7",
+    "server/startup-guard.ts": "302e771538d53e90a19abbd8354cf52bc3ab6dc292f0554d01492eec0cb79c22",
+    "service/lifecycle.py": "cae9830057fb57ba74f7807899f51488da2b8b1b614ba21ca37fc44a32664d58",
+    "service/server.py": "ef2feab9bfcc73cd4e0b1314faa2df266f7227341503556b0dab80a6f652d407",
+    "tests/startup-guard.test.ts": "597a11ed9aa51be5689e5fadcc6b10d5c13ea716574871874b604829097616c0",
+    "tests/service-lifecycle.test.ts": "b3e632df8da6469c72499f971c7a2dd99ba41922d5c1ef50488fb3dbd22846e0",
+    "tests/fixtures/service-lifecycle-child.py": "3e1962a9b6927a40d8b5ef2f5484261de9347b967daf7342cf77119fef006fa0",
+    "tests/fixtures/service-lifecycle-parent.ts": "238fb28b47cf55f555ed46e9803b3483e6b5f66aece500bfea04c02f1936d292"
+  },
+  "ownership": "Python process holds OS file lock before importing/constructing Store; releases only after anyio/asyncio default executor and explicit worker pools drain. Lock file inode is never unlinked.",
+  "limits": [
+    "Executed on Windows. POSIX locking path is implemented but not run on this machine.",
+    "Strong-kill behavior depends on launcher; cancellation-and-drain independently tested via EOF while Node remains alive.",
+    "A genuinely unresponsive worker retains the data lock, preventing overlapping recovery; this test does not claim forced completion of arbitrary native calls.",
+    "Legacy versions and direct Store maintenance scripts do not participate in these startup locks. First deployment requires normal shutdown of the prior host."
+  ]
+}

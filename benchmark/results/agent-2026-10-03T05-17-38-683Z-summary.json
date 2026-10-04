@@ -1,0 +1,158 @@
+{
+  "name": "agent-2026-10-03T05-17-38-683Z",
+  "createdAt": "2026-10-03T05:17:38.689Z",
+  "split": "dev",
+  "repeat": 1,
+  "concurrency": 1,
+  "model": "deepseek-flash",
+  "configHash": "24f6914cfaba6e4edd44c6a6f6ada51e7745ee6d82babe0613dbd1885c05f7ff",
+  "promptHash": "f3b4ab024543a418606a3ccb76b82fe521719c5e46ed1924372f373cb08772ae",
+  "code": {
+    "hash": "02389f48267adb58948ed2859108a7c2b5ce5fe6296455c57a15e0c8bbbde835",
+    "files": {
+      "benchmark/evaluate.py": "3bd77e2e81b106b5d7363ac415ac4e881b3c4b9497b685a240d10938b611388c",
+      "benchmark/prepare_case.py": "bffe69ee6d170e0906bf143de624bb0d6444fcd5afbca8786f0a7e9e0e7282ed",
+      "package-lock.json": "35d938219351212edc4b941a8ebfc7f770ba5ac7be42543f80a3100224976d80",
+      "requirements.lock.txt": "1ef167ffb5f2b815badde152f43a548904d2f6521ca40cbc3009715f0aced5c0",
+      "sandbox/__init__.py": "807cbba6b5cb15753bad45148fcc818a809893289b8b248f252faca2456a653f",
+      "sandbox/download_wheels.py": "c6bdcf62c667151bae1c3f04797f33835e1dd7c8a1aad0ba99c43dffa8a9cc31",
+      "sandbox/entrypoint.py": "51398c15d556263608f21b438794484a9b4e1ce13fcb9ba6e8b61875f8d800d7",
+      "sandbox/launcher.py": "ef3841024d2e272d8e52b3e338194469aead0f7803b49f3642768c25b553b98a",
+      "sandbox/portable_vm.py": "330587738720efb90395e979fcab91d3c5f7ccf8e9f615e6fcf22a62d673cf9f",
+      "sandbox/remote.py": "d8b77ab64f1d7c52e7e93f78518188e9b1daaa0d6debaa2395dd13471207d18f",
+      "sandbox/remote_worker.py": "5066196f3a913c1be670527b9ca8d3369657b5eed6960cd932ef39d9b8af5912",
+      "sandbox/test_launcher.py": "eaca3569f8604cae4a6f3f21b964cabcdd5474a7e46df78bb889030c5820e8c5",
+      "scripts/benchmark_worker.ts": "adf6ab0cc086d900ba7cb92ce580f4d99d02c0987097e33059c5b914fdd091b5",
+      "scripts/run_benchmark.ts": "c07cdb94c47ead5f230a371a00092514667e8e0a989fe84811f6e0c3cbd17167",
+      "server/config.ts": "05b070d0f2b3672d6756678dbee901bf6573893fd209ee0d177e4ba4dad1ed64",
+      "server/main.ts": "fffa3b31e1e15631f791a212ca16fac191bd6b0b3ba82f6da2f41f176d314dbb",
+      "server/mcp.ts": "c3a561e0bfd17f139af98c4534b7100b26173a9a28a0113ef2aaca457e25d713",
+      "server/runs.ts": "0343a1fb3d012d672f77b0920e2e45c01baee56d29c7c9da0318c8b0e77c99e4",
+      "server/types.ts": "baf21e8d886dfae0a7bd1b92921f3e90c0c48e25893844701fe7fbc6a4e5ae29",
+      "service/__init__.py": "5bcfc2bc68f6de1b22074c28433e66e7660b3d541d7c499ac0f9b07143c1fe88",
+      "service/core.py": "3807dda7f43acfb9ad082ae15cd111c9b96ae926887adc6f286d9c82de19ac7b",
+      "service/inspect_ocr.py": "19a66a038264f63719be64b3ce3c7372ed6303cb25fa67055aed14e8fae13510",
+      "service/inspect_reports.py": "35a89ab2faf6feb1ea3ed0c4b1ae4eee46552fef42ffc343d83605cdaa159937",
+      "service/normalization.py": "b4da08fc7895fda5042c95f671cff5a342d5a2b968a5bc4dae7b220f421622cb",
+      "service/parser.py": "2ad2c4020ab8fb3e51056444397ac1bfad47f1cc34e03d59d58780107c1b5e27",
+      "service/server.py": "a07978dff9971d9b6aa777c8d16fafa042e81b39cadacb665d4f80e154d1d3b5",
+      "service/store.py": "4b4d6a81d0668a0ebff308f02bad0b50ce3ab127736153642cea012db7f38e8e"
+    }
+  },
+  "settings": {
+    "llm": {
+      "provider": "openai-compatible",
+      "baseUrl": "https://api.deepseek.com",
+      "model": "deepseek-flash",
+      "contextWindow": 1048576,
+      "maxTokens": 8192,
+      "hasKey": true
+    },
+    "embedding": {
+      "enabled": false,
+      "baseUrl": "",
+      "model": "",
+      "hasKey": false
+    },
+    "ocr": {
+      "mode": "local",
+      "baseUrl": "",
+      "model": "",
+      "hasKey": false
+    },
+    "runtime": {
+      "maxToolCalls": 24,
+      "timeoutSeconds": 120
+    }
+  },
+  "caseIds": [
+    "moutai_2024_extract_operating_cash_flow_2024"
+  ],
+  "subset": true,
+  "piVersion": "1.0.0",
+  "agentInputIsolated": true,
+  "status": "completed",
+  "finishedAt": "2026-10-03T05:18:20.466Z",
+  "repeatConsistency": null,
+  "codeUnchangedDuringRun": true,
+  "datasetGateAllRuns": false,
+  "worstGroundedAccuracy": 0.016129032258064516,
+  "runs": [
+    {
+      "benchmark": "finance-agent-bench-0.1.0",
+      "split": "dev",
+      "evaluated_cases": 62,
+      "received_predictions": 1,
+      "dataset_gate_pass": false,
+      "full_system_acceptance": false,
+      "runtime_gate": "NOT_RUN: require separate trusted sandbox, chart, isolation and reproducibility checks",
+      "metrics": {
+        "cn_extract": {
+          "n": 10,
+          "answer_accuracy": 0.1,
+          "grounded_accuracy": 0.1,
+          "target_answer_accuracy": 0.95,
+          "pass": false
+        },
+        "cn_calculate": {
+          "n": 4,
+          "answer_accuracy": 0,
+          "grounded_accuracy": 0,
+          "target_answer_accuracy": 0.95,
+          "pass": false
+        },
+        "cn_audit": {
+          "n": 4,
+          "answer_accuracy": 0,
+          "grounded_accuracy": 0,
+          "target_answer_accuracy": 0.9,
+          "pass": false
+        },
+        "cn_abstain": {
+          "n": 2,
+          "answer_accuracy": 0,
+          "grounded_accuracy": 0,
+          "target_answer_accuracy": 1,
+          "pass": false
+        },
+        "cn_ocr": {
+          "n": 2,
+          "answer_accuracy": 0,
+          "grounded_accuracy": 0,
+          "target_answer_accuracy": 0.9,
+          "pass": false
+        },
+        "finqa_single": {
+          "n": 20,
+          "answer_accuracy": 0,
+          "grounded_accuracy": 0,
+          "target_answer_accuracy": 0.85,
+          "pass": false
+        },
+        "finqa_multi": {
+          "n": 20,
+          "answer_accuracy": 0,
+          "grounded_accuracy": 0,
+          "target_answer_accuracy": 0.75,
+          "pass": false
+        }
+      },
+      "citation_recall": 0.016129032258064516,
+      "citation_precision": 0.016129032258064516,
+      "grounded_accuracy": 0.016129032258064516,
+      "protocol_errors": [],
+      "round": 1,
+      "model": "deepseek-flash",
+      "configHash": "24f6914cfaba6e4edd44c6a6f6ada51e7745ee6d82babe0613dbd1885c05f7ff",
+      "promptHash": "f3b4ab024543a418606a3ccb76b82fe521719c5e46ed1924372f373cb08772ae",
+      "codeHash": "02389f48267adb58948ed2859108a7c2b5ce5fe6296455c57a15e0c8bbbde835",
+      "selectedCases": 1,
+      "subset": true,
+      "wallTimeMs": 41773,
+      "aggregateCaseTimeMs": 32530,
+      "modelCalls": 3,
+      "inputTokens": 11484,
+      "outputTokens": 570
+    }
+  ]
+}

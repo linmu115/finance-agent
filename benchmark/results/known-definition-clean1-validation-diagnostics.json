@@ -1,0 +1,708 @@
+[
+  {
+    "request_id": "44c0132c-0176-44dd-bae6-02d6b7565946",
+    "at": "2026-10-03T18:15:01.688Z",
+    "group_count": 5,
+    "errors": [],
+    "details": []
+  },
+  {
+    "request_id": "1a0acd8e-2ba5-4965-804a-f74fa08efeb1",
+    "at": "2026-10-03T18:15:05.413Z",
+    "group_count": 5,
+    "errors": [],
+    "details": []
+  },
+  {
+    "request_id": "36a19dc2-3757-49fc-9739-aa24bb80b7d1",
+    "at": "2026-10-03T18:15:24.790Z",
+    "group_count": 6,
+    "errors": [],
+    "details": []
+  },
+  {
+    "request_id": "bdb9b8fe-64c0-43b4-89c9-f6e8513c7a56",
+    "at": "2026-10-03T18:15:59.331Z",
+    "group_count": 5,
+    "errors": [],
+    "details": []
+  },
+  {
+    "request_id": "1dbb7832-080b-4250-85ca-ef7983f3b619",
+    "at": "2026-10-03T18:17:24.340Z",
+    "group_count": 6,
+    "errors": [
+      {
+        "reason": "definition_quote_not_in_group_evidence",
+        "group_id": "3abbdff3649dc2d01c9c6494a8861b0df177c19ab35326e688f4890b89880934"
+      }
+    ],
+    "details": [
+      {
+        "error": {
+          "reason": "definition_quote_not_in_group_evidence",
+          "group_id": "3abbdff3649dc2d01c9c6494a8861b0df177c19ab35326e688f4890b89880934"
+        },
+        "group": {
+          "group_id": "3abbdff3649dc2d01c9c6494a8861b0df177c19ab35326e688f4890b89880934",
+          "current_metric": "revenue",
+          "original_metric": "revenue",
+          "current_label": "本期销售收入",
+          "original_label": "本期销售收入",
+          "dimensions": {
+            "线上销售产品档次": "中、高档酒",
+            "线上销售平台": "“i 茅台”数字营销平台"
+          }
+        },
+        "decision": {
+          "metric": "main_business_revenue",
+          "label": "主营业务收入",
+          "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+          "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。",
+          "reason": "原文为线上销售情况按平台和产品档次披露的销售收入，属于主营业务收入的分部披露，符合main_business_revenue；不包含其他业务收入。",
+          "grounded_quotes_json": "[{\"evidence_id\":\"093a1f38d0e74f509af2fb4a033adf832c58e8b777dd0778a148a627ae042858\",\"text\":\"线上销售情况\"},{\"evidence_id\":\"e5d47b42b6024cc1692b53ba6f3bbe145f48cf6227f4f9e26e6d848e08da0259\",\"text\":\"本期销售收入 | 上期销售收入\"},{\"evidence_id\":\"0dc2403afca8e092571fb033ad05f1b74c0e991a554ed8e4427f84af7ca59dd4\",\"text\":\"“i 茅台”数字营销平台 | 中、高档酒 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉\"},{\"evidence_id\":\"5b4b5ee0e580dae2ac34a31e14e0692c5c2f8a963ca3792d494b499dc64b9130\",\"text\":\"公司产品通过直销和批发代理渠道进行销售。直销渠道指自营和“i 茅台”等数字营销平台渠道，批发代理渠道指社会经销商、商超、电商等渠道。\"}]"
+        },
+        "quote_details": [
+          {
+            "quote": {
+              "evidence_id": "093a1f38d0e74f509af2fb4a033adf832c58e8b777dd0778a148a627ae042858",
+              "text": "线上销售情况"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "093a1f38d0e74f509af2fb4a033adf832c58e8b777dd0778a148a627ae042858",
+                "kind": "page_context",
+                "page": 16,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t31"
+              }
+            ],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "093a1f38d0e74f509af2fb4a033adf832c58e8b777dd0778a148a627ae042858",
+              "kind": "page_context",
+              "page": 16,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t31",
+              "text_ref": "E6",
+              "text": "                 贵州茅台酒股份有限公司2024 年年度报告\n\n\n                              单位：万元 币种：人民币\n                            本期销售量   上期销售量\n   渠道类型    本期销售收入  上期销售收入\n                             （吨）     （吨）\n 直销                  〈原数值已省略〉    〈原数值已省略〉       〈原数值已省略〉      〈原数值已省略〉\n 批发代理              〈原数值已省略〉    〈原数值已省略〉       〈原数值已省略〉      〈原数值已省略〉\n\n\n(3). 区域情况\n√适用 □不适用\n                              单位：万元 币种：人民币\n 区域   本期销售    上期销售  本期占比 本期销售量 上期销售量 本期占\n 名称    收入      收入     （%）   （吨）   （吨）   比（%）\n 国内    〈原数值已省略〉  〈原数值已省略〉     〈原数值已省略〉    〈原数值已省略〉   〈原数值已省略〉     〈原数值已省略〉\n 国外       〈原数值已省略〉     〈原数值已省略〉      〈原数值已省略〉     〈原数值已省略〉    〈原数值已省略〉      〈原数值已省略〉\n\n\n区域划分标准\n□适用 √不适用\n\n\n(〈原数值已省略〉). 经销商情况\n√适用 □不适用\n                                      单位：个\n    区域名称     报告期末经销商数量  报告期内增加数量  报告期内减少数量\n 国内                                  〈原数值已省略〉                  〈原数值已省略〉                 〈原数值已省略〉\n 国外                                    〈原数值已省略〉                                      〈原数值已省略〉\n\n\n情况说明\n√适用 □不适用\n  增加的是酱香系列酒的经销商。\n\n\n(5). 线上销售情况\n√适用 □不适用\n                              单位：万元 币种：人民币\n            线上销售产                 同比  毛利率\n   线上销售平台          本期销售收入  上期销售收入\n             品档次                     （%）  （%）\n “i 茅台”数字营销平台 中、高档酒    〈原数值已省略〉    〈原数值已省略〉  〈原数值已省略〉    〈原数值已省略〉\n 其他线上平台      中、高档酒      〈原数值已省略〉     〈原数值已省略〉   〈原数值已省略〉    〈原数值已省略〉\n\n\n未来线上经营战略\n□适用 √不适用\n\n\n7、 公司收入及成本分析\n\n(1). 按不同类型披露公司主营业务构成\n√适用 □不适用\n                               单位：元 币种：人民币\n\n                  同比             同比   毛利率\n 划分类型    营业收入           营业成本                 同比（%）\n                     （%）               （%）    （%）\n\n 按产品档次\n 茅台酒      〈原数值已省略〉      〈原数值已省略〉   〈原数值已省略〉     〈原数值已省略〉        〈原数值已省略〉       〈原数值已省略〉\n\n 其他系列酒   〈原数值已省略〉      〈原数值已省略〉   〈原数值已省略〉     〈原数值已省略〉        〈原数值已省略〉        〈原数值已省略〉\n\n 小计        〈原数值已省略〉      〈原数值已省略〉  〈原数值已省略〉     〈原数值已省略〉        〈原数值已省略〉       〈原数值已省略〉\n\n\n                                             16 / 143"
+            }
+          },
+          {
+            "quote": {
+              "evidence_id": "e5d47b42b6024cc1692b53ba6f3bbe145f48cf6227f4f9e26e6d848e08da0259",
+              "text": "本期销售收入 | 上期销售收入"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "e5d47b42b6024cc1692b53ba6f3bbe145f48cf6227f4f9e26e6d848e08da0259",
+                "kind": "table_headers",
+                "page": 16,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t31"
+              },
+              {
+                "evidence_id": "0dc2403afca8e092571fb033ad05f1b74c0e991a554ed8e4427f84af7ca59dd4",
+                "kind": "row_context",
+                "page": 16,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t31"
+              }
+            ],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "e5d47b42b6024cc1692b53ba6f3bbe145f48cf6227f4f9e26e6d848e08da0259",
+              "kind": "table_headers",
+              "page": 16,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t31",
+              "text_ref": "E7",
+              "text": "线上销售平台 | 线上销售产\n品档次 | 本期销售收入 | 上期销售收入 | 同比\n（%） | 毛利率\n（%）"
+            }
+          },
+          {
+            "quote": {
+              "evidence_id": "0dc2403afca8e092571fb033ad05f1b74c0e991a554ed8e4427f84af7ca59dd4",
+              "text": "“i 茅台”数字营销平台 | 中、高档酒 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "0dc2403afca8e092571fb033ad05f1b74c0e991a554ed8e4427f84af7ca59dd4",
+                "kind": "row_context",
+                "page": 16,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t31"
+              }
+            ],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "0dc2403afca8e092571fb033ad05f1b74c0e991a554ed8e4427f84af7ca59dd4",
+              "kind": "row_context",
+              "page": 16,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t31",
+              "text_ref": "E8",
+              "text": "线上销售平台 | 线上销售产\n品档次 | 本期销售收入 | 上期销售收入 | 同比\n（%） | 毛利率\n（%）\n“i 茅台”数字营销平台 | 中、高档酒 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉\n其他线上平台 | 中、高档酒 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+            }
+          },
+          {
+            "quote": {
+              "evidence_id": "5b4b5ee0e580dae2ac34a31e14e0692c5c2f8a963ca3792d494b499dc64b9130",
+              "text": "公司产品通过直销和批发代理渠道进行销售。直销渠道指自营和“i 茅台”等数字营销平台渠道，批发代理渠道指社会经销商、商超、电商等渠道。"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "5b4b5ee0e580dae2ac34a31e14e0692c5c2f8a963ca3792d494b499dc64b9130",
+              "kind": "page_context",
+              "page": 15,
+              "table_id": "",
+              "text_ref": "E10",
+              "text": "                 贵州茅台酒股份有限公司2024 年年度报告\n\n\n4、 产品情况\n\n√适用 □不适用\n                         单位：万元 币种：人民币\n产品档   产量    同比    销量   同比  产销    销售    同比\n                                          主要代表品牌\n 次    （吨）   （%）   （吨）   （%）  率(%)    收入    （%）\n茅台酒     〈原数值已省略〉    〈原数值已省略〉    〈原数值已省略〉   〈原数值已省略〉           〈原数值已省略〉   〈原数值已省略〉 贵州茅台酒\n                                          茅台王子酒、茅\n其他系\n           〈原数值已省略〉    〈原数值已省略〉    〈原数值已省略〉   〈原数值已省略〉            〈原数值已省略〉   〈原数值已省略〉  台1935 酒、汉\n列酒\n                                          酱酒、赖茅酒\n注：（1）为保证公司可持续发展，每年需留存一定量的基酒，按生产工艺，茅台酒从生产到出\n厂至少需要五年。（2）茅台酒是由不同年份、不同轮次、不同浓度的基酒相互勾兑而成，是技\n术和艺术的完美结合，因此某一年份的基酒可能在未来数年都会作为产品出现。（3）公司坚持\n质量是生命之魂，坚持“崇本守道，坚守工艺，贮足陈酿，不卖新酒”，茅台酒的生产属于自然\n固态发酵，传统工艺酿造，成品率具有一定波动性。（4）基于上述原因，茅台酒基酒产销率不\n能精准计算。系列酒的产品形成过程近似于茅台酒。\n\n\n产品档次划分标准\n√适用 □不适用\n按产品品质划分。\n\n\n产品结构变化情况及经营策略\n□适用 √不适用\n\n\n5、 原料采购情况\n\n(1). 采购模式\n√适用 □不适用\n  茅台酒用高粱采取“公司+地方政府+供应商+合作社或农户”的模式，小麦采取“公司+供应\n商+合作社或农场”的模式，其他原辅料及包装材料采购主要根据公司生产和销售计划，通过集\n中采购方式向市场采购。\n\n\n(2). 采购金额\n√适用 □不适用\n                              单位：万元 币种：人民币\n                              占当期总采购额的比重\n   原料类别     当期采购金额    上期采购金额\n                                         （%）\n 酿酒原材料                 〈原数值已省略〉        〈原数值已省略〉                     〈原数值已省略〉\n 包装材料                   〈原数值已省略〉        〈原数值已省略〉                     〈原数值已省略〉\n 能源                        〈原数值已省略〉         〈原数值已省略〉                      〈原数值已省略〉\n 车间辅助材料                〈原数值已省略〉         〈原数值已省略〉                      〈原数值已省略〉\n\n\n6、 销售情况\n\n(1). 销售模式\n√适用 □不适用\n  公司产品通过直销和批发代理渠道进行销售。直销渠道指自营和“i 茅台”等数字营销平台\n渠道，批发代理渠道指社会经销商、商超、电商等渠道。\n\n\n(2). 销售渠道\n√适用 □不适用\n\n\n\n\n                                             15 / 143"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "98407e6c-0c0e-41be-b034-b80087ce9231",
+    "at": "2026-10-03T18:17:48.832Z",
+    "group_count": 6,
+    "errors": [],
+    "details": []
+  },
+  {
+    "request_id": "a5f9786e-db26-4721-9590-26bed70080f8",
+    "at": "2026-10-03T18:19:06.068Z",
+    "group_count": 5,
+    "errors": [
+      {
+        "reason": "definition_quote_not_in_group_evidence",
+        "group_id": "d0682c5148e85811fa3a1f7da1f914375e889ca137283ad1d0bf5e9604506511"
+      }
+    ],
+    "details": [
+      {
+        "error": {
+          "reason": "definition_quote_not_in_group_evidence",
+          "group_id": "d0682c5148e85811fa3a1f7da1f914375e889ca137283ad1d0bf5e9604506511"
+        },
+        "group": {
+          "group_id": "d0682c5148e85811fa3a1f7da1f914375e889ca137283ad1d0bf5e9604506511",
+          "current_metric": "lease_liabilities",
+          "original_metric": "lease_liabilities",
+          "current_label": "租赁负债",
+          "original_label": "长期租赁负债",
+          "dimensions": {}
+        },
+        "decision": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债",
+          "definition": "资产负债表中的租赁负债项目，反映企业尚未支付的租赁付款额现值，扣除一年内到期部分后的非流动租赁负债。",
+          "definition_scope": "列示于非流动负债项下的租赁负债；一年内到期的部分在流动负债的“一年内到期的非流动负债”项目反映，本项目不包含该部分。",
+          "reason": "原文33、租赁负债表内长期租赁负债为扣除一年内到期部分后的非流动租赁负债，与既有lease_liabilities定义范围一致；应复用已有概念。",
+          "grounded_quotes_json": "[{\"evidence_id\":\"6063d51d3da728dea065e32a372d782bb04a00f37af460a5a4bd8280b8af942a\",\"text\":\"33、 租赁负债\"},{\"evidence_id\":\"1ab3fe0243e5241b778ae4b0293b28e07686687e3b82ba0a34774b5d3fe66a3d\",\"text\":\"原始行名：长期租赁负债\"},{\"evidence_id\":\"264e8f2b001b1ed05543b9cc83a077789066f9f78fa49e71dbe465a64d3e1b71\",\"text\":\"1 年内到期的租赁负债\"}]"
+        },
+        "quote_details": [
+          {
+            "quote": {
+              "evidence_id": "6063d51d3da728dea065e32a372d782bb04a00f37af460a5a4bd8280b8af942a",
+              "text": "33、 租赁负债"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "6063d51d3da728dea065e32a372d782bb04a00f37af460a5a4bd8280b8af942a",
+                "kind": "page_context",
+                "page": 106,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t184"
+              }
+            ],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "6063d51d3da728dea065e32a372d782bb04a00f37af460a5a4bd8280b8af942a",
+              "kind": "page_context",
+              "page": 106,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t184",
+              "text_ref": "E11",
+              "text": "                 贵州茅台酒股份有限公司2024 年年度报告\n\n\n(2). 其他应付款\n\n按款项性质列示其他应付款\n√适用 □不适用\n                               单位：元 币种：人民币\n      项目           期末余额          期初余额\n 材料质量保证金                         〈原数值已省略〉               〈原数值已省略〉\n 工程质量保证金                         〈原数值已省略〉               〈原数值已省略〉\n 经销商保证金                         〈原数值已省略〉             〈原数值已省略〉\n 往来款项                             〈原数值已省略〉             〈原数值已省略〉\n      合计                      〈原数值已省略〉             〈原数值已省略〉\n\n\n账龄超过1 年或逾期的重要其他应付款\n□适用 √不适用\n\n\n 31、   1 年内到期的非流动负债\n\n√适用 □不适用\n                               单位：元 币种：人民币\n      项目           期末余额          期初余额\n 1 年内到期的租赁负债                    〈原数值已省略〉                〈原数值已省略〉\n      合计                         〈原数值已省略〉                〈原数值已省略〉\n\n\n 32、 其他流动负债\n\n其他流动负债情况\n√适用 □不适用\n                               单位：元 币种：人民币\n     项目           期末余额          期初余额\n 待转销项税额                         〈原数值已省略〉             〈原数值已省略〉\n     合计                       〈原数值已省略〉             〈原数值已省略〉\n\n\n 33、 租赁负债\n\n√适用 □不适用\n                               单位：元 币种：人民币\n      项目           期末余额          期初余额\n 长期租赁负债                             〈原数值已省略〉             〈原数值已省略〉\n      合计                         〈原数值已省略〉             〈原数值已省略〉\n\n\n 34、 股本\n\n√适用 □不适用\n                               单位：元 币种：人民币\n                     本次变动增减（+、-）\n        期初余额   发行  送  公积金           期末余额\n                          其他  小计\n               新股  股  转股\n 股份总数   〈原数值已省略〉                                       〈原数值已省略〉\n\n\n\n\n\n                                             106 / 143"
+            }
+          },
+          {
+            "quote": {
+              "evidence_id": "1ab3fe0243e5241b778ae4b0293b28e07686687e3b82ba0a34774b5d3fe66a3d",
+              "text": "原始行名：长期租赁负债"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "1ab3fe0243e5241b778ae4b0293b28e07686687e3b82ba0a34774b5d3fe66a3d",
+                "kind": "definition",
+                "page": 106,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t184"
+              }
+            ],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "1ab3fe0243e5241b778ae4b0293b28e07686687e3b82ba0a34774b5d3fe66a3d",
+              "kind": "definition",
+              "page": 106,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t184",
+              "text_ref": "E14",
+              "text": "原始行名：长期租赁负债\n原始列名：\n本列完整表头：期末余额"
+            }
+          },
+          {
+            "quote": {
+              "evidence_id": "264e8f2b001b1ed05543b9cc83a077789066f9f78fa49e71dbe465a64d3e1b71",
+              "text": "1 年内到期的租赁负债"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "6063d51d3da728dea065e32a372d782bb04a00f37af460a5a4bd8280b8af942a",
+                "kind": "page_context",
+                "page": 106,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t184"
+              }
+            ],
+            "whitespace_only": false,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "264e8f2b001b1ed05543b9cc83a077789066f9f78fa49e71dbe465a64d3e1b71",
+              "kind": "page_context",
+              "page": 105,
+              "table_id": "",
+              "text_ref": "E15",
+              "text": "                   贵州茅台酒股份有限公司2024 年年度报告\n\n\n\n三、社会保险费                   〈原数值已省略〉    〈原数值已省略〉    〈原数值已省略〉      〈原数值已省略〉\n其中：医疗保险费                 〈原数值已省略〉    〈原数值已省略〉      〈原数值已省略〉      〈原数值已省略〉\n   工伤保险费                      〈原数值已省略〉       〈原数值已省略〉       〈原数值已省略〉           〈原数值已省略〉\n四、住房公积金                        〈原数值已省略〉      〈原数值已省略〉      〈原数值已省略〉           〈原数值已省略〉\n五、工会经费和职工教育经费       〈原数值已省略〉      〈原数值已省略〉      〈原数值已省略〉      〈原数值已省略〉\n六、短期带薪缺勤\n七、短期利润分享计划\n八、其他                            〈原数值已省略〉        〈原数值已省略〉        〈原数值已省略〉         〈原数值已省略〉\n      合计               〈原数值已省略〉   〈原数值已省略〉   〈原数值已省略〉   〈原数值已省略〉\n\n\n   (3). 设定提存计划列示\n\n  √适用 □不适用\n                                 单位：元 币种：人民币\n      项目      期初余额      本期增加      本期减少      期末余额\n   1、基本养老保险          〈原数值已省略〉      〈原数值已省略〉   〈原数值已省略〉         〈原数值已省略〉\n   2、失业保险费              〈原数值已省略〉         〈原数值已省略〉      〈原数值已省略〉           〈原数值已省略〉\n   3、企业年金缴费        〈原数值已省略〉        〈原数值已省略〉     〈原数值已省略〉       〈原数值已省略〉\n      合计             〈原数值已省略〉      〈原数值已省略〉   〈原数值已省略〉       〈原数值已省略〉\n\n\n    29、 应交税费\n\n  √适用 □不适用\n                                 单位：元 币种：人民币\n       项目           期末余额          期初余额\n  增值税                                〈原数值已省略〉            〈原数值已省略〉\n  消费税                                〈原数值已省略〉            〈原数值已省略〉\n  企业所得税                            〈原数值已省略〉            〈原数值已省略〉\n  个人所得税                               〈原数值已省略〉               〈原数值已省略〉\n  城市维护建设税                          〈原数值已省略〉              〈原数值已省略〉\n  城市教育费附加                          〈原数值已省略〉              〈原数值已省略〉\n  地方教育费附加                           〈原数值已省略〉               〈原数值已省略〉\n  印花税                                   〈原数值已省略〉               〈原数值已省略〉\n  房产税                                      〈原数值已省略〉                〈原数值已省略〉\n  土地使用税                                   〈原数值已省略〉                   〈原数值已省略〉\n  环境保护税                                   〈原数值已省略〉                   〈原数值已省略〉\n  其他                                     〈原数值已省略〉                  〈原数值已省略〉\n       合计                       〈原数值已省略〉            〈原数值已省略〉\n\n\n    30、 其他应付款\n\n   (1). 项目列示\n\n  √适用 □不适用\n                                 单位：元 币种：人民币\n        项目           期末余额         期初余额\n  应付利息\n  应付股利\n  其他应付款                             〈原数值已省略〉           〈原数值已省略〉\n  合计                                   〈原数值已省略〉           〈原数值已省略〉\n\n\n\n\n\n                                                 105 / 143"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "569fdf98-1ac3-4383-9882-19e0dee9ab1e",
+    "at": "2026-10-03T18:19:15.391Z",
+    "group_count": 6,
+    "errors": [],
+    "details": []
+  },
+  {
+    "request_id": "773a2b15-8650-4a0a-9906-5d6e7d456c3c",
+    "at": "2026-10-03T18:20:51.395Z",
+    "group_count": 5,
+    "errors": [
+      {
+        "reason": "definition_quote_not_in_group_evidence",
+        "group_id": "d0682c5148e85811fa3a1f7da1f914375e889ca137283ad1d0bf5e9604506511"
+      }
+    ],
+    "details": [
+      {
+        "error": {
+          "reason": "definition_quote_not_in_group_evidence",
+          "group_id": "d0682c5148e85811fa3a1f7da1f914375e889ca137283ad1d0bf5e9604506511"
+        },
+        "group": {
+          "group_id": "d0682c5148e85811fa3a1f7da1f914375e889ca137283ad1d0bf5e9604506511",
+          "current_metric": "lease_liabilities",
+          "original_metric": "lease_liabilities",
+          "current_label": "租赁负债",
+          "original_label": "长期租赁负债",
+          "dimensions": {}
+        },
+        "decision": {
+          "metric": "lease_liabilities",
+          "label": "租赁负债",
+          "definition": "资产负债表中的租赁负债项目，反映企业尚未支付的租赁付款额现值，扣除一年内到期部分后的非流动租赁负债。",
+          "definition_scope": "列示于非流动负债项下的租赁负债；一年内到期的部分在流动负债的“一年内到期的非流动负债”项目反映，本项目不包含该部分。",
+          "reason": "原文行名为“长期租赁负债”，列示于“33、租赁负债”表，且同页附注另有“1年内到期的租赁负债”单独列示，表明其不含一年内到期部分，与lease_liabilities的定义及排除范围一致，故保留原ID。",
+          "grounded_quotes_json": "[{\"evidence_id\":\"1ab3fe0243e5241b778ae4b0293b28e07686687e3b82ba0a34774b5d3fe66a3d\",\"text\":\"原始行名：长期租赁负债\"},{\"evidence_id\":\"264e8f2b001b1ed05543b9cc83a077789066f9f78fa49e71dbe465a64d3e1b71\",\"text\":\"1 年内到期的租赁负债\"},{\"evidence_id\":\"6063d51d3da728dea065e32a372d782bb04a00f37af460a5a4bd8280b8af942a\",\"text\":\"33、 租赁负债\"}]"
+        },
+        "quote_details": [
+          {
+            "quote": {
+              "evidence_id": "1ab3fe0243e5241b778ae4b0293b28e07686687e3b82ba0a34774b5d3fe66a3d",
+              "text": "原始行名：长期租赁负债"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "1ab3fe0243e5241b778ae4b0293b28e07686687e3b82ba0a34774b5d3fe66a3d",
+                "kind": "definition",
+                "page": 106,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t184"
+              }
+            ],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "1ab3fe0243e5241b778ae4b0293b28e07686687e3b82ba0a34774b5d3fe66a3d",
+              "kind": "definition",
+              "page": 106,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t184",
+              "text_ref": "E14",
+              "text": "原始行名：长期租赁负债\n原始列名：\n本列完整表头：期末余额"
+            }
+          },
+          {
+            "quote": {
+              "evidence_id": "264e8f2b001b1ed05543b9cc83a077789066f9f78fa49e71dbe465a64d3e1b71",
+              "text": "1 年内到期的租赁负债"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "6063d51d3da728dea065e32a372d782bb04a00f37af460a5a4bd8280b8af942a",
+                "kind": "page_context",
+                "page": 106,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t184"
+              }
+            ],
+            "whitespace_only": false,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "264e8f2b001b1ed05543b9cc83a077789066f9f78fa49e71dbe465a64d3e1b71",
+              "kind": "page_context",
+              "page": 105,
+              "table_id": "",
+              "text_ref": "E15",
+              "text": "                   贵州茅台酒股份有限公司2024 年年度报告\n\n\n\n三、社会保险费                   〈原数值已省略〉    〈原数值已省略〉    〈原数值已省略〉      〈原数值已省略〉\n其中：医疗保险费                 〈原数值已省略〉    〈原数值已省略〉      〈原数值已省略〉      〈原数值已省略〉\n   工伤保险费                      〈原数值已省略〉       〈原数值已省略〉       〈原数值已省略〉           〈原数值已省略〉\n四、住房公积金                        〈原数值已省略〉      〈原数值已省略〉      〈原数值已省略〉           〈原数值已省略〉\n五、工会经费和职工教育经费       〈原数值已省略〉      〈原数值已省略〉      〈原数值已省略〉      〈原数值已省略〉\n六、短期带薪缺勤\n七、短期利润分享计划\n八、其他                            〈原数值已省略〉        〈原数值已省略〉        〈原数值已省略〉         〈原数值已省略〉\n      合计               〈原数值已省略〉   〈原数值已省略〉   〈原数值已省略〉   〈原数值已省略〉\n\n\n   (3). 设定提存计划列示\n\n  √适用 □不适用\n                                 单位：元 币种：人民币\n      项目      期初余额      本期增加      本期减少      期末余额\n   1、基本养老保险          〈原数值已省略〉      〈原数值已省略〉   〈原数值已省略〉         〈原数值已省略〉\n   2、失业保险费              〈原数值已省略〉         〈原数值已省略〉      〈原数值已省略〉           〈原数值已省略〉\n   3、企业年金缴费        〈原数值已省略〉        〈原数值已省略〉     〈原数值已省略〉       〈原数值已省略〉\n      合计             〈原数值已省略〉      〈原数值已省略〉   〈原数值已省略〉       〈原数值已省略〉\n\n\n    29、 应交税费\n\n  √适用 □不适用\n                                 单位：元 币种：人民币\n       项目           期末余额          期初余额\n  增值税                                〈原数值已省略〉            〈原数值已省略〉\n  消费税                                〈原数值已省略〉            〈原数值已省略〉\n  企业所得税                            〈原数值已省略〉            〈原数值已省略〉\n  个人所得税                               〈原数值已省略〉               〈原数值已省略〉\n  城市维护建设税                          〈原数值已省略〉              〈原数值已省略〉\n  城市教育费附加                          〈原数值已省略〉              〈原数值已省略〉\n  地方教育费附加                           〈原数值已省略〉               〈原数值已省略〉\n  印花税                                   〈原数值已省略〉               〈原数值已省略〉\n  房产税                                      〈原数值已省略〉                〈原数值已省略〉\n  土地使用税                                   〈原数值已省略〉                   〈原数值已省略〉\n  环境保护税                                   〈原数值已省略〉                   〈原数值已省略〉\n  其他                                     〈原数值已省略〉                  〈原数值已省略〉\n       合计                       〈原数值已省略〉            〈原数值已省略〉\n\n\n    30、 其他应付款\n\n   (1). 项目列示\n\n  √适用 □不适用\n                                 单位：元 币种：人民币\n        项目           期末余额         期初余额\n  应付利息\n  应付股利\n  其他应付款                             〈原数值已省略〉           〈原数值已省略〉\n  合计                                   〈原数值已省略〉           〈原数值已省略〉\n\n\n\n\n\n                                                 105 / 143"
+            }
+          },
+          {
+            "quote": {
+              "evidence_id": "6063d51d3da728dea065e32a372d782bb04a00f37af460a5a4bd8280b8af942a",
+              "text": "33、 租赁负债"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "6063d51d3da728dea065e32a372d782bb04a00f37af460a5a4bd8280b8af942a",
+                "kind": "page_context",
+                "page": 106,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t184"
+              }
+            ],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "6063d51d3da728dea065e32a372d782bb04a00f37af460a5a4bd8280b8af942a",
+              "kind": "page_context",
+              "page": 106,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t184",
+              "text_ref": "E11",
+              "text": "                 贵州茅台酒股份有限公司2024 年年度报告\n\n\n(2). 其他应付款\n\n按款项性质列示其他应付款\n√适用 □不适用\n                               单位：元 币种：人民币\n      项目           期末余额          期初余额\n 材料质量保证金                         〈原数值已省略〉               〈原数值已省略〉\n 工程质量保证金                         〈原数值已省略〉               〈原数值已省略〉\n 经销商保证金                         〈原数值已省略〉             〈原数值已省略〉\n 往来款项                             〈原数值已省略〉             〈原数值已省略〉\n      合计                      〈原数值已省略〉             〈原数值已省略〉\n\n\n账龄超过1 年或逾期的重要其他应付款\n□适用 √不适用\n\n\n 31、   1 年内到期的非流动负债\n\n√适用 □不适用\n                               单位：元 币种：人民币\n      项目           期末余额          期初余额\n 1 年内到期的租赁负债                    〈原数值已省略〉                〈原数值已省略〉\n      合计                         〈原数值已省略〉                〈原数值已省略〉\n\n\n 32、 其他流动负债\n\n其他流动负债情况\n√适用 □不适用\n                               单位：元 币种：人民币\n     项目           期末余额          期初余额\n 待转销项税额                         〈原数值已省略〉             〈原数值已省略〉\n     合计                       〈原数值已省略〉             〈原数值已省略〉\n\n\n 33、 租赁负债\n\n√适用 □不适用\n                               单位：元 币种：人民币\n      项目           期末余额          期初余额\n 长期租赁负债                             〈原数值已省略〉             〈原数值已省略〉\n      合计                         〈原数值已省略〉             〈原数值已省略〉\n\n\n 34、 股本\n\n√适用 □不适用\n                               单位：元 币种：人民币\n                     本次变动增减（+、-）\n        期初余额   发行  送  公积金           期末余额\n                          其他  小计\n               新股  股  转股\n 股份总数   〈原数值已省略〉                                       〈原数值已省略〉\n\n\n\n\n\n                                             106 / 143"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "deaeb219-544e-412d-9955-03a5cb8cebf5",
+    "at": "2026-10-03T18:21:13.923Z",
+    "group_count": 6,
+    "errors": [
+      {
+        "reason": "definition_quote_not_in_group_evidence",
+        "group_id": "7e116d5b74b1c64fc8342a9034b7a1810fd7482b053704cff75eb3dfa91c169e"
+      },
+      {
+        "reason": "definition_quote_not_in_group_evidence",
+        "group_id": "7c2eee661346d003f413b422375c1b2434322ff3c7a26062790d6a62c6964a5a"
+      }
+    ],
+    "details": [
+      {
+        "error": {
+          "reason": "definition_quote_not_in_group_evidence",
+          "group_id": "7e116d5b74b1c64fc8342a9034b7a1810fd7482b053704cff75eb3dfa91c169e"
+        },
+        "group": {
+          "group_id": "7e116d5b74b1c64fc8342a9034b7a1810fd7482b053704cff75eb3dfa91c169e",
+          "current_metric": "revenue",
+          "original_metric": "revenue",
+          "current_label": "营业收入",
+          "original_label": "营业收入",
+          "dimensions": {
+            "financial_item": "subsidiary_financial_data",
+            "industry": "酒、饮料及茶叶批发",
+            "subsidiary": "贵州茅台酱香酒营销有限公司"
+          }
+        },
+        "decision": {
+          "metric": "revenue",
+          "label": "营业收入",
+          "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+          "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。",
+          "reason": "该组为重要控股参股公司分析中的子公司营业收入，属于按企业会计准则确认的营业收入，与已有 revenue 定义一致，故复用其 ID、定义和范围。",
+          "grounded_quotes_json": "[{\"evidence_id\":\"80bc141a6c3e63a72192588fd112be15834936a0eb1af711ff4b7e1786f22a20\",\"text\":\"子公司全称 | 所处行业 | 注册资本 | 总资产 | 净资产 | 营业收入\"},{\"evidence_id\":\"b390d5a172ea47cb0b97d9d2cd79dc476ea2942e290db6be8698b6e6195f8fac\",\"text\":\"原始列名：营业收入\"},{\"evidence_id\":\"6ba55ee92516e49c6d35f479b33ed811a682fdcc3f99fd8e89344ca133940397\",\"text\":\"贵州茅台酱香酒营销有限公司\"}]"
+        },
+        "quote_details": [
+          {
+            "quote": {
+              "evidence_id": "80bc141a6c3e63a72192588fd112be15834936a0eb1af711ff4b7e1786f22a20",
+              "text": "子公司全称 | 所处行业 | 注册资本 | 总资产 | 净资产 | 营业收入"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "80bc141a6c3e63a72192588fd112be15834936a0eb1af711ff4b7e1786f22a20",
+                "kind": "table_headers",
+                "page": 20,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t35"
+              },
+              {
+                "evidence_id": "6ba55ee92516e49c6d35f479b33ed811a682fdcc3f99fd8e89344ca133940397",
+                "kind": "row_context",
+                "page": 20,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t35"
+              }
+            ],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "80bc141a6c3e63a72192588fd112be15834936a0eb1af711ff4b7e1786f22a20",
+              "kind": "table_headers",
+              "page": 20,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t35",
+              "text_ref": "E11",
+              "text": "子公司全称 | 所处行业 | 注册资本 | 总资产 | 净资产 | 营业收入 | 营业利润 | 净利润"
+            }
+          },
+          {
+            "quote": {
+              "evidence_id": "b390d5a172ea47cb0b97d9d2cd79dc476ea2942e290db6be8698b6e6195f8fac",
+              "text": "原始列名：营业收入"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "b390d5a172ea47cb0b97d9d2cd79dc476ea2942e290db6be8698b6e6195f8fac",
+                "kind": "definition",
+                "page": 20,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t35"
+              }
+            ],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "b390d5a172ea47cb0b97d9d2cd79dc476ea2942e290db6be8698b6e6195f8fac",
+              "kind": "definition",
+              "page": 20,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t35",
+              "text_ref": "E13",
+              "text": "原始行名：子公司财务数据\n原始列名：营业收入\n本列完整表头：营业收入"
+            }
+          },
+          {
+            "quote": {
+              "evidence_id": "6ba55ee92516e49c6d35f479b33ed811a682fdcc3f99fd8e89344ca133940397",
+              "text": "贵州茅台酱香酒营销有限公司"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "6ba55ee92516e49c6d35f479b33ed811a682fdcc3f99fd8e89344ca133940397",
+              "kind": "row_context",
+              "page": 20,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t35",
+              "text_ref": "E12",
+              "text": "子公司全称 | 所处行业 | 注册资本 | 总资产 | 净资产 | 营业收入 | 营业利润 | 净利润\n贵州茅台酒销售有限\n公司 | 酒、饮料及茶\n叶批发 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉\n贵州茅台酱香酒营销\n有限公司 | 酒、饮料及茶\n叶批发 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+            }
+          }
+        ]
+      },
+      {
+        "error": {
+          "reason": "definition_quote_not_in_group_evidence",
+          "group_id": "7c2eee661346d003f413b422375c1b2434322ff3c7a26062790d6a62c6964a5a"
+        },
+        "group": {
+          "group_id": "7c2eee661346d003f413b422375c1b2434322ff3c7a26062790d6a62c6964a5a",
+          "current_metric": "revenue",
+          "original_metric": "revenue",
+          "current_label": "上期销售收入",
+          "original_label": "上期销售收入",
+          "dimensions": {
+            "线上销售产品档次": "中、高档酒",
+            "线上销售平台": "其他线上平台"
+          }
+        },
+        "decision": {
+          "metric": "main_business_revenue",
+          "label": "主营业务收入",
+          "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+          "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。",
+          "reason": "该组为线上销售情况中的线上销售收入，按线上销售平台和产品档次披露，属于按销售渠道披露的主营业务收入，与已有 main_business_revenue 定义一致，故复用其 ID、定义和范围。",
+          "grounded_quotes_json": "[{\"evidence_id\":\"e5d47b42b6024cc1692b53ba6f3bbe145f48cf6227f4f9e26e6d848e08da0259\",\"text\":\"线上销售平台\"},{\"evidence_id\":\"e5d47b42b6024cc1692b53ba6f3bbe145f48cf6227f4f9e26e6d848e08da0259\",\"text\":\"上期销售收入\"},{\"evidence_id\":\"0dc2403afca8e092571fb033ad05f1b74c0e991a554ed8e4427f84af7ca59dd4\",\"text\":\"其他线上平台 | 中、高档酒\"},{\"evidence_id\":\"fe5534d78676b4245200390d5622e295f2e3becaeea3a3686d0fe36279a063ff\",\"text\":\"原始行名：线上销售收入\"},{\"evidence_id\":\"5b4b5ee0e580dae2ac34a31e14e0692c5c2f8a963ca3792d494b499dc64b9130\",\"text\":\"直销渠道指自营和“i 茅台”等数字营销平台渠道\"}]"
+        },
+        "quote_details": [
+          {
+            "quote": {
+              "evidence_id": "e5d47b42b6024cc1692b53ba6f3bbe145f48cf6227f4f9e26e6d848e08da0259",
+              "text": "线上销售平台"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "093a1f38d0e74f509af2fb4a033adf832c58e8b777dd0778a148a627ae042858",
+                "kind": "page_context",
+                "page": 16,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t31"
+              },
+              {
+                "evidence_id": "e5d47b42b6024cc1692b53ba6f3bbe145f48cf6227f4f9e26e6d848e08da0259",
+                "kind": "table_headers",
+                "page": 16,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t31"
+              },
+              {
+                "evidence_id": "0dc2403afca8e092571fb033ad05f1b74c0e991a554ed8e4427f84af7ca59dd4",
+                "kind": "row_context",
+                "page": 16,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t31"
+              }
+            ],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "e5d47b42b6024cc1692b53ba6f3bbe145f48cf6227f4f9e26e6d848e08da0259",
+              "kind": "table_headers",
+              "page": 16,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t31",
+              "text_ref": "E6",
+              "text": "线上销售平台 | 线上销售产\n品档次 | 本期销售收入 | 上期销售收入 | 同比\n（%） | 毛利率\n（%）"
+            }
+          },
+          {
+            "quote": {
+              "evidence_id": "e5d47b42b6024cc1692b53ba6f3bbe145f48cf6227f4f9e26e6d848e08da0259",
+              "text": "上期销售收入"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "093a1f38d0e74f509af2fb4a033adf832c58e8b777dd0778a148a627ae042858",
+                "kind": "page_context",
+                "page": 16,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t31"
+              },
+              {
+                "evidence_id": "e5d47b42b6024cc1692b53ba6f3bbe145f48cf6227f4f9e26e6d848e08da0259",
+                "kind": "table_headers",
+                "page": 16,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t31"
+              },
+              {
+                "evidence_id": "0dc2403afca8e092571fb033ad05f1b74c0e991a554ed8e4427f84af7ca59dd4",
+                "kind": "row_context",
+                "page": 16,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t31"
+              },
+              {
+                "evidence_id": "fe5534d78676b4245200390d5622e295f2e3becaeea3a3686d0fe36279a063ff",
+                "kind": "definition",
+                "page": 16,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t31"
+              }
+            ],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "e5d47b42b6024cc1692b53ba6f3bbe145f48cf6227f4f9e26e6d848e08da0259",
+              "kind": "table_headers",
+              "page": 16,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t31",
+              "text_ref": "E6",
+              "text": "线上销售平台 | 线上销售产\n品档次 | 本期销售收入 | 上期销售收入 | 同比\n（%） | 毛利率\n（%）"
+            }
+          },
+          {
+            "quote": {
+              "evidence_id": "0dc2403afca8e092571fb033ad05f1b74c0e991a554ed8e4427f84af7ca59dd4",
+              "text": "其他线上平台 | 中、高档酒"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "0dc2403afca8e092571fb033ad05f1b74c0e991a554ed8e4427f84af7ca59dd4",
+                "kind": "row_context",
+                "page": 16,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t31"
+              }
+            ],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "0dc2403afca8e092571fb033ad05f1b74c0e991a554ed8e4427f84af7ca59dd4",
+              "kind": "row_context",
+              "page": 16,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t31",
+              "text_ref": "E7",
+              "text": "线上销售平台 | 线上销售产\n品档次 | 本期销售收入 | 上期销售收入 | 同比\n（%） | 毛利率\n（%）\n“i 茅台”数字营销平台 | 中、高档酒 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉\n其他线上平台 | 中、高档酒 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+            }
+          },
+          {
+            "quote": {
+              "evidence_id": "fe5534d78676b4245200390d5622e295f2e3becaeea3a3686d0fe36279a063ff",
+              "text": "原始行名：线上销售收入"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [
+              {
+                "evidence_id": "fe5534d78676b4245200390d5622e295f2e3becaeea3a3686d0fe36279a063ff",
+                "kind": "definition",
+                "page": 16,
+                "table_id": "39de9b118212463bbee6c2ab3c571432:t31"
+              }
+            ],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "fe5534d78676b4245200390d5622e295f2e3becaeea3a3686d0fe36279a063ff",
+              "kind": "definition",
+              "page": 16,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t31",
+              "text_ref": "E8",
+              "text": "原始行名：线上销售收入\n原始列名：上期销售收入\n本列完整表头：上期销售收入"
+            }
+          },
+          {
+            "quote": {
+              "evidence_id": "5b4b5ee0e580dae2ac34a31e14e0692c5c2f8a963ca3792d494b499dc64b9130",
+              "text": "直销渠道指自营和“i 茅台”等数字营销平台渠道"
+            },
+            "provided_evidence_exists": true,
+            "exact_in_own": [],
+            "whitespace_only": true,
+            "provided_evidence": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "evidence_id": "5b4b5ee0e580dae2ac34a31e14e0692c5c2f8a963ca3792d494b499dc64b9130",
+              "kind": "page_context",
+              "page": 15,
+              "table_id": "",
+              "text_ref": "E9",
+              "text": "                 贵州茅台酒股份有限公司2024 年年度报告\n\n\n4、 产品情况\n\n√适用 □不适用\n                         单位：万元 币种：人民币\n产品档   产量    同比    销量   同比  产销    销售    同比\n                                          主要代表品牌\n 次    （吨）   （%）   （吨）   （%）  率(%)    收入    （%）\n茅台酒     〈原数值已省略〉    〈原数值已省略〉    〈原数值已省略〉   〈原数值已省略〉           〈原数值已省略〉   〈原数值已省略〉 贵州茅台酒\n                                          茅台王子酒、茅\n其他系\n           〈原数值已省略〉    〈原数值已省略〉    〈原数值已省略〉   〈原数值已省略〉            〈原数值已省略〉   〈原数值已省略〉  台1935 酒、汉\n列酒\n                                          酱酒、赖茅酒\n注：（1）为保证公司可持续发展，每年需留存一定量的基酒，按生产工艺，茅台酒从生产到出\n厂至少需要五年。（2）茅台酒是由不同年份、不同轮次、不同浓度的基酒相互勾兑而成，是技\n术和艺术的完美结合，因此某一年份的基酒可能在未来数年都会作为产品出现。（3）公司坚持\n质量是生命之魂，坚持“崇本守道，坚守工艺，贮足陈酿，不卖新酒”，茅台酒的生产属于自然\n固态发酵，传统工艺酿造，成品率具有一定波动性。（4）基于上述原因，茅台酒基酒产销率不\n能精准计算。系列酒的产品形成过程近似于茅台酒。\n\n\n产品档次划分标准\n√适用 □不适用\n按产品品质划分。\n\n\n产品结构变化情况及经营策略\n□适用 √不适用\n\n\n5、 原料采购情况\n\n(1). 采购模式\n√适用 □不适用\n  茅台酒用高粱采取“公司+地方政府+供应商+合作社或农户”的模式，小麦采取“公司+供应\n商+合作社或农场”的模式，其他原辅料及包装材料采购主要根据公司生产和销售计划，通过集\n中采购方式向市场采购。\n\n\n(2). 采购金额\n√适用 □不适用\n                              单位：万元 币种：人民币\n                              占当期总采购额的比重\n   原料类别     当期采购金额    上期采购金额\n                                         （%）\n 酿酒原材料                 〈原数值已省略〉        〈原数值已省略〉                     〈原数值已省略〉\n 包装材料                   〈原数值已省略〉        〈原数值已省略〉                     〈原数值已省略〉\n 能源                        〈原数值已省略〉         〈原数值已省略〉                      〈原数值已省略〉\n 车间辅助材料                〈原数值已省略〉         〈原数值已省略〉                      〈原数值已省略〉\n\n\n6、 销售情况\n\n(1). 销售模式\n√适用 □不适用\n  公司产品通过直销和批发代理渠道进行销售。直销渠道指自营和“i 茅台”等数字营销平台\n渠道，批发代理渠道指社会经销商、商超、电商等渠道。\n\n\n(2). 销售渠道\n√适用 □不适用\n\n\n\n\n                                             15 / 143"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "ab546b05-8904-42f8-9d1a-1e28b8df95a9",
+    "at": "2026-10-03T18:22:41.322Z",
+    "group_count": 6,
+    "errors": [],
+    "details": []
+  }
+]

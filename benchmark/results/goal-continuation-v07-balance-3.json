@@ -1,0 +1,112 @@
+{
+  "kind": "third_consecutive_balance_blocker_audit",
+  "at": "2026-10-03T19:41:41.510304+00:00",
+  "previous_goal_turn_classification": "progress: documentation, offline replay and original-contract mechanism verification completed",
+  "consecutive_goal_turns_with_same_blocker": 3,
+  "authoritative_current_blocker": {
+    "report": "benchmark/results/provider-balance-status-1791056231294.json",
+    "http_status": 200,
+    "is_available": false,
+    "model_requests": 0
+  },
+  "independent_work_completed_this_turn": "P2.configuration actual production UI save/reopen (8 checks), public settings unchanged, zero search/model calls",
+  "verified_requirements": 29,
+  "remaining_requirements": [
+    {
+      "id": "P1.native_tables",
+      "requirement": "无框线原生文字PDF及跨页表格可进入Pi中的模型清洗，不能仅依赖几何表格检测"
+    },
+    {
+      "id": "P1.unit_semantics",
+      "requirement": "表头、金额/比例/每股单位由来源上下文和模型语义确定；程序约束不能误把数据行当百分比表头"
+    },
+    {
+      "id": "P1.scope_period",
+      "requirement": "主营/全部、租赁期限、补助定义、存量/流量、季度/累计、重述等字段保持准确且有原文依据"
+    },
+    {
+      "id": "P3.attribution",
+      "requirement": "按可复算的财务桥接解释业绩变化"
+    },
+    {
+      "id": "P3.earnings_quality",
+      "requirement": "识别现金流、应计、一次性项目与经营盈利差异"
+    },
+    {
+      "id": "P3.claim_review",
+      "requirement": "把研报拆成事实、计算、假设和观点逐项核查"
+    },
+    {
+      "id": "P3.review_metrics",
+      "requirement": "研报纠错达到锁定precision与recall门槛"
+    },
+    {
+      "id": "P4.chain",
+      "requirement": "建立首条制造业产业链的企业、业务、价格和成本关联"
+    },
+    {
+      "id": "P4.uncertainty",
+      "requirement": "对未知弹性给出区间和反证条件"
+    },
+    {
+      "id": "P5.scope",
+      "requirement": "实现适用于首个制造业样例的非金融企业DCF与相对估值"
+    },
+    {
+      "id": "P5.assumptions",
+      "requirement": "估值假设可编辑、有依据和版本"
+    },
+    {
+      "id": "P6.memo",
+      "requirement": "保存研究结论、证据、假设和反证条件的memo"
+    },
+    {
+      "id": "C.scope",
+      "requirement": "首先覆盖一条制造业产业链和非金融企业估值；不是全行业DCF或企业平台"
+    },
+    {
+      "id": "A.correctness",
+      "requirement": "可判定事实逐格正确率至少95%；同时列漏抽、错误新增与重大金额/单位/范围错误"
+    },
+    {
+      "id": "A.major_errors",
+      "requirement": "重大金额/单位/范围错误单列，不用总体分数掩盖"
+    },
+    {
+      "id": "A.review_precision",
+      "requirement": "研报纠错precision至少95%"
+    },
+    {
+      "id": "A.review_recall",
+      "requirement": "研报纠错recall至少90%"
+    },
+    {
+      "id": "A.baseline",
+      "requirement": "相同DeepSeek和同一预算上限与通用Pi比较，固定任务及来源，记录tokens/calls/latency"
+    },
+    {
+      "id": "A.freeze",
+      "requirement": "正式新留出首次运行前锁定输入、gold、评分器、全部生产源码和模型配置；保留第一轮及全部失败/重试"
+    }
+  ],
+  "remaining_independent_required_work_found": false,
+  "remaining_work_dependency": "Actual official-model financial interpretation, whole-table first runs, report-correction evaluation, and final paper/package based on those outcomes",
+  "production_files_verified_unchanged": 67,
+  "paid_calls_this_turn": 0,
+  "decision": "blocked_audit_passed: requires account balance restoration or another user-authorized external change; do not substitute a different provider or a smaller acceptance task",
+  "next_actions_when_unblocked": [
+    "Resume known-definition remaining groups with clean3 and source registration checks",
+    "Run real LiuGong v07 research with residual original budget",
+    "Freeze and execute original v0.5 financial/generic first-run comparison and report-correction protocol",
+    "Update final paper/delivery with actual results only"
+  ],
+  "evidence_sha256": {
+    "benchmark/results/settings-ui-v07-1791056443237.json": "92ae493d488cecb352e656083f34b3b9c0de4d5634ef818f17ebcc39a85a50f2",
+    "benchmark/results/research-tavily-live-v04.json": "95ddc185f42e74b1cd91c561254cfc40c60a882e114d8dfd2aed5ff214b2604f",
+    "tests/research.test.ts": "ce9dd3557675f75e9290b0b1a13bd844fe9a5aae3c8ae125468299649f9c8125",
+    "tests/integration.test.ts": "1177633f9d11a88fc32b887d69b84f1b2f773bea0c3265031b915a11ffc433f2",
+    "benchmark/results/release-v07-20261004.json": "2ca732e2ae84cc1889406adb866e2f022d0e1f783b35a591e60b371fcd75f12f",
+    "benchmark/results/provider-balance-status-1791056231294.json": "675e8dd3cf66909ef7081460f2ba4d1ed9a20e4715262e137f9c38f6d4db7268",
+    "benchmark/results/goal-continuation-v07-balance-2.json": "91ddbdadbd2eb2490a24581ab7c7d3866bddc967e8e8d567c287c0e82a9e92df"
+  }
+}

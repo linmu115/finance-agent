@@ -1,0 +1,578 @@
+{
+  "created_at": 1791003404.5529761,
+  "runner": {
+    "available": true,
+    "reason": null,
+    "version": "28.3.3",
+    "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+    "repo_digests": [],
+    "transport": "ssh-local-vm",
+    "isolation": "Docker in Linux VM"
+  },
+  "cases": [
+    {
+      "id": "S01",
+      "status": "PASS",
+      "runs": [
+        {
+          "run_id": "1aa615df9a7245388a291faae6cbec69",
+          "project_id": "runtime-acceptance",
+          "status": "succeeded",
+          "exit_code": 0,
+          "artifacts": [
+            {
+              "name": "chinese.png",
+              "size": 18528,
+              "sha256": "01b246dd8b1f515cfd21f33251eedf7a9729f6145fe8571fd7283390b0ebbaa5"
+            },
+            {
+              "name": "versions.json",
+              "size": 272,
+              "sha256": "39f602f81fa5836c56e4a8ced4b1aa6bdf5fbed5d2211607b041196934ddea05"
+            }
+          ],
+          "error": null,
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791003403.6864367,
+          "elapsed_seconds": 3.471,
+          "input_sha256": {},
+          "timeout_seconds": 120,
+          "owner_pid": 4834,
+          "owner_token": "950191",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "f0e2a4f0023d38fd5e9f22ec2a3220ee96adb7cd77d2cf73f0c3b7e3bd0f0de7",
+          "started_at": 1791003404.233105,
+          "execution_seconds": 2.804,
+          "oom_killed": false,
+          "container_removed": true,
+          "finished_at": 1791003407.1569643
+        }
+      ],
+      "visual_check": "PASS",
+      "visual_review": {
+        "reviewed_at": 1791003672.8372202,
+        "checks": [
+          "Chinese glyphs present",
+          "titles and labels unclipped",
+          "2023/2024 years correct",
+          "unit shown as 亿元",
+          "zero baseline",
+          "bar annotations consistent with chart_data and reference values"
+        ]
+      }
+    },
+    {
+      "id": "S02",
+      "status": "PASS",
+      "runs": [
+        {
+          "run_id": "affa3ac6e1694f4a8322ef33e4c52895",
+          "project_id": "runtime-acceptance",
+          "status": "succeeded",
+          "exit_code": 0,
+          "artifacts": [
+            {
+              "name": "probe.json",
+              "size": 22,
+              "sha256": "8999e6358e262de8882c81c368936796feec98142f644551d67c75ebef444fe6"
+            }
+          ],
+          "error": null,
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791003407.9565716,
+          "elapsed_seconds": 0.765,
+          "input_sha256": {
+            "data.json": "c2016642efa06b6f19233c28d707d903e9deb8d87df3552ce5e95503baec03a6"
+          },
+          "timeout_seconds": 120,
+          "owner_pid": 5452,
+          "owner_token": "950618",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "027780f16fdde0f080a2ec4667b06551bcb8ffc8ab8a3a780f3d0ef1545b480d",
+          "started_at": 1791003408.3757458,
+          "execution_seconds": 0.211,
+          "oom_killed": false,
+          "container_removed": true,
+          "finished_at": 1791003408.721411
+        }
+      ]
+    },
+    {
+      "id": "S03",
+      "status": "PASS",
+      "runs": [
+        {
+          "run_id": "22933e64bbc542bbb98cc2ceccca300b",
+          "project_id": "runtime-acceptance",
+          "status": "succeeded",
+          "exit_code": 0,
+          "artifacts": [
+            {
+              "name": "probe.json",
+              "size": 76,
+              "sha256": "b0a89ae10768d38088c4f89f6926fd411c7612c76331fd81127f1138d66fc6c0"
+            }
+          ],
+          "error": null,
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791003409.4570692,
+          "elapsed_seconds": 0.71,
+          "input_sha256": {},
+          "timeout_seconds": 120,
+          "owner_pid": 5636,
+          "owner_token": "950765",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "aa3197e3bde1e98199222d77fb84ca0e41323ce2c3f4103fb520ec0dd9ff5fda",
+          "started_at": 1791003409.8543396,
+          "execution_seconds": 0.209,
+          "oom_killed": false,
+          "container_removed": true,
+          "finished_at": 1791003410.1667352
+        }
+      ]
+    },
+    {
+      "id": "S04",
+      "status": "PASS",
+      "runs": [
+        {
+          "run_id": "d1d95ca6b3d348da97bbca5aa7eb3203",
+          "project_id": "runtime-acceptance",
+          "status": "succeeded",
+          "exit_code": 0,
+          "artifacts": [
+            {
+              "name": "probe.json",
+              "size": 103,
+              "sha256": "d849265f2f478c0db412b496068a6745102d1538dd775587537b8d70d50769e8"
+            }
+          ],
+          "error": null,
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791003546.7534504,
+          "elapsed_seconds": 0.673,
+          "input_sha256": {},
+          "timeout_seconds": 120,
+          "owner_pid": 12711,
+          "owner_token": "964498",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "772adf968d128a954c3b5b4e099514acec924831ff3bb805646661d50af49318",
+          "started_at": 1791003547.1553292,
+          "execution_seconds": 0.132,
+          "oom_killed": false,
+          "container_removed": true,
+          "finished_at": 1791003547.426173
+        }
+      ],
+      "probe_revision": "PermissionError means inaccessible; UID and mount policy still checked",
+      "previous_attempt": {
+        "id": "S04",
+        "status": "FAIL",
+        "runs": [
+          {
+            "run_id": "a6f0f1717ca3403eae4759c4e2fcf4bb",
+            "project_id": "runtime-acceptance",
+            "status": "failed",
+            "exit_code": 1,
+            "artifacts": [],
+            "error": "Analysis process exited with an error",
+            "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+            "created_at": 1791003410.8744879,
+            "elapsed_seconds": 0.77,
+            "input_sha256": {},
+            "timeout_seconds": 120,
+            "owner_pid": 5797,
+            "owner_token": "950908",
+            "host_platform": "linux",
+            "host_name": "finance-vm",
+            "repo_digests": [],
+            "code_sha256": "cec99a1a9bb828dce4f72aef9aa8d16b71089fbcd22a8b17621a224bd161919e",
+            "started_at": 1791003411.278267,
+            "execution_seconds": 0.228,
+            "oom_killed": false,
+            "container_removed": true,
+            "finished_at": 1791003411.6441708
+          }
+        ]
+      }
+    },
+    {
+      "id": "S05",
+      "status": "PASS",
+      "runs": [
+        {
+          "run_id": "6ba27ea352304f64ab76b4a779363a5c",
+          "project_id": "runtime-acceptance",
+          "status": "timed_out",
+          "exit_code": 137,
+          "artifacts": [],
+          "error": null,
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791003412.1979754,
+          "elapsed_seconds": 120.733,
+          "input_sha256": {},
+          "timeout_seconds": 120,
+          "owner_pid": 5956,
+          "owner_token": "951038",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "8c8445581ef449ffee8073167edceec5073971ff8e049d8b754c652b1ccc272c",
+          "started_at": 1791003412.6205719,
+          "execution_seconds": 120.221,
+          "oom_killed": false,
+          "container_removed": true,
+          "finished_at": 1791003532.9308815
+        },
+        {
+          "run_id": "6694b0a989bb4764bc35497e53917b41",
+          "project_id": "runtime-acceptance",
+          "status": "cancelled",
+          "exit_code": 137,
+          "artifacts": [],
+          "error": null,
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791003533.345886,
+          "elapsed_seconds": 0.961,
+          "input_sha256": {},
+          "timeout_seconds": 120,
+          "owner_pid": 11508,
+          "owner_token": "963158",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "3c7583d298255aa4d37f3aa9977d71998d57ce4e275409cd45effa0a2459f540",
+          "started_at": 1791003533.6722856,
+          "execution_seconds": 0.559,
+          "oom_killed": false,
+          "container_removed": true,
+          "finished_at": 1791003534.3064177
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "S06",
+      "status": "PASS",
+      "runs": [
+        {
+          "run_id": "9eec61a9a1c34882b570d6b0cfd79989",
+          "project_id": "runtime-acceptance",
+          "status": "failed",
+          "exit_code": 137,
+          "artifacts": [],
+          "error": "Memory limit exceeded",
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791003534.6187139,
+          "elapsed_seconds": 7.024,
+          "input_sha256": {},
+          "timeout_seconds": 120,
+          "owner_pid": 11719,
+          "owner_token": "963285",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "27880cb7b5b09866d9f5e912de71ba0c2fea9287db20fcdaa6530868f88ce374",
+          "started_at": 1791003534.9451425,
+          "execution_seconds": 6.546,
+          "oom_killed": true,
+          "container_removed": true,
+          "finished_at": 1791003541.6428337
+        },
+        {
+          "run_id": "e9dcd9fa5d4c427888420c96e4a20357",
+          "project_id": "runtime-acceptance",
+          "status": "succeeded",
+          "exit_code": 0,
+          "artifacts": [
+            {
+              "name": "pids.json",
+              "size": 33,
+              "sha256": "9b8aba880f3b9f08daf5a0807c1be5f8241715ec678518e3e91862576360af43"
+            }
+          ],
+          "error": null,
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791003542.24593,
+          "elapsed_seconds": 0.801,
+          "input_sha256": {},
+          "timeout_seconds": 120,
+          "owner_pid": 12136,
+          "owner_token": "964039",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "d09e5fae0b148db1a860e5ed49fffe869d01506a44d7608928ee5e339a6049d2",
+          "started_at": 1791003542.7339609,
+          "execution_seconds": 0.202,
+          "oom_killed": false,
+          "container_removed": true,
+          "finished_at": 1791003543.0471923
+        }
+      ]
+    },
+    {
+      "id": "S07",
+      "status": "PASS",
+      "runs": [
+        {
+          "run_id": "d378efec862541db9db32d0a28865e2f",
+          "project_id": "runtime-acceptance",
+          "status": "output_rejected",
+          "exit_code": 0,
+          "artifacts": [],
+          "error": "Combined output exceeds 50 MiB",
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791003544.1824653,
+          "elapsed_seconds": 1.224,
+          "input_sha256": {},
+          "timeout_seconds": 120,
+          "owner_pid": 12394,
+          "owner_token": "964237",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "b3ddaad5049ccbd73be208cf5730f7539f9b8154b8f38541f818f87d05f51a38",
+          "started_at": 1791003544.661301,
+          "execution_seconds": 0.617,
+          "oom_killed": false,
+          "container_removed": true,
+          "finished_at": 1791003545.4061072
+        },
+        {
+          "run_id": "9a31c63cdaf14133aa5166443c5b10bb",
+          "project_id": "runtime-acceptance",
+          "status": "output_rejected",
+          "exit_code": 0,
+          "artifacts": [],
+          "error": "Symbolic links and reparse points are forbidden in outputs",
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791003545.8911746,
+          "elapsed_seconds": 0.677,
+          "input_sha256": {},
+          "timeout_seconds": 120,
+          "owner_pid": 12550,
+          "owner_token": "964411",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "4956f2cb8db557a3ad39bfa60148a536aea8b478f6d29915b77a729a366ef505",
+          "started_at": 1791003546.2601833,
+          "execution_seconds": 0.198,
+          "oom_killed": false,
+          "container_removed": true,
+          "finished_at": 1791003546.5677974
+        },
+        {
+          "run_id": "d096482a597a4e85b782d1f83e598b9b",
+          "project_id": "runtime-acceptance",
+          "status": "succeeded",
+          "exit_code": 0,
+          "artifacts": [
+            {
+              "name": "probe.json",
+              "size": 23,
+              "sha256": "94ad35557436132fbe1370dfbf1ad4fb98d942f4e486f9195d7521e4e3e28d59"
+            }
+          ],
+          "error": null,
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791003546.9275537,
+          "elapsed_seconds": 0.741,
+          "input_sha256": {},
+          "timeout_seconds": 120,
+          "owner_pid": 12742,
+          "owner_token": "964513",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "7310d1bf5d424e0635edca0a15ef410c52a5101f75e53e1464c6cb6322797e7a",
+          "started_at": 1791003547.365407,
+          "execution_seconds": 0.212,
+          "oom_killed": false,
+          "container_removed": true,
+          "finished_at": 1791003547.6681757
+        }
+      ]
+    },
+    {
+      "id": "S10",
+      "status": "PASS",
+      "runs": [
+        {
+          "run_id": "ad6b7b81fe4544ffa607ce8ff46d2777",
+          "project_id": "runtime-acceptance",
+          "status": "succeeded",
+          "exit_code": 0,
+          "artifacts": [
+            {
+              "name": "chart_data.json",
+              "size": 1918,
+              "sha256": "c5f88d08d6d07a325c0a69d05e03af9e72a7e3053a7321f2178539040cbf2012"
+            },
+            {
+              "name": "midea.png",
+              "size": 30896,
+              "sha256": "e1d0768d7ac9781876fa85cbbfe9f0acc6dc1dedb922f705089c9d99a977f29f"
+            },
+            {
+              "name": "moutai.png",
+              "size": 29713,
+              "sha256": "d217805aa6b54c15bac23ce6eec414ef2ed40bf209eb11a2aa99b8e0da8b41d3"
+            },
+            {
+              "name": "yili.png",
+              "size": 27210,
+              "sha256": "382755147cb75057b38bc4016980906da05fe6eff19d53af33e4126d189b3acc"
+            }
+          ],
+          "error": null,
+          "image_id": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+          "created_at": 1791003548.3080277,
+          "elapsed_seconds": 1.492,
+          "input_sha256": {
+            "chart_input.json": "ed3072d80c0fcfb70dff629229b70b10a8248cf4bc9c2c5c7c134ffb3f6290f8"
+          },
+          "timeout_seconds": 120,
+          "owner_pid": 13036,
+          "owner_token": "964650",
+          "host_platform": "linux",
+          "host_name": "finance-vm",
+          "repo_digests": [],
+          "code_sha256": "fbfd8698ee2bcb29799e7dff3800b6db31f5e1cec0992e46163f55953d4187b0",
+          "started_at": 1791003548.7501836,
+          "execution_seconds": 0.949,
+          "oom_killed": false,
+          "container_removed": true,
+          "finished_at": 1791003549.7997699
+        }
+      ],
+      "reference_match": true,
+      "visual_check": "PASS",
+      "generated_data": [
+        {
+          "company": "美的集团",
+          "values": [
+            {
+              "year": 2023,
+              "value_cny": "372037280000",
+              "source_ref": {
+                "document_id": "27750b45eff3407eb308f76a0b1bf515",
+                "page": 9,
+                "table_id": "27750b45eff3407eb308f76a0b1bf515:t6",
+                "row": 2,
+                "column": 5,
+                "cell": "E2",
+                "text": "营业收入（千元）: 372,037,280 千元"
+              }
+            },
+            {
+              "year": 2024,
+              "value_cny": "407149600000",
+              "source_ref": {
+                "document_id": "27750b45eff3407eb308f76a0b1bf515",
+                "page": 9,
+                "table_id": "27750b45eff3407eb308f76a0b1bf515:t6",
+                "row": 2,
+                "column": 4,
+                "cell": "D2",
+                "text": "营业收入（千元）: 407,149,600 千元"
+              }
+            }
+          ],
+          "company_full": "美的集团股份有限公司",
+          "id": "midea"
+        },
+        {
+          "company": "贵州茅台",
+          "values": [
+            {
+              "year": 2023,
+              "value_cny": "147693604994.14",
+              "source_ref": {
+                "document_id": "8020ff1f091f4d98868e17109ecf0e31",
+                "page": 5,
+                "table_id": "8020ff1f091f4d98868e17109ecf0e31:t8",
+                "row": 2,
+                "column": 3,
+                "cell": "C2",
+                "text": "营业收入: 147,693,604,994.14 元"
+              }
+            },
+            {
+              "year": 2024,
+              "value_cny": "170899152276.34",
+              "source_ref": {
+                "document_id": "8020ff1f091f4d98868e17109ecf0e31",
+                "page": 5,
+                "table_id": "8020ff1f091f4d98868e17109ecf0e31:t8",
+                "row": 2,
+                "column": 2,
+                "cell": "B2",
+                "text": "营业收入: 170,899,152,276.34 元"
+              }
+            }
+          ],
+          "company_full": "贵州茅台酒股份有限公司",
+          "id": "moutai"
+        },
+        {
+          "company": "伊利股份",
+          "values": [
+            {
+              "year": 2023,
+              "value_cny": "125758168916.51",
+              "source_ref": {
+                "document_id": "1673d77f764d46bbb834244bbe6df11f",
+                "page": 7,
+                "table_id": "1673d77f764d46bbb834244bbe6df11f:t8",
+                "row": 2,
+                "column": 3,
+                "cell": "C2",
+                "text": "营业收入: 125,758,168,916.51 元"
+              }
+            },
+            {
+              "year": 2024,
+              "value_cny": "115393310976.69",
+              "source_ref": {
+                "document_id": "1673d77f764d46bbb834244bbe6df11f",
+                "page": 7,
+                "table_id": "1673d77f764d46bbb834244bbe6df11f:t8",
+                "row": 2,
+                "column": 2,
+                "cell": "B2",
+                "text": "营业收入: 115,393,310,976.69 元"
+              }
+            }
+          ],
+          "company_full": "内蒙古伊利实业集团股份有限公司",
+          "id": "yili"
+        }
+      ],
+      "visual_review": {
+        "reviewed_at": 1791003672.8407822,
+        "checks": [
+          "Chinese glyphs present",
+          "titles and labels unclipped",
+          "2023/2024 years correct",
+          "unit shown as 亿元",
+          "zero baseline",
+          "bar annotations consistent with chart_data and reference values"
+        ]
+      }
+    }
+  ],
+  "full_gate": false,
+  "method": "trusted host invokes actual Docker; no mock execution",
+  "runtime_gate": true,
+  "full_gate_reason": "Application S08/S09/S11/S12 tracked in application acceptance; this report proves assigned runtime cases only"
+}

@@ -1,0 +1,793 @@
+{
+  "kind": "dcf",
+  "title": "Z4 由情景版本导入DCF",
+  "spec": {
+    "cash_tax_policy": "floor_at_zero",
+    "discount": {
+      "wacc": "0.1",
+      "cashflow_timing": "year_end"
+    },
+    "terminal": {
+      "growth": "0.02",
+      "roic": "0.2",
+      "ebit_margin": "0.25",
+      "tax_rate": "0.25"
+    },
+    "bridge": {
+      "net_debt": "200",
+      "non_controlling_interest": "20",
+      "preferred_equity": "10",
+      "non_operating_assets_ex_cash": "30"
+    },
+    "shares": {
+      "count": "100",
+      "scale": "1"
+    },
+    "sensitivity": {
+      "wacc": [
+        "0.08",
+        "0.1",
+        "0.12"
+      ],
+      "growth": [
+        "0",
+        "0.02",
+        "0.03"
+      ]
+    },
+    "currency": "CNY",
+    "amount_scale": "1",
+    "base_year": 2024,
+    "base": {
+      "revenue": "1000",
+      "net_working_capital": "100"
+    },
+    "source_refs": {},
+    "scenario_assumptions": {
+      "exposed_material_share": "0.5",
+      "pass_through_rate": "0.5",
+      "lag_years": 1,
+      "price_elasticity": "-1",
+      "material_cost_changes": [
+        "-0.2",
+        "-0.2",
+        "-0.2"
+      ],
+      "volume_changes": [
+        "0",
+        "0",
+        "0"
+      ],
+      "autonomous_price_changes": [
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "forecast": [
+      {
+        "year": 2025,
+        "da": "50",
+        "capex": "50",
+        "tax_rate": "0.25",
+        "nwc_ratio": "0.1",
+        "revenue": "1000",
+        "ebit": "290.00"
+      },
+      {
+        "year": 2026,
+        "da": "55",
+        "capex": "55",
+        "tax_rate": "0.25",
+        "nwc_ratio": "0.1",
+        "revenue": "1099.560000",
+        "ebit": "306.240000"
+      },
+      {
+        "year": 2027,
+        "da": "60.5",
+        "capex": "60.5",
+        "tax_rate": "0.25",
+        "nwc_ratio": "0.1",
+        "revenue": "1209.516000",
+        "ebit": "336.864000"
+      }
+    ],
+    "input_basis": {
+      "currency": {
+        "basis": "assumption",
+        "rationale": "用户明确给定的合成联调假设，非任何实际公司披露。"
+      },
+      "amount_scale": {
+        "basis": "assumption",
+        "rationale": "用户明确给定：金额倍率1，即基准货币单位。"
+      },
+      "base_year": {
+        "basis": "assumption",
+        "rationale": "用户给定基期2024年，估值时点2024-12-31。"
+      },
+      "base.revenue": {
+        "basis": "assumption",
+        "rationale": "用户给定2024基期收入1000（CNY，合并口径，假设值）。"
+      },
+      "base.net_working_capital": {
+        "basis": "assumption",
+        "rationale": "用户给定2024基期净营运资本100（不含带息负债）。"
+      },
+      "cash_tax_policy": {
+        "basis": "assumption",
+        "rationale": "用户给定现金税政策floor_at_zero（仅对正EBIT计税）。"
+      },
+      "discount.wacc": {
+        "basis": "assumption",
+        "rationale": "用户给定WACC=0.1。"
+      },
+      "discount.cashflow_timing": {
+        "basis": "assumption",
+        "rationale": "用户给定现金流时点year_end。"
+      },
+      "terminal.growth": {
+        "basis": "assumption",
+        "rationale": "用户给定永续增长0.02。"
+      },
+      "terminal.roic": {
+        "basis": "assumption",
+        "rationale": "用户给定稳定期ROIC=0.2。"
+      },
+      "terminal.ebit_margin": {
+        "basis": "assumption",
+        "rationale": "用户给定稳定期EBIT利润率0.25。"
+      },
+      "terminal.tax_rate": {
+        "basis": "assumption",
+        "rationale": "用户给定稳定期税率0.25。"
+      },
+      "bridge.net_debt": {
+        "basis": "assumption",
+        "rationale": "用户给定净债务200。"
+      },
+      "bridge.non_controlling_interest": {
+        "basis": "assumption",
+        "rationale": "用户给定少数股东权益20。"
+      },
+      "bridge.preferred_equity": {
+        "basis": "assumption",
+        "rationale": "用户给定优先股权益10。"
+      },
+      "bridge.non_operating_assets_ex_cash": {
+        "basis": "assumption",
+        "rationale": "用户给定非经营性资产（不含现金）30。"
+      },
+      "shares.count": {
+        "basis": "assumption",
+        "rationale": "用户给定股数100，独立倍率。"
+      },
+      "shares.scale": {
+        "basis": "assumption",
+        "rationale": "用户给定股数倍率1（独立于金额倍率）。"
+      },
+      "sensitivity.wacc.0": {
+        "basis": "assumption",
+        "rationale": "用户给定敏感性WACC=0.08。"
+      },
+      "sensitivity.wacc.1": {
+        "basis": "assumption",
+        "rationale": "用户给定敏感性WACC=0.1。"
+      },
+      "sensitivity.wacc.2": {
+        "basis": "assumption",
+        "rationale": "用户给定敏感性WACC=0.12。"
+      },
+      "sensitivity.growth.0": {
+        "basis": "assumption",
+        "rationale": "用户给定敏感性增长0。"
+      },
+      "sensitivity.growth.1": {
+        "basis": "assumption",
+        "rationale": "用户给定敏感性增长0.02。"
+      },
+      "sensitivity.growth.2": {
+        "basis": "assumption",
+        "rationale": "用户给定敏感性增长0.03。"
+      },
+      "forecast.0.revenue": {
+        "basis": "derived",
+        "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.0.ebit": {
+        "basis": "derived",
+        "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.0.year": {
+        "basis": "derived",
+        "rationale": "从 baseline.0.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.0.da": {
+        "basis": "derived",
+        "rationale": "从 baseline.0.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.0.capex": {
+        "basis": "derived",
+        "rationale": "从 baseline.0.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.0.tax_rate": {
+        "basis": "derived",
+        "rationale": "从 baseline.0.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.0.nwc_ratio": {
+        "basis": "derived",
+        "rationale": "从 baseline.0.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.1.revenue": {
+        "basis": "derived",
+        "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.1.ebit": {
+        "basis": "derived",
+        "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.1.year": {
+        "basis": "derived",
+        "rationale": "从 baseline.1.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.1.da": {
+        "basis": "derived",
+        "rationale": "从 baseline.1.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.1.capex": {
+        "basis": "derived",
+        "rationale": "从 baseline.1.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.1.tax_rate": {
+        "basis": "derived",
+        "rationale": "从 baseline.1.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.1.nwc_ratio": {
+        "basis": "derived",
+        "rationale": "从 baseline.1.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.2.revenue": {
+        "basis": "derived",
+        "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.2.ebit": {
+        "basis": "derived",
+        "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.2.year": {
+        "basis": "derived",
+        "rationale": "从 baseline.2.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.2.da": {
+        "basis": "derived",
+        "rationale": "从 baseline.2.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.2.capex": {
+        "basis": "derived",
+        "rationale": "从 baseline.2.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.2.tax_rate": {
+        "basis": "derived",
+        "rationale": "从 baseline.2.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      },
+      "forecast.2.nwc_ratio": {
+        "basis": "derived",
+        "rationale": "从 baseline.2.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+      }
+    }
+  },
+  "result": {
+    "schema_version": "1.0",
+    "model_version": "research-models-1.0.1",
+    "kind": "dcf",
+    "input_assumptions": {
+      "cash_tax_policy": "floor_at_zero",
+      "discount": {
+        "wacc": "0.1",
+        "cashflow_timing": "year_end"
+      },
+      "terminal": {
+        "growth": "0.02",
+        "roic": "0.2",
+        "ebit_margin": "0.25",
+        "tax_rate": "0.25"
+      },
+      "bridge": {
+        "net_debt": "200",
+        "non_controlling_interest": "20",
+        "preferred_equity": "10",
+        "non_operating_assets_ex_cash": "30"
+      },
+      "shares": {
+        "count": "100",
+        "scale": "1"
+      },
+      "sensitivity": {
+        "wacc": [
+          "0.08",
+          "0.1",
+          "0.12"
+        ],
+        "growth": [
+          "0",
+          "0.02",
+          "0.03"
+        ]
+      },
+      "currency": "CNY",
+      "amount_scale": "1",
+      "base_year": 2024,
+      "base": {
+        "revenue": "1000",
+        "net_working_capital": "100"
+      },
+      "source_refs": {},
+      "scenario_assumptions": {
+        "exposed_material_share": "0.5",
+        "pass_through_rate": "0.5",
+        "lag_years": 1,
+        "price_elasticity": "-1",
+        "material_cost_changes": [
+          "-0.2",
+          "-0.2",
+          "-0.2"
+        ],
+        "volume_changes": [
+          "0",
+          "0",
+          "0"
+        ],
+        "autonomous_price_changes": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "forecast": [
+        {
+          "year": 2025,
+          "da": "50",
+          "capex": "50",
+          "tax_rate": "0.25",
+          "nwc_ratio": "0.1",
+          "revenue": "1000",
+          "ebit": "290.00"
+        },
+        {
+          "year": 2026,
+          "da": "55",
+          "capex": "55",
+          "tax_rate": "0.25",
+          "nwc_ratio": "0.1",
+          "revenue": "1099.560000",
+          "ebit": "306.240000"
+        },
+        {
+          "year": 2027,
+          "da": "60.5",
+          "capex": "60.5",
+          "tax_rate": "0.25",
+          "nwc_ratio": "0.1",
+          "revenue": "1209.516000",
+          "ebit": "336.864000"
+        }
+      ],
+      "input_basis": {
+        "currency": {
+          "basis": "assumption",
+          "rationale": "用户明确给定的合成联调假设，非任何实际公司披露。"
+        },
+        "amount_scale": {
+          "basis": "assumption",
+          "rationale": "用户明确给定：金额倍率1，即基准货币单位。"
+        },
+        "base_year": {
+          "basis": "assumption",
+          "rationale": "用户给定基期2024年，估值时点2024-12-31。"
+        },
+        "base.revenue": {
+          "basis": "assumption",
+          "rationale": "用户给定2024基期收入1000（CNY，合并口径，假设值）。"
+        },
+        "base.net_working_capital": {
+          "basis": "assumption",
+          "rationale": "用户给定2024基期净营运资本100（不含带息负债）。"
+        },
+        "cash_tax_policy": {
+          "basis": "assumption",
+          "rationale": "用户给定现金税政策floor_at_zero（仅对正EBIT计税）。"
+        },
+        "discount.wacc": {
+          "basis": "assumption",
+          "rationale": "用户给定WACC=0.1。"
+        },
+        "discount.cashflow_timing": {
+          "basis": "assumption",
+          "rationale": "用户给定现金流时点year_end。"
+        },
+        "terminal.growth": {
+          "basis": "assumption",
+          "rationale": "用户给定永续增长0.02。"
+        },
+        "terminal.roic": {
+          "basis": "assumption",
+          "rationale": "用户给定稳定期ROIC=0.2。"
+        },
+        "terminal.ebit_margin": {
+          "basis": "assumption",
+          "rationale": "用户给定稳定期EBIT利润率0.25。"
+        },
+        "terminal.tax_rate": {
+          "basis": "assumption",
+          "rationale": "用户给定稳定期税率0.25。"
+        },
+        "bridge.net_debt": {
+          "basis": "assumption",
+          "rationale": "用户给定净债务200。"
+        },
+        "bridge.non_controlling_interest": {
+          "basis": "assumption",
+          "rationale": "用户给定少数股东权益20。"
+        },
+        "bridge.preferred_equity": {
+          "basis": "assumption",
+          "rationale": "用户给定优先股权益10。"
+        },
+        "bridge.non_operating_assets_ex_cash": {
+          "basis": "assumption",
+          "rationale": "用户给定非经营性资产（不含现金）30。"
+        },
+        "shares.count": {
+          "basis": "assumption",
+          "rationale": "用户给定股数100，独立倍率。"
+        },
+        "shares.scale": {
+          "basis": "assumption",
+          "rationale": "用户给定股数倍率1（独立于金额倍率）。"
+        },
+        "sensitivity.wacc.0": {
+          "basis": "assumption",
+          "rationale": "用户给定敏感性WACC=0.08。"
+        },
+        "sensitivity.wacc.1": {
+          "basis": "assumption",
+          "rationale": "用户给定敏感性WACC=0.1。"
+        },
+        "sensitivity.wacc.2": {
+          "basis": "assumption",
+          "rationale": "用户给定敏感性WACC=0.12。"
+        },
+        "sensitivity.growth.0": {
+          "basis": "assumption",
+          "rationale": "用户给定敏感性增长0。"
+        },
+        "sensitivity.growth.1": {
+          "basis": "assumption",
+          "rationale": "用户给定敏感性增长0.02。"
+        },
+        "sensitivity.growth.2": {
+          "basis": "assumption",
+          "rationale": "用户给定敏感性增长0.03。"
+        },
+        "forecast.0.revenue": {
+          "basis": "derived",
+          "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.0.ebit": {
+          "basis": "derived",
+          "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.0.year": {
+          "basis": "derived",
+          "rationale": "从 baseline.0.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.0.da": {
+          "basis": "derived",
+          "rationale": "从 baseline.0.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.0.capex": {
+          "basis": "derived",
+          "rationale": "从 baseline.0.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.0.tax_rate": {
+          "basis": "derived",
+          "rationale": "从 baseline.0.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.0.nwc_ratio": {
+          "basis": "derived",
+          "rationale": "从 baseline.0.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.1.revenue": {
+          "basis": "derived",
+          "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.1.ebit": {
+          "basis": "derived",
+          "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.1.year": {
+          "basis": "derived",
+          "rationale": "从 baseline.1.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.1.da": {
+          "basis": "derived",
+          "rationale": "从 baseline.1.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.1.capex": {
+          "basis": "derived",
+          "rationale": "从 baseline.1.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.1.tax_rate": {
+          "basis": "derived",
+          "rationale": "从 baseline.1.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.1.nwc_ratio": {
+          "basis": "derived",
+          "rationale": "从 baseline.1.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.2.revenue": {
+          "basis": "derived",
+          "rationale": "由预测销量乘销售单价计算收入，并应用提价、需求弹性和成本传导时滞。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.2.ebit": {
+          "basis": "derived",
+          "rationale": "由预测收入扣除原料及其他变动成本、固定现金费用和一次折旧摊销计算 EBIT。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.2.year": {
+          "basis": "derived",
+          "rationale": "从 baseline.2.year 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.2.da": {
+          "basis": "derived",
+          "rationale": "从 baseline.2.da 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.2.capex": {
+          "basis": "derived",
+          "rationale": "从 baseline.2.capex 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.2.tax_rate": {
+          "basis": "derived",
+          "rationale": "从 baseline.2.tax_rate 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        },
+        "forecast.2.nwc_ratio": {
+          "basis": "derived",
+          "rationale": "从 baseline.2.nwc_ratio 预测输入映射；该情景不改变此项设定。 预测基线及冲击参数是建模输入；计算结果不代表未来已披露事实。"
+        }
+      }
+    },
+    "formulas": {
+      "revenue": "revenue[t-1] * (1 + revenue_growth[t]), or explicit revenue[t]",
+      "ebit": "explicit EBIT; or revenue * EBIT margin; or revenue * (gross margin - opex ratio). EBIT is after D&A.",
+      "cash_tax": "floor_at_zero: max(EBIT,0)*tax_rate; immediate_credit: EBIT*tax_rate. No NOL carryforward is modeled.",
+      "fcff": "EBIT - cash_tax + D&A - capex - (operating NWC[t] - operating NWC[t-1])",
+      "nwc": "Operating non-cash, non-interest-bearing working capital. Negative balances are allowed.",
+      "forecast_pv": "FCFF[t]/(1+WACC)^t; mid_year uses exponent t-0.5 for explicit forecast only",
+      "terminal_fcff": "revenue[n]*(1+g)*terminal_EBIT_margin*(1-terminal_tax_rate)*(1-g/terminal_ROIC)",
+      "terminal_value": "terminal_FCFF/(WACC-g); always measured at end of year n, discounted by (1+WACC)^n",
+      "enterprise_value": "sum(explicit forecast PV) + terminal_value PV; value of operating assets",
+      "equity_value": "EV - net_debt - non_controlling_interest - preferred_equity + non_operating_assets_ex_cash",
+      "net_debt": "interest-bearing debt (consistent lease treatment) less excess cash; cash is not added again",
+      "value_per_share": "equity_value * amount_scale / (shares.count * shares.scale)"
+    },
+    "units": {
+      "currency": "CNY",
+      "amount_scale": "1",
+      "amount": "CNY x 1",
+      "ratios": "decimal fraction (0.10 = 10%)",
+      "multiple": "times",
+      "value_per_share": "CNY/share",
+      "days": "days"
+    },
+    "precision": {
+      "arithmetic": "Decimal",
+      "significant_digits": 50,
+      "rounding": "ROUND_HALF_EVEN",
+      "output": "decimal strings; no additional display rounding"
+    },
+    "method_sources": [
+      "https://people.stern.nyu.edu/adamodar/pdfiles/valn2ed/ch15.pdf",
+      "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/valquestions/noncashwc.htm",
+      "https://www.ifrs.org/content/dam/ifrs/supporting-implementation/ifrs-13/education-ifrs-13-eng.pdf"
+    ],
+    "results": {
+      "enterprise_value": "2516.0579028925619834710743801652892561983471074380",
+      "equity_value": "2316.0579028925619834710743801652892561983471074380",
+      "value_per_share": "23.16057902892561983471074380165289256198347107438",
+      "shares_outstanding": "100",
+      "net_debt": "200",
+      "non_controlling_interest": "20",
+      "non_operating_assets_ex_cash": "30",
+      "preferred_equity": "10",
+      "explicit_forecast_pv": "560.87438016528925619834710743801652892561983471074",
+      "terminal_value": "2602.34926875000",
+      "terminal_pv": "1955.1835227272727272727272727272727272727272727273",
+      "terminal_value_share": "0.77708208562271743760906315777782791487593911512298",
+      "terminal_year": 2028,
+      "terminal_revenue": "1233.70632000",
+      "terminal_nopat": "231.319935000000",
+      "terminal_reinvestment": "23.1319935000000",
+      "terminal_reinvestment_rate": "0.1",
+      "terminal_fcff": "208.1879415000000",
+      "wacc": "0.1",
+      "terminal_growth": "0.02",
+      "cashflow_timing": "year_end",
+      "terminal_discount_exponent": 3
+    },
+    "tables": {
+      "forecast": [
+        {
+          "year": 2025,
+          "revenue": "1000",
+          "revenue_growth": "0",
+          "gross_profit": null,
+          "ebit": "290.00",
+          "ebit_margin": "0.29",
+          "ebitda": "340.00",
+          "cash_tax": "72.5000",
+          "nopat": "217.5000",
+          "da": "50",
+          "capex": "50",
+          "net_working_capital": "100.0",
+          "delta_nwc": "0.0",
+          "fcff": "217.5000",
+          "discount_exponent": "1",
+          "discount_factor": "0.90909090909090909090909090909090909090909090909091",
+          "pv_fcff": "197.72727272727272727272727272727272727272727272727"
+        },
+        {
+          "year": 2026,
+          "revenue": "1099.560000",
+          "revenue_growth": "0.099560",
+          "gross_profit": null,
+          "ebit": "306.240000",
+          "ebit_margin": "0.27851140456182472989195678271308523409363745498199",
+          "ebitda": "361.240000",
+          "cash_tax": "76.56000000",
+          "nopat": "229.68000000",
+          "da": "55",
+          "capex": "55",
+          "net_working_capital": "109.9560000",
+          "delta_nwc": "9.9560000",
+          "fcff": "219.72400000",
+          "discount_exponent": "2",
+          "discount_factor": "0.82644628099173553719008264462809917355371900826446",
+          "pv_fcff": "181.59008264462809917355371900826446280991735537190"
+        },
+        {
+          "year": 2027,
+          "revenue": "1209.516000",
+          "revenue_growth": "0.1",
+          "gross_profit": null,
+          "ebit": "336.864000",
+          "ebit_margin": "0.27851140456182472989195678271308523409363745498199",
+          "ebitda": "397.364000",
+          "cash_tax": "84.21600000",
+          "nopat": "252.64800000",
+          "da": "60.5",
+          "capex": "60.5",
+          "net_working_capital": "120.9516000",
+          "delta_nwc": "10.9956000",
+          "fcff": "241.65240000",
+          "discount_exponent": "3",
+          "discount_factor": "0.75131480090157776108189331329827197595792637114951",
+          "pv_fcff": "181.55702479338842975206611570247933884297520661157"
+        }
+      ],
+      "sensitivity": [
+        {
+          "wacc": "0.08",
+          "growth": "0",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "2831.9563876505105928974241731443377533912513336382",
+          "equity_value": "2631.9563876505105928974241731443377533912513336382",
+          "value_per_share": "26.319563876505105928974241731443377533912513336382"
+        },
+        {
+          "wacc": "0.08",
+          "growth": "0.02",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "3336.0366059861301630848955951836610272824264593812",
+          "equity_value": "3136.0366059861301630848955951836610272824264593812",
+          "value_per_share": "31.360366059861301630848955951836610272824264593812"
+        },
+        {
+          "wacc": "0.08",
+          "growth": "0.03",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "3733.8999211724584666971498247218411827465325407712",
+          "equity_value": "3533.8999211724584666971498247218411827465325407712",
+          "value_per_share": "35.338999211724584666971498247218411827465325407712"
+        },
+        {
+          "wacc": "0.1",
+          "growth": "0",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "2264.7380165289256198347107438016528925619834710743",
+          "equity_value": "2064.7380165289256198347107438016528925619834710743",
+          "value_per_share": "20.647380165289256198347107438016528925619834710743"
+        },
+        {
+          "wacc": "0.1",
+          "growth": "0.02",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "2516.0579028925619834710743801652892561983471074380",
+          "equity_value": "2316.0579028925619834710743801652892561983471074380",
+          "value_per_share": "23.16057902892561983471074380165289256198347107438"
+        },
+        {
+          "wacc": "0.1",
+          "growth": "0.03",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "2691.9209710743801652892561983471074380165289256198",
+          "equity_value": "2491.9209710743801652892561983471074380165289256198",
+          "value_per_share": "24.919209710743801652892561983471074380165289256198"
+        },
+        {
+          "wacc": "0.12",
+          "growth": "0",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "1886.5337084889759475218658892128279883381924198251",
+          "equity_value": "1686.5337084889759475218658892128279883381924198251",
+          "value_per_share": "16.865337084889759475218658892128279883381924198251"
+        },
+        {
+          "wacc": "0.12",
+          "growth": "0.02",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "2023.2031072054938046647230320699708454810495626822",
+          "equity_value": "1823.2031072054938046647230320699708454810495626822",
+          "value_per_share": "18.232031072054938046647230320699708454810495626822"
+        },
+        {
+          "wacc": "0.12",
+          "growth": "0.03",
+          "status": "ok",
+          "reason": null,
+          "enterprise_value": "2111.6256971887527332361516034985422740524781341108",
+          "equity_value": "1911.6256971887527332361516034985422740524781341108",
+          "value_per_share": "19.116256971887527332361516034985422740524781341108"
+        }
+      ]
+    },
+    "warnings": [
+      "Stable terminal model requires nonnegative growth, positive ROIC, and normalized operating earnings; banking/insurance balance-sheet models are outside this model."
+    ]
+  },
+  "dependencies": [
+    {
+      "kind": "artifact",
+      "id": "research_55e87f8f-1dde-45e3-b3a6-25285f3b2265",
+      "version": "revision_076feead-be92-436b-aa32-c14960bdf6b5"
+    }
+  ],
+  "source_validation": {
+    "schema_version": 1,
+    "scope": "reference_location_and_literal_quote_only",
+    "semantic_accuracy_verified": false,
+    "mode": "inherited",
+    "inherited_from": {
+      "artifact_id": "research_55e87f8f-1dde-45e3-b3a6-25285f3b2265",
+      "revision_id": "revision_076feead-be92-436b-aa32-c14960bdf6b5",
+      "original_mode": "checked"
+    }
+  },
+  "source_model": {
+    "artifact_id": "research_55e87f8f-1dde-45e3-b3a6-25285f3b2265",
+    "revision_id": "revision_076feead-be92-436b-aa32-c14960bdf6b5",
+    "variant": "scenario",
+    "spec_sha256": "3fabb1a2d23b62c32c250dfb19994e78d91f55b56e1c138746ea5703c8a421d8"
+  },
+  "id": "research_34f4dcb9-a80e-4e40-a09d-3b2ba1e3cc73",
+  "revision_id": "revision_e32a2b70-5176-4f43-b099-4f31f2ea2f14",
+  "created_at": "2026-10-03T19:05:05.486Z",
+  "dependency_status": "current",
+  "changed_dependencies": []
+}

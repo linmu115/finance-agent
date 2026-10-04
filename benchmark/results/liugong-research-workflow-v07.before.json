@@ -1,0 +1,122 @@
+{
+  "kind": "development_real_manufacturing_research",
+  "prepared_at": "2026-10-03T18:53:48.492Z",
+  "scope": {
+    "company": "广西柳工机械股份有限公司",
+    "ticker": "000528",
+    "research_cutoff": "2025-09-08",
+    "valuation_base_year": 2025,
+    "valuation_date": "2025-12-31",
+    "workflow_messages": 3,
+    "tool_limit_per_message": 64
+  },
+  "budget": {
+    "max_model_calls": 48,
+    "max_input_tokens": 2484631,
+    "max_output_tokens": 423210,
+    "max_total_tokens": 2907841,
+    "max_wall_seconds": 1641
+  },
+  "tasks": [
+    "接续本项目上次因工具次数上限而中断的同一研究任务。已有报告已下载、归档并完成原文索引；优先读取当前项目目录与现有索引/原文，不再搜索或下载同一份报告，不重复准备已有索引。先把上次尚未保存的盈利质量成果完成，再继续原研究目标；没有任何正确答案数值或页码预置。\n本轮公开配置由原 maxTokens=8192、每条24工具改为 maxTokens=32768、每条64工具；总调用和token配额扣除了前次实际消耗，并未增加。以下原研究任务中的64是本轮配置。\n这是实际公司研究工作流的开发验收，不是已通过的精度留出测试。请研究柳工（000528），研究信息截止日为2025年9月8日。当前项目独立保存所有原文和成果，不读取其他项目、基准答案或本地验收资料。每条消息工具上限64次，配置不改变；注意合理分配搜索、原文阅读和保存次数，真实失败不要同参数反复重试。\n第一阶段只做已披露业绩归因与盈利质量，暂不写估值结论。自己通过搜索和发行人/法定披露渠道找到截止日前已经公开的年报、中报或正式公告，归档实际原文；不要只依赖新闻摘要，不能猜URL或页码。明确来源发布日、取回日和披露期间；历史页面若后来更新、发布日期不明，应说明历史可得性限制。PDF只需阅读时先索引原文，再按目录定点阅读，不必清洗全部财报。\n把同期间、同合并范围的收入、利润、经营现金流及有证据的应收/存货等期初期末项目放入财务质量模型，实际保存 financial_quality 成果。对收入、成本、费用、其他经营项目和非经常性损益解释利润变化：有充分同口径字段才运行归因桥；销量/单价或分部数据未披露时保留残差和缺项，不把推断写成披露事实。合并经营现金流不能不加说明地与不同股东范围的利润混配；周转率缺期间边界时不得补零。\n通过 input_basis 按输入路径标记 disclosed/derived/assumption 并说明依据，原文引用只放同路径 source_refs；披露值要有可定位原文，推导值要给公式与输入来源。最后简短列出来源ID、财务质量成果ID、业绩驱动、现金利润差与数据缺项，供下一阶段复用。这个阶段不要搜索同行估值，不生成虚构参数。",
+    "继续使用当前项目已经保存的证据，仍只使用2025年9月8日及之前可获得的信息。现在完成产业链与估值。目标价值时点统一为2025财年末，DCF base_year=2025，显式预测从2026年开始；截至研究日尚未披露的2025全年收入、营运资本和年末价值桥必须明确标为预测/研究假设，不能冒充2025全年实际数，也不能把年末模型值称作2025年9月8日即时价格。\n先核对已有模型结构和项目来源，必要时定点补充原文。参数由你提出合理研究假设并解释依据：收入或等效销量/单价、原料敞口、提价、传导率、需求弹性和时滞，以及利润、税、折旧、资本开支、营运资本、WACC、永续增长、ROIC和净债务到普通股价值桥。没有披露的参数明确标为 assumption；材料成本占比不等于某一种商品的真实价格敞口。多产品只能采用明确说明范围的整体等效量，不能直接相加不同机械的实物台数当作同质产品。缺失净债务/NCI/股数等不得默认为零；可以提出有依据的估计并说明不确定性，股数与金额倍率单独声明，扣现、非经营资产、可转债与稀释保持一致。\n保存三个 manufacturing_scenario 成果，标题分别包含“基线”“经营上行”“经营下行”。三者采用相同口径、单位、预测年限和可追踪基线，通过明确、可调整的成本/销量/价格冲击形成经营情景；上下行指经营效果，不仅改折现率。保存一份独立DCF，用 source_model 引用“基线”情景实际版本、variant=scenario，完整继承参数依据，并包含WACC/永续增长敏感性。使用独立可比估值工具交叉检查时，只有查到截止日前可靠、同估值日期及同利润口径的同行价格/倍数与分母，才能保存 comparables；明确PE是股权、EV/EBITDA是企业价值。若查不到必要同行数据，诚实列出缺项并声明相对估值未完成，不能塞入示例倍数或凭空生成同行股价；允许这一项留缺，不得说已通过。\n保存 industry_chain 成果，区别上游/企业/下游的原文事实、方向推断、量化敞口和研究假设，附实际证据与依赖。按路径提供参数性质及来源，避免重复抄写整篇原文。每条消息仍最多64次工具；最后列出各成果ID、基线/上下行结果和未完成项。自动计算成功并不代表估值正确，后续还要独立原文核对与复算。",
+    "这是同一项目的独立新会话。请实际列出并按需读取已保存的柳工研究来源、财务质量、三种经营情景、独立DCF、产业链和存在时的相对估值；不要依赖之前会话的隐含上下文。研究信息截止日仍为2025年9月8日，目标价值时点2025年末。\n先基于读取到的当前成果保存一份 investment_memo，包含可定位事实、判断、估值区间与口径、催化剂、主要风险、量化可证伪指标/条件/期限/行动，以及缺项；实际记录所依赖的成果版本。相对估值若缺来源，备忘录明确未完成，不能以DCF代替其验收。\n随后做一次明确的增量假设更新：只把标题含“基线”的制造业情景内 dcf.discount.wacc 在原值上增加0.01（一个百分点），其他计算输入保持不变。这是新的研究假设，不是新披露；更新相应 input_basis 的 rationale，保留原文引用作背景，不宣称新WACC由原文直接给出。用原 artifact_id/parent_revision_id 保存新情景版本。实际读取依赖状态，记录哪些下游旧结论因此过期。通过 source_model 对新情景版本定点重算已有独立DCF并保存其新版本；再更新刚保存的同一备忘录，只修改受估值假设影响的部分，复用原有仍有效事实。保留全部历史版本，不重新下载未变化来源，不重做盈利质量或经营上下行情景，不把未更新的成果悄悄称为最新。\n每条消息仍最多64次工具。最终简短列出新旧情景/DCF/备忘录版本、实际 changed_dependencies、WACC修改及价值变化、仍未更新或未验证的项目。请把真实工具失败和资料缺口如实留下；终态失败不自动重试。"
+  ],
+  "conversation_plan": [
+    "continue_original_stage_1",
+    "reuse_stage_1",
+    "create_independent"
+  ],
+  "contract": {
+    "version": "liugong-v07-development",
+    "accuracy_holdout": false,
+    "automatic_scope": [
+      "Actual Pi tool events, source snapshots and saved artifact lineage",
+      "Frozen budget and 64-tool configuration",
+      "Exact source_model import and WACC-only computational edit",
+      "Actual stale dependency evidence before targeted revision"
+    ],
+    "independent_review_required": [
+      "Issuer facts: original text, publication cutoff, period, scope, units and nonrecurring classification",
+      "Profit/quality formulas and independent numeric recalculation",
+      "Explicit assumptions and aggregation limits for three operating scenarios",
+      "DCF timing, terminal reinvestment, EV/equity bridge and shares",
+      "Peer evidence date/basis and independent relative-valuation calculation if available",
+      "Chain mechanisms, memo evidence and falsification relevance",
+      "Export/recompute and historical revision evidence"
+    ],
+    "no_fake_pass": [
+      "Missing relative-valuation sources remain an explicit unverified capability",
+      "Artifact or tool existence never establishes factual or economic correctness",
+      "API completed does not mean full acceptance",
+      "No answer values, page positions, or benchmark gold are supplied to the agent"
+    ],
+    "configuration_change": {
+      "prior": {
+        "maxTokens": 8192,
+        "maxToolCalls": 24
+      },
+      "current": {
+        "maxTokens": 32768,
+        "maxToolCalls": 64
+      },
+      "reason": "Explicitly versioned response to real reasoning-length and tool-budget failures; same cumulative model-call/token caps",
+      "previous_failed_report": "benchmark/results/liugong-research-workflow-v06.json"
+    }
+  },
+  "restrictions": [
+    "Prepare mode performs no HTTP or model calls",
+    "Never start or stop any host",
+    "Never change API/model/search/runtime settings",
+    "Never read another project or holdout materials",
+    "Never retry a terminal stage automatically",
+    "All three stages share one budget group; input limit remains observed-usage soft cap"
+  ],
+  "continuation": {
+    "project_id": "0187cd2c-0f4c-40b1-8ec1-c58d65964c84",
+    "conversation_id": "fe8dc438-8410-4473-afa1-e5a882052bd6",
+    "prior_report": "benchmark/results/liugong-research-workflow-v06.json",
+    "prior_report_sha256": "56ea104aa37e640ed4185f05c3fad6cd05bf3c8056296c4455c4df0514624d23",
+    "prior_task_sha256": "bd3ae53ce4fdf568869840c3247c7c1e0a0afc091f67a157dfd5ffed311e0b79",
+    "prior_run_id": "39d90d18-6b56-4f2e-841f-64fcf70c034c",
+    "prior_budget_group_id": "liugong-research-1791053193361",
+    "prior_audit": "benchmark/results/liugong-research-workflow-v06.stage-1.audit.json",
+    "prior_audit_sha256": "0733d80b5eeaa5c3b3f38dc078517038391ed2bb7f47be27d4e5eceb30845cfe",
+    "prior_successful_tools": [
+      "get_data_catalog",
+      "get_research_model_schema",
+      "search_web",
+      "fetch_research_source",
+      "prepare_document_sources",
+      "get_document_index",
+      "get_source_page",
+      "calculate_financial_metrics"
+    ],
+    "prior_usage": {
+      "model_calls": 12,
+      "settled_calls": 12,
+      "input_tokens": 515369,
+      "output_tokens": 26790,
+      "total_tokens": 542159,
+      "failed_calls": 1,
+      "unknown_usage_calls": 0
+    },
+    "prior_elapsed_seconds": 158.749,
+    "original_budget": {
+      "max_model_calls": 60,
+      "max_input_tokens": 3000000,
+      "max_output_tokens": 450000,
+      "max_total_tokens": 3450000,
+      "max_wall_seconds": 1800
+    },
+    "remaining_budget": {
+      "max_model_calls": 48,
+      "max_input_tokens": 2484631,
+      "max_output_tokens": 423210,
+      "max_total_tokens": 2907841,
+      "max_wall_seconds": 1641
+    },
+    "accounting_note": "A new continuation budget group receives only the original remaining calls/tokens and floored remaining active elapsed seconds. Previous failed usage remains included; operator waiting/restart time is not charged twice."
+  },
+  "task_sha256": "bec8d362b9f53f2c1e8e29622a5a8526182500578711ea229f81f5c2042c296f"
+}

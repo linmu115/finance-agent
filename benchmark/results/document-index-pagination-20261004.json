@@ -1,0 +1,77 @@
+{
+  "schema": "document-index-pagination-readiness-1",
+  "at": "2026-10-04T04:42:24.435977+00:00",
+  "status": "ready_not_deployed",
+  "model_calls": 0,
+  "production_restarted": false,
+  "fixture": "Synthetic 123 pages / 246 tables; same precise string-valued cells retained. No company-specific cases or held-out gold.",
+  "tests": {
+    "command": ".venv/Scripts/python.exe -m unittest service.tests.test_baseline_sources -v",
+    "passed": 10,
+    "total": 10,
+    "exit_code": 0,
+    "includes_actual_stdio_schema_and_call": true,
+    "initial_failure": "One query fixture used a numeric token present in every preview amount; changed test query to a unique sheet-name token plus heading term. Production matching semantics unchanged after initial implementation."
+  },
+  "measurements": {
+    "legacy_full_document_tool_response_utf8_bytes": 66008,
+    "paginated_default_tool_response_utf8_bytes": 7432,
+    "reduction_percent": 88.741,
+    "default_returned": {
+      "pages": 40,
+      "tables": 40
+    },
+    "default_metadata": {
+      "pages": {
+        "total": 123,
+        "returned": 40,
+        "offset": 0,
+        "limit": 40,
+        "has_more": true,
+        "next_offset": 40
+      },
+      "tables": {
+        "total": 246,
+        "returned": 40,
+        "offset": 0,
+        "limit": 40,
+        "has_more": true,
+        "next_offset": 40
+      }
+    },
+    "pages_traversed": 123,
+    "tables_traversed": 246,
+    "pages_unique": 123,
+    "tables_unique": 246,
+    "full_catalog_byte_unchanged": true,
+    "full_catalog_sha256": "73ff7f58cb03f9e6a60692e3184873b807936c771359305ad53d618efa02553f"
+  },
+  "contract": {
+    "parameters": [
+      "section",
+      "query",
+      "offset",
+      "limit",
+      "page_start",
+      "page_end",
+      "include_preview"
+    ],
+    "default_limit": 40,
+    "maximum_limit": 100,
+    "overview_pagination": "Each requested section has an independent filtered total/returned/offset/limit/has_more/next_offset. Continue sections independently.",
+    "query": "All whitespace-separated literal terms, case-insensitive, matched in navigation headings, table IDs, sheet names and existing preview; use search_evidence for full body text.",
+    "source_reading": "Unchanged get_source_page/get_source_table provide full text, rows, cells, decimal strings and coordinates.",
+    "source_file": "Existing complete catalog.yaml is never replaced by a paginated projection.",
+    "profiles": "Same existing get_document_index tool remains in both financial and generic allowlists; no profile-specific behavior."
+  },
+  "source_hashes": {
+    "service/processing.py": "aca65a5756252bdb66177e02c57b641611721a58fb991954eb64657d623b443b",
+    "service/server.py": "0400c6c1ad567255e6db429978330d47671e530551f0be204dc33f09865e3d5a",
+    "service/tool-schema.json": "345ae4edf526b3f3c96928d20aee5c75bb01da58a61b6f3793f86d56d7bcbdda",
+    "service/tests/test_baseline_sources.py": "b9490ae8c49c004fd9b63cef89352a921dbcd29e04d3df0e715cc5a77141ac60"
+  },
+  "limitations": [
+    "Only synthetic navigation and protocol behavior verified; no paid model run or real-report performance claim.",
+    "Changes are source-only and await root integration/deployment."
+  ]
+}

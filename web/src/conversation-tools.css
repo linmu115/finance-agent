@@ -1,0 +1,105 @@
+/* A single full-height attachment panel shares horizontal space with the conversation. */
+.app.flow-open .shell { --attachment-width: 430px; padding-right: var(--attachment-width); }
+.app.drawer-open.flow-open .chat-area { padding-right: 0; }
+.app.drawer-open.flow-open .financial-dashboard { padding-right: 32px; }
+.file-drawer.flow-drawer { position: absolute; inset: 0 0 0 auto; width: var(--attachment-width, 430px); max-width: 100%; height: 100%; z-index: 12; box-shadow: -5px 0 24px #00000005; }
+.flow-drawer .drawer-header { min-height: 67px; flex-shrink: 0; border-bottom: 1px solid #ececec; align-items: center; padding: 16px 20px; gap: 8px; }
+.flow-drawer .drawer-header > div { flex: 1; min-width: 0; }
+.flow-drawer .drawer-header h2 { font-size: 15px; }
+.flow-drawer .drawer-header .icon-btn { flex-shrink: 0; }
+.flow-drawer .drawer-content { padding: 18px 20px 32px; overflow-wrap: anywhere; overscroll-behavior: contain; }
+.flow-drawer .flow-card { box-sizing: border-box; }
+.flow-drawer .flow-select b { display: block; overflow-wrap: anywhere; line-height: 1.6; }
+.flow-drawer .flow-select:focus-visible { outline: 2px solid #606c78; outline-offset: 2px; }
+.flow-drawer .flow-actions { align-items: center; }
+.flow-drawer .plain-button svg,.flow-drawer .text-button svg { width: 14px; height: 14px; }
+.attachment-source h3 { line-height: 1.6; overflow-wrap: anywhere; }
+.attachment-source blockquote { background: #f6f7f7; border-left: 3px solid #bdc8cc; margin: 18px 0; padding: 12px; font-size: 12px; line-height: 1.8; }
+.attachment-source blockquote small { display: block; margin-top: 8px; color: #747c80; }
+.flow-source-tabs { display: flex; gap: 18px; border-bottom: 1px solid #e8e8e8; margin: 22px 0 14px; }
+.flow-source-tabs button { border: 0; border-bottom: 2px solid transparent; background: none; padding: 10px 2px; font-size: 12px; color: #777; }
+.flow-source-tabs button[aria-pressed=true] { border-color: #333; color: #222; }
+.attachment-source .page-text { max-height: none; font-size: 12px; }
+.attachment-source .doc-img { display: block; width: 100%; height: auto; }
+
+/* Approval belongs to the current conversation's composer, without a page overlay. */
+.approval-card { border: 1px solid #d6dedb; border-radius: 13px; background: #f8fbf9; margin: 0 0 12px; padding: 14px 16px; max-height: min(380px, 45vh); overflow: auto; text-align: left; font-size: 12px; }
+.approval-card:focus { outline: 2px solid #a9bcb4; outline-offset: 2px; }
+.approval-card header { display: flex; gap: 10px; align-items: flex-start; }
+.approval-card header > svg { width: 19px; height: 19px; color: #416b59; flex-shrink: 0; }
+.approval-card header strong { display: block; font-size: 13px; line-height: 1.5; }
+.approval-card header small { display: block; margin-top: 4px; color: #79817d; font-size: 10px; }
+.approval-card .approval-reason { margin: 12px 0 6px; line-height: 1.7; overflow-wrap: anywhere; }
+.approval-card .approval-scope { margin: 6px 0 10px; color: #65716b; line-height: 1.7; overflow-wrap: anywhere; }
+.approval-scope b { margin-right: 9px; color: #46564c; font-weight: 500; }
+.approval-card summary { font-size: 11px; cursor: pointer; color: #52665b; }
+.approval-operation { max-height: 180px; overflow: auto; font-size: 11px; }
+.approval-operation pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #eef3f0; border-radius: 7px; padding: 10px; }
+.approval-operation p { overflow-wrap: anywhere; }
+.approval-card footer { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
+.approval-card footer > span { font-size: 10px; color: #8a928d; margin-right: auto; }
+.approval-card footer button { padding: 7px 12px; font-size: 11px; }
+.approval-card kbd { margin-left: 4px; opacity: .65; font-size: 9px; font-family: inherit; }
+.approval-other { display: flex; gap: 8px; align-items: center; background: #f6f8f7; border: 1px solid #e0e7e3; border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; font-size: 11px; width: 100%; }
+.approval-other svg { width: 15px; height: 15px; }
+.approval-other svg:last-child { margin-left: auto; }
+
+/* DSH annotation-core: selection menu, count dock, hover list and anchored comment card. */
+.selection-reference { position: fixed; z-index: 50; padding: 5px; min-width: 208px; max-width: calc(100vw - 16px); border: 1px solid #ddd; border-radius: 10px; background: #fff; color: #202123; box-shadow: 0 8px 28px #0002; }
+.selection-reference button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 36px; border: 0; border-radius: 7px; padding: 9px 10px; background: transparent; font: inherit; font-size: 13px; }
+.selection-reference button:hover { background: #f3f3f3; }
+.selection-reference svg { width: 16px; height: 16px; }
+.annotation-rail { display: flex; align-self: flex-start; padding: 2px 0; margin: 0 0 8px; }
+.annotation-rail.sent { justify-content: flex-end; margin: 5px 0 0; }
+.annotation-count { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 10px; border: 1px solid #ddd; border-radius: 9px; background: transparent; color: #64646c; font-size: 12px; }
+.annotation-count svg { width: 14px; height: 14px; }
+.annotation-count:hover { background: #f5f5f5; }
+.annotation-rail.sent .annotation-count { border-radius: 99px; }
+.annotation-popover, .annotation-list { position: fixed; box-sizing: border-box; width: min(326px, calc(100vw - 16px)); border: 1px solid #0000001a; border-radius: 14px; background: #fff; color: #202123; box-shadow: 0 8px 28px #00000012; font: 13px/1.55 system-ui, sans-serif; }
+.annotation-popover { z-index: 60; max-height: min(540px, calc(100dvh - 16px)); display: flex; flex-direction: column; overflow: hidden; outline: none; }
+.annotation-body { overflow: auto; overscroll-behavior: contain; padding: 32px 10px 10px; }
+.annotation-popover nav + .annotation-body { padding-top: 10px; }
+.annotation-origin { margin: 0 0 6px; color: #85858c; font-size: 10px; }
+.annotation-body blockquote { max-height: 126px; overflow: auto; margin: 0 0 10px; padding: 0 8px; border: 0; border-left: 2px solid #ddd; white-space: pre-wrap; overflow-wrap: anywhere; }
+.annotation-body label { display: grid; gap: 2px; }
+.annotation-body label strong { font-size: 13px; }
+.annotation-body textarea, .annotation-comment { box-sizing: border-box; width: 100%; min-height: 60px; margin: 0; padding: 4px 0; border: 0; border-radius: 0; background: transparent; outline: none; font: inherit; white-space: pre-wrap; overflow-wrap: anywhere; }
+.annotation-body textarea { height: 80px; resize: none; }
+.annotation-body textarea::placeholder { color: #85858c; }
+.annotation-popover nav { display: flex; gap: 6px; overflow: auto; flex-shrink: 0; margin-right: 34px; padding: 8px 10px 0; scrollbar-width: thin; }
+.annotation-popover nav button { flex: 0 0 auto; height: 28px; max-width: 180px; padding: 0 9px; border: 0; border-radius: 9px; background: transparent; color: inherit; font: inherit; font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.annotation-popover nav button span { margin-right: 6px; opacity: .65; }
+.annotation-popover nav button[aria-pressed=true] { background: #ededed; font-weight: 600; }
+.annotation-body footer { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin-top: 8px; }
+.annotation-body footer small { flex: 1; color: #85858c; font-size: 9px; }
+.annotation-icon { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 30px; width: 30px; height: 30px; padding: 0; border: 0; border-radius: 50%; background: #f5f5f5; color: inherit; }
+.annotation-icon svg { width: 14px; height: 14px; }
+.annotation-icon:hover:not(:disabled) { background: #eaeaea; }
+.annotation-icon:disabled { opacity: .5; cursor: default; }
+.annotation-icon.annotation-close { position: absolute; right: 6px; top: 6px; width: 26px; height: 26px; z-index: 1; opacity: .65; }
+.annotation-icon.annotation-save { background: #171717; color: #fff; }
+.annotation-icon.annotation-save:hover { background: #353535; }
+.annotation-list { z-index: 55; max-height: min(440px, calc(100dvh - 16px)); overflow: auto; overscroll-behavior: contain; padding: 6px; }
+.annotation-list-item { padding: 8px; overflow: hidden; }
+.annotation-list-item + .annotation-list-item { border-top: 1px solid #eee; }
+.annotation-list-item header { display: flex; align-items: center; gap: 8px; }
+.annotation-list-item header > span { flex: 1; min-width: 0; color: #777; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.annotation-list-item header > div { display: flex; flex: none; gap: 2px; }
+.annotation-list-item blockquote, .annotation-list-item p { margin: 6px 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.annotation-list-item p { color: #64646c; }
+.annotation-source-marks { pointer-events: none; }
+.annotation-source-badge { position: fixed; z-index: 11; display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; padding: 0; border: 1px solid #d5d5d5; border-radius: 50%; background: #fff; color: #64646c; box-shadow: 0 1px 4px #0000001f; font: 600 10px/1 system-ui; pointer-events: auto; user-select: none; }
+.annotation-source-badge:hover { background: #eaeaea; color: #202123; }
+::highlight(finance-references) { background: #80808030; }
+::highlight(finance-reference-active) { background: #d7b64b50; }
+.annotation-icon:focus-visible, .annotation-count:focus-visible, .annotation-source-badge:focus-visible, .annotation-popover nav button:focus-visible, .selection-reference button:focus-visible { outline: 2px solid #53616b; outline-offset: 2px; }
+@media (max-width: 1100px) {
+ .app.flow-open .shell { padding-right: 0; }
+ .file-drawer.flow-drawer { width: min(430px, 100%); box-shadow: -12px 0 45px #0002; }
+}
+@media (max-width: 700px) {
+ .file-drawer.flow-drawer { position: fixed; inset: 0 0 0 auto; width: min(430px, 100vw); max-width: 100vw; z-index: 20; }
+
+ .approval-card { padding: 12px; }
+ .approval-card footer > span { flex-basis: 100%; }
+}

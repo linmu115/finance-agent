@@ -1,0 +1,42 @@
+{
+  "kind": "independent_original_length_record_v2",
+  "created_at": "2026-10-03T19:15:35.600Z",
+  "status": "passed",
+  "source": {
+    "path": "D:\\codex\\金融\\benchmark\\results\\known-definition-clean2-historical-limit-verified.json",
+    "sha256": "a698f95151d73503bab296c5cd29d36649a40ff82bbb945ba6488abd3cd6ed83"
+  },
+  "model_calls": 0,
+  "database_writes": 0,
+  "schedule_not_executed": true,
+  "checks": [
+    {
+      "status": "passed",
+      "errors": [],
+      "original_owner_run_id": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+      "original_request_id": "a07cf8b8-af2c-424d-aaa7-d4c7c177e46a",
+      "historical_usage": {
+        "input": 10802,
+        "output": 32768,
+        "cacheRead": 1536,
+        "cacheWrite": 0,
+        "reasoning": 32768,
+        "totalTokens": 45106,
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0
+        }
+      },
+      "current_model_requests": 0,
+      "source_count": 8,
+      "scope": "Independently verifies receipt against immutable original audit, original project review and current source identities. Fresh full-template generation equality is a separate production scheduling check; no fictitious new model request is inferred."
+    }
+  ],
+  "limitations": [
+    "Original receipt proof only; no new model request, no current split execution or new financial result is inferred.",
+    "Current full LangExtract template generation equality is covered by separate production tests and known-definition-clean2-full-prompt-match.json, not imported or silently assumed by this independent original-record check."
+  ]
+}

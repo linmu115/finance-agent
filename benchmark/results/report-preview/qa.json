@@ -1,0 +1,241 @@
+{
+  "status": "passed",
+  "scope": "Read-only final HTML rendering and source-metric/link verification; no models, labels or scores modified.",
+  "checkedAt": "2026-10-03T07:25:51.531Z",
+  "source_html": {
+    "path": "benchmark/results/acceptance-report.html",
+    "sha256": "bc913785e9583d173b0a98acea8d06d9f3fd695d97968508f12d9e45c92dcacd"
+  },
+  "summary": {
+    "path": "benchmark/results/agent-2026-10-03T06-37-06-859Z-summary.json",
+    "sha256": "9601982c0006432668f57462bcf093185a640d8276a2dce52e6df0da9037fa07",
+    "numeric_consistency": 0.9032258064516129
+  },
+  "round_counts": [
+    {
+      "round": 1,
+      "cases": 124,
+      "answer_correct": 104,
+      "grounded_correct": 86,
+      "completed": 123,
+      "failed": 1
+    },
+    {
+      "round": 2,
+      "cases": 124,
+      "answer_correct": 109,
+      "grounded_correct": 83,
+      "completed": 124,
+      "failed": 0
+    },
+    {
+      "round": 3,
+      "cases": 124,
+      "answer_correct": 103,
+      "grounded_correct": 84,
+      "completed": 123,
+      "failed": 1
+    }
+  ],
+  "checks": [
+    {
+      "name": "全部证据为可访问的本地相对链接且页内锚点存在",
+      "passed": true,
+      "details": {
+        "links": 39,
+        "badLinks": [],
+        "badAnchors": []
+      }
+    },
+    {
+      "name": "标题与整体结论没有把失败标为通过",
+      "passed": true,
+      "details": "整体尚未通过验收"
+    },
+    {
+      "name": "最终3轮、10/12严格通过及90.3%一致率",
+      "passed": true,
+      "details": [
+        "3 / 3",
+        "10 / 12",
+        "90.3%",
+        "尚未通过"
+      ]
+    },
+    {
+      "name": "12项状态正确且S10部分完成S12失败",
+      "passed": true,
+      "details": [
+        {
+          "id": "S01",
+          "status": "通过"
+        },
+        {
+          "id": "S02",
+          "status": "通过"
+        },
+        {
+          "id": "S03",
+          "status": "通过"
+        },
+        {
+          "id": "S04",
+          "status": "通过"
+        },
+        {
+          "id": "S05",
+          "status": "通过"
+        },
+        {
+          "id": "S06",
+          "status": "通过"
+        },
+        {
+          "id": "S07",
+          "status": "通过"
+        },
+        {
+          "id": "S08",
+          "status": "通过"
+        },
+        {
+          "id": "S09",
+          "status": "通过"
+        },
+        {
+          "id": "S10",
+          "status": "部分完成"
+        },
+        {
+          "id": "S11",
+          "status": "通过"
+        },
+        {
+          "id": "S12",
+          "status": "未通过"
+        }
+      ]
+    },
+    {
+      "name": "7类×3轮答案/有据正确率、题数与门槛逐格一致",
+      "passed": true,
+      "details": {
+        "checked_cells": 21,
+        "metricErrors": []
+      }
+    },
+    {
+      "name": "三轮引用召回/精确率/整体有据正确率与原始报告一致",
+      "passed": true,
+      "details": [
+        [
+          "86.0%",
+          "85.1%",
+          "84.5%"
+        ],
+        [
+          "92.3%",
+          "92.5%",
+          "91.8%"
+        ],
+        [
+          "69.4%",
+          "66.9%",
+          "67.7%"
+        ]
+      ]
+    },
+    {
+      "name": "一致性明确状态、期间、口径、单位、冻结容差且不同于正确率",
+      "passed": true
+    },
+    {
+      "name": "Embedding及人工签字局限明确",
+      "passed": true
+    },
+    {
+      "name": "显示事后失败分类且说明不改评分",
+      "passed": true
+    },
+    {
+      "name": "货币费用未推算",
+      "passed": true
+    },
+    {
+      "name": "完成后的时态正确",
+      "passed": true
+    },
+    {
+      "name": "桌面与移动端无页面横向溢出",
+      "passed": true,
+      "details": {
+        "desktop": {
+          "viewport": 1440,
+          "documentWidth": 1440
+        },
+        "mobile": {
+          "viewport": 390,
+          "documentWidth": 390,
+          "clippedPanels": 0
+        }
+      }
+    },
+    {
+      "name": "浏览器无页面脚本错误",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "当前版本新演示图表与真实浏览器两个组件均通过并显示",
+      "passed": true,
+      "details": [
+        {
+          "name": "当前版本三份完整财报分析与图表原值复核",
+          "status": "passed",
+          "passed": 6,
+          "total": 6,
+          "evidence": [
+            {
+              "path": "benchmark/results/demo-latest-artifacts/verification.json",
+              "sha256": "1ba71ee8610b6e4ba141a81c003f0f52a0470a4a5d7383b720f31bfcd2bc6112"
+            }
+          ]
+        },
+        {
+          "name": "当前版本真实示例浏览器只读复核",
+          "status": "passed",
+          "passed": 5,
+          "total": 5,
+          "evidence": [
+            {
+              "path": "web/test-results/demo-latest-live-verification.json",
+              "sha256": "aa36e9badbb37fb0451debbf201a222c7bf7b9a000ddae694bb4cec96e119465"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "benchmark/results/report-preview/desktop-overview.png",
+      "sha256": "ca0e84fff5ba50f552d594007934276f6cff41cda0b21a78338897512568e584"
+    },
+    {
+      "path": "benchmark/results/report-preview/desktop-model.png",
+      "sha256": "598cfaa776724da94f92cf5e565c6cfceceedc765a155aa767231729648a5b89"
+    },
+    {
+      "path": "benchmark/results/report-preview/desktop-runtime.png",
+      "sha256": "dad6929ebc13011c333c287dca37ba8b7ac142daa6c699a1145f900c0040eb04"
+    },
+    {
+      "path": "benchmark/results/report-preview/mobile-overview.png",
+      "sha256": "89e83bc7f161e0e01f3e664cb8047927754673a67f63bbdbd28c1cd822b450f0"
+    },
+    {
+      "path": "benchmark/results/report-preview/mobile-model.png",
+      "sha256": "44124b929229a29cfcab33b636d2ba76502c783b0e4c14ed7a70570f4a46a121"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+v0.5 整表测试与通用Pi对照
+
+两份PDF共6页、4张完整逻辑表，146个可判定数值格。gold/与评分边界只在宿主核对；模型只收到inputs中的相同PDF及TASK.txt。旧30格测试已经降为开发回归，不能当这次新公司留出成绩。
+
+正式执行在完整项目内使用两个独立入口：
+node scripts/verify_holdout_v05.mjs --profile financial --base-url http://127.0.0.1:3001 --output benchmark/results/v05-financial.json --job-id EXTERNAL_ID
+node scripts/verify_holdout_v05.mjs --profile generic --base-url http://127.0.0.1:3001 --output benchmark/results/v05-generic.json --job-id EXTERNAL_ID
+
+两组各自创建新项目和2个独立会话，共享本组BUDGET.json预算。主模型配置相同；专用系统内部调用策略属于系统差异，逐阶段固定并记录，不声称每次子调用都与通用主Pi设置相同。不是单模块因果消融。
+首次锁分别为 benchmark/results/holdout-v05-financial-first-run.lock.json 和 holdout-v05-generic-first-run.lock.json。第二次操作只读首次output/job关联；不得删锁后反复挑最好结果。
+目前只有准备材料及私有模拟测试，没有正式模型结果；必须等生产冻结。第一次及失败结果全部保留。
+
+保存正式报告后，可在下载包内离线复算金额/单位/期间/范围/来源等财务指标：
+node scorer/score_holdout_v05_artifact.mjs --suite . --report 首次正式报告.json --output 新的只读评分.json
+
+这个离线命令没有网络与模型调用，且不覆盖原文件。它不代替流程证据核验；真实Pi owner、缓存签名、目录与期间覆盖应查看首次原报告。每格结果、每表/每公司分数、错新增、漏抽、重大错误均保留。
+本完整执行包补上预运行的预算、任务和评分器，原先financial-holdout-v0.5.zip输入/gold准备包保持不变。manifest中的gold/input/protocol原始哈希不变；执行前评分器澄清见SCORER_PRE_RUN_CHANGES.json。

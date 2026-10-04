@@ -1,0 +1,270 @@
+{
+  "Id": "8317536cc96ac79a212a5e511354a92d7338843b66a44b28617a03f396657c46",
+  "Created": "2026-10-02T21:17:16.437531239Z",
+  "Path": "python",
+  "Args": [
+    "-I",
+    "/opt/finance/entrypoint.py"
+  ],
+  "State": {
+    "Status": "created",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "0001-01-01T00:00:00Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+  },
+  "Image": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+  "ResolvConfPath": "",
+  "HostnamePath": "",
+  "HostsPath": "",
+  "LogPath": "",
+  "Name": "/finance-9d3837fd699d429f8ea793b1a1b4896a",
+  "RestartCount": 0,
+  "Driver": "overlay2",
+  "Platform": "linux",
+  "MountLabel": "",
+  "ProcessLabel": "",
+  "AppArmorProfile": "",
+  "ExecIDs": null,
+  "HostConfig": {
+    "Binds": null,
+    "ContainerIDFile": "",
+    "LogConfig": {
+      "Type": "local",
+      "Config": {
+        "max-file": "1",
+        "max-size": "1m"
+      }
+    },
+    "NetworkMode": "none",
+    "PortBindings": {},
+    "RestartPolicy": {
+      "Name": "no",
+      "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+      0,
+      0
+    ],
+    "CapAdd": null,
+    "CapDrop": [
+      "ALL"
+    ],
+    "CgroupnsMode": "private",
+    "Dns": [],
+    "DnsOptions": [],
+    "DnsSearch": [],
+    "ExtraHosts": null,
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": true,
+    "SecurityOpt": [
+      "no-new-privileges=true"
+    ],
+    "Tmpfs": {
+      "/tmp": "rw,nosuid,nodev,noexec,size=268435456,mode=1777"
+    },
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 2147483648,
+    "NanoCpus": 2000000000,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": [],
+    "BlkioDeviceReadBps": [],
+    "BlkioDeviceWriteBps": [],
+    "BlkioDeviceReadIOps": [],
+    "BlkioDeviceWriteIOps": [],
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "",
+    "CpusetMems": "",
+    "Devices": [],
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 2147483648,
+    "MemorySwappiness": null,
+    "OomKillDisable": false,
+    "PidsLimit": 64,
+    "Ulimits": [
+      {
+        "Name": "core",
+        "Hard": 0,
+        "Soft": 0
+      },
+      {
+        "Name": "nofile",
+        "Hard": 128,
+        "Soft": 128
+      }
+    ],
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/var/lib/finance/runs/9d3837fd699d429f8ea793b1a1b4896a/input",
+        "Target": "/input",
+        "ReadOnly": true
+      },
+      {
+        "Type": "bind",
+        "Source": "/var/lib/finance/runs/9d3837fd699d429f8ea793b1a1b4896a/output",
+        "Target": "/output"
+      }
+    ],
+    "MaskedPaths": [
+      "/proc/asound",
+      "/proc/acpi",
+      "/proc/interrupts",
+      "/proc/kcore",
+      "/proc/keys",
+      "/proc/latency_stats",
+      "/proc/timer_list",
+      "/proc/timer_stats",
+      "/proc/sched_debug",
+      "/proc/scsi",
+      "/sys/firmware",
+      "/sys/devices/virtual/powercap"
+    ],
+    "ReadonlyPaths": [
+      "/proc/bus",
+      "/proc/fs",
+      "/proc/irq",
+      "/proc/sys",
+      "/proc/sysrq-trigger"
+    ]
+  },
+  "GraphDriver": {
+    "Data": {
+      "ID": "8317536cc96ac79a212a5e511354a92d7338843b66a44b28617a03f396657c46",
+      "LowerDir": "/var/lib/docker/overlay2/60bd101cafdd811014ae3004c6c776efdc8c8f00a7b2907da402e05608f84e15-init/diff:/var/lib/docker/overlay2/591v0sak61ebrzduiog0uhyqv/diff:/var/lib/docker/overlay2/gyggnm65zw3643nmjw46xffea/diff:/var/lib/docker/overlay2/b6e3u1hu0tx6ignz4s53tn01h/diff:/var/lib/docker/overlay2/z57q33fpmh1bvzy848z946omw/diff:/var/lib/docker/overlay2/wcqbkaeo2j88ryu9pfpywg2re/diff:/var/lib/docker/overlay2/c61f76588b6f3d823afaa59c4fec9a2df26163391b0580bb8bbf9289a7d1caf3/diff:/var/lib/docker/overlay2/b5ef17cf80e66c58c2e4f36cce9772aad2dcd62c602d31cd23e01b5f2aad29f4/diff:/var/lib/docker/overlay2/492b937bbf66d89e5c70c5ce99cf424d6ed3b0bcca84c1911fa0a19023f58d25/diff:/var/lib/docker/overlay2/b8ce145228fb56a2068a2bc235315ffad4ff38eda5ecdd03fd69dc56fbb37ecc/diff",
+      "MergedDir": "/var/lib/docker/overlay2/60bd101cafdd811014ae3004c6c776efdc8c8f00a7b2907da402e05608f84e15/merged",
+      "UpperDir": "/var/lib/docker/overlay2/60bd101cafdd811014ae3004c6c776efdc8c8f00a7b2907da402e05608f84e15/diff",
+      "WorkDir": "/var/lib/docker/overlay2/60bd101cafdd811014ae3004c6c776efdc8c8f00a7b2907da402e05608f84e15/work"
+    },
+    "Name": "overlay2"
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/var/lib/finance/runs/9d3837fd699d429f8ea793b1a1b4896a/output",
+      "Destination": "/output",
+      "Mode": "",
+      "RW": true,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/var/lib/finance/runs/9d3837fd699d429f8ea793b1a1b4896a/input",
+      "Destination": "/input",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "Config": {
+    "Hostname": "8317536cc96a",
+    "Domainname": "",
+    "User": "10001:10001",
+    "AttachStdin": false,
+    "AttachStdout": true,
+    "AttachStderr": true,
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+      "MPLCONFIGDIR=/tmp/matplotlib",
+      "MPLBACKEND=Agg",
+      "OPENBLAS_NUM_THREADS=1",
+      "OMP_NUM_THREADS=1",
+      "MKL_NUM_THREADS=1",
+      "NUMEXPR_NUM_THREADS=1",
+      "HOME=/tmp",
+      "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "LANG=C.UTF-8",
+      "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+      "PYTHON_VERSION=3.12.10",
+      "PYTHON_SHA256=07ab697474595e06f06647417d3c7fa97ded07afc1a7e4454c5639919b46eaea",
+      "PYTHONDONTWRITEBYTECODE=1",
+      "PYTHONUNBUFFERED=1"
+    ],
+    "Cmd": null,
+    "Image": "sha256:0b8d45a06afce77036b5b7be2763e9ce73649ad5f9ac099f78d03ca4269006f8",
+    "Volumes": null,
+    "WorkingDir": "/output",
+    "Entrypoint": [
+      "python",
+      "-I",
+      "/opt/finance/entrypoint.py"
+    ],
+    "OnBuild": null,
+    "Labels": {
+      "finance.run_id": "9d3837fd699d429f8ea793b1a1b4896a",
+      "finance.runner": "1"
+    },
+    "StopTimeout": 1
+  },
+  "NetworkSettings": {
+    "Bridge": "",
+    "SandboxID": "",
+    "SandboxKey": "",
+    "Ports": {},
+    "HairpinMode": false,
+    "LinkLocalIPv6Address": "",
+    "LinkLocalIPv6PrefixLen": 0,
+    "SecondaryIPAddresses": null,
+    "SecondaryIPv6Addresses": null,
+    "EndpointID": "",
+    "Gateway": "",
+    "GlobalIPv6Address": "",
+    "GlobalIPv6PrefixLen": 0,
+    "IPAddress": "",
+    "IPPrefixLen": 0,
+    "IPv6Gateway": "",
+    "MacAddress": "",
+    "Networks": {
+      "none": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "MacAddress": "",
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "",
+        "EndpointID": "",
+        "Gateway": "",
+        "IPAddress": "",
+        "IPPrefixLen": 0,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+      }
+    }
+  }
+}

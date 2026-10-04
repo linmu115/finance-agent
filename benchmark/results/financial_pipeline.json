@@ -1,0 +1,1878 @@
+{
+  "name": "三轮真实财报解析与数据库查询",
+  "status": "passed",
+  "mode": "deterministic_pipeline",
+  "is_llm_agent_result": false,
+  "is_full_system_acceptance": false,
+  "createdAt": "2026-10-02T18:33:08.039255+00:00",
+  "total": 90,
+  "passed": 90,
+  "runs": [
+    {
+      "run_id": "20261002T182430-6aca477d",
+      "elapsed_seconds": 121.938,
+      "physical_pages_processed": 708,
+      "total": 30,
+      "passed": 30,
+      "accuracy": 1.0,
+      "evidence_accuracy": 1.0,
+      "documents": [
+        {
+          "source_id": "midea_2024",
+          "sha256": "bc82a1be9e09101ed2c2772844a44b8a356c87a4dbdc0fa44a55eeeabaf94455",
+          "document_id": "92ede3c20cc64dd8bccf064a869c5be1",
+          "project_id": "midea_2024-1",
+          "page_count": 295,
+          "persisted_page_count": 295,
+          "table_count": 114,
+          "fact_candidate_count": 21,
+          "state": "ready",
+          "warnings": []
+        },
+        {
+          "source_id": "moutai_2024",
+          "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+          "document_id": "0abfec8cd48a4bffb14328ba1da3450b",
+          "project_id": "moutai_2024-1",
+          "page_count": 143,
+          "persisted_page_count": 143,
+          "table_count": 275,
+          "fact_candidate_count": 29,
+          "state": "ready",
+          "warnings": []
+        },
+        {
+          "source_id": "yili_2024",
+          "sha256": "a82a81e52f52da3cd1b7f38ded08625dc18e3d4522b15d3ef76bf921e54c1f43",
+          "document_id": "807cdbab9e854add951bbf82264e2523",
+          "project_id": "yili_2024-1",
+          "page_count": 270,
+          "persisted_page_count": 270,
+          "table_count": 334,
+          "fact_candidate_count": 40,
+          "state": "ready",
+          "warnings": []
+        }
+      ],
+      "cases": [
+        {
+          "id": "moutai_2024_extract_revenue_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "170899152276.34",
+          "expected": "170899152276.34",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_revenue_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "147693604994.14",
+          "expected": "147693604994.14",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_net_profit_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "86228146421.62",
+          "expected": "86228146421.62",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_net_profit_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "74734071550.75",
+          "expected": "74734071550.75",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_operating_cash_flow_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "92463692168.43",
+          "expected": "92463692168.43",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_operating_cash_flow_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "66593247721.09",
+          "expected": "66593247721.09",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_assets_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "298944579918.70",
+          "expected": "298944579918.70",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_assets_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "272699660092.25",
+          "expected": "272699660092.25",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_equity_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "233105984399.47",
+          "expected": "233105984399.47",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_equity_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "215668571607.43",
+          "expected": "215668571607.43",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_revenue_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "407149600000",
+          "expected": "407149600000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_revenue_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "372037280000",
+          "expected": "372037280000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_net_profit_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "38537237000",
+          "expected": "38537237000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_net_profit_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "33719935000",
+          "expected": "33719935000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_operating_cash_flow_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "60511572000",
+          "expected": "60511572000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_operating_cash_flow_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "57902611000",
+          "expected": "57902611000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_assets_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "604351853000",
+          "expected": "604351853000",
+          "actual_citations": [
+            "midea_2024:p10"
+          ],
+          "expected_citations": [
+            "midea_2024:p10"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_assets_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "486038184000",
+          "expected": "486038184000",
+          "actual_citations": [
+            "midea_2024:p10"
+          ],
+          "expected_citations": [
+            "midea_2024:p10"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_equity_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "216750057000",
+          "expected": "216750057000",
+          "actual_citations": [
+            "midea_2024:p10"
+          ],
+          "expected_citations": [
+            "midea_2024:p10"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_equity_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "162878825000",
+          "expected": "162878825000",
+          "actual_citations": [
+            "midea_2024:p10"
+          ],
+          "expected_citations": [
+            "midea_2024:p10"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_revenue_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "115393310976.69",
+          "expected": "115393310976.69",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_revenue_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "125758168916.51",
+          "expected": "125758168916.51",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_net_profit_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "8452859993.18",
+          "expected": "8452859993.18",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_net_profit_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "10428540457.94",
+          "expected": "10428540457.94",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_operating_cash_flow_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "21739740393.38",
+          "expected": "21739740393.38",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_operating_cash_flow_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "18290357650.56",
+          "expected": "18290357650.56",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_assets_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "153718003927.97",
+          "expected": "153718003927.97",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_assets_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "151620252657.98",
+          "expected": "151620252657.98",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_equity_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "53179935140.80",
+          "expected": "53179935140.80",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_equity_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "53539331413.16",
+          "expected": "53539331413.16",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        }
+      ]
+    },
+    {
+      "run_id": "20261002T182632-c2128b87",
+      "elapsed_seconds": 118.75,
+      "physical_pages_processed": 708,
+      "total": 30,
+      "passed": 30,
+      "accuracy": 1.0,
+      "evidence_accuracy": 1.0,
+      "documents": [
+        {
+          "source_id": "midea_2024",
+          "sha256": "bc82a1be9e09101ed2c2772844a44b8a356c87a4dbdc0fa44a55eeeabaf94455",
+          "document_id": "b86b078783e54299b7b129da37238609",
+          "project_id": "midea_2024-2",
+          "page_count": 295,
+          "persisted_page_count": 295,
+          "table_count": 114,
+          "fact_candidate_count": 21,
+          "state": "ready",
+          "warnings": []
+        },
+        {
+          "source_id": "moutai_2024",
+          "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+          "document_id": "eacf2c36780e4f5ca9fc1f138f6ba5e6",
+          "project_id": "moutai_2024-2",
+          "page_count": 143,
+          "persisted_page_count": 143,
+          "table_count": 275,
+          "fact_candidate_count": 29,
+          "state": "ready",
+          "warnings": []
+        },
+        {
+          "source_id": "yili_2024",
+          "sha256": "a82a81e52f52da3cd1b7f38ded08625dc18e3d4522b15d3ef76bf921e54c1f43",
+          "document_id": "4d5dad5d16c74daf9ae677292989edbc",
+          "project_id": "yili_2024-2",
+          "page_count": 270,
+          "persisted_page_count": 270,
+          "table_count": 334,
+          "fact_candidate_count": 40,
+          "state": "ready",
+          "warnings": []
+        }
+      ],
+      "cases": [
+        {
+          "id": "moutai_2024_extract_revenue_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "170899152276.34",
+          "expected": "170899152276.34",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_revenue_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "147693604994.14",
+          "expected": "147693604994.14",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_net_profit_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "86228146421.62",
+          "expected": "86228146421.62",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_net_profit_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "74734071550.75",
+          "expected": "74734071550.75",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_operating_cash_flow_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "92463692168.43",
+          "expected": "92463692168.43",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_operating_cash_flow_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "66593247721.09",
+          "expected": "66593247721.09",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_assets_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "298944579918.70",
+          "expected": "298944579918.70",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_assets_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "272699660092.25",
+          "expected": "272699660092.25",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_equity_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "233105984399.47",
+          "expected": "233105984399.47",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_equity_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "215668571607.43",
+          "expected": "215668571607.43",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_revenue_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "407149600000",
+          "expected": "407149600000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_revenue_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "372037280000",
+          "expected": "372037280000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_net_profit_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "38537237000",
+          "expected": "38537237000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_net_profit_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "33719935000",
+          "expected": "33719935000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_operating_cash_flow_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "60511572000",
+          "expected": "60511572000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_operating_cash_flow_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "57902611000",
+          "expected": "57902611000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_assets_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "604351853000",
+          "expected": "604351853000",
+          "actual_citations": [
+            "midea_2024:p10"
+          ],
+          "expected_citations": [
+            "midea_2024:p10"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_assets_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "486038184000",
+          "expected": "486038184000",
+          "actual_citations": [
+            "midea_2024:p10"
+          ],
+          "expected_citations": [
+            "midea_2024:p10"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_equity_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "216750057000",
+          "expected": "216750057000",
+          "actual_citations": [
+            "midea_2024:p10"
+          ],
+          "expected_citations": [
+            "midea_2024:p10"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_equity_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "162878825000",
+          "expected": "162878825000",
+          "actual_citations": [
+            "midea_2024:p10"
+          ],
+          "expected_citations": [
+            "midea_2024:p10"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_revenue_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "115393310976.69",
+          "expected": "115393310976.69",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_revenue_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "125758168916.51",
+          "expected": "125758168916.51",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_net_profit_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "8452859993.18",
+          "expected": "8452859993.18",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_net_profit_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "10428540457.94",
+          "expected": "10428540457.94",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_operating_cash_flow_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "21739740393.38",
+          "expected": "21739740393.38",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_operating_cash_flow_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "18290357650.56",
+          "expected": "18290357650.56",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_assets_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "153718003927.97",
+          "expected": "153718003927.97",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_assets_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "151620252657.98",
+          "expected": "151620252657.98",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_equity_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "53179935140.80",
+          "expected": "53179935140.80",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_equity_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "53539331413.16",
+          "expected": "53539331413.16",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        }
+      ]
+    },
+    {
+      "run_id": "20261002T182831-dfec957c",
+      "elapsed_seconds": 143.515,
+      "physical_pages_processed": 708,
+      "total": 30,
+      "passed": 30,
+      "accuracy": 1.0,
+      "evidence_accuracy": 1.0,
+      "documents": [
+        {
+          "source_id": "midea_2024",
+          "sha256": "bc82a1be9e09101ed2c2772844a44b8a356c87a4dbdc0fa44a55eeeabaf94455",
+          "document_id": "179f1dc3cf0a487e936dad49755d545d",
+          "project_id": "midea_2024-3",
+          "page_count": 295,
+          "persisted_page_count": 295,
+          "table_count": 114,
+          "fact_candidate_count": 21,
+          "state": "ready",
+          "warnings": []
+        },
+        {
+          "source_id": "moutai_2024",
+          "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+          "document_id": "5ce5063f7f414ab7b3f369df169a572f",
+          "project_id": "moutai_2024-3",
+          "page_count": 143,
+          "persisted_page_count": 143,
+          "table_count": 275,
+          "fact_candidate_count": 29,
+          "state": "ready",
+          "warnings": []
+        },
+        {
+          "source_id": "yili_2024",
+          "sha256": "a82a81e52f52da3cd1b7f38ded08625dc18e3d4522b15d3ef76bf921e54c1f43",
+          "document_id": "4da3a9c19d904339b501855b39aca8dc",
+          "project_id": "yili_2024-3",
+          "page_count": 270,
+          "persisted_page_count": 270,
+          "table_count": 334,
+          "fact_candidate_count": 40,
+          "state": "ready",
+          "warnings": []
+        }
+      ],
+      "cases": [
+        {
+          "id": "moutai_2024_extract_revenue_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "170899152276.34",
+          "expected": "170899152276.34",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_revenue_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "147693604994.14",
+          "expected": "147693604994.14",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_net_profit_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "86228146421.62",
+          "expected": "86228146421.62",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_net_profit_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "74734071550.75",
+          "expected": "74734071550.75",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_operating_cash_flow_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "92463692168.43",
+          "expected": "92463692168.43",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_operating_cash_flow_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "66593247721.09",
+          "expected": "66593247721.09",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_assets_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "298944579918.70",
+          "expected": "298944579918.70",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_assets_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "272699660092.25",
+          "expected": "272699660092.25",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_equity_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "233105984399.47",
+          "expected": "233105984399.47",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "moutai_2024_extract_equity_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "215668571607.43",
+          "expected": "215668571607.43",
+          "actual_citations": [
+            "moutai_2024:p5"
+          ],
+          "expected_citations": [
+            "moutai_2024:p5"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_revenue_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "407149600000",
+          "expected": "407149600000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_revenue_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "372037280000",
+          "expected": "372037280000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_net_profit_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "38537237000",
+          "expected": "38537237000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_net_profit_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "33719935000",
+          "expected": "33719935000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_operating_cash_flow_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "60511572000",
+          "expected": "60511572000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_operating_cash_flow_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "57902611000",
+          "expected": "57902611000",
+          "actual_citations": [
+            "midea_2024:p9"
+          ],
+          "expected_citations": [
+            "midea_2024:p9"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_assets_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "604351853000",
+          "expected": "604351853000",
+          "actual_citations": [
+            "midea_2024:p10"
+          ],
+          "expected_citations": [
+            "midea_2024:p10"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_assets_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "486038184000",
+          "expected": "486038184000",
+          "actual_citations": [
+            "midea_2024:p10"
+          ],
+          "expected_citations": [
+            "midea_2024:p10"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_equity_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "216750057000",
+          "expected": "216750057000",
+          "actual_citations": [
+            "midea_2024:p10"
+          ],
+          "expected_citations": [
+            "midea_2024:p10"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "midea_2024_extract_equity_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "162878825000",
+          "expected": "162878825000",
+          "actual_citations": [
+            "midea_2024:p10"
+          ],
+          "expected_citations": [
+            "midea_2024:p10"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_revenue_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "115393310976.69",
+          "expected": "115393310976.69",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_revenue_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "125758168916.51",
+          "expected": "125758168916.51",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_net_profit_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "8452859993.18",
+          "expected": "8452859993.18",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_net_profit_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "10428540457.94",
+          "expected": "10428540457.94",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_operating_cash_flow_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "21739740393.38",
+          "expected": "21739740393.38",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_operating_cash_flow_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "18290357650.56",
+          "expected": "18290357650.56",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-FY",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_assets_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "153718003927.97",
+          "expected": "153718003927.97",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_assets_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "151620252657.98",
+          "expected": "151620252657.98",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_equity_parent_2024",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "53179935140.80",
+          "expected": "53179935140.80",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2024-12-31",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "id": "yili_2024_extract_equity_parent_2023",
+          "track": "cn_extract",
+          "answer_ok": true,
+          "grounded_ok": true,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0,
+          "errors": [],
+          "actual": "53539331413.16",
+          "expected": "53539331413.16",
+          "actual_citations": [
+            "yili_2024:p7"
+          ],
+          "expected_citations": [
+            "yili_2024:p7"
+          ],
+          "period": "2023-12-31",
+          "scope": "consolidated_CAS"
+        }
+      ]
+    }
+  ],
+  "repeat_values_and_citations_identical": true,
+  "implementation_sha256": {
+    "service\\parser.py": "2ad2c4020ab8fb3e51056444397ac1bfad47f1cc34e03d59d58780107c1b5e27",
+    "service\\normalization.py": "b4da08fc7895fda5042c95f671cff5a342d5a2b968a5bc4dae7b220f421622cb",
+    "service\\core.py": "a2fa5b01a1d72d452d6fc36ef5d19b097eb6ac541fe0f19311a40c589024948d",
+    "service\\store.py": "5474261263f79155b56d95954208332ec0615fa01c5dee5988d3b6057253b5b5"
+  },
+  "parser_version": "0.1.1",
+  "limitations": "Only cn_extract parsing/query layer. This result does not prove LLM reasoning, retrieval, OCR, sandbox or full-system gates."
+}

@@ -1,0 +1,180 @@
+{
+  "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+  "before_facts_sha256": "b625e5622906acd89fdd6f8bec3414aaa81e85dfa7f95a46cce6e96d45d4a22f",
+  "scope": "Exactly four source cells rejected by the former 96-character metric-ID limit. No other new fact is allowed; all original 3294 facts must retain their source and amount.",
+  "evidence_source": "host_sqlite_readonly_original_source_tables_and_normalization_batches_not_after_facts",
+  "source_table_sha256": "b5ef5e106c20ca1b818bd3600059de3351384035cd52a67d352b269cfa6910d7",
+  "batch_key": "f153abc3474279fb6cefbb83d442fb66a5349881691e498822a2af5469dbb853",
+  "batch_sha256": "8c1018c0554031820eaff9741533688547a5bc9467ff8095c850b0bf911030f3",
+  "original_extraction_processing_id": "15d42d6b9d1d46318642243e50f3a346",
+  "source_page": 97,
+  "source_header": [
+    "项目",
+    "房屋、建筑物",
+    "土地使用权",
+    "在建工程",
+    "合计"
+  ],
+  "original_extraction_evidence": [
+    {
+      "source_row": 6,
+      "row_cells": [
+        "（2）存货\\固定资产\\\n在建工程转入",
+        "4,665,316.93",
+        "",
+        "",
+        "4,665,316.93"
+      ],
+      "original_extraction": {
+        "class": "financial_row",
+        "text": "[[T155:R6]]",
+        "attributes": {
+          "metric": "investment_property_original_value_transferred_from_inventory_fixed_assets_and_construction_in_progress",
+          "label": "投资性房地产账面原值本期增加：存货、固定资产、在建工程转入",
+          "unit": "",
+          "dimensions_json": "{}",
+          "columns_json": "[{\"column\": 2, \"period\": \"2024-FY\", \"start\": \"2024-01-01\", \"end\": \"2024-12-31\", \"unit\": \"元\", \"currency\": \"CNY\", \"version\": \"original\", \"dimensions\": {\"asset_category\": \"房屋、建筑物\"}}, {\"column\": 3, \"period\": \"2024-FY\", \"start\": \"2024-01-01\", \"end\": \"2024-12-31\", \"unit\": \"元\", \"currency\": \"CNY\", \"version\": \"original\", \"dimensions\": {\"asset_category\": \"土地使用权\"}}, {\"column\": 4, \"period\": \"2024-FY\", \"start\": \"2024-01-01\", \"end\": \"2024-12-31\", \"unit\": \"元\", \"currency\": \"CNY\", \"version\": \"original\", \"dimensions\": {\"asset_category\": \"在建工程\"}}, {\"column\": 5, \"period\": \"2024-FY\", \"start\": \"2024-01-01\", \"end\": \"2024-12-31\", \"unit\": \"元\", \"currency\": \"CNY\", \"version\": \"original\", \"dimensions\": {}}]"
+        },
+        "span": [
+          3524,
+          3535
+        ]
+      }
+    },
+    {
+      "source_row": 16,
+      "row_cells": [
+        "（2）存货\\固定资产\\\n在建工程转入",
+        "462,005.27",
+        "",
+        "",
+        "462,005.27"
+      ],
+      "original_extraction": {
+        "class": "financial_row",
+        "text": "[[T155:R16]]",
+        "attributes": {
+          "metric": "investment_property_accumulated_depreciation_and_amortization_transferred_from_inventory_fixed_assets_and_construction_in_progress",
+          "label": "投资性房地产累计折旧和累计摊销本期增加：存货、固定资产、在建工程转入",
+          "unit": "",
+          "dimensions_json": "{}",
+          "columns_json": "[{\"column\": 2, \"period\": \"2024-FY\", \"start\": \"2024-01-01\", \"end\": \"2024-12-31\", \"unit\": \"元\", \"currency\": \"CNY\", \"version\": \"original\", \"dimensions\": {\"asset_category\": \"房屋、建筑物\"}}, {\"column\": 3, \"period\": \"2024-FY\", \"start\": \"2024-01-01\", \"end\": \"2024-12-31\", \"unit\": \"元\", \"currency\": \"CNY\", \"version\": \"original\", \"dimensions\": {\"asset_category\": \"土地使用权\"}}, {\"column\": 4, \"period\": \"2024-FY\", \"start\": \"2024-01-01\", \"end\": \"2024-12-31\", \"unit\": \"元\", \"currency\": \"CNY\", \"version\": \"original\", \"dimensions\": {\"asset_category\": \"在建工程\"}}, {\"column\": 5, \"period\": \"2024-FY\", \"start\": \"2024-01-01\", \"end\": \"2024-12-31\", \"unit\": \"元\", \"currency\": \"CNY\", \"version\": \"original\", \"dimensions\": {}}]"
+        },
+        "span": [
+          4134,
+          4146
+        ]
+      }
+    }
+  ],
+  "facts": [
+    {
+      "company": "贵州茅台酒股份有限公司",
+      "metric": "investment_property_original_value_transferred_from_inventory_fixed_assets_and_construction_in_progress",
+      "original_metric": "investment_property_original_value_transferred_from_inventory_fixed_assets_and_construction_in_progress",
+      "scope": "consolidated_CAS",
+      "currency": "CNY",
+      "value": "4665316.93",
+      "raw_value": "4,665,316.93",
+      "raw_unit": "元",
+      "normalized_unit": "CNY",
+      "restatement": "original",
+      "period": "2024-FY",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "year": 2024,
+      "dimensions": {
+        "asset_category": "房屋、建筑物"
+      },
+      "source_ref": {
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "table_id": "39de9b118212463bbee6c2ab3c571432:t155",
+        "page": 97,
+        "row": 6,
+        "column": 2,
+        "cell": "B6",
+        "text": "（2）存货\\固定资产\\\n在建工程转入 | 4,665,316.93 |  |  | 4,665,316.93"
+      }
+    },
+    {
+      "company": "贵州茅台酒股份有限公司",
+      "metric": "investment_property_original_value_transferred_from_inventory_fixed_assets_and_construction_in_progress",
+      "original_metric": "investment_property_original_value_transferred_from_inventory_fixed_assets_and_construction_in_progress",
+      "scope": "consolidated_CAS",
+      "currency": "CNY",
+      "value": "4665316.93",
+      "raw_value": "4,665,316.93",
+      "raw_unit": "元",
+      "normalized_unit": "CNY",
+      "restatement": "original",
+      "period": "2024-FY",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "year": 2024,
+      "dimensions": {},
+      "source_ref": {
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "table_id": "39de9b118212463bbee6c2ab3c571432:t155",
+        "page": 97,
+        "row": 6,
+        "column": 5,
+        "cell": "E6",
+        "text": "（2）存货\\固定资产\\\n在建工程转入 | 4,665,316.93 |  |  | 4,665,316.93"
+      }
+    },
+    {
+      "company": "贵州茅台酒股份有限公司",
+      "metric": "investment_property_accumulated_depreciation_and_amortization_transferred_from_inventory_fixed_assets_and_construction_in_progress",
+      "original_metric": "investment_property_accumulated_depreciation_and_amortization_transferred_from_inventory_fixed_assets_and_construction_in_progress",
+      "scope": "consolidated_CAS",
+      "currency": "CNY",
+      "value": "462005.27",
+      "raw_value": "462,005.27",
+      "raw_unit": "元",
+      "normalized_unit": "CNY",
+      "restatement": "original",
+      "period": "2024-FY",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "year": 2024,
+      "dimensions": {
+        "asset_category": "房屋、建筑物"
+      },
+      "source_ref": {
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "table_id": "39de9b118212463bbee6c2ab3c571432:t155",
+        "page": 97,
+        "row": 16,
+        "column": 2,
+        "cell": "B16",
+        "text": "（2）存货\\固定资产\\\n在建工程转入 | 462,005.27 |  |  | 462,005.27"
+      }
+    },
+    {
+      "company": "贵州茅台酒股份有限公司",
+      "metric": "investment_property_accumulated_depreciation_and_amortization_transferred_from_inventory_fixed_assets_and_construction_in_progress",
+      "original_metric": "investment_property_accumulated_depreciation_and_amortization_transferred_from_inventory_fixed_assets_and_construction_in_progress",
+      "scope": "consolidated_CAS",
+      "currency": "CNY",
+      "value": "462005.27",
+      "raw_value": "462,005.27",
+      "raw_unit": "元",
+      "normalized_unit": "CNY",
+      "restatement": "original",
+      "period": "2024-FY",
+      "period_start": "2024-01-01",
+      "period_end": "2024-12-31",
+      "year": 2024,
+      "dimensions": {},
+      "source_ref": {
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "table_id": "39de9b118212463bbee6c2ab3c571432:t155",
+        "page": 97,
+        "row": 16,
+        "column": 5,
+        "cell": "E16",
+        "text": "（2）存货\\固定资产\\\n在建工程转入 | 462,005.27 |  |  | 462,005.27"
+      }
+    }
+  ]
+}

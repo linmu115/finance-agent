@@ -1,0 +1,2321 @@
+{
+  "version": "0.3",
+  "status": "failed",
+  "started_at": "2026-10-03T13:33:06.776Z",
+  "scope": "Full-file execution and five independent source anchors; not exhaustive fact accuracy.",
+  "checks": [
+    {
+      "name": "完整原始PDF上传只登记",
+      "status": "passed",
+      "evidence": {
+        "filename": "贵州茅台2024年年度报告.pdf",
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "status": "registered"
+      }
+    },
+    {
+      "name": "所属Pi运行完成",
+      "status": "failed",
+      "evidence": {
+        "status": "cancelled",
+        "error": "用户取消任务",
+        "usage": {
+          "input": 144428,
+          "output": 310532,
+          "calls": 49,
+          "costUsd": null
+        }
+      }
+    },
+    {
+      "name": "完整143页已建立索引",
+      "status": "passed",
+      "evidence": {
+        "counts": {
+          "documents": 1,
+          "facts": 470,
+          "pages": 143,
+          "tables": 275
+        },
+        "index_path": "D:\\codex\\金融\\data\\indexes\\3b4c43c9-51b8-432c-807d-2a15323f7a80\\catalog.yaml"
+      }
+    },
+    {
+      "name": "全部候选表格批次均完成",
+      "status": "failed",
+      "evidence": [
+        {
+          "state": "normalizing",
+          "coverage": {
+            "tables_total": 242,
+            "tables_completed": 41,
+            "batches_total": 266,
+            "batches_completed": 41
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "name": "财务主表和附注均入库",
+      "status": "passed",
+      "evidence": {
+        "statements": [
+          "balance",
+          "notes",
+          "income",
+          "ratios",
+          "cashflow",
+          "segment"
+        ],
+        "facts": 470,
+        "metrics": 127
+      }
+    },
+    {
+      "name": "五个独立来源标准值",
+      "status": "passed",
+      "evidence": [
+        {
+          "id": "native_revenue_2024",
+          "page": 5,
+          "expected": "170899152276.34",
+          "actual": [
+            "170899152276.34"
+          ],
+          "passed": true,
+          "source_refs": [
+            {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "page": 5,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t8",
+              "row": 2,
+              "column": 2,
+              "cell": "B2",
+              "text": "营业收入 | 170,899,152,276.34 | 147,693,604,994.14 | 15.71 | 124,099,843,771.99",
+              "normalization": {
+                "engine": "LangExtract",
+                "version": "langextract-finance-0.3.1",
+                "model": "deepseek-flash",
+                "label": "营业收入",
+                "statement": "income",
+                "period_start": "2024-01-01",
+                "period_end": "2024-12-31",
+                "restatement": "original",
+                "dimensions": {},
+                "scale": "1",
+                "char_interval": [
+                  4167,
+                  4176
+                ],
+                "processing_id": "7e44973ad18344a4ac7a1e59e10b7957"
+              },
+              "bbox": [
+                205.12999725341797,
+                263.05999755859375,
+                306.16998291015625,
+                277.72998046875
+              ]
+            }
+          ]
+        },
+        {
+          "id": "native_revenue_2023",
+          "page": 5,
+          "expected": "147693604994.14",
+          "actual": [
+            "147693604994.14"
+          ],
+          "passed": true,
+          "source_refs": [
+            {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "page": 5,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t8",
+              "row": 2,
+              "column": 3,
+              "cell": "C2",
+              "text": "营业收入 | 170,899,152,276.34 | 147,693,604,994.14 | 15.71 | 124,099,843,771.99",
+              "normalization": {
+                "engine": "LangExtract",
+                "version": "langextract-finance-0.3.1",
+                "model": "deepseek-flash",
+                "label": "营业收入",
+                "statement": "income",
+                "period_start": "2023-01-01",
+                "period_end": "2023-12-31",
+                "restatement": "original",
+                "dimensions": {},
+                "scale": "1",
+                "char_interval": [
+                  4167,
+                  4176
+                ],
+                "processing_id": "7e44973ad18344a4ac7a1e59e10b7957"
+              },
+              "bbox": [
+                306.16998291015625,
+                263.05999755859375,
+                397.989990234375,
+                277.72998046875
+              ]
+            }
+          ]
+        },
+        {
+          "id": "native_assets_2024",
+          "page": 5,
+          "expected": "298944579918.70",
+          "actual": [
+            "298944579918.70"
+          ],
+          "passed": true,
+          "source_refs": [
+            {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "page": 5,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t8",
+              "row": 8,
+              "column": 2,
+              "cell": "B8",
+              "text": "总资产 | 298,944,579,918.70 | 272,699,660,092.25 | 9.62 | 254,500,826,096.02",
+              "normalization": {
+                "engine": "LangExtract",
+                "version": "langextract-finance-0.3.1",
+                "model": "deepseek-flash",
+                "label": "总资产",
+                "statement": "balance",
+                "period_start": "",
+                "period_end": "2024-12-31",
+                "restatement": "original",
+                "dimensions": {},
+                "scale": "1",
+                "char_interval": [
+                  4785,
+                  4794
+                ],
+                "processing_id": "7e44973ad18344a4ac7a1e59e10b7957"
+              },
+              "bbox": [
+                205.12999725341797,
+                432.04998779296875,
+                306.16998291015625,
+                446.8299865722656
+              ]
+            }
+          ]
+        },
+        {
+          "id": "native_revenue_q3",
+          "page": 6,
+          "expected": "38845154206.94",
+          "actual": [
+            "38845154206.94"
+          ],
+          "passed": true,
+          "source_refs": [
+            {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "page": 6,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t10",
+              "row": 2,
+              "column": 4,
+              "cell": "D2",
+              "text": "营业收入 | 45,775,517,043.29 | 36,155,460,624.46 | 38,845,154,206.94 | 50,123,020,401.65",
+              "normalization": {
+                "engine": "LangExtract",
+                "version": "langextract-finance-0.3.1",
+                "model": "deepseek-flash",
+                "label": "营业收入",
+                "statement": "income",
+                "period_start": "2024-07-01",
+                "period_end": "2024-09-30",
+                "restatement": "original",
+                "dimensions": {},
+                "scale": "1",
+                "char_interval": [
+                  4547,
+                  4557
+                ],
+                "processing_id": "7e44973ad18344a4ac7a1e59e10b7957"
+              },
+              "bbox": [
+                362.9499969482422,
+                350.6899871826172,
+                452.13999938964844,
+                362.8099822998047
+              ]
+            }
+          ]
+        },
+        {
+          "id": "native_cashflow_q4",
+          "page": 6,
+          "expected": "48042305950.98",
+          "actual": [
+            "48042305950.98"
+          ],
+          "passed": true,
+          "source_refs": [
+            {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "page": 6,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t10",
+              "row": 5,
+              "column": 5,
+              "cell": "E5",
+              "text": "经营活动产生的现金\n流量净额 | 9,187,422,415.09 | 27,434,411,397.54 | 7,799,552,404.82 | 48,042,305,950.98",
+              "normalization": {
+                "engine": "LangExtract",
+                "version": "langextract-finance-0.3.1",
+                "model": "deepseek-flash",
+                "label": "经营活动产生的现金流量净额",
+                "statement": "cashflow",
+                "period_start": "2024-10-01",
+                "period_end": "2024-12-31",
+                "restatement": "original",
+                "dimensions": {},
+                "scale": "1",
+                "char_interval": [
+                  4911,
+                  4921
+                ],
+                "processing_id": "7e44973ad18344a4ac7a1e59e10b7957"
+              },
+              "bbox": [
+                452.13999938964844,
+                422.2099914550781,
+                541.4599812825521,
+                446.1499837239583
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "清洗调用归属当前Pi模型运行时",
+      "status": "passed",
+      "evidence": {
+        "requests": 47,
+        "results": 47,
+        "finish_reasons": [
+          "stop",
+          "aborted"
+        ]
+      }
+    }
+  ],
+  "snapshots": [
+    {
+      "at": "2026-10-03T13:33:10.044Z",
+      "status": "running",
+      "stage": "分析任务",
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "calls": 0,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "registered",
+        "pageCount": 0,
+        "company": null,
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 0,
+        "factCount": 0,
+        "normalization_engine": "unprocessed",
+        "normalized_fact_count": 0,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:33:27.756Z",
+      "status": "running",
+      "stage": "已解析 65/143 页",
+      "usage": {
+        "input": 2978,
+        "output": 80,
+        "calls": 1,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "parsing",
+        "pageCount": 0,
+        "company": null,
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 0,
+        "factCount": 0,
+        "normalization_engine": "unprocessed",
+        "normalized_fact_count": 0,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:33:47.989Z",
+      "status": "running",
+      "stage": "已解析 118/143 页",
+      "usage": {
+        "input": 2978,
+        "output": 80,
+        "calls": 1,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "parsing",
+        "pageCount": 0,
+        "company": null,
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 0,
+        "factCount": 0,
+        "normalization_engine": "unprocessed",
+        "normalized_fact_count": 0,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:34:08.238Z",
+      "status": "running",
+      "stage": "通过当前 Pi 会话理解财务表格",
+      "usage": {
+        "input": 2978,
+        "output": 80,
+        "calls": 1,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 0,
+        "normalization_engine": "unprocessed",
+        "normalized_fact_count": 0,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:34:28.445Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 2/266 批表格",
+      "usage": {
+        "input": 7561,
+        "output": 3234,
+        "calls": 3,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 0,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 0,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:34:48.699Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 4/266 批表格",
+      "usage": {
+        "input": 14216,
+        "output": 11183,
+        "calls": 5,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 24,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 24,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:35:08.973Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 7/266 批表格",
+      "usage": {
+        "input": 23920,
+        "output": 50377,
+        "calls": 8,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 84,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 84,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:35:29.204Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 8/266 批表格",
+      "usage": {
+        "input": 27063,
+        "output": 53350,
+        "calls": 9,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 84,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 84,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:35:49.451Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 10/266 批表格",
+      "usage": {
+        "input": 34610,
+        "output": 74220,
+        "calls": 11,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 131,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 131,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:36:09.717Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 14/266 批表格",
+      "usage": {
+        "input": 48229,
+        "output": 110507,
+        "calls": 15,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 195,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 195,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:36:30.127Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 15/266 批表格",
+      "usage": {
+        "input": 54998,
+        "output": 115929,
+        "calls": 17,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 195,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 195,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:36:50.399Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 17/266 批表格",
+      "usage": {
+        "input": 64057,
+        "output": 134885,
+        "calls": 19,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 294,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 294,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:37:10.656Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 18/266 批表格",
+      "usage": {
+        "input": 67687,
+        "output": 150244,
+        "calls": 20,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 327,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 327,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:37:30.877Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 21/266 批表格",
+      "usage": {
+        "input": 80604,
+        "output": 184599,
+        "calls": 24,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 365,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 365,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:37:51.117Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 23/266 批表格",
+      "usage": {
+        "input": 83541,
+        "output": 189202,
+        "calls": 25,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 365,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 365,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:38:11.394Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 24/266 批表格",
+      "usage": {
+        "input": 86622,
+        "output": 195516,
+        "calls": 26,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 373,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 373,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:38:31.656Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 27/266 批表格",
+      "usage": {
+        "input": 96123,
+        "output": 226816,
+        "calls": 29,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 439,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 439,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:38:51.885Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 29/266 批表格",
+      "usage": {
+        "input": 106969,
+        "output": 236902,
+        "calls": 32,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 439,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 439,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:39:12.127Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 33/266 批表格",
+      "usage": {
+        "input": 116387,
+        "output": 263557,
+        "calls": 35,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 466,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 466,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:39:32.369Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 36/266 批表格",
+      "usage": {
+        "input": 125267,
+        "output": 282275,
+        "calls": 38,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 470,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 470,
+        "legacy_fact_count": 0
+      }
+    },
+    {
+      "at": "2026-10-03T13:39:52.638Z",
+      "status": "running",
+      "stage": "DeepSeek 清洗 38/266 批表格",
+      "usage": {
+        "input": 135273,
+        "output": 296635,
+        "calls": 41,
+        "costUsd": null
+      },
+      "document": {
+        "id": "39de9b118212463bbee6c2ab3c571432",
+        "name": "贵州茅台2024年年度报告.pdf",
+        "status": "normalizing",
+        "pageCount": 143,
+        "company": "贵州茅台酒股份有限公司",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "warnings": [],
+        "createdAt": "2026-10-03T13:33:07.318886+00:00",
+        "tableCount": 275,
+        "factCount": 470,
+        "normalization_engine": "LangExtract",
+        "normalized_fact_count": 470,
+        "legacy_fact_count": 0
+      }
+    }
+  ],
+  "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+  "conversation_id": "1aec0d7e-6886-467e-be39-2cc3fead4a55",
+  "document_id": "39de9b118212463bbee6c2ab3c571432",
+  "run_id": "ca55c513-45c9-47c7-94f8-62207edf1c3a",
+  "last": {
+    "at": "2026-10-03T13:39:52.638Z",
+    "status": "running",
+    "stage": "DeepSeek 清洗 38/266 批表格",
+    "usage": {
+      "input": 135273,
+      "output": 296635,
+      "calls": 41,
+      "costUsd": null
+    },
+    "document": {
+      "id": "39de9b118212463bbee6c2ab3c571432",
+      "name": "贵州茅台2024年年度报告.pdf",
+      "status": "normalizing",
+      "pageCount": 143,
+      "company": "贵州茅台酒股份有限公司",
+      "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+      "warnings": [],
+      "createdAt": "2026-10-03T13:33:07.318886+00:00",
+      "tableCount": 275,
+      "factCount": 470,
+      "normalization_engine": "LangExtract",
+      "normalized_fact_count": 470,
+      "legacy_fact_count": 0
+    }
+  },
+  "run": {
+    "id": "ca55c513-45c9-47c7-94f8-62207edf1c3a",
+    "conversationId": "1aec0d7e-6886-467e-be39-2cc3fead4a55",
+    "projectId": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+    "status": "cancelled",
+    "stage": "已停止",
+    "createdAt": "2026-10-03T13:33:07.571Z",
+    "tools": [
+      {
+        "name": "process_documents",
+        "status": "started",
+        "toolCallId": "call_00_ET_fzsLQ5cvWjdzU6FQiyke0410",
+        "timestamp": "2026-10-03T13:33:11.280Z"
+      },
+      {
+        "name": "process_documents",
+        "status": "failed",
+        "toolCallId": "call_00_ET_fzsLQ5cvWjdzU6FQiyke0410",
+        "timestamp": "2026-10-03T13:40:04.994Z",
+        "summary": "The operation was aborted"
+      }
+    ],
+    "usage": {
+      "input": 144428,
+      "output": 310532,
+      "calls": 49,
+      "costUsd": null
+    },
+    "model": "deepseek-flash",
+    "configHash": "7e87dd2964a6c303e859537d4887be43ad91735b7dbb9fba9affd4f0e87f0570",
+    "messageId": "e60e7ed3-daf6-4844-afca-019dfbba1556",
+    "error": "用户取消任务",
+    "finishedAt": "2026-10-03T13:40:05.222Z"
+  },
+  "catalog": {
+    "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+    "database_path": "D:\\codex\\金融\\data\\finance.sqlite",
+    "documents_path": "D:\\codex\\金融\\data\\documents\\3b4c43c9-51b8-432c-807d-2a15323f7a80",
+    "index_path": "D:\\codex\\金融\\data\\indexes\\3b4c43c9-51b8-432c-807d-2a15323f7a80\\catalog.yaml",
+    "documents": [
+      {
+        "document_id": "39de9b118212463bbee6c2ab3c571432",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "original_name": "贵州茅台2024年年度报告.pdf",
+        "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+        "relative_path": "documents\\3b4c43c9-51b8-432c-807d-2a15323f7a80\\39de9b118212463bbee6c2ab3c571432.pdf",
+        "media_type": "application/pdf",
+        "company": "贵州茅台酒股份有限公司",
+        "report_year": 2024,
+        "page_count": 143,
+        "state": "normalizing",
+        "parser_version": "0.1.3",
+        "created_at": "2026-10-03T13:33:07.318886+00:00",
+        "warnings": [],
+        "table_count": 275,
+        "fact_count": 470,
+        "normalized_fact_count": 470,
+        "legacy_fact_count": 0,
+        "normalization_engine": "LangExtract"
+      }
+    ],
+    "metrics": [
+      {
+        "metric": "accounts_receivable",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "accounts_receivable",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "assets",
+        "label": "总资产",
+        "statement": "balance",
+        "count": 3
+      },
+      {
+        "metric": "assets_yoy",
+        "label": "总资产同比增减(%)",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "cash_and_cash_equivalents",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "cash_and_cash_equivalents",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "change_percentage",
+        "label": "本期期末金额较上期期末变动比例",
+        "statement": "balance",
+        "count": 19
+      },
+      {
+        "metric": "contract_liabilities",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "contract_liabilities",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "debt_investments",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "debt_investments",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "deferred_tax_liabilities",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "deferred_tax_liabilities",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "deposits_and_placements_from_banks_and_other_financial_institutions",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "deposits_and_placements_from_banks_and_other_financial_institutions",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "development_expenditure",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "development_expenditure",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "equity_parent",
+        "label": "归属于上市公司股东的净资产",
+        "statement": "balance",
+        "count": 3
+      },
+      {
+        "metric": "equity_parent_yoy",
+        "label": "归属于上市公司股东的净资产同比增减(%)",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "financial_assets_purchased_under_resale_agreements",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "financial_assets_purchased_under_resale_agreements",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "fixed_assets",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "fixed_assets",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "interbank_lending",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "interbank_lending",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "inventory",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "inventory",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "investment_property",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "investment_property",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "non_current_assets_due_within_one_year",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "non_current_liabilities_due_within_one_year",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "non_current_liabilities_due_within_one_year",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "notes_receivable",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "notes_receivable",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "other_comprehensive_income",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "other_comprehensive_income",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "other_current_assets",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "other_current_assets",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "other_current_liabilities",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "other_current_liabilities",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "other_non_current_assets",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "other_non_current_assets",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "percentage_of_total_assets",
+        "label": "上期期末数占总资产比例",
+        "statement": "balance",
+        "count": 19
+      },
+      {
+        "metric": "percentage_of_total_assets",
+        "label": "本期期末数占总资产比例",
+        "statement": "balance",
+        "count": 20
+      },
+      {
+        "metric": "right_of_use_assets",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "right_of_use_assets",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "share_capital",
+        "label": "股本",
+        "statement": "balance",
+        "count": 3
+      },
+      {
+        "metric": "trading_financial_assets",
+        "label": "上期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "trading_financial_assets",
+        "label": "本期期末数",
+        "statement": "balance",
+        "count": 1
+      },
+      {
+        "metric": "cash_paid_for_acquisition_of_fixed_assets_intangible_assets_and_other_long_term_assets",
+        "label": "购建固定资产、无形资产和其他长期资产支付的现金",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "cash_paid_for_acquisition_of_fixed_assets_intangible_assets_and_other_long_term_assets_yoy",
+        "label": "购建固定资产、无形资产和其他长期资产支付的现金同比增减(%)",
+        "statement": "cashflow",
+        "count": 1
+      },
+      {
+        "metric": "cash_paid_for_interest_fees_and_commissions",
+        "label": "支付利息、手续费及佣金的现金",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "cash_paid_for_interest_fees_and_commissions_yoy",
+        "label": "支付利息、手续费及佣金的现金同比增减(%)",
+        "statement": "cashflow",
+        "count": 1
+      },
+      {
+        "metric": "cash_paid_for_investments",
+        "label": "投资支付的现金",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "cash_paid_for_investments_yoy",
+        "label": "投资支付的现金同比增减(%)",
+        "statement": "cashflow",
+        "count": 1
+      },
+      {
+        "metric": "cash_received_from_investment_income",
+        "label": "取得投资收益收到的现金",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "cash_received_from_investment_income_yoy",
+        "label": "取得投资收益收到的现金同比增减(%)",
+        "statement": "cashflow",
+        "count": 1
+      },
+      {
+        "metric": "effect_of_exchange_rate_changes_on_cash_and_cash_equivalents",
+        "label": "汇率变动对现金及现金等价物的影响",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "financing_cash_flow",
+        "label": "筹资活动产生的现金流量净额",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "investing_cash_flow",
+        "label": "投资活动产生的现金流量净额",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "net_cash_received_from_disposal_of_fixed_assets_intangible_assets_and_other_long_term_assets",
+        "label": "处置固定资产、无形资产和其他长期资产收回的现金净额",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "net_cash_received_from_disposal_of_fixed_assets_intangible_assets_and_other_long_term_assets_yoy",
+        "label": "处置固定资产、无形资产和其他长期资产收回的现金净额同比增减(%)",
+        "statement": "cashflow",
+        "count": 1
+      },
+      {
+        "metric": "net_increase_in_balances_with_central_bank_and_interbank_balances",
+        "label": "存放中央银行和同业款项净增加额",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "net_increase_in_customer_deposits_and_interbank_deposits",
+        "label": "客户存款和同业存放款项净增加额",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "net_increase_in_customer_loans_and_advances",
+        "label": "客户贷款及垫款净增加额",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "net_increase_in_interbank_lending",
+        "label": "拆出资金净增加额",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "operating_cash_flow",
+        "label": "经营活动产生的现金流量净额",
+        "statement": "cashflow",
+        "count": 9
+      },
+      {
+        "metric": "operating_cash_flow_yoy",
+        "label": "经营活动产生的现金流量净额同比",
+        "statement": "cashflow",
+        "count": 1
+      },
+      {
+        "metric": "operating_cash_flow_yoy",
+        "label": "经营活动产生的现金流量净额同比增减(%)",
+        "statement": "cashflow",
+        "count": 1
+      },
+      {
+        "metric": "other_cash_paid_relating_to_investing_activities",
+        "label": "支付其他与投资活动有关的现金",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "other_cash_paid_relating_to_investing_activities_yoy",
+        "label": "支付其他与投资活动有关的现金同比增减(%)",
+        "statement": "cashflow",
+        "count": 1
+      },
+      {
+        "metric": "other_cash_received_relating_to_operating_activities",
+        "label": "收到其他与经营活动有关的现金",
+        "statement": "cashflow",
+        "count": 2
+      },
+      {
+        "metric": "other_cash_received_relating_to_operating_activities_yoy",
+        "label": "收到其他与经营活动有关的现金同比增减(%)",
+        "statement": "cashflow",
+        "count": 1
+      },
+      {
+        "metric": "tax_refunds_received",
+        "label": "收到的税费返还",
+        "statement": "cashflow",
+        "count": 1
+      },
+      {
+        "metric": "tax_refunds_received_yoy",
+        "label": "收到的税费返还同比增减(%)",
+        "statement": "cashflow",
+        "count": 1
+      },
+      {
+        "metric": "administrative_expenses",
+        "label": "管理费用",
+        "statement": "income",
+        "count": 2
+      },
+      {
+        "metric": "administrative_expenses_yoy",
+        "label": "管理费用同比",
+        "statement": "income",
+        "count": 1
+      },
+      {
+        "metric": "cost_of_revenue",
+        "label": "营业成本",
+        "statement": "income",
+        "count": 2
+      },
+      {
+        "metric": "cost_of_revenue_yoy",
+        "label": "营业成本同比",
+        "statement": "income",
+        "count": 1
+      },
+      {
+        "metric": "financial_expenses",
+        "label": "财务费用",
+        "statement": "income",
+        "count": 2
+      },
+      {
+        "metric": "net_profit_excluding_nonrecurring",
+        "label": "归属于上市公司股东的扣除非经常性损益后的净利润",
+        "statement": "income",
+        "count": 4
+      },
+      {
+        "metric": "net_profit_excluding_nonrecurring",
+        "label": "归属于上市公司股东的扣除非经常性损益的净利润",
+        "statement": "income",
+        "count": 3
+      },
+      {
+        "metric": "net_profit_excluding_nonrecurring_yoy",
+        "label": "归属于上市公司股东的扣除非经常性损益的净利润同比增减(%)",
+        "statement": "income",
+        "count": 1
+      },
+      {
+        "metric": "net_profit_parent",
+        "label": "归属于上市公司股东的净利润",
+        "statement": "income",
+        "count": 8
+      },
+      {
+        "metric": "net_profit_parent_yoy",
+        "label": "归属于上市公司股东的净利润同比增减(%)",
+        "statement": "income",
+        "count": 1
+      },
+      {
+        "metric": "research_and_development_expenses",
+        "label": "研发费用",
+        "statement": "income",
+        "count": 2
+      },
+      {
+        "metric": "research_and_development_expenses_yoy",
+        "label": "研发费用同比",
+        "statement": "income",
+        "count": 1
+      },
+      {
+        "metric": "revenue",
+        "label": "营业收入",
+        "statement": "income",
+        "count": 9
+      },
+      {
+        "metric": "revenue_yoy",
+        "label": "营业收入同比",
+        "statement": "income",
+        "count": 1
+      },
+      {
+        "metric": "revenue_yoy",
+        "label": "营业收入同比增减(%)",
+        "statement": "income",
+        "count": 1
+      },
+      {
+        "metric": "selling_expenses",
+        "label": "销售费用",
+        "statement": "income",
+        "count": 2
+      },
+      {
+        "metric": "selling_expenses_yoy",
+        "label": "销售费用同比",
+        "statement": "income",
+        "count": 1
+      },
+      {
+        "metric": "accumulated_investment_amount",
+        "label": "累积投资金额",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "assets",
+        "label": "总资产",
+        "statement": "notes",
+        "count": 2
+      },
+      {
+        "metric": "beginning_balance",
+        "label": "期初余额",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "cash_dividend_amount_pretax",
+        "label": "现金分红金额（含税）",
+        "statement": "notes",
+        "count": 1
+      },
+      {
+        "metric": "current_change",
+        "label": "当期变动",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "dividend_per_10_shares_pretax",
+        "label": "每10股派息数（元）（含税）",
+        "statement": "notes",
+        "count": 1
+      },
+      {
+        "metric": "ending_balance",
+        "label": "期末余额",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "financial_assets_at_fair_value_change_gain_loss",
+        "label": "本期公允价值变动损益",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "financial_assets_at_fair_value_closing_balance",
+        "label": "期末数",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "financial_assets_at_fair_value_opening_balance",
+        "label": "期初数",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "financial_assets_other_changes",
+        "label": "其他变动",
+        "statement": "notes",
+        "count": 2
+      },
+      {
+        "metric": "financial_assets_purchases",
+        "label": "本期购买金额",
+        "statement": "notes",
+        "count": 2
+      },
+      {
+        "metric": "financial_assets_sales_redemptions",
+        "label": "本期出售/赎回金额",
+        "statement": "notes",
+        "count": 2
+      },
+      {
+        "metric": "income_tax_effect_on_non_recurring_items",
+        "label": "减：所得税影响额",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "investment_in_reporting_period",
+        "label": "报告期内投资金额",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "minority_interest_effect_on_non_recurring_items_after_tax",
+        "label": "少数股东权益影响额（税后）",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "net_assets",
+        "label": "净资产",
+        "statement": "notes",
+        "count": 2
+      },
+      {
+        "metric": "net_profit",
+        "label": "净利润",
+        "statement": "notes",
+        "count": 2
+      },
+      {
+        "metric": "non_recurring_disposal_gain_loss_noncurrent_assets",
+        "label": "非流动性资产处置损益，包括已计提资产减值准备的冲销部分",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "non_recurring_fair_value_and_disposal_gain_loss_financial_assets_liabilities",
+        "label": "非金融企业持有金融资产和金融负债产生的公允价值变动损益以及处置金融资产和金融负债产生的损益",
+        "statement": "notes",
+        "count": 2
+      },
+      {
+        "metric": "non_recurring_gains_losses_total",
+        "label": "非经常性损益合计",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "non_recurring_government_grants",
+        "label": "计入当期损益的政府补助",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "operating_profit",
+        "label": "营业利润",
+        "statement": "notes",
+        "count": 2
+      },
+      {
+        "metric": "other_non_operating_income_and_expenses_excluding_above",
+        "label": "除上述各项之外的其他营业外收入和支出",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "other_non_recurring_gains_losses_items",
+        "label": "其他符合非经常性损益定义的损益项目",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "profit_impact",
+        "label": "对当期利润的影响金额",
+        "statement": "notes",
+        "count": 3
+      },
+      {
+        "metric": "raw_material_purchase_amount",
+        "label": "上期采购金额",
+        "statement": "notes",
+        "count": 4
+      },
+      {
+        "metric": "raw_material_purchase_amount",
+        "label": "当期采购金额",
+        "statement": "notes",
+        "count": 4
+      },
+      {
+        "metric": "raw_material_purchase_amount_ratio",
+        "label": "占当期总采购额的比重",
+        "statement": "notes",
+        "count": 4
+      },
+      {
+        "metric": "registered_capital",
+        "label": "注册资本",
+        "statement": "notes",
+        "count": 2
+      },
+      {
+        "metric": "research_and_development_capitalization_ratio",
+        "label": "研发投入资本化的比重",
+        "statement": "notes",
+        "count": 1
+      },
+      {
+        "metric": "research_and_development_capitalized",
+        "label": "资本化研发投入",
+        "statement": "notes",
+        "count": 1
+      },
+      {
+        "metric": "research_and_development_expensed",
+        "label": "费用化研发投入",
+        "statement": "notes",
+        "count": 1
+      },
+      {
+        "metric": "research_and_development_to_revenue_ratio",
+        "label": "研发投入总额占营业收入比例",
+        "statement": "notes",
+        "count": 1
+      },
+      {
+        "metric": "research_and_development_total",
+        "label": "研发投入合计",
+        "statement": "notes",
+        "count": 1
+      },
+      {
+        "metric": "revenue",
+        "label": "营业收入",
+        "statement": "notes",
+        "count": 2
+      },
+      {
+        "metric": "basic_eps_yoy",
+        "label": "基本每股收益同比",
+        "statement": "ratios",
+        "count": 1
+      },
+      {
+        "metric": "cash_dividend_to_net_profit_parent_ratio",
+        "label": "现金分红金额占合并报表中归属于上市公司普通股股东的净利润的比率",
+        "statement": "ratios",
+        "count": 1
+      },
+      {
+        "metric": "diluted_eps",
+        "label": "稀释每股收益",
+        "statement": "ratios",
+        "count": 3
+      },
+      {
+        "metric": "diluted_eps_yoy",
+        "label": "稀释每股收益同比",
+        "statement": "ratios",
+        "count": 1
+      },
+      {
+        "metric": "eps",
+        "label": "基本每股收益",
+        "statement": "ratios",
+        "count": 3
+      },
+      {
+        "metric": "eps_excluding_nonrecurring",
+        "label": "扣除非经常性损益后的基本每股收益",
+        "statement": "ratios",
+        "count": 3
+      },
+      {
+        "metric": "eps_excluding_nonrecurring_yoy",
+        "label": "扣非基本每股收益同比",
+        "statement": "ratios",
+        "count": 1
+      },
+      {
+        "metric": "roe",
+        "label": "加权平均净资产收益率",
+        "statement": "ratios",
+        "count": 3
+      },
+      {
+        "metric": "roe_excluding_nonrecurring",
+        "label": "扣除非经常性损益后的加权平均净资产收益率",
+        "statement": "ratios",
+        "count": 3
+      },
+      {
+        "metric": "cost_amount_current",
+        "label": "本期金额",
+        "statement": "segment",
+        "count": 7
+      },
+      {
+        "metric": "cost_amount_prior",
+        "label": "上年同期金额",
+        "statement": "segment",
+        "count": 7
+      },
+      {
+        "metric": "cost_of_revenue",
+        "label": "营业成本",
+        "statement": "segment",
+        "count": 9
+      },
+      {
+        "metric": "cost_of_revenue_yoy",
+        "label": "营业成本同比",
+        "statement": "segment",
+        "count": 9
+      },
+      {
+        "metric": "cost_share_current",
+        "label": "本期占总成本比例",
+        "statement": "segment",
+        "count": 7
+      },
+      {
+        "metric": "cost_share_prior",
+        "label": "上年同期占总成本比例",
+        "statement": "segment",
+        "count": 7
+      },
+      {
+        "metric": "cost_yoy",
+        "label": "本期金额较上年同期变动比例",
+        "statement": "segment",
+        "count": 7
+      },
+      {
+        "metric": "gross_margin",
+        "label": "毛利率",
+        "statement": "segment",
+        "count": 18
+      },
+      {
+        "metric": "gross_margin_yoy",
+        "label": "毛利率同比",
+        "statement": "segment",
+        "count": 9
+      },
+      {
+        "metric": "production_volume",
+        "label": "产量",
+        "statement": "segment",
+        "count": 2
+      },
+      {
+        "metric": "production_volume_yoy",
+        "label": "产量同比",
+        "statement": "segment",
+        "count": 2
+      },
+      {
+        "metric": "revenue",
+        "label": "上期销售收入",
+        "statement": "segment",
+        "count": 4
+      },
+      {
+        "metric": "revenue",
+        "label": "本期销售收入",
+        "statement": "segment",
+        "count": 4
+      },
+      {
+        "metric": "revenue",
+        "label": "营业收入",
+        "statement": "segment",
+        "count": 9
+      },
+      {
+        "metric": "revenue",
+        "label": "销售收入",
+        "statement": "segment",
+        "count": 4
+      },
+      {
+        "metric": "revenue_share",
+        "label": "本期销售收入占比",
+        "statement": "segment",
+        "count": 2
+      },
+      {
+        "metric": "revenue_yoy",
+        "label": "同比",
+        "statement": "segment",
+        "count": 2
+      },
+      {
+        "metric": "revenue_yoy",
+        "label": "营业收入同比",
+        "statement": "segment",
+        "count": 9
+      },
+      {
+        "metric": "sales_volume",
+        "label": "上期销售量",
+        "statement": "segment",
+        "count": 2
+      },
+      {
+        "metric": "sales_volume",
+        "label": "本期销售量",
+        "statement": "segment",
+        "count": 2
+      },
+      {
+        "metric": "sales_volume",
+        "label": "销售量",
+        "statement": "segment",
+        "count": 4
+      },
+      {
+        "metric": "sales_volume",
+        "label": "销量",
+        "statement": "segment",
+        "count": 2
+      },
+      {
+        "metric": "sales_volume_share",
+        "label": "本期销售量占比",
+        "statement": "segment",
+        "count": 2
+      },
+      {
+        "metric": "sales_volume_yoy",
+        "label": "销量同比",
+        "statement": "segment",
+        "count": 2
+      },
+      {
+        "metric": "segment_cost_of_revenue",
+        "label": "营业成本（分部）",
+        "statement": "segment",
+        "count": 7
+      },
+      {
+        "metric": "segment_cost_of_revenue_yoy",
+        "label": "营业成本同比增减",
+        "statement": "segment",
+        "count": 7
+      },
+      {
+        "metric": "segment_revenue",
+        "label": "营业收入（分部）",
+        "statement": "segment",
+        "count": 7
+      },
+      {
+        "metric": "segment_revenue",
+        "label": "销售收入",
+        "statement": "segment",
+        "count": 2
+      },
+      {
+        "metric": "segment_revenue_yoy",
+        "label": "营业收入同比增减",
+        "statement": "segment",
+        "count": 7
+      },
+      {
+        "metric": "segment_revenue_yoy",
+        "label": "销售收入同比",
+        "statement": "segment",
+        "count": 2
+      }
+    ],
+    "counts": {
+      "documents": 1,
+      "facts": 470,
+      "pages": 143,
+      "tables": 275
+    },
+    "statements": [
+      {
+        "id": "income",
+        "label": "利润表"
+      },
+      {
+        "id": "balance",
+        "label": "资产负债表"
+      },
+      {
+        "id": "cashflow",
+        "label": "现金流量表"
+      },
+      {
+        "id": "ratios",
+        "label": "比率与每股指标"
+      },
+      {
+        "id": "segment",
+        "label": "分部与经营数据"
+      },
+      {
+        "id": "notes",
+        "label": "财务附注"
+      }
+    ],
+    "indexing": "keyword+yaml",
+    "embedding_enabled": false,
+    "processing": [
+      {
+        "processing_id": "7e44973ad18344a4ac7a1e59e10b7957",
+        "owner_run_id": "ca55c513-45c9-47c7-94f8-62207edf1c3a",
+        "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+        "state": "normalizing",
+        "progress": 0.36406015037593986,
+        "message": "DeepSeek 清洗 41/266 批表格",
+        "documents": [
+          {
+            "document_id": "39de9b118212463bbee6c2ab3c571432",
+            "name": "贵州茅台2024年年度报告.pdf",
+            "state": "normalizing",
+            "progress": 0.36406015037593986,
+            "fact_count": 470,
+            "shared_processing_id": null,
+            "coverage": {
+              "tables_total": 242,
+              "tables_completed": 41,
+              "batches_total": 266,
+              "batches_completed": 41
+            }
+          }
+        ],
+        "fact_count": 470,
+        "coverage": {
+          "tables_total": 242,
+          "tables_completed": 41,
+          "batches_total": 266,
+          "batches_completed": 41
+        },
+        "errors": [],
+        "created_at": "2026-10-03T13:33:11.310228+00:00",
+        "updated_at": "2026-10-03T13:39:59.681735+00:00"
+      }
+    ],
+    "companies": [
+      "贵州茅台酒股份有限公司"
+    ],
+    "periods": [
+      "2022-12-31",
+      "2022-FY",
+      "2023-12-31",
+      "2023-FY",
+      "2024-01-01",
+      "2024-12-31",
+      "2024-FY",
+      "2024-Q1",
+      "2024-Q2",
+      "2024-Q3",
+      "2024-Q4"
+    ],
+    "scopes": [
+      "consolidated_CAS",
+      "parent_CAS",
+      "unspecified"
+    ],
+    "currencies": [
+      "CNY",
+      "CNY/share",
+      "percent",
+      "吨"
+    ]
+  },
+  "document": {
+    "id": "39de9b118212463bbee6c2ab3c571432",
+    "name": "贵州茅台2024年年度报告.pdf",
+    "status": "normalizing",
+    "pageCount": 143,
+    "company": "贵州茅台酒股份有限公司",
+    "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+    "warnings": [],
+    "createdAt": "2026-10-03T13:33:07.318886+00:00",
+    "tableCount": 275,
+    "factCount": 470,
+    "normalization_engine": "LangExtract",
+    "normalized_fact_count": 470,
+    "legacy_fact_count": 0
+  },
+  "processing": [
+    {
+      "processing_id": "7e44973ad18344a4ac7a1e59e10b7957",
+      "owner_run_id": "ca55c513-45c9-47c7-94f8-62207edf1c3a",
+      "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+      "state": "normalizing",
+      "progress": 0.36406015037593986,
+      "message": "DeepSeek 清洗 41/266 批表格",
+      "documents": [
+        {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "name": "贵州茅台2024年年度报告.pdf",
+          "state": "normalizing",
+          "progress": 0.36406015037593986,
+          "fact_count": 470,
+          "shared_processing_id": null,
+          "coverage": {
+            "tables_total": 242,
+            "tables_completed": 41,
+            "batches_total": 266,
+            "batches_completed": 41
+          }
+        }
+      ],
+      "fact_count": 470,
+      "coverage": {
+        "tables_total": 242,
+        "tables_completed": 41,
+        "batches_total": 266,
+        "batches_completed": 41
+      },
+      "errors": [],
+      "created_at": "2026-10-03T13:33:11.310228+00:00",
+      "updated_at": "2026-10-03T13:39:59.681735+00:00"
+    }
+  ],
+  "fact_count": 470,
+  "metric_count": 127,
+  "anchors": [
+    {
+      "id": "native_revenue_2024",
+      "page": 5,
+      "expected": "170899152276.34",
+      "actual": [
+        "170899152276.34"
+      ],
+      "passed": true,
+      "source_refs": [
+        {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 5,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t8",
+          "row": 2,
+          "column": 2,
+          "cell": "B2",
+          "text": "营业收入 | 170,899,152,276.34 | 147,693,604,994.14 | 15.71 | 124,099,843,771.99",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.1",
+            "model": "deepseek-flash",
+            "label": "营业收入",
+            "statement": "income",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {},
+            "scale": "1",
+            "char_interval": [
+              4167,
+              4176
+            ],
+            "processing_id": "7e44973ad18344a4ac7a1e59e10b7957"
+          },
+          "bbox": [
+            205.12999725341797,
+            263.05999755859375,
+            306.16998291015625,
+            277.72998046875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "native_revenue_2023",
+      "page": 5,
+      "expected": "147693604994.14",
+      "actual": [
+        "147693604994.14"
+      ],
+      "passed": true,
+      "source_refs": [
+        {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 5,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t8",
+          "row": 2,
+          "column": 3,
+          "cell": "C2",
+          "text": "营业收入 | 170,899,152,276.34 | 147,693,604,994.14 | 15.71 | 124,099,843,771.99",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.1",
+            "model": "deepseek-flash",
+            "label": "营业收入",
+            "statement": "income",
+            "period_start": "2023-01-01",
+            "period_end": "2023-12-31",
+            "restatement": "original",
+            "dimensions": {},
+            "scale": "1",
+            "char_interval": [
+              4167,
+              4176
+            ],
+            "processing_id": "7e44973ad18344a4ac7a1e59e10b7957"
+          },
+          "bbox": [
+            306.16998291015625,
+            263.05999755859375,
+            397.989990234375,
+            277.72998046875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "native_assets_2024",
+      "page": 5,
+      "expected": "298944579918.70",
+      "actual": [
+        "298944579918.70"
+      ],
+      "passed": true,
+      "source_refs": [
+        {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 5,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t8",
+          "row": 8,
+          "column": 2,
+          "cell": "B8",
+          "text": "总资产 | 298,944,579,918.70 | 272,699,660,092.25 | 9.62 | 254,500,826,096.02",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.1",
+            "model": "deepseek-flash",
+            "label": "总资产",
+            "statement": "balance",
+            "period_start": "",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {},
+            "scale": "1",
+            "char_interval": [
+              4785,
+              4794
+            ],
+            "processing_id": "7e44973ad18344a4ac7a1e59e10b7957"
+          },
+          "bbox": [
+            205.12999725341797,
+            432.04998779296875,
+            306.16998291015625,
+            446.8299865722656
+          ]
+        }
+      ]
+    },
+    {
+      "id": "native_revenue_q3",
+      "page": 6,
+      "expected": "38845154206.94",
+      "actual": [
+        "38845154206.94"
+      ],
+      "passed": true,
+      "source_refs": [
+        {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 6,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t10",
+          "row": 2,
+          "column": 4,
+          "cell": "D2",
+          "text": "营业收入 | 45,775,517,043.29 | 36,155,460,624.46 | 38,845,154,206.94 | 50,123,020,401.65",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.1",
+            "model": "deepseek-flash",
+            "label": "营业收入",
+            "statement": "income",
+            "period_start": "2024-07-01",
+            "period_end": "2024-09-30",
+            "restatement": "original",
+            "dimensions": {},
+            "scale": "1",
+            "char_interval": [
+              4547,
+              4557
+            ],
+            "processing_id": "7e44973ad18344a4ac7a1e59e10b7957"
+          },
+          "bbox": [
+            362.9499969482422,
+            350.6899871826172,
+            452.13999938964844,
+            362.8099822998047
+          ]
+        }
+      ]
+    },
+    {
+      "id": "native_cashflow_q4",
+      "page": 6,
+      "expected": "48042305950.98",
+      "actual": [
+        "48042305950.98"
+      ],
+      "passed": true,
+      "source_refs": [
+        {
+          "document_id": "39de9b118212463bbee6c2ab3c571432",
+          "page": 6,
+          "table_id": "39de9b118212463bbee6c2ab3c571432:t10",
+          "row": 5,
+          "column": 5,
+          "cell": "E5",
+          "text": "经营活动产生的现金\n流量净额 | 9,187,422,415.09 | 27,434,411,397.54 | 7,799,552,404.82 | 48,042,305,950.98",
+          "normalization": {
+            "engine": "LangExtract",
+            "version": "langextract-finance-0.3.1",
+            "model": "deepseek-flash",
+            "label": "经营活动产生的现金流量净额",
+            "statement": "cashflow",
+            "period_start": "2024-10-01",
+            "period_end": "2024-12-31",
+            "restatement": "original",
+            "dimensions": {},
+            "scale": "1",
+            "char_interval": [
+              4911,
+              4921
+            ],
+            "processing_id": "7e44973ad18344a4ac7a1e59e10b7957"
+          },
+          "bbox": [
+            452.13999938964844,
+            422.2099914550781,
+            541.4599812825521,
+            446.1499837239583
+          ]
+        }
+      ]
+    }
+  ],
+  "finished_at": "2026-10-03T13:40:05.744Z"
+}

@@ -1,0 +1,1279 @@
+{
+  "schema_version": 1,
+  "kind": "independent_actual_pi_financial_review",
+  "created_at": "2026-10-04T01:23:14.632906+00:00",
+  "status": "failed_financial_semantics_and_incomplete_workflow",
+  "development_case": true,
+  "accuracy_holdout": false,
+  "isolation": {
+    "model_calls": 0,
+    "network_calls": 0,
+    "application_modules_imported": false,
+    "production_or_project_writes": 0,
+    "answers_supplied_to_running_pi": false,
+    "old_reports_modified": false
+  },
+  "scope": "Actual v07 stage1 saved artifacts and final response; terminal stage2 coverage. No approval of unsaved valuation drafts.",
+  "inputs": {
+    "run": {
+      "path": "benchmark\\results\\liugong-research-workflow-v07.json",
+      "sha256": "e69ae8c1008eaa7ec4aa6a51a48c7e5b3a7a4416426f9e07ed98b0ae7f9dfdcf"
+    },
+    "pre_run_independent_reference": {
+      "path": "benchmark\\results\\liugong-archived-independent-review-v07.json",
+      "sha256": "e248d35a42f6836aa7577b45a2421bafa7a823486e5c9ab14e2618d32b7b6d4a"
+    },
+    "archived_pdf": {
+      "path": "D:\\codex\\金融\\data\\research\\0187cd2c-0f4c-40b1-8ec1-c58d65964c84\\blobs\\f6a77ccd45a617c3a23362d69cc242dec9e87772ad2eed724a97391d6b96bf3e.pdf",
+      "sha256": "f6a77ccd45a617c3a23362d69cc242dec9e87772ad2eed724a97391d6b96bf3e",
+      "pages": 199,
+      "visually_checked_pages": [
+        81,
+        164
+      ],
+      "text_checked_pages": [
+        1,
+        7,
+        8,
+        21,
+        22,
+        23,
+        75,
+        76,
+        81,
+        82,
+        126,
+        128,
+        135,
+        136,
+        161,
+        164,
+        199
+      ]
+    },
+    "artifacts": [
+      {
+        "id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+        "revision_id": "revision_4d32186c-b1f9-4a3a-9194-2caf39c677f7",
+        "title": "柳工(000528) 2025H1 财务质量模型（合并口径，H1同比）",
+        "path": "data\\research\\0187cd2c-0f4c-40b1-8ec1-c58d65964c84\\artifacts\\revision_4d32186c-b1f9-4a3a-9194-2caf39c677f7.json",
+        "sha256": "8657f167a5533decbb9fbdf9ac9915a2c6352e8ffc3269247b7fee34eccdff41"
+      },
+      {
+        "id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+        "revision_id": "revision_5f7448df-ada4-4cbe-b789-7b1916c2a066",
+        "title": "柳工(000528) 2025H1 归母口径利润与非经常性损益质量（补充成果）",
+        "path": "data\\research\\0187cd2c-0f4c-40b1-8ec1-c58d65964c84\\artifacts\\revision_5f7448df-ada4-4cbe-b789-7b1916c2a066.json",
+        "sha256": "3a9025d6e63b89d61452fb3674ba578cad13c5b2b7290cbf337ed3be611b8e37"
+      }
+    ]
+  },
+  "workflow": {
+    "stage1": "completed_2_quality_artifacts",
+    "stage2": "failed_max_input_tokens",
+    "stage3": "not_submitted",
+    "source_model_dependency_update_verified": false,
+    "saved_research_artifacts": 2,
+    "combined_usage": {
+      "model_calls": 34,
+      "settled_calls": 34,
+      "input_tokens": 3166574,
+      "output_tokens": 67920,
+      "total_tokens": 3234494,
+      "failed_calls": 1,
+      "unknown_usage_calls": 0
+    },
+    "original_budget": {
+      "max_model_calls": 60,
+      "max_input_tokens": 3000000,
+      "max_output_tokens": 450000,
+      "max_total_tokens": 3450000,
+      "max_wall_seconds": 1800
+    },
+    "search_as_of_values": [
+      "2025-09-08"
+    ]
+  },
+  "summary": {
+    "arithmetic_checks_passed": 71,
+    "arithmetic_checks_total": 71,
+    "literal_references_matched": 43,
+    "literal_references_total": 43,
+    "real_findings": 5,
+    "financial_acceptance": "failed",
+    "counts_do_not_override_semantic_failures": true
+  },
+  "financial_findings": [
+    {
+      "id": "F1",
+      "severity": "major",
+      "classification": "financial_semantic_error",
+      "where": "consolidated spec periods.0/1.ebit; periods.0/1.opex; result attribution; stage1 final section 3",
+      "problem": "将中国合并利润表营业利润直接命名为 EBIT，费用中又包含财务费用。零残差仅证明营业利润算术勾稽，不能证明息税前口径。",
+      "source_pages": [
+        81
+      ],
+      "evidence": {
+        "reported_operating_profit_2025": "1372866154.73",
+        "finance_expense_2025": "-35071969.67",
+        "interest_expense_2025": "162556188.56",
+        "interest_income_2025": "114001209.72"
+      },
+      "required_change": "显式区分 reported_operating_profit、EBIT 和归母净利，并给 EBIT 的利息/投资/其他非经营项目调节依据。不能给营业利润换个英文名就供 FCFF 使用。"
+    },
+    {
+      "id": "F2",
+      "severity": "material",
+      "classification": "source_contradiction",
+      "where": "consolidated spec input_basis periods.1.opex rationale",
+      "problem": "“财务费用为负（利息收入大于利息费用）”与原表相反。原表利息收入114001209.72，小于利息费用162556188.56；公司在p.21解释财务费用变动主要由汇兑收益增加。",
+      "source_pages": [
+        21,
+        81
+      ],
+      "required_change": "删除错误利息因果解释，按明细与公司变动说明分别披露，不从财务费用符号推出利息收入大小。"
+    },
+    {
+      "id": "F3",
+      "severity": "material",
+      "classification": "unsupported_economic_inference",
+      "where": "stage1 final section 3 归母与少数股东",
+      "problem": "少数股东损益由正转负能解释归母与合并利润的增量差，但不能据此判定“非经营性因素偏强”；少数股东承担的亏损可以来自经营活动。",
+      "source_pages": [
+        82
+      ],
+      "required_change": "保留所有权归属恒等式与增速差解释；若认定经营/非经营性质，需要子公司损益构成证据。"
+    },
+    {
+      "id": "F4",
+      "severity": "material",
+      "classification": "stock_flow_and_scope_confusion",
+      "where": "stage1 final sections 4 and 6 融资租赁投放 +7.63亿",
+      "problem": "长期应收款及流动部分净账面额合计增加762969405.02是余额差，不能称为融资租赁现金投放额。附注还包含分期收款销售商品，不能全部归入融资租赁。",
+      "source_pages": [
+        75,
+        76,
+        135,
+        136,
+        164
+      ],
+      "evidence": {
+        "reported_net_long_receivable_increase": "762969405.02",
+        "note_136_categories": [
+          "融资租赁款",
+          "分期收款销售商品",
+          "一年内到期的长期应收款"
+        ]
+      },
+      "required_change": "把该数标为长期应收款含流动部分净账面增量，使用现金流量调节或业务投放明细量化现金影响；不把净余额变动当现金支出。"
+    },
+    {
+      "id": "F5",
+      "severity": "minor",
+      "classification": "answer_transcription_error",
+      "where": "stage1 final section 4 1年以内应收账款增量",
+      "problem": "工具正确计算2421413461.38元，回答写成24.12亿元；保留两位小数应为24.21亿元。",
+      "source_pages": [
+        126
+      ],
+      "evidence": {
+        "actual_calculation": "2421413461.38",
+        "answer": "24.12亿",
+        "correct_display": "24.21亿"
+      },
+      "required_change": "展示值由已保存计算结果格式化生成，避免重新手写数字。"
+    }
+  ],
+  "honest_gaps_and_unverified_scope": [
+    {
+      "id": "G1",
+      "classification": "honest_missing_data",
+      "description": "2024H1应收/存货/应付等同期起止余额未取得，模型保留null；没有借用2024年末余额计算上期周转。回答仅点出缺2023年末，完整缺口还包括2024年6月末。"
+    },
+    {
+      "id": "G2",
+      "classification": "honest_missing_data",
+      "description": "可比销量和单价未取得，量价归因留null；未捏造实物量。"
+    },
+    {
+      "id": "G3",
+      "classification": "incomplete_analysis",
+      "description": "CFO与合并净利润配比正确，但未保存全量现金调节桥；回答仅列出部分调节因素，不足以单独解释全部差额。"
+    },
+    {
+      "id": "G4",
+      "classification": "provenance_limitation",
+      "description": "截止日前报告日期可由原PDF第199页2025-08-27署名佐证。原快照仍为as_of=null/no_cutoff，stage1回答只以URL日期认定发布日，没有归档正式发布时间元数据；不能将署名日期当作首次公开时间证明。"
+    },
+    {
+      "id": "G5",
+      "classification": "not_executed",
+      "description": "3种经营情景、独立DCF、产业链、备忘录、WACC增量更新均无已保存研究成果，未达到验收。sandbox scenario_inputs.json仅为候选输入，非计算结果。"
+    },
+    {
+      "id": "G6",
+      "classification": "not_completed",
+      "description": "相对估值没有可靠已保存同行价格/同口径倍数与分母，未完成。阶段2发起过搜索，但搜索结果不是估值正确性证据。"
+    }
+  ],
+  "verified_strengths": [
+    "已披露原始输入金额、单位、半年期间及2024H1经重述比较列与原表一致。",
+    "合并CFO配合并净利润，归母扣非单列另一成果，未混用股东范围。",
+    "归母非经常损益采用税后归母口径，上期推导与本期披露性质标注明确。",
+    "本期平均余额采用2025H1两端，181天，收入/成本代理口径明确；历史缺项未补零。",
+    "保存的财务质量比率、营业利润算术桥及本轮独立计算器结果可独立精确复算；语义错误单独判定。",
+    "本轮出现一次引用不匹配，模型修改引用后保存，没有篡改原始失败记录。"
+  ],
+  "checks": [
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2024:revenue",
+      "status": "passed",
+      "actual": "16060005052.72",
+      "expected_fraction": "401500126318/25",
+      "expected_decimal": "16060005052.72",
+      "absolute_tolerance": "0",
+      "source_page": 81
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2024:net_income",
+      "status": "passed",
+      "actual": "1016662113.22",
+      "expected_fraction": "50833105661/50",
+      "expected_decimal": "1016662113.22",
+      "absolute_tolerance": "0",
+      "source_page": 81
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2024:cfo",
+      "status": "passed",
+      "actual": "1121727695.46",
+      "expected_fraction": "56086384773/50",
+      "expected_decimal": "1121727695.46",
+      "absolute_tolerance": "0",
+      "source_page": 85
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2024:cogs",
+      "status": "passed",
+      "actual": "12510389162.23",
+      "expected_fraction": "1251038916223/100",
+      "expected_decimal": "12510389162.23",
+      "absolute_tolerance": "0",
+      "source_page": 81
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:revenue",
+      "status": "passed",
+      "actual": "18181039589.02",
+      "expected_fraction": "909051979451/50",
+      "expected_decimal": "18181039589.02",
+      "absolute_tolerance": "0",
+      "source_page": 81
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:net_income",
+      "status": "passed",
+      "actual": "1152243041.58",
+      "expected_fraction": "57612152079/50",
+      "expected_decimal": "1152243041.58",
+      "absolute_tolerance": "0",
+      "source_page": 81
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:cfo",
+      "status": "passed",
+      "actual": "457336115.13",
+      "expected_fraction": "45733611513/100",
+      "expected_decimal": "457336115.13",
+      "absolute_tolerance": "0",
+      "source_page": 85
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:cogs",
+      "status": "passed",
+      "actual": "14122571351.06",
+      "expected_fraction": "706128567553/50",
+      "expected_decimal": "14122571351.06",
+      "absolute_tolerance": "0",
+      "source_page": 81
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:receivables_begin",
+      "status": "passed",
+      "actual": "10246089993.94",
+      "expected_fraction": "512304499697/50",
+      "expected_decimal": "10246089993.94",
+      "absolute_tolerance": "0",
+      "source_page": 75
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:receivables_end",
+      "status": "passed",
+      "actual": "12876792917.79",
+      "expected_fraction": "1287679291779/100",
+      "expected_decimal": "12876792917.79",
+      "absolute_tolerance": "0",
+      "source_page": 75
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:inventory_begin",
+      "status": "passed",
+      "actual": "9416452406.30",
+      "expected_fraction": "94164524063/10",
+      "expected_decimal": "9416452406.3",
+      "absolute_tolerance": "0",
+      "source_page": 75
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:inventory_end",
+      "status": "passed",
+      "actual": "8517310372.76",
+      "expected_fraction": "212932759319/25",
+      "expected_decimal": "8517310372.76",
+      "absolute_tolerance": "0",
+      "source_page": 75
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:payables_begin",
+      "status": "passed",
+      "actual": "7414533215.98",
+      "expected_fraction": "370726660799/50",
+      "expected_decimal": "7414533215.98",
+      "absolute_tolerance": "0",
+      "source_page": 76
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:payables_end",
+      "status": "passed",
+      "actual": "7620788262.01",
+      "expected_fraction": "762078826201/100",
+      "expected_decimal": "7620788262.01",
+      "absolute_tolerance": "0",
+      "source_page": 76
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:assets_begin",
+      "status": "passed",
+      "actual": "47907158015.10",
+      "expected_fraction": "479071580151/10",
+      "expected_decimal": "47907158015.1",
+      "absolute_tolerance": "0",
+      "source_page": 76
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:assets_end",
+      "status": "passed",
+      "actual": "50896799018.79",
+      "expected_fraction": "5089679901879/100",
+      "expected_decimal": "50896799018.79",
+      "absolute_tolerance": "0",
+      "source_page": 76
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2024:cash_conversion",
+      "status": "passed",
+      "actual": "1.1033436585014793357699113413608829002370876802290",
+      "expected_fraction": "56086384773/50833105661",
+      "expected_decimal": "1.10334365850147933576991134136088290023708768022895794716177",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2024:cfo_margin",
+      "status": "passed",
+      "actual": "0.069846036273196488274884169596965043214370289532189",
+      "expected_fraction": "56086384773/803000252636",
+      "expected_decimal": "0.0698460362731964882748841695969650432143702895321887095217599",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2024:cash_profit_gap",
+      "status": "passed",
+      "actual": "105065582.24",
+      "expected_fraction": "2626639556/25",
+      "expected_decimal": "105065582.24",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:cash_conversion",
+      "status": "passed",
+      "actual": "0.39690941808846432209321600336394196374140970926461",
+      "expected_fraction": "15244537171/38408101386",
+      "expected_decimal": "0.396909418088464322093216003363941963741409709264611968809908",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:cfo_margin",
+      "status": "passed",
+      "actual": "0.025154563516059725616918835998452410788600200313013",
+      "expected_fraction": "45733611513/1818103958902",
+      "expected_decimal": "0.0251545635160597256169188359984524107886002003130134648316199",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:cash_profit_gap",
+      "status": "passed",
+      "actual": "-694906926.45",
+      "expected_fraction": "-13898138529/20",
+      "expected_decimal": "-694906926.45",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:receivables_turnover",
+      "status": "passed",
+      "actual": "1.5725582020567985616479402259944697963714926432708",
+      "expected_fraction": "519458273972/330326898739",
+      "expected_decimal": "1.57255820205679856164794022599446979637149264327080907780895",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:inventory_turnover",
+      "status": "passed",
+      "actual": "1.5749702418892189688803202643203191209190902420124",
+      "expected_fraction": "1412257135106/896688138953",
+      "expected_decimal": "1.57497024188921896888032026432031912091909024201244312586428",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:payables_turnover",
+      "status": "passed",
+      "actual": "1.8785858848091592404359025433539425797592872344301",
+      "expected_fraction": "2824514270212/1503532147799",
+      "expected_decimal": "1.87858588480915924043590254335394257975928723443006603016808",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:dso",
+      "status": "passed",
+      "actual": "115.09907853538545080329357237746533617937718980875",
+      "expected_fraction": "59789168671759/519458273972",
+      "expected_decimal": "115.099078535385450803293572377465336179377189808747875127012",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:dio",
+      "status": "passed",
+      "actual": "114.92280627657171123775798704589136550769525073505",
+      "expected_fraction": "162300553150493/1412257135106",
+      "expected_decimal": "114.922806276571711237757987045891365507695250735047129658924",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:dpo",
+      "status": "passed",
+      "actual": "96.349068447507966560610901459227001494541528969918",
+      "expected_fraction": "272139318751619/2824514270212",
+      "expected_decimal": "96.3490684475079665606109014592270014945415289699199132948183",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:accruals_to_assets",
+      "status": "passed",
+      "actual": "0.014066378459147040376323255976948421761501090351095",
+      "expected_fraction": "46327128430/3293465234463",
+      "expected_decimal": "0.0140663784591470403763232559769484217615010903510952304066262",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:working_capital_change",
+      "status": "passed",
+      "actual": "1525305844.28",
+      "expected_fraction": "38132646107/25",
+      "expected_decimal": "1525305844.28",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:cash_conversion_cycle",
+      "status": "passed",
+      "actual": "133.67281636444919548044065796412970019253091157388",
+      "expected_fraction": "24515883715921935852564829/183402163451701091815258",
+      "expected_decimal": "133.672816364449195480440657964129700192530911573875091491117",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:revenue_change",
+      "status": "passed",
+      "actual": "2121034536.30",
+      "expected_fraction": "21210345363/10",
+      "expected_decimal": "2121034536.3",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:revenue_yoy",
+      "status": "passed",
+      "actual": "0.13206935672419177413086793359159243979383858062739",
+      "expected_fraction": "106051726815/803000252636",
+      "expected_decimal": "0.132069356724191774130867933591592439793838580627392708117081",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:net_income_change",
+      "status": "passed",
+      "actual": "135580928.36",
+      "expected_fraction": "3389523209/25",
+      "expected_decimal": "135580928.36",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876:2025:net_income_yoy",
+      "status": "passed",
+      "actual": "0.13335888747794917066497508248712075479184639778722",
+      "expected_fraction": "6779046418/50833105661",
+      "expected_decimal": "0.133358887477949170664975082487120754791846397787220179893545",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75:2024:revenue",
+      "status": "passed",
+      "actual": "16060005052.72",
+      "expected_fraction": "401500126318/25",
+      "expected_decimal": "16060005052.72",
+      "absolute_tolerance": "0",
+      "source_page": 81
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75:2024:net_income",
+      "status": "passed",
+      "actual": "983530909.56",
+      "expected_fraction": "24588272739/25",
+      "expected_decimal": "983530909.56",
+      "absolute_tolerance": "0",
+      "source_page": 82
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75:2024:nonrecurring",
+      "status": "passed",
+      "actual": "80922527.34",
+      "expected_fraction": "4046126367/50",
+      "expected_decimal": "80922527.34",
+      "absolute_tolerance": "0"
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75:2025:revenue",
+      "status": "passed",
+      "actual": "18181039589.02",
+      "expected_fraction": "909051979451/50",
+      "expected_decimal": "18181039589.02",
+      "absolute_tolerance": "0",
+      "source_page": 81
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75:2025:net_income",
+      "status": "passed",
+      "actual": "1229940076.97",
+      "expected_fraction": "122994007697/100",
+      "expected_decimal": "1229940076.97",
+      "absolute_tolerance": "0",
+      "source_page": 82
+    },
+    {
+      "category": "source_numeric_input",
+      "name": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75:2025:nonrecurring",
+      "status": "passed",
+      "actual": "83552485.47",
+      "expected_fraction": "8355248547/100",
+      "expected_decimal": "83552485.47",
+      "absolute_tolerance": "0"
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75:2024:recurring_net_income",
+      "status": "passed",
+      "actual": "902608382.22",
+      "expected_fraction": "45130419111/50",
+      "expected_decimal": "902608382.22",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75:2025:recurring_net_income",
+      "status": "passed",
+      "actual": "1146387591.50",
+      "expected_fraction": "2292775183/2",
+      "expected_decimal": "1146387591.5",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75:2025:revenue_change",
+      "status": "passed",
+      "actual": "2121034536.30",
+      "expected_fraction": "21210345363/10",
+      "expected_decimal": "2121034536.3",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75:2025:revenue_yoy",
+      "status": "passed",
+      "actual": "0.13206935672419177413086793359159243979383858062739",
+      "expected_fraction": "106051726815/803000252636",
+      "expected_decimal": "0.132069356724191774130867933591592439793838580627392708117081",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75:2025:net_income_change",
+      "status": "passed",
+      "actual": "246409167.41",
+      "expected_fraction": "24640916741/100",
+      "expected_decimal": "246409167.41",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "independent_arithmetic",
+      "name": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75:2025:net_income_yoy",
+      "status": "passed",
+      "actual": "0.25053525518606783012225802364848251734694571788563",
+      "expected_fraction": "24640916741/98353090956",
+      "expected_decimal": "0.250535255186067830122258023648482517346945717885629152081938",
+      "absolute_tolerance": "1/10000000000000000000000000000000000000000",
+      "caveat": "Arithmetic given input semantics; does not validate a mislabeled EBIT."
+    },
+    {
+      "category": "derived_source_sum",
+      "name": "2024:opex",
+      "status": "passed",
+      "actual": "2034088371.26",
+      "expected_fraction": "101704418563/50",
+      "expected_decimal": "2034088371.26",
+      "absolute_tolerance": "0",
+      "source_page": 81
+    },
+    {
+      "category": "derived_source_sum",
+      "name": "2024:other_operating_income",
+      "status": "passed",
+      "actual": "-324642928.18",
+      "expected_fraction": "-16232146409/50",
+      "expected_decimal": "-324642928.18",
+      "absolute_tolerance": "0",
+      "source_page": 81
+    },
+    {
+      "category": "source_label_mismatch_numeric_match",
+      "name": "2024:ebit_is_reported_operating_profit",
+      "status": "passed",
+      "actual": "1190884591.05",
+      "expected_fraction": "23817691821/20",
+      "expected_decimal": "1190884591.05",
+      "absolute_tolerance": "0",
+      "source_page": 81,
+      "semantic_status": "failed: amount matches operating profit including finance expense, not identified EBIT"
+    },
+    {
+      "category": "derived_source_sum",
+      "name": "2025:opex",
+      "status": "passed",
+      "actual": "2268906721.09",
+      "expected_fraction": "226890672109/100",
+      "expected_decimal": "2268906721.09",
+      "absolute_tolerance": "0",
+      "source_page": 81
+    },
+    {
+      "category": "derived_source_sum",
+      "name": "2025:other_operating_income",
+      "status": "passed",
+      "actual": "-416695362.14",
+      "expected_fraction": "-20834768107/50",
+      "expected_decimal": "-416695362.14",
+      "absolute_tolerance": "0",
+      "source_page": 81
+    },
+    {
+      "category": "source_label_mismatch_numeric_match",
+      "name": "2025:ebit_is_reported_operating_profit",
+      "status": "passed",
+      "actual": "1372866154.73",
+      "expected_fraction": "137286615473/100",
+      "expected_decimal": "1372866154.73",
+      "absolute_tolerance": "0",
+      "source_page": 81,
+      "semantic_status": "failed: amount matches operating profit including finance expense, not identified EBIT"
+    },
+    {
+      "category": "operating_profit_bridge_arithmetic",
+      "name": "ebit_change",
+      "status": "passed",
+      "actual": "181981563.68",
+      "expected_fraction": "4549539092/25",
+      "expected_decimal": "181981563.68",
+      "absolute_tolerance": "0",
+      "caveat": "This reconciles Chinese-GAAP reported operating profit, not EBIT."
+    },
+    {
+      "category": "operating_profit_bridge_arithmetic",
+      "name": "revenue_effect",
+      "status": "passed",
+      "actual": "2121034536.30",
+      "expected_fraction": "21210345363/10",
+      "expected_decimal": "2121034536.3",
+      "absolute_tolerance": "0",
+      "caveat": "This reconciles Chinese-GAAP reported operating profit, not EBIT."
+    },
+    {
+      "category": "operating_profit_bridge_arithmetic",
+      "name": "cogs_effect",
+      "status": "passed",
+      "actual": "-1612182188.83",
+      "expected_fraction": "-161218218883/100",
+      "expected_decimal": "-1612182188.83",
+      "absolute_tolerance": "0",
+      "caveat": "This reconciles Chinese-GAAP reported operating profit, not EBIT."
+    },
+    {
+      "category": "operating_profit_bridge_arithmetic",
+      "name": "opex_effect",
+      "status": "passed",
+      "actual": "-234818349.83",
+      "expected_fraction": "-23481834983/100",
+      "expected_decimal": "-234818349.83",
+      "absolute_tolerance": "0",
+      "caveat": "This reconciles Chinese-GAAP reported operating profit, not EBIT."
+    },
+    {
+      "category": "operating_profit_bridge_arithmetic",
+      "name": "other_operating_income_effect",
+      "status": "passed",
+      "actual": "-92052433.96",
+      "expected_fraction": "-2301310849/25",
+      "expected_decimal": "-92052433.96",
+      "absolute_tolerance": "0",
+      "caveat": "This reconciles Chinese-GAAP reported operating profit, not EBIT."
+    },
+    {
+      "category": "operating_profit_bridge_arithmetic",
+      "name": "ebit_residual",
+      "status": "passed",
+      "actual": "0.00",
+      "expected_fraction": "0/1",
+      "expected_decimal": "0",
+      "absolute_tolerance": "0",
+      "caveat": "This reconciles Chinese-GAAP reported operating profit, not EBIT."
+    },
+    {
+      "category": "standalone_calculator_arithmetic",
+      "name": "call_01_goMWEpmqsVDyLRPDpNcp8943",
+      "status": "passed",
+      "actual": "2034088371.26",
+      "expected_fraction": "101704418563/50",
+      "expected_decimal": "2034088371.26",
+      "absolute_tolerance": "0"
+    },
+    {
+      "category": "standalone_calculator_arithmetic",
+      "name": "call_00_jNVfedzr21Z2BrJpXMeg2713",
+      "status": "passed",
+      "actual": "2268906721.09",
+      "expected_fraction": "226890672109/100",
+      "expected_decimal": "2268906721.09",
+      "absolute_tolerance": "0"
+    },
+    {
+      "category": "standalone_calculator_arithmetic",
+      "name": "call_02_du6eT7DxCj8wP4pm2sG48751",
+      "status": "passed",
+      "actual": "-416695362.14",
+      "expected_fraction": "-20834768107/50",
+      "expected_decimal": "-416695362.14",
+      "absolute_tolerance": "0"
+    },
+    {
+      "category": "standalone_calculator_arithmetic",
+      "name": "call_03_cNmqUOwhO9gk7rEvIBrq4968",
+      "status": "passed",
+      "actual": "-324642928.18",
+      "expected_fraction": "-16232146409/50",
+      "expected_decimal": "-324642928.18",
+      "absolute_tolerance": "0"
+    },
+    {
+      "category": "standalone_calculator_arithmetic",
+      "name": "call_00_UFAeU0wIEDbjpjtymZCw4789",
+      "status": "passed",
+      "actual": "2630702923.85",
+      "expected_fraction": "52614058477/20",
+      "expected_decimal": "2630702923.85",
+      "absolute_tolerance": "0"
+    },
+    {
+      "category": "standalone_calculator_arithmetic",
+      "name": "call_02_53k4PbbwY2wOsSAHdXBM3752",
+      "status": "passed",
+      "actual": "391011257.69",
+      "expected_fraction": "39101125769/100",
+      "expected_decimal": "391011257.69",
+      "absolute_tolerance": "0"
+    },
+    {
+      "category": "standalone_calculator_arithmetic",
+      "name": "call_01_Wov0BW3WNaoucDO1TQcy0072",
+      "status": "passed",
+      "actual": "899142033.54",
+      "expected_fraction": "44957101677/50",
+      "expected_decimal": "899142033.54",
+      "absolute_tolerance": "0"
+    },
+    {
+      "category": "standalone_calculator_arithmetic",
+      "name": "call_03_OWxb9LDtnqneE8horkr94306",
+      "status": "passed",
+      "actual": "371958147.33",
+      "expected_fraction": "37195814733/100",
+      "expected_decimal": "371958147.33",
+      "absolute_tolerance": "0"
+    },
+    {
+      "category": "standalone_calculator_arithmetic",
+      "name": "call_00_EOAOjU0j8GraZss2bd8d1724",
+      "status": "passed",
+      "actual": "762969405.02",
+      "expected_fraction": "38148470251/50",
+      "expected_decimal": "762969405.02",
+      "absolute_tolerance": "0"
+    },
+    {
+      "category": "standalone_calculator_arithmetic",
+      "name": "call_00_yPd1Lv9LZ1RKzj8DahBK0693",
+      "status": "passed",
+      "actual": "2876931710.50",
+      "expected_fraction": "5753863421/2",
+      "expected_decimal": "2876931710.5",
+      "absolute_tolerance": "0"
+    },
+    {
+      "category": "standalone_calculator_arithmetic",
+      "name": "call_01_whuuyG8jEEm33FpoSMCL6166",
+      "status": "passed",
+      "actual": "2421413461.38",
+      "expected_fraction": "121070673069/50",
+      "expected_decimal": "2421413461.38",
+      "absolute_tolerance": "0"
+    },
+    {
+      "category": "standalone_calculator_arithmetic",
+      "name": "call_02_ETJ97abxZwOKzxXTtxiL5099",
+      "status": "passed",
+      "actual": "246228786.65",
+      "expected_fraction": "4924575733/20",
+      "expected_decimal": "246228786.65",
+      "absolute_tolerance": "0"
+    }
+  ],
+  "literal_quote_checks": [
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "currency",
+      "page": 81,
+      "quote": "单位：元",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "amount_scale",
+      "page": 81,
+      "quote": "单位：元",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "period_basis",
+      "page": 81,
+      "quote": "2025 年半年度",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.0.year",
+      "page": 81,
+      "quote": "2024 年半年度",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.0.days",
+      "page": 81,
+      "quote": "2024 年半年度",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.0.revenue",
+      "page": 81,
+      "quote": "16,060,005,052.72",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.0.net_income",
+      "page": 81,
+      "quote": "1,016,662,113.22",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.0.cfo",
+      "page": 85,
+      "quote": "1,121,727,695.46",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.0.cogs",
+      "page": 81,
+      "quote": "12,510,389,162.23",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.0.opex",
+      "page": 81,
+      "quote": "1,088,251,729.62",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.0.other_operating_income",
+      "page": 81,
+      "quote": "-244,960,671.99",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.0.ebit",
+      "page": 81,
+      "quote": "1,190,884,591.05",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.year",
+      "page": 81,
+      "quote": "2025 年半年度",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.days",
+      "page": 81,
+      "quote": "2025 年半年度",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.revenue",
+      "page": 81,
+      "quote": "18,181,039,589.02",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.net_income",
+      "page": 81,
+      "quote": "1,152,243,041.58",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.cfo",
+      "page": 85,
+      "quote": "457,336,115.13",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.cogs",
+      "page": 81,
+      "quote": "14,122,571,351.06",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.opex",
+      "page": 81,
+      "quote": "1,258,603,235.21",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.other_operating_income",
+      "page": 81,
+      "quote": "-339,614,080.85",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.ebit",
+      "page": 81,
+      "quote": "1,372,866,154.73",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.receivables_begin",
+      "page": 75,
+      "quote": "10,246,089,993.94",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.receivables_end",
+      "page": 75,
+      "quote": "12,876,792,917.79",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.inventory_begin",
+      "page": 75,
+      "quote": "9,416,452,406.30",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.inventory_end",
+      "page": 75,
+      "quote": "8,517,310,372.76",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.payables_begin",
+      "page": 76,
+      "quote": "7,414,533,215.98",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.payables_end",
+      "page": 76,
+      "quote": "7,620,788,262.01",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.assets_begin",
+      "page": 76,
+      "quote": "47,907,158,015.10",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_6423d21f-1eed-46eb-acc5-0c339f6dc876",
+      "input_path": "periods.1.assets_end",
+      "page": 76,
+      "quote": "50,896,799,018.79",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "amount_scale",
+      "page": 7,
+      "quote": "单位：元",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "currency",
+      "page": 7,
+      "quote": "单位：元",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "period_basis",
+      "page": 7,
+      "quote": "本报告期比上年同期增",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "periods.0.days",
+      "page": 7,
+      "quote": "上年同期",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "periods.0.net_income",
+      "page": 7,
+      "quote": "983,530,909.56",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "periods.0.nonrecurring_net_income",
+      "page": 7,
+      "quote": "983,530,909.56",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "periods.0.nonrecurring_net_income",
+      "page": 7,
+      "quote": "902,608,382.22",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "periods.0.revenue",
+      "page": 7,
+      "quote": "16,060,005,052.72",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "periods.0.year",
+      "page": 7,
+      "quote": "上年同期",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "periods.1.days",
+      "page": 7,
+      "quote": "本报告期",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "periods.1.net_income",
+      "page": 7,
+      "quote": "1,229,940,076.97",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "periods.1.nonrecurring_net_income",
+      "page": 8,
+      "quote": "83,552,485.47",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "periods.1.revenue",
+      "page": 7,
+      "quote": "18,181,039,589.02",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    },
+    {
+      "artifact_id": "research_05588b9a-cb1c-4b11-91a7-eb0794efad75",
+      "input_path": "periods.1.year",
+      "page": 7,
+      "quote": "本报告期",
+      "literal_match": true,
+      "scope": "Literal location only; economic meaning reviewed separately."
+    }
+  ],
+  "limitations": [
+    "No complete audit of every sentence or all 199 PDF pages.",
+    "Arithmetic tolerance 1e-40 covers independent Fraction-to-50-digit-Decimal rounding only, not financial-value tolerance.",
+    "These development observations cannot be presented as unseen-company benchmark accuracy.",
+    "No saved scenario/DCF/memo means their economic correctness and dependency update are unverified, not zero-error."
+  ]
+}

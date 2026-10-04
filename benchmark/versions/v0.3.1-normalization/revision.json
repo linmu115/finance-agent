@@ -1,0 +1,31 @@
+{
+  "revision": "v0.3.1-normalization",
+  "gold_revision": 2,
+  "parent_revision": "v0.3-normalization",
+  "created_date": "2026-10-03",
+  "reason": "Correct a demonstrated false rejection of the Chinese equivalent of the original English PPE purchase payment item. Tighten exclusions for inflows and different financial concepts.",
+  "changed_gold_ids": [
+    "02_usd_million_cashflow_B6_2025-FY"
+  ],
+  "changed_fields": [
+    "label_regex"
+  ],
+  "previous_label_regex": "购建|购置|固定资产|资本.*支出",
+  "new_label_regex": "^(?![\\s\\S]*(?:收到|收回|收取|流入|处置|出售|卖出|变卖|收益|收入|折旧|减值|无形资产|其他长期资产|投资性房地产|非现金|应付|赊购|\\b(?:proceeds|receipts?|received|sales?|disposal|depreciation|impairment|intangible|payables?)\\b|\\binvestment\\s+property\\b|\\bnon[-\\s]?cash\\b))(?=[\\s\\S]*(?:购建|购置|购买|采购|\\b(?:acquisition|purchases?|purchasing)\\b))(?=[\\s\\S]*(?:固定资产|(?:物业|不动产)[、，,\\s]*厂房(?:[、，,\\s]|和|及|与)*设备|\\bfixed\\s+assets?\\b|\\bproperty[\\s,，]+plant[\\s,，]*(?:and|&)?\\s*equipment\\b|\\bpp[&＆]e\\b))(?=[\\s\\S]*(?:支出|支付(?:的)?现金|\\bpayments?\\b|\\bcash\\s+(?:paid|outflows?)\\b))[\\s\\S]+$",
+  "unchanged": "All 10 input files, 37 expected values, currencies, scopes, periods, source coordinates, remaining gold rows and both forbidden cases.",
+  "source_phrase": "Payments for acquisition of property plant and equipment",
+  "observed_valid_label": "购买物业、厂房及设备支付的现金",
+  "review_type": "Developer-reviewed correction after observing a false negative; not a blind evaluation.",
+  "old_official_result_retained": "The 2026-10-03 run 4c1fddcc-8854-4415-b687-81fdc15ede67 remains failed at 35/37. Its independent real total-assets period error is not waived.",
+  "frozen_prior_sha256": {
+    "benchmark/versions/v0.3-normalization/gold.jsonl": "32add84f293c2d86e8425b7bef8f9a519d3ef9d7ba4f99316acf1ac8dfbdd9ad",
+    "benchmark/versions/v0.3-normalization/manifest.json": "c398a3ac31c602864878826997482d7089424ac354aec0baea930d644b10b3ac",
+    "benchmark/versions/v0.3-normalization/forbidden.json": "bb1a6ecfc23d30f77bec4169226cc49d1fe0012da2f62fb6a4e08b8989596942",
+    "samples/normalization-benchmark-v0.3.zip": "cae8cbbc30c4b3836752f895d0e6a8d187ae30f4d7a764a931e6cbd97448c56c",
+    "benchmark/results/pi-workflow-v03-quick.json": "270ca1b16957717021c7bf6942c3904941165900f799cd96d450befeb48d70cd",
+    "benchmark/results/pi-workflow-01a20418-f585-48fd-acb4-2ab0b88431c9.json": "e0347c3bfe5ebb25118cf326cc914492f1f55d50efd097cb7de111cf928a3b8c",
+    "benchmark/results/pi-workflow-0a2f1e99-5240-46f1-86c8-54e021f22ac4.json": "8e5f434528c19878dd13492894655b705031742252fa54fb079ef2de7be33394",
+    "benchmark/results/pi-workflow-4c1fddcc-8854-4415-b687-81fdc15ede67.json": "09fdb1b1c3c6f6bb4d8eb27173f64afb00499ecba29f494bdedddeb49dd67b3d"
+  },
+  "new_gold_sha256": "5be0a8a53f62aee66666a9fb1f22606676aaceeda9bad86dc39e7296e4baad77"
+}

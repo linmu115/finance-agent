@@ -1,0 +1,775 @@
+{
+  "protocol": "Independent source-only solution before evaluator gold access; no model predictions read.",
+  "items": [
+    {
+      "id": "finqa_017b044817c34d88",
+      "independent_status": "solved",
+      "formula": "509 - 707",
+      "answer_unit": "thousand_shares",
+      "evidence_sets": [
+        [
+          "finqa_017b044817c34d88:table_1",
+          "finqa_017b044817c34d88:table_5"
+        ],
+        [
+          "finqa_017b044817c34d88:table_2",
+          "finqa_017b044817c34d88:table_3",
+          "finqa_017b044817c34d88:table_4"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_017b044817c34d88:table_0",
+        "finqa_017b044817c34d88:text_15"
+      ],
+      "rationale": "净变化为年末减年初，509−707=−198千股；203−379−22给出同一结果，题目chance按明显拼写错误解释为change。"
+    },
+    {
+      "id": "finqa_03c3f090394da5de",
+      "independent_status": "solved",
+      "formula": "(1.11 - 1.08) / 1.08 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_03c3f090394da5de:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_03c3f090394da5de:table_0"
+      ],
+      "rationale": "以2006年实际现金股息1.08为基期，2007年实际支付1.11；不能用11月宣布的季度股息增幅11.1%替代全年实际支付额增长。"
+    },
+    {
+      "id": "finqa_03c86a2b5c37e2c1",
+      "independent_status": "solved",
+      "formula": "(9.60 - 13.25) / 13.25 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_03c86a2b5c37e2c1:text_19"
+        ]
+      ],
+      "valid_context_citations": [],
+      "rationale": "2011授予期权估计公允值13.25美元、2012为9.60美元，按2011为基期计算下降率。"
+    },
+    {
+      "id": "finqa_050e4b7e14850aa0",
+      "independent_status": "solved",
+      "formula": "(9981 + 6788) / 93033",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_050e4b7e14850aa0:table_4",
+          "finqa_050e4b7e14850aa0:table_7",
+          "finqa_050e4b7e14850aa0:table_13"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_050e4b7e14850aa0:table_0",
+        "finqa_050e4b7e14850aa0:text_8"
+      ],
+      "rationale": "消费者相关两行业为consumer discretionary与consumer staples，相加后除总企业贷款敞口；无百分数要求，统一以ratio输出，并可公开单位元数据。"
+    },
+    {
+      "id": "finqa_094360ad0c1479fc",
+      "independent_status": "solved",
+      "formula": "231 / 6304",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_094360ad0c1479fc:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_094360ad0c1479fc:table_0"
+      ],
+      "rationale": "题目明确2015 restructuring programs，对应第一项目行而非total restructuring charges行；facility closure成本231/该项目总额6304。"
+    },
+    {
+      "id": "finqa_0b4b8ca1bab7ce37",
+      "independent_status": "solved",
+      "formula": "503000 / 298",
+      "answer_unit": "berths_per_ship",
+      "evidence_sets": [
+        [
+          "finqa_0b4b8ca1bab7ce37:text_9"
+        ]
+      ],
+      "valid_context_citations": [],
+      "rationale": "2016年底全球船队503000泊位、298艘船；不用未来2017—2021投运船只或旅客数。"
+    },
+    {
+      "id": "finqa_0ca2428051283baa",
+      "independent_status": "solved",
+      "formula": "(224.65 - 100) / 100 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_0ca2428051283baa:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_0ca2428051283baa:table_0",
+        "finqa_0ca2428051283baa:text_9"
+      ],
+      "rationale": "五年累计股东总回报是期末224.65相对初始100的净增幅，124.65%；期末指数224.65不是收益率。"
+    },
+    {
+      "id": "finqa_0d857e531e718fef",
+      "independent_status": "ambiguous",
+      "formula": null,
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_0d857e531e718fef:table_0",
+          "finqa_0d857e531e718fef:table_1",
+          "finqa_0d857e531e718fef:table_2",
+          "finqa_0d857e531e718fef:table_3",
+          "finqa_0d857e531e718fef:text_16",
+          "finqa_0d857e531e718fef:text_20"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_0d857e531e718fef:text_19"
+      ],
+      "conditioned_answers": [
+        {
+          "condition": "Use stated current liabilities based on intent and ability to pay during 2017; this is not explicitly mandatory contractual maturity",
+          "formula": "175 / 3081",
+          "answer_unit": "ratio"
+        },
+        {
+          "condition": "Read the supplied 2017 table entry '$ 2014' literally as 2014 million despite inconsistency with total debt",
+          "formula": "2014 / 3081",
+          "answer_unit": "ratio"
+        },
+        {
+          "condition": "Interpret '2014' in the 2017 maturity row as an encoding-corrupted dash and therefore no scheduled 2017 maturity; later maturities sum to 3081",
+          "formula": "0 / 3081",
+          "answer_unit": "ratio"
+        }
+      ],
+      "rationale": "来源在2017合同到期表列示'$ 2014'，但后续年度150+175+2756已等于总贷款3081，2014疑为长破折号编码污染；正文另称按意图与能力于2017偿还而列流动负债175，并非明确合同到期额。问due next12months无法在提供材料上唯一确定，不能硬选一个比例。"
+    },
+    {
+      "id": "finqa_15ca68bffe15852f",
+      "independent_status": "solved",
+      "formula": "(4.0 - 3.9) / 4.0 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_15ca68bffe15852f:text_24"
+        ]
+      ],
+      "valid_context_citations": [],
+      "rationale": "问最大潜在敞口下降幅度，4.0降至3.9十亿美元，下降2.5%；不使用贷款余额或准备金变化。"
+    },
+    {
+      "id": "finqa_1af7ad0c011c7bf3",
+      "independent_status": "solved",
+      "formula": "(5.8 - 6.3) / 6.3 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_1af7ad0c011c7bf3:text_3"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_1af7ad0c011c7bf3:text_0"
+      ],
+      "rationale": "2006年2月3日5.8百万与2005年1月28日6.3百万比较，以2005为基期，变化为负。"
+    },
+    {
+      "id": "finqa_1f6f92c826dcd4c6",
+      "independent_status": "solved",
+      "formula": "(44.11 - 39.03) / 39.03 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_1f6f92c826dcd4c6:table_5"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_1f6f92c826dcd4c6:table_0"
+      ],
+      "rationale": "2013每份期权公允价值39.03，2014为44.11；与无风险利率、波动率无关。"
+    },
+    {
+      "id": "finqa_205bdd9bb438341a",
+      "independent_status": "solved",
+      "formula": "(96.67 - 100) / 100",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_205bdd9bb438341a:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_205bdd9bb438341a:table_0",
+        "finqa_205bdd9bb438341a:text_5"
+      ],
+      "rationale": "2013年10月投入，2年后为2015年10月，累计价值100到96.67；ROI定义净收益/初始投资，−0.0333即−3.33%。"
+    },
+    {
+      "id": "finqa_263a3b4ab3524fda",
+      "independent_status": "solved",
+      "formula": "(182.87 - 149.70) / 149.70",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_263a3b4ab3524fda:table_4",
+          "finqa_263a3b4ab3524fda:table_6"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_263a3b4ab3524fda:table_0",
+        "finqa_263a3b4ab3524fda:text_3"
+      ],
+      "rationale": "2005年底S&P500指数149.70，2007年底182.87，持有期回报为差额/149.70，不能套用2002的100基数。"
+    },
+    {
+      "id": "finqa_28a9321caf486b54",
+      "independent_status": "solved",
+      "formula": "2408 + 1364",
+      "answer_unit": "thousand_USD",
+      "evidence_sets": [
+        [
+          "finqa_28a9321caf486b54:table_2"
+        ],
+        [
+          "finqa_28a9321caf486b54:table_0",
+          "finqa_28a9321caf486b54:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_28a9321caf486b54:text_0",
+        "finqa_28a9321caf486b54:text_2"
+      ],
+      "rationale": "下一两年是2006与2007，表中总额3772千美元可直接引用或两年金额相加。"
+    },
+    {
+      "id": "finqa_2b3abd65fef6f461",
+      "independent_status": "solved",
+      "formula": "4.25 - 3.71",
+      "answer_unit": "USD_per_share",
+      "evidence_sets": [
+        [
+          "finqa_2b3abd65fef6f461:table_5"
+        ],
+        [
+          "finqa_2b3abd65fef6f461:table_1",
+          "finqa_2b3abd65fef6f461:table_2",
+          "finqa_2b3abd65fef6f461:table_3",
+          "finqa_2b3abd65fef6f461:table_4"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_2b3abd65fef6f461:table_0",
+        "finqa_2b3abd65fef6f461:text_6",
+        "finqa_2b3abd65fef6f461:text_9"
+      ],
+      "rationale": "题目询问股息支付增加额而未要求百分比，2018年度每股4.25−2017每股3.71=0.54美元/股；不能把按季度宣布金额替代全年。"
+    },
+    {
+      "id": "finqa_2f2bed49d355c369",
+      "independent_status": "solved",
+      "formula": "130.66 / 152.42",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_2f2bed49d355c369:table_3"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_2f2bed49d355c369:table_0",
+        "finqa_2f2bed49d355c369:text_3"
+      ],
+      "rationale": "2004同一表行的Snap-on表现指数130.66与同行指数152.42取比；题目问表现比而非净收益率之比。"
+    },
+    {
+      "id": "finqa_333d7fba4a1c3a0d",
+      "independent_status": "solved",
+      "formula": "(26.3 - 28.4) / 28.4 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_333d7fba4a1c3a0d:text_14"
+        ]
+      ],
+      "valid_context_citations": [],
+      "rationale": "问题要2004至2005折旧摊销费用变化，用28.4→26.3百万；表中2006/2005累计折旧存量不对应本题年度费用。"
+    },
+    {
+      "id": "finqa_35435991030d34be",
+      "independent_status": "solved",
+      "formula": "(7729 + 5400 + 5038) / 3",
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_35435991030d34be:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_35435991030d34be:table_0",
+        "finqa_35435991030d34be:text_15",
+        "finqa_35435991030d34be:text_17"
+      ],
+      "rationale": "2005—2007连续三年segment net sales分别5038、5400、7729百万，算术平均；不使用另一分部前文2006经营利润。"
+    },
+    {
+      "id": "finqa_35b4ad38dc0fedd3",
+      "independent_status": "ambiguous",
+      "formula": null,
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_35b4ad38dc0fedd3:text_13",
+          "finqa_35b4ad38dc0fedd3:text_15"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_35b4ad38dc0fedd3:text_10",
+        "finqa_35b4ad38dc0fedd3:text_11"
+      ],
+      "conditioned_answers": [
+        {
+          "condition": "The final total cash purchase price upon completion, including amounts already paid",
+          "formula": "1.345 * 1000 + 30",
+          "answer_unit": "million_USD"
+        },
+        {
+          "condition": "The final unpaid cash installment that will actually be paid upon closing",
+          "formula": "30",
+          "answer_unit": "million_USD"
+        }
+      ],
+      "rationale": "正文已付13.45亿美元，尚余3000万美元于交割时支付。题目'final cash purchase price ... paid upon closing'既可指交割完成后的总价1375百万，也可指交割时最后一笔30百万，缺少total或remaining限定；两种目标不同，不能强定唯一标量。上方233584千的表属于Blockbuster而非TerreStar。"
+    },
+    {
+      "id": "finqa_367cfd2e381e1833",
+      "independent_status": "solved",
+      "formula": "247 / 1676 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_367cfd2e381e1833:table_2",
+          "finqa_367cfd2e381e1833:table_7"
+        ],
+        [
+          "finqa_367cfd2e381e1833:table_2",
+          "finqa_367cfd2e381e1833:text_23"
+        ],
+        [
+          "finqa_367cfd2e381e1833:text_24",
+          "finqa_367cfd2e381e1833:text_26",
+          "finqa_367cfd2e381e1833:table_7"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_367cfd2e381e1833:table_0",
+        "finqa_367cfd2e381e1833:text_25"
+      ],
+      "rationale": "商誉247/净资产1676；商誉与其他无形资产合计370不能直接当商誉。替代路径为370−123=247。"
+    },
+    {
+      "id": "finqa_3a404a3f65d496dc",
+      "independent_status": "solved",
+      "formula": "294 / 30",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_3a404a3f65d496dc:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_3a404a3f65d496dc:table_0",
+        "finqa_3a404a3f65d496dc:text_2"
+      ],
+      "rationale": "只取reclassifying certain separate accounts对应其他综合收益294与净利润30，OCI/NI=9.8；不使用合计292/−23。"
+    },
+    {
+      "id": "finqa_4011dd78a1ec4db1",
+      "independent_status": "solved",
+      "formula": "(99 - 110) / 110 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_4011dd78a1ec4db1:table_9"
+        ],
+        [
+          "finqa_4011dd78a1ec4db1:text_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_4011dd78a1ec4db1:table_0",
+        "finqa_4011dd78a1ec4db1:text_0"
+      ],
+      "rationale": "未确认税收优惠应计负债的年末余额110降至99百万，净变化−10%；不以2007年初77作为2007年底基数。"
+    },
+    {
+      "id": "finqa_4585aea13484426d",
+      "independent_status": "solved",
+      "formula": "1432 / 875",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_4585aea13484426d:table_0",
+          "finqa_4585aea13484426d:table_3"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_4585aea13484426d:text_0"
+      ],
+      "rationale": "截至2014年底列示的2015到期1432与2018到期875取比，不能将2015至2018合计当分子。"
+    },
+    {
+      "id": "finqa_46844b9144456a2e",
+      "independent_status": "solved",
+      "formula": "829",
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_46844b9144456a2e:table_7"
+        ],
+        [
+          "finqa_46844b9144456a2e:table_1",
+          "finqa_46844b9144456a2e:table_2",
+          "finqa_46844b9144456a2e:table_3",
+          "finqa_46844b9144456a2e:table_4",
+          "finqa_46844b9144456a2e:table_5",
+          "finqa_46844b9144456a2e:table_6"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_46844b9144456a2e:table_0",
+        "finqa_46844b9144456a2e:text_6"
+      ],
+      "rationale": "2006所得税费用为provision for income taxes=829百万；expected tax987仅为调节起点。各项调节987+86−224+11−12−19同样等于829。"
+    },
+    {
+      "id": "finqa_47593c3344dff71c",
+      "independent_status": "solved",
+      "formula": "(1279337 - 1019953) / 1019953 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_47593c3344dff71c:table_2"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_47593c3344dff71c:table_0",
+        "finqa_47593c3344dff71c:text_1"
+      ],
+      "rationale": "2015营运资本1019953千、2016为1279337千，按2015基期计算；现金或存货并非营运资本。"
+    },
+    {
+      "id": "finqa_4bb8fb6f35b38b71",
+      "independent_status": "ambiguous",
+      "formula": null,
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_4bb8fb6f35b38b71:table_3",
+          "finqa_4bb8fb6f35b38b71:text_19",
+          "finqa_4bb8fb6f35b38b71:text_21",
+          "finqa_4bb8fb6f35b38b71:text_22",
+          "finqa_4bb8fb6f35b38b71:text_24"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_4bb8fb6f35b38b71:table_0"
+      ],
+      "conditioned_answers": [
+        {
+          "condition": "Treat the annual change in portfolio balances as a return by additionally assuming no contributions, withdrawals, or distributed income",
+          "formula": "(8690 - 7943) / 7943 * 100",
+          "answer_unit": "percentage_points"
+        },
+        {
+          "condition": "Actual investment return allowing unspecified plan contributions, benefit payments, and cash income",
+          "canonical_answer": null,
+          "formula": "(ending_value - beginning_value - net_external_flows + distributed_income) / beginning_value * 100",
+          "answer_unit": "percentage_points"
+        }
+      ],
+      "rationale": "表只给递延薪酬计划资产两个年末公允价值，不披露期间投入、福利支付或分配收入，余额增幅不能无条件视为投资年收益率。原文还称交易证券损益不重大，与把全部余额增长当收益并不等价；零资金流假设下可算9.4%左右，但真实return无法唯一识别。"
+    },
+    {
+      "id": "finqa_4cb050de64bd3113",
+      "independent_status": "solved",
+      "formula": "(151 - 136) / 136 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_4cb050de64bd3113:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_4cb050de64bd3113:table_0",
+        "finqa_4cb050de64bd3113:text_20",
+        "finqa_4cb050de64bd3113:text_21"
+      ],
+      "rationale": "New Jersey Chrome reserve从2017年136增至2018年151百万，只计算该类准备金。"
+    },
+    {
+      "id": "finqa_52acd239eb94cdc2",
+      "independent_status": "solved",
+      "formula": "(311.81 - 100) / 100 * 100000",
+      "answer_unit": "USD",
+      "evidence_sets": [
+        [
+          "finqa_52acd239eb94cdc2:table_1",
+          "finqa_52acd239eb94cdc2:text_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_52acd239eb94cdc2:table_0"
+      ],
+      "rationale": "金融定义的total return为含股息再投资的净收益；10万美元由基准100增至311.81，期末财富311810，净收益211810美元。题目给初始美元金额，因此以美元净收益统一输出而非期末本金加收益。"
+    },
+    {
+      "id": "finqa_5ba7df31a29dba59",
+      "independent_status": "solved",
+      "formula": "(24 - 15) / 15 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_5ba7df31a29dba59:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_5ba7df31a29dba59:table_0",
+        "finqa_5ba7df31a29dba59:text_0"
+      ],
+      "rationale": "2006净衍生收益15至2007年24百万，增长60%；不是全部其他综合收益变化。"
+    },
+    {
+      "id": "finqa_5ca955244644fc76",
+      "independent_status": "solved",
+      "formula": "(8985 - 11057) / 11057 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_5ca955244644fc76:table_0",
+          "finqa_5ca955244644fc76:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_5ca955244644fc76:text_0"
+      ],
+      "rationale": "预期最低租赁支付2014年11057，2015年8985，按2014为基期计算负变化率。"
+    },
+    {
+      "id": "finqa_607950265807c588",
+      "independent_status": "ambiguous",
+      "formula": null,
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_607950265807c588:table_0",
+          "finqa_607950265807c588:table_2",
+          "finqa_607950265807c588:text_8"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_607950265807c588:text_0",
+        "finqa_607950265807c588:text_4"
+      ],
+      "conditioned_answers": [
+        {
+          "condition": "If the question's 2014 were corrected to 2004 and the first pair of columns selected, difference as absolute fair-value excess",
+          "formula": "875 - 848",
+          "answer_unit": "million_USD"
+        },
+        {
+          "condition": "If the duplicate 2004 header's second pair were selected, difference as absolute fair-value excess",
+          "formula": "1487 - 1373",
+          "answer_unit": "million_USD"
+        },
+        {
+          "condition": "Answer the question for actual 2014 without repairing the year or the duplicated table header",
+          "canonical_answer": null,
+          "answer_unit": "million_USD"
+        }
+      ],
+      "rationale": "问题要2014，但提供表头两对都标2004，正文也为2004/2003，没有2014信息。即便擅自把问题改成2004，表头重复还使两对列产生27与114两个金额；必须标注来源/问题歧义，不能把旧年份差额冒充2014。"
+    },
+    {
+      "id": "finqa_60e48d03d031952a",
+      "independent_status": "solved",
+      "formula": "(47267 - 48047) / 48047 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_60e48d03d031952a:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_60e48d03d031952a:table_0"
+      ],
+      "rationale": "2012总销售额47267，基期2011为48047百万；不是2013对2012的变化。"
+    },
+    {
+      "id": "finqa_669bfb264dae390e",
+      "independent_status": "solved",
+      "formula": "(119 - 86) / 86 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_669bfb264dae390e:text_5"
+        ]
+      ],
+      "valid_context_citations": [],
+      "rationale": "原文按2016/2015/2014排列78/119/86百万，目标2014→2015使用86到119。"
+    },
+    {
+      "id": "finqa_68b8c79b36d3eae5",
+      "independent_status": "ambiguous",
+      "formula": null,
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_68b8c79b36d3eae5:table_0",
+          "finqa_68b8c79b36d3eae5:table_1",
+          "finqa_68b8c79b36d3eae5:text_0",
+          "finqa_68b8c79b36d3eae5:text_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_68b8c79b36d3eae5:text_2"
+      ],
+      "conditioned_answers": [
+        {
+          "condition": "Interpret 'four years' as the four calendar-year labels 2000–2003, using the actual IPO date July 27 2000 to December 26 2003",
+          "formula": "(43.81 - 100) / 100 * 100",
+          "answer_unit": "percentage_points"
+        },
+        {
+          "condition": "A literal four-year holding period ending December 26 2003, beginning December 26 1999",
+          "canonical_answer": null,
+          "answer_unit": "percentage_points"
+        }
+      ],
+      "rationale": "题目要求截至2003年的四年累计回报，但原材料明确始于2000年7月27日IPO、终于2003年12月26日，只有约3.4年。−56.19%可以描述所示IPO以来区间，无法据此声称完整四年收益；无1999年基值，原题期间粒度不足。"
+    },
+    {
+      "id": "finqa_6f9fd728b8427771",
+      "independent_status": "solved",
+      "formula": "(243.7 - 247.9) / 247.9 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_6f9fd728b8427771:table_8"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_6f9fd728b8427771:table_0",
+        "finqa_6f9fd728b8427771:text_10"
+      ],
+      "rationale": "总其他应计负债由2012年247.9降至2013年243.7百万；不能只取名为other的子项目132.6/117.9。"
+    },
+    {
+      "id": "finqa_70ff9af1deeeadfc",
+      "independent_status": "solved",
+      "formula": "3629455 / (1708928 + 3629455)",
+      "answer_unit": "ratio",
+      "evidence_sets": [
+        [
+          "finqa_70ff9af1deeeadfc:table_1"
+        ],
+        [
+          "finqa_70ff9af1deeeadfc:text_9"
+        ],
+        [
+          "finqa_70ff9af1deeeadfc:text_22"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_70ff9af1deeeadfc:table_0"
+      ],
+      "rationale": "按表内仍待发行的股东批准计划证券总数口径，分母为已授予待行权1708928加未来可授予3629455；表头明确后者排除前者。不能把1708928当作包含剩余额度的总数。该比例不主张覆盖历史已发行股数。"
+    },
+    {
+      "id": "finqa_7746be73e86dab55",
+      "independent_status": "solved",
+      "formula": "(4566 - 3846) / 3846 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_7746be73e86dab55:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_7746be73e86dab55:table_0",
+        "finqa_7746be73e86dab55:text_0",
+        "finqa_7746be73e86dab55:text_1"
+      ],
+      "rationale": "IFS分部2015年收入3846、2016年4566百万，按2015基期；不是GFS或合并收入增幅。"
+    },
+    {
+      "id": "finqa_7a8b01fd3108b560",
+      "independent_status": "solved",
+      "formula": "(17057.4 - 16772.9) / 16772.9 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_7a8b01fd3108b560:table_1"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_7a8b01fd3108b560:table_0",
+        "finqa_7a8b01fd3108b560:text_14",
+        "finqa_7a8b01fd3108b560:text_19"
+      ],
+      "rationale": "按提供的未经审计、假设自2017年初收购Blue Buffalo的备考净销售额计算2017→2018增幅；不能把这一结果表述为已审计实际合并收入增长。"
+    },
+    {
+      "id": "finqa_7c7a806e549ed995",
+      "independent_status": "solved",
+      "formula": "2963 / 23556 * 100",
+      "answer_unit": "percentage_points",
+      "evidence_sets": [
+        [
+          "finqa_7c7a806e549ed995:table_6",
+          "finqa_7c7a806e549ed995:table_8"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_7c7a806e549ed995:table_0",
+        "finqa_7c7a806e549ed995:text_2",
+        "finqa_7c7a806e549ed995:text_12",
+        "finqa_7c7a806e549ed995:text_17"
+      ],
+      "rationale": "按披露表的总额口径，养老金资金承诺2963/合同义务及承诺23556百万。该表未计2015年以后无法合理确定的最低养老金要求，结果仅针对所披露承诺。"
+    },
+    {
+      "id": "finqa_89afb9b2cb627013",
+      "independent_status": "ambiguous",
+      "formula": null,
+      "answer_unit": "million_USD",
+      "evidence_sets": [
+        [
+          "finqa_89afb9b2cb627013:table_0",
+          "finqa_89afb9b2cb627013:table_1",
+          "finqa_89afb9b2cb627013:text_2",
+          "finqa_89afb9b2cb627013:text_8"
+        ]
+      ],
+      "valid_context_citations": [
+        "finqa_89afb9b2cb627013:text_0"
+      ],
+      "conditioned_answers": [
+        {
+          "condition": "Interpret total value as the aggregate cash exercise price payable if the January 1 2000 outstanding options were exercised",
+          "formula": "6569200 * 4.55 / 1000000",
+          "answer_unit": "million_USD"
+        },
+        {
+          "condition": "Interpret total option value as fair value or intrinsic value of the options themselves",
+          "canonical_answer": null,
+          "answer_unit": "million_USD"
+        }
+      ],
+      "rationale": "原表只有6569200份期权及加权平均行权价4.55美元；乘积29.88986百万是总行权支付额，不是期权自身公允价值或内在价值。题目仅称total value of balance of options，未指明行权金额，也缺少估值所需市场价/期权公允值，存在实质目标歧义。"
+    }
+  ]
+}

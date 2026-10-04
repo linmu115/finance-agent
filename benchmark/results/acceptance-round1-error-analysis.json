@@ -1,0 +1,1746 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-03T07:08:24.441153+00:00",
+  "type": "post_freeze_read_only_failure_analysis",
+  "scope": {
+    "run": "agent-2026-10-03T06-37-06-859Z",
+    "round": 1,
+    "split": "acceptance",
+    "benchmark": "finance-agent-bench-0.2.0",
+    "model": "deepseek-flash",
+    "not_complete_three_round_result": true,
+    "frozen_results_unchanged": true,
+    "no_code_config_or_label_changes": true,
+    "not_for_agent_input": true,
+    "contains_frozen_evaluator_labels": true,
+    "analysis_author": "Codex financial_service agent",
+    "method": "Read frozen score, result predictions, public allowed source materials and frozen label evidence sets; produce descriptive mutually exclusive classification only."
+  },
+  "run_identity": {
+    "configHash": "226f5ec1dffcb32ae4e548f4638a3ad00a7cec302dccc7610c69bdfde941a710",
+    "promptHash": "261c1051a4802ae9b34d3912e1245cf566f6cf5bfab89ef687aacb739c0da452",
+    "codeHash": "8c9accefb4f315ba63bc2d72f4d61aad58feeba0ecce453753039eefd4ac702e"
+  },
+  "metrics": {
+    "evaluated_cases": 124,
+    "received_prediction_envelopes": 124,
+    "successful_task_statuses": 123,
+    "failed_task_statuses": 1,
+    "answer_correct": 104,
+    "answer_accuracy": 0.8387096774193549,
+    "grounded_correct": 86,
+    "grounded_accuracy": 0.6935483870967742,
+    "answer_contract_failures": 20,
+    "citation_only_failures": 18,
+    "total_grounded_failures": 38,
+    "citation_recall": 0.8604365079365078,
+    "citation_precision": 0.9230555555555555,
+    "protocol_errors": [],
+    "dataset_gate_pass": false,
+    "full_system_acceptance": false,
+    "wall_time_seconds": 789.91,
+    "aggregate_case_time_seconds": 2138.286,
+    "model_calls": 509,
+    "input_tokens": 5501282,
+    "output_tokens": 129128,
+    "per_track": {
+      "cn_extract": {
+        "n": 20,
+        "answer_accuracy": 1,
+        "grounded_accuracy": 0.95,
+        "target_answer_accuracy": 0.95,
+        "pass": true
+      },
+      "cn_calculate": {
+        "n": 8,
+        "answer_accuracy": 1,
+        "grounded_accuracy": 1,
+        "target_answer_accuracy": 0.95,
+        "pass": true
+      },
+      "cn_audit": {
+        "n": 8,
+        "answer_accuracy": 1,
+        "grounded_accuracy": 1,
+        "target_answer_accuracy": 0.9,
+        "pass": true
+      },
+      "cn_abstain": {
+        "n": 4,
+        "answer_accuracy": 1,
+        "grounded_accuracy": 1,
+        "target_answer_accuracy": 1,
+        "pass": true
+      },
+      "cn_ocr": {
+        "n": 4,
+        "answer_accuracy": 0.75,
+        "grounded_accuracy": 0.5,
+        "target_answer_accuracy": 0.9,
+        "pass": false
+      },
+      "finqa_single": {
+        "n": 40,
+        "answer_accuracy": 0.75,
+        "grounded_accuracy": 0.5,
+        "target_answer_accuracy": 0.85,
+        "pass": false
+      },
+      "finqa_multi": {
+        "n": 40,
+        "answer_accuracy": 0.775,
+        "grounded_accuracy": 0.625,
+        "target_answer_accuracy": 0.75,
+        "pass": true
+      }
+    }
+  },
+  "answer_failure_categories": [
+    {
+      "category": "scalar_when_frozen_label_requires_abstention",
+      "description": "冻结歧义政策要求拒答，但输出标量",
+      "count": 13,
+      "cases": [
+        {
+          "id": "finqa_c8f95d62fc9dc283",
+          "track": "finqa_single",
+          "question": "what was the change in millions of impairment charges included in sg&a expense from 2006 to 2007",
+          "score_errors": [
+            "status",
+            "must_abstain",
+            "reason_code"
+          ],
+          "prediction": {
+            "id": "finqa_c8f95d62fc9dc283",
+            "status": "ok",
+            "answer": "-9.2",
+            "unit": "million_USD",
+            "period": "2006-2007",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_c8f95d62fc9dc283:text_10"
+            ]
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_c8f95d62fc9dc283:text_10"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_c8f95d62fc9dc283:text_11"
+            ]
+          },
+          "analysis": "按冻结标签应返回 insufficient_evidence 并说明原问或材料歧义；此次选择了一种解释给出标量。该分类不将差异统称为算术错误，也不重新裁定标签。"
+        },
+        {
+          "id": "finqa_0d857e531e718fef",
+          "track": "finqa_single",
+          "question": "what portion of total outstanding term loan is due in the next 12 months as of december 31 , 2016?",
+          "score_errors": [
+            "status",
+            "must_abstain",
+            "reason_code",
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_0d857e531e718fef",
+            "status": "ok",
+            "answer": "0.6536838688737422914638104511522233041220",
+            "unit": "ratio",
+            "period": "2016-12-31",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_0d857e531e718fef:table_0",
+              "finqa_0d857e531e718fef:text_16"
+            ]
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_0d857e531e718fef:table_0",
+                "finqa_0d857e531e718fef:table_1",
+                "finqa_0d857e531e718fef:table_2",
+                "finqa_0d857e531e718fef:table_3",
+                "finqa_0d857e531e718fef:text_16",
+                "finqa_0d857e531e718fef:text_20"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_0d857e531e718fef:text_19"
+            ]
+          },
+          "analysis": "按冻结标签应返回 insufficient_evidence 并说明原问或材料歧义；此次选择了一种解释给出标量。该分类不将差异统称为算术错误，也不重新裁定标签。"
+        },
+        {
+          "id": "finqa_e2b86b40fe001674",
+          "track": "finqa_single",
+          "question": "what is the yearly amortization rate for the purchased technology?",
+          "score_errors": [
+            "status",
+            "must_abstain",
+            "reason_code",
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_e2b86b40fe001674",
+            "status": "ok",
+            "answer": "0.25",
+            "unit": "ratio",
+            "period": "not_applicable",
+            "scope": "consolidated_CAS",
+            "citations": [
+              "finqa_e2b86b40fe001674:table_1",
+              "finqa_e2b86b40fe001674:text_0"
+            ]
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_e2b86b40fe001674:table_0",
+                "finqa_e2b86b40fe001674:table_1",
+                "finqa_e2b86b40fe001674:text_0",
+                "finqa_e2b86b40fe001674:text_1"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_e2b86b40fe001674:text_2"
+            ]
+          },
+          "analysis": "按冻结标签应返回 insufficient_evidence 并说明原问或材料歧义；此次选择了一种解释给出标量。该分类不将差异统称为算术错误，也不重新裁定标签。"
+        },
+        {
+          "id": "finqa_8c22662d2e6299b0",
+          "track": "finqa_single",
+          "question": "what was the ratio of the company contribution in 2011 to the amount in 2013 to the us pension contributions",
+          "score_errors": [
+            "status",
+            "must_abstain",
+            "reason_code",
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_8c22662d2e6299b0",
+            "status": "ok",
+            "answer": "1.086134453781512605042016806722689075630",
+            "unit": "ratio",
+            "period": "2011-FY to 2013-FY",
+            "scope": "consolidated_CAS",
+            "citations": [
+              "finqa_8c22662d2e6299b0:text_9",
+              "finqa_8c22662d2e6299b0:text_5"
+            ]
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_8c22662d2e6299b0:text_5",
+                "finqa_8c22662d2e6299b0:text_6",
+                "finqa_8c22662d2e6299b0:text_9",
+                "finqa_8c22662d2e6299b0:text_10"
+              ]
+            ],
+            "valid_context_citations": []
+          },
+          "analysis": "按冻结标签应返回 insufficient_evidence 并说明原问或材料歧义；此次选择了一种解释给出标量。该分类不将差异统称为算术错误，也不重新裁定标签。"
+        },
+        {
+          "id": "finqa_ea3f099abd3b3e6a",
+          "track": "finqa_single",
+          "question": "whats is the percentage of equity compensation plans that were not approved by security holders?",
+          "score_errors": [
+            "status",
+            "must_abstain",
+            "reason_code",
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_ea3f099abd3b3e6a",
+            "status": "ok",
+            "answer": "0.004911590548515718650816147285274019592136",
+            "unit": "ratio",
+            "period": "2019-12-31",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_ea3f099abd3b3e6a:table_2",
+              "finqa_ea3f099abd3b3e6a:table_3"
+            ]
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_ea3f099abd3b3e6a:table_0",
+                "finqa_ea3f099abd3b3e6a:table_1",
+                "finqa_ea3f099abd3b3e6a:table_2",
+                "finqa_ea3f099abd3b3e6a:table_3",
+                "finqa_ea3f099abd3b3e6a:text_1",
+                "finqa_ea3f099abd3b3e6a:text_2",
+                "finqa_ea3f099abd3b3e6a:text_3"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_ea3f099abd3b3e6a:text_4"
+            ]
+          },
+          "analysis": "按冻结标签应返回 insufficient_evidence 并说明原问或材料歧义；此次选择了一种解释给出标量。该分类不将差异统称为算术错误，也不重新裁定标签。"
+        },
+        {
+          "id": "finqa_98beba26f9952db2",
+          "track": "finqa_single",
+          "question": "what is the cost difference over lifo in the last two years?",
+          "score_errors": [
+            "status",
+            "must_abstain",
+            "reason_code"
+          ],
+          "prediction": {
+            "id": "finqa_98beba26f9952db2",
+            "status": "ok",
+            "answer": "0.5",
+            "unit": "million_USD",
+            "period": "FY2004-FY2005",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_98beba26f9952db2:text_3"
+            ]
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_98beba26f9952db2:text_3"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_98beba26f9952db2:text_0",
+              "finqa_98beba26f9952db2:text_4",
+              "finqa_98beba26f9952db2:text_5"
+            ]
+          },
+          "analysis": "按冻结标签应返回 insufficient_evidence 并说明原问或材料歧义；此次选择了一种解释给出标量。该分类不将差异统称为算术错误，也不重新裁定标签。"
+        },
+        {
+          "id": "finqa_ca188c838d36b385",
+          "track": "finqa_single",
+          "question": "hard assets were what percent of the total blockbuster purchase price?",
+          "score_errors": [
+            "status",
+            "must_abstain",
+            "reason_code",
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_ca188c838d36b385",
+            "status": "ok",
+            "answer": "0.1227096033974929789711624083841358997192",
+            "unit": "ratio",
+            "period": "2011-FY",
+            "scope": "blockbuster_purchase_price_allocation",
+            "citations": [
+              "finqa_ca188c838d36b385:table_3",
+              "finqa_ca188c838d36b385:table_7"
+            ]
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_ca188c838d36b385:table_0",
+                "finqa_ca188c838d36b385:table_2",
+                "finqa_ca188c838d36b385:table_3",
+                "finqa_ca188c838d36b385:table_7",
+                "finqa_ca188c838d36b385:text_7"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_ca188c838d36b385:text_1",
+              "finqa_ca188c838d36b385:text_2"
+            ]
+          },
+          "analysis": "按冻结标签应返回 insufficient_evidence 并说明原问或材料歧义；此次选择了一种解释给出标量。该分类不将差异统称为算术错误，也不重新裁定标签。"
+        },
+        {
+          "id": "finqa_89afb9b2cb627013",
+          "track": "finqa_multi",
+          "question": "what is the total value of the balance of options as of january 1 , 2000 , in millions?",
+          "score_errors": [
+            "status",
+            "must_abstain",
+            "reason_code"
+          ],
+          "prediction": {
+            "id": "finqa_89afb9b2cb627013",
+            "status": "ok",
+            "answer": "6.5692",
+            "unit": "million_USD",
+            "period": "2000-01-01",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_89afb9b2cb627013:table_0",
+              "finqa_89afb9b2cb627013:table_1"
+            ]
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_89afb9b2cb627013:table_0",
+                "finqa_89afb9b2cb627013:table_1"
+              ],
+              [
+                "finqa_89afb9b2cb627013:table_1",
+                "finqa_89afb9b2cb627013:text_2"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_89afb9b2cb627013:text_0",
+              "finqa_89afb9b2cb627013:text_8"
+            ]
+          },
+          "analysis": "按冻结标签应返回 insufficient_evidence 并说明原问或材料歧义；此次选择了一种解释给出标量。该分类不将差异统称为算术错误，也不重新裁定标签。"
+        },
+        {
+          "id": "finqa_4bb8fb6f35b38b71",
+          "track": "finqa_multi",
+          "question": "based on the table , what would be the annual percent return for the companies investments?",
+          "score_errors": [
+            "status",
+            "must_abstain",
+            "reason_code"
+          ],
+          "prediction": {
+            "id": "finqa_4bb8fb6f35b38b71",
+            "status": "ok",
+            "answer": "9.404507113181417600402870451970288304167",
+            "unit": "percentage_points",
+            "period": "FY2010",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_4bb8fb6f35b38b71:table_3",
+              "finqa_4bb8fb6f35b38b71:table_0"
+            ],
+            "corrected_value": "9.404507113181417600402870451970288304167"
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_4bb8fb6f35b38b71:table_0",
+                "finqa_4bb8fb6f35b38b71:table_3"
+              ],
+              [
+                "finqa_4bb8fb6f35b38b71:table_3",
+                "finqa_4bb8fb6f35b38b71:text_19"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_4bb8fb6f35b38b71:table_0",
+              "finqa_4bb8fb6f35b38b71:text_21",
+              "finqa_4bb8fb6f35b38b71:text_22",
+              "finqa_4bb8fb6f35b38b71:text_24"
+            ]
+          },
+          "analysis": "按冻结标签应返回 insufficient_evidence 并说明原问或材料歧义；此次选择了一种解释给出标量。该分类不将差异统称为算术错误，也不重新裁定标签。"
+        },
+        {
+          "id": "finqa_68b8c79b36d3eae5",
+          "track": "finqa_multi",
+          "question": "what was the cumulative total stockholder return percentage for illumina inc . common stock for the four years end 2003?",
+          "score_errors": [
+            "status",
+            "must_abstain",
+            "reason_code"
+          ],
+          "prediction": {
+            "id": "finqa_68b8c79b36d3eae5",
+            "status": "ok",
+            "answer": "-56.19",
+            "unit": "percentage_points",
+            "period": "2000-07-27/2003-12-26",
+            "scope": "illumina inc. common stock cumulative total stockholder return (index base 100 at IPO on 2000-07-27)",
+            "citations": [
+              "finqa_68b8c79b36d3eae5:table_0",
+              "finqa_68b8c79b36d3eae5:table_1",
+              "finqa_68b8c79b36d3eae5:text_0",
+              "finqa_68b8c79b36d3eae5:text_1"
+            ]
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_68b8c79b36d3eae5:text_0"
+              ],
+              [
+                "finqa_68b8c79b36d3eae5:table_0",
+                "finqa_68b8c79b36d3eae5:text_1"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_68b8c79b36d3eae5:text_2",
+              "finqa_68b8c79b36d3eae5:table_1"
+            ]
+          },
+          "analysis": "按冻结标签应返回 insufficient_evidence 并说明原问或材料歧义；此次选择了一种解释给出标量。该分类不将差异统称为算术错误，也不重新裁定标签。"
+        },
+        {
+          "id": "finqa_35b4ad38dc0fedd3",
+          "track": "finqa_multi",
+          "question": "for the terrestar acquisition what will the final cash purchase price be in millions paid upon closing?",
+          "score_errors": [
+            "status",
+            "must_abstain",
+            "reason_code"
+          ],
+          "prediction": {
+            "id": "finqa_35b4ad38dc0fedd3",
+            "status": "ok",
+            "answer": "30",
+            "unit": "million_USD",
+            "period": "2011-FY",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_35b4ad38dc0fedd3:text_15",
+              "finqa_35b4ad38dc0fedd3:text_13"
+            ]
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_35b4ad38dc0fedd3:text_13",
+                "finqa_35b4ad38dc0fedd3:text_15"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_35b4ad38dc0fedd3:text_10",
+              "finqa_35b4ad38dc0fedd3:text_11"
+            ]
+          },
+          "analysis": "按冻结标签应返回 insufficient_evidence 并说明原问或材料歧义；此次选择了一种解释给出标量。该分类不将差异统称为算术错误，也不重新裁定标签。"
+        },
+        {
+          "id": "finqa_b5b38de430c5e94e",
+          "track": "finqa_multi",
+          "question": "what was the percentage change in the balance at end of fiscal year for the gross unrecognized tax benefits",
+          "score_errors": [
+            "status",
+            "must_abstain",
+            "reason_code"
+          ],
+          "prediction": {
+            "id": "finqa_b5b38de430c5e94e",
+            "status": "ok",
+            "answer": "-0.1464069845533915379449294828744123572868",
+            "unit": "ratio",
+            "period": "FY2018",
+            "scope": "consolidated_CAS",
+            "citations": [
+              "finqa_b5b38de430c5e94e:table_0",
+              "finqa_b5b38de430c5e94e:table_9",
+              "finqa_b5b38de430c5e94e:text_5"
+            ]
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_b5b38de430c5e94e:table_0",
+                "finqa_b5b38de430c5e94e:table_9"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_b5b38de430c5e94e:text_0",
+              "finqa_b5b38de430c5e94e:text_5"
+            ]
+          },
+          "analysis": "按冻结标签应返回 insufficient_evidence 并说明原问或材料歧义；此次选择了一种解释给出标量。该分类不将差异统称为算术错误，也不重新裁定标签。"
+        },
+        {
+          "id": "finqa_b01abd707f1633de",
+          "track": "finqa_multi",
+          "question": "what percentage of the total carrying amount of investment securities is the securities held to maturity?",
+          "score_errors": [
+            "status",
+            "must_abstain",
+            "reason_code",
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_b01abd707f1633de",
+            "status": "ok",
+            "answer": "0.1693811074918566775244299674267100977199",
+            "unit": "ratio",
+            "period": "2012-12-31",
+            "scope": "consolidated_CAS",
+            "citations": [
+              "finqa_b01abd707f1633de:text_4",
+              "finqa_b01abd707f1633de:table_2"
+            ]
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_b01abd707f1633de:text_4",
+                "finqa_b01abd707f1633de:text_5",
+                "finqa_b01abd707f1633de:table_0",
+                "finqa_b01abd707f1633de:table_1",
+                "finqa_b01abd707f1633de:table_2"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_b01abd707f1633de:text_0",
+              "finqa_b01abd707f1633de:text_1",
+              "finqa_b01abd707f1633de:text_2"
+            ]
+          },
+          "analysis": "按冻结标签应返回 insufficient_evidence 并说明原问或材料歧义；此次选择了一种解释给出标量。该分类不将差异统称为算术错误，也不重新裁定标签。"
+        }
+      ]
+    },
+    {
+      "category": "abstention_reason_code_contract",
+      "description": "已经拒答，但原因码与冻结契约不符",
+      "count": 2,
+      "cases": [
+        {
+          "id": "finqa_8b771ce7915ac9d6",
+          "track": "finqa_single",
+          "question": "what portion of total expected cash outflow for capital leases is due in 2018?",
+          "score_errors": [
+            "reason_code",
+            "missing_expected_evidence",
+            "irrelevant_or_invalid_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_8b771ce7915ac9d6",
+            "status": "insufficient_evidence",
+            "answer": null,
+            "unit": "ratio",
+            "period": null,
+            "scope": null,
+            "citations": [],
+            "reason_code": "period_not_in_source"
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_8b771ce7915ac9d6:table_0",
+                "finqa_8b771ce7915ac9d6:table_6",
+                "finqa_8b771ce7915ac9d6:table_7"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_8b771ce7915ac9d6:text_8"
+            ]
+          },
+          "analysis": "输出 insufficient_evidence、answer=null，reason_code 却为 period_not_in_source；冻结要求 ambiguous_question_or_source。空引用亦导致联合失分。不是捏造数值答案。"
+        },
+        {
+          "id": "finqa_607950265807c588",
+          "track": "finqa_single",
+          "question": "what is the difference of between the carrying amount and the fair value of long-term debt and other long-term liabilities in 2014?",
+          "score_errors": [
+            "reason_code",
+            "missing_expected_evidence",
+            "irrelevant_or_invalid_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_607950265807c588",
+            "status": "insufficient_evidence",
+            "answer": null,
+            "unit": "million_USD",
+            "period": "2014",
+            "scope": "consolidated",
+            "citations": [],
+            "reason_code": "period_not_in_source"
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_607950265807c588:table_0"
+              ],
+              [
+                "finqa_607950265807c588:table_0",
+                "finqa_607950265807c588:table_2",
+                "finqa_607950265807c588:text_8"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_607950265807c588:text_0",
+              "finqa_607950265807c588:text_4",
+              "finqa_607950265807c588:table_2",
+              "finqa_607950265807c588:text_8"
+            ]
+          },
+          "analysis": "输出 insufficient_evidence、answer=null，reason_code 却为 period_not_in_source；冻结要求 ambiguous_question_or_source。空引用亦导致联合失分。不是捏造数值答案。"
+        }
+      ]
+    },
+    {
+      "category": "no_valid_final_result",
+      "description": "模型未产生有效最终结果",
+      "count": 1,
+      "cases": [
+        {
+          "id": "finqa_c52d56ffd438f93c",
+          "track": "finqa_single",
+          "question": "in 2006 , what was the net sales to the segment 2019s top five customers in millions",
+          "score_errors": [
+            "status",
+            "reason_code",
+            "missing_expected_evidence",
+            "irrelevant_or_invalid_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_c52d56ffd438f93c",
+            "status": "failed",
+            "answer": null,
+            "citations": [],
+            "error": "模型没有返回有效分析结果"
+          },
+          "frozen_expected": {
+            "status": "insufficient_evidence",
+            "answer": null,
+            "reason_code": "ambiguous_question_or_source",
+            "evidence_sets": [
+              [
+                "finqa_c52d56ffd438f93c:text_5",
+                "finqa_c52d56ffd438f93c:text_8",
+                "finqa_c52d56ffd438f93c:text_15",
+                "finqa_c52d56ffd438f93c:text_18",
+                "finqa_c52d56ffd438f93c:table_0",
+                "finqa_c52d56ffd438f93c:table_2"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_c52d56ffd438f93c:text_4",
+              "finqa_c52d56ffd438f93c:text_17"
+            ]
+          },
+          "analysis": "任务状态 failed，错误为“模型没有返回有效分析结果”。已成功调用 get_document/get_source_table/get_source_page/search_evidence，4 次模型调用。现有记录不足以确认上游生成失败原因；没有证据将其归为本轮入库/OCR失败。"
+        }
+      ]
+    },
+    {
+      "category": "financial_target_subset_selection",
+      "description": "财务目标与子集混淆",
+      "count": 1,
+      "cases": [
+        {
+          "id": "finqa_a787b0c78f0eda64",
+          "track": "finqa_multi",
+          "question": "considering the years 2016-2018 , what is the average liability for uncertain tax positions , in millions?",
+          "score_errors": [
+            "numeric_value",
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_a787b0c78f0eda64",
+            "status": "ok",
+            "answer": "229",
+            "unit": "million_USD",
+            "period": "2016-2018",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_a787b0c78f0eda64:text_1"
+            ],
+            "corrected_value": null
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "279",
+            "unit": "million_USD",
+            "evidence_sets": [
+              [
+                "finqa_a787b0c78f0eda64:table_0",
+                "finqa_a787b0c78f0eda64:table_1",
+                "finqa_a787b0c78f0eda64:table_9"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_a787b0c78f0eda64:text_0",
+              "finqa_a787b0c78f0eda64:text_1",
+              "finqa_a787b0c78f0eda64:text_7"
+            ]
+          },
+          "analysis": "预测 (228+219+240)/3=229，使用影响有效税率的负债子集；冻结目标是年末不确定税务头寸总负债，(279+280+278)/3=279。子集平均值本身算术正确。"
+        }
+      ]
+    },
+    {
+      "category": "sign_convention_label_conflict",
+      "description": "数值方向符号与冻结标签不一致，公开规范有解释冲突",
+      "count": 1,
+      "cases": [
+        {
+          "id": "finqa_adcdfef877f97441",
+          "track": "finqa_multi",
+          "question": "what was the percentage decline in the operating loss from 2007 to 2008",
+          "score_errors": [
+            "numeric_value",
+            "missing_expected_evidence",
+            "irrelevant_or_invalid_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_adcdfef877f97441",
+            "status": "ok",
+            "answer": "0.8309741881765195670274771024146544546211",
+            "unit": "ratio",
+            "period": "2007-2008",
+            "scope": "mobile_devices_segment",
+            "citations": [
+              "finqa_adcdfef877f97441:table_2",
+              "finqa_adcdfef877f97441:text_22",
+              "finqa_adcdfef877f97441:table_1"
+            ],
+            "direction": "the operating loss magnitude actually rose (from 1201 million USD in 2007 to 2199 million USD in 2008), i.e. the loss widened by ~83%; the source labels this 83% change in its 2008 vs 2007 column, so the reported magnitude is nonnegative and represents an increase, not a decline, in the operating loss"
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "-0.83097418817651956702747710241465445462114904246461",
+            "unit": "ratio",
+            "evidence_sets": [
+              [
+                "finqa_adcdfef877f97441:table_0",
+                "finqa_adcdfef877f97441:table_2"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_adcdfef877f97441:text_14",
+              "finqa_adcdfef877f97441:text_22",
+              "finqa_adcdfef877f97441:text_23"
+            ]
+          },
+          "analysis": "预测 +0.830974188176519567 并明确解释亏损从1201增至2199、实际扩大；冻结标签为负数。公开约定同时规定 explicit decline magnitude is nonnegative; explain its direction。因此仍保留原始失败分数，但不能将本例无条件归为算术错误；需披露符号和公开规范/标签潜在冲突。"
+        }
+      ]
+    },
+    {
+      "category": "unit_enum_contract",
+      "description": "数字正确，单位枚举不符合题目元数据",
+      "count": 1,
+      "cases": [
+        {
+          "id": "finqa_47593c3344dff71c",
+          "track": "finqa_multi",
+          "question": "what was the percentage change in working capital from 2015 to 2016?",
+          "score_errors": [
+            "unit"
+          ],
+          "prediction": {
+            "id": "finqa_47593c3344dff71c",
+            "status": "ok",
+            "answer": "25.43097574103904787769632522282889505693",
+            "unit": "percent",
+            "period": "2016-12-31",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_47593c3344dff71c:table_2",
+              "finqa_47593c3344dff71c:table_0"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "25.430975741039047877696325222828895056929093791577",
+            "unit": "percentage_points",
+            "evidence_sets": [
+              [
+                "finqa_47593c3344dff71c:table_2"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_47593c3344dff71c:table_0",
+              "finqa_47593c3344dff71c:text_1"
+            ]
+          },
+          "analysis": "数值25.430975741正确；预测unit=percent，冻结题目元数据和标签为percentage_points。属于单位标签契约差异，不是数量级算错。"
+        }
+      ]
+    },
+    {
+      "category": "annual_flow_period_contract",
+      "description": "OCR金额正确，年度流量期间误写时点",
+      "count": 1,
+      "cases": [
+        {
+          "id": "midea_2024_ocr_net_profit_parent",
+          "track": "cn_ocr",
+          "question": "仅从所附年报页面图像读取美的集团2024年归属于上市公司股东的净利润，使用中国企业会计准则合并口径，转换为人民币元。图像对应midea_2024的PDF第9页。",
+          "score_errors": [
+            "period"
+          ],
+          "prediction": {
+            "id": "midea_2024_ocr_net_profit_parent",
+            "status": "ok",
+            "answer": "38537237000",
+            "unit": "CNY",
+            "period": "2024-12-31",
+            "scope": "consolidated_CAS",
+            "citations": [
+              "midea_2024:p9"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "38537237000",
+            "unit": "CNY",
+            "period": "2024-FY",
+            "scope": "consolidated_CAS"
+          },
+          "analysis": "OCR金额38537237000元及原页引用正确；归母净利润期间写2024-12-31而非2024-FY。属于期间语义输出错误，不是OCR数字识别错误。"
+        }
+      ]
+    }
+  ],
+  "citation_only_categories": [
+    {
+      "category": "missing_preregistered_context",
+      "description": "缺少预登记的年份、单位或区间边界引用",
+      "count": 11,
+      "cases": [
+        {
+          "id": "finqa_e5c4903978ecb993",
+          "track": "finqa_single",
+          "question": "what was the decrease of the effective tax expense rate between 2015 and 2016?",
+          "score_errors": [
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_e5c4903978ecb993",
+            "status": "ok",
+            "answer": "3.4",
+            "unit": "percentage_points",
+            "period": "2015-2016",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_e5c4903978ecb993:table_9"
+            ],
+            "corrected_value": null
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "3.4",
+            "unit": "percentage_points",
+            "evidence_sets": [
+              [
+                "finqa_e5c4903978ecb993:table_0",
+                "finqa_e5c4903978ecb993:table_9"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_e5c4903978ecb993:text_15",
+              "finqa_e5c4903978ecb993:text_17"
+            ]
+          },
+          "analysis": "金额/比率结果正确，但未引冻结集合要求的table_0年份表头。"
+        },
+        {
+          "id": "finqa_bbaa0a59cea53d0a",
+          "track": "finqa_single",
+          "question": "what percentage of total minimum lease payments are due after 2015?",
+          "score_errors": [
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_bbaa0a59cea53d0a",
+            "status": "ok",
+            "answer": "0.5019519115870874134824032115537730740389",
+            "unit": "ratio",
+            "period": "2010-12-31",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_bbaa0a59cea53d0a:table_5",
+              "finqa_bbaa0a59cea53d0a:table_6"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "0.50195191158708741348240321155377307403886844437470",
+            "unit": "ratio",
+            "evidence_sets": [
+              [
+                "finqa_bbaa0a59cea53d0a:table_4",
+                "finqa_bbaa0a59cea53d0a:table_5",
+                "finqa_bbaa0a59cea53d0a:table_6"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_bbaa0a59cea53d0a:text_0"
+            ]
+          },
+          "analysis": "引用thereafter金额行与总额行，但遗漏table_4=2015，导致冻结评分认为无法证实thereafter的年度边界。不是漏掉用于除法的两个金额。"
+        },
+        {
+          "id": "finqa_bb99661e0cc14aa6",
+          "track": "finqa_single",
+          "question": "of the total contractual obligations and off-balance sheet arrangements contractual obligations what percentage is due to operating leases where we are the primary obligor?",
+          "score_errors": [
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_bb99661e0cc14aa6",
+            "status": "ok",
+            "answer": "0.1569503331314354936402180496668685645064",
+            "unit": "ratio",
+            "period": "2018-12-31",
+            "scope": "consolidated_CAS",
+            "citations": [
+              "finqa_bb99661e0cc14aa6:table_3",
+              "finqa_bb99661e0cc14aa6:table_6"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "0.15695033313143549364021804966686856450635978195033",
+            "unit": "ratio",
+            "evidence_sets": [
+              [
+                "finqa_bb99661e0cc14aa6:table_0",
+                "finqa_bb99661e0cc14aa6:table_3",
+                "finqa_bb99661e0cc14aa6:table_6"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_bb99661e0cc14aa6:text_21"
+            ]
+          },
+          "analysis": "金额/比率结果正确，但未引冻结集合要求的table_0年份表头。"
+        },
+        {
+          "id": "finqa_91a57be8973b10f4",
+          "track": "finqa_single",
+          "question": "what percent of the total increase or decrease would the euro be in 2016?",
+          "score_errors": [
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_91a57be8973b10f4",
+            "status": "ok",
+            "answer": "0.2945736434108527131782945736434108527132",
+            "unit": "ratio",
+            "period": "2016-FY",
+            "scope": "consolidated_CAS",
+            "citations": [
+              "finqa_91a57be8973b10f4:table_2",
+              "finqa_91a57be8973b10f4:table_5"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "0.29457364341085271317829457364341085271317829457364",
+            "unit": "ratio",
+            "evidence_sets": [
+              [
+                "finqa_91a57be8973b10f4:table_0",
+                "finqa_91a57be8973b10f4:table_2",
+                "finqa_91a57be8973b10f4:table_5"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_91a57be8973b10f4:text_14"
+            ]
+          },
+          "analysis": "金额/比率结果正确，但未引冻结集合要求的table_0年份表头。"
+        },
+        {
+          "id": "finqa_e457b43057203b2b",
+          "track": "finqa_single",
+          "question": "commercial mortgage loans held for sale designated at fair value at december 31 , 2011 were what percent of total loans held for sale at december 31 , 2011?",
+          "score_errors": [
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_e457b43057203b2b",
+            "status": "ok",
+            "answer": "0.2871253405994550408719346049046321525886",
+            "unit": "ratio",
+            "period": "2011-12-31",
+            "scope": "consolidated_CAS",
+            "citations": [
+              "finqa_e457b43057203b2b:table_1",
+              "finqa_e457b43057203b2b:table_8"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "0.28712534059945504087193460490463215258855585831063",
+            "unit": "ratio",
+            "evidence_sets": [
+              [
+                "finqa_e457b43057203b2b:table_0",
+                "finqa_e457b43057203b2b:table_1",
+                "finqa_e457b43057203b2b:table_8"
+              ],
+              [
+                "finqa_e457b43057203b2b:table_0",
+                "finqa_e457b43057203b2b:table_8",
+                "finqa_e457b43057203b2b:text_24"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_e457b43057203b2b:text_22"
+            ]
+          },
+          "analysis": "金额/比率结果正确，但未引冻结集合要求的table_0年份表头。"
+        },
+        {
+          "id": "finqa_d9dd07b1615e50a9",
+          "track": "finqa_single",
+          "question": "in 2010 what was the percent of the income tax benefit to the stock based compensation cost",
+          "score_errors": [
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_d9dd07b1615e50a9",
+            "status": "ok",
+            "answer": "0.3480662983425414364640883977900552486188",
+            "unit": "ratio",
+            "period": "2010-FY",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_d9dd07b1615e50a9:table_2",
+              "finqa_d9dd07b1615e50a9:table_1"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "0.34806629834254143646408839779005524861878453038674",
+            "unit": "ratio",
+            "evidence_sets": [
+              [
+                "finqa_d9dd07b1615e50a9:table_0",
+                "finqa_d9dd07b1615e50a9:table_1",
+                "finqa_d9dd07b1615e50a9:table_2"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_d9dd07b1615e50a9:text_18",
+              "finqa_d9dd07b1615e50a9:text_19"
+            ]
+          },
+          "analysis": "金额/比率结果正确，但未引冻结集合要求的table_0年份表头。"
+        },
+        {
+          "id": "finqa_afc3120537250639",
+          "track": "finqa_single",
+          "question": "scalable infrastructure represents what percent of capital expenditures incurred the cable segment during 2007?",
+          "score_errors": [
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_afc3120537250639",
+            "status": "ok",
+            "answer": "0.1691973969631236442516268980477223427332",
+            "unit": "ratio",
+            "period": "2007-FY",
+            "scope": "cable segment capital expenditures (Comcast 2008 Form 10-K)",
+            "citations": [
+              "finqa_afc3120537250639:table_2",
+              "finqa_afc3120537250639:table_7",
+              "finqa_afc3120537250639:text_13"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "0.16919739696312364425162689804772234273318872017354",
+            "unit": "ratio",
+            "evidence_sets": [
+              [
+                "finqa_afc3120537250639:table_0",
+                "finqa_afc3120537250639:table_2",
+                "finqa_afc3120537250639:table_7"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_afc3120537250639:text_13"
+            ]
+          },
+          "analysis": "金额/比率结果正确，但未引冻结集合要求的table_0年份表头。"
+        },
+        {
+          "id": "finqa_d692a37a21a57c48",
+          "track": "finqa_multi",
+          "question": "what is the net change in aon 2019s unpaid restructuring liabilities during 2007?",
+          "score_errors": [
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_d692a37a21a57c48",
+            "status": "ok",
+            "answer": "-71",
+            "unit": "million_USD",
+            "period": "2007-FY",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_d692a37a21a57c48:table_8",
+              "finqa_d692a37a21a57c48:table_12",
+              "finqa_d692a37a21a57c48:table_9",
+              "finqa_d692a37a21a57c48:table_10",
+              "finqa_d692a37a21a57c48:table_11"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "-71",
+            "unit": "million_USD",
+            "evidence_sets": [
+              [
+                "finqa_d692a37a21a57c48:table_8",
+                "finqa_d692a37a21a57c48:table_12",
+                "finqa_d692a37a21a57c48:text_1"
+              ],
+              [
+                "finqa_d692a37a21a57c48:table_9",
+                "finqa_d692a37a21a57c48:table_10",
+                "finqa_d692a37a21a57c48:table_11",
+                "finqa_d692a37a21a57c48:text_1"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_d692a37a21a57c48:text_0",
+              "finqa_d692a37a21a57c48:text_2"
+            ]
+          },
+          "analysis": "引用2006/2007期末额及本年变动行，但未引text_1“( millions )”单位说明。"
+        },
+        {
+          "id": "finqa_e3e308dacbe8ef66",
+          "track": "finqa_multi",
+          "question": "what is the 3 year average net state effective tax rate?",
+          "score_errors": [
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_e3e308dacbe8ef66",
+            "status": "ok",
+            "answer": "0.02933333333333333333333333333333333333333",
+            "unit": "ratio",
+            "period": "2015-2017",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_e3e308dacbe8ef66:table_0",
+              "finqa_e3e308dacbe8ef66:table_2"
+            ],
+            "reason_code": null
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "0.029333333333333333333333333333333333333333333333333",
+            "unit": "ratio",
+            "evidence_sets": [
+              [
+                "finqa_e3e308dacbe8ef66:table_0",
+                "finqa_e3e308dacbe8ef66:table_1",
+                "finqa_e3e308dacbe8ef66:table_2"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_e3e308dacbe8ef66:text_11",
+              "finqa_e3e308dacbe8ef66:text_12"
+            ]
+          },
+          "analysis": "已引用2017/2016/2015表头及2.1/3.7/3.0的state taxes行；缺table_1中百分号标记，属于冻结证据集合要求的单位上下文，非缺三个平均数操作数。"
+        },
+        {
+          "id": "finqa_a83f5a07ad6802c7",
+          "track": "finqa_multi",
+          "question": "the combined amount of accrued interest and penalties related to tax positions taken on our tax returns and included in non-current income taxes payable was what percent of the total ending balance as of november 28 2008?",
+          "score_errors": [
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_a83f5a07ad6802c7",
+            "status": "ok",
+            "answer": "0.1096389081971207246200259407089982730080",
+            "unit": "ratio",
+            "period": "2008-11-28",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_a83f5a07ad6802c7:text_3",
+              "finqa_a83f5a07ad6802c7:table_6"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "0.10963890819712072462002594070899827300804735254283",
+            "unit": "ratio",
+            "evidence_sets": [
+              [
+                "finqa_a83f5a07ad6802c7:text_3",
+                "finqa_a83f5a07ad6802c7:table_6",
+                "finqa_a83f5a07ad6802c7:text_1"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_a83f5a07ad6802c7:text_0"
+            ]
+          },
+          "analysis": "已引15.3 million分子及139549表格分母，遗漏text_1的139.5 million及不含利息罚款的口径/单位说明。"
+        },
+        {
+          "id": "finqa_f036232828c0c2a6",
+          "track": "finqa_multi",
+          "question": "what is the net change in cash during 2016?",
+          "score_errors": [
+            "missing_expected_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_f036232828c0c2a6",
+            "status": "ok",
+            "answer": "-312",
+            "unit": "million_USD",
+            "period": "2016-FY",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_f036232828c0c2a6:table_1",
+              "finqa_f036232828c0c2a6:table_2",
+              "finqa_f036232828c0c2a6:table_3"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "-312",
+            "unit": "million_USD",
+            "evidence_sets": [
+              [
+                "finqa_f036232828c0c2a6:table_0",
+                "finqa_f036232828c0c2a6:table_1",
+                "finqa_f036232828c0c2a6:table_2",
+                "finqa_f036232828c0c2a6:table_3"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_f036232828c0c2a6:text_24"
+            ]
+          },
+          "analysis": "金额/比率结果正确，但未引冻结集合要求的table_0年份表头。"
+        }
+      ]
+    },
+    {
+      "category": "locator_mapping_contract",
+      "description": "定位字符串或图片原页映射错误",
+      "count": 5,
+      "cases": [
+        {
+          "id": "finqa_dfd8c3bdadc9e10d",
+          "track": "finqa_single",
+          "question": "considering the year 2015 , what is the percentage of reserves for environmental matters related to remediation of sites?",
+          "score_errors": [
+            "missing_expected_evidence",
+            "irrelevant_or_invalid_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_dfd8c3bdadc9e10d",
+            "status": "ok",
+            "answer": "0.1842105263157894736842105263157894736842",
+            "unit": "ratio",
+            "period": "2015-12-31",
+            "scope": "consolidated_CAS",
+            "citations": [
+              "finqa_dfd8c3bdadc9e10d:text_17:p1",
+              "finqa_dfd8c3bdadc9e10d:text_18:p1"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "0.18421052631578947368421052631578947368421052631579",
+            "unit": "ratio",
+            "evidence_sets": [
+              [
+                "finqa_dfd8c3bdadc9e10d:text_17",
+                "finqa_dfd8c3bdadc9e10d:text_18"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_dfd8c3bdadc9e10d:text_8",
+              "finqa_dfd8c3bdadc9e10d:text_16"
+            ]
+          },
+          "analysis": "答案正确，引用定位不匹配允许的原source_id定位。FinQA四例额外添加:p1，伊利图像例把上传图片第1页当成原报告第7页。"
+        },
+        {
+          "id": "finqa_a66e162c6b7c7502",
+          "track": "finqa_single",
+          "question": "of the total contractual obligations and off-balance sheet arrangements contractual obligations what percentage is due to capital lease obligations?",
+          "score_errors": [
+            "missing_expected_evidence",
+            "irrelevant_or_invalid_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_a66e162c6b7c7502",
+            "status": "ok",
+            "answer": "0.01741368867353119321623258631132646880678",
+            "unit": "ratio",
+            "period": "2018-12-31",
+            "scope": "consolidated_CAS",
+            "citations": [
+              "finqa_a66e162c6b7c7502:p1:table_2",
+              "finqa_a66e162c6b7c7502:p1:table_6"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "0.017413688673531193216232586311326468806783767413689",
+            "unit": "ratio",
+            "evidence_sets": [
+              [
+                "finqa_a66e162c6b7c7502:table_0",
+                "finqa_a66e162c6b7c7502:table_2",
+                "finqa_a66e162c6b7c7502:table_6"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_a66e162c6b7c7502:text_21",
+              "finqa_a66e162c6b7c7502:text_22"
+            ]
+          },
+          "analysis": "答案正确，引用定位不匹配允许的原source_id定位。FinQA四例额外添加:p1，伊利图像例把上传图片第1页当成原报告第7页。"
+        },
+        {
+          "id": "finqa_973a3fef3994b761",
+          "track": "finqa_multi",
+          "question": "what is the percentage increase in total expense from 2017 to 2018?",
+          "score_errors": [
+            "missing_expected_evidence",
+            "irrelevant_or_invalid_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_973a3fef3994b761",
+            "status": "ok",
+            "answer": "9.4",
+            "unit": "ratio",
+            "period": "FY2017-FY2018",
+            "scope": null,
+            "citations": [
+              "finqa_973a3fef3994b761:p1:table_3"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "9.4",
+            "unit": "ratio",
+            "evidence_sets": [
+              [
+                "finqa_973a3fef3994b761:table_0",
+                "finqa_973a3fef3994b761:table_3"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_973a3fef3994b761:text_2"
+            ]
+          },
+          "analysis": "答案正确，引用定位不匹配允许的原source_id定位。FinQA四例额外添加:p1，伊利图像例把上传图片第1页当成原报告第7页。"
+        },
+        {
+          "id": "finqa_669bfb264dae390e",
+          "track": "finqa_multi",
+          "question": "what was the percentage change in the the research and development costs from 2014 to 2015",
+          "score_errors": [
+            "missing_expected_evidence",
+            "irrelevant_or_invalid_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_669bfb264dae390e",
+            "status": "ok",
+            "answer": "38.37209302325581395348837209302325581395",
+            "unit": "percentage_points",
+            "period": "FY2015",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_669bfb264dae390e:text_5:p1"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "38.372093023255813953488372093023255813953488372093",
+            "unit": "percentage_points",
+            "evidence_sets": [
+              [
+                "finqa_669bfb264dae390e:text_5"
+              ]
+            ],
+            "valid_context_citations": []
+          },
+          "analysis": "答案正确，引用定位不匹配允许的原source_id定位。FinQA四例额外添加:p1，伊利图像例把上传图片第1页当成原报告第7页。"
+        },
+        {
+          "id": "yili_2024_ocr_net_profit_parent",
+          "track": "cn_ocr",
+          "question": "仅从所附年报页面图像读取伊利股份2024年归属于上市公司股东的净利润，使用中国企业会计准则合并口径，转换为人民币元。图像对应yili_2024的PDF第7页。",
+          "score_errors": [
+            "missing_expected_evidence",
+            "irrelevant_or_invalid_evidence"
+          ],
+          "prediction": {
+            "id": "yili_2024_ocr_net_profit_parent",
+            "status": "ok",
+            "answer": "8452859993.18",
+            "unit": "CNY",
+            "period": "2024-FY",
+            "scope": "consolidated_CAS",
+            "citations": [
+              "yili_2024:p1"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "8452859993.18",
+            "unit": "CNY",
+            "period": "2024-FY",
+            "scope": "consolidated_CAS"
+          },
+          "analysis": "答案正确，引用定位不匹配允许的原source_id定位。FinQA四例额外添加:p1，伊利图像例把上传图片第1页当成原报告第7页。"
+        }
+      ]
+    },
+    {
+      "category": "extra_unregistered_context",
+      "description": "额外引用未登记的合理上下文",
+      "count": 2,
+      "cases": [
+        {
+          "id": "midea_2024_extract_equity_parent_2023",
+          "track": "cn_extract",
+          "question": "依据美的集团2024年年报的主要会计数据表，提取2023年末归属于上市公司股东的净资产。按中国企业会计准则合并口径，统一以人民币元输出，并引用该表所在的PDF物理页码（从1开始）。",
+          "score_errors": [
+            "irrelevant_or_invalid_evidence"
+          ],
+          "prediction": {
+            "id": "midea_2024_extract_equity_parent_2023",
+            "status": "ok",
+            "answer": "162878825000",
+            "unit": "CNY",
+            "period": "2023-12-31",
+            "scope": "consolidated_CAS",
+            "citations": [
+              "midea_2024:p10",
+              "midea_2024:p9"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "162878825000",
+            "unit": "CNY",
+            "period": "2023-12-31",
+            "scope": "consolidated_CAS"
+          },
+          "analysis": "答案和必要数值证据正确，但额外上下文不在冻结valid_context集合，被计为无关或无效证据；语义合理性见limitations。"
+        },
+        {
+          "id": "finqa_3a404a3f65d496dc",
+          "track": "finqa_single",
+          "question": "in the adoption of the prospective method what was the ratio of the other comprehensive income to the net income reclassifying certain separate accounts to general account",
+          "score_errors": [
+            "irrelevant_or_invalid_evidence"
+          ],
+          "prediction": {
+            "id": "finqa_3a404a3f65d496dc",
+            "status": "ok",
+            "answer": "9.8",
+            "unit": "ratio",
+            "period": "2004-01-01",
+            "scope": "consolidated",
+            "citations": [
+              "finqa_3a404a3f65d496dc:text_2",
+              "finqa_3a404a3f65d496dc:text_45",
+              "finqa_3a404a3f65d496dc:text_46",
+              "finqa_3a404a3f65d496dc:table_0",
+              "finqa_3a404a3f65d496dc:table_2"
+            ]
+          },
+          "frozen_expected": {
+            "status": "ok",
+            "answer": "9.8",
+            "unit": "ratio",
+            "evidence_sets": [
+              [
+                "finqa_3a404a3f65d496dc:table_2"
+              ]
+            ],
+            "valid_context_citations": [
+              "finqa_3a404a3f65d496dc:table_0",
+              "finqa_3a404a3f65d496dc:text_2"
+            ]
+          },
+          "analysis": "答案和必要数值证据正确，但额外上下文不在冻结valid_context集合，被计为无关或无效证据；语义合理性见limitations。"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "id": "public_sign_convention_vs_frozen_label",
+      "case_ids": [
+        "finqa_adcdfef877f97441"
+      ],
+      "public_question": "what was the percentage decline in the operating loss from 2007 to 2008",
+      "public_answer_convention": "Return unit=ratio and keep full calculation precision. percent=10 means 10%; ratio=0.1 means the same fraction. percentage_points=2 means the absolute difference between 12% and 10%, not the relative percentage change. Change from A to B means B-A; percentage change means (B-A)/A*100. An undirected difference or explicit decline magnitude is nonnegative; explain its direction. Monetary units are literal: million_USD means millions of US dollars. If the original question and source cannot uniquely determine a value, return insufficient_evidence, answer=null, reason_code=ambiguous_question_or_source and cite the material demonstrating the ambiguity. Never choose an unstated period, aggregation, or accounting interpretation merely to produce a scalar.",
+      "source_evidence": [
+        {
+          "id": "finqa_adcdfef877f97441:table_0",
+          "cells": [
+            "( dollars in millions )",
+            "years ended december 31 2008",
+            "years ended december 31 2007",
+            "years ended december 31 2006",
+            "years ended december 31 2008 20142007",
+            "2007 20142006"
+          ]
+        },
+        {
+          "id": "finqa_adcdfef877f97441:table_2",
+          "cells": [
+            "operating earnings ( loss )",
+            "-2199 ( 2199 )",
+            "-1201 ( 1201 )",
+            "2690",
+            "83% ( 83 % )",
+            "***"
+          ]
+        },
+        {
+          "id": "finqa_adcdfef877f97441:text_22",
+          "text": "the segment incurred an operating loss of $ 2.2 billion in 2008 , compared to an operating loss of $ 1.2 billion in 2007 ."
+        },
+        {
+          "id": "finqa_adcdfef877f97441:text_23",
+          "text": "the increase in the operating loss was primarily due to a decrease in gross margin , driven by : ( i ) a 36% ( 36 % ) decrease in net sales , ( ii ) excess inventory and other related charges of $ 370 million in 2008 due to a decision to 61management 2019s discussion and analysis of financial condition and results of operations %%transmsg*** transmitting job : c49054 pcn : 064000000 ***%%pcmsg|61 |00028|yes|no|02/24/2009 12:31|0|0|page is valid , no graphics -- color : n| ."
+        }
+      ],
+      "conclusion": "冻结得分不改；此例方向符号存在公开约定与标签的解释冲突，不据此宣称算术错误。"
+    },
+    {
+      "id": "valid_context_set_not_exhaustive",
+      "case_ids": [
+        "midea_2024_extract_equity_parent_2023",
+        "finqa_3a404a3f65d496dc"
+      ],
+      "source_evidence": [
+        {
+          "id": "finqa_3a404a3f65d496dc:table_0",
+          "cells": [
+            "components of cumulative effect of adoption",
+            "net income",
+            "other comprehensive income"
+          ]
+        },
+        {
+          "id": "finqa_3a404a3f65d496dc:table_2",
+          "cells": [
+            "reclassifying certain separate accounts to general account",
+            "30",
+            "294"
+          ]
+        },
+        {
+          "id": "finqa_3a404a3f65d496dc:text_2",
+          "text": "at the date of initial application , january 1 , 2004 , the cumulative effect of the adoption of sop 03-1 on net income and other comprehensive income was comprised of the following individual impacts shown net of income tax benefit of $ 12 : in may 2003 , the financial accounting standards board ( 201cfasb 201d ) issued statement of financial accounting standards ( 201csfas 201d ) no ."
+        },
+        {
+          "id": "finqa_3a404a3f65d496dc:text_45",
+          "text": "the transition methods include prospective and retrospective adoption options ."
+        },
+        {
+          "id": "finqa_3a404a3f65d496dc:text_46",
+          "text": "the prospective method requires that ."
+        }
+      ],
+      "midea_context": "归母权益2023数值位于原报告p10，模型还引p9跨页年度表的表头/单位；冻结有效引用只有p10。",
+      "conclusion": "定位集合精确率并非逐条语义相关性人工裁决。两项额外背景均与题目或跨页表相关，原分数原样保留。"
+    },
+    {
+      "id": "no_human_semantic_adjudication",
+      "conclusion": "这是冻结后代理只读诊断，不是人工双标、重新标注或调参；没有重新判分。"
+    },
+    {
+      "id": "first_round_not_complete_study",
+      "conclusion": "仅第一轮124题，不能替代完整三轮、跨轮一致性及S01-S12综合判定。S10规范要求人工视觉检查，当前仅代理视觉检查，须标partial。"
+    }
+  ],
+  "interpretation": "首轮未通过所有数据门槛；主要失分为歧义拒答、结构化元数据和证据契约。不能把20个答案失败概括为算术错误，不能把图像题失分概括为OCR提取失败。未见本轮入库/OCR基础设施失败证据，1个无有效模型最终结果的更细原因尚未确认。",
+  "source_sha256": {
+    "benchmark/results/agent-2026-10-03T06-37-06-859Z-round-1.json": "c5be66a15dd36d6bdbc9f47099dd44c23788bbddc33b4efa3f88e2d84342b3c2",
+    "benchmark/versions/v0.2/gold.jsonl": "b497f5c5c565889d6e1a947d05c854e9ec36e1512f69dcd34823d99f64857253",
+    "benchmark/versions/v0.2/cases.jsonl": "e86dc083f5aa9549b1c6d10e85954bfe92c23fdde899f01c2d2b43443792a739",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/midea_2024_extract_equity_parent_2023/result.json": "7ba912826d5f7bce9222cff1ab296116e15d4b46611b2c34c396a782d39d8311",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/midea_2024_ocr_net_profit_parent/result.json": "da316a3b6db754b6395436a9955296814be3c446cd14c11c3ea7ef2a4ad5addc",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/yili_2024_ocr_net_profit_parent/result.json": "5e4f830e8522ab6c18c4c1a5346f355fbd814ee907a3900a714d48011860614b",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_8b771ce7915ac9d6/result.json": "86608eebf25a4450bf3098fb927f697eb48809d4fc5c64ee4dd474ca2f098a5d",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_c8f95d62fc9dc283/result.json": "00e9848228424d9a888e5f96c6b2f5e5f4c3d3985112b4a795909832273f8699",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_e5c4903978ecb993/result.json": "258270e5dbf080005f3706c0424b861449716c533da63d1f9ee861402d24cfa4",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_0d857e531e718fef/result.json": "acbd4671b850397b88da66105b3f0462f32a5e01c53766cc6ed786d4a49c1142",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_bbaa0a59cea53d0a/result.json": "7793f66dd92662b22270da2daebdb14bc50aa780b1107f62563c5feae99ce73d",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_e2b86b40fe001674/result.json": "f1d0e5331887657ba3bc1ff4fc2c75cbd2c79e8899b289e524a22a68be6a675d",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_8c22662d2e6299b0/result.json": "ba24bcbb3e2f58f0bd18db4e4e98e311169378912b0fd9ec92a20e813abf42a8",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_bb99661e0cc14aa6/result.json": "5925337a3c148298068b8c5f032f2039968d779d6310af3703d1c21372f0d4a5",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_dfd8c3bdadc9e10d/result.json": "fde6dd6943d93b86fb8f0b7819fea3e0d7d2258fe532926e073e9bd3d6fbe814",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_ea3f099abd3b3e6a/result.json": "6a4fa7c85e5805ed18511c06573b2a6e07e6c09f018d7e804daf328fc72e65c2",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_91a57be8973b10f4/result.json": "5b5cf489d12986f47a83414fd98a71326a370a8bfbd5615fd05d28dcfe49b4dc",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_e457b43057203b2b/result.json": "76369ca33317d5e9f305f6c3623c2e61e3bbf4c0c79d876afa4f8e3ee830e6af",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_d9dd07b1615e50a9/result.json": "c4d343dc47021df7973e497bcc8c57c538505ce9d65f671cc9b19a34a3eab503",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_607950265807c588/result.json": "71cc148a661d7bc0ada15bbf9276afdacfc12ab26354a5dcb3995d8fcee5cbb1",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_98beba26f9952db2/result.json": "eba7616e3464773c86ebff2cfd106f6dfd6fe067fe14dd1bcc2c19ff875390f0",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_a66e162c6b7c7502/result.json": "6b2341e36aab35fae18292666512c9da9a8ee17ce6ab82a8ed6649ee7d488fed",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_c52d56ffd438f93c/result.json": "4589fe533bbe02b16bd9999bdea6d423e0077b0f71ad05c317a5f4722d174775",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_afc3120537250639/result.json": "77f8c324f4313de30ba4e7694d3945e5bebfcefc2fc5f03e1aa15af5e81fee45",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_3a404a3f65d496dc/result.json": "bba8243733570e3f79fbe1f30081e74b5fc2c389ad8ed8ae44d54e0816a16caf",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_ca188c838d36b385/result.json": "b2817b33ae19ae069cf9c581af1bf0deeb398089e641248adbe09a8867c236fa",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_d692a37a21a57c48/result.json": "02b2a9206594414a8924f1ae48da686e33e5fed62d72f80264b3276bd70281ff",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_a787b0c78f0eda64/result.json": "7070ba4e9eaae78b0a975a1a0176b56f539897bfc495aee6ba1214411f22679c",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_89afb9b2cb627013/result.json": "4ce8f52be41c24133e3eb7b6a1aa1c5873637dcbbb598249057742e1498beb55",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_4bb8fb6f35b38b71/result.json": "41376f3585e65c17cc9b966c5e810d211a0460d9dbb3127bf07d4637dda07bf9",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_e3e308dacbe8ef66/result.json": "683cb418e723f8fb1a5aa5d63624aa5026c7c1cf3dce0455f2b85e1103443fe5",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_68b8c79b36d3eae5/result.json": "23f2025a1889c55f087ef7a894a24069d658089d1a3b760069137541e10a1437",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_a83f5a07ad6802c7/result.json": "39fd9b249d0ca961ac8b8f84566dbc0a5082be1b1190c7127f1ce476a54a0499",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_adcdfef877f97441/result.json": "2d92c6ac2078eaf07dfe51394819aaa6b01c322141a83ea7f5f7dd97fcdae262",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_973a3fef3994b761/result.json": "7c0aaefcce8982050a10187b143126b037e1d1d5e2e22d583231728751884bc1",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_f036232828c0c2a6/result.json": "d0b4db0d93b458b3766cd47f468cc49ec126a563090ec5fa1d550fea0ebfd376",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_35b4ad38dc0fedd3/result.json": "a777970f006dbca5ac2ba061cb16a90047796bdc2c3c8f3f67e64cd80041c725",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_669bfb264dae390e/result.json": "960b2e96270a43379330531feefd1d7d78f23375f28f7763574fdf951a78cf04",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_47593c3344dff71c/result.json": "620053b7bd5bc4b6624743bfb9c02f22c1cf4dbc36587ddc5e0f975464ae2d6d",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_b5b38de430c5e94e/result.json": "b0eccb6abe3ab97c75760d10dca2a4953cb33ecff5aa57427dc9be66aaf326c7",
+    "benchmark/runs/agent-2026-10-03T06-37-06-859Z/round-1/finqa_b01abd707f1633de/result.json": "1e8b460475a9113b038ff6aafdc4bb43381183dcfe48737488fec43fde8f2b38",
+    "benchmark/agent_input/finqa/finqa_adcdfef877f97441.json": "85cbc01b6921d650df25deab36f80ac1b513be28901823c42953b91987a55afd",
+    "benchmark/agent_input/finqa/finqa_3a404a3f65d496dc.json": "fdc7ab2088cb8fd8d3204c19ea9b6a8fcde141e2d9f6f75d01e252acf37171e0"
+  }
+}

@@ -1,0 +1,2979 @@
+{
+  "schema": "known-definition-clean3-independent-1",
+  "captured_at": "2026-10-04T01:19:59.668351+00:00",
+  "run_id": "f6713999-b12d-47a4-ac3c-2d2f8cc3e7b9",
+  "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+  "status": "failed",
+  "scope": "Read-only independent audit of a repeated known-company development repair. Financial score remains 15/15 anchors and 9/9 distinctions on known cases only. It is not held-out generalization evidence.",
+  "legacy_original_status": "failed",
+  "checks": [
+    {
+      "name": "terminal_run_and_exactly_one_existing_only_process",
+      "status": "passed",
+      "evidence": {
+        "run_id": "f6713999-b12d-47a4-ac3c-2d2f8cc3e7b9",
+        "terminal_status": "completed",
+        "processing_id": "61c2ea67ef3c469cb8c8be9a665b9c85"
+      }
+    },
+    {
+      "name": "source_tables_pages_batches_and_document_snapshot_identical",
+      "status": "passed",
+      "evidence": {
+        "before_sha256": "bc4be8e97d051f4a17884216dd7fda7b491fa8a8db9262483266543aba3cb3bc",
+        "after_sha256": "bc4be8e97d051f4a17884216dd7fda7b491fa8a8db9262483266543aba3cb3bc",
+        "collections": {
+          "documents": 1,
+          "pages": 143,
+          "source_tables": 275,
+          "normalization_batches": 266,
+          "prepared_documents": 0
+        }
+      }
+    },
+    {
+      "name": "all_3298_fact_values_periods_units_geometry_and_original_origin_preserved",
+      "status": "passed",
+      "evidence": {
+        "before_count": 3298,
+        "after_count": 3298,
+        "direct_field_differences": [],
+        "field_scope": [
+          "fact_id",
+          "document_id",
+          "project_id",
+          "company",
+          "year",
+          "period",
+          "scope",
+          "currency",
+          "raw_value",
+          "raw_unit",
+          "value",
+          "priority",
+          "quality",
+          "statement",
+          "period_start",
+          "period_end",
+          "dimensions",
+          "dimension_labels",
+          "unit_conversion",
+          "original_metric",
+          "temporal_correction",
+          "version",
+          "restatement",
+          "normalization_engine",
+          "unit_kind",
+          "numeric_span",
+          "normalized_unit"
+        ],
+        "source_field_scope": [
+          "document_id",
+          "page",
+          "table_id",
+          "row",
+          "column",
+          "cell",
+          "text",
+          "bbox"
+        ],
+        "normalization_field_scope": [
+          "original_metric",
+          "original_label",
+          "original_extraction_hash",
+          "source_key",
+          "source_fingerprint",
+          "processing_id",
+          "period_start",
+          "period_end",
+          "dimensions",
+          "scale",
+          "char_interval",
+          "temporal_correction",
+          "canonical_alias"
+        ]
+      }
+    },
+    {
+      "name": "all_82_reused_facts_original_owners_hashes_and_semantics_unchanged_with_explicit_new_registration",
+      "status": "passed",
+      "evidence": {
+        "facts": 82,
+        "unique_cache_count": 11,
+        "details": [
+          {
+            "source_key": "c97eeb6ce7a216a448f927a0df6fc2c9adc98bd8241c782f79cc6d76ad2e5bfc",
+            "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "a287484c30b81befef09aede8d702c6b793e90466c06c8adf711f5aa19184ec5",
+            "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "e083fa24507fa60d6a4be6f1110dcf7adaeb41644fccbf9b4628dd221e97942e",
+            "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "20a7c5a40be0bf895e0ac2bc3a8a34ad03695a030b82a93c0b4089c9185d52de",
+            "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "87bece98e1ae4bdb21cbf9b25ed03cf29b75098a9b1366105ec0fe9568f7a9ff",
+            "cache_key": "de17904bc9c4b5651ac33d43af8c1247586f7c8d4de5f87851545b2de8ed17ac",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "6541ad001b181b720b9b5519ac0651b8ca985e72047cb870ef1f1a3915b291dd",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "911ae86ffa58e22dd8591253593f929417a5172d9787d2febc9d600c63b750c5",
+            "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "5a043ec4303ae4781198765373e92462393067249f3b586c3f2897c651d5e651",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "ca5f08c6227bb7c9fc495ad561705f126746e1fa6adf884b057c345a5f6911c0",
+            "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "5a043ec4303ae4781198765373e92462393067249f3b586c3f2897c651d5e651",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "bcf9b2bea954971a95216c3e6074d28c2ea4cae2fe4f9a366d725c43a87ddbcd",
+            "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "5a043ec4303ae4781198765373e92462393067249f3b586c3f2897c651d5e651",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "9bb40cf8cbeacd5ec47b3473521a1cf1472aec6ddcd6e4c3ac7a17f4c07a51be",
+            "cache_key": "de17904bc9c4b5651ac33d43af8c1247586f7c8d4de5f87851545b2de8ed17ac",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "6541ad001b181b720b9b5519ac0651b8ca985e72047cb870ef1f1a3915b291dd",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "16f3cd87567b3888a5b2c61ff56eb8fb4de0194ecc2d516451fe42e790dc8d78",
+            "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "5a043ec4303ae4781198765373e92462393067249f3b586c3f2897c651d5e651",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "d206b3b430f190bbcfcc83fd9831d36ce85953f9d46dce98da3ee30bfe28b3bb",
+            "cache_key": "c21fb3a2d5b64cf9a90623217748d1274b21462fcc1b683c1635feaabe35318e",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7019b065e392235a2c7e7e1b826ce23cf227fd8107ca0f565a5724c264eda200",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "e4a6ee25d07febed7b43609dbfd33b18cb773ec6404a660fee6bf43387e15d80",
+            "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "5a043ec4303ae4781198765373e92462393067249f3b586c3f2897c651d5e651",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "36167dd9b7c065a73230b822c580dde457aa0b06ee32fba7adfe48244f2e65ed",
+            "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "c42c157bd5f2dc88322e11c74923409ce82bd14e12c0fdd71180f50a0f42a628",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "ae8b8f38ff038a0189d776468a048100469439f6f796466cfdfd16582e60e215",
+            "cache_key": "c21fb3a2d5b64cf9a90623217748d1274b21462fcc1b683c1635feaabe35318e",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7019b065e392235a2c7e7e1b826ce23cf227fd8107ca0f565a5724c264eda200",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "39d865f9b7249e8432df998bd465935419ecc16745fc0b0f49d897105b0b9a5e",
+            "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "5a043ec4303ae4781198765373e92462393067249f3b586c3f2897c651d5e651",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "ec9730bc54142b68e094c72f4ef80bfedec96927027163f2e421c2eee6a97e7e",
+            "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "c42c157bd5f2dc88322e11c74923409ce82bd14e12c0fdd71180f50a0f42a628",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "ef0361aef37ff79724e212e2e6bbccf36db62101e958fd92c3ebb4443e608117",
+            "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "c42c157bd5f2dc88322e11c74923409ce82bd14e12c0fdd71180f50a0f42a628",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "564d2361f817f0cef520729c6f64ed75e3e53d09a930c423457bb5e126f3ddd9",
+            "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "c42c157bd5f2dc88322e11c74923409ce82bd14e12c0fdd71180f50a0f42a628",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "cc4690fd25a92f10b259c655c0e77934c00d118b3bc4d3432de43e0cefec0837",
+            "cache_key": "c21fb3a2d5b64cf9a90623217748d1274b21462fcc1b683c1635feaabe35318e",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7019b065e392235a2c7e7e1b826ce23cf227fd8107ca0f565a5724c264eda200",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "2f0331f9c26116ffb99cedddc35eed55bb9682402abebb7a0b254f431e34a1c1",
+            "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "c42c157bd5f2dc88322e11c74923409ce82bd14e12c0fdd71180f50a0f42a628",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "d6a4f2fd89535789e9c4ee62951463de610169ed5c9f4c2190739f1635d48007",
+            "cache_key": "104071269e1314085a1870ea3e3beaeb500041119befe7ad056ef121347a1fd9",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "c42c157bd5f2dc88322e11c74923409ce82bd14e12c0fdd71180f50a0f42a628",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "0583e4489dc559deb564aa10c38e9d91cb90de5b5bdae9f0c94ef7d8aa44172e",
+            "cache_key": "de17904bc9c4b5651ac33d43af8c1247586f7c8d4de5f87851545b2de8ed17ac",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "6541ad001b181b720b9b5519ac0651b8ca985e72047cb870ef1f1a3915b291dd",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "819fefbdd11db5cea2482e5974555f3669b32423be803397b28b41d5b29da069",
+            "cache_key": "de17904bc9c4b5651ac33d43af8c1247586f7c8d4de5f87851545b2de8ed17ac",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "6541ad001b181b720b9b5519ac0651b8ca985e72047cb870ef1f1a3915b291dd",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "6bbdf0688d99c5dfc53cc3be74fb6683c92323c9e7908f89a248aa258c7958ee",
+            "cache_key": "c21fb3a2d5b64cf9a90623217748d1274b21462fcc1b683c1635feaabe35318e",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7019b065e392235a2c7e7e1b826ce23cf227fd8107ca0f565a5724c264eda200",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "333c0bd20aee23c2aaf5802f891fe2251c6c2eb9d02d9733b974f45fd7a09e94",
+            "cache_key": "e25bb7307d5ec8eba84b0484cbee26adf7d8bc987eff945709cb907c067bd65b",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7b7da08c9057919f25198b4ab22349fc78a8cb996785db2d77eeb24001e1d965",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "8b0557769d934f313b1d417c2b66c515dc40d050322c3fdbbdff2e063ea63b49",
+            "cache_key": "76090ff91d6e4ca1940df43e0e9e26c1bf68d2c39c00306796db010142aa64a6",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "80584cc827107ce700fa28092a1df90340b4c6bf00719f42d4498e1cb9a9076c",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "6a322a27912cc7eaca5c5dbcca13137bfff5f7331e0b97a82859138df5bc08dc",
+            "cache_key": "24db65802b614a763e6dd28ec1a4378e671ad53db47afef68a0d9499fe5eb1ba",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "e1cd271e8c0a456a8fdc9b4270285a477e3c84b93967e4f4e71fc607de0df22f",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "63a50ac1b9513298676e5f3edaefc2a3d391beb6316c2d9a4a936a9e57a111c0",
+            "cache_key": "76090ff91d6e4ca1940df43e0e9e26c1bf68d2c39c00306796db010142aa64a6",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "80584cc827107ce700fa28092a1df90340b4c6bf00719f42d4498e1cb9a9076c",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "087ebaf3e9d9ba2a0f59ee46da6aace2b8723891b9a637c87b3ebd6aafea8006",
+            "cache_key": "e25bb7307d5ec8eba84b0484cbee26adf7d8bc987eff945709cb907c067bd65b",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7b7da08c9057919f25198b4ab22349fc78a8cb996785db2d77eeb24001e1d965",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "cbe1c477ffabd7423dd051ef4de8efdca45b4ba3451efe2dcdc556c56331b119",
+            "cache_key": "76090ff91d6e4ca1940df43e0e9e26c1bf68d2c39c00306796db010142aa64a6",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "80584cc827107ce700fa28092a1df90340b4c6bf00719f42d4498e1cb9a9076c",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "85b5f1ffa1542854f2932dcc15db18a0314cf98852014bf37be5c965a2bdc08f",
+            "cache_key": "24db65802b614a763e6dd28ec1a4378e671ad53db47afef68a0d9499fe5eb1ba",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "e1cd271e8c0a456a8fdc9b4270285a477e3c84b93967e4f4e71fc607de0df22f",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "9241889fef8cccc376f1cdb44c5710b866ccb737a3ca1704c097e3ad8cebe91c",
+            "cache_key": "ae1e94641e91e67c2b9d1d499bbbd82f549b07cb04f77ca80c41e8b369c2fa59",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "d5d740a892b9e0672665d966ae23108926e15a1897f5589a939431efd5a14a62",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "e72ed47fd5e09997476aed99925d91435f535477efff779a2679dc36f0be51e3",
+            "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "f1b4116291bd37bca429f450ac3246a5b454eadcb48fbd6b74289ad9690ae512",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "40d056ea0ae96ce8e8bb58a5442233cfb1e3bd8b5281960163c6c35fb49e6330",
+            "cache_key": "24db65802b614a763e6dd28ec1a4378e671ad53db47afef68a0d9499fe5eb1ba",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "e1cd271e8c0a456a8fdc9b4270285a477e3c84b93967e4f4e71fc607de0df22f",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "5bdd60ee7f66d38f5309c3fb40a38a5a521641d690f3c57e7e419579b834a141",
+            "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "f1b4116291bd37bca429f450ac3246a5b454eadcb48fbd6b74289ad9690ae512",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "47ae06341adf228e81582333a0d1e8fcc3e41a915fd0600cbda018f27afe8335",
+            "cache_key": "ae1e94641e91e67c2b9d1d499bbbd82f549b07cb04f77ca80c41e8b369c2fa59",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "d5d740a892b9e0672665d966ae23108926e15a1897f5589a939431efd5a14a62",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "a266735ab98a72e3c626e94896e2b66386de696088c1eb7e631febbc069b6447",
+            "cache_key": "e25bb7307d5ec8eba84b0484cbee26adf7d8bc987eff945709cb907c067bd65b",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7b7da08c9057919f25198b4ab22349fc78a8cb996785db2d77eeb24001e1d965",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "e0a083e8937318a995ae0a432902feeff691b8435585098e55f58c0017ab689f",
+            "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "f1b4116291bd37bca429f450ac3246a5b454eadcb48fbd6b74289ad9690ae512",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "d199552893b2de0636af454548184cf17763477a43550c96ea59b581effdf30c",
+            "cache_key": "ae1e94641e91e67c2b9d1d499bbbd82f549b07cb04f77ca80c41e8b369c2fa59",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "d5d740a892b9e0672665d966ae23108926e15a1897f5589a939431efd5a14a62",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "6eca6b8f4a5d44c21202cda2b33a74038fe9e8fd4e141c7723fcb7a8b50545fa",
+            "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "f1b4116291bd37bca429f450ac3246a5b454eadcb48fbd6b74289ad9690ae512",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "024f11a639aba42753ee9d40c9f0325ea9701ab1631b915f02cad7a7bc7e63b6",
+            "cache_key": "76090ff91d6e4ca1940df43e0e9e26c1bf68d2c39c00306796db010142aa64a6",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "80584cc827107ce700fa28092a1df90340b4c6bf00719f42d4498e1cb9a9076c",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "aaad890231ecee37c94d416c10a538f04b8eecdb8f72cc1e71a834ebb479b01d",
+            "cache_key": "76090ff91d6e4ca1940df43e0e9e26c1bf68d2c39c00306796db010142aa64a6",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "80584cc827107ce700fa28092a1df90340b4c6bf00719f42d4498e1cb9a9076c",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "7f523ef99bcd26d4819be99cd809226e7ec2b993dd687ee14af403a92be91597",
+            "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "c76bcced918080b94a49b7ea235a40ff6b81a7caebcea0b80ad3f93d654753e2",
+            "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "b6bb6c82bbf9adb62ef6a8d3d57480c37a64c18f5e5b0c0e10d266d381c17986",
+            "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "e57b8f3273348fd26a7c73b32c3ae47322549b29b30c8cb03f0394ce2e65b06f",
+            "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "9c14e7dbe492d45e9d9de1549461f822cb0dd053a7ddcc71129ac779efd18462",
+            "cache_key": "76090ff91d6e4ca1940df43e0e9e26c1bf68d2c39c00306796db010142aa64a6",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "80584cc827107ce700fa28092a1df90340b4c6bf00719f42d4498e1cb9a9076c",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "9bb9006ca7eba83db729892f0c0b6fbc56d566331f2bb53375730cf33f59ce94",
+            "cache_key": "76090ff91d6e4ca1940df43e0e9e26c1bf68d2c39c00306796db010142aa64a6",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "80584cc827107ce700fa28092a1df90340b4c6bf00719f42d4498e1cb9a9076c",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "9d46ea71bc81211da48ab56535723300a37f0ab0bbe2f31dfd1d181a8d980d3f",
+            "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "b99251fe872714b53923e88b7611648a122faea099a726e4df38eb91b1c3fb79",
+            "cache_key": "00414e00b6036add3afa837e3bcd7a362ca8892f23467c8efc34ca76fdf2936a",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "2c8ca6f71e2cad9f22d18519a42a6cf98f3cab778fbd3f24cbafaf928dfcdc30",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "f6732b8ce8a1f958516d4a9f0f3ed298dc01480434be398e0c57bf31e68af7bb",
+            "cache_key": "76090ff91d6e4ca1940df43e0e9e26c1bf68d2c39c00306796db010142aa64a6",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "80584cc827107ce700fa28092a1df90340b4c6bf00719f42d4498e1cb9a9076c",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "1cb48341dae0f0bc2d7b29a5802f2867cdcc029cfe6999d4aa0065836026858e",
+            "cache_key": "ae1e94641e91e67c2b9d1d499bbbd82f549b07cb04f77ca80c41e8b369c2fa59",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "d5d740a892b9e0672665d966ae23108926e15a1897f5589a939431efd5a14a62",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "b973ce8003fdf4c8c3036e233731c3b819d2c9b7c27b2636c9d0802263eeb19c",
+            "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "84dd518acbd12204887a791c951304a5868788e363b37f4030b5aaceded5f02e",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "ec48f441304d6b8c3bdae5c2399dc6fcfed01d057b178af0100891cc737b875e",
+            "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "84dd518acbd12204887a791c951304a5868788e363b37f4030b5aaceded5f02e",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "bc720a58b0ee46725c7d977e71c2713ce0b0181e2ac52a7a928191f00aba3dcd",
+            "cache_key": "ae1e94641e91e67c2b9d1d499bbbd82f549b07cb04f77ca80c41e8b369c2fa59",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "d5d740a892b9e0672665d966ae23108926e15a1897f5589a939431efd5a14a62",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "eb736a96f858331fa589261ff3a233a92aac659a81379e38b1715217906f8aff",
+            "cache_key": "e25bb7307d5ec8eba84b0484cbee26adf7d8bc987eff945709cb907c067bd65b",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7b7da08c9057919f25198b4ab22349fc78a8cb996785db2d77eeb24001e1d965",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "0b93b0675a692c48ce550f01447844db4ce231c0b2a122734032bf35e916f216",
+            "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "f1b4116291bd37bca429f450ac3246a5b454eadcb48fbd6b74289ad9690ae512",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "daca53bfe0b8980d3b67002a54268793bae0981ebeaa363093452822faae13c0",
+            "cache_key": "24db65802b614a763e6dd28ec1a4378e671ad53db47afef68a0d9499fe5eb1ba",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "e1cd271e8c0a456a8fdc9b4270285a477e3c84b93967e4f4e71fc607de0df22f",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "2c57deb96e67a38bfaa27536c8492f40e1ffea6cf03c390c6f4aa919e2207325",
+            "cache_key": "76090ff91d6e4ca1940df43e0e9e26c1bf68d2c39c00306796db010142aa64a6",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "80584cc827107ce700fa28092a1df90340b4c6bf00719f42d4498e1cb9a9076c",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "2535f4cd937932e95909649a351184aeeaa649ea2e5f0c37b6b9e1ef9ff3cfa4",
+            "cache_key": "ae1e94641e91e67c2b9d1d499bbbd82f549b07cb04f77ca80c41e8b369c2fa59",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "d5d740a892b9e0672665d966ae23108926e15a1897f5589a939431efd5a14a62",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "423f70c043ad18e597427c33502b16dd2bb62594d6e3992cd5f58b3aed8884c4",
+            "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "84dd518acbd12204887a791c951304a5868788e363b37f4030b5aaceded5f02e",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "7f9156cbe881d1775a94bd03513b23a11e838a7ce420e97666d9164e62fbe69a",
+            "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "84dd518acbd12204887a791c951304a5868788e363b37f4030b5aaceded5f02e",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "f635ba1cc44d09fb69cdf5a160154de78d8391d77d95d01132864e2351b10530",
+            "cache_key": "ae1e94641e91e67c2b9d1d499bbbd82f549b07cb04f77ca80c41e8b369c2fa59",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "d5d740a892b9e0672665d966ae23108926e15a1897f5589a939431efd5a14a62",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "1ed359175861a69d3d1bda83bd0947a5640252725cf6a71804f9eda2bfab6278",
+            "cache_key": "e25bb7307d5ec8eba84b0484cbee26adf7d8bc987eff945709cb907c067bd65b",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7b7da08c9057919f25198b4ab22349fc78a8cb996785db2d77eeb24001e1d965",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "7829143d4e8bf9b720479e07a12de7008ed7c7c5d13d9b9e961710b5c854d8ae",
+            "cache_key": "ae1e94641e91e67c2b9d1d499bbbd82f549b07cb04f77ca80c41e8b369c2fa59",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "d5d740a892b9e0672665d966ae23108926e15a1897f5589a939431efd5a14a62",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "33221805124ede43654a2ca9374403ffd8912dd622e5f48b3717b8873b07cc12",
+            "cache_key": "e25bb7307d5ec8eba84b0484cbee26adf7d8bc987eff945709cb907c067bd65b",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7b7da08c9057919f25198b4ab22349fc78a8cb996785db2d77eeb24001e1d965",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "009e2280c85a0387ade0a071a0528fafb2cf3d599e84ab89a563eb744813f51f",
+            "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "84dd518acbd12204887a791c951304a5868788e363b37f4030b5aaceded5f02e",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "a904fb534afd98dd3ec1dae3b5866987acbaf4866b17e7e162ca211e222a44bb",
+            "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "84dd518acbd12204887a791c951304a5868788e363b37f4030b5aaceded5f02e",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "ceccfe3fa159c80f9c9a377fb5ec3f13e8402dc39ea3d3b7b6365bbfaf5c634c",
+            "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "84dd518acbd12204887a791c951304a5868788e363b37f4030b5aaceded5f02e",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "7ba77bcada6d7fbb4b9435f6f08626135d1c9b2491245c1538f44bcbf1242208",
+            "cache_key": "24db65802b614a763e6dd28ec1a4378e671ad53db47afef68a0d9499fe5eb1ba",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "e1cd271e8c0a456a8fdc9b4270285a477e3c84b93967e4f4e71fc607de0df22f",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "edbef41cf2a183a51fb04f05329065742b4b1727e7849b76e4dc23d2c5af5426",
+            "cache_key": "76090ff91d6e4ca1940df43e0e9e26c1bf68d2c39c00306796db010142aa64a6",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "80584cc827107ce700fa28092a1df90340b4c6bf00719f42d4498e1cb9a9076c",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "ff5b0c319538b7b0963b8b164ff1073cff53d4bbdaffc4915a4e9de31c1f2859",
+            "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "f1b4116291bd37bca429f450ac3246a5b454eadcb48fbd6b74289ad9690ae512",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "50c8a155cb8f94c88ef8299ab37ab8a0f99771c9fbc82c26978d23318605b6ea",
+            "cache_key": "37064a9ea1f0b455dc3baa99e51b5cd5403e43069f46c5faa678f1e2480d0dd5",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "84dd518acbd12204887a791c951304a5868788e363b37f4030b5aaceded5f02e",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "27b1778badfe3b86e7d2555e195a615da674a8654638b9895b71f8e5aa39e38b",
+            "cache_key": "24db65802b614a763e6dd28ec1a4378e671ad53db47afef68a0d9499fe5eb1ba",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "e1cd271e8c0a456a8fdc9b4270285a477e3c84b93967e4f4e71fc607de0df22f",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "00758be67008d6f2fc52e1a04ec069d7bc33bff1c0735cae10c8bc930207e31a",
+            "cache_key": "e25bb7307d5ec8eba84b0484cbee26adf7d8bc987eff945709cb907c067bd65b",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7b7da08c9057919f25198b4ab22349fc78a8cb996785db2d77eeb24001e1d965",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "6e94759ee05e4734bbef2c4522f5c7de45773d29b9d2b4c592bd1343a270222e",
+            "cache_key": "e25bb7307d5ec8eba84b0484cbee26adf7d8bc987eff945709cb907c067bd65b",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7b7da08c9057919f25198b4ab22349fc78a8cb996785db2d77eeb24001e1d965",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "661f85755c608e978a414418b9042d86db3e326fb4d102335c73d59cb093175c",
+            "cache_key": "6ebe0090282d557921ffcc018cef6de676dd3017dbd1c0d0488f0623c6c05601",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "f1b4116291bd37bca429f450ac3246a5b454eadcb48fbd6b74289ad9690ae512",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "0f5786335a7adf4506eeeda3afda92626127e2e85e9da1c3aedcb0fa011fa0a1",
+            "cache_key": "de17904bc9c4b5651ac33d43af8c1247586f7c8d4de5f87851545b2de8ed17ac",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "6541ad001b181b720b9b5519ac0651b8ca985e72047cb870ef1f1a3915b291dd",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "3a1fb695e6d21b0e42c0ad5baac530601bc8828257f413acdd575c250f6bd1ab",
+            "cache_key": "de17904bc9c4b5651ac33d43af8c1247586f7c8d4de5f87851545b2de8ed17ac",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "6541ad001b181b720b9b5519ac0651b8ca985e72047cb870ef1f1a3915b291dd",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "1c2c5166cfdb2fbe6ac747ae7036f78c82a1cac6c45b033c7aca71f9d453b5f7",
+            "cache_key": "c21fb3a2d5b64cf9a90623217748d1274b21462fcc1b683c1635feaabe35318e",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7019b065e392235a2c7e7e1b826ce23cf227fd8107ca0f565a5724c264eda200",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "a34e5192f219faa0455711e69095c72649f362308a440de5660c480105da7b32",
+            "cache_key": "c21fb3a2d5b64cf9a90623217748d1274b21462fcc1b683c1635feaabe35318e",
+            "original_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_review_id": "836c7b304e4743009bcb69eeacb9f357",
+            "result_hash": "7019b065e392235a2c7e7e1b826ce23cf227fd8107ca0f565a5724c264eda200",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": false,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          },
+          {
+            "source_key": "b5063804db7106d04035106c9f7f8dd684634c1cd7437dc1ba0056b40edbdb66",
+            "cache_key": "833c2138e07974861dee012bac4a86257388b59871a67d710c5fa3f208b55fee",
+            "original_owner": "9467d3ac-95ab-4519-8ab5-13ac7cae032c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "result_hash": "5a043ec4303ae4781198765373e92462393067249f3b586c3f2897c651d5e651",
+            "fact_and_review_entirely_unchanged": true,
+            "original_registration_missing": true,
+            "current_revalidation_review_ids": [
+              "09777d816ca143c39e55a5e7b3cc9ef0"
+            ],
+            "passed": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "8_new_facts_5_groups_have_actual_model_decisions_quotes_and_history",
+      "status": "passed",
+      "evidence": {
+        "details": [
+          {
+            "fact_id": "514eeef0bf664529bf90a0984c4d7b3c",
+            "source_key": "33a6afc276a156226aad48dd282e780dce2faa96d18c54080763e5bf2b12db21",
+            "group_id": "e800b17619f867eb3426ed7519fc984ca565043611f0b53c29bdbafc0e7856ff",
+            "source": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "page": 5,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t8",
+              "row": 2,
+              "column": 5
+            },
+            "owner": "f6713999-b12d-47a4-ac3c-2d2f8cc3e7b9",
+            "metric": "revenue",
+            "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。",
+            "grounded_quotes": [
+              {
+                "evidence_id": "bd4cd4619e2af3baa8892f6ae415e47e8cc71ac558fc9563490dcbba7575c2b3",
+                "text": "主要会计数据 | 2024年 | 2023年 | 本期比"
+              },
+              {
+                "evidence_id": "2d17315be01cfbdb27116e7c76083c4274cab290e514fbaae2fd8b5ae9da6ede",
+                "text": "营业收入 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+              },
+              {
+                "evidence_id": "51b5edf17cfff2c9ea854a4e1310256464376886cd63727e3d2539a688fb4b46",
+                "text": "原始行名：营业收入"
+              }
+            ],
+            "matching_model_requests": [
+              "974df028-8546-49b1-bc98-a78e9e664cc7"
+            ],
+            "actual_group_proof": {
+              "group_id": "e800b17619f867eb3426ed7519fc984ca565043611f0b53c29bdbafc0e7856ff",
+              "status": "passed",
+              "errors": [],
+              "matching_request_ids": [
+                "974df028-8546-49b1-bc98-a78e9e664cc7"
+              ],
+              "marker_input_request_ids": [
+                "974df028-8546-49b1-bc98-a78e9e664cc7"
+              ],
+              "quote_proofs": [
+                {
+                  "request_id": "974df028-8546-49b1-bc98-a78e9e664cc7",
+                  "errors": [],
+                  "quotes": [
+                    {
+                      "quote_index": 0,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 1,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 2,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    }
+                  ]
+                }
+              ],
+              "extraction_signature": "308356d332fa2e69e4e0acdc29199ea70bd14a75ebc6799859e295df93999e5d"
+            },
+            "changes_from_before": [
+              "/canonical_alias",
+              "/definition",
+              "/definition_review",
+              "/definition_scope",
+              "/previous_canonical_alias",
+              "/source_ref/normalization/definition_review",
+              "/source_ref/normalization/directory_alias_superseded_by_definition"
+            ],
+            "passed": true
+          },
+          {
+            "fact_id": "b2c02a59adaf4f45ba8a6de417245f54",
+            "source_key": "164560d3828470647c263952d85a9959bfd67b0ff005ab0ed89d355131499112",
+            "group_id": "e800b17619f867eb3426ed7519fc984ca565043611f0b53c29bdbafc0e7856ff",
+            "source": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "page": 5,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t8",
+              "row": 2,
+              "column": 3
+            },
+            "owner": "f6713999-b12d-47a4-ac3c-2d2f8cc3e7b9",
+            "metric": "revenue",
+            "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。",
+            "grounded_quotes": [
+              {
+                "evidence_id": "bd4cd4619e2af3baa8892f6ae415e47e8cc71ac558fc9563490dcbba7575c2b3",
+                "text": "主要会计数据 | 2024年 | 2023年 | 本期比"
+              },
+              {
+                "evidence_id": "2d17315be01cfbdb27116e7c76083c4274cab290e514fbaae2fd8b5ae9da6ede",
+                "text": "营业收入 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+              },
+              {
+                "evidence_id": "51b5edf17cfff2c9ea854a4e1310256464376886cd63727e3d2539a688fb4b46",
+                "text": "原始行名：营业收入"
+              }
+            ],
+            "matching_model_requests": [
+              "974df028-8546-49b1-bc98-a78e9e664cc7"
+            ],
+            "actual_group_proof": {
+              "group_id": "e800b17619f867eb3426ed7519fc984ca565043611f0b53c29bdbafc0e7856ff",
+              "status": "passed",
+              "errors": [],
+              "matching_request_ids": [
+                "974df028-8546-49b1-bc98-a78e9e664cc7"
+              ],
+              "marker_input_request_ids": [
+                "974df028-8546-49b1-bc98-a78e9e664cc7"
+              ],
+              "quote_proofs": [
+                {
+                  "request_id": "974df028-8546-49b1-bc98-a78e9e664cc7",
+                  "errors": [],
+                  "quotes": [
+                    {
+                      "quote_index": 0,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 1,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 2,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    }
+                  ]
+                }
+              ],
+              "extraction_signature": "308356d332fa2e69e4e0acdc29199ea70bd14a75ebc6799859e295df93999e5d"
+            },
+            "changes_from_before": [
+              "/canonical_alias",
+              "/definition",
+              "/definition_review",
+              "/definition_scope",
+              "/previous_canonical_alias",
+              "/source_ref/normalization/definition_review",
+              "/source_ref/normalization/directory_alias_superseded_by_definition"
+            ],
+            "passed": true
+          },
+          {
+            "fact_id": "94c452a326fa432fba6bba34b8809b0a",
+            "source_key": "da15ec30fa8a03465d53fba243e9fd1fe7500ddb28a3c07dca8636c873e957b2",
+            "group_id": "e21dc331784057b1f4979efa70749aefabac98a722f93a24b8d26e97f8d00be7",
+            "source": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "page": 8,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t14",
+              "row": 2,
+              "column": 3
+            },
+            "owner": "f6713999-b12d-47a4-ac3c-2d2f8cc3e7b9",
+            "metric": "revenue",
+            "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。",
+            "grounded_quotes": [
+              {
+                "evidence_id": "1d5447c8b0bf3df9ea572e5280d91479851f81baa8109e596dff0bddbac0640b",
+                "text": "营业收入 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+              },
+              {
+                "evidence_id": "0894df0697ac860b7096b269462a142a1b64645c94ba77d2af7fca2f0157dc9f",
+                "text": "原始行名：营业收入"
+              },
+              {
+                "evidence_id": "694edc34fe6e89ec5c0107a174b617c222a0daadc6d437110bc4c3963262c8de",
+                "text": "1、 利润表及现金流量表相关科目变动分析表"
+              }
+            ],
+            "matching_model_requests": [
+              "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4"
+            ],
+            "actual_group_proof": {
+              "group_id": "e21dc331784057b1f4979efa70749aefabac98a722f93a24b8d26e97f8d00be7",
+              "status": "passed",
+              "errors": [],
+              "matching_request_ids": [
+                "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4"
+              ],
+              "marker_input_request_ids": [
+                "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4"
+              ],
+              "quote_proofs": [
+                {
+                  "request_id": "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4",
+                  "errors": [],
+                  "quotes": [
+                    {
+                      "quote_index": 0,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 1,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 2,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    }
+                  ]
+                }
+              ],
+              "extraction_signature": "1d4b31c362da95ca8b032485f3dd4cbb97788a4f95fb706765a97938375ffc28"
+            },
+            "changes_from_before": [
+              "/canonical_alias",
+              "/definition",
+              "/definition_review",
+              "/definition_scope",
+              "/previous_canonical_alias",
+              "/source_ref/normalization/definition_review",
+              "/source_ref/normalization/directory_alias_superseded_by_definition"
+            ],
+            "passed": true
+          },
+          {
+            "fact_id": "099e31b546bd4509b471b72d6f62dff4",
+            "source_key": "e3bd390130819dfce288753fc5582eb8dcd7d0abaf54d301bb750c58e40e4610",
+            "group_id": "e2bc8ede5cc6bef7c188f3cd619c724f759f4b240b8fee138260a0ffac62800a",
+            "source": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "page": 63,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t95",
+              "row": 3,
+              "column": 4
+            },
+            "owner": "f6713999-b12d-47a4-ac3c-2d2f8cc3e7b9",
+            "metric": "revenue",
+            "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。",
+            "grounded_quotes": [
+              {
+                "evidence_id": "4f6eeff0c767e516517a7e57ad01ba8c71655b9c9fa3b74eb2e3d42a437277dd",
+                "text": "其中：营业收入 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+              },
+              {
+                "evidence_id": "4e63c73b8a928a133bda78b50216e30f195c26da33e4167a7c13e24e063151dd",
+                "text": "原始行名：营业收入"
+              },
+              {
+                "evidence_id": "69c1e3c9342c93e9a520a447ecc84f33c222d00b70eb390b48d8c23a98efb58a",
+                "text": "合并利润表"
+              }
+            ],
+            "matching_model_requests": [
+              "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4"
+            ],
+            "actual_group_proof": {
+              "group_id": "e2bc8ede5cc6bef7c188f3cd619c724f759f4b240b8fee138260a0ffac62800a",
+              "status": "passed",
+              "errors": [],
+              "matching_request_ids": [
+                "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4"
+              ],
+              "marker_input_request_ids": [
+                "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4"
+              ],
+              "quote_proofs": [
+                {
+                  "request_id": "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4",
+                  "errors": [],
+                  "quotes": [
+                    {
+                      "quote_index": 0,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 1,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 2,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    }
+                  ]
+                }
+              ],
+              "extraction_signature": "e22aeb49a510fb87fc2d9e96141c926fb0a59e995f6d2e9589802cb4577a3a72"
+            },
+            "changes_from_before": [
+              "/canonical_alias",
+              "/definition",
+              "/definition_review",
+              "/definition_scope",
+              "/previous_canonical_alias",
+              "/source_ref/normalization/definition_review",
+              "/source_ref/normalization/directory_alias_superseded_by_definition"
+            ],
+            "passed": true
+          },
+          {
+            "fact_id": "62a78b5ee1784c34a648cf052cb738be",
+            "source_key": "3ef11124f4c575e7cdf0684c1c21e80a80dc116b4cf6453cc63780a914fe8a1c",
+            "group_id": "e800b17619f867eb3426ed7519fc984ca565043611f0b53c29bdbafc0e7856ff",
+            "source": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "page": 5,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t8",
+              "row": 2,
+              "column": 2
+            },
+            "owner": "f6713999-b12d-47a4-ac3c-2d2f8cc3e7b9",
+            "metric": "revenue",
+            "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。",
+            "grounded_quotes": [
+              {
+                "evidence_id": "bd4cd4619e2af3baa8892f6ae415e47e8cc71ac558fc9563490dcbba7575c2b3",
+                "text": "主要会计数据 | 2024年 | 2023年 | 本期比"
+              },
+              {
+                "evidence_id": "2d17315be01cfbdb27116e7c76083c4274cab290e514fbaae2fd8b5ae9da6ede",
+                "text": "营业收入 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+              },
+              {
+                "evidence_id": "51b5edf17cfff2c9ea854a4e1310256464376886cd63727e3d2539a688fb4b46",
+                "text": "原始行名：营业收入"
+              }
+            ],
+            "matching_model_requests": [
+              "974df028-8546-49b1-bc98-a78e9e664cc7"
+            ],
+            "actual_group_proof": {
+              "group_id": "e800b17619f867eb3426ed7519fc984ca565043611f0b53c29bdbafc0e7856ff",
+              "status": "passed",
+              "errors": [],
+              "matching_request_ids": [
+                "974df028-8546-49b1-bc98-a78e9e664cc7"
+              ],
+              "marker_input_request_ids": [
+                "974df028-8546-49b1-bc98-a78e9e664cc7"
+              ],
+              "quote_proofs": [
+                {
+                  "request_id": "974df028-8546-49b1-bc98-a78e9e664cc7",
+                  "errors": [],
+                  "quotes": [
+                    {
+                      "quote_index": 0,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 1,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 2,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    }
+                  ]
+                }
+              ],
+              "extraction_signature": "308356d332fa2e69e4e0acdc29199ea70bd14a75ebc6799859e295df93999e5d"
+            },
+            "changes_from_before": [
+              "/canonical_alias",
+              "/definition",
+              "/definition_review",
+              "/definition_scope",
+              "/previous_canonical_alias",
+              "/source_ref/normalization/definition_review",
+              "/source_ref/normalization/directory_alias_superseded_by_definition"
+            ],
+            "passed": true
+          },
+          {
+            "fact_id": "2e5a86ba5a9e4818a7a9aec8485c11e3",
+            "source_key": "284b7eb19e7e041a774bccb55ab51f3aa6bbc1ef11dbde330467482549904025",
+            "group_id": "e2bc8ede5cc6bef7c188f3cd619c724f759f4b240b8fee138260a0ffac62800a",
+            "source": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "page": 63,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t95",
+              "row": 3,
+              "column": 3
+            },
+            "owner": "f6713999-b12d-47a4-ac3c-2d2f8cc3e7b9",
+            "metric": "revenue",
+            "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。",
+            "grounded_quotes": [
+              {
+                "evidence_id": "4f6eeff0c767e516517a7e57ad01ba8c71655b9c9fa3b74eb2e3d42a437277dd",
+                "text": "其中：营业收入 | 〈原数值已省略〉 | 〈原数值已省略〉 | 〈原数值已省略〉"
+              },
+              {
+                "evidence_id": "4e63c73b8a928a133bda78b50216e30f195c26da33e4167a7c13e24e063151dd",
+                "text": "原始行名：营业收入"
+              },
+              {
+                "evidence_id": "69c1e3c9342c93e9a520a447ecc84f33c222d00b70eb390b48d8c23a98efb58a",
+                "text": "合并利润表"
+              }
+            ],
+            "matching_model_requests": [
+              "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4"
+            ],
+            "actual_group_proof": {
+              "group_id": "e2bc8ede5cc6bef7c188f3cd619c724f759f4b240b8fee138260a0ffac62800a",
+              "status": "passed",
+              "errors": [],
+              "matching_request_ids": [
+                "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4"
+              ],
+              "marker_input_request_ids": [
+                "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4"
+              ],
+              "quote_proofs": [
+                {
+                  "request_id": "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4",
+                  "errors": [],
+                  "quotes": [
+                    {
+                      "quote_index": 0,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 1,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 2,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    }
+                  ]
+                }
+              ],
+              "extraction_signature": "e22aeb49a510fb87fc2d9e96141c926fb0a59e995f6d2e9589802cb4577a3a72"
+            },
+            "changes_from_before": [
+              "/canonical_alias",
+              "/definition",
+              "/definition_review",
+              "/definition_scope",
+              "/previous_canonical_alias",
+              "/source_ref/normalization/definition_review",
+              "/source_ref/normalization/directory_alias_superseded_by_definition"
+            ],
+            "passed": true
+          },
+          {
+            "fact_id": "1757a76cd7d447ca81bafab15d0f1840",
+            "source_key": "99707581d14674274e2816fe04aace0ffe20c89bdf4f89e6ea9ac0b65cf4dfe6",
+            "group_id": "f09189c9198d187547568eb0d7272d4fd4564eacb3dba1019d2222f3afc9979a",
+            "source": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "page": 108,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+              "row": 5,
+              "column": 4
+            },
+            "owner": "f6713999-b12d-47a4-ac3c-2d2f8cc3e7b9",
+            "metric": "revenue",
+            "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。",
+            "grounded_quotes": [
+              {
+                "evidence_id": "223078372275347ee2cc264204f3da5d04360ad1ec6c84dfe7364b4464a4079d",
+                "text": "营业收入 | 营业成本"
+              },
+              {
+                "evidence_id": "2da843ec11a037939cfbd25bb8baf7387a319c6c819e39cf0dcd0c6732871c1d",
+                "text": "其他系列酒 |  |  | 〈原数值已省略〉 | 〈原数值已省略〉"
+              },
+              {
+                "evidence_id": "7d650131acbe307782894b1cc1a5fbccd7c009c53144384a7ca7dd6207b52236",
+                "text": "本列完整表头：合计 | 营业收入"
+              }
+            ],
+            "matching_model_requests": [
+              "974df028-8546-49b1-bc98-a78e9e664cc7"
+            ],
+            "actual_group_proof": {
+              "group_id": "f09189c9198d187547568eb0d7272d4fd4564eacb3dba1019d2222f3afc9979a",
+              "status": "passed",
+              "errors": [],
+              "matching_request_ids": [
+                "974df028-8546-49b1-bc98-a78e9e664cc7"
+              ],
+              "marker_input_request_ids": [
+                "974df028-8546-49b1-bc98-a78e9e664cc7"
+              ],
+              "quote_proofs": [
+                {
+                  "request_id": "974df028-8546-49b1-bc98-a78e9e664cc7",
+                  "errors": [],
+                  "quotes": [
+                    {
+                      "quote_index": 0,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 1,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 2,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    }
+                  ]
+                }
+              ],
+              "extraction_signature": "24ce75ee82f577554dfeec70d981e7bd04e1495e5f1f4cca6e23f677831691aa"
+            },
+            "changes_from_before": [
+              "/canonical_alias",
+              "/definition",
+              "/definition_review",
+              "/definition_scope",
+              "/previous_canonical_alias",
+              "/source_ref/normalization/definition_review",
+              "/source_ref/normalization/directory_alias_superseded_by_definition"
+            ],
+            "passed": true
+          },
+          {
+            "fact_id": "973e952ebd6845e98922617850eac6b5",
+            "source_key": "64bf313fdc0bd46b0c60a5a938fd2c69a1a361bd82f6b16242a935e506992272",
+            "group_id": "f0c1f0feec9f55be445c03ec885ee6724fba5eb90873caaf5fd64811b5fb90d9",
+            "source": {
+              "document_id": "39de9b118212463bbee6c2ab3c571432",
+              "page": 108,
+              "table_id": "39de9b118212463bbee6c2ab3c571432:t193",
+              "row": 11,
+              "column": 4
+            },
+            "owner": "f6713999-b12d-47a4-ac3c-2d2f8cc3e7b9",
+            "metric": "revenue",
+            "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。",
+            "grounded_quotes": [
+              {
+                "evidence_id": "223078372275347ee2cc264204f3da5d04360ad1ec6c84dfe7364b4464a4079d",
+                "text": "营业收入 | 营业成本"
+              },
+              {
+                "evidence_id": "2da843ec11a037939cfbd25bb8baf7387a319c6c819e39cf0dcd0c6732871c1d",
+                "text": "批发代理 |  |  | 〈原数值已省略〉 | 〈原数值已省略〉"
+              },
+              {
+                "evidence_id": "7d650131acbe307782894b1cc1a5fbccd7c009c53144384a7ca7dd6207b52236",
+                "text": "本列完整表头：合计 | 营业收入"
+              }
+            ],
+            "matching_model_requests": [
+              "974df028-8546-49b1-bc98-a78e9e664cc7"
+            ],
+            "actual_group_proof": {
+              "group_id": "f0c1f0feec9f55be445c03ec885ee6724fba5eb90873caaf5fd64811b5fb90d9",
+              "status": "passed",
+              "errors": [],
+              "matching_request_ids": [
+                "974df028-8546-49b1-bc98-a78e9e664cc7"
+              ],
+              "marker_input_request_ids": [
+                "974df028-8546-49b1-bc98-a78e9e664cc7"
+              ],
+              "quote_proofs": [
+                {
+                  "request_id": "974df028-8546-49b1-bc98-a78e9e664cc7",
+                  "errors": [],
+                  "quotes": [
+                    {
+                      "quote_index": 0,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 1,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    },
+                    {
+                      "quote_index": 2,
+                      "status": "passed",
+                      "errors": [],
+                      "alignment": null
+                    }
+                  ]
+                }
+              ],
+              "extraction_signature": "edd3835ccca057c973d4ac80734ff0e75d65e86a2704119fc8c6ab62e3b6d640"
+            },
+            "changes_from_before": [
+              "/canonical_alias",
+              "/definition",
+              "/definition_review",
+              "/definition_scope",
+              "/previous_canonical_alias",
+              "/source_ref/normalization/definition_review",
+              "/source_ref/normalization/directory_alias_superseded_by_definition"
+            ],
+            "passed": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "3208_unrelated_facts_entirely_unchanged",
+      "status": "passed",
+      "evidence": {
+        "count": 3208
+      }
+    },
+    {
+      "name": "all_90_provenance_and_current_registration_verified_by_preexisting_v2",
+      "status": "passed",
+      "evidence": {
+        "report": "benchmark/results/known-definition-clean3-provenance-v2.json",
+        "provenance_count": 90,
+        "registration_count": 90,
+        "cache_count": 13,
+        "historical_records_not_rewritten": true
+      }
+    },
+    {
+      "name": "historical_length_receipt_triggered_2_plus_3_real_requests_without_repeating_5_group_parent",
+      "status": "failed",
+      "evidence": {
+        "historical_original_request": "a07cf8b8-af2c-424d-aaa7-d4c7c177e46a",
+        "historical_owner": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+        "historical_usage_not_charged_again": {
+          "input": 10802,
+          "output": 32768,
+          "cacheRead": 1536,
+          "cacheWrite": 0,
+          "reasoning": 32768,
+          "totalTokens": 45106,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "total": 0
+          }
+        },
+        "new_requests": [
+          {
+            "request_id": "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4",
+            "groups": [
+              "gross",
+              "net",
+              "unclear",
+              "e21dc331784057b1f4979efa70749aefabac98a722f93a24b8d26e97f8d00be7",
+              "e2bc8ede5cc6bef7c188f3cd619c724f759f4b240b8fee138260a0ffac62800a"
+            ]
+          },
+          {
+            "request_id": "974df028-8546-49b1-bc98-a78e9e664cc7",
+            "groups": [
+              "gross",
+              "net",
+              "unclear",
+              "e800b17619f867eb3426ed7519fc984ca565043611f0b53c29bdbafc0e7856ff",
+              "f09189c9198d187547568eb0d7272d4fd4564eacb3dba1019d2222f3afc9979a",
+              "f0c1f0feec9f55be445c03ec885ee6724fba5eb90873caaf5fd64811b5fb90d9"
+            ]
+          }
+        ],
+        "parent_current_model_requests": 0,
+        "v2_historical_proof": [
+          {
+            "review_id": "09777d816ca143c39e55a5e7b3cc9ef0",
+            "index": 0,
+            "status": "passed",
+            "errors": [],
+            "original_owner_run_id": "6cf5c6c7-8197-484d-9807-4eee33a26293",
+            "original_request_id": "a07cf8b8-af2c-424d-aaa7-d4c7c177e46a",
+            "historical_usage": {
+              "input": 10802,
+              "output": 32768,
+              "cacheRead": 1536,
+              "cacheWrite": 0,
+              "reasoning": 32768,
+              "totalTokens": 45106,
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0,
+                "total": 0
+              }
+            },
+            "current_model_requests": 0,
+            "source_count": 8,
+            "scope": "Independently verifies receipt against immutable original audit, original project review and current source identities. Fresh full-template generation equality is a separate production scheduling check; no fictitious new model request is inferred."
+          }
+        ]
+      }
+    },
+    {
+      "name": "frozen_15_anchor_9_distinction_results_match_actual_snapshots",
+      "status": "passed",
+      "evidence": {
+        "anchors": [
+          {
+            "id": "main_direct",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "main_business_revenue",
+            "label": "主营业务收入",
+            "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+            "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。"
+          },
+          {
+            "id": "all_direct",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "revenue",
+            "label": "营业收入",
+            "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+            "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+          },
+          {
+            "id": "main_wholesale",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "main_business_revenue",
+            "label": "主营业务收入",
+            "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+            "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。"
+          },
+          {
+            "id": "all_wholesale",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "revenue",
+            "label": "营业收入",
+            "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+            "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+          },
+          {
+            "id": "main_domestic",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "main_business_revenue",
+            "label": "主营业务收入",
+            "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+            "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。"
+          },
+          {
+            "id": "all_domestic",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "revenue",
+            "label": "营业收入",
+            "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+            "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+          },
+          {
+            "id": "main_total",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "main_business_revenue",
+            "label": "主营业务收入",
+            "definition": "企业在主营业务活动中形成的经济利益的总流入，即按产品档次、销售渠道或地区分部披露的主营业务收入。",
+            "definition_scope": "按公司主营业务构成披露的收入；不包含其他业务收入；未扣减成本费用。"
+          },
+          {
+            "id": "other_total",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "other_business_revenue",
+            "label": "其他业务收入",
+            "definition": "企业在主营业务以外的其他业务活动中形成的经济利益的总流入，包括酒店业务、冰淇淋业务等；不包含主营业务收入；未扣减成本费用。",
+            "definition_scope": "其他业务收入；不包含主营业务收入；未扣减成本费用。"
+          },
+          {
+            "id": "all_total",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "revenue",
+            "label": "营业收入",
+            "definition": "企业在其日常活动中形成的经济利益的总流入，按中国企业会计准则确认的营业收入。",
+            "definition_scope": "按中国企业会计准则确认的营业收入，包含主营业务收入和其他业务收入，不包含营业外收入，未扣减成本费用。"
+          },
+          {
+            "id": "lease_noncurrent",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "lease_liabilities",
+            "label": "长期租赁负债",
+            "definition": "资产负债表中的租赁负债项目，反映企业尚未支付的租赁付款额现值，扣除一年内到期部分后的非流动租赁负债。",
+            "definition_scope": "列示于非流动负债项下的租赁负债；一年内到期的部分在流动负债的“一年内到期的非流动负债”项目反映，本项目不包含该部分。"
+          },
+          {
+            "id": "lease_current",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "lease_liabilities_due_within_one_year",
+            "label": "一年内到期的租赁负债",
+            "definition": null,
+            "definition_scope": null
+          },
+          {
+            "id": "lease_all",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "lease_liabilities_including_current_portion",
+            "label": "租赁负债（包含一年内到期部分）",
+            "definition": "租赁负债（包含一年内到期部分），即企业尚未支付的租赁付款额现值，包含将在一年内到期的部分。",
+            "definition_scope": "包含一年内到期的租赁负债部分；不区分流动与非流动，与资产负债表单独列示的非流动租赁负债不同。"
+          },
+          {
+            "id": "grant_income",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "other_income_government_grants_related_to_income",
+            "label": "与收益相关的政府补助",
+            "definition": "计入其他收益的与收益相关的政府补助。",
+            "definition_scope": "其他收益按性质分类；仅列示与收益相关的政府补助，不包括代扣个人所得税手续费返还、其他项目及合计。"
+          },
+          {
+            "id": "grant_all",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "government_grants_included_in_current_profit_or_loss_total",
+            "label": "计入当期损益的政府补助合计",
+            "definition": "政府补助附注中按类型列示的、计入当期损益的政府补助的合计金额。",
+            "definition_scope": "政府补助附注'计入当期损益的政府补助'项目合计；包含表中所有类型（列示为与收益相关），本期发生额；不包括其他收益中的与收益相关的政府补助，也不包括非经常性损益中扣除持续影响补助后的金额。"
+          },
+          {
+            "id": "grant_nonrecurring",
+            "status": "passed",
+            "snapshot_amount_and_original_location_exact": true,
+            "metric": "non_recurring_government_grants",
+            "label": "计入当期损益的政府补助",
+            "definition": "非经常性损益项目中列示的计入当期损益的政府补助，即计入当期损益的政府补助扣除与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助后的金额。",
+            "definition_scope": "非经常性损益项目；不包括与公司正常经营业务密切相关、符合国家政策规定、按照确定的标准享有、对公司损益产生持续影响的政府补助。"
+          }
+        ],
+        "distinctions": [
+          {
+            "a": "main_direct",
+            "b": "all_direct",
+            "passed": true
+          },
+          {
+            "a": "main_wholesale",
+            "b": "all_wholesale",
+            "passed": true
+          },
+          {
+            "a": "main_domestic",
+            "b": "all_domestic",
+            "passed": true
+          },
+          {
+            "a": "main_total",
+            "b": "all_total",
+            "passed": true
+          },
+          {
+            "a": "lease_noncurrent",
+            "b": "lease_current",
+            "passed": true
+          },
+          {
+            "a": "lease_noncurrent",
+            "b": "lease_all",
+            "passed": true
+          },
+          {
+            "a": "lease_current",
+            "b": "lease_all",
+            "passed": true
+          },
+          {
+            "a": "grant_income",
+            "b": "grant_nonrecurring",
+            "passed": true
+          },
+          {
+            "a": "grant_all",
+            "b": "grant_nonrecurring",
+            "passed": true
+          }
+        ],
+        "scope": "Previously known development examples; not an independent new-company holdout and not full-document financial correctness."
+      }
+    },
+    {
+      "name": "old_failed_scorer_has_complete_unchanged_failure_diagnosis",
+      "status": "passed",
+      "evidence": {
+        "original_report_status": "failed",
+        "original_provenance_passed": 40,
+        "original_provenance_total": 90,
+        "errors": {
+          "before_definition_not_archived_source": 44,
+          "actual_pi_decision_missing": 6
+        },
+        "missing_history_diagnosis": "The legacy exporter only discovers histories through persisted review reports. The clean1 report was not originally written, so its 44 real archived-before rows are omitted. The current explicit revalidation registration does not forge that historical report.",
+        "missing_original_report_details": [
+          {
+            "source_key": "c97eeb6ce7a216a448f927a0df6fc2c9adc98bd8241c782f79cc6d76ad2e5bfc",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "555345ed3a964637a31ed373f3828a17"
+            ]
+          },
+          {
+            "source_key": "a287484c30b81befef09aede8d702c6b793e90466c06c8adf711f5aa19184ec5",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "94815c86e17641a5aa2dda14a714b653"
+            ]
+          },
+          {
+            "source_key": "e083fa24507fa60d6a4be6f1110dcf7adaeb41644fccbf9b4628dd221e97942e",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "b80dc8a9707347989b7dcf77bc4b54af"
+            ]
+          },
+          {
+            "source_key": "20a7c5a40be0bf895e0ac2bc3a8a34ad03695a030b82a93c0b4089c9185d52de",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "8c78e8e6e0f045a1b2d870211dc7f129"
+            ]
+          },
+          {
+            "source_key": "87bece98e1ae4bdb21cbf9b25ed03cf29b75098a9b1366105ec0fe9568f7a9ff",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "2bfbf9053f25425987a6199962bf9462"
+            ]
+          },
+          {
+            "source_key": "911ae86ffa58e22dd8591253593f929417a5172d9787d2febc9d600c63b750c5",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "3a3b420b6eaa48798d31eed200a805a5"
+            ]
+          },
+          {
+            "source_key": "ca5f08c6227bb7c9fc495ad561705f126746e1fa6adf884b057c345a5f6911c0",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "b49a4fcd08f743578cd86a8cd19cd1b3"
+            ]
+          },
+          {
+            "source_key": "bcf9b2bea954971a95216c3e6074d28c2ea4cae2fe4f9a366d725c43a87ddbcd",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "8227833bafcc4a0a998f1fe4de1d7672"
+            ]
+          },
+          {
+            "source_key": "9bb40cf8cbeacd5ec47b3473521a1cf1472aec6ddcd6e4c3ac7a17f4c07a51be",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "49bd9b741adc48098f59d61962c27f9c"
+            ]
+          },
+          {
+            "source_key": "16f3cd87567b3888a5b2c61ff56eb8fb4de0194ecc2d516451fe42e790dc8d78",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "5df7920ab7c340f78ea2b45f6a7b5225"
+            ]
+          },
+          {
+            "source_key": "e4a6ee25d07febed7b43609dbfd33b18cb773ec6404a660fee6bf43387e15d80",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "7514c78e45774d76b4b55fa1c70cac92"
+            ]
+          },
+          {
+            "source_key": "36167dd9b7c065a73230b822c580dde457aa0b06ee32fba7adfe48244f2e65ed",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "aa4a550653ce4401bc6657d81160456c"
+            ]
+          },
+          {
+            "source_key": "39d865f9b7249e8432df998bd465935419ecc16745fc0b0f49d897105b0b9a5e",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "7f66fcf8179c45238fbe914493b01e8a"
+            ]
+          },
+          {
+            "source_key": "ec9730bc54142b68e094c72f4ef80bfedec96927027163f2e421c2eee6a97e7e",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "5585177a0d01488ea3dfdaacfadc8b32"
+            ]
+          },
+          {
+            "source_key": "ef0361aef37ff79724e212e2e6bbccf36db62101e958fd92c3ebb4443e608117",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "b5e0e9b356ac4bc5a61d5bd409c45139"
+            ]
+          },
+          {
+            "source_key": "564d2361f817f0cef520729c6f64ed75e3e53d09a930c423457bb5e126f3ddd9",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "8c43cd8dbafe435dbd9e029a6537d961"
+            ]
+          },
+          {
+            "source_key": "2f0331f9c26116ffb99cedddc35eed55bb9682402abebb7a0b254f431e34a1c1",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "3b9316210c364d5ab07edc768c2f8631"
+            ]
+          },
+          {
+            "source_key": "d6a4f2fd89535789e9c4ee62951463de610169ed5c9f4c2190739f1635d48007",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "80dac819d173460eaf29e204f99c2b76"
+            ]
+          },
+          {
+            "source_key": "0583e4489dc559deb564aa10c38e9d91cb90de5b5bdae9f0c94ef7d8aa44172e",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "f2c6be6633694ec996dfedfafd202b35"
+            ]
+          },
+          {
+            "source_key": "819fefbdd11db5cea2482e5974555f3669b32423be803397b28b41d5b29da069",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "1de2dd2c7877456299c76e40be4ee6e2"
+            ]
+          },
+          {
+            "source_key": "e72ed47fd5e09997476aed99925d91435f535477efff779a2679dc36f0be51e3",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "86567c78b0aa4dbaaaba2dcbac8e3a24"
+            ]
+          },
+          {
+            "source_key": "5bdd60ee7f66d38f5309c3fb40a38a5a521641d690f3c57e7e419579b834a141",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "d9803430aa494c3785138c77ca84fac0"
+            ]
+          },
+          {
+            "source_key": "e0a083e8937318a995ae0a432902feeff691b8435585098e55f58c0017ab689f",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "f4f6d6f7229849b895f09a2ea3c42c79"
+            ]
+          },
+          {
+            "source_key": "6eca6b8f4a5d44c21202cda2b33a74038fe9e8fd4e141c7723fcb7a8b50545fa",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "422f4aba55544a739a4fd4d94078b31b"
+            ]
+          },
+          {
+            "source_key": "7f523ef99bcd26d4819be99cd809226e7ec2b993dd687ee14af403a92be91597",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "0fa4590268ec4bffb9098fdcdb0a1f8a"
+            ]
+          },
+          {
+            "source_key": "c76bcced918080b94a49b7ea235a40ff6b81a7caebcea0b80ad3f93d654753e2",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "c798ec22389044868e1529c1d842df04"
+            ]
+          },
+          {
+            "source_key": "b6bb6c82bbf9adb62ef6a8d3d57480c37a64c18f5e5b0c0e10d266d381c17986",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "7a8500d6a9f9484cac2de534c140b4af"
+            ]
+          },
+          {
+            "source_key": "e57b8f3273348fd26a7c73b32c3ae47322549b29b30c8cb03f0394ce2e65b06f",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "0e20cc66fafc497a96a1b75e08194d9c"
+            ]
+          },
+          {
+            "source_key": "9d46ea71bc81211da48ab56535723300a37f0ab0bbe2f31dfd1d181a8d980d3f",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "9efe87fbbb7245149245d2f92e3bd1ad"
+            ]
+          },
+          {
+            "source_key": "b99251fe872714b53923e88b7611648a122faea099a726e4df38eb91b1c3fb79",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "a8720c15e3bf434b8e5958dea376e4a8"
+            ]
+          },
+          {
+            "source_key": "b973ce8003fdf4c8c3036e233731c3b819d2c9b7c27b2636c9d0802263eeb19c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "7e63afd628984d3ba123634a56665153"
+            ]
+          },
+          {
+            "source_key": "ec48f441304d6b8c3bdae5c2399dc6fcfed01d057b178af0100891cc737b875e",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "711fb911e4744c6facf7fbdce2ed2adf"
+            ]
+          },
+          {
+            "source_key": "0b93b0675a692c48ce550f01447844db4ce231c0b2a122734032bf35e916f216",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "2c3befba1a834c6ab0eba0f82c24d2f0"
+            ]
+          },
+          {
+            "source_key": "423f70c043ad18e597427c33502b16dd2bb62594d6e3992cd5f58b3aed8884c4",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "918297e811f446d180d6375d9ecf42a9"
+            ]
+          },
+          {
+            "source_key": "7f9156cbe881d1775a94bd03513b23a11e838a7ce420e97666d9164e62fbe69a",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "5567ea6cd1cf4bae8a175e22a2977174"
+            ]
+          },
+          {
+            "source_key": "009e2280c85a0387ade0a071a0528fafb2cf3d599e84ab89a563eb744813f51f",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "033852928ab04e59b5565d3ab03a2fa3"
+            ]
+          },
+          {
+            "source_key": "a904fb534afd98dd3ec1dae3b5866987acbaf4866b17e7e162ca211e222a44bb",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "722b609cdb1141ddb506efbe3b85c1eb"
+            ]
+          },
+          {
+            "source_key": "ceccfe3fa159c80f9c9a377fb5ec3f13e8402dc39ea3d3b7b6365bbfaf5c634c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "f5773c9fb7ba4c1398cfc18e6e90e942"
+            ]
+          },
+          {
+            "source_key": "ff5b0c319538b7b0963b8b164ff1073cff53d4bbdaffc4915a4e9de31c1f2859",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "5874429dbb86418381015161576832a1"
+            ]
+          },
+          {
+            "source_key": "50c8a155cb8f94c88ef8299ab37ab8a0f99771c9fbc82c26978d23318605b6ea",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "f238d24bffe2437ca1bc74739a49d49b"
+            ]
+          },
+          {
+            "source_key": "661f85755c608e978a414418b9042d86db3e326fb4d102335c73d59cb093175c",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "8e1ea58aa4754b84968b42ce4623006a"
+            ]
+          },
+          {
+            "source_key": "0f5786335a7adf4506eeeda3afda92626127e2e85e9da1c3aedcb0fa011fa0a1",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "32286a8eede646bc9b6a1f803250d3a0"
+            ]
+          },
+          {
+            "source_key": "3a1fb695e6d21b0e42c0ad5baac530601bc8828257f413acdd575c250f6bd1ab",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "e8166d8d0b864fd0ad3122d478e4f984"
+            ]
+          },
+          {
+            "source_key": "b5063804db7106d04035106c9f7f8dd684634c1cd7437dc1ba0056b40edbdb66",
+            "original_review_id": "03447af2f2554abe901dfaaef7912844",
+            "original_report_absent": true,
+            "original_history_matching_processing_and_before": [
+              "9e50174d3de64040865e640dad737bd0"
+            ]
+          }
+        ],
+        "quote_diagnosis": "Six facts from three clean2 groups carry recorded unique source-ID/whitespace alignments. The unchanged legacy checker requires unchanged quote text/ID. V2 checks the original actual request/output, uniqueness, exact source substring and Unicode offsets independently.",
+        "quote_proofs": [
+          {
+            "cache_key": "24db65802b614a763e6dd28ec1a4378e671ad53db47afef68a0d9499fe5eb1ba",
+            "group_id": "d10f887391ca793d8d262dc954d35c2e764eb85ca8368978c012895272f2781f",
+            "status": "passed",
+            "errors": [],
+            "matching_request_ids": [
+              "8cc4b2b3-e8e6-4205-b887-363d4756c7b5"
+            ],
+            "marker_input_request_ids": [
+              "8cc4b2b3-e8e6-4205-b887-363d4756c7b5"
+            ],
+            "quote_proofs": [
+              {
+                "request_id": "8cc4b2b3-e8e6-4205-b887-363d4756c7b5",
+                "errors": [],
+                "quotes": [
+                  {
+                    "quote_index": 0,
+                    "status": "passed",
+                    "errors": [],
+                    "alignment": null
+                  },
+                  {
+                    "quote_index": 1,
+                    "status": "passed",
+                    "errors": [],
+                    "alignment": {
+                      "version": "definition-quote-location-1",
+                      "method": "whitespace_within_evidence",
+                      "original_quote": {
+                        "evidence_id": "5b4b5ee0e580dae2ac34a31e14e0692c5c2f8a963ca3792d494b499dc64b9130",
+                        "text": "  公司产品通过直销和批发代理渠道进行销售。直销渠道指自营和“i 茅台”等数字营销平台渠道，批发代理渠道指社会经销商、商超、电商等渠道。"
+                      },
+                      "grounded_quote": {
+                        "evidence_id": "5b4b5ee0e580dae2ac34a31e14e0692c5c2f8a963ca3792d494b499dc64b9130",
+                        "text": "公司产品通过直销和批发代理渠道进行销售。直销渠道指自营和“i 茅台”等数字营销平台\n渠道，批发代理渠道指社会经销商、商超、电商等渠道。"
+                      },
+                      "span": [
+                        1479,
+                        1546
+                      ],
+                      "offset_unit": "python_unicode_codepoint"
+                    }
+                  }
+                ]
+              }
+            ],
+            "extraction_signature": "da95551ff8b1953c989ed10f9de7a39077641ba87e920c36e2fbd6fec65b20e7"
+          },
+          {
+            "cache_key": "76090ff91d6e4ca1940df43e0e9e26c1bf68d2c39c00306796db010142aa64a6",
+            "group_id": "a833824c932b7bc409ba0a3fdb85f56ec3d360690a0f4492eb3862d4c29e6f9a",
+            "status": "passed",
+            "errors": [],
+            "matching_request_ids": [
+              "93ae34d8-e74f-4249-8b6f-8078bc657a9f"
+            ],
+            "marker_input_request_ids": [
+              "93ae34d8-e74f-4249-8b6f-8078bc657a9f"
+            ],
+            "quote_proofs": [
+              {
+                "request_id": "93ae34d8-e74f-4249-8b6f-8078bc657a9f",
+                "errors": [],
+                "quotes": [
+                  {
+                    "quote_index": 0,
+                    "status": "passed",
+                    "errors": [],
+                    "alignment": null
+                  },
+                  {
+                    "quote_index": 1,
+                    "status": "passed",
+                    "errors": [],
+                    "alignment": null
+                  },
+                  {
+                    "quote_index": 2,
+                    "status": "passed",
+                    "errors": [],
+                    "alignment": null
+                  },
+                  {
+                    "quote_index": 3,
+                    "status": "passed",
+                    "errors": [],
+                    "alignment": {
+                      "version": "definition-quote-location-1",
+                      "method": "whitespace_within_evidence",
+                      "original_quote": {
+                        "evidence_id": "5b4b5ee0e580dae2ac34a31e14e0692c5c2f8a963ca3792d494b499dc64b9130",
+                        "text": "公司产品通过直销和批发代理渠道进行销售。直销渠道指自营和“i 茅台”等数字营销平台渠道，批发代理渠道指社会经销商、商超、电商等渠道。"
+                      },
+                      "grounded_quote": {
+                        "evidence_id": "5b4b5ee0e580dae2ac34a31e14e0692c5c2f8a963ca3792d494b499dc64b9130",
+                        "text": "公司产品通过直销和批发代理渠道进行销售。直销渠道指自营和“i 茅台”等数字营销平台\n渠道，批发代理渠道指社会经销商、商超、电商等渠道。"
+                      },
+                      "span": [
+                        1479,
+                        1546
+                      ],
+                      "offset_unit": "python_unicode_codepoint"
+                    }
+                  }
+                ]
+              }
+            ],
+            "extraction_signature": "3bba4b518c5350b1a5868d618d87ad5ab06dd366975c905de244f40c81b821bb"
+          },
+          {
+            "cache_key": "e25bb7307d5ec8eba84b0484cbee26adf7d8bc987eff945709cb907c067bd65b",
+            "group_id": "cde6827850aa70ee21d1c34ee1a2f6c0ae1cd4b3408306466f101991f690ac29",
+            "status": "passed",
+            "errors": [],
+            "matching_request_ids": [
+              "d12f4740-eba7-44d6-919a-dd4db2eac3fc"
+            ],
+            "marker_input_request_ids": [
+              "d12f4740-eba7-44d6-919a-dd4db2eac3fc"
+            ],
+            "quote_proofs": [
+              {
+                "request_id": "d12f4740-eba7-44d6-919a-dd4db2eac3fc",
+                "errors": [],
+                "quotes": [
+                  {
+                    "quote_index": 0,
+                    "status": "passed",
+                    "errors": [],
+                    "alignment": {
+                      "version": "definition-quote-location-1",
+                      "method": "whitespace_within_evidence",
+                      "original_quote": {
+                        "evidence_id": "5b4b5ee0e580dae2ac34a31e14e0692c5c2f8a963ca3792d494b499dc64b9130",
+                        "text": "公司产品通过直销和批发代理渠道进行销售。直销渠道指自营和“i 茅台”等数字营销平台渠道，批发代理渠道指社会经销商、商超、电商等渠道。"
+                      },
+                      "grounded_quote": {
+                        "evidence_id": "5b4b5ee0e580dae2ac34a31e14e0692c5c2f8a963ca3792d494b499dc64b9130",
+                        "text": "公司产品通过直销和批发代理渠道进行销售。直销渠道指自营和“i 茅台”等数字营销平台\n渠道，批发代理渠道指社会经销商、商超、电商等渠道。"
+                      },
+                      "span": [
+                        1479,
+                        1546
+                      ],
+                      "offset_unit": "python_unicode_codepoint"
+                    }
+                  },
+                  {
+                    "quote_index": 1,
+                    "status": "passed",
+                    "errors": [],
+                    "alignment": null
+                  },
+                  {
+                    "quote_index": 2,
+                    "status": "passed",
+                    "errors": [],
+                    "alignment": null
+                  },
+                  {
+                    "quote_index": 3,
+                    "status": "passed",
+                    "errors": [],
+                    "alignment": null
+                  }
+                ]
+              }
+            ],
+            "extraction_signature": "a5cc31b061ab28ddee8b678b9b7949442f9058d8d4d03c4727b088215af01cf1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "all_main_inner_and_cached_tokens_counted_once",
+      "status": "passed",
+      "evidence": {
+        "totals": {
+          "calls": 8,
+          "input": 1411615,
+          "output": 32507
+        },
+        "phase_totals": {
+          "main": {
+            "calls": 6,
+            "input_uncached": 248676,
+            "input_cached_read": 1148800,
+            "input_cached_write": 0,
+            "total_input": 1397476,
+            "output": 3740,
+            "reasoning_included_in_output": 2441,
+            "total_tokens": 1401216
+          },
+          "extraction": {
+            "calls": 2,
+            "input_uncached": 6715,
+            "input_cached_read": 7424,
+            "input_cached_write": 0,
+            "total_input": 14139,
+            "output": 28767,
+            "reasoning_included_in_output": 26776,
+            "total_tokens": 42906
+          }
+        },
+        "requests": [
+          {
+            "request_id": "107e8a8e-eca2-45f3-ad02-f8a1a7e8c720",
+            "phase": "main",
+            "stop_reason": "toolUse",
+            "input_uncached": 211757,
+            "input_cached_read": 640,
+            "input_cached_write": 0,
+            "total_input": 212397,
+            "output": 128,
+            "reasoning_included_in_output": 13,
+            "total_tokens": 212525,
+            "usage_known": true
+          },
+          {
+            "request_id": "c32647a8-eb57-44d1-ada3-ebe3d6a1a4b4",
+            "phase": "extraction",
+            "stop_reason": "stop",
+            "input_uncached": 1409,
+            "input_cached_read": 5760,
+            "input_cached_write": 0,
+            "total_input": 7169,
+            "output": 13052,
+            "reasoning_included_in_output": 12243,
+            "total_tokens": 20221,
+            "usage_known": true
+          },
+          {
+            "request_id": "974df028-8546-49b1-bc98-a78e9e664cc7",
+            "phase": "extraction",
+            "stop_reason": "stop",
+            "input_uncached": 5306,
+            "input_cached_read": 1664,
+            "input_cached_write": 0,
+            "total_input": 6970,
+            "output": 15715,
+            "reasoning_included_in_output": 14533,
+            "total_tokens": 22685,
+            "usage_known": true
+          },
+          {
+            "request_id": "23fe4fd4-7efc-4e51-a855-9185217d44e8",
+            "phase": "main",
+            "stop_reason": "toolUse",
+            "input_uncached": 607,
+            "input_cached_read": 212480,
+            "input_cached_write": 0,
+            "total_input": 213087,
+            "output": 515,
+            "reasoning_included_in_output": 377,
+            "total_tokens": 213602,
+            "usage_known": true
+          },
+          {
+            "request_id": "225ece08-373d-4a26-9887-ef7e9fc00007",
+            "phase": "main",
+            "stop_reason": "toolUse",
+            "input_uncached": 22715,
+            "input_cached_read": 213504,
+            "input_cached_write": 0,
+            "total_input": 236219,
+            "output": 389,
+            "reasoning_included_in_output": 294,
+            "total_tokens": 236608,
+            "usage_known": true
+          },
+          {
+            "request_id": "918dad44-ce8b-49e3-8e92-f8b23eb725d5",
+            "phase": "main",
+            "stop_reason": "toolUse",
+            "input_uncached": 138,
+            "input_cached_read": 236544,
+            "input_cached_write": 0,
+            "total_input": 236682,
+            "output": 370,
+            "reasoning_included_in_output": 216,
+            "total_tokens": 237052,
+            "usage_known": true
+          },
+          {
+            "request_id": "384d6509-f6bc-4123-a374-165e52b5847d",
+            "phase": "main",
+            "stop_reason": "toolUse",
+            "input_uncached": 10680,
+            "input_cached_read": 236928,
+            "input_cached_write": 0,
+            "total_input": 247608,
+            "output": 1177,
+            "reasoning_included_in_output": 1052,
+            "total_tokens": 248785,
+            "usage_known": true
+          },
+          {
+            "request_id": "88d758d6-b566-426b-b5d3-e8535203b8d2",
+            "phase": "main",
+            "stop_reason": "stop",
+            "input_uncached": 2779,
+            "input_cached_read": 248704,
+            "input_cached_write": 0,
+            "total_input": 251483,
+            "output": 1161,
+            "reasoning_included_in_output": 489,
+            "total_tokens": 252644,
+            "usage_known": true
+          }
+        ],
+        "cost": "Unknown monetary charge; SDK zero price metadata is not a zero-cost inference claim.",
+        "reasoning": "Reasoning is a subset of output, not added a second time. Cached input is included in total input."
+      }
+    },
+    {
+      "name": "67_frozen_production_files_and_original_financial_scorers_unchanged",
+      "status": "passed",
+      "evidence": {
+        "production_files": 67,
+        "production_changed": [],
+        "financial_scorers_gold_and_old_result_changed": []
+      }
+    },
+    {
+      "name": "original_evidence_bytes_preserved_during_independent_audit",
+      "status": "passed",
+      "evidence": {
+        "input_hashes": {
+          "benchmark/results/pi-known-definition-existing-only-20261004-clean3.json": "4db8687cd651477f06e24c5ec05ac84fc29d49daa2137472dcfce7e77e1b73f2",
+          "benchmark/results/pi-known-definition-existing-only-20261004-clean3-before.json": "efa38efdc9763075bcb79ab6fbd764290253438f890a1cf8c21eaa55042c05ec",
+          "benchmark/results/pi-known-definition-existing-only-20261004-clean3-after.json": "29cc50011809e14b46b23001f77742694a68be8af5e32a93c72af9c458016fef",
+          "benchmark/results/pi-known-definition-existing-only-20261004-clean3-source-before.json": "5e249a1cb85f67049c7a0b15e2c38f5a3588a5356f76e91fed12043ca36eceb8",
+          "benchmark/results/pi-known-definition-existing-only-20261004-clean3-source-after.json": "5e249a1cb85f67049c7a0b15e2c38f5a3588a5356f76e91fed12043ca36eceb8",
+          "benchmark/results/pi-known-definition-existing-only-20261004-clean3-known-score.json": "ab83875a26486a20b5d2ae44003ba1175231810450df6d0d1453059d07e88e45",
+          "benchmark/results/known-definition-clean3-evidence-export-v2.json": "9b47cc3db6bd9442732d4ac348f88c3d8efd7df2eec4c76a321f596587a265ef",
+          "benchmark/results/known-definition-clean3-provenance-v2.json": "bd948335656883fc8b110ae2bc4302cd010e10bb1f00992fb5620870b57ce952",
+          "benchmark/results/resume-v07-20261004-preflight.json": "ec7e22528008c21e24f2fbd73333600ea7ec11ab481d884ae8882a6d1880bbe9",
+          "benchmark/results/known-definition-clean2-provenance-v2.json": "27e6e81423e1beec271f854ca55cb3ab818c297bcdb393e97fcfab91e5ec897d",
+          "benchmark/results/pi-known-definition-existing-only-20261004-clean2.json": "56be3635f2f57eb1c347b5d9391cbe79e44bcb6003fe5b60cfc45580f1cf90f3",
+          "scripts/definition_evidence_v2.mjs": "a3f134c6c49920e4c2af7398fb220e34266053b9ac68c88255faf4896b74c98f",
+          "scripts/export_definition_evidence_v2.py": "2c47445d9e95b674342a2200b46bfae510b582b782f8735745def184add7820c",
+          "scripts/definition_evidence.mjs": "0b7ec3d75dfc92ff48fd88b652fe0fc4596ece7818c7e4265567993d269cecc4",
+          "scripts/export_definition_evidence.py": "d506c773f6808d7fc50683d2bad44f18ee2a1a1ddf33f86c67408b0e1970cd73",
+          "scripts/verify_known_definitions.mjs": "e678d2fa2e6843bdc1dd7275e3915601faacaada76402e7eb91f919c47626fa3",
+          "data/audit/f6713999-b12d-47a4-ac3c-2d2f8cc3e7b9.jsonl": "26693aa1acf94750db91a4198f8d96fe8354bd22d4bb4850bf1cb23013bc4c65"
+        }
+      }
+    }
+  ],
+  "post_processing_efficiency_diagnosis": {
+    "tool_trace": [
+      {
+        "at": "2026-10-04T01:11:47.516Z",
+        "name": "process_documents",
+        "tool_call_id": "call_00_w7BcrE5GpULhLeZRlSEH0928",
+        "args": {
+          "document_ids": [
+            "39de9b118212463bbee6c2ab3c571432"
+          ],
+          "review_existing_only": true,
+          "review_metrics": [
+            "revenue",
+            "lease_liabilities",
+            "non_recurring_government_grants"
+          ],
+          "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80"
+        },
+        "status": "ok",
+        "returned_items": null,
+        "total_matching_items": null,
+        "serialized_result_utf8_bytes": 6044
+      },
+      {
+        "at": "2026-10-04T01:14:12.565Z",
+        "name": "query_financial_data",
+        "tool_call_id": "call_00_Ifg0GcTDrtWMGKAmOJhR8924",
+        "args": {
+          "filters": {
+            "metric": "lease_liabilities"
+          },
+          "limit": 3,
+          "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80"
+        },
+        "status": "ok",
+        "returned_items": 3,
+        "total_matching_items": 8,
+        "serialized_result_utf8_bytes": 38748
+      },
+      {
+        "at": "2026-10-04T01:14:12.565Z",
+        "name": "query_financial_data",
+        "tool_call_id": "call_01_1ynyEFl4XJhoKn9xs0VG3650",
+        "args": {
+          "filters": {
+            "metric": "non_recurring_government_grants"
+          },
+          "limit": 3,
+          "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80"
+        },
+        "status": "ok",
+        "returned_items": 3,
+        "total_matching_items": 4,
+        "serialized_result_utf8_bytes": 39590
+      },
+      {
+        "at": "2026-10-04T01:14:16.626Z",
+        "name": "query_financial_data",
+        "tool_call_id": "call_00_caSGpclKy7Y5cCLEurnE9373",
+        "args": {
+          "filters": {
+            "metric": "revenue",
+            "statement": "segment",
+            "company": "贵州茅台酒股份有限公司"
+          },
+          "limit": 1,
+          "offset": 8,
+          "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80"
+        },
+        "status": "ok",
+        "returned_items": 0,
+        "total_matching_items": 7,
+        "serialized_result_utf8_bytes": 159
+      },
+      {
+        "at": "2026-10-04T01:14:20.057Z",
+        "name": "query_financial_data",
+        "tool_call_id": "call_00_Oxf3px2bjWxRdrO93o6K5623",
+        "args": {
+          "filters": {
+            "metric": "revenue",
+            "statement": "segment",
+            "limit": 3
+          },
+          "limit": 2,
+          "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80"
+        },
+        "status": "ok",
+        "returned_items": 2,
+        "total_matching_items": 7,
+        "serialized_result_utf8_bytes": 24411
+      },
+      {
+        "at": "2026-10-04T01:14:20.057Z",
+        "name": "query_financial_data",
+        "tool_call_id": "call_01_NpwQovLkwZEHByFaediW7836",
+        "args": {
+          "filters": {
+            "metric": "revenue",
+            "statement": "income",
+            "scope": "consolidated_CAS",
+            "period": "2024-Q2"
+          },
+          "limit": 1,
+          "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80"
+        },
+        "status": "ok",
+        "returned_items": 1,
+        "total_matching_items": 1,
+        "serialized_result_utf8_bytes": 11793
+      },
+      {
+        "at": "2026-10-04T01:14:27.739Z",
+        "name": "search_evidence",
+        "tool_call_id": "call_00_xcjIhFfqh4v4LVFbF6Wy5562",
+        "args": {
+          "query": "租赁负债（包含一年内到期部分）",
+          "limit": 5,
+          "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80"
+        },
+        "status": "ok",
+        "returned_items": 5,
+        "total_matching_items": null,
+        "serialized_result_utf8_bytes": 2640
+      },
+      {
+        "at": "2026-10-04T01:14:27.739Z",
+        "name": "query_financial_data",
+        "tool_call_id": "call_01_8f5OsIW8zUbnyLUpWZnb5198",
+        "args": {
+          "filters": {
+            "metric": "lease_liabilities_due_within_one_year"
+          },
+          "limit": 1,
+          "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80"
+        },
+        "status": "ok",
+        "returned_items": 1,
+        "total_matching_items": 2,
+        "serialized_result_utf8_bytes": 5114
+      }
+    ],
+    "main_model_calls": 6,
+    "definition_model_calls": 2,
+    "finding": "After successful processing the main agent used five additional model turns, six SQL-style financial queries and one local FTS evidence search to inspect lease maturities, subsidy boundaries, revenue dimensions and a quarter. One revenue query used offset 8 against total 7 and returned no rows. The run did not rerun ingestion, period cleaning, charts or valuation.",
+    "input_context_finding": "Each main turn carried roughly 212k to 251k input tokens, mostly historical context. Cache reads lower billing but not context size or benchmark input accounting. This run proves finite partial-batch continuation, not efficient end-to-end context use.",
+    "followup": "Optimize tool-result projection and stop behavior separately after the currently running frozen evaluation. Do not silently alter this run or make an A/B improvement claim."
+  },
+  "limitations": [
+    "Only 90 targeted financial-definition facts were semantically reviewed; 3298-row preservation is not a statement that every original row was extracted correctly.",
+    "The 15 anchors and 9 distinctions are previously known development regressions, not new-company holdout.",
+    "The old failed reports and old scorer outputs remain failed and byte-preserved.",
+    "No new model, network search, database write, cancellation or application lifecycle action was performed by this audit."
+  ],
+  "audit_model_calls": 0,
+  "audit_database_writes": 0
+}

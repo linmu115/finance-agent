@@ -1,0 +1,75 @@
+{
+  "created_at": "2026-10-03T09:19:56.312329+00:00",
+  "scope": "Read-only normalization function probes and source review; no production code, stored facts, frozen benchmark labels or previous scores modified. Not an end-to-end financial benchmark.",
+  "code_sha256": {
+    "service/normalization.py": "b4da08fc7895fda5042c95f671cff5a342d5a2b968a5bc4dae7b220f421622cb",
+    "service/parser.py": "aadb5093a6573a2a7d5be84c5a4b84f40e9f6d44f544f273abadf975abf55416",
+    "service/core.py": "38f279cad81231eb1aa385ebabfe0f78920568d7e70cdb818cc2820c92aa8ea0"
+  },
+  "unit_probes": [
+    {
+      "input": "百万元",
+      "actual": {
+        "unit": "万元",
+        "factor": "10000",
+        "currency": "CNY"
+      },
+      "expected": {
+        "factor": "1000000",
+        "currency": "CNY"
+      },
+      "pass": false
+    },
+    {
+      "input": "百万美元",
+      "actual": {
+        "unit": "元",
+        "factor": "1",
+        "currency": "USD"
+      },
+      "expected": {
+        "factor": "1000000",
+        "currency": "USD"
+      },
+      "pass": false
+    },
+    {
+      "input": "千港元",
+      "actual": {
+        "unit": "元",
+        "factor": "1",
+        "currency": "HKD"
+      },
+      "expected": {
+        "factor": "1000",
+        "currency": "HKD"
+      },
+      "pass": false
+    },
+    {
+      "input": "万元",
+      "actual": {
+        "unit": "万元",
+        "factor": "10000",
+        "currency": "CNY"
+      },
+      "expected": {
+        "factor": "10000",
+        "currency": "CNY"
+      },
+      "pass": true
+    }
+  ],
+  "source_findings": [
+    "12 canonical metrics and an exact-alias mapper",
+    "Annual-only fact extraction; explicit year columns required for a new header map",
+    "PDF accounting scope can default to consolidated_CAS from insufficient context",
+    "No independent semantic normalization stage for ambiguous fields"
+  ],
+  "reviewed_upstream": {
+    "FinRobot": "2717499b8e30f242640af08c4ad9afd1113c2d45",
+    "EdgarTools": "1e7a61b3a142dbf5d19bc82444f85239c1786348",
+    "LangExtract": "https://github.com/google/langextract",
+    "Docling": "https://github.com/docling-project/docling"
+  }
+}

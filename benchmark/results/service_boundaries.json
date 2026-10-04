@@ -1,0 +1,157 @@
+{
+  "name": "真实项目隔离与解析中断恢复",
+  "runtime": true,
+  "status": "passed",
+  "scope": "S08 document/query/fact boundaries and S11 parser process termination/recovery; container artifacts/export checked separately",
+  "run_id": "boundary-20261003T045031-c625774c",
+  "events": [
+    {
+      "at": "2026-10-03T04:50:31.899105+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S08",
+      "tool": "get_document",
+      "project_id": "beta",
+      "document_id": "89d88914a45f4a2fb64a06d10a144f17",
+      "denied": true,
+      "error": "document_not_found_in_project"
+    },
+    {
+      "at": "2026-10-03T04:50:31.910107+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S08",
+      "tool": "get_source_page",
+      "project_id": "beta",
+      "document_id": "89d88914a45f4a2fb64a06d10a144f17",
+      "denied": true,
+      "error": "document_not_found_in_project"
+    },
+    {
+      "at": "2026-10-03T04:50:31.924770+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S08",
+      "tool": "get_source_table",
+      "project_id": "beta",
+      "document_id": "89d88914a45f4a2fb64a06d10a144f17",
+      "denied": true,
+      "error": "document_not_found_in_project"
+    },
+    {
+      "at": "2026-10-03T04:50:31.937786+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S08",
+      "tool": "get_ingestion_status",
+      "project_id": "beta",
+      "document_id": "89d88914a45f4a2fb64a06d10a144f17",
+      "denied": true,
+      "error": "job_not_found_in_project"
+    },
+    {
+      "at": "2026-10-03T04:50:31.945781+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S08",
+      "tool": "cancel_ingestion",
+      "project_id": "beta",
+      "document_id": "89d88914a45f4a2fb64a06d10a144f17",
+      "denied": true,
+      "error": "job_not_found_in_project"
+    },
+    {
+      "at": "2026-10-03T04:50:31.955313+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S08",
+      "tool": "get_financial_metrics",
+      "project_id": "beta",
+      "document_id": "89d88914a45f4a2fb64a06d10a144f17",
+      "denied": true,
+      "error": "document_not_found_in_project"
+    },
+    {
+      "at": "2026-10-03T04:50:31.962310+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S08",
+      "tool": "calculate_financial_metrics",
+      "project_id": "beta",
+      "document_id": "89d88914a45f4a2fb64a06d10a144f17",
+      "denied": true,
+      "error": "fact_not_found_in_project"
+    },
+    {
+      "at": "2026-10-03T04:50:31.972310+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S08",
+      "tool": "run_analysis",
+      "project_id": "beta",
+      "document_id": "89d88914a45f4a2fb64a06d10a144f17",
+      "denied": true,
+      "error": "document_not_found_in_project"
+    },
+    {
+      "at": "2026-10-03T04:50:31.976315+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S08",
+      "tool": "metric_injection",
+      "project_id": "beta",
+      "document_id": "89d88914a45f4a2fb64a06d10a144f17",
+      "denied": true,
+      "error": "unknown_metric"
+    },
+    {
+      "at": "2026-10-03T04:50:32.011322+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S08",
+      "query_isolated": true,
+      "foreign_fact_absent": true
+    },
+    {
+      "at": "2026-10-03T04:50:32.013321+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S11",
+      "duplicate_upload_same_id": true,
+      "document_id": "89d88914a45f4a2fb64a06d10a144f17"
+    },
+    {
+      "at": "2026-10-03T04:50:33.773896+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S11",
+      "operation": "before_real_process_terminate",
+      "pid": 42564,
+      "job_id": "b2f6084447674380bc56ecb6c26cf626",
+      "state": {
+        "job_id": "b2f6084447674380bc56ecb6c26cf626",
+        "project_id": "restart",
+        "document_id": "7c2e23325df9478297a4310e0c32b63a",
+        "state": "parsing",
+        "progress": 0.023776223776223775,
+        "message": "已解析 4/143 页",
+        "error": null,
+        "created_at": "2026-10-03T04:50:32.650549+00:00",
+        "updated_at": "2026-10-03T04:50:33.519321+00:00"
+      }
+    },
+    {
+      "at": "2026-10-03T04:50:33.787902+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S11",
+      "operation": "real_process_terminated",
+      "pid": 42564,
+      "exitcode": -15
+    },
+    {
+      "at": "2026-10-03T04:51:06.606583+00:00",
+      "run_id": "boundary-20261003T045031-c625774c",
+      "check": "S11",
+      "operation": "recovered_real_parse",
+      "old_job_id": "b2f6084447674380bc56ecb6c26cf626",
+      "new_job_id": "a513e5474c0a41f699dc8d5d34932b27",
+      "document_id": "7c2e23325df9478297a4310e0c32b63a",
+      "prior_state": "failed",
+      "final_state": "ready",
+      "documents": 1,
+      "pages": 143,
+      "facts": 29,
+      "duplicate_pages": 0,
+      "input_sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30"
+    }
+  ],
+  "evidence_path": "benchmark\\runs\\boundary-20261003T045031-c625774c"
+}

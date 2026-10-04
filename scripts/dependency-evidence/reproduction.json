@@ -1,0 +1,64 @@
+{
+  "timestamp": "2026-10-03T05:33:05.757013+00:00",
+  "node": "v24.20.0",
+  "npm": "11.19.0",
+  "strategy": "Official fixed tarball SHA512 verification and narrow postinstall repair of Pi 1.0.0 nested brace-expansion",
+  "root_install": {
+    "exit": 0,
+    "postinstall_changed_files": 0,
+    "explicit_audit_vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  },
+  "clean_ci": {
+    "isolated_directory": "scripts/.dependency-verification/clean",
+    "fresh_node_modules": true,
+    "exit": 0,
+    "installed_packages": 510,
+    "postinstall_changed_files": 9,
+    "updated_lock_entries": 3,
+    "npm_initial_audit_high": 1,
+    "initial_audit_note": "npm ci computes its printed advisory summary before root postinstall; this pre-repair summary is stale after the verified repair. The explicit postinstall audit below is authoritative for installed contents.",
+    "explicit_after_audit_vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "subsequent_install_exit": 0,
+    "subsequent_install_changed_files": 0,
+    "subsequent_install_audit_total": 0,
+    "final_check_exit": 0
+  },
+  "negative_integrity_checks": {
+    "timestamp": "2026-10-03T05:29:04.492Z",
+    "corruptArchive": {
+      "exit": 1,
+      "filesUnchanged": true
+    },
+    "modifiedInstalledFile": {
+      "checkExit": 1,
+      "repairExit": 0,
+      "restoredOfficialBytes": true
+    },
+    "isolatedRoot": "scripts/.dependency-verification/clean"
+  },
+  "files": {
+    "vendor/brace-expansion-5.0.12.tgz": "ef8448ec78f20b692f04fa6d01f39b5ab34c66404bea3429f5a39c6c9e0be8b4",
+    "scripts/fix_dependency.mjs": "ac2b63571ba7b4f607227fce3e36aa240ccaeed42d164e0c070c5eb9699f3594",
+    "package.json": "44197257538bae1ebdea4fcaf9edd38ad3193f5a328940f1c875bb7ae318e039",
+    "package-lock.json": "acbf89111810d4b7259756cb7714898fe7552bc6e41f64ea7429382253764e35"
+  },
+  "override_only_experiment": {
+    "root_global_override": "5.0.9 remained",
+    "package_scoped_override": "5.0.9 remained",
+    "tested_with": "npm install --package-lock-only --ignore-scripts in isolated directory"
+  }
+}

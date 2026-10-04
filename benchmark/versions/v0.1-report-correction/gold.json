@@ -1,0 +1,684 @@
+{
+  "version": "report-correction-0.1",
+  "offset_contract": "JavaScript UTF-16, start inclusive, end exclusive",
+  "original_text_sha256": "134bb9245a6c0b3a02a9a2aaf5bcc220ece5713addb342a9bc76d0a0cf748332",
+  "claims": [
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "2023年营业收入为147,693,604,994.14元。",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "147,693,604,994.14"
+          ]
+        }
+      ],
+      "id": "A01",
+      "start": 47,
+      "end": 77
+    },
+    {
+      "kind": "error",
+      "text": "2024年营业收入为170,899,152,276.43元。",
+      "bad": "170,899,152,276.43",
+      "accepted_replacements": [
+        "170,899,152,276.34"
+      ],
+      "category": "number",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "170,899,152,276.34"
+          ]
+        }
+      ],
+      "rationale": "两位小数次序被调换，按原表精确到分更正。",
+      "id": "A02",
+      "start": 85,
+      "end": 115,
+      "target": {
+        "start": 95,
+        "end": 113,
+        "original": "170,899,152,276.43"
+      }
+    },
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "年报披露2024年营业收入同比增长15.71%。",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "15.71"
+          ]
+        }
+      ],
+      "id": "A03",
+      "start": 123,
+      "end": 147
+    },
+    {
+      "kind": "error",
+      "text": "2024年经营活动产生的现金流量净额为92,463,692,168.43万元。",
+      "bad": "万元",
+      "accepted_replacements": [
+        "元",
+        "人民币元"
+      ],
+      "category": "unit",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "单位：元",
+            "92,463,692,168.43"
+          ]
+        }
+      ],
+      "rationale": "原表单位为元，误写万元造成一万倍错误。",
+      "id": "A04",
+      "start": 155,
+      "end": 194,
+      "target": {
+        "start": 191,
+        "end": 193,
+        "original": "万元"
+      }
+    },
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "2024年归属于上市公司股东的净利润为86,228,146,421.62元。",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "86,228,146,421.62"
+          ]
+        }
+      ],
+      "id": "A05",
+      "start": 202,
+      "end": 240
+    },
+    {
+      "kind": "protected",
+      "claim_type": "inference",
+      "text": "若终端需求转弱，我倾向于下调未来销量假设；这是情景判断，并非已发生事实。",
+      "evidence": [],
+      "id": "A06",
+      "start": 248,
+      "end": 284
+    },
+    {
+      "kind": "error",
+      "text": "2024年上半年经营活动产生的现金流量净额为7,799,552,404.82元。",
+      "bad": "上半年",
+      "accepted_replacements": [
+        "第三季度",
+        "第三季度（7—9月）",
+        "第三季度（7-9月）",
+        "第三季度（7至9月）"
+      ],
+      "category": "period",
+      "evidence": [
+        {
+          "original_page": 6,
+          "input_page": 2,
+          "anchors_all": [
+            "第三季度",
+            "7,799,552,404.82"
+          ]
+        }
+      ],
+      "rationale": "该数属于第三季度单季，并非上半年累计。",
+      "id": "A07",
+      "start": 292,
+      "end": 332,
+      "target": {
+        "start": 297,
+        "end": 300,
+        "original": "上半年"
+      }
+    },
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "2024年末归属于上市公司股东的净资产为233,105,984,399.47元。",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "233,105,984,399.47"
+          ]
+        }
+      ],
+      "id": "A08",
+      "start": 340,
+      "end": 380
+    },
+    {
+      "kind": "error",
+      "text": "2024年全年平均总资产为298,944,579,918.70元。",
+      "bad": "2024年全年平均总资产",
+      "accepted_replacements": [
+        "2024年末总资产",
+        "2024年12月31日总资产"
+      ],
+      "category": "period",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "2024年末",
+            "298,944,579,918.70"
+          ]
+        }
+      ],
+      "rationale": "年末时点存量不得解释为全年平均。",
+      "id": "A09",
+      "start": 388,
+      "end": 421,
+      "target": {
+        "start": 388,
+        "end": 400,
+        "original": "2024年全年平均总资产"
+      }
+    },
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "2024年末股本为1,256,197,800.00元。",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "1,256,197,800.00"
+          ]
+        }
+      ],
+      "id": "A10",
+      "start": 429,
+      "end": 456
+    },
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "2024年基本每股收益为68.64元/股。",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "基本每股收益",
+            "68.64"
+          ]
+        }
+      ],
+      "id": "A11",
+      "start": 464,
+      "end": 485
+    },
+    {
+      "kind": "error",
+      "text": "2024年全体股东净利润为86,228,146,421.62元。",
+      "bad": "全体股东净利润",
+      "accepted_replacements": [
+        "归属于上市公司股东的净利润",
+        "归母净利润"
+      ],
+      "category": "scope",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "归属于上市公司股东的净利润",
+            "86,228,146,421.62"
+          ]
+        }
+      ],
+      "rationale": "原指标只归属于上市公司股东，不含少数股东归属范围。",
+      "id": "A12",
+      "start": 493,
+      "end": 525,
+      "target": {
+        "start": 498,
+        "end": 505,
+        "original": "全体股东净利润"
+      }
+    },
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "2023年加权平均净资产收益率为34.19%。",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "34.19"
+          ]
+        }
+      ],
+      "id": "A13",
+      "start": 533,
+      "end": 556
+    },
+    {
+      "kind": "error",
+      "text": "2024年与2023年加权平均净资产收益率的算术差额为1.83%。",
+      "bad": "1.83%",
+      "accepted_replacements": [
+        "1.83个百分点",
+        "1.83个百分比点"
+      ],
+      "category": "unit",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "增加1.83个百分点"
+          ]
+        }
+      ],
+      "rationale": "两个百分率之差用百分点，不能写相对增幅百分比。",
+      "id": "A14",
+      "start": 564,
+      "end": 597,
+      "target": {
+        "start": 591,
+        "end": 596,
+        "original": "1.83%"
+      }
+    },
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "2024年第一季度营业收入为45,775,517,043.29元。",
+      "evidence": [
+        {
+          "original_page": 6,
+          "input_page": 2,
+          "anchors_all": [
+            "第一季度",
+            "45,775,517,043.29"
+          ]
+        }
+      ],
+      "id": "A15",
+      "start": 605,
+      "end": 638
+    },
+    {
+      "kind": "error",
+      "text": "营业收入同比增速的公式为（2024年营业收入－2023年营业收入）÷2024年营业收入×100%。",
+      "bad": "（2024年营业收入－2023年营业收入）÷2024年营业收入",
+      "accepted_replacements": [
+        "（2024年营业收入－2023年营业收入）÷2023年营业收入"
+      ],
+      "category": "formula",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "170,899,152,276.34",
+            "147,693,604,994.14"
+          ]
+        }
+      ],
+      "rationale": "同比增长的分母为基期收入；数字表并不把公式定义为本期分母。",
+      "id": "A16",
+      "start": 646,
+      "end": 695,
+      "target": {
+        "start": 658,
+        "end": 689,
+        "original": "（2024年营业收入－2023年营业收入）÷2024年营业收入"
+      }
+    },
+    {
+      "kind": "protected",
+      "claim_type": "inference",
+      "text": "仅凭现金流与利润的一年比较不足以断言长期盈利质量，我建议继续观察营运资金变化。",
+      "evidence": [],
+      "id": "A17",
+      "start": 703,
+      "end": 742
+    },
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "2024年第四季度归属于上市公司股东的净利润为25,400,594,303.11元。",
+      "evidence": [
+        {
+          "original_page": 6,
+          "input_page": 2,
+          "anchors_all": [
+            "第四季度",
+            "25,400,594,303.11"
+          ]
+        }
+      ],
+      "id": "A18",
+      "start": 750,
+      "end": 792
+    },
+    {
+      "kind": "error",
+      "text": "引用2024年年度报告，可以认定2025年基本每股收益为68.64元/股。",
+      "bad": "2025年",
+      "accepted_replacements": [
+        "2024年"
+      ],
+      "category": "citation",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "2024年",
+            "68.64"
+          ]
+        }
+      ],
+      "rationale": "旧报告只支持报告内2024年数据，不能转作2025年事实。",
+      "id": "A19",
+      "start": 800,
+      "end": 837,
+      "target": {
+        "start": 816,
+        "end": 821,
+        "original": "2025年"
+      }
+    },
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "2024年第二季度经营活动产生的现金流量净额为27,434,411,397.54元。",
+      "evidence": [
+        {
+          "original_page": 6,
+          "input_page": 2,
+          "anchors_all": [
+            "第二季度",
+            "27,434,411,397.54"
+          ]
+        }
+      ],
+      "id": "A20",
+      "start": 845,
+      "end": 887
+    },
+    {
+      "kind": "error",
+      "text": "2024年全口径营业收入合计170,611,838,052.02元。",
+      "bad": "全口径营业收入",
+      "accepted_replacements": [
+        "主营业务收入",
+        "主营业务营业收入"
+      ],
+      "category": "scope",
+      "evidence": [
+        {
+          "original_page": 16,
+          "input_page": 4,
+          "anchors_all": [
+            "公司主营业务构成",
+            "170,611,838,052.02"
+          ]
+        }
+      ],
+      "rationale": "原表明确为主营业务，不得当含其他业务的全口径营业收入。",
+      "id": "A21",
+      "start": 895,
+      "end": 929,
+      "target": {
+        "start": 900,
+        "end": 907,
+        "original": "全口径营业收入"
+      }
+    },
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "2024年茅台酒销量为46,412.95吨。",
+      "evidence": [
+        {
+          "original_page": 15,
+          "input_page": 3,
+          "anchors_all": [
+            "销量",
+            "46,412.95"
+          ]
+        }
+      ],
+      "id": "A22",
+      "start": 937,
+      "end": 959
+    },
+    {
+      "kind": "error",
+      "text": "2024年第二季度归属于上市公司股东的净利润为17,630,348,609.22元，出处为原始PDF第5页。",
+      "bad": "第5页",
+      "accepted_replacements": [
+        "第6页"
+      ],
+      "category": "citation",
+      "evidence": [
+        {
+          "original_page": 6,
+          "input_page": 2,
+          "anchors_all": [
+            "17,630,348,609.22"
+          ]
+        }
+      ],
+      "rationale": "原始物理第6页披露季度明细；第5页只披露年度主要数据。",
+      "id": "A23",
+      "start": 967,
+      "end": 1021,
+      "target": {
+        "start": 1017,
+        "end": 1020,
+        "original": "第5页"
+      }
+    },
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "2024年其他系列酒产量为48,112.51吨。",
+      "evidence": [
+        {
+          "original_page": 15,
+          "input_page": 3,
+          "anchors_all": [
+            "产量",
+            "48,112.51"
+          ]
+        }
+      ],
+      "id": "A24",
+      "start": 1029,
+      "end": 1053
+    },
+    {
+      "kind": "error",
+      "text": "2024年“i茅台”数字营销平台销售收入同比增长10.51%。",
+      "bad": "增长10.51%",
+      "accepted_replacements": [
+        "下降10.51%",
+        "减少10.51%",
+        "增长-10.51%"
+      ],
+      "category": "number",
+      "evidence": [
+        {
+          "original_page": 16,
+          "input_page": 4,
+          "anchors_all": [
+            "“i 茅台”数字营销平台",
+            "-10.51"
+          ]
+        }
+      ],
+      "rationale": "原表同比为负值，不是正增长。",
+      "id": "A25",
+      "start": 1061,
+      "end": 1092,
+      "target": {
+        "start": 1083,
+        "end": 1091,
+        "original": "增长10.51%"
+      }
+    },
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "公司把自营和“i茅台”等数字营销平台渠道归入直销。",
+      "evidence": [
+        {
+          "original_page": 15,
+          "input_page": 3,
+          "anchors_all": [
+            "直销渠道指自营和“i 茅台”等数字营销平台渠道"
+          ]
+        }
+      ],
+      "id": "A26",
+      "start": 1100,
+      "end": 1125
+    },
+    {
+      "kind": "error",
+      "text": "年报说明，茅台酒从生产到出厂至少需要一年。",
+      "bad": "一年",
+      "accepted_replacements": [
+        "五年",
+        "5年"
+      ],
+      "category": "period",
+      "evidence": [
+        {
+          "original_page": 15,
+          "input_page": 3,
+          "anchors_all": [
+            "茅台酒从生产到出厂至少需要五年"
+          ]
+        }
+      ],
+      "rationale": "原文最低周期为五年，一年与原披露矛盾。",
+      "id": "A27",
+      "start": 1133,
+      "end": 1154,
+      "target": {
+        "start": 1151,
+        "end": 1153,
+        "original": "一年"
+      }
+    },
+    {
+      "kind": "protected",
+      "claim_type": "calculation",
+      "text": "把2024年四个季度营业收入相加，得到170,899,152,276.34元，与年报全年营业收入一致。",
+      "evidence": [
+        {
+          "original_page": 6,
+          "input_page": 2,
+          "anchors_all": [
+            "45,775,517,043.29",
+            "36,155,460,624.46",
+            "38,845,154,206.94",
+            "50,123,020,401.65"
+          ]
+        },
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "170,899,152,276.34"
+          ]
+        }
+      ],
+      "id": "A28",
+      "start": 1162,
+      "end": 1213
+    },
+    {
+      "kind": "protected",
+      "claim_type": "inference",
+      "text": "直营占比变化可能影响盈利表现，但具体因果贡献仍需其他证据，暂不量化。",
+      "evidence": [],
+      "id": "A29",
+      "start": 1221,
+      "end": 1255
+    },
+    {
+      "kind": "protected",
+      "claim_type": "calculation",
+      "text": "2024年经营现金流量净额比归母净利润高6,235,545,746.81元；这只是两项已披露数值的差额。",
+      "evidence": [
+        {
+          "original_page": 5,
+          "input_page": 1,
+          "anchors_all": [
+            "92,463,692,168.43",
+            "86,228,146,421.62"
+          ]
+        }
+      ],
+      "id": "A30",
+      "start": 1263,
+      "end": 1315
+    },
+    {
+      "kind": "protected",
+      "claim_type": "fact",
+      "text": "2024年批发代理渠道的主营业务营业收入为95,768,511,021.23元。",
+      "evidence": [
+        {
+          "original_page": 16,
+          "input_page": 4,
+          "anchors_all": [
+            "公司主营业务构成"
+          ]
+        },
+        {
+          "original_page": 17,
+          "input_page": 5,
+          "anchors_all": [
+            "批发代理",
+            "95,768,511,021.23"
+          ]
+        }
+      ],
+      "id": "A31",
+      "start": 1323,
+      "end": 1363
+    }
+  ],
+  "thresholds": {
+    "correction_precision": 0.95,
+    "correction_recall": 0.9,
+    "protected_claims_changed": 0,
+    "opinions_changed": 0
+  },
+  "independent_calculations": {
+    "quarter_revenue_sum": "170899152276.34",
+    "operating_cash_minus_parent_profit": "6235545746.81"
+  }
+}

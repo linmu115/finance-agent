@@ -1,0 +1,92 @@
+{
+  "project_id": "3b4c43c9-51b8-432c-807d-2a15323f7a80",
+  "verified_historical_sources": {
+    "39de9b118212463bbee6c2ab3c571432": {
+      "fact_count": 3298,
+      "source_parser_version": "0.1.3",
+      "source_sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+      "source_state": "needs_review",
+      "source_tables": 275,
+      "source_pages": 143
+    }
+  },
+  "groups": 66,
+  "sources": 90,
+  "families": [
+    {
+      "family": "revenue",
+      "groups": 40,
+      "sources": 55,
+      "known_metrics": 1,
+      "calls_before_validation_repair": 7,
+      "rendered_characters": [
+        24495,
+        23401,
+        22811,
+        23889,
+        26917,
+        27782,
+        20330
+      ]
+    },
+    {
+      "family": "lease_liabilities",
+      "groups": 21,
+      "sources": 25,
+      "known_metrics": 2,
+      "calls_before_validation_repair": 4,
+      "rendered_characters": [
+        17598,
+        27694,
+        23138,
+        24610
+      ]
+    },
+    {
+      "family": "non_recurring_government_grants",
+      "groups": 5,
+      "sources": 10,
+      "known_metrics": 2,
+      "calls_before_validation_repair": 1,
+      "rendered_characters": [
+        25194
+      ]
+    }
+  ],
+  "additional_model_calls": 0,
+  "status": "implementation_ready_real_definition_acceptance_pending",
+  "checked_at": "2026-10-03T17:57:28.760071+00:00",
+  "original_development_result": {
+    "anchors_passed": 2,
+    "anchors_total": 15,
+    "distinction_pairs_passed": 0,
+    "distinction_pairs_total": 9,
+    "changed": false
+  },
+  "mode": {
+    "review_existing_only": true,
+    "force": false,
+    "review_metrics": [
+      "revenue",
+      "lease_liabilities",
+      "non_recurring_government_grants"
+    ]
+  },
+  "validation_plan": [
+    "Capture full original-fact/source snapshot and keep old report unchanged.",
+    "Use the owning Pi conversation with explicit existing-only mode; 66 groups / 90 sources in 12 initial high-reasoning requests.",
+    "Compare existing 15 source anchors and 9 definition-distinction pairs using frozen host scorer after terminal.",
+    "Trace every accepted definition quote/owner to real Pi audit; verify money, dates, units, original sources and all 3298 facts are conserved."
+  ],
+  "limits": {
+    "initial_definition_calls": 12,
+    "initial_output_reservation_max": 393216,
+    "rendered_input_characters": 287859,
+    "note": "Model token usage/cost unknown until real calls. Each batch permits at most one validation repair; any shared evaluation budget remains the outer bound."
+  },
+  "local_tests": {
+    "python_suite": "264/264",
+    "node_suite": "74/74",
+    "server_typecheck": "passed"
+  }
+}

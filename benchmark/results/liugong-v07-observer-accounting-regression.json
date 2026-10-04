@@ -1,0 +1,43 @@
+{
+  "kind": "v07_observer_accounting_offline_regression",
+  "created_at": "2026-10-03T19:10:55.437483+00:00",
+  "test_command": "node --import tsx --test tests/research-workflow-accounting.test.ts",
+  "tests_passed": 16,
+  "tests_failed": 0,
+  "syntax_checks": [
+    "scripts/verify_liugong_research_workflow.mjs",
+    "scripts/research_workflow_accounting.mjs"
+  ],
+  "model_calls": 0,
+  "network_calls": 0,
+  "server_lifecycle_changes": 0,
+  "frozen_task_sha256": "bec8d362b9f53f2c1e8e29622a5a8526182500578711ea229f81f5c2042c296f",
+  "budget": {
+    "max_model_calls": 48,
+    "max_input_tokens": 2484631,
+    "max_output_tokens": 423210,
+    "max_total_tokens": 2907841,
+    "max_wall_seconds": 1641
+  },
+  "files": {
+    "scripts/verify_liugong_research_workflow.mjs": "513b0d79489d93be25f6001175f081aa958e3670de38f2c6838cb7d58dcdfdd5",
+    "scripts/research_workflow_accounting.mjs": "29d011a0c061075269715b3f04d25af12509b39bfc51c108dbe0ed39838f3055",
+    "tests/research-workflow-accounting.test.ts": "285e22ecce57110fa1292d1dd8bcfff1ca863ed006f06edc07afacfb94719eac"
+  },
+  "preserved_artifact_sha256": {
+    "benchmark/results/liugong-research-workflow-v06.before.json": "7cf24ff9a6a39afc0237144097dfbb6f4e2e31a2f8d1d15ecd3d889feb912393",
+    "benchmark/results/liugong-research-workflow-v06.json": "56ea104aa37e640ed4185f05c3fad6cd05bf3c8056296c4455c4df0514624d23",
+    "benchmark/results/liugong-research-workflow-v06.stage-1.audit.json": "0733d80b5eeaa5c3b3f38dc078517038391ed2bb7f47be27d4e5eceb30845cfe",
+    "benchmark/results/liugong-research-workflow-v07.before.json": "623306e3b4c0aebcbb6a52fc78c30c8478c08ecd9045478fe9686b7a9ee14242"
+  },
+  "behavior": [
+    "Unpersisted active stage is reconciled with terminal run API and actual budget/model audit.",
+    "Same-group cumulative snapshots are not added together.",
+    "Unknown submission/run/API/audit/provider usage never becomes zero or a complete combined total.",
+    "Known prior and observed spend is preserved as explicit lower bounds.",
+    "Cancellation settlement checks are read-only, bounded to three polls.",
+    "Offline prepare under a throwing fetch guard confirmed identical frozen task hash, tasks, budget and prior file bytes."
+  ],
+  "changed_task_or_budget": false,
+  "v07_started": false
+}

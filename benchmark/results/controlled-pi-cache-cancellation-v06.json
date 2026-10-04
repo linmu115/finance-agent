@@ -1,0 +1,87 @@
+{
+  "kind": "independent_controlled_pi_cache_cancellation_evidence",
+  "status": "passed",
+  "model_calls": 0,
+  "source_report": "D:\\codex\\金融\\benchmark\\results\\utf8-http-pi-restart-1791052695103.json",
+  "source_report_status_preserved": "failed",
+  "checker_correction": "The public catalog intentionally omits full audit arrays. Read the persisted review and cache directly for ownership verification; the original failed fixture report is retained.",
+  "limitations": "The provider response is a fixed fixture and the financial definition intentionally unresolved. This validates cancellation, ownership and persistence, not model semantic accuracy.",
+  "checks": [
+    {
+      "name": "persisted_cancelled_owner_and_completed_survivor",
+      "status": "passed",
+      "evidence": {
+        "5f103587-205a-475a-bdd1-a61bf09e0e5e": "cancelled",
+        "30349921-7abe-4190-be5a-fb0b519893b7": "completed"
+      }
+    },
+    {
+      "name": "single_accepted_cache_winner",
+      "status": "passed",
+      "evidence": null
+    },
+    {
+      "name": "accepted_owner_is_surviving_pi_session",
+      "status": "passed",
+      "evidence": {
+        "processing_id": "91a525e08dcd4cee8bb834c720800a55",
+        "owner_run_id": "30349921-7abe-4190-be5a-fb0b519893b7"
+      }
+    },
+    {
+      "name": "one_actual_successful_model_response",
+      "status": "passed",
+      "evidence": {
+        "owner": "30349921-7abe-4190-be5a-fb0b519893b7",
+        "requests": [
+          "4de55f9a-aa7e-41c6-9f30-63223d6f24be"
+        ]
+      }
+    },
+    {
+      "name": "accepted_extractions_match_actual_raw_response",
+      "status": "passed",
+      "evidence": null
+    },
+    {
+      "name": "persisted_report_binds_exact_cache_hash_and_owner",
+      "status": "passed",
+      "evidence": [
+        {
+          "cache_key": "7f2bfed9dffbe3814b40fc6bbda3e21ba41efe8f09986244cc9e3c2f404646c2",
+          "result_hash": "ffc047596f8c86fc52cdc61a0a2dae887466035ffae59bfc5014e3f6d80bfbd4",
+          "group_count": 1,
+          "provenance": {
+            "processing_id": "91a525e08dcd4cee8bb834c720800a55",
+            "owner_run_id": "30349921-7abe-4190-be5a-fb0b519893b7"
+          }
+        }
+      ]
+    },
+    {
+      "name": "cancelled_attempt_retains_failure_and_same_cache_identity",
+      "status": "passed",
+      "evidence": {
+        "status": "cancelled",
+        "pending": 1
+      }
+    },
+    {
+      "name": "one_fact_matches_original_amount_after_cancellation",
+      "status": "passed",
+      "evidence": [
+        {
+          "fact_id": "1e849fa5e09e4e399912a348ce4edecf",
+          "document_id": "bb4560909b364707b2352755f71ea926",
+          "raw_value": "137.25",
+          "value": "137.25"
+        }
+      ]
+    },
+    {
+      "name": "original_fixture_report_unchanged",
+      "status": "passed",
+      "evidence": "267af21cdd473e6161439e4e97d0cf220b9986069d176dd29ff6afe1a71f6e20"
+    }
+  ]
+}
