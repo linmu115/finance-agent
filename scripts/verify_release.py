@@ -49,8 +49,10 @@ def main():
     extraction = evidence/'部署验收 空格'
     package = extraction/PACKAGE
     evidence.mkdir(parents=True)
+    with archive.open('rb') as archive_stream:
+        archive_sha256 = hashlib.file_digest(archive_stream, 'sha256').hexdigest()
     report = {'version': '0.1.0', 'archive': archive.name,
-              'archive_sha256': hashlib.sha256(archive.read_bytes()).hexdigest(),
+              'archive_sha256': archive_sha256,
               'created_at': datetime.now(timezone.utc).isoformat(), 'checks': [],
               'external_api_calls': 0, 'docker_started': False}
     result_path = evidence/'deployment-verification.json'
@@ -64,20 +66,29 @@ def main():
 
     # Validate member names and the content manifest before any executable runs.
     with zipfile.ZipFile(archive) as z:
-        manifest = json.loads(z.read(PACKAGE+'/INSTALL_MANIFEST.json'))
+        manifest_bytes = z.read(PACKAGE+'/INSTALL_MANIFEST.json')
+        manifest = json.loads(manifest_bytes)
         members = {PACKAGE+'/'+r['path']: r for r in manifest['files']}
         check('archive_exact_members', set(z.namelist()) == set(members)|{PACKAGE+'/INSTALL_MANIFEST.json'} and len(z.namelist()) == len(members)+1)
         for name in z.namelist():
             dest = (extraction/name).resolve()
             if not dest.is_relative_to(extraction.resolve()):
                 raise ValueError('Archive member escapes extraction folder')
-        check('archive_crc', z.testzip() is None)
+        # ZipExtFile verifies CRC when consumed to EOF. Verify hashes during
+        # extraction as well, avoiding three full reads of the large archive.
         for name, row in members.items():
-            with z.open(name) as stream:
-                if hashlib.file_digest(stream, 'sha256').hexdigest() != row['sha256']:
-                    raise AssertionError('Archive hash: '+name)
+            dest = extraction/name
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            digest = hashlib.sha256()
+            with z.open(name) as stream, dest.open('xb') as output:
+                while chunk := stream.read(1024*1024):
+                    digest.update(chunk)
+                    output.write(chunk)
+            if digest.hexdigest() != row['sha256']:
+                raise AssertionError('Archive hash: '+name)
+        (package/'INSTALL_MANIFEST.json').write_bytes(manifest_bytes)
+        check('archive_crc', True)
         check('archive_file_hashes', True, {'files': len(members)})
-        z.extractall(extraction)
     check('fresh_install_has_no_user_data', not (package/'data').exists() and not (package/'.env').exists())
     base = f'http://127.0.0.1:{args.port}'
     data = package/'data'
@@ -97,9 +108,15 @@ def main():
         run_count += 1
         command = [str(powershell), '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File',
                    str(package/'scripts/manage.ps1'), '-Action', action, '-Port', str(port or args.port), '-NoBrowser', *map(str, extra)]
-        result = subprocess.run(command, cwd=package, env=env, capture_output=True, timeout=300)
-        (evidence/f'{run_count:02}-{action}.stdout.log').write_bytes(result.stdout)
-        (evidence/f'{run_count:02}-{action}.stderr.log').write_bytes(result.stderr)
+        # Windows PowerShell 5.1 may pass unused pipe handles to detached children.
+        # Capture to files so a healthy background server cannot hold communicate()
+        # open after the launcher itself has already exited.
+        stdout_path = evidence/f'{run_count:02}-{action}.stdout.log'
+        stderr_path = evidence/f'{run_count:02}-{action}.stderr.log'
+        with stdout_path.open('wb') as stdout, stderr_path.open('wb') as stderr:
+            result = subprocess.run(command, cwd=package, env=env, stdout=stdout, stderr=stderr, timeout=300)
+        result.stdout = stdout_path.read_bytes()
+        result.stderr = stderr_path.read_bytes()
         if (result.returncode == 0) != success:
             raise RuntimeError(f'Unexpected {action} exit {result.returncode}; see evidence log {run_count}')
         return result
