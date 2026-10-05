@@ -241,7 +241,8 @@ class CatalogModelTests(unittest.TestCase):
             review, _, requests = _call_model(self.profiles, self.runtime)
         self.assertEqual(requests, 2)
         self.assertEqual(len(review["keep"]), 3)
-        self.assertIn("catalog_count_mismatch", extract.call_args_list[1].kwargs["prompt_description"])
+        self.assertIn("catalog_count_mismatch", extract.call_args_list[1].kwargs["text_or_documents"])
+        self.assertEqual(extract.call_args_list[0].kwargs["prompt_description"], extract.call_args_list[1].kwargs["prompt_description"])
         self.assertEqual(extract.call_args_list[0].kwargs["config"].provider, "PiBridgeLanguageModel")
         self.assertEqual(extract.call_args_list[0].kwargs["config"].provider_kwargs["base_url"], self.runtime["base_url"])
 

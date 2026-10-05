@@ -10,9 +10,9 @@ import {resolveCompactionPolicy} from '../server/context-compaction.js';
 
 test('working context threshold stays separate from the real model window and reserves answer room',()=>{
  const large=resolveCompactionPolicy(undefined,1048576,32768);
- assert.equal(large.targetTokens,96000);assert.equal(large.reserveTokens,952576);assert.equal(large.keepRecentTokens,24000);assert.equal(large.summaryMaxTokens,8192);
+ assert.equal(large.targetTokens,838860);assert.equal(large.reserveTokens,209716);assert.equal(large.keepRecentTokens,162529);assert.equal('summaryMaxTokens' in large,false);
  const small=resolveCompactionPolicy(undefined,8192,512);
- assert.ok(small.targetTokens<=8192-512-512);assert.ok(small.keepRecentTokens<small.targetTokens);assert.equal(small.summaryMaxTokens,512);
+ assert.ok(small.targetTokens<=8192-512-512);assert.ok(small.keepRecentTokens<small.targetTokens);
  assert.throws(()=>resolveCompactionPolicy(undefined,4096,4096),/工作记忆/);
 });
 
@@ -22,6 +22,7 @@ test('real Pi compaction uses the owning runtime budget, preserves references/hi
  const {FinanceService}=await import('../server/mcp.js');const {RunManager}=await import('../server/runs.js');
  const {SessionManager}=await import('@earendil-works/pi-coding-agent');
  await loadSettings();const service=new FinanceService();await service.connect();let manager=new RunManager(service);
+ let summaryRetryAttempts=0;
  const requests:any[]=[],held=new Map<string,ServerResponse>();
  const text=(value:any)=>typeof value==='string'?value:Array.isArray(value)?value.map(x=>x.text||'').join('\n'):'';
  const reply=(res:ServerResponse,content:string,finish='stop')=>{
@@ -36,10 +37,11 @@ test('real Pi compaction uses the owning runtime budget, preserves references/hi
   const all=body.messages.map((m:any)=>text(m.content)).join('\n');
   const summary=body.messages.some((m:any)=>m.role==='system'&&text(m.content).includes('context summarization assistant'));
   if(summary){
+   if(all.includes('RETRY_MEMORY')&&++summaryRetryAttempts<=2){res.writeHead(503,{'Content-Type':'application/json'});res.end(JSON.stringify({error:{message:'temporary summary failure'}}));return;}
    if(all.includes('HOLD_MEMORY')){held.set('HOLD_MEMORY',res);return;}
    if(all.includes('FAIL_MEMORY')){reply(res,'unfinished checkpoint','length');return;}
    const marker=all.includes('MEMORY_BETA')?'MEMORY_BETA':'MEMORY_ALPHA';
-   reply(res,'## Goal\nContinue '+marker+' unfinished work.\n## Progress\nOld sources saved. Need to reread inputs before changing results.');return;
+   reply(res,'## Goal\nContinue '+marker+' unfinished work.\n## Progress\nOld sources saved: document-fixture p1 / source-fixture / artifact-fixture revision-fixture. Need to reread inputs before changing results.');return;
   }
   const pairs=new Set<string>();for(const message of body.messages){if(message.role==='assistant')for(const call of message.tool_calls||[])pairs.add(call.id);if(message.role==='tool'&&!pairs.has(message.tool_call_id)){reply(res,'orphan tool result');return;}}
   const marker=all.includes('MEMORY_BETA')?'MEMORY_BETA':all.includes('MEMORY_ALPHA')?'MEMORY_ALPHA':'NO_MEMORY';
@@ -47,7 +49,7 @@ test('real Pi compaction uses the owning runtime budget, preserves references/hi
  });
  await new Promise<void>(resolve=>mock.listen(0,'127.0.0.1',resolve));
  const wait=async(id:string)=>{const until=Date.now()+45000;while(Date.now()<until){const run=await manager.getRun(id);if(['completed','failed','cancelled'].includes(run.status)&&!manager.activeFor(run.conversationId))return run;await delay(30);}throw Error('compaction fixture timeout');};
- const budget=(profile:'financial'|'generic')=>({profile,budget_group_id:randomUUID(),budget:{max_model_calls:12,max_input_tokens:1000000,max_output_tokens:20000,max_total_tokens:1020000,max_wall_seconds:100}});
+ const budget=(profile:'financial'|'generic')=>({profile,budget_group_id:randomUUID(),budget:{max_model_calls:12,max_input_tokens:1000000,max_output_tokens:200000,max_total_tokens:1200000,max_wall_seconds:100}});
  const create=async(marker:string)=>{
   const chat={id:randomUUID(),projectId:'compaction-fixture',title:'新对话',messages:[],createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()};
   await service.putState(chat.projectId,'conversations',chat.id,chat);manager.indexConversation(chat.id,chat.projectId);
@@ -75,16 +77,17 @@ test('real Pi compaction uses the owning runtime budget, preserves references/hi
    const entries=(await readFile(index?b.file:a.file,'utf8')).trim().split('\n').map(JSON.parse),checkpoints=entries.filter(x=>x.type==='compaction');assert.ok(checkpoints.length>0);
    assert.ok(checkpoints.at(-1).summary.includes('document-fixture'));assert.ok(checkpoints.at(-1).summary.includes('revision-fixture'));assert.ok(checkpoints.at(-1).summary.includes('source-fixture'));
    const events=(await readFile(path.join(dir,'audit',run.id+'.jsonl'),'utf8')).trim().split('\n').map(JSON.parse),usage=events.filter(x=>x.type==='model_usage');
-   assert.ok(usage.some(x=>x.data.phase==='compaction'));assert.ok(events.some(x=>x.type==='compaction_saved'));assert.equal(state.evaluation!.usage.model_calls,usage.length);assert.equal(state.evaluation!.usage.input_tokens,usage.length*1200);assert.equal(state.evaluation!.usage.output_tokens,usage.length*120);
+   assert.ok(usage.some(x=>x.data.phase==='compaction'));assert.ok(events.some(x=>x.type==='compaction_saved'&&x.data.fromExtension===false));assert.equal(state.evaluation!.usage.model_calls,usage.length);assert.equal(state.evaluation!.usage.input_tokens,usage.length*1200);assert.equal(state.evaluation!.usage.output_tokens,usage.length*120);
    const answer=(await manager.getConversation(index?b.chat.id:a.chat.id)).messages.at(-1)!.content;assert.ok(answer.includes(index?'MEMORY_BETA':'MEMORY_ALPHA'));assert.ok(!answer.includes(index?'MEMORY_ALPHA':'MEMORY_BETA'));assert.ok(!answer.includes('orphan'));
   }
   const summaries=requests.filter(body=>body.messages.some((m:any)=>m.role==='system'&&text(m.content).includes('context summarization assistant')));
-  assert.ok(summaries.length>=2);for(const body of summaries){assert.equal(body.response_format,undefined);assert.ok(body.max_tokens<=1024);assert.ok(!body.tools?.length);}
-  const genericSummary=summaries.find(body=>JSON.stringify(body).includes('MEMORY_BETA'));assert.ok(genericSummary);assert.ok(!JSON.stringify(genericSummary).includes('估值时点'));
+  assert.ok(summaries.length>=2);for(const body of summaries){assert.equal(body.response_format,undefined);assert.equal(body.max_tokens,32768);assert.ok(!body.tools?.length);}
+  const genericSummary=summaries.find(body=>JSON.stringify(body).includes('MEMORY_BETA'));assert.ok(genericSummary);assert.ok(!JSON.stringify(genericSummary).includes('金融工作补充'));assert.ok(summaries.some(body=>JSON.stringify(body).includes('金融工作补充')));
   const finals=requests.filter(body=>!body.messages.some((m:any)=>m.role==='system'&&text(m.content).includes('context summarization assistant')));assert.ok(finals.every(body=>body.response_format?.type==='json_object'));
   await manager.shutdown();manager=new RunManager(service);await manager.recover('compaction-fixture');
   const again=await manager.start(await manager.getConversation(a.chat.id),'Recall preserved memory',[],undefined,budget('financial'));assert.equal((await wait(again.id)).status,'completed');assert.ok((await manager.getConversation(a.chat.id)).messages.at(-1)!.content.includes('MEMORY_ALPHA'));
-  const failure=await create('FAIL_MEMORY'),failed=await manager.start(failure.chat,'Continue',[],undefined,budget('financial'));assert.equal((await wait(failed.id)).status,'failed');assert.equal((await readFile(failure.file,'utf8')).trim().split('\n').map(JSON.parse).filter(x=>x.type==='compaction').length,0);
+  const retryFixture=await create('RETRY_MEMORY'),retryRun=await manager.start(retryFixture.chat,'Continue',[],undefined,budget('financial'));assert.equal((await wait(retryRun.id)).status,'completed');assert.ok(summaryRetryAttempts>=3,'Pi summary retries must survive more than the retired one-retry override');
+  const failure=await create('FAIL_MEMORY'),failed=await manager.start(failure.chat,'Continue',[],undefined,budget('financial'));assert.equal((await wait(failed.id)).status,'completed');const recovery=(await readFile(failure.file,'utf8')).trim().split('\n').map(JSON.parse).filter(x=>x.type==='compaction');assert.equal(recovery.length,0,'a truncated native summary must never be saved as a successful compaction');assert.ok((await readFile(failure.file,'utf8')).startsWith(failure.before));
   const heldFixture=await create('HOLD_MEMORY'),cancelled=await manager.start(heldFixture.chat,'Continue',[],undefined,budget('financial'));
   const until=Date.now()+20000;while(!held.has('HOLD_MEMORY')){assert.ok(Date.now()<until);await delay(30);}
   const surviving=await manager.start(await manager.getConversation(b.chat.id),'Recall preserved memory',[],undefined,budget('generic'));assert.equal((await wait(surviving.id)).status,'completed');

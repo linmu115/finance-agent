@@ -82,7 +82,7 @@ class SemanticSourceTests(unittest.TestCase):
         self.assertEqual(model.call_count, 1)
         model_config = model.call_args.kwargs["config"]
         self.assertEqual(model_config.provider, "PiBridgeLanguageModel")
-        self.assertEqual(model_config.provider_kwargs["reasoning_effort"], "high")
+        self.assertEqual(model_config.provider_kwargs["reasoning_effort"], "low")
         self.assertEqual(model_config.provider_kwargs["max_output_tokens"], 32768)
 
     def test_old_none_cache_callback_retains_current_inference(self):

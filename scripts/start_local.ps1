@@ -13,7 +13,7 @@ function Test-AppReady {
 if (-not (Test-AppReady)) {
     $listener = Get-NetTCPConnection -LocalPort 3001 -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($listener) {
-        $savedPidFile = Join-Path $projectRoot 'data/runtime/server.pid'
+        $savedPidFile = Join-Path $projectRoot 'data/active/runtime/server.pid'
         $savedPid = if (Test-Path -LiteralPath $savedPidFile) { (Get-Content -LiteralPath $savedPidFile -Raw).Trim() } else { '' }
         $existing = Get-CimInstance Win32_Process -Filter "ProcessId=$($listener.OwningProcess)"
         if ($savedPid -ne [string]$listener.OwningProcess -or $existing.CommandLine -notmatch 'server[/\\]main\.ts') {
@@ -42,11 +42,11 @@ if (-not (Test-AppReady)) {
     try {
         & $nodeExe scripts/fix_dependency.mjs --check
         if ($LASTEXITCODE -ne 0) { throw 'Dependency integrity check failed.' }
-        $logDir = Join-Path $projectRoot 'data/runtime'
+        $logDir = Join-Path $projectRoot 'data/active/runtime'
         New-Item -ItemType Directory -Path $logDir -Force | Out-Null
         $env:FINANCE_HOST = '127.0.0.1'
         $env:FINANCE_PORT = '3001'
-        $env:FINANCE_DATA_DIR = Join-Path $projectRoot 'data'
+        $env:FINANCE_DATA_DIR = Join-Path $projectRoot 'data/active'
         $env:FINANCE_PYTHON = Join-Path $projectRoot '.venv/Scripts/python.exe'
         $serverProcess = Start-Process -FilePath $nodeExe -ArgumentList @('--import', 'tsx', 'server/main.ts') -WorkingDirectory $projectRoot -WindowStyle Hidden -RedirectStandardOutput (Join-Path $logDir 'server.stdout.log') -RedirectStandardError (Join-Path $logDir 'server.stderr.log') -PassThru
         $serverProcess.Id | Set-Content -LiteralPath (Join-Path $logDir 'server.pid') -Encoding ascii
@@ -55,10 +55,10 @@ if (-not (Test-AppReady)) {
         while ((Get-Date) -lt $deadline) {
             if (Test-AppReady) { $ready = $true; break }
             $serverProcess.Refresh()
-            if ($serverProcess.HasExited) { throw 'Application exited. See data/runtime/server.stderr.log.' }
+            if ($serverProcess.HasExited) { throw 'Application exited. See data/active/runtime/server.stderr.log.' }
             Start-Sleep -Milliseconds 400
         }
-        if (-not $ready) { throw 'Startup timed out. See data/runtime/server.stderr.log.' }
+        if (-not $ready) { throw 'Startup timed out. See data/active/runtime/server.stderr.log.' }
     } finally { Pop-Location }
 }
 # Reuse only an already prepared project VM. Never download or install runtimes.

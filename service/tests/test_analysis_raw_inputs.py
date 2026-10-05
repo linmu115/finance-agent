@@ -30,8 +30,9 @@ class AnalysisRawInputTests(unittest.TestCase):
                 for raw_only in (True,False):
                     run=service.run_analysis("p","pass",raw_only=raw_only)["data"]["run_id"]
                     service.analysis_futures[run].result(timeout=3)
-                self.assertEqual(set(captured[0]),{"pages.json","tables.json","facts.json"})
+                self.assertEqual(set(captured[0]),{"pages.json","tables.json","facts.json","research_records.json"})
                 self.assertEqual(captured[0]["facts.json"],[])
+                self.assertEqual(captured[0]["research_records.json"],[])
                 self.assertEqual(len(captured[1]["facts.json"]),1)
                 self.assertEqual(captured[0]["pages.json"][0]["words"],[{"text":"137","bbox":[1,2,3,4]}])
                 self.assertEqual(captured[0]["tables.json"],captured[1]["tables.json"])

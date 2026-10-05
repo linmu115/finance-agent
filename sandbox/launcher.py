@@ -140,7 +140,7 @@ class SandboxRunner:
         try:
             return subprocess.run([self.docker, *arguments], capture_output=True, text=True,
                                   encoding="utf-8", errors="replace", timeout=timeout,
-                                  creationflags=creationflags, check=False)
+                                  creationflags=creationflags, stdin=subprocess.DEVNULL, check=False)
         except (OSError, subprocess.TimeoutExpired) as exc:
             raise RunnerError(f"Docker operation failed: {type(exc).__name__}") from exc
 

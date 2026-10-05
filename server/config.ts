@@ -11,8 +11,9 @@ import { DEFAULT_CONTEXT_COMPACTION } from './types.js';
 const moduleDirectory = path.dirname(fileURLToPath(import.meta.url));
 // Compiled releases run from server/dist; source development runs from server.
 export const ROOT = path.resolve(moduleDirectory, path.basename(moduleDirectory) === 'dist' ? '../..' : '..');
+export const APP_VERSION: string = JSON.parse(await readFile(path.join(ROOT,'package.json'),'utf8')).version;
 try { process.loadEnvFile(path.join(ROOT, '.env')); } catch (e: any) { if (e.code !== 'ENOENT') throw e; }
-export const DATA = path.resolve(process.env.FINANCE_DATA_DIR || path.join(ROOT, 'data'));
+export const DATA = path.resolve(process.env.FINANCE_DATA_DIR || path.join(ROOT, 'data', 'active'));
 const portablePython = path.join(ROOT, 'runtime', 'python', 'python.exe');
 export const PYTHON = process.env.FINANCE_PYTHON || (process.platform === 'win32' && existsSync(portablePython) ? portablePython : path.join(ROOT, '.venv', process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python'));
 export const PORT = Number(process.env.FINANCE_PORT || 3001);
@@ -26,7 +27,7 @@ const defaultSettings: Settings = {
   embedding:{enabled:false,baseUrl:'',model:'',apiKey:''},
   ocr:{mode:'local',baseUrl:'',model:'',apiKey:''},
   search:{provider:'tavily',baseUrl:'https://api.tavily.com',apiKey:'',maxResults:6},
-  runtime:{maxToolCalls:64,timeoutSeconds:120,contextCompaction:{...DEFAULT_CONTEXT_COMPACTION}},
+  runtime:{timeoutSeconds:120,contextCompaction:{...DEFAULT_CONTEXT_COMPACTION}},
 };
 const url = z.string().trim().max(2048).refine(value => {
   if (!value) return true;
@@ -34,11 +35,13 @@ const url = z.string().trim().max(2048).refine(value => {
 },'使用HTTPS地址；本机服务可使用HTTP，地址不能包含密钥或查询参数');
 const key=z.string().max(16384), model=z.string().trim().max(300);
 const settingsSchema=z.object({
-  llm:z.object({provider:z.literal('openai-compatible'),baseUrl:url,model,apiKey:key,contextWindow:z.number().int().min(4096).max(2000000),maxTokens:z.number().int().min(128).max(131072),inputPricePerMillionUsd:z.number().nonnegative().optional(),outputPricePerMillionUsd:z.number().nonnegative().optional()}),
+  llm:z.object({provider:z.string().min(1).max(100),baseUrl:url,model,apiKey:key,contextWindow:z.number().int().min(4096).max(2000000),maxTokens:z.number().int().min(128).max(131072),inputPricePerMillionUsd:z.number().nonnegative().optional(),cacheReadPricePerMillionUsd:z.number().nonnegative().optional(),outputPricePerMillionUsd:z.number().nonnegative().optional()}),
   embedding:z.object({enabled:z.boolean(),baseUrl:url,model,apiKey:key,dimensions:z.number().int().min(1).max(65536).optional()}),
   ocr:z.object({mode:z.enum(['local','api']),baseUrl:url,model,apiKey:key}),
   search:z.object({provider:z.enum(['tavily','brave']),baseUrl:url,apiKey:key,maxResults:z.number().int().min(1).max(20)}).default({provider:'tavily',baseUrl:'https://api.tavily.com',apiKey:'',maxResults:6}),
-  runtime:z.object({maxToolCalls:z.number().int().min(1).max(100),timeoutSeconds:z.number().int().min(10).max(120),budgetCny:z.number().positive().optional(),usdToCny:z.number().positive().optional(),contextCompaction:z.object({enabled:z.boolean(),targetTokens:z.number().int().min(4096).max(2000000),keepRecentTokens:z.number().int().min(1024).max(1000000),summaryMaxTokens:z.number().int().min(512).max(32768)}).refine(v=>v.keepRecentTokens<v.targetTokens&&v.summaryMaxTokens<v.targetTokens,'近期保留量和摘要输出必须小于压缩触发阈值').default({...DEFAULT_CONTEXT_COMPACTION})}),
+  // Zod strips the retired maxToolCalls field from saved settings and old clients.
+  // Ordinary task loops are owned by Pi; only explicitly configured budgets stop them.
+  runtime:z.object({timeoutSeconds:z.number().int().min(10).max(120),budgetCny:z.number().positive().optional(),usdToCny:z.number().positive().optional(),contextCompaction:z.object({enabled:z.boolean(),mode:z.enum(["auto","manual"]).optional(),targetTokens:z.number().int().min(4096).max(2000000),keepRecentTokens:z.number().int().min(1024).max(1000000)}).refine(v=>v.keepRecentTokens<v.targetTokens,'近期保留量必须小于压缩触发阈值').default({...DEFAULT_CONTEXT_COMPACTION})}),
 });
 const settingsPath=path.join(DATA,'settings.json');
 let current: Settings=structuredClone(defaultSettings);
@@ -78,6 +81,8 @@ export async function loadSettings() {
     const stored=JSON.parse(await readFile(settingsPath,'utf8'));
     for(const section of ['llm','embedding','ocr','search'] as const) if(stored[section])stored[section].apiKey=await decrypt(stored[section].apiKey || '');
     current=settingsSchema.parse({...defaultSettings,...stored});
+    const policy=current.runtime.contextCompaction;
+    if(policy&&!policy.mode)policy.mode=policy.targetTokens===96000&&policy.keepRecentTokens===24000?"auto":"manual";
   }
   return getSettings();
 }
@@ -108,12 +113,19 @@ export function redactError(error:unknown):string {
 }
 export function requireModel() {
  const s=getSettings();
+ if(s.llm.provider!=='openai-compatible'){if(!s.llm.model)throw new Error('请从 Pi 模型目录选择模型');return s;}
  if(!s.llm.baseUrl || !s.llm.model)throw new Error('请先在API配置中填写主模型地址和模型ID');
  if(!s.llm.apiKey && !['localhost','127.0.0.1','[::1]'].includes(new URL(s.llm.baseUrl).hostname))throw new Error('请先配置主模型API Key');
  return s;
 }
 export async function testSettings(section:string) {
  const s=getSettings(),config=section==='embedding'?s.embedding:section==='ocr'?s.ocr:s.llm;
+ if(section==='llm'){
+  const {configuredModel}=await import('./model-runtime.js');const {runtime,model}=await configuredModel(requireModel().llm),start=performance.now();
+  const result=await runtime.completeSimple(model,{messages:[{role:'user',content:'Reply with OK only.',timestamp:Date.now()}]},{maxTokens:1024,reasoning:model.reasoning?'low':undefined,signal:AbortSignal.timeout(30000)});
+  if(['error','aborted','length'].includes(result.stopReason))throw new Error(result.errorMessage||'模型连通检查未完成');
+  return {ok:true,message:'连接成功，已通过 Pi 完成真实请求',latencyMs:Math.round(performance.now()-start),model:result.model,usage:result.usage};
+ }
  if(section==='ocr'&&s.ocr.mode==='local')return {ok:true,message:'本地OCR状态由文档服务报告',local:true};
  if(section==='embedding'&&!s.embedding.enabled)throw new Error('Embedding尚未启用');
  if(!config.baseUrl || (section!=='ocr'&&!config.model))throw new Error('请填写服务地址和模型ID');

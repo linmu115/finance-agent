@@ -206,6 +206,7 @@ def overlay_saved_corrections(db,project_id,document_id,facts,detail):
 def review_project(service,project_id,runtime,progress=lambda message:None,cancelled=lambda:False):
     from .temporal_model import VERSION as MODEL_VERSION, PROFILE_PROMPT_HASH, CORRECTION_PROMPT_HASH, PROFILE_CACHE_HASH, CORRECTION_CACHE_HASH, PROFILE_INFERENCE_CONFIG, CORRECTION_INFERENCE_CONFIG, review_profiles, correct_sources
     from .temporal_repair import select_targets, enrich_sources
+    from .review_budget import bounded_temporal_result
     service.store.project(project_id);_ensure_tables(service.store)
     if not runtime.get("processing_id") or not runtime.get("owner_run_id"):raise ValueError("temporal_owner_required")
     with service.store.connect() as db:
@@ -244,22 +245,25 @@ def review_project(service,project_id,runtime,progress=lambda message:None,cance
     report["profile_input_characters"]=sum(len(dumps(p)) for p in model_profiles)
     def audit_chunk(part):
         if cancelled():raise InterruptedError("cancelled")
-        key=digest({"phase":"profiles","configuration":PROFILE_CACHE_HASH,"model":runtime["model"],"input":part})
-        def compute():
-            result=review_profiles(part,runtime,progress,cancelled)
+        key_for=lambda items:digest({"phase":"profiles","configuration":PROFILE_CACHE_HASH,"model":runtime["model"],"input":items})
+        key=key_for(part)
+        def compute(items):
+            result=review_profiles(items,runtime,progress,cancelled)
             result["_review_provenance"]={"processing_id":runtime.get("processing_id"),"owner_run_id":runtime.get("owner_run_id")}
             return result,result.get("requests",0)
-        def validate(result):
-            ids={p["group_id"] for p in part};flagged=[c["group_id"] for c in result["candidates"]]
-            if result["reviewed_count"]!=len(part) or len(set(flagged))!=len(flagged) or not set(flagged)<=ids:raise ValueError("temporal_profile_coverage_invalid")
-        result,cached,requests=shared_result(service.store,"temporal_review_cache",{"cache_key":key},compute,cancelled,validate)
+        def validate(items,result):
+            ids={p["group_id"] for p in items};flagged=[c["group_id"] for c in result["candidates"]]
+            if result["reviewed_count"]!=len(items) or len(set(flagged))!=len(flagged) or not set(flagged)<=ids:raise ValueError("temporal_profile_coverage_invalid")
+        result,cached,requests=bounded_temporal_result(service.store,part,'profiles',key_for,compute,validate,cancelled,progress,
+            {"processing_id":runtime.get("processing_id"),"owner_run_id":runtime.get("owner_run_id")})
         flagged=[c["group_id"] for c in result["candidates"]]
-        return len(part),flagged,requests,int(cached),{"cache_key":key,"result_hash":result_hash(result),"reviewed_count":len(part),"source_provenance":result.get("_review_provenance"),"prompt_hash":PROFILE_PROMPT_HASH,"inference_config":PROFILE_INFERENCE_CONFIG}
+        return len(part),flagged,requests,int(cached),{"cache_key":key,"result_hash":result_hash(result),"reviewed_count":len(part),"source_provenance":result.get("_review_provenance"),"prompt_hash":PROFILE_PROMPT_HASH,"inference_config":PROFILE_INFERENCE_CONFIG,"deferred_group_ids":result.get('deferred_group_ids',[])}
     profile_chunks=list(chunks(model_profiles,100));report["profile_chunks"]=len(profile_chunks);report["profile_groups_this_run"]=len(profiles)
     with ThreadPoolExecutor(max_workers=3,thread_name_prefix="pi-temporal-review") as pool:
-        for reviewed,flagged,requests,cached,audit in pool.map(audit_chunk,profile_chunks):
+        for finished,(reviewed,flagged,requests,cached,audit) in enumerate(pool.map(audit_chunk,profile_chunks),1):
             report["profiles_reviewed"]+=reviewed;candidate_ids.update(flagged)
             report["model_requests"]+=requests;report["cache_hits"]+=cached;report["profile_audits"].append(audit)
+            progress(f"期间目录复核 {finished}/{len(profile_chunks)} 批；已审校 {report['profiles_reviewed']}/{report['profiles_total']} 组")
     for profile in profiles:
         if profile["group_id"] in candidate_ids:targets.extend(by_key[k] for k in profile["source_keys"])
     target_keys=previous_targets|{s["source_key"] for s in targets}
@@ -270,16 +274,18 @@ def review_project(service,project_id,runtime,progress=lambda message:None,cance
     correction_chunks=list(source_chunks(targets));report["correction_chunks"]=len(correction_chunks)
     def infer_correction(part):
         if cancelled():raise InterruptedError("cancelled")
-        key=digest({"phase":"corrections","configuration":CORRECTION_CACHE_HASH,"model":runtime["model"],"input":[{k:v for k,v in s.items() if k not in {"fact_id","current","extraction_processing_id"}} for s in part]})
-        def compute():
-            result=correct_sources(part,runtime,progress,cancelled)
+        key_for=lambda items:digest({"phase":"corrections","configuration":CORRECTION_CACHE_HASH,"model":runtime["model"],"input":items if isinstance(items,dict) else [{k:v for k,v in s.items() if k not in {"fact_id","current","extraction_processing_id"}} for s in items]})
+        key=key_for(part)
+        def compute(items):
+            result=correct_sources(items,runtime,progress,cancelled)
             result["_review_provenance"]={"processing_id":runtime.get("processing_id"),"owner_run_id":runtime.get("owner_run_id")}
             return result,result.get("requests",0)
-        def validate(result):
-            ids={s["source_key"] for s in part};answered=[c["source_key"] for c in result["corrections"]]+[c["source_key"] for c in result["unresolved"]]
+        def validate(items,result):
+            ids={s["source_key"] for s in items};answered=[c["source_key"] for c in result["corrections"]]+[c["source_key"] for c in result["unresolved"]]
             if len(answered)!=len(set(answered)) or set(answered)!=ids:raise ValueError("temporal_correction_coverage_invalid")
             for correction in result["corrections"]:validate_after(correction)
-        result,cached,requests=shared_result(service.store,"temporal_review_cache",{"cache_key":key},compute,cancelled,validate)
+        result,cached,requests=bounded_temporal_result(service.store,part,'sources',key_for,compute,validate,cancelled,progress,
+            {"processing_id":runtime.get("processing_id"),"owner_run_id":runtime.get("owner_run_id")})
         return part,key,result,cached,requests
     def completed_corrections():
         with ThreadPoolExecutor(max_workers=3,thread_name_prefix="pi-temporal-correction") as pool:
@@ -288,7 +294,7 @@ def review_project(service,project_id,runtime,progress=lambda message:None,cance
                 for future in as_completed(futures):yield future.result()
             finally:
                 for future in futures:future.cancel()
-    for part,key,result,cached,requests in completed_corrections():
+    for finished,(part,key,result,cached,requests) in enumerate(completed_corrections(),1):
         if cancelled():raise InterruptedError("cancelled")
         report["model_requests"]+=requests
         ids={s["source_key"] for s in part};answered=[c["source_key"] for c in result["corrections"]]+[c["source_key"] for c in result["unresolved"]]
@@ -306,9 +312,11 @@ def review_project(service,project_id,runtime,progress=lambda message:None,cance
                 after=validate_after(correction)
                 if latest["current"]!=source["current"] and latest["current"]!=after:
                     report["stale_sources"].append(source["source_key"]);continue
+                origin=result.get('source_audits',{}).get(source['source_key'],{})
+                source_owner=origin.get('source_provenance') or result.get('_review_provenance',{})
                 evidence={"status":"reviewed","engine":"LangExtract","version":MODEL_VERSION,"model":runtime["model"],"prompt_hash":CORRECTION_PROMPT_HASH,"inference_config":CORRECTION_INFERENCE_CONFIG,
-                          "cache_key":key,"result_hash":result_hash(result),
-                          "extraction_processing_id":result.get("_review_provenance",{}).get("processing_id"),"owner_run_id":result.get("_review_provenance",{}).get("owner_run_id"),"source_key":source["source_key"],
+                          "cache_key":origin.get('cache_key',key),"result_hash":origin.get('result_hash',result_hash(result)),
+                          "extraction_processing_id":source_owner.get("processing_id"),"owner_run_id":source_owner.get("owner_run_id"),"source_key":source["source_key"],
                           "source_fingerprint":source["source_fingerprint"],"original_extraction_hash":source["original_extraction_hash"],
                           "before":source["before"],"after":after,"reason":correction["reason"],"evidence":correction.get("evidence"),"span":correction.get("span")}
                 enriched=next(item for item in part if item["source_key"]==source["source_key"])
@@ -320,6 +328,7 @@ def review_project(service,project_id,runtime,progress=lambda message:None,cance
                     db.execute("INSERT INTO fact_history VALUES(?,?,?,?,?,?)",(uuid.uuid4().hex,project_id,stored["document_id"],runtime.get("processing_id") or "temporal_review",dumps(dict(stored)),utcnow()))
                     db.execute("UPDATE facts SET period=?,year=?,source_json=? WHERE fact_id=?",(after["period"],int(after["period"][:4]),dumps(ref),stored["fact_id"]));report["facts_updated"]+=1
                 db.execute("INSERT OR REPLACE INTO temporal_corrections VALUES(?,?,?,?,?)",(project_id,source["source_key"],source["source_fingerprint"],dumps(evidence),utcnow()))
+        progress(f"期间疑点复核 {finished}/{len(correction_chunks)} 批；已保存 {report['facts_updated']} 项核对结果")
     with service.store.connect() as db:final_sources,final_unreviewable=collect_sources(db,project_id)
     report["pending_new_sources"]=[s["source_key"] for s in final_sources if initial.get(s["source_key"])!=s["source_fingerprint"]]
     report["status"]="needs_review" if report["unresolved"] or report["stale_sources"] or unreviewable or report["pending_new_sources"] or final_unreviewable else "reviewed"

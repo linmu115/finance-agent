@@ -3,6 +3,8 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+import subprocess
+import sys
 from unittest.mock import patch
 
 from sandbox.launcher import SandboxRunner, RunnerError, scan_outputs, validate_name, MAX_OUTPUT
@@ -22,6 +24,22 @@ class HostPolicyTests(unittest.TestCase):
         result = self.runner.run(f"open({str(marker)!r}, 'w').write('unsafe')", {}, project_id="A")
         self.assertEqual(result["status"], "runner_unavailable")
         self.assertFalse(marker.exists())
+
+    def test_cli_does_not_inherit_open_rpc_input_pipe(self):
+        # Trusted fake CLI, not generated analysis code. Keep the parent's RPC
+        # stdin open: a child inheriting it blocks (or steals protocol bytes).
+        probe=("from sandbox.launcher import SandboxRunner\nimport sys\n"
+               f"r=SandboxRunner({str(self.root/'pipe-probe')!r},docker_bin=sys.executable)\n"
+               "p=r._exec(['-c',\"import sys; print('EOF', repr(sys.stdin.read()))\"],timeout=2)\n"
+               "print(p.stdout.strip())\n")
+        child=subprocess.Popen([sys.executable,'-c',probe],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        try:
+            child.wait(timeout=8)
+            self.assertEqual(child.returncode,0,child.stderr.read().decode())
+            self.assertIn(b"EOF ''",child.stdout.read())
+        finally:
+            if child.poll() is None:child.kill();child.wait()
+            child.stdin.close();child.stdout.close();child.stderr.close()
 
     def test_code_and_timeout_bounds(self):
         for code, timeout in [("", 120), ("print(1)", 121), ("print(1)", 0), ("print(1)", True)]:
@@ -114,4 +132,3 @@ class HostPolicyTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
-

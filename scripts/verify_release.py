@@ -19,7 +19,8 @@ import urllib.request
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-PACKAGE = 'finance-agent-0.1-windows-x64'
+VERSION = json.loads((ROOT/'package.json').read_text(encoding='utf-8'))['version']
+PACKAGE = f'finance-agent-{VERSION}-windows-x64'
 http = urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
 
@@ -51,7 +52,7 @@ def main():
     evidence.mkdir(parents=True)
     with archive.open('rb') as archive_stream:
         archive_sha256 = hashlib.file_digest(archive_stream, 'sha256').hexdigest()
-    report = {'version': '0.1.0', 'archive': archive.name,
+    report = {'version': VERSION, 'archive': archive.name,
               'archive_sha256': archive_sha256,
               'created_at': datetime.now(timezone.utc).isoformat(), 'checks': [],
               'external_api_calls': 0, 'docker_started': False}
@@ -91,7 +92,7 @@ def main():
         check('archive_file_hashes', True, {'files': len(members)})
     check('fresh_install_has_no_user_data', not (package/'data').exists() and not (package/'.env').exists())
     base = f'http://127.0.0.1:{args.port}'
-    data = package/'data'
+    data = package/'data/active'
     system = Path(os.environ['SystemRoot'])
     powershell = system/'System32/WindowsPowerShell/v1.0/powershell.exe'
     env = {k: v for k, v in os.environ.items() if k.upper() in {
@@ -126,9 +127,9 @@ def main():
 
     try:
         launch('install', '-ShortcutDirectory', evidence/'快捷方式')
-        check('install_and_shortcuts', all((evidence/'快捷方式'/name).is_file() for name in ['Finance Agent 0.1.lnk', 'Stop Finance Agent 0.1.lnk']))
+        check('install_and_shortcuts', all((evidence/'快捷方式'/name).is_file() for name in [f'Finance Agent {VERSION}.lnk', f'Stop Finance Agent {VERSION}.lnk']))
         ready = request(base, '/api/health')
-        check('fresh_health_and_no_model_credentials', ready == {'ok': True, 'version': '0.1.0', 'service': 'connected', 'modelConfigured': False})
+        check('fresh_health_and_no_model_credentials', ready == {'ok': True, 'version': VERSION, 'service': 'connected', 'modelConfigured': False})
         owner = record()
         check('bundled_node_selected', Path(owner['node']).resolve() == (package/'runtime/node/node.exe').resolve())
         launch('doctor')

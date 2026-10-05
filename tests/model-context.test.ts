@@ -1,6 +1,18 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {modelContext,projectToolHistory} from '../server/model-context.js';
+test('research query removes duplicate sources without losing quotes, financial meaning or review warnings',()=>{
+ const source={document_id:'doc',page:2,cell:'B3',quote:'精确来源'.repeat(300),start:10,end:1210,normalization:{period_start:'2025-01-01',period_end:'2025-12-31',scale:'1000000',review_warnings:['unresolved_currency'],numeric_span:{text:'68.64',start:3,end:8}}};
+ const record={record_id:'r',value:'68.64',raw_value:'68.64',raw_unit:'元/股',data_kind:'analyst_forecast',publisher:'Broker',published_at:'2025-07-23',scenario:'base',dimensions:{product:'milk'},quality:'needs_review',source,source_ref:source,source_json:JSON.stringify(source)};
+ const original={status:'ok',data:{items:[record],total:1,next_offset:null},source_refs:[source],warnings:['needs_review']};
+ const before=JSON.stringify(original),projected=modelContext('query_research_records',original),item=projected.data.items[0];
+ assert.equal(JSON.stringify(original),before);assert.deepEqual(item.source_ref,source);
+ for(const key of ['record_id','value','raw_value','raw_unit','data_kind','publisher','published_at','scenario','dimensions','quality'])assert.deepEqual(item[key],(record as any)[key]);
+ assert.equal(item.source,undefined);assert.equal(item.source_json,undefined);assert.equal(projected.source_refs![0].document_id,'doc');assert.equal(projected.data.next_offset,null);assert.deepEqual(projected.warnings,original.warnings);
+ assert.ok(JSON.stringify(projected).length<before.length/2);
+ const context={messages:[{role:'toolResult',toolName:'query_research_records',content:[{type:'text',text:before}]}]};
+ const once=projectToolHistory(context);assert.equal(once.projection.modified_tool_results,1);assert.equal(projectToolHistory(once.context).projection.modified_tool_results,0);
+});
 test('model catalog removes repeated audits but preserves all metrics, dimensions and paths',()=>{
  const original={status:'ok',data:{database_path:'data/finance.sqlite',metrics:Array.from({length:500},(_,i)=>({metric:'m'+i,label:'指标'+i})),dimensions:{scope:['a','b']},processing:[{processing_id:'p',state:'completed',catalog_review:{status:'complete',audits:Array(500).fill({text:'source'.repeat(200)})}}],metric_aliases:[{source_metric:'old',canonical_metric:'new',canonical_label:'归一',evidence:{payload:'large'.repeat(10000)}}]}};
  const projected=modelContext('get_data_catalog',original);
@@ -38,12 +50,21 @@ test('metric lookup keeps exact amounts, dimensions, conflicts and every source 
  assert.equal(actual.alternative_sources[0].page,13);assert.deepEqual(projected.warnings,input.warnings);assert.equal(JSON.stringify(input),original);assert.ok(JSON.stringify(projected).length<original.length/10);
 });
 
-test('legacy full index becomes a recoverable navigation receipt and current paginated index stays exact',()=>{
+test('large legacy and paginated indexes remain readable until native context compaction',()=>{
  const legacy={status:'ok',data:{document_id:'doc',index_path:'indexes/p/catalog.yaml',index_yaml:'pages:\n'+'  - heading: 原文索引\n'.repeat(3000)}};
  const original=JSON.stringify(legacy),projected=modelContext('get_document_index',legacy);
- assert.equal(projected.data.document_id,'doc');assert.equal(projected.data.index_path,legacy.data.index_path);assert.equal(projected.data.index_yaml,undefined);assert.match(projected.data.index_projection,/get_document_index/);assert.match(projected.data.index_projection,/get_source_page/);assert.equal(JSON.stringify(legacy),original);
+ assert.deepEqual(projected,legacy);assert.equal(JSON.stringify(legacy),original);
  const paginated={...legacy,data:{...legacy.data,pagination:{pages:{total:200,offset:0,limit:40,has_more:true,next_offset:40}}}};
  assert.deepEqual(modelContext('get_document_index',paginated),paginated);
+});
+
+test('long tool loops never evict exact evidence based on its age or tool count',()=>{
+ const evidenceTools=['get_source_table','get_source_page','search_evidence','read_research_artifact','get_document_index','get_processing_checkpoint','query_financial_data','get_financial_metrics'];
+ const evidence=evidenceTools.map(toolName=>({role:'toolResult',toolName,toolCallId:toolName,content:[{type:'text',text:JSON.stringify({status:'ok',data:{document_id:'annual-2024',table_id:'t1',items:[{value:'123456.7800',period:'2023',scope:'consolidated',unit:'CNY'}],text:'完整可核验原文'.repeat(2500)}})}]}));
+ const calculations=Array.from({length:150},(_,i)=>({role:'toolResult',toolName:'calculate_financial_metrics',content:[{type:'text',text:JSON.stringify({data:{value:String(i)}})}]}));
+ const context={messages:[...evidence,...calculations]},before=JSON.stringify(context),projected=projectToolHistory(context);
+ assert.equal(JSON.stringify(context),before);assert.deepEqual(projected.context.messages,evidence.concat(calculations as any));
+ assert.ok(!JSON.stringify(projected.context).includes('context_released'));
 });
 
 test('saved financial model returns exact calculation and revision; full input remains explicitly retrievable',()=>{

@@ -18,6 +18,9 @@ from .normalization import METRICS, decimal_value, metric_id, number_text, token
 from .parser import PARSER_VERSION, extract_facts, parse_document
 from .store import Store, dumps, utcnow
 from .processing import ProcessingMixin
+from .script_cleaning import ScriptCleaningMixin
+from .research_ingestion import ResearchIngestionMixin
+from .asset_dashboard import AssetDashboardMixin
 
 def response(data=None, source_refs=None, warnings=None, status="ok"):
     return {"status":status,"data":data if data is not None else {},"source_refs":source_refs or [],
@@ -31,7 +34,7 @@ def safe_api_url(url):
         raise ValueError("api_requires_https_or_loopback")
     return url.rstrip("/")
 
-class FinanceService(ProcessingMixin):
+class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaningMixin, ProcessingMixin):
     def __init__(self, data_dir):
         self.store = Store(data_dir)
         self.configs = {}  # Secrets stay in memory; app host restores encrypted configuration.
@@ -74,11 +77,13 @@ class FinanceService(ProcessingMixin):
         doc = self.store.document(project_id,document_id)
         with self.store.connect() as db:
             doc["table_count"] = db.execute("SELECT count(*) FROM source_tables WHERE document_id=?",(document_id,)).fetchone()[0]
-            doc["fact_count"] = db.execute("SELECT count(*) FROM facts WHERE document_id=?",(document_id,)).fetchone()[0]
-            doc["normalized_fact_count"] = db.execute("SELECT count(*) FROM facts WHERE document_id=? AND json_extract(source_json,'$.normalization.engine')='LangExtract'",(document_id,)).fetchone()[0]
+            doc["fact_count"] = db.execute("SELECT count(*) FROM current_financial_facts WHERE document_id=?",(document_id,)).fetchone()[0]
+            doc["normalized_fact_count"] = db.execute("SELECT count(*) FROM current_financial_facts WHERE document_id=? AND json_extract(source_json,'$.normalization.engine') IN ('LangExtract','PythonScript')",(document_id,)).fetchone()[0]
             doc["legacy_fact_count"] = doc["fact_count"]-doc["normalized_fact_count"]
-            has_semantic = db.execute("SELECT 1 FROM normalization_batches WHERE document_id=? LIMIT 1",(document_id,)).fetchone()
-            doc["normalization_engine"] = "LangExtract" if has_semantic else "legacy_rules" if doc["fact_count"] else "unprocessed"
+            engines={r[0] for r in db.execute("SELECT DISTINCT json_extract(result_json,'$.engine') FROM normalization_batches WHERE document_id=?",(document_id,)) if r[0]}
+            doc["normalization_engine"] = next(iter(engines)) if len(engines)==1 else 'mixed' if engines else "legacy_rules" if doc["fact_count"] else "unprocessed"
+            doc['research_record_count']=db.execute('SELECT count(*) FROM research_records r LEFT JOIN document_profiles p USING(document_id) WHERE r.document_id=? AND r.is_current=1 AND (r.profile_revision IS NULL OR r.profile_revision=p.revision_id)',(document_id,)).fetchone()[0]
+        doc['profile']=self._document_profile(project_id,document_id)
         return response(doc, warnings=doc["warnings"])
 
     def configure_processing(self, project_id, embedding=None, ocr=None):
@@ -285,17 +290,17 @@ class FinanceService(ProcessingMixin):
             data["image_relative_path"]=doc["relative_path"]
         return response(data,[{"document_id":document_id,"page":page,"printed_page":data.get("printed_page")},*[s["source_ref"] for s in data["segments"]]])
 
-    def get_financial_metrics(self, project_id, metrics, company=None, years=None, document_id=None, scope=None):
+    def get_financial_metrics(self, project_id, metrics, company=None, years=None, document_id=None, scope=None, offset=0, limit=None):
         self.store.project(project_id)
         if not isinstance(metrics,list) or not 1<=len(metrics)<=30:raise ValueError("invalid_metrics")
         with self.store.connect() as db:
-            catalog={r[0] for r in db.execute("SELECT DISTINCT metric FROM facts WHERE project_id=?",(project_id,))}
-            labels={r[0]:r[1] for r in db.execute("SELECT json_extract(source_json,'$.normalization.label'),metric FROM facts WHERE project_id=?",(project_id,))}
+            catalog={r[0] for r in db.execute("SELECT DISTINCT metric FROM current_financial_facts WHERE project_id=?",(project_id,))}
+            labels={r[0]:r[1] for r in db.execute("SELECT json_extract(source_json,'$.normalization.label'),metric FROM current_financial_facts WHERE project_id=?",(project_id,))}
         resolved=self._resolve_metric_aliases(project_id,metrics)
         canonical=[m if m in catalog else metric_id(m) or labels.get(m) for m in resolved]
         if None in canonical:raise ValueError("unknown_metric_use_data_catalog")
         if document_id:self.store.document(project_id,document_id)
-        query="SELECT f.* FROM facts f JOIN documents d USING(document_id) WHERE f.project_id=? AND f.metric IN ("+",".join("?"*len(canonical))+")"
+        query="SELECT f.* FROM current_financial_facts f JOIN documents d USING(document_id) WHERE f.project_id=? AND f.metric IN ("+",".join("?"*len(canonical))+")"
         args=[project_id,*canonical]
         if company:query+=" AND f.company LIKE ?";args.append("%"+company+"%")
         if years:
@@ -321,7 +326,9 @@ class FinanceService(ProcessingMixin):
                 continue
             selected[key]=record|{"alternative_sources":[]}
         items=list(selected.values())
-        return response({"items":items,"available_metrics":sorted(catalog | set(METRICS))},[r["source_ref"] for r in items],list(dict.fromkeys(warnings)),
+        total=len(items);offset=max(0,int(offset))
+        if limit is not None:limit=max(1,min(int(limit),80));items=items[offset:offset+limit]
+        return response({"items":items,"total":total,"offset":offset,"limit":limit,"next_offset":offset+len(items) if offset+len(items)<total else None,"available_metrics":sorted(catalog | set(METRICS)) if limit is None else canonical,"catalog_tool":"get_data_catalog"},[r["source_ref"] for r in items],list(dict.fromkeys(warnings)),
                         "ok" if items else "insufficient_evidence")
 
     def calculate_financial_metrics(self, project_id, operation, inputs):
@@ -332,7 +339,7 @@ class FinanceService(ProcessingMixin):
             val=inputs.get(key)
             if isinstance(val,dict) and "fact_id" in val:
                 with self.store.connect() as db:
-                    row=db.execute("SELECT value,source_json FROM facts WHERE fact_id=? AND project_id=?",(val["fact_id"],project_id)).fetchone()
+                    row=db.execute("SELECT value,source_json FROM current_financial_facts WHERE fact_id=? AND project_id=?",(val["fact_id"],project_id)).fetchone()
                 if not row:raise ValueError("fact_not_found_in_project")
                 refs.append(json.loads(row["source_json"]))
                 val=row["value"]
@@ -363,18 +370,17 @@ class FinanceService(ProcessingMixin):
             else:raise ValueError("unsupported_operation")
         return response({"operation":operation,"value":number_text(value),"unit":unit,"formula":formula,"inputs":inputs},refs)
 
-    def search_evidence(self, project_id, query, company=None, year=None, limit=8):
+    def search_evidence(self, project_id, query, company=None, year=None, limit=8, filters=None, offset=0):
         self.store.project(project_id)
         if not isinstance(query,str) or not query.strip() or len(query)>3000:raise ValueError("invalid_search_query")
-        limit=max(1,min(int(limit),30))
+        limit=max(1,min(int(limit),30));offset=max(0,int(offset));window=max(100,offset+limit+1)
         terms=list(dict.fromkeys(tokens(query).split()))[:60]
         match=" OR ".join('"'+t.replace('"','""')+'"' for t in terms)
         sql="""SELECT c.*,bm25(chunks_fts) AS rank FROM chunks_fts JOIN chunks c ON c.chunk_id=chunks_fts.chunk_id
                  JOIN documents d ON d.document_id=c.document_id WHERE chunks_fts MATCH ? AND c.project_id=?"""
         args=[match,project_id]
-        if company:sql+=" AND d.company LIKE ?";args.append("%"+company+"%")
-        if year:sql+=" AND (d.report_year=? OR c.text LIKE ?)";args.extend([year,"%"+str(year)+"%"])
-        sql+=" ORDER BY rank LIMIT 100"
+        clauses,filter_args=self._evidence_filters(company,year,filters)
+        sql+=clauses+' ORDER BY rank LIMIT ?';args+=[*filter_args,window]
         with self.store.connect() as db:
             rows=[dict(r) for r in db.execute(sql,args)] if match else []
         scores={r["chunk_id"]:1/(60+i) for i,r in enumerate(rows,1)}
@@ -387,10 +393,9 @@ class FinanceService(ProcessingMixin):
             try:
                 query_vec=self._embeddings(project_id,[query],cfg)[0]
                 with self.store.connect() as db:
-                    query2="SELECT c.*,d.company,d.report_year FROM chunks c JOIN documents d USING(document_id) WHERE c.project_id=? AND d.state IN ('ready','needs_review')"
+                    query2="SELECT c.*,d.company,d.report_year FROM chunks c JOIN documents d USING(document_id) WHERE c.project_id=?"
                     query_args=[project_id]
-                    if company:query2+=" AND d.company LIKE ?";query_args.append("%"+company+"%")
-                    if year:query2+=" AND (d.report_year=? OR c.text LIKE ?)";query_args.extend([year,"%"+str(year)+"%"])
+                    query2+=clauses;query_args+=filter_args
                     candidates=[dict(r) for r in db.execute(query2,query_args)]
                     ranked=[]
                     for row in candidates:
@@ -402,7 +407,7 @@ class FinanceService(ProcessingMixin):
                                 dot=sum(x*y for x,y in zip(query_vec,vec))
                                 denom=math.sqrt(sum(x*x for x in query_vec)*sum(x*x for x in vec))
                                 ranked.append((dot/denom if denom else 0,row))
-                    for i,(_,row) in enumerate(sorted(ranked,key=lambda x:x[0],reverse=True)[:100],1):
+                    for i,(_,row) in enumerate(sorted(ranked,key=lambda x:x[0],reverse=True)[:window],1):
                         scores[row["chunk_id"]]=scores.get(row["chunk_id"],0)+1/(60+i)
                         by_id[row["chunk_id"]]=row
                 if ranked:retrieval="hybrid_rrf"
@@ -410,11 +415,12 @@ class FinanceService(ProcessingMixin):
             except Exception as exc:
                 warnings.append("embedding_unavailable:"+type(exc).__name__)
         items=[]
-        for chunk_id in sorted(scores,key=scores.get,reverse=True)[:limit]:
+        for chunk_id in sorted(scores,key=lambda k:(-scores[k],k))[offset:offset+limit]:
             row=by_id[chunk_id]
             ref=json.loads(row["source_json"])
             items.append({"chunk_id":chunk_id,"text":row["text"],"score":scores[chunk_id],"source_ref":ref})
-        return response({"items":items,"retrieval":retrieval,"embedding_state":dict(self.embedding_states.get(project_id,{}))},[i["source_ref"] for i in items],warnings,
+        if filters and filters.get('as_of'):warnings.append('undated_documents_excluded')
+        return response({"items":items,"retrieval":retrieval,'offset':offset,'limit':limit,'next_offset':offset+limit if offset+limit<len(scores) else None,"embedding_state":dict(self.embedding_states.get(project_id,{}))},[i["source_ref"] for i in items],warnings,
                         status="ok" if items else "insufficient_evidence")
 
     def _embedding_key(self, project_id, text, cfg):
@@ -484,7 +490,8 @@ class FinanceService(ProcessingMixin):
     def _index_embeddings(self, project_id, max_chunks, cfg):
         max_chunks=max(1,min(int(max_chunks),5000))
         with self.store.connect() as db:
-            rows=db.execute("SELECT c.text FROM chunks c JOIN documents d USING(document_id) WHERE c.project_id=? AND d.state IN ('ready','needs_review')",(project_id,)).fetchall()
+            active,args=self._evidence_filters()
+            rows=db.execute("SELECT c.text FROM chunks c JOIN documents d USING(document_id) WHERE c.project_id=?"+active,[project_id,*args]).fetchall()
             missing=[r[0] for r in rows if not db.execute("SELECT 1 FROM embedding_cache WHERE cache_key=? AND project_id=?",(self._embedding_key(project_id,r[0],cfg),project_id)).fetchone()]
         selected=list(dict.fromkeys(missing))[:max_chunks]
         for i in range(0,len(selected),24):self._embeddings(project_id,selected[i:i+24],cfg)
@@ -558,6 +565,16 @@ class FinanceService(ProcessingMixin):
         facts_path.write_text(dumps(facts),encoding="utf-8")
         pages_path=export/"pages.json"
         pages_path.write_text(dumps(pages),encoding="utf-8")
+        research=[]
+        if not raw_only:
+            for document_id in ids:
+                start=0
+                while True:
+                    found=self.query_research_records(project_id,{'document_id':document_id},start,200)['data']
+                    research.extend(found['items'])
+                    if found['next_offset'] is None:break
+                    start=found['next_offset']
+        research_path=export/'research_records.json';research_path.write_text(dumps(research),encoding='utf-8')
         runner=self._runner()
         available=runner.availability()
         if not available.get("available"):
@@ -567,7 +584,7 @@ class FinanceService(ProcessingMixin):
         self._save_analysis_state(project_id,run_id,{"run_id":run_id,"project_id":project_id,"status":"queued","artifacts":[]})
         self.analysis_flags[run_id]=threading.Event()
         self.analysis_futures[run_id]=self.analysis_pool.submit(self._analysis_job,runner,project_id,run_id,code,
-                                                              {"tables.json":table_path,"facts.json":facts_path,"pages.json":pages_path},timeout_seconds)
+                                                              {"tables.json":table_path,"facts.json":facts_path,"pages.json":pages_path,'research_records.json':research_path},timeout_seconds)
         return response({"run_id":run_id,"state":"queued"},status="accepted")
 
     def _save_analysis_state(self, project_id, run_id, state):

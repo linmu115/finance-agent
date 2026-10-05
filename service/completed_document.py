@@ -3,7 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 
-from .semantic import VERSION, SCHEMA_HASH, materialize, table_batches
+from .semantic import VERSION, SCHEMA_HASH, INFERENCE_POLICY, nonfinancial_unreviewed, materialize, table_batches
 from .store import dumps
 from .temporal_semantics import stamp_source_provenance
 
@@ -36,10 +36,13 @@ def completed_document(service, project_id, document, runtime):
     for batch in batches:
         coordinates=[(f"{document['document_id']}:t{part['table']['index']}",row) for part in batch for row in part["rows"]]
         key=hashlib.sha256(dumps(coordinates).encode()).hexdigest();detail=saved.get(key)
-        if not detail or detail.get("version")!=VERSION or detail.get("schema_hash")!=SCHEMA_HASH or detail.get("model")!=runtime["model"] or detail.get("repair_error") or not isinstance(detail.get("extractions"),list):return None
+        if not detail or detail.get("version")!=VERSION or detail.get("schema_hash")!=SCHEMA_HASH or detail.get("model")!=runtime["model"] or detail.get("repair_error") or detail.get("request_error") or detail.get("status")=="failed" or not isinstance(detail.get("extractions"),list):return None
+        if detail.get('inference_policy',{}).get('cleaning') in {'none','off'}:return None
+        if INFERENCE_POLICY.get('compact_mappings') and nonfinancial_unreviewed(detail):return None
         if detail.get("source_input_fingerprint")!=service._batch_input_fingerprint(batch):return None
         if detail.get("coordinates")!=[list(value) for value in coordinates]:return None
         expected,warnings=materialize(detail["extractions"],batch,document["document_id"],runtime["model"])
+        if any(i['reason']=='incomplete_column_override' for i in warnings):return None
         stamp_source_provenance(document["sha256"],expected,detail)
         for fact in expected:
             meta=fact["source"]["normalization"];source_key=meta.get("source_key")

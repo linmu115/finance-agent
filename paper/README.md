@@ -1,4 +1,14 @@
-# 财报分析系统工程论文初稿
+# 工程论文与历史稿件
+
+当前应用 **v0.2.0** 对应的新论文：
+
+- [《从财报问答到证据驱动的金融研究 Agent：设计、实现与工程演进》](v0.2.0/finance-agent-technical-paper.md)
+- [PDF 阅读版](v0.2.0/finance-agent-technical-paper.pdf)
+- [证据与复现说明](v0.2.0/README.md)
+
+新稿覆盖立项、工具调用、数据模型、沙箱、附件流向、权限、技能、原生 Pi 接入、成本优化、研报和资产看板。下方及同目录 `financial_analysis_paper_v0.1.*` 均为历史稿件，不表示当前版本的评测成绩。
+
+## 历史初稿
 
 本文及同目录 DOCX/PDF 对应历史 v0.2 评测，尚未同步当前 v07 的 LangExtract 清洗、联网研究与估值升级。旧论文、旧成绩保留原件；本轮状态见 [升级进度](../benchmark/results/upgrade-progress-v06.html) 与 [当前工作记录](../WORK_STATUS.md)。真实公司研究及新整表/纠错验收完成后再生成新版本，不把未运行项目写成论文成果。
 

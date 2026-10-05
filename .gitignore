@@ -1,6 +1,7 @@
 node_modules/
 .venv/
 data/
+samples/retained-originals/
 .env
 .env.*
 !.env.example
@@ -29,3 +30,5 @@ scripts/.dependency-verification/
 restore-*
 .release-*
 *.tmp
+# Incoming handoff checksums are local history, not current release provenance.
+/DELIVERY_MANIFEST.json

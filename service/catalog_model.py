@@ -257,7 +257,7 @@ def _call_model(profiles, runtime, progress=lambda message: None, cancelled=lamb
             raise InterruptedError("cancelled")
         progress(f"当前 Pi 会话审校 {len(directory)} 个财务指标目录")
         result = lx.extract(
-            text_or_documents=content, prompt_description=PROMPT + repair, examples=_examples(),
+            text_or_documents=repair + "\n" + content, prompt_description=PROMPT, examples=_examples(),
             config=pi_model_config(runtime,
                 max_output_tokens=int(runtime.get("max_tokens") or 32768), max_workers=1,
                 reasoning_effort=INFERENCE_CONFIG["reasoning_effort"]),

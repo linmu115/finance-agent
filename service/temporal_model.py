@@ -275,6 +275,22 @@ def _validate_sources(extractions, sources):
     return {"corrections": corrections, "unresolved": unresolved}, errors
 
 
+def _source_validation_remainder(decisions, errors, sources):
+    """Keep only individually proven decisions; never turn invalid evidence into a date."""
+    keys={s['source_key'] for s in sources}
+    invalid={error.get('source_key') for error in errors if error.get('source_key') in keys}
+    # A malformed/unknown extraction has no safe source boundary. Keep that
+    # entire response pending, including apparently valid neighbours.
+    if any(error.get('source_key') not in keys for error in errors):invalid=keys
+    kept={field:[item for item in decisions[field] if item['source_key'] not in invalid]
+          for field in ('corrections','unresolved')}
+    answered={item['source_key'] for values in kept.values() for item in values}
+    for key in sorted(keys-answered):
+        kept['unresolved'].append({'source_key':key,
+            'reason':'期间复核重试后，原文证据或响应结构仍未通过校验；保留原数据，待补充上下文核验'})
+    return kept | {'validation_errors':errors,'validation_fallback_version':'source-remainder-1','program_fallback':True}
+
+
 def _examples(phase):
     import langextract as lx
     if phase == "profiles":
@@ -316,11 +332,15 @@ def _request(items, runtime, phase, progress, cancelled):
         if cancelled():
             raise InterruptedError("cancelled")
         progress(f"当前 Pi 会话{'审校期间语义组' if phase == 'profiles' else '核对原始单元格期间'} {len(items)} 项")
-        result = lx.extract(text_or_documents=text, prompt_description=prompt + repair, examples=_examples(phase),
-                            config=pi_model_config(runtime,max_output_tokens=int(runtime.get("max_tokens") or 24576),max_workers=1,
-                                                   reasoning_effort=inference["reasoning_effort"]),
-                            use_schema_constraints=False, fence_output=False, show_progress=False,
-                            max_char_buffer=max(30000, len(text) + 100), max_workers=1, extraction_passes=1)
+        try:
+            result = lx.extract(text_or_documents=repair + "\n" + text, prompt_description=prompt, examples=_examples(phase),
+                                config=pi_model_config(runtime,max_output_tokens=int(runtime.get("max_tokens") or 24576),max_workers=1,
+                                                       reasoning_effort=inference["reasoning_effort"]),
+                                use_schema_constraints=False, fence_output=False, show_progress=False,
+                                max_char_buffer=max(30000, len(text) + 100), max_workers=1, extraction_passes=1)
+        except Exception as error:
+            error.temporal_requests=attempt+1
+            raise
         if cancelled():
             raise InterruptedError("cancelled")
         extracted = [{"class": ex.extraction_class, "text": ex.extraction_text, "attributes": ex.attributes or {},
@@ -331,6 +351,10 @@ def _request(items, runtime, phase, progress, cancelled):
         if not errors:
             return decisions | {"extractions": extracted, "requests": attempt + 1, "inference_config": dict(inference)}
         repair = "\n上一轮输出有以下具体错误，请覆盖本批全部输入并完整重做，不要只补错误项：" + _dumps(errors)
+    if phase != 'profiles':
+        result=_source_validation_remainder(decisions,errors,items)
+        progress(f"本批有 {len(result['unresolved'])} 项仍待核验；通过原文校验的结果已保留，继续后续批次")
+        return result | {"extractions":extracted,"requests":2,"inference_config":dict(inference)}
     raise ValueError("temporal_" + phase + "_invalid_after_repair")
 
 

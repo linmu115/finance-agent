@@ -38,7 +38,7 @@ test('real Pi/MCP evaluation isolates generic tools and accounts every main/brid
   }else{
    const user=messages.findLast((m:any)=>m.role==='user'),repeat=content(user?.content).includes('repeat-failed'),existing=content(user?.content).includes('existing-review-only'),tools=messages.filter((m:any)=>m.role==='tool');
    if(!tools.length||(repeat&&tools.length===1)){
-    finish='tool_calls';delta={tool_calls:[{index:0,id:'process-'+requests.length,type:'function',function:{name:'process_documents',arguments:JSON.stringify({document_ids:[repeat?'missing-document':financialDocument],...(existing?{review_existing_only:true,review_metrics:['assets']}:{})})}}]};
+    finish='tool_calls';delta={tool_calls:[{index:0,id:'process-'+requests.length,type:'function',function:{name:'process_documents',arguments:JSON.stringify({document_ids:[repeat?'missing-document':financialDocument],...(existing?{review_existing_only:true,review_metrics:['assets']}:repeat?{}:{review_metrics:['assets']})})}}]};
    }else delta={content:repeat?'saw '+tools.at(-1).content:'financial complete'};
   }
   res.writeHead(200,{'Content-Type':'text/event-stream'});
@@ -88,10 +88,10 @@ test('real Pi/MCP evaluation isolates generic tools and accounts every main/brid
   assert(definitions[0].data.content.includes('definition_unresolved'));
   const repeat=await manager.start(await chat('fin'),'repeat-failed',[],undefined,budget('financial','failed-whole-tool'));
   const repeatDone=await wait(repeat.id);assert.equal(repeatDone.status,'completed',repeatDone.error);
-  assert((await manager.getConversation(repeat.conversationId)).messages.at(-1)?.content.includes('failed_previous_attempt'));
+  assert(!(await manager.getConversation(repeat.conversationId)).messages.at(-1)?.content.includes('failed_previous_attempt'));
   const repeatAudit=(await readFile(path.join(dir,'audit',repeat.id+'.jsonl'),'utf8')).trim().split('\n').map(line=>JSON.parse(line));
-  assert.equal(repeatAudit.filter(x=>x.type==='tool_error'&&x.data.name==='process_documents').length,1);
-  assert.equal(repeatAudit.filter(x=>x.type==='tool_result'&&x.data.result.data?.code==='failed_previous_attempt').length,1);
+  assert.equal(repeatAudit.filter(x=>x.type==='tool_error'&&x.data.name==='process_documents').length,2,'both attempts must reach the service and report its actual error');
+  assert.equal(repeatAudit.filter(x=>x.type==='tool_result'&&x.data.result.data?.code==='failed_previous_attempt').length,0);
   const store=new ResearchStore(path.join(dir,'research'));
   const pdfBytes=Buffer.from('%PDF-1.4\nfixture-original-source\n%%EOF');
   const snapshot=await store.saveSnapshot('fin','https://example.org/report',{download:async()=>({body:pdfBytes,url:'https://example.org/report',contentType:'application/pdf',headers:{}}),registerPdf:(file,name)=>registerResearchPdf(service,'fin',file,name)});

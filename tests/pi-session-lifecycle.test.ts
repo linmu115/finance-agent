@@ -34,7 +34,7 @@ test('persistent Pi sessions preserve their own tool history after manager recov
   requests.push(body);
   if(latest==='retry-once'){
    retryAttempts++;
-   if(retryAttempts===1){res.writeHead(503,{'Content-Type':'application/json'});res.end(JSON.stringify({error:{message:'Temporary test service unavailability',type:'server_error',code:'temporary_unavailable'}}));return;}
+   if(retryAttempts<=2){res.writeHead(503,{'Content-Type':'application/json'});res.end(JSON.stringify({error:{message:'Temporary test service unavailability',type:'server_error',code:'temporary_unavailable'}}));return;}
    response(res,{content:'retry recovered'});return;
   }
   if(latest.startsWith('hold-')){held.set(latest,{res,respond:()=>response(res,{content:latest+' completed'})});return;}
@@ -84,7 +84,7 @@ test('persistent Pi sessions preserve their own tool history after manager recov
   assert.equal(recoveredAfterRetry.status,'completed',recoveredAfterRetry.error);
   assert.equal(recoveredAfterRetry.error,undefined,'successful model retry must clear the earlier transient failure');
   assert.equal((await manager.getConversation(chats[0].id)).messages.at(-1)?.content,'retry recovered');
-  assert.equal(retryAttempts,2,'the mock must actually fail once before a successful request');
+  assert.equal(retryAttempts,3,'native Pi retries must recover beyond the retired one-retry override');
  }finally{
   for(const state of held.values())state.respond();
   await manager.shutdown();await service.close();await new Promise<void>(resolve=>{mock.close(()=>resolve());mock.closeAllConnections();});

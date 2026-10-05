@@ -8,7 +8,8 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 $projectRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-$dataRoot = if ($DataDirectory) { [IO.Path]::GetFullPath($DataDirectory) } else { Join-Path $projectRoot 'data' }
+$appVersion = (Get-Content -LiteralPath (Join-Path $projectRoot 'package.json') -Raw | ConvertFrom-Json).version
+$dataRoot = if ($DataDirectory) { [IO.Path]::GetFullPath($DataDirectory) } else { Join-Path $projectRoot 'data/active' }
 $logRoot = Join-Path $dataRoot 'runtime'
 $recordPath = Join-Path $logRoot "launcher-$Port.json"
 $entry = Join-Path $projectRoot 'server/dist/main.js'
@@ -22,12 +23,12 @@ if (-not (Test-Path -LiteralPath $pythonExe)) { $pythonExe = Join-Path $projectR
 $baseUrl = "http://127.0.0.1:$Port"
 
 function Test-Ready {
-    try { $health = Invoke-RestMethod "$baseUrl/api/health" -TimeoutSec 2; return ($health.ok -eq $true -and $health.service -eq 'connected' -and $health.version -eq '0.1.0') }
+    try { $health = Invoke-RestMethod "$baseUrl/api/health" -TimeoutSec 2; return ($health.ok -eq $true -and $health.service -eq 'connected' -and $health.version -eq $appVersion) }
     catch { return $false }
 }
 
 function Test-Installation {
-    if (-not [Environment]::Is64BitOperatingSystem) { throw 'Finance Agent 0.1 requires 64-bit Windows.' }
+    if (-not [Environment]::Is64BitOperatingSystem) { throw 'Finance Agent requires 64-bit Windows.' }
     foreach ($file in @($nodeExe,$pythonExe,$entry,(Join-Path $projectRoot 'web/dist/index.html'),(Join-Path $projectRoot 'node_modules/@modelcontextprotocol/sdk/package.json'))) {
         if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { throw "Missing file: $file. Extract the complete Windows release ZIP, or follow the source-build section in README.md." }
     }
@@ -37,7 +38,7 @@ function Test-Installation {
     if ($LASTEXITCODE -ne 0) { throw 'Python runtime check failed. See README.md for repair instructions.' }
     & $nodeExe (Join-Path $projectRoot 'scripts/fix_dependency.mjs') --check
     if ($LASTEXITCODE -ne 0) { throw 'Node dependency integrity check failed.' }
-    Write-Host "Finance Agent 0.1 / $nodeVersion / Windows x64"
+    Write-Host "Finance Agent $appVersion / $nodeVersion / Windows x64"
 }
 
 function Get-OwnedProcess {
@@ -76,7 +77,7 @@ function Start-Instance {
     $owned = Get-OwnedProcess
     $listener = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue
     if ($listener) {
-        if (-not $owned -or $listener.OwningProcess -notcontains $owned.ProcessId) { throw "Port $Port is used by another instance or program. Use start-finance.cmd -Port 3010, or stop its owner first. No existing service was changed." }
+        if (-not $owned -or $listener.OwningProcess -notcontains $owned.ProcessId) { throw "Port $Port is used by another instance or program. Stop its verified owner before starting this installation. No existing service was changed." }
         if (Test-Ready) { Write-Host "Already running: $baseUrl"; return }
         throw "This instance is not ready. Check $logRoot, then run stop-finance.cmd before retrying."
     }
@@ -90,7 +91,7 @@ function Start-Instance {
     $process = Start-Process -FilePath $nodeExe -ArgumentList @(('"' + $entry + '"')) -WorkingDirectory $projectRoot -WindowStyle Hidden -RedirectStandardOutput (Join-Path $logRoot "server-$Port.stdout.log") -RedirectStandardError (Join-Path $logRoot "server-$Port.stderr.log") -PassThru
     $processInfo = Get-CimInstance Win32_Process -Filter "ProcessId=$($process.Id)"
     if (-not $processInfo) { throw "Service exited during startup. Check $logRoot." }
-    $record = @{ processId=$process.Id; createdTicks=([datetime]$processInfo.CreationDate).ToUniversalTime().Ticks.ToString(); node=$nodeExe; root=$projectRoot; data=$dataRoot; port=$Port; version='0.1.0' }
+    $record = @{ processId=$process.Id; createdTicks=([datetime]$processInfo.CreationDate).ToUniversalTime().Ticks.ToString(); node=$nodeExe; root=$projectRoot; data=$dataRoot; port=$Port; version=$appVersion }
     $record | ConvertTo-Json | Set-Content -LiteralPath $recordPath -Encoding UTF8
     Write-Host 'Starting the local service. First launch may take up to three minutes while Windows checks the bundled dependencies...'
     $ready = $false; $deadline = (Get-Date).AddSeconds(180)
@@ -109,14 +110,14 @@ function Install-Shortcuts {
     $desktop = if ($ShortcutDirectory) { [IO.Path]::GetFullPath($ShortcutDirectory) } else { [Environment]::GetFolderPath('Desktop') }
     New-Item -ItemType Directory -Path $desktop -Force | Out-Null
     $shell = New-Object -ComObject WScript.Shell
-    foreach ($item in @(@('Finance Agent 0.1','start-finance.cmd'),@('Stop Finance Agent 0.1','stop-finance.cmd'))) {
+    foreach ($item in @(@("Finance Agent $appVersion",'start-finance.cmd'),@("Stop Finance Agent $appVersion",'stop-finance.cmd'))) {
         $link = Join-Path $desktop ($item[0]+'.lnk'); $target = Join-Path $projectRoot $item[1]
         $shortcut = $shell.CreateShortcut($link)
         if ((Test-Path -LiteralPath $link) -and $shortcut.TargetPath -ne $target) { throw "Shortcut already belongs to another installation: $link. Use -NoShortcut or choose another ShortcutDirectory." }
         $shortcut.TargetPath = $target
         $shortcut.WorkingDirectory = $projectRoot
         $shortcut.Arguments = '-Port ' + $Port + $(if($DataDirectory){' -DataDirectory "'+$dataRoot+'"'}else{''})
-        $shortcut.Description = 'Finance Agent 0.1 - local financial research'
+        $shortcut.Description = "Finance Agent $appVersion - local financial research"
         $shortcut.Save()
     }
     Write-Host "Shortcuts created in $desktop"

@@ -2,28 +2,37 @@
 import json
 from .store import dumps, utcnow
 
-TERMINAL={'completed','failed','cancelled','needs_review'}
+TERMINAL={'completed','failed','partial','cancelled','needs_review'}
 
 def initialize(db):
     db.execute('CREATE TABLE IF NOT EXISTS attachment_flows(flow_id TEXT PRIMARY KEY, project_id TEXT, owner_run_id TEXT, document_id TEXT, baseline_json TEXT, record_json TEXT, snapshot_json TEXT, finished INTEGER DEFAULT 0, created_at TEXT)')
     db.execute('CREATE INDEX IF NOT EXISTS flow_owner ON attachment_flows(project_id,owner_run_id)')
 
 def snapshot(db, document_id):
-    facts=[dict(r) for r in db.execute('SELECT * FROM facts WHERE document_id=? ORDER BY metric,year,fact_id',(document_id,))]
+    facts=[dict(r) for r in db.execute('SELECT * FROM current_financial_facts WHERE document_id=? ORDER BY metric,year,fact_id',(document_id,))]
     for fact in facts: fact['source']=json.loads(fact.pop('source_json') or '{}')
     tables=[dict(r) for r in db.execute('SELECT * FROM source_tables WHERE document_id=?',(document_id,))]
     for table in tables:
         table['rows']=json.loads(table.pop('rows_json') or '[]');table.pop('cells_json',None)
     destination={table:db.execute(f'SELECT count(*) FROM {table} WHERE document_id=?',(document_id,)).fetchone()[0] for table in ['pages','source_tables','chunks','facts']}
+    destination['facts']=len(facts)
+    research=[]
+    if db.execute("SELECT 1 FROM sqlite_master WHERE name='research_records'").fetchone():
+        for r in db.execute('SELECT r.* FROM research_records r LEFT JOIN document_profiles p USING(document_id) WHERE r.document_id=? AND r.is_current=1 AND (r.profile_revision IS NULL OR r.profile_revision=p.revision_id) ORDER BY r.record_type,r.record_id',(document_id,)):
+            research.append({**json.loads(r['record_json']),'record_id':r['record_id'],'document_id':document_id,'created_at':r['created_at']})
+    destination['research_observations']=sum(r['record_type']=='observation' for r in research)
+    destination['research_claims']=sum(r['record_type']=='claim' for r in research)
     doc=db.execute('SELECT sha256,parser_version FROM documents WHERE document_id=?',(document_id,)).fetchone()
-    return {'facts':facts,'tables':tables,'destinations':destination,'source_version':dict(doc) if doc else None}
+    return {'facts':facts,'research_records':research,'tables':tables,'destinations':destination,'source_version':dict(doc) if doc else None}
 
-def record_processing(db, state):
+def record_processing(db, state, refresh_snapshot=False):
     initialize(db)
     for document in state.get('documents',[]):
         did=document['document_id']; fid=state['processing_id']+':'+did
         old=db.execute('SELECT baseline_json,finished,created_at FROM attachment_flows WHERE flow_id=?',(fid,)).fetchone()
-        if old and old['finished']: continue
+        # A new, committed repair in this same attempt may refine an already
+        # complete result. Reads never reopen it; other attempts remain frozen.
+        if old and old['finished'] and not refresh_snapshot: continue
         initial=json.loads(old['baseline_json']) if old else snapshot(db,did)['facts']
         complete=state['state'] in TERMINAL
         record={**document,'flow_id':fid,'processing_id':state['processing_id'],'owner_run_id':state['owner_run_id'],'attempt_state':state['state'],'message':state.get('message'),'errors':state.get('errors',[]),'created_at':old['created_at'] if old else state['created_at'],'updated_at':state['updated_at']}
@@ -33,6 +42,7 @@ def record_processing(db, state):
         if complete:
             before={r['fact_id']:r for r in initial};after={r['fact_id']:r for r in result['facts']}
             record['changes']={'added':len(after.keys()-before.keys()),'removed':len(before.keys()-after.keys()),'changed':sum(after[k]!=before[k] for k in after.keys()&before.keys()),'total':len(after)}
+            record['research_record_count']=len(result.get('research_records',[]))
             record['reviews']={k:state[k] for k in ['catalog_review','definition_review','temporal_review'] if k in state}
         db.execute('INSERT INTO attachment_flows VALUES(?,?,?,?,?,?,?,?,?) ON CONFLICT(flow_id) DO UPDATE SET record_json=excluded.record_json,snapshot_json=excluded.snapshot_json,finished=excluded.finished',
                    (fid,state['project_id'],state['owner_run_id'],did,dumps(initial),dumps(record),dumps(result),int(complete),record['created_at']))
@@ -44,7 +54,7 @@ def record_read(store, project_id, owner_run_id, document_id, mode='reuse'):
         # Reading source evidence after processing must not create a second fictitious attempt.
         if db.execute('SELECT 1 FROM attachment_flows WHERE project_id=? AND owner_run_id=? AND document_id=?',(project_id,owner_run_id,document_id)).fetchone(): return
         result=snapshot(db,document_id);fid=owner_run_id+':read:'+document_id
-        record={'flow_id':fid,'owner_run_id':owner_run_id,'document_id':document_id,'name':doc['original_name'],'mode':mode,'state':'ready','attempt_state':'completed','progress':1,'fact_count':len(result['facts']),'verification':'not_manually_verified','created_at':utcnow(),'changes':{'added':0,'removed':0,'changed':0,'total':len(result['facts'])}}
+        record={'flow_id':fid,'owner_run_id':owner_run_id,'document_id':document_id,'name':doc['original_name'],'mode':mode,'state':'ready','attempt_state':'completed','progress':1,'fact_count':len(result['facts']),'research_record_count':len(result.get('research_records',[])),'verification':'not_manually_verified','created_at':utcnow(),'changes':{'added':0,'removed':0,'changed':0,'total':len(result['facts'])}}
         db.execute('INSERT INTO attachment_flows VALUES(?,?,?,?,?,?,?,?,?)',(fid,project_id,owner_run_id,document_id,'[]',dumps(record),dumps(result),1,record['created_at']))
 
 def read(store, project_id, owner_run_ids, flow_id=None, offset=0):
@@ -64,6 +74,7 @@ def read(store, project_id, owner_run_ids, flow_id=None, offset=0):
         row=rows[0];result=json.loads(row['snapshot_json']);facts=result.get('facts',[])
         offset=max(0,int(offset));page=facts[offset:offset+50]
         for f in page:
-            current=db.execute('SELECT value,metric,period,scope FROM facts WHERE fact_id=?',(f['fact_id'],)).fetchone()
+            current=db.execute('SELECT value,metric,period,scope FROM current_financial_facts WHERE fact_id=?',(f['fact_id'],)).fetchone()
             f['current_match']=bool(current and all(current[k]==f[k] for k in current.keys()))
-        return {**json.loads(row['record_json']),'facts':page,'fact_total':len(facts),'offset':offset,'tables':[{**{k:v for k,v in t.items() if k!='rows'},'rows':t['rows'][:10],'row_count':len(t['rows'])} for t in result.get('tables',[])], 'finished':bool(row['finished']),'destinations':result.get('destinations'),'source_version':result.get('source_version')}
+        research=result.get('research_records',[])
+        return {**json.loads(row['record_json']),'facts':page,'fact_total':len(facts),'research_records':research[offset:offset+50],'research_total':len(research),'offset':offset,'tables':[{**{k:v for k,v in t.items() if k!='rows'},'rows':t['rows'][:10],'row_count':len(t['rows'])} for t in result.get('tables',[])], 'finished':bool(row['finished']),'destinations':result.get('destinations'),'source_version':result.get('source_version')}

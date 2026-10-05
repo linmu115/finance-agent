@@ -39,6 +39,10 @@ def metric_id(label):
     return None
 
 def decimal_value(value):
+    # PDF table extractors can merge a whole column into one multiline cell.
+    # Whitespace removal must not concatenate distinct amounts into one number.
+    lines=[line.strip() for line in str(value or '').splitlines() if line.strip()]
+    if sum(bool(re.fullmatch(r'[（(＋+\-−﹣]?\d[\d,，.]*[）)%％]?',line)) for line in lines)>1:return None
     text = compact(value).replace(",", "").replace("，", "").replace("−", "-").replace("﹣", "-").replace("％", "%")
     if not text or text in {"-", "—", "--", "/", "不适用", "N/A", "None", "nan"}:
         return None
@@ -68,7 +72,8 @@ def unit_info(text, metric=None):
         return str(text).strip(),Decimal(1),currency+"/"+share_basis[1]+"shares"
     if metric == "eps" or "/股" in label or "/share" in label:
         currency = "USD" if "美元" in label or "usd" in label else "HKD" if "港元" in label or "hkd" in label else "EUR" if "欧元" in label or "eur" in label else "CNY"
-        return str(text).strip() or "元/股", Decimal(1), currency+"/share"
+        factor = Decimal('0.01') if 'cent' in label or '分/股' in label else Decimal(1)
+        return str(text).strip() or "元/股", factor, currency+"/share"
     # Parse magnitude independently of currency: 百万元 is not 万元, 千港元 is not 元.
     currencies = [("HKD", ("港元", "港币", "hkd", "hk$")), ("USD", ("美元", "美金", "usd", "us$")),
                   ("EUR", ("欧元", "eur", "€")), ("JPY", ("日元", "jpy")),
@@ -105,6 +110,7 @@ def numeric_candidate(value):
     span. A bare year heading does not become a guessed financial value.
     """
     text=str(value or "")
+    if len([line for line in text.splitlines() if re.search(r'\d',line)])>1:return True
     return decimal_value(text) is not None or bool(re.search(r"\d+[.,]\d+",text) or
         (re.search(r"\d",text) and re.search(r"[%％]|百分点|percentage\s*points?|\bpct\b|\bp\.p\.",text,re.I)))
 

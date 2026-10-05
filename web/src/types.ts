@@ -16,11 +16,13 @@ export interface Document {
   facts?: unknown[]; chunks?: unknown[]; metadata?: Record<string, unknown>;
 }
 export interface Message {
+  usage?:UsageTotals;
   id: string; role: 'user' | 'assistant' | 'system'; content: string; createdAt?: string;
   attachments?: (Document | string)[]; documentIds?: string[]; sources?: Source[];
   artifacts?: Artifact[]; status?: string; tools?: ToolEvent[];
   annotations?: Annotation[];
 }
+export interface UsageTotals {input:number;output:number;calls:number;costUsd:number|null;uncachedInput?:number;cacheRead?:number;cacheWrite?:number;reasoning?:number;unknownCalls?:number;cacheUnknownCalls?:number;costUnknownCalls?:number;cacheKnownInput?:number;costCnyMin?:number;costCnyMax?:number;priceSource?:string;phases?:Record<string,UsageTotals>}
 export interface Annotation { id: string; messageId: string; role: 'user'|'assistant'; text: string; comment: string; occurrence?: number }
 export interface Conversation {
   id: string; projectId: string; title: string; messages?: Message[];
@@ -29,11 +31,11 @@ export interface Conversation {
 export interface ToolEvent { name: string; status: string; summary?: string; toolCallId?: string; timestamp?: string }
 export interface APISection { baseUrl: string; model: string; apiKey?: string; hasKey?: boolean }
 export interface Settings {
-  llm: APISection & { provider: string; contextWindow?: number; maxTokens?: number; inputPricePerMillionUsd?: number; outputPricePerMillionUsd?: number };
+  llm: APISection & { provider: string; contextWindow?: number; maxTokens?: number; inputPricePerMillionUsd?: number; cacheReadPricePerMillionUsd?:number; outputPricePerMillionUsd?: number };
   embedding: APISection & { enabled: boolean; dimensions?: number };
   ocr: APISection & { mode: 'local' | 'api' };
   search: {provider:'tavily'|'brave';baseUrl:string;apiKey?:string;hasKey?:boolean;maxResults:number};
-  runtime: { maxToolCalls: number; timeoutSeconds: number; budgetCny?: number; usdToCny?: number; contextCompaction?:{enabled:boolean;targetTokens:number;keepRecentTokens:number;summaryMaxTokens:number} };
+  runtime: { timeoutSeconds: number; budgetCny?: number; usdToCny?: number; contextCompaction?:{enabled:boolean;mode?:"auto"|"manual";targetTokens:number;keepRecentTokens:number} };
 }
 export interface Health {
   status?: string; configured?: boolean; llmConfigured?: boolean;
@@ -45,5 +47,5 @@ export const emptySettings: Settings = {
   embedding: { enabled: false, baseUrl: '', model: '', hasKey: false },
   ocr: { mode: 'local', baseUrl: '', model: '', hasKey: false },
   search: {provider:'tavily',baseUrl:'https://api.tavily.com',maxResults:6,hasKey:false},
-  runtime: { maxToolCalls: 64, timeoutSeconds: 120,contextCompaction:{enabled:true,targetTokens:96000,keepRecentTokens:24000,summaryMaxTokens:8192} },
+  runtime: { timeoutSeconds: 120,contextCompaction:{enabled:true,mode:"auto",targetTokens:96000,keepRecentTokens:24000} },
 };

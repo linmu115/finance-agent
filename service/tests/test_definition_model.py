@@ -279,7 +279,8 @@ class DefinitionModelTests(unittest.TestCase):
         with patch("langextract.extract", side_effect=[response([]), response([extraction(groups, "gross")])]) as extract:
             result = review_definitions(groups, known(), self.runtime)
         self.assertEqual(result["requests"], 2)
-        self.assertIn("definition_missing_group_decision", extract.call_args_list[1].kwargs["prompt_description"])
+        self.assertIn("definition_missing_group_decision", extract.call_args_list[1].kwargs["text_or_documents"])
+        self.assertEqual(extract.call_args_list[0].kwargs["prompt_description"], extract.call_args_list[1].kwargs["prompt_description"])
         with patch("langextract.extract", return_value=response([])) as extract:
             with self.assertRaisesRegex(ValueError, "definition_invalid_after_repair"):
                 review_definitions(groups, known(), self.runtime)
@@ -365,6 +366,7 @@ class DefinitionModelTests(unittest.TestCase):
         self.assertEqual(error.partial_result["extractions"][0]["attributes"],valid["attributes"])
         self.assertEqual(error.partial_result["extractions"][0]["span"],valid["span"])
         self.assertNotIn("[[DEFINITION:accepted]]",extract.call_args_list[1].kwargs["text_or_documents"])
+        self.assertEqual(extract.call_args_list[0].kwargs["prompt_description"], extract.call_args_list[1].kwargs["prompt_description"])
 
     def test_examples_obey_our_own_schema(self):
         examples = _examples()

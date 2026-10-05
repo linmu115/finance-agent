@@ -9,7 +9,7 @@ function reviewSummary(value:any){
  }
  return summary;
 }
-const processingSummary=(v:any)=>({...fields(v,['processing_id','owner_run_id','state','progress','message','errors','created_at','completed_at','fact_count','batch_count']),documents:v.documents?.map((x:any)=>fields(x,['document_id','state','message','facts','fact_count','committed_fact_count','table_count','candidate_table_count','batch_count','completed_batches','errors','coverage'])),catalog_review:reviewSummary(v.catalog_review),temporal_review:reviewSummary(v.temporal_review),definition_review:reviewSummary(v.definition_review)});
+const processingSummary=(v:any)=>({...fields(v,['batches','processing_id','owner_run_id','state','progress','message','errors','created_at','completed_at','fact_count','batch_count']),documents:v.documents?.map((x:any)=>fields(x,['document_id','state','message','facts','fact_count','committed_fact_count','table_count','candidate_table_count','batch_count','completed_batches','errors','coverage'])),catalog_review:reviewSummary(v.catalog_review),temporal_review:reviewSummary(v.temporal_review),definition_review:reviewSummary(v.definition_review)});
 function sourceReceipt(ref:any){
  if(!ref||typeof ref!=='object'||!ref.normalization)return ref;
  const {normalization,...source}=ref;
@@ -27,17 +27,22 @@ export function modelContext(name:string,envelope:Envelope):Envelope {
  if(envelope.status==='error')return envelope;
  if(!envelope.data)return envelope;
  const data=envelope.data;
- if(name==='get_data_catalog')return {...envelope,data:{...data,documents:data.documents?.map((x:any)=>fields(x,['document_id','original_name','state','company','page_count','table_count','fact_count','sha256','relative_path','normalization_engine','warnings'])),processing:data.processing?.map(processingSummary),metric_aliases:data.metric_aliases?.map((x:any)=>fields(x,['source_metric','canonical_metric','canonical_label'])),catalog_review:reviewSummary(data.catalog_review),temporal_review:reviewSummary(data.temporal_review),definition_review:reviewSummary(data.definition_review),detail_tools:['get_normalization_details','get_source_table','get_source_page'],projection:'目录保留实际指标/维度/路径/处理摘要；逐格来源与详细规范化记录按需读取。'}};
+ if(name==='get_data_catalog')return {...envelope,data:{...data,documents:data.documents?.map((x:any)=>fields(x,['document_id','original_name','state','company','page_count','table_count','fact_count','profile','research_record_count','sha256','relative_path','normalization_engine','warnings'])),processing:data.processing?.map(processingSummary),metric_aliases:data.metric_aliases?.map((x:any)=>fields(x,['source_metric','canonical_metric','canonical_label'])),catalog_review:reviewSummary(data.catalog_review),temporal_review:reviewSummary(data.temporal_review),definition_review:reviewSummary(data.definition_review),detail_tools:['get_normalization_details','get_source_table','get_source_page'],projection:'目录保留实际指标/维度/路径/处理摘要；逐格来源与详细规范化记录按需读取。'}};
+ if(name==='process_documents'&&(data.instructions||data.state==='routing_required'))return envelope;
  if(name==='process_documents')return {...envelope,data:processingSummary(data)};
  if(name==='query_financial_data'||name==='get_financial_metrics'){
   const items=data.items?.map(factView);
   return {...envelope,...(envelope.source_refs?{source_refs:envelope.source_refs.map(sourceReceipt)}:{}),data:{...data,items}};
  }
- if(name==='get_document_index'&&typeof data.index_yaml==='string'&&data.index_yaml.length>24000&&!data.pagination){
-  // Only legacy, unbounded navigation is replaced with a recoverable receipt.
-  // The current tool serves paginated navigation; no financial source is cut.
-  const {index_yaml,...metadata}=data;
-  return {...envelope,data:{...metadata,legacy_index_chars:index_yaml.length,index_projection:'历史完整导航已保存在原会话和index_path。请调用get_document_index，按section/query/page_start/page_end/offset/limit读取所需页面或表格索引；原文仍用get_source_page/get_source_table读取。'}};
+ if(name==='query_research_records'){
+  // SQL storage, record payload and citation list can contain three copies of
+  // the same source. Keep one complete source (including all meaning, warnings
+  // and exact quote offsets) per item; the citation list remains a locator.
+  const items=data.items?.map((x:any)=>{
+   const {source_json,source,...record}=x;
+   return {...record,source_ref:x.source_ref??source};
+  });
+  return {...envelope,data:{...data,items},...(envelope.source_refs?{source_refs:envelope.source_refs.map((ref:any)=>fields(ref,['document_id','page','table_id','row','column','cell','start','end','offset_unit','research_record_id']))}:{})};
  }
  if(name==='run_financial_model'||name==='save_research_report'){
   const {spec,content,source_validation,...saved}=data;
@@ -51,17 +56,21 @@ export function modelContext(name:string,envelope:Envelope):Envelope {
 
 // Older persistent Pi sessions may contain the full tool envelopes produced
 // before model-only projections existed. Project those at request time without
-// rewriting their saved conversation, source evidence, or audit history.
+// rewriting their saved conversation, source evidence, or audit history. This
+// only removes duplicated metadata, exactly as for newly returned tool results.
+// Pi alone decides when history needs compaction; age and tool counts never
+// replace readable evidence with receipts.
 export function projectToolHistory<T extends {messages:any[]}>(context:T){
  let changed=0,before=0,after=0;
  const messages=context.messages.map(message=>{
-  if(message.role!=='toolResult'||!['get_data_catalog','process_documents','query_financial_data','get_financial_metrics','get_document_index','run_financial_model','save_research_report'].includes(message.toolName)||!Array.isArray(message.content))return message;
+  if(message.role!=='toolResult'||!['get_data_catalog','process_documents','query_financial_data','get_financial_metrics','query_research_records','run_financial_model','save_research_report'].includes(message.toolName)||!Array.isArray(message.content))return message;
   let modified=false;
   const content=message.content.map((block:any)=>{
    if(block.type!=='text'||typeof block.text!=='string')return block;
    try{
     const value=JSON.parse(block.text);if(!value||typeof value!=='object'||Array.isArray(value)||!value.data||typeof value.data!=='object')return block;
-    const projected=modelContext(message.toolName,value),text=JSON.stringify(projected);
+    const projected=modelContext(message.toolName,value);
+    const text=JSON.stringify(projected);
     // Never inflate an existing compact record or change a non-projectable tool.
     if(text.length>=block.text.length)return block;
     before+=block.text.length;after+=text.length;modified=true;return {...block,text};
@@ -69,5 +78,5 @@ export function projectToolHistory<T extends {messages:any[]}>(context:T){
   });
   if(!modified)return message;changed++;return {...message,content};
  });
- return {context:changed?{...context,messages}:context,projection:{version:'1.1',modified_tool_results:changed,before_chars:before,after_chars:after}};
+ return {context:changed?{...context,messages}:context,projection:{version:'3.0',modified_tool_results:changed,before_chars:before,after_chars:after}};
 }

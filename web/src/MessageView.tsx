@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import UsageFooter from './UsageFooter';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { FileText, Copy, Check, Download, ExternalLink, Table2, CircleAlert } from 'lucide-react';
@@ -31,7 +32,7 @@ export function ToolTrace({ tools }: { tools: ToolEvent[] }) {
   if (!tools.length) return null;
   const calls = new Map<string, ToolEvent>();
   tools.forEach((tool, index) => { const prior = tool.status === 'progress' ? [...calls.entries()].reverse().find(([, item]) => item.name === tool.name && ['started', 'running', 'progress'].includes(item.status))?.[0] : undefined; calls.set(tool.toolCallId || prior || (tool.status === 'progress' ? `progress-${tool.name}` : `event-${index}`), tool); });
-  const toolNames: Record<string, string> = { prepare_document_sources: '建立原文索引', process_documents: '清洗财报并入库', get_data_catalog: '查看项目数据目录', get_document_index: '查看文档索引', query_financial_data: '查询财务数据', get_normalization_details: '查看清洗记录', list_documents: '读取附件清单', get_document: '读取文档信息', search_evidence: '检索财报原文', get_source_page: '读取原文页面', get_source_table: '读取原始表格', get_financial_metrics: '查询财务指标', calculate_financial_metrics: '计算财务指标', run_analysis: '统计分析与制图', get_analysis_status: '查看分析进度', get_artifact: '读取图表与文件', search_web: '搜索公开资料', fetch_research_source: '读取并保存网络原文', read_research_source: '读取来源快照', list_research_sources: '查看研究来源', get_research_model_schema: '查看金融模型输入', run_financial_model: '计算金融模型', get_research_report_schema: '查看研究成果结构', save_research_report: '保存研究成果', list_research_artifacts: '查看项目研究成果', read_research_artifact: '读取成果和依赖' };
+  const toolNames: Record<string, string> = {run_cleaning_script:'执行清洗脚本',get_cleaning_result:'核对清洗结果',commit_cleaning_result:'提交已核对数据', prepare_document_sources: '建立原文索引', process_documents: '清洗财报并入库', get_data_catalog: '查看项目数据目录', get_document_index: '查看文档索引', query_financial_data: '查询财务数据', get_normalization_details: '查看清洗记录', list_documents: '读取附件清单', get_document: '读取文档信息', search_evidence: '检索财报原文', get_source_page: '读取原文页面', get_source_table: '读取原始表格', get_financial_metrics: '查询财务指标', calculate_financial_metrics: '计算财务指标', run_analysis: '统计分析与制图', get_analysis_status: '查看分析进度', get_artifact: '读取图表与文件', search_web: '搜索公开资料', fetch_research_source: '读取并保存网络原文', read_research_source: '读取来源快照', list_research_sources: '查看研究来源', get_research_model_schema: '查看金融模型输入', run_financial_model: '计算金融模型', get_research_report_schema: '查看研究成果结构', save_research_report: '保存研究成果', list_research_artifacts: '查看项目研究成果', read_research_artifact: '读取成果和依赖' };
   const entries = [...calls.values()];
   return <details className="trace"><summary>工具执行记录 · {entries.length} 次调用</summary><ol>{entries.map((tool, index) => <li key={index}><b title={tool.name}>{toolNames[tool.name] || tool.name}</b><span className={tool.status === 'error' || tool.status === 'failed' ? 'error-text' : ''}>{({ started: '执行中', running: '执行中', progress: '处理中', completed: '完成', done: '完成', success: '完成', error: '失败', failed: '失败' } as Record<string, string>)[tool.status] || tool.status}</span>{tool.summary && <p>{tool.summary}</p>}</li>)}</ol></details>;
 }
@@ -51,7 +52,7 @@ export default function MessageView({ message, documents, onDocument, onSource, 
   }
   if (message.role === 'system') return null;
   return <article className={`message ${message.role}`} data-message-id={message.id} data-status={message.status || 'saved'} aria-label={message.role === 'user' ? '你的消息' : '金融研究的回复'}>
-    {message.role === 'user' ? <>{files.length > 0 && <div className="user-files">{files.map(doc => <FileChip key={doc.id} document={doc} onClick={() => onDocument(doc)} />)}</div>}<div className="user-bubble">{message.content || '请解析附件。'}</div>{message.annotations?.length ? <AnnotationRail items={message.annotations} sent /> : null}</> : <>
+    {message.role === 'user' ? <>{files.length > 0 && <div className="user-files">{files.map(doc => <FileChip key={doc.id} document={doc} onClick={() => onDocument(doc)} />)}</div>}<div className="user-bubble">{message.content || '请解析附件。'}</div>{message.status==='queued'&&<p className="muted">已保存，等待接入当前任务</p>}{message.annotations?.length ? <AnnotationRail items={message.annotations} sent /> : null}</> : <>
       <div className="assistant-header"><span className="assistant-mark">研</span>金融研究</div>
       <div className="markdown"><ReactMarkdown remarkPlugins={[remarkGfm]} components={{
         table: ({ children }) => <div className="table-scroll"><table>{children}</table></div>,
@@ -65,6 +66,7 @@ export default function MessageView({ message, documents, onDocument, onSource, 
       {message.artifacts?.map(artifact => <ArtifactView key={artifact.id || artifact.name} artifact={artifact} />)}
       {message.tools && <ToolTrace tools={message.tools} />}
       {message.content && <div className="message-actions"><button className="icon-btn" aria-label="复制回复" title="复制回复" onClick={() => void copy()}>{copied ? <Check /> : <Copy />}</button>{message.createdAt && <time dateTime={message.createdAt}>{new Date(message.createdAt).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })}</time>}</div>}
+      {message.usage && ['completed','failed','cancelled'].includes(message.status||'') && <UsageFooter usage={message.usage} />}
     </>}
   </article>;
 }

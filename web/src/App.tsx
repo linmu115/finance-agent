@@ -4,9 +4,8 @@ import { api, errorText, isAbort, listResult } from './api';
 import { emptySettings, type Project, type Conversation, type Message, type Document, type Settings, type Source, type ToolEvent, type Health } from './types';
 import MessageView, { FileChip, ToolTrace } from './MessageView';
 import SettingsDialog from './SettingsDialog';
-import FinancialDashboard from './FinancialDashboard';
+import AssetDashboard from './AssetDashboard';
 import DatasetView from './DatasetView';
-import ResearchWorkspace from './ResearchWorkspace';
 import Modal from './Modal';
 import AttachmentFlow from './AttachmentFlow';
 import { ProjectRules } from './ProjectControls';
@@ -56,7 +55,7 @@ export default function App() {
   const [factSelection,setFactSelection]=useState<{documentId:string;metric:string;factId:string}>();
   const [source, setSource] = useState<Source>();
   const annotationDraft = useAnnotationDraft(projectId, conversationId);
-  const [view, setView] = useState<'chat' | 'dashboard' | 'benchmark' | 'research'>('chat');
+  const [view, setView] = useState<'chat' | 'dashboard' | 'benchmark'>('chat');
   const [showProjectDialog, setShowProjectDialog] = useState(false);
   useEffect(()=>{setFactSelection(undefined);},[projectId]);
   const [projectName, setProjectName] = useState('');
@@ -211,18 +210,28 @@ export default function App() {
     };
     stream.addEventListener('open', () => { networkFailures = 0; });
     stream.addEventListener('status', event => { const value = parse(event); if (value) update({ stage: value.stage || value.status || 'running' }); });
+    stream.addEventListener('answer_start',event=>{
+      const message=parse(event)?.message as Message|undefined;if(!message)return;
+      next.messageId=message.id;liveMessages.current.set(next.id,message);
+      if(conversationRef.current===next.conversationId)setMessages(previous=>[...previous.filter(m=>m.id!==message.id),message]);
+    });
+    stream.addEventListener('input',event=>{
+      const message=parse(event)?.message as Message|undefined;if(!message||conversationRef.current!==next.conversationId)return;
+      setMessages(previous=>previous.some(m=>m.id===message.id)?previous.map(m=>m.id===message.id?message:m):[...previous,message]);
+    });
     stream.addEventListener('delta', event => {
       const value = parse(event); if (!value) return;
-      const prior = liveMessages.current.get(next.id)!;
+      const current=liveMessages.current.get(next.id)!;
+      const id=value.messageId||next.messageId;const prior=current.id===id?current:{id,role:'assistant' as const,content:'',status:'streaming'};
       const live = { ...prior, content: prior.content + (value.text || '') };
       liveMessages.current.set(next.id, live);
-      if (conversationRef.current === next.conversationId) setMessages(previous => [...previous.filter(message => message.id !== next.messageId), live]);
+      if (conversationRef.current === next.conversationId) setMessages(previous => previous.some(message=>message.id===live.id)?previous.map(message=>message.id===live.id?live:message):[...previous,live]);
     });
     stream.addEventListener('tool', event => { const value = parse(event) as ToolEvent | undefined; if (!value) return; const tools = runsRef.current[next.conversationId]?.tools || []; update({ tools: [...tools.filter(tool => value.status !== 'progress' || tool.name !== value.name || tool.status !== 'progress').slice(-99), value], stage: value.status === 'progress' ? value.summary || 'tool' : 'tool' }); void refreshDocuments(next.projectId); });
     stream.addEventListener('message', event => {
       const value = parse(event); const message = value?.message as Message | undefined;
       if (!message || conversationRef.current !== next.conversationId) return;
-      setMessages(previous => [...previous.filter(item => item.id !== next.messageId && item.id !== message.id), message]);
+      setMessages(previous => previous.some(item=>item.id===message.id)?previous.map(item=>item.id===message.id?message:item):[...previous,message]);
     });
     stream.addEventListener('done', () => completed());
     stream.addEventListener('error', event => {
@@ -267,8 +276,8 @@ export default function App() {
     finally { if (request === chatRequest.current) setLoadingChat(false); }
   }
 
-  async function send() {
-    if (sendingRef.current.has(slotRef.current) || (conversationRef.current && runsRef.current[conversationRef.current]) || uploading || !projectId || (!draft.trim() && !pendingDocuments.length && !annotationDraft.items.length)) return;
+  async function send(mode:'steer'|'followUp'='steer') {
+    if (sendingRef.current.has(slotRef.current) || uploading || !projectId || (!draft.trim() && !pendingDocuments.length && !annotationDraft.items.length)) return;
     const references = [...annotationDraft.items]; const content = draft.trim() || (references.length ? '请结合这些引用及补充说明回答。' : ''); const files = [...pendingDocuments]; const targetProject = projectId; const targetSlot = slotRef.current;
     setSending(true); sendingRef.current.add(targetSlot); setError('');
     try {
@@ -281,9 +290,9 @@ export default function App() {
         setProjectConversations(previous => ({ ...previous, [targetProject]: [result, ...(previous[targetProject] || []).filter(chat => chat.id !== result.id)] }));
         setExpandedProjects(previous => ({ ...previous, [targetProject]: true }));
       }
-      const result = await api<{ runId: string; messageId: string; userMessageId: string }>(`/api/conversations/${encodeURIComponent(id)}/messages`, { method: 'POST', body: JSON.stringify({ content: content || '请处理这批财报，清洗全部财务主表和附注表，入库并更新项目看板。', documentIds: files.map(doc => doc.id), annotations: references.map(({role: _role, ...item}) => item) }) });
+      const result = await api<{ runId: string; messageId: string; userMessageId: string; inputStatus?:string }>(`/api/conversations/${encodeURIComponent(id)}/messages`, { method: 'POST', body: JSON.stringify({ mode, content: content || '请处理这批财报，清洗全部财务主表和附注表，入库并更新项目看板。', documentIds: files.map(doc => doc.id), annotations: references.map(({role: _role, ...item}) => item) }) });
       if (conversationRef.current === id) {
-        setMessages(previous => [...previous, { id: result.userMessageId, role: 'user', content: content || '请处理这批财报，清洗全部财务主表和附注表，入库并更新项目看板。', attachments: files, annotations: references, createdAt: new Date().toISOString() }]);
+        setMessages(previous => [...previous.filter(m=>m.id!==result.userMessageId), { id: result.userMessageId, role: 'user', status:result.inputStatus, content: content || '请处理这批财报，清洗全部财务主表和附注表，入库并更新项目看板。', attachments: files, annotations: references, createdAt: new Date().toISOString() }]);
         setDraft(''); setPendingDocuments([]); followScroll.current = true;
       }
       annotationDraft.clearSent(references);
@@ -304,11 +313,11 @@ export default function App() {
     const items = Array.from(files); const valid = items.filter(file => acceptedFiles.test(file.name) && file.size > 0 && file.size <= 50 * 1024 * 1024);
     if (valid.length !== items.length) notify('仅支持非空的 Excel、CSV、TSV、PDF；单文件不超过 50 MB。');
     if (!valid.length) return;
-    if (valid.length > 8 || valid.length + pendingDocuments.length > 8) { notify('同一条消息最多附加 8 个文件，请分批提交。'); return; }
     const target = projectId; const targetChat = conversationRef.current;
     setUploading(previous => previous + valid.length); setError('');
     try {
-      const form = new FormData(); valid.forEach(file => form.append('files', file));
+      for(let offset=0;offset<valid.length;offset+=8){
+      const form = new FormData(); valid.slice(offset,offset+8).forEach(file => form.append('files', file));
       const result = await api<{ documents: Document[] }>(`/api/projects/${encodeURIComponent(target)}/uploads`, { method: 'POST', body: form });
       if (projectRef.current === target) {
         setDocuments(previous => [...previous.filter(doc => !result.documents.some(item => item.id === doc.id)), ...result.documents]);
@@ -316,11 +325,12 @@ export default function App() {
         else notify('文件已添加到原项目；可在原会话中继续引用。');
         void refreshDocuments(target);
       }
+      }
     } catch (error) { setError(errorText(error)); }
     finally { setUploading(previous => Math.max(0, previous - valid.length)); if (fileRef.current) fileRef.current.value = ''; }
   }
   function onDrop(event: DragEvent) { event.preventDefault(); void upload(event.dataTransfer.files); }
-  function onInputKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) { if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing && event.keyCode !== 229) { event.preventDefault(); if (!event.repeat) void send(); } }
+  function onInputKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) { if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing && event.keyCode !== 229) { event.preventDefault(); if (!event.repeat) void send(event.altKey?'followUp':'steer'); } }
   function selectDocument(doc: Document) { setSource({documentId: doc.id, page: 1}); setShowFlow(true); }
   function selectSource(next: Source) { setSource(next); setShowFlow(true); }
   async function createProject() {
@@ -339,7 +349,7 @@ export default function App() {
   return <AnnotationWorkspace key={`${projectId}:${conversationId}:${view}`} items={annotationDraft.items} messages={messages} onChange={annotationDraft.update} disabled={sending || loadingChat} onError={notify}><div className={`app ${sidebar ? '' : 'sidebar-collapsed'} ${mobileSidebar ? 'mobile-sidebar' : ''} ${showFlow && view !== 'benchmark' ? 'drawer-open flow-open' : ''}`} onDragEnter={event => { if (event.dataTransfer.types.includes('Files')) { event.preventDefault(); dragCounter.current++; setDragging(true); } }} onDragLeave={event => { if (event.dataTransfer.types.includes('Files') && --dragCounter.current <= 0) setDragging(false); }} onDragOver={event => { if (event.dataTransfer.types.includes('Files')) event.preventDefault(); }} onDrop={onDrop}>
     <button className="mobile-scrim" aria-label="关闭导航" onClick={() => setMobileSidebar(false)} />
     <aside className="sidebar"><div className="sidebar-top"><button className="brand" aria-label="金融研究首页" onClick={newChat}><span className="brandmark">研</span></button><button className="icon-btn" aria-label="收起侧边栏" onClick={() => { setSidebar(false); setMobileSidebar(false); }}><PanelLeft /></button></div>
-      <button className="side-link" onClick={newChat}><SquarePen /><span>新对话</span><kbd>Ctrl K</kbd></button><button className={`side-link ${view === 'dashboard' ? 'active' : ''}`} onClick={() => { setView('dashboard'); setMobileSidebar(false); }}><ChartNoAxesCombined /><span>财报看板</span></button><button className={`side-link ${view === 'research' ? 'active' : ''}`} onClick={() => { setView('research'); setMobileSidebar(false); }}><FileText /><span>研究成果</span></button><button className={`side-link ${view === 'benchmark' ? 'active' : ''}`} onClick={() => { setView('benchmark'); setMobileSidebar(false); }}><ClipboardCheck /><span>数据集与测试</span></button>
+      <button className="side-link" onClick={newChat}><SquarePen /><span>新对话</span><kbd>Ctrl K</kbd></button><button className={`side-link ${view === 'dashboard' ? 'active' : ''}`} onClick={() => { setView('dashboard'); setMobileSidebar(false); }}><ChartNoAxesCombined /><span>资产看板</span></button><button className={`side-link ${view === 'benchmark' ? 'active' : ''}`} onClick={() => { setView('benchmark'); setMobileSidebar(false); }}><ClipboardCheck /><span>数据集与测试</span></button>
       <div className="side-section">项目<button className="icon-btn" aria-label="新建项目" onClick={() => setShowProjectDialog(true)}><Plus /></button></div>
       <nav className="project-tree" aria-label="项目与会话">
         {projects.map(project => <section className={`project-group ${project.id === projectId ? 'selected' : ''}`} key={project.id} data-project-id={project.id}>
@@ -358,13 +368,13 @@ export default function App() {
       </nav>
       <div className="side-bottom"><button className="api-entry" onClick={() => { setShowSettings(true); setMobileSidebar(false); }}><Settings2 /><span><b>API 配置</b><small>{settings.llm.model || '清洗、分析与对话共用模型'}</small></span><span className="entry-arrow">›</span></button><div className="local-profile"><span className="avatar">本</span><span>本地工作空间<small>{booting ? '正在连接服务' : health ? '服务已连接' : '服务状态待确认'}</small></span></div></div>
     </aside><div className="shell"><header className="topbar"><div className="top-left"><button className="icon-btn show-sidebar" aria-label="展开侧边栏" onClick={() => { setSidebar(true); setMobileSidebar(true); }}><PanelLeft /></button><div className="model-select-wrap"><button className="model-button" aria-haspopup="menu" aria-expanded={showModel} onClick={() => { setShowModel(!showModel); setShowAttach(false); }}><span>金融研究</span><span className="model-label">{settings.llm.model || '选择模型'}</span><ChevronDown /></button>{showModel && <><button className="popover-scrim" aria-label="关闭模型菜单" onClick={() => setShowModel(false)} /><div className="popover model-menu"><div className="popover-label">当前主模型</div><div className="current-model">{settings.llm.model || '尚未配置'}</div><button className="menu-item" onClick={() => { setShowSettings(true); setShowModel(false); }}><Settings2 />配置模型与 API</button><p>财报清洗、查表、制图和回答共用该模型。</p></div></>}</div></div><div className="top-actions">{messages.length > 0 && view === 'chat' && <button className="icon-btn" aria-label="导出当前对话" title="导出当前对话" onClick={exportChat}><Download /></button>}<button className="top-link" onClick={() => setShowSettings(true)}><Settings2 /><span>API 配置</span></button><button className="icon-btn attachment-flow-entry" aria-label="附件流向" title="附件流向" aria-expanded={showFlow && view !== 'benchmark'} onClick={() => { setShowFlow(!showFlow); setSource(undefined); if (view === 'benchmark') setView('chat'); }}><PanelLeft /></button></div></header>
-      {view === 'research' ? <ResearchWorkspace key={projectId} projectId={projectId} projectName={currentProject?.name} onChat={prompt => { newChat(); setDraft(prompt); }} onSource={selectSource} /> : view === 'dashboard' ? <FinancialDashboard initialSelection={factSelection} projectId={projectId} projectName={currentProject?.name} onChat={prompt => { newChat(); if (prompt) setDraft(prompt); }} onSource={selectSource} /> : view === 'benchmark' ? <DatasetView currentModel={settings.llm.model} onBack={() => setView('chat')} /> : <main className={`chat-area ${empty ? 'empty' : ''}`}>
+      {view === 'dashboard' ? <AssetDashboard key={projectId} initialSelection={factSelection} projectId={projectId} projectName={currentProject?.name} onChat={prompt => { newChat(); if (prompt) setDraft(prompt); }} onSource={selectSource} /> : view === 'benchmark' ? <DatasetView currentModel={settings.llm.model} onBack={() => setView('chat')} /> : <main className={`chat-area ${empty ? 'empty' : ''}`}>
         {error && <div className="error-banner" role="alert"><CircleAlert /><span>{error}</span>{!health && <button className="text-button" onClick={() => setRetryBoot(retryBoot + 1)}>重试连接</button>}<button className="icon-btn" aria-label="关闭错误提示" onClick={() => setError('')}><X /></button></div>}
         {backgroundRuns.length > 0 && <button className="background-run" onClick={() => void openConversation(backgroundRuns[0].conversationId)}><LoaderCircle className="spin" />{backgroundRuns.length} 段对话正在运行 · 当前对话可独立使用</button>}
         <div className="conversation-scroll" ref={scrollRef} onScroll={() => { const element = scrollRef.current; if (element) followScroll.current = element.scrollHeight - element.scrollTop - element.clientHeight < 120; }}>
           {booting || loadingChat ? <div className="chat-loading"><LoaderCircle className="spin" /><p>{booting ? '连接本地工作空间…' : '读取对话…'}</p></div> : empty ? <div className="welcome"><span className="welcome-mark">研</span><h1>今天想研究什么？</h1><p>添加财报即可清洗入库，也可以直接查询、分析和制图。</p>{!projects.length && <button className="plain-button" onClick={() => setShowProjectDialog(true)}><Plus />创建第一个项目</button>}</div> : <div className="messages" role="log" aria-label="对话消息">{messages.map(message => <MessageView key={message.id} message={message} documents={documents} onDocument={selectDocument} onSource={selectSource} onToast={notify} />)}{activeHere && run && <div className="run-progress" aria-live="polite"><div className="progress-line"><span className="progress-dot" />{run.cancelling ? '正在停止…' : stages[run.stage] || run.stage}</div><ToolTrace tools={run.tools} /></div>}</div>}
         </div>
-        <div className="composer-wrap"><ApprovalCard conversationId={conversationId} onOpenConversation={id => void openConversation(id)} /><AnnotationRail items={annotationDraft.items} onChange={annotationDraft.update} disabled={sending} />{annotationDraft.storageError && <p className="error-text" role="alert">{annotationDraft.storageError}</p>}<div className="composer"><div className="attachments">{pendingDocuments.map(doc => <FileChip key={doc.id} document={doc} onClick={() => selectDocument(doc)} onRemove={() => setPendingDocuments(previous => previous.filter(item => item.id !== doc.id))} />)}{uploading > 0 && <div className="upload-progress"><LoaderCircle className="spin" />正在上传 {uploading} 个文件…</div>}</div><textarea ref={inputRef} rows={1} placeholder="发消息，或添加财报、Excel、CSV…" aria-label="发送给金融 Agent 的消息" value={draft} disabled={booting || loadingChat || sending} onChange={event => setDraft(event.target.value)} onKeyDown={onInputKeyDown} onPaste={event => { if (event.clipboardData.files.length) { event.preventDefault(); void upload(event.clipboardData.files); } }} /><div className="composer-actions"><div className="composer-left"><button className="icon-btn attach-button" aria-label="添加附件" aria-haspopup="menu" aria-expanded={showAttach} disabled={booting} onClick={() => { setShowAttach(!showAttach); setShowModel(false); }}><Plus /></button><span className="composer-context">{currentProject?.name || '请选择项目'}</span></div>{run ? <button className="send-button" aria-label="停止生成" disabled={run.cancelling} onClick={() => void cancel()}><span className="stop-square" /></button> : <button className="send-button" aria-label="发送消息" disabled={(!draft.trim() && !pendingDocuments.length && !annotationDraft.items.length) || sending || uploading > 0 || booting || loadingChat || !projectId} onClick={() => void send()}>{sending ? <LoaderCircle className="spin" /> : <ArrowUp />}</button>}</div>{showAttach && <><button className="popover-scrim" aria-label="关闭附件菜单" onClick={() => setShowAttach(false)} /><div className="popover attach-menu"><button className="menu-item" onClick={() => fileRef.current?.click()}><Upload /><span>从电脑添加文件<small>Excel、CSV、TSV、PDF · 单文件 50 MB</small></span></button></div></>}</div>
+        <div className="composer-wrap"><ApprovalCard conversationId={conversationId} onOpenConversation={id => void openConversation(id)} /><AnnotationRail items={annotationDraft.items} onChange={annotationDraft.update} disabled={sending} />{annotationDraft.storageError && <p className="error-text" role="alert">{annotationDraft.storageError}</p>}<div className="composer"><div className="attachments">{pendingDocuments.map(doc => <FileChip key={doc.id} document={doc} onClick={() => selectDocument(doc)} onRemove={() => setPendingDocuments(previous => previous.filter(item => item.id !== doc.id))} />)}{uploading > 0 && <div className="upload-progress"><LoaderCircle className="spin" />正在上传 {uploading} 个文件…</div>}</div><textarea ref={inputRef} rows={1} placeholder="发消息，或添加财报、Excel、CSV…" aria-label="发送给金融 Agent 的消息" value={draft} disabled={booting || loadingChat || sending} onChange={event => setDraft(event.target.value)} onKeyDown={onInputKeyDown} onPaste={event => { if (event.clipboardData.files.length) { event.preventDefault(); void upload(event.clipboardData.files); } }} /><div className="composer-actions"><div className="composer-left"><button className="icon-btn attach-button" aria-label="添加附件" aria-haspopup="menu" aria-expanded={showAttach} disabled={booting} onClick={() => { setShowAttach(!showAttach); setShowModel(false); }}><Plus /></button><span className="composer-context">{currentProject?.name || '请选择项目'}</span></div>{run&&<><button className="plain-button" title="当前任务完成后再处理（Alt+Enter）" disabled={sending||uploading>0||(!draft.trim()&&!pendingDocuments.length&&!annotationDraft.items.length)} onClick={()=>void send('followUp')}>排队</button><button className="icon-btn" aria-label="停止生成" disabled={run.cancelling} onClick={()=>void cancel()}><span className="stop-square" /></button></>}<button className="send-button" aria-label={run?'发送补充':'发送消息'} title={run?'补充到当前任务（Enter）':'发送消息'} disabled={(!draft.trim() && !pendingDocuments.length && !annotationDraft.items.length) || sending || uploading > 0 || booting || loadingChat || !projectId} onClick={() => void send()}>{sending ? <LoaderCircle className="spin" /> : <ArrowUp />}</button></div>{showAttach && <><button className="popover-scrim" aria-label="关闭附件菜单" onClick={() => setShowAttach(false)} /><div className="popover attach-menu"><button className="menu-item" onClick={() => fileRef.current?.click()}><Upload /><span>从电脑添加文件<small>Excel、CSV、TSV、PDF · 单文件 50 MB</small></span></button></div></>}</div>
           {empty && <div className="quick-actions">{[[Table2, '解析表格', '请解析附件，列出工作表、字段、期间和单位。'], [FileText, '对比财报', '比较不同年度的财务表现，并标明原文证据。'], [Check, '核查数据', '检查表格中的单位、同比计算和会计口径是否一致。'], [ChartNoAxesCombined, '生成图表', '根据项目资料，绘制营业收入和归母净利润的年度趋势图。']].map(([Icon, label, prompt]) => { const ActionIcon = Icon as typeof Table2; return <button key={String(label)} onClick={() => { setDraft(String(prompt)); inputRef.current?.focus(); }}><ActionIcon />{String(label)}</button>; })}</div>}
           <div className="composer-footer"><p className="composer-disclaimer">附件发送后由本会话处理；项目内共享财务数据。</p></div>
         </div></main>}

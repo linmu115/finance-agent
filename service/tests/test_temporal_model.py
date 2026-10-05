@@ -258,17 +258,44 @@ class StagedTemporalModelTests(unittest.TestCase):
                 correct_sources([source()], self.runtime | {"base_url": "https://api.deepseek.com"})
             extract.assert_not_called()
 
-    def test_one_explicit_repair_then_fail_or_return_complete_result(self):
+    def test_one_explicit_repair_then_return_verified_or_explicitly_unresolved_result(self):
         profiles = [profile()]
         with patch("langextract.extract", side_effect=[response([]), response([review_summary(profiles)])]) as extract:
             result = review_profiles(profiles, self.runtime)
         self.assertEqual(result["requests"], 2)
-        self.assertIn("one_temporal_summary_required", extract.call_args_list[1].kwargs["prompt_description"])
+        self.assertIn("one_temporal_summary_required", extract.call_args_list[1].kwargs["text_or_documents"])
+        self.assertEqual(extract.call_args_list[0].kwargs["prompt_description"], extract.call_args_list[1].kwargs["prompt_description"])
         sources = [source()]
         with patch("langextract.extract", return_value=response([])) as extract:
-            with self.assertRaisesRegex(ValueError, "temporal_sources_invalid_after_repair"):
-                correct_sources(sources, self.runtime)
+            result=correct_sources(sources, self.runtime)
             self.assertEqual(extract.call_count, 2)
+        self.assertEqual(result['corrections'],[])
+        self.assertEqual([s['source_key'] for s in result['unresolved']],['asset_cell'])
+        self.assertTrue(result['program_fallback'])
+
+    def test_invalid_evidence_keeps_valid_neighbour_and_never_applies_unverified_date(self):
+        sources=[source('good'),source('bad')];before=copy.deepcopy(sources)
+        extracted=[correction(sources,'good'),correction(sources,'bad',evidence='invented date quote')]
+        with patch('langextract.extract',return_value=response(extracted)) as call:
+            result=correct_sources(sources,self.runtime)
+        self.assertEqual(call.call_count,2)
+        self.assertEqual([c['source_key'] for c in result['corrections']],['good'])
+        self.assertEqual([u['source_key'] for u in result['unresolved']],['bad'])
+        self.assertNotIn('period',result['unresolved'][0])
+        self.assertEqual(sources,before)
+        self.assertIn('temporal_evidence_not_in_source',[e['reason'] for e in result['validation_errors']])
+
+    def test_conflicting_duplicates_and_unknown_marker_cannot_keep_a_correction(self):
+        sources=[source('first'),source('second')]
+        fixtures=[
+            ([correction(sources,'first'),unresolved(sources,'first'),correction(sources,'second')],['second']),
+            ([correction(sources,'first'),correction(sources,'second'),unresolved(sources,'not-an-input')],[]),
+        ]
+        for extracted,kept in fixtures:
+            with self.subTest(kept=kept),patch('langextract.extract',return_value=response(extracted)):
+                result=correct_sources(sources,self.runtime)
+            self.assertEqual([c['source_key'] for c in result['corrections']],kept)
+            self.assertEqual({x['source_key'] for x in result['corrections']+result['unresolved']},{'first','second'})
 
     def test_cancel_before_or_after_model_call_does_not_return_success(self):
         sources = [source()]

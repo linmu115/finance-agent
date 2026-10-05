@@ -56,6 +56,8 @@ class Store:
             CREATE TABLE IF NOT EXISTS fact_history(history_id TEXT PRIMARY KEY,project_id TEXT NOT NULL,document_id TEXT NOT NULL,
               processing_id TEXT NOT NULL,fact_json TEXT NOT NULL,archived_at TEXT NOT NULL);
             """)
+            from .research_ingestion import initialize as initialize_research
+            initialize_research(db)
             # A killed parser never masquerades as a ready document; re-ingest retries cleanly.
             db.execute("UPDATE jobs SET state='failed',error='service_restarted',message='服务重启，重新上传可重试' WHERE state IN ('queued','parsing','validating')")
             db.execute("UPDATE documents SET state='failed' WHERE state IN ('queued','parsing','validating')")

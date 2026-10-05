@@ -290,7 +290,7 @@ def review_definitions(groups, known_metrics, runtime, progress=lambda message: 
         text = _render(pending, known_metrics)
         progress(f"当前 Pi 会话复核指标定义 {len(pending)} 组")
         try:
-            result = lx.extract(text_or_documents=text, prompt_description=PROMPT + repair, examples=_examples(),
+            result = lx.extract(text_or_documents=repair + "\n" + text, prompt_description=PROMPT, examples=_examples(),
                 config=pi_model_config(runtime,max_output_tokens=int(runtime.get("max_tokens") or 32768),max_workers=1,
                                        reasoning_effort=INFERENCE_CONFIG["reasoning_effort"]),
                 use_schema_constraints=False, fence_output=False, show_progress=False,

@@ -38,6 +38,9 @@ def execute(store, project_id, operation, approval_id):
         doc=store.document(target,operation.get('document_id'))
         # Preserve original file and historical evidence for recovery. Remove active rows atomically.
         commands=[{'sql':'DELETE FROM chunks_fts WHERE chunk_id IN (SELECT chunk_id FROM chunks WHERE document_id=?)','parameters':[doc['document_id']]}]
+        commands.append({'sql':'UPDATE research_records SET is_current=0 WHERE document_id=?','parameters':[doc['document_id']]})
+        for table in ['research_page_reviews','research_document_entities','document_profiles']:
+            commands.append({'sql':f'DELETE FROM {table} WHERE document_id=?','parameters':[doc['document_id']]})
         for table in ['pages','source_tables','facts','chunks','jobs','documents']:
             commands.append({'sql':f'DELETE FROM {table} WHERE document_id=?','parameters':[doc['document_id']]})
     for command in commands:

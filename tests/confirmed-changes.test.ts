@@ -26,7 +26,7 @@ test('CSV round trips precision, newlines, arrays, quoted evidence and path keys
 
 test('project agent.md and enabled skills persist, remain isolated, and reject stale writes',async()=>{
  const dir=await mkdtemp(path.join(tmpdir(),'finance-rules-'));
- try{const r=new ProjectResources(dir,path.resolve('skills'));const a=await r.load('alpha'),b=await r.load('beta');assert.equal(a.skills.length,3);assert.ok(a.skills.every(s=>s.enabled));
+ try{const r=new ProjectResources(dir,path.resolve('skills'));const a=await r.load('alpha'),b=await r.load('beta');assert.equal(a.skills.length,4);assert.ok(a.skills.some(s=>s.name==='research-ingestion'));assert.ok(a.skills.every(s=>s.enabled));
   const edited=await r.save('alpha',{rules:'金额统一人民币元；不自动推定缺失值。',enabled:['financial-modeling'],revision:a.revision});
   assert.notEqual(edited.revision,a.revision);assert.equal(edited.skills.filter(s=>s.enabled).length,1);assert.equal((await r.load('beta')).rules,b.rules);
   await assert.rejects(()=>r.save('alpha',{rules:'stale',enabled:[],revision:a.revision}),/已被修改/);await assert.rejects(()=>r.load('../outside'));

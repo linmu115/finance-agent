@@ -8,6 +8,17 @@ import { modelInputCsv, parseModelInputCsv } from './model-csv.js';
 export function installResearchApi(app:Express,ensureProject:(id:string)=>Promise<string>,service:FinanceService){
  const workspace=new ResearchWorkspace(service);
  const route=(fn:(req:any,res:any)=>Promise<any>)=>(req:any,res:any,next:any)=>Promise.resolve(fn(req,res)).catch(next);
+ app.get('/api/projects/:projectId/assets/catalog',route(async(req,res)=>{
+  const p=await ensureProject(req.params.projectId);
+  res.json((await service.call('get_asset_catalog',{project_id:p,...(req.query.entity?{entity_key:z.string().max(500).parse(req.query.entity)}:{})})).data);
+ }));
+ app.get('/api/projects/:projectId/assets/records',route(async(req,res)=>{
+  const p=await ensureProject(req.params.projectId);
+  const filters=z.record(z.string(),z.unknown()).parse(req.query.filters?JSON.parse(String(req.query.filters)):{});
+  const offset=z.coerce.number().int().min(0).parse(req.query.offset??0),limit=z.coerce.number().int().min(1).max(200).parse(req.query.limit??30);
+  const result=await service.call('query_research_records',{project_id:p,filters,offset,limit});
+  res.json({...result.data,warnings:result.warnings});
+ }));
  app.post('/api/projects/:projectId/research/models/import-csv',route(async(req,res)=>{const p=await ensureProject(req.params.projectId);const parsed=parseModelInputCsv(z.string().max(1000000).parse(req.body.csv));await service.call('get_research_model_schema',{project_id:p,kind:parsed.kind});res.json(parsed);}));
  app.get('/api/projects/:projectId/research/artifacts/:id/input-csv',route(async(req,res)=>{const p=await ensureProject(req.params.projectId),a=await workspace.get(p,req.params.id,req.query.revision);if(!a.spec)throw new Error('此成果不是模型');res.type('text/csv').setHeader('Content-Disposition',"attachment; filename*=UTF-8''"+encodeURIComponent(a.title+'-输入.csv')).send(modelInputCsv(a.kind,a.spec));}));
  app.get('/api/projects/:projectId/research/sources',route(async(req,res)=>{const id=await ensureProject(req.params.projectId);res.json({sources:await researchStore.list(id)});}));

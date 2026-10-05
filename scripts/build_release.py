@@ -19,10 +19,10 @@ import sys
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '0.1.0'
-PACKAGE = 'finance-agent-0.1-windows-x64'
-EXTRA_FILES = {'README.md','README.txt','THIRD_PARTY_NOTICES.md','.gitattributes','install.cmd','stop-finance.cmd','check-install.cmd','start-finance.cmd','CONTINUATION.md'}
-EXTRA_ROOTS = {'docs','licenses','skills'}
+VERSION = json.loads((ROOT/'package.json').read_text(encoding='utf-8'))['version']
+PACKAGE = f'finance-agent-{VERSION}-windows-x64'
+EXTRA_FILES = {'README.md','README.txt','THIRD_PARTY_NOTICES.md','.gitattributes','install.cmd','stop-finance.cmd','check-install.cmd','start-finance.cmd','CONTINUATION.md','design/history/readme-before-release-v01.txt'}
+EXTRA_ROOTS = {'docs','licenses','skills','paper/v0.2.0'}
 spec = importlib.util.spec_from_file_location('handoff', ROOT/'scripts/package_handoff.py')
 handoff = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
@@ -91,7 +91,8 @@ def stage(output: Path,node: Path,python_home: Path,site_packages: Path):
     if result.returncode: raise ValueError('Production dependency installation failed')
     node_version=subprocess.check_output([str(node),'--version'],text=True).strip()
     python_version=subprocess.check_output([str(target/'runtime/python/python.exe'),'--version'],text=True).strip()
-    provenance={'version':VERSION,'platform':'win32-x64','created_at':datetime.now(timezone.utc).isoformat(),'node':node_version,'node_sha256':sha256(node),'python':python_version,'python_sha256':sha256(target/'runtime/python/python.exe'),'package_lock_sha256':sha256(target/'package-lock.json'),'requirements_lock_sha256':sha256(target/'requirements.lock.txt'),'contains_user_data':False,'requires_system_node_or_python':False,'optional_docker_image':'finance-analysis:0.1'}
+    source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+    provenance={'version':VERSION,'source_commit':source_commit,'platform':'win32-x64','created_at':datetime.now(timezone.utc).isoformat(),'node':node_version,'node_sha256':sha256(node),'python':python_version,'python_sha256':sha256(target/'runtime/python/python.exe'),'package_lock_sha256':sha256(target/'package-lock.json'),'requirements_lock_sha256':sha256(target/'requirements.lock.txt'),'contains_user_data':False,'requires_system_node_or_python':False,'optional_docker_image':'finance-analysis:0.1'}
     (target/'RELEASE.json').write_text(json.dumps(provenance,ensure_ascii=False,indent=2),encoding='utf-8')
     print('Stage prepared: '+str(target),flush=True)
     return target
@@ -140,7 +141,7 @@ def verify_archive(package: Path,manifest=None):
 def main():
     parser=argparse.ArgumentParser();mode=parser.add_mutually_exclusive_group(required=True)
     mode.add_argument('--plan',action='store_true');mode.add_argument('--stage',action='store_true');mode.add_argument('--archive',action='store_true')
-    parser.add_argument('--output',default='dist/release-0.1')
+    parser.add_argument('--output',default=f'dist/release-{VERSION}')
     parser.add_argument('--node',default=shutil.which('node.exe'))
     parser.add_argument('--python-home',default=sys.base_prefix)
     parser.add_argument('--site-packages',default=str(ROOT/'.venv/Lib/site-packages'))

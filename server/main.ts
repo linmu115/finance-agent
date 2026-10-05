@@ -1,7 +1,8 @@
+import {modelCatalog} from './model-runtime.js';
 import { mkdir, readFile, readdir, stat, realpath } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
-import { DATA,ROOT,HOST,PORT,loadSettings,getSettings,publicSettings,saveSettings,testSettings,redactError,requireModel } from './config.js';
+import { APP_VERSION,DATA,ROOT,HOST,PORT,loadSettings,getSettings,publicSettings,saveSettings,testSettings,redactError,requireModel } from './config.js';
 import {acquireStartupGuard} from './startup-guard.js';
 import type { Conversation } from './types.js';
 import { installProjectApi } from './project-api.js';
@@ -58,7 +59,8 @@ for(const p of await projects()){
  await service.configure(id,getSettings());
  await runs.recover(id);await projectResources.load(id);
 }
-app.get('/api/health',route(async(_req,res)=>res.status(service.connected?200:503).json({ok:service.connected,version:'0.1.0',service:service.connected?'connected':'disconnected',modelConfigured:!!getSettings().llm.model})));
+app.get('/api/models',route(async(_req,res)=>res.json(await modelCatalog())));
+app.get('/api/health',route(async(_req,res)=>res.status(service.connected?200:503).json({ok:service.connected,version:APP_VERSION,service:service.connected?'connected':'disconnected',modelConfigured:!!getSettings().llm.model})));
 app.get('/api/projects',route(async(_req,res)=>res.json({projects:(await projects()).map((p:any)=>({id:p.project_id||p.id,name:p.name,createdAt:p.created_at,documentCount:p.document_count}))})));
 app.post('/api/projects',route(async(req,res)=>{
  const {name}=z.object({name:z.string().trim().min(1).max(100)}).parse(req.body);
@@ -77,13 +79,13 @@ app.get('/api/conversations/:id',route(async(req,res)=>{
  const chat=await runs.getConversation(readId(req.params.id));res.json({...chat,activeRunId:runs.activeFor(chat.id)});
 }));
 app.post('/api/conversations/:id/messages',route(async(req,res)=>{
- const {content,documentIds,evaluation,annotations}=z.object({content:z.string().max(50000).default(''),documentIds:z.array(idSchema).max(8).default([]),evaluation:z.unknown().optional(),annotations:annotationsSchema}).parse(req.body);
+ const {content,documentIds,evaluation,annotations,mode}=z.object({mode:z.enum(['steer','followUp']).default('steer'),content:z.string().max(50000).default(''),documentIds:z.array(idSchema).default([]),evaluation:z.unknown().optional(),annotations:annotationsSchema}).parse(req.body);
  if(!content.trim()&&!documentIds.length&&!annotations.length){res.status(400).json({error:{code:'EMPTY_MESSAGE',message:'请填写消息或添加附件、引用'}});return;}
  requireModel();
  const chat=await runs.getConversation(readId(req.params.id));
  for(const id of documentIds)await documentInfo(chat.projectId,id);
- const run=await runs.start(chat,content,documentIds,undefined,normalizeEvaluation(evaluation),annotations);
- res.status(202).json({runId:run.id,messageId:run.messageId,userMessageId:chat.messages[chat.messages.length-2].id});
+ const run=await runs.start(chat,content,documentIds,undefined,normalizeEvaluation(evaluation),annotations,mode);
+ res.status(202).json({runId:run.id,messageId:run.messageId,userMessageId:run.userMessageId,inputStatus:run.inputStatus});
 }));
 app.get('/api/runs/:runId',route(async(req,res)=>res.json(await runs.getRun(readId(req.params.runId)))));
 app.get('/api/runs/:runId/events',route(async(req,res)=>runs.subscribe(readId(req.params.runId),req,res)));

@@ -18,6 +18,48 @@ from .catalog_model import PROMPT_HASH, CACHE_HASH, INFERENCE_CONFIG, VERSION, _
 def _hash(value):return hashlib.sha256(dumps(value).encode()).hexdigest()
 
 
+def _bounded_review(store,project_id,profiles,runtime,progress,cancelled):
+    """Bounded directory review; completed batches survive an interrupted owner.
+
+    Candidate IDs supplement each primary batch. Cross-batch merge chains are
+    conservatively kept separate; numeric data and meaning are never guessed.
+    """
+    if len(profiles)<=80 and len(dumps(profiles))<=60000:
+        return _call_model(profiles,runtime,progress,cancelled)
+    groups=[];current=[]
+    for profile in profiles:
+        if current and (len(current)>=48 or len(dumps(current+[profile]))>40000):groups.append(current);current=[]
+        current.append(profile)
+    if current:groups.append(current)
+    aliases={};extractions=[];requests=0;failed=[];metric_sources={}
+    for index,primary in enumerate(groups):
+        if cancelled():raise InterruptedError('cancelled')
+        ids={p['metric'] for p in primary}
+        words=set(re.findall(r'[a-z]{3,}|[\u4e00-\u9fff]{2}', ' '.join(p['metric']+' '+' '.join(p['labels']) for p in primary)))
+        def rank(p):return -len(words & set(re.findall(r'[a-z]{3,}|[\u4e00-\u9fff]{2}',p['metric']+' '+' '.join(p['labels']))))
+        candidates=sorted((p for p in profiles if p['metric'] not in ids),key=rank)[:24]
+        batch=list(primary)
+        for candidate in candidates:
+            if len(dumps(batch+[candidate]))<=60000:batch.append(candidate)
+        batch_hash=_hash({'partition':'bounded-1','primary':sorted(ids),'profiles':batch})
+        def infer():
+            review,raw,count=_call_model(batch,runtime,lambda message:progress(f'目录复核 {index+1}/{len(groups)} 批 · '+message),cancelled)
+            return {'review':review,'extractions':raw,'_review_provenance':{'processing_id':runtime.get('processing_id'),'owner_run_id':runtime.get('owner_run_id')}},count
+        try:
+            saved,_,count=shared_result(store,'metric_directory_reviews',{'project_id':project_id,'catalog_hash':batch_hash,'prompt_hash':CACHE_HASH,'model':runtime['model']},infer,cancelled)
+            requests+=count;extractions.extend(saved['extractions'])
+            for metric in ids:metric_sources[metric]={'catalog_hash':batch_hash,'result_hash':result_hash(saved),'source_provenance':saved.get('_review_provenance')}
+            aliases.update({m:decision for m,decision in saved['review']['aliases'].items() if m in ids})
+        except InterruptedError:raise
+        except Exception:failed.append(index)
+    if failed:raise ValueError('catalog_batches_pending_retry')
+    # A target that is itself proposed as an alias cannot be merged safely in
+    # this pass. Preserve both IDs rather than invent a transitive equivalence.
+    conflicted={m for m,d in aliases.items() if d['canonical_metric'] in aliases}
+    for metric in conflicted:aliases.pop(metric)
+    return {'keep':[p['metric'] for p in profiles if p['metric'] not in aliases],'aliases':aliases,'metric_sources':metric_sources},extractions,requests
+
+
 def _ensure_tables(store):
     with store.connect(write=True) as db:
         db.executescript("""
@@ -88,7 +130,7 @@ def canonicalize_project(store, project_id, runtime, progress=lambda message:Non
             profiles,catalog_hash=snapshot(db,project_id)
         if not profiles:return aggregate|{"status":"empty","metric_count":0}
         def infer():
-            review,extractions,requests=_call_model(profiles,runtime,progress,cancelled)
+            review,extractions,requests=_bounded_review(store,project_id,profiles,runtime,progress,cancelled)
             return {"review":review,"extractions":extractions,"catalog_hash":catalog_hash,"prompt_hash":PROMPT_HASH,"cache_hash":CACHE_HASH,"inference_config":INFERENCE_CONFIG,"model":runtime["model"],"created_at":utcnow(),
                     "_review_provenance":{"processing_id":runtime.get("processing_id"),"owner_run_id":runtime.get("owner_run_id")}},requests
         saved,cached,requests=shared_result(store,"metric_directory_reviews",{"project_id":project_id,"catalog_hash":catalog_hash,"prompt_hash":CACHE_HASH,"model":runtime["model"]},infer,cancelled)
@@ -122,6 +164,8 @@ def canonicalize_project(store, project_id, runtime, progress=lambda message:Non
                 evidence={"status":"reviewed","engine":"LangExtract","version":VERSION,"model":runtime["model"],"catalog_hash":catalog_hash,"prompt_hash":PROMPT_HASH,
                           "source_metric":source,"canonical_metric":target,"canonical_label":canonical_label,"decision":"alias" if decision else "keep",
                           "result_hash":result_hash(saved),"source_provenance":saved.get("_review_provenance")}
+                batch_source=review.get('metric_sources',{}).get(source)
+                if batch_source:evidence.update(batch_catalog_hash=batch_source['catalog_hash'],batch_result_hash=batch_source['result_hash'],source_provenance=batch_source['source_provenance'])
                 if decision:evidence.update(reason=decision["reason"],char_interval=decision["span"],extraction_text=decision["extraction_text"])
                 meta.update(original_metric=source,original_label=original_label,label=canonical_label,canonical_alias=evidence)
                 changed=record["metric"]!=target or ref!=json.loads(record["source_json"])

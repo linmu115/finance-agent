@@ -71,6 +71,29 @@ class TemporalTransactionTests(unittest.TestCase):
         fact=self.svc.query_financial_data("p")["data"]["items"][0]
         self.assertEqual(fact["source_ref"]["normalization"]["temporal_correction"]["extraction_processing_id"],"review-owner")
 
+    def test_output_limit_splits_profile_and_source_batches_with_leaf_provenance(self):
+        from service.tests.test_review_budget import LimitError
+        self.seed();self.seed(metric='liabilities',label='负债总计',name='2024负债.csv')
+        def profiles(part,*args):
+            if len(part)>1:raise LimitError()
+            return self.all_candidates(part)
+        def corrections(part,*args):
+            if len(part)>1:raise LimitError()
+            return self.to_instant(part)
+        report=self.run_review(profiles,corrections)
+        self.assertEqual(report['status'],'reviewed');self.assertEqual(report['model_requests'],6)
+        facts=self.svc.query_financial_data('p')['data']['items'];self.assertEqual(len(facts),2)
+        with self.svc.store.connect() as db:
+            for fact in facts:
+                evidence=fact['source_ref']['normalization']['temporal_correction']
+                saved=json.loads(db.execute('select result_json from temporal_review_cache where cache_key=?',(evidence['cache_key'],)).fetchone()[0])
+                self.assertEqual(len(saved['corrections']),1)
+                self.assertEqual(saved['corrections'][0]['source_key'],evidence['source_key'])
+                self.assertEqual(evidence['owner_run_id'],'pi-owner')
+        with patch('service.temporal_model.review_profiles',side_effect=AssertionError('no paid replay')),patch('service.temporal_model.correct_sources',side_effect=AssertionError('no paid replay')):
+            again=review_project(self.svc,'p',self.runtime)
+        self.assertEqual(again['model_requests'],0)
+
     def test_original_extraction_is_immutable_and_saved_correction_overlays_replay(self):
         doc,batch,detail=self.seed();before=json.dumps(detail,sort_keys=True)
         self.run_review()
@@ -108,6 +131,25 @@ class TemporalTransactionTests(unittest.TestCase):
         result=self.run_review(correct=unresolved)
         self.assertEqual(result["status"],"needs_review");self.assertEqual(result["facts_updated"],0)
         self.assertEqual(len(result["unresolved"]),1)
+
+    def test_invalid_source_response_does_not_stop_later_batch_or_change_failed_fact(self):
+        import re
+        from service.tests.test_temporal_model import response,correction
+        self.seed();self.seed(metric='liabilities',label='负债总计',name='2024负债.csv')
+        with self.svc.store.connect() as db:sources,_=collect_sources(db,'p')
+        lookup={s['source_key']:s for s in sources};bad=next(s['source_key'] for s in sources if s['metric']=='assets')
+        def answer(**kwargs):
+            key=re.search(r'\[\[SOURCE:([^]]+)\]\]',kwargs['text_or_documents'])[1]
+            return response([] if key==bad else [correction([lookup[key]],key)])
+        with patch('service.temporal_model.review_profiles',side_effect=self.all_candidates),\
+             patch('service.temporal_semantics.source_chunks',side_effect=lambda targets:[[s] for s in targets]),\
+             patch('langextract.extract',side_effect=answer) as model:
+            report=review_project(self.svc,'p',self.runtime)
+        self.assertEqual(model.call_count,3);self.assertEqual(report['status'],'needs_review')
+        self.assertEqual([s['source_key'] for s in report['unresolved']],[bad])
+        self.assertEqual(report['facts_updated'],1);self.assertEqual(len(report['correction_audits']),2)
+        periods={f['metric']:f['period'] for f in self.svc.query_financial_data('p')['data']['items']}
+        self.assertEqual(periods,{'assets':'2024-FY','liabilities':'2024-12-31'})
 
     def test_continuation_reviews_only_unresolved_sources_after_metric_definition_change(self):
         self.seed();self.seed(metric="liabilities",label="负债合计",name="2024负债表.csv")

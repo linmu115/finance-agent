@@ -38,7 +38,7 @@ test('permanent provider errors stop one Pi run immediately, preserve extraction
   if(latest.startsWith('hold-')){held.set(latest,res);return;}
   if(latest==='main-402'||latest==='main-401'){reject(res,Number(latest.slice(-3)));return;}
   if(latest==='extract-402'){
-   respond(res,{tool_calls:[{index:0,id:'ingest',type:'function',function:{name:'process_documents',arguments:JSON.stringify({document_ids:[documentId]})}}]},'tool_calls');return;
+   respond(res,{tool_calls:[{index:0,id:'ingest',type:'function',function:{name:'process_documents',arguments:JSON.stringify({document_ids:[documentId],review_metrics:['revenue']})}}]},'tool_calls');return;
   }
   respond(res,{content:'mock survived'});
  });

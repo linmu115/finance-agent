@@ -18,7 +18,7 @@ from urllib.parse import urlparse
 
 from .normalization import METRICS, unit_kind
 from .parser import PARSER_VERSION, parse_document
-from .semantic import VERSION, SCHEMA_HASH, STATEMENTS, normalize_document, table_batches
+from .semantic import VERSION, SCHEMA_HASH, STATEMENTS, normalize_document, table_batches, materialize
 from .catalog_semantics import canonicalize_project, directory_status
 from .completed_document import completed_document
 from .definition_semantics import review_project as review_definition_project, overlay_saved_definitions, definition_status
@@ -30,7 +30,7 @@ def envelope(data, refs=None, status="ok"):
     return {"status":status,"data":data,"source_refs":refs or [],"warnings":[],"trace_id":uuid.uuid4().hex}
 
 
-TERMINAL = {"ready", "needs_review", "completed", "failed", "cancelled"}
+TERMINAL = {"ready", "needs_review", "completed", "partial", "failed", "cancelled"}
 
 
 def _source_index(parsed):
@@ -105,6 +105,8 @@ class ProcessingMixin:
         if parsed_url.scheme!="http" or parsed_url.hostname not in {"127.0.0.1","localhost","::1"} or not runtime.get("api_key") or not runtime.get("model"):
             raise ValueError("pi_runtime_bridge_required")
         docs=[self.store.document(project_id,i) for i in dict.fromkeys(document_ids)]
+        if any((self._document_profile(project_id,d['document_id']) or {}).get('kind','financial_report')!='financial_report' for d in docs):
+            raise ValueError('research_requires_script_ingestion')
         processing_id=uuid.uuid4().hex
         state={"processing_id":processing_id,"owner_run_id":owner_run_id,"project_id":project_id,
                "state":"queued","progress":0,"message":"会话已开始处理附件","documents":[],"fact_count":0,
@@ -122,13 +124,13 @@ class ProcessingMixin:
             self.processing_pool.submit(self._processing_worker,project_id,processing_id,dict(runtime))
         return envelope(state,status="accepted")
 
-    def _save_processing(self, state):
+    def _save_processing(self, state, refresh_attachment_snapshot=False):
         from .attachment_flows import record_processing
         state["updated_at"]=utcnow()
         with self.store.connect(write=True) as db:
             db.execute("INSERT INTO processing_runs VALUES(?,?,?,?,?,?) ON CONFLICT(processing_id) DO UPDATE SET state_json=excluded.state_json,updated_at=excluded.updated_at",
                        (state["processing_id"],state["project_id"],state["owner_run_id"],dumps(state),state["created_at"],state["updated_at"]))
-            record_processing(db, state)
+            record_processing(db, state, refresh_snapshot=refresh_attachment_snapshot)
 
     def get_processing_status(self, project_id, processing_id):
         self.store.project(project_id)
@@ -139,6 +141,12 @@ class ProcessingMixin:
 
     def cancel_processing(self, project_id, processing_id):
         state=self.get_processing_status(project_id,processing_id)["data"]
+        if state.get('mode')=='script_cleaning' and state['state'] not in TERMINAL:
+            for run_id in state.get('jobs',{}):
+                self.cancel_analysis(project_id,run_id)
+            state.update(state='cancelled',message='脚本清洗已停止；已提交检查点保留')
+            self._save_processing(state)
+            return envelope(state | {'cancel_requested':True})
         with self.processing_lock:
             flag=self.processing_flags.get(processing_id)
             if flag:flag.set()
@@ -274,13 +282,21 @@ class ProcessingMixin:
                         detail,origin=saved
                         if detail.get("schema_hash")!=SCHEMA_HASH or detail.get("model")!=runtime["model"] or not isinstance(detail.get("extractions"),list):return None
                         if detail.get("source_input_fingerprint")!=self._batch_input_fingerprint(batch):return None
-                        if detail.get("repair_error"):return None
+                        if detail.get("repair_error") or detail.get("request_error") or detail.get("status")=="failed":return None
+                        # Revalidate older saved mappings with the current
+                        # structural checker; retry only newly discovered gaps.
+                        _,current_issues=materialize(detail['extractions'],batch,document_id,runtime['model'])
+                        if any(i['reason']=='incomplete_column_override' for i in current_issues):return None
                         return detail|{"extraction_processing_id":detail.get("extraction_processing_id") or origin}
+                    def commit_failure(batch,error,detail):
+                        self._commit_semantic_batch(project_id,document_id,processing_id,batch,[],[error],detail)
+                        item["failed_batches"]=item.get("failed_batches",0)+1
+                        self._save_processing(state)
                     model_runtime=runtime | {"processing_id":processing_id,"catalog_loader":lambda:self.get_data_catalog(project_id)["data"]["metrics"]}
-                    _, report=normalize_document(parsed,document_id,model_runtime,lambda p,m:update("normalizing",.25+p*.74,m),flag.is_set,cache_get,cache_put,on_batch=commit,resume_get=resume_get)
+                    _, report=normalize_document(parsed,document_id,model_runtime,lambda p,m:update("normalizing",.25+p*.74,m),flag.is_set,cache_get,cache_put,on_batch=commit,resume_get=resume_get,on_failure=commit_failure)
                     item["normalization"]=report
                     item["fact_count"]=self.get_document(project_id,document_id)["data"]["fact_count"]
-                    endstate="failed" if report.get("failures") else "needs_review" if report["issues"] or parsed["warnings"] else "ready"
+                    endstate=("partial" if item["fact_count"] else "failed") if report.get("failures") else "needs_review" if report["issues"] or parsed["warnings"] else "ready"
                     if report.get("failures"):
                         state["errors"].append({"document_id":document_id,"code":"model_batches_failed","batches":report["failures"]})
                     warnings=list(parsed["warnings"])
@@ -297,7 +313,7 @@ class ProcessingMixin:
                     with self.processing_lock:
                         if self.processing_documents.get((project_id,document_id))==processing_id:self.processing_documents.pop((project_id,document_id),None)
                 self._save_processing(state)
-            if not state["errors"] and not flag.is_set():
+            if any(d.get("fact_count",0) for d in state["documents"]) and not flag.is_set():
                 try:
                     def catalog_progress(message):
                         state.update(state="normalizing",message=message)
@@ -308,7 +324,10 @@ class ProcessingMixin:
                     code=str(exc) if isinstance(exc,ValueError) and re.fullmatch(r"[a-z0-9_]+",str(exc)) else type(exc).__name__
                     state["catalog_review"]={"status":"failed","error":code}
                     state["errors"].append({"code":"catalog_review_failed","error":code})
-            if not state["errors"] and not flag.is_set():
+            # Later review consumes the metric identities above. Reviewing an
+            # unfinished directory wastes paid work when aliases change on resume.
+            catalog_ready=state.get("catalog_review",{}).get("status") in {"reviewed","empty"}
+            if any(d.get("fact_count",0) for d in state["documents"]) and catalog_ready and not flag.is_set():
                 if runtime.get("review_metrics"):
                     try:
                         def definition_progress(message):
@@ -322,7 +341,10 @@ class ProcessingMixin:
                         state["definition_review"]={key:value for key,value in getattr(exc,"definition_report",{"status":"failed","error":code}).items()
                                                     if key not in {"source_fingerprints","audits","failed_attempts"}}
                         state["errors"].append({"code":"definition_review_failed","error":code})
-            if not state["errors"] and not flag.is_set():
+            review_ready=catalog_ready and state.get("definition_review",{}).get("status") not in {"failed","pending"}
+            if any(d.get("fact_count",0) for d in state["documents"]) and not review_ready and not flag.is_set():
+                state["temporal_review"]={"status":"pending","reason":"prerequisite_review_incomplete"}
+            if any(d.get("fact_count",0) for d in state["documents"]) and review_ready and not flag.is_set():
                 try:
                     def temporal_progress(message):
                         state.update(state="normalizing",message=message)
@@ -336,8 +358,10 @@ class ProcessingMixin:
                     code=str(exc) if isinstance(exc,ValueError) and re.fullmatch(r"[a-z0-9_]+",str(exc)) else type(exc).__name__
                     state["temporal_review"]={"status":"failed","error":code}
                     state["errors"].append({"code":"temporal_review_failed","error":code})
-            state.update(state="failed" if state["errors"] else "needs_review" if any(d["state"]=="needs_review" for d in state["documents"]) or state.get("catalog_review",{}).get("status")=="pending" or state.get("temporal_review",{}).get("status") in {"needs_review","pending"} or state.get("definition_review",{}).get("status")=="needs_review" else "completed",progress=1,
+            state.update(state=("partial" if any(d.get("fact_count",0) for d in state["documents"]) else "failed") if state["errors"] else "needs_review" if any(d["state"]=="needs_review" for d in state["documents"]) or state.get("catalog_review",{}).get("status")=="pending" or state.get("temporal_review",{}).get("status") in {"needs_review","pending"} or state.get("definition_review",{}).get("status")=="needs_review" else "completed",progress=1,
                          message="财报处理完成" if not state["errors"] else "部分资料处理失败，可在当前会话重试",fact_count=sum(d["fact_count"] for d in state["documents"]))
+            if state.get("temporal_review",{}).get("reason")=="prerequisite_review_incomplete":
+                state["message"]="目录或定义复核尚未完成；已保存检查点，继续时先补齐该阶段"
         except InterruptedError:
             state.update(state="cancelled",message="本会话已停止处理，已提交数据保留")
             for item in state["documents"]:
@@ -436,13 +460,18 @@ class ProcessingMixin:
                 saved_batches=[dict(row) for row in db.execute("SELECT * FROM normalization_batches WHERE document_id=?",(document_id,))]
                 snapshot={"document":dict(doc),"prepared":json.loads(previous["prepared_json"]) if previous else None,
                           "prepared_file":previous_file,"pages":old_pages,"source_tables":old_tables,"normalization_batches":saved_batches,
-                          "replacement_parser_version":PARSER_VERSION}
+                          "replacement_parser_version":PARSER_VERSION,
+                          "research_page_reviews":[dict(r) for r in db.execute('SELECT * FROM research_page_reviews WHERE document_id=?',(document_id,))],
+                          "research_record_ids":[r[0] for r in db.execute('SELECT record_id FROM research_records WHERE document_id=? AND is_current=1',(document_id,))]}
                 db.execute("INSERT INTO source_parse_history VALUES(?,?,?,?,?,?)",(snapshot_id,project_id,document_id,
                            previous["parser_version"] if previous else doc["parser_version"],dumps(snapshot),utcnow()))
                 for record in db.execute("SELECT * FROM facts WHERE document_id=?",(document_id,)).fetchall():
                     db.execute("INSERT INTO fact_history VALUES(?,?,?,?,?,?)",(uuid.uuid4().hex,project_id,document_id,snapshot_id,dumps(dict(record)),utcnow()))
                 db.execute("DELETE FROM facts WHERE document_id=?",(document_id,))
                 db.execute("DELETE FROM normalization_batches WHERE document_id=?",(document_id,))
+                db.execute('UPDATE research_records SET is_current=0 WHERE document_id=?',(document_id,))
+                db.execute('DELETE FROM research_page_reviews WHERE document_id=?',(document_id,))
+                db.execute('DELETE FROM document_profiles WHERE document_id=?',(document_id,))
             db.execute("DELETE FROM chunks_fts WHERE chunk_id IN (SELECT chunk_id FROM chunks WHERE document_id=?)",(document_id,))
             for table in ("chunks","source_tables","pages"):db.execute(f"DELETE FROM {table} WHERE document_id=?",(document_id,))
             # documents.parser_version belongs to the original registration's
@@ -465,6 +494,10 @@ class ProcessingMixin:
                         self._insert_chunk(db,project_id,document_id,table["page"]," | ".join(row),ref)
             db.execute("INSERT INTO prepared_documents VALUES(?,?,?,?,?) ON CONFLICT(document_id) DO UPDATE SET sha256=excluded.sha256,parser_version=excluded.parser_version,prepared_json=excluded.prepared_json,updated_at=excluded.updated_at",
                        (document_id,doc["sha256"],PARSER_VERSION,serialized,utcnow()))
+            # Rebuilding an identical source index must retain its structured
+            # excerpts; a genuinely changed parse was invalidated above.
+            for record in db.execute('SELECT record_id,record_json FROM research_records WHERE document_id=? AND is_current=1',(document_id,)).fetchall():
+                self._index_research_record(db,project_id,document_id,record[0],json.loads(record[1]))
         # The DB is authoritative and publishes prepared data with its source
         # index atomically. This JSON is a navigable, atomically replaced copy.
         path.parent.mkdir(parents=True,exist_ok=True)
@@ -482,7 +515,17 @@ class ProcessingMixin:
         source_fingerprint=self._batch_input_fingerprint(batch)
         if detail.get("source_input_fingerprint") not in {None,source_fingerprint}:
             raise ValueError("semantic_source_input_changed")
+        profile=self._document_profile(project_id,document_id)
+        all_facts=facts
+        research_facts=[f for f in facts if f['source']['normalization'].get('data_kind','disclosed_actual')!='disclosed_actual']
+        if profile and profile['kind']!='financial_report' and len(research_facts)!=len(facts):
+            raise ValueError('research_cannot_be_primary_disclosure')
+        research_records=[self._research_fact(project_id,document_id,f,profile) for f in research_facts]
+        facts=[f for f in facts if f not in research_facts]
         with self.store.connect(write=True) as db:
+            current_profile=db.execute('SELECT revision_id FROM document_profiles WHERE project_id=? AND document_id=?',(project_id,document_id)).fetchone()
+            if (current_profile[0] if current_profile else None)!=(profile or {}).get('revision_id') or ('profile_revision' in detail and detail['profile_revision']!=(profile or {}).get('revision_id')):
+                raise ValueError('document_profile_changed_restart_processing')
             document_sha=db.execute("SELECT sha256 FROM documents WHERE project_id=? AND document_id=?",(project_id,document_id)).fetchone()[0]
             for part in batch:
                 table=part["table"]
@@ -490,7 +533,7 @@ class ProcessingMixin:
                                   (document_id,f"{document_id}:t{table['index']}")).fetchone()
                 if not stored or (stored["page"],stored["sheet"],json.loads(stored["bbox_json"]),json.loads(stored["rows_json"]),json.loads(stored["cells_json"]))!=(table["page"],table.get("sheet"),table.get("bbox"),table["rows"],table.get("cells",{})):
                     raise ValueError("semantic_source_input_changed")
-            stamp_source_provenance(document_sha,facts,detail)
+            stamp_source_provenance(document_sha,all_facts,detail)
             overlay_saved_corrections(db,project_id,document_id,facts,detail)
             overlay_saved_definitions(db,project_id,facts)
             for table_id,r in coordinates:
@@ -509,12 +552,44 @@ class ProcessingMixin:
             for fact in facts:
                 fact["source"]["normalization"]["processing_id"]=processing_id
                 db.execute("INSERT INTO facts VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",(uuid.uuid4().hex,document_id,project_id,fact["company"],fact["metric"],fact["year"],fact["period"],fact["scope"],fact["currency"],fact["raw_value"],fact["raw_unit"],fact["value"],dumps(fact["source"]),fact["priority"],fact["quality"]))
-            result={**detail,"source_input_fingerprint":source_fingerprint,"parser_version":PARSER_VERSION,
-                    "coordinates":coordinates,"fact_count":len(facts),"issues":issues}
+            for part in batch:
+                table_id=f"{document_id}:t{part['table']['index']}"
+                # Script commits are complete source tables, so replacing a
+                # research batch is atomic with financial writes and checkpoints.
+                self._replace_research_batch(db,project_id,document_id,profile,'table:'+str(part['table']['index']),[r for r in research_records if r['source']['table_id']==table_id])
+            result={**detail,"status":"failed" if detail.get("request_error") else "needs_review" if issues else "completed","source_input_fingerprint":source_fingerprint,"parser_version":PARSER_VERSION,
+                    "coordinates":coordinates,"fact_count":len(facts),"research_record_count":len(research_records),"issues":issues}
             db.execute("INSERT OR REPLACE INTO normalization_batches VALUES(?,?,?,?,?)",(document_id,key,processing_id,dumps(result),utcnow()))
             companies={f["company"] for f in facts if f.get("company")}
             if len(companies)==1:
                 db.execute("UPDATE documents SET company=? WHERE document_id=?",(next(iter(companies)),document_id))
+
+    def get_processing_checkpoint(self, project_id, document_id=None, offset=0, limit=20):
+        """Reconstruct progress from committed source batches, never a chat summary."""
+        documents=[self.store.document(project_id,document_id)] if document_id else self.list_documents(project_id)["data"]["items"]
+        limit=max(1,min(int(limit),50));offset=max(0,int(offset));items=[]
+        for doc in documents:
+            did=doc["document_id"];parsed=self._read_prepared(project_id,doc)
+            with self.store.connect() as db:
+                saved={r[0]:json.loads(r[1]) for r in db.execute("SELECT batch_key,result_json FROM normalization_batches WHERE document_id=?",(did,))}
+            counts={"total":0,"completed":0,"needs_review":0,"failed":0,"pending":0};remaining=[]
+            for batch in table_batches(parsed) if parsed else []:
+                coords=[(f"{did}:t{p['table']['index']}",r) for p in batch for r in p["rows"]]
+                key=hashlib.sha256(dumps(coords).encode()).hexdigest();record=saved.get(key)
+                if not record:
+                    # Script commits cover a whole source table. Legacy checkpoints
+                    # remain row-batched; resolve them to that durable table receipt.
+                    table=batch[0]['table'];table_hash=hashlib.sha256(dumps(table).encode()).hexdigest()
+                    record=next((r for r in saved.values() if r.get('script_table')==table['index'] and r.get('script_source_hash')==table_hash and r.get('document_sha256')==doc['sha256']),None)
+                current=record and record.get("source_input_fingerprint")==self._batch_input_fingerprint(batch)
+                if record and record.get('script_version'):current=record.get('script_source_hash')==hashlib.sha256(dumps(batch[0]['table']).encode()).hexdigest() and record.get('document_sha256')==doc['sha256']
+                current_issues=materialize(record.get('extractions',[]),batch,did,record.get('model',''))[1] if current else []
+                gap=any(i['reason']=='incomplete_column_override' for i in current_issues)
+                status=("failed" if record.get("request_error") or record.get("repair_error") or gap else "needs_review" if current_issues or record.get("issues") else "completed") if current else "pending"
+                counts["total"]+=1;counts[status]+=1
+                if status!="completed":remaining.append({"batch_key":key,"status":status,"table_id":coords[0][0],"rows":batch[0]["rows"],"page":batch[0]["table"]["page"],"issue_count":max(len(current_issues),len(record.get("issues",[]))) if current else 0})
+            items.append({"document_id":did,"name":doc["original_name"],"state":doc["state"],"source_sha256":doc["sha256"],"counts":counts,"remaining":remaining[offset:offset+limit],"offset":offset,"limit":limit,"remaining_total":len(remaining),"next_offset":offset+limit if offset+limit<len(remaining) else None})
+        return envelope({"documents":items,"resume_tool":"process_documents","resume_arguments":{"document_ids":[d["document_id"] for d in documents],"force":False},"detail_tool":"get_normalization_details","note":"completed表示批次已提交；needs_review表示已提交但有疑点。默认恢复仅重试failed/pending，已提交疑点可按表读取复核。"})
 
     def _expanded_fact(self, record):
         item=dict(record);ref=json.loads(item.pop("source_json"));meta=ref.get("normalization",{})
@@ -550,7 +625,7 @@ class ProcessingMixin:
         self.store.project(project_id);filters=filters or {}
         if not isinstance(filters,dict):raise ValueError("invalid_filters")
         limit=max(1,min(int(limit),200));offset=max(0,int(offset))
-        sql=" FROM facts f WHERE f.project_id=?";args=[project_id]
+        sql=" FROM current_financial_facts f WHERE f.project_id=?";args=[project_id]
         for singular,plural,column in [("company","companies","company"),("metric","metrics","metric"),("period","periods","period"),("year","years","year"),("scope","scopes","scope"),("currency","currencies","currency"),("document_id","document_ids","document_id")]:
             values=filters.get(plural,filters.get(singular))
             if values==[]:
@@ -579,24 +654,40 @@ class ProcessingMixin:
         items=[self._expanded_fact(r) for r in records]
         return envelope({"items":items,"total":total,"limit":limit,"offset":offset},[f["source_ref"] for f in items])
 
-    def get_data_catalog(self, project_id):
+    def get_data_catalog(self, project_id, query=None, statement=None, offset=0, limit=None):
         self.store.project(project_id)
         documents=self.list_documents(project_id)["data"]["items"]
         with self.store.connect() as db:
-            metrics=[dict(r) for r in db.execute("SELECT metric,COALESCE(json_extract(source_json,'$.normalization.label'),metric) label,COALESCE(json_extract(source_json,'$.normalization.statement'),'notes') statement,count(*) count FROM facts WHERE project_id=? GROUP BY metric,label,statement ORDER BY statement,metric",(project_id,))]
+            metrics=[dict(r) for r in db.execute("SELECT metric,COALESCE(json_extract(source_json,'$.normalization.label'),metric) label,COALESCE(json_extract(source_json,'$.normalization.statement'),'notes') statement,count(*) count FROM current_financial_facts WHERE project_id=? GROUP BY metric,label,statement ORDER BY statement,metric",(project_id,))]
             for metric in metrics:
                 if metric["label"]==metric["metric"] and metric["metric"] in METRICS:metric["label"]=METRICS[metric["metric"]][0]
-            counts={"documents":len(documents),"facts":db.execute("SELECT count(*) FROM facts WHERE project_id=?",(project_id,)).fetchone()[0]}
+            if query:
+                terms=str(query).casefold().split()
+                metrics=[m for m in metrics if any(t in (m["metric"]+" "+m["label"]).casefold() for t in terms)]
+            if statement:metrics=[m for m in metrics if m["statement"]==statement]
+            total_metrics=len(metrics);offset=max(0,int(offset))
+            if limit is not None:limit=max(1,min(int(limit),80));metrics=metrics[offset:offset+limit]
+            selected_metrics={m["metric"] for m in metrics}
+            counts={"documents":len(documents),"facts":db.execute("SELECT count(*) FROM current_financial_facts WHERE project_id=?",(project_id,)).fetchone()[0]}
+            research_sql=" FROM research_records r LEFT JOIN document_profiles p USING(document_id) WHERE r.project_id=? AND r.is_current=1 AND (r.profile_revision IS NULL OR r.profile_revision=p.revision_id)"
+            counts['research_records']=db.execute('SELECT count(*)'+research_sql,(project_id,)).fetchone()[0]
+            research_metrics=[dict(r) for r in db.execute('SELECT r.metric,r.data_kind,count(*) count'+research_sql+' AND r.metric IS NOT NULL GROUP BY r.metric,r.data_kind ORDER BY r.metric,r.data_kind',(project_id,))]
+            if query:research_metrics=[m for m in research_metrics if any(t in (m['metric']+' '+m['data_kind']).casefold() for t in str(query).casefold().split())]
+            research_total=len(research_metrics)
+            if limit is not None:research_metrics=research_metrics[offset:offset+limit]
             counts["pages"]=sum(d["page_count"] or 0 for d in documents);counts["tables"]=sum(d["table_count"] for d in documents)
-            distinct={plural:[r[0] for r in db.execute(f"SELECT DISTINCT {column} FROM facts WHERE project_id=? ORDER BY {column}",(project_id,))] for plural,column in [("companies","company"),("periods","period"),("scopes","scope"),("currencies","currency")]}
+            distinct={plural:[r[0] for r in db.execute(f"SELECT DISTINCT {column} FROM current_financial_facts WHERE project_id=? ORDER BY {column}",(project_id,))] for plural,column in [("companies","company"),("periods","period"),("scopes","scope"),("currencies","currency")]}
             metric_aliases=[]
             if db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='metric_aliases'").fetchone():
                 for record in db.execute("SELECT source_metric,canonical_metric,canonical_label,review_hash,evidence_json FROM metric_aliases WHERE project_id=? ORDER BY source_metric",(project_id,)):
-                    alias=dict(record);alias["evidence"]=json.loads(alias.pop("evidence_json"));metric_aliases.append(alias)
+                    alias=dict(record)
+                    if limit is not None and alias["source_metric"] not in selected_metrics and alias["canonical_metric"] not in selected_metrics:continue
+                    alias["evidence"]=json.loads(alias.pop("evidence_json"));metric_aliases.append(alias)
             distinct["metric_aliases"]=metric_aliases
             dimensions={};dimension_labels={};versions=set()
-            for record in db.execute("SELECT source_json FROM facts WHERE project_id=?",(project_id,)):
-                meta=json.loads(record[0]).get("normalization",{});versions.add(meta.get("restatement","original"))
+            for record in db.execute("SELECT metric,source_json FROM current_financial_facts WHERE project_id=?",(project_id,)):
+                if limit is not None and record[0] not in selected_metrics:continue
+                meta=json.loads(record[1]).get("normalization",{});versions.add(meta.get("restatement","original"))
                 for key,value in meta.get("dimensions",{}).items():dimensions.setdefault(key,set()).add(str(value))
                 for key,label in meta.get("dimension_labels",{}).items():
                     value=meta.get("dimensions",{}).get(key)
@@ -605,7 +696,9 @@ class ProcessingMixin:
             runs=[json.loads(r[0]) for r in db.execute("SELECT state_json FROM processing_runs WHERE project_id=? ORDER BY created_at DESC LIMIT 20",(project_id,))]
         return envelope({"project_id":project_id,"database_path":str(self.store.path),"documents_path":str(self.store.root/"documents"/project_id),
                          "index_path":str(self.store.root/"indexes"/project_id/"catalog.yaml"),"documents":documents,"metrics":metrics,"counts":counts,
-                         "statements":[{"id":k,"label":v} for k,v in STATEMENTS.items()],"indexing":"keyword+yaml","embedding_enabled":False,"processing":runs,"catalog_review":directory_status(self.store,project_id),"temporal_review":temporal_review_status(self.store,project_id),"definition_review":definition_status(self.store,project_id),**distinct})
+                         "research_catalog":{"metrics":research_metrics,"total_metrics":research_total,"offset":offset,"next_offset":offset+len(research_metrics) if offset+len(research_metrics)<research_total else None,"query_tool":"query_research_records"},
+                         "pagination":{"total":total_metrics,"offset":offset,"limit":limit,"next_offset":offset+len(metrics) if offset+len(metrics)<total_metrics else None,"query":query,"statement":statement},"dimensions_scope":"current_metric_page" if limit is not None else "project",
+                         "statements":[{"id":k,"label":v} for k,v in STATEMENTS.items()],"indexing":"hybrid_rrf" if self.configs.get(project_id,{}).get("embedding",{}).get("enabled") else "keyword+yaml","embedding_enabled":bool(self.configs.get(project_id,{}).get("embedding",{}).get("enabled")),"processing":runs,"catalog_review":directory_status(self.store,project_id),"temporal_review":temporal_review_status(self.store,project_id),"definition_review":definition_status(self.store,project_id),**distinct})
 
     def get_dashboard(self, project_id):
         catalog=self.get_data_catalog(project_id)["data"]
@@ -625,7 +718,7 @@ class ProcessingMixin:
             batches=[dict(r) for r in db.execute("SELECT batch_key,processing_id,result_json,created_at FROM normalization_batches"+where+" ORDER BY created_at LIMIT ? OFFSET ?",args+[limit,offset])]
             versions=db.execute("SELECT count(*) FROM fact_history WHERE document_id=?",(document_id,)).fetchone()[0]
         for b in batches:b["result"]=json.loads(b.pop("result_json"))
-        return envelope({"document":doc,"batches":batches,"total":total,"limit":limit,"offset":offset,"summary":summary,"archived_fact_count":versions,"engine":"LangExtract","version":VERSION})
+        return envelope({"document":doc,"batches":batches,"total":total,"limit":limit,"offset":offset,"summary":summary,"archived_fact_count":versions,"engine":doc.get('normalization_engine','unprocessed'),"version":VERSION})
 
     def get_document_index(self, project_id, document_id, section="overview", query=None,
                            offset=0, limit=40, page_start=None, page_end=None, include_preview=False):

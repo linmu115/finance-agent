@@ -31,7 +31,7 @@ class PiDocumentProcessingTests(unittest.TestCase):
         deadline=time.monotonic()+30
         while time.monotonic()<deadline:
             state=self.svc.get_processing_status("alpha",processing)["data"]
-            if state["state"] in {"completed","ready","needs_review","failed","cancelled"}:return state
+            if state["state"] in {"completed","ready","needs_review","partial","failed","cancelled"}:return state
             time.sleep(.02)
         self.fail("processing timeout")
 
@@ -103,7 +103,7 @@ class PiDocumentProcessingTests(unittest.TestCase):
 
     def test_same_document_shared_processing_cancel_does_not_cancel_owner(self):
         doc=self.register();entered=threading.Event();release=threading.Event()
-        def normalize(parsed,document_id,config,progress,cancelled,cache_get,cache_put,on_batch,resume_get=None):
+        def normalize(parsed,document_id,config,progress,cancelled,cache_get,cache_put,on_batch,resume_get=None,on_failure=None):
             entered.set();release.wait(5)
             self.assertFalse(cancelled())
             return [],{"issues":[],"completed":0}
@@ -119,7 +119,7 @@ class PiDocumentProcessingTests(unittest.TestCase):
 
     def test_dependent_session_resumes_when_original_owner_is_cancelled(self):
         doc=self.register();entered=threading.Event();calls=[]
-        def normalize(parsed,document_id,config,progress,cancelled,cache_get,cache_put,on_batch,resume_get=None):
+        def normalize(parsed,document_id,config,progress,cancelled,cache_get,cache_put,on_batch,resume_get=None,on_failure=None):
             calls.append(config["base_url"])
             if "first" in config["base_url"]:
                 entered.set()
@@ -264,6 +264,28 @@ class PiDocumentProcessingTests(unittest.TestCase):
         self.assertEqual(definitions.call_args.args[3]["owner_run_id"],"definition-run")
         self.assertEqual(definitions.call_args.args[3]["processing_id"],checked["processing_id"])
         self.assertEqual(checked["definition_review"]["status"],"reviewed")
+
+    def test_failed_directory_defers_dependent_review_and_resume_keeps_saved_facts(self):
+        from service.parser import parse_document
+        from service.semantic import VERSION
+        from service.tests.test_semantic_sources import mappings
+        doc=self.register();did=doc['document_id']
+        parsed=parse_document(self.root/doc['relative_path'],doc['original_name'],lambda *_:None,lambda:False,{})
+        self.svc._persist_prepared('alpha',did,parsed);batch=table_batches(parsed)[0]
+        cols=[{'column':2,'period':'2024-FY','unit':'元','currency':'CNY'},{'column':3,'period':'2023-FY','unit':'元','currency':'CNY'}]
+        ex=mappings(0,2,'selling_expenses',cols)+mappings(0,3,'research_expenses',cols)[1:]
+        facts,issues=materialize(ex,batch,did,'deepseek-flash')
+        self.svc._commit_semantic_batch('alpha',did,'saved-owner',batch,facts,issues,{'version':VERSION,'schema_hash':SCHEMA_HASH,'model':'deepseek-flash','extractions':ex})
+        runtime={'base_url':'http://127.0.0.1:1/test/v1','api_key':'test-token','model':'deepseek-flash','review_metrics':['selling_expenses']}
+        with patch('service.processing.normalize_document',side_effect=AssertionError('saved tables must remain reusable')),patch('service.processing.canonicalize_project',side_effect=ValueError('catalog_batches_pending_retry')),patch('service.processing.review_definition_project') as definitions,patch('service.processing.review_temporal_project') as temporal:
+            failed=self.wait(self.svc.start_document_processing('alpha',[did],'failed-review',runtime)['data']['processing_id'])
+        self.assertEqual(failed['state'],'partial');definitions.assert_not_called();temporal.assert_not_called()
+        self.assertEqual(failed['temporal_review']['status'],'pending')
+        self.assertEqual(self.svc.query_financial_data('alpha')['data']['total'],4)
+        with patch('service.processing.normalize_document',side_effect=AssertionError('resume must not reclean')),patch('service.processing.canonicalize_project',return_value={'status':'reviewed'}),patch('service.processing.review_definition_project',return_value={'status':'reviewed'}) as definitions,patch('service.processing.review_temporal_project',return_value={'status':'reviewed'}) as temporal:
+            resumed=self.wait(self.svc.start_document_processing('alpha',[did],'resume-review',runtime)['data']['processing_id'])
+        self.assertEqual(resumed['state'],'completed');definitions.assert_called_once();temporal.assert_called_once()
+        self.assertEqual(self.svc.query_financial_data('alpha')['data']['total'],4)
 
     def test_per_ten_share_amount_preserves_denominator_and_exposes_conversion(self):
         batch=[{"table":{"index":0,"page":34,"rows":[["每10股派息数（元）（含税）","276.24"]]},"rows":[1]}]

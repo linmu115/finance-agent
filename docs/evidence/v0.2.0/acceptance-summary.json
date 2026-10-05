@@ -1,0 +1,1375 @@
+{
+  "application_version": "0.2.0",
+  "date": "2026-10-05",
+  "scope": "Two complete PDFs, selected original-source anchors, exact quote locations, and independently recomputed saved models. Not a population accuracy estimate.",
+  "samples": [
+    {
+      "kind": "financial_report",
+      "pages": 57,
+      "candidate_tables": 50,
+      "facts_after_repair": 612,
+      "tables_or_narratives_needing_review": 6
+    },
+    {
+      "kind": "broker_research",
+      "pages": 38,
+      "candidate_tables": 23,
+      "numeric_records": 998,
+      "claims": 78,
+      "forecasts_or_guidance": 470,
+      "records_needing_review": 99
+    }
+  ],
+  "source_checks": {
+    "counts": {
+      "facts": 612,
+      "research_records": 1076
+    },
+    "pdf_anchors": [
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Revenue",
+        "period": "2025-H1",
+        "expected_value": "120392000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "3f5cc900508340f0a749d77913c606f1",
+            "metric": "revenue",
+            "label": "Revenue",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Revenue",
+        "period": "2024-H1",
+        "expected_value": "181011000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "7d601e5ffa754869888e1c8f0711f2ad",
+            "metric": "revenue",
+            "label": "Revenue",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Cost of sales",
+        "period": "2025-H1",
+        "expected_value": "-111281000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "801cd5baa85144509f0b284351a54277",
+            "metric": "cost_of_sales",
+            "label": "Cost of sales",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Cost of sales",
+        "period": "2024-H1",
+        "expected_value": "-166434000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "adcd0a8859484a10b99dd46ec60eeac8",
+            "metric": "cost_of_sales",
+            "label": "Cost of sales",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Gross profit",
+        "period": "2025-H1",
+        "expected_value": "9111000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "05851d117f5d4946b8cd9bfb0add1a99",
+            "metric": "gross_profit",
+            "label": "Gross profit",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Gross profit",
+        "period": "2024-H1",
+        "expected_value": "14577000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "218be76c53d944ce9b77e87c072c2575",
+            "metric": "gross_profit",
+            "label": "Gross profit",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Operating loss",
+        "period": "2025-H1",
+        "expected_value": "-18170000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "3cb3ce444d74446783eb6f7f58522338",
+            "metric": "operating_loss",
+            "label": "Operating loss",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Operating loss",
+        "period": "2024-H1",
+        "expected_value": "-32320000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "c41f3aecf79542ada1205be2e8486ad4",
+            "metric": "operating_loss",
+            "label": "Operating loss",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Finance costs net",
+        "period": "2025-H1",
+        "expected_value": "-3914000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "6d2beb1683da417ca5f753f75c82b24e",
+            "metric": "finance_costs_net",
+            "label": "Finance costs, net",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Finance costs net",
+        "period": "2024-H1",
+        "expected_value": "-6801000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "2977a8cf02c04e8581361d31c9c7488b",
+            "metric": "finance_costs_net",
+            "label": "Finance costs, net",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "FVTPL gain",
+        "period": "2025-H1",
+        "expected_value": "63015000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "5894ea2017b042a0820dbac5c04803a1",
+            "metric": "fair_value_gains_on_financial_assets_at_fvtpl",
+            "label": "Fair value gains on financial assets at FVTPL",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Profit before tax",
+        "period": "2025-H1",
+        "expected_value": "40931000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "d44a6da950204e2980785dfddf8f3408",
+            "metric": "profit_before_income_tax",
+            "label": "Profit/(loss) before income tax",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Profit for period",
+        "period": "2025-H1",
+        "expected_value": "41098000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "bf01873498a24d27911cc86d02eb12e1",
+            "metric": "net_profit",
+            "label": "Profit/(loss) for the period",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Profit for period",
+        "period": "2024-H1",
+        "expected_value": "-38635000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "e4553689d33440d3a5a86a80a93d2447",
+            "metric": "net_profit",
+            "label": "Profit/(loss) for the period",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Owners profit",
+        "period": "2025-H1",
+        "expected_value": "43186000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "32df12e612a44fe1bb09a8124cb67fdb",
+            "metric": "profit_attributable_to_owners_of_the_company",
+            "label": "Profit/(loss) attributable to owners of the Company",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 28,
+        "label": "Owners profit",
+        "period": "2024-H1",
+        "expected_value": "-36040000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "b933f4db424f4e8aa7df292b2be70d9b",
+            "metric": "profit_attributable_to_owners_of_the_company",
+            "label": "Profit/(loss) attributable to owners of the Company",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 29,
+        "label": "Total assets",
+        "period": "2025-06-30",
+        "expected_value": "343872000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "1e3d521301bc4b2881ca027447d1a87e",
+            "metric": "total_assets",
+            "label": "Total assets",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 29,
+        "label": "Total assets",
+        "period": "2024-12-31",
+        "expected_value": "298852000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "c01eeda95df6476fae1810b9e9e5a651",
+            "metric": "total_assets",
+            "label": "Total assets",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 29,
+        "label": "Cash",
+        "period": "2025-06-30",
+        "expected_value": "25723000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "8a82666d0309402f8c09133d14744810",
+            "metric": "cash_and_cash_equivalents",
+            "label": "Cash and cash equivalents",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 29,
+        "label": "Cash",
+        "period": "2024-12-31",
+        "expected_value": "16399000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "fc2cb01bad2f472cb53a2d991413ccc8",
+            "metric": "cash_and_cash_equivalents",
+            "label": "Cash and cash equivalents",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 29,
+        "label": "Trade receivables",
+        "period": "2025-06-30",
+        "expected_value": "80662000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "6ba21fb504ee49a6b7938c857a10d613",
+            "metric": "trade_receivables",
+            "label": "Trade receivables",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 29,
+        "label": "Trade receivables",
+        "period": "2024-12-31",
+        "expected_value": "90660000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "7cb63bfb867540658b5aa7dcab51f249",
+            "metric": "trade_receivables",
+            "label": "Trade receivables",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 29,
+        "label": "Total equity",
+        "period": "2025-06-30",
+        "expected_value": "117634000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "bb5d7e1f7fc346ec8ae69fe39afe061a",
+            "metric": "total_equity",
+            "label": "Total equity",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 29,
+        "label": "Total equity",
+        "period": "2024-12-31",
+        "expected_value": "42881000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "7fd8c1272913488d9b6c2c797ce17ebf",
+            "metric": "total_equity",
+            "label": "Total equity",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 30,
+        "label": "Total liabilities",
+        "period": "2025-06-30",
+        "expected_value": "226238000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "ddf2c78e624f471799e00f7faa6b2409",
+            "metric": "total_liabilities",
+            "label": "Total liabilities",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 30,
+        "label": "Total liabilities",
+        "period": "2024-12-31",
+        "expected_value": "255971000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "1272f89ed85b45989276bf88c6176219",
+            "metric": "total_liabilities",
+            "label": "Total liabilities",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 32,
+        "label": "Operating cash flow",
+        "period": "2025-H1",
+        "expected_value": "-30650000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "21c4736741474693ba3606eb220d984e",
+            "metric": "net_cash_used_in_operating_activities",
+            "label": "Net cash used in operating activities",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 32,
+        "label": "Operating cash flow",
+        "period": "2024-H1",
+        "expected_value": "-32104000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "0a4df7cfbecf49979a497d8120f5c44b",
+            "metric": "net_cash_used_in_operating_activities",
+            "label": "Net cash used in operating activities",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 32,
+        "label": "Investing cash flow",
+        "period": "2025-H1",
+        "expected_value": "-6796000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "783bf30a20cb434396f85749173ed7fc",
+            "metric": "net_cash_used_in_investing_activities",
+            "label": "Net cash used in investing activities",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 32,
+        "label": "Investing cash flow",
+        "period": "2024-H1",
+        "expected_value": "-5308000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "39b5588c243f4746a89a9f9548693763",
+            "metric": "net_cash_used_in_investing_activities",
+            "label": "Net cash used in investing activities",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 32,
+        "label": "Financing cash flow",
+        "period": "2025-H1",
+        "expected_value": "47079000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "54aa21cad1be4bfd99673dca3392e4cb",
+            "metric": "net_cash_generated_from_financing_activities",
+            "label": "Net cash generated from/(used in) financing activities",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 32,
+        "label": "Financing cash flow",
+        "period": "2024-H1",
+        "expected_value": "-7228000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "1ba4e3376fa74f73a3502f9e38dfd985",
+            "metric": "net_cash_generated_from_financing_activities",
+            "label": "Net cash generated from/(used in) financing activities",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 32,
+        "label": "PPE capex",
+        "period": "2025-H1",
+        "expected_value": "-670000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "7111f8e1487e4a988da198ed23c8de31",
+            "metric": "payment_for_property_and_equipment",
+            "label": "Payment for property and equipment",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "financial",
+        "page": 32,
+        "label": "PPE capex",
+        "period": "2024-H1",
+        "expected_value": "-1300000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "ef31de616dd94f4a80fd528ec6e9d25d",
+            "metric": "payment_for_property_and_equipment",
+            "label": "Payment for property and equipment",
+            "scope": "consolidated_IFRS"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "revenue",
+        "period": "2023",
+        "expected_value": "126179000000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "9ed034ab3f954d2ea90e5b389c4d94ca",
+            "metric": "revenue",
+            "label": "营业收入(百万元)",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "revenue",
+        "period": "2024",
+        "expected_value": "115780000000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "3c040ead60854ebba14130f881d1b746",
+            "metric": "revenue",
+            "label": "营业收入(百万元)",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "revenue",
+        "period": "2025",
+        "expected_value": "119338000000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "d56555d8c0984ebeabeb5afcdf8d2303",
+            "metric": "revenue",
+            "label": "营业收入(百万元)",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "revenue",
+        "period": "2026",
+        "expected_value": "122498000000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "068460edafd34f389ad52fddffe51924",
+            "metric": "revenue",
+            "label": "营业收入(百万元)",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "revenue",
+        "period": "2027",
+        "expected_value": "125438000000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "d2a5854b2b8a48edad275a036a1dacb6",
+            "metric": "revenue",
+            "label": "营业收入(百万元)",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "net_profit",
+        "period": "2023",
+        "expected_value": "10429000000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "f6358dda5db14d018b40eb03388fdd14",
+            "metric": "net_profit_parent",
+            "label": "净利润(百万元)",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "net_profit",
+        "period": "2024",
+        "expected_value": "8453000000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "ea0f941c3d0c4af3b0f10364c2c55655",
+            "metric": "net_profit_parent",
+            "label": "净利润(百万元)",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "net_profit",
+        "period": "2025",
+        "expected_value": "11309000000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "693844154887460c807b62b6a9248a3a",
+            "metric": "net_profit_parent",
+            "label": "净利润(百万元)",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "net_profit",
+        "period": "2026",
+        "expected_value": "12222000000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "cc263176362b46d296d065ad513be1db",
+            "metric": "net_profit_parent",
+            "label": "净利润(百万元)",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "net_profit",
+        "period": "2027",
+        "expected_value": "13152000000",
+        "ok": true,
+        "matches": [
+          {
+            "id": "df0c0c8296324e25885b060c41891e49",
+            "metric": "net_profit_parent",
+            "label": "净利润(百万元)",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "eps",
+        "period": "2023",
+        "expected_value": "1.64",
+        "ok": true,
+        "matches": [
+          {
+            "id": "879d78544ed4416a86f28e21c6304204",
+            "metric": "eps_basic",
+            "label": "每股收益（元）",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "eps",
+        "period": "2024",
+        "expected_value": "1.33",
+        "ok": true,
+        "matches": [
+          {
+            "id": "4ae0c1c992b04d7ea608255d53585401",
+            "metric": "eps_basic",
+            "label": "每股收益（元）",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "eps",
+        "period": "2025",
+        "expected_value": "1.78",
+        "ok": true,
+        "matches": [
+          {
+            "id": "82146812c43c4c78816c30ed526894c2",
+            "metric": "eps_basic",
+            "label": "每股收益（元）",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "eps",
+        "period": "2026",
+        "expected_value": "1.92",
+        "ok": true,
+        "matches": [
+          {
+            "id": "b638e87e7ec343eaba8c8581f783a5ba",
+            "metric": "eps_basic",
+            "label": "每股收益（元）",
+            "publisher": "国信证券"
+          }
+        ]
+      },
+      {
+        "source": "research",
+        "page": 1,
+        "label": "eps",
+        "period": "2027",
+        "expected_value": "2.07",
+        "ok": true,
+        "matches": [
+          {
+            "id": "133b9d3310104b35ada17952579f928a",
+            "metric": "eps_basic",
+            "label": "每股收益（元）",
+            "publisher": "国信证券"
+          }
+        ]
+      }
+    ],
+    "anchors_passed": 49,
+    "anchors_total": 49,
+    "claims_passed": 78,
+    "claims_total": 78,
+    "research_records_in_disclosures": []
+  },
+  "model_checks": {
+    "checks": [
+      {
+        "name": "two_saved_dcf_scenarios",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "saved_quality_model",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2025.fcff",
+        "actual": "6481.803",
+        "expected": "6481.803",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2025.pv",
+        "actual": "5892.5481818181818181818181818181818181818181818182",
+        "expected": "5892.548181818181818181818181818181818182",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2026.fcff",
+        "actual": "13088.729",
+        "expected": "13088.729",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2026.pv",
+        "actual": "10817.131404958677685950413223140495867768595041322",
+        "expected": "10817.13140495867768595041322314049586777",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2027.fcff",
+        "actual": "14637.795",
+        "expected": "14637.795",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2027.pv",
+        "actual": "10997.592036063110443275732531930879038317054845980",
+        "expected": "10997.59203606311044327573253193087903832",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.enterprise_value",
+        "actual": "134844.25853305785123966942148760330578512396694215",
+        "expected": "134844.2585330578512396694214876033057852",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.equity_value",
+        "actual": "106149.25853305785123966942148760330578512396694215",
+        "expected": "106149.2585330578512396694214876033057852",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.value_per_share",
+        "actual": "16.674404419267648639596201930192162391631160374199",
+        "expected": "16.67440441926764863959620193019216239164",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.source_locations_checked",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.explicit_wacc_assumption",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.source_references_present",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.terminal.ebit_margin.classified_as_assumption",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.terminal.tax_rate.classified_as_assumption",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2025.original_pdf_revenue",
+        "actual": "119338",
+        "expected": "119338",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2025.original_pdf_da",
+        "actual": "4822",
+        "expected": "4822",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2025.original_pdf_capex",
+        "actual": "4500",
+        "expected": "4500",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2025.operating_ebit_components",
+        "actual": "13839",
+        "expected": "13839",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2026.original_pdf_revenue",
+        "actual": "122498",
+        "expected": "122498",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2026.original_pdf_da",
+        "actual": "5316",
+        "expected": "5316",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2026.original_pdf_capex",
+        "actual": "5000",
+        "expected": "5000",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2026.operating_ebit_components",
+        "actual": "14677",
+        "expected": "14677",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2027.original_pdf_revenue",
+        "actual": "125438",
+        "expected": "125438",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2027.original_pdf_da",
+        "actual": "5724",
+        "expected": "5724",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2027.original_pdf_capex",
+        "actual": "4000",
+        "expected": "4000",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 压力情景：WACC 10%（其余参数与基准完全一致）.2027.operating_ebit_components",
+        "actual": "15335",
+        "expected": "15335",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2025.fcff",
+        "actual": "6481.803",
+        "expected": "6481.803",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2025.pv",
+        "actual": "6001.6694444444444444444444444444444444444444444445",
+        "expected": "6001.669444444444444444444444444444444444",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2026.fcff",
+        "actual": "13088.729",
+        "expected": "13088.729",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2026.pv",
+        "actual": "11221.475480109739368998628257887517146776406035665",
+        "expected": "11221.47548010973936899862825788751714678",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2027.fcff",
+        "actual": "14637.795",
+        "expected": "14637.795",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2027.pv",
+        "actual": "11619.953608443834781283340954122847126962353299802",
+        "expected": "11619.95360844383478128334095412284712696",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.enterprise_value",
+        "actual": "179776.35902163880844722179884502701146505444630731",
+        "expected": "179776.3590216388084472217988450270114651",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.equity_value",
+        "actual": "151081.35902163880844722179884502701146505444630731",
+        "expected": "151081.3590216388084472217988450270114651",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.value_per_share",
+        "actual": "23.732541473710148986368488665571318169188571521726",
+        "expected": "23.7325414737101489863684886655713181692",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.source_locations_checked",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.explicit_wacc_assumption",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.source_references_present",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.terminal.ebit_margin.classified_as_assumption",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.terminal.tax_rate.classified_as_assumption",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2025.original_pdf_revenue",
+        "actual": "119338",
+        "expected": "119338",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2025.original_pdf_da",
+        "actual": "4822",
+        "expected": "4822",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2025.original_pdf_capex",
+        "actual": "4500",
+        "expected": "4500",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2025.operating_ebit_components",
+        "actual": "13839",
+        "expected": "13839",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2026.original_pdf_revenue",
+        "actual": "122498",
+        "expected": "122498",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2026.original_pdf_da",
+        "actual": "5316",
+        "expected": "5316",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2026.original_pdf_capex",
+        "actual": "5000",
+        "expected": "5000",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2026.operating_ebit_components",
+        "actual": "14677",
+        "expected": "14677",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2027.original_pdf_revenue",
+        "actual": "125438",
+        "expected": "125438",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2027.original_pdf_da",
+        "actual": "5724",
+        "expected": "5724",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2027.original_pdf_capex",
+        "actual": "4000",
+        "expected": "4000",
+        "ok": true
+      },
+      {
+        "name": "伊利股份（600887.SH）FCFF DCF 基准：WACC 8%、永续增长2%、终值ROIC 12%（2024年末估值时点）.2027.operating_ebit_components",
+        "actual": "15335",
+        "expected": "15335",
+        "ok": true
+      },
+      {
+        "name": "only_wacc_changes_in_stress_inputs",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "higher_wacc_reduces_value",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "quality_preserves_H1",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "quality.2024.revenue.original_pdf",
+        "actual": "181011000",
+        "expected": "181011000",
+        "ok": true
+      },
+      {
+        "name": "quality.2024.net_income.original_pdf",
+        "actual": "-38635000",
+        "expected": "-38635000",
+        "ok": true
+      },
+      {
+        "name": "quality.2024.cfo.original_pdf",
+        "actual": "-32104000",
+        "expected": "-32104000",
+        "ok": true
+      },
+      {
+        "name": "quality.2024.days",
+        "actual": "182",
+        "expected": "182",
+        "ok": true
+      },
+      {
+        "name": "quality.2024.cash_profit_gap",
+        "actual": "6531000",
+        "expected": "6531000",
+        "ok": true
+      },
+      {
+        "name": "quality.2024.cfo_margin",
+        "actual": "-0.17735938699858019678362088491859610741888614504091",
+        "expected": "-0.1773593869985801967836208849185961074189",
+        "ok": true
+      },
+      {
+        "name": "quality.2024.no_pretax_gain_as_recurring_net",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "quality.2025.revenue.original_pdf",
+        "actual": "120392000",
+        "expected": "120392000",
+        "ok": true
+      },
+      {
+        "name": "quality.2025.net_income.original_pdf",
+        "actual": "41098000",
+        "expected": "41098000",
+        "ok": true
+      },
+      {
+        "name": "quality.2025.cfo.original_pdf",
+        "actual": "-30650000",
+        "expected": "-30650000",
+        "ok": true
+      },
+      {
+        "name": "quality.2025.days",
+        "actual": "181",
+        "expected": "181",
+        "ok": true
+      },
+      {
+        "name": "quality.2025.cash_profit_gap",
+        "actual": "-71748000",
+        "expected": "-71748000",
+        "ok": true
+      },
+      {
+        "name": "quality.2025.cfo_margin",
+        "actual": "-0.25458502226061532327729417237025715994418233769686",
+        "expected": "-0.2545850222606153232772941723702571599442",
+        "ok": true
+      },
+      {
+        "name": "quality.2025.revenue_yoy",
+        "actual": "-0.33489124970305672030981542558187071503941749396446",
+        "expected": "-0.3348912497030567203098154255818707150394",
+        "ok": true
+      },
+      {
+        "name": "quality.2025.no_pretax_gain_as_recurring_net",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "quality.source_references_present",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "quality.operating_anchor_excludes_finance",
+        "ok": true,
+        "detail": null
+      },
+      {
+        "name": "quality.complete_profit_bridge_reconciles",
+        "actual": "0",
+        "expected": "0",
+        "ok": true
+      }
+    ],
+    "passed": 75,
+    "total": 75,
+    "scope": "Recalculates saved model arithmetic independently and checks selected inputs against original PDFs. Assumptions and source economic meaning still require substantive review."
+  },
+  "usage": [
+    {
+      "kind": "financial",
+      "status": "completed",
+      "calls": 78,
+      "input": 10862737,
+      "uncached_input": 708369,
+      "cache_read": 10154368,
+      "cache_ratio": 0.9347890867651495,
+      "output": 126115,
+      "reasoning_in_output": 80386,
+      "cost_cny_min": 1.4159163599999995,
+      "cost_cny_max": 2.831832719999999,
+      "unknown_calls": 0
+    },
+    {
+      "kind": "research",
+      "status": "completed",
+      "calls": 84,
+      "input": 21515456,
+      "uncached_input": 389184,
+      "cache_read": 21126272,
+      "cache_ratio": 0.9819114221887745,
+      "output": 112566,
+      "reasoning_in_output": 63899,
+      "cost_cny_min": 1.26197344,
+      "cost_cny_max": 2.52394688,
+      "unknown_calls": 0
+    },
+    {
+      "kind": "financial_repair",
+      "status": "completed",
+      "calls": 8,
+      "input": 3300192,
+      "uncached_input": 174048,
+      "cache_read": 3126144,
+      "cache_ratio": 0.9472612502545307,
+      "output": 6428,
+      "reasoning_in_output": 3426,
+      "cost_cny_min": 0.26228288,
+      "cost_cny_max": 0.52456576,
+      "unknown_calls": 0
+    },
+    {
+      "kind": "modeling",
+      "status": "completed",
+      "calls": 16,
+      "input": 3430330,
+      "uncached_input": 324154,
+      "cache_read": 3106176,
+      "cache_ratio": 0.9055035521363833,
+      "output": 44377,
+      "reasoning_in_output": 22951,
+      "cost_cny_min": 0.5637855199999999,
+      "cost_cny_max": 1.1275710399999999,
+      "unknown_calls": 0
+    },
+    {
+      "kind": "modeling_review",
+      "status": "completed",
+      "calls": 6,
+      "input": 1974444,
+      "uncached_input": 43308,
+      "cache_read": 1931136,
+      "cache_ratio": 0.9780657238189586,
+      "output": 27142,
+      "reasoning_in_output": 5752,
+      "cost_cny_min": 0.19049871999999998,
+      "cost_cny_max": 0.38099743999999997,
+      "unknown_calls": 0
+    }
+  ],
+  "browser": [
+    {
+      "width": 1440,
+      "singleNavigation": true,
+      "summary": {
+        "documents": 2,
+        "facts": 612,
+        "records": 1076,
+        "claims": 78,
+        "forecasts": 470,
+        "observations": 998,
+        "needs_review": 99
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "singleNavigation": true,
+      "summary": {
+        "documents": 2,
+        "facts": 612,
+        "records": 1076,
+        "claims": 78,
+        "forecasts": 470,
+        "observations": 998,
+        "needs_review": 99
+      },
+      "errors": []
+    }
+  ],
+  "source_audit_hashes": {
+    "quality-audit.json": "125a9e873ce860b08286e29be567ca96417b081928ef9c634ef81415957b32f1",
+    "model-audit.json": "7b902031a00e2eb4f42811cde3a22c18757e8ec1e7e3e462a47cad9ea4a8ddee",
+    "usage-audit.json": "a495297b442ca86cdfe346a989a6ed791621d86ec76efdeacc22794be358be58",
+    "browser-final.json": "2871ce6c27ec8e3359057afba7393b1a196811b8c222eb27455b77361224aa44"
+  },
+  "excludes": [
+    "credentials",
+    "settings",
+    "raw conversations",
+    "request bodies",
+    "private reasoning traces",
+    "live database"
+  ],
+  "cost_note": "CNY estimates using configured prices; not provider billing. Reasoning is included in output."
+}

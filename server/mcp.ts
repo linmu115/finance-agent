@@ -1,11 +1,11 @@
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
-import { DATA,ROOT,PYTHON,redactError } from './config.js';
+import { APP_VERSION,DATA,ROOT,PYTHON,redactError } from './config.js';
 import type { Envelope } from './types.js';
 import path from 'node:path';
 
 export class FinanceService {
- client=new Client({name:'finance-research-host',version:'0.1.0'});
+ client=new Client({name:'finance-research-host',version:APP_VERSION});
  private transport?:StdioClientTransport;
  private started=false;
  get connected(){return this.started;}
@@ -34,7 +34,7 @@ export class FinanceService {
    return result;
  }
  async configure(projectId:string,settings:any){
-  return this.call('configure_processing',{project_id:projectId,embedding:{enabled:false},ocr:{mode:settings.ocr.mode,base_url:settings.ocr.baseUrl,model:settings.ocr.model,api_key:settings.ocr.apiKey}});
+  return this.call('configure_processing',{project_id:projectId,embedding:{enabled:!!settings.embedding.enabled,base_url:settings.embedding.baseUrl,model:settings.embedding.model,api_key:settings.embedding.apiKey,...(settings.embedding.dimensions?{dimensions:settings.embedding.dimensions}:{})},ocr:{mode:settings.ocr.mode,base_url:settings.ocr.baseUrl,model:settings.ocr.model,api_key:settings.ocr.apiKey}});
  }
  async getState<T>(projectId:string,kind:'conversations'|'runs'|'evaluation_budgets',key:string):Promise<T|undefined>{
   const r=await this.call('get_app_state',{project_id:projectId,kind,key});return (r.data?.value ?? undefined) as T|undefined;
