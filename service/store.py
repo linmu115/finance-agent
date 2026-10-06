@@ -37,8 +37,11 @@ class Store:
               year INTEGER,period TEXT,scope TEXT,currency TEXT,raw_value TEXT,raw_unit TEXT,value TEXT,source_json TEXT,
               priority INTEGER,quality TEXT,FOREIGN KEY(document_id) REFERENCES documents(document_id));
             CREATE INDEX IF NOT EXISTS facts_lookup ON facts(project_id,metric,year,company);
+            CREATE INDEX IF NOT EXISTS facts_document ON facts(document_id);
             CREATE TABLE IF NOT EXISTS chunks(chunk_id TEXT PRIMARY KEY,project_id TEXT,document_id TEXT,page INTEGER,
               source_id TEXT,text TEXT,source_json TEXT);
+            CREATE INDEX IF NOT EXISTS chunks_document ON chunks(document_id,page);
+            CREATE INDEX IF NOT EXISTS source_tables_document ON source_tables(document_id,page);
             CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts USING fts5(chunk_id UNINDEXED, tokens, tokenize='unicode61');
             CREATE TABLE IF NOT EXISTS embedding_cache(cache_key TEXT PRIMARY KEY,project_id TEXT,model TEXT,dimensions INTEGER,
               vector_json TEXT,created_at TEXT);
@@ -55,6 +58,7 @@ class Store:
             CREATE TABLE IF NOT EXISTS normalization_cache(cache_key TEXT PRIMARY KEY,result_json TEXT NOT NULL,created_at TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS fact_history(history_id TEXT PRIMARY KEY,project_id TEXT NOT NULL,document_id TEXT NOT NULL,
               processing_id TEXT NOT NULL,fact_json TEXT NOT NULL,archived_at TEXT NOT NULL);
+            CREATE INDEX IF NOT EXISTS fact_history_document ON fact_history(document_id);
             """)
             from .research_ingestion import initialize as initialize_research
             initialize_research(db)

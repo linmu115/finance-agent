@@ -10,6 +10,7 @@ from decimal import Decimal, localcontext
 import json
 from pathlib import Path
 import re
+import unicodedata
 import zipfile
 
 
@@ -24,10 +25,65 @@ UNITS = {**{k: ('money', v) for k, v in MONEY.items()},
          '倍': ('multiple', '1'), 'times': ('multiple', '1'), '个': ('count', '1'), '天': ('days', '1')}
 
 
+# Other ways the same units are commonly written. Matching ignores case, spaces, brackets and full-width forms.
+SPELLINGS = {'percent': '%', 'pct': '%', '百分比': '%', '百分数': '%',
+             '百分点': '个百分点', 'ppt': '个百分点', 'ppts': '个百分点', 'percentagepoint': '个百分点', 'percentagepoints': '个百分点',
+             '比例': 'ratio', '比率': 'ratio', '小数': 'ratio',
+             'x': '倍', '×': '倍', 'shares': '股', 'share': '股', '日': '天', 'day': '天', 'days': '天'}
+CURRENCIES = {'人民币': 'CNY', 'rmb': 'CNY', 'cny': 'CNY', '¥': 'CNY', '港元': 'HKD', '港币': 'HKD', 'hkd': 'HKD', 'hk$': 'HKD',
+              '美元': 'USD', 'usd': 'USD', 'us$': 'USD', '欧元': 'EUR', 'eur': 'EUR', '€': 'EUR', '日元': 'JPY', 'jpy': 'JPY',
+              '英镑': 'GBP', 'gbp': 'GBP', '£': 'GBP'}
+MAGNITUDES = {'': '元', '千': '千元', '万': '万元', '百万': '百万元', '亿': '亿元', '十亿': '十亿元', '千亿': '千亿元',
+              'thousand': 'thousand', '000': 'thousand', 'k': 'thousand', 'million': 'million', 'mn': 'million', 'mm': 'million', 'm': 'million',
+              'billion': 'billion', 'bn': 'billion', 'b': 'billion'}
+ACCEPTED = ('金额：元/千元/万元/百万元/亿元/十亿元、thousand/million/billion，可带币种（人民币百万元、RMB million、亿港元）；'
+            '每股：元/股、人民币/股；股数：股/万股/百万股/亿股；比例：ratio（0.10=10%）、%；百分点：个百分点、百分点、pp；倍；个；天')
+
+
+def canonical_unit(text):
+    """(unit, currency) for any accepted spelling. currency is None unless the text names one.
+
+    '人民币百万元' -> ('百万元', 'CNY'); 'RMB million' -> ('million', 'CNY'); '港元/股' -> ('元/股', 'HKD');
+    '百分点' -> ('个百分点', None). An amount needs 元 or a currency: a bare '百万' could be shares.
+    """
+    if text in UNITS:
+        return text, None
+    folded = re.sub(r'[\s()\[\]【】]', '', unicodedata.normalize('NFKC', str(text))).casefold()
+    for unit in UNITS:
+        if unit.casefold() == folded:
+            return unit, None
+    if folded in SPELLINGS:
+        return SPELLINGS[folded], None
+    currency, rest = None, folded
+    for word in sorted(CURRENCIES, key=len, reverse=True):
+        if word in rest:
+            currency, rest = CURRENCIES[word], rest.replace(word, '', 1)
+            break
+    per_share = re.fullmatch(r'(.*)/(?:股|shares?)', rest)
+    if per_share:
+        rest = per_share.group(1)
+    named_yuan = rest.endswith('元')
+    magnitude = (rest[:-1] if named_yuan else rest).strip("'’")
+    # million/mn/k and the like are amounts only next to a currency; on their own they are the plain units above.
+    english = magnitude != '' and magnitude.isascii()
+    if (currency or named_yuan) and magnitude in MAGNITUDES and not (english and not currency):
+        if not per_share:
+            return MAGNITUDES[magnitude], currency
+        if magnitude == '':
+            return '元/股', currency
+    raise ValueError(f'未知单位 {text!r}。{ACCEPTED}')
+
+
+def stated_quantity(quantity):
+    """An explicit {value, unit, currency} cell with its unit in canonical form."""
+    unit, currency = canonical_unit(quantity['unit'])
+    if currency and quantity.get('currency') and quantity['currency'] != currency:
+        raise ValueError(f'单位 {quantity["unit"]!r} 与 currency {quantity["currency"]!r} 的币种不一致')
+    return {**quantity, 'unit': unit, 'currency': quantity.get('currency') or currency}
+
+
 def unit_info(unit):
-    if unit not in UNITS:
-        raise ValueError(f'未知单位 {unit!r}；可用单位：{", ".join(UNITS)}')
-    dimension, scale = UNITS[unit]
+    dimension, scale = UNITS[canonical_unit(unit)[0]]
     return dimension, Decimal(scale)
 
 
@@ -75,13 +131,19 @@ def model_quantity(model, path, source_unit=None):
     else:
         from model_units import quantity_unit
     info = quantity_unit(model, path)
+    if source_unit:
+        source_unit = canonical_unit(source_unit)[0]
     if source_unit and info and source_unit != info['unit']:
-        raise ValueError(f'{path} 已有单位 {info["unit"]}，不能改写为 {source_unit}')
+        dimension, scale = unit_info(info['unit'])
+        # The model's own unit restated at its scale (百万元 for amount_scale 1000000) changes nothing; anything else would relabel the value.
+        if unit_info(source_unit) != (dimension, scale * Decimal(str(info.get('scale', '1')))):
+            raise ValueError(f'{path} 已有单位 {info["unit"]}，不能改写为 {source_unit}')
     if info is None:
         if source_unit is None:
             raise ValueError(f'{path} 尚无单位元数据；提供明确 source_unit 或用 Python 定义派生量')
         info = {'unit': source_unit, 'scale': '1'}
-    value = at_path(model['result'], path)
+    # "spec.…" reads a saved input (e.g. spec.discount.wacc); every other path reads the result.
+    value = at_path(model['spec'], path[5:]) if path.startswith('spec.') else at_path(model['result'], path)
     if value is not None:
         with localcontext() as ctx:
             ctx.prec = 50
@@ -99,6 +161,14 @@ def compile_report(report, records=(), models=None):
         if not re.fullmatch(r'[\w-]+', name):
             raise ValueError('表名用于文件名，请使用中文、字母、数字、下划线或连字符')
         columns = table['columns']
+        for key, col in columns.items():
+            if 'unit' not in col:
+                continue
+            col['unit'], named = canonical_unit(col['unit'])
+            if named and col.get('currency') and col['currency'] != named:
+                raise ValueError(f'{name}.{key} 的单位与 currency 写了不同币种')
+            if named:
+                col['currency'] = named
         values, evidence = [], []
         for row_index, row in enumerate(table['rows']):
             displayed, sources = {}, {}
@@ -118,7 +188,7 @@ def compile_report(report, records=(), models=None):
                 elif 'model' in ref:
                     quantity = model_quantity((models or {})[ref['model']], ref['path'], ref.get('source_unit'))
                 else:
-                    quantity = ref
+                    quantity = stated_quantity(ref)
                 dimension, _ = unit_info(col['unit'])
                 if dimension in {'money', 'per_share'}:
                     currency = quantity.get('currency') or col.get('currency')
@@ -132,15 +202,45 @@ def compile_report(report, records=(), models=None):
             values.append(displayed)
             evidence.append(sources)
         table['rows'], table['evidence'] = values, evidence
-    def replacement(match):
+    body, parts, position = compiled.get('body', ''), [], 0
+    for match in re.finditer(r'\{\{\s*([^{}]+?)\s*\}\}', body):
         token = match.group(1).split('.')
         if len(token) != 3:
             raise ValueError('数字占位符使用 {{表名.行号.列名}}，行号从 0 开始')
         name, row, key = token
         table = compiled['tables'][name]
-        return format_cell(table['rows'][int(row)][key], table['columns'][key], with_unit=True)
-    compiled['body'] = re.sub(r'\{\{\s*([^{}]+?)\s*\}\}', replacement, compiled.get('body', ''))
+        column, value = table['columns'][key], table['rows'][int(row)][key]
+        parts += [body[position:match.start()], format_cell(value, column, with_unit=True)]
+        position = match.end()
+        if value is not None and 'unit' in column:
+            # The placeholder already prints the unit. "{{t.0.wacc}}%" must not become "12.20 %%".
+            following = body[position:]
+            text = following.lstrip(' \t')
+            for repeated in unit_spellings(column):
+                if text.startswith(repeated):
+                    position += len(following) - len(text) + len(repeated)
+                    break
+    compiled['body'] = ''.join(parts) + body[position:]
     return compiled
+
+
+def unit_spellings(column):
+    """How the unit of a column may be typed straight after its placeholder, longest first."""
+    unit, currency = column['unit'], column.get('currency')
+    forms = [unit]
+    if unit in ('%', '个百分点'):
+        # Only these have other spellings that cannot be an ordinary word: "比例" or "日" right after a number may start the next phrase.
+        forms += [spelling for spelling, canonical in SPELLINGS.items() if canonical == unit and not spelling.isascii()]
+    if unit == '%':
+        forms.append('％')
+    if currency:
+        words = [currency] + [word for word, code in CURRENCIES.items() if code == currency and not word.isascii()]
+        forms += [word + gap + unit for word in words for gap in ('', ' ')]
+        if unit == '元/股':
+            forms += [word + '/股' for word in words]
+        elif unit.endswith('元'):
+            forms += [unit[:-1] + word for word in words if not word.isascii()]
+    return sorted(set(forms), key=len, reverse=True)
 
 
 def column_label(column):
@@ -202,18 +302,44 @@ def render_chart(table, chart):
     return fig, ax
 
 
+def write_csv(path, table):
+    """Exact converted values under headers that state unit and currency."""
+    columns = table['columns']
+    headers = [column_label(col) or key for key, col in columns.items()]
+    with Path(path).open('w', encoding='utf-8-sig', newline='') as f:
+        writer = csv.writer(f); writer.writerow(headers)
+        writer.writerows(['' if row[k] is None else row[k] for k in columns] for row in table['rows'])
+    return headers
+
+
+def save_table(name, columns, rows, title=None, input_dir='/input', output_dir='/output'):
+    """Write <name>.csv from a custom script through the same unit conversion as a report.
+
+    Cells are {fact_id}/{record_id}, {model, path}, or {value, unit, currency}; each column names its
+    display unit. Returns the compiled table (converted rows, canonical units) for plotting.
+    """
+    root = Path(input_dir)
+    records = [r for filename in ('facts.json', 'research_records.json') if (root / filename).exists()
+               for r in json.loads((root / filename).read_text(encoding='utf-8'))]
+    models = json.loads((root / 'models.json').read_text(encoding='utf-8')) if (root / 'models.json').exists() else {}
+    table = {'columns': columns, 'rows': rows, **({'title': title} if title else {})}
+    compiled = compile_report({'tables': {name: table}}, records, models)['tables'][name]
+    output = Path(output_dir); output.mkdir(parents=True, exist_ok=True)
+    write_csv(output / (name + '.csv'), compiled)
+    return compiled
+
+
 def render_report(compiled, output_dir):
     output = Path(output_dir); output.mkdir(parents=True, exist_ok=True)
     markdown = ['# ' + compiled.get('title', '分析报告'), compiled.get('body', '')]
     for name, table in compiled['tables'].items():
         columns, rows = table['columns'], table['rows']
-        headers = [column_label(col) or key for key, col in columns.items()]
-        with (output / (name + '.csv')).open('w', encoding='utf-8-sig', newline='') as f:
-            writer = csv.writer(f); writer.writerow(headers)
-            writer.writerows(['' if row[k] is None else row[k] for k in columns] for row in rows)
+        headers = write_csv(output / (name + '.csv'), table)
         escape = lambda s: str(s).replace('|', '\\|').replace('\n', ' ')
-        markdown += ['## ' + table.get('title', name), '| ' + ' | '.join(map(escape, headers)) + ' |', '| ' + ' | '.join('---' for _ in headers) + ' |']
-        markdown += ['| ' + ' | '.join(escape(format_cell(row[k], col)) for k, col in columns.items()) + ' |' for row in rows]
+        # A Markdown table is one block: a blank line between rows ends the table.
+        lines = ['| ' + ' | '.join(map(escape, headers)) + ' |', '| ' + ' | '.join('---' for _ in headers) + ' |']
+        lines += ['| ' + ' | '.join(escape(format_cell(row[k], col)) for k, col in columns.items()) + ' |' for row in rows]
+        markdown += ['## ' + table.get('title', name), '\n'.join(lines)]
     charts = []
     for i, chart in enumerate(compiled.get('charts', []), 1):
         fig, _ = render_chart(compiled['tables'][chart['table']], {**chart, 'theme': chart.get('theme', compiled.get('theme', 'analysis'))})

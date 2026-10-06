@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type DragEvent, type KeyboardEvent } from 'react';
 import { PanelLeft, SquarePen, FolderOpen, Settings2, Plus, ArrowUp, ChevronDown, X, FileText, ChartNoAxesCombined, Table2, Check, Download, LoaderCircle, CircleAlert, MessageSquare, Upload } from 'lucide-react';
 import { api, errorText, isAbort, listResult } from './api';
+import { affectsDocuments, coalesce } from './document-refresh';
 import { emptySettings, type Project, type Conversation, type Message, type Document, type Settings, type Source, type ToolEvent, type Health } from './types';
 import MessageView, { FileChip, ToolTrace } from './MessageView';
 import SettingsDialog from './SettingsDialog';
@@ -96,6 +97,10 @@ export default function App() {
       setPendingDocuments(previous => previous.map(doc => docs.find(item => item.id === doc.id) || doc));
     } catch (error) { setError(errorText(error)); }
   }, []);
+  // Tool events arrive in bursts while a document is processed; one list refresh covers each burst.
+  const latestRefresh = useRef(refreshDocuments);
+  latestRefresh.current = refreshDocuments;
+  const refreshDocumentsSoon = useRef(coalesce((id: string | undefined) => void latestRefresh.current(id), 800));
   const refreshConversations = useCallback(async (id = projectRef.current) => {
     if (!id) return;
     const request = (listRequests.current[id] || 0) + 1;
@@ -169,7 +174,7 @@ export default function App() {
     const input = inputRef.current;
     if (input) { input.style.height = 'auto'; input.style.height = `${Math.min(input.scrollHeight, 180)}px`; }
   }, [draft]);
-  useEffect(() => () => { streamsRef.current.forEach(stream => stream.close()); streamsRef.current.clear(); clearTimeout(toastTimer.current); }, []);
+  useEffect(() => () => { streamsRef.current.forEach(stream => stream.close()); streamsRef.current.clear(); clearTimeout(toastTimer.current); refreshDocumentsSoon.current.cancel(); }, []);
 
   function newChat() {
     if (projectRef.current) setExpandedProjects(previous => ({ ...previous, [projectRef.current]: true }));
@@ -227,7 +232,7 @@ export default function App() {
       liveMessages.current.set(next.id, live);
       if (conversationRef.current === next.conversationId) setMessages(previous => previous.some(message=>message.id===live.id)?previous.map(message=>message.id===live.id?live:message):[...previous,live]);
     });
-    stream.addEventListener('tool', event => { const value = parse(event) as ToolEvent | undefined; if (!value) return; const tools = runsRef.current[next.conversationId]?.tools || []; update({ tools: [...tools.filter(tool => value.status !== 'progress' || tool.name !== value.name || tool.status !== 'progress').slice(-99), value], stage: value.status === 'progress' ? value.summary || 'tool' : 'tool' }); void refreshDocuments(next.projectId); });
+    stream.addEventListener('tool', event => { const value = parse(event) as ToolEvent | undefined; if (!value) return; const tools = runsRef.current[next.conversationId]?.tools || []; update({ tools: [...tools.filter(tool => value.status !== 'progress' || tool.name !== value.name || tool.status !== 'progress').slice(-99), value], stage: value.status === 'progress' ? value.summary || 'tool' : 'tool' }); if (affectsDocuments(value)) refreshDocumentsSoon.current(next.projectId); });
     stream.addEventListener('message', event => {
       const value = parse(event); const message = value?.message as Message | undefined;
       if (!message || conversationRef.current !== next.conversationId) return;

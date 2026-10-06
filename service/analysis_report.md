@@ -27,8 +27,22 @@
 
 保存模型的数值可写 `{model:"base",path:"tables.forecast.0.revenue"}` 或 `{model:"base",path:"results.value_per_share"}`；base 是 model_refs 挂载别名。已知计算字段的金额倍率、每股值、比例从原模型确定，不重算模型。特殊字段无单位元数据时须提供 source_unit；已有单位不能用此参数改写。
 
+保存模型的输入参数同样可引用：`{model:"base",path:"spec.discount.wacc"}`、`{model:"base",path:"spec.terminal.growth"}`。模型里的比率是小数（0.122），放进 unit 为 `%` 的列会换算成 12.2；不要把小数直接标成 %。自动交付的 `<别名>_inputs.csv` 带 unit 列，`<别名>_units.csv` 列出各结果表每一列的单位。
+
 复杂计算依然写 Python。在脚本末尾把上述对象写入 `/output/analysis_report.json`；执行结束后自动交付。或者 `from analysis_report import compile_report, render_chart, render_report`，以 `compile_report(report, records, models)` 返回的 `tables[name]['rows']` 为唯一展示数据，自由编排自定义图形；`render_chart` 返回可编辑的 fig、ax。不要为 CSV 和图分别手写缩放。
 
-支持金额元/千元/万元/百万元/亿元/十亿元及 units/thousand/million/billion（币种独立）；股/万股/百万股/亿股；ratio 与 %；个百分点；元/股；倍；个；天。美元等币种也可使用 million/billion 和 currency/share。不做隐含换汇，百分比与百分点不能互换，金额不能当每股值。
+脚本自己要导出一张 CSV 时用 `save_table`，不要用 `to_csv` 手写表头单位：
 
-`body` 的 `{{表名.从0开始的行号.列名}}` 从同一数据生成数字和单位。金融解释、假设和图形由你决定；不得把假设写成披露事实。数字表的来源详情随 chart_data.json 保留。图像自动生成支持 line/bar，复杂瀑布图、热力图等仍可用 Python；两种图都保留缺失值。
+```python
+from analysis_report import save_table, render_chart
+table = save_table('净利润预测', {'year': {'label': '年度'}, 'profit': {'label': '归母净利润', 'unit': '亿元'}},
+                   [{'year': '2025E', 'profit': {'record_id': '记录ID'}},
+                    {'year': '2026E', 'profit': {'value': derived, 'unit': '百万元', 'currency': 'CNY'}}])
+fig, ax = render_chart(table, {'x': 'year', 'y': ['profit'], 'kind': 'bar'})
+```
+
+它写出 `/output/净利润预测.csv`，表头带币种和单位，数值按每个单元格自己的单位换算；返回的 `table['rows']` 与 CSV 完全一致，可直接作图。派生数字写成 `{value, unit, currency}`，说明它当前是什么单位。
+
+支持金额元/千元/万元/百万元/亿元/十亿元及 units/thousand/million/billion（币种独立）；股/万股/百万股/亿股；ratio 与 %；个百分点；元/股；倍；个；天。美元等币种也可使用 million/billion 和 currency/share。常见写法会自动归一：`人民币百万元`、`RMB million`、`亿港元` 等同于对应单位加币种，`人民币/股`、`港元/股` 即每股金额，`百分点`、`pp` 即个百分点，`百分比` 即 %。金额须带“元”或币种（单写“百万”可能是股数，不接受）。不做隐含换汇，百分比与百分点不能互换，金额不能当每股值。
+
+`body` 的 `{{表名.从0开始的行号.列名}}` 从同一数据生成数字和单位，占位符后面不用再写单位。金融解释、假设和图形由你决定；不得把假设写成披露事实。数字表的来源详情随 chart_data.json 保留。图像自动生成支持 line/bar，复杂瀑布图、热力图等仍可用 Python；两种图都保留缺失值。

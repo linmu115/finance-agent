@@ -9,7 +9,7 @@ run_financial_model 的 spec 数值字段直接写 {fact_id:ID} 或 {record_id:I
 
 研报建模通过 query_research_records 查询已有预测，query多个关键词按任一词匹配，并支持FCFF/FCFE/D&A/CAPEX/NWC缩写。metric可传目录里的多个精确ID。关键词未命中不表示原文没有数据；用目录中的预测附表和原始页表定位所缺输入。需要假设的经济解释仍由模型判断，不用重新清洗或通读整篇。
 
-run_financial_model/compare_financial_models返回analysis.model_refs；原样传给run_analysis。脚本读取models.json指定版本的result.tables绘图、解释即可。底稿CSV、原始输入、完整原计算器和recompute_models.py由model_bundle.zip自动交付，满足完整复算脚本要求，不再另写第二套DCF或CSV计算。用finance_charts.comparison_heatmaps直接绘制保存的敏感性表；金额用plot_amounts同步数值和轴单位。修改图表用source_run_id与小段edits，无需重新编写整份脚本。
+run_financial_model 保存即交付：带单位的输入表、各结果表、列单位表和 model_bundle.zip（原始输入、完整原计算器和recompute_models.py）已作为下载附在本次回答，满足完整复算脚本要求，不再另写第二套DCF或CSV计算，也不为导出再调用run_analysis。需要图表或报告时，把run_financial_model/compare_financial_models返回的analysis.model_refs原样传给run_analysis，脚本读取models.json指定版本的result.tables绘图、解释即可。用finance_charts.comparison_heatmaps直接绘制保存的敏感性表；金额用plot_amounts同步数值和轴单位。修改图表用source_run_id与小段edits，无需重新编写整份脚本。
 
 利润到经营现金流的解释可使用 financial_quality.periods[].cashflow_bridge：同口径利润作起点，非现金、经营营运资本和税项按有符号金额调节，融资/投资项目不计入；结果直接给出未解释差額，不能用董事贷款等融资项目充当营运资本。程序能确定的检查不新增 LLM 复核轮次。
 

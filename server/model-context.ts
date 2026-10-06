@@ -54,14 +54,16 @@ export function modelContext(name:string,envelope:Envelope):Envelope {
   return {...envelope,data:{...data,items},...(envelope.source_refs?{source_refs:citationIndex(items||[],envelope.source_refs)}:{})};
  }
  if(name==='run_financial_model'||name==='save_research_report'){
-  const {spec,content,source_validation,...saved}=data;
+  const {spec,content,source_validation,delivery,...saved}=data;
   if(!saved.id||!saved.revision_id)return envelope;
+  // The model needs the names of what the user already received, not the download addresses.
+  const delivered=delivery?.files?{delivered_to_user:delivery.files.map((file:any)=>file.name)}:delivery;
   // A successful write returns its computed result and immutable version.
   // Inputs already appear in the paired tool call and remain readable in full.
   const result=saved.result?{...saved.result}:undefined;
   if(result)delete result.input_assumptions;
   const input_bindings=saved.input_bindings?.map((x:any)=>fields(x,['path','record_id','record_type','value','source_value','scale','period','scope','currency','quality','data_kind','document_id']));
-  return {...envelope,data:{...saved,...(result?{result}:{}),...(input_bindings?{input_bindings}:{}),...(source_validation?{source_validation}:{}),saved_input:{spec_saved:spec!==undefined||saved.saved_input?.spec_saved===true,content_saved:content!==undefined||saved.saved_input?.content_saved===true,read_tool:'read_research_artifact',artifact_id:saved.id,revision_id:saved.revision_id},...(spec?{analysis:{tool:'run_analysis',model_refs:{model:{artifact_id:saved.id,revision_id:saved.revision_id}},read:"json.load(open('/input/models.json'))['model']['result']",delivery:'Exact input/result CSVs and model_bundle.zip (full calculator + inputs) exported automatically. Write only charts/report using saved tables; no need to reimplement the model.'}}:{}),projection:'返回计算结果及保存版本；不重复刚提交的完整输入，按版本可读全部参数、来源和底稿。'}};
+  return {...envelope,data:{...saved,...(result?{result}:{}),...(input_bindings?{input_bindings}:{}),...(source_validation?{source_validation}:{}),...(delivered?{delivery:delivered}:{}),saved_input:{spec_saved:spec!==undefined||saved.saved_input?.spec_saved===true,content_saved:content!==undefined||saved.saved_input?.content_saved===true,read_tool:'read_research_artifact',artifact_id:saved.id,revision_id:saved.revision_id},...(spec?{analysis:{tool:'run_analysis',model_refs:{model:{artifact_id:saved.id,revision_id:saved.revision_id}},read:"json.load(open('/input/models.json'))['model']['result']",delivery:delivery?.files?'This call already delivered the input table with units, the result tables, any differences from the updated version and the calculator bundle to the user (delivery.delivered_to_user). Use run_analysis only to draw charts or write a report from the saved tables; do not recompute, compare or re-export the model.':'Exact input/result CSVs and model_bundle.zip (full calculator + inputs) exported automatically. Write only charts/report using saved tables; no need to reimplement the model.'}}:{}),projection:'返回计算结果及保存版本；不重复刚提交的完整输入，按版本可读全部参数、来源和底稿。'}};
  }
  return envelope;
 }

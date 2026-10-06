@@ -92,21 +92,37 @@ def configure(name="analysis"):
     return colors
 
 
+def money_unit(display_unit, currency=None):
+    """Canonical amount unit for any accepted spelling ('人民币亿元', 'RMB million', '亿元').
+
+    A currency named in the unit must be the currency of the data: units are rescaled, never exchanged.
+    """
+    if __package__:from .analysis_report import canonical_unit,unit_info
+    else:from analysis_report import canonical_unit,unit_info
+    unit,named=canonical_unit(display_unit)
+    if unit_info(unit)[0]!='money':raise ValueError(f'{display_unit!r} 不是金额单位')
+    if named and currency and named!=currency:raise ValueError(f'数据币种为 {currency}，展示单位写的是 {named}；不做隐含换汇')
+    return unit,named or currency
+
+
 def amount_values(values, amount_scale, display_unit="亿元"):
     """Convert model amounts and return the matching axis unit together."""
     from decimal import Decimal
-    units={"元":1,"千元":1000,"万元":10000,"百万元":1000000,"亿元":100000000,"十亿元":1000000000,"千亿元":100000000000}
-    scale=Decimal(str(amount_scale))/Decimal(units[display_unit])
-    return [None if value is None else float(Decimal(str(value))*scale) for value in values],display_unit
+    if __package__:from .analysis_report import unit_info
+    else:from analysis_report import unit_info
+    unit,_=money_unit(display_unit)
+    scale=Decimal(str(amount_scale))/unit_info(unit)[1]
+    return [None if value is None else float(Decimal(str(value))*scale) for value in values],unit
 
 
-def plot_amounts(ax, x, values, *, amount_scale, display_unit="亿元", currency="CNY", kind="plot", **style):
+def plot_amounts(ax, x, values, *, amount_scale, display_unit="亿元", currency=None, kind="plot", **style):
     """Plot original amounts and set the matching axis label in one operation.
 
     Database normalized money uses amount_scale=1; a source table uses its
     declared scale; saved model results use model['spec']['amount_scale'].
     The caller controls layout, line styles and all ordinary Matplotlib options.
     """
+    currency=money_unit(display_unit,currency)[1] or "CNY"
     plotted,unit=amount_values(values,amount_scale,display_unit)
     artists=getattr(ax,kind)(x,plotted,**style)
     if kind=="barh":ax.set_xlabel(currency+" "+unit)
@@ -124,7 +140,9 @@ def record_values(records, display_unit="亿元"):
     if len(currencies)!=1:raise ValueError('Plot series requires one currency/unit')
     currency=next(iter(currencies))
     monetary=currency in {'CNY','HKD','USD','EUR','GBP','JPY'}
-    if monetary:values,unit=amount_values([r['value'] for r in records],1,display_unit)
+    if monetary:
+        money_unit(display_unit,currency)
+        values,unit=amount_values([r['value'] for r in records],1,display_unit)
     elif currency in {'percent','percentage_points','multiple','shares','count'}:
         values=[None if r['value'] is None else float(r['value']) for r in records]
         unit={'percent':'%','percentage_points':'个百分点','multiple':'倍','shares':'股','count':'个'}[currency]
@@ -136,6 +154,7 @@ def record_values(records, display_unit="亿元"):
 
 def model_values(model, values, display_unit="亿元"):
     """Amounts from a saved model carry that model's declared amount_scale."""
+    money_unit(display_unit,model['spec']['currency'])
     plotted,unit=amount_values(values,model['spec']['amount_scale'],display_unit)
     return plotted,model['spec']['currency']+' '+unit
 

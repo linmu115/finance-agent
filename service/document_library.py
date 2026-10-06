@@ -3,6 +3,7 @@ import json
 import shutil
 from pathlib import Path
 from .store import dumps, utcnow
+from .snapshots import remove_unreferenced
 
 
 DOCUMENT_TABLES = ('pages', 'source_tables', 'facts', 'fact_history', 'chunks', 'jobs',
@@ -88,6 +89,8 @@ def remove_document(service, project_id, document_id):
             raise ValueError('document_cleanup_path_outside_data')
         if target.is_dir(): shutil.rmtree(target)
         elif target.is_file(): target.unlink()
+    # Run folders held the last links to this document's input snapshots.
+    remove_unreferenced(store.root / 'exports', project_id)
     service._write_navigation(project_id)
     return {'document_id': document_id, 'name': doc['original_name'], 'removed': removed,
             'removed_analysis_runs': sorted(run_ids)}

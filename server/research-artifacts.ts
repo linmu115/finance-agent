@@ -1,8 +1,8 @@
-import { mkdir, readFile, writeFile, readdir } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, readdir, realpath } from 'node:fs/promises';
 import { createHash, randomUUID } from 'node:crypto';
 import path from 'node:path';
 import { z } from 'zod';
-import { DATA } from './config.js';
+import { DATA, redactError } from './config.js';
 import { researchStore, type ResearchStore } from './research.js';
 import type { FinanceService } from './mcp.js';
 import { publishFile } from './immutable-files.js';
@@ -24,8 +24,9 @@ const MODEL_KINDS=['dcf','comparables','manufacturing_scenario','financial_quali
 const common=z.object({title:z.string().trim().min(1).max(200),dependencies:z.array(dependencySchema).max(100).default([]),artifact_id:idSchema.optional(),parent_revision_id:idSchema.optional()});
 const modelPath=z.string().regex(/^[A-Za-z0-9_]+(?:\.[A-Za-z0-9_]+)*$/);
 const binding=z.object({fact_id:idSchema.optional(),record_id:idSchema.optional(),scale:z.string().min(1).optional()}).refine(v=>!!v.fact_id!==!!v.record_id,{message:'绑定使用fact_id或record_id，二选一'});
-const modelInput=common.extend({kind:z.enum(MODEL_KINDS),spec:z.record(z.string(),z.any()).optional(),source_model:sourceModelSchema.optional(),overrides:z.record(modelPath,z.any()).optional(),bindings:z.record(modelPath,binding).optional()}).superRefine((v,ctx)=>{
+const modelInput=common.extend({kind:z.enum(MODEL_KINDS),spec:z.record(z.string(),z.any()).optional(),source_model:sourceModelSchema.optional(),overrides:z.record(modelPath,z.any()).optional(),bindings:z.record(modelPath,binding).optional(),order:z.array(modelPath).max(200).optional()}).superRefine((v,ctx)=>{
  if((v.spec===undefined)===(v.source_model===undefined))ctx.addIssue({code:'custom',message:'spec与source_model必须且只能提供一项'});
+ if(v.order&&!v.source_model)ctx.addIssue({code:'custom',message:'order用于更新已保存模型，须同时提供source_model'});
 });
 function setModelInput(spec:any,p:string,value:any){
  const parts=modelPath.parse(p).split('.');if(parts.some(x=>['__proto__','prototype','constructor'].includes(x)))throw new Error('不允许的输入路径');
@@ -178,7 +179,7 @@ export class ResearchWorkspace {
  async get(project:string,id:string,revision?:string){return this.status(project,await this.artifacts.get(project,id,revision));}
  async model(project:string,input:unknown,runId?:string){
   const v=modelInput.parse(input),refs:Dependency[]=[],context=evidenceContext();
-  let spec=v.spec?structuredClone(v.spec):undefined,sourceModel:ImportedModel|undefined,sourceValidation:SourceValidation|undefined,inputBindings:any[]=[];
+  let spec=v.spec?structuredClone(v.spec):undefined,sourceModel:ImportedModel|undefined,sourceValidation:SourceValidation|undefined,inputBindings:any[]=[],previous:ResearchArtifact|undefined;
   if(v.source_model){
    const selected=await this.artifacts.get(project,v.source_model.artifact_id,v.source_model.revision_id);
    const importedScenario=selected.kind==='manufacturing_scenario'&&v.kind==='dcf'&&v.source_model.variant;
@@ -188,6 +189,8 @@ export class ResearchWorkspace {
    const candidate=importedScenario?selected.result?.results?.[v.source_model.variant+'_dcf_spec']:selected.spec;
    if(!candidate||typeof candidate!=='object'||Array.isArray(candidate))throw new Error('所选模型版本没有可复用输入');
    spec=structuredClone(candidate);
+   // A same-type source is the version this call updates; its differences are reported and delivered with the result.
+   if(!importedScenario)previous=selected;
    inputBindings=importedScenario?[]:structuredClone(selected.input_bindings||[]);
    sourceModel={artifact_id:selected.id,revision_id:selected.revision_id,variant:v.source_model.variant,spec_sha256:hash(spec)};
    if(v.artifact_id!==selected.id)context.fixed.push({kind:'artifact',id:selected.id,version:selected.revision_id});
@@ -221,9 +224,28 @@ export class ResearchWorkspace {
   if(!sourceModel)sourceValidation=validationRecord('checked',{references:context.checks});
   else if(context.checks.length)sourceValidation={...sourceValidation!,references:context.checks};
   const dependencies=await this.dependencies(project,[...v.dependencies,...refs],v.artifact_id,context.fixed);
+  if(v.order&&!previous)throw new Error('order仅用于以同类型source_model更新模型');
+  // Checked before saving: an order that does not match the actual changes must not leave a new version behind.
+  if(v.order)await this.service.call('compare_research_models',{project_id:project,kind:v.kind,baseline:previous!.spec,scenario:spec,order:v.order});
   const result=(await this.service.call('evaluate_research_model',{project_id:project,kind:v.kind,spec})).data;
   const record=await this.artifacts.save(project,{kind:v.kind,title:v.title,spec,result,dependencies,parent_revision_id:v.parent_revision_id,run_id:runId,source_validation:sourceValidation,...(inputBindings.length?{input_bindings:inputBindings}:{}),...(sourceModel?{source_model:sourceModel}:{})},v.artifact_id);
-  return this.status(project,record);
+  // A complete spec saved onto an existing model is an update too: its differences are taken from the version it replaces.
+  if(!previous&&!sourceModel&&record.parent_revision_id){const parent=await this.artifacts.get(project,record.id,record.parent_revision_id);if(parent.kind===record.kind&&parent.spec)previous=parent;}
+  return {...await this.status(project,record),...await this.deliver(project,record,previous,v.order)};
+ }
+ // A saved model version is delivered by the same call: its input table with units, result tables, the
+ // differences from the version it updates, and the bundle with the original calculator. The trusted
+ // host calculator writes them, so no sandbox run or export script is needed afterwards.
+ private async deliver(project:string,record:ResearchArtifact,previous?:ResearchArtifact,order?:string[]){
+  const model_refs:Record<string,{artifact_id:string;revision_id:string}>={saved:{artifact_id:record.id,revision_id:record.revision_id}},comparisons:Record<string,unknown>={};
+  if(previous){model_refs.previous={artifact_id:previous.id,revision_id:previous.revision_id};comparisons.update={baseline:'previous',scenario:'saved',...(order?{order}:{})};}
+  let published:any;
+  // The version itself is already saved and stays usable; a failed export is reported as such, not as a failed model.
+  try{published=(await this.service.call('deliver_research_models',{project_id:project,model_refs,comparisons})).data;}
+  catch(error){return {delivery:{error:redactError(error)}};}
+  const label=record.title.replace(/[\\/:*?"<>|\x00-\x1f]/g,'_').trim().slice(0,60)||'model';
+  const files=published.attachments.map((name:string)=>({name:label+'_'+name.replace(/^saved_/,''),url:'/api/projects/'+project+'/research/deliveries/'+published.delivery_id+'/'+encodeURIComponent(name)}));
+  return {delivery:{id:published.delivery_id,files},...(previous?{changes:{from:model_refs.previous,...published.results.update}}:{})};
  }
  async compare(project:string,input:any){
   const reference=z.object({artifact_id:idSchema,revision_id:idSchema.optional()}).strict();
@@ -252,6 +274,22 @@ export class ResearchWorkspace {
   const record=await this.artifacts.save(project,{kind:v.kind,title:v.title,content,dependencies,parent_revision_id:v.parent_revision_id,run_id:runId,source_validation:validationRecord('checked',{references:context.checks})},v.artifact_id);return this.status(project,record);
  }
 }
+/** A published delivery file, checked against its manifest: listed name, inside the delivery folder, unchanged bytes. The checked bytes are the ones returned. */
+export async function deliveryFile(project:string,deliveryId:string,name:string){
+ if(!/^[a-f0-9]{32}$/.test(deliveryId))throw Object.assign(new Error('交付不存在'),{status:404});
+ const folder=path.join(DATA,'research',idSchema.parse(project),'deliveries',deliveryId);
+ let manifest:any;
+ try{manifest=JSON.parse(await readFile(path.join(folder,'delivery.json'),'utf8'));}
+ catch(error){if((error as NodeJS.ErrnoException).code==='ENOENT')throw Object.assign(new Error('交付不存在'),{status:404});throw error;}
+ const listed=manifest.files.find((file:any)=>file.name===name);
+ if(!listed)throw Object.assign(new Error('交付中没有此文件'),{status:404});
+ const actual=await realpath(path.join(folder,listed.name));
+ if(path.dirname(actual)!==await realpath(folder))throw new Error('文件路径越界');
+ const bytes=await readFile(actual);
+ if(bytes.length!==listed.size||hash256(bytes)!==listed.sha256)throw new Error('交付文件与清单不一致');
+ return {name:listed.name as string,bytes};
+}
+const hash256=(bytes:Buffer)=>createHash('sha256').update(bytes).digest('hex');
 export function artifactCsv(artifact:ResearchArtifact,table:string){
  const rows=artifact.result?.tables?.[table];if(!Array.isArray(rows))throw new Error('请选择有效结果表');
  const columns=[...new Set(rows.flatMap((r:any)=>Object.keys(r)))];const cell=(v:any)=>'"'+String(typeof v==='object'&&v!==null?JSON.stringify(v):v??'').replace(/"/g,'""')+'"';
@@ -271,7 +309,7 @@ const commonProps={title:str,dependencies:{type:'array',items:{type:'object',pro
 const modelRef={type:'object',additionalProperties:false,properties:{artifact_id:str,revision_id:str,variant:{enum:['baseline','scenario']}},required:['artifact_id']};
 const savedModelRef={...modelRef,properties:{artifact_id:str,revision_id:str}};
 export const ARTIFACT_TOOLS=[
- {name:'run_financial_model',description:'计算并保存金融模型，返回版本和可直接传给run_analysis的model_refs；导出和制图复用计算结果，无需重写DCF代码。新模型提供spec，数值位置直接用{fact_id:"查询得到的ID"}或{record_id:"研报记录ID"}，例如base:{revenue:{fact_id:"f1"}}；无须抄数值或另填bindings。也兼容bindings={"base.revenue":{fact_id:"f1"}}；数值、单位换算、实际/预测身份和单元格来源由程序带入。金额默认按spec.amount_scale、股数按shares.scale、百分数转小数；scale仅在需要显式覆盖时填写。复用已存模型用source_model加overrides={"forecast.0.capex":"新值"}，只改变化参数，不重抄spec；制造业情景导入DCF才需variant。同一artifact_id更新时保存新版本。输入格式可查get_research_model_schema。',inputSchema:{type:'object',properties:{...commonProps,kind:{enum:MODEL_KINDS},spec:obj,source_model:modelRef,overrides:obj,bindings:{type:'object',additionalProperties:{type:'object',properties:{fact_id:str,record_id:str,scale:str},oneOf:[{required:['fact_id'],not:{required:['record_id']}},{required:['record_id'],not:{required:['fact_id']}}]}}},required:['title','kind'],oneOf:[{required:['spec'],not:{required:['source_model']}},{required:['source_model'],not:{required:['spec']}}]}},
+ {name:'run_financial_model',description:'计算并保存金融模型，返回版本和可直接传给run_analysis的model_refs；导出和制图复用计算结果，无需重写DCF代码。新模型提供spec，数值位置直接用{fact_id:"查询得到的ID"}或{record_id:"研报记录ID"}，例如base:{revenue:{fact_id:"f1"}}；无须抄数值或另填bindings。也兼容bindings={"base.revenue":{fact_id:"f1"}}；数值、单位换算、实际/预测身份和单元格来源由程序带入。金额默认按spec.amount_scale、股数按shares.scale、百分数转小数；scale仅在需要显式覆盖时填写。复用已存模型用source_model加overrides={"forecast.0.capex":"新值"}，只改变化参数，不重抄spec；制造业情景导入DCF才需variant。同一artifact_id更新时保存新版本。每次保存即完成交付：带单位的输入表、各结果表、列单位表和含原计算器的模型包已作为附件给到用户（返回的delivery.files）；更新时同时返回并交付与原版本的输入变化、结果差异（changes），DCF加order=[全部变化路径的替换顺序]即含逐项贡献。无需再写计算、对比或导出脚本，run_analysis只用于画图或成文。输入格式可查get_research_model_schema。',inputSchema:{type:'object',properties:{...commonProps,kind:{enum:MODEL_KINDS},spec:obj,source_model:modelRef,overrides:obj,order:{type:'array',items:str,description:'仅更新DCF时用于贡献分解：列出全部变化输入路径的替换顺序，例如["discount.wacc","terminal.growth"]；交互影响归于后替换项。'},bindings:{type:'object',additionalProperties:{type:'object',properties:{fact_id:str,record_id:str,scale:str},oneOf:[{required:['fact_id'],not:{required:['record_id']}},{required:['record_id'],not:{required:['fact_id']}}]}}},required:['title','kind'],oneOf:[{required:['spec'],not:{required:['source_model']}},{required:['source_model'],not:{required:['spec']}}]}},
  {name:'compare_financial_models',description:'比较两份同类型模型的真实输入变化与数值结果差异。baseline/scenario={artifact_id,revision_id?}；程序读取保存输入，不必手抄。需要DCF贡献分解时，order列出全部变化路径的替换顺序（例如forecast.0.capex_ratio、forecast.0.da_ratio）；交互影响归于后替换项，不冒充唯一经济因果。',inputSchema:{type:'object',properties:{baseline:savedModelRef,scenario:savedModelRef,order:{type:'array',items:str}},required:['baseline','scenario']}},
  {name:'save_research_report',description:'保存产业链/投资备忘录/研报纠错。先get_research_report_schema。事实、推断、假设要区分；纠错必须定位原文并给出替换文本，宿主应用改动。保存后可在研究成果查看。',inputSchema:{type:'object',properties:{...commonProps,kind:{enum:['industry_chain','investment_memo','report_correction']},content:obj},required:['title','kind','content']}},
  {name:'get_research_report_schema',description:'获取研究报告严格结构与字段含义；无模型调用。',inputSchema:{type:'object',properties:{kind:{enum:['industry_chain','investment_memo','report_correction']}},required:['kind']}},

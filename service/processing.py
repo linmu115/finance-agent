@@ -665,6 +665,8 @@ class ProcessingMixin:
         if company:where+=' AND company=?';args.append(company)
         with self.store.connect() as db:
             metrics=[dict(r) for r in db.execute("SELECT metric,COALESCE(json_extract(source_json,'$.normalization.label'),metric) label,COALESCE(json_extract(source_json,'$.normalization.statement'),'notes') statement,count(*) count FROM current_financial_facts WHERE "+where+" GROUP BY metric,label,statement ORDER BY statement,metric",args)]
+            # Every fact is in exactly one group, so the groups already give the total.
+            total_facts=sum(m["count"] for m in metrics)
             for metric in metrics:
                 if metric["label"]==metric["metric"] and metric["metric"] in METRICS:metric["label"]=METRICS[metric["metric"]][0]
             if query:
@@ -674,7 +676,7 @@ class ProcessingMixin:
             total_metrics=len(metrics);offset=max(0,int(offset))
             if limit is not None:limit=max(1,min(int(limit),80));metrics=metrics[offset:offset+limit]
             selected_metrics={m["metric"] for m in metrics}
-            counts={"documents":len(documents),"facts":db.execute("SELECT count(*) FROM current_financial_facts WHERE "+where,args).fetchone()[0]}
+            counts={"documents":len(documents),"facts":total_facts}
             research_sql=" FROM research_records r LEFT JOIN document_profiles p USING(document_id) WHERE r.project_id=? AND r.is_current=1 AND (r.profile_revision IS NULL OR r.profile_revision=p.revision_id)"
             research_args=[project_id]
             if document_id:research_sql+=' AND r.document_id=?';research_args.append(document_id)
@@ -685,7 +687,9 @@ class ProcessingMixin:
             research_total=len(research_metrics)
             if limit is not None:research_metrics=research_metrics[offset:offset+limit]
             counts["pages"]=sum(d["page_count"] or 0 for d in documents);counts["tables"]=sum(d["table_count"] for d in documents)
-            distinct={plural:[r[0] for r in db.execute(f"SELECT DISTINCT {column} FROM current_financial_facts WHERE "+where+f" ORDER BY {column}",args)] for plural,column in [("companies","company"),("periods","period"),("scopes","scope"),("currencies","currency")]}
+            # One pass over the distinct combinations instead of one pass per column. Sorted as SQLite sorts: NULL first, then text.
+            combinations=db.execute("SELECT DISTINCT company,period,scope,currency FROM current_financial_facts WHERE "+where,args).fetchall()
+            distinct={plural:sorted({row[index] for row in combinations},key=lambda value:(value is not None,value)) for index,plural in enumerate(("companies","periods","scopes","currencies"))}
             metric_aliases=[]
             if db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='metric_aliases'").fetchone():
                 for record in db.execute("SELECT source_metric,canonical_metric,canonical_label,review_hash,evidence_json FROM metric_aliases WHERE project_id=? ORDER BY source_metric",(project_id,)):
@@ -694,8 +698,11 @@ class ProcessingMixin:
                     alias["evidence"]=json.loads(alias.pop("evidence_json"));metric_aliases.append(alias)
             distinct["metric_aliases"]=metric_aliases
             dimensions={};dimension_labels={};versions=set()
-            for record in db.execute("SELECT metric,source_json FROM current_financial_facts WHERE "+where,args):
-                if limit is not None and record[0] not in selected_metrics:continue
+            # A metric page describes only its own metrics: read just those facts (facts_lookup), not every fact in the project.
+            named=sorted(m for m in selected_metrics if m is not None)
+            page=(["metric IN ("+",".join("?"*len(named))+")"] if named else [])+(["metric IS NULL"] if None in selected_metrics else [])
+            page_filter="" if limit is None else " AND ("+" OR ".join(page)+")" if page else " AND 0"
+            for record in db.execute("SELECT metric,source_json FROM current_financial_facts WHERE "+where+page_filter,args+([] if limit is None else named)):
                 meta=json.loads(record[1]).get("normalization",{});versions.add(meta.get("restatement","original"))
                 for key,value in meta.get("dimensions",{}).items():dimensions.setdefault(key,set()).add(str(value))
                 for key,label in meta.get("dimension_labels",{}).items():

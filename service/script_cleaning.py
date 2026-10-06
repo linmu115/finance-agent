@@ -12,6 +12,7 @@ import uuid
 from concurrent.futures import TimeoutError as FutureTimeout
 from pathlib import Path
 from .store import dumps, utcnow
+from .snapshots import write_input
 from .semantic import materialize, table_batches, SCHEMA_HASH, VERSION as SEMANTIC_VERSION
 from .research_checks import valuation_warnings
 
@@ -158,7 +159,8 @@ class ScriptCleaningMixin:
         folder=self.store.root/'exports'/project_id/run_id;folder.mkdir(parents=True)
         data={'company':parsed['company'],'company_from_filename':_filename_company(doc,parsed,parsed['company']),
               'document_profile':self._document_profile(project_id,document_id),'report_year':parsed.get('report_year'),'pages':parsed['pages'],'tables':parsed['tables']}
-        source=folder/'cleaning_source.json';source.write_text(dumps(data),encoding='utf-8')
+        # The parsed document is the same for every script run on it: stored once, linked into each run.
+        source=write_input(self.store.root/'exports',project_id,folder/'cleaning_source.json',dumps(data).encode('utf-8'))
         sdk=folder/'cleaning_sdk.py';sdk.write_text(Path(__file__).with_name('cleaning_sdk.py').read_text(encoding='utf-8'),encoding='utf-8')
         program=folder/'cleaning_program.py';program.write_text(code,encoding='utf-8')
         inputs={'cleaning_source.json':source,'cleaning_sdk.py':sdk,'cleaning_program.py':program};dependencies={};referenced_results={}

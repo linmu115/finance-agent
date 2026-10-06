@@ -3,7 +3,8 @@ import {artifactMediaType} from './artifact-media.js';
 import {repairInterruptedTools,operationKey,sideEffectTool} from './session-recovery.js';
 import {configuredModel,modelCatalogRevision,jsonOutputPayload} from './model-runtime.js';
 import { createAgentSession, DefaultResourceLoader, ModelRuntime, SessionManager, SettingsManager } from '@earendil-works/pi-coding-agent';
-import { mkdir,appendFile,readFile,copyFile } from 'node:fs/promises';
+import { mkdir,readFile,copyFile } from 'node:fs/promises';
+import { AuditLog } from './audit-log.js';
 import { createHash,randomUUID } from 'node:crypto';
 import path from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
@@ -46,7 +47,7 @@ const INGESTION_PROMPT='\n资料入库先识别来源类型。process_documents 
 const FINANCE_PROMPT=WORKSPACE_PROMPT+DEFINITION_PROMPT+RESEARCH_PROMPT+FINANCIAL_INTERPRETATION_PROMPT+INGESTION_PROMPT+FINANCE_TASK_GUIDANCE+ANSWER_FORMAT_GUIDANCE;
 export const PROMPT_HASH=createHash('sha256').update(FINANCE_PROMPT).digest('hex');
 interface EventItem { seq:number; type:string; data:any }
-interface LiveRun { usagePhase?:string; scriptProcessingIds?:Set<string>; accepting:boolean; inputQueue:Promise<void>; nativeQueued:Set<string>; resuming?:boolean; restarting?:boolean; run:Run; events:EventItem[]; clients:Set<Response>; controller:AbortController; promise?:Promise<void>; session?:any; auditQueue:Promise<any>; persistQueue:Promise<any>; chat:Conversation; answer:Message; analysisIds:Set<string>; processingIds:Set<string>; extractionRuntime?:Record<string,unknown>; contract?:string; closed:boolean; budget?:EvaluationBudget; detachBudget?:()=>void; modelPending:Set<Promise<unknown>>; researchReads:Map<string,Promise<any>>; route?:TaskRoute; effort?:Effort }
+interface LiveRun { usagePhase?:string; scriptProcessingIds?:Set<string>; accepting:boolean; inputQueue:Promise<void>; nativeQueued:Set<string>; resuming?:boolean; restarting?:boolean; run:Run; events:EventItem[]; clients:Set<Response>; controller:AbortController; promise?:Promise<void>; session?:any; persistQueue:Promise<any>; chat:Conversation; answer:Message; analysisIds:Set<string>; processingIds:Set<string>; extractionRuntime?:Record<string,unknown>; contract?:string; closed:boolean; budget?:EvaluationBudget; detachBudget?:()=>void; modelPending:Set<Promise<unknown>>; researchReads:Map<string,Promise<any>>; route?:TaskRoute; effort?:Effort }
 interface SessionEntry { session:any; runtime:ModelRuntime; model:any; active?:LiveRun; settings:Settings; signature:string }
 const extractionScope=new AsyncLocalStorage<{runId:string;requestId:string;effort:ExtractionEffort}>();
 const EXTRACTION_MAX_TOKENS=32768;
@@ -73,21 +74,33 @@ export class RunManager {
  private knownRuns=new Map<string,string>();
  private sessions=new Map<string,SessionEntry>();
  private bridge=new PiModelBridge();
+ private auditLogs=new Map<string,AuditLog>();
+ private settledUsage=new Map<string,{rows:any[];config:any}>();
  private evaluationBudgets=new EvaluationBudgets();
  private budgetWrites=new Map<string,Promise<unknown>>();
  constructor(private service:FinanceService){}
  indexConversation(id:string,projectId:string){this.conversations.set(id,projectId);}
  activeFor(id:string){return [...this.live.values()].find(l=>l.run.conversationId===id&&!l.closed)?.run.id;}
  activeInProject(id:string){return [...this.live.values()].some(l=>l.run.projectId===id&&!l.closed);}
- private async reconcileUsage(runId:string,messages:Message[]=[]){
+ // The model request and usage rows of a run's audit file, with its pricing config. A finished run's
+ // file no longer changes, so it is read and parsed once instead of on every conversation load.
+ private async usageRows(runId:string){
+  const settled=this.settledUsage.get(runId);if(settled)return settled;
   let audit:string;
   try{audit=await readFile(path.join(DATA,'audit',runId+'.jsonl'),'utf8');}
   catch(error){if((error as NodeJS.ErrnoException).code==='ENOENT')return;throw error;}
   // A crash can leave an unfinished final JSONL line. Earlier complete rows
   // remain the accounting source; the missing settlement stays unknown.
   const lines=audit.split('\n'),rows=lines.flatMap((line,index)=>{if(!line)return [];try{return [JSON.parse(line)];}catch(error){if(index===lines.length-1)return [];throw error;}});
-  if(!rows.some(r=>['model_request','model_usage'].includes(r.type)))return;
-  const config=rows.find(r=>r.type==='run_config')?.data;
+  const usage={rows:rows.filter(r=>r.type==='model_request'||r.type==='model_usage'),config:rows.find(r=>r.type==='run_config')?.data};
+  const live=this.live.get(runId);
+  if(!live||live.closed)this.settledUsage.set(runId,usage);
+  return usage;
+ }
+ private async reconcileUsage(runId:string,messages:Message[]=[]){
+  const usage=await this.usageRows(runId);
+  if(!usage?.rows.length)return;
+  const {rows,config}=usage;
   const answers=messages.filter(m=>m.role==='assistant'&&m.runId===runId);
   for(const answer of answers){
    const ids=new Set(rows.filter(r=>r.data?.messageId===answer.id).map(r=>r.data.requestId).filter(Boolean));
@@ -123,12 +136,12 @@ export class RunManager {
     if(!answer||!original){run.status='failed';run.error='恢复记录缺少原始任务；历史资料保留。';await this.service.putState(projectId,'runs',run.id,run);continue;}
     run.request??={userMessageId:original.id,documentIds:original.attachments||[]};
     run.status='queued';run.stage='恢复会话进度';delete run.error;delete run.finishedAt;answer.status='running';
-    const live:LiveRun={run,chat,answer,resuming:true,accepting:true,inputQueue:Promise.resolve(),nativeQueued:new Set(),events:[],clients:new Set(),controller:new AbortController(),auditQueue:Promise.resolve(),persistQueue:Promise.resolve(),analysisIds:new Set(),processingIds:new Set(),closed:false,modelPending:new Set(),researchReads:new Map(),contract:run.request.contract};
+    const live:LiveRun={run,chat,answer,resuming:true,accepting:true,inputQueue:Promise.resolve(),nativeQueued:new Set(),events:[],clients:new Set(),controller:new AbortController(),persistQueue:Promise.resolve(),analysisIds:new Set(),processingIds:new Set(),closed:false,modelPending:new Set(),researchReads:new Map(),contract:run.request.contract};
     // Preserve SSE sequence IDs across server restarts.
     try{live.events=(await readFile(path.join(DATA,'audit',run.id+'.jsonl'),'utf8')).split('\n').filter(Boolean).flatMap(line=>{try{const row=JSON.parse(line);return row.type==='event'?[row.data]:[];}catch{return [];}});}catch(error){if((error as NodeJS.ErrnoException).code!=='ENOENT')throw error;}
     if(run.request.evaluation){const prior=await this.service.getState<BudgetSnapshot>(projectId,'evaluation_budgets',run.request.evaluation.budget_group_id);live.budget=this.evaluationBudgets.acquire(projectId,run.request.evaluation,prior||undefined);live.detachBudget=live.budget.attach(run.id,live.controller);}
     this.live.set(run.id,live);await this.persist(live);this.emit(live,'status',{stage:run.stage,status:'queued'});
-    live.promise=this.execute(live,getSettings(),run.request.documentIds,run.request.contract);
+    this.launch(live,getSettings(),run.request.documentIds,run.request.contract);
    }
  }
  private promptFor(l:LiveRun,message:Message){
@@ -149,15 +162,25 @@ export class RunManager {
   l.inputQueue=l.inputQueue.then(async()=>{await this.persist(l);await this.queueInputs(l);this.emit(l,'input',{message,mode});});
   await l.inputQueue;return {...l.run,userMessageId:message.id,inputStatus:message.status};
  }
+ private auditLog(runId:string){
+  let log=this.auditLogs.get(runId);
+  if(!log){log=new AuditLog(path.join(DATA,'audit',runId+'.jsonl'));this.auditLogs.set(runId,log);}
+  return log;
+ }
  private audit(l:LiveRun,type:string,data:any) {
   const entry={at:iso(),runId:l.run.id,projectId:l.run.projectId,type,data};
-  l.auditQueue=l.auditQueue.then(()=>appendFile(path.join(DATA,'audit',l.run.id+'.jsonl'),JSON.stringify(entry)+'\n','utf8'));
-  return l.auditQueue;
+  return this.auditLog(l.run.id).append(JSON.stringify(entry)+'\n');
+ }
+ // Releases the run's audit handle. A record that could not be written is reported, never dropped silently.
+ private async closeAudit(l:LiveRun){
+  // The closed log stays registered, so a record arriving after the run ended opens the file only for itself.
+  try{await this.auditLog(l.run.id).close();}
+  catch(error){l.run.auditError=redactError(error);process.stderr.write('[audit] '+l.run.id+' is incomplete: '+l.run.auditError+'\n');}
  }
  private emit(l:LiveRun,type:string,data:any){
   const e:EventItem={seq:l.events.length+1,type,data};l.events.push(e);
   for(const res of l.clients)if(!res.destroyed)res.write('id: '+e.seq+'\nevent: '+type+'\ndata: '+JSON.stringify(data)+'\n\n');
-  void this.audit(l,'event',e).catch(()=>{l.controller.abort(new Error('无法写入审计记录'));});
+  void this.audit(l,'event',e).catch(error=>{l.controller.abort(new Error('无法写入审计记录：'+redactError(error)));});
  }
  async subscribe(id:string,req:Request,res:Response){
   const run=await this.getRun(id),l=this.live.get(id);
@@ -193,12 +216,12 @@ export class RunManager {
   if(chat.title==='新对话')chat.title=(content.trim() || '附件分析').slice(0,28);chat.updatedAt=now;
   run.configHash=createHash('sha256').update(run.configHash+profile+(genericProfile(profile)?evaluationPrompt(profile):'')).digest('hex');
   run.request={userMessageId:chat.messages[chat.messages.length-2].id,documentIds,contract,evaluation};
-  const live:LiveRun={accepting:true,inputQueue:Promise.resolve(),nativeQueued:new Set(),run,events:[],clients:new Set(),controller:new AbortController(),auditQueue:Promise.resolve(),persistQueue:Promise.resolve(),chat,answer,analysisIds:new Set(),processingIds:new Set(),contract,closed:false,budget,modelPending:new Set(),researchReads:new Map()};
+  const live:LiveRun={accepting:true,inputQueue:Promise.resolve(),nativeQueued:new Set(),run,events:[],clients:new Set(),controller:new AbortController(),persistQueue:Promise.resolve(),chat,answer,analysisIds:new Set(),processingIds:new Set(),contract,closed:false,budget,modelPending:new Set(),researchReads:new Map()};
   if(budget){live.detachBudget=budget.attach(run.id,live.controller);run.evaluation=budget.snapshot();await this.saveBudget(live,'attached');}
   this.live.set(runId,live);this.knownRuns.set(runId,chat.projectId);
   await this.persist(live);
   this.emit(live,'status',{stage:'准备任务',status:'queued'});
-  live.promise=this.execute(live,settings,documentIds,contract);
+  this.launch(live,settings,documentIds,contract);
   return {...run,userMessageId:run.request.userMessageId};
  }
  private async persist(l:LiveRun){
@@ -458,6 +481,12 @@ export class RunManager {
   else if(name==='list_research_artifacts')data={artifacts:(await workspace.list(p)).map(({spec,result,content,...a})=>a)};
   else data=await workspace.get(p,params.artifact_id,params.revision_id);
   if(data.revision_id&&['run_financial_model','save_research_report'].includes(name))l.answer.artifacts!.push({id:data.revision_id,name:data.title+'.json',mimeType:'application/json',url:'/api/projects/'+p+'/research/artifacts/'+data.id+'/export?format=json&revision='+data.revision_id});
+  if(data.delivery?.files){
+   // A newer version of the same model in this reply replaces the files of the one it supersedes.
+   const owner='delivery:'+data.id+':';
+   l.answer.artifacts=l.answer.artifacts!.filter(a=>!a.id.startsWith(owner));
+   for(const file of data.delivery.files)l.answer.artifacts.push({id:owner+file.name,name:file.name,mimeType:artifactMediaType(file.name),url:file.url+'?as='+encodeURIComponent(file.name)});
+  }
   return {status:'ok',data,source_refs:[],warnings:[],trace_id:randomUUID()};
  }
  private async researchTool(l:LiveRun,name:string,params:Record<string,any>){
@@ -476,6 +505,15 @@ export class RunManager {
    result=await researchStore.read(project,snapshot.source_id);
   }
   return researchEnvelope(project,result);
+ }
+ private launch(l:LiveRun,settings:Settings,documentIds:string[],contract?:string){
+  // execute() settles its own run. If its cleanup itself throws (for example the document
+  // service has gone away), only this run ends; other conversations and the server keep running.
+  this.settledUsage.delete(l.run.id);
+  l.promise=this.execute(l,settings,documentIds,contract).catch(async error=>{
+   process.stderr.write('[run] '+l.run.id+' cleanup failed: '+redactError(error)+'\n');
+   await this.closeAudit(l);l.closed=true;for(const client of l.clients)client.end();l.clients.clear();
+  });
  }
  private async execute(l:LiveRun,settings:Settings,documentIds:string[],contract?:string){
   // Long reports have no arbitrary whole-document wall clock. Explicit user
@@ -570,13 +608,18 @@ export class RunManager {
     for(const id of l.analysisIds)await this.service.call('cancel_analysis',{project_id:l.run.projectId,run_id:id}).catch(()=>{});
    }
    await Promise.allSettled([...l.modelPending]);
-   await this.saveBudget(l,'run_finished');l.detachBudget?.();
+   // A budget row that cannot be audited right now stays queued; it must not skip saving the finished run.
+   await this.saveBudget(l,'run_finished').catch(error=>{l.run.auditError=redactError(error);});l.detachBudget?.();
    this.bridge.unregister(l.run.id);l.extractionRuntime=undefined;l.session=undefined;
    const entry=this.sessions.get(l.chat.id);if(entry?.active===l)entry.active=undefined;
-   await l.auditQueue;l.run.usage=await this.reconcileUsage(l.run.id,l.chat.messages)??l.run.usage;
+   // Usage is reconciled from the audit file, so write what is queued first. A failure here is reported by closeAudit below.
+   const auditWritten=await this.auditLog(l.run.id).flush().then(()=>true,()=>false);
+   // With records still unwritten the file undercounts; keep the totals tallied in memory during the run.
+   if(auditWritten)l.run.usage=await this.reconcileUsage(l.run.id,l.chat.messages)??l.run.usage;
    if(!l.restarting)l.run.finishedAt=iso();l.chat.updatedAt=iso();await this.persist(l);
    this.emit(l,'message',{message:l.answer});if(!l.restarting)this.emit(l,'done',{status:l.run.status,usage:l.run.usage});
-   await l.auditQueue;l.closed=true;for(const client of l.clients)client.end();l.clients.clear();
+   await this.closeAudit(l);if(l.run.auditError)await this.persist(l);
+   l.closed=true;for(const client of l.clients)client.end();l.clients.clear();
   }
  }
  private collectArtifacts(l:LiveRun,runId:string,data:any){
@@ -595,5 +638,5 @@ export class RunManager {
   for(const runId of l.analysisIds)await this.service.call('cancel_analysis',{project_id:l.run.projectId,run_id:runId}).catch(()=>{});
   await l.promise;return l.run;
  }
- async shutdown(){await Promise.allSettled([...this.live.values()].filter(l=>!l.closed).map(async l=>{l.accepting=false;l.restarting=true;l.controller.abort(new Error('服务重启，保留进度等待恢复'));await l.session?.abort();await l.promise;}));for(const entry of this.sessions.values())entry.session.dispose();this.sessions.clear();this.evaluationBudgets.dispose();await Promise.allSettled([...this.budgetWrites.values()]);await this.bridge.close();}
+ async shutdown(){await Promise.allSettled([...this.live.values()].filter(l=>!l.closed).map(async l=>{l.accepting=false;l.restarting=true;l.controller.abort(new Error('服务重启，保留进度等待恢复'));await l.session?.abort();await l.promise;}));for(const entry of this.sessions.values())entry.session.dispose();this.sessions.clear();this.evaluationBudgets.dispose();await Promise.allSettled([...this.budgetWrites.values()]);await Promise.allSettled([...this.auditLogs.values()].map(log=>log.close()));this.auditLogs.clear();await this.bridge.close();}
 }

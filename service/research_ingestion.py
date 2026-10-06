@@ -277,12 +277,21 @@ class ResearchIngestionMixin:
             prepared.append((key,payload,digest(payload)))
         if len({p[0] for p in prepared})!=len(prepared):raise ValueError('duplicate_research_record')
         keys={p[0] for p in prepared}
+        hashes={p[0]:p[2] for p in prepared};retired=[]
         for key,r in old.items():
             if preserve_existing and key not in keys:continue
-            if key not in keys or next(p[2] for p in prepared if p[0]==key)!=r['content_hash']:
+            if key not in keys or hashes[key]!=r['content_hash']:
                 db.execute('UPDATE research_records SET is_current=0 WHERE record_id=?',(r['record_id'],))
-                for c in db.execute("SELECT chunk_id FROM chunks WHERE project_id=? AND json_extract(source_json,'$.research_record_id')=?",(project_id,r['record_id'])).fetchall():
-                    db.execute('DELETE FROM chunks_fts WHERE chunk_id=?',(c[0],));db.execute('DELETE FROM chunks WHERE chunk_id=?',(c[0],))
+                retired.append(r['record_id'])
+        # Search entries of the retired records, removed a few hundred at a time. The lookup reads only this
+        # document's entries (chunks_document), and the full-text table is passed over once per group rather
+        # than once per entry.
+        for start in range(0,len(retired),400):
+            group=retired[start:start+400];marks=','.join('?'*len(group))
+            chunk_ids=[c[0] for c in db.execute(f"SELECT chunk_id FROM chunks WHERE document_id=? AND project_id=? AND json_extract(source_json,'$.research_record_id') IN ({marks})",(document_id,project_id,*group))]
+            for begin in range(0,len(chunk_ids),400):
+                part=chunk_ids[begin:begin+400];holes=','.join('?'*len(part))
+                db.execute(f'DELETE FROM chunks_fts WHERE chunk_id IN ({holes})',part);db.execute(f'DELETE FROM chunks WHERE chunk_id IN ({holes})',part)
         ids=[]
         for key,item,content_hash in prepared:
             if key in old and old[key]['content_hash']==content_hash:ids.append(old[key]['record_id']);continue

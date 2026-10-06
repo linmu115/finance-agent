@@ -17,6 +17,7 @@ from urllib.parse import urlparse
 from .normalization import METRICS, decimal_value, metric_id, number_text, tokens
 from .parser import PARSER_VERSION, extract_facts, parse_document
 from .store import Store, dumps, utcnow
+from .snapshots import write_input
 from .processing import ProcessingMixin
 from .script_cleaning import ScriptCleaningMixin
 from .research_ingestion import ResearchIngestionMixin
@@ -73,23 +74,44 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             items = [dict(r) for r in db.execute("SELECT p.*,(SELECT count(*) FROM documents d WHERE d.project_id=p.project_id) document_count FROM projects p ORDER BY created_at")]
         return response({"items":items})
 
-    def list_documents(self, project_id):
+    def _describe_documents(self, project_id, document_id=None):
+        """Documents of a project (or one of them) with their table, fact and research counts.
+
+        Each count is one grouped query for the whole listing instead of several queries per document.
+        """
         self.store.project(project_id)
+        if document_id is None:
+            scope,args="document_id IN (SELECT document_id FROM documents WHERE project_id=?)",(project_id,)
+        else:
+            scope,args="document_id=?",(document_id,)
         with self.store.connect() as db:
-            ids = [r[0] for r in db.execute("SELECT document_id FROM documents WHERE project_id=? ORDER BY created_at DESC",(project_id,))]
-        return response({"items":[self.get_document(project_id,i)["data"] for i in ids]})
+            rows=db.execute("SELECT * FROM documents WHERE project_id=?"+(" AND document_id=?" if document_id else "")+" ORDER BY created_at DESC",(project_id,*((document_id,) if document_id else ()))).fetchall()
+            tables=dict(db.execute("SELECT document_id,count(*) FROM source_tables WHERE "+scope+" GROUP BY document_id",args).fetchall())
+            facts={r[0]:(r[1],r[2]) for r in db.execute("SELECT document_id,count(*),COALESCE(sum(json_extract(source_json,'$.normalization.engine') IN ('LangExtract','PythonScript')),0) FROM current_financial_facts WHERE "+scope+" GROUP BY document_id",args)}
+            engines={}
+            for owner,engine in db.execute("SELECT DISTINCT document_id,json_extract(result_json,'$.engine') FROM normalization_batches WHERE "+scope,args):
+                if engine:engines.setdefault(owner,set()).add(engine)
+            research=dict(db.execute("SELECT r.document_id,count(*) FROM research_records r LEFT JOIN document_profiles p USING(document_id) WHERE r.project_id=? AND r."+scope+" AND r.is_current=1 AND (r.profile_revision IS NULL OR r.profile_revision=p.revision_id) GROUP BY r.document_id",(project_id,*args)).fetchall())
+            profiles={r['document_id']:{**json.loads(r['profile_json']),'revision_id':r['revision_id'],'source_hash':r['source_hash']} for r in db.execute("SELECT * FROM document_profiles WHERE project_id=? AND "+scope,(project_id,*args))}
+        documents=[]
+        for row in rows:
+            doc=dict(row);doc["warnings"]=json.loads(doc.pop("warnings_json"));key=doc["document_id"]
+            doc["table_count"]=tables.get(key,0)
+            doc["fact_count"],doc["normalized_fact_count"]=facts.get(key,(0,0))
+            doc["legacy_fact_count"]=doc["fact_count"]-doc["normalized_fact_count"]
+            found=engines.get(key,set())
+            doc["normalization_engine"]=next(iter(found)) if len(found)==1 else 'mixed' if found else "legacy_rules" if doc["fact_count"] else "unprocessed"
+            doc['research_record_count']=research.get(key,0)
+            doc['profile']=profiles.get(key)
+            documents.append(doc)
+        return documents
+
+    def list_documents(self, project_id):
+        return response({"items":self._describe_documents(project_id)})
 
     def get_document(self, project_id, document_id):
-        doc = self.store.document(project_id,document_id)
-        with self.store.connect() as db:
-            doc["table_count"] = db.execute("SELECT count(*) FROM source_tables WHERE document_id=?",(document_id,)).fetchone()[0]
-            doc["fact_count"] = db.execute("SELECT count(*) FROM current_financial_facts WHERE document_id=?",(document_id,)).fetchone()[0]
-            doc["normalized_fact_count"] = db.execute("SELECT count(*) FROM current_financial_facts WHERE document_id=? AND json_extract(source_json,'$.normalization.engine') IN ('LangExtract','PythonScript')",(document_id,)).fetchone()[0]
-            doc["legacy_fact_count"] = doc["fact_count"]-doc["normalized_fact_count"]
-            engines={r[0] for r in db.execute("SELECT DISTINCT json_extract(result_json,'$.engine') FROM normalization_batches WHERE document_id=?",(document_id,)) if r[0]}
-            doc["normalization_engine"] = next(iter(engines)) if len(engines)==1 else 'mixed' if engines else "legacy_rules" if doc["fact_count"] else "unprocessed"
-            doc['research_record_count']=db.execute('SELECT count(*) FROM research_records r LEFT JOIN document_profiles p USING(document_id) WHERE r.document_id=? AND r.is_current=1 AND (r.profile_revision IS NULL OR r.profile_revision=p.revision_id)',(document_id,)).fetchone()[0]
-        doc['profile']=self._document_profile(project_id,document_id)
+        self.store.document(project_id,document_id)
+        doc=self._describe_documents(project_id,document_id)[0]
         return response(doc, warnings=doc["warnings"])
 
     def configure_processing(self, project_id, embedding=None, ocr=None):
@@ -144,8 +166,8 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             job_id = uuid.uuid4().hex
             with self.store.connect(write=True) as db:
                 if prior:
-                    chunk_ids=[r[0] for r in db.execute("SELECT chunk_id FROM chunks WHERE document_id=?",(document_id,))]
-                    db.executemany("DELETE FROM chunks_fts WHERE chunk_id=?",[(x,) for x in chunk_ids])
+                    # chunk_id is not indexed in the full-text table: one statement is one pass, one per chunk is a pass each.
+                    db.execute("DELETE FROM chunks_fts WHERE chunk_id IN (SELECT chunk_id FROM chunks WHERE document_id=?)",(document_id,))
                     for table in ("facts","chunks","source_tables","pages"):
                         db.execute(f"DELETE FROM {table} WHERE document_id=?",(document_id,))
                     db.execute("UPDATE documents SET state='queued',warnings_json='[]' WHERE document_id=?",(document_id,))
@@ -241,7 +263,8 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         if job_id in self.cancel_flags:self.cancel_flags[job_id].set()
         return response(state|{"cancel_requested":job_id in self.cancel_flags})
 
-    def get_source_table(self, project_id, document_id, table_id=None):
+    def _source_tables(self, project_id, document_id, table_id=None):
+        """Complete tables with their per-row source references, in page order."""
         self.store.document(project_id,document_id)
         with self.store.connect() as db:
             if table_id:
@@ -265,13 +288,18 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
                 if item.get("sheet"):ref["sheet"]=item["sheet"]
                 item["row_source_refs"].append(row_sources.get((item["table_id"],row_number),ref))
             item["source_rows"]=[ref.get("source_id") for ref in item["row_source_refs"]]
-            if not table_id:
+            tables.append(item)
+        return tables
+
+    def get_source_table(self, project_id, document_id, table_id=None):
+        tables=self._source_tables(project_id,document_id,table_id)
+        if not table_id:
+            for item in tables:
                 item["row_count"]=len(item["rows"])
                 item["preview"]=item.pop("rows")[:5]
                 item["row_source_refs"]=item["row_source_refs"][:5]
                 item["source_rows"]=item["source_rows"][:5]
                 item.pop("cells",None)
-            tables.append(item)
         refs=[{"document_id":document_id,"page":t["page"],"table_id":t["table_id"]} for t in tables]
         refs.extend(ref for t in tables for ref in t["row_source_refs"] if ref.get("source_id"))
         return response({"items":tables},refs)
@@ -532,7 +560,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
     def _runner(self):
         if self.sandbox is None:
             from sandbox import create_runner
-            self.sandbox=create_runner(self.store.root/"analysis")
+            self.sandbox=create_runner(self.store.root/"analysis",shared_inputs=self.store.root/"exports")
         return self.sandbox
 
     def run_analysis(self, project_id, code=None, document_ids=None, timeout_seconds=120, raw_only=False, financial_tools=True,
@@ -570,9 +598,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         records=[];pages=[]
         for document_id in ids:
             doc=self.store.document(project_id,document_id)
-            tables=self.get_source_table(project_id,document_id)["data"]["items"]
-            for table in tables:
-                records.extend(self.get_source_table(project_id,document_id,table["table_id"])["data"]["items"])
+            records.extend(self._source_tables(project_id,document_id))
             prepared=self._read_prepared(project_id,doc)
             if prepared:
                 pages.extend({"document_id":document_id,"sha256":doc["sha256"],"page":page["page"],"text":page["text"],
@@ -581,17 +607,16 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             else:
                 with self.store.connect() as db:
                     pages.extend({**dict(row),"sha256":doc["sha256"],"words":[]} for row in db.execute("SELECT document_id,page,text,width,height,ocr FROM pages WHERE document_id=? ORDER BY page",(document_id,)))
-        table_path=export/"tables.json"
-        table_path.write_text(dumps(records),encoding="utf-8")
+        # Project-wide inputs repeat from run to run; identical content is stored once and linked.
+        shared=lambda name,value:write_input(self.store.root/"exports",project_id,export/name,dumps(value).encode("utf-8"))
+        table_path=shared("tables.json",records)
         facts=[]
         while not raw_only:
             batch=self.query_financial_data(project_id,{"document_ids":ids},limit=10000,offset=len(facts))["data"]
             facts.extend(batch["items"])
             if len(facts)>=batch["total"]:break
-        facts_path=export/"facts.json"
-        facts_path.write_text(dumps(facts),encoding="utf-8")
-        pages_path=export/"pages.json"
-        pages_path.write_text(dumps(pages),encoding="utf-8")
+        facts_path=shared("facts.json",facts)
+        pages_path=shared("pages.json",pages)
         research=[]
         if not raw_only:
             for document_id in ids:
@@ -601,7 +626,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
                     research.extend(found['items'])
                     if found['next_offset'] is None:break
                     start=found['next_offset']
-        research_path=export/'research_records.json';research_path.write_text(dumps(research),encoding='utf-8')
+        research_path=shared('research_records.json',research)
         inputs={"tables.json":table_path,"facts.json":facts_path,"pages.json":pages_path,'research_records.json':research_path}
         script=export/'analysis.py';script.write_text(code,encoding='utf-8');inputs['analysis.py']=script
         plot_runtime=export/'plot_runtime.py';shutil.copyfile(Path(__file__).with_name('plot_runtime.py'),plot_runtime);inputs['plot_runtime.py']=plot_runtime

@@ -13,6 +13,7 @@ test('record bindings persist into model reuse; overrides become assumptions and
  const svc:any={call:async(name:string,args:any)=>{
   calls.push({name,args:structuredClone(args)});
   let data:any={version:'v1',text:'披露营业收入120百万元'};
+  if(name==='deliver_research_models')data={delivery_id:'0'.repeat(32),attachments:[],results:{}};
   if(name==='resolve_model_inputs'){
    const spec=structuredClone(args.spec);spec.base.revenue='120';
    spec.source_refs={'base.revenue':[{kind:'document',id:'doc1',locator:'page:1'}]};
@@ -66,7 +67,7 @@ test('revision compare-and-swap accepts one concurrent edit and retains original
 test('changed document invalidates only downstream artifacts, recompute creates auditable version',async()=>{
  const dir=await mkdtemp(path.join(tmpdir(),'research-update-'));try{
  const store=new ArtifactStore(dir);let version='v1';
- const svc:any={call:async(name:string,args:any)=>({status:'ok',data:name==='get_research_document_version'?{version}:name==='evaluate_research_model'?{tables:{forecast:[{year:2026,revenue:'123.456'}]},results:{equity_value:'200'}}:{text:'原始披露'}})};
+ const svc:any={call:async(name:string,args:any)=>({status:'ok',data:name==='deliver_research_models'?{delivery_id:'0'.repeat(32),attachments:[],results:{}}:name==='get_research_document_version'?{version}:name==='evaluate_research_model'?{tables:{forecast:[{year:2026,revenue:'123.456'}]},results:{equity_value:'200'}}:{text:'原始披露'}})};
  const ws=new ResearchWorkspace(svc,store);
  const model=await ws.model('p',{title:'基准估值',kind:'dcf',spec:{},dependencies:[{kind:'document',id:'doc1'}]},'run1');
  const independent=await ws.model('p',{title:'无关模型',kind:'dcf',spec:{},dependencies:[]});
@@ -99,7 +100,7 @@ test('artifact quote locator resolves exact existing value rather than arbitrary
 });
 test('model source_refs become dependencies and changed URL content marks old evidence stale',async()=>{
  const dir=await mkdtemp(path.join(tmpdir(),'research-web-update-'));try{
- const sources=new ResearchStore(dir),store=new ArtifactStore(dir),svc:any={call:async(name:string)=>({status:'ok',data:name==='get_research_document_version'?{version:'doc1'}:{tables:{},results:{}}})},ws=new ResearchWorkspace(svc,store,sources);
+ const sources=new ResearchStore(dir),store=new ArtifactStore(dir),svc:any={call:async(name:string)=>({status:'ok',data:name==='deliver_research_models'?{delivery_id:'0'.repeat(32),attachments:[],results:{}}:name==='get_research_document_version'?{version:'doc1'}:{tables:{},results:{}}})},ws=new ResearchWorkspace(svc,store,sources);
  const fetchText=(text:string)=>async()=>({body:Buffer.from(text),url:'https://example.com/announcement',contentType:'text/plain',headers:{}});
  const old=await sources.saveSnapshot('p','https://example.com/announcement',{download:fetchText('收入120万元')});
  const model=await ws.model('p',{title:'source linked',kind:'dcf',spec:{source_refs:{base:[{source_id:old.source_id,document_id:'d'}]}}});

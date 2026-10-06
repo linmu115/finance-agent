@@ -26,6 +26,8 @@ MAX_FILES = 256
 TERMINAL = {"succeeded", "failed", "timed_out", "cancelled", "output_rejected", "runner_unavailable"}
 SAFE_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]{0,99}$")
 SAFE_NAME = re.compile(r"^[^\\/:*?\"<>|\x00-\x1f]{1,180}$")
+# Folder of write-once, content-addressed input files kept by the service.
+SHARED_FOLDER = ".snapshots"
 
 
 class RunnerError(RuntimeError):
@@ -117,8 +119,9 @@ def scan_outputs(root: Path) -> list[dict[str, Any]]:
 
 class SandboxRunner:
     def __init__(self, state_root: Path | str, docker_bin: str | None = None,
-                 image: str = "finance-analysis:0.1"):
+                 image: str = "finance-analysis:0.1", shared_inputs: Path | str | None = None):
         self.root = Path(state_root).absolute()
+        self.shared_inputs = Path(shared_inputs).absolute() if shared_inputs else None
         self.root.mkdir(parents=True, exist_ok=True)
         if is_link(self.root):
             raise RunnerError("State directory must not be a link")
@@ -165,6 +168,22 @@ class SandboxRunner:
                     "image_id": image_id, "repo_digests": details.get("RepoDigests", [])}
         except (RunnerError, ValueError, KeyError, IndexError) as exc:
             return {"available": False, "reason": str(exc), "version": None}
+
+    def _link_shared(self, source: Path, target: Path) -> bool:
+        """Mount a write-once snapshot without copying it again.
+
+        Only files in the service's content-addressed folder qualify: they never
+        change after creation, so a hard link is as immutable as a private copy.
+        Everything else is copied as before.
+        """
+        if self.shared_inputs is None or source.parent.name != SHARED_FOLDER or self.shared_inputs not in source.parents:
+            return False
+        try:
+            os.link(source, target)
+        except OSError:
+            # No hard links on this volume, or the per-file link limit is reached.
+            return False
+        return True
 
     def _directory(self, run_id: str) -> Path:
         directory = self.root / validate_id(run_id)
@@ -337,8 +356,9 @@ class SandboxRunner:
             input_dir.chmod(0o755)
             for filename, source in validated:
                 target = input_dir / filename
-                shutil.copyfile(source, target)
-                target.chmod(0o444)
+                if not self._link_shared(source, target):
+                    shutil.copyfile(source, target)
+                    target.chmod(0o444)
                 state["input_sha256"][filename] = digest(target)
             code_path = input_dir / "__analysis__.py"
             code_path.write_text(code, encoding="utf-8")

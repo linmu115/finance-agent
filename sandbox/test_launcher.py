@@ -114,6 +114,59 @@ class HostPolicyTests(unittest.TestCase):
         self.assertIn('NameError: missing_series', state['stderr'])
         self.assertEqual(self.runner.status(state['run_id'], project_id='A')['stderr'], state['stderr'])
 
+    def _run_with_fake_engine(self, runner, inputs):
+        def command(args, **kwargs):
+            stdout = ''
+            if args[0] == 'inspect':
+                stdout = json.dumps({'Running': False, 'ExitCode': 0}) if '--format' in args else '[{}]'
+            return subprocess.CompletedProcess(args, 0, stdout, '')
+        with patch.object(runner, 'availability', return_value={'available': True, 'image_id': 'sha256:'+'a'*64}), patch.object(runner, '_exec', side_effect=command), patch.object(runner, '_verify_config'):
+            return runner.run('print(1)', inputs, project_id='A')
+
+    def test_shared_snapshots_are_linked_and_every_other_input_is_copied(self):
+        import os
+        from sandbox.launcher import SHARED_FOLDER, digest
+        exports = self.root / 'exports'
+        store = exports / 'A' / SHARED_FOLDER
+        store.mkdir(parents=True)
+        snapshot = store / ('b' * 64 + '.json')
+        snapshot.write_text('{"pages":[]}', encoding='utf-8')
+        script = exports / 'A' / 'run' / 'analysis.py'
+        script.parent.mkdir()
+        script.write_text('pass', encoding='utf-8')
+        # Same folder name outside the configured root is an ordinary file.
+        foreign = self.root / 'elsewhere' / SHARED_FOLDER / 'data.json'
+        foreign.parent.mkdir(parents=True)
+        foreign.write_text('{}', encoding='utf-8')
+        runner = SandboxRunner(self.root / 'linked-runs', docker_bin='does-not-exist-docker', shared_inputs=exports)
+        state = self._run_with_fake_engine(runner, {'pages.json': snapshot, 'analysis.py': script, 'data.json': foreign})
+        self.assertEqual(state['status'], 'succeeded', state.get('error'))
+        mounted = runner.root / state['run_id'] / 'input'
+        self.assertTrue(os.path.samefile(mounted / 'pages.json', snapshot))
+        self.assertFalse(os.path.samefile(mounted / 'analysis.py', script))
+        self.assertFalse(os.path.samefile(mounted / 'data.json', foreign))
+        self.assertEqual((mounted / 'analysis.py').read_text(encoding='utf-8'), 'pass')
+        self.assertEqual(state['input_sha256']['pages.json'], digest(snapshot))
+        self.assertEqual(sorted(state['input_sha256']), ['analysis.py', 'data.json', 'pages.json'])
+        # Without a configured root nothing is linked, as before.
+        plain = self._run_with_fake_engine(self.runner, {'pages.json': snapshot})
+        self.assertFalse(os.path.samefile(self.runner.root / plain['run_id'] / 'input' / 'pages.json', snapshot))
+
+    def test_snapshot_that_cannot_be_linked_is_copied(self):
+        import os
+        from sandbox.launcher import SHARED_FOLDER
+        exports = self.root / 'exports'
+        snapshot = exports / 'A' / SHARED_FOLDER / ('c' * 64 + '.json')
+        snapshot.parent.mkdir(parents=True)
+        snapshot.write_text('[1]', encoding='utf-8')
+        runner = SandboxRunner(self.root / 'copied-runs', docker_bin='does-not-exist-docker', shared_inputs=exports)
+        with patch('sandbox.launcher.os.link', side_effect=OSError(31, 'Too many links')):
+            state = self._run_with_fake_engine(runner, {'pages.json': snapshot})
+        self.assertEqual(state['status'], 'succeeded', state.get('error'))
+        mounted = runner.root / state['run_id'] / 'input' / 'pages.json'
+        self.assertFalse(os.path.samefile(mounted, snapshot))
+        self.assertEqual(mounted.read_text(encoding='utf-8'), '[1]')
+
     def test_artifact_refuses_traversal_and_tampering(self):
         run = self.runner.root / "known"
         output = run / "output"

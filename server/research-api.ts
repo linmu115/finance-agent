@@ -2,7 +2,8 @@ import type { Express } from 'express';
 import { z } from 'zod';
 import { researchStore, searchWeb } from './research.js';
 import { getSettings } from './config.js';
-import { ResearchWorkspace,artifactCsv } from './research-artifacts.js';
+import { ResearchWorkspace,artifactCsv,deliveryFile } from './research-artifacts.js';
+import { artifactMediaType } from './artifact-media.js';
 import type { FinanceService } from './mcp.js';
 import { modelInputCsv, parseModelInputCsv } from './model-csv.js';
 export function installResearchApi(app:Express,ensureProject:(id:string)=>Promise<string>,service:FinanceService){
@@ -29,5 +30,11 @@ export function installResearchApi(app:Express,ensureProject:(id:string)=>Promis
  app.get('/api/projects/:projectId/research/artifacts/:id',route(async(req,res)=>{const p=await ensureProject(req.params.projectId);res.json(await workspace.get(p,req.params.id,req.query.revision));}));
  app.post('/api/projects/:projectId/research/models',route(async(req,res)=>{const p=await ensureProject(req.params.projectId);res.status(201).json(await workspace.model(p,req.body));}));
  app.get('/api/projects/:projectId/research/models/schema/:kind',route(async(req,res)=>{const p=await ensureProject(req.params.projectId);res.json((await service.call('get_research_model_schema',{project_id:p,kind:req.params.kind})).data);}));
+ app.get('/api/projects/:projectId/research/deliveries/:deliveryId/:name',route(async(req,res)=>{
+  const p=await ensureProject(req.params.projectId),file=await deliveryFile(p,String(req.params.deliveryId),String(req.params.name));
+  res.type(artifactMediaType(file.name)).setHeader('X-Content-Type-Options','nosniff');
+  res.setHeader('Content-Disposition',"attachment; filename*=UTF-8''"+encodeURIComponent(String(req.query.as||file.name).replace(/[\\/:*?"<>|\x00-\x1f]/g,'_')));
+  res.send(file.bytes);
+ }));
  app.get('/api/projects/:projectId/research/artifacts/:id/export',route(async(req,res)=>{const p=await ensureProject(req.params.projectId),a=await workspace.get(p,req.params.id,req.query.revision);const format=z.enum(['json','csv']).parse(req.query.format||'json');res.setHeader('Content-Disposition',"attachment; filename*=UTF-8''"+encodeURIComponent(a.title+'.'+format));res.type(format==='json'?'application/json':'text/csv');res.send(format==='json'?JSON.stringify(a,null,2):artifactCsv(a,String(req.query.table||'')));}));
 }
