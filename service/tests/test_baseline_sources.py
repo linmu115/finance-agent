@@ -45,10 +45,25 @@ class BaselineSourcesTests(unittest.TestCase):
         self.assertNotIn(('p',self.doc),self.service.processing_documents)
         self.assertEqual(self.service.get_document('p',self.doc)['data']['page_count'],0)
 
-    def test_previously_normalized_data_cannot_be_used_as_generic_input(self):
+    def test_missing_raw_sources_are_not_regenerated_over_normalized_data(self):
         with self.service.store.connect(write=True) as db:db.execute('INSERT INTO normalization_batches VALUES(?,?,?,?,?)',(self.doc,'batch','processing','{}','now'))
-        with self.assertRaisesRegex(ValueError,'baseline_requires_raw_only_documents'):prepare_document_sources(self.service,'p',[self.doc])
+        with self.assertRaisesRegex(ValueError,'baseline_sources_missing_for_prepared_document'):prepare_document_sources(self.service,'p',[self.doc])
         with self.service.store.connect() as db:self.assertEqual(db.execute('SELECT count(*) FROM normalization_batches').fetchone()[0],1)
+
+    def test_prepared_document_reuses_raw_sources_without_changing_ingestion(self):
+        prepare_document_sources(self.service,'p',[self.doc])
+        with self.service.store.connect(write=True) as db:
+            db.execute('INSERT INTO normalization_batches VALUES(?,?,?,?,?)',(self.doc,'batch','processing','{}','now'))
+            db.execute("UPDATE documents SET state='needs_review' WHERE document_id=?",(self.doc,))
+        before=self.service.get_source_page('p',self.doc,1)['data']['text']
+        with patch.object(self.service,'_persist_prepared',side_effect=AssertionError('sources must be reused')):
+            result=prepare_document_sources(self.service,'p',[self.doc])
+        self.assertTrue(result['data']['documents'][0]['reused_sources'])
+        self.assertEqual(result['data']['documents'][0]['state'],'needs_review')
+        self.assertEqual(before,self.service.get_source_page('p',self.doc,1)['data']['text'])
+        with self.service.store.connect() as db:
+            self.assertEqual(db.execute('SELECT count(*) FROM normalization_batches').fetchone()[0],1)
+            self.assertEqual(db.execute('SELECT state FROM documents WHERE document_id=?',(self.doc,)).fetchone()[0],'needs_review')
 
     def navigation_fixture(self, page_count=123):
         pages=[];tables=[]

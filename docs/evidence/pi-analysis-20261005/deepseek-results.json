@@ -1,0 +1,1637 @@
+{
+  "study": "analysis_only_development_regression_not_heldout",
+  "model": "deepseek-flash",
+  "projectId": "374beac2-a970-4972-b210-e91018bbd6e6",
+  "dataSummary": {
+    "documents": 2,
+    "facts": 612,
+    "records": 1076,
+    "claims": 78,
+    "forecasts": 470,
+    "observations": 998,
+    "needs_review": 99
+  },
+  "structuredDataUnchanged": true,
+  "documents": [
+    {
+      "id": "585db15e768043b7b465d1af7c690e90",
+      "name": "国信证券_伊利股份深度报告_20250716_38页.pdf",
+      "sha256": "6242c4d8fd51ede40de29391f3b41703f2e9880e62da32b4a2b760ce3cfbfd88",
+      "pageCount": 38
+    },
+    {
+      "id": "ab25c52089fd4db89fba046c9c811c46",
+      "name": "睿和数智_2025中期报告_57页.pdf",
+      "sha256": "a40de54658363105b774ac0fba8f9252d85e0106ca9496c22325ebf668031702",
+      "pageCount": 57
+    }
+  ],
+  "taskSha256": "ba2b016dc21dcb85297289111d53748b92f7e7ab4741838a97373e012f7801d6",
+  "plannedOrder": [
+    "A1",
+    "B1",
+    "C1",
+    "B2",
+    "C2",
+    "A2",
+    "C3",
+    "A3",
+    "B3",
+    "A4",
+    "B4",
+    "C4"
+  ],
+  "price": {
+    "source": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+    "verified": "2026-10-05",
+    "currency": "CNY",
+    "perMillion": {
+      "cacheHit": [
+        0.02,
+        0.04
+      ],
+      "uncached": [
+        1,
+        2
+      ],
+      "output": [
+        4,
+        8
+      ]
+    },
+    "note": "Known provider token usage at official low/high tariffs; not an invoice. Reasoning is already included in output."
+  },
+  "groups": [
+    {
+      "arm": "A",
+      "profile": "generic",
+      "phase": "initial",
+      "tasks": 1,
+      "completed": 1,
+      "coreNumericPassed": 10,
+      "coreNumericTotal": 10,
+      "seconds": 193.205,
+      "input": 1370550,
+      "output": 39593,
+      "reasoning": 10997,
+      "cacheRead": 1291136,
+      "cacheKnownInput": 1370550,
+      "uncachedInput": 79414,
+      "calls": 22,
+      "unknownCalls": 0,
+      "costUnknownCalls": 0,
+      "costCnyMin": 0.26360872,
+      "costCnyMax": 0.52721744,
+      "cacheHitPercent": 94.20568384954944
+    },
+    {
+      "arm": "A",
+      "profile": "generic",
+      "phase": "update",
+      "tasks": 0,
+      "completed": 0,
+      "coreNumericPassed": 0,
+      "coreNumericTotal": 0,
+      "seconds": 0,
+      "input": 0,
+      "output": 0,
+      "reasoning": 0,
+      "cacheRead": 0,
+      "cacheKnownInput": 0,
+      "uncachedInput": 0,
+      "calls": 0,
+      "unknownCalls": 0,
+      "costUnknownCalls": 0,
+      "costCnyMin": null,
+      "costCnyMax": null,
+      "cacheHitPercent": null
+    },
+    {
+      "arm": "B",
+      "profile": "prepared",
+      "phase": "initial",
+      "tasks": 1,
+      "completed": 1,
+      "coreNumericPassed": 10,
+      "coreNumericTotal": 10,
+      "seconds": 212.399,
+      "input": 2177475,
+      "output": 46672,
+      "reasoning": 20044,
+      "cacheRead": 2085760,
+      "cacheKnownInput": 2177475,
+      "uncachedInput": 91715,
+      "calls": 26,
+      "unknownCalls": 0,
+      "costUnknownCalls": 0,
+      "costCnyMin": 0.3201182,
+      "costCnyMax": 0.6402364,
+      "cacheHitPercent": 95.78801134341381
+    },
+    {
+      "arm": "B",
+      "profile": "prepared",
+      "phase": "update",
+      "tasks": 0,
+      "completed": 0,
+      "coreNumericPassed": 0,
+      "coreNumericTotal": 0,
+      "seconds": 0,
+      "input": 0,
+      "output": 0,
+      "reasoning": 0,
+      "cacheRead": 0,
+      "cacheKnownInput": 0,
+      "uncachedInput": 0,
+      "calls": 0,
+      "unknownCalls": 0,
+      "costUnknownCalls": 0,
+      "costCnyMin": null,
+      "costCnyMax": null,
+      "cacheHitPercent": null
+    },
+    {
+      "arm": "C",
+      "profile": "financial",
+      "phase": "initial",
+      "tasks": 1,
+      "completed": 1,
+      "coreNumericPassed": 10,
+      "coreNumericTotal": 10,
+      "seconds": 308.096,
+      "input": 8226486,
+      "output": 65296,
+      "reasoning": 24408,
+      "cacheRead": 7969536,
+      "cacheKnownInput": 8226486,
+      "uncachedInput": 256950,
+      "calls": 36,
+      "unknownCalls": 0,
+      "costUnknownCalls": 0,
+      "costCnyMin": 0.67752472,
+      "costCnyMax": 1.35504944,
+      "cacheHitPercent": 96.87655215118582
+    },
+    {
+      "arm": "C",
+      "profile": "financial",
+      "phase": "update",
+      "tasks": 0,
+      "completed": 0,
+      "coreNumericPassed": 0,
+      "coreNumericTotal": 0,
+      "seconds": 0,
+      "input": 0,
+      "output": 0,
+      "reasoning": 0,
+      "cacheRead": 0,
+      "cacheKnownInput": 0,
+      "uncachedInput": 0,
+      "calls": 0,
+      "unknownCalls": 0,
+      "costUnknownCalls": 0,
+      "costCnyMin": null,
+      "costCnyMax": null,
+      "cacheHitPercent": null
+    }
+  ],
+  "runs": [
+    {
+      "label": "A1",
+      "profile": "generic",
+      "status": "completed",
+      "conversationId": "5d4ecb7c-2754-48f9-9b5f-ddee3df15495",
+      "runId": "1056cb9c-8cf7-411f-96c4-fbf2164151a1",
+      "seconds": 193.205,
+      "usage": {
+        "input": 1370550,
+        "output": 39593,
+        "calls": 22,
+        "costUsd": 0.079082616,
+        "uncachedInput": 79414,
+        "cacheRead": 1291136,
+        "cacheWrite": 0,
+        "reasoning": 10997,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 391,
+            "output": 359,
+            "calls": 1,
+            "costUsd": 0.00047283599999999997,
+            "uncachedInput": 135,
+            "cacheRead": 256,
+            "cacheWrite": 0,
+            "reasoning": 324,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 391,
+            "costCnyMin": 0.0015761199999999999,
+            "costCnyMax": 0.0031522399999999997,
+            "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+          },
+          "main": {
+            "input": 1370159,
+            "output": 39234,
+            "calls": 21,
+            "costUsd": 0.07860977999999999,
+            "uncachedInput": 79279,
+            "cacheRead": 1290880,
+            "cacheWrite": 0,
+            "reasoning": 10673,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 1370159,
+            "costCnyMin": 0.2620326,
+            "costCnyMax": 0.5240652,
+            "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+          }
+        },
+        "cacheKnownInput": 1370550,
+        "costCnyMin": 0.26360872,
+        "costCnyMax": 0.52721744,
+        "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+      },
+      "tools": {
+        "list_documents": 1,
+        "get_document": 1,
+        "prepare_document_sources": 1,
+        "get_document_index": 1,
+        "get_source_page": 18,
+        "get_source_table": 1,
+        "run_analysis": 4,
+        "get_analysis_status": 8,
+        "get_artifact": 2
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 21
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 20,
+        "downloaded": 20,
+        "analyses": [
+          {
+            "runId": "eeacef2d848a4cb7a109a31048eac320",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "197c20b26e2e401c94beae61d939662d",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "145b012762eb44b4a4eb994277a8fefa",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "616a7b56f04f492cafc0f8e88c8af3bd",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "A1",
+          "original_run": "616a7b56f04f492cafc0f8e88c8af3bd",
+          "replay_run": "403263bd1dea4d87ac8b5365445ccede",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "01_利润与现金流对比.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "02_利润率与现金转化对比.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "03_净利润到经营现金流调节瀑布.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "瑞和数智_利润与现金流_分析报告.md",
+              "matches": true,
+              "type": ".md"
+            },
+            {
+              "name": "瑞和数智_利润与现金流_底稿.csv",
+              "matches": true,
+              "type": ".csv"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "A1",
+        "core_numeric": {
+          "passed": 10,
+          "total": 10,
+          "scope": "5 requested metrics x 2 periods; source value, CNY thousand, consolidated scope and periods verified"
+        },
+        "completion": {
+          "explanation": true,
+          "source_pages": true,
+          "numeric_analysis": true,
+          "charts": true,
+          "machine_readable_inputs": true,
+          "executed_script": true
+        },
+        "finance_checks": {
+          "fair_value_gain_separated_from_operations": "pass",
+          "finance_cost_not_double_deducted": "pass",
+          "no_unqualified_parent_profit_cfo_mix": "pass",
+          "financing_excluded_from_operating_bridge": "partial",
+          "unexplained_residual_disclosed": "pass",
+          "final_explanation_matches_calculation": "partial"
+        },
+        "issues": [
+          {
+            "severity": "material",
+            "kind": "chart_unit_mismatch",
+            "evidence": "Final chart 03_净利润到经营现金流调节瀑布.png labels y-axis as CNY million but plots CNY thousand: ticks 40000/20000 while labels are 41.1 etc. Axis scale is 1000 times the declared unit."
+          },
+          {
+            "severity": "material",
+            "kind": "conclusion_scope",
+            "evidence": "Final sentence says operating cash flow deteriorated alongside revenue and gross margin; absolute CFO improved from -32104 to -30650. Earlier text correctly distinguishes the worsening CFO/revenue ratio, but final conclusion drops that qualification."
+          },
+          {
+            "severity": "minor",
+            "kind": "profit_scope_wording",
+            "evidence": "After excluding the 63015 fair-value gain from consolidated net profit 41098, the value is -21917, not operating loss -18170. Final chat jumps to the latter without naming the additional tax/finance bridge in that sentence."
+          }
+        ],
+        "chart_review": "Final chart 03 inspected. Chinese text and source note legible; negative bars meet the bottom axis and long labels are dense. Material amount-axis mismatch retained as a failure. Model itself repaired an earlier missing-font warning after receiving stderr.",
+        "artifact_replay": {
+          "status": "succeeded",
+          "identical_files": 6,
+          "files": 6
+        },
+        "limitations": [
+          "Only 10 predefined core cells are scored; no whole-document accuracy claim.",
+          "Operating working-capital bridge uses a stated broad classification assumption and admits potential accrued-interest components.",
+          "Residual is explicitly estimated; reaching zero after adding the residual is not independent validation of complete attribution."
+        ]
+      }
+    },
+    {
+      "label": "B1",
+      "profile": "prepared",
+      "status": "completed",
+      "conversationId": "ea29c37f-547d-4990-83f1-dfa867160427",
+      "runId": "19fba21f-a892-41b5-84e0-9efd84b4b113",
+      "seconds": 212.399,
+      "usage": {
+        "input": 2177475,
+        "output": 46672,
+        "calls": 26,
+        "costUsd": 0.09603545999999999,
+        "uncachedInput": 91715,
+        "cacheRead": 2085760,
+        "cacheWrite": 0,
+        "reasoning": 20044,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 391,
+            "output": 480,
+            "calls": 1,
+            "costUsd": 0.000618036,
+            "uncachedInput": 135,
+            "cacheRead": 256,
+            "cacheWrite": 0,
+            "reasoning": 436,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 391,
+            "costCnyMin": 0.00206012,
+            "costCnyMax": 0.00412024,
+            "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+          },
+          "main": {
+            "input": 2177084,
+            "output": 46192,
+            "calls": 25,
+            "costUsd": 0.095417424,
+            "uncachedInput": 91580,
+            "cacheRead": 2085504,
+            "cacheWrite": 0,
+            "reasoning": 19608,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 2177084,
+            "costCnyMin": 0.31805808,
+            "costCnyMax": 0.63611616,
+            "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+          }
+        },
+        "cacheKnownInput": 2177475,
+        "costCnyMin": 0.3201182,
+        "costCnyMax": 0.6402364,
+        "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+      },
+      "tools": {
+        "list_documents": 1,
+        "prepare_document_sources": 1,
+        "get_document_index": 2,
+        "get_data_catalog": 3,
+        "get_source_page": 27,
+        "get_source_table": 1,
+        "search_evidence": 1,
+        "run_analysis": 4,
+        "get_analysis_status": 11,
+        "get_artifact": 3
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 25
+      },
+      "toolErrors": [
+        {
+          "name": "search_evidence",
+          "error": "invalid_evidence_filters"
+        }
+      ],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 21,
+        "downloaded": 21,
+        "analyses": [
+          {
+            "runId": "81eeeacb324e4f4eb6fecb1b433a4d3f",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "c6b38e435f0746c18a38b751a7132be2",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "4b3789c444194fbeb353ae0b096298cb",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "880ab4de771f41159e62fc3a7318e138",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "B1",
+          "original_run": "880ab4de771f41159e62fc3a7318e138",
+          "replay_run": "876b416a2d244b84b076172d283189ed",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "fig1_收入与毛利率.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "fig2_利润与经营现金流对照.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "fig3_净利润到经营现金流瀑布.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "reconciliation_净利润到经营现金流_2025H1.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "workpaper_瑞和数智_2025H1.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "瑞和数智_2025H1_利润与现金流分析报告.md",
+              "matches": true,
+              "type": ".md"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "B1",
+        "core_numeric": {
+          "passed": 10,
+          "total": 10,
+          "scope": "5 metrics x 2 periods; gross margin displayed to 1 decimal is correctly rounded"
+        },
+        "completion": {
+          "explanation": true,
+          "source_pages": true,
+          "numeric_analysis": true,
+          "charts": true,
+          "machine_readable_inputs": true,
+          "executed_script": true
+        },
+        "finance_checks": {
+          "fair_value_gain_separated_from_operations": "pass",
+          "finance_cost_not_double_deducted": "pass",
+          "no_unqualified_parent_profit_cfo_mix": "pass",
+          "financing_excluded_from_operating_bridge": "partial",
+          "unexplained_residual_disclosed": "pass",
+          "final_explanation_matches_calculation": "partial"
+        },
+        "issues": [
+          {
+            "severity": "material",
+            "kind": "conclusion_scope",
+            "evidence": "Final chat calls the cash-flow side unimproved, though its table correctly states CFO outflow narrowed by 1454. Continuing negative CFO and worsening CFO/revenue should be distinguished from the absolute change."
+          },
+          {
+            "severity": "material",
+            "kind": "chart_layout",
+            "evidence": "Final fig3 waterfall has overlapping lower axis labels and a clipped negative working-capital bar; the -30649 endpoint value overlaps its label. Chinese glyphs and amount units themselves are correct."
+          }
+        ],
+        "chart_review": "Final fig3 inspected. CNY thousand label is consistent with scale, but lower labels collide and a bar extends beyond the shown range.",
+        "artifact_replay": {
+          "status": "succeeded",
+          "identical_files": 7,
+          "files": 7
+        },
+        "limitations": [
+          "Residual and uncertain share-payment adjustment explicitly disclosed, including an alternative residual if that assumption is excluded.",
+          "Only the 10 predefined requested cells count as the numerical sample."
+        ]
+      }
+    },
+    {
+      "label": "C1",
+      "profile": "financial",
+      "status": "completed",
+      "conversationId": "037db971-9cbd-4ca5-b536-e08186dd164b",
+      "runId": "3813e189-44fb-47a9-b01d-6ca95d63f24e",
+      "seconds": 308.096,
+      "usage": {
+        "input": 8226486,
+        "output": 65296,
+        "calls": 36,
+        "costUsd": 0.20325741600000002,
+        "uncachedInput": 256950,
+        "cacheRead": 7969536,
+        "cacheWrite": 0,
+        "reasoning": 24408,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 391,
+            "output": 355,
+            "calls": 1,
+            "costUsd": 0.000468036,
+            "uncachedInput": 135,
+            "cacheRead": 256,
+            "cacheWrite": 0,
+            "reasoning": 310,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 391,
+            "costCnyMin": 0.00156012,
+            "costCnyMax": 0.00312024,
+            "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+          },
+          "main": {
+            "input": 8226095,
+            "output": 64941,
+            "calls": 35,
+            "costUsd": 0.20278938000000002,
+            "uncachedInput": 256815,
+            "cacheRead": 7969280,
+            "cacheWrite": 0,
+            "reasoning": 24098,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 8226095,
+            "costCnyMin": 0.6759646,
+            "costCnyMax": 1.3519292,
+            "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+          }
+        },
+        "cacheKnownInput": 8226486,
+        "costCnyMin": 0.67752472,
+        "costCnyMax": 1.35504944,
+        "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+      },
+      "tools": {
+        "get_data_catalog": 3,
+        "list_documents": 1,
+        "get_document_index": 1,
+        "query_financial_data": 2,
+        "run_analysis": 7,
+        "get_source_page": 18,
+        "get_analysis_status": 16,
+        "get_artifact": 1
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 35
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 20,
+        "downloaded": 20,
+        "analyses": [
+          {
+            "runId": "f61afcdf62804e5f9ade003dcdb0ebfe",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "76d626ceda5f4ce8b6844ba3dab96c95",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "c1e1a9b54fdb4d0d8ad4eb11a1c9abec",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "b3446e9282554ac7b3d7f2b466cac239",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "eef91e7fdcb341e3b98284d1bd68997b",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "0c3c1d7661594998a019adfff05153ca",
+            "status": "failed",
+            "containerRemoved": true
+          },
+          {
+            "runId": "5011c5d806194c5591c4e14cdd84ffc9",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "C1",
+          "original_run": "5011c5d806194c5591c4e14cdd84ffc9",
+          "replay_run": "f54de350b4304516aa0ef04bd84ae1c6",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "ruihe_1H2025_profit_vs_cashflow_report.md",
+              "matches": true,
+              "type": ".md"
+            }
+          ],
+          "error": null
+        },
+        {
+          "label": "C1",
+          "original_run": "eef91e7fdcb341e3b98284d1bd68997b",
+          "replay_run": "ceb2fe4e083f4656b90027fda1a380ff",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "_tmp.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "chart_data.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "fig1_profit_vs_cashflow.pdf",
+              "matches": false,
+              "type": ".pdf"
+            },
+            {
+              "name": "fig1_profit_vs_cashflow.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "fig2_np_to_ocf_bridge.pdf",
+              "matches": false,
+              "type": ".pdf"
+            },
+            {
+              "name": "fig2_np_to_ocf_bridge.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "fig3_wc_and_segments.pdf",
+              "matches": false,
+              "type": ".pdf"
+            },
+            {
+              "name": "fig3_wc_and_segments.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "fig4_operating_loss_drivers.pdf",
+              "matches": false,
+              "type": ".pdf"
+            },
+            {
+              "name": "fig4_operating_loss_drivers.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "ruihe_1H2025_metrics_comparison.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "ruihe_1H2025_ocf_bridge.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "ruihe_1H2025_working_capital_and_segments.csv",
+              "matches": true,
+              "type": ".csv"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "C1",
+        "core_numeric": {
+          "passed": 10,
+          "total": 10,
+          "scope": "5 requested metrics x 2 periods, numerical table only; chart errors scored separately"
+        },
+        "completion": {
+          "explanation": true,
+          "source_pages": true,
+          "numeric_analysis": true,
+          "charts": true,
+          "machine_readable_inputs": true,
+          "executed_script": true
+        },
+        "finance_checks": {
+          "fair_value_gain_separated_from_operations": "pass",
+          "finance_cost_not_double_deducted": "pass",
+          "no_unqualified_parent_profit_cfo_mix": "pass",
+          "financing_excluded_from_operating_bridge": "partial",
+          "unexplained_residual_disclosed": "pass",
+          "final_explanation_matches_calculation": "partial"
+        },
+        "issues": [
+          {
+            "severity": "critical",
+            "kind": "chart_unit",
+            "evidence": "All four final figures plot thousand-yuan values divided by 1,000,000 while labels say million yuan. Script v() already converts database yuan to thousand yuan. Required chart divisor is 1,000. Fig1 revenue 120.392 million plots as 0.120392; most value labels become 0.0. CSV and chat main table remain correct."
+          },
+          {
+            "severity": "material",
+            "kind": "driver_explanation",
+            "evidence": "Final text and fig4 title claim gross profit is the only negative operating-profit contributor. The same script and source income statement contain other income -2653 and other gains -334, both negative contributors."
+          },
+          {
+            "severity": "material",
+            "kind": "ratio_definition",
+            "evidence": "Final text calls 110.9% an asset-liability ratio. Source physical page 15 defines gearing as (bank and other borrowings plus amounts due to directors) / total equity, not total liabilities / total assets."
+          },
+          {
+            "severity": "minor",
+            "kind": "chart_layout",
+            "evidence": "Fig2 small bar labels have insufficient contrast and overlap. Fig4 negative bridge bars touch or extend outside the bottom axis."
+          }
+        ],
+        "strengths": [
+          "Explicit net working-capital bridge and unexplained -1707 thousand residual; separate gross-method sensitivity with -2647 residual.",
+          "Correctly states absolute CFO improved by 1454 while remaining negative; FV-stripped consolidated net profit -21917 is explicitly a calculation without tax adjustment."
+        ],
+        "chart_review": "All 4 final PNGs visually inspected. Shared typography and colors are coherent, but material unit errors make the charts unacceptable.",
+        "artifact_replay": {
+          "status": "succeeded",
+          "calculation_report_and_png_files_identical": true,
+          "pdf_render_and_text_identical": true,
+          "pdf_byte_difference": "CreationDate only; see C1-pdf-replay.json"
+        },
+        "limitations": [
+          "Core 10/10 does not imply overall answer or chart correctness.",
+          "Only theme styling was reused. No saved financial model or finance quality calculator was invoked; custom Python performs the calculations."
+        ]
+      }
+    },
+    {
+      "label": "B2",
+      "profile": "prepared",
+      "status": "failed",
+      "conversationId": "4907d67a-008f-478c-9496-b9459bcd0093",
+      "runId": "2884d632-8450-4c55-b435-c1bdae5b8cce",
+      "seconds": 1.128,
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "calls": 2,
+        "costUsd": null,
+        "uncachedInput": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 2,
+        "cacheUnknownCalls": 2,
+        "costUnknownCalls": 2,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          }
+        },
+        "cacheKnownInput": 0
+      },
+      "tools": {},
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 1
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 0,
+        "downloaded": 0,
+        "analyses": []
+      },
+      "replay": [],
+      "review": null
+    },
+    {
+      "label": "C2",
+      "profile": "financial",
+      "status": "failed",
+      "conversationId": "146fb2ff-960e-4bf1-8d1b-bfc6ee562a95",
+      "runId": "d651423b-dc55-47f9-96ee-6142b6f9f2ae",
+      "seconds": 7.694,
+      "usage": {
+        "input": 35179,
+        "output": 894,
+        "calls": 4,
+        "costUsd": 0.007073027999999999,
+        "uncachedInput": 19691,
+        "cacheRead": 15488,
+        "cacheWrite": 0,
+        "reasoning": 551,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 387,
+            "output": 436,
+            "calls": 1,
+            "costUsd": 0.0006392999999999999,
+            "uncachedInput": 387,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 401,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 387,
+            "costCnyMin": 0.002131,
+            "costCnyMax": 0.004262,
+            "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+          },
+          "main": {
+            "input": 34792,
+            "output": 458,
+            "calls": 3,
+            "costUsd": 0.006433728,
+            "uncachedInput": 19304,
+            "cacheRead": 15488,
+            "cacheWrite": 0,
+            "reasoning": 150,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 34792,
+            "costCnyMin": 0.02144576,
+            "costCnyMax": 0.04289152,
+            "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+          }
+        },
+        "cacheKnownInput": 35179,
+        "costCnyMin": 0.023576760000000002,
+        "costCnyMax": 0.047153520000000004,
+        "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+      },
+      "tools": {
+        "get_document": 1,
+        "list_documents": 1,
+        "get_data_catalog": 2,
+        "get_research_ingestion_status": 1,
+        "query_research_records": 1
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 3
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 0,
+        "downloaded": 0,
+        "analyses": []
+      },
+      "replay": [],
+      "review": null
+    },
+    {
+      "label": "A2",
+      "profile": "generic",
+      "status": "failed",
+      "conversationId": "0e341d3e-ecb5-4ce5-8c30-52449be512df",
+      "runId": "dcf81008-2252-499d-a8c0-86b16d835c72",
+      "seconds": 1.117,
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "calls": 2,
+        "costUsd": null,
+        "uncachedInput": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 2,
+        "cacheUnknownCalls": 2,
+        "costUnknownCalls": 2,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          }
+        },
+        "cacheKnownInput": 0
+      },
+      "tools": {},
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 1
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 0,
+        "downloaded": 0,
+        "analyses": []
+      },
+      "replay": [],
+      "review": null
+    },
+    {
+      "label": "C3",
+      "profile": "financial",
+      "status": "failed",
+      "conversationId": "c9b966a3-20f3-4684-8bea-04a584f32338",
+      "runId": "12b309a1-0fd0-4dc8-b4c7-e65e0eba58d4",
+      "seconds": 1.112,
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "calls": 2,
+        "costUsd": null,
+        "uncachedInput": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 2,
+        "cacheUnknownCalls": 2,
+        "costUnknownCalls": 2,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          }
+        },
+        "cacheKnownInput": 0
+      },
+      "tools": {},
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 1
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 0,
+        "downloaded": 0,
+        "analyses": []
+      },
+      "replay": [],
+      "review": null
+    },
+    {
+      "label": "A3",
+      "profile": "generic",
+      "status": "failed",
+      "conversationId": "280e328e-b123-48c3-9c79-fbe6586f52f8",
+      "runId": "96c47657-afb9-4c9b-a8a5-1917af6df0a6",
+      "seconds": 1.066,
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "calls": 2,
+        "costUsd": null,
+        "uncachedInput": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 2,
+        "cacheUnknownCalls": 2,
+        "costUnknownCalls": 2,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          }
+        },
+        "cacheKnownInput": 0
+      },
+      "tools": {},
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 1
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 0,
+        "downloaded": 0,
+        "analyses": []
+      },
+      "replay": [],
+      "review": null
+    },
+    {
+      "label": "B3",
+      "profile": "prepared",
+      "status": "failed",
+      "conversationId": "77181ef6-fb1c-4233-9bdf-5c608d2f0a55",
+      "runId": "cd7bf32e-c47f-45ff-965a-21a74b9908a3",
+      "seconds": 1.114,
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "calls": 2,
+        "costUsd": null,
+        "uncachedInput": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 2,
+        "cacheUnknownCalls": 2,
+        "costUnknownCalls": 2,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          }
+        },
+        "cacheKnownInput": 0
+      },
+      "tools": {},
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 1
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 0,
+        "downloaded": 0,
+        "analyses": []
+      },
+      "replay": [],
+      "review": null
+    }
+  ],
+  "interruptedAttempts": [
+    {
+      "label": "B2",
+      "status": "failed",
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "calls": 2,
+        "costUsd": null,
+        "uncachedInput": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 2,
+        "cacheUnknownCalls": 2,
+        "costUnknownCalls": 2,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          }
+        },
+        "cacheKnownInput": 0
+      }
+    },
+    {
+      "label": "C2",
+      "status": "failed",
+      "usage": {
+        "input": 35179,
+        "output": 894,
+        "calls": 4,
+        "costUsd": 0.007073027999999999,
+        "uncachedInput": 19691,
+        "cacheRead": 15488,
+        "cacheWrite": 0,
+        "reasoning": 551,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 387,
+            "output": 436,
+            "calls": 1,
+            "costUsd": 0.0006392999999999999,
+            "uncachedInput": 387,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 401,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 387,
+            "costCnyMin": 0.002131,
+            "costCnyMax": 0.004262,
+            "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+          },
+          "main": {
+            "input": 34792,
+            "output": 458,
+            "calls": 3,
+            "costUsd": 0.006433728,
+            "uncachedInput": 19304,
+            "cacheRead": 15488,
+            "cacheWrite": 0,
+            "reasoning": 150,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 34792,
+            "costCnyMin": 0.02144576,
+            "costCnyMax": 0.04289152,
+            "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+          }
+        },
+        "cacheKnownInput": 35179,
+        "costCnyMin": 0.023576760000000002,
+        "costCnyMax": 0.047153520000000004,
+        "priceSource": "DeepSeek Flash 官方空闲至高峰标价区间（2026-10-05）；非账单，不含联网费"
+      }
+    },
+    {
+      "label": "A2",
+      "status": "failed",
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "calls": 2,
+        "costUsd": null,
+        "uncachedInput": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 2,
+        "cacheUnknownCalls": 2,
+        "costUnknownCalls": 2,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          }
+        },
+        "cacheKnownInput": 0
+      }
+    },
+    {
+      "label": "C3",
+      "status": "failed",
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "calls": 2,
+        "costUsd": null,
+        "uncachedInput": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 2,
+        "cacheUnknownCalls": 2,
+        "costUnknownCalls": 2,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          }
+        },
+        "cacheKnownInput": 0
+      }
+    },
+    {
+      "label": "A3",
+      "status": "failed",
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "calls": 2,
+        "costUsd": null,
+        "uncachedInput": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 2,
+        "cacheUnknownCalls": 2,
+        "costUnknownCalls": 2,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          }
+        },
+        "cacheKnownInput": 0
+      }
+    },
+    {
+      "label": "B3",
+      "status": "failed",
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "calls": 2,
+        "costUsd": null,
+        "uncachedInput": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 2,
+        "cacheUnknownCalls": 2,
+        "costUnknownCalls": 2,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          }
+        },
+        "cacheKnownInput": 0
+      }
+    }
+  ],
+  "interruptedFirstAttempt": {
+    "reason": "Sandbox stdout/stderr were not returned to the model. B1 repeatedly regenerated scripts blindly. A1/B1 completed, C1 cancelled by evaluator after sequence advanced. All first-attempt costs kept separately, no scores combined with corrected comparison.",
+    "at": "2026-10-05T14:26:02.875Z",
+    "runs": [
+      {
+        "label": "A1",
+        "status": "completed",
+        "runId": "6230cc49-0eda-41bd-a831-6f5738fed96b",
+        "conversationId": "0df4fe2f-df19-4b47-9272-7ed33c85d7b9",
+        "input": 1088715,
+        "output": 28425,
+        "unknown": 0,
+        "feeMin": 0.18170972000000002,
+        "feeMax": 0.36341944000000004
+      },
+      {
+        "label": "B1",
+        "status": "completed",
+        "runId": "4f88e06a-2675-4f36-a330-2ab77f9c62a5",
+        "conversationId": "6c572b8e-467a-4970-8765-56f1581ddf7b",
+        "input": 6071509,
+        "output": 121215,
+        "unknown": 0,
+        "feeMin": 0.7701981199999999,
+        "feeMax": 1.5403962399999998
+      },
+      {
+        "label": "C1",
+        "status": "cancelled",
+        "runId": "0486b937-7dc2-4e32-ac73-5f9baa7eb344",
+        "conversationId": "8fe8dc83-65da-44a0-b762-09d7c7602738",
+        "input": 137791,
+        "output": 1022,
+        "unknown": 1,
+        "feeMin": 0.10826108,
+        "feeMax": 0.21652216
+      }
+    ]
+  },
+  "limits": [
+    "Development regression on two previously used documents, one run per arm per task; not held out or statistically significant.",
+    "Same model/router policy; actual reasoning efforts recorded per request, provider cache warmth not controlled.",
+    "A reads raw source; B/C have identical frozen prepared records. Ingestion cost excluded from analysis and no new ingestion is requested.",
+    "First attempt exposed missing sandbox feedback. It is preserved with expense separate from the corrected comparison; one cancelled request has unknown usage."
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "label": "A3",
+    "original_run": "6c653cdf8db14b2db2b83df94ff0bc74",
+    "original_status": "failed",
+    "script_sha256": "bffb95aff18d130042322f65bfad8e5eb67640d5313770651c8f6455698f94e5",
+    "replay_run": "36847a0387104d05abe911adbd5c93a3",
+    "status": "succeeded",
+    "container_removed": true,
+    "error": null,
+    "stderr": "",
+    "artifacts": 8
+  },
+  {
+    "label": "B3",
+    "original_run": "af8b9565b57b46c48a07b169835e371c",
+    "original_status": "failed",
+    "script_sha256": "07c9ccd203ca116a779b16e60af7846af9c909dc0f67d947765b39d685b162a2",
+    "replay_run": "db6fa1544b7843b09f703e62a2d32e1b",
+    "status": "failed",
+    "container_removed": true,
+    "error": "Analysis process exited with an error",
+    "stderr": "Traceback (most recent call last):\n  File \"/opt/finance/entrypoint.py\", line 11, in <module>\n    runpy.run_path('/input/__analysis__.py', run_name='__main__')\n  File \"<frozen runpy>\", line 287, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/input/__analysis__.py\", line 6, in <module>\n    runpy.run_path('/input/analysis.py', run_name='__main__')\n  File \"<frozen runpy>\", line 287, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/input/analysis.py\", line 76, in <module>\n    vals=[sens[(sens.WACC_pct==w)&(sens.g_pct==g0)].value_per_share_RMB.iloc[0] for g0 in [1.0,1.8,2.2]]\n          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/usr/local/lib/python3.12/site-packages/pandas/core/indexing.py\", line 1191, in __getitem__\n    return self._getitem_axis(maybe_callable, axis=axis)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/site-packages/pandas/core/indexing.py\", line 1752, in _getitem_axis\n    self._validate_integer(key, axis)\n  File \"/usr/local/lib/python3.12/site-packages/pandas/core/indexing.py\", line 1685, in _validate_integer\n    raise IndexError(\"single positional indexer is out-of-bounds\")\nIndexError: single positional indexer is out-of-bounds\n",
+    "artifacts": 0
+  },
+  {
+    "label": "C3",
+    "original_run": "64be9b908eb54279bea1ca79c336e401",
+    "original_status": "failed",
+    "script_sha256": "cf91b495cf17c6938332629be92ae4ce700005df0b36e92681397f8633c57f6c",
+    "replay_run": "72ffd258d37d45a1851886f728e0b09a",
+    "status": "succeeded",
+    "container_removed": true,
+    "error": null,
+    "stderr": "",
+    "artifacts": 10
+  }
+]

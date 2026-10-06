@@ -43,6 +43,10 @@ test('permanent provider errors stop one Pi run immediately, preserve extraction
   respond(res,{content:'mock survived'});
  });
  await new Promise<void>(resolve=>mock.listen(0,'127.0.0.1',resolve));
+ // Exercise the retained internal extraction bridge directly; ordinary
+ // attachment ingestion now routes to scripts before any definition review.
+ (manager as any).processDocuments=(l:any,docs:string[],force:boolean,metrics?:string[],existing=false)=>
+  (manager as any).processDocumentsAttempt(l,docs,force,metrics,existing);
  const wait=async(id:string)=>{
   const until=Date.now()+35000;
   while(Date.now()<until){const state=await manager.getRun(id);if(['completed','failed','cancelled'].includes(state.status)&&!manager.activeFor(state.conversationId))return state;await delay(40);}

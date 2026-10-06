@@ -14,7 +14,7 @@ from decimal import Decimal, InvalidOperation, localcontext, ROUND_HALF_EVEN
 from functools import wraps
 from typing import Any
 
-VERSION = "research-models-1.1.0"
+VERSION = "research-models-1.2.0"
 SCHEMA_VERSION = "1.0"
 PRECISION = 50
 ZERO = Decimal(0)
@@ -131,12 +131,15 @@ def _units(spec):
 
 
 def _result(kind, spec, formulas, results, tables, warnings=None):
+    from .model_review import review_model
+    checks, usage = review_model(kind, spec)
     return {"schema_version": SCHEMA_VERSION, "model_version": VERSION, "kind": kind,
             "input_assumptions": spec, "formulas": formulas, "units": _units(spec),
             "precision": {"arithmetic": "Decimal", "significant_digits": PRECISION,
                           "rounding": "ROUND_HALF_EVEN", "output": "decimal strings; no additional display rounding"},
             "method_sources": METHOD_SOURCES[kind][:],
-            "results": results, "tables": tables, "warnings": warnings or []}
+            "results": results, "tables": tables, "warnings": warnings or [],
+            "checks": checks, "input_usage": usage}
 
 
 def _shares(shares):
@@ -298,6 +301,14 @@ def value_dcf(spec):
                 except ValidationError as exc:
                     sensitivities.append({"wacc": sw, "growth": sg, "status": "invalid", "reason": str(exc),
                                           "enterprise_value": None, "equity_value": None, "value_per_share": None})
+    valid=[cell['value_per_share'] for cell in sensitivities if cell['status']=='ok']
+    if valid:
+        result['sensitivity_range']={'minimum':min(valid),'maximum':max(valid),'valid_cells':len(valid)}
+    if 'reference_value_per_share' in spec:
+        reference=_num(spec,'reference_value_per_share')
+        result['reference_comparison']={'reference':reference,'model_minus_reference':result['value_per_share']-reference,
+            'sensitivity_contains_reference':min(valid)<=reference<=max(valid) if valid else None,
+            'range_position':('below' if reference<min(valid) else 'above' if reference>max(valid) else 'inside') if valid else 'unavailable'}
     warnings = ["Stable terminal model requires nonnegative growth, positive ROIC, and normalized operating earnings; banking/insurance balance-sheet models are outside this model."]
     if result["equity_value"] < 0:
         warnings.append("The arithmetic equity residual is negative; it is not an option-theoretic common-stock market price and has not been floored to zero.")
@@ -598,6 +609,7 @@ def financial_quality(spec):
     periods = _rows(spec.get("periods"), "periods")
     profit_contract = _quality_profit_contract(spec, periods)
     rows, attribution, prior, years = [], [], None, set()
+    cashflow_rows, cashflow_summaries = [], []
     amount_fields = ("revenue", "net_income", "cfo", "cogs", "credit_sales", "purchases", "capex",
                      "receivables_begin", "receivables_end", "inventory_begin", "inventory_end",
                      "payables_begin", "payables_end", "assets_begin", "assets_end",
@@ -627,6 +639,22 @@ def financial_quality(spec):
             return (a+b)/2 if a is not None and b is not None else None
         ratio("cash_conversion", values.get("cfo"), values.get("net_income"))
         ratio("cfo_margin", values.get("cfo"), values.get("revenue"))
+        if raw.get('cashflow_bridge') is not None:
+            bridge=_obj(raw['cashflow_bridge'],path+'.cashflow_bridge')
+            basis=_choice(bridge.get('profit_basis'),('consolidated_net_income','profit_before_tax'),'cashflow_bridge.profit_basis')
+            start=_num(bridge,'starting_profit');subtotal=start;excluded=[];unclassified=[]
+            cashflow_rows.append({'year':year,'label':basis,'category':'starting_profit','amount':start,'included':True})
+            for adjustment in bridge.get('adjustments',[]):
+                category=_choice(adjustment.get('category'),('non_cash','operating_working_capital','operating_other','tax','investing','financing','unclassified'),'cashflow_bridge.category')
+                amount=_num(adjustment,'amount');label=_text(adjustment.get('label'),'cashflow_bridge.label')
+                include=category not in {'investing','financing','unclassified'}
+                if include:subtotal+=amount
+                elif category=='unclassified':unclassified.append(label)
+                else:excluded.append(label)
+                cashflow_rows.append({'year':year,'label':label,'category':category,'amount':amount,'included':include})
+            cfo=values.get('cfo');residual=cfo-subtotal if cfo is not None else None
+            cashflow_summaries.append({'year':year,'profit_basis':basis,'starting_profit':start,'explained_cfo':subtotal,
+                'reported_cfo':cfo,'unexplained_residual':residual,'excluded_non_operating':excluded,'unclassified':unclassified})
         ratio("receivables_turnover", values.get("credit_sales" if ar_basis == "credit_sales" else "revenue"), avg("receivables"))
         ratio("inventory_turnover", values.get("cogs"), avg("inventory"))
         ratio("payables_turnover", values.get("purchases" if ap_basis == "purchases" else "cogs"), avg("payables"))
@@ -678,7 +706,7 @@ def financial_quality(spec):
         prior = {"year": year, **values, **profit_extra}
     return _result("financial_quality", spec, QUALITY_FORMULAS,
                    {"period_count": len(rows), "period_basis": period_basis, "receivables_sales_basis": ar_basis, "payables_cost_basis": ap_basis,
-                    "profit_bridge": copy.deepcopy(profit_contract)}, {"quality": rows,"attribution":attribution},
+                    "profit_bridge": copy.deepcopy(profit_contract),"cashflow_reconciliations":cashflow_summaries}, {"quality": rows,"attribution":attribution,"cashflow_bridge":cashflow_rows},
                    ["Ratios describe supplied data; they are not a fraud diagnosis. Opening/closing averages are a two-point approximation, and all flow/balance scopes must match."])
 
 

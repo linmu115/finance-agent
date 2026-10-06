@@ -87,6 +87,20 @@ def unit_info(text, metric=None):
                         ("百万", "1000000"), ("十万", "100000"), ("万", "10000"), ("千", "1000")]:
         if unit in label:
             return str(text).strip(), Decimal(factor), currency
+    if currency in {code for code, _ in currencies}:
+        # Published English statements also use RMB'000, HK$'000 and USD mn.
+        # Recognizing the currency alone must not discard their magnitude.
+        magnitude = label
+        for name in sorted({name for _, names in currencies for name in names} | {"$"}, key=len, reverse=True):
+            magnitude = magnitude.replace(name, "")
+        magnitude = re.sub(r"[()\[\]'’‘,]", "", magnitude)
+        factor = {"000": "1000", "000s": "1000", "000000": "1000000", "000000s": "1000000",
+                  "000000000": "1000000000", "000000000s": "1000000000", "k": "1000",
+                  "mn": "1000000", "mln": "1000000", "bn": "1000000000",
+                  "cent": "0.01", "cents": "0.01", "分": "0.01"}.get(magnitude)
+        if factor is not None:return str(text).strip(), Decimal(factor), currency
+        if re.match(r"^(?:rmb|cny|usd|hkd|eur|jpy|hk\$|us\$)", label) and magnitude not in {"", "dollar", "dollars", "yuan", "yen"}:
+            return None, None, "unknown"
     if currency != "unknown": return str(text).strip(), Decimal(1), currency
     if label in {"%", "percent", "percentage"}: return "%", Decimal(1), "percent"
     if label in {"股", "人", "吨", "台", "倍", "个", "次", "ratio", "shares", "count"}:

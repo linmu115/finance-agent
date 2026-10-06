@@ -5,6 +5,15 @@ import {EvaluationBudget,EvaluationBudgetExceeded,EvaluationBudgets,normalizeEva
 const config=(patch:Partial<EvaluationOptions['budget']>={}):EvaluationOptions=>({profile:'financial',budget_group_id:'fixture-shared',budget:{max_model_calls:4,max_input_tokens:1000,max_output_tokens:100,max_total_tokens:1100,max_wall_seconds:60,...patch}});
 const clock={now:()=>1000,scheduleDeadline:false};
 
+test('prepared-data comparison is a separate profile, not a financial tool alias',async()=>{
+ const profile=normalizeEvaluation({...config(),profile:'prepared'});
+ assert.equal(profile?.profile,'prepared');
+ const {GENERIC_TOOL_ALLOWLIST,PREPARED_TOOL_ALLOWLIST}=await import('../server/runs.js');
+ assert.equal(GENERIC_TOOL_ALLOWLIST.has('query_financial_data'),false);
+ assert.equal(PREPARED_TOOL_ALLOWLIST.has('query_financial_data'),true);
+ for(const name of ['process_documents','run_financial_model','compare_financial_models','read_project_skill','request_database_operation'])assert.equal(PREPARED_TOOL_ALLOWLIST.has(name),false);
+});
+
 test('both sessions share synchronous call and concurrent output reservations',()=>{
  const registry=new EvaluationBudgets(clock),a=registry.acquire('p',config({max_model_calls:2})),b=registry.acquire('p',config({max_model_calls:2}));
  assert.equal(a,b);

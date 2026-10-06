@@ -1,0 +1,10 @@
+import {writeFile} from 'node:fs/promises';
+import {loadSettings} from '../server/config.js';
+import {configuredModel,jsonOutputPayload} from '../server/model-runtime.js';
+const settings=await loadSettings();
+const {runtime,model}=await configuredModel(settings.llm);
+const started=Date.now();
+const result=await runtime.completeSimple(model,{systemPrompt:'Return a JSON object only.',messages:[{role:'user',content:'Return {"ready":true}.',timestamp:Date.now()}]},{reasoning:'low',maxTokens:256,signal:AbortSignal.timeout(60000),onPayload:(payload)=>jsonOutputPayload(payload as Record<string,unknown>,model.api)});
+const evidence={at:new Date().toISOString(),api:model.api,model:model.id,stopReason:result.stopReason,error:result.errorMessage,content:result.content,usage:result.usage,durationMs:Date.now()-started};
+await writeFile('data/evaluation/pi-finance-generalization-20261006/cpa-json-probe.json',JSON.stringify(evidence,null,2));
+console.log(JSON.stringify(evidence,null,2));

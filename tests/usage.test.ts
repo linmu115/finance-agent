@@ -17,3 +17,14 @@ test('manual pricing charges cache hits separately, and unknown historical zero 
  const legacy=aggregateAudit([{type:'model_usage',data:{requestId:'a',usageKnown:true,usage:{input:10,cacheRead:0,output:2,cost:{total:0}}}},{type:'model_usage',data:{requestId:'a',usageKnown:true,usage:{input:10,cacheRead:0,output:2}}}]);
  assert.equal(legacy.calls,1);assert.equal(legacy.costUsd,null);
 });
+
+test('interrupted requests remain unknown and late settlements replace unknown without double counting',()=>{
+ const request=(id:string)=>({type:'model_request',data:{requestId:id,phase:'main',usagePhase:'cleaning'}});
+ const unknown={type:'model_usage',data:{requestId:'late',usageKnown:false}};
+ const settled={type:'model_usage',data:{requestId:'late',usageKnown:true,usage:{input:20,cacheRead:80,output:5},usagePhase:'cleaning'}};
+ const before=aggregateAudit([request('lost'),request('late'),unknown]);
+ assert.equal(before.calls,2);assert.equal(before.unknownCalls,2);
+ const after=aggregateAudit([request('lost'),request('late'),unknown,settled,settled,unknown]);
+ assert.equal(after.calls,2);assert.equal(after.unknownCalls,1);
+ assert.equal(after.input,100);assert.equal(after.output,5);assert.equal(after.phases!.cleaning.calls,2);
+});

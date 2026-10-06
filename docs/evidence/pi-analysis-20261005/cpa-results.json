@@ -1,0 +1,1987 @@
+{
+  "study": "analysis_only_development_regression_not_heldout",
+  "model": "gpt-6-luna",
+  "projectId": "374beac2-a970-4972-b210-e91018bbd6e6",
+  "dataSummary": {
+    "documents": 2,
+    "facts": 612,
+    "records": 1076,
+    "claims": 78,
+    "forecasts": 470,
+    "observations": 998,
+    "needs_review": 99
+  },
+  "structuredDataUnchanged": true,
+  "documents": [
+    {
+      "id": "585db15e768043b7b465d1af7c690e90",
+      "name": "国信证券_伊利股份深度报告_20250716_38页.pdf",
+      "sha256": "6242c4d8fd51ede40de29391f3b41703f2e9880e62da32b4a2b760ce3cfbfd88",
+      "pageCount": 38
+    },
+    {
+      "id": "ab25c52089fd4db89fba046c9c811c46",
+      "name": "睿和数智_2025中期报告_57页.pdf",
+      "sha256": "a40de54658363105b774ac0fba8f9252d85e0106ca9496c22325ebf668031702",
+      "pageCount": 57
+    }
+  ],
+  "taskSha256": "ba2b016dc21dcb85297289111d53748b92f7e7ab4741838a97373e012f7801d6",
+  "plannedOrder": [
+    "B2",
+    "C2",
+    "A2",
+    "C3",
+    "A3",
+    "B3",
+    "A4",
+    "B4",
+    "C4"
+  ],
+  "price": {
+    "source": "local CPA usage responses",
+    "currency": null,
+    "perMillion": null,
+    "note": "No verified CPA monetary tariff configured. Token usage and cache accounting are reported; price remains unknown, not zero."
+  },
+  "groups": [
+    {
+      "arm": "A",
+      "profile": "generic",
+      "phase": "initial",
+      "tasks": 2,
+      "completed": 2,
+      "coreNumericPassed": 9,
+      "coreNumericTotal": 9,
+      "seconds": 466.237,
+      "input": 1015460,
+      "output": 21126,
+      "reasoning": 1994,
+      "cacheRead": 870912,
+      "cacheKnownInput": 1015460,
+      "uncachedInput": 144548,
+      "calls": 24,
+      "unknownCalls": 2,
+      "costUnknownCalls": 2,
+      "costCnyMin": null,
+      "costCnyMax": null,
+      "cacheHitPercent": 85.7652689421543
+    },
+    {
+      "arm": "A",
+      "profile": "generic",
+      "phase": "update",
+      "tasks": 1,
+      "completed": 1,
+      "coreNumericPassed": 0,
+      "coreNumericTotal": 0,
+      "seconds": 134.895,
+      "input": 277844,
+      "output": 6655,
+      "reasoning": 659,
+      "cacheRead": 266752,
+      "cacheKnownInput": 277844,
+      "uncachedInput": 11092,
+      "calls": 4,
+      "unknownCalls": 1,
+      "costUnknownCalls": 1,
+      "costCnyMin": null,
+      "costCnyMax": null,
+      "cacheHitPercent": 96.00783173291487
+    },
+    {
+      "arm": "B",
+      "profile": "prepared",
+      "phase": "initial",
+      "tasks": 2,
+      "completed": 2,
+      "coreNumericPassed": 9,
+      "coreNumericTotal": 9,
+      "seconds": 486.905,
+      "input": 1725467,
+      "output": 21454,
+      "reasoning": 3006,
+      "cacheRead": 1498624,
+      "cacheKnownInput": 1725467,
+      "uncachedInput": 226843,
+      "calls": 26,
+      "unknownCalls": 2,
+      "costUnknownCalls": 2,
+      "costCnyMin": null,
+      "costCnyMax": null,
+      "cacheHitPercent": 86.85324031117374
+    },
+    {
+      "arm": "B",
+      "profile": "prepared",
+      "phase": "update",
+      "tasks": 1,
+      "completed": 1,
+      "coreNumericPassed": 0,
+      "coreNumericTotal": 0,
+      "seconds": 128.296,
+      "input": 665995,
+      "output": 6083,
+      "reasoning": 505,
+      "cacheRead": 654336,
+      "cacheKnownInput": 665995,
+      "uncachedInput": 11659,
+      "calls": 5,
+      "unknownCalls": 1,
+      "costUnknownCalls": 1,
+      "costCnyMin": null,
+      "costCnyMax": null,
+      "cacheHitPercent": 98.24938625665358
+    },
+    {
+      "arm": "C",
+      "profile": "financial",
+      "phase": "initial",
+      "tasks": 2,
+      "completed": 2,
+      "coreNumericPassed": 9,
+      "coreNumericTotal": 9,
+      "seconds": 1121.104,
+      "input": 2599101,
+      "output": 51078,
+      "reasoning": 6675,
+      "cacheRead": 2300928,
+      "cacheKnownInput": 2599101,
+      "uncachedInput": 298173,
+      "calls": 33,
+      "unknownCalls": 2,
+      "costUnknownCalls": 2,
+      "costCnyMin": null,
+      "costCnyMax": null,
+      "cacheHitPercent": 88.52784097270556
+    },
+    {
+      "arm": "C",
+      "profile": "financial",
+      "phase": "update",
+      "tasks": 1,
+      "completed": 1,
+      "coreNumericPassed": 0,
+      "coreNumericTotal": 0,
+      "seconds": 338.45,
+      "input": 1113905,
+      "output": 15796,
+      "reasoning": 4385,
+      "cacheRead": 1082368,
+      "cacheKnownInput": 1113905,
+      "uncachedInput": 31537,
+      "calls": 9,
+      "unknownCalls": 1,
+      "costUnknownCalls": 1,
+      "costCnyMin": null,
+      "costCnyMax": null,
+      "cacheHitPercent": 97.1687890798587
+    }
+  ],
+  "runs": [
+    {
+      "label": "B2",
+      "profile": "prepared",
+      "status": "completed",
+      "conversationId": "282fbb92-c8fe-4526-b231-b6f7f659e1d9",
+      "runId": "c432c127-e0d6-4bb1-84d9-e67c8e54c8ff",
+      "seconds": 194.807,
+      "usage": {
+        "input": 385871,
+        "output": 7654,
+        "calls": 14,
+        "costUsd": 0.013061140000000002,
+        "uncachedInput": 59727,
+        "cacheRead": 326144,
+        "cacheWrite": 0,
+        "reasoning": 1619,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 385871,
+            "output": 7654,
+            "calls": 13,
+            "costUsd": 0.013061140000000002,
+            "uncachedInput": 59727,
+            "cacheRead": 326144,
+            "cacheWrite": 0,
+            "reasoning": 1619,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 385871,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 385871,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "prepare_document_sources": 1,
+        "get_document_index": 3,
+        "get_document": 1,
+        "get_source_page": 9,
+        "search_evidence": 1,
+        "run_analysis": 3,
+        "get_analysis_status": 3,
+        "get_artifact": 6
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 13
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 8,
+        "downloaded": 8,
+        "analyses": [
+          {
+            "runId": "ed470eaa29a441409837d7c7161d3b10",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "c77a50090e4c4f2bab4b7dfdceda1c61",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "6f9fb3ef3c384a898b0a8fbe6b7eba6e",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "B2",
+          "original_run": "ed470eaa29a441409837d7c7161d3b10",
+          "replay_run": "70e5ebd66261428ba0f36882338d51fa",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "伊利_PE估值复算.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_收入利润EPS底稿.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_盈利预测图.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "伊利研报分析.md",
+              "matches": true,
+              "type": ".md"
+            }
+          ],
+          "error": null
+        },
+        {
+          "label": "B2",
+          "original_run": "6f9fb3ef3c384a898b0a8fbe6b7eba6e",
+          "replay_run": "a8851677081f4820b14453c672306981",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "伊利_盈利预测图_中文字体.png",
+              "matches": true,
+              "type": ".png"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "B2",
+        "core_numeric": {
+          "passed": 9,
+          "total": 9,
+          "scope": "2025-2027 revenue, parent net profit and EPS; yuan-million source correctly converted to 100m yuan"
+        },
+        "completion": {
+          "explanation": true,
+          "source_pages": true,
+          "numeric_analysis": true,
+          "charts": true,
+          "machine_readable_inputs": true,
+          "executed_script": true
+        },
+        "finance_checks": {
+          "institution_date_attributed": "pass",
+          "actual_forecast_separated": "pass",
+          "opinion_not_presented_as_fact": "pass",
+          "pe_target_recomputed": "pass",
+          "forecast_drivers_and_risks": "pass"
+        },
+        "issues": [
+          {
+            "severity": "material",
+            "kind": "delivery_link",
+            "evidence": "Reply uses sandbox:/analysis/... links, which ReactMarkdown defaultUrlTransform turns into empty hrefs (checked against installed runtime). The 8 real artifact card endpoints all return 200. Inline links fail despite correct artifact-card downloads."
+          }
+        ],
+        "chart_review": "Final Chinese-font chart visually inspected. Amount units and actual/forecast labels agree with CSV; readable layout, no clipped labels. A previous font-warning version remains among the artifact cards.",
+        "artifact_replay": {
+          "status": "succeeded",
+          "identical_files": 7,
+          "files": 7,
+          "producer_runs": 2
+        },
+        "limitations": [
+          "Prepared profile used source-page reads and custom Python; the presence of structured data does not prove it was used.",
+          "Final figure is generated by a second script; the answer links the first script, while both complete scripts are downloadable in artifact cards."
+        ]
+      }
+    },
+    {
+      "label": "C2",
+      "profile": "financial",
+      "status": "completed",
+      "conversationId": "39e0794c-d4cf-4565-86fc-7fb5b8e226dd",
+      "runId": "65ab91c2-6bcd-4471-b104-8e965db96670",
+      "seconds": 160.331,
+      "usage": {
+        "input": 688463,
+        "output": 6536,
+        "calls": 9,
+        "costUsd": 0.023407739999999996,
+        "uncachedInput": 147279,
+        "cacheRead": 541184,
+        "cacheWrite": 0,
+        "reasoning": 897,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 688463,
+            "output": 6536,
+            "calls": 8,
+            "costUsd": 0.023407739999999996,
+            "uncachedInput": 147279,
+            "cacheRead": 541184,
+            "cacheWrite": 0,
+            "reasoning": 897,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 688463,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 688463,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "read_project_skill": 1,
+        "get_document": 1,
+        "get_document_index": 1,
+        "prepare_document_sources": 1,
+        "get_data_catalog": 1,
+        "query_research_records": 2,
+        "search_evidence": 1,
+        "get_source_table": 6,
+        "get_source_page": 3,
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 6
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 8
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 6,
+        "downloaded": 6,
+        "analyses": [
+          {
+            "runId": "641acd3e28c443e8a44f98606bf09b34",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "C2",
+          "original_run": "641acd3e28c443e8a44f98606bf09b34",
+          "replay_run": "8d053db3392543578e61accfb11bbdc1",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "chart_data.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "伊利股份_PE目标价复算.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "伊利股份_研报分析报告.md",
+              "matches": true,
+              "type": ".md"
+            },
+            {
+              "name": "伊利股份_预测与估值底稿.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利股份_预测路径.png",
+              "matches": true,
+              "type": ".png"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "C2",
+        "core_numeric": {
+          "passed": 9,
+          "total": 9,
+          "scope": "2025-2027 revenue, parent net profit and EPS"
+        },
+        "completion": {
+          "explanation": true,
+          "source_pages": true,
+          "numeric_analysis": true,
+          "charts": true,
+          "machine_readable_inputs": true,
+          "executed_script": true
+        },
+        "finance_checks": {
+          "institution_date_attributed": "pass",
+          "actual_forecast_separated": "pass",
+          "opinion_not_presented_as_fact": "pass",
+          "pe_target_recomputed": "pass",
+          "forecast_drivers_and_risks": "pass"
+        },
+        "issues": [
+          {
+            "severity": "material",
+            "kind": "delivery_link",
+            "evidence": "Inline links use relative analysis/<id>/output/... paths, which do not point to the app's artifact API. All six real artifact cards download successfully. This is a user-visible link defect despite correct underlying downloads."
+          }
+        ],
+        "chart_review": "Both final Chinese PNGs visually inspected. Revenue, parent profit and EPS values/units and actual/forecast distinction are correct. PE endpoints 33.82 and 35.60 align with axis. No clipping or missing Chinese glyphs.",
+        "artifact_replay": {
+          "status": "succeeded",
+          "identical_files": 6,
+          "files": 6
+        },
+        "limitations": [
+          "Theme helper, skill and structured-record queries used, followed by original-page reads and custom script. One router request has unknown usage."
+        ]
+      }
+    },
+    {
+      "label": "A2",
+      "profile": "generic",
+      "status": "completed",
+      "conversationId": "d0dbf31c-81c8-4902-9213-35a9cd79d98c",
+      "runId": "8ec68d7d-bae5-4656-9e22-e90e9b466603",
+      "seconds": 132.851,
+      "usage": {
+        "input": 171093,
+        "output": 5711,
+        "calls": 9,
+        "costUsd": 0.008767359999999998,
+        "uncachedInput": 46677,
+        "cacheRead": 124416,
+        "cacheWrite": 0,
+        "reasoning": 223,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 171093,
+            "output": 5711,
+            "calls": 8,
+            "costUsd": 0.008767359999999998,
+            "uncachedInput": 46677,
+            "cacheRead": 124416,
+            "cacheWrite": 0,
+            "reasoning": 223,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 171093,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 171093,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "prepare_document_sources": 1,
+        "get_document_index": 1,
+        "search_evidence": 1,
+        "get_source_page": 4,
+        "get_source_table": 2,
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 4
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 8
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 5,
+        "downloaded": 5,
+        "analyses": [
+          {
+            "runId": "ea49d716503d4fcdaeb36a9990fb85a9",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "A2",
+          "original_run": "ea49d716503d4fcdaeb36a9990fb85a9",
+          "replay_run": "7078aba20aba421484df91c53327923a",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "伊利研报分析.md",
+              "matches": true,
+              "type": ".md"
+            },
+            {
+              "name": "伊利研报图表.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "伊利研报复算.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "伊利预测底稿.csv",
+              "matches": true,
+              "type": ".csv"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "A2",
+        "core_numeric": {
+          "passed": 9,
+          "total": 9,
+          "scope": "2025-2027 revenue, parent net profit and EPS"
+        },
+        "completion": {
+          "explanation": true,
+          "source_pages": true,
+          "numeric_analysis": true,
+          "charts": true,
+          "machine_readable_inputs": true,
+          "executed_script": true
+        },
+        "finance_checks": {
+          "institution_date_attributed": "pass",
+          "actual_forecast_separated": "pass",
+          "opinion_not_presented_as_fact": "pass",
+          "pe_target_recomputed": "pass",
+          "forecast_drivers_and_risks": "pass"
+        },
+        "issues": [
+          {
+            "severity": "critical",
+            "kind": "chart_font",
+            "evidence": "Final figure visually inspected: nearly all Chinese titles, legend, units and source notes render as missing-glyph boxes. Script overrides shared valid font setup with unavailable Noto Sans CJK SC / SimHei. Container has the same fonts supplied to all groups; baseline was not denied Chinese-font access."
+          },
+          {
+            "severity": "material",
+            "kind": "delivery_link",
+            "evidence": "Reply links use relative Windows analysis\\...\\output paths instead of artifact endpoints. Five real artifact cards download successfully."
+          }
+        ],
+        "chart_review": "Numeric plotted values match CSV; Chinese text unreadable, and legend overlaps the first revenue data label. Does not pass chart acceptance.",
+        "artifact_replay": {
+          "status": "succeeded",
+          "identical_files": 5,
+          "files": 5
+        },
+        "limitations": [
+          "Core 9/9 refers only to the defined forecast numerical sample, not overall delivery quality."
+        ]
+      }
+    },
+    {
+      "label": "C3",
+      "profile": "financial",
+      "status": "completed",
+      "conversationId": "90601f97-e4da-4c4c-b226-e74f6cc52741",
+      "runId": "14dcd06c-4f91-4605-aecc-3b34a778d579",
+      "seconds": 960.773,
+      "usage": {
+        "input": 1910638,
+        "output": 44542,
+        "calls": 24,
+        "costUsd": 0.05495784000000001,
+        "uncachedInput": 150894,
+        "cacheRead": 1759744,
+        "cacheWrite": 0,
+        "reasoning": 5778,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 1910638,
+            "output": 44542,
+            "calls": 23,
+            "costUsd": 0.05495784000000001,
+            "uncachedInput": 150894,
+            "cacheRead": 1759744,
+            "cacheWrite": 0,
+            "reasoning": 5778,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 1910638,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 1910638,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "read_project_skill": 1,
+        "get_document": 1,
+        "prepare_document_sources": 1,
+        "get_document_index": 1,
+        "get_source_page": 9,
+        "get_source_table": 6,
+        "search_evidence": 1,
+        "get_research_model_schema": 1,
+        "run_financial_model": 2,
+        "run_analysis": 6,
+        "get_analysis_status": 6,
+        "get_artifact": 6
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 23
+      },
+      "toolErrors": [
+        {
+          "name": "run_financial_model",
+          "error": "研究成果不存在"
+        }
+      ],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 11,
+        "downloaded": 11,
+        "analyses": [
+          {
+            "runId": "64be9b908eb54279bea1ca79c336e401",
+            "status": "failed",
+            "containerRemoved": true
+          },
+          {
+            "runId": "25e2eea951494b5bbd30c5096f60cce3",
+            "status": "failed",
+            "containerRemoved": true
+          },
+          {
+            "runId": "5acd1a03c18a4ed5b5f5f63e82b0d392",
+            "status": "failed",
+            "containerRemoved": true
+          },
+          {
+            "runId": "86020c4d2ced4395ba7670d0f37efe36",
+            "status": "failed",
+            "containerRemoved": true
+          },
+          {
+            "runId": "d17e5d6b647342698b13c9b75f4b1b34",
+            "status": "failed",
+            "containerRemoved": true
+          },
+          {
+            "runId": "44190d93a27d46a5bae75d5a60e0a58e",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "C3",
+          "original_run": "44190d93a27d46a5bae75d5a60e0a58e",
+          "replay_run": "2c8ae6cbe43b40fe8f2916ee15e1fe85",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "chart_data.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "dcf_forecast.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "dcf_inputs.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "dcf_sensitivity.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "dcf_summary.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "伊利DCF初建_完整复算.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "伊利DCF初建_报告.md",
+              "matches": true,
+              "type": ".md"
+            },
+            {
+              "name": "图1_FCFF对照.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "图2_DCF敏感性.png",
+              "matches": true,
+              "type": ".png"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "C3",
+        "completion": {
+          "explanation": true,
+          "source_pages": true,
+          "numeric_analysis": true,
+          "charts": true,
+          "machine_readable_inputs": true,
+          "executed_script": true,
+          "saved_model": true
+        },
+        "arithmetic": {
+          "passed": 15,
+          "total": 15,
+          "scope": "3 annual FCFF, EV/equity/per-share and 9 sensitivity cells recomputed independently from declared model spec"
+        },
+        "finance_checks": {
+          "valuation_date_and_years": "pass",
+          "fcff_components_and_reconciliation": "pass",
+          "financial_expenses_not_double_deducted": "pass",
+          "net_debt_and_minority_disclosed": "pass",
+          "terminal_assumptions_distinct_from_source": "pass",
+          "reference_interval_statement": "pass",
+          "source_metadata_identity": "partial"
+        },
+        "issues": [
+          {
+            "severity": "material",
+            "kind": "source_metadata",
+            "evidence": "Saved model input_basis.base.revenue labels 2024 historical revenue as analyst_forecast. The document labels 2024A; disclosed_actual is supported. Final calculations use the correct historical amount."
+          },
+          {
+            "severity": "minor",
+            "kind": "chart_contrast",
+            "evidence": "Sensitivity labels use dark text on the darkest green cells, reducing readability. Axes, coordinates, units and cell values are correct; no cropped Chinese glyphs."
+          },
+          {
+            "severity": "minor",
+            "kind": "report_format",
+            "evidence": "Downloaded Markdown sensitivity table omits its header separator row and will not render as a normal GFM table."
+          },
+          {
+            "severity": "material",
+            "kind": "execution_efficiency",
+            "evidence": "One financial-model request used a made-up existing artifact ID and failed. Six run_analysis calls followed: one layout-engine conflict, four syntax failures repeating n opat, and one success. All are included in token totals; no human correction or task steering was supplied."
+          }
+        ],
+        "chart_review": "Both final PNGs visually inspected. FCFF bars use correct million-yuan amounts. Sensitivity 19.982-25.594 and base 22.998 match saved model/CSV/report; 31.36 correctly classified outside.",
+        "artifact_replay": {
+          "status": "succeeded",
+          "identical_files": 10,
+          "files": 10
+        },
+        "model": {
+          "id": "research_a8f77633-b8d6-4e17-b58d-2ccad1e0ec1b",
+          "per_share": "22.998467377218058119573101667474762101122302958560",
+          "terminal_method": "2028 normalized NOPAT with g/ROIC reinvestment, ROIC explicitly assumed 10%"
+        },
+        "limitations": [
+          "Rounded source EBIT margins imply small FCFF discrepancies, disclosed without forcing equality; accepted as a declared method.",
+          "Terminal method differs from a last-FCFF-growth terminal and is not judged against that method's price.",
+          "Saved-model arithmetic pass does not establish accuracy of every semantic metadata field."
+        ]
+      }
+    },
+    {
+      "label": "A3",
+      "profile": "generic",
+      "status": "completed",
+      "conversationId": "c5ff5662-4935-4fb6-8c67-55a686da4ecc",
+      "runId": "73b2c306-3c82-4866-ac2b-c7814bf110ef",
+      "seconds": 333.386,
+      "usage": {
+        "input": 844367,
+        "output": 15415,
+        "calls": 15,
+        "costUsd": 0.02495956000000001,
+        "uncachedInput": 97871,
+        "cacheRead": 746496,
+        "cacheWrite": 0,
+        "reasoning": 1771,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 844367,
+            "output": 15415,
+            "calls": 14,
+            "costUsd": 0.02495956000000001,
+            "uncachedInput": 97871,
+            "cacheRead": 746496,
+            "cacheWrite": 0,
+            "reasoning": 1771,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 844367,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 844367,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "list_documents": 1,
+        "prepare_document_sources": 1,
+        "get_document_index": 2,
+        "search_evidence": 2,
+        "get_source_table": 4,
+        "run_analysis": 3,
+        "get_analysis_status": 4,
+        "get_artifact": 8
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 14
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 10,
+        "downloaded": 10,
+        "analyses": [
+          {
+            "runId": "6c653cdf8db14b2db2b83df94ff0bc74",
+            "status": "failed",
+            "containerRemoved": true
+          },
+          {
+            "runId": "8553c8f948674d17a61347c516b6e5ac",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "b6e1355f85b742b0b59f2e8270a5b434",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "A3",
+          "original_run": "8553c8f948674d17a61347c516b6e5ac",
+          "replay_run": "da3d879527c947c4a05754be30dcf396",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "fcff_comparison.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "fcff_workings.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "ilidcf_recalc.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "model_inputs.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "sensitivity.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "valuation_sensitivity.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "伊利DCF初建报告.md",
+              "matches": true,
+              "type": ".md"
+            }
+          ],
+          "error": null
+        },
+        {
+          "label": "A3",
+          "original_run": "b6e1355f85b742b0b59f2e8270a5b434",
+          "replay_run": "48141e25f5dd48c2be6ac3be3514dd23",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "伊利DCF初建报告.md",
+              "matches": true,
+              "type": ".md"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "A3",
+        "completion": {
+          "explanation": true,
+          "source_pages": true,
+          "numeric_analysis": true,
+          "charts": true,
+          "machine_readable_inputs": true,
+          "executed_script": true
+        },
+        "arithmetic": {
+          "passed": 15,
+          "total": 15,
+          "scope": "3 annual FCFF, EV/equity/per-share and 9 sensitivity cells independently recomputed from declared inputs"
+        },
+        "finance_checks": {
+          "valuation_date_and_years": "pass",
+          "fcff_components_and_reconciliation": "pass",
+          "financial_expenses_not_double_deducted": "pass",
+          "net_debt_and_minority_disclosed": "pass",
+          "terminal_assumptions_distinct_from_source": "pass",
+          "reference_interval_statement": "pass"
+        },
+        "issues": [
+          {
+            "severity": "material",
+            "kind": "delivery_link",
+            "evidence": "Inline relative analysis/... file URLs return the application rather than the artifact. All 10 real artifact card downloads succeed."
+          },
+          {
+            "severity": "material",
+            "kind": "source_locator",
+            "evidence": "p36 t23 revenue D2:F2 refers to forecast cash, not revenue; EBIT Margin K30:M30 refers to equity-financing increases (zero), not margins. Correct revenue K2:M2 and EBIT margin D31:F31. Numeric inputs themselves are correct."
+          }
+        ],
+        "chart_review": "Both PNGs visually inspected. FCFF units and source note correct. Heatmap coordinates, cell values and units agree with sensitivity CSV; white text improves contrast on darker cells. No missing Chinese glyphs.",
+        "artifact_replay": {
+          "status": "succeeded",
+          "identical_files": 10,
+          "files": 10,
+          "producer_runs": 2
+        },
+        "model": {
+          "per_share": "30.521071333748157922806972883163444752783651210983",
+          "terminal_method": "2027 FCFF times 1+g, discounted from 2027 year-end"
+        },
+        "limitations": [
+          "One shared-layout runtime error was repaired autonomously. A separate initially inconsistent Markdown summary was corrected after the model read its CSV; old report remains among artifacts.",
+          "Rounded EBIT-margin reconciliation is explicitly disclosed. Terminal extrapolation differs from C; prices are judged against each declared method, not forced to one reference price."
+        ]
+      }
+    },
+    {
+      "label": "B3",
+      "profile": "prepared",
+      "status": "completed",
+      "conversationId": "db710333-7422-4133-aeb2-8ee15ecc6814",
+      "runId": "e3484313-98a5-4216-8a5c-adc9c7aa7ecd",
+      "seconds": 292.098,
+      "usage": {
+        "input": 1339596,
+        "output": 13800,
+        "calls": 12,
+        "costUsd": 0.035336400000000004,
+        "uncachedInput": 167116,
+        "cacheRead": 1172480,
+        "cacheWrite": 0,
+        "reasoning": 1387,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 1339596,
+            "output": 13800,
+            "calls": 11,
+            "costUsd": 0.035336400000000004,
+            "uncachedInput": 167116,
+            "cacheRead": 1172480,
+            "cacheWrite": 0,
+            "reasoning": 1387,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 1339596,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 1339596,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "list_documents": 1,
+        "prepare_document_sources": 1,
+        "get_document_index": 2,
+        "query_research_records": 1,
+        "get_source_table": 4,
+        "run_analysis": 3,
+        "get_analysis_status": 3,
+        "get_artifact": 7
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 11
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 7,
+        "downloaded": 7,
+        "analyses": [
+          {
+            "runId": "af8b9565b57b46c48a07b169835e371c",
+            "status": "failed",
+            "containerRemoved": true
+          },
+          {
+            "runId": "305ffa3f38a240bb8d04e1e83d74a01d",
+            "status": "failed",
+            "containerRemoved": true
+          },
+          {
+            "runId": "de351fa19dd64a71a4cb9363738782c1",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "B3",
+          "original_run": "de351fa19dd64a71a4cb9363738782c1",
+          "replay_run": "7132fdbfc87e4509b4908360c9ea45f0",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "伊利_DCF_FCFF对照.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "伊利_DCF_估值摘要.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_DCF_初建报告.md",
+              "matches": true,
+              "type": ".md"
+            },
+            {
+              "name": "伊利_DCF_敏感性.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_DCF_敏感性.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "伊利_DCF_输入与FCFF.csv",
+              "matches": true,
+              "type": ".csv"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "completion": {
+          "explanation": true,
+          "source_pages": true,
+          "numeric_analysis": true,
+          "charts": true,
+          "machine_readable_inputs": true,
+          "executed_script": true
+        },
+        "label": "B3",
+        "arithmetic": {
+          "passed": 15,
+          "total": 15
+        },
+        "issues": [
+          {
+            "severity": "material",
+            "kind": "delivery_link",
+            "evidence": "Inline analysis/... URLs lead to application HTML, although all returned artifact-card URLs download successfully."
+          },
+          {
+            "severity": "material",
+            "kind": "source_locator",
+            "evidence": "p36 t23 cited EBIT Margin I30:M30, NWC L27:N27 and Capex L30:N30 are wrong cells (table ends at M). Correct forecasts: EBIT margin D31:F31; NWC K24:M24; Capex K27:M27. Values used in calculations are correct."
+          },
+          {
+            "severity": "minor",
+            "kind": "chart_contrast",
+            "evidence": "Dark heatmap cell labels use dark text and are difficult to read."
+          }
+        ],
+        "finance_checks": {
+          "valuation_date_and_years": "pass",
+          "fcff_components_and_reconciliation": "pass",
+          "financial_expenses_not_double_deducted": "pass",
+          "net_debt_and_minority_disclosed": "pass",
+          "terminal_assumptions_distinct_from_source": "pass",
+          "reference_interval_statement": "pass"
+        },
+        "chart_review": "FCFF bars have correct data and units; sensitivity numbers and axes correct, dark-label contrast weak. Both PNGs visually inspected.",
+        "artifact_replay": {
+          "status": "succeeded",
+          "identical_files": 7,
+          "files": 7
+        },
+        "model": {
+          "per_share": "30.521071333748157922806972883163444752783651210983",
+          "terminal_method": "2027 FCFF times 1+g"
+        },
+        "limitations": [
+          "One common-layout failure and one pandas floating-point lookup error were corrected autonomously; all their token usage retained."
+        ]
+      }
+    },
+    {
+      "label": "A4",
+      "profile": "generic",
+      "status": "completed",
+      "conversationId": "c5ff5662-4935-4fb6-8c67-55a686da4ecc",
+      "runId": "fc05e8e1-f807-4e2a-8161-7157a81c3b66",
+      "seconds": 134.895,
+      "usage": {
+        "input": 277844,
+        "output": 6655,
+        "calls": 4,
+        "costUsd": 0.00710422,
+        "uncachedInput": 11092,
+        "cacheRead": 266752,
+        "cacheWrite": 0,
+        "reasoning": 659,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 277844,
+            "output": 6655,
+            "calls": 3,
+            "costUsd": 0.00710422,
+            "uncachedInput": 11092,
+            "cacheRead": 266752,
+            "cacheWrite": 0,
+            "reasoning": 659,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 277844,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 277844,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "run_analysis": 1,
+        "get_analysis_status": 1
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 3
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 14,
+        "downloaded": 14,
+        "analyses": [
+          {
+            "runId": "2c17ac46740148c38939203ec0322a2a",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "A4",
+          "original_run": "2c17ac46740148c38939203ec0322a2a",
+          "replay_run": "d722ffad04044114abb72514771e4fc0",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "differences.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "ilidcf_local_update.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "new_fcff.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "new_inputs.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "new_results.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "old_fcff.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "old_inputs.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "old_results.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "sensitivity_comparison.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "sensitivity_side_by_side.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "sequential_attribution.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "shared_and_changed_assumptions.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利DCF局部更新报告.md",
+              "matches": true,
+              "type": ".md"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "completion": {
+          "explanation": true,
+          "source_pages": true,
+          "numeric_analysis": true,
+          "charts": true,
+          "machine_readable_inputs": true,
+          "executed_script": true
+        },
+        "label": "A4",
+        "arithmetic": {
+          "passed": 34,
+          "total": 34
+        },
+        "issues": [
+          {
+            "severity": "material",
+            "kind": "delivery_link",
+            "evidence": "Inline analysis/... URLs lead to application HTML, although all returned artifact-card URLs download successfully."
+          },
+          {
+            "severity": "minor",
+            "kind": "chart_layout",
+            "evidence": "Side-by-side sensitivity suptitle overlaps both panel titles."
+          }
+        ],
+        "finance_checks": {
+          "only_requested_parameters_changed": "pass",
+          "original_terminal_method_preserved": "pass",
+          "ordered_attribution": "pass",
+          "fcff_changes": "pass",
+          "absolute_sensitivity_grid": "pass",
+          "shared_chart_scale": "pass"
+        },
+        "chart_review": "Visual inspection: all 18 cells and both axes consistent; one shared colorbar; Chinese glyphs work. Main title overlaps panel titles.",
+        "artifact_replay": {
+          "status": "succeeded",
+          "identical_files": 14,
+          "files": 14
+        },
+        "model": {
+          "old_per_share": "30.521071333748158",
+          "new_per_share": "27.193215588543769",
+          "change": "-3.327855745204389"
+        },
+        "limitations": [
+          "Reused own session inputs without re-reading source. Carries initial task source-citation limitations."
+        ]
+      }
+    },
+    {
+      "label": "B4",
+      "profile": "prepared",
+      "status": "completed",
+      "conversationId": "db710333-7422-4133-aeb2-8ee15ecc6814",
+      "runId": "143caf1a-3f31-4f54-84f0-aed191b6cfab",
+      "seconds": 128.296,
+      "usage": {
+        "input": 665995,
+        "output": 6083,
+        "calls": 5,
+        "costUsd": 0.010750760000000002,
+        "uncachedInput": 11659,
+        "cacheRead": 654336,
+        "cacheWrite": 0,
+        "reasoning": 505,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 665995,
+            "output": 6083,
+            "calls": 4,
+            "costUsd": 0.010750760000000002,
+            "uncachedInput": 11659,
+            "cacheRead": 654336,
+            "cacheWrite": 0,
+            "reasoning": 505,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 665995,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 665995,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 8
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 4
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 8,
+        "downloaded": 8,
+        "analyses": [
+          {
+            "runId": "6f329a4add0f4b7a80e8af4f95cda271",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "B4",
+          "original_run": "6f329a4add0f4b7a80e8af4f95cda271",
+          "replay_run": "16f72a5f7819435bb039cb65dff7f6bc",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "伊利_DCF_两版估值结果.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_DCF_两版敏感性.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_DCF_两版敏感性并列.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "伊利_DCF_两版输入与FCFF.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_DCF_局部更新报告.md",
+              "matches": true,
+              "type": ".md"
+            },
+            {
+              "name": "伊利_DCF_顺序归因.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_DCF_顺序归因.png",
+              "matches": true,
+              "type": ".png"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "completion": {
+          "explanation": true,
+          "source_pages": true,
+          "numeric_analysis": true,
+          "charts": true,
+          "machine_readable_inputs": true,
+          "executed_script": true
+        },
+        "label": "B4",
+        "arithmetic": {
+          "passed": 34,
+          "total": 34
+        },
+        "issues": [
+          {
+            "severity": "material",
+            "kind": "delivery_link",
+            "evidence": "Inline analysis/... URLs lead to application HTML, although all returned artifact-card URLs download successfully."
+          },
+          {
+            "severity": "material",
+            "kind": "chart_geometry",
+            "evidence": "Negative waterfall bars use signed delta as height and cur+delta as bottom, placing each bar one delta too low. WACC bar should span 27.7774–30.5211 but spans 25.0337–27.7774; labels sit outside bars. Numerical attribution CSV is correct."
+          },
+          {
+            "severity": "minor",
+            "kind": "chart_contrast",
+            "evidence": "Heatmap uses dark labels on dark high-value cells; negative waterfall labels are white over the light background."
+          }
+        ],
+        "finance_checks": {
+          "only_requested_parameters_changed": "pass",
+          "original_terminal_method_preserved": "pass",
+          "ordered_attribution": "pass",
+          "fcff_changes": "pass",
+          "absolute_sensitivity_grid": "pass",
+          "shared_chart_scale": "pass"
+        },
+        "chart_review": "Both PNGs visually inspected. Sensitivity uses same absolute axes and shared color scale, all 18 values correct. Waterfall geometry is incorrect despite correct numeric labels/CSV.",
+        "artifact_replay": {
+          "status": "succeeded",
+          "identical_files": 8,
+          "files": 8
+        },
+        "model": {
+          "old_per_share": "30.521071333748158",
+          "new_per_share": "27.193215588543769",
+          "change": "-3.327855745204389"
+        },
+        "limitations": [
+          "Reused own session inputs without re-reading source. Carries initial task source-citation limitations."
+        ]
+      }
+    },
+    {
+      "label": "C4",
+      "profile": "financial",
+      "status": "completed",
+      "conversationId": "90601f97-e4da-4c4c-b226-e74f6cc52741",
+      "runId": "842d03e2-3f19-469d-a73d-32014754676f",
+      "seconds": 338.45,
+      "usage": {
+        "input": 1113905,
+        "output": 15796,
+        "calls": 9,
+        "costUsd": 0.021875380000000003,
+        "uncachedInput": 31537,
+        "cacheRead": 1082368,
+        "cacheWrite": 0,
+        "reasoning": 4385,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 1113905,
+            "output": 15796,
+            "calls": 8,
+            "costUsd": 0.021875380000000003,
+            "uncachedInput": 31537,
+            "cacheRead": 1082368,
+            "cacheWrite": 0,
+            "reasoning": 4385,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 1113905,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 1113905,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "run_financial_model": 1,
+        "compare_financial_models": 1,
+        "run_analysis": 2,
+        "get_analysis_status": 2,
+        "get_artifact": 8
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 8
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 12,
+        "downloaded": 12,
+        "analyses": [
+          {
+            "runId": "15736740e03d4c46987dbb0781711fce",
+            "status": "failed",
+            "containerRemoved": true
+          },
+          {
+            "runId": "58e40bd1deb24c3eb0f1e50f2a2bfb59",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "C4",
+          "original_run": "58e40bd1deb24c3eb0f1e50f2a2bfb59",
+          "replay_run": "63ee884b9c9c40c29beda3c085497833",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "FCFF年度变化.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "chart_data.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "两版估值结果.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "两版敏感性.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "两版敏感性并列.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "两版模型输入.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "两版输入对照.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利DCF局部更新_完整复算.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "伊利DCF局部更新_报告.md",
+              "matches": true,
+              "type": ".md"
+            },
+            {
+              "name": "每股价值归因.csv",
+              "matches": true,
+              "type": ".csv"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "C4",
+        "completion": {
+          "explanation": true,
+          "source_pages": true,
+          "numeric_analysis": true,
+          "charts": true,
+          "machine_readable_inputs": true,
+          "executed_script": true
+        },
+        "arithmetic": {
+          "passed": 34,
+          "total": 34
+        },
+        "export_consistency": {
+          "passed": 21,
+          "total": 21
+        },
+        "finance_checks": {
+          "only_requested_parameters_changed": "pass",
+          "original_terminal_method_preserved": "pass",
+          "own_saved_model_updated": "pass",
+          "ordered_attribution": "pass",
+          "fcff_changes": "pass",
+          "absolute_sensitivity_grid": "pass",
+          "shared_chart_scale": "pass"
+        },
+        "issues": [
+          {
+            "severity": "minor",
+            "kind": "chart_contrast",
+            "evidence": "Dark green text on dark green heatmap cells has weak contrast; gridlines cross numeric labels."
+          },
+          {
+            "severity": "minor",
+            "kind": "wording",
+            "evidence": "Final reply says WACC and terminal conventions unchanged after explicitly increasing WACC; precise wording should distinguish changed WACC value from unchanged valuation conventions."
+          }
+        ],
+        "chart_review": "PNG visually inspected: both grids, absolute WACC/g axes, units, shared colorbar, all 18 values and Chinese glyphs correct. Dark-cell labels difficult to read.",
+        "artifact_replay": {
+          "status": "succeeded",
+          "identical_files": 11,
+          "files": 11
+        },
+        "model": {
+          "old_per_share": "22.998467377218058",
+          "new_per_share": "20.769205792946737",
+          "change": "-2.229261584271321",
+          "terminal_method": "2028 normalized NOPAT times 1-g/ROIC"
+        },
+        "limitations": [
+          "One failed script ended in NameError after exporting its files. The model repaired autonomously, with all usage included.",
+          "Main executed script reproduces all exported results; the additional short reproduction script only prints base/new FCFF and values, despite a broader docstring.",
+          "Initial historical-source classification issue persists; no source data was rewritten."
+        ]
+      }
+    }
+  ],
+  "interruptedAttempts": [],
+  "interruptedFirstAttempt": {
+    "reason": "Sandbox stdout/stderr were not returned to the model. B1 repeatedly regenerated scripts blindly. A1/B1 completed, C1 cancelled by evaluator after sequence advanced. All first-attempt costs kept separately, no scores combined with corrected comparison.",
+    "at": "2026-10-05T14:26:02.875Z",
+    "runs": [
+      {
+        "label": "A1",
+        "status": "completed",
+        "runId": "6230cc49-0eda-41bd-a831-6f5738fed96b",
+        "conversationId": "0df4fe2f-df19-4b47-9272-7ed33c85d7b9",
+        "input": 1088715,
+        "output": 28425,
+        "unknown": 0,
+        "feeMin": 0.18170972000000002,
+        "feeMax": 0.36341944000000004
+      },
+      {
+        "label": "B1",
+        "status": "completed",
+        "runId": "4f88e06a-2675-4f36-a330-2ab77f9c62a5",
+        "conversationId": "6c572b8e-467a-4970-8765-56f1581ddf7b",
+        "input": 6071509,
+        "output": 121215,
+        "unknown": 0,
+        "feeMin": 0.7701981199999999,
+        "feeMax": 1.5403962399999998
+      },
+      {
+        "label": "C1",
+        "status": "cancelled",
+        "runId": "0486b937-7dc2-4e32-ac73-5f9baa7eb344",
+        "conversationId": "8fe8dc83-65da-44a0-b762-09d7c7602738",
+        "input": 137791,
+        "output": 1022,
+        "unknown": 1,
+        "feeMin": 0.10826108,
+        "feeMax": 0.21652216
+      }
+    ]
+  },
+  "limits": [
+    "Development regression on two previously used documents, one run per arm per task; not held out or statistically significant.",
+    "Same model/router policy; actual reasoning efforts recorded per request, provider cache warmth not controlled.",
+    "A reads raw source; B/C have identical frozen prepared records. Ingestion cost excluded from analysis and no new ingestion is requested.",
+    "First attempt exposed missing sandbox feedback. It is preserved with expense separate from the corrected comparison; one cancelled request has unknown usage."
+  ]
+}

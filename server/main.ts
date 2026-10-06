@@ -1,4 +1,5 @@
 import {modelCatalog} from './model-runtime.js';
+import {artifactMediaType,artifactDownloadOnly} from './artifact-media.js';
 import { mkdir, readFile, readdir, stat, realpath } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
@@ -8,6 +9,7 @@ import type { Conversation } from './types.js';
 import { installProjectApi } from './project-api.js';
 import { projectResources } from './project-resources.js';
 import { annotationsSchema } from './annotations.js';
+import { installDocumentLibraryApi } from './document-library-api.js';
 
 const startup=await acquireStartupGuard({dataDir:DATA,host:HOST,port:PORT});
 let cleanup:()=>Promise<unknown>=async()=>{};
@@ -47,7 +49,7 @@ const projects=async()=>{
 const ensureProject=async(id:string)=>{
  id=readId(id);const all=await projects();if(!all.some((p:any)=>(p.project_id||p.id)===id)){const e:any=new Error('项目不存在');e.status=404;throw e;}return id;
 };
-const toDoc=(d:any)=>({id:d.document_id || d.id,name:d.original_name || d.name,status:d.state || d.status,pageCount:d.page_count,company:d.company,sha256:d.sha256,warnings:d.warnings || [],jobId:d.job_id,createdAt:d.created_at,error:d.error,tableCount:d.table_count,factCount:d.fact_count,processing:d.processing,normalization:d.normalization,normalization_engine:d.normalization_engine,normalized_fact_count:d.normalized_fact_count,legacy_fact_count:d.legacy_fact_count});
+const toDoc=(d:any)=>({id:d.document_id || d.id,name:d.original_name || d.name,status:d.state || d.status,pageCount:d.page_count,company:d.company,sha256:d.sha256,warnings:d.warnings || [],jobId:d.job_id,createdAt:d.created_at,error:d.error,tableCount:d.table_count,factCount:d.fact_count,researchRecordCount:d.research_record_count,profile:d.profile,processing:d.processing,normalization:d.normalization,normalization_engine:d.normalization_engine,normalized_fact_count:d.normalized_fact_count,legacy_fact_count:d.legacy_fact_count});
 const docList=(r:any)=>r.data?.documents || r.data?.items || (Array.isArray(r.data)?r.data:[]);
 const documentInfo=async(projectId:string,documentId:string)=>{
  const r=await service.call('get_document',{project_id:readId(projectId),document_id:readId(documentId)});return r.data?.document || r.data;
@@ -155,13 +157,14 @@ app.get('/api/benchmark/results',route(async(_req,res)=>{
  res.json({runs:reports.filter(x=>!x.runtime),runtime:reports.filter(x=>x.runtime)});
 }));
 app.get('/api/projects/:projectId/artifacts/:runId/:name',route(async(req,res)=>{
- const name=z.string().regex(/^[^/\\]+$/).max(200).parse(req.params.name);
+ // The runner validates the exact relative name against its project-owned
+ // manifest, rejects traversal/links, and verifies the file hash.
+ const name=z.string().min(1).parse(req.params.name);
  const r=await service.call('get_artifact',{project_id:readId(req.params.projectId),run_id:readId(req.params.runId),name});
  const d=r.data,filename=safeDataPath(d.relative_path),actual=await realpath(filename);
  if(!actual.startsWith((await realpath(DATA))+path.sep))throw new Error('产物路径越界');
- const type=d.mime_type || d.media_type || 'application/octet-stream';
- if(!['image/png','application/json','text/csv','text/plain','application/pdf'].includes(type))throw new Error('不允许此产物类型');
- res.type(type);if(req.query.download)res.setHeader('Content-Disposition',"attachment; filename*=UTF-8''"+encodeURIComponent(d.name||path.basename(actual)));res.sendFile(actual);
+ const type=artifactMediaType(actual);
+ res.type(type).setHeader('X-Content-Type-Options','nosniff');if(req.query.download||artifactDownloadOnly(actual))res.setHeader('Content-Disposition',"attachment; filename*=UTF-8''"+encodeURIComponent(d.name||path.basename(actual)));res.sendFile(actual);
 }));
 app.get('/api/conversations/:id/export',route(async(req,res)=>{
  const chat=await runs.getConversation(readId(req.params.id));
@@ -169,6 +172,7 @@ app.get('/api/conversations/:id/export',route(async(req,res)=>{
  res.type('text/markdown; charset=utf-8').setHeader('Content-Disposition',"attachment; filename*=UTF-8''"+encodeURIComponent(chat.title+'.md'));res.send(text);
 }));
 installWorkspaceApi(app,service);
+installDocumentLibraryApi(app,service,project=>runs.activeInProject(project));
 installResearchApi(app,ensureProject,service);
 installProjectApi(app,service,runs,ensureProject);
 app.use('/api',(_req,res)=>res.status(404).json({error:{code:'NOT_FOUND',message:'接口不存在'}}));

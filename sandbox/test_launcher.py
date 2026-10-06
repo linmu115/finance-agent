@@ -96,6 +96,24 @@ class HostPolicyTests(unittest.TestCase):
             self.runner.run("print(1)", {}, project_id="A", run_id="same")
         self.assertEqual(self.runner.status("same", project_id="A"), state)
 
+    def test_script_output_and_error_reach_returned_and_persisted_result(self):
+        from unittest.mock import patch
+        def command(args, **kwargs):
+            stdout = ''
+            stderr = ''
+            if args[0] == 'inspect':
+                stdout = json.dumps({'Running': False, 'ExitCode': 1}) if '--format' in args else '[{}]'
+            elif args[0] == 'logs':
+                stdout = 'loaded 612 rows\n'
+                stderr = 'File /input/analysis.py, line 7\nNameError: missing_series\n'
+            return subprocess.CompletedProcess(args, 0, stdout, stderr)
+        with patch.object(self.runner, 'availability', return_value={'available': True, 'image_id': 'sha256:'+'a'*64}), patch.object(self.runner, '_exec', side_effect=command), patch.object(self.runner, '_verify_config'):
+            state = self.runner.run('print(1)', {}, project_id='A')
+        self.assertEqual(state['status'], 'failed')
+        self.assertEqual(state['stdout'], 'loaded 612 rows\n')
+        self.assertIn('NameError: missing_series', state['stderr'])
+        self.assertEqual(self.runner.status(state['run_id'], project_id='A')['stderr'], state['stderr'])
+
     def test_artifact_refuses_traversal_and_tampering(self):
         run = self.runner.root / "known"
         output = run / "output"
@@ -107,6 +125,12 @@ class HostPolicyTests(unittest.TestCase):
                  "artifacts": [{"name": "chart.png", "size": 3, "sha256": digest(path)}]}
         self.runner._write(run, state)
         self.assertEqual(self.runner.artifact_path("known", "chart.png", project_id="A"), path)
+        nested=output/'model'/'forecast.csv'
+        nested.parent.mkdir();nested.write_bytes(b'year,value\n2025,1\n')
+        state['artifacts'].append({'name':'model/forecast.csv','size':nested.stat().st_size,'sha256':digest(nested)})
+        self.runner._write(run,state)
+        self.assertEqual(self.runner.artifact_path('known','model/forecast.csv',project_id='A'),nested)
+        with self.assertRaises(RunnerError):self.runner.artifact_path('known','model/forecast.csv',project_id='other')
         for name in ["../chart.png", "/chart.png", r"..\chart.png", "missing", "./chart.png", "C:chart.png"]:
             with self.subTest(name=name), self.assertRaises(RunnerError):
                 self.runner.artifact_path("known", name, project_id="A")

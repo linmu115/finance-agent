@@ -21,8 +21,8 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = json.loads((ROOT/'package.json').read_text(encoding='utf-8'))['version']
 PACKAGE = f'finance-agent-{VERSION}-windows-x64'
-EXTRA_FILES = {'README.md','README.txt','THIRD_PARTY_NOTICES.md','.gitattributes','install.cmd','stop-finance.cmd','check-install.cmd','start-finance.cmd','CONTINUATION.md','design/history/readme-before-release-v01.txt'}
-EXTRA_ROOTS = {'docs','licenses','skills','paper/v0.2.0'}
+EXTRA_FILES = {'README.md','README.txt','THIRD_PARTY_NOTICES.md','.gitattributes','install.cmd','stop-finance.cmd','check-install.cmd','start-finance.cmd','CONTINUATION.md','AGENTS.md','design/history/readme-before-release-v01.txt'}
+EXTRA_ROOTS = {'docs','licenses','skills','paper/v0.2.0','paper/v0.3.0','paper/experiments','samples/holdout-20261006'}
 spec = importlib.util.spec_from_file_location('handoff', ROOT/'scripts/package_handoff.py')
 handoff = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
@@ -33,7 +33,8 @@ def sha256(file):
 
 def collect():
     downloads = handoff.application_downloads(ROOT)
-    selected = {name: file for name,file,_ in handoff.collect_inputs(ROOT,set(),downloads)}
+    selected = {name: file for name,file,_ in handoff.collect_inputs(ROOT,set(),downloads)
+                if not name.startswith('web/test-results/')}
     for name in EXTRA_FILES:
         file = ROOT/name
         if file.is_file(): selected[name] = file

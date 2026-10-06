@@ -626,7 +626,7 @@ class ProcessingMixin:
         if not isinstance(filters,dict):raise ValueError("invalid_filters")
         limit=max(1,min(int(limit),200));offset=max(0,int(offset))
         sql=" FROM current_financial_facts f WHERE f.project_id=?";args=[project_id]
-        for singular,plural,column in [("company","companies","company"),("metric","metrics","metric"),("period","periods","period"),("year","years","year"),("scope","scopes","scope"),("currency","currencies","currency"),("document_id","document_ids","document_id")]:
+        for singular,plural,column in [("company","companies","company"),("metric","metrics","metric"),("period","periods","period"),("year","years","year"),("scope","scopes","scope"),("currency","currencies","currency"),("document_id","document_ids","document_id"),("quality","qualities","quality")]:
             values=filters.get(plural,filters.get(singular))
             if values==[]:
                 sql+=" AND 0";continue
@@ -654,11 +654,17 @@ class ProcessingMixin:
         items=[self._expanded_fact(r) for r in records]
         return envelope({"items":items,"total":total,"limit":limit,"offset":offset},[f["source_ref"] for f in items])
 
-    def get_data_catalog(self, project_id, query=None, statement=None, offset=0, limit=None):
+    def get_data_catalog(self, project_id, query=None, statement=None, offset=0, limit=None, document_id=None, company=None):
         self.store.project(project_id)
         documents=self.list_documents(project_id)["data"]["items"]
+        where='project_id=?';args=[project_id]
+        if document_id:
+            self.store.document(project_id,document_id)
+            where+=' AND document_id=?';args.append(document_id)
+            documents=[d for d in documents if d['document_id']==document_id]
+        if company:where+=' AND company=?';args.append(company)
         with self.store.connect() as db:
-            metrics=[dict(r) for r in db.execute("SELECT metric,COALESCE(json_extract(source_json,'$.normalization.label'),metric) label,COALESCE(json_extract(source_json,'$.normalization.statement'),'notes') statement,count(*) count FROM current_financial_facts WHERE project_id=? GROUP BY metric,label,statement ORDER BY statement,metric",(project_id,))]
+            metrics=[dict(r) for r in db.execute("SELECT metric,COALESCE(json_extract(source_json,'$.normalization.label'),metric) label,COALESCE(json_extract(source_json,'$.normalization.statement'),'notes') statement,count(*) count FROM current_financial_facts WHERE "+where+" GROUP BY metric,label,statement ORDER BY statement,metric",args)]
             for metric in metrics:
                 if metric["label"]==metric["metric"] and metric["metric"] in METRICS:metric["label"]=METRICS[metric["metric"]][0]
             if query:
@@ -668,24 +674,27 @@ class ProcessingMixin:
             total_metrics=len(metrics);offset=max(0,int(offset))
             if limit is not None:limit=max(1,min(int(limit),80));metrics=metrics[offset:offset+limit]
             selected_metrics={m["metric"] for m in metrics}
-            counts={"documents":len(documents),"facts":db.execute("SELECT count(*) FROM current_financial_facts WHERE project_id=?",(project_id,)).fetchone()[0]}
+            counts={"documents":len(documents),"facts":db.execute("SELECT count(*) FROM current_financial_facts WHERE "+where,args).fetchone()[0]}
             research_sql=" FROM research_records r LEFT JOIN document_profiles p USING(document_id) WHERE r.project_id=? AND r.is_current=1 AND (r.profile_revision IS NULL OR r.profile_revision=p.revision_id)"
-            counts['research_records']=db.execute('SELECT count(*)'+research_sql,(project_id,)).fetchone()[0]
-            research_metrics=[dict(r) for r in db.execute('SELECT r.metric,r.data_kind,count(*) count'+research_sql+' AND r.metric IS NOT NULL GROUP BY r.metric,r.data_kind ORDER BY r.metric,r.data_kind',(project_id,))]
+            research_args=[project_id]
+            if document_id:research_sql+=' AND r.document_id=?';research_args.append(document_id)
+            if company:research_sql+=" AND json_extract(r.record_json,'$.entity.name')=?";research_args.append(company)
+            counts['research_records']=db.execute('SELECT count(*)'+research_sql,research_args).fetchone()[0]
+            research_metrics=[dict(r) for r in db.execute('SELECT r.metric,r.data_kind,count(*) count'+research_sql+' AND r.metric IS NOT NULL GROUP BY r.metric,r.data_kind ORDER BY r.metric,r.data_kind',research_args)]
             if query:research_metrics=[m for m in research_metrics if any(t in (m['metric']+' '+m['data_kind']).casefold() for t in str(query).casefold().split())]
             research_total=len(research_metrics)
             if limit is not None:research_metrics=research_metrics[offset:offset+limit]
             counts["pages"]=sum(d["page_count"] or 0 for d in documents);counts["tables"]=sum(d["table_count"] for d in documents)
-            distinct={plural:[r[0] for r in db.execute(f"SELECT DISTINCT {column} FROM current_financial_facts WHERE project_id=? ORDER BY {column}",(project_id,))] for plural,column in [("companies","company"),("periods","period"),("scopes","scope"),("currencies","currency")]}
+            distinct={plural:[r[0] for r in db.execute(f"SELECT DISTINCT {column} FROM current_financial_facts WHERE "+where+f" ORDER BY {column}",args)] for plural,column in [("companies","company"),("periods","period"),("scopes","scope"),("currencies","currency")]}
             metric_aliases=[]
             if db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='metric_aliases'").fetchone():
                 for record in db.execute("SELECT source_metric,canonical_metric,canonical_label,review_hash,evidence_json FROM metric_aliases WHERE project_id=? ORDER BY source_metric",(project_id,)):
                     alias=dict(record)
-                    if limit is not None and alias["source_metric"] not in selected_metrics and alias["canonical_metric"] not in selected_metrics:continue
+                    if (limit is not None or document_id or company) and alias["source_metric"] not in selected_metrics and alias["canonical_metric"] not in selected_metrics:continue
                     alias["evidence"]=json.loads(alias.pop("evidence_json"));metric_aliases.append(alias)
             distinct["metric_aliases"]=metric_aliases
             dimensions={};dimension_labels={};versions=set()
-            for record in db.execute("SELECT metric,source_json FROM current_financial_facts WHERE project_id=?",(project_id,)):
+            for record in db.execute("SELECT metric,source_json FROM current_financial_facts WHERE "+where,args):
                 if limit is not None and record[0] not in selected_metrics:continue
                 meta=json.loads(record[1]).get("normalization",{});versions.add(meta.get("restatement","original"))
                 for key,value in meta.get("dimensions",{}).items():dimensions.setdefault(key,set()).add(str(value))
@@ -697,7 +706,7 @@ class ProcessingMixin:
         return envelope({"project_id":project_id,"database_path":str(self.store.path),"documents_path":str(self.store.root/"documents"/project_id),
                          "index_path":str(self.store.root/"indexes"/project_id/"catalog.yaml"),"documents":documents,"metrics":metrics,"counts":counts,
                          "research_catalog":{"metrics":research_metrics,"total_metrics":research_total,"offset":offset,"next_offset":offset+len(research_metrics) if offset+len(research_metrics)<research_total else None,"query_tool":"query_research_records"},
-                         "pagination":{"total":total_metrics,"offset":offset,"limit":limit,"next_offset":offset+len(metrics) if offset+len(metrics)<total_metrics else None,"query":query,"statement":statement},"dimensions_scope":"current_metric_page" if limit is not None else "project",
+                         "pagination":{"total":total_metrics,"offset":offset,"limit":limit,"next_offset":offset+len(metrics) if offset+len(metrics)<total_metrics else None,"query":query,"statement":statement,"document_id":document_id,"company":company},"dimensions_scope":"current_metric_page" if limit is not None else "project",
                          "statements":[{"id":k,"label":v} for k,v in STATEMENTS.items()],"indexing":"hybrid_rrf" if self.configs.get(project_id,{}).get("embedding",{}).get("enabled") else "keyword+yaml","embedding_enabled":bool(self.configs.get(project_id,{}).get("embedding",{}).get("enabled")),"processing":runs,"catalog_review":directory_status(self.store,project_id),"temporal_review":temporal_review_status(self.store,project_id),"definition_review":definition_status(self.store,project_id),**distinct})
 
     def get_dashboard(self, project_id):
@@ -705,7 +714,10 @@ class ProcessingMixin:
         result=self.query_financial_data(project_id,limit=200)["data"]
         return envelope({"documents":catalog["documents"],"facts":result["items"],"catalog":catalog,"total":result["total"],"limit":result["limit"],"offset":result["offset"],"truncated":result["total"]>len(result["items"])})
 
-    def get_normalization_details(self, project_id, document_id, table_id=None, limit=20, offset=0):
+    def get_normalization_details(self, project_id, document_id, table_id=None, limit=20, offset=0, review_only=False, query=None):
+        if review_only:
+            from .evidence_review import review_details
+            return envelope(review_details(self.store,project_id,document_id,query,offset,limit,table_id))
         doc=self.get_document(project_id,document_id)["data"]
         limit=max(1,min(int(limit),20));offset=max(0,int(offset))
         with self.store.connect() as db:

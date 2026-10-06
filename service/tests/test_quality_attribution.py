@@ -53,7 +53,7 @@ class AttributionTests(unittest.TestCase):
         self.assertEqual(Decimal(bridge['reported_operating_profit_residual']), Decimal(0))
         self.assertNotIn('ebit_change',bridge)
         self.assertNotIn('ebit',result['tables']['quality'][0])
-        self.assertEqual(result['model_version'],'research-models-1.1.0')
+        self.assertEqual(result['model_version'],'research-models-1.2.0')
         self.assertEqual(s,self.operating_spec())  # input/history is not mutated
 
     def test_negative_finance_expense_does_not_imply_interest_income(self):

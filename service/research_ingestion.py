@@ -16,6 +16,27 @@ DATA_KINDS = {'disclosed_actual', 'quoted_actual', 'analyst_forecast', 'company_
 CLAIM_KINDS = {'opinion', 'risk', 'catalyst', 'assumption', 'company_guidance'}
 ENTITY_KINDS = {'company', 'industry', 'product', 'region', 'other'}
 
+# Search vocabulary, not inferred metric equivalence or financial values.
+QUERY_ALIASES = {
+    'fcff': ('free_cash_flow_firm','企业自由现金流','公司自由现金流'),
+    'fcfe': ('free_cash_flow_equity','股权自由现金流'),
+    'd&a': ('depreciation_amortization','折旧','摊销'),
+    'capex': ('capital_expenditure','资本开支','资本支出'),
+    'nwc': ('working_capital','营运资金','营运资本'),
+}
+
+
+def research_query_terms(query):
+    terms=re.split(r'[\s,，;；|]+',str(query).strip())
+    expanded=[]
+    for word in terms:
+        if not word:continue
+        expanded.append(word)
+        for acronym,aliases in QUERY_ALIASES.items():
+            if word.casefold() in (acronym,*(a.casefold() for a in aliases)):
+                expanded.extend((acronym,*aliases))
+    return list(dict.fromkeys(expanded))
+
 
 def initialize(db):
     db.executescript('''
@@ -205,8 +226,10 @@ class ResearchIngestionMixin:
             reviews={r['page']:json.loads(r['review_json']) for r in db.execute('SELECT * FROM research_page_reviews WHERE document_id=? AND profile_revision=? AND source_hash=?',(document_id,profile['revision_id'],doc['sha256']))}
             count=db.execute('SELECT count(*) FROM research_records WHERE project_id=? AND document_id=? AND profile_revision=? AND is_current=1',(project_id,document_id,profile['revision_id'])).fetchone()[0]
         if processing_id:reviews={p:r for p,r in reviews.items() if r.get('processing_id')==processing_id}
-        return {'pages_total':len(pages),'pages_reviewed':len(reviews),'pending_pages':[p for p in pages if p not in reviews],
-                'review_issues':[{'page':p,'reason':'research_page_needs_review','detail':r.get('note')} for p,r in reviews.items() if r['verdict']=='needs_review'], 'record_count':count}
+        finished={p for p,r in reviews.items() if r.get('content_state') not in {'failed','partial','unresolved'}}
+        return {'pages_total':len(pages),'pages_reviewed':len(finished),'pending_pages':[p for p in pages if p not in finished],
+                'review_issues':[{'page':p,'reason':'research_page_needs_review','detail':r.get('note'),
+                    'content_state':r.get('content_state'),'candidate_claims':r.get('candidate_claims',[])} for p,r in reviews.items() if r['verdict']=='needs_review'], 'record_count':count}
 
     def get_research_ingestion_status(self, project_id, document_id, offset=0, limit=40, processing_id=None):
         attempt=self._clean_state(project_id,processing_id) if processing_id else None
@@ -244,7 +267,7 @@ class ResearchIngestionMixin:
                 'upstream_source':meta.get('upstream_source'),'quality':fact['quality'],
                 'source_key':digest([fact['source']['table_id'],fact['source']['row'],fact['source']['column'],meta.get('numeric_span'),fact['metric'],fact['period'],kind,meta.get('scenario'),meta.get('dimensions')])}
 
-    def _replace_research_batch(self, db, project_id, document_id, profile, batch_key, records):
+    def _replace_research_batch(self, db, project_id, document_id, profile, batch_key, records, preserve_existing=False):
         revision=(profile or {}).get('revision_id');now=utcnow()
         old={r['record_key']:dict(r) for r in db.execute('SELECT * FROM research_records WHERE project_id=? AND document_id=? AND batch_key=? AND is_current=1',(project_id,document_id,batch_key))}
         prepared=[]
@@ -255,6 +278,7 @@ class ResearchIngestionMixin:
         if len({p[0] for p in prepared})!=len(prepared):raise ValueError('duplicate_research_record')
         keys={p[0] for p in prepared}
         for key,r in old.items():
+            if preserve_existing and key not in keys:continue
             if key not in keys or next(p[2] for p in prepared if p[0]==key)!=r['content_hash']:
                 db.execute('UPDATE research_records SET is_current=0 WHERE record_id=?',(r['record_id'],))
                 for c in db.execute("SELECT chunk_id FROM chunks WHERE project_id=? AND json_extract(source_json,'$.research_record_id')=?",(project_id,r['record_id'])).fetchall():
@@ -288,46 +312,64 @@ class ResearchIngestionMixin:
                 number=page.get('page')
                 if type(number) is not int or number in seen or not any(p['page']==number for p in parsed['pages']):raise ValueError('invalid_research_page')
                 seen.add(number)
-                if page.get('verdict') not in {'accepted','needs_review'} or not str(page.get('note','')).strip():raise ValueError(f'research_page_verdict_required_page_{number}_use_accepted_or_needs_review_and_note')
-                records=[]
+                page=dict(page);page.setdefault('verdict','accepted');page.setdefault('note','')
+                if page['verdict'] not in {'accepted','needs_review'}:raise ValueError('invalid_research_page_verdict')
+                records=[];candidates=[]
                 for claim in page.get('claims',[]):
-                    if claim.get('kind') not in CLAIM_KINDS or not isinstance(claim.get('text'),str) or not claim['text'].strip():raise ValueError('invalid_research_claim')
-                    ref=grounded_quote(parsed,{'page':number,'quote':claim.get('quote')})|{'document_id':document_id}
-                    entity=entity_payload(claim.get('entity'));entity={k:v for k,v in entity.items() if k!='identity_key'}
-                    entity_proof=claim.get('entity_evidence')
-                    known=next((e for e in profile['entities'] if norm(entity['name']) in {norm(e['name']),*(norm(a) for a in e.get('aliases',[]))}),None)
-                    if known:entity={k:known[k] for k in ('name','kind','aliases','identifiers')}
-                    else:
-                        proof=grounded_quote(parsed,entity_proof) if entity_proof else ref
-                        if any(norm(v) not in norm(proof['quote']) for v in [entity['name'],*entity['aliases'],*entity['identifiers'].values()]):raise ValueError('claim_entity_not_grounded')
-                    attribution=claim.get('attribution') or {'kind':'author'}
-                    if attribution.get('kind') not in {'author','quoted','unknown'}:raise ValueError('invalid_research_attribution')
-                    if attribution['kind']=='quoted':
-                        speaker=attribution.get('speaker') or attribution.get('institution')
-                        if not speaker or norm(speaker) not in norm(ref['quote']):raise ValueError('quoted_speaker_not_grounded')
-                        if attribution.get('institution') and norm(attribution['institution']) not in norm(ref['quote']):raise ValueError('quoted_institution_not_grounded')
-                    publisher=profile['publisher'] if attribution['kind']=='author' else attribution.get('institution') if attribution['kind']=='quoted' else None
-                    records.append({'record_type':'claim','data_kind':claim['kind'],'entity':entity,'text':claim['text'],
-                        'scenario':claim.get('scenario') or 'unspecified','publisher':publisher,'published_at':profile['published_at'],
-                        'source':ref,'attribution':attribution,'report_publisher':profile['publisher'],'authors':profile['authors'],
-                        'horizon':claim.get('horizon'),'quality':page['verdict'],'source_key':digest([number,ref['start'],ref['end'],entity['name'],claim['kind']])})
+                    try:records.append(self._prepare_claim(document_id,parsed,profile,page,claim))
+                    except ValueError as exc:candidates.append({'claim':claim,'error':str(exc)})
+                if candidates:page.update(content_state='partial' if records else 'failed',verdict='needs_review',candidate_claims=candidates)
+                elif records:page['content_state']='extracted'
+                elif str(page.get('empty_reason','')).strip():page['content_state']='no_claims'
+                elif page['verdict']=='needs_review' and page['note'].strip():page['content_state']='unavailable'
+                else:page.update(content_state='unresolved',verdict='needs_review',note=page['note'] or '尚无观点提取结果；确无观点时注明empty_reason，不能用空数组表示成功。')
                 prepared.append((page,records))
             ids=[]
             with self.store.connect(write=True) as db:
                 revision=db.execute('SELECT revision_id FROM document_profiles WHERE project_id=? AND document_id=?',(project_id,document_id)).fetchone()
                 if not revision or revision[0]!=profile['revision_id']:raise ValueError('document_profile_changed_restart_processing')
                 for page,records in prepared:
-                    ids+=self._replace_research_batch(db,project_id,document_id,profile,'page:'+str(page['page']),records)
+                    pending=page['content_state'] in {'failed','partial','unresolved','unavailable'}
+                    ids+=self._replace_research_batch(db,project_id,document_id,profile,'page:'+str(page['page']),records,preserve_existing=pending)
+                    previous=db.execute('SELECT review_json FROM research_page_reviews WHERE document_id=? AND profile_revision=? AND page=?',(document_id,profile['revision_id'],page['page'])).fetchone()
+                    if pending and not page.get('candidate_claims') and previous:page['candidate_claims']=json.loads(previous[0]).get('candidate_claims',[])
                     db.execute('INSERT OR REPLACE INTO research_page_reviews VALUES(?,?,?,?,?,?)',(document_id,profile['revision_id'],page['page'],doc['sha256'],dumps({k:v for k,v in page.items() if k!='claims'}|{'processing_id':processing_id}),utcnow()))
             self._clean_progress(state);self._save_processing(state,refresh_attachment_snapshot=True)
             with self.store.connect(write=True) as db:db.execute('UPDATE documents SET state=? WHERE document_id=?',(target['state'],document_id))
             self._schedule_embedding_index(project_id)
-            return envelope(self._clean_summary(state)|{'record_ids':ids,'reviewed_pages':[p['page'] for p,_ in prepared]})
+            return envelope(self._clean_summary(state)|{'record_ids':ids,'pages':[{'page':p['page'],'content_state':p['content_state'],'saved_claims':len(records),'candidate_claims':p.get('candidate_claims',[])} for p,records in prepared],
+                'known_entities':[{'name':e['name'],'kind':e['kind']} for e in profile['entities']],
+                'reviewed_pages':[p['page'] for p,_ in prepared if p['content_state'] in {'extracted','no_claims'}]})
+
+    def _prepare_claim(self,document_id,parsed,profile,page,claim):
+        if claim.get('kind') not in CLAIM_KINDS or not isinstance(claim.get('text'),str) or not claim['text'].strip():raise ValueError('invalid_research_claim')
+        ref=grounded_quote(parsed,{'page':page['page'],'quote':claim.get('quote')})|{'document_id':document_id}
+        supplied=claim.get('entity')
+        if supplied is None and len(profile['entities'])==1:supplied=profile['entities'][0]
+        name=supplied if isinstance(supplied,str) else supplied.get('name') if isinstance(supplied,dict) else None
+        known=next((e for e in profile['entities'] if name and norm(name) in {norm(e['name']),*(norm(a) for a in e.get('aliases',[]))}),None)
+        if known:entity={k:known[k] for k in ('name','kind','aliases','identifiers')}
+        else:
+            if isinstance(supplied,str):raise ValueError('entity_name_not_in_profile_use_entity_object_with_source_evidence')
+            entity=entity_payload(supplied);entity={k:v for k,v in entity.items() if k!='identity_key'}
+            proof=grounded_quote(parsed,claim['entity_evidence']) if claim.get('entity_evidence') else ref
+            if any(norm(v) not in norm(proof['quote']) for v in [entity['name'],*entity['aliases'],*entity['identifiers'].values()]):raise ValueError('claim_entity_not_grounded')
+        attribution=claim.get('attribution') or {'kind':'author'}
+        if attribution.get('kind') not in {'author','quoted','unknown'}:raise ValueError('invalid_research_attribution')
+        if attribution['kind']=='quoted':
+            speaker=attribution.get('speaker') or attribution.get('institution')
+            if not speaker or norm(speaker) not in norm(ref['quote']):raise ValueError('quoted_speaker_not_grounded')
+            if attribution.get('institution') and norm(attribution['institution']) not in norm(ref['quote']):raise ValueError('quoted_institution_not_grounded')
+        publisher=profile['publisher'] if attribution['kind']=='author' else attribution.get('institution') if attribution['kind']=='quoted' else None
+        return {'record_type':'claim','data_kind':claim['kind'],'entity':entity,'text':claim['text'],
+            'scenario':claim.get('scenario') or 'unspecified','publisher':publisher,'published_at':profile['published_at'],
+            'source':ref,'attribution':attribution,'report_publisher':profile['publisher'],'authors':profile['authors'],
+            'horizon':claim.get('horizon'),'quality':page['verdict'],'source_key':digest([page['page'],ref['start'],ref['end'],entity['name'],claim['kind']])}
 
     def query_research_records(self, project_id, filters=None, offset=0, limit=40):
         self.store.project(project_id);filters=filters or {}
         if not isinstance(filters,dict):raise ValueError('invalid_research_filters')
-        supported={'record_type','data_kind','entity_id','entity','metric','period','publisher','report_publisher','document_id','scenario','as_of','include_history','latest_per_series','query'}
+        supported={'record_type','data_kind','entity_id','entity','metric','period','publisher','report_publisher','document_id','scenario','as_of','include_history','latest_per_series','query','quality'}
         if set(filters)-supported:raise ValueError('unsupported_research_filter')
         sql=' FROM research_records r JOIN research_entities e USING(entity_id) JOIN documents d ON d.document_id=r.document_id LEFT JOIN document_profiles p ON p.document_id=r.document_id WHERE r.project_id=?';args=[project_id]
         if not filters.get('include_history'):sql+=' AND r.is_current=1 AND (r.profile_revision IS NULL OR r.profile_revision=p.revision_id)'
@@ -339,8 +381,16 @@ class ResearchIngestionMixin:
         if filters.get('entity'):
             sql+=' AND (e.name=? OR EXISTS(SELECT 1 FROM json_each(e.aliases_json) WHERE value=?))';args += [filters['entity']]*2
         if filters.get('report_publisher'):sql+=" AND json_extract(r.record_json,'$.report_publisher')=?";args.append(filters['report_publisher'])
+        if filters.get('quality') is not None:
+            values=filters['quality'] if isinstance(filters['quality'],list) else [filters['quality']]
+            if not values:sql+=' AND 0'
+            else:
+                sql+=" AND json_extract(r.record_json,'$.quality') IN ("+','.join('?' for _ in values)+')';args+=values
         if filters.get('as_of'):sql+=' AND r.published_at IS NOT NULL AND r.published_at<=?';args.append(valid_date(filters['as_of']))
-        if filters.get('query'):sql+=' AND r.record_json LIKE ?';args.append('%'+str(filters['query'])+'%')
+        terms=research_query_terms(filters['query']) if filters.get('query') else []
+        if terms:
+            sql+=' AND ('+' OR '.join("r.record_json LIKE ? ESCAPE '\\'" for _ in terms)+')'
+            args+=['%'+term.replace('\\','\\\\').replace('%','\\%').replace('_','\\_')+'%' for term in terms]
         select='SELECT r.*,e.name entity_name,e.kind entity_kind,(r.profile_revision IS NOT NULL AND r.profile_revision!=p.revision_id) stale_profile'
         if filters.get('latest_per_series'):
             if filters.get('include_history'):raise ValueError('latest_series_with_history_ambiguous')
@@ -361,6 +411,7 @@ class ResearchIngestionMixin:
             items.append(payload|r|{'source_ref':source})
         warnings=['undated_records_excluded'] if filters.get('as_of') or filters.get('latest_per_series') else []
         return envelope({'items':items,'total':total,'offset':offset,'limit':limit,'next_offset':offset+limit if offset+limit<total else None,
+                         'query_terms':terms,'query_match':'any_term' if terms else None,
                          'version_note':'每份研报按发布日期并列保留；include_history 另包含同一原文的提取修订。'},[r['source_ref'] for r in items],warnings)
 
     def _evidence_filters(self, company=None, year=None, filters=None):

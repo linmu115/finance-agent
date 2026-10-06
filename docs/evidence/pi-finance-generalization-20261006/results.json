@@ -1,0 +1,4791 @@
+{
+  "createdAt": "2026-10-06T05:57:44.493Z",
+  "study": "new_company_screen_not_statistical_superiority",
+  "projectId": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+  "model": "gpt-6-luna",
+  "provider": "cpa-local",
+  "documents": [
+    {
+      "id": "cebeadc4df2147a4ab7c1c5c85b8032c",
+      "name": "CMBI_Carote_20241108_47p.pdf",
+      "status": "needs_review",
+      "pageCount": 47,
+      "company": "Carote Ltd",
+      "sha256": "9f885f83aa01595991a14ec79873ff106b6a6784b1fd4a978d2114b42b327180",
+      "warnings": [],
+      "createdAt": "2026-10-06T03:10:30.782765+00:00",
+      "tableCount": 145,
+      "factCount": 0,
+      "normalization_engine": "PythonScript",
+      "normalized_fact_count": 0,
+      "legacy_fact_count": 0
+    },
+    {
+      "id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+      "name": "Carote_2025_Interim_55p.pdf",
+      "status": "needs_review",
+      "pageCount": 55,
+      "company": "Carote Ltd",
+      "sha256": "bb418ca2b6634fa5f4e00992c2c6eec3b0292d9c0072cb2011e93b4619d347dc",
+      "warnings": [
+        "78 处语义映射仍需补充"
+      ],
+      "createdAt": "2026-10-06T03:10:30.570105+00:00",
+      "tableCount": 78,
+      "factCount": 732,
+      "normalization_engine": "PythonScript",
+      "normalized_fact_count": 732,
+      "legacy_fact_count": 0
+    }
+  ],
+  "codeUnchanged": true,
+  "changedCodeFiles": [],
+  "structuredDataUnchanged": true,
+  "taskSha256": "c4510121693ce55159533be93eef47032c21c3adc904b0fba236e085a3dfb5e0",
+  "plannedOrder": [
+    "A1",
+    "B1",
+    "C1",
+    "C2",
+    "B2",
+    "A2",
+    "B3",
+    "C3",
+    "A3",
+    "E1",
+    "D1",
+    "D2",
+    "E2",
+    "E3",
+    "D3"
+  ],
+  "interventions": [
+    {
+      "at": "2026-10-06T05:00:47.599250+00:00",
+      "label": "B1",
+      "type": "host_restart_after_crash",
+      "reason": "Unhandled EBUSY opening active audit file on Windows; server exited. Original stderr and pre-recovery audit preserved. Same frozen source restarted on 3001; existing Pi session auto-resumes. No new user prompt, no changed parameters, no code change. Cause of transient file lock not established.",
+      "evidence": "server-interruption-1300.stderr.log"
+    }
+  ],
+  "frontendRendering": {
+    "date": "2026-10-06",
+    "userRequest": "Markdown and TeX math rendering in frontend, model uses TeX rather than plain-character formula approximations.",
+    "preFreeze": "Shared Markdown/KaTeX and equal answer-format guidance enabled for all cohorts before first task.",
+    "duringRun": "C2 used native TeX delimiters; added frontend-only recognition of inline parentheses and display brackets, protecting code examples. No frozen server/service/skills code, model prompts, tools, financial data or agent input changed. Same rendering applies to all cohorts.",
+    "validation": "7 math/artifact-link tests, TypeScript checks, Vite build, desktop and 390px browser fixtures passed. Actual C2 response renders 2 formulas (1 display), zero KaTeX errors.",
+    "userBrowser": "Not reloaded; no project data or draft modified by browser fixtures."
+  },
+  "artifactReplays": [
+    {
+      "label": "A1",
+      "original_run": "d97bc1617ce64931b2a77311f0368959",
+      "replay_run": "30f634dc87a94cc2acaf97629615c0e8",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "analysis_report.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "chart_data.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "comparison.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "presentation_bundle.zip",
+          "matches": false,
+          "type": ".zip",
+          "entryBytesMatch": true
+        },
+        {
+          "name": "report.md",
+          "matches": true,
+          "type": ".md"
+        },
+        {
+          "name": "利润与现金流.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "复算脚本.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "底稿.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "现金流桥接.csv",
+          "matches": true,
+          "type": ".csv"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "B1",
+      "original_run": "35342524276943a680cd9df50e31b809",
+      "replay_run": "79c018d67a0346da8dde6b344e46d229",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "analysis_report.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "chart_1.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "chart_data.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "comparison.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "presentation_bundle.zip",
+          "matches": false,
+          "type": ".zip",
+          "entryBytesMatch": true
+        },
+        {
+          "name": "profit_cashflow_comparison.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "profit_cashflow_workpaper.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "report.md",
+          "matches": true,
+          "type": ".md"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "C1",
+      "original_run": "0797b0fcd88d4848b81a86b51ff5e440",
+      "replay_run": "5ccb3f38948e477f9a98f63c6f20f334",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "chart_data.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "operating_cash_bridge.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "profit_cashflow_comparison.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "profit_cashflow_metrics.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "report.md",
+          "matches": true,
+          "type": ".md"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "C2",
+      "original_run": "e64d0ba90a234326b7f0f8711af7b32a",
+      "replay_run": "e64eb9d5c4c94f3194ec48f833bff466",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "chart_data.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "dcf_inputs.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "dcf_sensitivity.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "dcf_sensitivity.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "forecast.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "forecast.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "report.md",
+          "matches": true,
+          "type": ".md"
+        },
+        {
+          "name": "valuation_inputs.json",
+          "matches": true,
+          "type": ".json"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "B2",
+      "original_run": "7673ef68850a4ea6abc0e17b838fcbf2",
+      "replay_run": "6fa89ab8db4b4a8dabd705a1761cca3d",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "analysis_report.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "chart_1.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "chart_2.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "chart_data.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "dcf_bridge.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "dcf_inputs.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "forecast.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "presentation_bundle.zip",
+          "matches": false,
+          "type": ".zip",
+          "entryBytesMatch": true
+        },
+        {
+          "name": "recalc_inputs.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "report.md",
+          "matches": true,
+          "type": ".md"
+        },
+        {
+          "name": "sensitivity.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "valuation.csv",
+          "matches": true,
+          "type": ".csv"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "B2",
+      "original_run": "1abbc09dc9c748668c8f9494c9a87256",
+      "replay_run": "45ec49f3335d48619f7f3038bf3425c1",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "DCF复算桥接.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "analysis_report.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "chart_1.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "chart_2.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "chart_data.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "dcf_inputs.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "forecast.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "presentation_bundle.zip",
+          "matches": false,
+          "type": ".zip",
+          "entryBytesMatch": true
+        },
+        {
+          "name": "report.md",
+          "matches": true,
+          "type": ".md"
+        },
+        {
+          "name": "sensitivity.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "valuation.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "可复算脚本.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "底稿_输入与公式.csv",
+          "matches": true,
+          "type": ".csv"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "A2",
+      "original_run": "a854d816a9114f0c97e54f65c7a35ad0",
+      "replay_run": "aaaecf7f66414eee9c0436743a558b63",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "all_dcf_inputs.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "analysis_report.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "chart_data.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "dcf_base_inputs_and_pv.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "dcf_sensitivity.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "dcf_sensitivity_chart.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "forecast_chart.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "forecast_inputs.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "presentation_bundle.zip",
+          "matches": false,
+          "type": ".zip",
+          "entryBytesMatch": true
+        },
+        {
+          "name": "report.md",
+          "matches": true,
+          "type": ".md"
+        },
+        {
+          "name": "reproduce.py",
+          "matches": true,
+          "type": ".py"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "B3",
+      "original_run": "b778c96ebe864dc3972a7d55b1cb5766",
+      "replay_run": "93597e3de65a4b91bb2b43f1cebe0a2e",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "analysis_report.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "bridge.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "chart_data.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "presentation_bundle.zip",
+          "matches": false,
+          "type": ".zip",
+          "entryBytesMatch": true
+        },
+        {
+          "name": "report.md",
+          "matches": true,
+          "type": ".md"
+        },
+        {
+          "name": "sensitivity.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "双版本敏感性.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "双版本敏感性.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "局部更新_参数结果差异.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "局部更新_可复算脚本.py",
+          "matches": true,
+          "type": ".py"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "C3",
+      "original_run": "50119496ebe14114bc0c05f98eb9d57a",
+      "replay_run": "20cfe2ae81704fbbadb3be1ce5181d79",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "chart_data.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "report.md",
+          "matches": true,
+          "type": ".md"
+        },
+        {
+          "name": "sensitivity_comparison.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "sensitivity_old_new.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "update_parameters.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "update_results.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "updated_valuation_inputs.json",
+          "matches": true,
+          "type": ".json"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "A3",
+      "original_run": "87c8a1a55a3a483caf6d92181e240d22",
+      "replay_run": "946f008e226d4405b83b040f01b240a3",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "analysis_report.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "chart_data.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "fcf_old_new.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "presentation_bundle.zip",
+          "matches": false,
+          "type": ".zip",
+          "entryBytesMatch": true
+        },
+        {
+          "name": "report.md",
+          "matches": true,
+          "type": ".md"
+        },
+        {
+          "name": "reproduce_update.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "sensitivity_comparison.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "sensitivity_old_new.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "update_parameters.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "value_bridge.csv",
+          "matches": true,
+          "type": ".csv"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "E1",
+      "original_run": "d4bdd2e713f24d46bf5b0f7722fc29b1",
+      "replay_run": "dc34100d1bdf4b24acc3469d25afd397",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "analysis_report.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "calculation_workings.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "chart_1.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "chart_data.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "comparison.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "presentation_bundle.zip",
+          "matches": false,
+          "type": ".zip",
+          "entryBytesMatch": true
+        },
+        {
+          "name": "report.md",
+          "matches": true,
+          "type": ".md"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "D1",
+      "original_run": "71dc5bdef773411e858aab573a1b054c",
+      "replay_run": "afdc329c45344c80ad1f65ebff38d7f0",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "bridge.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "chart_1.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "chart_data.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "chart_data.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "compare.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "presentation_bundle.zip",
+          "matches": false,
+          "type": ".zip",
+          "entryBytesMatch": true
+        },
+        {
+          "name": "report.md",
+          "matches": true,
+          "type": ".md"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "D2",
+      "original_run": "2c9f5f101be34bb2a0a0b9644c72c07e",
+      "replay_run": "005160063bd44cdaa80f51b934de4d9f",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "analysis_report.md",
+          "matches": true,
+          "type": ".md"
+        },
+        {
+          "name": "dcf_inputs.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "dcf_sensitivity.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "dcf_sensitivity_chart.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "earnings_chart.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "earnings_forecast.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "valuation_inputs.csv",
+          "matches": true,
+          "type": ".csv"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "D2",
+      "original_run": "f2b8b84367e44d13a25e049850ccf0d7",
+      "replay_run": "b215de03c5d646f9942c48b5483c8091",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "analysis_report.md",
+          "matches": true,
+          "type": ".md"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "recalculation_script.py",
+          "matches": true,
+          "type": ".py"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "E2",
+      "original_run": "664829ea19c841f5826857d3f2b55cc9",
+      "replay_run": "78d6672e430d488781204d7c1f0d028c",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "carote_dcf_results.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "carote_dcf_sensitivity.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "carote_dcf_sensitivity.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "carote_forecasts.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "carote_inputs_and_valuation.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "carote_recompute.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "E2",
+      "original_run": "27f1067702104adabf17cdc1d57ed944",
+      "replay_run": "a8c1530e0bcc4a9f81c195b4237c87b2",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "chart_data.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "report.md",
+          "matches": true,
+          "type": ".md"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "E3",
+      "original_run": "1cbfd6b985b4454f9eeec049ba03a096",
+      "replay_run": "e828e820b3b54a458dfb45bfc310fb58",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "carote_update_parameters_and_results.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "carote_update_recompute.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "carote_update_report.md",
+          "matches": true,
+          "type": ".md"
+        },
+        {
+          "name": "carote_update_results.json",
+          "matches": true,
+          "type": ".json"
+        },
+        {
+          "name": "carote_update_sensitivity.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "carote_update_sensitivity_comparison.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        }
+      ],
+      "error": null
+    },
+    {
+      "label": "D3",
+      "original_run": "5294c1361e34459aa66bfe42c8c01ee1",
+      "replay_run": "b9057370fc764576a0f53ce218ae9f86",
+      "status": "succeeded",
+      "removed": true,
+      "checks": [
+        {
+          "name": "analysis_report.md",
+          "matches": true,
+          "type": ".md"
+        },
+        {
+          "name": "dcf_change_bridge.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "dcf_old_new_results.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "dcf_parameters_old_new.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "dcf_sensitivity_comparison.png",
+          "matches": true,
+          "type": ".png"
+        },
+        {
+          "name": "dcf_sensitivity_old_new.csv",
+          "matches": true,
+          "type": ".csv"
+        },
+        {
+          "name": "executed_script.py",
+          "matches": true,
+          "type": ".py"
+        },
+        {
+          "name": "recalculation_script.py",
+          "matches": true,
+          "type": ".py"
+        }
+      ],
+      "error": null
+    }
+  ],
+  "environmentCleanup": {
+    "checkedAt": "2026-10-06T13:56:44.1318364+08:00",
+    "reason": "All 15 planned analyses and 18 successful-script replays finished",
+    "desktopStop": "CLI 30-second stop timed out; DockerCli -Shutdown completed; no forced process termination",
+    "originalConfigSha256": "EEC3CCAE1DEB57F9320A108D69D8FD1E4CB31AA073757E2761B2C16E61470560",
+    "restoredConfigSha256": "EEC3CCAE1DEB57F9320A108D69D8FD1E4CB31AA073757E2761B2C16E61470560",
+    "configRestored": true,
+    "dockerOrWslProcesses": [],
+    "runningDistributionsOutput": "",
+    "listeningAppPorts": [
+      {
+        "LocalPort": 3001,
+        "OwningProcess": 32460
+      }
+    ],
+    "health": {
+      "ok": true,
+      "version": "0.2.0",
+      "service": "connected",
+      "modelConfigured": true
+    },
+    "socketBackupDirectoriesPreserved": true,
+    "imagesContainersVolumesDeleted": false
+  },
+  "preparation": {
+    "attempts": [
+      {
+        "runId": "86b35faa-5e8b-4c55-b80a-76ecd777c479",
+        "status": "cancelled",
+        "usage": {
+          "input": 22572,
+          "output": 82,
+          "calls": 189,
+          "costUsd": 0.0014226800000000002,
+          "uncachedInput": 12844,
+          "cacheRead": 9728,
+          "cacheWrite": 0,
+          "reasoning": 0,
+          "unknownCalls": 187,
+          "cacheUnknownCalls": 187,
+          "costUnknownCalls": 187,
+          "phases": {
+            "router": {
+              "input": 0,
+              "output": 0,
+              "calls": 1,
+              "costUsd": null,
+              "uncachedInput": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 1,
+              "cacheUnknownCalls": 1,
+              "costUnknownCalls": 1,
+              "cacheKnownInput": 0
+            },
+            "main": {
+              "input": 22572,
+              "output": 82,
+              "calls": 3,
+              "costUsd": 0.0014226800000000002,
+              "uncachedInput": 12844,
+              "cacheRead": 9728,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 1,
+              "cacheUnknownCalls": 1,
+              "costUnknownCalls": 1,
+              "cacheKnownInput": 22572,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "extraction": {
+              "input": 0,
+              "output": 0,
+              "calls": 185,
+              "costUsd": null,
+              "uncachedInput": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 185,
+              "cacheUnknownCalls": 185,
+              "costUnknownCalls": 185,
+              "cacheKnownInput": 0
+            }
+          },
+          "cacheKnownInput": 22572,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        },
+        "error": "用户取消任务"
+      },
+      {
+        "runId": "6bbd47be-b1eb-4229-a918-f2681badd0f4",
+        "status": "cancelled",
+        "usage": {
+          "input": 136912,
+          "output": 34880,
+          "calls": 35,
+          "costUsd": 0.03007136,
+          "uncachedInput": 125136,
+          "cacheRead": 11776,
+          "cacheWrite": 0,
+          "reasoning": 7446,
+          "unknownCalls": 4,
+          "cacheUnknownCalls": 4,
+          "costUnknownCalls": 4,
+          "phases": {
+            "router": {
+              "input": 503,
+              "output": 74,
+              "calls": 1,
+              "costUsd": 0.00008730000000000001,
+              "uncachedInput": 503,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 26,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 503,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 12384,
+              "output": 57,
+              "calls": 1,
+              "costUsd": 0.00020706,
+              "uncachedInput": 608,
+              "cacheRead": 11776,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 12384,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "extraction": {
+              "input": 124025,
+              "output": 34749,
+              "calls": 33,
+              "costUsd": 0.029777,
+              "uncachedInput": 124025,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 7420,
+              "unknownCalls": 4,
+              "cacheUnknownCalls": 4,
+              "costUnknownCalls": 4,
+              "cacheKnownInput": 124025,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 136912,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        },
+        "error": "用户取消任务"
+      },
+      {
+        "runId": "a56182db-6a24-4f85-8f30-004f023ec373",
+        "status": "completed",
+        "usage": {
+          "input": 415889,
+          "output": 2270,
+          "calls": 19,
+          "costUsd": 0.008440379999999999,
+          "uncachedInput": 34961,
+          "cacheRead": 380928,
+          "cacheWrite": 0,
+          "reasoning": 34,
+          "unknownCalls": 0,
+          "cacheUnknownCalls": 0,
+          "costUnknownCalls": 0,
+          "phases": {
+            "router": {
+              "input": 549,
+              "output": 83,
+              "calls": 1,
+              "costUsd": 0.00009640000000000001,
+              "uncachedInput": 549,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 34,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 549,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 12673,
+              "output": 57,
+              "calls": 1,
+              "costUsd": 0.00023596,
+              "uncachedInput": 897,
+              "cacheRead": 11776,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 12673,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "document_routing": {
+              "input": 122526,
+              "output": 744,
+              "calls": 8,
+              "costUsd": 0.0025791600000000005,
+              "uncachedInput": 10910,
+              "cacheRead": 111616,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 122526,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning": {
+              "input": 143857,
+              "output": 419,
+              "calls": 5,
+              "costUsd": 0.0028447999999999998,
+              "uncachedInput": 13297,
+              "cacheRead": 130560,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 143857,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning_review": {
+              "input": 136284,
+              "output": 967,
+              "calls": 4,
+              "costUsd": 0.0026840600000000003,
+              "uncachedInput": 9308,
+              "cacheRead": 126976,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 136284,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 415889,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        }
+      },
+      {
+        "runId": "7fd28405-91f3-40a0-9841-e36cb7d9f09d",
+        "status": "completed",
+        "usage": {
+          "input": 164600,
+          "output": 515,
+          "calls": 5,
+          "costUsd": 0.0029856600000000002,
+          "uncachedInput": 12024,
+          "cacheRead": 152576,
+          "cacheWrite": 0,
+          "reasoning": 199,
+          "unknownCalls": 0,
+          "cacheUnknownCalls": 0,
+          "costUnknownCalls": 0,
+          "phases": {
+            "router": {
+              "input": 572,
+              "output": 93,
+              "calls": 1,
+              "costUsd": 0.0001037,
+              "uncachedInput": 572,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 36,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 572,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 74119,
+              "output": 106,
+              "calls": 2,
+              "costUsd": 0.0010137000000000002,
+              "uncachedInput": 2439,
+              "cacheRead": 71680,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 74119,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning": {
+              "input": 89909,
+              "output": 316,
+              "calls": 2,
+              "costUsd": 0.00186826,
+              "uncachedInput": 9013,
+              "cacheRead": 80896,
+              "cacheWrite": 0,
+              "reasoning": 163,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 89909,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 164600,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        }
+      },
+      {
+        "runId": "62cec1e4-6c9e-4512-8864-881246c995e7",
+        "status": "completed",
+        "usage": {
+          "input": 265618,
+          "output": 1470,
+          "calls": 6,
+          "costUsd": 0.00467152,
+          "uncachedInput": 14226,
+          "cacheRead": 251392,
+          "cacheWrite": 0,
+          "reasoning": 148,
+          "unknownCalls": 0,
+          "cacheUnknownCalls": 0,
+          "costUnknownCalls": 0,
+          "phases": {
+            "router": {
+              "input": 604,
+              "output": 80,
+              "calls": 1,
+              "costUsd": 0.0001004,
+              "uncachedInput": 604,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 37,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 604,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 46572,
+              "output": 57,
+              "calls": 1,
+              "costUsd": 0.00058458,
+              "uncachedInput": 1004,
+              "cacheRead": 45568,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 46572,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning": {
+              "input": 106545,
+              "output": 884,
+              "calls": 2,
+              "costUsd": 0.00224914,
+              "uncachedInput": 8241,
+              "cacheRead": 98304,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 106545,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning_review": {
+              "input": 111897,
+              "output": 449,
+              "calls": 2,
+              "costUsd": 0.0017374,
+              "uncachedInput": 4377,
+              "cacheRead": 107520,
+              "cacheWrite": 0,
+              "reasoning": 111,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 111897,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 265618,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        }
+      },
+      {
+        "runId": "b4918005-49c3-4db7-ac0a-9fb6b7bb9559",
+        "status": "completed",
+        "usage": {
+          "input": 617552,
+          "output": 1802,
+          "calls": 9,
+          "costUsd": 0.018649799999999998,
+          "uncachedInput": 128592,
+          "cacheRead": 488960,
+          "cacheWrite": 0,
+          "reasoning": 501,
+          "unknownCalls": 0,
+          "cacheUnknownCalls": 0,
+          "costUnknownCalls": 0,
+          "phases": {
+            "router": {
+              "input": 580,
+              "output": 68,
+              "calls": 1,
+              "costUsd": 0.00009200000000000001,
+              "uncachedInput": 580,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 21,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 580,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 56781,
+              "output": 57,
+              "calls": 1,
+              "costUsd": 0.00068388,
+              "uncachedInput": 973,
+              "cacheRead": 55808,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 56781,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning": {
+              "input": 212229,
+              "output": 479,
+              "calls": 3,
+              "costUsd": 0.00519616,
+              "uncachedInput": 31493,
+              "cacheRead": 180736,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 212229,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning_review": {
+              "input": 347962,
+              "output": 1198,
+              "calls": 4,
+              "costUsd": 0.01267776,
+              "uncachedInput": 95546,
+              "cacheRead": 252416,
+              "cacheWrite": 0,
+              "reasoning": 480,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 347962,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 617552,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        }
+      },
+      {
+        "runId": "90c377ce-edbd-462e-ba53-0ac2fb3915ec",
+        "status": "completed",
+        "usage": {
+          "input": 2856050,
+          "output": 6898,
+          "calls": 25,
+          "costUsd": 0.6055408000000002,
+          "uncachedInput": 132082,
+          "cacheRead": 2723968,
+          "cacheWrite": 0,
+          "reasoning": 141,
+          "unknownCalls": 0,
+          "cacheUnknownCalls": 0,
+          "costUnknownCalls": 0,
+          "phases": {
+            "router": {
+              "input": 693,
+              "output": 52,
+              "calls": 1,
+              "costUsd": 0.001906,
+              "uncachedInput": 693,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 693,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 346383,
+              "output": 517,
+              "calls": 3,
+              "costUsd": 0.21980479999999997,
+              "uncachedInput": 94735,
+              "cacheRead": 251648,
+              "cacheWrite": 0,
+              "reasoning": 26,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 346383,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning": {
+              "input": 1905158,
+              "output": 2430,
+              "calls": 16,
+              "costUsd": 0.2396336,
+              "uncachedInput": 13062,
+              "cacheRead": 1892096,
+              "cacheWrite": 0,
+              "reasoning": 44,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 1905158,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning_review": {
+              "input": 603816,
+              "output": 3899,
+              "calls": 5,
+              "costUsd": 0.1441964,
+              "uncachedInput": 23592,
+              "cacheRead": 580224,
+              "cacheWrite": 0,
+              "reasoning": 71,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 603816,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 2856050,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        }
+      },
+      {
+        "runId": "0bd69623-095b-4177-a0e7-c832282db495",
+        "status": "completed",
+        "usage": {
+          "input": 1071662,
+          "output": 1073,
+          "calls": 9,
+          "costUsd": 0.1369532,
+          "uncachedInput": 10030,
+          "cacheRead": 1061632,
+          "cacheWrite": 0,
+          "reasoning": 9,
+          "unknownCalls": 0,
+          "cacheUnknownCalls": 0,
+          "costUnknownCalls": 0,
+          "phases": {
+            "router": {
+              "input": 620,
+              "output": 64,
+              "calls": 1,
+              "costUsd": 0.0018800000000000002,
+              "uncachedInput": 620,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 620,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 799302,
+              "output": 851,
+              "calls": 6,
+              "costUsd": 0.1031652,
+              "uncachedInput": 7750,
+              "cacheRead": 791552,
+              "cacheWrite": 0,
+              "reasoning": 9,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 799302,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning": {
+              "input": 135450,
+              "output": 88,
+              "calls": 1,
+              "costUsd": 0.0156904,
+              "uncachedInput": 666,
+              "cacheRead": 134784,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 135450,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning_review": {
+              "input": 136290,
+              "output": 70,
+              "calls": 1,
+              "costUsd": 0.016217600000000002,
+              "uncachedInput": 994,
+              "cacheRead": 135296,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 136290,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 1071662,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        }
+      },
+      {
+        "runId": "3bf4b1da-0ee9-4ce5-9cf3-f51bbf5ddcb7",
+        "status": "cancelled",
+        "usage": {
+          "input": 64001,
+          "output": 9312,
+          "calls": 15,
+          "costUsd": 0.01018058,
+          "uncachedInput": 54273,
+          "cacheRead": 9728,
+          "cacheWrite": 0,
+          "reasoning": 4735,
+          "unknownCalls": 4,
+          "cacheUnknownCalls": 4,
+          "costUnknownCalls": 4,
+          "phases": {
+            "router": {
+              "input": 536,
+              "output": 107,
+              "calls": 1,
+              "costUsd": 0.0001071,
+              "uncachedInput": 536,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 52,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 536,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 22592,
+              "output": 88,
+              "calls": 2,
+              "costUsd": 0.0014276800000000002,
+              "uncachedInput": 12864,
+              "cacheRead": 9728,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 22592,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "extraction": {
+              "input": 40873,
+              "output": 9117,
+              "calls": 12,
+              "costUsd": 0.0086458,
+              "uncachedInput": 40873,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 4683,
+              "unknownCalls": 4,
+              "cacheUnknownCalls": 4,
+              "costUnknownCalls": 4,
+              "cacheKnownInput": 40873,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 64001,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        },
+        "error": "用户取消任务"
+      },
+      {
+        "runId": "557a7687-9af8-4aa9-b82b-b3a65661244e",
+        "status": "completed",
+        "usage": {
+          "input": 152914,
+          "output": 1204,
+          "calls": 10,
+          "costUsd": 0.00340572,
+          "uncachedInput": 14162,
+          "cacheRead": 138752,
+          "cacheWrite": 0,
+          "reasoning": 38,
+          "unknownCalls": 0,
+          "cacheUnknownCalls": 0,
+          "costUnknownCalls": 0,
+          "phases": {
+            "router": {
+              "input": 549,
+              "output": 95,
+              "calls": 1,
+              "costUsd": 0.0001024,
+              "uncachedInput": 549,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 38,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 549,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 12418,
+              "output": 58,
+              "calls": 1,
+              "costUsd": 0.00021096,
+              "uncachedInput": 642,
+              "cacheRead": 11776,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 12418,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "document_routing": {
+              "input": 139947,
+              "output": 1051,
+              "calls": 8,
+              "costUsd": 0.00309236,
+              "uncachedInput": 12971,
+              "cacheRead": 126976,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 139947,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 152914,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        }
+      },
+      {
+        "runId": "c2465c97-0869-42b6-b001-de493994d705",
+        "status": "completed",
+        "usage": {
+          "input": 3650449,
+          "output": 3922,
+          "calls": 35,
+          "costUsd": 0.05310894,
+          "uncachedInput": 162705,
+          "cacheRead": 3487744,
+          "cacheWrite": 0,
+          "reasoning": 47,
+          "unknownCalls": 0,
+          "cacheUnknownCalls": 0,
+          "costUnknownCalls": 0,
+          "phases": {
+            "router": {
+              "input": 590,
+              "output": 95,
+              "calls": 1,
+              "costUsd": 0.0001065,
+              "uncachedInput": 590,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 47,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 590,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 163532,
+              "output": 597,
+              "calls": 2,
+              "costUsd": 0.0020904200000000004,
+              "uncachedInput": 1740,
+              "cacheRead": 161792,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 163532,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "document_routing": {
+              "input": 230734,
+              "output": 172,
+              "calls": 3,
+              "costUsd": 0.00274596,
+              "uncachedInput": 3918,
+              "cacheRead": 226816,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 230734,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning": {
+              "input": 2354146,
+              "output": 2123,
+              "calls": 23,
+              "costUsd": 0.0381017,
+              "uncachedInput": 149986,
+              "cacheRead": 2204160,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 2354146,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning_review": {
+              "input": 901447,
+              "output": 935,
+              "calls": 6,
+              "costUsd": 0.01006436,
+              "uncachedInput": 6471,
+              "cacheRead": 894976,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 901447,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 3650449,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        }
+      },
+      {
+        "runId": "fd7890f5-c8cb-4b03-8e28-ee3f50c1dc32",
+        "status": "completed",
+        "usage": {
+          "input": 1155847,
+          "output": 4316,
+          "calls": 11,
+          "costUsd": 0.028854380000000002,
+          "uncachedInput": 168199,
+          "cacheRead": 987648,
+          "cacheWrite": 0,
+          "reasoning": 0,
+          "unknownCalls": 0,
+          "cacheUnknownCalls": 0,
+          "costUnknownCalls": 0,
+          "phases": {
+            "router": {
+              "input": 612,
+              "output": 47,
+              "calls": 1,
+              "costUsd": 0.00008470000000000001,
+              "uncachedInput": 612,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 612,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 322824,
+              "output": 105,
+              "calls": 2,
+              "costUsd": 0.00348882,
+              "uncachedInput": 2312,
+              "cacheRead": 320512,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 322824,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning": {
+              "input": 729684,
+              "output": 1417,
+              "calls": 5,
+              "costUsd": 0.020224100000000002,
+              "uncachedInput": 135764,
+              "cacheRead": 593920,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 729684,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "compaction": {
+              "input": 27555,
+              "output": 2335,
+              "calls": 2,
+              "costUsd": 0.003923,
+              "uncachedInput": 27555,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 27555,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning_review": {
+              "input": 75172,
+              "output": 412,
+              "calls": 1,
+              "costUsd": 0.0011337600000000001,
+              "uncachedInput": 1956,
+              "cacheRead": 73216,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 75172,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 1155847,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        }
+      },
+      {
+        "runId": "4963694e-d138-4813-a26c-ba33acbcf672",
+        "status": "completed",
+        "usage": {
+          "input": 1799949,
+          "output": 10013,
+          "calls": 17,
+          "costUsd": 0.5941208000000001,
+          "uncachedInput": 165261,
+          "cacheRead": 1634688,
+          "cacheWrite": 0,
+          "reasoning": 32,
+          "unknownCalls": 0,
+          "cacheUnknownCalls": 0,
+          "costUnknownCalls": 0,
+          "phases": {
+            "router": {
+              "input": 607,
+              "output": 71,
+              "calls": 1,
+              "costUsd": 0.001924,
+              "uncachedInput": 607,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 607,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 316360,
+              "output": 1191,
+              "calls": 4,
+              "costUsd": 0.20370839999999998,
+              "uncachedInput": 84296,
+              "cacheRead": 232064,
+              "cacheWrite": 0,
+              "reasoning": 20,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 316360,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "research_extraction": {
+              "input": 1384461,
+              "output": 7961,
+              "calls": 11,
+              "costUsd": 0.34454480000000004,
+              "uncachedInput": 66573,
+              "cacheRead": 1317888,
+              "cacheWrite": 0,
+              "reasoning": 12,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 1384461,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning": {
+              "input": 98521,
+              "output": 790,
+              "calls": 1,
+              "costUsd": 0.0439436,
+              "uncachedInput": 13785,
+              "cacheRead": 84736,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 98521,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 1799949,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        }
+      },
+      {
+        "runId": "7b5b6760-8422-485c-9986-ec63030ddc02",
+        "status": "completed",
+        "usage": {
+          "input": 2058327,
+          "output": 7067,
+          "calls": 14,
+          "costUsd": 0.5796952,
+          "uncachedInput": 159575,
+          "cacheRead": 1898752,
+          "cacheWrite": 0,
+          "reasoning": 87,
+          "unknownCalls": 0,
+          "cacheUnknownCalls": 0,
+          "costUnknownCalls": 0,
+          "phases": {
+            "router": {
+              "input": 661,
+              "output": 68,
+              "calls": 1,
+              "costUsd": 0.0020020000000000003,
+              "uncachedInput": 661,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 661,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 328921,
+              "output": 79,
+              "calls": 2,
+              "costUsd": 0.038958400000000004,
+              "uncachedInput": 2777,
+              "cacheRead": 326144,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 328921,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning": {
+              "input": 779132,
+              "output": 410,
+              "calls": 4,
+              "costUsd": 0.117756,
+              "uncachedInput": 18812,
+              "cacheRead": 760320,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 779132,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning_review": {
+              "input": 897982,
+              "output": 2477,
+              "calls": 5,
+              "costUsd": 0.27738680000000004,
+              "uncachedInput": 85694,
+              "cacheRead": 812288,
+              "cacheWrite": 0,
+              "reasoning": 87,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 897982,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "compaction": {
+              "input": 51631,
+              "output": 4033,
+              "calls": 2,
+              "costUsd": 0.143592,
+              "uncachedInput": 51631,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 51631,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 2058327,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        }
+      },
+      {
+        "runId": "c1e234e2-fc31-44bb-a9c6-80f31068df22",
+        "status": "completed",
+        "usage": {
+          "input": 7643290,
+          "output": 34371,
+          "calls": 56,
+          "costUsd": 1.7472180000000002,
+          "uncachedInput": 336410,
+          "cacheRead": 7306880,
+          "cacheWrite": 0,
+          "reasoning": 6201,
+          "unknownCalls": 0,
+          "cacheUnknownCalls": 0,
+          "costUnknownCalls": 0,
+          "phases": {
+            "router": {
+              "input": 627,
+              "output": 55,
+              "calls": 1,
+              "costUsd": 0.001804,
+              "uncachedInput": 627,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 627,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 132872,
+              "output": 79,
+              "calls": 2,
+              "costUsd": 0.0189564,
+              "uncachedInput": 2568,
+              "cacheRead": 130304,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 132872,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning": {
+              "input": 5499146,
+              "output": 12693,
+              "calls": 37,
+              "costUsd": 0.9808636,
+              "uncachedInput": 160010,
+              "cacheRead": 5339136,
+              "cacheWrite": 0,
+              "reasoning": 2819,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 5499146,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning_review": {
+              "input": 1975239,
+              "output": 15310,
+              "calls": 14,
+              "costUsd": 0.612442,
+              "uncachedInput": 137799,
+              "cacheRead": 1837440,
+              "cacheWrite": 0,
+              "reasoning": 3382,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 1975239,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "compaction": {
+              "input": 35406,
+              "output": 6234,
+              "calls": 2,
+              "costUsd": 0.133152,
+              "uncachedInput": 35406,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 35406,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 7643290,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        }
+      },
+      {
+        "runId": "3c258a93-e612-41e4-821a-561f48edf901",
+        "status": "completed",
+        "usage": {
+          "input": 2076275,
+          "output": 9520,
+          "calls": 19,
+          "costUsd": 1.3816380000000001,
+          "uncachedInput": 567795,
+          "cacheRead": 1508480,
+          "cacheWrite": 0,
+          "reasoning": 909,
+          "unknownCalls": 0,
+          "cacheUnknownCalls": 0,
+          "costUnknownCalls": 0,
+          "phases": {
+            "router": {
+              "input": 690,
+              "output": 55,
+              "calls": 1,
+              "costUsd": 0.0019299999999999999,
+              "uncachedInput": 690,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 690,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "main": {
+              "input": 239262,
+              "output": 373,
+              "calls": 2,
+              "costUsd": 0.36041080000000003,
+              "uncachedInput": 175134,
+              "cacheRead": 64128,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 239262,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning": {
+              "input": 1207951,
+              "output": 1742,
+              "calls": 9,
+              "costUsd": 0.3184548,
+              "uncachedInput": 94863,
+              "cacheRead": 1113088,
+              "cacheWrite": 0,
+              "reasoning": 173,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 1207951,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "cleaning_review": {
+              "input": 599294,
+              "output": 2052,
+              "calls": 5,
+              "costUsd": 0.5897064,
+              "uncachedInput": 268030,
+              "cacheRead": 331264,
+              "cacheWrite": 0,
+              "reasoning": 736,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 599294,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            },
+            "compaction": {
+              "input": 29078,
+              "output": 5298,
+              "calls": 2,
+              "costUsd": 0.11113600000000001,
+              "uncachedInput": 29078,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "unknownCalls": 0,
+              "cacheUnknownCalls": 0,
+              "costUnknownCalls": 0,
+              "cacheKnownInput": 29078,
+              "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+            }
+          },
+          "cacheKnownInput": 2076275,
+          "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+        }
+      }
+    ],
+    "totals": {
+      "input": 24151907,
+      "output": 128715,
+      "reasoning": 20527,
+      "cacheRead": 22053632,
+      "uncachedInput": 2098275,
+      "cacheKnownInput": 24151907,
+      "calls": 474,
+      "unknownCalls": 195,
+      "costUnknownCalls": 195
+    },
+    "jsonProbe": {
+      "at": "2026-10-06T03:19:36.022Z",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "stopReason": "stop",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"ready\":true}",
+          "textSignature": "{\"v\":1,\"id\":\"msg_0b9ef85b6a3f71b3016ac468c7d6d087d0a9e4dc4c48bfa122\",\"phase\":\"final_answer\"}"
+        }
+      ],
+      "usage": {
+        "input": 318,
+        "output": 12,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "totalTokens": 330,
+        "cost": {
+          "input": 0.0000318,
+          "output": 0.000006,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0.0000378
+        }
+      },
+      "durationMs": 2200
+    }
+  },
+  "groups": [
+    {
+      "arm": "A",
+      "profile": "generic",
+      "repeat": 1,
+      "attempts": 3,
+      "completed": 3,
+      "seconds": 503.07500000000005,
+      "input": 1408522,
+      "output": 18338,
+      "reasoning": 3038,
+      "cacheRead": 1263616,
+      "uncachedInput": 144906,
+      "cacheKnownInput": 1408522,
+      "calls": 37,
+      "unknownCalls": 0,
+      "costUnknownCalls": 0,
+      "cacheHitPercent": 89.7121947687008,
+      "scriptRequests": 3,
+      "scriptCharacters": 20647,
+      "reportRequests": 0,
+      "sourceRunReuse": 4
+    },
+    {
+      "arm": "B",
+      "profile": "prepared",
+      "repeat": 1,
+      "attempts": 3,
+      "completed": 3,
+      "seconds": 1173.8290000000002,
+      "input": 3455062,
+      "output": 24291,
+      "reasoning": 4985,
+      "cacheRead": 3246080,
+      "uncachedInput": 208982,
+      "cacheKnownInput": 3455062,
+      "calls": 46,
+      "unknownCalls": 1,
+      "costUnknownCalls": 1,
+      "cacheHitPercent": 93.95142547369628,
+      "scriptRequests": 4,
+      "scriptCharacters": 28499,
+      "reportRequests": 0,
+      "sourceRunReuse": 9
+    },
+    {
+      "arm": "C",
+      "profile": "financial",
+      "repeat": 1,
+      "attempts": 3,
+      "completed": 3,
+      "seconds": 460.241,
+      "input": 1180803,
+      "output": 19514,
+      "reasoning": 4111,
+      "cacheRead": 910336,
+      "uncachedInput": 270467,
+      "cacheKnownInput": 1180803,
+      "calls": 23,
+      "unknownCalls": 0,
+      "costUnknownCalls": 0,
+      "cacheHitPercent": 77.09465507794272,
+      "scriptRequests": 3,
+      "scriptCharacters": 23057,
+      "reportRequests": 0,
+      "sourceRunReuse": 0
+    },
+    {
+      "arm": "D",
+      "profile": "prepared",
+      "repeat": 2,
+      "attempts": 3,
+      "completed": 3,
+      "seconds": 713,
+      "input": 1668813,
+      "output": 28973,
+      "reasoning": 3913,
+      "cacheRead": 1508352,
+      "uncachedInput": 160461,
+      "cacheKnownInput": 1668813,
+      "calls": 37,
+      "unknownCalls": 0,
+      "costUnknownCalls": 0,
+      "cacheHitPercent": 90.38472255429458,
+      "scriptRequests": 5,
+      "scriptCharacters": 17595,
+      "reportRequests": 2,
+      "sourceRunReuse": 5
+    },
+    {
+      "arm": "E",
+      "profile": "financial",
+      "repeat": 2,
+      "attempts": 3,
+      "completed": 3,
+      "seconds": 581.2090000000001,
+      "input": 1493508,
+      "output": 21360,
+      "reasoning": 4558,
+      "cacheRead": 1340928,
+      "uncachedInput": 152580,
+      "cacheKnownInput": 1493508,
+      "calls": 33,
+      "unknownCalls": 0,
+      "costUnknownCalls": 0,
+      "cacheHitPercent": 89.78378421809592,
+      "scriptRequests": 4,
+      "scriptCharacters": 21587,
+      "reportRequests": 0,
+      "sourceRunReuse": 2
+    }
+  ],
+  "paired": [
+    {
+      "task": "1",
+      "name": "卡罗特中报利润和现金",
+      "prepared": {
+        "attempts": 2,
+        "completed": 2,
+        "seconds": 600.03,
+        "input": 687918,
+        "output": 20754,
+        "reasoning": 1986,
+        "cacheRead": 577024,
+        "uncachedInput": 110894,
+        "cacheKnownInput": 687918,
+        "calls": 27,
+        "unknownCalls": 1,
+        "costUnknownCalls": 1,
+        "cacheHitPercent": 83.87976473940209,
+        "scriptRequests": 3,
+        "scriptCharacters": 9564,
+        "reportRequests": 2,
+        "sourceRunReuse": 3
+      },
+      "financial": {
+        "attempts": 2,
+        "completed": 2,
+        "seconds": 323.021,
+        "input": 932020,
+        "output": 10554,
+        "reasoning": 2818,
+        "cacheRead": 812544,
+        "uncachedInput": 119476,
+        "cacheKnownInput": 932020,
+        "calls": 20,
+        "unknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheHitPercent": 87.180961781936,
+        "scriptRequests": 2,
+        "scriptCharacters": 9943,
+        "reportRequests": 0,
+        "sourceRunReuse": 2
+      },
+      "ratioFinancialToPrepared": {
+        "input": 1.354841710785297,
+        "output": 0.5085284764382769,
+        "seconds": 0.5383414162625203,
+        "scriptCharacters": 1.0396277708071937
+      }
+    },
+    {
+      "task": "2",
+      "name": "卡罗特研报预测与DCF",
+      "prepared": {
+        "attempts": 2,
+        "completed": 2,
+        "seconds": 1019.5440000000001,
+        "input": 3643494,
+        "output": 22468,
+        "reasoning": 4858,
+        "cacheRead": 3407872,
+        "uncachedInput": 235622,
+        "cacheKnownInput": 3643494,
+        "calls": 47,
+        "unknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheHitPercent": 93.53307566857526,
+        "scriptRequests": 4,
+        "scriptCharacters": 22877,
+        "reportRequests": 0,
+        "sourceRunReuse": 11
+      },
+      "financial": {
+        "attempts": 2,
+        "completed": 2,
+        "seconds": 470.592,
+        "input": 1024273,
+        "output": 19708,
+        "reasoning": 4144,
+        "cacheRead": 844800,
+        "uncachedInput": 179473,
+        "cacheKnownInput": 1024273,
+        "calls": 25,
+        "unknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheHitPercent": 82.4780112333333,
+        "scriptRequests": 3,
+        "scriptCharacters": 18417,
+        "reportRequests": 0,
+        "sourceRunReuse": 0
+      },
+      "ratioFinancialToPrepared": {
+        "input": 0.2811238333314121,
+        "output": 0.8771586256008546,
+        "seconds": 0.46157105529530845,
+        "scriptCharacters": 0.8050443677055558
+      }
+    },
+    {
+      "task": "3",
+      "name": "卡罗特DCF局部更新",
+      "prepared": {
+        "attempts": 2,
+        "completed": 2,
+        "seconds": 267.255,
+        "input": 792463,
+        "output": 10042,
+        "reasoning": 2054,
+        "cacheRead": 769536,
+        "uncachedInput": 22927,
+        "cacheKnownInput": 792463,
+        "calls": 9,
+        "unknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheHitPercent": 97.10686808090725,
+        "scriptRequests": 2,
+        "scriptCharacters": 13653,
+        "reportRequests": 0,
+        "sourceRunReuse": 0
+      },
+      "financial": {
+        "attempts": 2,
+        "completed": 2,
+        "seconds": 247.837,
+        "input": 718018,
+        "output": 10612,
+        "reasoning": 1707,
+        "cacheRead": 593920,
+        "uncachedInput": 124098,
+        "cacheKnownInput": 718018,
+        "calls": 11,
+        "unknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheHitPercent": 82.71658927770613,
+        "scriptRequests": 2,
+        "scriptCharacters": 16284,
+        "reportRequests": 0,
+        "sourceRunReuse": 0
+      },
+      "ratioFinancialToPrepared": {
+        "input": 0.9060587055799451,
+        "output": 1.0567616012746466,
+        "seconds": 0.9273427999476156,
+        "scriptCharacters": 1.1927049000219732
+      }
+    }
+  ],
+  "runs": [
+    {
+      "label": "A1",
+      "profile": "generic",
+      "status": "completed",
+      "runId": "cf4648e7-335e-4fcb-8c80-337626f2870a",
+      "conversationId": "004f49a4-0b54-45f6-b74a-0c2cc0425483",
+      "seconds": 145.33,
+      "usage": {
+        "input": 374641,
+        "output": 4804,
+        "calls": 17,
+        "costUsd": 0.010559219999999998,
+        "uncachedInput": 49009,
+        "cacheRead": 325632,
+        "cacheWrite": 0,
+        "reasoning": 905,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 703,
+            "output": 88,
+            "calls": 1,
+            "costUsd": 0.0001143,
+            "uncachedInput": 703,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 37,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 703,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 373938,
+            "output": 4716,
+            "calls": 16,
+            "costUsd": 0.010444919999999998,
+            "uncachedInput": 48306,
+            "cacheRead": 325632,
+            "cacheWrite": 0,
+            "reasoning": 868,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 373938,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 374641,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "list_documents": 1,
+        "prepare_document_sources": 1,
+        "get_document_index": 1,
+        "get_source_table": 4,
+        "get_source_page": 1,
+        "run_analysis": 3,
+        "get_analysis_status": 6,
+        "get_artifact": 5
+      },
+      "efforts": {
+        "low": 1,
+        "high": 16
+      },
+      "inputCharacters": 1264620,
+      "scriptCharacters": 4352,
+      "scriptRequests": 1,
+      "sourceRunReuse": 2,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [],
+      "delivery": {
+        "artifacts": 10,
+        "downloaded": 10,
+        "analyses": [
+          {
+            "runId": "6cea7ea8b10549d08455d33bc62c0ee3",
+            "file": "6cea7ea8b10549d08455d33bc62c0ee3-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "ef372e5c1c229bcc4c0e8fed32da6c2d2cb94cd0fc9572c5c38f46caf76c5993",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "5e8f5be2fbe341f4906ee19e34fc85f1",
+            "file": "5e8f5be2fbe341f4906ee19e34fc85f1-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "fa3102a220d120306ab4795d8332f13325b5bc352447f09c82c53c03917ac4fc",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "d97bc1617ce64931b2a77311f0368959",
+            "file": "d97bc1617ce64931b2a77311f0368959-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "6879094bf63284775760e8ec302e52a85db0442cb20385156da3d1695463717d",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          }
+        ]
+      },
+      "review": {
+        "label": "A1",
+        "reviewedAt": "2026-10-06",
+        "method": "Independent frozen gold, actual final answer, CSV/report/script readback and PNG inspection; no corrective feedback sent to agent.",
+        "numerics": {
+          "status": "pass",
+          "notes": "All six requested two-period financial measures, finance income and cash flow bridge match PDF gold at stated precision."
+        },
+        "semantics": {
+          "status": "pass",
+          "notes": "Consolidated vs parent profit distinguished; no invented net-profit-to-cash adjustments; disclosed cash-generated-to-CFO bridge reconciles."
+        },
+        "figure": {
+          "status": "pass",
+          "files": [
+            "利润与现金流.png"
+          ],
+          "notes": "2025/2024 operating profit 96/193.422, net profit 102.791/164.084, CFO -18.676/89.864. Labels readable and correct million scale; currency appears in reply/caption, axis says millions."
+        },
+        "delivery": {
+          "status": "partial",
+          "downloads": "10/10",
+          "notes": "CSV, Markdown, PNG, complete executed_script.py and smaller calculator delivered. Main CSV puts gross-margin percentages beneath columns labelled millions; report phrase 下降-12.4% / 下降-7.73百分点 is awkward negative-sign wording. Final chat correctly states declines."
+        },
+        "rework": {
+          "analysisAttempts": 3,
+          "failedAttempts": 2,
+          "notes": "All attempts retained. Successful full executed script is attached."
+        },
+        "materialNumericalError": false,
+        "limitations": [
+          "No overall numerical accuracy percentage inferred."
+        ],
+        "reproduction": {
+          "successfulRuns": 1,
+          "checks": 10,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "B1",
+      "profile": "prepared",
+      "status": "completed",
+      "runId": "a22fcba7-ab2c-4d64-ae72-85b86144a08a",
+      "conversationId": "20ff5bc5-f43a-48a1-83f0-c33b6e0726fe",
+      "seconds": 276.548,
+      "usage": {
+        "input": 284280,
+        "output": 6286,
+        "calls": 15,
+        "costUsd": 0.0099134,
+        "uncachedInput": 43640,
+        "cacheRead": 240640,
+        "cacheWrite": 0,
+        "reasoning": 1278,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 1406,
+            "output": 154,
+            "calls": 2,
+            "costUsd": 0.0002176,
+            "uncachedInput": 1406,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 55,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 1406,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 282874,
+            "output": 6132,
+            "calls": 13,
+            "costUsd": 0.0096958,
+            "uncachedInput": 42234,
+            "cacheRead": 240640,
+            "cacheWrite": 0,
+            "reasoning": 1223,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 282874,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 284280,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "prepare_document_sources": 1,
+        "get_document_index": 2,
+        "get_source_table": 4,
+        "run_analysis": 3,
+        "get_analysis_status": 4,
+        "get_artifact": 4
+      },
+      "efforts": {
+        "low": 2,
+        "high": 13
+      },
+      "inputCharacters": 1142619,
+      "scriptCharacters": 7745,
+      "scriptRequests": 1,
+      "sourceRunReuse": 2,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [],
+      "delivery": {
+        "artifacts": 9,
+        "downloaded": 9,
+        "analyses": [
+          {
+            "runId": "e29170b5af3d4322a00b815def37921e",
+            "file": "e29170b5af3d4322a00b815def37921e-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "2ec1de79b9be0d8a9337f81e71e6789f3e2a01d17dc587238a6b36f6448452b9",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "780fb12d152d40ec9ae182300baf8558",
+            "file": "780fb12d152d40ec9ae182300baf8558-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "783afc4a0e0a3ada3784f24a61e854ab6a7b355d9cd05556aff71f997a30a10e",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "35342524276943a680cd9df50e31b809",
+            "file": "35342524276943a680cd9df50e31b809-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "0377a47374c9218fae4111fe87a59052264c7e0d276de5c7c7879ad169edfc08",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          }
+        ]
+      },
+      "review": {
+        "label": "B1",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen PDF gold, final reply, CSV/report/executed script and both PNGs read independently; no corrective prompt.",
+        "numerics": {
+          "status": "partial",
+          "notes": "All requested absolute values and cash bridge match gold. Chat net-profit growth -37.36%/-37.37% is 0.01 percentage point below correctly rounded -37.35%/-37.36% in its own CSV."
+        },
+        "semantics": {
+          "status": "pass",
+          "notes": "No invented cash bridge or duplicate finance cost; profit identities and timing correct."
+        },
+        "figure": {
+          "status": "partial",
+          "notes": "Both charts have correct million-scale values. Custom plot negative label touches bottom axis; shared chart_1 is clean and readable. No amount scaling error."
+        },
+        "delivery": {
+          "status": "partial",
+          "downloads": "9/9",
+          "notes": "Full executed script and presentation bundle supplied. Markdown has duplicate currency/unit strings, doubled percent signs and decrease-negative wording; final reply cleaner."
+        },
+        "rework": {
+          "analysisAttempts": 3,
+          "failedAttempts": 2,
+          "hostRecovery": true,
+          "unknownCalls": 1,
+          "notes": "EBUSY host crash; resumed same saved task after service restart. No task correction supplied."
+        },
+        "materialNumericalError": false,
+        "limitations": [
+          "Prepared baseline chose source tables instead of using structured facts."
+        ],
+        "reproduction": {
+          "successfulRuns": 1,
+          "checks": 9,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "C1",
+      "profile": "financial",
+      "status": "completed",
+      "runId": "bb2b38a4-b47f-4c68-8c8d-9482f40d696a",
+      "conversationId": "ddc10d8d-93a6-45fe-a4b9-bfdf04c66f6c",
+      "seconds": 133.591,
+      "usage": {
+        "input": 214142,
+        "output": 5188,
+        "calls": 8,
+        "costUsd": 0.008709640000000001,
+        "uncachedInput": 44158,
+        "cacheRead": 169984,
+        "cacheWrite": 0,
+        "reasoning": 975,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 703,
+            "output": 63,
+            "calls": 1,
+            "costUsd": 0.00010180000000000001,
+            "uncachedInput": 703,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 10,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 703,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 213439,
+            "output": 5125,
+            "calls": 7,
+            "costUsd": 0.00860784,
+            "uncachedInput": 43455,
+            "cacheRead": 169984,
+            "cacheWrite": 0,
+            "reasoning": 965,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 213439,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 214142,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "get_document": 1,
+        "get_document_index": 1,
+        "read_project_skill": 1,
+        "get_source_table": 3,
+        "get_source_page": 5,
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 1
+      },
+      "efforts": {
+        "low": 1,
+        "high": 7
+      },
+      "inputCharacters": 758987,
+      "scriptCharacters": 6365,
+      "scriptRequests": 1,
+      "sourceRunReuse": 0,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [],
+      "delivery": {
+        "artifacts": 6,
+        "downloaded": 6,
+        "analyses": [
+          {
+            "runId": "0797b0fcd88d4848b81a86b51ff5e440",
+            "file": "0797b0fcd88d4848b81a86b51ff5e440-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "7662a3ee9279671008d3d5c2031333453ca999f2077bf6c3e5ee9ed79d14643c",
+            "launcherSha256": "e943b81d3e0c6a9b3a718639789a4b897d3a06e887ea8c6fbdf3b572fe6bc194"
+          }
+        ]
+      },
+      "review": {
+        "label": "C1",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen gold plus actual PDF pages 11 and 14 for new causal claims; final reply, both CSVs, report and PNG read.",
+        "numerics": {
+          "status": "pass",
+          "notes": "Requested levels, ratios, finance-income bridge and CFO bridge match original. No order-of-magnitude error."
+        },
+        "semantics": {
+          "status": "pass",
+          "notes": "Adds supported management explanation for tariffs, overseas inventory and slower offline collections, clearly attributed and no invented indirect bridge. Distinguishes parent/consolidated and finance below operating profit."
+        },
+        "figure": {
+          "status": "partial",
+          "notes": "Correct values, currency and million scale; negative CFO label touches lower axis, but remains readable. No number clipping."
+        },
+        "delivery": {
+          "status": "partial",
+          "downloads": "6/6",
+          "notes": "Full actual Python, CSV/Markdown/PNG/JSON delivered. Report says 减少 -97.422 instead of 减少97.422; otherwise aligns. Uses a custom script rather than new record-bound report path."
+        },
+        "rework": {
+          "analysisAttempts": 1,
+          "failedAttempts": 0
+        },
+        "materialNumericalError": false,
+        "limitations": [
+          "Financial tools available but this answer fetched original pages and calculated custom Python."
+        ],
+        "reproduction": {
+          "successfulRuns": 1,
+          "checks": 6,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "C2",
+      "profile": "financial",
+      "status": "completed",
+      "runId": "661cfabc-65b9-4ad1-9e0e-8e8caf79c9b8",
+      "conversationId": "ae1783f6-f6f2-448c-9c87-7d30e15c7885",
+      "seconds": 206.549,
+      "usage": {
+        "input": 551468,
+        "output": 9128,
+        "calls": 10,
+        "costUsd": 0.020681039999999998,
+        "uncachedInput": 117804,
+        "cacheRead": 433664,
+        "cacheWrite": 0,
+        "reasoning": 2209,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 842,
+            "output": 65,
+            "calls": 1,
+            "costUsd": 0.00011670000000000002,
+            "uncachedInput": 842,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 10,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 842,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 550626,
+            "output": 9063,
+            "calls": 9,
+            "costUsd": 0.020564339999999997,
+            "uncachedInput": 116962,
+            "cacheRead": 433664,
+            "cacheWrite": 0,
+            "reasoning": 2199,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 550626,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 551468,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "read_project_skill": 1,
+        "get_document_index": 2,
+        "get_document": 1,
+        "prepare_document_sources": 1,
+        "query_research_records": 2,
+        "search_evidence": 2,
+        "get_source_page": 5,
+        "get_source_table": 2,
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 6
+      },
+      "efforts": {
+        "low": 1,
+        "high": 9
+      },
+      "inputCharacters": 1881743,
+      "scriptCharacters": 8809,
+      "scriptRequests": 1,
+      "sourceRunReuse": 0,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [],
+      "delivery": {
+        "artifacts": 9,
+        "downloaded": 9,
+        "analyses": [
+          {
+            "runId": "e64d0ba90a234326b7f0f8711af7b32a",
+            "file": "e64d0ba90a234326b7f0f8711af7b32a-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "ac5e8a1fe4109e53ef9c562547decc8aede8784bd9fe1b56683c77e98fe0c561",
+            "launcherSha256": "e943b81d3e0c6a9b3a718639789a4b897d3a06e887ea8c6fbdf3b572fe6bc194"
+          }
+        ]
+      },
+      "review": {
+        "label": "C2",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen gold, actual response, CSV, input JSON, Markdown, executed script and both PNGs.",
+        "numerics": {
+          "status": "fail",
+          "notes": "DCF EV/equity/per-share and all 9 sensitivity cells match. Forecast chat, chart and Markdown are correct. forecast.csv net profit column labelled CNY亿元 contains 347.8/461.8/546.1 instead of 3.478/4.618/5.461: 100x delivery error.",
+          "dcfSensitivityMaxAbsoluteErrorHKD": 0
+        },
+        "semantics": {
+          "status": "partial",
+          "notes": "Correct dated source and forecast identity; explicitly reports source EBITDA contradictions. PE uses reverse-implied FX 1.0807 to match 8.97; clearly labels inference but does not independently recompute from the disclosed 1.07 rate. Does not fabricate a sourced FX."
+        },
+        "figure": {
+          "status": "partial",
+          "notes": "Both chart quantities/units correct. DCF darkest cell black label has low contrast; grid lines cross text. Forecast labels readable."
+        },
+        "delivery": {
+          "status": "fail",
+          "downloads": "9/9",
+          "notes": "Complete files/scripts downloadable but CSV profit amount error makes deliverables inconsistent. Custom script bypassed unified report conversion; original inputs preserved correctly."
+        },
+        "rework": {
+          "analysisAttempts": 1,
+          "failedAttempts": 0
+        },
+        "materialNumericalError": true,
+        "limitations": [
+          "No overall accuracy percentage inferred."
+        ],
+        "reproduction": {
+          "successfulRuns": 1,
+          "checks": 9,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "B2",
+      "profile": "prepared",
+      "status": "completed",
+      "runId": "3c07b68a-343d-4e00-b027-af1d94df7a6f",
+      "conversationId": "a067ad98-7e89-439c-8456-145efb9b53a1",
+      "seconds": 732.671,
+      "usage": {
+        "input": 2603893,
+        "output": 12646,
+        "calls": 26,
+        "costUsd": 0.0459891,
+        "uncachedInput": 151413,
+        "cacheRead": 2452480,
+        "cacheWrite": 0,
+        "reasoning": 2408,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 842,
+            "output": 59,
+            "calls": 1,
+            "costUsd": 0.00011370000000000001,
+            "uncachedInput": 842,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 10,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 842,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 2603051,
+            "output": 12587,
+            "calls": 25,
+            "costUsd": 0.0458754,
+            "uncachedInput": 150571,
+            "cacheRead": 2452480,
+            "cacheWrite": 0,
+            "reasoning": 2398,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 2603051,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 2603893,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "list_documents": 1,
+        "prepare_document_sources": 1,
+        "get_document_index": 2,
+        "search_evidence": 1,
+        "get_data_catalog": 1,
+        "get_source_page": 6,
+        "get_source_table": 3,
+        "run_analysis": 9,
+        "get_analysis_status": 8,
+        "get_artifact": 6
+      },
+      "efforts": {
+        "low": 1,
+        "high": 25
+      },
+      "inputCharacters": 9538272,
+      "scriptCharacters": 14022,
+      "scriptRequests": 2,
+      "sourceRunReuse": 7,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [
+        {
+          "name": "run_analysis",
+          "error": "edit_must_match_once: edit 1 matched 0 occurrences. Use exact text from analysis.py; replace_all=true replaces every match. To rerun unchanged code, omit edits."
+        }
+      ],
+      "delivery": {
+        "artifacts": 27,
+        "downloaded": 27,
+        "analyses": [
+          {
+            "runId": "121375e133e84a48a25c12c1569fdb89",
+            "file": "121375e133e84a48a25c12c1569fdb89-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "646810fd10368c17c12b56051b145c9230e6771d0c3d89fde70fbc187e2614b2",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "2a9bcab6b073466ea38c076100bdb9c6",
+            "file": "2a9bcab6b073466ea38c076100bdb9c6-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "c0d26a1b39c34331a21f730c637f37941ade30d27ab6eeb476a0d30cc7ac9304",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "0dc3c6b968c1433eb99e09398f0b506f",
+            "file": "0dc3c6b968c1433eb99e09398f0b506f-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "66cf97624ef3b34e2fa9151ccf0465618f896e6c42ba6e44fc2ea80e5f974cac",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "78e6e554b07546d6ad35358158e17009",
+            "file": "78e6e554b07546d6ad35358158e17009-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "41d70427a56a63f3cd6142a015cf8e3b35e487be826148093fc4fb8166a08c74",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "4476abce81174af0b8c5d592b6d41296",
+            "file": "4476abce81174af0b8c5d592b6d41296-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "22bddbc133aa0690f358a6a377c6707aecece14eff4f417a66a14d58fc843d6a",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "b2778b4acbcb48de80f4658ff91480ef",
+            "file": "b2778b4acbcb48de80f4658ff91480ef-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "0bd56f16f55fe3aba57b5e109aa5032a731a092010c12ca9d1ad9411ad3e4434",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "7673ef68850a4ea6abc0e17b838fcbf2",
+            "file": "7673ef68850a4ea6abc0e17b838fcbf2-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "e7e7b212057488265964a4e60240126fa2a3cf99b144d4f72cdd6c1daf08b7d1",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "1abbc09dc9c748668c8f9494c9a87256",
+            "file": "1abbc09dc9c748668c8f9494c9a87256-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "726fe9091a744351275f58c7b303162e70d1d8954656548200bae4d143a42ee1",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          }
+        ]
+      },
+      "review": {
+        "label": "B2",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen gold and primary report pages, reply, final-run CSV/report/complete script and PNGs; original input-package replay.",
+        "numerics": {
+          "status": "pass",
+          "notes": "Forecast revenue/profit/EPS, disclosed 1.07 FX PE 8.881, DCF EV 5329.2246775m/equity 5649.2246775m/HKD10.891298 and 9 sensitivity cells match. Primary forecast CSV has correct CNY亿元 scale."
+        },
+        "semantics": {
+          "status": "partial",
+          "notes": "Correct forecast/date identity and independent PE; reports discount-period, risk-premium and EBITDA conflicts. Markdown optional reverse-EPS sentence mixes HK$ and CNY labels; main PE arithmetic is correct."
+        },
+        "figure": {
+          "status": "partial",
+          "notes": "Both amounts/scales correct, Chinese readable. Sensitivity plot x ticks 1/2/3 omit g-percent axis label, though adjacent table supplies meaning. Line rather than heatmap allowed for task2."
+        },
+        "delivery": {
+          "status": "partial",
+          "downloads": "27/27",
+          "notes": "Two successful batches retained, full scripts/data/bundles provided. Auto-generated Markdown tables contain blank rows between table lines; DCF bridge CSV places final HKD/share row beneath a RMB亿元 numeric header, despite row label identifying share value."
+        },
+        "rework": {
+          "analysisAttempts": 8,
+          "failedAttempts": 6,
+          "editErrors": 1,
+          "notes": "Repeated unit/currency schema corrections and missing dcf table key. Shared-report interface caused substantial avoidable work; no evaluator feedback supplied."
+        },
+        "materialNumericalError": false,
+        "limitations": [
+          "Figures viewed from final 1abbc09dc9c748668c8f9494c9a87256 output.",
+          "Reproducibility is original input-package replay, not an independently installed end-user environment."
+        ],
+        "reproduction": {
+          "successfulRuns": 2,
+          "checks": 27,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "A2",
+      "profile": "generic",
+      "status": "completed",
+      "runId": "14b74144-8ad9-4129-a1ee-d1db102bc193",
+      "conversationId": "f12c2fb4-386b-4086-b118-736fcdcf2230",
+      "seconds": 247.914,
+      "usage": {
+        "input": 708117,
+        "output": 8962,
+        "calls": 15,
+        "costUsd": 0.019167260000000002,
+        "uncachedInput": 84501,
+        "cacheRead": 623616,
+        "cacheWrite": 0,
+        "reasoning": 1730,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 842,
+            "output": 65,
+            "calls": 1,
+            "costUsd": 0.00011670000000000002,
+            "uncachedInput": 842,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 15,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 842,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 707275,
+            "output": 8897,
+            "calls": 14,
+            "costUsd": 0.01905056,
+            "uncachedInput": 83659,
+            "cacheRead": 623616,
+            "cacheWrite": 0,
+            "reasoning": 1715,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 707275,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 708117,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "list_documents": 1,
+        "prepare_document_sources": 1,
+        "get_document_index": 4,
+        "search_evidence": 3,
+        "get_source_table": 3,
+        "get_source_page": 4,
+        "run_analysis": 3,
+        "get_analysis_status": 3,
+        "get_artifact": 6
+      },
+      "efforts": {
+        "low": 1,
+        "high": 14
+      },
+      "inputCharacters": 2444469,
+      "scriptCharacters": 9326,
+      "scriptRequests": 1,
+      "sourceRunReuse": 2,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [],
+      "delivery": {
+        "artifacts": 12,
+        "downloaded": 12,
+        "analyses": [
+          {
+            "runId": "db1f0aae6b0c479786a33e1533e71f92",
+            "file": "db1f0aae6b0c479786a33e1533e71f92-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "0dbac7da36c3756939cc5fd36637720aaac05af3f19ed92724d6f6a7c497e5bb",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "755e8984ad1a48a1bb1d3b5df3f2172d",
+            "file": "755e8984ad1a48a1bb1d3b5df3f2172d-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "9014771656852b12fdf0b6f93d400424eedd522481ff4e59d96512e51d123342",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "a854d816a9114f0c97e54f65c7a35ad0",
+            "file": "a854d816a9114f0c97e54f65c7a35ad0-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "e0347676aa75522ef77665eaf9f8c5e74619bc05d86c0c7cfe03e223b5933817",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          }
+        ]
+      },
+      "review": {
+        "label": "A2",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen gold, actual CSV/report/reply and two PNGs.",
+        "numerics": {
+          "status": "pass",
+          "notes": "Forecasts, 8.881 HKD PE, DCF amounts and all sensitivity values match at published precision. No amount scale error."
+        },
+        "semantics": {
+          "status": "partial",
+          "notes": "Forecast and actual separated, no later interim data, source sum/discount-row discrepancies identified. Does not identify the frozen-gold EBITDA and risk-premium conflicts. Markdown opening calls valuation date report date, whereas subsequent DCF section and calculation correctly use end-2023."
+        },
+        "figure": {
+          "status": "partial",
+          "notes": "Correct numerical scales and readable bar chart; prediction currency in surrounding report, axis only says 亿元. Black text on darkest sensitivity cell has low contrast."
+        },
+        "delivery": {
+          "status": "pass",
+          "downloads": "12/12",
+          "notes": "Forecast CSV contains both original million and converted hundred-million values, full DCF inputs, report and complete scripts delivered."
+        },
+        "rework": {
+          "analysisAttempts": 3,
+          "failedAttempts": 2
+        },
+        "materialNumericalError": false,
+        "limitations": [
+          "Single raw-source supplementary run, not a second repetition."
+        ],
+        "reproduction": {
+          "successfulRuns": 1,
+          "checks": 12,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "B3",
+      "profile": "prepared",
+      "status": "completed",
+      "runId": "3641de9d-e4d0-4e4e-8729-2dc6f3df79bc",
+      "conversationId": "a067ad98-7e89-439c-8456-145efb9b53a1",
+      "seconds": 164.61,
+      "usage": {
+        "input": 566889,
+        "output": 5359,
+        "calls": 5,
+        "costUsd": 0.009602,
+        "uncachedInput": 13929,
+        "cacheRead": 552960,
+        "cacheWrite": 0,
+        "reasoning": 1299,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 615,
+            "output": 74,
+            "calls": 1,
+            "costUsd": 0.00009850000000000001,
+            "uncachedInput": 615,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 13,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 615,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 566274,
+            "output": 5285,
+            "calls": 4,
+            "costUsd": 0.009503500000000002,
+            "uncachedInput": 13314,
+            "cacheRead": 552960,
+            "cacheWrite": 0,
+            "reasoning": 1286,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 566274,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 566889,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 5
+      },
+      "efforts": {
+        "low": 1,
+        "high": 4
+      },
+      "inputCharacters": 2123409,
+      "scriptCharacters": 6732,
+      "scriptRequests": 1,
+      "sourceRunReuse": 0,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [],
+      "delivery": {
+        "artifacts": 11,
+        "downloaded": 11,
+        "analyses": [
+          {
+            "runId": "b778c96ebe864dc3972a7d55b1cb5766",
+            "file": "b778c96ebe864dc3972a7d55b1cb5766-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "16f6a8988d067f27c9be686c07891385244a02f0b3031f16f345777e5f9fdefa",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          }
+        ]
+      },
+      "review": {
+        "label": "B3",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen gold, actual reply, full parameter CSV and 18 sensitivity cells, PNG and script inspection.",
+        "numerics": {
+          "status": "pass",
+          "notes": "Old 10.891298/new 9.407640 HKD, two ordered contributions and fixed-input values correct. Absolute sensitivity grid is not shifted.",
+          "maxSensitivityAbsoluteErrorHKD": 7.105427357601002e-15
+        },
+        "semantics": {
+          "status": "pass",
+          "notes": "Clearly explains baseline WACC 12.7 is off the fixed sensitivity grid and order-specific contributions. No source reread or changed net cash/shares/FX."
+        },
+        "figure": {
+          "status": "partial",
+          "notes": "Same axes, same common color scale and correct 18 values. Dark-cell black text has low contrast."
+        },
+        "delivery": {
+          "status": "pass",
+          "downloads": "11/11",
+          "notes": "Inputs/results/differences, full scripts, report, common-color figure and CSVs delivered."
+        },
+        "rework": {
+          "analysisAttempts": 1,
+          "failedAttempts": 0,
+          "sourceReread": false,
+          "sourceRunReuse": false,
+          "scriptCharacters": 6732,
+          "notes": "Uses retained conversation inputs but writes a new script; no financial-model version update tool."
+        },
+        "materialNumericalError": false,
+        "reproduction": {
+          "successfulRuns": 1,
+          "checks": 11,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "C3",
+      "profile": "financial",
+      "status": "completed",
+      "runId": "92bb2ddd-6020-4de8-bf27-d7f91de38563",
+      "conversationId": "ae1783f6-f6f2-448c-9c87-7d30e15c7885",
+      "seconds": 120.101,
+      "usage": {
+        "input": 415193,
+        "output": 5198,
+        "calls": 5,
+        "costUsd": 0.016516380000000004,
+        "uncachedInput": 108505,
+        "cacheRead": 306688,
+        "cacheWrite": 0,
+        "reasoning": 927,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 615,
+            "output": 67,
+            "calls": 1,
+            "costUsd": 0.000095,
+            "uncachedInput": 615,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 9,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 615,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 414578,
+            "output": 5131,
+            "calls": 4,
+            "costUsd": 0.016421380000000003,
+            "uncachedInput": 107890,
+            "cacheRead": 306688,
+            "cacheWrite": 0,
+            "reasoning": 918,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 414578,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 415193,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 7
+      },
+      "efforts": {
+        "low": 1,
+        "high": 4
+      },
+      "inputCharacters": 1451793,
+      "scriptCharacters": 7883,
+      "scriptRequests": 1,
+      "sourceRunReuse": 0,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [],
+      "delivery": {
+        "artifacts": 8,
+        "downloaded": 8,
+        "analyses": [
+          {
+            "runId": "50119496ebe14114bc0c05f98eb9d57a",
+            "file": "50119496ebe14114bc0c05f98eb9d57a-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "a3a90943d5298efb3449c586d375af043d003d7bf6dacab62ca67c7b5124c753",
+            "launcherSha256": "e943b81d3e0c6a9b3a718639789a4b897d3a06e887ea8c6fbdf3b572fe6bc194"
+          }
+        ]
+      },
+      "review": {
+        "label": "C3",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen gold, actual reply, parameters/results and 18 sensitivity cells, actual PNG.",
+        "numerics": {
+          "status": "pass",
+          "notes": "Original/intermediate/final values, contributions and unchanged net cash/shares/FX correct; uses fixed absolute grid.",
+          "maxSensitivityAbsoluteErrorHKD": 0
+        },
+        "semantics": {
+          "status": "pass",
+          "notes": "Clear ordered-parameter attribution, forecast status inherited from prior task, no report reread."
+        },
+        "figure": {
+          "status": "fail",
+          "notes": "Correct common axes/color bounds and all 18 values. Suptitle overlaps right-panel title; black numbers low contrast on dark cells, grid lines cross text. Right title says WACC +0.5 pp despite unchanged absolute grid, which the final explanation correctly clarifies."
+        },
+        "delivery": {
+          "status": "partial",
+          "downloads": "8/8",
+          "notes": "All data and complete script delivered; numerical files agree. Figure is not publication-ready because titles overlap."
+        },
+        "rework": {
+          "analysisAttempts": 1,
+          "failedAttempts": 0,
+          "sourceReread": false,
+          "sourceRunReuse": false,
+          "scriptCharacters": 7883,
+          "notes": "Recreates a custom script from conversation inputs; does not use saved financial-model update API."
+        },
+        "materialNumericalError": false,
+        "reproduction": {
+          "successfulRuns": 1,
+          "checks": 8,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "A3",
+      "profile": "generic",
+      "status": "completed",
+      "runId": "1fa85886-646f-4813-bfcf-ce6d6d7f29c8",
+      "conversationId": "f12c2fb4-386b-4086-b118-736fcdcf2230",
+      "seconds": 109.831,
+      "usage": {
+        "input": 325764,
+        "output": 4572,
+        "calls": 5,
+        "costUsd": 0.00656928,
+        "uncachedInput": 11396,
+        "cacheRead": 314368,
+        "cacheWrite": 0,
+        "reasoning": 403,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 615,
+            "output": 75,
+            "calls": 1,
+            "costUsd": 0.000099,
+            "uncachedInput": 615,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 9,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 615,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 325149,
+            "output": 4497,
+            "calls": 4,
+            "costUsd": 0.00647028,
+            "uncachedInput": 10781,
+            "cacheRead": 314368,
+            "cacheWrite": 0,
+            "reasoning": 394,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 325149,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 325764,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 7
+      },
+      "efforts": {
+        "low": 1,
+        "high": 4
+      },
+      "inputCharacters": 1147725,
+      "scriptCharacters": 6969,
+      "scriptRequests": 1,
+      "sourceRunReuse": 0,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [],
+      "delivery": {
+        "artifacts": 11,
+        "downloaded": 11,
+        "analyses": [
+          {
+            "runId": "87c8a1a55a3a483caf6d92181e240d22",
+            "file": "87c8a1a55a3a483caf6d92181e240d22-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "251a7c122a03cfd3925e0a17005dad2724ef0086469eec600b0e593f53f1b993",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          }
+        ]
+      },
+      "review": {
+        "label": "A3",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen gold, parameter/bridge CSVs, actual response, 18 sensitivity cells and PNG.",
+        "numerics": {
+          "status": "pass",
+          "notes": "Baseline, WACC-only, final values and ordered contributions correct; cash/shares/FX fixed. Independently rounded two-decimal contributions differ from rounded total by 0.01, exact CSV sums agree.",
+          "maxSensitivityAbsoluteErrorHKD": 7.105427357601002e-15
+        },
+        "semantics": {
+          "status": "pass",
+          "notes": "Absolute grid maintained and clearly explained; no whole-report reread."
+        },
+        "figure": {
+          "status": "fail",
+          "notes": "Both grids/values and color range correct, but colorbar lies inside the right plot; dark-cell text has low contrast. Figure unsuitable for publication as delivered."
+        },
+        "delivery": {
+          "status": "partial",
+          "downloads": "11/11",
+          "notes": "Complete numerical files and actual script available; figure placement defect retained."
+        },
+        "rework": {
+          "analysisAttempts": 1,
+          "failedAttempts": 0,
+          "sourceReread": false
+        },
+        "materialNumericalError": false,
+        "reproduction": {
+          "successfulRuns": 1,
+          "checks": 11,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "E1",
+      "profile": "financial",
+      "status": "completed",
+      "runId": "68209d67-e9e9-4de7-97fe-09a12b81f6cc",
+      "conversationId": "759ce348-db35-4814-8943-34b6d4878e5b",
+      "seconds": 189.43,
+      "usage": {
+        "input": 717878,
+        "output": 5366,
+        "calls": 12,
+        "costUsd": 0.016640400000000003,
+        "uncachedInput": 75318,
+        "cacheRead": 642560,
+        "cacheWrite": 0,
+        "reasoning": 1843,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 703,
+            "output": 80,
+            "calls": 1,
+            "costUsd": 0.0001103,
+            "uncachedInput": 703,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 30,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 703,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 717175,
+            "output": 5286,
+            "calls": 11,
+            "costUsd": 0.016530100000000002,
+            "uncachedInput": 74615,
+            "cacheRead": 642560,
+            "cacheWrite": 0,
+            "reasoning": 1813,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 717175,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 717878,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "get_document": 1,
+        "get_document_index": 2,
+        "get_data_catalog": 1,
+        "get_source_page": 5,
+        "run_analysis": 3,
+        "get_analysis_status": 3,
+        "get_artifact": 5
+      },
+      "efforts": {
+        "low": 1,
+        "high": 11
+      },
+      "inputCharacters": 2936339,
+      "scriptCharacters": 3578,
+      "scriptRequests": 1,
+      "sourceRunReuse": 2,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [],
+      "delivery": {
+        "artifacts": 8,
+        "downloaded": 8,
+        "analyses": [
+          {
+            "runId": "1b66e3635f4b42b0b723b9a98e223f7e",
+            "file": "1b66e3635f4b42b0b723b9a98e223f7e-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "11829a4d546a719fbd5c9c84e0523d564ffd3e5e57017c91784dc8f9c9c8c03c",
+            "launcherSha256": "e943b81d3e0c6a9b3a718639789a4b897d3a06e887ea8c6fbdf3b572fe6bc194"
+          },
+          {
+            "runId": "921e0901a2fe49a28fe66d46a4d922d6",
+            "file": "921e0901a2fe49a28fe66d46a4d922d6-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "5d30bdbfd3f10c8b6053a321fe84737fe701eb8d3884fc3d2c6b1dfb77cbb288",
+            "launcherSha256": "e943b81d3e0c6a9b3a718639789a4b897d3a06e887ea8c6fbdf3b572fe6bc194"
+          },
+          {
+            "runId": "d4bdd2e713f24d46bf5b0f7722fc29b1",
+            "file": "d4bdd2e713f24d46bf5b0f7722fc29b1-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "ba05d2732cf60d1e5522b71209a2d86396163239b9e9c17dd63c58fceece0ccd",
+            "launcherSha256": "e943b81d3e0c6a9b3a718639789a4b897d3a06e887ea8c6fbdf3b572fe6bc194"
+          }
+        ]
+      },
+      "review": {
+        "label": "E1",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen gold, actual comparison CSV/JSON, final reply, report, chart, PDF pages 11/12/29 for additional explanations.",
+        "numerics": {
+          "status": "pass",
+          "notes": "All requested absolute metrics/margins and disclosed CFO bridge match; CNY million scale is consistent."
+        },
+        "semantics": {
+          "status": "pass",
+          "notes": "Supported explanation of tariff/expense/fixed-deposit effects, plus correct distinction of 2024 time-deposit interest in investing cash flows. No fabricated profit-to-cash bridge or duplicate finance-cost deduction."
+        },
+        "figure": {
+          "status": "pass",
+          "notes": "Shared renderer used: correct column heights, currency/million axis, readable legend and negative CFO. No title overlap or clipping."
+        },
+        "delivery": {
+          "status": "partial",
+          "downloads": "8/8",
+          "notes": "Correct full-precision CSV and complete script/bundle. Generated Markdown table has blank lines between its rows; report is much briefer than the full conversation explanation."
+        },
+        "rework": {
+          "analysisAttempts": 3,
+          "failedAttempts": 2,
+          "notes": "Shared report interface was adopted after schema-related retries; no evaluator correction."
+        },
+        "materialNumericalError": false,
+        "reproduction": {
+          "successfulRuns": 1,
+          "checks": 8,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "D1",
+      "profile": "prepared",
+      "status": "completed",
+      "runId": "1ea95999-15d3-4605-a2b0-ad0d1c358456",
+      "conversationId": "f199773b-5d77-409c-9f84-f14227719e9b",
+      "seconds": 323.482,
+      "usage": {
+        "input": 403638,
+        "output": 14468,
+        "calls": 12,
+        "costUsd": 0.017323240000000004,
+        "uncachedInput": 67254,
+        "cacheRead": 336384,
+        "cacheWrite": 0,
+        "reasoning": 708,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 703,
+            "output": 83,
+            "calls": 1,
+            "costUsd": 0.00011180000000000001,
+            "uncachedInput": 703,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 30,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 703,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 402935,
+            "output": 14385,
+            "calls": 11,
+            "costUsd": 0.01721144,
+            "uncachedInput": 66551,
+            "cacheRead": 336384,
+            "cacheWrite": 0,
+            "reasoning": 678,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 402935,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 403638,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "prepare_document_sources": 1,
+        "get_document_index": 1,
+        "get_source_table": 7,
+        "get_source_page": 4,
+        "run_analysis": 3,
+        "get_analysis_status": 2,
+        "get_artifact": 5
+      },
+      "efforts": {
+        "low": 1,
+        "high": 11
+      },
+      "inputCharacters": 1354722,
+      "scriptCharacters": 1819,
+      "scriptRequests": 2,
+      "sourceRunReuse": 1,
+      "reportRequests": 2,
+      "ingestionCalls": 0,
+      "toolErrors": [
+        {
+          "name": "run_analysis",
+          "error": "edit_must_match_once: edit 1 matched 0 occurrences. Use exact text from analysis.py; replace_all=true replaces every match. To rerun unchanged code, omit edits."
+        }
+      ],
+      "delivery": {
+        "artifacts": 8,
+        "downloaded": 8,
+        "analyses": [
+          {
+            "runId": "cf3b0ccccdcd454ba7dc665252bdd80f",
+            "file": "cf3b0ccccdcd454ba7dc665252bdd80f-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "4dfea7875e7546dabf6cab8c5874f314a4409e6272294f14264a43c230ac98bd",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "71dc5bdef773411e858aab573a1b054c",
+            "file": "71dc5bdef773411e858aab573a1b054c-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "d5cda5928291fd856722449c0916ae8d037e4e344343e108c3d264c3f9469eee",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          }
+        ]
+      },
+      "review": {
+        "label": "D1",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen gold, final reply, actual CSV and Markdown, visual chart inspection, source PDF pages 9/10/23/29.",
+        "numerics": {
+          "status": "pass",
+          "notes": "All requested levels, margins, changes and disclosed CFO bridge match the source; amounts consistently use CNY million."
+        },
+        "semantics": {
+          "status": "partial",
+          "notes": "Final conversation explanation and detailed bridge correctly add received bank interest, but the exported Markdown opening says to deduct cash interest income. This contradicts its own later calculation. Management explanations and absence of a detailed profit-to-cash bridge are otherwise handled correctly."
+        },
+        "figure": {
+          "status": "pass",
+          "notes": "Shared renderer used; correct column heights, readable labels and negative CFO, with no clipping or title overlap."
+        },
+        "delivery": {
+          "status": "partial",
+          "downloads": "8/8",
+          "notes": "Correct full-precision CSV and complete script/bundle. Exported report duplicates its title, percent and percentage-point units; appended generated tables contain blank lines between rows. Opening prose reverses the sign of received interest despite the correct detailed bridge."
+        },
+        "rework": {
+          "analysisAttempts": 2,
+          "failedAttempts": 1,
+          "editMatchFailures": 1,
+          "notes": "Shared report interface rejected the legitimate percentage-point spelling 百分点, followed by one script-edit match failure; no evaluator correction."
+        },
+        "materialNumericalError": false,
+        "materialExplanationError": true,
+        "reproduction": {
+          "successfulRuns": 1,
+          "checks": 8,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "D2",
+      "profile": "prepared",
+      "status": "completed",
+      "runId": "fc1a803d-0a25-419e-ab1e-3e70e80faa78",
+      "conversationId": "1be292f3-7cc5-4f0a-9bb8-3006a25cb63b",
+      "seconds": 286.873,
+      "usage": {
+        "input": 1039601,
+        "output": 9822,
+        "calls": 21,
+        "costUsd": 0.022885819999999998,
+        "uncachedInput": 84209,
+        "cacheRead": 955392,
+        "cacheWrite": 0,
+        "reasoning": 2450,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 842,
+            "output": 71,
+            "calls": 1,
+            "costUsd": 0.00011970000000000001,
+            "uncachedInput": 842,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 14,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 842,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 1038759,
+            "output": 9751,
+            "calls": 20,
+            "costUsd": 0.022766119999999997,
+            "uncachedInput": 83367,
+            "cacheRead": 955392,
+            "cacheWrite": 0,
+            "reasoning": 2436,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 1038759,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 1039601,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "list_documents": 1,
+        "prepare_document_sources": 1,
+        "get_document_index": 2,
+        "search_evidence": 2,
+        "get_source_table": 3,
+        "get_source_page": 3,
+        "run_analysis": 6,
+        "get_analysis_status": 7,
+        "get_artifact": 2
+      },
+      "efforts": {
+        "low": 1,
+        "high": 20
+      },
+      "inputCharacters": 3464783,
+      "scriptCharacters": 8855,
+      "scriptRequests": 2,
+      "sourceRunReuse": 4,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [
+        {
+          "name": "run_analysis",
+          "error": "edit_must_match_once: edit 1 matched 0 occurrences. Use exact text from analysis.py; replace_all=true replaces every match. To rerun unchanged code, omit edits."
+        }
+      ],
+      "delivery": {
+        "artifacts": 11,
+        "downloaded": 11,
+        "analyses": [
+          {
+            "runId": "789b0633ee684b69bfeab7dd6955a209",
+            "file": "789b0633ee684b69bfeab7dd6955a209-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "26b3e1943fe25e3779f394235fb1fff3e9027bc1538200b1ada55e3d28f516c0",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "5145f40547604a88adf10aaa5a71a2bf",
+            "file": "5145f40547604a88adf10aaa5a71a2bf-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "0638372996104d781ea862f1fa2b0cefa301ce11f157d6c68b8071ab5524cea8",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "9ac9992a9319424d9c36a7a90ee757e0",
+            "file": "9ac9992a9319424d9c36a7a90ee757e0-analysis-evaluator-copy.py",
+            "status": "failed",
+            "containerRemoved": true,
+            "codeSha256": "2f904e7d5ef27a78ea77429a0ea6bfd2c1f1e4c114695aeb035154abca15c747",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "2c9f5f101be34bb2a0a0b9644c72c07e",
+            "file": "2c9f5f101be34bb2a0a0b9644c72c07e-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "1842f463d2f6375d798777d6060f1206433a03f8b033dce11475f95aea2661ce",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          },
+          {
+            "runId": "f2b8b84367e44d13a25e049850ccf0d7",
+            "file": "f2b8b84367e44d13a25e049850ccf0d7-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "73f0b0aa383b0698f0bd25d77633ce74e79e148b1a73094f70c61d42efa7f91f",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          }
+        ]
+      },
+      "review": {
+        "label": "D2",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen source gold, actual final response, two successful export runs, CSV comparison, exact script replay and both PNGs visually inspected.",
+        "numerics": {
+          "status": "partial",
+          "notes": "Forecast, PE 8.881 HKD, DCF 10.891298 HKD and all nine sensitivity values calculate correctly. However valuation_inputs.csv labels WACC 0.122 and g 0.02 with unit %, misrepresenting the actual rates by 100 times. The heatmap rounds WACC axis labels from 11.2/12.2/13.2 to 11/12/13 percent.",
+          "sensitivityCellsChecked": 9
+        },
+        "semantics": {
+          "status": "partial",
+          "notes": "Forecast identity and date restriction clear; reports source DCF period/sum/per-share discrepancies and does not force-fit the target. Does not identify the source EBITDA or risk-premium inconsistency. Reports DCF monetary totals in million despite the requested display in hundred-million, while labels are explicit."
+        },
+        "figure": {
+          "status": "fail",
+          "notes": "Earnings chart amounts and forecast labels correct. Sensitivity heatmap uses wrong rounded WACC labels, leaves currency/share unidentified instead of HKD/share, and has low contrast on dark cells."
+        },
+        "delivery": {
+          "status": "fail",
+          "downloads": "11/11",
+          "notes": "Files download and replay; final response lists filenames rather than embedding charts or linking specific exports. Final Markdown is complete, but the parameter CSV has material percent-unit mistakes."
+        },
+        "rework": {
+          "analysisAttempts": 5,
+          "failedAttempts": 3,
+          "editMatchFailures": 1,
+          "notes": "Three failed initial exports then a successful numerical export and separate report-writing run; no evaluator feedback."
+        },
+        "materialNumericalError": true,
+        "reproduction": {
+          "successfulRuns": 2,
+          "checks": 11,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "E2",
+      "profile": "financial",
+      "status": "completed",
+      "runId": "90befd34-0164-4d44-8779-e21464f01d75",
+      "conversationId": "5bf69801-d84d-46d6-be68-7112a3b70d9f",
+      "seconds": 264.043,
+      "usage": {
+        "input": 472805,
+        "output": 10580,
+        "calls": 15,
+        "costUsd": 0.015568260000000002,
+        "uncachedInput": 61669,
+        "cacheRead": 411136,
+        "cacheWrite": 0,
+        "reasoning": 1935,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 842,
+            "output": 69,
+            "calls": 1,
+            "costUsd": 0.00011870000000000001,
+            "uncachedInput": 842,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 10,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 842,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 471963,
+            "output": 10511,
+            "calls": 14,
+            "costUsd": 0.015449560000000003,
+            "uncachedInput": 60827,
+            "cacheRead": 411136,
+            "cacheWrite": 0,
+            "reasoning": 1925,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 471963,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 472805,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "get_document_index": 5,
+        "get_document": 2,
+        "read_project_skill": 1,
+        "prepare_document_sources": 1,
+        "get_source_page": 10,
+        "get_source_table": 2,
+        "get_research_model_schema": 1,
+        "run_analysis": 2,
+        "get_analysis_status": 2,
+        "get_research_report_schema": 1,
+        "save_research_report": 1,
+        "get_artifact": 7
+      },
+      "efforts": {
+        "low": 1,
+        "high": 14
+      },
+      "inputCharacters": 1873132,
+      "scriptCharacters": 9608,
+      "scriptRequests": 2,
+      "sourceRunReuse": 0,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [
+        {
+          "name": "get_document",
+          "error": "document_not_found_in_project"
+        },
+        {
+          "name": "prepare_document_sources",
+          "error": "document_not_found_in_project"
+        },
+        {
+          "name": "get_document_index",
+          "error": "document_not_found_in_project"
+        },
+        {
+          "name": "get_document_index",
+          "error": "document_not_found_in_project"
+        },
+        {
+          "name": "get_document",
+          "error": "document_not_found_in_project"
+        }
+      ],
+      "delivery": {
+        "artifacts": 11,
+        "downloaded": 11,
+        "analyses": [
+          {
+            "runId": "664829ea19c841f5826857d3f2b55cc9",
+            "file": "664829ea19c841f5826857d3f2b55cc9-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "f87428f7c0eaaacaa76c8c8b1dded2880379d7101fcc12da27c2629b269daa62",
+            "launcherSha256": "e943b81d3e0c6a9b3a718639789a4b897d3a06e887ea8c6fbdf3b572fe6bc194"
+          },
+          {
+            "runId": "27f1067702104adabf17cdc1d57ed944",
+            "file": "27f1067702104adabf17cdc1d57ed944-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "0ba67253f93331b38e7410157fb225a1be0f8f17d6bf9df69394ee6dbe723145",
+            "launcherSha256": "e943b81d3e0c6a9b3a718639789a4b897d3a06e887ea8c6fbdf3b572fe6bc194"
+          }
+        ]
+      },
+      "review": {
+        "label": "E2",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen source gold, final response, actual Decimal results/CSV/report, both PNGs visually inspected and two successful scripts replayed.",
+        "numerics": {
+          "status": "partial",
+          "notes": "Forecast, PE 8.903171 HKD using NP/shares and 8.881 using rounded EPS, DCF 10.891298 HKD and all nine sensitivity cells are correct. Exported carote_inputs_and_valuation.csv labels WACC 0.122 and terminal_growth 0.02 as %, a material 100-fold rate-unit error despite correct calculations.",
+          "sensitivityCellsChecked": 9,
+          "maxSensitivityAbsoluteErrorHKD": 0
+        },
+        "semantics": {
+          "status": "partial",
+          "notes": "Clear forecast identity, as-of date, currency conversion, retained original FCF and explicit discrepancy from source target. Reports source period/sum discrepancies, but does not identify EBITDA and risk-premium contradictions. Export opening says amounts uniformly in hundred-million, while its DCF results use explicitly labelled million."
+        },
+        "figure": {
+          "status": "partial",
+          "notes": "Forecast amounts and DCF values/axes are correct, titles do not overlap. Dark-cell black text and grid lines reduce heatmap readability."
+        },
+        "delivery": {
+          "status": "fail",
+          "downloads": "11/11",
+          "notes": "Working links, both images embedded, full input/script/report delivery and saved research report. Rate-unit errors remain in the parameter CSV; report prints excessive unrounded digits. Both successful runs reproduce exactly."
+        },
+        "rework": {
+          "analysisAttempts": 2,
+          "failedAttempts": 0,
+          "sourceIdErrors": 5,
+          "notes": "Five document-not-found tool calls before autonomous correction. Separate successful calculation/chart and report scripts; saved research artifact, no financial-model version created. No evaluator correction."
+        },
+        "materialNumericalError": true,
+        "reproduction": {
+          "successfulRuns": 2,
+          "checks": 10,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "E3",
+      "profile": "financial",
+      "status": "completed",
+      "runId": "a7e9b3fe-adce-4edf-b64f-78f17d073a8f",
+      "conversationId": "5bf69801-d84d-46d6-be68-7112a3b70d9f",
+      "seconds": 127.736,
+      "usage": {
+        "input": 302825,
+        "output": 5414,
+        "calls": 6,
+        "costUsd": 0.00713862,
+        "uncachedInput": 15593,
+        "cacheRead": 287232,
+        "cacheWrite": 0,
+        "reasoning": 780,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 615,
+            "output": 87,
+            "calls": 1,
+            "costUsd": 0.000105,
+            "uncachedInput": 615,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 27,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 615,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 302210,
+            "output": 5327,
+            "calls": 5,
+            "costUsd": 0.007033619999999999,
+            "uncachedInput": 14978,
+            "cacheRead": 287232,
+            "cacheWrite": 0,
+            "reasoning": 753,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 302210,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 302825,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "read_research_artifact": 1,
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 6
+      },
+      "efforts": {
+        "low": 1,
+        "high": 5
+      },
+      "inputCharacters": 1202604,
+      "scriptCharacters": 8401,
+      "scriptRequests": 1,
+      "sourceRunReuse": 0,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [],
+      "delivery": {
+        "artifacts": 7,
+        "downloaded": 7,
+        "analyses": [
+          {
+            "runId": "1cbfd6b985b4454f9eeec049ba03a096",
+            "file": "1cbfd6b985b4454f9eeec049ba03a096-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "512d6bf360c5bbe9a9d1b2d3fa42d1a19758efe3df7019350340a9aa7e4a04c8",
+            "launcherSha256": "e943b81d3e0c6a9b3a718639789a4b897d3a06e887ea8c6fbdf3b572fe6bc194"
+          }
+        ]
+      },
+      "review": {
+        "label": "E3",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen gold, actual response/parameter CSV/Decimal JSON/report/script, 18 sensitivity cells, original PNG visual inspection and isolated replay.",
+        "numerics": {
+          "status": "partial",
+          "notes": "All old/intermediate/new values and ordered contributions calculate correctly, as do 18 fixed-grid sensitivity cells. Parameter CSV repeats the earlier error: WACC 0.122/0.127 and g 0.02 are explicitly labelled %, 100 times below the intended rates.",
+          "sensitivityCellsChecked": 18,
+          "maxSensitivityAbsoluteErrorHKD": 0
+        },
+        "semantics": {
+          "status": "pass",
+          "notes": "Explains order dependence, unchanged cash/shares/FX/g, terminal value from changed last FCF and fixed absolute sensitivity grid. Reads its own saved research report, not the source PDF again."
+        },
+        "figure": {
+          "status": "fail",
+          "notes": "Correct common axes, color range and values, but the colorbar is drawn inside the right panel and its label overlaps a cell value; dark-cell contrast is poor. The right panel title states base WACC 12.7 although the fixed-grid axes vary WACC; body explains the grid."
+        },
+        "delivery": {
+          "status": "fail",
+          "downloads": "7/7",
+          "notes": "Downloads, Markdown, full JSON and scripts are complete and replay identically; material parameter-unit error and overlapping chart persist."
+        },
+        "rework": {
+          "analysisAttempts": 1,
+          "failedAttempts": 0,
+          "sourceReread": false,
+          "sourceRunReuse": false,
+          "notes": "Retrieves saved research artifact, then writes a new calculation/export script instead of updating a financial-model version. No evaluator correction."
+        },
+        "materialNumericalError": true,
+        "reproduction": {
+          "successfulRuns": 1,
+          "checks": 7,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    },
+    {
+      "label": "D3",
+      "profile": "prepared",
+      "status": "completed",
+      "runId": "d69a56d2-a3b9-4dd5-916f-9644df6014d2",
+      "conversationId": "1be292f3-7cc5-4f0a-9bb8-3006a25cb63b",
+      "seconds": 102.645,
+      "usage": {
+        "input": 225574,
+        "output": 4683,
+        "calls": 4,
+        "costUsd": 0.00540706,
+        "uncachedInput": 8998,
+        "cacheRead": 216576,
+        "cacheWrite": 0,
+        "reasoning": 755,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "phases": {
+          "router": {
+            "input": 615,
+            "output": 64,
+            "calls": 1,
+            "costUsd": 0.0000935,
+            "uncachedInput": 615,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 9,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 615,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          },
+          "main": {
+            "input": 224959,
+            "output": 4619,
+            "calls": 3,
+            "costUsd": 0.00531356,
+            "uncachedInput": 8383,
+            "cacheRead": 216576,
+            "cacheWrite": 0,
+            "reasoning": 746,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 224959,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 225574,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "run_analysis": 1,
+        "get_analysis_status": 1
+      },
+      "efforts": {
+        "low": 1,
+        "high": 3
+      },
+      "inputCharacters": 779182,
+      "scriptCharacters": 6921,
+      "scriptRequests": 1,
+      "sourceRunReuse": 0,
+      "reportRequests": 0,
+      "ingestionCalls": 0,
+      "toolErrors": [],
+      "delivery": {
+        "artifacts": 8,
+        "downloaded": 8,
+        "analyses": [
+          {
+            "runId": "5294c1361e34459aa66bfe42c8c01ee1",
+            "file": "5294c1361e34459aa66bfe42c8c01ee1-analysis-evaluator-copy.py",
+            "status": "succeeded",
+            "containerRemoved": true,
+            "codeSha256": "3b1d491cc4e3a13d71963a30e6a204e7e3f4c1344266143c711b1c881705823d",
+            "launcherSha256": "0f5a8976d44120dd871c84d76764630488b539b2dc1c449b0357c14b403e06b8"
+          }
+        ]
+      },
+      "review": {
+        "label": "D3",
+        "reviewedAt": "2026-10-06",
+        "method": "Frozen gold, actual final response, CSV and report, 18 sensitivity cells, original PNG visual inspection and isolated script replay.",
+        "numerics": {
+          "status": "partial",
+          "notes": "Old/intermediate/new DCF values and ordered contributions are correct, as are 18 fixed-grid sensitivity cells. dcf_parameters_old_new.csv repeats 0.122/0.127 and 0.02 with explicit % labels, misrepresenting WACC and growth by 100 times.",
+          "sensitivityCellsChecked": 18,
+          "maxSensitivityAbsoluteErrorHKD": 7.105427357601002e-15
+        },
+        "semantics": {
+          "status": "pass",
+          "notes": "Correct sequential attribution, unchanged inputs and fixed absolute sensitivity grid; explicitly does not add 0.5 percentage points to the grid. No source PDF reread."
+        },
+        "figure": {
+          "status": "partial",
+          "notes": "Correct common coordinates/color range, data and units; colorbar is outside both panels without overlap. Low dark-cell text contrast remains."
+        },
+        "delivery": {
+          "status": "fail",
+          "downloads": "8/8",
+          "notes": "Full input/result/difference/report/script files download and replay; material percent-unit errors remain in the parameter CSV. Final response lists filenames without direct links or an embedded comparison figure."
+        },
+        "rework": {
+          "analysisAttempts": 1,
+          "failedAttempts": 0,
+          "sourceReread": false,
+          "sourceRunReuse": false,
+          "notes": "Uses retained conversation inputs but writes a new full calculation/export script. No evaluator correction."
+        },
+        "materialNumericalError": true,
+        "reproduction": {
+          "successfulRuns": 1,
+          "checks": 8,
+          "allContentMatches": true,
+          "zipPolicy": "Compare entry bytes when archive timestamps differ."
+        }
+      }
+    }
+  ],
+  "monetaryPrice": {
+    "currency": null,
+    "verified": false,
+    "note": "CPA tariff not verified. Pi catalog cost is not a bill; report tokens and unknown calls, not inferred currency cost."
+  },
+  "limitations": [
+    "Two new documents from one company; not proof of cross-industry generalization or statistical superiority.",
+    "B/C have identical prepared records and two repetitions each. A reads the same raw documents once.",
+    "Same model and router policy; actual reasoning per request is recorded, upstream cache warmth is uncontrolled.",
+    "All failed attempts and unknown usage remain counted. Ingestion preparation is separate from analysis.",
+    "Deterministic rendering smoke alone does not prove model adoption or financial correctness. Review actual answers, calculations and figures.",
+    "Developer-reviewed, not blinded: arithmetic/download/replay checks are deterministic; interpretation and visual assessments are qualitative, not independent expert scoring."
+  ]
+}

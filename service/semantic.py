@@ -201,6 +201,7 @@ def materialize(extractions, batch, document_id, model):
             if factor is None:
                 issues.append({"table":t,"row":r,"column":c,"reason":"unresolved_unit","unit":unit}); continue
             declared_currency=column.get('currency') or attrs.get('currency') or schema.get('currency')
+            if str(declared_currency).upper() == 'RMB':declared_currency='CNY'
             currency = unit_currency if unit_currency not in {"unknown","CNY","USD","HKD","EUR","JPY"} else declared_currency or unit_currency
             if currency in {"unknown", ""} and unit_currency != "unknown": currency=unit_currency
             if 'unstandardized_unit' in review_warnings:currency='unknown'

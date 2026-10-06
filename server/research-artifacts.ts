@@ -12,20 +12,40 @@ const dependencySchema=z.object({kind:z.enum(['source','document','artifact']),i
 const evidenceSchema=z.object({kind:z.enum(['source','document','artifact']),id:idSchema,revision_id:idSchema.optional().describe('仅用于artifact，指定已保存版本；省略时固定该报告第一次读取此成果的版本。'),locator:z.string().min(1).max(400).describe('source使用p1或p1,p2段落ID；document使用page:物理页码；artifact例如tables.scenario[0].scenario_ebit、results.scenario_valuation.value_per_share、results.value_per_share，不能使用results.tables。'),quote:z.string().max(5000).optional().describe('可选：所选字段或段落的逐字原文，不填写自行概括的解释。')}).refine(v=>v.revision_id===undefined||v.kind==='artifact',{message:'revision_id仅适用于成果引用'});
 export type Dependency=z.infer<typeof dependencySchema>;
 export interface RecordedDependency extends Dependency {version:string}
-const sourceModelSchema=z.object({artifact_id:idSchema,revision_id:idSchema.optional(),variant:z.enum(['baseline','scenario'])}).strict();
-export interface ImportedModel {artifact_id:string;revision_id:string;variant:'baseline'|'scenario';spec_sha256:string}
+const sourceModelSchema=z.object({artifact_id:idSchema,revision_id:idSchema.optional(),variant:z.enum(['baseline','scenario']).optional()}).strict();
+export interface ImportedModel {artifact_id:string;revision_id:string;variant?:'baseline'|'scenario';spec_sha256:string}
 export interface ReferenceCheck {path:string;status:'locator_exists'|'locator_and_quote_match'|'dependency_only_unverified'|'annotation_unverified';kind?:Dependency['kind'];id?:string;locator?:string;revision_id?:string;version?:string;text_sha256?:string}
 export interface SourceValidation {schema_version:1;scope:'reference_location_and_literal_quote_only';semantic_accuracy_verified:false;mode:'checked'|'inherited'|'inherited_unverified';references?:ReferenceCheck[];inherited_from?:{artifact_id:string;revision_id:string;original_mode:string|null}}
 type EvidenceContext={artifacts:Map<string,ResearchArtifact>;documents:Map<string,string>;pages:Map<string,any>;fixed:RecordedDependency[];checks:ReferenceCheck[]};
 const evidenceContext=():EvidenceContext=>({artifacts:new Map(),documents:new Map(),pages:new Map(),fixed:[],checks:[]});
 const validationRecord=(mode:SourceValidation['mode'],extra:Partial<SourceValidation>={}):SourceValidation=>({schema_version:1,scope:'reference_location_and_literal_quote_only',semantic_accuracy_verified:false,mode,...extra});
-export interface ResearchArtifact {id:string;revision_id:string;parent_revision_id?:string;kind:string;title:string;created_at:string;run_id?:string;dependencies:RecordedDependency[];spec?:any;result?:any;content?:any;source_model?:ImportedModel;source_validation?:SourceValidation}
+export interface ResearchArtifact {id:string;revision_id:string;parent_revision_id?:string;kind:string;title:string;created_at:string;run_id?:string;dependencies:RecordedDependency[];spec?:any;result?:any;content?:any;source_model?:ImportedModel;source_validation?:SourceValidation;input_bindings?:any[]}
 const MODEL_KINDS=['dcf','comparables','manufacturing_scenario','financial_quality','three_statement'] as const;
 const common=z.object({title:z.string().trim().min(1).max(200),dependencies:z.array(dependencySchema).max(100).default([]),artifact_id:idSchema.optional(),parent_revision_id:idSchema.optional()});
-const modelInput=common.extend({kind:z.enum(MODEL_KINDS),spec:z.record(z.string(),z.any()).optional(),source_model:sourceModelSchema.optional()}).superRefine((v,ctx)=>{
+const modelPath=z.string().regex(/^[A-Za-z0-9_]+(?:\.[A-Za-z0-9_]+)*$/);
+const binding=z.object({fact_id:idSchema.optional(),record_id:idSchema.optional(),scale:z.string().min(1).optional()}).refine(v=>!!v.fact_id!==!!v.record_id,{message:'绑定使用fact_id或record_id，二选一'});
+const modelInput=common.extend({kind:z.enum(MODEL_KINDS),spec:z.record(z.string(),z.any()).optional(),source_model:sourceModelSchema.optional(),overrides:z.record(modelPath,z.any()).optional(),bindings:z.record(modelPath,binding).optional()}).superRefine((v,ctx)=>{
  if((v.spec===undefined)===(v.source_model===undefined))ctx.addIssue({code:'custom',message:'spec与source_model必须且只能提供一项'});
- if(v.source_model&&v.kind!=='dcf')ctx.addIssue({code:'custom',message:'source_model仅支持将制造业情景导入DCF'});
 });
+function setModelInput(spec:any,p:string,value:any){
+ const parts=modelPath.parse(p).split('.');if(parts.some(x=>['__proto__','prototype','constructor'].includes(x)))throw new Error('不允许的输入路径');
+ let parent=spec;for(const key of parts.slice(0,-1)){if(!Object.hasOwn(parent,key))throw new Error('模型输入路径不存在：'+p);parent=parent[key];}
+ parent[parts.at(-1)!]=value;
+}
+function inlineBindings(spec:any):Record<string,z.infer<typeof binding>>{
+ const found:Record<string,z.infer<typeof binding>>={};
+ function visit(value:any,parts:string[]){
+  if(!value||typeof value!=='object')return;
+  if(Object.hasOwn(value,'fact_id')||Object.hasOwn(value,'record_id')){
+   const key=modelPath.parse(parts.join('.'));found[key]=binding.parse(value);return;
+  }
+  for(const [key,child] of Object.entries(value)){
+   if(parts.length===0&&['source_refs','input_basis'].includes(key))continue;
+   visit(child,[...parts,key]);
+  }
+ }
+ visit(spec,[]);return found;
+}
 const claim=z.object({id:idSchema,text:z.string().min(1),type:z.enum(['fact','calculation','inference','assumption']),evidence:z.array(evidenceSchema),confidence:z.enum(['high','medium','low']).optional()}).refine(c=>!['fact','calculation'].includes(c.type)||c.evidence.length>0,{message:'事实与计算需要至少一个可定位来源'});
 const chain=z.object({industry:z.string().min(1),as_of:z.string().min(1),nodes:z.array(z.object({id:idSchema,label:z.string().min(1),role:z.enum(['upstream','company','downstream','macro'])})).min(2),edges:z.array(z.object({from:idSchema,to:idSchema,mechanism:z.string().min(1),direction:z.enum(['positive','negative','conditional','unknown']),evidence:z.array(evidenceSchema),assumptions:z.array(z.object({name:z.string(),value:z.string(),unit:z.string(),basis:z.enum(['disclosed','analyst_assumption']),rationale:z.string()}))})).min(1),claims:z.array(claim).default([]),scenario_model_id:idSchema.optional()});
 const memo=z.object({company:z.string().min(1),as_of:z.string().min(1),thesis:z.string().min(1),claims:z.array(claim).min(1),catalysts:z.array(z.string()),risks:z.array(z.string()).min(1),falsification_conditions:z.array(z.object({indicator:z.string().min(1),condition:z.string().min(1),horizon:z.string().min(1),action:z.string().min(1)})).min(1),valuation_artifact_id:idSchema.optional(),conclusion:z.string().min(1)});
@@ -158,24 +178,62 @@ export class ResearchWorkspace {
  async get(project:string,id:string,revision?:string){return this.status(project,await this.artifacts.get(project,id,revision));}
  async model(project:string,input:unknown,runId?:string){
   const v=modelInput.parse(input),refs:Dependency[]=[],context=evidenceContext();
-  let spec=v.spec?structuredClone(v.spec):undefined,sourceModel:ImportedModel|undefined,sourceValidation:SourceValidation|undefined;
+  let spec=v.spec?structuredClone(v.spec):undefined,sourceModel:ImportedModel|undefined,sourceValidation:SourceValidation|undefined,inputBindings:any[]=[];
   if(v.source_model){
    const selected=await this.artifacts.get(project,v.source_model.artifact_id,v.source_model.revision_id);
-   if(selected.kind!=='manufacturing_scenario')throw new Error('source_model必须引用制造业情景成果');
-   const candidate=selected.result?.results?.[v.source_model.variant+'_dcf_spec'];
-   if(!candidate||typeof candidate!=='object'||Array.isArray(candidate))throw new Error('所选情景版本未保存可导入的DCF输入');
+   const importedScenario=selected.kind==='manufacturing_scenario'&&v.kind==='dcf'&&v.source_model.variant;
+   if(v.source_model.variant&&!importedScenario)throw new Error('variant仅用于制造业情景导入DCF');
+   if(v.artifact_id===selected.id&&v.kind!==selected.kind)throw new Error('不同类型模型请新建成果，不能更改原成果类型');
+   if(!importedScenario&&selected.kind!==v.kind)throw new Error('source_model类型不匹配；制造业情景导入DCF须选择baseline或scenario');
+   const candidate=importedScenario?selected.result?.results?.[v.source_model.variant+'_dcf_spec']:selected.spec;
+   if(!candidate||typeof candidate!=='object'||Array.isArray(candidate))throw new Error('所选模型版本没有可复用输入');
    spec=structuredClone(candidate);
+   inputBindings=importedScenario?[]:structuredClone(selected.input_bindings||[]);
    sourceModel={artifact_id:selected.id,revision_id:selected.revision_id,variant:v.source_model.variant,spec_sha256:hash(spec)};
-   context.fixed.push({kind:'artifact',id:selected.id,version:selected.revision_id},...selected.dependencies);
+   if(v.artifact_id!==selected.id)context.fixed.push({kind:'artifact',id:selected.id,version:selected.revision_id});
+   else v.parent_revision_id??=selected.revision_id;
+   context.fixed.push(...selected.dependencies);
    sourceValidation=validationRecord(selected.source_validation?'inherited':'inherited_unverified',{inherited_from:{artifact_id:selected.id,revision_id:selected.revision_id,original_mode:selected.source_validation?.mode??null}});
   }
   if(!spec)throw new Error('缺少模型输入');
-  await this.modelReferences(project,spec.source_refs,'/source_refs',context,refs,!!sourceModel);
-  if(!sourceModel){await this.finishEvidence(project,context);sourceValidation=validationRecord('checked',{references:context.checks});}
+  for(const [key,value] of Object.entries(v.overrides||{})){
+   setModelInput(spec,key,value);
+   inputBindings=inputBindings.filter(x=>x.path!==key&&!x.path.startsWith(key+'.'));
+   for(const map of ['source_refs','input_basis'])for(const existing of Object.keys(spec[map]||{}))if(existing===key||existing.startsWith(key+'.'))delete spec[map][existing];
+   spec.input_basis??={};spec.input_basis[key]={basis:'assumption',source_kind:'assumption',rationale:'本次显式修改；未绑定新来源时作为分析假设。'};
+  }
+  const bindings=inlineBindings(spec);
+  for(const [key,value] of Object.entries(v.bindings||{})){
+   if(bindings[key]&&JSON.stringify(bindings[key])!==JSON.stringify(value))throw new Error('同一输入指定了不同记录：'+key);
+   bindings[key]=value;
+  }
+  if(Object.keys(bindings).length){
+   const bound=(await this.service.call('resolve_model_inputs',{project_id:project,spec,bindings})).data;
+   if(!bound?.spec)throw new Error('模型数据绑定失败：'+(bound?.error||'未知错误'));
+   spec=bound.spec as Record<string,any>;inputBindings=[...inputBindings.filter(x=>!Object.hasOwn(bindings,x.path)),...bound.bindings];
+   const freshRefs=spec.source_refs;
+   const fresh=Object.fromEntries(Object.keys(bindings).map(key=>[key,freshRefs[key]]));
+   await this.modelReferences(project,fresh,'/source_refs',context,refs);
+  }
+  const unchangedRefs=Object.fromEntries(Object.entries(spec.source_refs||{}).filter(([key])=>!Object.hasOwn(bindings,key)));
+  await this.modelReferences(project,unchangedRefs,'/source_refs',context,refs,!!sourceModel);
+  await this.finishEvidence(project,context);
+  if(!sourceModel)sourceValidation=validationRecord('checked',{references:context.checks});
+  else if(context.checks.length)sourceValidation={...sourceValidation!,references:context.checks};
   const dependencies=await this.dependencies(project,[...v.dependencies,...refs],v.artifact_id,context.fixed);
   const result=(await this.service.call('evaluate_research_model',{project_id:project,kind:v.kind,spec})).data;
-  const record=await this.artifacts.save(project,{kind:v.kind,title:v.title,spec,result,dependencies,parent_revision_id:v.parent_revision_id,run_id:runId,source_validation:sourceValidation,...(sourceModel?{source_model:sourceModel}:{})},v.artifact_id);
+  const record=await this.artifacts.save(project,{kind:v.kind,title:v.title,spec,result,dependencies,parent_revision_id:v.parent_revision_id,run_id:runId,source_validation:sourceValidation,...(inputBindings.length?{input_bindings:inputBindings}:{}),...(sourceModel?{source_model:sourceModel}:{})},v.artifact_id);
   return this.status(project,record);
+ }
+ async compare(project:string,input:any){
+  const reference=z.object({artifact_id:idSchema,revision_id:idSchema.optional()}).strict();
+  const v=z.object({baseline:reference,scenario:reference,order:z.array(modelPath).optional()}).parse(input);
+  const baseline=await this.artifacts.get(project,v.baseline.artifact_id,v.baseline.revision_id),scenario=await this.artifacts.get(project,v.scenario.artifact_id,v.scenario.revision_id);
+  if(baseline.kind!==scenario.kind||!baseline.spec||!scenario.spec)throw new Error('比较需要两份同类型的金融模型');
+  const result=(await this.service.call('compare_research_models',{project_id:project,kind:baseline.kind,baseline:baseline.spec,scenario:scenario.spec,order:v.order})).data;
+  const model_refs={base:{artifact_id:baseline.id,revision_id:baseline.revision_id},scenario:{artifact_id:scenario.id,revision_id:scenario.revision_id}};
+  return {...result,baseline:model_refs.base,scenario:model_refs.scenario,
+   analysis:{tool:'run_analysis',model_refs,comparisons:{change:{baseline:'base',scenario:'scenario',...(v.order?{order:v.order}:{})}},read:'models.json and comparisons.json; input/result/difference CSV and full calculator ZIP are exported automatically; script only draws and explains these results'}};
  }
  async report(project:string,input:unknown,runId?:string){
   const v=reportInput.parse(input);let content:any=v.kind==='industry_chain'?chain.parse(v.content):v.kind==='investment_memo'?memo.parse(v.content):applyCorrections(correction.parse(v.content));
@@ -209,9 +267,12 @@ export function artifactField(artifact:ResearchArtifact,locator:string){
  return value;
 }
 const str={type:'string'},obj={type:'object',additionalProperties:true};
-const commonProps={title:str,dependencies:{type:'array',items:{type:'object',properties:{kind:{enum:['source','document','artifact']},id:str},required:['kind','id']}},artifact_id:str,parent_revision_id:str};
+const commonProps={title:str,dependencies:{type:'array',items:{type:'object',properties:{kind:{enum:['source','document','artifact']},id:str},required:['kind','id']}},artifact_id:{...str,description:'仅在更新已经保存的成果时填写返回过的ID。新建时省略，由程序生成，不自造ID。'},parent_revision_id:{...str,description:'已有成果的父版本；新建时省略。'}};
+const modelRef={type:'object',additionalProperties:false,properties:{artifact_id:str,revision_id:str,variant:{enum:['baseline','scenario']}},required:['artifact_id']};
+const savedModelRef={...modelRef,properties:{artifact_id:str,revision_id:str}};
 export const ARTIFACT_TOOLS=[
- {name:'run_financial_model',description:'运行并保存可复算财务模型。先 get_research_model_schema 获取所选kind的输入要求。提供spec或source_model二选一：DCF可用source_model直接导入已保存制造业情景的baseline/scenario输入，保留所有参数依据和所选版本依赖，勿手抄长spec。省略revision_id时宿主读取当前版本并固定。其他模型使用spec。不能用示例冒充公司事实。',inputSchema:{type:'object',properties:{...commonProps,kind:{enum:MODEL_KINDS},spec:obj,source_model:{type:'object',additionalProperties:false,properties:{artifact_id:str,revision_id:{...str,description:'可选，指定情景版本；省略时固定本次读取的当前版本'},variant:{enum:['baseline','scenario']}},required:['artifact_id','variant']}},required:['title','kind'],oneOf:[{required:['spec'],not:{required:['source_model']}},{required:['source_model'],not:{required:['spec']},properties:{kind:{const:'dcf'}}}]}},
+ {name:'run_financial_model',description:'计算并保存金融模型，返回版本和可直接传给run_analysis的model_refs；导出和制图复用计算结果，无需重写DCF代码。新模型提供spec，数值位置直接用{fact_id:"查询得到的ID"}或{record_id:"研报记录ID"}，例如base:{revenue:{fact_id:"f1"}}；无须抄数值或另填bindings。也兼容bindings={"base.revenue":{fact_id:"f1"}}；数值、单位换算、实际/预测身份和单元格来源由程序带入。金额默认按spec.amount_scale、股数按shares.scale、百分数转小数；scale仅在需要显式覆盖时填写。复用已存模型用source_model加overrides={"forecast.0.capex":"新值"}，只改变化参数，不重抄spec；制造业情景导入DCF才需variant。同一artifact_id更新时保存新版本。输入格式可查get_research_model_schema。',inputSchema:{type:'object',properties:{...commonProps,kind:{enum:MODEL_KINDS},spec:obj,source_model:modelRef,overrides:obj,bindings:{type:'object',additionalProperties:{type:'object',properties:{fact_id:str,record_id:str,scale:str},oneOf:[{required:['fact_id'],not:{required:['record_id']}},{required:['record_id'],not:{required:['fact_id']}}]}}},required:['title','kind'],oneOf:[{required:['spec'],not:{required:['source_model']}},{required:['source_model'],not:{required:['spec']}}]}},
+ {name:'compare_financial_models',description:'比较两份同类型模型的真实输入变化与数值结果差异。baseline/scenario={artifact_id,revision_id?}；程序读取保存输入，不必手抄。需要DCF贡献分解时，order列出全部变化路径的替换顺序（例如forecast.0.capex_ratio、forecast.0.da_ratio）；交互影响归于后替换项，不冒充唯一经济因果。',inputSchema:{type:'object',properties:{baseline:savedModelRef,scenario:savedModelRef,order:{type:'array',items:str}},required:['baseline','scenario']}},
  {name:'save_research_report',description:'保存产业链/投资备忘录/研报纠错。先get_research_report_schema。事实、推断、假设要区分；纠错必须定位原文并给出替换文本，宿主应用改动。保存后可在研究成果查看。',inputSchema:{type:'object',properties:{...commonProps,kind:{enum:['industry_chain','investment_memo','report_correction']},content:obj},required:['title','kind','content']}},
  {name:'get_research_report_schema',description:'获取研究报告严格结构与字段含义；无模型调用。',inputSchema:{type:'object',properties:{kind:{enum:['industry_chain','investment_memo','report_correction']}},required:['kind']}},
  {name:'list_research_artifacts',description:'查看项目研究成果及依赖更新状态。stale表示原始数据或上游模型改变，应读取差异并重新计算/分析；不自动改写旧结论。',inputSchema:{type:'object',properties:{}}},

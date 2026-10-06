@@ -407,8 +407,10 @@ class SandboxRunner:
                 state["oom_killed"] = final.get("OOMKilled", False)
             log = self._exec(["logs", "--tail", "1000", name], timeout=5)
             # Docker logging driver bounds disk usage; also bound application audit log.
-            (directory / "stdout.log").write_text(log.stdout[-1024*1024:], encoding="utf-8")
-            (directory / "stderr.log").write_text(log.stderr[-1024*1024:], encoding="utf-8")
+            state["stdout"] = log.stdout[-1024*1024:]
+            state["stderr"] = log.stderr[-1024*1024:]
+            (directory / "stdout.log").write_text(state["stdout"], encoding="utf-8")
+            (directory / "stderr.log").write_text(state["stderr"], encoding="utf-8")
             for filename, expected in state["input_sha256"].items():
                 if digest(input_dir / filename) != expected:
                     raise RunnerError("Input integrity verification failed")

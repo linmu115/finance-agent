@@ -67,8 +67,18 @@ test('large document and metric requests batch without silently dropping work',{
  const {RunManager}=await import('../server/runs.js');const calls:any[]=[],manager:any=new RunManager({} as any);
  manager.processDocumentsAttempt=async(_l:any,docs:string[],force:boolean,metrics?:string[],existing?:boolean)=>{calls.push({docs,force,metrics,existing});if(docs[0]==='d8'&&metrics?.[0]==='metric_12')throw Error('fixture batch failure');return {status:'ok',data:{documents:docs.map(document_id=>({document_id,state:'ready'}))}};};
  const live={controller:new AbortController(),route:{afterIngestion:'high'}};
- const result=await manager.processDocuments(live,Array.from({length:17},(_,i)=>'d'+i),true,Array.from({length:25},(_,i)=>'metric_'+i));
- assert.equal(calls.length,9);assert.ok(calls.every(c=>c.docs.length<=8&&c.metrics.length<=12));assert.equal(result.status,'partial');assert.equal(result.data.errors.length,1);assert.equal(result.data.batches.length,8);assert.equal(new Set(calls.flatMap(c=>c.docs)).size,17);assert.equal(new Set(calls.flatMap(c=>c.metrics)).size,25);assert.equal(calls.filter(c=>c.force).length,3);await manager.shutdown();
+ const result=await manager.processDocuments(live,Array.from({length:17},(_,i)=>'d'+i),false,Array.from({length:25},(_,i)=>'metric_'+i),true);
+ assert.equal(calls.length,9);assert.ok(calls.every(c=>c.docs.length<=8&&c.metrics.length<=12));assert.equal(result.status,'partial');assert.equal(result.data.errors.length,1);assert.equal(result.data.batches.length,8);assert.equal(new Set(calls.flatMap(c=>c.docs)).size,17);assert.equal(new Set(calls.flatMap(c=>c.metrics)).size,25);assert.ok(calls.every(c=>c.existing&&!c.force));await manager.shutdown();
+});
+
+test('ordinary ingestion keeps source routing and script cleaning even when optional review metrics are supplied',async()=>{
+ const {RunManager}=await import('../server/runs.js');const calls:any[]=[];
+ const manager:any=new RunManager({call:async(name:string,args:any)=>{calls.push({name,args});return {data:{state:'routing_required'}};}} as any);
+ manager.processDocumentsAttempt=async()=>{throw Error('ordinary ingestion reached legacy extraction');};
+ const live={run:{projectId:'p',id:'r',model:'m'},controller:new AbortController()};
+ const result=await manager.processDocuments(live,['research'],false,['revenue'],false);
+ assert.equal(result.data.state,'routing_required');assert.equal(calls[0].name,'begin_script_cleaning');assert.equal(calls[0].args.require_profile,true);
+ await manager.shutdown();
 });
 
 test('an uncertain write cannot be replayed before a new approval, and denial is not reprompted',async()=>{

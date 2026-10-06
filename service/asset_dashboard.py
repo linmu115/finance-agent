@@ -1,6 +1,7 @@
 """Read-only project research inventory. No model calls or new ingestion path."""
 from __future__ import annotations
 import json
+from .evidence_review import document_review
 from .research_ingestion import envelope, norm
 
 
@@ -65,7 +66,8 @@ class AssetDashboardMixin:
                 documents.append({'document_id': doc['document_id'], 'name': doc['original_name'], 'state': doc['state'],
                     'page_count': doc['page_count'], 'kind': profile.get('kind', 'unclassified'),
                     'title': profile.get('title') or doc['original_name'], 'publisher': profile.get('publisher'),
-                    'published_at': profile.get('published_at'), 'authors': profile.get('authors', []), 'entity_ids': entity_ids})
+                    'published_at': profile.get('published_at'), 'authors': profile.get('authors', []), 'entity_ids': entity_ids,
+                    'review': document_review(db,doc,profile,include_items=False)['summary']})
             count = lambda kinds, record_type: sum(r['count'] for r in records_by_kind if r['record_type']==record_type and (kinds is None or r['data_kind'] in kinds))
             summary = {'documents': len(documents), 'facts': db.execute('SELECT count(*)'+fact_where, fact_args).fetchone()[0],
                 'records': sum(r['count'] for r in records_by_kind), 'claims': count(None, 'claim'),

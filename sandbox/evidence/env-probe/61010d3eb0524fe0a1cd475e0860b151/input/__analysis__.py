@@ -1,0 +1,1 @@
+from pathlib import Path;Path('/output/smoke.txt').write_text('real Docker via filtered MCP environment')

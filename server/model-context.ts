@@ -9,47 +9,59 @@ function reviewSummary(value:any){
  }
  return summary;
 }
-const processingSummary=(v:any)=>({...fields(v,['batches','processing_id','owner_run_id','state','progress','message','errors','created_at','completed_at','fact_count','batch_count']),documents:v.documents?.map((x:any)=>fields(x,['document_id','state','message','facts','fact_count','committed_fact_count','table_count','candidate_table_count','batch_count','completed_batches','errors','coverage'])),catalog_review:reviewSummary(v.catalog_review),temporal_review:reviewSummary(v.temporal_review),definition_review:reviewSummary(v.definition_review)});
-function sourceReceipt(ref:any){
- if(!ref||typeof ref!=='object'||!ref.normalization)return ref;
- const {normalization,...source}=ref;
- // The expanded fact carries its current meaning and conversion. Retain exact
- // source coordinates and provenance identity here instead of repeating the
- // entire normalization/review history in each copy of the same citation.
- return {...source,normalization:fields(normalization,['engine','version','model','source_key','source_fingerprint','original_extraction_hash','processing_id','char_interval'])};
+const processingSummary=(v:any)=>({...fields(v,['batches','processing_id','owner_run_id','state','progress','message','errors','created_at','completed_at','fact_count','batch_count','review_issues']),documents:v.documents?.map((x:any)=>fields(x,['document_id','state','message','facts','fact_count','committed_fact_count','table_count','candidate_table_count','batch_count','completed_batches','errors','coverage','review_issues','text_coverage'])),catalog_review:reviewSummary(v.catalog_review),temporal_review:reviewSummary(v.temporal_review),definition_review:reviewSummary(v.definition_review)});
+const present=(value:any)=>Object.fromEntries(Object.entries(value).filter(([,v])=>v!==null&&v!==undefined&&v!==''&&!(typeof v==='object'&&Object.keys(v).length===0)));
+function analysisSource(ref:any,keepText=false){
+ if(!ref||typeof ref!=='object')return ref;
+ const location=fields(ref,['document_id','page','table_id','row','column','cell','start','end','offset_unit','research_record_id','source_id','url']);
+ // Numeric cells have exact locators and literal numeric spans. Full row text,
+ // hashes and processing history stay in the source APIs and original audit.
+ const detail=fields(ref.normalization,['review_warnings','semantic_review_note','numeric_span','char_interval','data_kind','period_start','period_end','scale','unit_kind']);
+ if(keepText||!ref.table_id)Object.assign(location,fields(ref,['text','quote','bbox']));
+ return present({...location,normalization:present(detail)});
+}
+function citationIndex(items:any[],fallback:any[]=[]){
+ const refs=items.flatMap(x=>[x.source_ref,...(x.alternative_sources||[])]).filter(Boolean);
+ return [...new Map((refs.length?refs:fallback).map(ref=>{
+  const locator=fields(ref,['document_id','page','table_id','row','column','cell','start','end','offset_unit','research_record_id','source_id','url']);
+  return [JSON.stringify(locator),locator];
+ })).values()];
 }
 function factView(x:any){
- const {source_json,normalization,normalization_metadata,catalog_review,temporal_review,definition_review,...fact}=x;
- return {...fact,...(fact.source_ref?{source_ref:sourceReceipt(fact.source_ref)}:{}),...(fact.alternative_sources?{alternative_sources:fact.alternative_sources.map(sourceReceipt)}:{}),...(temporal_review?{temporal_review:fields(temporal_review,['status','after','reason','review_id'])}:{}),...(definition_review?{definition_review:fields(definition_review,['status','after','reason','review_id'])}:{})};
+ const {source_json,normalization,normalization_metadata,catalog_review,temporal_review,definition_review,rowid,project_id,priority,normalization_engine,...fact}=x;
+ return present({...fact,...(fact.source_ref?{source_ref:analysisSource(fact.source_ref,x.quality==='needs_review'||x.quality==='conflict')}:{}),...(fact.alternative_sources?{alternative_sources:fact.alternative_sources.map((s:any)=>analysisSource(s,true))}:{}),...(temporal_review?{temporal_review:fields(temporal_review,['status','after','reason','review_id'])}:{}),...(definition_review?{definition_review:fields(definition_review,['status','after','reason','review_id'])}:{})});
 }
 // Only the model-facing view is projected. Full results remain in the audit and API.
 export function modelContext(name:string,envelope:Envelope):Envelope {
  if(envelope.status==='error')return envelope;
  if(!envelope.data)return envelope;
  const data=envelope.data;
- if(name==='get_data_catalog')return {...envelope,data:{...data,documents:data.documents?.map((x:any)=>fields(x,['document_id','original_name','state','company','page_count','table_count','fact_count','profile','research_record_count','sha256','relative_path','normalization_engine','warnings'])),processing:data.processing?.map(processingSummary),metric_aliases:data.metric_aliases?.map((x:any)=>fields(x,['source_metric','canonical_metric','canonical_label'])),catalog_review:reviewSummary(data.catalog_review),temporal_review:reviewSummary(data.temporal_review),definition_review:reviewSummary(data.definition_review),detail_tools:['get_normalization_details','get_source_table','get_source_page'],projection:'目录保留实际指标/维度/路径/处理摘要；逐格来源与详细规范化记录按需读取。'}};
+ if(name==='get_data_catalog')return {...envelope,data:{...data,documents:data.documents?.map((x:any)=>fields(x,['document_id','original_name','state','company','page_count','table_count','fact_count','profile','research_record_count','relative_path','warnings'])),processing:data.processing?.map((v:any)=>({...fields(v,['processing_id','state','message','errors','review_issues']),documents:v.documents?.map((x:any)=>fields(x,['document_id','state','message','review_issues','text_coverage'])),catalog_review:reviewSummary(v.catalog_review),temporal_review:reviewSummary(v.temporal_review),definition_review:reviewSummary(v.definition_review)})),...(data.pagination?.statement&&data.research_catalog?{research_catalog:fields(data.research_catalog,['total_metrics','query_tool'])}:{}),metric_aliases:data.metric_aliases?.map((x:any)=>fields(x,['source_metric','canonical_metric','canonical_label'])),catalog_review:reviewSummary(data.catalog_review),temporal_review:reviewSummary(data.temporal_review),definition_review:reviewSummary(data.definition_review),detail_tools:['get_normalization_details','get_source_table','get_source_page'],projection:'目录保留实际指标/维度/路径/处理摘要；逐格来源与详细规范化记录按需读取。'}};
  if(name==='process_documents'&&(data.instructions||data.state==='routing_required'))return envelope;
  if(name==='process_documents')return {...envelope,data:processingSummary(data)};
  if(name==='query_financial_data'||name==='get_financial_metrics'){
   const items=data.items?.map(factView);
-  return {...envelope,...(envelope.source_refs?{source_refs:envelope.source_refs.map(sourceReceipt)}:{}),data:{...data,items}};
+  return {...envelope,...(envelope.source_refs?{source_refs:citationIndex(items||[],envelope.source_refs)}:{}),data:{...data,items}};
  }
  if(name==='query_research_records'){
   // SQL storage, record payload and citation list can contain three copies of
   // the same source. Keep one complete source (including all meaning, warnings
   // and exact quote offsets) per item; the citation list remains a locator.
   const items=data.items?.map((x:any)=>{
-   const {source_json,source,...record}=x;
-   return {...record,source_ref:x.source_ref??source};
+   const {source_json,source,project_id,batch_key,record_key,content_hash,source_key,created_at,...record}=x;
+   return present({...record,source_ref:analysisSource(x.source_ref??source,x.record_type==='claim'||x.quality==='needs_review')});
   });
-  return {...envelope,data:{...data,items},...(envelope.source_refs?{source_refs:envelope.source_refs.map((ref:any)=>fields(ref,['document_id','page','table_id','row','column','cell','start','end','offset_unit','research_record_id']))}:{})};
+  return {...envelope,data:{...data,items},...(envelope.source_refs?{source_refs:citationIndex(items||[],envelope.source_refs)}:{})};
  }
  if(name==='run_financial_model'||name==='save_research_report'){
   const {spec,content,source_validation,...saved}=data;
   if(!saved.id||!saved.revision_id)return envelope;
   // A successful write returns its computed result and immutable version.
   // Inputs already appear in the paired tool call and remain readable in full.
-  return {...envelope,data:{...saved,...(source_validation?{source_validation}:{}),saved_input:{spec_saved:spec!==undefined,content_saved:content!==undefined,read_tool:'read_research_artifact',artifact_id:saved.id,revision_id:saved.revision_id},projection:'返回完整计算结果及保存的版本；完整输入、参数依据和报告正文按版本读取。'}};
+  const result=saved.result?{...saved.result}:undefined;
+  if(result)delete result.input_assumptions;
+  const input_bindings=saved.input_bindings?.map((x:any)=>fields(x,['path','record_id','record_type','value','source_value','scale','period','scope','currency','quality','data_kind','document_id']));
+  return {...envelope,data:{...saved,...(result?{result}:{}),...(input_bindings?{input_bindings}:{}),...(source_validation?{source_validation}:{}),saved_input:{spec_saved:spec!==undefined||saved.saved_input?.spec_saved===true,content_saved:content!==undefined||saved.saved_input?.content_saved===true,read_tool:'read_research_artifact',artifact_id:saved.id,revision_id:saved.revision_id},...(spec?{analysis:{tool:'run_analysis',model_refs:{model:{artifact_id:saved.id,revision_id:saved.revision_id}},read:"json.load(open('/input/models.json'))['model']['result']",delivery:'Exact input/result CSVs and model_bundle.zip (full calculator + inputs) exported automatically. Write only charts/report using saved tables; no need to reimplement the model.'}}:{}),projection:'返回计算结果及保存版本；不重复刚提交的完整输入，按版本可读全部参数、来源和底稿。'}};
  }
  return envelope;
 }

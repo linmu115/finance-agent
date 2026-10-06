@@ -49,6 +49,11 @@ test('real Pi/MCP evaluation isolates generic tools and accounts every main/brid
  });
  await new Promise<void>(resolve=>mock.listen(0,'127.0.0.1',resolve));
  const manager=new RunManager(service);
+ // Seed legacy extraction evidence through its internal entry for the bridge
+ // accounting/review fixture. Ordinary public ingestion is script-based.
+ const publicProcessing=(manager as any).processDocuments.bind(manager);
+ (manager as any).processDocuments=(l:any,docs:string[],force:boolean,metrics?:string[],existing=false)=>
+  metrics&&!existing?(manager as any).processDocumentsAttempt(l,docs,force,metrics,false):publicProcessing(l,docs,force,metrics,existing);
  const wait=async(id:string)=>{const deadline=Date.now()+60000;while(Date.now()<deadline){const r=await manager.getRun(id);if(['completed','failed','cancelled'].includes(r.status)&&!manager.activeFor(r.conversationId))return r;await delay(25);}throw new Error('evaluation fixture timeout');};
  const chat=async(projectId:string)=>{const time=new Date().toISOString(),c={id:randomUUID(),projectId,title:'新对话',messages:[],createdAt:time,updatedAt:time};await service.putState(projectId,'conversations',c.id,c);manager.indexConversation(c.id,projectId);return c;};
  const budget=(profile:'financial'|'generic',group:string,calls=12):EvaluationOptions=>({profile,budget_group_id:group,budget:{max_model_calls:calls,max_input_tokens:10000,max_output_tokens:100000,max_total_tokens:110000,max_wall_seconds:90}});
@@ -62,7 +67,13 @@ test('real Pi/MCP evaluation isolates generic tools and accounts every main/brid
   assert.equal(genericResults.reduce((sum,r)=>sum+r.usage.calls,0),2);
   assert.equal(genericResults[1].evaluation?.usage.model_calls,2);
   assert.equal(genericResults[1].evaluation?.usage.input_tokens,26);
-  for(const request of requests){assert.deepEqual(new Set(request.tools.map((tool:any)=>tool.function.name)),GENERIC_TOOL_ALLOWLIST);assert(!String(request.messages[0]?.content).includes('LangExtract'));}
+  for(const request of requests){
+   assert.deepEqual(new Set(request.tools.map((tool:any)=>tool.function.name)),GENERIC_TOOL_ALLOWLIST);assert(!String(request.messages[0]?.content).includes('LangExtract'));
+   const analysis=request.tools.find((tool:any)=>tool.function.name==='run_analysis').function;
+   assert(!analysis.description.includes('Finance:'));
+   assert(analysis.description.includes('Noto Sans CJK JP'));
+   assert.equal(analysis.parameters.properties.model_refs,undefined);
+  }
   const denied=await manager.start(await chat('raw'),'generic third',[],undefined,budget('generic','shared-raw',2));
   assert.equal((await wait(denied.id)).status,'failed');assert.equal(requests.length,2,'denied call reached model');
   await assert.rejects(()=>manager.start(generics[0],'switch',[],undefined,budget('financial','wrong-profile')),/profile_conflict/);

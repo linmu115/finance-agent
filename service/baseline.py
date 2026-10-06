@@ -21,10 +21,6 @@ def prepare_document_sources(service, project_id, document_ids, progress=lambda 
     with service.processing_lock:
         documents=[service.store.document(project_id,i) for i in ids]
         if any(service.processing_documents.get((project_id,i)) for i in ids):raise ValueError('document_processing_active')
-        with service.store.connect() as db:
-            for i in ids:
-                if db.execute('SELECT 1 FROM facts WHERE document_id=? LIMIT 1',(i,)).fetchone() or db.execute('SELECT 1 FROM normalization_batches WHERE document_id=? LIMIT 1',(i,)).fetchone():
-                    raise ValueError('baseline_requires_raw_only_documents')
         for i in ids:service.processing_documents[(project_id,i)]=claim
     results=[]
     try:
@@ -35,16 +31,20 @@ def prepare_document_sources(service, project_id, document_ids, progress=lambda 
             if hashlib.sha256(original.read_bytes()).hexdigest()!=document['sha256']:raise ValueError('document_source_hash_changed')
             parsed=service._read_prepared(project_id,document);reused=parsed is not None
             if parsed is None:
+                with service.store.connect() as db:
+                    if db.execute('SELECT 1 FROM facts WHERE document_id=? LIMIT 1',(document_id,)).fetchone() or db.execute('SELECT 1 FROM normalization_batches WHERE document_id=? LIMIT 1',(document_id,)).fetchone():
+                        raise ValueError('baseline_sources_missing_for_prepared_document')
                 options=service.configs.get(project_id,{})
                 notify=lambda value,message:progress((ordinal+value/100)/len(documents)*100,message)
                 if original.suffix.lower()=='.pdf':parsed=service._parse_native_pdf(original,document['original_name'],notify,cancelled,options)
                 else:parsed=parse_document(Path(original),document['original_name'],notify,cancelled,options)
                 if cancelled():raise InterruptedError('cancelled')
                 service._persist_prepared(project_id,document_id,parsed)
-            with service.store.connect(write=True) as db:
-                db.execute("UPDATE documents SET state='sources_ready' WHERE document_id=?",(document_id,))
-            results.append({'document_id':document_id,'sha256':document['sha256'],'parser_version':PARSER_VERSION,'pages':len(parsed['pages']),'tables':len(parsed['tables']),'reused_sources':reused,'facts_written':0,'state':'sources_ready','warnings':parsed.get('warnings',[])})
-        service._write_navigation(project_id)
+            if not reused:
+                with service.store.connect(write=True) as db:
+                    db.execute("UPDATE documents SET state='sources_ready' WHERE document_id=?",(document_id,))
+            results.append({'document_id':document_id,'sha256':document['sha256'],'parser_version':PARSER_VERSION,'pages':len(parsed['pages']),'tables':len(parsed['tables']),'reused_sources':reused,'facts_written':0,'state':document['state'] if reused else 'sources_ready','warnings':parsed.get('warnings',[])})
+        if any(not item['reused_sources'] for item in results):service._write_navigation(project_id)
         return {'status':'ok','data':{'documents':results,'facts_written':0,'mode':'deterministic_sources_only'},'source_refs':[],'warnings':[],'trace_id':uuid.uuid4().hex}
     finally:
         with service.processing_lock:

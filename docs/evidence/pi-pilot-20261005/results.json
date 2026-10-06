@@ -1,0 +1,1307 @@
+{
+  "study": "development_pilot_not_heldout",
+  "date": "2026-10-05",
+  "servicePort": 3001,
+  "model": "deepseek-flash",
+  "provider": "openai-compatible",
+  "piVersion": "1.0.0",
+  "sources": [
+    {
+      "file": "samples/native-pdf/Ruihe_Data_2025_Interim_57p.pdf",
+      "pages": 57,
+      "sha256": "a40de54658363105b774ac0fba8f9252d85e0106ca9496c22325ebf668031702"
+    },
+    {
+      "file": "samples/native-pdf/Guosen_Yili_20250716_38p.pdf",
+      "pages": 38,
+      "sha256": "6242c4d8fd51ede40de29391f3b41703f2e9880e62da32b4a2b760ce3cfbfd88"
+    }
+  ],
+  "taskSha256": "bb680b7fe9476529d2d417385677adb797792ac5a1833e67a4dd9df210804ce2",
+  "taskHashEncoding": "UTF-8 JSON.stringify(tasks)",
+  "goldSha256": "3e6b4bbd9262c9e415d387eecc9da518ad24e71683344b63bc94b404d91edd05",
+  "goldHashEncoding": "file bytes",
+  "initialCodeSha256": "0b1947ddee6be6e26900f7405d2b2d75702b6b32bb69b9b30485c4b7d6d1cd31",
+  "changedFingerprintedFiles": [
+    {
+      "file": "design/pi-finance-comparison-protocol-20261005.md",
+      "expected": "e1569361e83e467bd2aa67944d9957a0abdd9539ba0d54f42e9ac74d3b20e811",
+      "actual": "55a1b03afc6d7a94667af155a4f453bb4ee59fbc691b51bae98788db6dc3442e"
+    }
+  ],
+  "runtimeCodeStillFrozen": true,
+  "plannedOrder": [
+    "A1",
+    "B1",
+    "B2",
+    "A2",
+    "A3",
+    "B3"
+  ],
+  "equalPerTaskTechnicalAllowance": {
+    "max_model_calls": 1000,
+    "max_input_tokens": 50000000,
+    "max_output_tokens": 2000000,
+    "max_total_tokens": 52000000,
+    "max_wall_seconds": 43200
+  },
+  "price": {
+    "currency": "CNY",
+    "cache_hit_per_million": [
+      0.02,
+      0.04
+    ],
+    "cache_miss_per_million": [
+      1,
+      2
+    ],
+    "output_per_million": [
+      4,
+      8
+    ],
+    "source": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+    "kind": "estimate_range_not_bill",
+    "verifiedAt": "2026-10-05"
+  },
+  "costStatus": "Official price band applied to known usage, not invoice; unknown requests excluded, not zero.",
+  "reasoningAccounting": "Reasoning is already included in output; never added twice.",
+  "arms": [
+    {
+      "profile": "generic",
+      "tasks": 3,
+      "completedTasks": 3,
+      "input": 3609311,
+      "output": 67037,
+      "reasoning": 30596,
+      "cacheRead": 3493248,
+      "cacheKnownInput": 3609311,
+      "costCnyMin": 0.45407596000000006,
+      "costCnyMax": 0.9081519200000001,
+      "modelRequests": 59,
+      "knownUsageCalls": 58,
+      "unknownUsageCalls": 1,
+      "toolCalls": 89,
+      "elapsedSeconds": 501.08299999999997,
+      "cacheHitPercent": 96.78434471288287,
+      "cacheCoverageOfKnownInputPercent": 100,
+      "coreSamplePassed": 19,
+      "coreSampleTotal": 19,
+      "toolErrors": 0
+    },
+    {
+      "profile": "financial",
+      "tasks": 3,
+      "completedTasks": 3,
+      "input": 68969139,
+      "output": 262880,
+      "reasoning": 123747,
+      "cacheRead": 66871424,
+      "cacheKnownInput": 68969139,
+      "costCnyMin": 4.48666348,
+      "costCnyMax": 8.97332696,
+      "modelRequests": 193,
+      "knownUsageCalls": 193,
+      "unknownUsageCalls": 0,
+      "toolCalls": 220,
+      "elapsedSeconds": 1613.258,
+      "cacheHitPercent": 96.95847297731235,
+      "cacheCoverageOfKnownInputPercent": 100,
+      "coreSamplePassed": 19,
+      "coreSampleTotal": 19,
+      "toolErrors": 30
+    }
+  ],
+  "runs": [
+    {
+      "label": "A1",
+      "profile": "generic",
+      "status": "completed",
+      "runId": "e9845c12-2c74-490d-b511-2a59d45166fb",
+      "requestedAt": "2026-10-05T10:45:56.301Z",
+      "completedAt": "2026-10-05T10:47:30.021Z",
+      "elapsedSeconds": 93.72,
+      "modelRequests": 17,
+      "knownUsageCalls": 17,
+      "missingUsageRequests": [],
+      "unknownUsageCalls": 0,
+      "input": 374035,
+      "output": 15933,
+      "reasoning": 6900,
+      "cacheRead": 340864,
+      "cacheKnownInput": 374035,
+      "costCnyMin": 0.10372028000000003,
+      "costCnyMax": 0.20744056000000005,
+      "cacheHitPercent": 91.13157859558598,
+      "cacheCoverageOfKnownInputPercent": 100,
+      "toolCalls": 38,
+      "tools": {
+        "prepare_document_sources": 1,
+        "list_documents": 1,
+        "get_document_index": 1,
+        "get_source_page": 30,
+        "run_analysis": 1,
+        "get_analysis_status": 3,
+        "get_artifact": 1
+      },
+      "toolErrors": [],
+      "modelRoutes": {
+        "router/low": 1,
+        "main/low": 1,
+        "main/high": 15
+      },
+      "compactions": [],
+      "analysisRuns": [
+        {
+          "id": "29cfe5a2ffa04ac8885a8c1c3314cfb4",
+          "status": "succeeded",
+          "containerRemoved": true
+        }
+      ],
+      "artifactDownload": {
+        "total": 5,
+        "ok": 4,
+        "failures": [
+          {
+            "name": "ruihe_1H2025_key_figures.csv",
+            "status": 400
+          }
+        ]
+      },
+      "review": {
+        "label": "A1",
+        "reviewed_at": "2026-10-05",
+        "status": "reviewed",
+        "core_numeric": {
+          "passed": 10,
+          "total": 10,
+          "checks": [
+            {
+              "metric": "Revenue",
+              "year": 2025,
+              "expected": 120392,
+              "actual": 120392,
+              "pass": true
+            },
+            {
+              "metric": "Revenue",
+              "year": 2024,
+              "expected": 181011,
+              "actual": 181011,
+              "pass": true
+            },
+            {
+              "metric": "Gross margin (%)",
+              "year": 2025,
+              "expected": 7.57,
+              "actual": 7.57,
+              "pass": true
+            },
+            {
+              "metric": "Gross margin (%)",
+              "year": 2024,
+              "expected": 8.05,
+              "actual": 8.05,
+              "pass": true
+            },
+            {
+              "metric": "Operating loss",
+              "year": 2025,
+              "expected": -18170,
+              "actual": -18170,
+              "pass": true
+            },
+            {
+              "metric": "Operating loss",
+              "year": 2024,
+              "expected": -32320,
+              "actual": -32320,
+              "pass": true
+            },
+            {
+              "metric": "Net profit/(loss)",
+              "year": 2025,
+              "expected": 41098,
+              "actual": 41098,
+              "pass": true
+            },
+            {
+              "metric": "Net profit/(loss)",
+              "year": 2024,
+              "expected": -38635,
+              "actual": -38635,
+              "pass": true
+            },
+            {
+              "metric": "Net cash used in operating activities",
+              "year": 2025,
+              "expected": -30650,
+              "actual": -30650,
+              "pass": true
+            },
+            {
+              "metric": "Net cash used in operating activities",
+              "year": 2024,
+              "expected": -32104,
+              "actual": -32104,
+              "pass": true
+            }
+          ],
+          "scope_unit_period_identity": "Correct: consolidated CNY thousand six months ended June30; margin percent; unaudited actual"
+        },
+        "errors": [
+          {
+            "kind": "semantic_label",
+            "detail": "Answer section3 point4 labels 2024 pretax loss -39108 as operating loss; source operating loss is -32320."
+          },
+          {
+            "kind": "calculation_sign_and_answer_artifact_divergence",
+            "detail": "Executed script D_2025 Finance income = +29, but must subtract29. This makes pre-WC cash -10884 and residual -19765; answer says -10942 and -19707. Terminal CFO matches only because residual absorbs58. Figure shows +29 while labeling deduct."
+          },
+          {
+            "kind": "chart_clipping",
+            "detail": "Cash bridge plot upper limit clips positive adjustment bars and labels; core comparison chart otherwise readable, but charts English despite Chinese output request."
+          },
+          {
+            "kind": "delivery",
+            "detail": "No complete .py output artifact; response only partial script. Model work log has executed full script; evaluator copied it separately, not counted as model-delivered file."
+          },
+          {
+            "kind": "shared_application_download",
+            "detail": "CSV file exists and hash-checked artifact declared application/vnd.ms-excel on Windows; HTTP GET rejects400 不允许此产物类型. Evaluator local copy does not count as user-download success."
+          }
+        ],
+        "unresolved": [],
+        "cost_source": "A1-run.json",
+        "model_interventions": 0,
+        "chart_review": {
+          "count": 4,
+          "inspected": 4,
+          "readable": 3,
+          "partly_clipped": 1,
+          "language": "English labels despite requested Chinese answer",
+          "comments": "Revenue composition labels visible; legend overlays unused top-right area. No invented 3D or truncated bar origin."
+        },
+        "source_followup": {
+          "pages": [
+            12,
+            40,
+            41,
+            44
+          ],
+          "result": "Verified depreciation2346+363+7152+502=10363, finance income29 and finance costs3943; confirms sign inconsistency in executed script."
+        }
+      }
+    },
+    {
+      "label": "B1",
+      "profile": "financial",
+      "status": "completed",
+      "runId": "c56b23b9-50be-4cdb-9de2-8cdb05b4877a",
+      "requestedAt": "2026-10-05T10:47:37.805Z",
+      "completedAt": "2026-10-05T10:58:05.315Z",
+      "elapsedSeconds": 627.51,
+      "modelRequests": 85,
+      "knownUsageCalls": 85,
+      "missingUsageRequests": [],
+      "unknownUsageCalls": 0,
+      "input": 19967816,
+      "output": 116380,
+      "reasoning": 71062,
+      "cacheRead": 19016064,
+      "cacheKnownInput": 19967816,
+      "costCnyMin": 1.7975932800000003,
+      "costCnyMax": 3.5951865600000006,
+      "cacheHitPercent": 95.23356986061971,
+      "cacheCoverageOfKnownInputPercent": 100,
+      "toolCalls": 93,
+      "tools": {
+        "process_documents": 2,
+        "set_document_profile": 3,
+        "get_source_table": 3,
+        "get_source_page": 6,
+        "run_cleaning_script": 18,
+        "get_cleaning_result": 29,
+        "commit_cleaning_result": 18,
+        "get_financial_metrics": 2,
+        "get_data_catalog": 1,
+        "query_financial_data": 1,
+        "calculate_financial_metrics": 8,
+        "run_analysis": 1,
+        "get_analysis_status": 1
+      },
+      "toolErrors": [
+        {
+          "tool": "set_document_profile",
+          "error": "entity_not_grounded"
+        },
+        {
+          "tool": "set_document_profile",
+          "error": "entity_identifier_not_grounded"
+        },
+        {
+          "tool": "get_source_table",
+          "error": "table_not_found_in_document"
+        },
+        {
+          "tool": "get_source_table",
+          "error": "table_not_found_in_document"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "review_table_not_inspected_table_13_read_get_cleaning_result_first"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "review_table_not_inspected_table_15_read_get_cleaning_result_first"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "script_validation_errors_table_15_missing_numeric_span"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "script_validation_errors_table_15_numeric_span_not_numeric"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "script_validation_errors_table_18_unmapped_numeric_row"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "invalid_semantic_review_evidence"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "invalid_semantic_review_evidence"
+        },
+        {
+          "tool": "get_financial_metrics",
+          "error": "invalid_metrics"
+        },
+        {
+          "tool": "get_financial_metrics",
+          "error": "invalid_metrics"
+        }
+      ],
+      "modelRoutes": {
+        "router/low": 1,
+        "main/low": 82,
+        "main/high": 2
+      },
+      "compactions": [],
+      "analysisRuns": [
+        {
+          "id": "c7e84ed368ec485d8acc83b7f4c0c35c",
+          "status": "succeeded",
+          "containerRemoved": true
+        }
+      ],
+      "artifactDownload": {
+        "total": 3,
+        "ok": 3,
+        "failures": []
+      },
+      "review": {
+        "label": "B1",
+        "status": "reviewed",
+        "core_numeric": {
+          "passed": 10,
+          "total": 10,
+          "checks": [
+            {
+              "metric": "revenue",
+              "year": 2025,
+              "expected": 120392,
+              "actual": 120392,
+              "pass": true
+            },
+            {
+              "metric": "revenue",
+              "year": 2024,
+              "expected": 181011,
+              "actual": 181011,
+              "pass": true
+            },
+            {
+              "metric": "gross_margin_pct",
+              "year": 2025,
+              "expected": 7.567778589939531,
+              "actual": 7.5678,
+              "pass": true
+            },
+            {
+              "metric": "gross_margin_pct",
+              "year": 2024,
+              "expected": 8.053101745197806,
+              "actual": 8.0531,
+              "pass": true
+            },
+            {
+              "metric": "operating_loss",
+              "year": 2025,
+              "expected": -18170,
+              "actual": -18170,
+              "pass": true
+            },
+            {
+              "metric": "operating_loss",
+              "year": 2024,
+              "expected": -32320,
+              "actual": -32320,
+              "pass": true
+            },
+            {
+              "metric": "net_profit",
+              "year": 2025,
+              "expected": 41098,
+              "actual": 41098,
+              "pass": true
+            },
+            {
+              "metric": "net_profit",
+              "year": 2024,
+              "expected": -38635,
+              "actual": -38635,
+              "pass": true
+            },
+            {
+              "metric": "ocf",
+              "year": 2025,
+              "expected": -30650,
+              "actual": -30650,
+              "pass": true
+            },
+            {
+              "metric": "ocf",
+              "year": 2024,
+              "expected": -32104,
+              "actual": -32104,
+              "pass": true
+            }
+          ],
+          "scope_unit_period_identity": "Correct: consolidated CNY thousand 2025H1/2024H1 actual, unaudited; percentage scale correct"
+        },
+        "ingestion": {
+          "tables_resolved": 50,
+          "total_tables": 50,
+          "facts": 519,
+          "review_issues": 4,
+          "caution": "Processing coverage != all source content structured; answer overstates 全量入库 while option/restricted-share tables skipped with review issues."
+        },
+        "errors": [
+          {
+            "kind": "cashflow_classification",
+            "detail": "Answer includes decrease7461 in amounts due directors as a working-capital cash driver. Source cashflow p32 classifies repayments to directors within financing. Balance movements also do not establish cashflows without adjustments."
+          },
+          {
+            "kind": "source_location",
+            "detail": "Answer cites physical p12/p38 for Tokyo Chuo FVTPL gain/investment detail; those pages cover revenue and segments, not the claimed holding. Correct support exists elsewhere, e.g p8,p16,p41,p45."
+          },
+          {
+            "kind": "chart_rendering",
+            "detail": "Both PNGs show Chinese labels as square missing-glyph boxes. Script leaves finance_charts.theme context before plotting, then replaces font list with uninstalled Microsoft YaHei/SimHei/Noto Sans CJK SC; installed font is Noto Sans CJK JP."
+          },
+          {
+            "kind": "chart_reconciliation",
+            "detail": "Bridge components sum to -30649 but terminal bar is -30650, without an income-tax-paid=-1 bar. Text explains tax, chart does not. First-bar label at upper boundary has little margin."
+          },
+          {
+            "kind": "delivery",
+            "detail": "No complete reproducible .py artifact, only a run identifier. Internal executed script copied by evaluator does not count as delivered."
+          }
+        ],
+        "qualified_findings": [
+          {
+            "kind": "language",
+            "detail": "Claims turnaround entirely driven by fair value. Positive/negative crossing depends on gain, but total net-profit improvement includes other factors; use predominantly and quantified contributions."
+          },
+          {
+            "kind": "uncertainty_presentation",
+            "detail": "Flags 2024 dash as ambiguous despite numerical reconciliation; unrelated option/aging gaps occupy answer space. Information retained but concise task-relevant explanation still needs work."
+          }
+        ],
+        "chart_review": {
+          "count": 2,
+          "inspected": 2,
+          "chinese_labels_readable": 0
+        },
+        "model_interventions": 0,
+        "cost_source": "B1-run.json"
+      }
+    },
+    {
+      "label": "B2",
+      "profile": "financial",
+      "status": "completed",
+      "runId": "23b6edef-c483-48ad-9036-0aafa71d5a23",
+      "requestedAt": "2026-10-05T10:58:30.344Z",
+      "completedAt": "2026-10-05T11:11:08.891Z",
+      "elapsedSeconds": 758.547,
+      "modelRequests": 94,
+      "knownUsageCalls": 94,
+      "missingUsageRequests": [],
+      "unknownUsageCalls": 0,
+      "input": 43601340,
+      "output": 99508,
+      "reasoning": 35038,
+      "cacheRead": 42494592,
+      "cacheKnownInput": 43601340,
+      "costCnyMin": 2.35467184,
+      "costCnyMax": 4.70934368,
+      "cacheHitPercent": 97.46166516900627,
+      "cacheCoverageOfKnownInputPercent": 100,
+      "toolCalls": 99,
+      "tools": {
+        "process_documents": 2,
+        "set_document_profile": 2,
+        "read_project_skill": 1,
+        "run_cleaning_script": 22,
+        "get_cleaning_result": 24,
+        "commit_cleaning_result": 13,
+        "run_analysis": 8,
+        "get_analysis_status": 7,
+        "get_artifact": 1,
+        "get_document_index": 1,
+        "search_evidence": 2,
+        "save_research_claims": 4,
+        "calculate_financial_metrics": 11,
+        "query_research_records": 1
+      },
+      "toolErrors": [
+        {
+          "tool": "set_document_profile",
+          "error": "entity_identifier_not_grounded"
+        },
+        {
+          "tool": "get_cleaning_result",
+          "error": "invalid_script_table"
+        },
+        {
+          "tool": "get_cleaning_result",
+          "error": "invalid_script_table"
+        },
+        {
+          "tool": "get_cleaning_result",
+          "error": "invalid_script_table"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "invalid_semantic_review_evidence"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "invalid_semantic_review_evidence"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "invalid_semantic_review_evidence"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "script_validation_errors_table_21_invalid_research_attribution"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "script_validation_errors_table_21_research_source_page_required"
+        },
+        {
+          "tool": "save_research_claims",
+          "error": "invalid_research_entity"
+        },
+        {
+          "tool": "save_research_claims",
+          "error": "invalid_research_entity"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "script_validation_errors_table_21_research_source_page_required"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "script_not_completed"
+        },
+        {
+          "tool": "commit_cleaning_result",
+          "error": "review_table_not_inspected_table_21_read_get_cleaning_result_first"
+        }
+      ],
+      "modelRoutes": {
+        "router/low": 1,
+        "main/low": 71,
+        "compaction/low": 2,
+        "main/high": 20
+      },
+      "compactions": [
+        {
+          "at": "2026-10-05T11:05:11.415Z",
+          "type": "compaction_started",
+          "data": {
+            "reason": "threshold",
+            "tokens_before": 839944,
+            "native": true
+          }
+        },
+        {
+          "at": "2026-10-05T11:05:37.956Z",
+          "type": "compaction_saved",
+          "data": {
+            "reason": "threshold",
+            "tokens_before": 839944,
+            "native": true,
+            "fromExtension": false
+          }
+        }
+      ],
+      "analysisRuns": [
+        {
+          "id": "0501eaab671548b8aca6abfabb669499",
+          "status": "succeeded",
+          "containerRemoved": true
+        },
+        {
+          "id": "d259aee89ae047b29f193b4886510b5e",
+          "status": "succeeded",
+          "containerRemoved": true
+        },
+        {
+          "id": "5db178b7891a43cc8671082b625195cb",
+          "status": "failed",
+          "containerRemoved": true
+        },
+        {
+          "id": "a35ebc38a996416187fce3d3cb847ffd",
+          "status": "failed",
+          "containerRemoved": true
+        },
+        {
+          "id": "5826aa356d4241c191e7be44a65475b4",
+          "status": "failed",
+          "containerRemoved": true
+        },
+        {
+          "id": "819e02afd273439383e9068eda1a1e51",
+          "status": "succeeded",
+          "containerRemoved": true
+        },
+        {
+          "id": "575c0d086db547d2bdfd3eabc92dd2ec",
+          "status": "succeeded",
+          "containerRemoved": true
+        },
+        {
+          "id": "302ffa258ad84f29a25be743c7789f67",
+          "status": "succeeded",
+          "containerRemoved": true
+        }
+      ],
+      "artifactDownload": {
+        "total": 6,
+        "ok": 6,
+        "failures": []
+      },
+      "review": {
+        "label": "B2",
+        "status": "reviewed",
+        "core_numeric": {
+          "passed": 9,
+          "total": 9,
+          "values": {
+            "revenue": [
+              119338,
+              122498,
+              125438
+            ],
+            "parent_net_profit": [
+              11309,
+              12222,
+              13152
+            ],
+            "eps": [
+              1.78,
+              1.92,
+              2.07
+            ]
+          },
+          "scope_unit_period_identity": "Correct: Guosen2025-07-16, Yili600887.SH, CNY100m in answer converted correctly from CNYmillion, CNY/share EPS, institutional forecasts2025E-2027E."
+        },
+        "ingestion": {
+          "tables_resolved": 23,
+          "total_tables": 23,
+          "numerical_records": 940,
+          "structured_claim_records": 0,
+          "page_reviews": 38,
+          "accepted_page_reviews": 24,
+          "needs_review_pages": 14,
+          "record_date": "2025-07-16",
+          "note": "Source and page notes retained. After two invalid_research_entity errors, empty claim arrays were submitted. Page states are not proof of full narrative extraction. Metadata date, publisher and authors confirmed in database; undated_records_excluded is a query warning flag, not evidence these940 records lack dates."
+        },
+        "errors": [
+          {
+            "kind": "valuation_reading",
+            "detail": "Claims DCF baseline near33.46/33.95 and marks checked. Source p31 baseline WACC7.9%,g1.8% is32.69. Stated outer31.51-33.95 range is correct."
+          },
+          {
+            "kind": "financial_crosscheck",
+            "detail": "Labels target market-cap discrepancy as report defect after multiplying rounded EPS-derived share prices by share count. Exact PE19/20 times11309 CNYmillion yields2148.71/2261.8 CNY100m, which rounds to report2149/2262; this difference is explained by precision. Separate stock-price/share-count differences do exist."
+          },
+          {
+            "kind": "ingestion_completeness",
+            "detail": "Opening claims full-text extraction; structured claims are0 and14pages explicitly unreviewed. Closing qualification helps but does not make ingestion complete."
+          },
+          {
+            "kind": "delivery",
+            "detail": "No complete reproducible script artifact. Six downloadable artifacts include pages_all.txt and t1 debugging PNG/text, alongside final two plots and JSON."
+          }
+        ],
+        "chart_review": {
+          "final_count": 2,
+          "inspected": 2,
+          "readable": 2,
+          "language": "English labels, values and forecast hatching readable; requested Chinese house style not reliably applied."
+        },
+        "checked_calculations": {
+          "2025_target_price": [
+            33.82,
+            35.6
+          ],
+          "2025_revenue_growth_pct": 3.0730696147866645,
+          "2025_net_profit_growth_pct": 33.78682124689459
+        },
+        "native_compaction": {
+          "cycles": 1,
+          "model_requests": 2,
+          "trigger_tokens": 839944,
+          "continued": true,
+          "human_intervention": false
+        },
+        "presentation": {
+          "reply_characters": 3392,
+          "internal_details_exposed": true,
+          "debug_artifacts_exposed": true
+        },
+        "model_interventions": 0,
+        "evidence": [
+          "B2-answer.md",
+          "B2-deliverables.json",
+          "B2-audit.jsonl",
+          "judge/B2-ingestion-snapshot.json",
+          "source PDF physical pages1,29,30,31,36"
+        ]
+      }
+    },
+    {
+      "label": "A2",
+      "profile": "generic",
+      "status": "completed",
+      "runId": "879dc4d8-635b-4303-a656-fea5aad533a7",
+      "requestedAt": "2026-10-05T11:12:04.772Z",
+      "completedAt": "2026-10-05T11:15:05.994Z",
+      "elapsedSeconds": 181.222,
+      "modelRequests": 32,
+      "knownUsageCalls": 32,
+      "missingUsageRequests": [],
+      "unknownUsageCalls": 0,
+      "input": 2413862,
+      "output": 30547,
+      "reasoning": 11694,
+      "cacheRead": 2337536,
+      "cacheKnownInput": 2413862,
+      "costCnyMin": 0.24526472000000002,
+      "costCnyMax": 0.49052944000000004,
+      "cacheHitPercent": 96.83801310928295,
+      "cacheCoverageOfKnownInputPercent": 100,
+      "toolCalls": 45,
+      "tools": {
+        "prepare_document_sources": 1,
+        "list_documents": 1,
+        "get_document_index": 1,
+        "get_source_page": 19,
+        "run_analysis": 7,
+        "get_analysis_status": 15,
+        "get_artifact": 1
+      },
+      "toolErrors": [],
+      "modelRoutes": {
+        "router/low": 1,
+        "main/low": 1,
+        "main/high": 30
+      },
+      "compactions": [],
+      "analysisRuns": [
+        {
+          "id": "d09b743689f44010894472192d4a6d73",
+          "status": "failed",
+          "containerRemoved": true
+        },
+        {
+          "id": "286819cebdb643838823cda08f306c90",
+          "status": "succeeded",
+          "containerRemoved": true
+        },
+        {
+          "id": "9f8183a6fe284ec3b199be0644327562",
+          "status": "succeeded",
+          "containerRemoved": true
+        },
+        {
+          "id": "9796d0fc5f284b278691ca6789d034e9",
+          "status": "failed",
+          "containerRemoved": true
+        },
+        {
+          "id": "c84d04dbe3454e26878b6ab29491cec8",
+          "status": "succeeded",
+          "containerRemoved": true
+        },
+        {
+          "id": "2621c7b813e84ff08e6faf8441969d2a",
+          "status": "succeeded",
+          "containerRemoved": true
+        },
+        {
+          "id": "a0aec374d84348e69d43d86f4e5f2442",
+          "status": "succeeded",
+          "containerRemoved": true
+        }
+      ],
+      "artifactDownload": {
+        "total": 12,
+        "ok": 9,
+        "failures": [
+          {
+            "name": "t.csv",
+            "status": 400
+          },
+          {
+            "name": "guosen_yili_20250716_forecast.csv",
+            "status": 400
+          },
+          {
+            "name": "guosen_yili_20250716_forecast.csv",
+            "status": 400
+          }
+        ]
+      },
+      "review": {
+        "label": "A2",
+        "status": "reviewed",
+        "core_numeric": {
+          "passed": 9,
+          "total": 9,
+          "values": {
+            "revenue": [
+              119338,
+              122498,
+              125438
+            ],
+            "parent_net_profit": [
+              11309,
+              12222,
+              13152
+            ],
+            "eps": [
+              1.78,
+              1.92,
+              2.07
+            ]
+          },
+          "scope_unit_period_identity": "Correct: Guosen 2025-07-16, Yili 600887.SH, CNY million and CNY/share, 2025E-2027E institutional forecasts; historical values qualified as report quotations."
+        },
+        "checked_finance": [
+          "Correctly reads DCF baseline 32.69 at WACC7.9% and g1.8%; correctly identifies diagonal endpoints31.51/33.95.",
+          "Checks target market cap from PE times unrounded net profit: 19*113.09=2148.71 and20*113.09=2261.8 CNY100m; explains report price basis differences.",
+          "Correctly preserves financial-expense sign difference between report tables and does not use it to double-deduct expenses."
+        ],
+        "errors": [
+          {
+            "kind": "chart_rendering",
+            "detail": "All four final PNGs inspected: Chinese titles, legends and axis labels are missing-glyph squares. Numbers remain visible. Generic environment lacks finance_charts; failed import is caught, but no CJK font fallback is configured."
+          },
+          {
+            "kind": "calculation_artifact",
+            "detail": "Final executed script uses minority earnings -11 for2024 and+10 for2025, opposite source p36 values+11 and-10. CSV check outputs8475 and11288 versus source8453/11309. Narrative correctly uses+10 adjustment in2025; discrepancy therefore exists between explanation and executed check artifact."
+          },
+          {
+            "kind": "interpretation",
+            "detail": "Calls 3.0/5.5 impairment biological/fixed split; source p28 says combined biological/fixed impairments in2023/2024, respectively. Adding both to2024 would double-count the prior-year3.0."
+          },
+          {
+            "kind": "artifact_download",
+            "detail": "Final forecast CSV HTTP400 despite successful generation; shared Windows MIME mapping bug. The other two CSV attachments also fail. Four final PNGs HTTP200."
+          },
+          {
+            "kind": "delivery",
+            "detail": "No complete script artifact. Answer provides a partial code block using undefined s rather than sh, while full executed script is only in internal trace. Internal evaluator copy does not count as user delivery."
+          }
+        ],
+        "presentation": {
+          "reply_characters": 6679,
+          "concise": false,
+          "internal_details_exposed": true,
+          "debug_or_duplicate_artifacts": true
+        },
+        "chart_review": {
+          "final_count": 4,
+          "inspected": 4,
+          "chinese_labels_readable": 0
+        },
+        "model_interventions": 0,
+        "evidence": [
+          "A2-answer.md",
+          "A2-deliverables.json",
+          "A2-artifacts/a0aec374d84348e69d43d86f4e5f2442-executed-evaluator-copy.py",
+          "source PDF physical pages28,31,36"
+        ]
+      }
+    },
+    {
+      "label": "A3",
+      "profile": "generic",
+      "status": "completed",
+      "runId": "727dda98-ca21-4482-83c4-124c547f9c0e",
+      "requestedAt": "2026-10-05T11:16:21.159Z",
+      "completedAt": "2026-10-05T11:20:07.300Z",
+      "elapsedSeconds": 226.141,
+      "modelRequests": 10,
+      "knownUsageCalls": 9,
+      "missingUsageRequests": [
+        "46f6bfa9-e2df-4f83-ae4e-4988b1b21c62"
+      ],
+      "unknownUsageCalls": 1,
+      "input": 821414,
+      "output": 20557,
+      "reasoning": 12002,
+      "cacheRead": 814848,
+      "cacheKnownInput": 821414,
+      "costCnyMin": 0.10509096,
+      "costCnyMax": 0.21018192,
+      "cacheHitPercent": 99.20064668973258,
+      "cacheCoverageOfKnownInputPercent": 100,
+      "toolCalls": 6,
+      "tools": {
+        "run_analysis": 2,
+        "get_analysis_status": 4
+      },
+      "toolErrors": [],
+      "modelRoutes": {
+        "router/low": 2,
+        "main/high": 8
+      },
+      "compactions": [],
+      "analysisRuns": [
+        {
+          "id": "b1551560e154445b94b24fdb2ea14f83",
+          "status": "succeeded",
+          "containerRemoved": true
+        },
+        {
+          "id": "36cdbb25d8624a2797258c3aa83a3fe3",
+          "status": "succeeded",
+          "containerRemoved": true
+        }
+      ],
+      "artifactDownload": {
+        "total": 8,
+        "ok": 4,
+        "failures": [
+          {
+            "name": "dcf_inputs_and_assumptions.csv",
+            "status": 400
+          },
+          {
+            "name": "dcf_schedule.csv",
+            "status": 400
+          },
+          {
+            "name": "dcf_sensitivity_recalc.csv",
+            "status": 400
+          },
+          {
+            "name": "README_伊利DCF.md",
+            "status": 400
+          }
+        ]
+      },
+      "review": {
+        "label": "A3",
+        "status": "reviewed",
+        "arithmetic": {
+          "recomputed_EV_million": 228364.00811707,
+          "scenario_A_per_share": 31.850770989172165,
+          "scenario_B_per_share": 35.87244865175464,
+          "scenario_C_per_share": 23.9965454158137,
+          "sensitivity_cells_passed": 35,
+          "sensitivity_cells_total": 35,
+          "source": "judge/A3-recalculation.json",
+          "note": "Calculation artifact agrees; prose gives228369million, a small5million transcription discrepancy beyond nearest-million rounding."
+        },
+        "financial_checks": [
+          {
+            "check": "currency_share_multipliers_in_calculation",
+            "status": "pass"
+          },
+          {
+            "check": "explicit_FCFF_and_terminal_formula",
+            "status": "pass"
+          },
+          {
+            "check": "WACC_g_and_sensitivity_direction",
+            "status": "pass"
+          },
+          {
+            "check": "source_vs_extrapolation",
+            "status": "pass",
+            "detail": "2025-2027FCFF and brokerWACC/g attributed; extending FCFF using revenue growth clearly marked own assumption."
+          },
+          {
+            "check": "valuation_date_alignment",
+            "status": "fail",
+            "detail": "Declares2024year-end anchor but deducts2025E net debt/cash without aligning or explaining financing flows; explicit scenario labelling alone does not explain period mismatch. Source2024debt/cash exists."
+          },
+          {
+            "check": "EV_to_equity_boundary",
+            "status": "fail",
+            "detail": "No treatment or impact of minority interests/non-operating assets; available2024minorityequity3828million alone is0.60yuan/share at6366mshares. Debt total includes trading liabilities, cash availability unspecified."
+          },
+          {
+            "check": "net_debt_and_cash_not_double_counted",
+            "status": "pass",
+            "detail": "Within chosen arithmetic scenarios deducts debt lesscash once; assumptions remain financially incomplete."
+          },
+          {
+            "check": "distinct_from_report_target",
+            "status": "pass",
+            "detail": "Own model distinguished from32.69source target; reverse-solved net debt is labelled a diagnostic, not used as a source input."
+          }
+        ],
+        "errors": [
+          {
+            "kind": "chart_units",
+            "detail": "Value-bridge chart divides CNYmillion by1000 but labels the result 千亿元. The displayed228.4 corresponds to CNYbillion/十亿元, so the labelled scale is wrong by100x."
+          },
+          {
+            "kind": "chart_rendering",
+            "detail": "All four PNGs show Chinese missing-glyph squares. Heatmap numbers are legible, but titles/meaning unreadable."
+          },
+          {
+            "kind": "artifact_download",
+            "detail": "Three generated CSVs and README.md all returnHTTP400; four PNGs download. CSV/Markdown delivery failure is shared host MIME policy."
+          },
+          {
+            "kind": "delivery",
+            "detail": "Core formula block is runnable but no complete input-plus-chart script artifact. Executed evaluator copies are not user-facing delivery."
+          }
+        ],
+        "chart_review": {
+          "final_count": 4,
+          "inspected": 4,
+          "chinese_labels_readable": 0
+        },
+        "presentation": {
+          "reply_characters": 5239,
+          "concise": false,
+          "internal_identifiers_exposed": true
+        },
+        "model_corrections": 0,
+        "infrastructure_interventions": 1,
+        "recovery": {
+          "same_run_resumed": true,
+          "duplicate_analysis_execution": false,
+          "unsettled_model_requests": 1,
+          "cause": "host/service exited without diagnostic reason; cause unknown"
+        }
+      }
+    },
+    {
+      "label": "B3",
+      "profile": "financial",
+      "status": "completed",
+      "runId": "e0fbd317-8716-4e7c-a220-090675aea2d8",
+      "requestedAt": "2026-10-05T11:20:20.404Z",
+      "completedAt": "2026-10-05T11:24:07.605Z",
+      "elapsedSeconds": 227.201,
+      "modelRequests": 14,
+      "knownUsageCalls": 14,
+      "missingUsageRequests": [],
+      "unknownUsageCalls": 0,
+      "input": 5399983,
+      "output": 46992,
+      "reasoning": 17647,
+      "cacheRead": 5360768,
+      "cacheKnownInput": 5399983,
+      "costCnyMin": 0.33439835999999995,
+      "costCnyMax": 0.6687967199999999,
+      "cacheHitPercent": 99.27379401009226,
+      "cacheCoverageOfKnownInputPercent": 100,
+      "toolCalls": 28,
+      "tools": {
+        "read_project_skill": 1,
+        "get_research_model_schema": 1,
+        "calculate_financial_metrics": 18,
+        "run_financial_model": 6,
+        "run_analysis": 1,
+        "get_analysis_status": 1
+      },
+      "toolErrors": [
+        {
+          "tool": "run_financial_model",
+          "error": "文档引用请用 page:物理页码"
+        },
+        {
+          "tool": "run_financial_model",
+          "error": "引用文字未在所选来源位置找到：page:36"
+        },
+        {
+          "tool": "run_financial_model",
+          "error": "引用文字未在所选来源位置找到：page:31"
+        }
+      ],
+      "modelRoutes": {
+        "router/low": 1,
+        "main/high": 13
+      },
+      "compactions": [],
+      "analysisRuns": [
+        {
+          "id": "547cff2c3baf4b8bb297868023ba9400",
+          "status": "succeeded",
+          "containerRemoved": true
+        }
+      ],
+      "artifactDownload": {
+        "total": 6,
+        "ok": 6,
+        "failures": []
+      },
+      "review": {
+        "label": "B3",
+        "status": "reviewed",
+        "arithmetic": {
+          "models": 3,
+          "checks_passed": 98,
+          "checks_total": 98,
+          "sensitivity_cells_passed": 53,
+          "sensitivity_cells_total": 53,
+          "scenario_per_share": [
+            27.1913281438237,
+            28.486662874229506,
+            31.36272319468191
+          ],
+          "source": "judge/B3-recalculation.json",
+          "note": "Checks recompute model outputs from submitted assumptions. They do not establish correctness of all source interpretation or fair value."
+        },
+        "financial_checks": [
+          {
+            "check": "valuation_date_alignment",
+            "status": "pass",
+            "detail": "2024year-end base and2024net debt24867/MI3828 aligned; report-date price comparison explicitly qualified."
+          },
+          {
+            "check": "EV_to_equity_boundary",
+            "status": "pass",
+            "detail": "Deducts net debt and minority interests once, states book-value proxy, cash/trading-liability proxies and zero non-operating/preferred assumptions."
+          },
+          {
+            "check": "explicit_FCFF_and_terminal_reinvestment",
+            "status": "pass",
+            "detail": "FCFF uses operating EBIT less cash tax, D&A, capex and incremental NWC. Terminal reinvestment g/ROIC included. WACC>g and currency/share scales correct."
+          },
+          {
+            "check": "source_vs_terminal_use",
+            "status": "pass",
+            "detail": "Finite2027ROIC12% extrapolated to perpetuity explicitly labelled own use in narrative; system terminal_use_is_assumption check actually emitted for all three models."
+          },
+          {
+            "check": "interpretation_of_model_difference",
+            "status": "fail",
+            "detail": "Only source forecast horizon and broker valuation assumptions known; cannot identify report cash definition as unique cause of target gap. Own terminal ROIC, timing and transition assumptions also matter."
+          }
+        ],
+        "errors": [
+          {
+            "kind": "range_check",
+            "detail": "Calls31.36 inside lower end of31.51-33.95; it remains below lower bound by about0.1473yuan."
+          },
+          {
+            "kind": "residual_statement",
+            "detail": "Claims all three FCFF residuals<0.2million. Independent differences are0.197,0.729,0.795million. Near agreement with rounded source does not prove identical broker formula."
+          },
+          {
+            "kind": "scenario_attribution",
+            "detail": "Attributes B-A1.30yuan solely to capex; B changes D&A from4.5% to4.6% of revenue too. It is a two-parameter scenario."
+          },
+          {
+            "kind": "grid_interpretation",
+            "detail": "Claims report-model difference consistently4-5yuan. Aligned35-cell differences actually4.17395-7.076348. Side-by-side figures transpose WACC/g axes and use separate colour scales, contrary to same-coordinate visual comparison claim."
+          },
+          {
+            "kind": "source_identity_metadata",
+            "detail": "ScenarioC marks forecast.3.capex source_kind management_guidance while rationale describes an own flat-capex assumption. No management guidance was established."
+          },
+          {
+            "kind": "delivery",
+            "detail": "Three complete structured model JSONs successfully downloadable, with inputs, formulas and checks. Complete chart-generating script still not exported as user artifact."
+          }
+        ],
+        "chart_review": {
+          "final_count": 2,
+          "inspected": 2,
+          "chinese_labels_readable": 2,
+          "numerical_annotations": "Match rounded submitted model outputs; both Chinese font rendering works.",
+          "limitations": "Heatmap axes differ between panels; dark-cell annotation contrast weak; independent colour scales unsuitable for comparing shade as value difference."
+        },
+        "presentation": {
+          "reply_characters": 3190,
+          "internal_identifiers_and_checking_language_exposed": true,
+          "concise_task_explanation": "partial"
+        },
+        "model_interventions": 0,
+        "evidence": [
+          "B3-answer.md",
+          "B3-deliverables.json",
+          "B3-artifacts/chart_data.json",
+          "judge/B3-models-evaluator.json",
+          "judge/B3-recalculation.json"
+        ]
+      }
+    }
+  ],
+  "interventions": [
+    {
+      "kind": "infrastructure_restart",
+      "at": "2026-10-05T11:20:05.900496+00:00",
+      "affected_run": "A3",
+      "run_id": "727dda98-ca21-4482-83c4-124c547f9c0e",
+      "detail": "3001 host and child service exited during streaming answer; no exception or matching Windows Application crash/low-memory event found. Cause unknown. Logs and partial audit preserved. Started unchanged3001 with existing script; native recovery reused same run and user message, no task POST or financial correction."
+    }
+  ],
+  "methodNotes": [
+    "Development PDFs used before; one run per task, not heldout.",
+    "Full financial ingestion versus selective generic reading is a system workflow difference; all costs included, cannot isolate one component.",
+    "Each matched task uses a separate equal technical allowance; original A1/B1 group identifiers have no task suffix. No limit changed during a running task.",
+    "No corrective messages sent to either model during first-pass tasks.",
+    "Generic run_analysis description mentions finance-only chart helpers, but helpers/skills/financial facts are absent from generic inputs. Generic attempted optional import and fell back."
+  ],
+  "cleanup": {
+    "receivedAt": "2026-10-05T10:41:41.708569+00:00",
+    "permission": "temporary_for_pilot_then_shutdown",
+    "wslMemory": "4GB",
+    "wslProcessors": 2,
+    "wslSwap": 0,
+    "containerMemory": "2GB",
+    "originalConfigSha256": "eec3ccae1deb57f9320a108d69d8fd1e4cb31aa073757e2761b2c16e61470560",
+    "temporaryConfigSha256": "344aa994c62860c8eaf6cfb73ff0d41c63d372791684743ef69048b273a373e5",
+    "restored": true,
+    "shutdownVerifiedAt": "2026-10-05T11:26:42.9700505Z",
+    "remainingSandboxProcesses": 0,
+    "finalConfigSha256": "eec3ccae1deb57f9320a108d69d8fd1e4cb31aa073757e2761b2c16e61470560"
+  },
+  "limits": [
+    "One paired development pilot, three tasks, two previously used PDFs; no heldout or significance claim.",
+    "Generic reads selected pages; financial arm also performs ingestion. Cost difference is whole-workflow cost, not an isolated finance-skill effect.",
+    "Same model and router policy, but actual per-request reasoning effort differs; provider cache warmness not controlled.",
+    "Generic tool description mentions absent financial chart helper; attempted imports fail and fallback executes.",
+    "A3 had a host interruption and infrastructure restart; one request has unknown usage. Wall time includes interruption.",
+    "Numeric sample19 per arm is not whole-document correctness. Finance logic and deliverables assessed separately."
+  ]
+}

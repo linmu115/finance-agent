@@ -38,9 +38,9 @@ class ScriptCleaningTests(unittest.TestCase):
         self.s.analysis_futures[rid].result(10)
         folder=self.root/'output'/rid;folder.mkdir(parents=True);(folder/'cleaning_result.json').write_text(dumps(payload or self.payload),encoding='utf-8')
         return rid
-    def test_grounded_values_review_gate_idempotence_and_resume(self):
+    def test_direct_commit_keeps_grounded_values_idempotence_and_resume(self):
         rid=self.job()
-        with self.assertRaisesRegex(ValueError,'not_inspected'):self.s.commit_cleaning_result('p',self.pid,rid,self.review)
+        self.s.commit_cleaning_result('p',self.pid,rid)
         result=self.s.get_cleaning_result('p',self.pid,rid)['data'];self.assertEqual(result['issue_count'],0)
         self.assertEqual(result['fact_count'],4)
         done=self.s.commit_cleaning_result('p',self.pid,rid,self.review)['data'];self.assertEqual(done['state'],'completed')
@@ -53,6 +53,30 @@ class ScriptCleaningTests(unittest.TestCase):
         self.assertEqual(checkpoint['counts']['pending'],0)
         self.assertEqual(self.s.get_document('p',self.did)['data']['normalization_engine'],'PythonScript')
         self.assertEqual(self.s.get_document('p',self.did)['data']['legacy_fact_count'],0)
+    def test_empty_optional_reviews_commit_selected_tables_without_claiming_review(self):
+        rid=self.job()
+        result=self.s.commit_cleaning_result('p',self.pid,rid,reviews=[],table_indices=[0])['data']
+        self.assertEqual(result['state'],'completed')
+        self.assertEqual(result['pending_script_tables'],[])
+        with self.s.store.connect() as db:
+            self.assertEqual(db.execute('SELECT count(*) FROM facts').fetchone()[0],4)
+            batch=json.loads(db.execute('SELECT result_json FROM normalization_batches').fetchone()[0])
+        self.assertEqual(batch['semantic_review']['verdict'],'unreviewed')
+
+    def test_pending_facts_keep_raw_values_notes_and_local_review_access(self):
+        rid=self.job();self.s.get_cleaning_result('p',self.pid,rid)
+        review=[dict(self.review[0],verdict='needs_review',note='需结合相邻页再次核对期间表头，候选原值保留。')]
+        self.s.commit_cleaning_result('p',self.pid,rid,review)
+        result=self.s.query_financial_data('p',{'quality':'needs_review'})['data']
+        self.assertEqual(result['total'],4)
+        self.assertEqual(self.s.query_financial_data('p')['data']['total'],4)
+        self.assertEqual(self.s.query_financial_data('p',{'qualities':[]})['data']['total'],0)
+        self.assertEqual(self.s.query_financial_data('q',{'quality':'needs_review'})['data']['total'],0)
+        self.assertEqual({r['raw_value'] for r in result['items']},{'100','80','40','30'})
+        self.assertTrue(all(r['source_ref']['normalization']['semantic_review_note']==review[0]['note'] for r in result['items']))
+        details=self.s.get_normalization_details('p',self.did)['data']
+        self.assertTrue(any(i['reason']=='semantic_review_pending' for batch in details['batches'] for i in batch['result']['issues']))
+
     def test_missing_financial_row_blocks_commit(self):
         self.payload['tables'][0]['rows'].pop();rid=self.job()
         self.assertGreater(self.s.get_cleaning_result('p',self.pid,rid)['data']['issue_count'],0)
@@ -157,6 +181,21 @@ class ScriptCleaningTests(unittest.TestCase):
             self.assertEqual(factor,Decimal('0.01'))
             self.assertEqual(currency,'HKD/share' if unit.startswith('HKD') else 'CNY/share')
 
+    def test_quoted_thousands_are_scaled_once_when_committed(self):
+        table=self.payload['tables'][0]
+        table['schema']['unit']='RMB’000'
+        table['schema']['currency']='RMB'
+        columns=json.loads(table['schema']['columns_json'])
+        for column in columns:
+            column.update(unit='RMB’000',currency='RMB')
+        table['schema']['columns_json']=dumps(columns)
+        rid=self.job()
+        self.s.commit_cleaning_result('p',self.pid,rid)
+        rows=self.s.query_financial_data('p',{'metric':'revenue'})['data']['items']
+        self.assertEqual({str(row['value']) for row in rows},{'100000','80000'})
+        self.assertTrue(all(row['currency']=='CNY' for row in rows))
+        self.assertTrue(all(row['source_ref']['normalization']['scale']=='1000' for row in rows))
+
     def test_merged_column_never_concatenates_amounts_and_spans_are_grounded(self):
         from service.normalization import decimal_value,numeric_candidate
         from service.semantic import _source_number
@@ -176,21 +215,24 @@ class ScriptCleaningTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'target_changed'):
             self.s.commit_cleaning_result('p',self.pid,second,self.review)
 
-    def test_identical_mapping_reuses_inspection_after_script_repair(self):
+    def test_result_read_does_not_certify_model_review(self):
         first=self.job();self.s.get_cleaning_result('p',self.pid,first,review_effort='high')
         second=self.job()
         done=self.s.commit_cleaning_result('p',self.pid,second,self.review)['data']
         self.assertEqual(done['state'],'completed')
         with self.s.store.connect() as db:
             detail=json.loads(db.execute('select result_json from normalization_batches').fetchone()[0])
-        self.assertEqual(detail['inference_policy']['review'],'high')
+        self.assertIsNone(detail['inference_policy']['review'])
+        self.assertNotIn('inspected_mappings',self.s._clean_state('p',self.pid))
 
-    def test_changed_mapping_requires_fresh_inspection(self):
+    def test_changed_mapping_commits_without_ceremonial_readback(self):
         first=self.job();self.s.get_cleaning_result('p',self.pid,first)
         self.payload['tables'][0]['rows'][0]['attributes']['metric']='different_revenue'
         second=self.job()
-        with self.assertRaisesRegex(ValueError,'not_inspected'):
-            self.s.commit_cleaning_result('p',self.pid,second,self.review)
+        self.s.commit_cleaning_result('p',self.pid,second)
+        items=self.s.query_financial_data('p',{'metric':'different_revenue'})['data']['items']
+        self.assertEqual(len(items),2)
+        self.assertTrue(all(row['quality']=='script_normalized' for row in items))
 
     def test_conflicting_skip_and_mapping_cannot_silently_lose_comparatives(self):
         from service.cleaning_sdk import Cleaner

@@ -1,6 +1,19 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {modelContext,projectToolHistory} from '../server/model-context.js';
+test('uncertainty and incomplete extraction remain actionable in model-facing views',()=>{
+ const source={document_id:'d',page:3,normalization:{review_warnings:['unknown_unit'],semantic_review_note:'单位未明确；需读上页表头',definition_review:{audits:['duplicate audit']}}};
+ const fact={value:'1234',raw_value:'1,234',raw_unit:'unknown',quality:'needs_review',source_ref:source};
+ const result=modelContext('query_financial_data',{status:'ok',data:{items:[fact]},source_refs:[source]});
+ assert.equal(result.data.items[0].raw_value,'1,234');
+ assert.equal(result.data.items[0].source_ref.normalization.semantic_review_note,source.normalization.semantic_review_note);
+ assert.deepEqual(result.data.items[0].source_ref.normalization.review_warnings,['unknown_unit']);
+ assert.deepEqual(result.source_refs,[{document_id:'d',page:3}]);
+ const review={document_id:'d',state:'needs_review',review_issues:[{table:2,reason:'unreadable_chart',detail:'留存原图'}],text_coverage:{review_issues:[{page:3,reason:'unreadable_chart'}]}};
+ const catalog=modelContext('get_data_catalog',{status:'ok',data:{processing:[{state:'needs_review',documents:[review]}]}});
+ assert.deepEqual(catalog.data.processing[0].documents[0].review_issues,review.review_issues);
+ assert.deepEqual(catalog.data.processing[0].documents[0].text_coverage,review.text_coverage);
+});
 test('research query removes duplicate sources without losing quotes, financial meaning or review warnings',()=>{
  const source={document_id:'doc',page:2,cell:'B3',quote:'精确来源'.repeat(300),start:10,end:1210,normalization:{period_start:'2025-01-01',period_end:'2025-12-31',scale:'1000000',review_warnings:['unresolved_currency'],numeric_span:{text:'68.64',start:3,end:8}}};
  const record={record_id:'r',value:'68.64',raw_value:'68.64',raw_unit:'元/股',data_kind:'analyst_forecast',publisher:'Broker',published_at:'2025-07-23',scenario:'base',dimensions:{product:'milk'},quality:'needs_review',source,source_ref:source,source_json:JSON.stringify(source)};
@@ -44,9 +57,10 @@ test('metric lookup keeps exact amounts, dimensions, conflicts and every source 
  const input={status:'ok',data:{items:[fact],available_metrics:['lease_liabilities']},source_refs:[source],warnings:['conflicting_financial_values_require_review']},original=JSON.stringify(input);
  const projected=modelContext('get_financial_metrics',input),actual=projected.data.items[0];
  for(const key of ['value','raw_value','raw_unit','period','scope','unit_kind','definition','definition_scope','dimensions','quality','conflicting_values'])assert.deepEqual(actual[key],(fact as any)[key]);
- for(const ref of [actual.source_ref,actual.alternative_sources[0],projected.source_refs![0]]){
-  assert.equal(ref.normalization.source_key,'source-key');assert.equal(ref.normalization.original_extraction_hash,'model-hash');assert.deepEqual(ref.normalization.char_interval,[2,8]);assert.equal(ref.text,source.text);assert.deepEqual(ref.bbox,source.bbox);assert.equal(ref.normalization.definition_review,undefined);
+ for(const ref of [actual.source_ref,actual.alternative_sources[0]]){
+  assert.deepEqual(ref.normalization.char_interval,[2,8]);assert.equal(ref.text,source.text);assert.deepEqual(ref.bbox,source.bbox);assert.equal(ref.normalization.definition_review,undefined);
  }
+ assert.equal(projected.source_refs![0].table_id,source.table_id);assert.equal(projected.source_refs![0].column,source.column);
  assert.equal(actual.alternative_sources[0].page,13);assert.deepEqual(projected.warnings,input.warnings);assert.equal(JSON.stringify(input),original);assert.ok(JSON.stringify(projected).length<original.length/10);
 });
 
@@ -73,4 +87,8 @@ test('saved financial model returns exact calculation and revision; full input r
  for(const key of ['result','dependencies','dependency_status','changed_dependencies','source_validation'])assert.deepEqual(projected.data[key],(data as any)[key]);
  assert.equal(projected.data.spec,undefined);assert.equal(projected.data.saved_input.read_tool,'read_research_artifact');assert.equal(projected.data.saved_input.artifact_id,data.id);assert.equal(projected.data.saved_input.revision_id,data.revision_id);assert.equal(JSON.stringify(data),original);
  assert.deepEqual(modelContext('read_research_artifact',{status:'ok',data}),{status:'ok',data});
+ assert.equal(projected.data.saved_input.spec_saved,true);
+ assert.deepEqual(modelContext('run_financial_model',projected),projected);
+ const history={messages:[{role:'toolResult',toolName:'run_financial_model',content:[{type:'text',text:JSON.stringify(projected)}]}]};
+ assert.equal(projectToolHistory(history).projection.modified_tool_results,0);
 });

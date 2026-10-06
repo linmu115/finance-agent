@@ -1,0 +1,2572 @@
+{
+  "study": "paired_diagnostic_retest_after_interface_fixes_not_heldout",
+  "model": "gpt-6-luna",
+  "projectId": "374beac2-a970-4972-b210-e91018bbd6e6",
+  "dataSummary": {
+    "documents": 2,
+    "facts": 612,
+    "records": 1076,
+    "claims": 78,
+    "forecasts": 470,
+    "observations": 998,
+    "needs_review": 99
+  },
+  "structuredDataUnchanged": true,
+  "documents": [
+    {
+      "id": "585db15e768043b7b465d1af7c690e90",
+      "name": "国信证券_伊利股份深度报告_20250716_38页.pdf",
+      "sha256": "6242c4d8fd51ede40de29391f3b41703f2e9880e62da32b4a2b760ce3cfbfd88",
+      "pageCount": 38
+    },
+    {
+      "id": "ab25c52089fd4db89fba046c9c811c46",
+      "name": "睿和数智_2025中期报告_57页.pdf",
+      "sha256": "a40de54658363105b774ac0fba8f9252d85e0106ca9496c22325ebf668031702",
+      "pageCount": 57
+    }
+  ],
+  "taskSha256": "ba2b016dc21dcb85297289111d53748b92f7e7ab4741838a97373e012f7801d6",
+  "plannedOrder": [
+    "A2",
+    "C2",
+    "C3",
+    "A3",
+    "A4",
+    "C4"
+  ],
+  "price": {
+    "source": "local CPA usage responses",
+    "currency": null,
+    "perMillion": null,
+    "note": "No verified CPA monetary tariff configured. Token usage and cache accounting are reported; price remains unknown, not zero."
+  },
+  "groups": [
+    {
+      "arm": "A",
+      "profile": "generic",
+      "phase": "initial",
+      "tasks": 2,
+      "completed": 2,
+      "coreNumericPassed": 39,
+      "coreNumericTotal": 39,
+      "seconds": 321.323,
+      "input": 427802,
+      "output": 14716,
+      "reasoning": 1160,
+      "cacheRead": 326656,
+      "cacheKnownInput": 427802,
+      "uncachedInput": 101146,
+      "calls": 18,
+      "unknownCalls": 2,
+      "costUnknownCalls": 2,
+      "costCnyMin": null,
+      "costCnyMax": null,
+      "cacheHitPercent": 76.35681927620722
+    },
+    {
+      "arm": "A",
+      "profile": "generic",
+      "phase": "update",
+      "tasks": 1,
+      "completed": 1,
+      "coreNumericPassed": 69,
+      "coreNumericTotal": 69,
+      "seconds": 254.835,
+      "input": 655639,
+      "output": 11835,
+      "reasoning": 723,
+      "cacheRead": 633344,
+      "cacheKnownInput": 655639,
+      "uncachedInput": 22295,
+      "calls": 10,
+      "unknownCalls": 1,
+      "costUnknownCalls": 1,
+      "costCnyMin": null,
+      "costCnyMax": null,
+      "cacheHitPercent": 96.5995006398338
+    },
+    {
+      "arm": "C",
+      "profile": "financial",
+      "phase": "initial",
+      "tasks": 2,
+      "completed": 2,
+      "coreNumericPassed": 18,
+      "coreNumericTotal": 24,
+      "seconds": 544.352,
+      "input": 1340238,
+      "output": 24217,
+      "reasoning": 4030,
+      "cacheRead": 1156096,
+      "cacheKnownInput": 1340238,
+      "uncachedInput": 184142,
+      "calls": 24,
+      "unknownCalls": 2,
+      "costUnknownCalls": 2,
+      "costCnyMin": null,
+      "costCnyMax": null,
+      "cacheHitPercent": 86.26050000074613
+    },
+    {
+      "arm": "C",
+      "profile": "financial",
+      "phase": "update",
+      "tasks": 1,
+      "completed": 1,
+      "coreNumericPassed": 62,
+      "coreNumericTotal": 62,
+      "seconds": 180.291,
+      "input": 827532,
+      "output": 6297,
+      "reasoning": 1254,
+      "cacheRead": 800256,
+      "cacheKnownInput": 827532,
+      "uncachedInput": 27276,
+      "calls": 8,
+      "unknownCalls": 1,
+      "costUnknownCalls": 1,
+      "costCnyMin": null,
+      "costCnyMax": null,
+      "cacheHitPercent": 96.70393410768405
+    }
+  ],
+  "runs": [
+    {
+      "label": "A2",
+      "profile": "generic",
+      "status": "completed",
+      "conversationId": "7bc475a1-29bc-4294-94e9-cebc5cbe6f4a",
+      "runId": "81b0550d-d45d-483f-9a1b-5f5c63241e7b",
+      "seconds": 175.314,
+      "usage": {
+        "input": 166869,
+        "output": 8023,
+        "calls": 10,
+        "costUsd": 0.00890192,
+        "uncachedInput": 35797,
+        "cacheRead": 131072,
+        "cacheWrite": 0,
+        "reasoning": 505,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 166869,
+            "output": 8023,
+            "calls": 9,
+            "costUsd": 0.00890192,
+            "uncachedInput": 35797,
+            "cacheRead": 131072,
+            "cacheWrite": 0,
+            "reasoning": 505,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 166869,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 166869,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "prepare_document_sources": 1,
+        "get_document": 1,
+        "get_document_index": 1,
+        "search_evidence": 1,
+        "get_source_page": 16,
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 4
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 9
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 5,
+        "downloaded": 5,
+        "analyses": [
+          {
+            "runId": "073dcfe10440491cb3c756a2e55f2e8f",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "A2",
+          "original_run": "073dcfe10440491cb3c756a2e55f2e8f",
+          "replay_run": "65b4ca37c90d466ea1085e638154961e",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "yili_analysis.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "yili_broker_research_chart.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "yili_forecast_workpaper.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "yili_report.md",
+              "matches": true,
+              "type": ".md"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "A2",
+        "core_numeric": {
+          "passed": 9,
+          "total": 9,
+          "checks": [
+            {
+              "name": "revenue_yi 2025",
+              "actual": "1193.38",
+              "expected": "1193.38",
+              "pass": true
+            },
+            {
+              "name": "revenue_yi 2026",
+              "actual": "1224.98",
+              "expected": "1224.98",
+              "pass": true
+            },
+            {
+              "name": "revenue_yi 2027",
+              "actual": "1254.38",
+              "expected": "1254.38",
+              "pass": true
+            },
+            {
+              "name": "net_profit_yi 2025",
+              "actual": "113.09",
+              "expected": "113.09",
+              "pass": true
+            },
+            {
+              "name": "net_profit_yi 2026",
+              "actual": "122.22",
+              "expected": "122.22",
+              "pass": true
+            },
+            {
+              "name": "net_profit_yi 2027",
+              "actual": "131.52",
+              "expected": "131.52",
+              "pass": true
+            },
+            {
+              "name": "eps_yuan 2025",
+              "actual": "1.78",
+              "expected": "1.78",
+              "pass": true
+            },
+            {
+              "name": "eps_yuan 2026",
+              "actual": "1.92",
+              "expected": "1.92",
+              "pass": true
+            },
+            {
+              "name": "eps_yuan 2027",
+              "actual": "2.07",
+              "expected": "2.07",
+              "pass": true
+            }
+          ]
+        },
+        "finance_checks": {
+          "source_institution_and_date": "pass",
+          "actual_forecast_separated": "pass",
+          "pe_recalculation": "pass",
+          "opinion_not_fact": "pass",
+          "chart_units": "pass"
+        },
+        "issues": [
+          {
+            "severity": "material",
+            "kind": "overlapping_chart_labels",
+            "evidence": "Actual PNG: 33.82 and 35.60 target endpoints overlap and are hard to distinguish; revenue/profit labels also overlap at 2027."
+          }
+        ],
+        "chart_review": "Chinese font and correct currency/forecast labels; both axes show correct amounts. Plot has a dual axis and lacks enough label spacing.",
+        "limitations": [
+          "One successful sandbox run, no model correction supplied. Original script and downloads retained."
+        ]
+      }
+    },
+    {
+      "label": "C2",
+      "profile": "financial",
+      "status": "completed",
+      "conversationId": "eff47b9b-ee38-4cac-9250-91ad0c33384a",
+      "runId": "4a6a9225-a736-4236-9646-8cd8bdaee40b",
+      "seconds": 185.566,
+      "usage": {
+        "input": 417076,
+        "output": 7636,
+        "calls": 11,
+        "costUsd": 0.014513759999999999,
+        "uncachedInput": 72500,
+        "cacheRead": 344576,
+        "cacheWrite": 0,
+        "reasoning": 1238,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 417076,
+            "output": 7636,
+            "calls": 10,
+            "costUsd": 0.014513759999999999,
+            "uncachedInput": 72500,
+            "cacheRead": 344576,
+            "cacheWrite": 0,
+            "reasoning": 1238,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 417076,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 417076,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "read_project_skill": 1,
+        "prepare_document_sources": 1,
+        "get_document": 1,
+        "get_data_catalog": 1,
+        "get_document_index": 2,
+        "query_research_records": 1,
+        "get_source_table": 4,
+        "get_source_page": 25,
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 5
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 10
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 5,
+        "downloaded": 5,
+        "analyses": [
+          {
+            "runId": "5c9163ee4d4242d7b80506896336d02d",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "C2",
+          "original_run": "5c9163ee4d4242d7b80506896336d02d",
+          "replay_run": "0236f6dc728c429daaa1fbb6e21152c6",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "chart_data.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "伊利_预测与估值底稿.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_预测趋势图.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "伊利研报分析报告.md",
+              "matches": true,
+              "type": ".md"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "C2",
+        "core_numeric": {
+          "passed": 3,
+          "total": 9,
+          "checks": [
+            {
+              "name": "营业收入（亿元） 2025",
+              "actual": "11933.800",
+              "expected": "1193.38",
+              "pass": false
+            },
+            {
+              "name": "营业收入（亿元） 2026",
+              "actual": "12249.800",
+              "expected": "1224.98",
+              "pass": false
+            },
+            {
+              "name": "营业收入（亿元） 2027",
+              "actual": "12543.800",
+              "expected": "1254.38",
+              "pass": false
+            },
+            {
+              "name": "归母净利润（亿元） 2025",
+              "actual": "1130.900",
+              "expected": "113.09",
+              "pass": false
+            },
+            {
+              "name": "归母净利润（亿元） 2026",
+              "actual": "1222.200",
+              "expected": "122.22",
+              "pass": false
+            },
+            {
+              "name": "归母净利润（亿元） 2027",
+              "actual": "1315.200",
+              "expected": "131.52",
+              "pass": false
+            },
+            {
+              "name": "EPS（元/股） 2025",
+              "actual": "1.78",
+              "expected": "1.78",
+              "pass": true
+            },
+            {
+              "name": "EPS（元/股） 2026",
+              "actual": "1.92",
+              "expected": "1.92",
+              "pass": true
+            },
+            {
+              "name": "EPS（元/股） 2027",
+              "actual": "2.07",
+              "expected": "2.07",
+              "pass": true
+            }
+          ]
+        },
+        "finance_checks": {
+          "source_institution_and_date": "pass",
+          "actual_forecast_separated": "pass",
+          "pe_recalculation": "pass",
+          "opinion_not_fact": "pass",
+          "answer_requested_values": "9/9",
+          "chart_units": "fail",
+          "csv_units": "fail",
+          "chart_data_matches_image": "fail"
+        },
+        "issues": [
+          {
+            "severity": "critical",
+            "kind": "amount_scale_inconsistency",
+            "evidence": "Final chat and Markdown use correct source values, but script rewrites amounts in CNY billions. It plots 119.338 for 2025 revenue then labels 亿元 (correct 1193.38); CSV/chart_data multiply by 100 and label 亿元 (11933.8), instead of the required factor 10. All six requested monetary CSV values are 10x too large; plotted values are 10x too small."
+          }
+        ],
+        "chart_review": "Inspected actual PNG: Chinese labels readable and actual/forecast clearly separated; graph, worksheet and answer disagree materially on amount units.",
+        "limitations": [
+          "No finance_charts unit helper used despite availability and guidance. This retest fails the intended delivery correction; do not call it fixed.",
+          "One successful sandbox execution does not imply output correctness."
+        ]
+      }
+    },
+    {
+      "label": "C3",
+      "profile": "financial",
+      "status": "completed",
+      "conversationId": "e1a50aad-6eec-43a7-b581-272acc50f84d",
+      "runId": "6fefa047-c700-49ef-8ff6-36d916547af7",
+      "seconds": 358.786,
+      "usage": {
+        "input": 923162,
+        "output": 16581,
+        "calls": 13,
+        "costUsd": 0.027569900000000005,
+        "uncachedInput": 111642,
+        "cacheRead": 811520,
+        "cacheWrite": 0,
+        "reasoning": 2792,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 923162,
+            "output": 16581,
+            "calls": 12,
+            "costUsd": 0.027569900000000005,
+            "uncachedInput": 111642,
+            "cacheRead": 811520,
+            "cacheWrite": 0,
+            "reasoning": 2792,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 923162,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 923162,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "read_project_skill": 1,
+        "get_document": 1,
+        "get_research_model_schema": 1,
+        "prepare_document_sources": 1,
+        "get_document_index": 1,
+        "query_research_records": 1,
+        "search_evidence": 1,
+        "get_data_catalog": 1,
+        "get_source_table": 3,
+        "get_source_page": 4,
+        "run_financial_model": 3,
+        "calculate_financial_metrics": 3,
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 7
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 12
+      },
+      "toolErrors": [
+        {
+          "name": "run_financial_model",
+          "error": "文档引用请用 page:物理页码"
+        },
+        {
+          "name": "run_financial_model",
+          "error": "引用文字未在所选来源位置找到：page:36"
+        },
+        {
+          "name": "calculate_financial_metrics",
+          "error": "unsupported_operation"
+        },
+        {
+          "name": "calculate_financial_metrics",
+          "error": "unsupported_operation"
+        },
+        {
+          "name": "calculate_financial_metrics",
+          "error": "unsupported_operation"
+        }
+      ],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 15,
+        "downloaded": 15,
+        "analyses": [
+          {
+            "runId": "a1d2ec7f471e420596bfd323bbd83896",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "C3",
+          "original_run": "a1d2ec7f471e420596bfd323bbd83896",
+          "replay_run": "947357690cef47ccaed098d627b2af07",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "chart_data.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "comparison_requests.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "comparisons.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "model_bundle.zip",
+              "matches": true,
+              "type": ".zip"
+            },
+            {
+              "name": "model_forecast.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "model_inputs.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "model_sensitivity.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "models.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "伊利_DCF初建报告.md",
+              "matches": true,
+              "type": ".md"
+            },
+            {
+              "name": "伊利_DCF敏感性.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_DCF敏感性.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "伊利_DCF预测与FCFF.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_FCFF对照.png",
+              "matches": true,
+              "type": ".png"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "C3",
+        "core_numeric": {
+          "passed": 15,
+          "total": 15,
+          "checks": [
+            {
+              "name": "revenue 2025",
+              "actual": "119338",
+              "expected": "119338",
+              "pass": true
+            },
+            {
+              "name": "revenue 2026",
+              "actual": "122498",
+              "expected": "122498",
+              "pass": true
+            },
+            {
+              "name": "revenue 2027",
+              "actual": "125438",
+              "expected": "125438",
+              "pass": true
+            },
+            {
+              "name": "da 2025",
+              "actual": "4822",
+              "expected": "4822",
+              "pass": true
+            },
+            {
+              "name": "da 2026",
+              "actual": "5316",
+              "expected": "5316",
+              "pass": true
+            },
+            {
+              "name": "da 2027",
+              "actual": "5724",
+              "expected": "5724",
+              "pass": true
+            },
+            {
+              "name": "capex 2025",
+              "actual": "4500",
+              "expected": "4500",
+              "pass": true
+            },
+            {
+              "name": "capex 2026",
+              "actual": "5000",
+              "expected": "5000",
+              "pass": true
+            },
+            {
+              "name": "capex 2027",
+              "actual": "4000",
+              "expected": "4000",
+              "pass": true
+            },
+            {
+              "name": "delta_nwc 2025",
+              "actual": "5977",
+              "expected": "5977",
+              "pass": true
+            },
+            {
+              "name": "delta_nwc 2026",
+              "actual": "99",
+              "expected": "99",
+              "pass": true
+            },
+            {
+              "name": "delta_nwc 2027",
+              "actual": "535",
+              "expected": "535",
+              "pass": true
+            },
+            {
+              "name": "net debt",
+              "actual": "24867",
+              "expected": "24867",
+              "pass": true
+            },
+            {
+              "name": "NCI",
+              "actual": "3828",
+              "expected": "3828",
+              "pass": true
+            },
+            {
+              "name": "shares",
+              "actual": "6366",
+              "expected": "6366",
+              "pass": true
+            }
+          ]
+        },
+        "finance_checks": {
+          "source_inputs": "pass",
+          "fcff_reconciliation": "pass",
+          "terminal_assumption_explicit_in_report": "pass",
+          "target_interval": "pass",
+          "calculator_reuse": "pass"
+        },
+        "issues": [
+          {
+            "severity": "minor",
+            "kind": "heatmap_contrast",
+            "evidence": "Actual PNG uses dark text on dark green cells and horizontal grid through numbers; values are correct but the darkest cell is hard to read."
+          }
+        ],
+        "chart_review": "Inspected both PNGs, CSV, report and script. Correct FCFF and million-CNY scale, correct sensitivity grid and exclusion of 31.36, no unit error or duplicate calculator.",
+        "limitations": [
+          "Terminal ROIC 12% is an explicit steady-state proxy, not an observed perpetual return. Different terminal method from generic baseline legitimately changes valuation.",
+          "Two source-citation validation errors and three unsupported-operation calls are preserved and counted. One successful sandbox script reads selected saved model."
+        ],
+        "independent_arithmetic": {
+          "passed": 15,
+          "total": 15,
+          "checks": [
+            {
+              "name": "FCFF 2025",
+              "actual": "6485.493416",
+              "expected": "6485.493416",
+              "pass": true
+            },
+            {
+              "name": "FCFF 2026",
+              "actual": "13108.689520",
+              "expected": "13108.689520",
+              "pass": true
+            },
+            {
+              "name": "FCFF 2027",
+              "actual": "14610.113372",
+              "expected": "14610.113372",
+              "pass": true
+            },
+            {
+              "name": "enterprise_value",
+              "actual": "180452.13014496247488207719022762771778302378449412",
+              "expected": "180452.1301449624748820771903",
+              "pass": true
+            },
+            {
+              "name": "equity_value",
+              "actual": "151757.13014496247488207719022762771778302378449412",
+              "expected": "151757.1301449624748820771903",
+              "pass": true
+            },
+            {
+              "name": "value_per_share",
+              "actual": "23.838694650481067370731572451716575209397389961376",
+              "expected": "23.83869465048106737073157246",
+              "pass": true
+            },
+            {
+              "name": "sensitivity 0.075/0.01",
+              "actual": "24.241613496071122834127133702911279541115760730540",
+              "expected": "24.24161349607112283412713369",
+              "pass": true
+            },
+            {
+              "name": "sensitivity 0.075/0.018",
+              "actual": "25.831946317832506577148733210202827274108213490938",
+              "expected": "25.83194631783250657714873321",
+              "pass": true
+            },
+            {
+              "name": "sensitivity 0.075/0.022",
+              "actual": "26.794342426680129451547694593631290953628328885754",
+              "expected": "26.79434242668012945154769458",
+              "pass": true
+            },
+            {
+              "name": "sensitivity 0.079/0.01",
+              "actual": "22.550850690866962729313313905707465070489948857367",
+              "expected": "22.55085069086696272931331390",
+              "pass": true
+            },
+            {
+              "name": "sensitivity 0.079/0.018",
+              "actual": "23.838694650481067370731572451716575209397389961376",
+              "expected": "23.83869465048106737073157246",
+              "pass": true
+            },
+            {
+              "name": "sensitivity 0.079/0.022",
+              "actual": "24.606401934400110355835521867895574552114525410743",
+              "expected": "24.60640193440011035583552187",
+              "pass": true
+            },
+            {
+              "name": "sensitivity 0.085/0.01",
+              "actual": "20.352696292546351798802259620615084128683273206309",
+              "expected": "20.35269629254635179880225961",
+              "pass": true
+            },
+            {
+              "name": "sensitivity 0.085/0.018",
+              "actual": "21.294312286307814342877342799275075067607819487116",
+              "expected": "21.29431228630781434287734281",
+              "pass": true
+            },
+            {
+              "name": "sensitivity 0.085/0.022",
+              "actual": "21.844318217547552348273137508670658922243203690672",
+              "expected": "21.84431821754755234827313751",
+              "pass": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "A3",
+      "profile": "generic",
+      "status": "completed",
+      "conversationId": "9089526f-cee5-48ac-a656-c26de1671562",
+      "runId": "2923092b-4c89-4561-a70f-585d50f3825d",
+      "seconds": 146.009,
+      "usage": {
+        "input": 260933,
+        "output": 6693,
+        "calls": 8,
+        "costUsd": 0.01183724,
+        "uncachedInput": 65349,
+        "cacheRead": 195584,
+        "cacheWrite": 0,
+        "reasoning": 655,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 260933,
+            "output": 6693,
+            "calls": 7,
+            "costUsd": 0.01183724,
+            "uncachedInput": 65349,
+            "cacheRead": 195584,
+            "cacheWrite": 0,
+            "reasoning": 655,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 260933,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 260933,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "prepare_document_sources": 1,
+        "get_document_index": 1,
+        "search_evidence": 1,
+        "get_source_table": 5,
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 6
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 7
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 7,
+        "downloaded": 1,
+        "analyses": [
+          {
+            "runId": "7940f73167a44039b7622174acd5ac18",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "A3",
+          "original_run": "7940f73167a44039b7622174acd5ac18",
+          "replay_run": "52723754fad64cacbe44b6c87e49c639",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "ili_dcf/DCF_sensitivity.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "ili_dcf/forecast_and_fcff.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "ili_dcf/model_inputs.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "ili_dcf/recalculate_dcf.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "ili_dcf/sensitivity.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "ili_dcf/伊利DCF初建报告.md",
+              "matches": true,
+              "type": ".md"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "A3",
+        "core_numeric": {
+          "passed": 30,
+          "total": 30,
+          "checks": [
+            {
+              "name": "revenue_mn 2025",
+              "actual": "119338",
+              "expected": "119338",
+              "pass": true
+            },
+            {
+              "name": "revenue_mn 2026",
+              "actual": "122498",
+              "expected": "122498",
+              "pass": true
+            },
+            {
+              "name": "revenue_mn 2027",
+              "actual": "125438",
+              "expected": "125438",
+              "pass": true
+            },
+            {
+              "name": "da_mn 2025",
+              "actual": "4822",
+              "expected": "4822",
+              "pass": true
+            },
+            {
+              "name": "da_mn 2026",
+              "actual": "5316",
+              "expected": "5316",
+              "pass": true
+            },
+            {
+              "name": "da_mn 2027",
+              "actual": "5724",
+              "expected": "5724",
+              "pass": true
+            },
+            {
+              "name": "capex_mn 2025",
+              "actual": "4500",
+              "expected": "4500",
+              "pass": true
+            },
+            {
+              "name": "capex_mn 2026",
+              "actual": "5000",
+              "expected": "5000",
+              "pass": true
+            },
+            {
+              "name": "capex_mn 2027",
+              "actual": "4000",
+              "expected": "4000",
+              "pass": true
+            },
+            {
+              "name": "nwc_cashflow_mn 2025",
+              "actual": "-5977",
+              "expected": "-5977",
+              "pass": true
+            },
+            {
+              "name": "nwc_cashflow_mn 2026",
+              "actual": "-99",
+              "expected": "-99",
+              "pass": true
+            },
+            {
+              "name": "nwc_cashflow_mn 2027",
+              "actual": "-535",
+              "expected": "-535",
+              "pass": true
+            },
+            {
+              "name": "reported_fcff_mn 2025",
+              "actual": "6482",
+              "expected": "6482",
+              "pass": true
+            },
+            {
+              "name": "reported_fcff_mn 2026",
+              "actual": "13088",
+              "expected": "13088",
+              "pass": true
+            },
+            {
+              "name": "reported_fcff_mn 2027",
+              "actual": "14637",
+              "expected": "14637",
+              "pass": true
+            },
+            {
+              "name": "净债务（百万元）",
+              "actual": "24867",
+              "expected": "24867",
+              "pass": true
+            },
+            {
+              "name": "少数股东权益（百万元）",
+              "actual": "3828",
+              "expected": "3828",
+              "pass": true
+            },
+            {
+              "name": "股份数（百万股）",
+              "actual": "6366",
+              "expected": "6366",
+              "pass": true
+            },
+            {
+              "name": "FCFF 2025",
+              "actual": "6485.493416000001",
+              "expected": "6485.493416",
+              "pass": true
+            },
+            {
+              "name": "FCFF 2026",
+              "actual": "13108.68952",
+              "expected": "13108.68952",
+              "pass": true
+            },
+            {
+              "name": "FCFF 2027",
+              "actual": "14610.113372",
+              "expected": "14610.113372",
+              "pass": true
+            },
+            {
+              "name": "price 0.075/0.01",
+              "actual": "28.775219696042228",
+              "expected": "28.77521969604222184902370182",
+              "pass": true
+            },
+            {
+              "name": "price 0.075/0.018",
+              "actual": "33.063387757921014",
+              "expected": "33.06338775792100657473941488",
+              "pass": true
+            },
+            {
+              "name": "price 0.075/0.022",
+              "actual": "35.692924776997636",
+              "expected": "35.69292477699761984994244648",
+              "pass": true
+            },
+            {
+              "name": "price 0.079/0.01",
+              "actual": "26.774317817198614",
+              "expected": "26.77431781719861147530387524",
+              "pass": true
+            },
+            {
+              "name": "price 0.079/0.018",
+              "actual": "30.521071333748164",
+              "expected": "30.52107133374815792280697289",
+              "pass": true
+            },
+            {
+              "name": "price 0.079/0.022",
+              "actual": "32.78884319902815",
+              "expected": "32.78884319902814656208516357",
+              "pass": true
+            },
+            {
+              "name": "price 0.085/0.01",
+              "actual": "24.174180463363264",
+              "expected": "24.17418046336326991590074637",
+              "pass": true
+            },
+            {
+              "name": "price 0.085/0.018",
+              "actual": "27.27789232680545",
+              "expected": "27.27789232680545072846264219",
+              "pass": true
+            },
+            {
+              "name": "price 0.085/0.022",
+              "actual": "29.125339864568655",
+              "expected": "29.12533986456865359308281827",
+              "pass": true
+            }
+          ]
+        },
+        "finance_checks": {
+          "source_inputs": "pass",
+          "fcff_reconciliation": "pass",
+          "explicit_terminal_method": "pass",
+          "net_debt_and_nci": "pass",
+          "target_interval": "pass"
+        },
+        "issues": [
+          {
+            "severity": "material",
+            "kind": "application_nested_download",
+            "evidence": "Six real files were produced inside /output/ili_dcf, but the application route rejected encoded subdirectories (HTTP 400). This is an application defect, not a financial-agent advantage; evaluator inspected locally hash-verified outputs."
+          },
+          {
+            "severity": "minor",
+            "kind": "heatmap_contrast",
+            "evidence": "Dark text on dark blue cells is difficult to read, and the red circle overlaps the base-value text."
+          }
+        ],
+        "chart_review": "Actual local PNG has correct sensitivity numbers, units and Chinese font; no source caption on the figure (report cites sources).",
+        "limitations": [
+          "One successful sandbox run, no financial correction. Nested output download repair is outside the frozen comparison and must be reported separately."
+        ]
+      }
+    },
+    {
+      "label": "A4",
+      "profile": "generic",
+      "status": "completed",
+      "conversationId": "9089526f-cee5-48ac-a656-c26de1671562",
+      "runId": "bb1eaa23-cb65-41db-9a76-834651deddaa",
+      "seconds": 254.835,
+      "usage": {
+        "input": 655639,
+        "output": 11835,
+        "calls": 10,
+        "costUsd": 0.01448044,
+        "uncachedInput": 22295,
+        "cacheRead": 633344,
+        "cacheWrite": 0,
+        "reasoning": 723,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 655639,
+            "output": 11835,
+            "calls": 9,
+            "costUsd": 0.01448044,
+            "uncachedInput": 22295,
+            "cacheRead": 633344,
+            "cacheWrite": 0,
+            "reasoning": 723,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 655639,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 655639,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "run_analysis": 3,
+        "get_analysis_status": 4,
+        "get_artifact": 9
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 9
+      },
+      "toolErrors": [
+        {
+          "name": "get_analysis_status",
+          "error": "analysis_not_found_in_project"
+        },
+        {
+          "name": "get_analysis_status",
+          "error": "analysis_not_found_in_project"
+        }
+      ],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 10,
+        "downloaded": 1,
+        "analyses": [
+          {
+            "runId": "ab331666215749258384f2dd8ffe70fe",
+            "status": "succeeded",
+            "containerRemoved": true
+          },
+          {
+            "runId": "b71f77bdfb4d480a85a60d92f7727a30",
+            "status": "failed",
+            "containerRemoved": true
+          },
+          {
+            "runId": "cb1e5b17d2ed451dbcb9d8c6a3a49333",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "A4",
+          "original_run": "cb1e5b17d2ed451dbcb9d8c6a3a49333",
+          "replay_run": "f54433963a1f4eafb192981ef235f829",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "ili_dcf_update/annual_fcff_comparison.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "ili_dcf_update/model_inputs_both.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "ili_dcf_update/recalculate_updated_dcf.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "ili_dcf_update/sensitivity_both_versions.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "ili_dcf_update/sensitivity_difference.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "ili_dcf_update/sensitivity_old_vs_updated.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "ili_dcf_update/sequential_attribution.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "ili_dcf_update/valuation_results.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "ili_dcf_update/伊利DCF局部更新报告.md",
+              "matches": true,
+              "type": ".md"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "A4",
+        "core_numeric": {
+          "passed": 69,
+          "total": 69,
+          "checks": [
+            {
+              "name": "old FCFF 2025",
+              "actual": "6485.493416000001",
+              "expected": "6485.493416",
+              "pass": true
+            },
+            {
+              "name": "new FCFF 2025",
+              "actual": "6067.693416000002",
+              "expected": "6067.693416",
+              "pass": true
+            },
+            {
+              "name": "change FCFF 2025",
+              "actual": "-417.7999999999993",
+              "expected": "-417.800000",
+              "pass": true
+            },
+            {
+              "name": "old FCFF 2026",
+              "actual": "13108.68952",
+              "expected": "13108.68952",
+              "pass": true
+            },
+            {
+              "name": "new FCFF 2026",
+              "actual": "12640.289519999998",
+              "expected": "12640.28952",
+              "pass": true
+            },
+            {
+              "name": "change FCFF 2026",
+              "actual": "-468.40000000000146",
+              "expected": "-468.40000",
+              "pass": true
+            },
+            {
+              "name": "old FCFF 2027",
+              "actual": "14610.113372",
+              "expected": "14610.113372",
+              "pass": true
+            },
+            {
+              "name": "new FCFF 2027",
+              "actual": "14382.513372000001",
+              "expected": "14382.513372",
+              "pass": true
+            },
+            {
+              "name": "change FCFF 2027",
+              "actual": "-227.59999999999854",
+              "expected": "-227.600000",
+              "pass": true
+            },
+            {
+              "name": "旧版 EV_mn",
+              "actual": "222992.14011064082",
+              "expected": "222992.1401106407733365891894",
+              "pass": true
+            },
+            {
+              "name": "旧版 Equity_value_mn",
+              "actual": "194297.14011064082",
+              "expected": "194297.1401106407733365891894",
+              "pass": true
+            },
+            {
+              "name": "旧版 Value_per_share",
+              "actual": "30.521071333748164",
+              "expected": "30.52107133374815792280697289",
+              "pass": true
+            },
+            {
+              "name": "更新版 EV_mn",
+              "actual": "201807.0104366696",
+              "expected": "201807.0104366696333853643803",
+              "pass": true
+            },
+            {
+              "name": "更新版 Equity_value_mn",
+              "actual": "173112.0104366696",
+              "expected": "173112.0104366696333853643803",
+              "pass": true
+            },
+            {
+              "name": "更新版 Value_per_share",
+              "actual": "27.193215588543765",
+              "expected": "27.19321558854376898921840721",
+              "pass": true
+            },
+            {
+              "name": "基准",
+              "actual": "30.521071333748164",
+              "expected": "30.52107133374815792280697289",
+              "pass": true
+            },
+            {
+              "name": "contribution 基准",
+              "actual": "0.0",
+              "expected": "0",
+              "pass": true
+            },
+            {
+              "name": "WACC +0.5个百分点",
+              "actual": "27.777379036188147",
+              "expected": "27.77737903618815867250982240",
+              "pass": true
+            },
+            {
+              "name": "contribution WACC +0.5个百分点",
+              "actual": "-2.743692297560017",
+              "expected": "-2.74369229755999925029715049",
+              "pass": true
+            },
+            {
+              "name": "资本开支×1.20",
+              "actual": "25.892880897116417",
+              "expected": "25.89288089711642323027039947",
+              "pass": true
+            },
+            {
+              "name": "contribution 资本开支×1.20",
+              "actual": "-1.8844981390717308",
+              "expected": "-1.88449813907173544223942293",
+              "pass": true
+            },
+            {
+              "name": "折旧摊销×1.10",
+              "actual": "27.193215588543765",
+              "expected": "27.19321558854376898921840721",
+              "pass": true
+            },
+            {
+              "name": "contribution 折旧摊销×1.10",
+              "actual": "1.3003346914273486",
+              "expected": "1.30033469142734575894800774",
+              "pass": true
+            },
+            {
+              "name": "旧版 0.075/0.01",
+              "actual": "28.775219696042228",
+              "expected": "28.77521969604222184902370182",
+              "pass": true
+            },
+            {
+              "name": "旧版 0.075/0.018",
+              "actual": "33.063387757921014",
+              "expected": "33.06338775792100657473941488",
+              "pass": true
+            },
+            {
+              "name": "旧版 0.075/0.022",
+              "actual": "35.692924776997636",
+              "expected": "35.69292477699761984994244648",
+              "pass": true
+            },
+            {
+              "name": "旧版 0.079/0.01",
+              "actual": "26.774317817198614",
+              "expected": "26.77431781719861147530387524",
+              "pass": true
+            },
+            {
+              "name": "旧版 0.079/0.018",
+              "actual": "30.521071333748164",
+              "expected": "30.52107133374815792280697289",
+              "pass": true
+            },
+            {
+              "name": "旧版 0.079/0.022",
+              "actual": "32.78884319902815",
+              "expected": "32.78884319902814656208516357",
+              "pass": true
+            },
+            {
+              "name": "旧版 0.085/0.01",
+              "actual": "24.174180463363264",
+              "expected": "24.17418046336326991590074637",
+              "pass": true
+            },
+            {
+              "name": "旧版 0.085/0.018",
+              "actual": "27.27789232680545",
+              "expected": "27.27789232680545072846264219",
+              "pass": true
+            },
+            {
+              "name": "旧版 0.085/0.022",
+              "actual": "29.125339864568655",
+              "expected": "29.12533986456865359308281827",
+              "pass": true
+            },
+            {
+              "name": "更新版 0.075/0.01",
+              "actual": "28.174533490877657",
+              "expected": "28.17453349087765535202033216",
+              "pass": true
+            },
+            {
+              "name": "更新版 0.075/0.018",
+              "actual": "32.39589939824654",
+              "expected": "32.39589939824653245923321349",
+              "pass": true
+            },
+            {
+              "name": "更新版 0.075/0.022",
+              "actual": "34.984472832010475",
+              "expected": "34.98447283201046653441092377",
+              "pass": true
+            },
+            {
+              "name": "更新版 0.079/0.01",
+              "actual": "26.20523951984096",
+              "expected": "26.20523951984095038653655999",
+              "pass": true
+            },
+            {
+              "name": "更新版 0.079/0.018",
+              "actual": "29.893625173071865",
+              "expected": "29.89362517307186051569502917",
+              "pass": true
+            },
+            {
+              "name": "更新版 0.079/0.022",
+              "actual": "32.12606912108004",
+              "expected": "32.12606912108004296229094474",
+              "pass": true
+            },
+            {
+              "name": "更新版 0.085/0.01",
+              "actual": "23.646255922925395",
+              "expected": "23.64625592292539644265712790",
+              "pass": true
+            },
+            {
+              "name": "更新版 0.085/0.018",
+              "actual": "26.701617386741436",
+              "expected": "26.70161738674143530190118963",
+              "pass": true
+            },
+            {
+              "name": "更新版 0.085/0.022",
+              "actual": "28.52028492472718",
+              "expected": "28.52028492472717271811789304",
+              "pass": true
+            },
+            {
+              "name": "input 2025 rev",
+              "actual": "119338.0",
+              "expected": "119338.0",
+              "pass": true
+            },
+            {
+              "name": "input 2026 rev",
+              "actual": "122498.0",
+              "expected": "122498.0",
+              "pass": true
+            },
+            {
+              "name": "input 2027 rev",
+              "actual": "125438.0",
+              "expected": "125438.0",
+              "pass": true
+            },
+            {
+              "name": "input 2025 margin",
+              "actual": "0.116",
+              "expected": "0.116",
+              "pass": true
+            },
+            {
+              "name": "input 2026 margin",
+              "actual": "0.12",
+              "expected": "0.12",
+              "pass": true
+            },
+            {
+              "name": "input 2027 margin",
+              "actual": "0.122",
+              "expected": "0.122",
+              "pass": true
+            },
+            {
+              "name": "input 2025 tax",
+              "actual": "0.123",
+              "expected": "0.123",
+              "pass": true
+            },
+            {
+              "name": "input 2026 tax",
+              "actual": "0.123",
+              "expected": "0.123",
+              "pass": true
+            },
+            {
+              "name": "input 2027 tax",
+              "actual": "0.123",
+              "expected": "0.123",
+              "pass": true
+            },
+            {
+              "name": "input 2025 da",
+              "actual": "5304.200000000001",
+              "expected": "5304.20",
+              "pass": true
+            },
+            {
+              "name": "input 2026 da",
+              "actual": "5847.6",
+              "expected": "5847.60",
+              "pass": true
+            },
+            {
+              "name": "input 2027 da",
+              "actual": "6296.400000000001",
+              "expected": "6296.40",
+              "pass": true
+            },
+            {
+              "name": "input 2025 capex",
+              "actual": "5400.0",
+              "expected": "5400.00",
+              "pass": true
+            },
+            {
+              "name": "input 2026 capex",
+              "actual": "6000.0",
+              "expected": "6000.00",
+              "pass": true
+            },
+            {
+              "name": "input 2027 capex",
+              "actual": "4800.0",
+              "expected": "4800.00",
+              "pass": true
+            },
+            {
+              "name": "input 2025 nwc",
+              "actual": "-5977.0",
+              "expected": "-5977.0",
+              "pass": true
+            },
+            {
+              "name": "input 2026 nwc",
+              "actual": "-99.0",
+              "expected": "-99.0",
+              "pass": true
+            },
+            {
+              "name": "input 2027 nwc",
+              "actual": "-535.0",
+              "expected": "-535.0",
+              "pass": true
+            },
+            {
+              "name": "input 2025 reportfcff",
+              "actual": "6482.0",
+              "expected": "6482.0",
+              "pass": true
+            },
+            {
+              "name": "input 2026 reportfcff",
+              "actual": "13088.0",
+              "expected": "13088.0",
+              "pass": true
+            },
+            {
+              "name": "input 2027 reportfcff",
+              "actual": "14637.0",
+              "expected": "14637.0",
+              "pass": true
+            },
+            {
+              "name": "input 全期 w",
+              "actual": "0.084",
+              "expected": "0.084",
+              "pass": true
+            },
+            {
+              "name": "input 全期 g",
+              "actual": "0.018",
+              "expected": "0.018",
+              "pass": true
+            },
+            {
+              "name": "input 全期 shares",
+              "actual": "6366.0",
+              "expected": "6366.0",
+              "pass": true
+            },
+            {
+              "name": "input 全期 cash",
+              "actual": "25404.0",
+              "expected": "25404.0",
+              "pass": true
+            },
+            {
+              "name": "input 全期 sd",
+              "actual": "45584.0",
+              "expected": "45584.0",
+              "pass": true
+            },
+            {
+              "name": "input 全期 ld",
+              "actual": "4687.0",
+              "expected": "4687.0",
+              "pass": true
+            },
+            {
+              "name": "input 全期 minority",
+              "actual": "3828.0",
+              "expected": "3828.0",
+              "pass": true
+            }
+          ]
+        },
+        "finance_checks": {
+          "only_requested_changes": "pass",
+          "sequence_attribution": "pass",
+          "same_absolute_grid": "pass",
+          "no_reread": "pass"
+        },
+        "issues": [
+          {
+            "severity": "material",
+            "kind": "application_nested_download",
+            "evidence": "Nine final outputs exist in a subdirectory but the application returns HTTP 400; this shared application flaw is not evidence of financial-agent superiority."
+          },
+          {
+            "severity": "material",
+            "kind": "mistyped_reply_link",
+            "evidence": "The final answer sensitivity_difference.csv link contains a malformed shorter run identifier; the attached artifact itself has the correct identifier."
+          },
+          {
+            "severity": "minor",
+            "kind": "heatmap_contrast",
+            "evidence": "Black text on darkest blue cells is low contrast; no overlapping colorbar in the final PNG."
+          }
+        ],
+        "chart_review": "Inspected local final paired PNG: same absolute grid and shared normalization, values correct, Chinese text readable except low contrast.",
+        "limitations": [
+          "Three analysis requests (two succeeded, one failed because optional tabulate is absent) and two invalid status-ID calls retained. No source reread."
+        ]
+      }
+    },
+    {
+      "label": "C4",
+      "profile": "financial",
+      "status": "completed",
+      "conversationId": "e1a50aad-6eec-43a7-b581-272acc50f84d",
+      "runId": "2b2ce0b6-f8a8-4111-b9bd-684a21796065",
+      "seconds": 180.291,
+      "usage": {
+        "input": 827532,
+        "output": 6297,
+        "calls": 8,
+        "costUsd": 0.013878660000000003,
+        "uncachedInput": 27276,
+        "cacheRead": 800256,
+        "cacheWrite": 0,
+        "reasoning": 1254,
+        "unknownCalls": 1,
+        "cacheUnknownCalls": 1,
+        "costUnknownCalls": 1,
+        "phases": {
+          "router": {
+            "input": 0,
+            "output": 0,
+            "calls": 1,
+            "costUsd": null,
+            "uncachedInput": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "unknownCalls": 1,
+            "cacheUnknownCalls": 1,
+            "costUnknownCalls": 1,
+            "cacheKnownInput": 0
+          },
+          "main": {
+            "input": 827532,
+            "output": 6297,
+            "calls": 7,
+            "costUsd": 0.013878660000000003,
+            "uncachedInput": 27276,
+            "cacheRead": 800256,
+            "cacheWrite": 0,
+            "reasoning": 1254,
+            "unknownCalls": 0,
+            "cacheUnknownCalls": 0,
+            "costUnknownCalls": 0,
+            "cacheKnownInput": 827532,
+            "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+          }
+        },
+        "cacheKnownInput": 827532,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "tools": {
+        "read_project_skill": 1,
+        "read_research_artifact": 1,
+        "run_financial_model": 1,
+        "compare_financial_models": 1,
+        "run_analysis": 1,
+        "get_analysis_status": 1,
+        "get_artifact": 11
+      },
+      "reasoningEfforts": {
+        "low": 1,
+        "high": 7
+      },
+      "toolErrors": [],
+      "ingestionCalls": 0,
+      "deliveries": {
+        "total": 25,
+        "downloaded": 25,
+        "analyses": [
+          {
+            "runId": "8ebe18eea59b4ae9a2bf54eb06192510",
+            "status": "succeeded",
+            "containerRemoved": true
+          }
+        ]
+      },
+      "replay": [
+        {
+          "label": "C4",
+          "original_run": "8ebe18eea59b4ae9a2bf54eb06192510",
+          "replay_run": "4393bfcc1abb4618b99c67b09d53f8b7",
+          "status": "succeeded",
+          "removed": true,
+          "checks": [
+            {
+              "name": "base_forecast.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "base_inputs.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "base_sensitivity.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "change_decomposition.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "change_forecast_changes.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "change_inputs_changed.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "change_results_changed.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "chart_data.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "comparison_requests.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "comparisons.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "executed_script.py",
+              "matches": true,
+              "type": ".py"
+            },
+            {
+              "name": "model_bundle.zip",
+              "matches": true,
+              "type": ".zip"
+            },
+            {
+              "name": "models.json",
+              "matches": true,
+              "type": ".json"
+            },
+            {
+              "name": "scenario_forecast.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "scenario_inputs.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "scenario_sensitivity.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_DCF_FCFF变化.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_DCF_base_inputs.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_DCF_scenario_inputs.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_DCF两版敏感性.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_DCF两版敏感性对照.png",
+              "matches": true,
+              "type": ".png"
+            },
+            {
+              "name": "伊利_DCF两版逐年预测输入结果.csv",
+              "matches": true,
+              "type": ".csv"
+            },
+            {
+              "name": "伊利_DCF局部更新报告.md",
+              "matches": true,
+              "type": ".md"
+            },
+            {
+              "name": "伊利_DCF每股价值顺序归因.csv",
+              "matches": true,
+              "type": ".csv"
+            }
+          ],
+          "error": null
+        }
+      ],
+      "review": {
+        "label": "C4",
+        "core_numeric": {
+          "passed": 62,
+          "total": 62,
+          "checks": [
+            {
+              "name": "base FCFF 2025",
+              "actual": "6485.493416",
+              "expected": "6485.493416",
+              "pass": true
+            },
+            {
+              "name": "base FCFF 2026",
+              "actual": "13108.689520",
+              "expected": "13108.689520",
+              "pass": true
+            },
+            {
+              "name": "base FCFF 2027",
+              "actual": "14610.113372",
+              "expected": "14610.113372",
+              "pass": true
+            },
+            {
+              "name": "base enterprise_value",
+              "actual": "180452.13014496247488207719022762771778302378449412",
+              "expected": "180452.1301449624748820771903",
+              "pass": true
+            },
+            {
+              "name": "base equity_value",
+              "actual": "151757.13014496247488207719022762771778302378449412",
+              "expected": "151757.1301449624748820771903",
+              "pass": true
+            },
+            {
+              "name": "base value_per_share",
+              "actual": "23.838694650481067370731572451716575209397389961376",
+              "expected": "23.83869465048106737073157246",
+              "pass": true
+            },
+            {
+              "name": "base sensitivity 0.075/0.01",
+              "actual": "24.241613496071122834127133702911279541115760730540",
+              "expected": "24.24161349607112283412713369",
+              "pass": true
+            },
+            {
+              "name": "base sensitivity 0.075/0.018",
+              "actual": "25.831946317832506577148733210202827274108213490938",
+              "expected": "25.83194631783250657714873321",
+              "pass": true
+            },
+            {
+              "name": "base sensitivity 0.075/0.022",
+              "actual": "26.794342426680129451547694593631290953628328885754",
+              "expected": "26.79434242668012945154769458",
+              "pass": true
+            },
+            {
+              "name": "base sensitivity 0.079/0.01",
+              "actual": "22.550850690866962729313313905707465070489948857367",
+              "expected": "22.55085069086696272931331390",
+              "pass": true
+            },
+            {
+              "name": "base sensitivity 0.079/0.018",
+              "actual": "23.838694650481067370731572451716575209397389961376",
+              "expected": "23.83869465048106737073157246",
+              "pass": true
+            },
+            {
+              "name": "base sensitivity 0.079/0.022",
+              "actual": "24.606401934400110355835521867895574552114525410743",
+              "expected": "24.60640193440011035583552187",
+              "pass": true
+            },
+            {
+              "name": "base sensitivity 0.085/0.01",
+              "actual": "20.352696292546351798802259620615084128683273206309",
+              "expected": "20.35269629254635179880225961",
+              "pass": true
+            },
+            {
+              "name": "base sensitivity 0.085/0.018",
+              "actual": "21.294312286307814342877342799275075067607819487116",
+              "expected": "21.29431228630781434287734281",
+              "pass": true
+            },
+            {
+              "name": "base sensitivity 0.085/0.022",
+              "actual": "21.844318217547552348273137508670658922243203690672",
+              "expected": "21.84431821754755234827313751",
+              "pass": true
+            },
+            {
+              "name": "scenario FCFF 2025",
+              "actual": "6067.693416",
+              "expected": "6067.693416",
+              "pass": true
+            },
+            {
+              "name": "scenario FCFF 2026",
+              "actual": "12640.289520",
+              "expected": "12640.289520",
+              "pass": true
+            },
+            {
+              "name": "scenario FCFF 2027",
+              "actual": "14382.513372",
+              "expected": "14382.513372",
+              "pass": true
+            },
+            {
+              "name": "scenario enterprise_value",
+              "actual": "165787.33856224813983917847746889218088505454808128",
+              "expected": "165787.3385622481398391784774",
+              "pass": true
+            },
+            {
+              "name": "scenario equity_value",
+              "actual": "137092.33856224813983917847746889218088505454808128",
+              "expected": "137092.3385622481398391784774",
+              "pass": true
+            },
+            {
+              "name": "scenario value_per_share",
+              "actual": "21.535083028942529035372051126121925995138948803217",
+              "expected": "21.53508302894252903537205112",
+              "pass": true
+            },
+            {
+              "name": "scenario sensitivity 0.075/0.01",
+              "actual": "24.088113341503693732147952629454996178241087340253",
+              "expected": "24.08811334150369373214795262",
+              "pass": true
+            },
+            {
+              "name": "scenario sensitivity 0.075/0.018",
+              "actual": "25.678446163265077475169552136746543911233540100650",
+              "expected": "25.67844616326507747516955214",
+              "pass": true
+            },
+            {
+              "name": "scenario sensitivity 0.075/0.022",
+              "actual": "26.640842272112700349568513520175007590753655495467",
+              "expected": "26.64084227211270034956851351",
+              "pass": true
+            },
+            {
+              "name": "scenario sensitivity 0.079/0.01",
+              "actual": "22.398366932325472119370437801413615954720768597689",
+              "expected": "22.39836693232547211937043779",
+              "pass": true
+            },
+            {
+              "name": "scenario sensitivity 0.079/0.018",
+              "actual": "23.686210891939576760788696347422726093628209701698",
+              "expected": "23.68621089193957676078869636",
+              "pass": true
+            },
+            {
+              "name": "scenario sensitivity 0.079/0.022",
+              "actual": "24.453918175858619745892645763601725436345345151065",
+              "expected": "24.45391817585861974589264576",
+              "pass": true
+            },
+            {
+              "name": "scenario sensitivity 0.085/0.01",
+              "actual": "20.201715478226108046874059610959949328651131951071",
+              "expected": "20.20171547822610804687405960",
+              "pass": true
+            },
+            {
+              "name": "scenario sensitivity 0.085/0.018",
+              "actual": "21.143331471987570590949142789619940267575678231879",
+              "expected": "21.14333147198757059094914279",
+              "pass": true
+            },
+            {
+              "name": "scenario sensitivity 0.085/0.022",
+              "actual": "21.693337403227308596344937499015524122211062435435",
+              "expected": "21.69333740322730859634493750",
+              "pass": true
+            },
+            {
+              "name": "WACC change",
+              "actual": "0.005",
+              "expected": ".005",
+              "pass": true
+            },
+            {
+              "name": "2025 revenue",
+              "actual": "119338",
+              "expected": "119338",
+              "pass": true
+            },
+            {
+              "name": "2025 ebit",
+              "actual": "13843.208",
+              "expected": "13843.208",
+              "pass": true
+            },
+            {
+              "name": "2025 cash_tax",
+              "actual": "1702.714584",
+              "expected": "1702.714584",
+              "pass": true
+            },
+            {
+              "name": "2025 delta_nwc",
+              "actual": "5977",
+              "expected": "5977",
+              "pass": true
+            },
+            {
+              "name": "2025 da",
+              "actual": "5304.2",
+              "expected": "5304.2",
+              "pass": true
+            },
+            {
+              "name": "2025 capex",
+              "actual": "5400",
+              "expected": "5400.0",
+              "pass": true
+            },
+            {
+              "name": "2026 revenue",
+              "actual": "122498",
+              "expected": "122498",
+              "pass": true
+            },
+            {
+              "name": "2026 ebit",
+              "actual": "14699.760",
+              "expected": "14699.760",
+              "pass": true
+            },
+            {
+              "name": "2026 cash_tax",
+              "actual": "1808.070480",
+              "expected": "1808.070480",
+              "pass": true
+            },
+            {
+              "name": "2026 delta_nwc",
+              "actual": "99",
+              "expected": "99",
+              "pass": true
+            },
+            {
+              "name": "2026 da",
+              "actual": "5847.6",
+              "expected": "5847.6",
+              "pass": true
+            },
+            {
+              "name": "2026 capex",
+              "actual": "6000",
+              "expected": "6000.0",
+              "pass": true
+            },
+            {
+              "name": "2027 revenue",
+              "actual": "125438",
+              "expected": "125438",
+              "pass": true
+            },
+            {
+              "name": "2027 ebit",
+              "actual": "15303.436",
+              "expected": "15303.436",
+              "pass": true
+            },
+            {
+              "name": "2027 cash_tax",
+              "actual": "1882.322628",
+              "expected": "1882.322628",
+              "pass": true
+            },
+            {
+              "name": "2027 delta_nwc",
+              "actual": "535",
+              "expected": "535",
+              "pass": true
+            },
+            {
+              "name": "2027 da",
+              "actual": "6296.4",
+              "expected": "6296.4",
+              "pass": true
+            },
+            {
+              "name": "2027 capex",
+              "actual": "4800",
+              "expected": "4800.0",
+              "pass": true
+            },
+            {
+              "name": "attribution sum",
+              "actual": "-2.303611621538538335359521325",
+              "expected": "-2.303611621538538335359521326",
+              "pass": true
+            },
+            {
+              "name": "same absolute grid",
+              "actual": {
+                "wacc": [
+                  "0.075",
+                  "0.079",
+                  "0.085"
+                ],
+                "growth": [
+                  "0.01",
+                  "0.018",
+                  "0.022"
+                ]
+              },
+              "expected": {
+                "wacc": [
+                  "0.075",
+                  "0.079",
+                  "0.085"
+                ],
+                "growth": [
+                  "0.01",
+                  "0.018",
+                  "0.022"
+                ]
+              },
+              "pass": true
+            },
+            {
+              "name": "ordered attribution",
+              "actual": [
+                "discount.wacc",
+                "forecast.0.capex",
+                "forecast.1.capex",
+                "forecast.2.capex",
+                "forecast.0.da",
+                "forecast.1.da",
+                "forecast.2.da"
+              ],
+              "expected": [
+                "discount.wacc",
+                "forecast.0.capex",
+                "forecast.1.capex",
+                "forecast.2.capex",
+                "forecast.0.da",
+                "forecast.1.da",
+                "forecast.2.da"
+              ],
+              "pass": true
+            },
+            {
+              "name": "only seven numerical inputs changed",
+              "actual": [
+                "discount.wacc",
+                "forecast.0.capex",
+                "forecast.0.da",
+                "forecast.1.capex",
+                "forecast.1.da",
+                "forecast.2.capex",
+                "forecast.2.da"
+              ],
+              "expected": [
+                "discount.wacc",
+                "forecast.0.capex",
+                "forecast.0.da",
+                "forecast.1.capex",
+                "forecast.1.da",
+                "forecast.2.capex",
+                "forecast.2.da"
+              ],
+              "pass": true
+            },
+            {
+              "name": "CSV baseline FCFF 2025",
+              "actual": "6485.493416",
+              "expected": "6485.493416",
+              "pass": true
+            },
+            {
+              "name": "CSV updated FCFF 2025",
+              "actual": "6067.693416",
+              "expected": "6067.693416",
+              "pass": true
+            },
+            {
+              "name": "CSV FCFF change 2025",
+              "actual": "-417.8000000000002",
+              "expected": "-417.800000",
+              "pass": true
+            },
+            {
+              "name": "CSV baseline FCFF 2026",
+              "actual": "13108.68952",
+              "expected": "13108.689520",
+              "pass": true
+            },
+            {
+              "name": "CSV updated FCFF 2026",
+              "actual": "12640.28952",
+              "expected": "12640.289520",
+              "pass": true
+            },
+            {
+              "name": "CSV FCFF change 2026",
+              "actual": "-468.39999999999964",
+              "expected": "-468.400000",
+              "pass": true
+            },
+            {
+              "name": "CSV baseline FCFF 2027",
+              "actual": "14610.113372",
+              "expected": "14610.113372",
+              "pass": true
+            },
+            {
+              "name": "CSV updated FCFF 2027",
+              "actual": "14382.513372",
+              "expected": "14382.513372",
+              "pass": true
+            },
+            {
+              "name": "CSV FCFF change 2027",
+              "actual": "-227.60000000000036",
+              "expected": "-227.600000",
+              "pass": true
+            }
+          ]
+        },
+        "finance_checks": {
+          "source_inputs": "inherited_C3_pass",
+          "relative_update_math": "pass",
+          "same_absolute_grid": "pass",
+          "sequence_attribution": "pass",
+          "no_reread": "pass",
+          "calculator_reuse": "pass",
+          "report_matches_model": "pass"
+        },
+        "issues": [
+          {
+            "severity": "minor",
+            "kind": "heatmap_contrast",
+            "evidence": "Actual paired PNG has dark text on the darkest green cells and horizontal grid lines through some labels. Colorbar is outside the charts; no overlap."
+          },
+          {
+            "severity": "minor",
+            "kind": "redundant_csv_name",
+            "evidence": "The extra file 伊利_DCF两版逐年预测输入结果.csv contains baseline rows only despite its name. Both complete versions are separately delivered in base/scenario input and forecast CSVs and models.json."
+          }
+        ],
+        "chart_review": "Inspected final PNG, script, report and CSV: same absolute grid and normalization, correct units and numbers. One sandbox execution directly reads saved model revisions and comparison.",
+        "limitations": [
+          "A correct update under an explicit ROIC terminal method need not match the generic baseline last-FCFF-growth valuation.",
+          "Remaining chart contrast and redundant-file labeling issues are retained; no claim of perfect delivery."
+        ]
+      }
+    }
+  ],
+  "interruptedAttempts": [],
+  "interruptedFirstAttempt": null,
+  "limits": [
+    "Development regression on two previously used documents, one run per arm per task; not held out or statistically significant.",
+    "Same model/router policy; actual reasoning efforts recorded per request, provider cache warmth not controlled.",
+    "A reads raw source; B/C have identical frozen prepared records. Ingestion cost excluded from analysis and no new ingestion is requested."
+  ]
+}

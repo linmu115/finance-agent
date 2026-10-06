@@ -88,14 +88,14 @@ test('model import refuses missing selector, ambiguous inputs, wrong kind and un
  const notScenario=await artifacts.save('p',{kind:'dcf',title:'Wrong source',dependencies:[],result:result()});
  await assert.rejects(()=>workspace.model('p',{title:'a',kind:'dcf',source_model:{artifact_id:notScenario.id,variant:'scenario'}}),/制造业情景/);
  const empty=await artifacts.save('p',{kind:'manufacturing_scenario',title:'Missing output',dependencies:[],result:{}});
- await assert.rejects(()=>workspace.model('p',{title:'a',kind:'dcf',source_model:{artifact_id:empty.id,variant:'scenario'}}),/未保存可导入/);
+ await assert.rejects(()=>workspace.model('p',{title:'a',kind:'dcf',source_model:{artifact_id:empty.id,variant:'scenario'}}),/没有可复用输入/);
  assert.equal(calls.filter((c:any)=>c.name==='evaluate_research_model').length,0);
 }));
 
-test('conflicting inherited fixed versions and self import are rejected without silent upgrade',async()=>fixture(async({workspace,artifacts,scenario,calls}:any)=>{
+test('conflicting inherited fixed versions and in-place kind changes are rejected',async()=>fixture(async({workspace,artifacts,scenario,calls}:any)=>{
  const bad=await artifacts.save('p',{...scenario,parent_revision_id:scenario.revision_id,dependencies:[{kind:'document',id:'d1',version:'v1'},{kind:'document',id:'d1',version:'v2'}]},scenario.id);
  await assert.rejects(()=>workspace.model('p',{title:'Conflicted',kind:'dcf',source_model:{artifact_id:bad.id,variant:'scenario'}}),/固定版本冲突/);
- await assert.rejects(()=>workspace.model('p',{title:'Self',kind:'dcf',source_model:{artifact_id:scenario.id,revision_id:scenario.revision_id,variant:'scenario'},artifact_id:scenario.id,parent_revision_id:bad.revision_id}),/不能依赖自身/);
+ await assert.rejects(()=>workspace.model('p',{title:'Self',kind:'dcf',source_model:{artifact_id:scenario.id,revision_id:scenario.revision_id,variant:'scenario'},artifact_id:scenario.id,parent_revision_id:bad.revision_id}),/不能更改原成果类型/);
  assert.equal(calls.filter((c:any)=>c.name==='evaluate_research_model').length,0);
 }));
 
@@ -134,7 +134,7 @@ test('report rejects wrong project or artifact revision and contradictory fixed 
 
 test('public schema shows exact import selectors, one-of input and practical citation paths',()=>{
  const model=ARTIFACT_TOOLS.find(t=>t.name==='run_financial_model')!;
- assert.deepEqual((model.inputSchema as any).properties.source_model.required,['artifact_id','variant']);
+ assert.deepEqual((model.inputSchema as any).properties.source_model.required,['artifact_id']);
  assert.equal((model.inputSchema as any).oneOf.length,2);
  const report=JSON.stringify(reportSchema('investment_memo'));
  assert.match(report,/revision_id/);assert.match(report,/tables\.scenario\[0\]\.scenario_ebit/);

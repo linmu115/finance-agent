@@ -51,7 +51,7 @@ export function installWorkspaceApi(app:Express,service:FinanceService,options:{
   app.get('/api/projects/:projectId/'+endpoint,route(async(req,res)=>res.json((await service.call(tool,{project_id:validId(req.params.projectId)})).data)));
  }
  app.get('/api/projects/:projectId/documents/:documentId/normalization',route(async(req,res)=>{
-  res.json((await service.call('get_normalization_details',{project_id:validId(req.params.projectId),document_id:validId(req.params.documentId),limit:Math.min(20,Math.max(1,Number(req.query.limit)||20)),offset:Math.max(0,Number(req.query.offset)||0),...(req.query.table_id?{table_id:String(req.query.table_id)}:{})})).data);
+  res.json((await service.call('get_normalization_details',{project_id:validId(req.params.projectId),document_id:validId(req.params.documentId),limit:Math.min(20,Math.max(1,Number(req.query.limit)||20)),offset:Math.max(0,Number(req.query.offset)||0),review_only:req.query.review_only==='true',...(req.query.query?{query:String(req.query.query)}:{}),...(req.query.table_id?{table_id:String(req.query.table_id)}:{})})).data);
  }));
  app.get('/api/projects/:projectId/financial-data',route(async(req,res)=>{
   const filters=req.query.filters?JSON.parse(String(req.query.filters)):{};
@@ -59,7 +59,7 @@ export function installWorkspaceApi(app:Express,service:FinanceService,options:{
   const limit=Math.min(200,Math.max(1,Number(req.query.limit)||200));
   const result=await service.call('query_financial_data',{project_id:validId(req.params.projectId),filters,limit,offset:req.query.format==='csv'?0:Math.max(0,Number(req.query.offset)||0)});
   if(req.query.format!=='csv'){res.json(result.data);return;}
-  const columns=['company','label','metric','statement','period','period_start','period_end','scope','currency','unit_kind','value','raw_value','raw_unit','normalized_unit','numeric_span','version','dimensions','document_id','source_ref'];
+  const columns=['company','label','metric','statement','period','period_start','period_end','scope','currency','unit_kind','value','raw_value','raw_unit','normalized_unit','numeric_span','version','dimensions','quality','document_id','source_ref'];
   const items=[...(result.data.items||[])];
   let offset=items.length;
   while(offset<result.data.total){const more=await service.call('query_financial_data',{project_id:req.params.projectId,filters,limit:200,offset});if(!more.data.items?.length)break;items.push(...more.data.items);offset=items.length;}

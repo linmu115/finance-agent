@@ -7,6 +7,43 @@ import {ArtifactStore,ResearchWorkspace,applyCorrections,artifactCsv,reportSchem
 import {ResearchStore} from '../server/research.js';
 import {setTimeout as delay} from 'node:timers/promises';
 
+test('record bindings persist into model reuse; overrides become assumptions and keep prior revision immutable',async()=>{
+ const dir=await mkdtemp(path.join(tmpdir(),'research-bound-model-'));try{
+ const calls:{name:string;args:any}[]=[];
+ const svc:any={call:async(name:string,args:any)=>{
+  calls.push({name,args:structuredClone(args)});
+  let data:any={version:'v1',text:'披露营业收入120百万元'};
+  if(name==='resolve_model_inputs'){
+   const spec=structuredClone(args.spec);spec.base.revenue='120';
+   spec.source_refs={'base.revenue':[{kind:'document',id:'doc1',locator:'page:1'}]};
+   spec.input_basis={'base.revenue':{basis:'disclosed',source_kind:'disclosed_actual'}};
+   data={spec,bindings:[{path:'base.revenue',record_id:'f1',record_type:'fact',value:'120',scale:'1000000'}]};
+  }else if(name==='evaluate_research_model')data={tables:{},results:{value_per_share:args.spec.forecast[0].capex_ratio}};
+  else if(name==='compare_research_models')data={changed_inputs:[{path:'forecast.0.capex_ratio',before:args.baseline.forecast[0].capex_ratio,after:args.scenario.forecast[0].capex_ratio}]};
+  return {status:'ok',data};
+ }};
+ const store=new ArtifactStore(dir),ws=new ResearchWorkspace(svc,store);
+ const original=await ws.model('p',{kind:'dcf',title:'基准',spec:{currency:'CNY',base:{revenue:'0'},forecast:[{capex_ratio:'0.05'}]},bindings:{'base.revenue':{fact_id:'f1',scale:'1000000'}}});
+ assert.equal(original.spec.base.revenue,'120');assert.equal(original.input_bindings[0].record_id,'f1');
+ assert.equal(calls.find(c=>c.name==='resolve_model_inputs')!.args.project_id,'p');
+ const direct=await ws.model('p',{kind:'dcf',title:'直接输入记录',spec:{currency:'CNY',base:{revenue:{fact_id:'f1',scale:'1000000'}},forecast:[{capex_ratio:'0.05'}]}});
+ assert.equal(direct.spec.base.revenue,'120');assert.equal(direct.input_bindings[0].record_id,'f1');
+ assert.deepEqual(calls.filter(c=>c.name==='resolve_model_inputs').at(-1)!.args.bindings,{'base.revenue':{fact_id:'f1',scale:'1000000'}});
+ await assert.rejects(()=>ws.model('p',{kind:'dcf',title:'冲突',spec:{base:{revenue:{fact_id:'f1'}}},bindings:{'base.revenue':{fact_id:'f2'}}}),/同一输入指定了不同记录/);
+ const changed=await ws.model('p',{kind:'dcf',title:'情景',artifact_id:original.id,source_model:{artifact_id:original.id,revision_id:original.revision_id},overrides:{'forecast.0.capex_ratio':'0.08'}});
+ assert.equal(changed.parent_revision_id,original.revision_id);
+ assert.equal(changed.spec.input_basis['forecast.0.capex_ratio'].basis,'assumption');
+ assert.equal(changed.input_bindings[0].record_id,'f1');
+ assert.equal((await store.get('p',original.id,original.revision_id)).spec.forecast[0].capex_ratio,'0.05');
+ const compare=await ws.compare('p',{baseline:{artifact_id:original.id,revision_id:original.revision_id},scenario:{artifact_id:changed.id,revision_id:changed.revision_id}});
+ assert.deepEqual(compare.changed_inputs,[{path:'forecast.0.capex_ratio',before:'0.05',after:'0.08'}]);
+ const replacement=await ws.model('p',{kind:'dcf',title:'收入假设',source_model:{artifact_id:original.id,revision_id:original.revision_id},overrides:{'base.revenue':'150'}});
+ assert.equal(replacement.input_bindings?.length||0,0);
+ assert.equal(replacement.spec.source_refs['base.revenue'],undefined);
+ assert.equal(replacement.spec.input_basis['base.revenue'].basis,'assumption');
+ }finally{await rm(dir,{recursive:true,force:true});}
+});
+
 test('report corrections apply exact offsets and preserve truthful unmodified content',()=>{
  const original='收入为100万元。现金流改善属于分析判断。';
  const result=applyCorrections({original_text:original,issues:[{id:'i1',start:3,end:6,original:'100',replacement:'120',category:'number',reason:'原表披露120',evidence:[{kind:'document',id:'d',locator:'page:1'}]}],verified_claims:[]});

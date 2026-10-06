@@ -12,5 +12,14 @@ class YearUnitTests(unittest.TestCase):
         self.assertEqual(extended_unit_info("万元")[1:],(Decimal(10000),"CNY"))
         self.assertEqual(extended_unit_info("%")[1:],(Decimal(1),"percent"))
 
+    def test_english_statement_magnitudes_and_currency_are_independent(self):
+        for spelling,factor,currency in [("RMB’000",1000,"CNY"),("HK$'000",1000,"HKD"),
+                ("USD (000s)",1000,"USD"),("CNY'000,000",1000000,"CNY"),
+                ("USD mn",1000000,"USD"),("EUR bn",1000000000,"EUR"),("RMB",1,"CNY")]:
+            with self.subTest(unit=spelling):
+                self.assertEqual(extended_unit_info(spelling)[1:],(Decimal(factor),currency))
+        for spelling in ["RMB'00","USD unknown_scale"]:
+            self.assertEqual(extended_unit_info(spelling),(None,None,"unknown"))
+
 
 if __name__=="__main__":unittest.main()

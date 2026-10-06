@@ -1,9 +1,12 @@
 """Actual stdio protocol smoke test, not direct Python method substitution."""
 import asyncio
 import os
+import json
+import sqlite3
 import sys
 import tempfile
 import unittest
+from contextlib import closing
 from pathlib import Path
 from mcp import ClientSession,StdioServerParameters
 from mcp.client.stdio import stdio_client
@@ -20,6 +23,18 @@ class MCPProtocolTest(unittest.IsolatedAsyncioTestCase):
                     self.assertIn("get_financial_metrics",[t.name for t in tools.tools])
                     created=await session.call_tool("create_project",{"project_id":"proto","name":"Protocol test"})
                     self.assertEqual(created.structuredContent["status"],"ok")
+                    # Real wire error must carry match information, not just ValueError.
+                    prior='f'*32
+                    export=Path(root)/'exports'/'proto'/prior;export.mkdir(parents=True)
+                    (export/'analysis.py').write_text('print(1)\nprint(1)',encoding='utf-8')
+                    (export/'analysis_inputs.json').write_text('{}',encoding='utf-8')
+                    with closing(sqlite3.connect(Path(root)/'finance.sqlite')) as db:
+                        db.execute('INSERT INTO analysis_jobs VALUES(?,?,?,?,?)',(prior,'proto',json.dumps({'status':'failed'}),'fixture','fixture'))
+                        db.commit()
+                    mismatch=(await session.call_tool('run_analysis',{'project_id':'proto','source_run_id':prior,'edits':[{'before':'print(1)','after':'print(2)'}]})).structuredContent
+                    self.assertEqual(mismatch['status'],'error')
+                    self.assertIn('edit 1 matched 2 occurrences',mismatch['data']['error'])
+                    self.assertEqual(mismatch['data']['details']['matches'],2)
                     path=Path(root)/"uploads"/"protocol.csv"
                     path.write_text("指标,2024年,2023年,单位\n营业收入,12,10,万元\n",encoding="utf-8")
                     incoming=await session.call_tool("ingest_document",{"project_id":"proto","path":str(path),"original_name":"protocol.csv"})
@@ -35,4 +50,3 @@ class MCPProtocolTest(unittest.IsolatedAsyncioTestCase):
                     self.assertEqual(failed["status"],"error")
 
 if __name__=="__main__":unittest.main()
-

@@ -34,6 +34,12 @@ def safe_api_url(url):
         raise ValueError("api_requires_https_or_loopback")
     return url.rstrip("/")
 
+class AnalysisEditError(ValueError):
+    def __init__(self, code, index, matches):
+        super().__init__(code)
+        self.details = {'edit_index': index, 'matches': matches,
+                        'hint': 'Use exact text from analysis.py; replace_all=true replaces every match. To rerun unchanged code, omit edits.'}
+
 class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaningMixin, ProcessingMixin):
     def __init__(self, data_dir):
         self.store = Store(data_dir)
@@ -334,14 +340,15 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
     def calculate_financial_metrics(self, project_id, operation, inputs):
         self.store.project(project_id)
         if not isinstance(inputs,dict):raise ValueError("inputs_require_object")
-        refs=[]
-        def num(key):
-            val=inputs.get(key)
-            if isinstance(val,dict) and "fact_id" in val:
+        refs=[];resolved={}
+        def num(key, val=None):
+            if val is None:val=inputs.get(key)
+            if isinstance(val,dict) and ('fact_id' in val or 'record_id' in val):
+                from .model_inputs import read_record
                 with self.store.connect() as db:
-                    row=db.execute("SELECT value,source_json FROM current_financial_facts WHERE fact_id=? AND project_id=?",(val["fact_id"],project_id)).fetchone()
-                if not row:raise ValueError("fact_not_found_in_project")
+                    row=read_record(db,project_id,val)
                 refs.append(json.loads(row["source_json"]))
+                resolved[key]={k:row[k] for k in ('fact_id','record_id','value','currency','period','scope','data_kind') if k in row}
                 val=row["value"]
             number=decimal_value(val)
             if number is None:raise ValueError("invalid_numeric_input_"+key)
@@ -364,11 +371,10 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
                 formula=f"a {dict(add='+',subtract='-',multiply='*',divide='/')[operation]} b";unit=inputs.get("unit","number")
             elif operation=="sum":
                 if not isinstance(inputs.get("values"),list) or not 1<=len(inputs["values"])<=10000:raise ValueError("invalid_values")
-                vals=[decimal_value(v) for v in inputs["values"]]
-                if None in vals:raise ValueError("invalid_numeric_value")
+                vals=[num('values.'+str(i),v) for i,v in enumerate(inputs['values'])]
                 value=sum(vals,Decimal(0));formula="sum(values)";unit=inputs.get("unit","number")
             else:raise ValueError("unsupported_operation")
-        return response({"operation":operation,"value":number_text(value),"unit":unit,"formula":formula,"inputs":inputs},refs)
+        return response({"operation":operation,"value":number_text(value),"unit":unit,"formula":formula,"inputs":inputs,'resolved_inputs':resolved},refs)
 
     def search_evidence(self, project_id, query, company=None, year=None, limit=8, filters=None, offset=0):
         self.store.project(project_id)
@@ -529,17 +535,38 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             self.sandbox=create_runner(self.store.root/"analysis")
         return self.sandbox
 
-    def run_analysis(self, project_id, code, document_ids=None, timeout_seconds=120, raw_only=False):
+    def run_analysis(self, project_id, code=None, document_ids=None, timeout_seconds=120, raw_only=False, financial_tools=True,
+                     model_refs=None, comparisons=None, source_run_id=None, edits=None, report=None):
         self.store.project(project_id)
+        previous=None
+        if source_run_id:
+            self._analysis_state(project_id,source_run_id)
+            from .model_delivery import safe_name
+            previous=self.store.root/'exports'/project_id/safe_name(source_run_id)
+            if code is None:code=(previous/'analysis.py').read_text(encoding='utf-8')
+            metadata=json.loads((previous/'analysis_inputs.json').read_text(encoding='utf-8')) if (previous/'analysis_inputs.json').exists() else {}
+            if document_ids is None:document_ids=metadata.get('document_ids')
+            if model_refs is None:model_refs=metadata.get('model_refs')
+            if comparisons is None:comparisons=metadata.get('comparisons')
+            if report is None:report=metadata.get('report')
+        if code is None and report is not None:code='pass'
+        if edits and not source_run_id:raise ValueError('edits_require_source_run_id')
+        for index,edit in enumerate(edits or [],1):
+            before,after=edit['before'],edit['after']
+            matches=code.count(before) if before else 0
+            if not matches or (matches!=1 and not edit.get('replace_all',False)):
+                raise AnalysisEditError('edit_must_match_once',index,matches)
+            if before==after:raise AnalysisEditError('edit_makes_no_change',index,matches)
+            code=code.replace(before,after,-1 if edit.get('replace_all',False) else 1)
         if not isinstance(raw_only,bool):raise ValueError("invalid_analysis_input_mode")
         if not isinstance(code,str) or not 1<=len(code)<=100000:raise ValueError("invalid_analysis_code")
         if isinstance(timeout_seconds,bool) or not isinstance(timeout_seconds,int) or not 1<=timeout_seconds<=120:
             raise ValueError("analysis_timeout_must_be_1_to_120")
         ids=document_ids or [d["document_id"] for d in self.list_documents(project_id)["data"]["items"]]
-        if len(ids)>20:raise ValueError("too_many_analysis_documents")
         run_id=uuid.uuid4().hex
         export=self.store.root/"exports"/project_id/run_id
         export.mkdir(parents=True,exist_ok=True)
+        (export/'analysis_inputs.json').write_text(dumps({'document_ids':ids,'model_refs':model_refs or {},'comparisons':comparisons or {},'source_run_id':source_run_id,'report':report}),encoding='utf-8')
         records=[];pages=[]
         for document_id in ids:
             doc=self.store.document(project_id,document_id)
@@ -575,6 +602,23 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
                     if found['next_offset'] is None:break
                     start=found['next_offset']
         research_path=export/'research_records.json';research_path.write_text(dumps(research),encoding='utf-8')
+        inputs={"tables.json":table_path,"facts.json":facts_path,"pages.json":pages_path,'research_records.json':research_path}
+        script=export/'analysis.py';script.write_text(code,encoding='utf-8');inputs['analysis.py']=script
+        plot_runtime=export/'plot_runtime.py';shutil.copyfile(Path(__file__).with_name('plot_runtime.py'),plot_runtime);inputs['plot_runtime.py']=plot_runtime
+        for name in ('analysis_report.py','model_units.py','analysis_report.md'):
+            target=export/name;shutil.copyfile(Path(__file__).with_name(name),target);inputs[name]=target
+        if report is not None:
+            target=export/'analysis_report.json';target.write_text(dumps(report),encoding='utf-8');inputs['analysis_report.json']=target
+        if not raw_only and financial_tools:
+            # Trusted, versioned helpers are read-only inputs, never host execution.
+            # Keep the generic Pi comparison free of domain-specific templates.
+            for name in ("finance_charts.py", "finance_charts.md"):
+                target=export/name
+                shutil.copyfile(Path(__file__).with_name(name),target)
+                inputs[name]=target
+            from .model_delivery import select_models,prepare_delivery
+            models=select_models(self.store.root,project_id,model_refs or {})
+            inputs.update(prepare_delivery(export,models,comparisons or {}))
         runner=self._runner()
         available=runner.availability()
         if not available.get("available"):
@@ -583,9 +627,13 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             return response(result,status="error")
         self._save_analysis_state(project_id,run_id,{"run_id":run_id,"project_id":project_id,"status":"queued","artifacts":[]})
         self.analysis_flags[run_id]=threading.Event()
-        self.analysis_futures[run_id]=self.analysis_pool.submit(self._analysis_job,runner,project_id,run_id,code,
-                                                              {"tables.json":table_path,"facts.json":facts_path,"pages.json":pages_path,'research_records.json':research_path},timeout_seconds)
-        return response({"run_id":run_id,"state":"queued"},status="accepted")
+        from .plot_runtime import LAUNCH
+        launch=LAUNCH if raw_only or not financial_tools else LAUNCH.replace('setup()\n','setup()\nimport finance_charts\nfinance_charts.configure()\nfrom plot_runtime import deliver_models\ndeliver_models()\n')
+        self.analysis_futures[run_id]=self.analysis_pool.submit(self._analysis_job,runner,project_id,run_id,launch,
+                                                              inputs,timeout_seconds)
+        return response({"run_id":run_id,"state":"queued",'source_run_id':source_run_id,
+                         'model_refs':model_refs or {},'model_data':'/input/models.json' if model_refs else None,
+                         'model_bundle':'model_bundle.zip' if model_refs else None},status="accepted")
 
     def _save_analysis_state(self, project_id, run_id, state):
         state=dict(state);state["state"]=state.get("status",state.get("state"))

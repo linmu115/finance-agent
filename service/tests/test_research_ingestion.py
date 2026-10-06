@@ -59,7 +59,7 @@ class ResearchIngestionTests(unittest.TestCase):
         return rid
     def finish_text(self,text='Margins recover'):
         return self.s.save_research_claims('p',self.pid,self.did,[
-            {'page':1,'verdict':'accepted','note':'Metadata and numeric table; no additional viewpoint.','claims':[]},
+            {'page':1,'empty_reason':'Metadata and numeric table; no additional viewpoint.','claims':[]},
             {'page':2,'verdict':'accepted','note':'Reviewed author judgement and attributed quote.','claims':[
                 {'kind':'opinion','text':text,'quote':'Alpha margins should recover.','entity':{'name':'Alpha'},'attribution':{'kind':'author'}},
                 {'kind':'company_guidance','text':'Management expects better demand','quote':'Management of Alpha says demand is improving.',
@@ -72,12 +72,28 @@ class ResearchIngestionTests(unittest.TestCase):
         self.assertEqual(self.s.query_financial_data('p')['data']['total'],0)
         self.assertEqual(got['routing']['documents'][0]['pages'],2)
 
+    def test_partial_claim_batch_saves_valid_records_and_retains_failed_candidates(self):
+        pages=[{'page':2,'claims':[
+            {'kind':'opinion','text':'利润率有望修复','quote':'Alpha margins should recover.','entity':'Alpha'},
+            {'kind':'risk','text':'竞争风险','quote':'Beta competition is a risk.','entity':'Beta'},
+            {'kind':'opinion','text':'无证据的说法','quote':'Invented quotation','entity':'Alpha'}]}]
+        result=self.s.save_research_claims('p',self.pid,self.did,pages)['data']
+        self.assertEqual(result['pages'][0]['content_state'],'partial')
+        self.assertEqual(len(result['pages'][0]['candidate_claims']),1)
+        claims=self.s.query_research_records('p')['data']['items']
+        self.assertEqual(len(claims),2)
+        empty=self.s.save_research_claims('p',self.pid,self.did,[{'page':2,'claims':[]}])['data']
+        self.assertEqual(empty['pages'][0]['content_state'],'unresolved')
+        self.assertEqual(len(self.s.query_research_records('p')['data']['items']),2)
+        status=self.s.get_research_ingestion_status('p',self.did)['data']
+        self.assertIn(2,status['text_coverage']['pending_pages'])
+
     def test_force_rechecks_pages_without_erasing_records(self):
         self.commit();self.finish_text()
         fresh=self.s.begin_script_cleaning('p',[self.did],'forced','fixture',force=True)['data']
         self.assertEqual(fresh['pending_pages'][self.did],[1,2])
         self.assertEqual(self.s.query_research_records('p')['data']['total'],6)
-        self.s.save_research_claims('p',fresh['processing_id'],self.did,[{'page':1,'verdict':'accepted','note':'Reviewed again','claims':[]}])
+        self.s.save_research_claims('p',fresh['processing_id'],self.did,[{'page':1,'empty_reason':'Metadata and numeric table only','claims':[]}])
         status=self.s._clean_state('p',fresh['processing_id'])
         self.assertEqual(status['documents'][0]['text_coverage']['pending_pages'],[2])
 
@@ -148,6 +164,11 @@ class ResearchIngestionTests(unittest.TestCase):
         self.assertTrue(any(i['reason']=='unresolved_currency' for i in check['tables'][0]['issues']))
         self.s.commit_cleaning_result('p',self.pid,rid,self.review)
         self.assertTrue(all(r['quality']=='needs_review' for r in self.s.query_research_records('p')['data']['items']))
+        pending=self.s.query_research_records('p',{'quality':'needs_review'})['data']
+        self.assertEqual(pending['total'],4)
+        self.assertTrue(all(r['currency']=='unknown' and r['raw_value'] for r in pending['items']))
+        self.assertEqual(self.s.query_research_records('p',{'quality':[]})['data']['total'],0)
+        self.assertEqual(self.s.query_research_records('q',{'quality':'needs_review'})['data']['total'],0)
     def test_mixed_table_once_separate_records_and_text_completion(self):
         rid=self.commit()
         self.assertEqual(self.s.query_financial_data('p')['data']['total'],0)
@@ -197,8 +218,10 @@ class ResearchIngestionTests(unittest.TestCase):
         self.finish_text('Reworded same original judgement')
         self.assertEqual(self.s.query_research_records('p')['data']['total'],2)
         self.assertEqual(self.s.query_research_records('p',{'include_history':True})['data']['total'],3)
-        with self.assertRaisesRegex(ValueError,'quote_not_in_source'):
-            self.s.save_research_claims('p',self.pid,self.did,[{'page':2,'verdict':'accepted','note':'test','claims':[{'kind':'opinion','text':'x','quote':'fabricated quote','entity':{'name':'Alpha'}}]}])
+        failed=self.s.save_research_claims('p',self.pid,self.did,[{'page':2,'claims':[{'kind':'opinion','text':'x','quote':'fabricated quote','entity':'Alpha'}]}])['data']
+        self.assertEqual(failed['pages'][0]['content_state'],'failed')
+        self.assertIn('quote_not_in_source',failed['pages'][0]['candidate_claims'][0]['error'])
+        self.assertIn(2,failed['pending_pages'][self.did])
         self.assertEqual(self.s.query_research_records('p')['data']['total'],2)
 
     def test_pdf_whitespace_quote_is_saved_as_exact_source_span(self):
@@ -265,6 +288,27 @@ class ResearchIngestionTests(unittest.TestCase):
         self.assertEqual(detail['destinations']['research_observations'],4)
         self.assertEqual(detail['destinations']['research_claims'],2)
         self.assertEqual(detail['research_total'],6)
+
+    def test_query_matches_independent_terms_and_preserves_scope_and_pagination(self):
+        self.commit()
+        found=self.s.query_research_records('p',{'document_id':self.did,'query':'revenue net_profit'},limit=2)['data']
+        self.assertEqual(found['total'],4)
+        self.assertEqual(found['next_offset'],2)
+        self.assertEqual(found['query_match'],'any_term')
+        rest=self.s.query_research_records('p',{'document_id':self.did,'query':'revenue net_profit'},offset=2,limit=2)['data']
+        self.assertEqual(len({x['record_id'] for x in found['items']+rest['items']}),4)
+        self.assertEqual(self.s.query_research_records('q',{'query':'revenue net_profit'})['data']['total'],0)
+        self.assertEqual(self.s.query_research_records('p',{'query':'%'})['data']['total'],0)
+
+    def test_financial_acronym_matches_stored_metric_without_new_ingestion(self):
+        payload=copy.deepcopy(self.payload)
+        payload['tables'][0]['rows'][0]['attributes']['metric']='free_cash_flow_firm'
+        self.commit(payload=payload)
+        got=self.s.query_research_records('p',{'query':'FCFF','record_type':'observation'})['data']
+        self.assertEqual(got['total'],2)
+        self.assertEqual({r['metric'] for r in got['items']},{'free_cash_flow_firm'})
+        self.assertIn('free_cash_flow_firm',got['query_terms'])
+        self.assertEqual(self.s.query_research_records('p',{'query':'企业自由现金流'})['data']['total'],2)
     def test_stale_concurrent_numeric_commit_rejected(self):
         first=self.job();second=self.job()
         self.s.get_cleaning_result('p',self.pid,first);self.s.get_cleaning_result('p',self.pid,second)
@@ -272,7 +316,7 @@ class ResearchIngestionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'target_changed'):self.s.commit_cleaning_result('p',self.pid,second,self.review)
     def test_unreadable_chart_is_finished_but_needs_review(self):
         self.commit()
-        result=self.s.save_research_claims('p',self.pid,self.did,[{'page':n,'claims':[],'verdict':'needs_review' if n==2 else 'accepted','note':'Unresolved chart readings' if n==2 else 'Only table'} for n in [1,2]])
+        result=self.s.save_research_claims('p',self.pid,self.did,[{'page':1,'claims':[],'empty_reason':'Only table'}, {'page':2,'claims':[],'verdict':'needs_review','note':'Unresolved chart readings'}])
         self.assertEqual(result['data']['state'],'needs_review')
         self.assertEqual(result['data']['pending_pages'][self.did],[])
 

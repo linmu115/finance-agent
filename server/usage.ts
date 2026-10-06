@@ -34,7 +34,18 @@ export function addUsage(target:UsageTotals,raw:any,known:boolean,phase:string,c
  }
 }
 export function aggregateAudit(rows:any[],config?:Partial<LlmConfig>){
- const totals=emptyUsage(),seen=new Set<string>();
- for(const row of rows){if(row.type!=='model_usage')continue;const d=row.data;if(!d?.requestId||seen.has(d.requestId))continue;seen.add(d.requestId);addUsage(totals,d.usage,d.usageKnown!==false,d.usagePhase||d.phase||'main',config);}
+ const totals=emptyUsage(),requests=new Map<string,any>(),settlements=new Map<string,any>();
+ for(const row of rows){
+  const d=row.data;if(!d?.requestId)continue;
+  if(row.type==='model_request')requests.set(d.requestId,d);
+  if(row.type==='model_usage'){
+   const previous=settlements.get(d.requestId);
+   if(!previous||previous.usageKnown===false)settlements.set(d.requestId,d);
+  }
+ }
+ for(const id of new Set([...requests.keys(),...settlements.keys()])){
+  const request=requests.get(id),settled=settlements.get(id);
+  addUsage(totals,settled?.usage,!!settled&&settled.usageKnown!==false,settled?.usagePhase||request?.usagePhase||settled?.phase||request?.phase||'main',config);
+ }
  return totals;
 }

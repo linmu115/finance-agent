@@ -117,12 +117,16 @@ try{
  const page=await reopened.call('get_source_page',{project_id:project,document_id:docId,page:1});
  assert.ok(page.data.text.length>50);
  console.log(JSON.stringify({version:APP_VERSION,pages:details.pages,tables:details.tables,facts_written:details.facts_written,reconnected:true,unicode_preserved:true}));
+ const deleted=await reopened.call('delete_library_document',{project_id:project,document_id:docId});
+ assert.ok(deleted.data.removed.pages>0);
+ const remaining=await reopened.call('list_documents',{project_id:project});
+ assert.equal(remaining.data.items.length,0);
 }finally{await reopened.close();}
 """
         result=run('bundled_stdio_parse_and_reconnect',[str(node),'--input-type=module','-e',script],timeout=240)
         report['stdio_result']=json.loads(result.splitlines()[-1])
-        run('packaged_dimension_and_dashboard_regressions',[str(python),'-B','-m','unittest','service.tests.test_script_cleaning','service.tests.test_asset_dashboard','-v'],timeout=240)
-        for filename in ['web/dist/index.html','skills/research-ingestion/SKILL.md','docs/START_AND_USE.md','paper/v0.2.0/finance-agent-technical-paper.md','paper/v0.2.0/finance-agent-technical-paper.pdf']:
+        run('packaged_dimension_and_dashboard_regressions',[str(python),'-B','-m','unittest','service.tests.test_script_cleaning','service.tests.test_asset_dashboard','service.tests.test_document_library.DocumentLibraryTests','-v'],timeout=240)
+        for filename in ['web/dist/index.html','skills/research-ingestion/SKILL.md','docs/START_AND_USE.md',f"paper/v{metadata['version']}/finance-agent-technical-paper.md",f"paper/v{metadata['version']}/finance-agent-technical-paper.pdf"]:
             check('included_'+filename,(package/filename).is_file() and (package/filename).stat().st_size>0)
         report['status']='passed'
     except BaseException as error:

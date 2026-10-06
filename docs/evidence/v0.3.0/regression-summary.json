@@ -1,0 +1,60 @@
+{
+  "node_tests": {
+    "passed": 184,
+    "failed": 0,
+    "log_sha256": "1e1ac225bcc5ad2f846d78ac8937babc2cfea12db21481df557e6ad86a0bbf2a"
+  },
+  "python_service_tests": {
+    "passed": 467,
+    "failed": 0,
+    "log_sha256": "0f42fc80e6467c2fa15557170198dee3d9e184f5c257d759b0b357f05108af4b"
+  },
+  "typecheck": "passed",
+  "production_build": "passed",
+  "browser_attachment_dashboard": {
+    "status": "passed",
+    "real_data_mutations": 0,
+    "api_fixtures": true,
+    "viewports": [
+      1440,
+      390
+    ],
+    "confirmation": true,
+    "deletions": 1,
+    "errors": []
+  },
+  "live_3001": {
+    "version": "0.3.0",
+    "health": "connected",
+    "read_only_dashboard_rows": 2,
+    "browser_errors": [],
+    "real_document_deletions": 0
+  },
+  "document_deletion": {
+    "temporary_fixtures": true,
+    "checks": [
+      "project boundary",
+      "all current and historical ingested rows",
+      "FTS cleanup",
+      "unrelated documents retained",
+      "re-upload creates new identity",
+      "running calculation rejects with transaction rollback",
+      "matching document confirmation",
+      "not exposed to model tool allowlist"
+    ]
+  },
+  "paper": {
+    "pages": 19,
+    "visual_review": "all pages reviewed",
+    "manifest": "paper/v0.3.0/paper-manifest.json"
+  },
+  "scope": {
+    "new_model_calls": 0,
+    "docker_or_wsl_started": false,
+    "new_financial_comparison": false,
+    "baseline_results": "docs/evidence/pi-finance-generalization-20261006/results.json"
+  },
+  "packaged_installation": "Verification is recorded separately in the Release deployment-verification.json after ZIP creation; these regression results alone do not prove a portable install.",
+  "version": "0.3.0",
+  "checked_at": "2026-10-06T08:08:20.256361+00:00"
+}

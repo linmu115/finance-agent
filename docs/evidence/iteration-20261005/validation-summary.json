@@ -1,0 +1,131 @@
+{
+  "verified_at": "2026-10-05T09:41:44.655477+00:00",
+  "scope": "confirmed 2026-10-05 finance iteration, local engineering validation",
+  "service": {
+    "port": 3001,
+    "ok": true,
+    "version": "0.2.0",
+    "service": "connected",
+    "modelConfigured": true
+  },
+  "tests": {
+    "node": {
+      "passed": 168,
+      "failed": 0
+    },
+    "python_full_suite": {
+      "passed": 416,
+      "failed": 0
+    },
+    "python_final_targeted": {
+      "passed": 12,
+      "failed": 0,
+      "note": "Includes the added profile metadata regression; overlaps with the full suite"
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "browser_widths": [
+      1440,
+      390
+    ],
+    "browser_errors": 0,
+    "browser_mutations": 0
+  },
+  "data_unchanged": {
+    "documents": {
+      "count": 2,
+      "sha256": "0c38f3a6be16e42ac5631ac2ec4574593aa3c8135a8609d9c0ad2d5a538f6e3d",
+      "unchanged": true
+    },
+    "pages": {
+      "count": 95,
+      "sha256": "d1e45c2690d27aae9fb51a8d6a7791944f70d5ed8b99676007cdffd9b6b5c6b7",
+      "unchanged": true
+    },
+    "source_tables": {
+      "count": 81,
+      "sha256": "179c45762db97b5856181347288db83fd6542ae6fcc9bee517c7120531e63c7f",
+      "unchanged": true
+    },
+    "facts": {
+      "count": 612,
+      "sha256": "59a74507de67d30f037997489905ecbd3e6ee03c75100a1d0a02370350c17d24",
+      "unchanged": true
+    },
+    "normalization_batches": {
+      "count": 73,
+      "sha256": "4705ef23c804464570a72e1040a685319152470f6e8d5b50bb64a10903ee1aa4",
+      "unchanged": true
+    },
+    "research_records": {
+      "count": 1076,
+      "sha256": "c692eac262f5da60745b7b177eeb94a36672d4afeaf666644a01a4ad0a3a6d0a",
+      "unchanged": true
+    },
+    "document_profiles": {
+      "count": 2,
+      "sha256": "58e35bad57d23370f4cd75ea4beabec3714a6a259afb0e3099a8f7e8a72963e4",
+      "unchanged": true
+    },
+    "research_page_reviews": {
+      "count": 38,
+      "sha256": "9f416966d84db2fd34d239c01e6902369b4dbe8e36ab887675a214e8b38ddafc",
+      "unchanged": true
+    },
+    "app_state": {
+      "count": 8,
+      "sha256": "01f3548262db06097a7e800973e23fd9bea3002679c42a3c32263c59ca511801",
+      "unchanged": true
+    }
+  },
+  "review_coverage": [
+    {
+      "kind": "broker_research",
+      "summary": {
+        "extraction_issues": 73,
+        "page_issues": 2,
+        "facts_needing_review": 0,
+        "records_needing_review": 99,
+        "pages_preserved": 38,
+        "tables_preserved": 25,
+        "tables_with_decisions": 23,
+        "pages_with_decisions": 38,
+        "review_items": 174
+      }
+    },
+    {
+      "kind": "financial_report",
+      "summary": {
+        "extraction_issues": 6,
+        "page_issues": 0,
+        "facts_needing_review": 0,
+        "records_needing_review": 0,
+        "pages_preserved": 57,
+        "tables_preserved": 56,
+        "tables_with_decisions": 50,
+        "pages_with_decisions": 0,
+        "review_items": 6
+      }
+    }
+  ],
+  "coverage_caution": "Review clues can overlap. Counts are not an error rate or an extraction accuracy score.",
+  "model_panel_verification": "Deterministic calculator fixture in private browser response; no existing artifact overwritten",
+  "charts": "Theme input export and trusted local sample rendering verified; live LLM adherence not tested",
+  "live_model_calls": 0,
+  "comparison": {
+    "output": "D:\\AI\\财报agent\\data\\evaluation\\pi-prepare-2026-10-05T09-40-59-518Z",
+    "status": "prepared_not_run",
+    "model": "deepseek-flash",
+    "sources": 2,
+    "sourceHashesVerified": true,
+    "codeSha256": "99b3ce0b7183f2ad049e8108f6f62b0db28927ba0f89b3956a6196f5b716f6f9",
+    "modelCalls": 0,
+    "note": "Prepared only, no comparison result. Existing PDFs are development materials, not a heldout set."
+  },
+  "remaining": [
+    "Paid model budget confirmation",
+    "Equal available isolated Python for both arms without starting WSL/Docker contrary to the user request",
+    "Live chart/answer behavior evaluation",
+    "Frozen heldout samples and human gold before formal experiment"
+  ]
+}

@@ -3,6 +3,15 @@ import path from 'node:path';
 import {stat} from 'node:fs/promises';
 import type {LlmConfig} from './types.js';
 
+// JSON mode belongs to the selected API, not the provider's hostname.
+export function jsonOutputPayload(payload:Record<string,unknown>,api:string){
+ if(api==='openai-responses'||api==='openai-codex-responses'||api==='azure-openai-responses'){
+  return {...payload,text:{...(payload.text as Record<string,unknown>|undefined),format:{type:'json_object'}}};
+ }
+ if(api==='openai-completions')return {...payload,response_format:{type:'json_object'}};
+ return payload;
+}
+
 export async function modelCatalogRevision(){
  return JSON.stringify(await Promise.all(['models.json','auth.json','models-store.json'].map(async name=>{
   const file=path.join(getAgentDir(),name);try{const info=await stat(file);return [file,info.mtimeMs,info.size];}catch(error){if((error as NodeJS.ErrnoException).code==='ENOENT')return [file,null];throw error;}

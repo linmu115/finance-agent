@@ -1,0 +1,351 @@
+{
+  "initial_tests": {
+    "node": {
+      "passed": 174,
+      "failed": 0
+    },
+    "python": {
+      "passed": 428,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "build": "passed"
+  },
+  "followup_targeted": {
+    "node": {
+      "passed": 18,
+      "failed": 0
+    },
+    "python": {
+      "cases": 35,
+      "initial_error": "MCP test fixture retained SQLite connection during Windows temp-directory cleanup",
+      "fix": "Close test fixture connection explicitly",
+      "rerun": "MCP case passed; other 34 previously passed"
+    },
+    "typecheck": "passed"
+  },
+  "runtime_integrity": {
+    "primary_files": 99,
+    "before_after_equal": true
+  },
+  "sandbox_smokes": {
+    "delivery-smoke.json": {
+      "run_id": "577bb31905554e32afcc8fd5e3374765",
+      "project_id": "analysis-delivery-smoke",
+      "status": "succeeded",
+      "exit_code": 0,
+      "artifacts": [
+        {
+          "name": "base_forecast.csv",
+          "size": 353,
+          "sha256": "4c5d5ae05dc6aaafd7677c75f585b35b3760b1a9bb30d664db325db8bfbd1101"
+        },
+        {
+          "name": "base_inputs.csv",
+          "size": 888,
+          "sha256": "4b482ff583dc28589dc482d436f51fb64866a0ffbd159c84b3a0e9fd7bc6f6b3"
+        },
+        {
+          "name": "base_sensitivity.csv",
+          "size": 1087,
+          "sha256": "608b93b2f0b664323688619a39c5f25ac0119444cc4756a34535b8b0881f5dee"
+        },
+        {
+          "name": "checks.json",
+          "size": 104,
+          "sha256": "7f6648baddada35469a2db3f0cb866e2ecdcbe1eeb7775f8df8570bcbb8532a2"
+        },
+        {
+          "name": "comparison_requests.json",
+          "size": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "name": "comparisons.json",
+          "size": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "name": "executed_script.py",
+          "size": 1300,
+          "sha256": "444fdfdbd994ff5a43428a609d6cf879eb2911041aec59e4ea33a91e9d727664"
+        },
+        {
+          "name": "model_bundle.zip",
+          "size": 27879,
+          "sha256": "eb3f8a117e9407ad323f2e2010f2a75119404206fdccd9bb4d0ef517a68e8c6c"
+        },
+        {
+          "name": "models.json",
+          "size": 11890,
+          "sha256": "c2444779f526c7f9dc149eb0f287886492a196be5fd80f0871d5fed1116613a6"
+        },
+        {
+          "name": "recomputed/README.txt",
+          "size": 215,
+          "sha256": "3c5bf461d6d0a3e06d5c95ce2cb392d70ca1229e8e72a7afd3d22d8047c4fd29"
+        },
+        {
+          "name": "recomputed/base_forecast.csv",
+          "size": 351,
+          "sha256": "00d0ecdc9923814c192bfcf409c891b8c0c56f5e11e915e43341a6ddc93ad1ab"
+        },
+        {
+          "name": "recomputed/base_inputs.csv",
+          "size": 888,
+          "sha256": "4b482ff583dc28589dc482d436f51fb64866a0ffbd159c84b3a0e9fd7bc6f6b3"
+        },
+        {
+          "name": "recomputed/base_recomputed.json",
+          "size": 9097,
+          "sha256": "7d8519fc8ba783cb2a3f43a8259b68ad4f2d7b95e36ba3fd3acd5bfdb16a1bd1"
+        },
+        {
+          "name": "recomputed/base_sensitivity.csv",
+          "size": 1080,
+          "sha256": "6ce2d225c13deebbfea96361ea2ef7891b3fb1bf5b562219e12d2130e50ae87b"
+        },
+        {
+          "name": "recomputed/comparison_requests.json",
+          "size": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "name": "recomputed/comparisons.json",
+          "size": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "name": "recomputed/finance_model_code.zip",
+          "size": 23266,
+          "sha256": "215ed568dabd1e50af7e6475b8c75aaff5d03c73a44186da27982d9084bf88b0"
+        },
+        {
+          "name": "recomputed/models.json",
+          "size": 11890,
+          "sha256": "c2444779f526c7f9dc149eb0f287886492a196be5fd80f0871d5fed1116613a6"
+        },
+        {
+          "name": "recomputed/recompute_models.py",
+          "size": 1147,
+          "sha256": "1fa22cf2d6463519acd8aab14b584a9dda8fb953b8c974638f5735d18f78f534"
+        },
+        {
+          "name": "sensitivity.png",
+          "size": 55977,
+          "sha256": "3c013b9aed493601140d848bc23a58ca9021740c70477ade2c90fe24cc52377b"
+        },
+        {
+          "name": "waterfall.png",
+          "size": 41208,
+          "sha256": "e38971f817363b65a3f1f45980050bd6d667f1ff1c10824477c39b6de1bd6c20"
+        }
+      ],
+      "error": null,
+      "image_id": "sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2",
+      "created_at": 1791220000.5959756,
+      "elapsed_seconds": 11.656,
+      "input_sha256": {
+        "models.json": "c2444779f526c7f9dc149eb0f287886492a196be5fd80f0871d5fed1116613a6",
+        "comparison_requests.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "comparisons.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "recompute_models.py": "1fa22cf2d6463519acd8aab14b584a9dda8fb953b8c974638f5735d18f78f534",
+        "base_inputs.csv": "4b482ff583dc28589dc482d436f51fb64866a0ffbd159c84b3a0e9fd7bc6f6b3",
+        "base_forecast.csv": "4c5d5ae05dc6aaafd7677c75f585b35b3760b1a9bb30d664db325db8bfbd1101",
+        "base_sensitivity.csv": "608b93b2f0b664323688619a39c5f25ac0119444cc4756a34535b8b0881f5dee",
+        "finance_model_code.zip": "215ed568dabd1e50af7e6475b8c75aaff5d03c73a44186da27982d9084bf88b0",
+        "model_bundle.zip": "eb3f8a117e9407ad323f2e2010f2a75119404206fdccd9bb4d0ef517a68e8c6c",
+        "analysis.py": "444fdfdbd994ff5a43428a609d6cf879eb2911041aec59e4ea33a91e9d727664",
+        "finance_charts.py": "49d0cb4fab74f2d42ece2c0b3b7215e646b6eaaf62034742a9f901c942467f12",
+        "plot_runtime.py": "68ee4c3ceab183bbe11e6dad72f145e53fa125431bd4b2368c966e9e7b8c4bf7"
+      },
+      "timeout_seconds": 120,
+      "owner_pid": 75940,
+      "owner_token": "134356936003233000",
+      "host_platform": "win32",
+      "host_name": "星尘",
+      "repo_digests": [
+        "finance-analysis@sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2"
+      ],
+      "code_sha256": "87bf9b32309716df3802034e0d7aa27bfc9e376b7f1cc5fc8145a18ea33a4bb1",
+      "started_at": 1791220002.9958813,
+      "execution_seconds": 5.25,
+      "oom_killed": false,
+      "stdout": "Recomputed saved model inputs and comparisons with the bundled original calculator.\n",
+      "stderr": "",
+      "container_removed": true,
+      "finished_at": 1791220012.2456663
+    },
+    "delivery-smoke-candidate.json": {
+      "run_id": "18616494a0c1457fbfb9f85cc52b496c",
+      "project_id": "analysis-delivery-smoke",
+      "status": "succeeded",
+      "exit_code": 0,
+      "artifacts": [
+        {
+          "name": "base_forecast.csv",
+          "size": 353,
+          "sha256": "4c5d5ae05dc6aaafd7677c75f585b35b3760b1a9bb30d664db325db8bfbd1101"
+        },
+        {
+          "name": "base_inputs.csv",
+          "size": 888,
+          "sha256": "4b482ff583dc28589dc482d436f51fb64866a0ffbd159c84b3a0e9fd7bc6f6b3"
+        },
+        {
+          "name": "base_sensitivity.csv",
+          "size": 1087,
+          "sha256": "608b93b2f0b664323688619a39c5f25ac0119444cc4756a34535b8b0881f5dee"
+        },
+        {
+          "name": "checks.json",
+          "size": 139,
+          "sha256": "4acd3ce63aec93604c05362606d2447263325483a66de41a11773ad0fc4e33a6"
+        },
+        {
+          "name": "comparison_requests.json",
+          "size": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "name": "comparisons.json",
+          "size": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "name": "executed_script.py",
+          "size": 1610,
+          "sha256": "38a9c26f10499777511a7129ef36cd5259c328320aaa6c7f799b0c4ebbac0011"
+        },
+        {
+          "name": "model_bundle.zip",
+          "size": 27879,
+          "sha256": "94880cd477c68abe88ceb8a99786991cab3e099ee5a2c311b68ed2b5e2e31310"
+        },
+        {
+          "name": "models.json",
+          "size": 11890,
+          "sha256": "c2444779f526c7f9dc149eb0f287886492a196be5fd80f0871d5fed1116613a6"
+        },
+        {
+          "name": "recomputed/README.txt",
+          "size": 215,
+          "sha256": "3c5bf461d6d0a3e06d5c95ce2cb392d70ca1229e8e72a7afd3d22d8047c4fd29"
+        },
+        {
+          "name": "recomputed/base_forecast.csv",
+          "size": 351,
+          "sha256": "00d0ecdc9923814c192bfcf409c891b8c0c56f5e11e915e43341a6ddc93ad1ab"
+        },
+        {
+          "name": "recomputed/base_inputs.csv",
+          "size": 888,
+          "sha256": "4b482ff583dc28589dc482d436f51fb64866a0ffbd159c84b3a0e9fd7bc6f6b3"
+        },
+        {
+          "name": "recomputed/base_recomputed.json",
+          "size": 9097,
+          "sha256": "7d8519fc8ba783cb2a3f43a8259b68ad4f2d7b95e36ba3fd3acd5bfdb16a1bd1"
+        },
+        {
+          "name": "recomputed/base_sensitivity.csv",
+          "size": 1080,
+          "sha256": "6ce2d225c13deebbfea96361ea2ef7891b3fb1bf5b562219e12d2130e50ae87b"
+        },
+        {
+          "name": "recomputed/comparison_requests.json",
+          "size": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "name": "recomputed/comparisons.json",
+          "size": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "name": "recomputed/finance_model_code.zip",
+          "size": 23266,
+          "sha256": "5a025f12f147461509bea3ec3f22a0c8b82262c905268311d28252d87dc67f1d"
+        },
+        {
+          "name": "recomputed/models.json",
+          "size": 11890,
+          "sha256": "c2444779f526c7f9dc149eb0f287886492a196be5fd80f0871d5fed1116613a6"
+        },
+        {
+          "name": "recomputed/recompute_models.py",
+          "size": 1147,
+          "sha256": "1fa22cf2d6463519acd8aab14b584a9dda8fb953b8c974638f5735d18f78f534"
+        },
+        {
+          "name": "sensitivity.png",
+          "size": 55977,
+          "sha256": "3c013b9aed493601140d848bc23a58ca9021740c70477ade2c90fe24cc52377b"
+        },
+        {
+          "name": "unit_bound_amounts.png",
+          "size": 20961,
+          "sha256": "a8f232971ac15ef93db248f41f537071f76b00289c7a992e60d85411dbebd650"
+        },
+        {
+          "name": "waterfall.png",
+          "size": 41208,
+          "sha256": "e38971f817363b65a3f1f45980050bd6d667f1ff1c10824477c39b6de1bd6c20"
+        }
+      ],
+      "error": null,
+      "image_id": "sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2",
+      "created_at": 1791223002.4732208,
+      "elapsed_seconds": 3.797,
+      "input_sha256": {
+        "models.json": "c2444779f526c7f9dc149eb0f287886492a196be5fd80f0871d5fed1116613a6",
+        "comparison_requests.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "comparisons.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "recompute_models.py": "1fa22cf2d6463519acd8aab14b584a9dda8fb953b8c974638f5735d18f78f534",
+        "base_inputs.csv": "4b482ff583dc28589dc482d436f51fb64866a0ffbd159c84b3a0e9fd7bc6f6b3",
+        "base_forecast.csv": "4c5d5ae05dc6aaafd7677c75f585b35b3760b1a9bb30d664db325db8bfbd1101",
+        "base_sensitivity.csv": "608b93b2f0b664323688619a39c5f25ac0119444cc4756a34535b8b0881f5dee",
+        "finance_model_code.zip": "5a025f12f147461509bea3ec3f22a0c8b82262c905268311d28252d87dc67f1d",
+        "model_bundle.zip": "94880cd477c68abe88ceb8a99786991cab3e099ee5a2c311b68ed2b5e2e31310",
+        "analysis.py": "38a9c26f10499777511a7129ef36cd5259c328320aaa6c7f799b0c4ebbac0011",
+        "finance_charts.py": "fed233651756b45e24c54fec244c830dcdf119ce2a44bb5ec041c17cdb290e15",
+        "plot_runtime.py": "68ee4c3ceab183bbe11e6dad72f145e53fa125431bd4b2368c966e9e7b8c4bf7"
+      },
+      "timeout_seconds": 120,
+      "owner_pid": 76332,
+      "owner_token": "134356966022626204",
+      "host_platform": "win32",
+      "host_name": "星尘",
+      "repo_digests": [
+        "finance-analysis@sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2"
+      ],
+      "code_sha256": "87bf9b32309716df3802034e0d7aa27bfc9e376b7f1cc5fc8145a18ea33a4bb1",
+      "started_at": 1791223004.192106,
+      "execution_seconds": 1.219,
+      "oom_killed": false,
+      "stdout": "Recomputed saved model inputs and comparisons with the bundled original calculator.\n",
+      "stderr": "",
+      "container_removed": true,
+      "finished_at": 1791223006.259719
+    }
+  },
+  "followup_runtime_integrity": {
+    "files": 99,
+    "before_after_equal": true
+  },
+  "post_comparison_download_repair": {
+    "node_passed": 4,
+    "sandbox_host_passed": 11,
+    "sandbox_symlinks_skipped": 2,
+    "typecheck": "pass",
+    "build": "pass"
+  },
+  "replay": {
+    "primary_scripts": 12,
+    "followup_scripts": 6,
+    "matched_files": 182,
+    "model_bundles": 4,
+    "matching_model_versions": 6,
+    "scope": "Reproducibility is separate from correctness; erroneous C2 plots/CSV also reproduce."
+  }
+}

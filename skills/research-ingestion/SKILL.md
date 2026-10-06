@@ -10,7 +10,7 @@ description: 财报与券商/行业研报入库；区分实际披露、转述、
 1. `process_documents` 首次返回 `routing_required`，包含首页样本；必要时 `get_document_index`、`get_source_page` 补读目录、署期、署名与表头。`set_document_profile` 保存类型和证据。分类只是选择处理方式，不能只凭文件名。
 2. 类型为 financial_report/broker_research/industry_research/mixed/other。机构、作者、发布日期未知则 null/[]，不得猜。日期证据须是出版署期，而非正文提及的事件日期。公司/行业/产品等 subjects 可多选，别名与证券标识必须有原文依据。
    broker_research 指公司研究；行业/板块专题用 industry_research，即使出版机构也是券商。使用来源明确的同一实体和指标名称，先查看 get_data_catalog 的 research_catalog 以便跨报告比较；预测性质由 data_kind 表达，不必另外给指标加 forecast 后缀。
-3. 再次 `process_documents` 获得持久 processing_id。数字表统一使用 `Cleaner` 脚本与原格取数、核验、提交；研报同时逐页保存观点与正文覆盖。所有表和页都有处理结果或明确待核验状态之后，才报告完整结束。
+3. 再次 `process_documents` 获得持久 processing_id。数字表统一使用 `Cleaner` 脚本与原格取数、提交；研报同时逐页保存观点与正文覆盖。所有表和页都有处理结果或明确待核验状态之后，才报告完整结束。
 
 # 一张混合表只映射一次
 
@@ -32,13 +32,13 @@ columns = [
 
 机构预测默认归属报告作者。表格引用其他机构或一致预期时，保存 attribution={kind:quoted,institution:原文机构,evidence:{page,quote}}；出处不明为 kind=unknown，不能借用发布机构当预测者。原始数据来源用 upstream_source 保留文字及来源线索。
 
-`get_cleaning_result` 分页核验每张表的语义，特别检查 A/E、财年、单位、同比、母公司/合并、多公司行和同表混合期间；只修复有问题部分。`commit_cleaning_result` 逐表提交。预测表和行业表都是有效数据，不因不属于三大报表就排除。
+`commit_cleaning_result` 可直接提交脚本结果，不要求先逐表读回或填写复核表单；程序从原格取数并报告具体映射错误。`get_cleaning_result` 按需返回概况和异常，仅在需要核对 A/E、期间、单位、多公司行等实际疑点时用 `details=true` 读取对应表。只修复问题部分，`reviews` 仅记录真实的语义判断；省略它不会声明语义核验通过。预测表和行业表都是有效数据，不因不属于三大报表就排除。
 
 # 观点与文本覆盖
 
-`get_research_ingestion_status` 给出未处理正文页，按实际需要分页读完。每页用 `save_research_claims` 保存 claims 和 verdict/note。claim 包括 kind（opinion/risk/catalyst/assumption/company_guidance）、text（归纳）、quote（本页逐字短引）、entity（对象）、attribution（author/quoted/unknown）。引用他人说法还要提供原句中的 speaker/institution。
+`get_research_ingestion_status` 给出未处理正文页，按实际需要分页读完。每页用 `save_research_claims` 保存 claims；verdict/note 用于需要说明的疑点。claim 包括 kind（opinion/risk/catalyst/assumption/company_guidance）、text（归纳）、quote（本页逐字短引）、entity（已登记对象名称或对象结构）、attribution（author/quoted/unknown）。引用他人说法还要提供原句中的 speaker/institution。工具返回已有对象；同页合法观点照常保存，失败候选保留并给出修复原因。
 
-保留重要论点、依据、风险、催化与适用时间，不把每句普通描述重新输出一遍。全文保留在原文检索中。目录、免责声明、只有表格的页可以空 claims，但必须明确说明。图表无法可靠读数、原文不清或语义有冲突的页标 needs_review，不凭图形估算成精确原值。原文引用位置校验不等于判断真实性。
+保留重要论点、依据、风险、催化与适用时间，不把每句普通描述重新输出一遍。全文保留在原文检索中。目录、免责声明、只有表格的页可以空 claims，用 empty_reason 说明；空数组本身不会标记成功。图表无法可靠读数、原文不清或语义有冲突的页标 needs_review 并用 note 说明，不凭图形估算成精确原值。原文引用位置校验不等于判断真实性。
 
 表格完成不代表正文已完成。继续处理直至 pending_tables/pending_pages 均为空。重启或压缩后读检查点继续，无须重读已核验的全部内容。
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import UsageFooter from './UsageFooter';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import Markdown from './Markdown';
+import { markdownArtifactUrl } from './artifact-links';
 import { FileText, Copy, Check, Download, ExternalLink, Table2, CircleAlert } from 'lucide-react';
 import { safeArtifactUrl, api, errorText } from './api';
 import Modal from './Modal';
@@ -54,11 +54,11 @@ export default function MessageView({ message, documents, onDocument, onSource, 
   return <article className={`message ${message.role}`} data-message-id={message.id} data-status={message.status || 'saved'} aria-label={message.role === 'user' ? '你的消息' : '金融研究的回复'}>
     {message.role === 'user' ? <>{files.length > 0 && <div className="user-files">{files.map(doc => <FileChip key={doc.id} document={doc} onClick={() => onDocument(doc)} />)}</div>}<div className="user-bubble">{message.content || '请解析附件。'}</div>{message.status==='queued'&&<p className="muted">已保存，等待接入当前任务</p>}{message.annotations?.length ? <AnnotationRail items={message.annotations} sent /> : null}</> : <>
       <div className="assistant-header"><span className="assistant-mark">研</span>金融研究</div>
-      <div className="markdown"><ReactMarkdown remarkPlugins={[remarkGfm]} components={{
+      <div className="markdown"><Markdown urlTransform={url => markdownArtifactUrl(url, message.artifacts)} components={{
         table: ({ children }) => <div className="table-scroll"><table>{children}</table></div>,
         a: ({ href, children }) => <a href={href} target={href?.startsWith('#') ? undefined : '_blank'} rel="noreferrer">{children}<ExternalLink className="inline-icon" /></a>,
         img: ({ src, alt }) => { const url = safeArtifactUrl(typeof src === 'string' ? src : undefined); return url ? <img src={url} alt={alt || '分析图表'} loading="lazy" /> : <span className="muted">[图片：{alt || '外部图片不自动加载'}]</span>; },
-      }}>{message.content}</ReactMarkdown></div>
+      }}>{message.content}</Markdown></div>
       {message.status === 'failed' && <div className="message-error"><CircleAlert />本次分析未完成。请检查服务配置或错误信息后重试。</div>}
       {message.status === 'cancelled' && <p className="muted">已停止生成；以上是停止前的内容。</p>}
       {message.sources && message.sources.length > 0 && <div className="sources-row"><span>来源</span>{message.sources.map((source, index) => <button className="source-pill" key={`${source.sourceId || source.id || index}:${source.tableId || ""}:${index}`} onClick={() => void openSource(source)}><FileText />{index + 1}. {source.name || source.title || documents.find(doc => doc.id === (source.documentId || source.document_id))?.name || '原文'}{source.page || source.pageNumber ? ` · 第 ${source.page || source.pageNumber} 页` : ''}</button>)}</div>}
