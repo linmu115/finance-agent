@@ -712,10 +712,11 @@ def financial_quality(spec):
 
 def evaluate_model(kind, spec):
     from .three_statement import three_statement
-    functions = {"dcf": value_dcf, "comparables": value_comparables,
+    from .dcf_fcf import value_dcf_fcf
+    functions = {"dcf": value_dcf, "dcf_fcf": value_dcf_fcf, "comparables": value_comparables,
                  "manufacturing_scenario": manufacturing_scenario, "financial_quality": financial_quality, "three_statement": three_statement}
     if not isinstance(kind, str) or kind not in functions:
-        raise ValidationError("kind: choose dcf, comparables, manufacturing_scenario or financial_quality")
+        raise ValidationError("kind: choose " + ', '.join(functions))
     return functions[kind](spec)
 
 

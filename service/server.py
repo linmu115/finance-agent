@@ -320,7 +320,7 @@ async def rematerialize_documents(project_id: str, document_ids: list[str]) -> d
 
 @mcp.tool()
 async def get_research_model_schema(project_id: str, kind: str) -> dict[str, Any]:
-    """Get exact financial model input JSON schema and a labelled synthetic example. kind: dcf, comparables, manufacturing_scenario, financial_quality. Ratios use fractions (0.10=10%)."""
+    """Get exact financial model input JSON schema and a labelled synthetic example. kind: dcf_fcf, dcf, comparables, manufacturing_scenario, financial_quality, three_statement. Ratios use fractions (0.10=10%)."""
     from .research_schema import get_model_schema, get_model_example
     service.store.project(project_id)
     return response({'kind':kind,'schema':get_model_schema(kind),'synthetic_example':get_model_example(kind),
@@ -339,10 +339,18 @@ async def evaluate_research_model(project_id: str, kind: str, spec: dict[str, An
         return response({'error':str(exc)},status='error')
 
 @mcp.tool()
-async def resolve_model_inputs(project_id: str, spec: dict[str, Any], bindings: dict[str, Any]) -> dict[str, Any]:
+async def resolve_model_inputs(project_id: str, spec: dict[str, Any], bindings: dict[str, Any], kind: str | None=None) -> dict[str, Any]:
     """Host-only record binding, invoked by run_financial_model; exact project-scoped values and sources."""
     from .model_inputs import resolve_inputs
-    try:return response(resolve_inputs(service,project_id,spec,bindings))
+    try:return response(resolve_inputs(service,project_id,spec,bindings,kind))
+    except ValueError as exc:return response({'error':str(exc)},status='error')
+
+@mcp.tool()
+async def apply_model_overrides(project_id: str, spec: dict[str, Any], overrides: dict[str, Any]) -> dict[str, Any]:
+    """Host only. Resolve exact numeric +/* operators with the same semantics as analysis params."""
+    from .model_inputs import apply_overrides
+    service.store.project(project_id)
+    try:return response(apply_overrides(spec,overrides))
     except ValueError as exc:return response({'error':str(exc)},status='error')
 
 @mcp.tool()

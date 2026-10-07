@@ -14,6 +14,7 @@ test('record bindings persist into model reuse; overrides become assumptions and
   calls.push({name,args:structuredClone(args)});
   let data:any={version:'v1',text:'披露营业收入120百万元'};
   if(name==='deliver_research_models')data={delivery_id:'0'.repeat(32),attachments:[],results:{}};
+  if(name==='apply_model_overrides')data={values:{'base.revenue':'108'}};
   if(name==='resolve_model_inputs'){
    const spec=structuredClone(args.spec);spec.base.revenue='120';
    spec.source_refs={'base.revenue':[{kind:'document',id:'doc1',locator:'page:1'}]};
@@ -42,6 +43,10 @@ test('record bindings persist into model reuse; overrides become assumptions and
  assert.equal(replacement.input_bindings?.length||0,0);
  assert.equal(replacement.spec.source_refs['base.revenue'],undefined);
  assert.equal(replacement.spec.input_basis['base.revenue'].basis,'assumption');
+ const operated=await ws.model('p',{kind:'dcf',title:'来源数值的比例假设',source_model:{artifact_id:original.id,revision_id:original.revision_id},overrides:{'base.revenue':{'*':'.9'}}});
+ assert.equal(operated.spec.base.revenue,'108');assert.equal(operated.input_bindings[0].value,'108');
+ assert.equal(operated.input_bindings[0].source_input_value,'120');assert.equal(operated.input_bindings[0].record_id,'f1');
+ assert.equal(operated.input_bindings[0].modeled_basis,'assumption');assert.ok(operated.spec.source_refs['base.revenue']);
  }finally{await rm(dir,{recursive:true,force:true});}
 });
 

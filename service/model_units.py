@@ -30,6 +30,10 @@ def quantity_unit(model, path):
     parts = path.split('.')
     # An item of a list takes the unit of the list: sensitivity.wacc.0 is a wacc.
     key = next((part for part in reversed(parts) if not part.isdigit()), '')
+    if model['kind']=='dcf_fcf':
+        if key in {'fcf','pv_fcf','net_cash','terminal_ebitda','terminal_net_income','terminal_net_cash','terminal_non_controlling_interest'}:return {'unit':'元','scale':model['spec']['amount_scale']}
+        if key in {'g','fx','discount_factor','discount_exponent'}:return {'unit':'ratio'}
+        if key in {'target_price','target_price_gap','before','after','contribution'}:return {'unit':'元/股'}
     # A comparable peer's own price, EPS, EV and EBITDA are in that peer's currency and unit; only their ratio enters the model.
     peer_input = model['kind'] == 'comparables' and (parts[0] == 'peers' or parts[:2] == ['spec', 'peers'])
     if key in MONEY_FIELDS:
@@ -63,6 +67,7 @@ def unit_label(model, path):
     """Unit text for an exported column or input, e.g. 'CNY 百万元', 'ratio', 'CNY/股'. '' when the field has no unit."""
     key = next((part for part in reversed(path.split('.')) if not part.isdigit()), '')
     currency = model['spec'].get('currency', '')
+    if model['kind']=='dcf_fcf' and key in {'value_per_share','target_price','target_price_gap','before','after','contribution'}:currency=model['spec'].get('price_currency',currency)
     if key in VOLUME_FIELDS | UNIT_PRICE_FIELDS:
         volume = model['spec'].get('volume_unit', '')
         if key in VOLUME_FIELDS or not volume:

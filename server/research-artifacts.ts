@@ -20,7 +20,7 @@ type EvidenceContext={artifacts:Map<string,ResearchArtifact>;documents:Map<strin
 const evidenceContext=():EvidenceContext=>({artifacts:new Map(),documents:new Map(),pages:new Map(),fixed:[],checks:[]});
 const validationRecord=(mode:SourceValidation['mode'],extra:Partial<SourceValidation>={}):SourceValidation=>({schema_version:1,scope:'reference_location_and_literal_quote_only',semantic_accuracy_verified:false,mode,...extra});
 export interface ResearchArtifact {id:string;revision_id:string;parent_revision_id?:string;kind:string;title:string;created_at:string;run_id?:string;dependencies:RecordedDependency[];spec?:any;result?:any;content?:any;source_model?:ImportedModel;source_validation?:SourceValidation;input_bindings?:any[]}
-const MODEL_KINDS=['dcf','comparables','manufacturing_scenario','financial_quality','three_statement'] as const;
+const MODEL_KINDS=['dcf','dcf_fcf','comparables','manufacturing_scenario','financial_quality','three_statement'] as const;
 const common=z.object({title:z.string().trim().min(1).max(200),dependencies:z.array(dependencySchema).max(100).default([]),artifact_id:idSchema.optional(),parent_revision_id:idSchema.optional()});
 const modelPath=z.string().regex(/^[A-Za-z0-9_]+(?:\.[A-Za-z0-9_]+)*$/);
 const binding=z.object({fact_id:idSchema.optional(),record_id:idSchema.optional(),scale:z.string().min(1).optional()}).refine(v=>!!v.fact_id!==!!v.record_id,{message:'绑定使用fact_id或record_id，二选一'});
@@ -41,7 +41,7 @@ function inlineBindings(spec:any):Record<string,z.infer<typeof binding>>{
    const key=modelPath.parse(parts.join('.'));found[key]=binding.parse(value);return;
   }
   for(const [key,child] of Object.entries(value)){
-   if(parts.length===0&&['source_refs','input_basis'].includes(key))continue;
+   if(parts.length===0&&['source_refs','input_basis','input_transformations'].includes(key))continue;
    visit(child,[...parts,key]);
   }
  }
@@ -199,11 +199,22 @@ export class ResearchWorkspace {
    sourceValidation=validationRecord(selected.source_validation?'inherited':'inherited_unverified',{inherited_from:{artifact_id:selected.id,revision_id:selected.revision_id,original_mode:selected.source_validation?.mode??null}});
   }
   if(!spec)throw new Error('缺少模型输入');
+  const isOperator=(value:any)=>value&&typeof value==='object'&&Object.keys(value).length===1&&('+' in value||'*' in value);
+  const operators=Object.fromEntries(Object.entries(v.overrides||{}).filter(([,value])=>isOperator(value)));
+  const resolved=Object.keys(operators).length?(await this.service.call('apply_model_overrides',{project_id:project,spec,overrides:operators})).data.values:{};
   for(const [key,value] of Object.entries(v.overrides||{})){
-   setModelInput(spec,key,value);
-   inputBindings=inputBindings.filter(x=>x.path!==key&&!x.path.startsWith(key+'.'));
-   for(const map of ['source_refs','input_basis'])for(const existing of Object.keys(spec[map]||{}))if(existing===key||existing.startsWith(key+'.'))delete spec[map][existing];
+   const operator=isOperator(value);
+   setModelInput(spec,key,operator?resolved[key]:value);
+   if(operator){
+    spec.input_transformations??={};spec.input_transformations[key]=[...(spec.input_transformations[key]||[]),{operator:value,source_model:sourceModel}];
+    inputBindings=inputBindings.map(x=>x.path===key||x.path.startsWith(key+'.')?{...x,source_input_value:x.source_input_value??x.value,value:x.path.split('.').reduce((node:any,part:string)=>node[part],spec),modeled_basis:'assumption',transformations:[...(x.transformations||[]),value]}:x);
+   }
+   else{
+    inputBindings=inputBindings.filter(x=>x.path!==key&&!x.path.startsWith(key+'.'));
+    for(const map of ['source_refs','input_basis','input_transformations'])for(const existing of Object.keys(spec[map]||{}))if(existing===key||existing.startsWith(key+'.'))delete spec[map][existing];
+   }
    spec.input_basis??={};spec.input_basis[key]={basis:'assumption',source_kind:'assumption',rationale:'本次显式修改；未绑定新来源时作为分析假设。'};
+   if(operator)for(const existing of Object.keys(spec.input_basis))if(existing.startsWith(key+'.'))spec.input_basis[existing]={...spec.input_basis[key]};
   }
   const bindings=inlineBindings(spec);
   for(const [key,value] of Object.entries(v.bindings||{})){
@@ -211,7 +222,7 @@ export class ResearchWorkspace {
    bindings[key]=value;
   }
   if(Object.keys(bindings).length){
-   const bound=(await this.service.call('resolve_model_inputs',{project_id:project,spec,bindings})).data;
+   const bound=(await this.service.call('resolve_model_inputs',{project_id:project,spec,bindings,kind:v.kind})).data;
    if(!bound?.spec)throw new Error('模型数据绑定失败：'+(bound?.error||'未知错误'));
    spec=bound.spec as Record<string,any>;inputBindings=[...inputBindings.filter(x=>!Object.hasOwn(bindings,x.path)),...bound.bindings];
    const freshRefs=spec.source_refs;
@@ -245,7 +256,7 @@ export class ResearchWorkspace {
   catch(error){return {delivery:{error:redactError(error)}};}
   const label=record.title.replace(/[\\/:*?"<>|\x00-\x1f]/g,'_').trim().slice(0,60)||'model';
   const files=published.attachments.map((name:string)=>({name:label+'_'+name.replace(/^saved_/,''),url:'/api/projects/'+project+'/research/deliveries/'+published.delivery_id+'/'+encodeURIComponent(name)}));
-  return {delivery:{id:published.delivery_id,files},...(previous?{changes:{from:model_refs.previous,...published.results.update}}:{})};
+  return {delivery:{id:published.delivery_id,files},...(published.numeric_tables?{numeric_tables:published.numeric_tables}:{}),...(previous?{changes:{from:model_refs.previous,...published.results.update}}:{})};
  }
  async compare(project:string,input:any){
   const reference=z.object({artifact_id:idSchema,revision_id:idSchema.optional()}).strict();
@@ -309,7 +320,7 @@ const commonProps={title:str,dependencies:{type:'array',items:{type:'object',pro
 const modelRef={type:'object',additionalProperties:false,properties:{artifact_id:str,revision_id:str,variant:{enum:['baseline','scenario']}},required:['artifact_id']};
 const savedModelRef={...modelRef,properties:{artifact_id:str,revision_id:str}};
 export const ARTIFACT_TOOLS=[
- {name:'run_financial_model',description:'计算并保存金融模型，返回版本和可直接传给run_analysis的model_refs；导出和制图复用计算结果，无需重写DCF代码。新模型提供spec，数值位置直接用{fact_id:"查询得到的ID"}或{record_id:"研报记录ID"}，例如base:{revenue:{fact_id:"f1"}}；无须抄数值或另填bindings。也兼容bindings={"base.revenue":{fact_id:"f1"}}；数值、单位换算、实际/预测身份和单元格来源由程序带入。金额默认按spec.amount_scale、股数按shares.scale、百分数转小数；scale仅在需要显式覆盖时填写。复用已存模型用source_model加overrides={"forecast.0.capex":"新值"}，只改变化参数，不重抄spec；制造业情景导入DCF才需variant。同一artifact_id更新时保存新版本。每次保存即完成交付：带单位的输入表、各结果表、列单位表和含原计算器的模型包已作为附件给到用户（返回的delivery.files）；更新时同时返回并交付与原版本的输入变化、结果差异（changes），DCF加order=[全部变化路径的替换顺序]即含逐项贡献。无需再写计算、对比或导出脚本，run_analysis只用于画图或成文。输入格式可查get_research_model_schema。',inputSchema:{type:'object',properties:{...commonProps,kind:{enum:MODEL_KINDS},spec:obj,source_model:modelRef,overrides:obj,order:{type:'array',items:str,description:'仅更新DCF时用于贡献分解：列出全部变化输入路径的替换顺序，例如["discount.wacc","terminal.growth"]；交互影响归于后替换项。'},bindings:{type:'object',additionalProperties:{type:'object',properties:{fact_id:str,record_id:str,scale:str},oneOf:[{required:['fact_id'],not:{required:['record_id']}},{required:['record_id'],not:{required:['fact_id']}}]}}},required:['title','kind'],oneOf:[{required:['spec'],not:{required:['source_model']}},{required:['source_model'],not:{required:['spec']}}]}},
+ {name:'run_financial_model',description:'给定FCF估值用 kind=dcf_fcf：spec={currency,amount_scale,valuation_date,discount:{cashflow_timing:"year_end"或"mid_year"},fcf:[值或{record_id}],wacc,g,net_cash或net_debt,shares:{count,scale},price_currency,fx}；后四项可选，缺股本不算每股，缺净现金/净债务不算股权，未提供少数股东时注明未调整。默认5×5敏感性，可用sensitivity:{wacc:[...],growth:[...]}覆盖；terminal_ebitda、terminal_net_income、terminal_net_cash提供退出倍数，eps直接保留来源值；target_price只给价差，另有target_assumptions:{wacc,g,fcf,fx,shares}才按target_order拆贡献。source_model更新支持overrides={wacc:{"+":0.005},fcf:{"*":0.9}}，order=["wacc","fcf"]指定贡献顺序；自动交付report和可绑定表。计算并保存金融模型，返回版本和可直接传给run_analysis的model_refs；导出和制图复用计算结果，无需重写DCF代码。新模型提供spec，数值位置直接用{fact_id:"查询得到的ID"}或{record_id:"研报记录ID"}，例如base:{revenue:{fact_id:"f1"}}；无须抄数值或另填bindings。也兼容bindings={"base.revenue":{fact_id:"f1"}}；数值、单位换算、实际/预测身份和单元格来源由程序带入。金额默认按spec.amount_scale、股数按shares.scale、百分数转小数；scale仅在需要显式覆盖时填写。复用已存模型用source_model加overrides={"forecast.0.capex":"新值"}，只改变化参数，不重抄spec；制造业情景导入DCF才需variant。同一artifact_id更新时保存新版本。每次保存即完成交付：带单位的输入表、各结果表、列单位表和含原计算器的模型包已作为附件给到用户（返回的delivery.files）；更新时同时返回并交付与原版本的输入变化、结果差异（changes），DCF加order=[全部变化路径的替换顺序]即含逐项贡献。无需再写计算、对比或导出脚本，run_analysis只用于画图或成文。输入格式可查get_research_model_schema。',inputSchema:{type:'object',properties:{...commonProps,kind:{enum:MODEL_KINDS},spec:obj,source_model:modelRef,overrides:obj,order:{type:'array',items:str,description:'更新DCF时用于贡献分解：列出全部变化输入路径（dcf_fcf允许fcf等整组路径）的替换顺序，例如["discount.wacc","terminal.growth"]；交互影响归于后替换项。'},bindings:{type:'object',additionalProperties:{type:'object',properties:{fact_id:str,record_id:str,scale:str},oneOf:[{required:['fact_id'],not:{required:['record_id']}},{required:['record_id'],not:{required:['fact_id']}}]}}},required:['title','kind'],oneOf:[{required:['spec'],not:{required:['source_model']}},{required:['source_model'],not:{required:['spec']}}]}},
  {name:'compare_financial_models',description:'比较两份同类型模型的真实输入变化与数值结果差异。baseline/scenario={artifact_id,revision_id?}；程序读取保存输入，不必手抄。需要DCF贡献分解时，order列出全部变化路径的替换顺序（例如forecast.0.capex_ratio、forecast.0.da_ratio）；交互影响归于后替换项，不冒充唯一经济因果。',inputSchema:{type:'object',properties:{baseline:savedModelRef,scenario:savedModelRef,order:{type:'array',items:str}},required:['baseline','scenario']}},
  {name:'save_research_report',description:'保存产业链/投资备忘录/研报纠错。先get_research_report_schema。事实、推断、假设要区分；纠错必须定位原文并给出替换文本，宿主应用改动。保存后可在研究成果查看。',inputSchema:{type:'object',properties:{...commonProps,kind:{enum:['industry_chain','investment_memo','report_correction']},content:obj},required:['title','kind','content']}},
  {name:'get_research_report_schema',description:'获取研究报告严格结构与字段含义；无模型调用。',inputSchema:{type:'object',properties:{kind:{enum:['industry_chain','investment_memo','report_correction']}},required:['kind']}},

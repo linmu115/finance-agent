@@ -2059,7 +2059,7 @@
   },
   {
     "name": "get_research_model_schema",
-    "description": "Get exact financial model input JSON schema and a labelled synthetic example. kind: dcf, comparables, manufacturing_scenario, financial_quality. Ratios use fractions (0.10=10%).",
+    "description": "Get exact financial model input JSON schema and a labelled synthetic example. kind: dcf_fcf, dcf, comparables, manufacturing_scenario, financial_quality, three_statement. Ratios use fractions (0.10=10%).",
     "inputSchema": {
       "properties": {
         "project_id": {
@@ -2135,6 +2135,18 @@
           "additionalProperties": true,
           "title": "Bindings",
           "type": "object"
+        },
+        "kind": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Kind"
         }
       },
       "required": [
@@ -2148,6 +2160,40 @@
     "outputSchema": {
       "additionalProperties": true,
       "title": "resolve_model_inputsDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "apply_model_overrides",
+    "description": "Host only. Resolve exact numeric +/* operators with the same semantics as analysis params.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "spec": {
+          "additionalProperties": true,
+          "title": "Spec",
+          "type": "object"
+        },
+        "overrides": {
+          "additionalProperties": true,
+          "title": "Overrides",
+          "type": "object"
+        }
+      },
+      "required": [
+        "project_id",
+        "spec",
+        "overrides"
+      ],
+      "title": "apply_model_overridesArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "apply_model_overridesDictOutput",
       "type": "object"
     }
   },

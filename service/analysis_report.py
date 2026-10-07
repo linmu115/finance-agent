@@ -22,7 +22,7 @@ UNITS = {**{k: ('money', v) for k, v in MONEY.items()},
          'ratio': ('ratio', '1'), '%': ('ratio', '0.01'),
          '个百分点': ('percentage_points', '1'), 'pp': ('percentage_points', '1'),
          '元/股': ('per_share', '1'), 'currency/share': ('per_share', '1'),
-         '倍': ('multiple', '1'), 'times': ('multiple', '1'), '个': ('count', '1'), '天': ('days', '1')}
+         '倍': ('multiple', '1'), 'times': ('multiple', '1'), '个': ('count', '1'), '天': ('days', '1'), '年': ('years', '1')}
 
 
 # Other ways the same units are commonly written. Matching ignores case, spaces, brackets and full-width forms.
@@ -154,6 +154,8 @@ def model_quantity(model, path, source_unit=None):
         # If it is not stated here, the report column must state it explicitly.
         peer_input = model['kind'] == 'comparables' and path.startswith('spec.peers.')
         currency = source_currency if peer_input else model['spec']['currency']
+        if model['kind']=='dcf_fcf' and path.split('.')[-1] in {'value_per_share','target_price','target_price_gap','before','after','contribution'}:
+            currency=model['spec'].get('price_currency',currency)
         if source_currency and currency != source_currency:
             raise ValueError(f'{path} 的模型币种为 {currency}，source_unit 写的是 {source_currency}；不做隐含换汇')
     # "spec.…" reads a saved input (e.g. spec.discount.wacc); every other path reads the result.

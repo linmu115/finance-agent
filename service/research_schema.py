@@ -137,6 +137,9 @@ EXAMPLES = {
 from .three_statement import schema as three_statement_schema, EXAMPLE as THREE_STATEMENT_EXAMPLE
 SCHEMAS['three_statement']=three_statement_schema(COMMON,DECIMAL,obj)
 EXAMPLES['three_statement']=THREE_STATEMENT_EXAMPLE
+from .dcf_fcf import schema as dcf_fcf_schema, EXAMPLE as DCF_FCF_EXAMPLE
+SCHEMAS['dcf_fcf']=dcf_fcf_schema(COMMON,DECIMAL,obj,SHARES,SENSITIVITY)
+EXAMPLES['dcf_fcf']=DCF_FCF_EXAMPLE
 
 def get_model_schema(kind):
     if kind not in SCHEMAS:
