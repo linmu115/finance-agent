@@ -9,7 +9,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $projectRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $appVersion = (Get-Content -LiteralPath (Join-Path $projectRoot 'package.json') -Raw | ConvertFrom-Json).version
-$dataRoot = if ($DataDirectory) { [IO.Path]::GetFullPath($DataDirectory) } else { Join-Path $projectRoot 'data/active' }
+$dataRoot = [IO.Path]::GetFullPath($(if ($DataDirectory) { $DataDirectory } else { Join-Path $projectRoot 'data/active' }))
 $logRoot = Join-Path $dataRoot 'runtime'
 $recordPath = Join-Path $logRoot "launcher-$Port.json"
 $entry = Join-Path $projectRoot 'server/dist/main.js'
@@ -43,7 +43,7 @@ function Test-Installation {
 
 function Get-OwnedProcess {
     if (-not (Test-Path -LiteralPath $recordPath)) { return $null }
-    $record = Get-Content -LiteralPath $recordPath -Raw | ConvertFrom-Json
+    $record = Get-Content -LiteralPath $recordPath -Raw -Encoding UTF8 | ConvertFrom-Json
     if ($record.root -ne $projectRoot -or $record.data -ne $dataRoot -or $record.port -ne $Port) { throw 'The launcher record belongs to a different installation or data folder.' }
     $candidate = Get-CimInstance Win32_Process -Filter "ProcessId=$([int]$record.processId)" -ErrorAction SilentlyContinue
     if (-not $candidate) { return $null }

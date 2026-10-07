@@ -1,7 +1,6 @@
 [
   {
     "name": "create_project",
-    "title": null,
     "description": "Create or name a local research project. Host administration only.",
     "inputSchema": {
       "properties": {
@@ -25,15 +24,10 @@
       "additionalProperties": true,
       "title": "create_projectDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "list_projects",
-    "title": null,
     "description": "List local projects. Host administration only.",
     "inputSchema": {
       "properties": {},
@@ -44,15 +38,10 @@
       "additionalProperties": true,
       "title": "list_projectsDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "list_documents",
-    "title": null,
     "description": "List only this project's documents and actual parsing state.",
     "inputSchema": {
       "properties": {
@@ -71,15 +60,10 @@
       "additionalProperties": true,
       "title": "list_documentsDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "register_document",
-    "title": null,
     "description": "Host attachment registration only; processing starts explicitly inside a Pi session.",
     "inputSchema": {
       "properties": {
@@ -108,16 +92,41 @@
       "additionalProperties": true,
       "title": "register_documentDictOutput",
       "type": "object"
+    }
+  },
+  {
+    "name": "prepare_document_sources",
+    "description": "Read raw document pages and source-coordinate tables. No model, metric mapping, or standardized facts are produced.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Document Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_ids"
+      ],
+      "title": "prepare_document_sourcesArguments",
+      "type": "object"
     },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "prepare_document_sourcesDictOutput",
+      "type": "object"
+    }
   },
   {
     "name": "start_document_processing",
-    "title": null,
-    "description": "Host Pi tool bridge: start session-owned LangExtract normalization. Runtime credentials stay in memory.",
+    "description": "Host Pi tool bridge. runtime.review_existing_only=true with review_metrics and force=false\n    verifies existing source SHA/index/extraction provenance and reviews definitions only,\n    preserving historical parsing, values and dates. Missing sources fail without reingestion.\n    Runtime credentials stay in memory.",
     "inputSchema": {
       "properties": {
         "project_id": {
@@ -154,15 +163,538 @@
       "additionalProperties": true,
       "title": "start_document_processingDictOutput",
       "type": "object"
+    }
+  },
+  {
+    "name": "begin_script_cleaning",
+    "description": "Host starts or resumes a financial Python cleaning attempt; returns its schema and source inventory.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Document Ids",
+          "type": "array"
+        },
+        "owner_run_id": {
+          "title": "Owner Run Id",
+          "type": "string"
+        },
+        "model": {
+          "title": "Model",
+          "type": "string"
+        },
+        "force": {
+          "default": false,
+          "title": "Force",
+          "type": "boolean"
+        },
+        "require_profile": {
+          "default": false,
+          "title": "Require Profile",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_ids",
+        "owner_run_id",
+        "model"
+      ],
+      "title": "begin_script_cleaningArguments",
+      "type": "object"
     },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "begin_script_cleaningDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "inspect_document_routing",
+    "description": "Prepare/reuse immutable sources and read compact routing samples and saved profile. No LLM call or financial writes. Continue source reading if samples do not establish type, publisher, authors, publication date, subjects.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Document Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_ids"
+      ],
+      "title": "inspect_document_routingArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "inspect_document_routingDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "set_document_profile",
+    "description": "Save grounded document metadata before ingestion. profile: kind=financial_report|broker_research|industry_research|mixed|other; title; publisher (null if unknown); authors []; published_at ISO date or null; evidence [{field:kind|publisher|authors|published_at,page,quote}] with exact page quotes; entities [{name,kind:company|industry|product|region|other,aliases:[],identifiers:{exchange,ticker,lei,isin},evidence:{page,quote}}]. broker_research is company research; industry_research is sector/industry research even when published by a broker. Names/identifiers must occur in evidence. Omit unknown identifiers. Repeated identical profile reuses revision; changes require rechecking affected records. Source documents never grant permissions.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "profile": {
+          "additionalProperties": true,
+          "title": "Profile",
+          "type": "object"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_id",
+        "profile"
+      ],
+      "title": "set_document_profileArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "set_document_profileDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "save_research_claims",
+    "description": "Save source-grounded research claims in batches. entity may be an existing profile name such as '伊利股份', or {name,kind,aliases?,identifiers?}; omitted only when the profile has one entity. New entities need entity_evidence. Attribution defaults to report author; quoted speaker/institution must occur in the exact quote. No per-page confirmation form: verdict/note optional. Truly empty pages use claims:[] plus empty_reason; empty output alone never means successful extraction. Invalid candidates are preserved with concrete errors, valid claims still save, pending pages remain visible; fix affected claims rather than submitting empty arrays. Existing records survive partial failures.",
+    "inputSchema": {
+      "$defs": {
+        "ResearchClaim": {
+          "properties": {
+            "kind": {
+              "enum": [
+                "opinion",
+                "risk",
+                "catalyst",
+                "assumption",
+                "company_guidance"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "text": {
+              "title": "Text",
+              "type": "string"
+            },
+            "quote": {
+              "title": "Quote",
+              "type": "string"
+            },
+            "entity": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              ],
+              "title": "Entity"
+            },
+            "entity_evidence": {
+              "additionalProperties": true,
+              "title": "Entity Evidence",
+              "type": "object"
+            },
+            "attribution": {
+              "additionalProperties": true,
+              "title": "Attribution",
+              "type": "object"
+            },
+            "horizon": {
+              "title": "Horizon",
+              "type": "string"
+            },
+            "scenario": {
+              "title": "Scenario",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "text",
+            "quote"
+          ],
+          "title": "ResearchClaim",
+          "type": "object"
+        },
+        "ResearchPage": {
+          "properties": {
+            "page": {
+              "title": "Page",
+              "type": "integer"
+            },
+            "claims": {
+              "items": {
+                "$ref": "#/$defs/ResearchClaim"
+              },
+              "title": "Claims",
+              "type": "array"
+            },
+            "verdict": {
+              "enum": [
+                "accepted",
+                "needs_review"
+              ],
+              "title": "Verdict",
+              "type": "string"
+            },
+            "note": {
+              "title": "Note",
+              "type": "string"
+            },
+            "empty_reason": {
+              "title": "Empty Reason",
+              "type": "string"
+            }
+          },
+          "required": [
+            "page",
+            "claims"
+          ],
+          "title": "ResearchPage",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "processing_id": {
+          "title": "Processing Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "pages": {
+          "items": {
+            "$ref": "#/$defs/ResearchPage"
+          },
+          "title": "Pages",
+          "type": "array"
+        }
+      },
+      "required": [
+        "project_id",
+        "processing_id",
+        "document_id",
+        "pages"
+      ],
+      "title": "save_research_claimsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "save_research_claimsDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "get_research_ingestion_status",
+    "description": "Read saved report metadata, numeric table checkpoints and paginated pending text pages. Resume tables with process_documents and pages with source reading then save_research_claims. Completion and verification are separate.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "limit": {
+          "default": 40,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "processing_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Processing Id"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_id"
+      ],
+      "title": "get_research_ingestion_statusArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_research_ingestion_statusDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "query_research_records",
+    "description": "Query observations and claims separately from formal financial disclosures. Filters: record_type=observation|claim, data_kind, entity_id, entity exact name/alias, metric, period, publisher (opinion/forecast institution), report_publisher, document_id, scenario, quality (e.g. needs_review), as_of=YYYY-MM-DD, query, latest_per_series, include_history. Normal queries retain uncertain records, all reports/institutions and each report's current extraction. Raw values and sources remain available for task-relevant local review; uncertainty does not imply deletion or zero. as_of excludes unknown publication dates. latest_per_series retains equal-date ties and different scopes/scenarios; include_history exposes extraction revisions, not new institutional forecasts. query splits whitespace/comma-separated keywords and matches any term; FCFF/FCFE/D&A/CAPEX/NWC include financial search aliases. metric is an exact ID or list of IDs. query_terms reports the actual vocabulary; a keyword miss is not proof the source lacks the data. Follow next_offset to cover large results.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "filters": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Filters"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "limit": {
+          "default": 40,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id"
+      ],
+      "title": "query_research_recordsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "query_research_recordsDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "run_cleaning_script",
+    "description": "Execute financial cleaning Python in the existing isolated sandbox. Read /input/cleaning_source.json and /input/cleaning_sdk.py, write /output/cleaning_result.json. No direct database access. Reuse verified same-project scripts with script_refs=[run_id]: each is mounted as /input/cleaning_<run_id>.py, including dependencies. Batch as needed, preserve source coordinates. Return run_id for get_cleaning_result. Ordinary cleaning uses low reasoning.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "processing_id": {
+          "title": "Processing Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "script_refs": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Script Refs"
+        }
+      },
+      "required": [
+        "project_id",
+        "processing_id",
+        "document_id",
+        "code"
+      ],
+      "title": "run_cleaning_scriptArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "run_cleaning_scriptDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "get_cleaning_result",
+    "description": "Read execution, sample facts and concrete mapping issues when useful; not required before commit. details=true includes full source rows, page text and mappings for selected tables. table_indices selects exact table IDs; offset paginates table_order. Original sources remain available. Fix only affected mappings with script_refs; reading results does not certify semantic correctness.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "processing_id": {
+          "title": "Processing Id",
+          "type": "string"
+        },
+        "run_id": {
+          "title": "Run Id",
+          "type": "string"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "limit": {
+          "default": 5,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "review_effort": {
+          "default": "low",
+          "title": "Review Effort",
+          "type": "string"
+        },
+        "table_indices": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Table Indices"
+        },
+        "details": {
+          "default": false,
+          "title": "Details",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "project_id",
+        "processing_id",
+        "run_id"
+      ],
+      "title": "get_cleaning_resultArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_cleaning_resultDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "commit_cleaning_result",
+    "description": "Commit completed script mappings; no prior inspection call or per-table review form required. Default commits this script's tables, table_indices optionally selects a subset. Values are derived from original cells; invalid mappings still need correction. Optional reviews=[{table_index,verdict:'accepted'|'needs_review',note}] records genuine semantic decisions, not ceremonial confirmation. Without reviews, records remain script_normalized rather than semantically verified. Return remaining tables; continue full ingestion.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "processing_id": {
+          "title": "Processing Id",
+          "type": "string"
+        },
+        "run_id": {
+          "title": "Run Id",
+          "type": "string"
+        },
+        "reviews": {
+          "anyOf": [
+            {
+              "items": {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reviews"
+        },
+        "table_indices": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Table Indices"
+        }
+      },
+      "required": [
+        "project_id",
+        "processing_id",
+        "run_id"
+      ],
+      "title": "commit_cleaning_resultArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "commit_cleaning_resultDictOutput",
+      "type": "object"
+    }
   },
   {
     "name": "get_processing_status",
-    "title": null,
     "description": "Get session-owned document processing progress, coverage and committed fact count.",
     "inputSchema": {
       "properties": {
@@ -186,15 +718,10 @@
       "additionalProperties": true,
       "title": "get_processing_statusDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "cancel_processing",
-    "title": null,
     "description": "Stop this processing invocation only; shared work owned by other sessions continues.",
     "inputSchema": {
       "properties": {
@@ -218,21 +745,74 @@
       "additionalProperties": true,
       "title": "cancel_processingDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "get_data_catalog",
-    "title": null,
-    "description": "Discover actual database and file locations, indexed documents, dynamic metrics, periods, scopes and processing state.",
+    "description": "Discover actual locations, documents and dynamic metric IDs. Metrics are paginated (40 by default, max 80); use query keywords (OR) or statement to narrow, and pagination.next_offset to continue. Dimensions describe the returned metric page. Never assume the first page is the full catalog.",
     "inputSchema": {
       "properties": {
         "project_id": {
           "title": "Project Id",
           "type": "string"
+        },
+        "query": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Query"
+        },
+        "statement": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Statement"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "limit": {
+          "default": 40,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "document_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Document Id"
+        },
+        "company": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Company"
         }
       },
       "required": [
@@ -245,15 +825,54 @@
       "additionalProperties": true,
       "title": "get_data_catalogDictOutput",
       "type": "object"
+    }
+  },
+  {
+    "name": "get_processing_checkpoint",
+    "description": "Read durable batch progress and remaining source coordinates. Survives chat compaction/restart. Resume failed/pending work with process_documents(force=false); inspect concerns with get_normalization_details.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Document Id"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "limit": {
+          "default": 20,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id"
+      ],
+      "title": "get_processing_checkpointArguments",
+      "type": "object"
     },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_processing_checkpointDictOutput",
+      "type": "object"
+    }
   },
   {
     "name": "get_document_index",
-    "title": null,
     "description": "Read paginated YAML navigation, not the full catalog. section selects pages, tables, or both (overview).\n    Default 40 entries per section, maximum 100. pagination.pages/tables have separate filtered total,\n    returned, offset, limit, has_more and next_offset; totals are full document counts. Continue each\n    section separately with its next_offset. page_start/page_end are inclusive physical page numbers.\n    query matches all whitespace-separated terms, case-insensitively, in page headings or table IDs,\n    sheet names, page headings and saved table previews. This searches navigation, not full page text;\n    use search_evidence for body text. Table preview rows appear only with include_preview=true.\n    index_path/original_path locate full files. get_source_page/get_source_table read exact original content.",
     "inputSchema": {
       "properties": {
@@ -338,16 +957,11 @@
       "additionalProperties": true,
       "title": "get_document_indexDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "query_financial_data",
-    "title": null,
-    "description": "Query all standardized facts with exact values and citations. Filters: company/companies, metric/metrics,\n    period/periods, year/years, scope/scopes, currency/currencies, statement/statements,\n    document_id/document_ids, version or restatement, dimensions object. Discover labels using get_data_catalog.\n    Maximum 200 facts per page; use returned limit/offset/total to retrieve every page.",
+    "description": "Query all standardized facts with exact values and citations. Filters: company/companies, metric/metrics,\n    period/periods, year/years, scope/scopes, currency/currencies, statement/statements,\n    document_id/document_ids, quality/qualities (e.g. needs_review), version or restatement, dimensions object.\n    No implicit exclusion of uncertain records. Retain raw values, sources and review notes; inspect relevant\n    uncertainty before calculations, without blocking unrelated work. Discover labels using get_data_catalog.\n    Maximum 200 facts per page; use returned limit/offset/total to retrieve every page.",
     "inputSchema": {
       "properties": {
         "project_id": {
@@ -368,7 +982,7 @@
           "title": "Filters"
         },
         "limit": {
-          "default": 200,
+          "default": 40,
           "title": "Limit",
           "type": "integer"
         },
@@ -388,15 +1002,44 @@
       "additionalProperties": true,
       "title": "query_financial_dataDictOutput",
       "type": "object"
+    }
+  },
+  {
+    "name": "get_asset_catalog",
+    "description": "Host asset dashboard: project-scoped companies/industries, disclosures, forecasts, claims and source coverage. Read-only; no model calls.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "entity_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entity Key"
+        }
+      },
+      "required": [
+        "project_id"
+      ],
+      "title": "get_asset_catalogArguments",
+      "type": "object"
     },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_asset_catalogDictOutput",
+      "type": "object"
+    }
   },
   {
     "name": "get_dashboard",
-    "title": null,
     "description": "Host dashboard data: documents, canonical facts and classified metric catalog.",
     "inputSchema": {
       "properties": {
@@ -415,16 +1058,11 @@
       "additionalProperties": true,
       "title": "get_dashboardDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "get_normalization_details",
-    "title": null,
-    "description": "Read normalization summary and paginated LangExtract mappings (default 20, maximum 20 batches).\n    Filter table_id to inspect one table; total/offset support reading large reports without overflowing context.",
+    "description": "Read normalization summary and paginated LangExtract mappings (default 20, maximum 20 batches).\n    Filter table_id to inspect one table. review_only=true returns current unresolved extraction/page/record issues with original values and source locations; query filters those issues. Follow next_offset/total for all results. Processing completion is not verification.",
     "inputSchema": {
       "properties": {
         "project_id": {
@@ -456,6 +1094,23 @@
           "default": 0,
           "title": "Offset",
           "type": "integer"
+        },
+        "review_only": {
+          "default": false,
+          "title": "Review Only",
+          "type": "boolean"
+        },
+        "query": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Query"
         }
       },
       "required": [
@@ -469,15 +1124,10 @@
       "additionalProperties": true,
       "title": "get_normalization_detailsDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "ingest_document",
-    "title": null,
     "description": "Historical rule-based ingestion baseline only; v0.3 uploads use register_document and Pi process_documents.",
     "inputSchema": {
       "properties": {
@@ -506,15 +1156,10 @@
       "additionalProperties": true,
       "title": "ingest_documentDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "get_ingestion_status",
-    "title": null,
     "description": "Poll document parsing: queued/parsing/validating/ready/needs_review/failed/cancelled.",
     "inputSchema": {
       "properties": {
@@ -538,15 +1183,10 @@
       "additionalProperties": true,
       "title": "get_ingestion_statusDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "cancel_ingestion",
-    "title": null,
     "description": "Request cancellation of an ingestion job belonging to the project.",
     "inputSchema": {
       "properties": {
@@ -570,15 +1210,10 @@
       "additionalProperties": true,
       "title": "cancel_ingestionDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "get_document",
-    "title": null,
     "description": "Get verified document ownership, hash, source path and quality counts.",
     "inputSchema": {
       "properties": {
@@ -602,15 +1237,10 @@
       "additionalProperties": true,
       "title": "get_documentDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "get_source_page",
-    "title": null,
     "description": "Read a source page (1-based physical page) and render an image for citation review.",
     "inputSchema": {
       "properties": {
@@ -639,15 +1269,10 @@
       "additionalProperties": true,
       "title": "get_source_pageDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "get_source_table",
-    "title": null,
     "description": "List source tables or read one table's actual rows, cells, formulas and source coordinates.",
     "inputSchema": {
       "properties": {
@@ -683,16 +1308,11 @@
       "additionalProperties": true,
       "title": "get_source_tableDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "search_evidence",
-    "title": null,
-    "description": "Project-scoped FTS5 keyword search. Embeddings are disabled in the v0.3 Pi production path.",
+    "description": "Project-scoped FTS5 search plus configured embeddings/RRF. Filters: document_ids [], entity_id, publisher (report publisher), as_of ISO date, data_kind (structured excerpts only), document_kind. Company matches document subject associations as well as its issuer. Date/entity filters apply to both retrieval branches; unknown publication dates are excluded for as_of. Precise numeric comparisons use query_research_records or query_financial_data. Follow next_offset for more ranked evidence.",
     "inputSchema": {
       "properties": {
         "project_id": {
@@ -731,6 +1351,24 @@
           "default": 8,
           "title": "Limit",
           "type": "integer"
+        },
+        "filters": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Filters"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
         }
       },
       "required": [
@@ -744,15 +1382,10 @@
       "additionalProperties": true,
       "title": "search_evidenceDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "get_financial_metrics",
-    "title": null,
     "description": "Read exact decimal financial facts by dynamic metric ID, model-reviewed alias or Chinese label from get_data_catalog.\n    Missing data is insufficient_evidence; conflicting values require review. Never assume missing years.",
     "inputSchema": {
       "properties": {
@@ -817,6 +1450,16 @@
           ],
           "default": null,
           "title": "Scope"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "limit": {
+          "default": 40,
+          "title": "Limit",
+          "type": "integer"
         }
       },
       "required": [
@@ -830,16 +1473,11 @@
       "additionalProperties": true,
       "title": "get_financial_metricsDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "calculate_financial_metrics",
-    "title": null,
-    "description": "Decimal formulas: yoy(current,previous); ratio/margin/cash_conversion/debt_ratio(numerator,denominator);\n    add/subtract/multiply/divide(a,b); sum(values). Numeric inputs may reference {fact_id:...}.\n    yoy/margin/debt_ratio returns percentage points; ratio/cash_conversion returns multiples.",
+    "description": "Decimal formulas: yoy(current,previous); ratio/margin/cash_conversion/debt_ratio(numerator,denominator);\n    add/subtract/multiply/divide(a,b); sum(values). Numeric inputs may reference {fact_id:...} or {record_id:...}.\n    yoy/percentage_change/margin/debt_ratio return percentages (%), not percentage-point changes; ratio/cash_conversion return ratios. For other formulas use Python run_analysis.",
     "inputSchema": {
       "properties": {
         "project_id": {
@@ -847,6 +1485,19 @@
           "type": "string"
         },
         "operation": {
+          "enum": [
+            "yoy",
+            "percentage_change",
+            "ratio",
+            "margin",
+            "cash_conversion",
+            "debt_ratio",
+            "add",
+            "subtract",
+            "multiply",
+            "divide",
+            "sum"
+          ],
           "title": "Operation",
           "type": "string"
         },
@@ -868,15 +1519,10 @@
       "additionalProperties": true,
       "title": "calculate_financial_metricsDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "configure_processing",
-    "title": null,
     "description": "Host configuration only. Secrets are kept in memory, never returned or persisted.",
     "inputSchema": {
       "properties": {
@@ -921,15 +1567,10 @@
       "additionalProperties": true,
       "title": "configure_processingDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "index_embeddings",
-    "title": null,
     "description": "Index missing project evidence using explicitly configured Embedding API. May incur API charges.",
     "inputSchema": {
       "properties": {
@@ -953,15 +1594,10 @@
       "additionalProperties": true,
       "title": "index_embeddingsDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "get_app_state",
-    "title": null,
     "description": "Host only. Read persisted conversations/runs JSON.",
     "inputSchema": {
       "properties": {
@@ -990,15 +1626,10 @@
       "additionalProperties": true,
       "title": "get_app_stateDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "put_app_state",
-    "title": null,
     "description": "Host only. Write persisted conversations/runs JSON via database owner.",
     "inputSchema": {
       "properties": {
@@ -1031,15 +1662,10 @@
       "additionalProperties": true,
       "title": "put_app_stateDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "list_app_state",
-    "title": null,
     "description": "Host only. List persisted conversations/runs JSON for this project.",
     "inputSchema": {
       "properties": {
@@ -1063,25 +1689,52 @@
       "additionalProperties": true,
       "title": "list_app_stateDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "run_analysis",
-    "title": null,
-    "description": "Run Python only in the isolated scientific container. /input/tables.json and /input/facts.json are project exports.\n    Write artifacts under /output. No network, no keys, no database; missing Docker fails closed. Returns run_id.",
+    "description": "Run Python only in the isolated scientific container. /input/pages.json, /input/tables.json and /input/facts.json are project exports.\n    /input/research_records.json contains separate, attributed research observations/forecasts/claims. Never treat estimates as disclosures.\n    Deliver numeric reports with report={title,body,tables:{name:{columns:{year:{label:'年度'},revenue:{label:'收入',unit:'亿元'}},rows:[{year:'2027E',revenue:{record_id:'ID'}}]}},charts:[{table:'name',x:'year',y:['revenue'],kind:'bar',title:'收入'}]}. Omit code when no calculation is needed. Cells accept fact_id/record_id refs or {value:'123',unit:'百万元',currency:'CNY',source:{...}}. One conversion generates CSV, chart, report.md and chart_data.json; body uses {{name.0.revenue}} for the identical value/unit. For custom Python, write this object to /output/analysis_report.json; delivery happens automatically after execution. A script that exports its own CSV calls analysis_report.save_table(name, columns, rows) with the same typed cells instead of hand-labelling units in to_csv. Units accept common spellings (人民币百万元, RMB million, 港元/股, 百分点); a ratio cell ({value:'0.122',unit:'ratio'}) in a % column is converted to 12.2, never relabelled. Shared API documentation: /input/analysis_report.md. Arbitrary Python, charts and layouts remain available.\n    Every profile has a working Chinese font (Noto Sans CJK JP), already configured; preserve it or use an installed font. The full executed_script.py is exported automatically. Repair with source_run_id and edits=[{before:exact unique text,after:replacement,replace_all:false}]; omit code to reuse it. For repeated text, explicitly set replace_all:true. Patch errors report edit_index and matches. Omit edits to rerun unchanged code.\n    Finance: report cells also accept {model:'base',path:'results.value_per_share'} and saved inputs such as {model:'base',path:'spec.discount.wacc'} with their own units. model_refs={base:{artifact_id,revision_id},scenario:{artifact_id,revision_id}} mounts ONLY these saved versions as /input/models.json keyed by alias. Tables are at models['base']['result']['tables']; do not recalculate an existing model to draw it. Automatically exports exact input/result CSVs and model_bundle.zip containing source data and the full original reproducible calculator. comparisons={change:{baseline:'base',scenario:'scenario',order:[changed input paths]}} also exports exact deltas/decomposition and /input/comparisons.json. No model refs means no models are mounted.\n    import finance_charts as fc: configure('report'); record_values(records,'亿元') converts normalized record values with their units and sources; model_values(model,values,'亿元') uses saved amount_scale; waterfall(start,{label:signed_change},end=reported_end) plots true increments/residual; comparison_heatmaps({label:model['result']}) shares DCF axes/colors. Helpers return editable figure/axes; layout and explanation remain yours. Generic raw_only omits financial helpers and data.\n    Write images/data under /output. No network, keys or main database. Returns run_id.",
     "inputSchema": {
+      "$defs": {
+        "AnalysisEdit": {
+          "properties": {
+            "before": {
+              "title": "Before",
+              "type": "string"
+            },
+            "after": {
+              "title": "After",
+              "type": "string"
+            },
+            "replace_all": {
+              "title": "Replace All",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "before",
+            "after"
+          ],
+          "title": "AnalysisEdit",
+          "type": "object"
+        }
+      },
       "properties": {
         "project_id": {
           "title": "Project Id",
           "type": "string"
         },
         "code": {
-          "title": "Code",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Code"
         },
         "document_ids": {
           "anyOf": [
@@ -1102,11 +1755,91 @@
           "default": 120,
           "title": "Timeout Seconds",
           "type": "integer"
+        },
+        "raw_only": {
+          "default": false,
+          "title": "Raw Only",
+          "type": "boolean"
+        },
+        "financial_tools": {
+          "default": true,
+          "title": "Financial Tools",
+          "type": "boolean"
+        },
+        "model_refs": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model Refs"
+        },
+        "comparisons": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Comparisons"
+        },
+        "source_run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Run Id"
+        },
+        "edits": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/AnalysisEdit"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Edits"
+        },
+        "report": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Report"
         }
       },
       "required": [
-        "project_id",
-        "code"
+        "project_id"
       ],
       "title": "run_analysisArguments",
       "type": "object"
@@ -1115,16 +1848,11 @@
       "additionalProperties": true,
       "title": "run_analysisDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "get_analysis_status",
-    "title": null,
-    "description": "Poll isolated analysis state and verified artifact manifest.",
+    "description": "Poll analysis state; completion includes exact numeric tables, units, row keys and artifacts.",
     "inputSchema": {
       "properties": {
         "project_id": {
@@ -1147,15 +1875,10 @@
       "additionalProperties": true,
       "title": "get_analysis_statusDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "cancel_analysis",
-    "title": null,
     "description": "Cancel an isolated analysis task belonging to this project.",
     "inputSchema": {
       "properties": {
@@ -1179,16 +1902,11 @@
       "additionalProperties": true,
       "title": "cancel_analysisDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "get_artifact",
-    "title": null,
-    "description": "Get a successful sandbox artifact after project, path and hash verification.",
+    "description": "Read verified artifact metadata and CSV/JSON/Markdown content. rows={start,end} selects zero-based CSV records, JSON array items or text lines; end is exclusive.",
     "inputSchema": {
       "properties": {
         "project_id": {
@@ -1202,6 +1920,21 @@
         "name": {
           "title": "Name",
           "type": "string"
+        },
+        "rows": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "integer"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rows"
         }
       },
       "required": [
@@ -1216,15 +1949,10 @@
       "additionalProperties": true,
       "title": "get_artifactDictOutput",
       "type": "object"
-    },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    }
   },
   {
     "name": "rematerialize_documents",
-    "title": null,
     "description": "Host maintenance only. Rebuild facts from saved LangExtract mappings with zero model calls; preserves extraction ownership. Never expose as an Agent task.",
     "inputSchema": {
       "properties": {
@@ -1251,10 +1979,371 @@
       "additionalProperties": true,
       "title": "rematerialize_documentsDictOutput",
       "type": "object"
+    }
+  },
+  {
+    "name": "get_research_model_schema",
+    "description": "Get exact financial model input JSON schema and a labelled synthetic example. kind: dcf, comparables, manufacturing_scenario, financial_quality. Ratios use fractions (0.10=10%).",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "kind"
+      ],
+      "title": "get_research_model_schemaArguments",
+      "type": "object"
     },
-    "icons": null,
-    "annotations": null,
-    "meta": null,
-    "execution": null
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_research_model_schemaDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "evaluate_research_model",
+    "description": "Host calculator only. Evaluate a Decimal financial model with all explicit assumptions; no LLM and no data inference.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "spec": {
+          "additionalProperties": true,
+          "title": "Spec",
+          "type": "object"
+        }
+      },
+      "required": [
+        "project_id",
+        "kind",
+        "spec"
+      ],
+      "title": "evaluate_research_modelArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "evaluate_research_modelDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "resolve_model_inputs",
+    "description": "Host-only record binding, invoked by run_financial_model; exact project-scoped values and sources.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "spec": {
+          "additionalProperties": true,
+          "title": "Spec",
+          "type": "object"
+        },
+        "bindings": {
+          "additionalProperties": true,
+          "title": "Bindings",
+          "type": "object"
+        }
+      },
+      "required": [
+        "project_id",
+        "spec",
+        "bindings"
+      ],
+      "title": "resolve_model_inputsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "resolve_model_inputsDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "compare_research_models",
+    "description": "Host calculator; compare immutable model inputs and optionally perform an ordered DCF decomposition.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "baseline": {
+          "additionalProperties": true,
+          "title": "Baseline",
+          "type": "object"
+        },
+        "scenario": {
+          "additionalProperties": true,
+          "title": "Scenario",
+          "type": "object"
+        },
+        "order": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Order"
+        }
+      },
+      "required": [
+        "project_id",
+        "kind",
+        "baseline",
+        "scenario"
+      ],
+      "title": "compare_research_modelsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "compare_research_modelsDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "deliver_research_models",
+    "description": "Host only, not exposed to the model. Publish the input/result/difference tables and the calculator bundle of saved model versions; no sandbox run and no model call.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "model_refs": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "title": "Model Refs",
+          "type": "object"
+        },
+        "comparisons": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Comparisons"
+        }
+      },
+      "required": [
+        "project_id",
+        "model_refs"
+      ],
+      "title": "deliver_research_modelsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "deliver_research_modelsDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "get_research_document_version",
+    "description": "Host dependency check: current original-file and normalized-fact content version in one read snapshot.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_id"
+      ],
+      "title": "get_research_document_versionArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_research_document_versionDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "execute_authorized_database_operation",
+    "description": "Host only, not exposed to the model. UI authorization is verified by Node.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "operation": {
+          "additionalProperties": true,
+          "title": "Operation",
+          "type": "object"
+        },
+        "approval_id": {
+          "title": "Approval Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "operation",
+        "approval_id"
+      ],
+      "title": "execute_authorized_database_operationArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "execute_authorized_database_operationDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "delete_library_document",
+    "description": "Host only: direct user confirmation in attachment dashboard, never an agent tool.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "document_id"
+      ],
+      "title": "delete_library_documentArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "delete_library_documentDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "get_attachment_flows",
+    "description": "Host only: conversation-owned immutable processing results.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "owner_run_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owner Run Ids",
+          "type": "array"
+        },
+        "flow_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Flow Id"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id",
+        "owner_run_ids"
+      ],
+      "title": "get_attachment_flowsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_attachment_flowsDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "record_attachment_read",
+    "description": "Host only: record a conversation's first use of existing evidence.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "owner_run_id": {
+          "title": "Owner Run Id",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "mode": {
+          "default": "reuse",
+          "title": "Mode",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "owner_run_id",
+        "document_id"
+      ],
+      "title": "record_attachment_readArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "record_attachment_readDictOutput",
+      "type": "object"
+    }
   }
 ]

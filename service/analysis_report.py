@@ -337,11 +337,20 @@ def save_table(name, columns, rows, title=None, input_dir='/input', output_dir='
     compiled = compile_report({'tables': {name: table}}, records, models)['tables'][name]
     output = Path(output_dir); output.mkdir(parents=True, exist_ok=True)
     write_csv(output / (name + '.csv'), compiled)
+    save_numeric_tables({name: compiled}, output)
     return compiled
+
+
+def save_numeric_tables(tables, output):
+    path = Path(output) / 'numeric_tables.json'
+    saved = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'tables': {}}
+    saved['tables'].update(tables)
+    path.write_text(json.dumps(saved, ensure_ascii=False, indent=2), encoding='utf-8')
 
 
 def render_report(compiled, output_dir):
     output = Path(output_dir); output.mkdir(parents=True, exist_ok=True)
+    save_numeric_tables(compiled['tables'], output)
     markdown = ['# ' + compiled.get('title', '分析报告'), compiled.get('body', '')]
     for name, table in compiled['tables'].items():
         columns, rows = table['columns'], table['rows']

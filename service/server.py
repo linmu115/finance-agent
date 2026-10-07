@@ -289,7 +289,7 @@ async def run_analysis(project_id: str, code: str | None = None, document_ids: l
 
 @mcp.tool()
 async def get_analysis_status(project_id: str, run_id: str) -> dict[str, Any]:
-    """Poll isolated analysis state and verified artifact manifest."""
+    """Poll analysis state; completion includes exact numeric tables, units, row keys and artifacts."""
     return await call("get_analysis_status",project_id=project_id,run_id=run_id)
 
 @mcp.tool()
@@ -298,9 +298,9 @@ async def cancel_analysis(project_id: str, run_id: str) -> dict[str, Any]:
     return await call("cancel_analysis",project_id=project_id,run_id=run_id)
 
 @mcp.tool()
-async def get_artifact(project_id: str, run_id: str, name: str) -> dict[str, Any]:
-    """Get a successful sandbox artifact after project, path and hash verification."""
-    return await call("get_artifact",project_id=project_id,run_id=run_id,name=name)
+async def get_artifact(project_id: str, run_id: str, name: str, rows: dict[str, int] | None = None) -> dict[str, Any]:
+    """Read verified artifact metadata and CSV/JSON/Markdown content. rows={start,end} selects zero-based CSV records, JSON array items or text lines; end is exclusive."""
+    return await call("get_artifact",project_id=project_id,run_id=run_id,name=name,rows=rows)
 
 @mcp.tool()
 async def rematerialize_documents(project_id: str, document_ids: list[str]) -> dict[str, Any]:

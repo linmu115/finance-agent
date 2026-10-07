@@ -689,19 +689,19 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
 
     def get_analysis_status(self, project_id, run_id):
         saved=self._analysis_state(project_id,run_id)
-        if saved.get("status") not in {"queued","running"}:return response(saved)
+        if saved.get("status") not in {"queued","running"}:return response(self._analysis_presentation(project_id,run_id,saved))
         try:
             observed=self._runner().status(run_id,project_id=project_id)
-            return response(self._save_analysis_state(project_id,run_id,observed))
         except Exception:
             # A queued worker has not necessarily created its runner manifest yet.
             future=self.analysis_futures.get(run_id)
             if future is not None and not future.done():return response(saved)
             latest=self._analysis_state(project_id,run_id)
-            if latest.get("status") not in {"queued","running"}:return response(latest)
+            if latest.get("status") not in {"queued","running"}:return response(self._analysis_presentation(project_id,run_id,latest))
             # Reconcile persisted jobs after service restart instead of hanging forever.
             failed=saved|{"status":"failed","error":"runner_state_unavailable_after_restart"}
             return response(self._save_analysis_state(project_id,run_id,failed))
+        return response(self._analysis_presentation(project_id,run_id,self._save_analysis_state(project_id,run_id,observed)))
 
     def cancel_analysis(self, project_id, run_id):
         saved=self._analysis_state(project_id,run_id)
@@ -728,7 +728,17 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             except Exception:
                 time.sleep(.1)
 
-    def get_artifact(self, project_id, run_id, name):
+    def _analysis_presentation(self, project_id, run_id, state):
+        if state.get('status') != 'succeeded': return state
+        from .analysis_tables import collect_tables, table_view
+        runner = self._runner()
+        paths = {item['name']: runner.artifact_path(run_id, item['name'], project_id=project_id)
+                 for item in state.get('artifacts', []) if Path(item['name']).suffix.lower() in ('.csv', '.json')}
+        tables, warnings = collect_tables(paths)
+        return {**state, 'numeric_tables': {k: table_view(t) for k, t in tables.items()}, 'table_warnings': warnings}
+
+    def get_artifact(self, project_id, run_id, name, rows=None):
         self.store.project(project_id)
         path=self._runner().artifact_path(run_id,name,project_id=project_id)
-        return response({"name":name,"relative_path":str(path.relative_to(self.store.root)),"sha256":hashlib.sha256(path.read_bytes()).hexdigest(),"size":path.stat().st_size,"mime_type":mimetypes.guess_type(name)[0] or "application/octet-stream"})
+        from .analysis_tables import artifact_content
+        return response({"name":name,"relative_path":str(path.relative_to(self.store.root)),"sha256":hashlib.sha256(path.read_bytes()).hexdigest(),"size":path.stat().st_size,"mime_type":mimetypes.guess_type(name)[0] or "application/octet-stream", **artifact_content(path, rows)})
