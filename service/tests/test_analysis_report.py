@@ -13,6 +13,18 @@ from service.tests.test_research_models import dcf_spec
 
 
 class PresentationTests(unittest.TestCase):
+    def test_mismatched_row_keys_do_not_silently_export_a_blank_row(self):
+        report = {'tables': {'changes': {
+            'columns': {'metric': {'label': '指标'}, 'amount': {'label': '金额', 'unit': '人民币百万元'}},
+            'rows': [{'指标': '营业收入', '金额': {'value': '123', 'unit': '人民币百万元'}}]}}}
+        with self.assertRaisesRegex(ValueError, 'changes.0.*列键不匹配'):
+            compile_report(report)
+        # Actual unknown values remain unknown when the row uses the declared keys.
+        report['tables']['changes']['rows'] = [{'metric': '营业收入', 'amount': None}]
+        row = compile_report(report)['tables']['changes']['rows'][0]
+        self.assertEqual(row['metric'], '营业收入')
+        self.assertIsNone(row['amount'])
+
     def test_unit_invariance_for_new_random_amounts_not_company_answers(self):
         rng = random.Random(417)
         units = {'元': 1, '千元': 1000, '万元': 10000, '百万元': 1000000, '亿元': 100000000, 'billion': 1000000000}
@@ -180,6 +192,37 @@ class PresentationTests(unittest.TestCase):
         self.assertEqual(compiled['body'], f'WACC {Decimal(spec["discount"]["wacc"]) * 100:,.2f} %')
         with self.assertRaisesRegex(ValueError, '不能把'):
             compile_report({'tables': {'p': {'columns': {'x': {'unit': '%'}}, 'rows': [{'x': {'model': 'base', 'path': 'spec.base.revenue'}}]}}}, models={'base': model})
+
+    def test_peer_currency_survives_model_reference_and_csv_delivery(self):
+        spec = {'currency': 'CNY', 'amount_scale': '1000000', 'method': 'pe', 'aggregation': 'median',
+                'metric_basis': 'FY2026_forward', 'subject': {'earnings': '100', 'shares': {'count': '100', 'scale': '1000000'}},
+                'peers': [{'id': 'peer', 'metric_basis': 'FY2026_forward', 'price': '30', 'eps': '3'}]}
+        model = {'id': 'm', 'revision_id': 'v', 'kind': 'comparables', 'spec': spec, 'result': evaluate_model('comparables', spec)}
+        report = {'tables': {'peer': {'columns': {'eps': {'label': '同行 EPS', 'unit': '港元/股'}},
+                  'rows': [{'eps': {'model': 'm', 'path': 'spec.peers.0.eps', 'source_unit': '港元/股'}}]}}}
+        compiled = compile_report(report, models={'m': model})
+        self.assertEqual(compiled['tables']['peer']['evidence'][0]['eps']['currency'], 'HKD')
+        self.assertEqual(compiled['tables']['peer']['rows'], [{'eps': '3'}])
+        with tempfile.TemporaryDirectory() as folder:
+            render_report(compiled, folder)
+            with (Path(folder) / 'peer.csv').open(encoding='utf-8-sig') as file:
+                self.assertEqual(list(csv.reader(file)), [['同行 EPS（HKD 元/股）'], ['3']])
+        report['tables']['peer']['columns']['eps']['unit'] = '人民币/股'
+        with self.assertRaisesRegex(ValueError, '不同币种'):
+            compile_report(report, models={'m': model})
+        # No currency on the peer or column must not inherit the subject's CNY.
+        report['tables']['peer']['columns']['eps']['unit'] = '元/股'
+        report['tables']['peer']['rows'][0]['eps']['source_unit'] = '元/股'
+        with self.assertRaisesRegex(ValueError, '需要 currency'):
+            compile_report(report, models={'m': model})
+
+    def test_subject_model_currency_cannot_be_relabelled_by_source_unit(self):
+        spec = dcf_spec(); spec['amount_scale'] = '1000000'
+        model = {'id': 'm', 'revision_id': 'v', 'kind': 'dcf', 'spec': spec, 'result': evaluate_model('dcf', spec)}
+        with self.assertRaisesRegex(ValueError, '不做隐含换汇'):
+            model_quantity(model, 'spec.base.revenue', 'USD million')
+        stated = model_quantity(model, 'spec.base.revenue', '人民币百万元')
+        self.assertEqual((stated['currency'], Decimal(stated['value'])), ('CNY', Decimal(spec['base']['revenue']) * 1000000))
 
 
 if __name__ == '__main__':unittest.main()

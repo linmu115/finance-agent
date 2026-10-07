@@ -1,0 +1,286 @@
+{
+  "generatedAt": "2026-10-06T17:09:43.182124+00:00",
+  "status": "completed_professional_advantage_not_accepted",
+  "verdict": {
+    "professionalAdvantage": "not_demonstrated_acceptance_failed",
+    "actualMonetarySavings": "unknown",
+    "explanation": "核心 DCF 计算正确，但金融组仍有数量级、现金流解释、正文与附件不一致和图表问题，不能凭少量输入 token 或可复现交付判定整体更优。"
+  },
+  "baseCommit": "8ff69f2",
+  "codePhases": {
+    "mainComparison": {
+      "codeSha256": "4c9bbbab7ba275d99f8319f41f89afdb73047e6bd8aeea3938dc6ef2aa96c0f7",
+      "codeChangedDuringComparison": [],
+      "frozenPatch": "data\\evaluation\\pi-cowork-acceptance-20261006\\frozen-code.patch"
+    },
+    "postfix": "主对照结束后新增字段键不匹配错误；独立回归，不改写主对照成绩。"
+  },
+  "repairs": [
+    "保存模型数值引用保留显式币种，同行输入不继承主体币种，拒绝矛盾的隐含换汇。",
+    "补齐已有模型输入及输出单位，区分金额、每股、比例、天数、数量和制造业量价单位；刷新交付格式版本。",
+    "关闭 Windows 索引测试持有的 SQLite 连接，修复文件占用导致的清理失败。",
+    "真实 E1 数据行与列键完全不匹配时明确报错，避免静默导出空表；原始九行仍保留。"
+  ],
+  "validation": {
+    "pythonFullBeforePostfix": {
+      "passed": 494,
+      "seconds": 220.821
+    },
+    "pythonFocusedAfterPostfix": {
+      "passed": 20,
+      "seconds": 2.868
+    },
+    "typecheck": "passed",
+    "build": "passed_existing_chunk_size_warning",
+    "blankRowActualFailureReplay": "rejected_with_actionable_key_error_preserved_9_rows",
+    "evidenceRoot": "tmp/acceptance-fix-20261006"
+  },
+  "design": {
+    "tasks": [
+      "中报利润与现金流",
+      "研报预测与 DCF 初建",
+      "同会话 DCF 局部更新"
+    ],
+    "repetitionsPerProfile": 2,
+    "completedTasks": 12,
+    "extraFailedAttempts": 1,
+    "model": "gpt-6-luna",
+    "provider": "cpa-local",
+    "reasoning": {
+      "router": "low",
+      "main": "high"
+    },
+    "samePreparedData": true,
+    "structuredDataUnchanged": true,
+    "newIngestion": 0,
+    "historicalPreparationExcluded": true,
+    "projectId": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+    "limits": [
+      "Previously used company/materials; development regression, not held-out generalization.",
+      "Two repetitions per profile; no statistical superiority claim.",
+      "Same model and routing policy; record actual per-request reasoning levels.",
+      "Provider cache warmth is uncontrolled; currency prices are not verified.",
+      "Reviewer is the implementing assistant; numerical/source checks are independent of generated answers but not external expert review."
+    ]
+  },
+  "knownUsage": {
+    "prepared": {
+      "attempts": 7,
+      "completed": 6,
+      "statuses": [
+        {
+          "label": "B1",
+          "status": "completed"
+        },
+        {
+          "label": "B2",
+          "status": "failed"
+        },
+        {
+          "label": "F2",
+          "status": "completed"
+        },
+        {
+          "label": "F3",
+          "status": "completed"
+        },
+        {
+          "label": "D1",
+          "status": "completed"
+        },
+        {
+          "label": "D2",
+          "status": "completed"
+        },
+        {
+          "label": "D3",
+          "status": "completed"
+        }
+      ],
+      "input": 4086897,
+      "output": 38626,
+      "uncachedInput": 366193,
+      "cacheRead": 3720704,
+      "calls": 84,
+      "unknownCalls": 5,
+      "cacheUnknownCalls": 5,
+      "costUnknownCalls": 5,
+      "providerBilledCost": null,
+      "priceNote": "CPA billing tariff not verified; directory estimates are not bills.",
+      "elapsedSeconds": 1356.972,
+      "toolErrors": 2,
+      "failedAnalyses": 7,
+      "downloads": 62,
+      "downloadsOk": 62
+    },
+    "financial": {
+      "attempts": 6,
+      "completed": 6,
+      "statuses": [
+        {
+          "label": "C1",
+          "status": "completed"
+        },
+        {
+          "label": "C2",
+          "status": "completed"
+        },
+        {
+          "label": "C3",
+          "status": "completed"
+        },
+        {
+          "label": "E1",
+          "status": "completed"
+        },
+        {
+          "label": "E2",
+          "status": "completed"
+        },
+        {
+          "label": "E3",
+          "status": "completed"
+        }
+      ],
+      "input": 3226550,
+      "output": 48979,
+      "uncachedInput": 381878,
+      "cacheRead": 2844672,
+      "calls": 64,
+      "unknownCalls": 0,
+      "cacheUnknownCalls": 0,
+      "costUnknownCalls": 0,
+      "providerBilledCost": null,
+      "priceNote": "CPA billing tariff not verified; directory estimates are not bills.",
+      "elapsedSeconds": 1294.779,
+      "toolErrors": 1,
+      "failedAnalyses": 4,
+      "downloads": 62,
+      "downloadsOk": 62
+    }
+  },
+  "financialVsBaselinePercentChange": {
+    "input": -21.051350205302455,
+    "output": 26.803189561435303,
+    "uncachedInput": 4.283260466475336
+  },
+  "providerOutage": {
+    "failedRun": "B2",
+    "reason": "server_is_overloaded followed by temporary auth_unavailable",
+    "unknownUsageCalls": 5,
+    "replacementTasks": [
+      "F2",
+      "F3"
+    ],
+    "sameModelAndQuestions": true,
+    "preservedInTotals": true
+  },
+  "diagnosticUsageSeparate": {
+    "input": 307,
+    "output": 5,
+    "calls": 1
+  },
+  "delivery": {
+    "attachmentDownloads": {
+      "ok": 124,
+      "total": 124
+    },
+    "bodyLinkDownloads": {
+      "ok": 40,
+      "total": 40
+    },
+    "replayedSuccessfulVersions": 18,
+    "fileContentChecks": 122,
+    "matchingFileContentChecks": 122,
+    "replayContainersRemoved": true
+  },
+  "qualityFindings": {
+    "financial": [
+      "C2 预测金额在正文/报告放大 10 倍，图中缩小 10 倍；图与正文相差 100 倍。",
+      "E2 正文把 WACC 11.2%、g 1% 的敏感性结果写为 12.07，正确值为 11.23；附件正确。",
+      "C1 正文、E1 下载报告将利息收入说成扣减，数值式却正确加回。",
+      "局部更新核心计算和顺序归因正确，但图表标题、色条仍遮挡。"
+    ],
+    "baseline": [
+      "F2 将来源 2024 年 EPS 0.63 写成 0.83。",
+      "D2 CSV 将以亿元表示的金额标成 RMBbn，造成 10 倍单位错误。",
+      "局部更新核心计算正确，但两次图表色条遮挡。"
+    ],
+    "allUpdates": {
+      "correctCoreCalculations": 4,
+      "priorCalculatorReuse": 0,
+      "total": 4
+    },
+    "nativeFinancialModelCalls": 0,
+    "nativeModelDeliveryBenefitInRealCohort": "not_observed; verified by deterministic code/delivery tests only"
+  },
+  "reviewer": "implementing assistant; independent source and arithmetic checks, no external expert review",
+  "postfixCanary": {
+    "status": "completed_with_delivery_defect",
+    "study": "data\\evaluation\\pi-cowork-postfix-20261007",
+    "includedInMainComparison": false,
+    "financialCore": "pass",
+    "bodyImageLink": "unresolved_ambiguous_filename",
+    "downloads": {
+      "ok": 15,
+      "total": 15
+    },
+    "replay": {
+      "versions": 2,
+      "matchingFileContents": 15
+    },
+    "usageSeparate": {
+      "attempts": 1,
+      "completed": 1,
+      "statuses": [
+        {
+          "label": "G1",
+          "status": "completed"
+        }
+      ],
+      "input": 259036,
+      "output": 7285,
+      "uncachedInput": 47580,
+      "cacheRead": 211456,
+      "calls": 9,
+      "unknownCalls": 0,
+      "cacheUnknownCalls": 0,
+      "costUnknownCalls": 0,
+      "providerBilledCost": null,
+      "priceNote": "CPA billing tariff not verified; directory estimates are not bills.",
+      "elapsedSeconds": 173.804,
+      "toolErrors": 0,
+      "failedAnalyses": 0,
+      "downloads": 15,
+      "downloadsOk": 15
+    },
+    "codeChangedDuringCanary": [],
+    "dataUnchanged": true
+  },
+  "environmentCleanup": {
+    "finishedAt": "2026-10-07T01:09:42.3572642+08:00",
+    "authorizedTemporaryUse": true,
+    "originalConfigSha256": "EEC3CCAE1DEB57F9320A108D69D8FD1E4CB31AA073757E2761B2C16E61470560",
+    "restoredConfigSha256": "EEC3CCAE1DEB57F9320A108D69D8FD1E4CB31AA073757E2761B2C16E61470560",
+    "configurationRestored": true,
+    "remainingDockerOrWslProcesses": [],
+    "runningDistros": "",
+    "port3001Health": {
+      "ok": true,
+      "version": "0.3.0",
+      "service": "connected",
+      "modelConfigured": true
+    },
+    "listeningApplicationPorts": [
+      3001
+    ],
+    "initialCombinedCommandBlocked": true,
+    "blockedReason": "Automatic review: blocked by policy; no more specific reason returned.",
+    "completedMethod": "DockerCli -Shutdown returned exit 0; Docker and WSL exited naturally. Copied original .wslconfig byte-for-byte after shutdown. No forced process termination or image, volume, data or preserved socket-directory deletion."
+  },
+  "evidence": {
+    "mainStudy": "data\\evaluation\\pi-cowork-acceptance-20261006",
+    "caseReviews": "docs/evidence/cowork-acceptance-20261007/reviews.json",
+    "rawRepliesAndFiles": "data/evaluation/pi-cowork-acceptance-20261006/<label>-answer.md and <label>-artifacts/"
+  }
+}

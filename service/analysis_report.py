@@ -131,8 +131,9 @@ def model_quantity(model, path, source_unit=None):
     else:
         from model_units import quantity_unit
     info = quantity_unit(model, path)
+    source_currency = None
     if source_unit:
-        source_unit = canonical_unit(source_unit)[0]
+        source_unit, source_currency = canonical_unit(source_unit)
     if source_unit and info and source_unit != info['unit']:
         dimension, scale = unit_info(info['unit'])
         # The model's own unit restated at its scale (百万元 for amount_scale 1000000) changes nothing; anything else would relabel the value.
@@ -142,13 +143,21 @@ def model_quantity(model, path, source_unit=None):
         if source_unit is None:
             raise ValueError(f'{path} 尚无单位元数据；提供明确 source_unit 或用 Python 定义派生量')
         info = {'unit': source_unit, 'scale': '1'}
+    currency = None
+    if unit_info(info['unit'])[0] in {'money', 'per_share'}:
+        # A comparable's own currency is independent of the subject company.
+        # If it is not stated here, the report column must state it explicitly.
+        peer_input = model['kind'] == 'comparables' and path.startswith('spec.peers.')
+        currency = source_currency if peer_input else model['spec']['currency']
+        if source_currency and currency != source_currency:
+            raise ValueError(f'{path} 的模型币种为 {currency}，source_unit 写的是 {source_currency}；不做隐含换汇')
     # "spec.…" reads a saved input (e.g. spec.discount.wacc); every other path reads the result.
     value = at_path(model['spec'], path[5:]) if path.startswith('spec.') else at_path(model['result'], path)
     if value is not None:
         with localcontext() as ctx:
             ctx.prec = 50
             value = str(Decimal(str(value)) * Decimal(info.get('scale', '1')))
-    return {'value': value, 'unit': info['unit'], 'currency': model['spec']['currency'] if unit_info(info['unit'])[0] in {'money', 'per_share'} else None,
+    return {'value': value, 'unit': info['unit'], 'currency': currency,
             'source': {'artifact_id': model['id'], 'revision_id': model['revision_id'], 'path': path,
                        'data_kind': 'model_calculation', 'amount_scale': model['spec']['amount_scale']}}
 
@@ -171,6 +180,8 @@ def compile_report(report, records=(), models=None):
                 col['currency'] = named
         values, evidence = [], []
         for row_index, row in enumerate(table['rows']):
+            if row and not (row.keys() & columns.keys()):
+                raise ValueError(f'{name}.{row_index} 数据与列键不匹配；columns 键为 {list(columns)}，数据键为 {list(row)}。数据应使用列键而不是 label')
             displayed, sources = {}, {}
             for key, col in columns.items():
                 cell = row.get(key)

@@ -1,4 +1,5 @@
 import copy
+import csv
 import json
 import tempfile
 import unittest
@@ -10,6 +11,46 @@ from service.tests.test_research_models import dcf_spec
 
 
 class DeliveryTests(unittest.TestCase):
+    def test_supported_model_amounts_rates_and_days_are_labelled_in_delivered_csv(self):
+        from service.research_schema import get_model_example
+        with tempfile.TemporaryDirectory() as folder:
+            for kind in ('three_statement', 'financial_quality', 'manufacturing_scenario', 'comparables'):
+                spec = get_model_example(kind); spec['amount_scale'] = '1000000'
+                model = {'kind': kind, 'spec': spec, 'result': evaluate_model(kind, spec)}
+                output = Path(folder) / kind; output.mkdir()
+                prepare_delivery(output, {'saved': model}, {})
+                with (output / 'saved_inputs.csv').open(encoding='utf-8-sig') as file:
+                    inputs = {row['path']: row for row in csv.DictReader(file)}
+                with (output / 'saved_units.csv').open(encoding='utf-8-sig') as file:
+                    units = {(row['table'], row['column']): row['unit'] for row in csv.DictReader(file)}
+                if kind == 'three_statement':
+                    for field in ('interest_rate', 'opex_ratio', 'revenue_growth', 'gross_margin', 'tax_rate'):
+                        self.assertEqual(inputs['forecast.0.' + field]['unit'], 'ratio')
+                    for field in ('dso', 'dio', 'dpo', 'days_in_year'):
+                        self.assertEqual(inputs['forecast.0.' + field]['unit'], '天')
+                    for field in ('base_revenue', 'opening.ppe', 'forecast.0.debt_repayment'):
+                        self.assertEqual(inputs[field]['unit'], 'CNY 百万元')
+                    for table, rows in model['result']['tables'].items():
+                        # Every three-statement output except its calendar year is an amount.
+                        for field in rows[0]:
+                            if field != 'year':
+                                self.assertEqual(units[table, field], 'CNY 百万元', (table, field))
+                    self.assertEqual(inputs['forecast.0.interest_rate']['value'], '0.05')
+                elif kind == 'financial_quality':
+                    self.assertEqual(inputs['periods.1.finance_expense']['unit'], 'CNY 百万元')
+                    self.assertEqual(units['quality', 'cash_conversion'], 'ratio')
+                    self.assertEqual(units['quality', 'dso'], '天')
+                    self.assertEqual(units['attribution', 'revenue_effect'], 'CNY 百万元')
+                elif kind == 'manufacturing_scenario':
+                    self.assertEqual(inputs['scenario.pass_through_rate']['unit'], 'ratio')
+                    self.assertEqual(inputs['baseline.0.unit_price']['unit'], 'CNY 百万元/units')
+                    self.assertEqual(units['scenario', 'scenario_volume'], 'units')
+                    self.assertEqual(units['scenario', 'scenario_ebit'], 'CNY 百万元')
+                else:
+                    self.assertEqual(inputs['subject.earnings']['unit'], 'CNY 百万元')
+                    self.assertEqual(inputs['subject.shares.count']['unit'], '股')
+                    self.assertEqual(inputs['peers.0.eps']['unit'], '')
+
     def test_selected_revision_csv_and_calculator_reproduce_exact_model(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder);saved=root/'research'/'p'/'artifacts';saved.mkdir(parents=True)

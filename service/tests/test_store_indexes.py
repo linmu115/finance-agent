@@ -1,5 +1,6 @@
 """Per-document reads use indexes, and retired research records leave no search entries behind."""
 import sqlite3
+from contextlib import closing
 import tempfile
 import unittest
 from pathlib import Path
@@ -47,7 +48,7 @@ class IndexTests(unittest.TestCase):
         legacy = Path(self.tmp.name) / 'legacy'
         legacy.mkdir()
         Store(legacy)
-        with sqlite3.connect(legacy / 'finance.sqlite') as db:
+        with closing(sqlite3.connect(legacy / 'finance.sqlite')) as db, db:
             for name in ('chunks_document', 'source_tables_document', 'facts_document', 'fact_history_document'):
                 db.execute('DROP INDEX ' + name)
             db.execute("INSERT INTO chunks VALUES('c1','p','d',1,NULL,'text','{\"document_id\":\"d\"}')")

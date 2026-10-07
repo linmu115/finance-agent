@@ -99,7 +99,7 @@ def prepare_delivery(export,models,comparison_requests,bundle='model_bundle.zip'
 
 
 # Changes whenever the set or layout of delivered files changes, so an older delivery is not reused.
-DELIVERY_FORMAT='2'
+DELIVERY_FORMAT='3'
 # One service process owns the data directory; this orders its own threads.
 _publishing=threading.Lock()
 

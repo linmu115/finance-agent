@@ -1,0 +1,313 @@
+{
+  "method": "Original PDF pages and frozen numerical reference; inspect actual answer, CSV, chart, and delivered code. No feedback supplied to participants. Material failures decide financial correctness; minor defects are retained separately.",
+  "cases": {
+    "B1": {
+      "financialCore": "pass",
+      "sourceAndInterpretation": "pass",
+      "currencyAndScale": "pass",
+      "visualInspection": "pass",
+      "deliveryDownloads": "8/8",
+      "replay": {
+        "versions": 1,
+        "allSucceeded": true,
+        "checks": 8,
+        "allMatch": true
+      },
+      "minorIssues": [
+        "Gross-margin decrease reported as 7.8pp from rounded 41.4%-33.6%; unrounded source amounts give 7.7321pp, conventionally 7.7pp at one decimal. Same rounding issue in answer and Markdown."
+      ],
+      "materialIssues": [],
+      "evidence": [
+        "Main income and CFO values match source; parent and consolidated net income separated.",
+        "Net finance income correctly sits below operating profit; tax expense reduction also reconciles net profit.",
+        "Cash bridges 16.776+5.723-41.175=-18.676 and 130.795+1.216-42.147=89.864 are correct; absent indirect bridge not invented.",
+        "CSV amounts all CNY million; chart bars and negative CFO match data; labels legible.",
+        "Two sandbox failures and two edit-tool failures included in measured consumption; participant self-corrected."
+      ]
+    },
+    "C1": {
+      "financialCore": "pass",
+      "sourceAndInterpretation": "fail: opening sentence contradicts cash-flow sign",
+      "currencyAndScale": "pass",
+      "visualInspection": "minor layout defect",
+      "deliveryDownloads": "6/6",
+      "replay": {
+        "versions": 1,
+        "allSucceeded": true,
+        "checks": 6,
+        "allMatch": true
+      },
+      "minorIssues": [
+        "Answer gross margin 33.64% and decrease 7.74pp disagree with correct CSV/Markdown 33.65% and 7.73pp.",
+        "Chart negative CFO value label overlaps category text.",
+        "CSV mixes level percentages and percentage-point changes under a shared unit column; change-column unit should be explicit."
+      ],
+      "materialIssues": [
+        "Opening answer says deduct bank interest receipts and tax; interest receipts must be added. Numerical bridge later and delivered Markdown/CSV are correct, so this is a narrative/cross-artifact inconsistency rather than a wrong CFO amount."
+      ],
+      "evidence": [
+        "Income/CFO amounts, two cash bridges, and all currency scales correct.",
+        "Distinguishes accrual net finance income from cash interest receipts and does not invent absent indirect reconciliation.",
+        "After unit-contract failure, participant replaced shared report rendering with custom code; this actual rework is counted.",
+        "PNG visually inspected; data values correct, negative label collides with x-axis category.",
+        "Original interim physical page12 confirms management explanation: greater fixed-deposit allocation in second half of2024 increased interest income."
+      ]
+    },
+    "C2": {
+      "financialCore": "fail: forecast magnitude",
+      "sourceAndInterpretation": "partial",
+      "currencyAndScale": "fail",
+      "visualInspection": "fail: wrong forecast scale; low contrast heatmap",
+      "deliveryDownloads": "10/10",
+      "replay": {
+        "versions": 1,
+        "allSucceeded": true,
+        "checks": 9,
+        "allMatch": true
+      },
+      "materialIssues": [
+        "Answer and Markdown label forecast revenue/profit as CNY100m but show 240.2/34.78 etc instead of24.02/3.478: 10x too large.",
+        "Forecast plot labels CNY100m but plots2.402/0.3478 etc: 10x too small. Answer and figure differ100x.",
+        "chart_data.json contains correct source-million values but globally labels forecast_amount as RMB100m, contradicting its field names."
+      ],
+      "minorIssues": [
+        "Forecast CSV omits metric name, so revenue, net income and EPS rows have the same category/year; raw values/scales correct but rows ambiguous.",
+        "Markdown states PE gap0.01HKD while actual8.97-8.881=0.089; answer states0.09 correctly.",
+        "Darkest sensitivity cell uses black text with poor contrast."
+      ],
+      "evidence": [
+        "Independent DCF EV5329.22467751/equity5649.22467751/HKD10.89129803 and all9sensitivity cells match frozen reference.",
+        "PE8.881 correct for disclosed rounded EPS0.83 and explicit1.07FX; currency assumption explained.",
+        "Forecast is identified as institution forecast, source-year mismatch in DCF caption disclosed.",
+        "No saved run_financial_model calculator; creates investment memo and custom Python."
+      ]
+    },
+    "F2": {
+      "financialCore": "fail:2024 forecast EPS",
+      "sourceAndInterpretation": "partial",
+      "currencyAndScale": "pass",
+      "visualInspection": "minor contrast defect",
+      "deliveryDownloads": "10/10",
+      "replay": {
+        "versions": 2,
+        "allSucceeded": true,
+        "checks": 10,
+        "allMatch": true
+      },
+      "materialIssues": [
+        "CSV and Markdown show2024E EPS0.83CNY versus source0.63; this is not a source-precision variant."
+      ],
+      "minorIssues": [
+        "Answer and Markdown correctly state DCF EV/equity gap-6.8million then contradict it with1.3million and claim precision-level agreement.",
+        "Sensitivity heatmap uses black text on darkest colors."
+      ],
+      "evidence": [
+        "Forecast revenue/net-income source-million to100million conversion is correct in CSV and Markdown.",
+        "DCF originalFCFs, year-end discounting, net cash, share count and FX are correct; sensitivity chart agrees with numerical values.",
+        "PE8.881HKD calculation and0.089HKD source difference correctly explained.",
+        "Two successful custom-Python deliveries; later run amends report text without participant feedback."
+      ]
+    },
+    "F3": {
+      "financialCore": "pass",
+      "sourceAndInterpretation": "pass",
+      "currencyAndScale": "pass",
+      "visualInspection": "fail: colorbar over heatmap",
+      "deliveryDownloads": "4/4",
+      "replay": {
+        "versions": 1,
+        "allSucceeded": true,
+        "checks": 4,
+        "allMatch": true
+      },
+      "materialIssues": [],
+      "minorIssues": [
+        "Shared colorbar is drawn on top of right heatmap, obscuring part of the data region.",
+        "Markdown new-grid row labels contain unresolved literal {w:.1%}."
+      ],
+      "evidence": [
+        "Old/new DCF totals, sequential contributions and all18sensitivity values independently match; grids remain absolute11.2/12.2/13.2%.",
+        "CSV percentage parameters correctly labelled ratio; all amount/share/FX scales clear.",
+        "Both panels use identical color limits; no new-center point falsely marked on original grid.",
+        "Did not reuse prior F2calculator: authored5605characters of new code; then used source_run_id only to fix its own failed script."
+      ]
+    },
+    "C3": {
+      "financialCore": "pass",
+      "sourceAndInterpretation": "pass",
+      "currencyAndScale": "pass",
+      "visualInspection": "fail: overlapping titles and dark text",
+      "deliveryDownloads": "9/9",
+      "replay": {
+        "versions": 1,
+        "allSucceeded": true,
+        "checks": 8,
+        "allMatch": true
+      },
+      "materialIssues": [],
+      "minorIssues": [
+        "Figure title and right subplot title overlap.",
+        "Black text on darkest heatmap cells has poor contrast."
+      ],
+      "evidence": [
+        "Old/new DCF, sequential contributions and18matrix cells independently match reference.",
+        "Rates labelled ratio and all source-money/share/FX units preserved.",
+        "Sequential contribution correctly explains order dependence and distinguishes it from unique economic causation.",
+        "Same absolute sensitivity grids and shared color range; no incorrect new base-cell mark.",
+        "Reads its own saved investment memo but authors new calculator code instead of reusing previous analysis script.",
+        "Final answer values, units, sequence interpretation and monotonic grid direction agree with delivered data."
+      ]
+    },
+    "E1": {
+      "financialCore": "pass",
+      "sourceAndInterpretation": "fail: downloaded report reverses interest receipt sign",
+      "currencyAndScale": "pass",
+      "visualInspection": "pass: final chart",
+      "deliveryDownloads": "15/15",
+      "replay": {
+        "versions": 2,
+        "allSucceeded": true,
+        "checks": 15,
+        "allMatch": true
+      },
+      "materialIssues": [
+        "Final downloadable Markdown says deduct interest receipts and tax although numerical bridge correctly adds receipts. Final chat answer uses correct sign; cross-artifact interpretation remains inconsistent."
+      ],
+      "minorIssues": [
+        "Latest Markdown body contains literal backslash-n sequences instead of paragraph breaks.",
+        "Earlier attached report incorrectly says gross margin expanded; earlier changes.csv contains nine entirely blank rows. New report corrects margin direction and drops blank table, but both versions remain indistinguishably attached."
+      ],
+      "evidence": [
+        "Final answer, final CSV and chart match income/CFO values, profit attribution and gross-margin decline.",
+        "Exact source page14 supports inventory buildup/offline receivables explanations; model attributes them to management and does not invent numerical indirect-bridge components.",
+        "Cash flow identities and source monetary conversions correct.",
+        "Final bar chart is legible, zero-based and shows negative CFO correctly."
+      ]
+    },
+    "D1": {
+      "financialCore": "pass",
+      "sourceAndInterpretation": "pass",
+      "currencyAndScale": "pass",
+      "visualInspection": "pass",
+      "deliveryDownloads": "9/9",
+      "replay": {
+        "versions": 1,
+        "allSucceeded": true,
+        "checks": 9,
+        "allMatch": true
+      },
+      "materialIssues": [],
+      "minorIssues": [
+        "Answer subtracts rounded gross margins41.4%-33.6% to give7.8pp; unrounded source amounts yield7.7321pp, or7.7pp at one decimal. CSV stores margins rounded to one decimal."
+      ],
+      "evidence": [
+        "Income, distinct consolidated/parent net profit, finance-income growth and both cash-flow bridges agree with source.",
+        "Management working-capital explanations attributed to source page14; no invented indirect-bridge detail.",
+        "Amounts correctly converted to CNYmillion; source net-finance income is not confused with operating profit.",
+        "Final plot values, zero baseline and negative CFO agree with CSV.",
+        "One failed sandbox attempt was self-corrected and counted."
+      ]
+    },
+    "D2": {
+      "financialCore": "fail: CSV amount scale",
+      "sourceAndInterpretation": "partial: false source absence claim",
+      "currencyAndScale": "fail",
+      "visualInspection": "minor heatmap contrast issue",
+      "deliveryDownloads": "15/15",
+      "replay": {
+        "versions": 2,
+        "allSucceeded": true,
+        "checks": 15,
+        "allMatch": true
+      },
+      "materialIssues": [
+        "forecast_and_dcf_inputs.csv labels forecast and FCF values as RMB bn although values are CNY100million, e.g revenue24.02 andFCF2.88: 10x unit overstatement. Chat/Markdown/chart amounts use correct亿元."
+      ],
+      "minorIssues": [
+        "States report has no disclosed EPS, despite original page2 reporting0.63/0.83/0.99. Derived EPS is explicitly identified and mathematically correct for selected page45profit and555million shares, so this is a retrieval/absence-claim defect.",
+        "Dark heatmap cells have low text contrast."
+      ],
+      "evidence": [
+        "All DCF base values and9sensitivity cells match reference.",
+        "Page45rounded profit348/462/546 correctly attributed, and PE8.907HKD correctly derived from462/555*10*1.07.",
+        "Source timing-caption inconsistency disclosed; source million values retained in JSON.",
+        "Two sandbox failures and later self-repairs included in usage."
+      ]
+    },
+    "E2": {
+      "financialCore": "fail: final answer sensitivity cell",
+      "sourceAndInterpretation": "pass aside from numerical restatement",
+      "currencyAndScale": "pass",
+      "visualInspection": "minor low-contrast heatmap text",
+      "deliveryDownloads": "8/8",
+      "replay": {
+        "versions": 1,
+        "allSucceeded": true,
+        "checks": 8,
+        "allMatch": true
+      },
+      "materialIssues": [
+        "Final answer lists12.07HKD at WACC11.2%/g1%, but correct value is11.23. It duplicates the g2%cell; CSV/Markdown/plot all have correct11.23."
+      ],
+      "minorIssues": [
+        "Dark heatmap cells use low-contrast dark text.",
+        "DCF input CSV omits base WACC/g as explicit input rows; values are available in report/script."
+      ],
+      "evidence": [
+        "Forecast revenue/net-income/EPS correct with source page2 and amounts correctly converted to CNY100million across reply/report/CSV/chart.",
+        "DCF base results and9CSV/Markdown sensitivity cells independently match reference.",
+        "PE8.881HKD, source forecasting identity and DCF caption mismatch correctly explained.",
+        "Three failed sandbox versions self-corrected; all calls and code rewrite counted."
+      ]
+    },
+    "E3": {
+      "financialCore": "pass",
+      "sourceAndInterpretation": "pass",
+      "currencyAndScale": "pass",
+      "visualInspection": "fail: colorbar obscures right panel",
+      "deliveryDownloads": "14/14",
+      "replay": {
+        "versions": 2,
+        "allSucceeded": true,
+        "checks": 14,
+        "allMatch": true
+      },
+      "materialIssues": [],
+      "minorIssues": [
+        "Shared colorbar overlays the right heatmap and its label overlaps the8.99cell.",
+        "Darkest heatmap cells have poor text contrast."
+      ],
+      "evidence": [
+        "Old/new per-share values, ordered contributions and all18sensitivity cells match.",
+        "Correctly explains why unchanged absoluteWACCgrid panels show FCF change while0.5ppWACC change affects main scenario/contribution.",
+        "Final parameter CSV labels raw0.122/0.127 as ratios and preserves all source units.",
+        "Recreates DCF code instead of reusing prior E2calculator; second successful run adjusts own report/plot caption."
+      ]
+    },
+    "D3": {
+      "financialCore": "pass",
+      "sourceAndInterpretation": "pass",
+      "currencyAndScale": "pass",
+      "visualInspection": "fail: colorbar overlaps right plot/title",
+      "deliveryDownloads": "16/16",
+      "replay": {
+        "versions": 3,
+        "allSucceeded": true,
+        "checks": 16,
+        "allMatch": true
+      },
+      "materialIssues": [],
+      "minorIssues": [
+        "Shared colorbar covers part of right heatmap and subplot title.",
+        "Darkest heatmap cells have poor contrast.",
+        "WACC/g CSV headers omit explicit ratio unit, though report identifies percentages and raw decimal values are consistent."
+      ],
+      "evidence": [
+        "Base/new valuation totals, two contributions and18sensitivity cells match independent reference.",
+        "Explicitly explains that new main WACC12.7% is not a node on unchanged absolute grid.",
+        "Original/new FCFs preserved in JSON and answer; terminal uses adjusted final FCF.",
+        "Authored new calculation code, first as a small calculation probe and then full deliverable; did not reuse prior D2calculator."
+      ]
+    }
+  }
+}

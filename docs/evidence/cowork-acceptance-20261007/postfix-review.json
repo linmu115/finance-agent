@@ -1,0 +1,64 @@
+{
+  "label": "G1",
+  "role": "unpaired post-fix live regression, excluded from main comparison",
+  "financialCore": "pass",
+  "currencyAndScale": "pass",
+  "narrative": "correct cash-flow direction and net finance distinction; unavailable indirect bridge not invented",
+  "numericChecks": [
+    {
+      "file": "8ddbc599710a-cash_bridge.csv",
+      "period": "2025H1",
+      "matchesSource": true
+    },
+    {
+      "file": "8ddbc599710a-cash_bridge.csv",
+      "period": "2024H1",
+      "matchesSource": true
+    },
+    {
+      "file": "62a31dc8b3c5-performance.csv",
+      "period": "2025H1",
+      "matchesSource": true
+    },
+    {
+      "file": "62a31dc8b3c5-performance.csv",
+      "period": "2024H1",
+      "matchesSource": true
+    },
+    {
+      "file": "e42401643a5d-cash_bridge.csv",
+      "period": "2025H1",
+      "matchesSource": true
+    },
+    {
+      "file": "e42401643a5d-cash_bridge.csv",
+      "period": "2024H1",
+      "matchesSource": true
+    },
+    {
+      "file": "3477e32fb5fe-performance.csv",
+      "period": "2025H1",
+      "matchesSource": true
+    },
+    {
+      "file": "3477e32fb5fe-performance.csv",
+      "period": "2024H1",
+      "matchesSource": true
+    }
+  ],
+  "chartVisualInspection": "latest chart values, CNY million units, Chinese labels, negative CFO and layout correct",
+  "delivery": {
+    "downloadsOk": 15,
+    "downloadsTotal": 15,
+    "bodyLinkOk": 0,
+    "bodyLinkTotal": 1,
+    "failure": "bare chart_1.png matches two attached run revisions; frontend intentionally does not guess a revision, so inline image remains unresolved"
+  },
+  "replay": {
+    "versions": 2,
+    "fileContents": 15,
+    "allMatch": true,
+    "containersRemoved": true
+  },
+  "conclusion": "normal analysis and nonblank tables work after the fix; delivery acceptance incomplete because of the unresolved inline image. Does not establish professional superiority."
+}
