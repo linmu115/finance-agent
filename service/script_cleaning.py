@@ -202,7 +202,7 @@ class ScriptCleaningMixin:
         if include_source:
             _,parsed=self._clean_source(state['project_id'],batch['document_id'])
             view=batch_view(parsed,batch,batch['document_id'])
-            view['mapping_drafts']=[mapping for table in parsed['tables'] if table['index'] in batch['tables']
+            view['mapping_drafts']=[{k:v for k,v in mapping.items() if k!='rows'}|{'mapped_rows':[r['row'] for r in mapping['rows']]} for table in parsed['tables'] if table['index'] in batch['tables']
                                     for mapping,_ in [self._mapping_draft(state['project_id'],batch['document_id'],parsed,table)] if mapping]
             return view
         return batch

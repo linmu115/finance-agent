@@ -6,7 +6,7 @@ unknown. Context-dependent totals are resolved by the table mapper separately.
 import re
 from .normalization import compact, metric_id
 
-VERSION = 'standard-rows-1'
+VERSION = 'standard-rows-2'
 ROWS = {
  'cash': '货币资金|Cash and cash equivalents',
  'cash_on_hand': '库存现金|Cash on hand',
@@ -96,7 +96,6 @@ ROWS = {
  'interest_income': '利息收入|Interest income',
  'fee_commission_income': '手续费及佣金收入',
  'total_operating_cost': '营业总成本',
- 'interest_expense': '利息支出|Interest expense',
  'fee_commission_expense': '手续费及佣金支出',
  'taxes_surcharges': '税金及附加',
  'selling_expenses': '销售费用|Selling expenses|Selling and distribution expenses',
@@ -151,11 +150,6 @@ ROWS = {
  'cash_dividends_interest_paid': '分配股利、利润或偿付利息支付的现金',
  'other_financing_cash_paid': '支付其他与筹资活动有关的现金',
  'financing_cash_outflows': '筹资活动现金流出小计',
- 'financing_cash_flow': '筹资活动产生的现金流量净额|Net cash flows from financing activities|Net cash used in financing activities',
- 'exchange_effect_on_cash': '汇率变动对现金及现金等价物的影响|Effect of foreign exchange rate changes, net',
- 'net_change_in_cash': '现金及现金等价物净增加额|Net increase in cash and cash equivalents|Net decrease in cash and cash equivalents',
- 'cash_beginning': '期初现金及现金等价物余额|Cash and cash equivalents at beginning of period',
- 'cash_ending': '期末现金及现金等价物余额|Cash and cash equivalents at end of period',
  'depreciation': '固定资产折旧、油气资产折耗、生产性生物资产折旧|Depreciation',
  'amortization_intangibles': '无形资产摊销|Amortisation of intangible assets',
  'amortization_deferred_expenses': '长期待摊费用摊销',
@@ -164,14 +158,63 @@ ROWS = {
  'commercial_acceptance_notes': '商业承兑票据',
  'equity_instrument_investments': '权益工具投资',
  'forward_foreign_exchange_contracts': '远期外汇合约',
+ 'financial_assets_purchased_under_resale': '买入返售金融资产',
+ 'loans_and_advances': '发放贷款和垫款',
+ 'interest_expense': '利息支出|利息费用|Interest expense',
+ 'profit_continuing_operations': '持续经营净利润',
+ 'profit_discontinued_operations': '终止经营净利润',
+ 'other_comprehensive_income_parent': '归属母公司所有者的其他综合收益的税后净额|归属于母公司所有者的其他综合收益的税后净额',
+ 'other_comprehensive_income_minority': '归属于少数股东的其他综合收益的税后净额',
+ 'oci_not_reclassified': '不能重分类进损益的其他综合收益',
+ 'oci_reclassified': '将重分类进损益的其他综合收益',
+ 'defined_benefit_remeasurement': '重新计量设定受益计划变动额',
+ 'equity_method_oci_not_reclassified': '权益法下不能转损益的其他综合收益',
+ 'equity_method_oci_reclassified': '权益法下可转损益的其他综合收益',
+ 'equity_instruments_fair_value_change': '其他权益工具投资公允价值变动',
+ 'cashflow_hedge_reserve': '现金流量套期储备',
+ 'foreign_currency_translation': '外币财务报表折算差额',
+ 'net_increase_customer_deposits': '客户存款和同业存放款项净增加额',
+ 'cash_interest_fees_received': '收取利息、手续费及佣金的现金',
+ 'net_increase_customer_loans': '客户贷款及垫款净增加额',
+ 'net_increase_central_bank_deposits': '存放中央银行和同业款项净增加额',
+ 'net_increase_interbank_lending': '拆出资金净增加额',
+ 'cash_interest_fees_paid': '支付利息、手续费及佣金的现金',
+ 'cash_dividends_paid_minority': '子公司支付给少数股东的股利、利润',
+ 'cash_equity_contributions_minority': '子公司吸收少数股东投资收到的现金',
+ 'cash_used_in_operations': 'Cash used in operations|Cash generated from operations',
+ 'operating_cash_flow': '经营活动产生的现金流量净额|经营现金流净额|Net cash used in operating activities|Net cash generated from operating activities',
+ 'intangible_asset_purchases': 'Purchase of intangible assets|Purchases of intangible assets',
+ 'property_equipment_purchases': 'Payment for property and equipment|Purchases of property and equipment',
+ 'property_equipment_disposal_proceeds': 'Proceeds from disposal of property and equipment',
+ 'fvoci_asset_purchases': 'Acquisition of financial assets at FVTOCI',
+ 'fvtpl_asset_purchases': 'Acquisition of financial assets at FVTPL',
+ 'cash_interest_received': 'Interests received|Interest received',
+ 'share_issue_proceeds': 'Proceeds from issues of shares|Proceeds from issue of shares',
+ 'share_issue_expenses': 'Share issues expenses paid',
+ 'cash_borrowing_interest_paid': 'Interests paid on bank and other borrowings',
+ 'pledged_deposit_cash_movement': '(Increase)/decrease in pledged bank deposits and other deposits',
+ 'restricted_deposit_cash_movement': 'Decrease in restricted bank deposits',
+ 'lease_repayments': 'Repayment of lease liabilities',
+ 'director_advance_proceeds': 'Advances from directors',
+ 'director_advance_repayments': 'Repayment of advances from directors',
+ 'other_borrowing_proceeds': 'Proceeds from other borrowings',
+ 'other_borrowing_repayments': 'Repayment of other borrowings',
+ 'bank_borrowing_proceeds': 'Proceeds from bank borrowings',
+ 'bank_borrowing_repayments': 'Repayment of bank borrowings',
+ 'financing_cash_flow': '筹资活动产生的现金流量净额|Net cash flows from financing activities|Net cash used in financing activities|Net cash generated from/(used in) financing activities',
+ 'net_change_in_cash': '现金及现金等价物净增加额|Net increase in cash and cash equivalents|Net decrease in cash and cash equivalents|Net increase/(decrease) in cash and cash equivalents',
+ 'cash_beginning': '期初现金及现金等价物余额|Cash and cash equivalents at beginning of period|Cash and cash equivalents at beginning of the period',
+ 'cash_ending': '期末现金及现金等价物余额|Cash and cash equivalents at end of period|Cash and cash equivalents at end of the period',
+ 'exchange_effect_on_cash': '汇率变动对现金及现金等价物的影响|Effect of foreign exchange rate changes, net|Effect of currency translation differences',
 }
 
 
 def normalize_label(label):
     label = compact(label).casefold()
-    label = re.sub(r'^(?:[一二三四五六七八九十]+[、.]|\(?[一二三四五六七八九十\d]+\)[、.]?|\d+[、.])', '', label)
+    label = re.sub(r'^(?:[一二三四五六七八九十]+[、.．]|\(?[一二三四五六七八九十\d]+\)[、.．]?|\d+[、.．])', '', label)
     label = re.sub(r'^(?:其中|加|减)[:：]', '', label)
-    label = re.sub(r'\((?:损失|亏损).*?\)', '', label)
+    label = re.sub(r'\((?:损失|亏损|净亏损|减少).*?\)', '', label)
+    label = re.sub(r'\((?:元/股|人民币元)\)', '', label)
     return label.rstrip(':：')
 
 

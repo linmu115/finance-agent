@@ -61,6 +61,19 @@ if dbfile:
             observations.append({**item,'fact_id':record['record_id'],'source_json':record['source_json']})
     states=[json.loads(row[0]) for row in db.execute('SELECT state_json FROM processing_runs WHERE owner_run_id=? ORDER BY created_at', (run['runId'],))]
     summary['processing_coverage'] = states[-1].get('coverage') if states else None
+    reuse={k:set() for k in ('signature_hits','completed_tables','standard_tables')}
+    model_tables=set()
+    for state in states:
+        for document in state.get('documents',[]):
+            if document['document_id']!=run['documentId']:continue
+            for key in reuse:reuse[key].update(document.get('rule_reuse',{}).get(key,[]))
+        for job in state.get('jobs',{}).values():
+            if job['document_id']==run['documentId'] and not job.get('rule_payload'):
+                model_tables.update(job.get('candidate_tables',[]))
+    summary['rule_reuse']={k:sorted(v) for k,v in reuse.items()}|{'model_tables':sorted(model_tables)}
+    if db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='cleaning_rules'").fetchone():
+        summary['library_rules']=db.execute('SELECT count(*) FROM cleaning_rules').fetchone()[0]
+    summary['scopes']=dict(collections.Counter(f['scope'] for f in facts))
     summary['research_observations'] = len(observations)
     summary['research_claims'] = sum(r['record_type']=='claim' for r in research)
     summary['automatic_continuations'] = sum(x['type']=='ingestion_continuation' for x in audit)

@@ -101,5 +101,55 @@ class CleaningReuseTests(unittest.TestCase):
         mapping=draft(parsed,parsed['tables'][0],'Test',identify(parsed))
         self.assertIn(3,mapping['unmapped_rows'])
 
+    def test_continued_statement_preserves_first_data_row_and_parent_scope(self):
+        parsed=self.prepare([['项目','附注','2025 年12 月31 日','2024 年12 月31 日'],['货币资金','1','800','700']],
+                            '2025 年年度报告\n合并资产负债表\n单位：元\n800')
+        parsed['report_year']=None
+        parsed['pages'].append({'page':2,'text':'银行存款 12 900 600','width':100,'height':100})
+        table={'index':1,'page':2,'rows':[['银行存款','12','900','600']],'cells':{}}
+        parsed['tables'].append(table)
+        mapped=draft(parsed,table,'Test',identify(parsed))
+        self.assertEqual(mapped['rows'][0]['row'],1)
+        self.assertEqual(json.loads(mapped['schema']['columns_json'])[0]['period'],'2025-12-31')
+        self.assertEqual(json.loads(mapped['schema']['skipped_rows_json']),[])
+        # The same balance occurs above a new parent-company heading.
+        parsed['pages'][1].update(text='900\n母公司资产负债表\n单位：元\n900',words=[
+            {'text':'900','bbox':[0,0,20,10]}, {'text':'母公司资产负债表','bbox':[0,20,80,30]},
+            {'text':'单位：元','bbox':[0,40,60,50]}, {'text':'900','bbox':[0,60,20,70]}])
+        table['bbox']=[0,55,100,100]
+        self.assertEqual(context(parsed,table)['scope'],'parent')
+
+    def test_equity_movements_have_separate_metrics_periods_and_source_components(self):
+        parsed=self.prepare([['项目','2025 年度','',''],['','股本','未分配利润','所有者权益合计'],
+                            ['一、上年年末余额','100','200','300'],['三、本期增减变动金额（减少以“－”号填列）','0','40','40'],
+                            ['四、本期期末余额','100','240','340']],
+                            '母公司所有者权益变动表\n单位：元\n100')
+        mapped=draft(parsed,parsed['tables'][0],'Test',identify(parsed))
+        self.assertEqual(mapped['unmapped_rows'],[])
+        self.assertEqual([r['attributes']['metric'] for r in mapped['rows']],['equity_prior_year_closing','equity_movement','equity_closing'])
+        cols=json.loads(mapped['rows'][0]['attributes']['columns_json'])
+        self.assertEqual([c['metric'] for c in cols],['share_capital','retained_earnings','equity'])
+        self.assertEqual(cols[0]['period'],'2024-12-31')
+
+    def test_packed_ifrs_cashflow_uses_standard_labels_and_keeps_missing_slots(self):
+        parsed=self.prepare([['','Six months ended 30 June',''],['','2025','2024'],['','RMB’000','RMB’000'],
+                             ['Cash flows from operating activities\nCash used in operations\nIncome tax paid\nNet cash used in operating activities','','(80)\n–\n(80)'],
+                             ['','(100)',''],['','(2)',''],['','(102)','']],
+                            'Consolidated Statement of Cash Flows\nFor the six months ended 30 June 2025\nIFRS')
+        mapped=draft(parsed,parsed['tables'][0],'Test',identify(parsed))
+        self.assertEqual(mapped['unmapped_rows'],[])
+        definitions=[c for r in mapped['rows'] for c in json.loads(r['attributes']['columns_json'])]
+        self.assertEqual(len(definitions),5)
+        self.assertEqual({c['period'] for c in definitions},{'2025-H1','2024-H1'})
+        self.assertEqual({c['metric'] for c in definitions},{'cash_used_in_operations','taxes_paid','operating_cash_flow'})
+
+    def test_income_statement_distinguishes_finance_interest_from_operating_interest(self):
+        parsed=self.prepare([['项目','2025','2024'],['利息收入','100','90'],['财务费用','8','7'],['其中：利息费用','10','9'],['利息收入','2','2']],
+                            '合并利润表\n单位：元\n100')
+        mapped=draft(parsed,parsed['tables'][0],'Test',identify(parsed))
+        interest=[r for r in mapped['rows'] if r['attributes']['metric']=='interest_income']
+        self.assertNotIn('dimensions_json',interest[0]['attributes'])
+        self.assertEqual(json.loads(interest[1]['attributes']['dimensions_json']),{'statement_section':'finance_expenses'})
+
 
 if __name__=='__main__':unittest.main()
