@@ -37,6 +37,22 @@ export function modelContext(name:string,envelope:Envelope):Envelope {
  if(envelope.status==='error')return envelope;
  if(!envelope.data)return envelope;
  const data=envelope.data;
+ if((name==='get_source_table'&&(!data.items?.every((t:any)=>Array.isArray(t.rows)||Array.isArray(t.preview))||data.projection))||(name==='get_source_page'&&(!Array.isArray(data.segments)||data.projection)))return envelope;
+ if(name==='get_source_table')return {...envelope,source_refs:data.items?.map((t:any)=>fields(t,['document_id','page','table_id'])),data:{items:data.items?.map((t:any)=>({...fields(t,['document_id','table_id','page','sheet','rows','row_count','preview']),merged_cells:Object.fromEntries(Object.entries(t.cells||{}).filter(([,v]:any)=>v.merged_range)),row_sources:t.row_source_refs?.map((r:any)=>fields(r,['row','source_id']))})),projection:'完整原行保留一次；几何坐标与逐格审计仍保存在完整 source API 和沙箱输入。'}};
+ if(name==='get_source_page')return {...envelope,source_refs:envelope.source_refs?.map(r=>fields(r,['document_id','page','printed_page','source_id'])),data:{...fields(data,['document_id','page','text','printed_page','image_relative_path']),segments:data.segments?.map((s:any)=>({...fields(s,['source_id']),source_ref:fields(s.source_ref,['document_id','page','source_id','start','end','offset_unit']),...(!data.text?.includes(s.text)?{text:s.text}:{})})),projection:'页文保留一次；重合分段保留引用位置。'}};
+ if(['run_cleaning_script','get_cleaning_result'].includes(name)&&data.execution){
+  const execution=fields(data.execution,['run_id','state','status','exit_code','error','elapsed_seconds','artifacts','stdout','stderr']);
+  // Diagnostic text was measured twice, once in execution and again in logs.
+  if(data.diagnostics){delete execution.stdout;delete execution.stderr;}
+  return {...envelope,data:{...data,execution}};
+ }
+ if(name==='commit_cleaning_result'&&Array.isArray(data.committed_tables)&&!data.projection){
+  const committed=new Set(data.committed_tables||[]);
+  return {...envelope,data:{...fields(data,['processing_id','state','message','coverage','fact_count','research_record_count','committed_tables','failed_tables','pending_script_tables','pending_pages','next_batch']),
+   pending_table_counts:Object.fromEntries(Object.entries(data.pending_tables||{}).map(([id,values]:any)=>[id,values.length])),
+   review_issues:data.review_issues?.filter((issue:any)=>committed.has(issue.table)),
+   detail_tool:'get_normalization_details',projection:'保留本次提交的疑点与下一批；先前已返回的累积疑点和待办目录不重复附加。完整状态保留在审计与进度 API。'}};
+ }
  if(name==='get_analysis_status')return {...envelope,data:numericTableView(data)};
  if(name==='get_data_catalog')return {...envelope,data:{...data,documents:data.documents?.map((x:any)=>fields(x,['document_id','original_name','state','company','page_count','table_count','fact_count','profile','research_record_count','relative_path','warnings'])),processing:data.processing?.map((v:any)=>({...fields(v,['processing_id','state','message','errors','review_issues']),documents:v.documents?.map((x:any)=>fields(x,['document_id','state','message','review_issues','text_coverage'])),catalog_review:reviewSummary(v.catalog_review),temporal_review:reviewSummary(v.temporal_review),definition_review:reviewSummary(v.definition_review)})),...(data.pagination?.statement&&data.research_catalog?{research_catalog:fields(data.research_catalog,['total_metrics','query_tool'])}:{}),metric_aliases:data.metric_aliases?.map((x:any)=>fields(x,['source_metric','canonical_metric','canonical_label'])),catalog_review:reviewSummary(data.catalog_review),temporal_review:reviewSummary(data.temporal_review),definition_review:reviewSummary(data.definition_review),detail_tools:['get_normalization_details','get_source_table','get_source_page'],projection:'目录保留实际指标/维度/路径/处理摘要；逐格来源与详细规范化记录按需读取。'}};
  if(name==='process_documents'&&(data.instructions||data.state==='routing_required'))return envelope;
@@ -90,7 +106,7 @@ export function modelContext(name:string,envelope:Envelope):Envelope {
 export function projectToolHistory<T extends {messages:any[]}>(context:T){
  let changed=0,before=0,after=0;
  const messages=context.messages.map(message=>{
-  if(message.role!=='toolResult'||!['get_data_catalog','process_documents','query_financial_data','get_financial_metrics','query_research_records','run_financial_model','save_research_report'].includes(message.toolName)||!Array.isArray(message.content))return message;
+  if(message.role!=='toolResult'||!['get_data_catalog','process_documents','query_financial_data','get_financial_metrics','query_research_records','run_financial_model','save_research_report','get_source_table','get_source_page','run_cleaning_script','get_cleaning_result','commit_cleaning_result'].includes(message.toolName)||!Array.isArray(message.content))return message;
   let modified=false;
   const content=message.content.map((block:any)=>{
    if(block.type!=='text'||typeof block.text!=='string')return block;

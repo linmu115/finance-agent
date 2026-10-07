@@ -159,7 +159,7 @@ class ResearchIngestionTests(unittest.TestCase):
 
     def test_research_unknown_currency_is_not_overridden_by_yuan_unit(self):
         payload=copy.deepcopy(self.payload);payload['tables'][0]['schema']['currency']='unknown'
-        rid=self.job(payload=payload);check=self.s.get_cleaning_result('p',self.pid,rid)['data']
+        rid=self.job(payload=payload);check=self.s.get_cleaning_result('p',self.pid,rid,details=True)['data']
         self.assertTrue(all(f['currency']=='unknown' for f in check['tables'][0]['sample_facts']))
         self.assertTrue(any(i['reason']=='unresolved_currency' for i in check['tables'][0]['issues']))
         self.s.commit_cleaning_result('p',self.pid,rid,self.review)
