@@ -12,12 +12,12 @@ c = Cleaner()
 # index 零基；row/column 一基。
 for index in indices:  # 本批表号
     c.map_table(index, columns=[{'column':2,'period':'2025-H1','start':'2025-01-01','end':'2025-06-30'}, {'column':3,'period':'2024-H1','start':'2024-01-01','end':'2024-06-30'}],
-        statement='notes', scope='consolidated_IFRS', currency='CNY', unit='千元',
+        statement='notes', scope='unspecified', currency='CNY', unit='千元',
         company='原文报告主体', metrics={'原文行名':'financial_meaning_id'},
         skip_rows={1:'原表期间表头'}, skip_columns={}, row_overrides={})
 c.save()
 ```
-上例仅展示 API，不能套用示例期间/单位。statement: income/balance/cashflow/ratios/segment/notes；scope: consolidated_IFRS/parent_IFRS/consolidated_CAS/parent_CAS/unspecified。
+上例仅展示 API，不能套用示例期间/单位。statement: income/balance/cashflow/ratios/segment/notes；scope: consolidated_IFRS/parent_IFRS/consolidated_CAS/parent_CAS/unspecified。会计准则和合并/母公司口径以原文编制基础、表题为依据，证据不足用 unspecified；不能把其他报告的 IFRS 示例复制到 A 股年报。
 
 metrics 按原文财务含义命名，主营指标复用 revenue/net_profit_parent/assets 等目录ID。英文行名可自动生成英文ID；中文行名需映射。禁止 row_12、t2_r3 等行号ID。不同明细用 dimensions 或 row_overrides[row].dimensions_json 区分。
 
@@ -31,6 +31,6 @@ row_overrides={行号:{metric,label,unit,dimensions_json,columns_json:[完整列
 
 仅封面、目录、独立表头等非财务表可 c.exclude_table(index,具体理由)。股份、期权、股东持股、募集资金和担保金额均属财务信息。c.save() 写 /output/cleaning_result.json；不要打印全部结果。
 
-run_cleaning_script 已等待短本地运行并返回校验摘要；ready 且无错误直接 commit_cleaning_result，无需先 get_cleaning_result。如执行仍 running，才按需查结果。commit 对每表独立校验，合法表正常入库，failed_tables 给原格与修复建议。完整细节可 get_cleaning_result(details=true,table_indices=[...])。reviews 可选，仅真实疑点才标 needs_review；不要求读回/核验表单。
+run_cleaning_script 已等待短本地运行并返回校验摘要；ready 后直接 commit_cleaning_result，无需先 get_cleaning_result。commit 对每表独立校验，合法表正常入库，failed_tables 给原格与修复建议；不要因为一表失败重写全批。map_table/map_series 的确定映射错误按表保留，后续表继续；普通 Python 编程错误仍返回原始错误。如执行仍 running，才按需查结果。完整细节可 get_cleaning_result(details=true,table_indices=[...])。reviews 可选，仅真实疑点才标 needs_review；不要求读回/核验表单。
 
 局部修复可 script_refs:[run_id]，读取 /input/cleaning_<run_id>.json 的候选映射并只改相关表；已提交部分复用。脚本及其依赖也挂载为 .py。提交后继续 pending_tables、pending_script_tables 和研报 pending_pages，均空后再完成用户任务。无固定总步数上限；普通清洗 low，复杂疑点局部 high。

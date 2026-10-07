@@ -44,6 +44,18 @@ class IngestionScaleTests(unittest.TestCase):
         state['documents'][0]['completed_tables']=[2,3]
         self.assertEqual(self.s._next_clean_batch(state)['tables'],[1])
 
+    def test_sdk_table_error_keeps_other_tables_committable(self):
+        _,parsed=self.s._clean_source('p',self.did)
+        parsed=copy.deepcopy(parsed);parsed['tables'].append(dict(parsed['tables'][0],index=1))
+        self.s._persist_prepared('p',self.did,parsed)
+        self.pid=self.s.begin_script_cleaning('p',[self.did],'owner2','fixture')['data']['processing_id']
+        payload=copy.deepcopy(self.payload)
+        payload['tables'].append({'index':1,'mapping_error':'Source has 2 values for 3 declared meanings','schema':{},'rows':[]})
+        result=self.s.commit_cleaning_result('p',self.pid,self.job(payload))['data']
+        self.assertEqual(result['committed_tables'],[0])
+        self.assertEqual(result['failed_tables'][0]['issues'][0]['reason'],'script_mapping_error')
+        self.assertEqual(result['fact_count'],4)
+
     def test_resume_rechecks_changed_rules_without_deleting_existing_facts(self):
         self.payload['tables'][0]['rows'][0]['attributes']['metric']='row_2'
         rid=self.job()
@@ -107,7 +119,24 @@ class IngestionScaleTests(unittest.TestCase):
         self.assertEqual(issues,[])
         self.assertEqual({(f['metric'],f['period'],f['value']) for f in facts},{('income','2025-FY','10'),('expense','2025-FY','11'),('income','2024-FY','8'),('expense','2024-FY','9')})
         self.assertEqual(mapping_issues(c.tables[0],result['schema'],result['rows']),[])
-        with self.assertRaisesRegex(ValueError,'already mapped'):
-            c.map_table(0,[],statement='notes',scope='consolidated_IFRS',currency='CNY',unit='元')
+        c.map_table(0,[],statement='notes',scope='consolidated_IFRS',currency='CNY',unit='元')
+        self.assertIn('already mapped',c.results[0]['mapping_error'])
+
+    def test_series_dash_slots_preserve_alignment_without_zero_or_shared_mutation(self):
+        import json
+        from service.cleaning_sdk import Cleaner
+        c=Cleaner.__new__(Cleaner);c.source={'company':'Test'};c.results={}
+        c.tables={0:{'index':0,'rows':[['Item','2025','2024'],['Income\nExpense','10\n20','–\n8']]},
+                  1:{'index':1,'rows':[['Item','2025'],['Revenue','4']]}}
+        skip={1:'year header'}
+        c.map_series(0,[{'column':2,'period':'2025-FY'},{'column':3,'period':'2024-FY'}],
+                     [{'metric':'income'},{'metric':'expense'}],data_rows=[2],skip_rows=skip,
+                     statement='notes',scope='unspecified',currency='CNY',unit='元')
+        columns=json.loads(c.results[0]['rows'][0]['attributes']['columns_json'])
+        self.assertEqual([(v['metric'],v['numeric_span']['text']) for v in columns],[('income','10'),('expense','20'),('expense','8')])
+        self.assertEqual(skip,{1:'year header'})
+        c.map_series(0,[{'column':2}],[{'metric':'income'}],data_rows=[2],statement='notes',scope='unspecified',currency='CNY',unit='元')
+        c.map_table(1,[{'column':2,'period':'2025-FY'}],skip_rows={1:'year header'},statement='notes',scope='unspecified',currency='CNY',unit='元')
+        self.assertIn('mapping_error',c.results[0]);self.assertNotIn('mapping_error',c.results[1])
 
 if __name__=='__main__':unittest.main()

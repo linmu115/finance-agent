@@ -270,6 +270,12 @@ class ScriptCleaningMixin:
             index=item.get('index')
             if type(index) is not int or index not in actual or index not in allowed or index in seen:raise ValueError('invalid_script_table')
             seen.add(index);table=actual[index];rows=item.get('rows');schema=item.get('schema')
+            if item.get('mapping_error'):
+                page=next(p['text'] for p in parsed['pages'] if p['page']==table['page'])
+                results.append({'index':index,'table':table,'batch':[{'table':table,'rows':list(range(1,len(table['rows'])+1))}],
+                                'extractions':[],'facts':[],'issues':[{'table':index,'reason':'script_mapping_error','detail':item['mapping_error']}],
+                                'page_text':page,'schema':{},'mapping':[],'exclusion_reason':None})
+                continue
             if not isinstance(rows,list) or not isinstance(schema,dict):raise ValueError('invalid_script_mapping')
             if schema.get('statement')=='nonfinancial' and not str(item.get('exclusion_reason','')).strip():raise ValueError('missing_exclusion_reason')
             marker=f'[[T{index}]]';ext=[{'class':'table_schema','text':marker,'span':[0,len(marker)],'attributes':schema}];used=set()

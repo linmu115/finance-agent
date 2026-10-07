@@ -134,7 +134,7 @@ async def query_research_records(project_id: str, filters: dict[str, Any] | None
 
 @mcp.tool()
 async def run_cleaning_script(project_id: str, processing_id: str, document_id: str, code: str, script_refs: list[str] | None = None) -> dict[str, Any]:
-    """Execute one reusable Cleaner script for a structural batch in the existing isolated sandbox. Input /input/cleaning_source.json, output /output/cleaning_result.json; no database access. Returns run_id and validation summary after a short local wait. If ready with no errors, commit_cleaning_result directly; get_cleaning_result is only for details or unfinished execution. script_refs=[run_id] mounts same-project scripts and candidate JSON as /input/cleaning_<run_id>.py/.json. Ordinary cleaning low, actual mapping failures get local high repair."""
+    """Execute one reusable Cleaner script for a structural batch in the existing isolated sandbox. Input /input/cleaning_source.json, output /output/cleaning_result.json; no database access. Returns run_id and validation summary after a short local wait. If ready, commit_cleaning_result directly: valid tables commit independently and failed tables return concrete errors. get_cleaning_result is only for details or unfinished execution. script_refs=[run_id] mounts same-project scripts and candidate JSON as /input/cleaning_<run_id>.py/.json. Ordinary cleaning low, actual mapping failures get local high repair."""
     return await call('run_cleaning_script',project_id=project_id,processing_id=processing_id,document_id=document_id,code=code,script_refs=script_refs)
 
 @mcp.tool()

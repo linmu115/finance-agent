@@ -37,6 +37,7 @@ commits = [x['data']['result']['data'] for x in audit if x['type'] == 'tool_resu
 known = [x['usage'] for x in usages if x.get('usageKnown')]
 totals = {k: sum(u.get(k, 0) for u in known) for k in ['input', 'cacheRead', 'cacheWrite', 'output', 'reasoning']}
 summary = {'expense_category': '资料准备研发', 'model': run['model'], 'requests': len(usages), 'unknown_usage_requests': sum(not u.get('usageKnown') for u in usages),
+           'captured_payloads':len(payloads),
            'reasoning_calls': dict(collections.Counter(x.get('reasoningEffort','unknown') for x in usages)),
            'requests_by_phase':dict(collections.Counter(x.get('usagePhase',x.get('phase','unknown')) for x in usages)),
            'tokens': {'total_input': totals['input'] + totals['cacheRead'] + totals['cacheWrite'], 'uncached_input': totals['input'], 'cached_input': totals['cacheRead'], 'output': totals['output'], 'reasoning': totals['reasoning']},
@@ -45,7 +46,7 @@ summary = {'expense_category': '资料准备研发', 'model': run['model'], 'req
            'tool_errors': tool_errors, 'last_commit': commits[-1] if commits else None, 'contexts': measurements}
 if (root / 'result.json').exists():
     result = json.loads((root / 'result.json').read_text(encoding='utf-8'))
-    summary.update(duration_ms=result['durationMs'], status=result['run']['status'], checkpoint=result['checkpoint']['data'], document=result['document'])
+    summary.update(duration_ms=result['durationMs'], status=result['run']['status'], error=result['run'].get('error'), checkpoint=result['checkpoint']['data'], document=result['document'])
 databases = list((root / 'app-data').glob('*.sqlite*'))
 dbfile = next((p for p in databases if p.suffix in {'.sqlite', '.sqlite3'}), None)
 if dbfile:
@@ -73,6 +74,14 @@ if dbfile:
         span_ok = not span or raw[span['start']:span['end']] == span['text']
         replay.append({'fact_id': fact['fact_id'], 'table': ref['table_id'], 'row': ref['row'], 'column': ref['column'], 'ok': fact['raw_value'] == raw and span_ok, 'raw_value': fact['raw_value'], 'expected': raw, 'span_ok': span_ok})
     summary['facts'] = len(facts)
+    summary['facts_by_quality']=dict(collections.Counter(f.get('quality','unknown') for f in facts))
+    saved=[json.loads(row[0]) for row in db.execute('SELECT result_json FROM normalization_batches WHERE document_id=?',(run['documentId'],))]
+    issues=[i for batch in saved for i in batch.get('issues',[])]
+    summary['recorded_issues']=dict(collections.Counter(i['reason'] for i in issues))
+    summary['unresolved_cells']=len({(i.get('table'),i.get('row'),i.get('column')) for i in issues if i['reason']=='unresolved_cell_semantics'})
+    summary['excluded_tables']=sum(any(e['class']=='table_schema' and e['attributes'].get('statement')=='nonfinancial' for e in b.get('extractions',[])) for b in saved)
+    summary['tables_with_recorded_issues']=sum(bool(b.get('issues')) for b in saved)
+    summary['generic_metric_facts']=sum(f['metric'] in {'amount','value','number','data','financial_metric'} for f in facts)
     summary['raw_cell_replay'] = {'passed': sum(x['ok'] for x in replay), 'total': len(replay), 'failures': [x for x in replay if not x['ok']]}
     (root / 'facts.json').write_text(json.dumps(facts, ensure_ascii=False, indent=2), encoding='utf-8')
     (root / 'research-records.json').write_text(json.dumps([json.loads(r['record_json']) for r in research], ensure_ascii=False, indent=2), encoding='utf-8')
