@@ -8,7 +8,7 @@
 
 逐表结果见 k1-replay.json；原表来源和单元格证据随交付的 chart_data.json、workpaper.json。回放脚本 scripts/replay_workpapers.py 只接收副本目录。回归 fixture 来自真实副本主表，保留干扰项而非只留标准答案；新金额扰动测试验证没有答案常量。
 
-验证：12 项 Python 专项、22 项 Node 相关回归通过；TypeScript 前后端检查、服务端编译和 Vite 构建通过。Python 全套另行运行并记录最终结果。npm pretypecheck 拒绝 node_modules 联接，因此单独运行主目录依赖校验（13 官方文件、3 lock 条目通过），再用绝对路径调用 tsc/vite；没有改写主目录依赖。
+验证：12 项 Python 专项、22 项 Node 相关回归通过；TypeScript 前后端检查、服务端编译和 Vite 构建通过。K1 当时 Python 全套 507 项通过，完成 K3/K2/K4 后最终全套 536 项通过。npm pretypecheck 拒绝 node_modules 联接，因此单独运行主目录依赖校验（13 官方文件、3 lock 条目通过），再用绝对路径调用 tsc/vite；没有改写主目录依赖。
 
 与 spec 的明确差异：合并/归母/少数股东净利润放在单独 profit_attribution 表的不同列，income 保留两期对照；财务语义保持列固定。此基线尚无主线 A1 注册器，因此工具返回完整已解析 data.report（含 typed evidence）、data.numeric_tables，以及 summary 的 row_key/key/columns，供 A1 合并处直接登记。modelContext 只向模型保留 summary、前五条 observations 和交付清单；宿主已挂载所有文件。**本分支没有声称聊天占位符已上线**，主线 A1 合并后应直接登记 result.data.report.tables，再走通用数值绑定；不要从紧凑的模型投影重建数值。
 

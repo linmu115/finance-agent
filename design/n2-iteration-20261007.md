@@ -17,3 +17,5 @@ K1 后 Python 全套 507 项通过。K3 已加入同一工具，CMBI/国信完�
 K2 纯计算核心与 7 项单测完成，独立合成样例 34 个数值核对通过；资料适配/真实 30 项原文抽查待获准补充材料，不注册尚未有真实验收的 comparison kind。见 docs/evidence/n2-workpapers/k2-core-acceptance.md。
 
 K4 纯计算核心与 11 项单测完成，截止日、版本、量纲、语义隔离及冲突缺项覆盖。实际值以显式事后参照单列披露日，不混入预测时点信息；见 docs/evidence/n2-workpapers/k4-core-acceptance.md。新增材料仍未下载入库或调用模型。
+
+最终验证：Python 全套 536 项通过（242.297 秒），K1–K4 专项 41 项通过，Node 相关 22 项通过，前后端 TypeScript 类型检查与服务端/Vite 构建通过。材料、公开来源及条件费用预算见 docs/evidence/n2-workpapers/materials-and-cost-plan.md；未将历史伊利数据跨项目搬入 active。交接与 A1 登记位置见 docs/evidence/n2-workpapers/handoff.md。
