@@ -36,7 +36,14 @@
   "build": "passed",
   "a2_docker_replay": "scenario-replay.json",
   "a4_frozen_g1": "a4-g1-replay.json",
-  "b2_live_smoke": "pending one authorized attempt after single shared-service restart",
+  "b2_live_smoke": {
+    "evidence": "b2-smoke.json",
+    "attempts": 1,
+    "first_sentence_labels": "correct",
+    "comparison_embedding": "adopted",
+    "scalar_bindings": "not adopted",
+    "tool_errors": 0
+  },
   "limitations": [
     "Deterministic correctness and one smoke are not evidence of superiority to a general baseline.",
     "No held-out materials or answers were read."

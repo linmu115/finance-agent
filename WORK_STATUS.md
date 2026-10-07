@@ -1,3 +1,11 @@
+# 当前主线：N2 底稿合并、情景版本与 A4 已验收（2026-10-07）
+
+N2 截至 d192454 已合并，基线提交 a4ad3aa49eda36ed574b00d15d7733d4ef59e2a0；K1/K3 report.tables 接入 A1，financial_workpaper 仅金融配置暴露。后续情景版本命名、source_model 默认最新及精确错误提示、同名附件最新版本已实现。额外修复 A2 数值表行键随数值变化而漏比较的问题；冻结 D2 连续两次更新现均比较 87 个单元。G1 同名 chart_1.png 唯一定位到最新运行，历史文件仍可下载。
+
+唯一 B2 真实冒烟首句基准 10.89、情景 9.41 港元标签正确，首选对比表成功程序绑定；正文单值和贡献表仍手写，舍入分项与总计有 0.01 港元显示差。这不构成优于通用基线的证明，正式盲评仍由 N1 执行。实现、测试和已知边界见[本轮记录](design/harness-v2-followup-20261007.md)与[验收证据](docs/evidence/harness-v2-followup-20261007/validation.json)。
+
+3001 等待活动入库结束后仅重启一次，已就绪。本轮 Docker/WSL 按最新授权保持运行供 N1/N2 使用，整个大轮最终收尾才由主线关闭并恢复 .wslconfig；其他会话已授权停用的 12 个 Dify/mineru 容器保持 restart=no，不重新启动。青岛啤酒 held-out 材料/入库数据/答案未读取。A3/A5 等 N2 后续合并，B4 随后处理。以下均为历史记录。
+
 # 本轮验收：Cowork 改动已部署，未证明金融专业优势（2026-10-07）
 
 用户已授权修复、真实会话对照，以及本轮临时启动 Docker/WSL 并在结束后恢复。起点为 `8ff69f2`，开始时工作区干净、3001 未监听。Cowork 的六项改动已构建并加载到唯一的 3001；专业质量验收不通过，不能宣称金融 Agent 整体优于通用 Pi。结论与各题证据见[验收汇总](docs/evidence/cowork-acceptance-20261007/summary.json)和[逐题评审](docs/evidence/cowork-acceptance-20261007/reviews.json)。

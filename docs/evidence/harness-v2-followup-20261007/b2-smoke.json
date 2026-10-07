@@ -1,0 +1,160 @@
+{
+  "attempts": 1,
+  "conversation_id": "dd50ec03-c3bc-442d-a8d1-b4d249df3755",
+  "run_id": "2b405331-e130-4365-8b17-68eea24b3c4a",
+  "model": "gpt-6-luna",
+  "status": "completed",
+  "code_commit": "542707a",
+  "first_prose_sentence": "基准情景每股价值为 **HK$10.89**；更新情景为 **HK$9.41**，较基准下降 **HK$1.48/股**。",
+  "first_sentence_labels_correct": true,
+  "tool_sequence": [
+    "get_research_model_schema",
+    "run_financial_model",
+    "run_financial_model"
+  ],
+  "source_model_request": {
+    "artifact_id": "research_e51d892a-89e9-4591-b5fb-35a3ab813e7d"
+  },
+  "tool_errors": [],
+  "baseline": {
+    "artifact_id": "research_e51d892a-89e9-4591-b5fb-35a3ab813e7d",
+    "revision_id": "revision_5e088c40-a981-4d0a-9ffa-a83cd8464ccc",
+    "price": "10.891298026911308983496529094657996959359370588392"
+  },
+  "scenario": {
+    "artifact_id": "research_a1801665-2f36-4e97-b1ec-eedbda3faeab",
+    "revision_id": "revision_89590e1b-5555-4cb4-8bc3-f43434a0b614",
+    "price": "9.4076395415581387610782544079707429238582640980956"
+  },
+  "comparison_row": {
+    "row": "value_per_share",
+    "old": "10.891298026911308983496529094657996959359370588392",
+    "new": "9.4076395415581387610782544079707429238582640980956",
+    "delta": "-1.4836584853531702224182746866872540355011064902964"
+  },
+  "scenario_context": {
+    "operation": "scenario_update",
+    "preferred_table": "基准_情景_差额",
+    "preferred_embedding": "{{table:基准_情景_差额}}",
+    "unqualified_names": [
+      "dcf_summary",
+      "dcf_forecast",
+      "dcf_sensitivity"
+    ],
+    "meaning": "基准是本次 source 指定的原版本；情景是修改参数后的新版本。比较优先嵌入基准_情景_差额，单值使用下列带版本表名。",
+    "skipped": [],
+    "baseline": {
+      "label": "基准",
+      "version_id": "revision_5e088c40-a981-4d0a-9ffa-a83cd8464ccc",
+      "tables": {
+        "dcf_summary": "基准_revision_5e088c40-a981-4d0a-9ffa-a83cd8464ccc__dcf_summary",
+        "dcf_forecast": "基准_revision_5e088c40-a981-4d0a-9ffa-a83cd8464ccc__dcf_forecast",
+        "dcf_sensitivity": "基准_revision_5e088c40-a981-4d0a-9ffa-a83cd8464ccc__dcf_sensitivity"
+      }
+    },
+    "scenario": {
+      "label": "情景",
+      "version_id": "revision_89590e1b-5555-4cb4-8bc3-f43434a0b614",
+      "tables": {
+        "dcf_summary": "情景_revision_89590e1b-5555-4cb4-8bc3-f43434a0b614__dcf_summary",
+        "dcf_forecast": "情景_revision_89590e1b-5555-4cb4-8bc3-f43434a0b614__dcf_forecast",
+        "dcf_sensitivity": "情景_revision_89590e1b-5555-4cb4-8bc3-f43434a0b614__dcf_sensitivity"
+      }
+    }
+  },
+  "binding_template": "## FCF估值更新结果\n\n基准情景每股价值为 **HK$10.89**；更新情景为 **HK$9.41**，较基准下降 **HK$1.48/股**。相对参考目标价 **HK$10.95**，两者分别低 **HK$0.06/股**和 **HK$1.54/股**。模型与交付底稿已保存。\n\n{{table:基准_情景_差额}}\n\n按“先调整WACC、再调整FCF”的顺序分解每股价值降幅：\n\n| 调整项 | 贡献（港元/股） |\n|---|---:|\n| WACC上调0.5个百分点 | -0.51 |\n| 全部FCF下调10% | -0.98 |\n| **合计** | **-1.48** |\n\n模型使用年末折现，估值基准日为2023-12-31；敏感性采用默认设置。给定EPS仅作为输入保留，未用于FCF估值。未提供少数股东调整，因此股权价值未扣减该项；这不代表少数股东为零。",
+  "comparison_embedding": true,
+  "scalar_placeholders_used": false,
+  "contribution_table_handwritten": true,
+  "rounding_note": {
+    "exact_contributions": [
+      "-0.506913751506370019735906078794608925843181250168",
+      "-0.9767447338468002026823686078926451096579252401284"
+    ],
+    "exact_total": "-1.4836584853531702224182746866872540355011064902964",
+    "sum_of_displayed_two_decimal_steps": "-1.49",
+    "displayed_total": "-1.48",
+    "assessment": "Each displayed number is correctly rounded; displayed components differ from displayed total by 0.01 HKD/share. The answer does not explain that rounding difference."
+  },
+  "downloads": [
+    {
+      "name": "给定FCF估值冒烟测试（基准）_report.md",
+      "url": "/api/projects/0b9fb79d-e18a-479c-8653-450d3df9c264/research/deliveries/628df62d1bc035c14e90165e1a68d4f2/saved_report.md?as=%E7%BB%99%E5%AE%9AFCF%E4%BC%B0%E5%80%BC%E5%86%92%E7%83%9F%E6%B5%8B%E8%AF%95%EF%BC%88%E5%9F%BA%E5%87%86%EF%BC%89_report.md",
+      "status": 200,
+      "characters": 2115
+    },
+    {
+      "name": "给定FCF估值冒烟测试（更新）_report.md",
+      "url": "/api/projects/0b9fb79d-e18a-479c-8653-450d3df9c264/research/deliveries/29c3a857233c4280b6a7ae8b315e7a05/saved_report.md?as=%E7%BB%99%E5%AE%9AFCF%E4%BC%B0%E5%80%BC%E5%86%92%E7%83%9F%E6%B5%8B%E8%AF%95%EF%BC%88%E6%9B%B4%E6%96%B0%EF%BC%89_report.md",
+      "status": 200,
+      "characters": 2100
+    },
+    {
+      "name": "给定FCF估值冒烟测试（更新）_update_report.md",
+      "url": "/api/projects/0b9fb79d-e18a-479c-8653-450d3df9c264/research/deliveries/29c3a857233c4280b6a7ae8b315e7a05/update_report.md?as=%E7%BB%99%E5%AE%9AFCF%E4%BC%B0%E5%80%BC%E5%86%92%E7%83%9F%E6%B5%8B%E8%AF%95%EF%BC%88%E6%9B%B4%E6%96%B0%EF%BC%89_update_report.md",
+      "status": 200,
+      "characters": 10822
+    },
+    {
+      "name": "给定FCF估值冒烟测试（更新）_基准_情景_差额_report.md",
+      "url": "/api/projects/0b9fb79d-e18a-479c-8653-450d3df9c264/research/deliveries/29c3a857233c4280b6a7ae8b315e7a05/%E5%9F%BA%E5%87%86_%E6%83%85%E6%99%AF_%E5%B7%AE%E9%A2%9D_report.md?as=%E7%BB%99%E5%AE%9AFCF%E4%BC%B0%E5%80%BC%E5%86%92%E7%83%9F%E6%B5%8B%E8%AF%95%EF%BC%88%E6%9B%B4%E6%96%B0%EF%BC%89_%E5%9F%BA%E5%87%86_%E6%83%85%E6%99%AF_%E5%B7%AE%E9%A2%9D_report.md",
+      "status": 200,
+      "characters": 1125
+    }
+  ],
+  "attachment_names_unique": true,
+  "usage": {
+    "input": 83027,
+    "output": 1451,
+    "calls": 5,
+    "costUsd": 0.0051114,
+    "uncachedInput": 39507,
+    "cacheRead": 43520,
+    "cacheWrite": 0,
+    "reasoning": 363,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 2615,
+        "output": 77,
+        "calls": 1,
+        "costUsd": 0.00030000000000000003,
+        "uncachedInput": 2615,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 2615,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 80412,
+        "output": 1374,
+        "calls": 4,
+        "costUsd": 0.0048114,
+        "uncachedInput": 36892,
+        "cacheRead": 43520,
+        "cacheWrite": 0,
+        "reasoning": 363,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 80412,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 83027,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "limits": [
+    "One directed interface smoke, not blinded evaluation or evidence of general superiority.",
+    "Prompt requested model reuse, result references and the preferred comparison table; no expected answers or table names supplied.",
+    "Only the main comparison table was program-bound; prose prices and the contribution table remain handwritten."
+  ],
+  "raw_conversation": "data\\evaluation\\harness-v2-smoke-20261007\\B2-scenarios.json",
+  "raw_audit": "data\\evaluation\\harness-v2-smoke-20261007\\B2-scenarios-audit.jsonl"
+}
