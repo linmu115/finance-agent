@@ -17,7 +17,7 @@ def main():
             result=service.run_analysis(project,source_run_id=source,params=params,financial_tools=False)['data']
             run=result['run_id'];state=service.analysis_futures[run].result();status=service.get_analysis_status(project,run)['data']
             item={'source_run_id':source,'run_id':run,'status':state['status'],'params':params,'state':state};evidence['cases'].append(item)
-            target.write_text(json.dumps(evidence,ensure_ascii=False,indent=2),encoding='utf8')
+            target.write_text(json.dumps(evidence,ensure_ascii=False,indent=2),encoding='utf8',newline='\n')
             assert state['status']=='succeeded',state
             context=status['scenario_context'];tables=status['numeric_tables'];name='forecast_and_dcf_inputs'
             baseline=tables[context['baseline']['tables'][name]];scenario=tables[context['scenario']['tables'][name]]
@@ -29,7 +29,7 @@ def main():
             if len(evidence['cases'])==2:assert old==evidence['cases'][0]['scenario_price']
             item.update(baseline_price=old,scenario_price=new,comparison_rows=len(tables[context['preferred_table']]['rows']),embedded='差额（情景减基准）' in rendered,scenario_context=context)
             assert item['embedded']
-            target.write_text(json.dumps(evidence,ensure_ascii=False,indent=2),encoding='utf8')
+            target.write_text(json.dumps(evidence,ensure_ascii=False,indent=2),encoding='utf8',newline='\n')
             print(json.dumps({k:item[k] for k in ('run_id','status','baseline_price','scenario_price','comparison_rows','embedded')}),flush=True)
             source=run
     finally:service.analysis_pool.shutdown()

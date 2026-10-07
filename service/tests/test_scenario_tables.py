@@ -5,11 +5,21 @@ import unittest
 from service.analysis_report import bind_text
 from service.analysis_comparison import deliver_parameter_comparison
 from service.scenario_tables import scenario_tables,PREFERRED
+from service.analysis_tables import json_tables
 
 def tables(value):
     return {'valuation':{'columns':{'price':{'unit':'元/股','currency':'HKD','decimals':2}},'row_keys':['base'],'rows':[{'price':value}]}}
 
 class ScenarioTablesTests(unittest.TestCase):
+    def test_numeric_only_json_rows_keep_identity_when_the_first_value_changes(self):
+        old=json_tables({'2024':288,'2025':512},'fcf_RMB_mn')
+        new=json_tables({'2024':259.2,'2025':460.8},'fcf_RMB_mn')
+        self.assertEqual(old['fcf_RMB_mn']['row_keys'],['0'])
+        self.assertEqual(new['fcf_RMB_mn']['row_keys'],['0'])
+        result,_=scenario_tables(old,new,'old','new')
+        self.assertEqual(len(result[PREFERRED]['rows']),2)
+        self.assertEqual(result[PREFERRED]['rows'][0]['delta'],'-28.8')
+
     def test_baseline_stays_referenceable_and_comparison_embeds(self):
         result,context=scenario_tables(tables('10.89'),tables('9.41'),'old','new')
         body=bind_text('{{基准_old__valuation.base.price}} / {{情景_new__valuation.base.price}}\n'+context['preferred_embedding'],result)

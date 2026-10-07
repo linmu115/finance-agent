@@ -1,0 +1,630 @@
+{
+  "method": "Frozen D2 input snapshot, two successive params updates, Docker only, no LLM, no active/held-out reads.",
+  "cases": [
+    {
+      "source_run_id": "18f59dcff3ce4da583c4344de2ecb8f8",
+      "run_id": "b47f3e958b7e4de0be303b9062cf2821",
+      "status": "succeeded",
+      "params": {
+        "wacc0": {
+          "+": 0.005
+        },
+        "fcf": {
+          "*": 0.9
+        }
+      },
+      "state": {
+        "run_id": "b47f3e958b7e4de0be303b9062cf2821",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+        "status": "succeeded",
+        "exit_code": 0,
+        "artifacts": [
+          {
+            "name": "calculation_inputs_and_results.json",
+            "size": 1353,
+            "sha256": "ac96b110c025547aa3affc453d175f916024a6ff016325e8e0d226daa3e853c9"
+          },
+          {
+            "name": "carote_valuation_chart.png",
+            "size": 120093,
+            "sha256": "129ea3cd6ccd02d6a8c78404f7abb61f996957983a701d99c9c9fcaf3f7f5fec"
+          },
+          {
+            "name": "dcf_sensitivity.csv",
+            "size": 124,
+            "sha256": "c2aa876f55e8af05517e65e8c0df3fde3ff90496f5459a0405be615d1545bc01"
+          },
+          {
+            "name": "executed_script.py",
+            "size": 6300,
+            "sha256": "5982d3c824e17d0b60839cff7966357018c41d6a146c55b3a431d5895abf096b"
+          },
+          {
+            "name": "forecast_and_dcf_inputs.csv",
+            "size": 3469,
+            "sha256": "2baf90ad5feb6a4cdb653e229c54f43734387314548ba9afa1c57f428993b6ca"
+          },
+          {
+            "name": "numeric_tables.json",
+            "size": 160939,
+            "sha256": "2cedaecfa3df4e7db22e1c7e9d243d68b5f8f3514dea2e434396b2977814b79f"
+          },
+          {
+            "name": "parameter_changes.csv",
+            "size": 7103,
+            "sha256": "ddec609d981a695d2b3b8cf7781c07ea36909c6ce53000dfe24e9ebf6fd40284"
+          },
+          {
+            "name": "parameter_changes.md",
+            "size": 27638,
+            "sha256": "c8db01b6113851ba5adc29dbe9d6af5f54e6d6d8e3a0b3225d4404be527c5737"
+          },
+          {
+            "name": "parameter_comparison_result.json",
+            "size": 390,
+            "sha256": "a70625c3ca45e3ac004cdbdabfff245e287ae31844dddbfb8179449097a7c861"
+          },
+          {
+            "name": "recalculate_dcf.py",
+            "size": 491,
+            "sha256": "e07c9af678288a75d40a2c59ed5d5ecac6cdca88b0e66bb0918e8953fef8cdac"
+          },
+          {
+            "name": "scenario_bindings.json",
+            "size": 4917,
+            "sha256": "f675076b068d8818ab8a4c9a17268e2a863eb78439612b0fee02617ffbbca9e5"
+          },
+          {
+            "name": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__assumptions.csv",
+            "size": 90,
+            "sha256": "72abbfd45d009b93a3e5b49f4153ecb63cebd098529c222de909928eaa2cb15f"
+          },
+          {
+            "name": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__base_dcf.csv",
+            "size": 259,
+            "sha256": "60af83b7012095d49055b4582ae33d6eb8071b7a13d8fc28190a13e2504bcdf0"
+          },
+          {
+            "name": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__fcf_RMB_mn.csv",
+            "size": 135,
+            "sha256": "dec79b68f0331d44a780f67582d03c5653c4040481b80327565007e742045ecd"
+          },
+          {
+            "name": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn.csv",
+            "size": 54,
+            "sha256": "50e215915ecc361112c5a59c70e9bdc9d6e28610dfc9a7d0f2f5910409067774"
+          },
+          {
+            "name": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn.csv",
+            "size": 57,
+            "sha256": "40f57ba62229362ecd8054350021c7ab45f84b068220b862ad7666c74c0cc30d"
+          },
+          {
+            "name": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__forecast_inputs__years.csv",
+            "size": 40,
+            "sha256": "5bc841372f5e2a73b9697f49a562048d8a426fcfb1fa51c0ffd3e2f955b697f9"
+          },
+          {
+            "name": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__pe_crosscheck.csv",
+            "size": 124,
+            "sha256": "14d50b9a0e56118624764e70b2c247730c21489a853c4244f7021f3e45c243e7"
+          },
+          {
+            "name": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%.csv",
+            "size": 94,
+            "sha256": "4e3a8610eec69b7bed8b99751f24cb6204e367c36c95a496d76723c482d129ae"
+          },
+          {
+            "name": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%.csv",
+            "size": 94,
+            "sha256": "39a8a6e2a0c529d4e10c5314eedbf95afe316343c600c49b958745899cdfc6f1"
+          },
+          {
+            "name": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%.csv",
+            "size": 95,
+            "sha256": "bfe0579d1596f22b9d588734eb5eef46470038ca9cfc053b9d7d9c1a021fb554"
+          },
+          {
+            "name": "基准_18f59dcff3ce4da583c4344de2ecb8f8__dcf_sensitivity.csv",
+            "size": 127,
+            "sha256": "fe06d8783b0fda21867474225bda51726af31d102beb6b066330c62be2135558"
+          },
+          {
+            "name": "基准_18f59dcff3ce4da583c4344de2ecb8f8__forecast_and_dcf_inputs.csv",
+            "size": 3446,
+            "sha256": "75d38750a1d0e2134d03e0fd20f0ae5ee4217e56d4bd6d8cd0dcabdf88caf5b6"
+          },
+          {
+            "name": "基准_情景_差额.csv",
+            "size": 7124,
+            "sha256": "56dced658b7628f63f367db22277e7113fe5557fd22d3f25490b14766f4838cc"
+          },
+          {
+            "name": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__assumptions.csv",
+            "size": 90,
+            "sha256": "efc7acd5443defc3b5008bb7d26242fbd84b2ef83309d3a34828678d6470264e"
+          },
+          {
+            "name": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__base_dcf.csv",
+            "size": 256,
+            "sha256": "d304006bc243b58bcec04aed82b210461d334cf17e84dca9886e706c889dd449"
+          },
+          {
+            "name": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__fcf_RMB_mn.csv",
+            "size": 145,
+            "sha256": "80907cb539fab2d84d6dba89e4570a20aacb28ce29af17ce601026ff5b5ab044"
+          },
+          {
+            "name": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn.csv",
+            "size": 54,
+            "sha256": "50e215915ecc361112c5a59c70e9bdc9d6e28610dfc9a7d0f2f5910409067774"
+          },
+          {
+            "name": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn.csv",
+            "size": 57,
+            "sha256": "40f57ba62229362ecd8054350021c7ab45f84b068220b862ad7666c74c0cc30d"
+          },
+          {
+            "name": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__forecast_inputs__years.csv",
+            "size": 40,
+            "sha256": "5bc841372f5e2a73b9697f49a562048d8a426fcfb1fa51c0ffd3e2f955b697f9"
+          },
+          {
+            "name": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__pe_crosscheck.csv",
+            "size": 124,
+            "sha256": "14d50b9a0e56118624764e70b2c247730c21489a853c4244f7021f3e45c243e7"
+          },
+          {
+            "name": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%.csv",
+            "size": 92,
+            "sha256": "d0b232880570f969c3e2fc488ee64313dbb876cdabc0163e46b2a38a5514a8b7"
+          },
+          {
+            "name": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%.csv",
+            "size": 92,
+            "sha256": "baa08c4b1288d94b05f75ac728a6f5e8b2a39b4d3b41dc1e163783ed2caeaee1"
+          },
+          {
+            "name": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%.csv",
+            "size": 94,
+            "sha256": "11737595c43b875ad2f3ec8e934c61d53b9c7eacfd357df77b07c14562b7411d"
+          },
+          {
+            "name": "情景_b47f3e958b7e4de0be303b9062cf2821__dcf_sensitivity.csv",
+            "size": 124,
+            "sha256": "c2aa876f55e8af05517e65e8c0df3fde3ff90496f5459a0405be615d1545bc01"
+          },
+          {
+            "name": "情景_b47f3e958b7e4de0be303b9062cf2821__forecast_and_dcf_inputs.csv",
+            "size": 3469,
+            "sha256": "2baf90ad5feb6a4cdb653e229c54f43734387314548ba9afa1c57f428993b6ca"
+          }
+        ],
+        "error": null,
+        "image_id": "sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2",
+        "created_at": 1791381774.3521743,
+        "elapsed_seconds": 3.14,
+        "input_sha256": {
+          "tables.json": "561913e3e1c2854ec2bc24c2c8fe4f1ceac45e3af303e30e752f7c602129ccb1",
+          "facts.json": "e5c3a69aeb596aca078d0de483fbe77b30b7f1242ce54c52d639fc7ada123e3d",
+          "pages.json": "624788a5759e6599488a0863f35e5d3bce58ed04e4b0ba0a68f84cab95f7e718",
+          "research_records.json": "7896a2b495672a746e710a2e03fcbcc5300ac431fefdeaed2aa3ab6e4111af52",
+          "analysis.py": "5982d3c824e17d0b60839cff7966357018c41d6a146c55b3a431d5895abf096b",
+          "plot_runtime.py": "ef8a67aba0ee5fadc3ea681e65e9bff3e722d985d09e5f646f106280a544e915",
+          "analysis_report.py": "db40495d2697b4325ff5dcf3ba1719f3aeb8cb5cdb059e7b5b73705405d4164b",
+          "model_units.py": "ba269491626510d9fbac93c5a971b09125014ed015601c6bd0ca52d7b1093f57",
+          "analysis_report.md": "a529897ede5366f56c5c1c795b78019aa3ea17f97f088c00f9a53db49557b4b2",
+          "analysis_tables.py": "bad3d6e6fdae6a0031495a164c6b57edc38943afff9e89767dbbc162618f1bd9",
+          "analysis_comparison.py": "7d1895cc5669dbd353548be7e11c4c50929f87df67a7a6f6c4a36c82d18b9e3c",
+          "scenario_tables.py": "587a925b0ae9b04ea4f4a36303d20a05548d59e90742d85b1ded3452e81de560",
+          "parameter_comparison.json": "1444d8c4d2f4f9b9792c0037dcef8bc88ce2203002ff7cd8f66a93e8df945412"
+        },
+        "timeout_seconds": 120,
+        "owner_pid": 78008,
+        "owner_token": "134358553733843860",
+        "host_platform": "win32",
+        "host_name": "星尘",
+        "repo_digests": [
+          "finance-analysis@sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2"
+        ],
+        "code_sha256": "1acb037380c42ecf29f08aa45101ce60c4c42c0445297951f79719888afad96e",
+        "started_at": 1791381775.6007004,
+        "execution_seconds": 1.312,
+        "oom_killed": false,
+        "stdout": "{\n  \"pv_exp\": 1605.6419691003066,\n  \"pv_tv\": 2954.021531427513,\n  \"ev\": 4559.663500527819,\n  \"equity\": 4879.663500527819,\n  \"hkdps\": 9.40763954155814,\n  \"eps\": [\n    0.6270270270270271,\n    0.8324324324324325,\n    0.9837837837837838\n  ],\n  \"pe_target\": 8.907027027027027,\n  \"sensitivity\": {\n    \"g=1%;WACC=11.2%\": 10.169079418163546,\n    \"g=1%;WACC=12.2%\": 9.263907832398736,\n    \"g=1%;WACC=13.2%\": 8.50831195351988,\n    \"g=2%;WACC=11.2%\": 10.92608745303723,\n    \"g=2%;WACC=12.2%\": 9.863861917913876,\n    \"g=2%;WACC=13.2%\": 8.992421978865115,\n    \"g=3%;WACC=11.2%\": 11.867731593977666,\n    \"g=3%;WACC=12.2%\": 10.594240804627958,\n    \"g=3%;WACC=13.2%\": 9.571455538591765\n  }\n}\n",
+        "stderr": "",
+        "container_removed": true,
+        "finished_at": 1791381777.500671,
+        "parameter_changes": {
+          "wacc0": {
+            "old": "0.122",
+            "new": "0.127"
+          },
+          "fcf": {
+            "old": [
+              "288",
+              "512",
+              "591",
+              "594",
+              "626"
+            ],
+            "new": [
+              "259.2",
+              "460.8",
+              "531.9",
+              "534.6",
+              "563.4"
+            ]
+          }
+        },
+        "parameter_steps": [],
+        "params_order": null,
+        "input_snapshot_from": "18f59dcff3ce4da583c4344de2ecb8f8"
+      },
+      "baseline_price": "10.891298026911315",
+      "scenario_price": "9.40763954155814",
+      "comparison_rows": 63,
+      "embedded": true,
+      "scenario_context": {
+        "operation": "scenario_update",
+        "preferred_table": "基准_情景_差额",
+        "preferred_embedding": "{{table:基准_情景_差额}}",
+        "unqualified_names": [
+          "calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn",
+          "calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn",
+          "calculation_inputs_and_results__forecast_inputs__years",
+          "calculation_inputs_and_results__fcf_RMB_mn",
+          "calculation_inputs_and_results__assumptions",
+          "calculation_inputs_and_results__base_dcf",
+          "calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%",
+          "calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%",
+          "calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%",
+          "calculation_inputs_and_results__pe_crosscheck",
+          "dcf_sensitivity",
+          "forecast_and_dcf_inputs"
+        ],
+        "meaning": "基准是本次 source 指定的原版本；情景是修改参数后的新版本。比较优先嵌入基准_情景_差额，单值使用下列带版本表名。",
+        "skipped": [],
+        "baseline": {
+          "label": "基准",
+          "version_id": "18f59dcff3ce4da583c4344de2ecb8f8",
+          "tables": {
+            "calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn",
+            "calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn",
+            "calculation_inputs_and_results__forecast_inputs__years": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__forecast_inputs__years",
+            "calculation_inputs_and_results__fcf_RMB_mn": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__fcf_RMB_mn",
+            "calculation_inputs_and_results__assumptions": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__assumptions",
+            "calculation_inputs_and_results__base_dcf": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__base_dcf",
+            "calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%",
+            "calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%",
+            "calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%",
+            "calculation_inputs_and_results__pe_crosscheck": "基准_18f59dcff3ce4da583c4344de2ecb8f8__calculation_inputs_and_results__pe_crosscheck",
+            "dcf_sensitivity": "基准_18f59dcff3ce4da583c4344de2ecb8f8__dcf_sensitivity",
+            "forecast_and_dcf_inputs": "基准_18f59dcff3ce4da583c4344de2ecb8f8__forecast_and_dcf_inputs"
+          }
+        },
+        "scenario": {
+          "label": "情景",
+          "version_id": "b47f3e958b7e4de0be303b9062cf2821",
+          "tables": {
+            "calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn",
+            "calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn",
+            "calculation_inputs_and_results__forecast_inputs__years": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__forecast_inputs__years",
+            "calculation_inputs_and_results__fcf_RMB_mn": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__fcf_RMB_mn",
+            "calculation_inputs_and_results__assumptions": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__assumptions",
+            "calculation_inputs_and_results__base_dcf": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__base_dcf",
+            "calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%",
+            "calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%",
+            "calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%",
+            "calculation_inputs_and_results__pe_crosscheck": "情景_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__pe_crosscheck",
+            "dcf_sensitivity": "情景_b47f3e958b7e4de0be303b9062cf2821__dcf_sensitivity",
+            "forecast_and_dcf_inputs": "情景_b47f3e958b7e4de0be303b9062cf2821__forecast_and_dcf_inputs"
+          }
+        }
+      }
+    },
+    {
+      "source_run_id": "b47f3e958b7e4de0be303b9062cf2821",
+      "run_id": "9522c5afbed041d0a1d2feeaa46c16d5",
+      "status": "succeeded",
+      "params": {
+        "wacc0": {
+          "+": 0.001
+        }
+      },
+      "state": {
+        "run_id": "9522c5afbed041d0a1d2feeaa46c16d5",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+        "status": "succeeded",
+        "exit_code": 0,
+        "artifacts": [
+          {
+            "name": "calculation_inputs_and_results.json",
+            "size": 1353,
+            "sha256": "ff1e551733a10f1fb387f8d363e9599d33eaab2eec1ca93d86bda0684d1ec21f"
+          },
+          {
+            "name": "carote_valuation_chart.png",
+            "size": 120093,
+            "sha256": "129ea3cd6ccd02d6a8c78404f7abb61f996957983a701d99c9c9fcaf3f7f5fec"
+          },
+          {
+            "name": "dcf_sensitivity.csv",
+            "size": 124,
+            "sha256": "c2aa876f55e8af05517e65e8c0df3fde3ff90496f5459a0405be615d1545bc01"
+          },
+          {
+            "name": "executed_script.py",
+            "size": 6300,
+            "sha256": "a2de67b9d5f87c05ca14c0003be01c97771f916a1b33d44b6dcf28864c40d1d4"
+          },
+          {
+            "name": "forecast_and_dcf_inputs.csv",
+            "size": 3469,
+            "sha256": "14abdbd4b132dcc338cbb62758de191559c30e577f3f64b23a792501b56eda67"
+          },
+          {
+            "name": "numeric_tables.json",
+            "size": 183260,
+            "sha256": "fda8a428518e0089b39815528970ea6b4b6556a68f3c92affe81786e4010a831"
+          },
+          {
+            "name": "parameter_changes.csv",
+            "size": 8756,
+            "sha256": "1f99af46007e2f5e4d8c7b9adb57506d049a22af8330606edd3f38431808a6b3"
+          },
+          {
+            "name": "parameter_changes.md",
+            "size": 31487,
+            "sha256": "b0b3ce041f3297b29ebd41d9b62838a00c23aefa98e3658c216fc68577c10735"
+          },
+          {
+            "name": "parameter_comparison_result.json",
+            "size": 165,
+            "sha256": "504a370595aee0f6e22555e999e7a8fe48432187df080f6c8f7c821372d0a7f7"
+          },
+          {
+            "name": "recalculate_dcf.py",
+            "size": 491,
+            "sha256": "e07c9af678288a75d40a2c59ed5d5ecac6cdca88b0e66bb0918e8953fef8cdac"
+          },
+          {
+            "name": "scenario_bindings.json",
+            "size": 4917,
+            "sha256": "97877c61e380ed4fcd85c6f43afc5abea10603347f5163dab520776f1301b5e6"
+          },
+          {
+            "name": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__assumptions.csv",
+            "size": 90,
+            "sha256": "efc7acd5443defc3b5008bb7d26242fbd84b2ef83309d3a34828678d6470264e"
+          },
+          {
+            "name": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__base_dcf.csv",
+            "size": 256,
+            "sha256": "d304006bc243b58bcec04aed82b210461d334cf17e84dca9886e706c889dd449"
+          },
+          {
+            "name": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__fcf_RMB_mn.csv",
+            "size": 145,
+            "sha256": "80907cb539fab2d84d6dba89e4570a20aacb28ce29af17ce601026ff5b5ab044"
+          },
+          {
+            "name": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn.csv",
+            "size": 54,
+            "sha256": "50e215915ecc361112c5a59c70e9bdc9d6e28610dfc9a7d0f2f5910409067774"
+          },
+          {
+            "name": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn.csv",
+            "size": 57,
+            "sha256": "40f57ba62229362ecd8054350021c7ab45f84b068220b862ad7666c74c0cc30d"
+          },
+          {
+            "name": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__forecast_inputs__years.csv",
+            "size": 40,
+            "sha256": "5bc841372f5e2a73b9697f49a562048d8a426fcfb1fa51c0ffd3e2f955b697f9"
+          },
+          {
+            "name": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__pe_crosscheck.csv",
+            "size": 124,
+            "sha256": "14d50b9a0e56118624764e70b2c247730c21489a853c4244f7021f3e45c243e7"
+          },
+          {
+            "name": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%.csv",
+            "size": 92,
+            "sha256": "d0b232880570f969c3e2fc488ee64313dbb876cdabc0163e46b2a38a5514a8b7"
+          },
+          {
+            "name": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%.csv",
+            "size": 92,
+            "sha256": "baa08c4b1288d94b05f75ac728a6f5e8b2a39b4d3b41dc1e163783ed2caeaee1"
+          },
+          {
+            "name": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%.csv",
+            "size": 94,
+            "sha256": "11737595c43b875ad2f3ec8e934c61d53b9c7eacfd357df77b07c14562b7411d"
+          },
+          {
+            "name": "基准_b47f3e958b7e4de0be303b9062cf2821__dcf_sensitivity.csv",
+            "size": 124,
+            "sha256": "c2aa876f55e8af05517e65e8c0df3fde3ff90496f5459a0405be615d1545bc01"
+          },
+          {
+            "name": "基准_b47f3e958b7e4de0be303b9062cf2821__forecast_and_dcf_inputs.csv",
+            "size": 3469,
+            "sha256": "2baf90ad5feb6a4cdb653e229c54f43734387314548ba9afa1c57f428993b6ca"
+          },
+          {
+            "name": "基准_情景_差额.csv",
+            "size": 8777,
+            "sha256": "1208cec8c64f368581bb0e8e15a30404d82b9651bcf67d405976d3a26dd4a7a2"
+          },
+          {
+            "name": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__assumptions.csv",
+            "size": 90,
+            "sha256": "2868200f3da6578a6e99ccf17ac82dff7d862a5cac2688b96e813720c44c4835"
+          },
+          {
+            "name": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__base_dcf.csv",
+            "size": 256,
+            "sha256": "57b1ff28d49167d6e5a7cb313d6bff9c0585f3191538ea7506948059454bb0e7"
+          },
+          {
+            "name": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__fcf_RMB_mn.csv",
+            "size": 145,
+            "sha256": "80907cb539fab2d84d6dba89e4570a20aacb28ce29af17ce601026ff5b5ab044"
+          },
+          {
+            "name": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn.csv",
+            "size": 54,
+            "sha256": "50e215915ecc361112c5a59c70e9bdc9d6e28610dfc9a7d0f2f5910409067774"
+          },
+          {
+            "name": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn.csv",
+            "size": 57,
+            "sha256": "40f57ba62229362ecd8054350021c7ab45f84b068220b862ad7666c74c0cc30d"
+          },
+          {
+            "name": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__forecast_inputs__years.csv",
+            "size": 40,
+            "sha256": "5bc841372f5e2a73b9697f49a562048d8a426fcfb1fa51c0ffd3e2f955b697f9"
+          },
+          {
+            "name": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__pe_crosscheck.csv",
+            "size": 124,
+            "sha256": "14d50b9a0e56118624764e70b2c247730c21489a853c4244f7021f3e45c243e7"
+          },
+          {
+            "name": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%.csv",
+            "size": 92,
+            "sha256": "d0b232880570f969c3e2fc488ee64313dbb876cdabc0163e46b2a38a5514a8b7"
+          },
+          {
+            "name": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%.csv",
+            "size": 92,
+            "sha256": "baa08c4b1288d94b05f75ac728a6f5e8b2a39b4d3b41dc1e163783ed2caeaee1"
+          },
+          {
+            "name": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%.csv",
+            "size": 94,
+            "sha256": "11737595c43b875ad2f3ec8e934c61d53b9c7eacfd357df77b07c14562b7411d"
+          },
+          {
+            "name": "情景_9522c5afbed041d0a1d2feeaa46c16d5__dcf_sensitivity.csv",
+            "size": 124,
+            "sha256": "c2aa876f55e8af05517e65e8c0df3fde3ff90496f5459a0405be615d1545bc01"
+          },
+          {
+            "name": "情景_9522c5afbed041d0a1d2feeaa46c16d5__forecast_and_dcf_inputs.csv",
+            "size": 3469,
+            "sha256": "14abdbd4b132dcc338cbb62758de191559c30e577f3f64b23a792501b56eda67"
+          }
+        ],
+        "error": null,
+        "image_id": "sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2",
+        "created_at": 1791381777.952902,
+        "elapsed_seconds": 2.985,
+        "input_sha256": {
+          "tables.json": "561913e3e1c2854ec2bc24c2c8fe4f1ceac45e3af303e30e752f7c602129ccb1",
+          "facts.json": "e5c3a69aeb596aca078d0de483fbe77b30b7f1242ce54c52d639fc7ada123e3d",
+          "pages.json": "624788a5759e6599488a0863f35e5d3bce58ed04e4b0ba0a68f84cab95f7e718",
+          "research_records.json": "7896a2b495672a746e710a2e03fcbcc5300ac431fefdeaed2aa3ab6e4111af52",
+          "analysis.py": "a2de67b9d5f87c05ca14c0003be01c97771f916a1b33d44b6dcf28864c40d1d4",
+          "plot_runtime.py": "ef8a67aba0ee5fadc3ea681e65e9bff3e722d985d09e5f646f106280a544e915",
+          "analysis_report.py": "db40495d2697b4325ff5dcf3ba1719f3aeb8cb5cdb059e7b5b73705405d4164b",
+          "model_units.py": "ba269491626510d9fbac93c5a971b09125014ed015601c6bd0ca52d7b1093f57",
+          "analysis_report.md": "a529897ede5366f56c5c1c795b78019aa3ea17f97f088c00f9a53db49557b4b2",
+          "analysis_tables.py": "bad3d6e6fdae6a0031495a164c6b57edc38943afff9e89767dbbc162618f1bd9",
+          "analysis_comparison.py": "7d1895cc5669dbd353548be7e11c4c50929f87df67a7a6f6c4a36c82d18b9e3c",
+          "scenario_tables.py": "587a925b0ae9b04ea4f4a36303d20a05548d59e90742d85b1ded3452e81de560",
+          "parameter_comparison.json": "55fa35aa1502f7cdd365bdbf19580deddf1d2a14dc4ef2144e89d9947e6f5620"
+        },
+        "timeout_seconds": 120,
+        "owner_pid": 78008,
+        "owner_token": "134358553733843860",
+        "host_platform": "win32",
+        "host_name": "星尘",
+        "repo_digests": [
+          "finance-analysis@sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2"
+        ],
+        "code_sha256": "1acb037380c42ecf29f08aa45101ce60c4c42c0445297951f79719888afad96e",
+        "started_at": 1791381779.0635824,
+        "execution_seconds": 1.297,
+        "oom_killed": false,
+        "stdout": "{\n  \"pv_exp\": 1601.2629970211126,\n  \"pv_tv\": 2913.71963558213,\n  \"ev\": 4514.982632603243,\n  \"equity\": 4834.982632603243,\n  \"hkdps\": 9.321498048442288,\n  \"eps\": [\n    0.6270270270270271,\n    0.8324324324324325,\n    0.9837837837837838\n  ],\n  \"pe_target\": 8.907027027027027,\n  \"sensitivity\": {\n    \"g=1%;WACC=11.2%\": 10.169079418163546,\n    \"g=1%;WACC=12.2%\": 9.263907832398736,\n    \"g=1%;WACC=13.2%\": 8.50831195351988,\n    \"g=2%;WACC=11.2%\": 10.92608745303723,\n    \"g=2%;WACC=12.2%\": 9.863861917913876,\n    \"g=2%;WACC=13.2%\": 8.992421978865115,\n    \"g=3%;WACC=11.2%\": 11.867731593977666,\n    \"g=3%;WACC=12.2%\": 10.594240804627958,\n    \"g=3%;WACC=13.2%\": 9.571455538591765\n  }\n}\n",
+        "stderr": "",
+        "container_removed": true,
+        "finished_at": 1791381780.941818,
+        "parameter_changes": {
+          "wacc0": {
+            "old": "0.127",
+            "new": "0.128"
+          }
+        },
+        "parameter_steps": [],
+        "params_order": null,
+        "input_snapshot_from": "b47f3e958b7e4de0be303b9062cf2821"
+      },
+      "baseline_price": "9.40763954155814",
+      "scenario_price": "9.321498048442288",
+      "comparison_rows": 77,
+      "embedded": true,
+      "scenario_context": {
+        "operation": "scenario_update",
+        "preferred_table": "基准_情景_差额",
+        "preferred_embedding": "{{table:基准_情景_差额}}",
+        "unqualified_names": [
+          "calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn",
+          "calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn",
+          "calculation_inputs_and_results__forecast_inputs__years",
+          "calculation_inputs_and_results__fcf_RMB_mn",
+          "calculation_inputs_and_results__assumptions",
+          "calculation_inputs_and_results__base_dcf",
+          "calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%",
+          "calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%",
+          "calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%",
+          "calculation_inputs_and_results__pe_crosscheck",
+          "dcf_sensitivity",
+          "forecast_and_dcf_inputs"
+        ],
+        "meaning": "基准是本次 source 指定的原版本；情景是修改参数后的新版本。比较优先嵌入基准_情景_差额，单值使用下列带版本表名。",
+        "skipped": [],
+        "baseline": {
+          "label": "基准",
+          "version_id": "b47f3e958b7e4de0be303b9062cf2821",
+          "tables": {
+            "calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn",
+            "calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn",
+            "calculation_inputs_and_results__forecast_inputs__years": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__forecast_inputs__years",
+            "calculation_inputs_and_results__fcf_RMB_mn": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__fcf_RMB_mn",
+            "calculation_inputs_and_results__assumptions": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__assumptions",
+            "calculation_inputs_and_results__base_dcf": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__base_dcf",
+            "calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%",
+            "calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%",
+            "calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%",
+            "calculation_inputs_and_results__pe_crosscheck": "基准_b47f3e958b7e4de0be303b9062cf2821__calculation_inputs_and_results__pe_crosscheck",
+            "dcf_sensitivity": "基准_b47f3e958b7e4de0be303b9062cf2821__dcf_sensitivity",
+            "forecast_and_dcf_inputs": "基准_b47f3e958b7e4de0be303b9062cf2821__forecast_and_dcf_inputs"
+          }
+        },
+        "scenario": {
+          "label": "情景",
+          "version_id": "9522c5afbed041d0a1d2feeaa46c16d5",
+          "tables": {
+            "calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__forecast_inputs__revenue_RMB_mn",
+            "calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__forecast_inputs__net_profit_RMB_mn",
+            "calculation_inputs_and_results__forecast_inputs__years": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__forecast_inputs__years",
+            "calculation_inputs_and_results__fcf_RMB_mn": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__fcf_RMB_mn",
+            "calculation_inputs_and_results__assumptions": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__assumptions",
+            "calculation_inputs_and_results__base_dcf": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__base_dcf",
+            "calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__sensitivity_HKD_per_share__g=1%",
+            "calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__sensitivity_HKD_per_share__g=2%",
+            "calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__sensitivity_HKD_per_share__g=3%",
+            "calculation_inputs_and_results__pe_crosscheck": "情景_9522c5afbed041d0a1d2feeaa46c16d5__calculation_inputs_and_results__pe_crosscheck",
+            "dcf_sensitivity": "情景_9522c5afbed041d0a1d2feeaa46c16d5__dcf_sensitivity",
+            "forecast_and_dcf_inputs": "情景_9522c5afbed041d0a1d2feeaa46c16d5__forecast_and_dcf_inputs"
+          }
+        }
+      }
+    }
+  ]
+}

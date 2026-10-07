@@ -1,6 +1,6 @@
 {
   "python": {
-    "passed": 22,
+    "passed": 23,
     "modules": [
       "test_scenario_tables",
       "test_analysis_parameters",
@@ -8,7 +8,16 @@
       "test_analysis_tables",
       "test_model_delivery",
       "test_analysis_interfaces"
-    ]
+    ],
+    "after_row_key_fix": {
+      "targeted_passed": 12,
+      "modules": [
+        "test_scenario_tables",
+        "test_analysis_tables",
+        "test_analysis_parameters",
+        "test_analysis_interfaces"
+      ]
+    }
   },
   "typescript": {
     "passed": 28,
@@ -35,5 +44,19 @@
   "changes_vs_spec": [
     "Use full immutable version IDs in table names, plus one short preferred comparison table.",
     "Legacy same-name attachments use publication order; newly collected analysis artifacts use produced timestamp so reading an older status cannot make it latest."
-  ]
+  ],
+  "row_key_finding": {
+    "evidence_before": "scenario-replay-before-rowkeys.json",
+    "evidence_after": "scenario-replay.json",
+    "before_comparison_rows": [
+      63,
+      77
+    ],
+    "after_comparison_rows": [
+      87,
+      87
+    ],
+    "cause": "All-numeric JSON rows were keyed by the first calculated value; a changed value then no longer matched its baseline row. Explicit text dimensions stay unchanged; numeric-only rows now use position.",
+    "scope": "Actual A2 comparison omission found during this iteration; no extra model call."
+  }
 }

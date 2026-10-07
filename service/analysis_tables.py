@@ -45,8 +45,8 @@ def with_row_keys(table):
         for size in range(1, len(dimensions) + 1):
             keys = ['|'.join(str(row.get(k, '')) for k in dimensions[:size]) for row in rows]
             if len(set(keys)) == len(rows): break
-        if not keys and len(columns) > 1:
-            first = next(iter(columns)); keys = [str(row.get(first, '')) for row in rows]
+        # An all-numeric row has no dimension: its first result changes under
+        # parameter updates and cannot identify that row across versions.
         if not keys or len(set(keys)) != len(rows): keys = [str(i) for i in range(len(rows))]
     return {**table, 'row_keys': keys}
 
