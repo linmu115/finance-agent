@@ -3,7 +3,10 @@ import csv
 from decimal import Decimal, InvalidOperation
 import json
 import re
-from .analysis_report import canonical_unit, format_cell
+if __package__:
+    from .analysis_report import canonical_unit, format_cell
+else:
+    from analysis_report import canonical_unit, format_cell
 
 
 def numeric(value):
@@ -19,6 +22,7 @@ def header_column(header):
     candidates += [match.group(0) for match in re.finditer(r'(?:人民币|港币|港元|美元|CNY|RMB|HKD|USD|HK\$)(?:[/ _\w股元百千亿万%.-]*)$', header, re.I)]
     candidates += [header]
     for text in candidates:
+        text = text.replace('_per_share', '/share').replace('_', ' ')
         try: unit, currency = canonical_unit(text)
         except ValueError: continue
         col.update(unit=unit)
@@ -59,11 +63,11 @@ def csv_table(path):
     for key, col in columns.items():
         if any(numeric(row.get(key)) for row in rows) and not re.search(r'year|date|period|年度|财年|期间|年份', key, re.I): col['numeric'] = True
     cell_units = []
-    unit_key = next((k for k in headers if k.casefold() in ('unit', '单位')), None)
+    unit_key = next((k for k in headers if re.match(r'^(?:unit|单位)(?:$|[/（(])', k, re.I)), None)
     for row in rows:
         units = {}
         if unit_key and row[unit_key]:
-            stated = header_column(row[unit_key])
+            stated = header_column(re.split('[;；]',row[unit_key])[0])
             if 'unit' in stated:
                 for key, col in columns.items():
                     if col.get('numeric') and 'unit' not in col:
@@ -79,6 +83,13 @@ def csv_table(path):
 def collect_tables(paths):
     """paths are already authorized, manifest-verified outputs, supplied by the runner."""
     tables, warnings = {}, []
+    for name,path in paths.items():
+        if path.suffix.lower()!='.json' or name in ('analysis_report.json','numeric_tables.json','models.json','comparison_requests.json','parameter_comparison_result.json'):continue
+        try: data=json.loads(path.read_text(encoding='utf-8-sig'))
+        except (ValueError,UnicodeError) as exc:
+            warnings.append({'file':name,'error':str(exc)});continue
+        if isinstance(data,dict) and isinstance(data.get('tables'),dict):continue
+        for key,table in json_tables(data,path.stem).items():tables[key]={**table,'artifact':name,'origin':'json'}
     for name, path in paths.items():
         if path.suffix.lower() != '.csv': continue
         try: table = csv_table(path)
@@ -96,7 +107,8 @@ def collect_tables(paths):
             if not isinstance(table, dict) or not isinstance(table.get('columns'), dict) or not isinstance(table.get('rows'), list): continue
             tables[key] = {**with_row_keys(table), 'artifact': name, 'origin': 'report'}
     if 'models.json' in paths:
-        from .analysis_report import model_quantity
+        if __package__:from .analysis_report import model_quantity
+        else:from analysis_report import model_quantity
         models = json.loads(paths['models.json'].read_text(encoding='utf-8-sig'))
         for alias, model in models.items():
             for name, rows in model['result'].get('tables', {}).items():
@@ -114,6 +126,32 @@ def collect_tables(paths):
                     for i, row in enumerate(rows):
                         table['rows'][i][column] = model_quantity(model, f'tables.{name}.{i}.{column}')['value']
     return tables, warnings
+
+
+def json_tables(data, name):
+    """JSON scalar results and arrays form tables; only explicit field units are used."""
+    result={}
+    if isinstance(data,list) and data and all(isinstance(row,dict) for row in data):
+        keys=list(dict.fromkeys(k for row in data for k,v in row.items() if not isinstance(v,(list,dict))))
+        rows=[{k:None if row.get(k) is None else str(row[k]) for k in keys} for row in data]
+    elif isinstance(data,dict):
+        keys=[k for k,v in data.items() if not isinstance(v,(list,dict))]
+        rows=[{k:None if data[k] is None else str(data[k]) for k in keys}]
+    elif isinstance(data,list) and data and all(numeric(v) for v in data):
+        keys=['index','value'];rows=[{'index':str(i),'value':str(v)} for i,v in enumerate(data)]
+    else:keys=[];rows=[]
+    if any(numeric(row[k]) for row in rows for k in keys):
+        columns={k:{**header_column(k),'numeric':any(numeric(row[k]) for row in rows)} for k in keys}
+        inherited=header_column(name)
+        if 'unit' in inherited:
+            for k,col in columns.items():
+                if col['numeric'] and k!='index' and not col.get('unit'):col.update({k:v for k,v in inherited.items() if k!='label'})
+        result[name]=with_row_keys({'columns':columns,'rows':rows})
+    if isinstance(data,dict):
+        for key,value in data.items():
+            if isinstance(value,(dict,list)) and key not in ('units','source','source_refs','evidence'):
+                result.update(json_tables(value,name+'__'+key))
+    return result
 
 
 def table_view(table):

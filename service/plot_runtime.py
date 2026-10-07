@@ -34,6 +34,9 @@ try:
     if Path('/input/analysis_report.json').exists() or Path('/output/analysis_report.json').exists():
         from analysis_report import deliver
         deliver()
+    if Path('/input/parameter_comparison.json').exists():
+        from analysis_comparison import deliver_parameter_comparison
+        deliver_parameter_comparison()
 finally:
     shutil.copyfile('/input/analysis.py', '/output/executed_script.py')
 '''

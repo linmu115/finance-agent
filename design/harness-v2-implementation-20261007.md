@@ -47,3 +47,13 @@ E2 九格敏感性整表回放低 WACC / 低 g 为 11.23，不再错用 12.07。
 3001 单次真实冒烟生成 forecast 表与图，模型使用三类占位符，宿主渲染 32.42 / 39.10 亿元和实际图片 URL；原生/应用最终持久化一致，图片下载为有效 PNG。无绑定错误；7 次请求含路由及轮询，目录估算 $0.00269412。详见 a1-replay.json、a1-smoke.json。
 
 N2 接入约定：工具结果 data.numeric_tables，或 data.report.tables / data.result.report.tables，须是 compile_report 已解析后的 tables（columns、rows、可选 row_keys/row_key、cell_units、evidence）；由宿主统一登记。原始 record 引用应先在工具侧解析。表显示和正文引用共用 service/analysis_report.py。A4 同名附件去重尚未实施。
+
+### A2 已验收
+
+AST 提取顶层数字、列表、数字字典，并对白名单 Decimal 常量及 list(map(Decimal, literals)) 静态解析；只替换数值表达式，不执行模型代码。params 支持赋值、逐元素 + / *，params_order 按前缀在 Docker 重跑。源数据快照复用，全部同名数值单元交付新旧差额、顺序贡献，登记 A1；未知参数给出可用值。
+
+四份冻结 D2/E2/F2/C2 脚本通过实际 run_analysis API 重跑，92 项旧值/新值/九格敏感性/每股贡献核对全部通过，230 个共有数值单元的贡献加总等于差额；四份输入快照字节一致。旧脚本有 float 和不同 Decimal 精度，比较采用绝对容差 1e-10，未声称位级完全相同。10 项相关测试通过。Docker 执行每份最终及 WACC-only 两次，复用原基准。
+
+3001 单次真实冒烟完成：首次建立脚本，第二次实际调用只有 source_run_id + params + params_order，无 code/edits；EV 4559.66 百万元、每股 9.41 港元及贡献正确，整表经 A1 渲染。6 次模型请求（含路由），估算 $0.00359492，非账单。证据 a2-replay.json、a2-smoke.json。
+
+偏差与边界：补充静态 Decimal 写法是冻结 E2/C2 所需，不执行表达式；C2 的部分估值只存在 JSON，新增显式字段单位的 JSON 数值提取。历史回传大小因此重新测量，详见 a2-return-size.json，中位 8957 字符，最大 18017，24k 行预算保留。原脚本写死的错误标签/正文（例如 C2 参数表仍写旧 WACC、D2 的 RMB bn 错标）不会因替换变量自动修复，不能把参数验收视为整份历史报告正确。参数比较复用原资料/模型快照；需要更换资料时先建立新基准，避免混淆参数效应与数据版本效应。

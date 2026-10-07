@@ -49,6 +49,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         self.embedding_states = {}
         self.analysis_flags = {}
         self.analysis_futures = {}
+        self.analysis_children = {}
         self.cancel_flags = {}
         self.ingest_lock = threading.Lock()
         self.sandbox = None
@@ -559,7 +560,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         return self.sandbox
 
     def run_analysis(self, project_id, code=None, document_ids=None, timeout_seconds=120, raw_only=False, financial_tools=True,
-                     model_refs=None, comparisons=None, source_run_id=None, edits=None, report=None):
+                     model_refs=None, comparisons=None, source_run_id=None, edits=None, report=None, params=None, params_order=None):
         self.store.project(project_id)
         previous=None
         if source_run_id:
@@ -575,6 +576,16 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         if code is None and report is not None:code='pass'
         if edits and not source_run_id:raise ValueError('edits_require_source_run_id')
         code=apply_edits(code,edits)
+        parameter_plan=None
+        if params is not None:
+            if not source_run_id:raise ValueError('params_require_source_run_id')
+            if document_ids != metadata.get('document_ids') or (model_refs or {}) != (metadata.get('model_refs') or {}) or (comparisons or {}) != (metadata.get('comparisons') or {}):
+                raise ValueError('params 复用 source_run_id 的资料和模型快照；更换资料先建立新的基准运行，再比较参数。')
+            from .analysis_parameters import override_parameters
+            original_code=code
+            code,changes=override_parameters(code,params,params_order)
+            parameter_plan={'source_run_id':source_run_id,'original_code':original_code,'params':params,'changes':changes,'order':params_order}
+        elif params_order is not None:raise ValueError('params_order_requires_params')
         if not isinstance(raw_only,bool):raise ValueError("invalid_analysis_input_mode")
         if not isinstance(code,str) or not 1<=len(code)<=100000:raise ValueError("invalid_analysis_code")
         if isinstance(timeout_seconds,bool) or not isinstance(timeout_seconds,int) or not 1<=timeout_seconds<=120:
@@ -583,40 +594,45 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         run_id=uuid.uuid4().hex
         export=self.store.root/"exports"/project_id/run_id
         export.mkdir(parents=True,exist_ok=True)
-        (export/'analysis_inputs.json').write_text(dumps({'document_ids':ids,'model_refs':model_refs or {},'comparisons':comparisons or {},'source_run_id':source_run_id,'report':report}),encoding='utf-8')
-        records=[];pages=[]
-        for document_id in ids:
-            doc=self.store.document(project_id,document_id)
-            records.extend(self._source_tables(project_id,document_id))
-            prepared=self._read_prepared(project_id,doc)
-            if prepared:
-                pages.extend({"document_id":document_id,"sha256":doc["sha256"],"page":page["page"],"text":page["text"],
-                              "width":page.get("width"),"height":page.get("height"),"words":page.get("words",[]),
-                              "ocr":page.get("ocr",False),"ocr_lines":page.get("ocr_lines",[])} for page in prepared["pages"])
-            else:
-                with self.store.connect() as db:
-                    pages.extend({**dict(row),"sha256":doc["sha256"],"words":[]} for row in db.execute("SELECT document_id,page,text,width,height,ocr FROM pages WHERE document_id=? ORDER BY page",(document_id,)))
-        # Project-wide inputs repeat from run to run; identical content is stored once and linked.
-        shared=lambda name,value:write_input(self.store.root/"exports",project_id,export/name,dumps(value).encode("utf-8"))
-        table_path=shared("tables.json",records)
-        facts=[]
-        while not raw_only:
-            batch=self.query_financial_data(project_id,{"document_ids":ids},limit=10000,offset=len(facts))["data"]
-            facts.extend(batch["items"])
-            if len(facts)>=batch["total"]:break
-        facts_path=shared("facts.json",facts)
-        pages_path=shared("pages.json",pages)
-        research=[]
-        if not raw_only:
+        (export/'analysis_inputs.json').write_text(dumps({'document_ids':ids,'model_refs':model_refs or {},'comparisons':comparisons or {},'source_run_id':source_run_id,'report':report,'params':params,'params_order':params_order}),encoding='utf-8')
+        if parameter_plan:
+            inputs={}
+            for name in ('tables.json','facts.json','pages.json','research_records.json'):
+                inputs[name]=write_input(self.store.root/'exports',project_id,export/name,(previous/name).read_bytes())
+        else:
+            records=[];pages=[]
             for document_id in ids:
-                start=0
-                while True:
-                    found=self.query_research_records(project_id,{'document_id':document_id},start,200)['data']
-                    research.extend(found['items'])
-                    if found['next_offset'] is None:break
-                    start=found['next_offset']
-        research_path=shared('research_records.json',research)
-        inputs={"tables.json":table_path,"facts.json":facts_path,"pages.json":pages_path,'research_records.json':research_path}
+                doc=self.store.document(project_id,document_id)
+                records.extend(self._source_tables(project_id,document_id))
+                prepared=self._read_prepared(project_id,doc)
+                if prepared:
+                    pages.extend({"document_id":document_id,"sha256":doc["sha256"],"page":page["page"],"text":page["text"],
+                                  "width":page.get("width"),"height":page.get("height"),"words":page.get("words",[]),
+                                  "ocr":page.get("ocr",False),"ocr_lines":page.get("ocr_lines",[])} for page in prepared["pages"])
+                else:
+                    with self.store.connect() as db:
+                        pages.extend({**dict(row),"sha256":doc["sha256"],"words":[]} for row in db.execute("SELECT document_id,page,text,width,height,ocr FROM pages WHERE document_id=? ORDER BY page",(document_id,)))
+            # Project-wide inputs repeat from run to run; identical content is stored once and linked.
+            shared=lambda name,value:write_input(self.store.root/"exports",project_id,export/name,dumps(value).encode("utf-8"))
+            table_path=shared("tables.json",records)
+            facts=[]
+            while not raw_only:
+                batch=self.query_financial_data(project_id,{"document_ids":ids},limit=10000,offset=len(facts))["data"]
+                facts.extend(batch["items"])
+                if len(facts)>=batch["total"]:break
+            facts_path=shared("facts.json",facts)
+            pages_path=shared("pages.json",pages)
+            research=[]
+            if not raw_only:
+                for document_id in ids:
+                    start=0
+                    while True:
+                        found=self.query_research_records(project_id,{'document_id':document_id},start,200)['data']
+                        research.extend(found['items'])
+                        if found['next_offset'] is None:break
+                        start=found['next_offset']
+            research_path=shared('research_records.json',research)
+            inputs={"tables.json":table_path,"facts.json":facts_path,"pages.json":pages_path,'research_records.json':research_path}
         script=export/'analysis.py';script.write_text(code,encoding='utf-8');inputs['analysis.py']=script
         plot_runtime=export/'plot_runtime.py';shutil.copyfile(Path(__file__).with_name('plot_runtime.py'),plot_runtime);inputs['plot_runtime.py']=plot_runtime
         for name in ('analysis_report.py','model_units.py','analysis_report.md'):
@@ -633,6 +649,17 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             from .model_delivery import select_models,prepare_delivery
             models=select_models(self.store.root,project_id,model_refs or {})
             inputs.update(prepare_delivery(export,models,comparisons or {}))
+        if parameter_plan:
+            # Parameter changes retain the source data snapshot and use current helpers.
+            for name in ('models.json','comparison_requests.json','comparisons.json','model_bundle.zip','finance_model_code.zip'):
+                prior=previous/name
+                if prior.is_file() and name in inputs:
+                    # Fresh exports may be hard links to shared snapshots. Remove only
+                    # this new link before replacing it; never write through a snapshot.
+                    target=export/name;target.unlink(missing_ok=True)
+                    inputs[name]=write_input(self.store.root/'exports',project_id,target,prior.read_bytes())
+            for name in ('analysis_tables.py','analysis_comparison.py'):
+                target=export/name;shutil.copyfile(Path(__file__).with_name(name),target);inputs[name]=target
         runner=self._runner()
         available=runner.availability()
         if not available.get("available"):
@@ -644,7 +671,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         from .plot_runtime import LAUNCH
         launch=LAUNCH if raw_only or not financial_tools else LAUNCH.replace('setup()\n','setup()\nimport finance_charts\nfinance_charts.configure()\nfrom plot_runtime import deliver_models\ndeliver_models()\n')
         self.analysis_futures[run_id]=self.analysis_pool.submit(self._analysis_job,runner,project_id,run_id,launch,
-                                                              inputs,timeout_seconds)
+                                                              inputs,timeout_seconds,parameter_plan)
         return response({"run_id":run_id,"state":"queued",'source_run_id':source_run_id,
                          'model_refs':model_refs or {},'model_data':'/input/models.json' if model_refs else None,
                          'model_bundle':'model_bundle.zip' if model_refs else None},status="accepted")
@@ -663,18 +690,49 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         if not row:raise ValueError("analysis_not_found_in_project")
         return json.loads(row[0])
 
-    def _analysis_job(self, runner, project_id, run_id, code, inputs, timeout):
+    def _analysis_job(self, runner, project_id, run_id, code, inputs, timeout, parameter_plan=None):
         flag=self.analysis_flags[run_id]
         try:
             if flag.is_set():
                 result={"run_id":run_id,"project_id":project_id,"status":"cancelled","artifacts":[]}
             else:
-                result=runner.run(code,inputs,project_id=project_id,run_id=run_id,timeout_seconds=timeout)
+                if parameter_plan:result=self._parameter_analysis(runner,project_id,run_id,code,inputs,timeout,parameter_plan,flag)
+                else:result=runner.run(code,inputs,project_id=project_id,run_id=run_id,timeout_seconds=timeout)
         except Exception as exc:
-            result={"run_id":run_id,"project_id":project_id,"status":"failed","error":"runner_exception:"+type(exc).__name__,"artifacts":[]}
+            result={"run_id":run_id,"project_id":project_id,"status":"failed","error":"runner_exception:"+type(exc).__name__+': '+str(exc),"artifacts":[]}
         self._save_analysis_state(project_id,run_id,result)
         self.analysis_flags.pop(run_id,None)
+        self.analysis_children.pop(run_id,None)
         return result
+
+    def _parameter_analysis(self, runner, project_id, run_id, launch, inputs, timeout, plan, flag):
+        from .analysis_parameters import override_parameters
+        from .analysis_tables import collect_tables
+        def tables(state):
+            return collect_tables({item['name']:runner.artifact_path(state['run_id'],item['name'],project_id=project_id)
+                for item in state.get('artifacts',[]) if Path(item['name']).suffix.lower() in ('.csv','.json')})[0]
+        baseline=self._analysis_state(project_id,plan['source_run_id'])
+        if baseline.get('status')!='succeeded':raise ValueError('参数比较需要成功的 source_run_id；原运行失败时先用 edits 修复脚本')
+        before=tables(baseline);steps=[];prefix={};step_ids=[];export=inputs['analysis.py'].parent
+        for index,name in enumerate((plan['order'] or [])[:-1],1):
+            if flag.is_set():return {'run_id':run_id,'project_id':project_id,'status':'cancelled','artifacts':[],'parameter_steps':step_ids}
+            prefix[name]=plan['params'][name]
+            step_code,_=override_parameters(plan['original_code'],prefix)
+            child=uuid.uuid4().hex;self.analysis_children[run_id]=child
+            target=export/('parameter_step_'+str(index)+'.py');target.write_text(step_code,encoding='utf8')
+            self._save_analysis_state(project_id,run_id,{'run_id':run_id,'project_id':project_id,'status':'running','artifacts':[],
+                'parameter_stage':name,'completed_steps':index-1,'total_steps':len(plan['order'])})
+            result=runner.run(launch,{**inputs,'analysis.py':target},project_id=project_id,run_id=child,timeout_seconds=timeout)
+            self._save_analysis_state(project_id,child,result);step_ids.append({'parameter':name,'run_id':child,'status':result['status']})
+            if result['status']!='succeeded':return {'run_id':run_id,'project_id':project_id,'status':'failed','artifacts':[],
+                'error':'parameter_step_failed: '+name,'parameter_steps':step_ids,'cause':result.get('error'),'stderr':result.get('stderr')}
+            steps.append(tables(result))
+        if flag.is_set():return {'run_id':run_id,'project_id':project_id,'status':'cancelled','artifacts':[],'parameter_steps':step_ids}
+        comparison=export/'parameter_comparison.json'
+        comparison.write_text(dumps({'baseline':before,'steps':steps,'order':plan['order'],'parameters':plan['changes']}),encoding='utf8')
+        self.analysis_children[run_id]=run_id
+        return {**runner.run(launch,{**inputs,'parameter_comparison.json':comparison},project_id=project_id,run_id=run_id,timeout_seconds=timeout),
+                'parameter_changes':plan['changes'],'parameter_steps':step_ids,'params_order':plan['order'],'input_snapshot_from':plan['source_run_id']}
 
     def get_analysis_status(self, project_id, run_id):
         saved=self._analysis_state(project_id,run_id)
@@ -701,7 +759,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         if future and future.cancel():
             return response(self._save_analysis_state(project_id,run_id,saved|{"status":"cancelled"}))
         try:
-            observed=self._runner().cancel(run_id,project_id=project_id)
+            observed=self._runner().cancel(self.analysis_children.get(run_id,run_id),project_id=project_id)
             return response(observed)
         except Exception:
             # Cancellation may precede manifest creation; retry until the worker exits or is cancellable.
@@ -712,7 +770,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
     def _cancel_analysis_when_available(self, project_id, run_id, future):
         while not future.done():
             try:
-                self._runner().cancel(run_id,project_id=project_id)
+                self._runner().cancel(self.analysis_children.get(run_id,run_id),project_id=project_id)
                 return
             except Exception:
                 time.sleep(.1)
@@ -724,7 +782,11 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         paths = {item['name']: runner.artifact_path(run_id, item['name'], project_id=project_id)
                  for item in state.get('artifacts', []) if Path(item['name']).suffix.lower() in ('.csv', '.json')}
         tables, warnings = collect_tables(paths)
-        return {**state, 'numeric_tables': {k: table_view(t) for k, t in tables.items()}, 'table_warnings': warnings}
+        from .analysis_parameters import parameter_inventory
+        script=self.store.root/'exports'/project_id/run_id/'analysis.py'
+        if not script.is_file():script=runner.root/run_id/'input'/'analysis.py'
+        available=parameter_inventory(script.read_text(encoding='utf8')) if script.is_file() else {}
+        return {**state, 'numeric_tables': {k: table_view(t) for k, t in tables.items()}, 'table_warnings': warnings,'available_params':available}
 
     def render_answer(self, project_id, body, tables, charts=None):
         self.store.project(project_id)

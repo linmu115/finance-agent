@@ -1693,7 +1693,7 @@
   },
   {
     "name": "run_analysis",
-    "description": "Run Python only in the isolated scientific container. /input/pages.json, /input/tables.json and /input/facts.json are project exports.\n    /input/research_records.json contains separate, attributed research observations/forecasts/claims. Never treat estimates as disclosures.\n    Deliver numeric reports with report={title,body,tables:{name:{columns:{year:{label:'年度'},revenue:{label:'收入',unit:'亿元'}},rows:[{year:'2027E',revenue:{record_id:'ID'}}]}},charts:[{table:'name',x:'year',y:['revenue'],kind:'bar',title:'收入'}]}. Omit code when no calculation is needed. Cells accept fact_id/record_id refs or {value:'123',unit:'百万元',currency:'CNY',source:{...}}. One conversion generates CSV, chart, report.md and chart_data.json; body uses {{name.0.revenue}} for the identical value/unit. For custom Python, write this object to /output/analysis_report.json; delivery happens automatically after execution. A script that exports its own CSV calls analysis_report.save_table(name, columns, rows) with the same typed cells instead of hand-labelling units in to_csv. Units accept common spellings (人民币百万元, RMB million, 港元/股, 百分点); a ratio cell ({value:'0.122',unit:'ratio'}) in a % column is converted to 12.2, never relabelled. Shared API documentation: /input/analysis_report.md. Arbitrary Python, charts and layouts remain available.\n    Every profile has a working Chinese font (Noto Sans CJK JP), already configured; preserve it or use an installed font. The full executed_script.py is exported automatically. Repair with source_run_id and edits=[{before:exact unique text,after:replacement,replace_all:false}]; omit code to reuse it. For repeated text, explicitly set replace_all:true. Patch errors report edit_index and matches. Omit edits to rerun unchanged code.\n    Finance: report cells also accept {model:'base',path:'results.value_per_share'} and saved inputs such as {model:'base',path:'spec.discount.wacc'} with their own units. model_refs={base:{artifact_id,revision_id},scenario:{artifact_id,revision_id}} mounts ONLY these saved versions as /input/models.json keyed by alias. Tables are at models['base']['result']['tables']; do not recalculate an existing model to draw it. Automatically exports exact input/result CSVs and model_bundle.zip containing source data and the full original reproducible calculator. comparisons={change:{baseline:'base',scenario:'scenario',order:[changed input paths]}} also exports exact deltas/decomposition and /input/comparisons.json. No model refs means no models are mounted.\n    import finance_charts as fc: configure('report'); record_values(records,'亿元') converts normalized record values with their units and sources; model_values(model,values,'亿元') uses saved amount_scale; waterfall(start,{label:signed_change},end=reported_end) plots true increments/residual; comparison_heatmaps({label:model['result']}) shares DCF axes/colors. Helpers return editable figure/axes; layout and explanation remain yours. Generic raw_only omits financial helpers and data.\n    Write images/data under /output. No network, keys or main database. Returns run_id.",
+    "description": "Run Python only in the isolated scientific container. /input/pages.json, /input/tables.json and /input/facts.json are project exports.\n    /input/research_records.json contains separate, attributed research observations/forecasts/claims. Never treat estimates as disclosures.\n    Deliver numeric reports with report={title,body,tables:{name:{columns:{year:{label:'年度'},revenue:{label:'收入',unit:'亿元'}},rows:[{year:'2027E',revenue:{record_id:'ID'}}]}},charts:[{table:'name',x:'year',y:['revenue'],kind:'bar',title:'收入'}]}. Omit code when no calculation is needed. Cells accept fact_id/record_id refs or {value:'123',unit:'百万元',currency:'CNY',source:{...}}. One conversion generates CSV, chart, report.md and chart_data.json; body uses {{name.0.revenue}} for the identical value/unit. For custom Python, write this object to /output/analysis_report.json; delivery happens automatically after execution. A script that exports its own CSV calls analysis_report.save_table(name, columns, rows) with the same typed cells instead of hand-labelling units in to_csv. Units accept common spellings (人民币百万元, RMB million, 港元/股, 百分点); a ratio cell ({value:'0.122',unit:'ratio'}) in a % column is converted to 12.2, never relabelled. Shared API documentation: /input/analysis_report.md. Arbitrary Python, charts and layouts remain available.\n    Change assumptions with source_run_id + params={NAME:value | {'+':delta} | {'*':factor}}, no script rewrite; completion lists available_params. Operators apply elementwise to lists/dicts. params_order lists modified names in contribution order. Source data snapshots are reused; old/new/delta and ordered contributions are delivered. For actual code changes use edits=[{before:unique text,after:replacement,replace_all:false}]. Omit code/edits to reuse the script. Chinese fonts are configured; executed_script.py is exported.\n    Finance: report cells also accept {model:'base',path:'results.value_per_share'} and saved inputs such as {model:'base',path:'spec.discount.wacc'} with their own units. model_refs={base:{artifact_id,revision_id},scenario:{artifact_id,revision_id}} mounts ONLY these saved versions as /input/models.json keyed by alias. Tables are at models['base']['result']['tables']; do not recalculate an existing model to draw it. Automatically exports exact input/result CSVs and model_bundle.zip containing source data and the full original reproducible calculator. comparisons={change:{baseline:'base',scenario:'scenario',order:[changed input paths]}} also exports exact deltas/decomposition and /input/comparisons.json. No model refs means no models are mounted.\n    import finance_charts as fc: configure('report'); record_values(records,'亿元') converts normalized record values with their units and sources; model_values(model,values,'亿元') uses saved amount_scale; waterfall(start,{label:signed_change},end=reported_end) plots true increments/residual; comparison_heatmaps({label:model['result']}) shares DCF axes/colors. Helpers return editable figure/axes; layout and explanation remain yours. Generic raw_only omits financial helpers and data.\n    Write images/data under /output. No network, keys or main database. Returns run_id.",
     "inputSchema": {
       "$defs": {
         "AnalysisEdit": {
@@ -1836,6 +1836,34 @@
           ],
           "default": null,
           "title": "Report"
+        },
+        "params": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Params"
+        },
+        "params_order": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Params Order"
         }
       },
       "required": [

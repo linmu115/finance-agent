@@ -1,0 +1,1271 @@
+{
+  "method": "No LLM. Unmodified frozen scripts except AST numeric overrides; original input snapshots; Docker only. Frozen precision varies, absolute tolerance 1e-10. All common numeric cells compared; historical hardcoded prose/units preserved.",
+  "cases": [
+    {
+      "label": "D2",
+      "source_run_id": "18f59dcff3ce4da583c4344de2ecb8f8",
+      "run_id": "1f94288136f24855b1563f5cb1cc9234",
+      "reference_run_id": "b0f85ea843f14cbd8b45d3657484d3d0",
+      "state": {
+        "run_id": "1f94288136f24855b1563f5cb1cc9234",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+        "status": "succeeded",
+        "exit_code": 0,
+        "artifacts": [
+          {
+            "name": "calculation_inputs_and_results.json",
+            "size": 1353,
+            "sha256": "ac96b110c025547aa3affc453d175f916024a6ff016325e8e0d226daa3e853c9"
+          },
+          {
+            "name": "carote_valuation_chart.png",
+            "size": 120093,
+            "sha256": "129ea3cd6ccd02d6a8c78404f7abb61f996957983a701d99c9c9fcaf3f7f5fec"
+          },
+          {
+            "name": "dcf_sensitivity.csv",
+            "size": 124,
+            "sha256": "c2aa876f55e8af05517e65e8c0df3fde3ff90496f5459a0405be615d1545bc01"
+          },
+          {
+            "name": "executed_script.py",
+            "size": 6300,
+            "sha256": "5982d3c824e17d0b60839cff7966357018c41d6a146c55b3a431d5895abf096b"
+          },
+          {
+            "name": "forecast_and_dcf_inputs.csv",
+            "size": 3469,
+            "sha256": "2baf90ad5feb6a4cdb653e229c54f43734387314548ba9afa1c57f428993b6ca"
+          },
+          {
+            "name": "numeric_tables.json",
+            "size": 117899,
+            "sha256": "f7c1b8e210a9d00e55434c0fadebdaa3f7bbacb3ffcd97fbccc7b7f6c7016c63"
+          },
+          {
+            "name": "parameter_changes.csv",
+            "size": 7103,
+            "sha256": "ddec609d981a695d2b3b8cf7781c07ea36909c6ce53000dfe24e9ebf6fd40284"
+          },
+          {
+            "name": "parameter_changes.md",
+            "size": 26008,
+            "sha256": "82f257fea8ac0d91384fd749cbf4a1f7f27476fc32d6699fd7878b738735ec6e"
+          },
+          {
+            "name": "parameter_comparison_result.json",
+            "size": 414,
+            "sha256": "269a5da10a7703fd18d45d963e8739f8509e7e784c373e587dbce594c2ab86f5"
+          },
+          {
+            "name": "parameter_contributions.csv",
+            "size": 17194,
+            "sha256": "79567b5ac34cc28151baa2c636b9ff5407949dc42cde0c81bcb7a5a92147f5df"
+          },
+          {
+            "name": "recalculate_dcf.py",
+            "size": 491,
+            "sha256": "e07c9af678288a75d40a2c59ed5d5ecac6cdca88b0e66bb0918e8953fef8cdac"
+          }
+        ],
+        "error": null,
+        "image_id": "sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2",
+        "created_at": 1791363560.7034402,
+        "elapsed_seconds": 2.204,
+        "input_sha256": {
+          "tables.json": "561913e3e1c2854ec2bc24c2c8fe4f1ceac45e3af303e30e752f7c602129ccb1",
+          "facts.json": "e5c3a69aeb596aca078d0de483fbe77b30b7f1242ce54c52d639fc7ada123e3d",
+          "pages.json": "624788a5759e6599488a0863f35e5d3bce58ed04e4b0ba0a68f84cab95f7e718",
+          "research_records.json": "7896a2b495672a746e710a2e03fcbcc5300ac431fefdeaed2aa3ab6e4111af52",
+          "analysis.py": "5982d3c824e17d0b60839cff7966357018c41d6a146c55b3a431d5895abf096b",
+          "plot_runtime.py": "ef8a67aba0ee5fadc3ea681e65e9bff3e722d985d09e5f646f106280a544e915",
+          "analysis_report.py": "0f353583678d47a90632b892f3470029fe6b29524363159338d0bf85ca5b72b0",
+          "model_units.py": "d971a504067c6c4a3034841deb1b932e12e8407792bf484fff80a5f40d3301a1",
+          "analysis_report.md": "a529897ede5366f56c5c1c795b78019aa3ea17f97f088c00f9a53db49557b4b2",
+          "analysis_tables.py": "730d8a4500e03047bd950699734a611e5a5290ec500572bc145362e78c3c4566",
+          "analysis_comparison.py": "a855871eb46d4d647f74b8aa9f16685ea251109bc0a231d69a14ad7cd20b1c5a",
+          "parameter_comparison.json": "639802bb22bc4f4152a8584671d17c8dd3317d9fe506349427c91a9bb7e98f59"
+        },
+        "timeout_seconds": 120,
+        "owner_pid": 19868,
+        "owner_token": "134358371562748526",
+        "host_platform": "win32",
+        "host_name": "星尘",
+        "repo_digests": [
+          "finance-analysis@sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2"
+        ],
+        "code_sha256": "1acb037380c42ecf29f08aa45101ce60c4c42c0445297951f79719888afad96e",
+        "started_at": 1791363561.5447707,
+        "execution_seconds": 0.922,
+        "oom_killed": false,
+        "stdout": "{\n  \"pv_exp\": 1605.6419691003066,\n  \"pv_tv\": 2954.021531427513,\n  \"ev\": 4559.663500527819,\n  \"equity\": 4879.663500527819,\n  \"hkdps\": 9.40763954155814,\n  \"eps\": [\n    0.6270270270270271,\n    0.8324324324324325,\n    0.9837837837837838\n  ],\n  \"pe_target\": 8.907027027027027,\n  \"sensitivity\": {\n    \"g=1%;WACC=11.2%\": 10.169079418163546,\n    \"g=1%;WACC=12.2%\": 9.263907832398736,\n    \"g=1%;WACC=13.2%\": 8.50831195351988,\n    \"g=2%;WACC=11.2%\": 10.92608745303723,\n    \"g=2%;WACC=12.2%\": 9.863861917913876,\n    \"g=2%;WACC=13.2%\": 8.992421978865115,\n    \"g=3%;WACC=11.2%\": 11.867731593977666,\n    \"g=3%;WACC=12.2%\": 10.594240804627958,\n    \"g=3%;WACC=13.2%\": 9.571455538591765\n  }\n}\n",
+        "stderr": "",
+        "container_removed": true,
+        "finished_at": 1791363562.9040287,
+        "parameter_changes": {
+          "wacc0": {
+            "old": "0.122",
+            "new": "0.127"
+          },
+          "fcf": {
+            "old": [
+              "288",
+              "512",
+              "591",
+              "594",
+              "626"
+            ],
+            "new": [
+              "259.2",
+              "460.8",
+              "531.9",
+              "534.6",
+              "563.4"
+            ]
+          }
+        },
+        "parameter_steps": [
+          {
+            "parameter": "wacc0",
+            "run_id": "3cf76e0e7d11456d885cb670b7c46215",
+            "status": "succeeded"
+          }
+        ],
+        "params_order": [
+          "wacc0",
+          "fcf"
+        ],
+        "input_snapshot_from": "18f59dcff3ce4da583c4344de2ecb8f8"
+      },
+      "checks": [
+        {
+          "cell": "old.pv",
+          "actual": "1808.6784719383752",
+          "expected": 1808.6784719383752,
+          "pass": true
+        },
+        {
+          "cell": "old.pvt",
+          "actual": "3520.5462055716985",
+          "expected": 3520.5462055716985,
+          "pass": true
+        },
+        {
+          "cell": "old.ev",
+          "actual": "5329.224677510074",
+          "expected": 5329.224677510074,
+          "pass": true
+        },
+        {
+          "cell": "old.equity",
+          "actual": "5649.224677510074",
+          "expected": 5649.224677510074,
+          "pass": true
+        },
+        {
+          "cell": "old.price",
+          "actual": "10.891298026911315",
+          "expected": 10.891298026911315,
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.pv",
+          "actual": "1784.046632333674",
+          "expected": 1784.046632333674,
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.pvt",
+          "actual": "3282.24614603057",
+          "expected": 3282.24614603057,
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.ev",
+          "actual": "5066.292778364244",
+          "expected": 5066.292778364244,
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.equity",
+          "actual": "5386.292778364244",
+          "expected": 5386.292778364244,
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.price",
+          "actual": "10.38438427540494",
+          "expected": 10.38438427540494,
+          "pass": true
+        },
+        {
+          "cell": "new.pv",
+          "actual": "1605.6419691003066",
+          "expected": 1605.6419691003066,
+          "pass": true
+        },
+        {
+          "cell": "new.pvt",
+          "actual": "2954.021531427513",
+          "expected": 2954.021531427513,
+          "pass": true
+        },
+        {
+          "cell": "new.ev",
+          "actual": "4559.663500527819",
+          "expected": 4559.663500527819,
+          "pass": true
+        },
+        {
+          "cell": "new.equity",
+          "actual": "4879.663500527819",
+          "expected": 4879.663500527819,
+          "pass": true
+        },
+        {
+          "cell": "new.price",
+          "actual": "9.40763954155814",
+          "expected": 9.40763954155814,
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.0",
+          "actual": "10.169079418163546",
+          "expected": 10.169079418163546,
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.1",
+          "actual": "9.263907832398736",
+          "expected": 9.263907832398736,
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.2",
+          "actual": "8.50831195351988",
+          "expected": 8.50831195351988,
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.3",
+          "actual": "10.92608745303723",
+          "expected": 10.92608745303723,
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.4",
+          "actual": "9.863861917913876",
+          "expected": 9.863861917913876,
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.5",
+          "actual": "8.992421978865115",
+          "expected": 8.992421978865115,
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.6",
+          "actual": "11.867731593977666",
+          "expected": 11.867731593977666,
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.7",
+          "actual": "10.594240804627958",
+          "expected": 10.594240804627958,
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.8",
+          "actual": "9.571455538591765",
+          "expected": 9.571455538591765,
+          "pass": true
+        },
+        {
+          "cell": "contribution.wacc",
+          "actual": "-0.506913751506375",
+          "expected": "-0.506913751506375",
+          "pass": true
+        },
+        {
+          "cell": "contribution.fcf",
+          "actual": "-0.97674473384680",
+          "expected": "-0.97674473384680",
+          "pass": true
+        }
+      ],
+      "all_frozen_cells_pass": true,
+      "comparison_cells": 63,
+      "contribution_sum_pass": 63,
+      "available_params": {
+        "years": [
+          "2024",
+          "2025",
+          "2026",
+          "2027",
+          "2028"
+        ],
+        "fcf": [
+          "259.2",
+          "460.8",
+          "531.9",
+          "534.6",
+          "563.4"
+        ],
+        "wacc0": "0.127",
+        "g0": "0.02",
+        "shares_m": "555",
+        "net_cash_rmb_m": "320",
+        "fx_hkd_per_rmb": "1.07",
+        "net": [
+          "348",
+          "462",
+          "546"
+        ],
+        "rev": [
+          "2402",
+          "3242",
+          "3910"
+        ],
+        "ws": [
+          "0.112",
+          "0.122",
+          "0.132"
+        ],
+        "gs": [
+          "0.01",
+          "0.02",
+          "0.03"
+        ],
+        "width": "0.34"
+      },
+      "input_snapshot_bytes_equal": true
+    },
+    {
+      "label": "E2",
+      "source_run_id": "5cb01aa8858044a2b4cee37d4087291d",
+      "run_id": "a426e1f35e41412c83a684875af6fde2",
+      "reference_run_id": "bd549124c5af4055a1a3781355b822e6",
+      "state": {
+        "run_id": "a426e1f35e41412c83a684875af6fde2",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+        "status": "succeeded",
+        "exit_code": 0,
+        "artifacts": [
+          {
+            "name": "DCF敏感性.csv",
+            "size": 461,
+            "sha256": "38b96774c04dfff09c3389e3c772ac20e8a941602737088617cd2293acfce0df"
+          },
+          {
+            "name": "DCF输入与计算.csv",
+            "size": 1870,
+            "sha256": "154534776320d03bb2cd11949a7d477ef93d04be9605c1766f22d9d4414d794a"
+          },
+          {
+            "name": "chart_data.json",
+            "size": 893,
+            "sha256": "6369b1e6cb099a828b760cad47c0298439d3b65e839831499a875713b2df92ef"
+          },
+          {
+            "name": "executed_script.py",
+            "size": 8584,
+            "sha256": "4a89848bbdef0a40ac11082e4067b948ce8373314ee8421ecb7583e90e739e2a"
+          },
+          {
+            "name": "numeric_tables.json",
+            "size": 104548,
+            "sha256": "bf1eed9cdf61cf265a9abd613396f52057eeb694a4b8c9cb60672bde06a845a5"
+          },
+          {
+            "name": "parameter_changes.csv",
+            "size": 7407,
+            "sha256": "aad0de7317cf58d27a8a9c8c96c3343ce12271981f5e9e50865244734c47e09d"
+          },
+          {
+            "name": "parameter_changes.md",
+            "size": 20491,
+            "sha256": "9734d188abd1c0bb92d34b8aa89f86b5ff3246de3629dbac6a0e563da4fe4275"
+          },
+          {
+            "name": "parameter_comparison_result.json",
+            "size": 408,
+            "sha256": "21143c33feadf78b390e58e9f2042c984ed9ae10e0ff886c7e4b4e68153c2e82"
+          },
+          {
+            "name": "parameter_contributions.csv",
+            "size": 15194,
+            "sha256": "7b3ea122da2899ba70f969d2f7b7f09b6d59b094b4bf41ca6bee6ab30fac6759"
+          },
+          {
+            "name": "report.md",
+            "size": 3950,
+            "sha256": "9d7ba1089aa900753df72adfe3386b170c3bf0156bf990f2aea14857611e9ca3"
+          },
+          {
+            "name": "图1_盈利预测.png",
+            "size": 41389,
+            "sha256": "aeb68310b9f47549319b7f7ad45297285da7d8a273f79c7a06a30461713b28cb"
+          },
+          {
+            "name": "图2_DCF敏感性.png",
+            "size": 59797,
+            "sha256": "3fae8648222c3899a27f1d8128c460fee29f61f667e978eda808726486eba182"
+          },
+          {
+            "name": "预测底稿.csv",
+            "size": 233,
+            "sha256": "e2ecaaaf062b00b67f7c20b8d1fd9571c5f7990f36cd9b24a7959a9777c77fa3"
+          }
+        ],
+        "error": null,
+        "image_id": "sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2",
+        "created_at": 1791363565.67015,
+        "elapsed_seconds": 2.203,
+        "input_sha256": {
+          "tables.json": "561913e3e1c2854ec2bc24c2c8fe4f1ceac45e3af303e30e752f7c602129ccb1",
+          "facts.json": "e5c3a69aeb596aca078d0de483fbe77b30b7f1242ce54c52d639fc7ada123e3d",
+          "pages.json": "624788a5759e6599488a0863f35e5d3bce58ed04e4b0ba0a68f84cab95f7e718",
+          "research_records.json": "7896a2b495672a746e710a2e03fcbcc5300ac431fefdeaed2aa3ab6e4111af52",
+          "analysis.py": "4a89848bbdef0a40ac11082e4067b948ce8373314ee8421ecb7583e90e739e2a",
+          "plot_runtime.py": "ef8a67aba0ee5fadc3ea681e65e9bff3e722d985d09e5f646f106280a544e915",
+          "analysis_report.py": "0f353583678d47a90632b892f3470029fe6b29524363159338d0bf85ca5b72b0",
+          "model_units.py": "d971a504067c6c4a3034841deb1b932e12e8407792bf484fff80a5f40d3301a1",
+          "analysis_report.md": "a529897ede5366f56c5c1c795b78019aa3ea17f97f088c00f9a53db49557b4b2",
+          "analysis_tables.py": "730d8a4500e03047bd950699734a611e5a5290ec500572bc145362e78c3c4566",
+          "analysis_comparison.py": "a855871eb46d4d647f74b8aa9f16685ea251109bc0a231d69a14ad7cd20b1c5a",
+          "parameter_comparison.json": "3cce1f21604153ba26a07bb82d5a3860fe5e6299b1992e8487771339ccef89e7"
+        },
+        "timeout_seconds": 120,
+        "owner_pid": 19868,
+        "owner_token": "134358371562748526",
+        "host_platform": "win32",
+        "host_name": "星尘",
+        "repo_digests": [
+          "finance-analysis@sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2"
+        ],
+        "code_sha256": "1acb037380c42ecf29f08aa45101ce60c4c42c0445297951f79719888afad96e",
+        "started_at": 1791363566.5139534,
+        "execution_seconds": 0.937,
+        "oom_killed": false,
+        "stdout": "{\"PV_explicit_RMBmn\": \"1605.64196910030678896989439953785984\", \"PV_terminal_RMBmn\": \"2954.02153142751284878564877468995542\", \"EV_RMBmn\": \"4559.66350052781963775554317422781526\", \"equity_RMBmn\": \"4879.66350052781963775554317422781526\", \"HKD_per_share\": \"9.40763954155813876107825440797074294\", \"PE_HKD\": \"8.8810\", \"files\": [\"DCF敏感性.csv\", \"DCF输入与计算.csv\", \"chart_data.json\", \"report.md\", \"图1_盈利预测.png\", \"图2_DCF敏感性.png\", \"预测底稿.csv\"]}\n",
+        "stderr": "/input/analysis.py:95: SyntaxWarning: invalid escape sequence '\\ '\n  \n",
+        "container_removed": true,
+        "finished_at": 1791363567.8705623,
+        "parameter_changes": {
+          "w0": {
+            "old": "0.122",
+            "new": "0.127"
+          },
+          "fcf": {
+            "old": [
+              "288",
+              "512",
+              "591",
+              "594",
+              "626"
+            ],
+            "new": [
+              "259.2",
+              "460.8",
+              "531.9",
+              "534.6",
+              "563.4"
+            ]
+          }
+        },
+        "parameter_steps": [
+          {
+            "parameter": "w0",
+            "run_id": "b6554577a31a491b83efa1750bf0286a",
+            "status": "succeeded"
+          }
+        ],
+        "params_order": [
+          "w0",
+          "fcf"
+        ],
+        "input_snapshot_from": "5cb01aa8858044a2b4cee37d4087291d"
+      },
+      "checks": [
+        {
+          "cell": "old.price",
+          "actual": "10.8912980269113089834965290946579970",
+          "expected": "10.8912980269113089834965290946579970",
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.price",
+          "actual": "10.3843842754049389637606230158633880",
+          "expected": "10.3843842754049389637606230158633880",
+          "pass": true
+        },
+        {
+          "cell": "new.price",
+          "actual": "9.40763954155813876107825440797074294",
+          "expected": "9.40763954155813876107825440797074294",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.0",
+          "actual": "10.1690794181635505161938333919890378",
+          "expected": "10.1690794181635505161938333919890378",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.1",
+          "actual": "9.26390783239873366893793227274000173",
+          "expected": "9.26390783239873366893793227274000173",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.2",
+          "actual": "8.50831195351988509218389682382726975",
+          "expected": "8.50831195351988509218389682382726975",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.3",
+          "actual": "10.9260874530372344435382426586770523",
+          "expected": "10.9260874530372344435382426586770523",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.4",
+          "actual": "9.86386191791387177884056987888589096",
+          "expected": "9.86386191791387177884056987888589096",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.5",
+          "actual": "8.99242197886511908186905429345195028",
+          "expected": "8.99242197886511908186905429345195028",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.6",
+          "actual": "11.8677315939776705482837273562645822",
+          "expected": "11.8677315939776705482837273562645822",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.7",
+          "actual": "10.5942408046279529561133460950634952",
+          "expected": "10.5942408046279529561133460950634952",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.8",
+          "actual": "9.57145553859177150090424263947362699",
+          "expected": "9.57145553859177150090424263947362699",
+          "pass": true
+        },
+        {
+          "cell": "contribution.wacc",
+          "actual": "-0.5069137515063700197359060788",
+          "expected": "-0.5069137515063700197359060788",
+          "pass": true
+        },
+        {
+          "cell": "contribution.fcf",
+          "actual": "-0.9767447338468002026823686079",
+          "expected": "-0.9767447338468002026823686079",
+          "pass": true
+        }
+      ],
+      "all_frozen_cells_pass": true,
+      "comparison_cells": 64,
+      "contribution_sum_pass": 64,
+      "available_params": {
+        "fcf": [
+          "259.2",
+          "460.8",
+          "531.9",
+          "534.6",
+          "563.4"
+        ],
+        "w0": "0.127",
+        "g0": "0.02",
+        "cash": "320",
+        "shares": "555",
+        "fx": "1.07",
+        "ws": [
+          "0.112",
+          "0.122",
+          "0.132"
+        ],
+        "gs": [
+          "0.01",
+          "0.02",
+          "0.03"
+        ],
+        "a": [
+          "24.02",
+          "32.42",
+          "39.1"
+        ],
+        "b": [
+          "3.478",
+          "4.618",
+          "5.461"
+        ],
+        "width": "0.36"
+      },
+      "input_snapshot_bytes_equal": true
+    },
+    {
+      "label": "F2",
+      "source_run_id": "c30e787485ff4c6e8c46f5fb45a9a364",
+      "run_id": "f4bcb6273bba4e0588ee94f4b581460c",
+      "reference_run_id": "7753faff45da4d8bb660ea43b2120a69",
+      "state": {
+        "run_id": "f4bcb6273bba4e0588ee94f4b581460c",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+        "status": "succeeded",
+        "exit_code": 0,
+        "artifacts": [
+          {
+            "name": "analyst_forecasts.csv",
+            "size": 340,
+            "sha256": "6c068b5e9b6c525498d5fd7bf1d65c5f6f46d06cd11d9a4aab5c7b4a4cbed07f"
+          },
+          {
+            "name": "dcf_sensitivity.png",
+            "size": 65231,
+            "sha256": "774ce977be21cc256a46926b2c23bee9dfb8991808eed209de2b1077e496fc0c"
+          },
+          {
+            "name": "executed_script.py",
+            "size": 8131,
+            "sha256": "0e2724ce3eb3a926ff81e391cd23f9489cf4b6d8d57110f666832c9f535406a4"
+          },
+          {
+            "name": "numeric_tables.json",
+            "size": 64346,
+            "sha256": "7fb0d13289074af433d73f1db441d5325285f3bad842c58fe0730c30e01cbcec"
+          },
+          {
+            "name": "parameter_changes.csv",
+            "size": 4184,
+            "sha256": "88e88e7d6f7a118f08a4453f61065506f59e7af4efb882d432a0ec758712aff9"
+          },
+          {
+            "name": "parameter_changes.md",
+            "size": 13368,
+            "sha256": "f13cca0e54bacc1c8afe883499265368e9913b3e523592fd73dd1869ea61db9b"
+          },
+          {
+            "name": "parameter_comparison_result.json",
+            "size": 414,
+            "sha256": "021694cde1561f03b55d31e1bd84dbd0807025e88645af543eac1c9b7177044c"
+          },
+          {
+            "name": "parameter_contributions.csv",
+            "size": 8677,
+            "sha256": "d6b4b6f3ece360c035756d363f5e602540b979792103f2474a3a957eaff070f8"
+          },
+          {
+            "name": "report.md",
+            "size": 4174,
+            "sha256": "2a740167621636fbda6e74d6571387c94ed817800ec4b989ad4f6d7e2274eb1c"
+          },
+          {
+            "name": "valuation_workings.csv",
+            "size": 2181,
+            "sha256": "d0e83ce2ab7e1cf9048d822765734fe81feb09fb6d9a4fe41bc22feccb8decc0"
+          }
+        ],
+        "error": null,
+        "image_id": "sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2",
+        "created_at": 1791363600.9785662,
+        "elapsed_seconds": 2.437,
+        "input_sha256": {
+          "tables.json": "733e3085dbef72873c0686c5a57026220fab72a5f45fbaed653a47a9c4592d42",
+          "facts.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "pages.json": "547401b8ad909cb0edc6aadf82e11aee293e8e8636a348968e870c3a845d9ad0",
+          "research_records.json": "7896a2b495672a746e710a2e03fcbcc5300ac431fefdeaed2aa3ab6e4111af52",
+          "analysis.py": "0e2724ce3eb3a926ff81e391cd23f9489cf4b6d8d57110f666832c9f535406a4",
+          "plot_runtime.py": "ef8a67aba0ee5fadc3ea681e65e9bff3e722d985d09e5f646f106280a544e915",
+          "analysis_report.py": "0f353583678d47a90632b892f3470029fe6b29524363159338d0bf85ca5b72b0",
+          "model_units.py": "d971a504067c6c4a3034841deb1b932e12e8407792bf484fff80a5f40d3301a1",
+          "analysis_report.md": "a529897ede5366f56c5c1c795b78019aa3ea17f97f088c00f9a53db49557b4b2",
+          "analysis_tables.py": "730d8a4500e03047bd950699734a611e5a5290ec500572bc145362e78c3c4566",
+          "analysis_comparison.py": "a855871eb46d4d647f74b8aa9f16685ea251109bc0a231d69a14ad7cd20b1c5a",
+          "parameter_comparison.json": "bb3892d9bde7a89263bc0b33a9981dc9e4be9118f6fe095467f53a7d180230ee"
+        },
+        "timeout_seconds": 120,
+        "owner_pid": 87188,
+        "owner_token": "134358371975756199",
+        "host_platform": "win32",
+        "host_name": "星尘",
+        "repo_digests": [
+          "finance-analysis@sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2"
+        ],
+        "code_sha256": "1acb037380c42ecf29f08aa45101ce60c4c42c0445297951f79719888afad96e",
+        "started_at": 1791363601.8103585,
+        "execution_seconds": 1.109,
+        "oom_killed": false,
+        "stdout": "BASE (1605.6419691003066, 2954.021531427513, 4559.663500527819, 4879.663500527819, 9.407639541558138, 5370.728971962617)\ng           0.01       0.02       0.03\nWACC                                  \n0.112  10.169079  10.926087  11.867732\n0.122   9.263908   9.863862  10.594241\n0.132   8.508312   8.992422   9.571456\nwritten\n",
+        "stderr": "",
+        "container_removed": true,
+        "finished_at": 1791363603.4108915,
+        "parameter_changes": {
+          "wacc0": {
+            "old": "0.122",
+            "new": "0.127"
+          },
+          "fcf": {
+            "old": [
+              "288",
+              "512",
+              "591",
+              "594",
+              "626"
+            ],
+            "new": [
+              "259.2",
+              "460.8",
+              "531.9",
+              "534.6",
+              "563.4"
+            ]
+          }
+        },
+        "parameter_steps": [
+          {
+            "parameter": "wacc0",
+            "run_id": "ae25d7da3e354b6db08fafbdfc890948",
+            "status": "succeeded"
+          }
+        ],
+        "params_order": [
+          "wacc0",
+          "fcf"
+        ],
+        "input_snapshot_from": "c30e787485ff4c6e8c46f5fb45a9a364"
+      },
+      "checks": [
+        {
+          "cell": "old.pv",
+          "actual": "1808.6784719383752",
+          "expected": "1808.6784719383752",
+          "pass": true
+        },
+        {
+          "cell": "old.pvt",
+          "actual": "3520.5462055716985",
+          "expected": "3520.5462055716985",
+          "pass": true
+        },
+        {
+          "cell": "old.ev",
+          "actual": "5329.224677510074",
+          "expected": "5329.224677510074",
+          "pass": true
+        },
+        {
+          "cell": "old.equity",
+          "actual": "5649.224677510074",
+          "expected": "5649.224677510074",
+          "pass": true
+        },
+        {
+          "cell": "old.price",
+          "actual": "10.891298026911315",
+          "expected": "10.891298026911315",
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.pv",
+          "actual": "1784.046632333674",
+          "expected": "1784.046632333674",
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.pvt",
+          "actual": "3282.24614603057",
+          "expected": "3282.24614603057",
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.ev",
+          "actual": "5066.292778364244",
+          "expected": "5066.292778364244",
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.equity",
+          "actual": "5386.292778364244",
+          "expected": "5386.292778364244",
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.price",
+          "actual": "10.38438427540494",
+          "expected": "10.38438427540494",
+          "pass": true
+        },
+        {
+          "cell": "new.pv",
+          "actual": "1605.6419691003066",
+          "expected": "1605.6419691003066",
+          "pass": true
+        },
+        {
+          "cell": "new.pvt",
+          "actual": "2954.021531427513",
+          "expected": "2954.021531427513",
+          "pass": true
+        },
+        {
+          "cell": "new.ev",
+          "actual": "4559.663500527819",
+          "expected": "4559.663500527819",
+          "pass": true
+        },
+        {
+          "cell": "new.equity",
+          "actual": "4879.663500527819",
+          "expected": "4879.663500527819",
+          "pass": true
+        },
+        {
+          "cell": "new.price",
+          "actual": "9.407639541558138",
+          "expected": "9.407639541558138",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.0",
+          "actual": "10.169079418163546",
+          "expected": "10.169079418163546",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.1",
+          "actual": "9.263907832398736",
+          "expected": "9.263907832398736",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.2",
+          "actual": "8.508311953519883",
+          "expected": "8.508311953519883",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.3",
+          "actual": "10.92608745303723",
+          "expected": "10.92608745303723",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.4",
+          "actual": "9.863861917913876",
+          "expected": "9.863861917913876",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.5",
+          "actual": "8.992421978865114",
+          "expected": "8.992421978865114",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.6",
+          "actual": "11.867731593977666",
+          "expected": "11.867731593977666",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.7",
+          "actual": "10.594240804627958",
+          "expected": "10.594240804627958",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.8",
+          "actual": "9.571455538591765",
+          "expected": "9.571455538591765",
+          "pass": true
+        },
+        {
+          "cell": "contribution.wacc",
+          "actual": "-0.506913751506375",
+          "expected": "-0.506913751506375",
+          "pass": true
+        },
+        {
+          "cell": "contribution.fcf",
+          "actual": "-0.976744733846802",
+          "expected": "-0.976744733846802",
+          "pass": true
+        }
+      ],
+      "all_frozen_cells_pass": true,
+      "comparison_cells": 34,
+      "contribution_sum_pass": 34,
+      "available_params": {
+        "years": [
+          "2024",
+          "2025",
+          "2026",
+          "2027",
+          "2028"
+        ],
+        "fcf": [
+          "259.2",
+          "460.8",
+          "531.9",
+          "534.6",
+          "563.4"
+        ],
+        "shares": "555",
+        "net_cash": "320",
+        "fx": "1.07",
+        "wacc0": "0.127",
+        "g0": "0.02"
+      },
+      "input_snapshot_bytes_equal": true
+    },
+    {
+      "label": "C2",
+      "source_run_id": "3975b7c387d34bdea3eb3ff48cd165f6",
+      "run_id": "4d60d8fe84464483aecc760973051e4c",
+      "reference_run_id": "e309e919e04d453dac26c42583498ea8",
+      "state": {
+        "run_id": "4d60d8fe84464483aecc760973051e4c",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+        "status": "succeeded",
+        "exit_code": 0,
+        "artifacts": [
+          {
+            "name": "chart_data.json",
+            "size": 1164,
+            "sha256": "11d339d5bd43fc5b77501d1f89abfc26e01482b1841d902b1aee60776d97b706"
+          },
+          {
+            "name": "dcf_sensitivity.csv",
+            "size": 365,
+            "sha256": "03342fec5135584dfa010dd803030c0bf6f222ec27a4a5e3f27d5598886fb614"
+          },
+          {
+            "name": "dcf_sensitivity.png",
+            "size": 55173,
+            "sha256": "a6a6fabbf732ac368e3eec320db58ab3d311506a1101942468da59dae2c9ad82"
+          },
+          {
+            "name": "executed_script.py",
+            "size": 7862,
+            "sha256": "4d58cc7c69051de8f996f7eea771316228e688cee3fd285f90ec25d48be3097b"
+          },
+          {
+            "name": "forecast_and_valuation_inputs.csv",
+            "size": 1692,
+            "sha256": "b349c3df90a32501dc78802e8915f33c207b5c1f5d7cf7a7196ee6cd9b18dd62"
+          },
+          {
+            "name": "forecast_chart.png",
+            "size": 35880,
+            "sha256": "752e8996ddb4bf47834a2b0431059e5e5a86b156843eaaa3afc45475f12097b1"
+          },
+          {
+            "name": "numeric_tables.json",
+            "size": 115263,
+            "sha256": "e03b850d20cd2ddbc6167c33ea94183e16ab5c16ccb50a0b025b3045e7cb5b0c"
+          },
+          {
+            "name": "parameter_changes.csv",
+            "size": 7208,
+            "sha256": "457b45b2dcacade51eab1e2b0f7b66d19f799d3f11bca4bafed3814f58e8369e"
+          },
+          {
+            "name": "parameter_changes.md",
+            "size": 25294,
+            "sha256": "0502b1e513b92e239a55bb5e5fa6d5f7044a9e1f76e7eee4a18e3a32cbf8523f"
+          },
+          {
+            "name": "parameter_comparison_result.json",
+            "size": 492,
+            "sha256": "d95069b0f840b6a4e892f802ef6f2228933c63cbfd8a2f547f7292cf1ded2ce8"
+          },
+          {
+            "name": "parameter_contributions.csv",
+            "size": 16293,
+            "sha256": "9abcc542003b606a655f9d18f19298dcdc3c1c5052671aadc3ce6c85e67b63b4"
+          },
+          {
+            "name": "recalc_results.json",
+            "size": 1117,
+            "sha256": "b6b9ebdf39b4d706328f961281376444228d0415ca419662fbf1204e98c6606a"
+          },
+          {
+            "name": "recompute.py",
+            "size": 666,
+            "sha256": "fe3def5d4094f697289378a857830863fff82ec59a264ac8ffab4a0615221865"
+          },
+          {
+            "name": "report.md",
+            "size": 2272,
+            "sha256": "f8ffffa69c46cf715abb5d8af79312c8cb8d3e183ad7281f5c5b8f185d450c31"
+          }
+        ],
+        "error": null,
+        "image_id": "sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2",
+        "created_at": 1791363618.1420312,
+        "elapsed_seconds": 2.109,
+        "input_sha256": {
+          "tables.json": "733e3085dbef72873c0686c5a57026220fab72a5f45fbaed653a47a9c4592d42",
+          "facts.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "pages.json": "547401b8ad909cb0edc6aadf82e11aee293e8e8636a348968e870c3a845d9ad0",
+          "research_records.json": "7896a2b495672a746e710a2e03fcbcc5300ac431fefdeaed2aa3ab6e4111af52",
+          "analysis.py": "4d58cc7c69051de8f996f7eea771316228e688cee3fd285f90ec25d48be3097b",
+          "plot_runtime.py": "ef8a67aba0ee5fadc3ea681e65e9bff3e722d985d09e5f646f106280a544e915",
+          "analysis_report.py": "0f353583678d47a90632b892f3470029fe6b29524363159338d0bf85ca5b72b0",
+          "model_units.py": "d971a504067c6c4a3034841deb1b932e12e8407792bf484fff80a5f40d3301a1",
+          "analysis_report.md": "a529897ede5366f56c5c1c795b78019aa3ea17f97f088c00f9a53db49557b4b2",
+          "analysis_tables.py": "730d8a4500e03047bd950699734a611e5a5290ec500572bc145362e78c3c4566",
+          "analysis_comparison.py": "a855871eb46d4d647f74b8aa9f16685ea251109bc0a231d69a14ad7cd20b1c5a",
+          "parameter_comparison.json": "738d05a769b3ad26f97a050b7636464acf87166aeb597c8f3efab109d41b0881"
+        },
+        "timeout_seconds": 120,
+        "owner_pid": 55632,
+        "owner_token": "134358372152827622",
+        "host_platform": "win32",
+        "host_name": "星尘",
+        "repo_digests": [
+          "finance-analysis@sha256:2f69bf7c9e7f6cf4a4b21cec9b439cabfb7440057798aaeed1cbdfe5cc5507d2"
+        ],
+        "code_sha256": "1acb037380c42ecf29f08aa45101ce60c4c42c0445297951f79719888afad96e",
+        "started_at": 1791363618.9154704,
+        "execution_seconds": 0.875,
+        "oom_killed": false,
+        "stdout": "{\"fcf_RMB_mn\": {\"2024\": \"259.2\", \"2025\": \"460.8\", \"2026\": \"531.9\", \"2027\": \"534.6\", \"2028\": \"563.4\"}, \"wacc\": \"0.127\", \"g\": \"0.02\", \"pv_explicit_RMB_mn\": \"1605.641969100306788969894400\", \"pv_terminal_RMB_mn\": \"2954.021531427512848785648775\", \"EV_RMB_mn\": \"4559.663500527819637755543175\", \"equity_RMB_mn\": \"4879.663500527819637755543175\", \"net_cash_RMB_mn\": \"320\", \"shares_mn\": \"555\", \"FX_HKD_per_RMB\": \"1.07\", \"HKD_per_share\": \"9.407639541558138761078254410\", \"PE_implied_price_HKD_per_share_using_report_FX\": \"8.8810\", \"sensitivity\": [{\"g\": \"0.01\", \"0.112\": \"10.16907941816355051619383339\", \"0.122\": \"9.263907832398733668937932273\", \"0.132\": \"8.508311953519885092183896824\"}, {\"g\": \"0.02\", \"0.112\": \"10.92608745303723444353824266\", \"0.122\": \"9.863861917913871778840569879\", \"0.132\": \"8.992421978865119081869054293\"}, {\"g\": \"0.03\", \"0.112\": \"11.86773159397767054828372735\", \"0.122\": \"10.59424080462795295611334610\", \"0.132\": \"9.571455538591771500904242639\"}]}\n",
+        "stderr": "",
+        "container_removed": true,
+        "finished_at": 1791363620.251843,
+        "parameter_changes": {
+          "wacc": {
+            "old": "0.122",
+            "new": "0.127"
+          },
+          "fcf": {
+            "old": {
+              "2024": "288",
+              "2025": "512",
+              "2026": "591",
+              "2027": "594",
+              "2028": "626"
+            },
+            "new": {
+              "2024": "259.2",
+              "2025": "460.8",
+              "2026": "531.9",
+              "2027": "534.6",
+              "2028": "563.4"
+            }
+          }
+        },
+        "parameter_steps": [
+          {
+            "parameter": "wacc",
+            "run_id": "893044e3cb844cadbebb6ae382de4b4c",
+            "status": "succeeded"
+          }
+        ],
+        "params_order": [
+          "wacc",
+          "fcf"
+        ],
+        "input_snapshot_from": "3975b7c387d34bdea3eb3ff48cd165f6"
+      },
+      "checks": [
+        {
+          "cell": "old.pv",
+          "actual": "1808.678471938374615149034788",
+          "expected": "1808.6784719383746151490347883102",
+          "pass": true
+        },
+        {
+          "cell": "old.pvt",
+          "actual": "3520.546205571696866944959275",
+          "expected": "3520.5462055716968669449592748068",
+          "pass": true
+        },
+        {
+          "cell": "old.ev",
+          "actual": "5329.224677510071482093994063",
+          "expected": "5329.2246775100714820939940631170",
+          "pass": true
+        },
+        {
+          "cell": "old.equity",
+          "actual": "5649.224677510071482093994063",
+          "expected": "5649.2246775100714820939940631170",
+          "pass": true
+        },
+        {
+          "cell": "old.price",
+          "actual": "10.89129802691130898349652910",
+          "expected": "10.891298026911308983496529094658",
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.pv",
+          "actual": "1784.046632333674209966549333",
+          "expected": "1784.0466323336742099665493328198",
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.pvt",
+          "actual": "3282.246146030569831984054194",
+          "expected": "3282.2461460305698319840541941000",
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.ev",
+          "actual": "5066.292778364244041950603527",
+          "expected": "5066.2927783642440419506035269198",
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.equity",
+          "actual": "5386.292778364244041950603527",
+          "expected": "5386.2927783642440419506035269198",
+          "pass": true
+        },
+        {
+          "cell": "wacc_only.price",
+          "actual": "10.38438427540493896376062302",
+          "expected": "10.384384275404938963760623015863",
+          "pass": true
+        },
+        {
+          "cell": "new.pv",
+          "actual": "1605.641969100306788969894400",
+          "expected": "1605.6419691003067889698943995378",
+          "pass": true
+        },
+        {
+          "cell": "new.pvt",
+          "actual": "2954.021531427512848785648775",
+          "expected": "2954.0215314275128487856487746900",
+          "pass": true
+        },
+        {
+          "cell": "new.ev",
+          "actual": "4559.663500527819637755543175",
+          "expected": "4559.6635005278196377555431742278",
+          "pass": true
+        },
+        {
+          "cell": "new.equity",
+          "actual": "4879.663500527819637755543175",
+          "expected": "4879.6635005278196377555431742278",
+          "pass": true
+        },
+        {
+          "cell": "new.price",
+          "actual": "9.407639541558138761078254410",
+          "expected": "9.4076395415581387610782544079708",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.0",
+          "actual": "10.16907941816355051619383339",
+          "expected": "10.169079418163550516193833391989",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.1",
+          "actual": "9.263907832398733668937932273",
+          "expected": "9.2639078323987336689379322727400",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.2",
+          "actual": "8.508311953519885092183896824",
+          "expected": "8.5083119535198850921838968238272",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.3",
+          "actual": "10.92608745303723444353824266",
+          "expected": "10.926087453037234443538242658677",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.4",
+          "actual": "9.863861917913871778840569879",
+          "expected": "9.8638619179138717788405698788859",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.5",
+          "actual": "8.992421978865119081869054293",
+          "expected": "8.9924219788651190818690542934520",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.6",
+          "actual": "11.86773159397767054828372735",
+          "expected": "11.867731593977670548283727356265",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.7",
+          "actual": "10.59424080462795295611334610",
+          "expected": "10.594240804627952956113346095064",
+          "pass": true
+        },
+        {
+          "cell": "sensitivity.8",
+          "actual": "9.571455538591771500904242639",
+          "expected": "9.5714555385917715009042426394736",
+          "pass": true
+        },
+        {
+          "cell": "contribution.wacc",
+          "actual": "-0.50691375150637001973590608",
+          "expected": "-0.5069137515063700197359060788",
+          "pass": true
+        },
+        {
+          "cell": "contribution.fcf",
+          "actual": "-0.976744733846800202682368610",
+          "expected": "-0.9767447338468002026823686079",
+          "pass": true
+        }
+      ],
+      "all_frozen_cells_pass": true,
+      "comparison_cells": 69,
+      "contribution_sum_pass": 69,
+      "available_params": {
+        "fcf": {
+          "2024": "259.2",
+          "2025": "460.8",
+          "2026": "531.9",
+          "2027": "534.6",
+          "2028": "563.4"
+        },
+        "shares": "555",
+        "net_cash": "320",
+        "fx": "1.07",
+        "wacc": "0.127",
+        "g": "0.02",
+        "rev": [
+          "2.402",
+          "3.242",
+          "3.91"
+        ],
+        "npf": [
+          "0.3478",
+          "0.4618",
+          "0.5461"
+        ]
+      },
+      "input_snapshot_bytes_equal": true
+    }
+  ]
+}
