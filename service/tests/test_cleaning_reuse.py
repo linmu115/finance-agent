@@ -169,5 +169,48 @@ class CleaningReuseTests(unittest.TestCase):
         self.assertNotIn('unit',columns[0]);self.assertEqual(mapped['schema']['unit'],'万元')
         self.assertEqual(json.loads(mapped['rows'][0]['attributes']['dimensions_json']),{'customer':'某客户'})
 
+    def test_standard_inventory_label_corrects_model_translation_and_upgrades_only_affected_table(self):
+        from unittest.mock import patch
+        parsed=self.prepare([['项目','2025','2024'],['委托加工物资','100','90']], '单位：元\n100')
+        self.pid=self.s.begin_script_cleaning('p',[self.did],'before','fixture')['data']['processing_id']
+        # Reproduce the observed old mapping before this deterministic rule.
+        payload={'tables':[{'index':0,'schema':self.schema,'rows':[{'row':2,'attributes':{'metric':'materials_on_consignment_inventory'}}]}]}
+        with patch('service.script_cleaning.canonical_rows',side_effect=lambda table,rows,label_column=1,statement=None:rows):
+            self.s.commit_cleaning_result('p',self.pid,self.job(payload))
+        result=self.s.begin_script_cleaning('p',[self.did],'after','fixture')['data']
+        self.assertEqual(result['pending_tables'][self.did],[])
+        with self.s.store.connect() as db:
+            current=[r[0] for r in db.execute('SELECT metric FROM facts WHERE document_id=?',(self.did,))]
+            archived=db.execute('SELECT count(*) FROM fact_history WHERE document_id=?',(self.did,)).fetchone()[0]
+        self.assertEqual(set(current),{'materials_sent_for_processing_inventory'})
+        self.assertGreater(archived,0)
+
+    def test_equity_continuation_inherits_section_but_top_level_other_resets_it(self):
+        parsed=self.prepare([['项目','2025 年度',''],['','股本','所有者权益合计'],['（二）所有者投入和减少资本','20','20']],
+                            '母公司所有者权益变动表\n单位：元\n20')
+        parsed['pages'].append({'page':2,'text':'4．其他 10\n（六）其他 30','width':100,'height':100})
+        table={'index':1,'page':2,'rows':[['4．其他','10','10'],['（六）其他','30','30']],'cells':{}}
+        parsed['tables'].append(table)
+        mapped=draft(parsed,table,'Test',identify(parsed))
+        self.assertEqual([r['attributes']['metric'] for r in mapped['rows']],['owners_contributions_and_withdrawals_other','equity_other'])
+
+    def test_interim_heading_inside_table_and_explicit_prior_june_date_are_preserved(self):
+        parsed=self.prepare([['','Six months ended 30 June',''],['','2025','2024'],['Revenue','100','90']], '单位：元')
+        mapped=draft(parsed,parsed['tables'][0],'Test',identify(parsed))
+        self.assertEqual([c['period'] for c in json.loads(mapped['schema']['columns_json'])],['2025-H1','2024-H1'])
+        parsed['tables'][0]['rows']=[['项目','30 June 2025','30 June 2024'],['货币资金','100','90']]
+        mapped=draft(parsed,parsed['tables'][0],'Test',identify(parsed))
+        self.assertEqual([c['period'] for c in json.loads(mapped['schema']['columns_json'])],['2025-06-30','2024-06-30'])
+
+    def test_packed_row_error_before_map_table_does_not_abort_other_tables(self):
+        from service.cleaning_sdk import Cleaner
+        c=Cleaner.__new__(Cleaner);c.source={'company':'Test'};c.results={}
+        c.tables={0:{'index':0,'rows':[['Revenue\nCost','100\n40']]},1:{'index':1,'rows':[['Revenue','80']]}}
+        bad=c.packed_row(0,1,[{'column':2,'period':'2025-FY'}],[{'metric':'revenue'}])
+        c.map_table(0,[],statement='income',scope='unspecified',currency='CNY',unit='元',row_overrides={1:bad})
+        c.map_table(1,[{'column':2,'period':'2025-FY'}],statement='income',scope='unspecified',currency='CNY',unit='元')
+        self.assertIn('2 source numbers',c.results[0]['mapping_error'])
+        self.assertNotIn('mapping_error',c.results[1])
+
 
 if __name__=='__main__':unittest.main()

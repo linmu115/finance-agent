@@ -57,6 +57,9 @@ class IngestionScaleTests(unittest.TestCase):
         self.assertEqual(result['fact_count'],4)
 
     def test_resume_rechecks_changed_rules_without_deleting_existing_facts(self):
+        _,parsed=self.s._clean_source('p',self.did)
+        parsed=copy.deepcopy(parsed);parsed['tables'][0]['rows'][1][0]='Unfamiliar financial concept'
+        self.s._persist_prepared('p',self.did,parsed)
         self.payload['tables'][0]['rows'][0]['attributes']['metric']='row_2'
         rid=self.job()
         with patch('service.script_cleaning.mapping_issues',return_value=[]):

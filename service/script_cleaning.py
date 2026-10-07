@@ -19,6 +19,7 @@ from .cleaning_batches import numeric_tables, structural_batches, batch_view
 from .cleaning_mapping import mapping_issues
 from . import cleaning_rules
 from .accounting_basis import identify as identify_basis, apply_basis
+from .standard_metrics import canonical_rows, VERSION as STANDARD_VERSION
 
 VERSION='python-cleaning-3'
 
@@ -108,6 +109,7 @@ class ScriptCleaningMixin:
                             ext=result.get('extractions',[])
                             schemas=[e['attributes'] for e in ext if e['class']=='table_schema']
                             rows=[{'row':int(re.search(r':R(\d+)',e['text'])[1]),'attributes':e['attributes']} for e in ext if e['class']=='financial_row']
+                            if schemas and canonical_rows(table,rows,int(schemas[0].get('label_column',1)),schemas[0].get('statement'))!=rows:continue
                             facts,checks=materialize(ext,[{'table':table,'rows':list(range(1,len(table['rows'])+1))}],did,model)
                             page=next(p['text'] for p in parsed['pages'] if p['page']==table['page'])
                             if schemas:checks.extend(mapping_issues(table,schemas[0],rows,page_text=page,facts=facts))
@@ -154,9 +156,20 @@ class ScriptCleaningMixin:
         document=next(d for d in state['documents'] if d['document_id']==document_id)
         doc,parsed=self._clean_source(project_id,document_id)
         payload=[];origins={};reuse=document['rule_reuse']
+        with self.store.connect() as db:
+            saved={r.get('script_table'):r for raw, in db.execute('SELECT result_json FROM normalization_batches WHERE document_id=?',(document_id,)) for r in [json.loads(raw)]}
         for table in numeric_tables(parsed):
             index=table['index']
             if index in document['completed_tables']:continue
+            previous=saved.get(index)
+            if previous and previous.get('document_sha256')==doc['sha256'] and previous.get('script_source_hash')==_hash(table) and previous.get('profile_revision')==document.get('profile_revision'):
+                ext=previous.get('extractions',[])
+                schemas=[e['attributes'] for e in ext if e['class']=='table_schema']
+                rows=[{'row':int(re.search(r':R(\d+)',e['text'])[1]),'attributes':e['attributes']} for e in ext if e['class']=='financial_row']
+                if schemas and canonical_rows(table,rows,int(schemas[0].get('label_column',1)),schemas[0].get('statement'))!=rows:
+                    payload.append({'index':index,'schema':schemas[0],'rows':rows})
+                    origins[str(index)]='standard-update:'+STANDARD_VERSION
+                    continue
             mapping,rule_id=self._mapping_draft(project_id,document_id,parsed,table)
             if cleaning_rules.lookup(self.store,parsed,table):reuse['signature_hits'].append(index)
             if not mapping or mapping['unmapped_rows']:continue
@@ -170,8 +183,8 @@ class ScriptCleaningMixin:
         _,validated,_=self._clean_result(project_id,state,rid)
         valid=[t['index'] for t in validated if not any(i.get('severity')!='review' for i in t['issues'])]
         reuse['validation_failures']=[{'table':t['index'],'reasons':[i['reason'] for i in t['issues'] if i.get('severity')!='review']} for t in validated if t['index'] not in valid]
-        reuse['completed_tables']=[i for i in valid if not origins[str(i)].startswith('standard:')]
-        reuse['standard_tables']=[i for i in valid if origins[str(i)].startswith('standard:')]
+        reuse['completed_tables']=[i for i in valid if not origins[str(i)].startswith('standard')]
+        reuse['standard_tables']=[i for i in valid if origins[str(i)].startswith('standard')]
         self._save_processing(state)
         if valid:self.commit_cleaning_result(project_id,processing_id,rid,table_indices=valid)
 
@@ -346,6 +359,7 @@ class ScriptCleaningMixin:
             for row in rows:
                 n=row.get('row')
                 if type(n) is not int or not 1<=n<=len(table['rows']) or n in used or not isinstance(row.get('attributes'),dict):raise ValueError('invalid_script_row')
+                row['attributes']=canonical_rows(table,[row],int(schema.get('label_column',1)),schema.get('statement'))[0]['attributes']
                 used.add(n);marker=f'[[T{index}:R{n}]]';ext.append({'class':'financial_row','text':marker,'span':[0,len(marker)],'attributes':row['attributes']})
             batch=[{'table':table,'rows':list(range(1,len(table['rows'])+1))}]
             facts,issues=materialize(ext,batch,job['document_id'],state['model'])
@@ -382,6 +396,7 @@ class ScriptCleaningMixin:
             for fact in facts:
                 fact['source']['normalization']['engine']='DeterministicRules' if job.get('rule_payload') else 'PythonScript'
                 fact['source']['normalization']['accounting_basis']={'basis':basis['basis'],'version':basis['version'],'status':basis['status']}
+                fact['source']['normalization']['standard_row_version']=STANDARD_VERSION
                 if job.get('rule_origins'):fact['source']['normalization']['cleaning_rule']={'id':job['rule_origins'][str(index)],'version':job['rule_version']}
                 fact['quality']='needs_review' if fact['source']['normalization'].get('review_warnings') else 'script_normalized'
             page=next(p['text'] for p in parsed['pages'] if p['page']==table['page'])

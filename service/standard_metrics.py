@@ -6,7 +6,7 @@ unknown. Context-dependent totals are resolved by the table mapper separately.
 import re
 from .normalization import compact, metric_id
 
-VERSION = 'standard-rows-2'
+VERSION = 'standard-rows-3'
 ROWS = {
  'cash': '货币资金|Cash and cash equivalents',
  'cash_on_hand': '库存现金|Cash on hand',
@@ -181,6 +181,12 @@ ROWS = {
  'cash_interest_fees_paid': '支付利息、手续费及佣金的现金',
  'cash_dividends_paid_minority': '子公司支付给少数股东的股利、利润',
  'cash_equity_contributions_minority': '子公司吸收少数股东投资收到的现金',
+ 'raw_materials_inventory': '原材料',
+ 'finished_goods_inventory': '库存商品',
+ 'packaging_materials_inventory': '包装材料',
+ 'low_value_consumables_inventory': '低值易耗品',
+ 'semi_finished_goods_inventory': '半成品',
+ 'materials_sent_for_processing_inventory': '委托加工物资',
  'cash_used_in_operations': 'Cash used in operations|Cash generated from operations',
  'operating_cash_flow': '经营活动产生的现金流量净额|经营现金流净额|Net cash used in operating activities|Net cash generated from operating activities',
  'intangible_asset_purchases': 'Purchase of intangible assets|Purchases of intangible assets',
@@ -224,3 +230,19 @@ LOOKUP = {normalize_label(label): metric for metric, aliases in ROWS.items() for
 def standard_metric(label):
     key = normalize_label(label)
     return LOOKUP.get(key) or metric_id(key)
+
+
+def canonical_rows(table,rows,label_column=1,statement='notes'):
+    """Source labels, not English guesses, own standard row identifiers."""
+    import copy
+    rows=copy.deepcopy(rows)
+    # In an equity matrix a row names a movement, while columns name balances.
+    # Its specialized mapper already preserves this distinction.
+    if statement=='equity':return rows
+    for row in rows:
+        attrs=row['attributes'];raw=table['rows'][row['row']-1]
+        if attrs.get('row_subject') is False or len(raw)<label_column:continue
+        metric=standard_metric(raw[label_column-1])
+        if metric and attrs.get('metric'):
+            attrs['metric']=metric
+    return rows

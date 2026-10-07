@@ -21,7 +21,9 @@ def table_mapping(method):
         except MappingError as error:
             # Preserve a concrete per-table failure; later tables in the same
             # script still run. Unexpected Python errors remain fatal.
-            self.results[index]={'index':index,'mapping_error':str(error),'schema':{},'rows':[]}
+            if not self.results.get(index,{}).get('mapping_error'):
+                self.results[index]={'index':index,'mapping_error':str(error),'schema':{},'rows':[]}
+            return {}
     return apply
 
 
@@ -66,6 +68,7 @@ class Cleaner:
                      for m in re.finditer(r'(?m)^[ \t]*[–—-][ \t]*$',raw))
         return sorted(slots,key=lambda slot:slot['start'])
 
+    @table_mapping
     def packed_row(self, index, row, columns, metrics):
         """Map a packed logical row using semantic labels chosen by the model.
         Columns retain dates/units; this helper performs only coordinate pairing.

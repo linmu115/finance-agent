@@ -114,6 +114,7 @@ def source_columns(table, parsed, ctx):
     year = source_year(parsed)
     if not year: return []
     width = max(map(len, table['rows']), default=0)
+    date_context=ctx['text']+' '+' '.join(str(c) for row in headers for c in row)
     columns = []
     for col in range(1, width):
         text = compact(' '.join(str(row[col]) for row in headers if len(row) > col))
@@ -126,12 +127,17 @@ def source_columns(table, parsed, ctx):
         balance = ctx['statement'] == 'balance' or role in {'closing', 'opening'} or '余额' in text
         # Explicit month/day takes precedence; interim performance is H1.
         date_match = re.search(r'(?:年)?(\d{1,2})月(\d{1,2})日', text)
-        if date_match: period = f'{period_year}-{int(date_match[1]):02d}-{int(date_match[2]):02d}'
+        english_date=re.search(r'(\d{1,2})(January|February|March|April|May|June|July|August|September|October|November|December)',text,re.I)
+        flow_header=ctx['statement'] in {'income','cashflow'} or bool(re.search(r'(?:six|twelve)monthsended|本期发生|本年发生|年度',text,re.I))
+        if date_match and not flow_header: period = f'{period_year}-{int(date_match[1]):02d}-{int(date_match[2]):02d}'
+        elif english_date and not flow_header:
+            month=['january','february','march','april','may','june','july','august','september','october','november','december'].index(english_date[2].casefold())+1
+            period=f'{period_year}-{month:02d}-{int(english_date[1]):02d}'
         elif balance:
             interim = bool(re.search(r'30\s+June|6\s*月\s*30', ctx['text'], re.I)) and period_year == int(year)
             period = f'{period_year}-06-30' if interim else f'{period_year}-12-31'
         else:
-            interim = bool(re.search(r'six months ended|六个月|半年度|中期', ctx['text'], re.I))
+            interim = bool(re.search(r'six months ended|六个月|半年度|中期', date_context, re.I))
             period = f'{period_year}-H1' if interim else f'{period_year}-FY'
         # Complex subcolumns require a learned mapping or the model. No amount
         # interpretation is inferred from a year shared by a merged header.
@@ -177,12 +183,27 @@ def equity_draft(parsed,table,company,basis,ctx,unit):
         if labels and labels[-1]=='优先股':metric='preferred_shares'
         if labels and labels[-1]=='永续债':metric='perpetual_bonds'
         if metric:columns.append({'column':c+1,'metric':metric,'period':f'{year}-FY'})
-    rows=[];unknown=[];section='equity'
+    def section_after(raw,current):
+        label=normalize_label(raw)
+        if re.match(r'^\s*[（(][一二三四五六]',str(raw)):
+            return 'equity' if label=='其他' else EQUITY_MOVEMENTS.get(label,current)
+        if label=='本期增减变动金额':return 'equity_movement'
+        return current
+    rows=[];unknown=[];section='opening_adjustments'
+    if not headers:
+        previous_tables=[]
+        for previous in reversed([t for t in parsed['tables'] if t['index']<table['index']]):
+            prevctx=context(parsed,previous)
+            if (prevctx['statement'],prevctx['scope'])!=(ctx['statement'],ctx['scope']):break
+            previous_tables.append(previous)
+            if mapping_headers(previous):break
+        for previous in reversed(previous_tables):
+            for row in previous['rows']:section=section_after(row[0],section)
     for n,row in enumerate(table['rows'],1):
         if n<=len(headers):continue
         label=normalize_label(row[0])
         movement=EQUITY_MOVEMENTS.get(label)
-        if re.match(r'^\s*[（(][一二三四五六]',str(row[0])) and movement:section=movement
+        section=section_after(row[0],section)
         if label=='其他':movement=section+'_other'
         if not any(decimal_value(c) is not None for c in row[1:]):continue
         if not movement:unknown.append(n);continue
