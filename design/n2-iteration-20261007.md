@@ -15,3 +15,5 @@ K1 已完成确定性实现与两家公司副本回放，数值及边界见 docs
 K1 后 Python 全套 507 项通过。K3 已加入同一工具，CMBI/国信完整副本结果见 docs/evidence/n2-workpapers/k3-acceptance.md 与 k3-replay.json；部分股数口径和过渡期现金流缺口单列，不把机械差额认定为原研报错误。
 
 K2 纯计算核心与 7 项单测完成，独立合成样例 34 个数值核对通过；资料适配/真实 30 项原文抽查待获准补充材料，不注册尚未有真实验收的 comparison kind。见 docs/evidence/n2-workpapers/k2-core-acceptance.md。
+
+K4 纯计算核心与 11 项单测完成，截止日、版本、量纲、语义隔离及冲突缺项覆盖。实际值以显式事后参照单列披露日，不混入预测时点信息；见 docs/evidence/n2-workpapers/k4-core-acceptance.md。新增材料仍未下载入库或调用模型。
