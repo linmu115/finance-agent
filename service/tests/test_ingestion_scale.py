@@ -61,6 +61,9 @@ class IngestionScaleTests(unittest.TestCase):
         missing=next(x for x in issues if x['reason']=='unmapped_numeric_column')
         self.assertEqual(missing['column'],3);self.assertEqual(missing['metric_candidates'],['revenue_share'])
         self.assertTrue(any(x['reason']=='row_number_metric_id' for x in issues))
+        schema['skipped_columns_json']=[{'column':3,'reason':'contains position text'}]
+        self.assertTrue(any(x['reason']=='skipped_numeric_data_column' for x in mapping_issues(table,schema,rows)))
+        del schema['skipped_columns_json']
         rows[0]['attributes']['unresolved_cells_json']=[{'column':3,'reason':'Column header is unreadable in this source'}]
         issues=mapping_issues(table,schema,rows)
         saved=next(x for x in issues if x['reason']=='unresolved_cell_semantics')

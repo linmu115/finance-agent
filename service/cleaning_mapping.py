@@ -63,6 +63,9 @@ def mapping_issues(table, schema, rows, exclusion_reason=None, page_text='', fac
             unresolved_columns.add(c)
             issues.append({'table': index, 'row': number, 'column': c, 'reason': 'unresolved_cell_semantics', 'severity': 'review', 'raw_value': row[c-1], 'label': label, 'detail': cell['reason']})
         for c, raw in enumerate(row, 1):
+            if c in ignored and re.search(r'\d[.,，]\d|\d\s*[%％]',str(raw)):
+                issues.append({'table':index,'row':number,'column':c,'reason':'skipped_numeric_data_column','raw_value':raw,
+                               'instruction':'skip_columns 不能排除含金额/小数/比例的数据列。文字夹数字仍需 numeric_span 和财务指标；局部真实歧义用 unresolved_cells 保存原格。附注编号等非数据列才可跳过。'})
             if c == label_column or c in ignored | declared | unresolved_columns or not numeric_candidate(str(raw)): continue
             header = ' / '.join(str(r[c-1]) for r in table['rows'][:min(number-1, 5)] if len(r) >= c)
             issues.append({'table': index, 'row': number, 'column': c, 'reason': 'unmapped_numeric_column', 'raw_value': raw, 'label': label, 'header': header,
