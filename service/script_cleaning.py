@@ -85,6 +85,9 @@ class ScriptCleaningMixin:
                         result.update(status='failed',semantic_validation=by[index])
                         db.execute('UPDATE normalization_batches SET result_json=? WHERE document_id=? AND batch_key=?',(dumps(result),document_id,key))
         self._clean_progress(state)
+        if by:
+            with self.store.connect(write=True) as db:
+                db.execute('UPDATE documents SET state=? WHERE project_id=? AND document_id=?',(document['state'],state['project_id'],document_id))
         self._save_processing(state)
 
     def _clean_state(self,project_id,processing_id):
