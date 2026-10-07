@@ -1,0 +1,2046 @@
+{
+  "summary": {
+    "runs": 24,
+    "succeeded": 24,
+    "own_containers_removed": 24,
+    "recolored_labels": 37,
+    "remaining_reported_overlaps": 8,
+    "images_with_reported_overlap": 4,
+    "numeric_files_unchanged": 91,
+    "numeric_files_changed": 0,
+    "visually_repaired": 19,
+    "additional_visual_axis_line_residual": 1,
+    "llm_calls": 0
+  },
+  "charts": [
+    {
+      "key": "00-pi-cowork-acceptance-20261006-C1",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "C1",
+      "artifactName": "carote_profit_cashflow.png",
+      "producerAnalysisId": "9d76f07716584ccabce39cb4909ed810",
+      "run_id": "15d80b44404b46938be635275185c5f9",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/carote_profit_cashflow.png",
+        "dpi": 200,
+        "overlap_before": [
+          {
+            "kind": "text_overlap",
+            "a": {
+              "id": "text:7",
+              "text": "-18.7",
+              "axes": 0
+            },
+            "b": {
+              "id": "text:11",
+              "text": "经营活动净现金流",
+              "axes": null
+            },
+            "area_px2": 349.984,
+            "bbox_a": [
+              1853.9379323122525,
+              102.52070707070712,
+              1904.8129323122525,
+              125.52070707070712
+            ],
+            "bbox_b": [
+              1687.8777585638995,
+              79.40000000000005,
+              1909.8777585638995,
+              109.40000000000005
+            ]
+          }
+        ],
+        "layout_repair": "constrained",
+        "contrast_changes": [],
+        "remaining_overlaps": [
+          {
+            "kind": "text_overlap",
+            "a": {
+              "id": "text:7",
+              "text": "-18.7",
+              "axes": 0
+            },
+            "b": {
+              "id": "text:11",
+              "text": "经营活动净现金流",
+              "axes": null
+            },
+            "area_px2": 349.984,
+            "bbox_a": [
+              1873.1379323122524,
+              135.9207070707071,
+              1924.0129323122524,
+              158.9207070707071
+            ],
+            "bbox_b": [
+              1707.0777585638994,
+              112.80000000000004,
+              1929.0777585638994,
+              142.80000000000004
+            ]
+          }
+        ],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "carote_cashflow_bridge.csv",
+        "carote_profit_cashflow.csv",
+        "chart_data.json"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/00.png",
+      "visual_review": {
+        "opened": true,
+        "result": "residual",
+        "note": "负值 -18.7 与经营活动净现金流横轴标签重叠仍在；其他标签可读。"
+      }
+    },
+    {
+      "key": "01-pi-cowork-acceptance-20261006-C2",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "C2",
+      "artifactName": "dcf_sensitivity.png",
+      "producerAnalysisId": "3975b7c387d34bdea3eb3ff48cd165f6",
+      "run_id": "af5c8c9783c644a397a1349384532558",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/dcf_sensitivity.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.327,
+            "contrast_after": 15.8253
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "chart_data.json",
+        "dcf_sensitivity.csv",
+        "forecast_and_valuation_inputs.csv",
+        "recalc_results.json"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/01.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "02-pi-cowork-acceptance-20261006-F2",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "F2",
+      "artifactName": "dcf_sensitivity.png",
+      "producerAnalysisId": "e83791f897554e6db7ad1bb067d0650b",
+      "run_id": "7536f88fd27143a793d76a889f8dd485",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/dcf_sensitivity.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:6",
+              "text": "9.39",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.6470588235294118,
+              0.0,
+              0.14901960784313725
+            ],
+            "contrast_before": 2.6279,
+            "contrast_after": 7.9913
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "analyst_forecasts.csv",
+        "valuation_workings.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/02.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "03-pi-cowork-acceptance-20261006-F2",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "F2",
+      "artifactName": "dcf_sensitivity.png",
+      "producerAnalysisId": "c30e787485ff4c6e8c46f5fb45a9a364",
+      "run_id": "242a51cfcf414321bc2201752e8a54b4",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/dcf_sensitivity.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:6",
+              "text": "9.39",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.6470588235294118,
+              0.0,
+              0.14901960784313725
+            ],
+            "contrast_before": 2.6279,
+            "contrast_after": 7.9913
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "analyst_forecasts.csv",
+        "valuation_workings.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/03.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "04-pi-cowork-acceptance-20261006-F3",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "F3",
+      "artifactName": "dcf_sensitivity_comparison.png",
+      "producerAnalysisId": "7753faff45da4d8bb660ea43b2120a69",
+      "run_id": "55ef31d8016a4583968d330009be1048",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/dcf_sensitivity_comparison.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:24",
+              "text": "8.51",
+              "axes": 1
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.6470588235294118,
+              0.0,
+              0.14901960784313725
+            ],
+            "contrast_before": 2.6279,
+            "contrast_after": 7.9913
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "dcf_update_workings.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/04.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "05-pi-cowork-acceptance-20261006-C3",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "C3",
+      "artifactName": "sensitivity_comparison.png",
+      "producerAnalysisId": "e309e919e04d453dac26c42583498ea8",
+      "run_id": "2c8cbd5c2ae44bda905625cb69b45016",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "/input/analysis.py:44: UserWarning: This figure was using a layout engine that is incompatible with subplots_adjust and/or tight_layout; not calling subplots_adjust.\n  axs[0].set_ylabel('永续增长率 g'); fig.subplots_adjust(right=.87,wspace=.18); cax=fig.add_axes([.90,.18,.025,.64]); fig.colorbar(im,cax=cax,label='港元/股（共同色标）'); fig.suptitle('卡罗特DCF敏感性｜港元/股',y=.98); fig.savefig(out/'sensitivity_comparison.png',dpi=190,bbox_inches='tight'); plt.close(fig)\n",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/sensitivity_comparison.png",
+        "dpi": 190,
+        "overlap_before": [
+          {
+            "kind": "text_overlap",
+            "a": {
+              "id": "text:31",
+              "text": "更新：WACC 12.7%，FCF×0.90",
+              "axes": 1
+            },
+            "b": {
+              "id": "text:38",
+              "text": "卡罗特DCF敏感性｜港元/股",
+              "axes": null
+            },
+            "area_px2": 3523.256,
+            "bbox_a": [
+              1041.4555208333331,
+              853.0827,
+              1518.4555208333331,
+              885.0827
+            ],
+            "bbox_b": [
+              774.8125,
+              837.343125,
+              1201.1875,
+              875.14
+            ]
+          },
+          {
+            "kind": "colorbar_subplot_overlap",
+            "a": {
+              "id": "axes:2",
+              "role": "colorbar"
+            },
+            "b": {
+              "id": "axes:1",
+              "role": "subplot",
+              "title": ""
+            },
+            "area_px2": 72228.221,
+            "bbox_a": [
+              1778.4,
+              160.73999999999998,
+              1904.779166666667,
+              732.2600000000001
+            ],
+            "bbox_b": [
+              1041.4555208333331,
+              7.917299999999997,
+              1968.0827,
+              885.0827
+            ]
+          }
+        ],
+        "layout_repair": "constrained",
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:3",
+              "text": "12.07",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.13333333333333333,
+              0.33725490196078434,
+              0.6431372549019608
+            ],
+            "contrast_before": 2.9352,
+            "contrast_after": 7.1545
+          },
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.327,
+            "contrast_after": 15.8253
+          },
+          {
+            "element": {
+              "id": "text:20",
+              "text": "8.51",
+              "axes": 1
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.09019607843137255,
+              0.1607843137254902,
+              0.4627450980392157
+            ],
+            "contrast_before": 1.6152,
+            "contrast_after": 13.0014
+          }
+        ],
+        "remaining_overlaps": [
+          {
+            "kind": "text_overlap",
+            "a": {
+              "id": "text:31",
+              "text": "更新：WACC 12.7%，FCF×0.90",
+              "axes": 1
+            },
+            "b": {
+              "id": "text:38",
+              "text": "卡罗特DCF敏感性｜港元/股",
+              "axes": null
+            },
+            "area_px2": 3523.256,
+            "bbox_a": [
+              1071.538220833333,
+              883.1654000000001,
+              1548.538220833333,
+              915.1654000000001
+            ],
+            "bbox_b": [
+              804.8952,
+              867.425825,
+              1231.2702,
+              905.2227
+            ]
+          },
+          {
+            "kind": "colorbar_subplot_overlap",
+            "a": {
+              "id": "axes:2",
+              "role": "colorbar"
+            },
+            "b": {
+              "id": "axes:1",
+              "role": "subplot",
+              "title": ""
+            },
+            "area_px2": 72228.221,
+            "bbox_a": [
+              1808.4827,
+              190.8227,
+              1934.8618666666669,
+              762.3427000000001
+            ],
+            "bbox_b": [
+              1071.538220833333,
+              38.0,
+              1998.1653999999999,
+              915.1654000000001
+            ]
+          }
+        ],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "chart_data.json",
+        "old_new_parameters_and_results.csv",
+        "sensitivity_old_new.csv",
+        "update_results.json"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/05.png",
+      "visual_review": {
+        "opened": true,
+        "result": "residual",
+        "note": "深色格已改色；显式 y=.98 总标题与右子图标题相撞，手动 add_axes 色条遮住右图末列。"
+      }
+    },
+    {
+      "key": "06-pi-cowork-acceptance-20261006-D2",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D2",
+      "artifactName": "carote_valuation_chart.png",
+      "producerAnalysisId": "18f59dcff3ce4da583c4344de2ecb8f8",
+      "run_id": "993ea0c6f4ee44038819ecfe894e2a9c",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/carote_valuation_chart.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:28",
+              "text": "13.12",
+              "axes": 1
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.327,
+            "contrast_after": 15.8253
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "calculation_inputs_and_results.json",
+        "dcf_sensitivity.csv",
+        "forecast_and_dcf_inputs.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/06.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "07-pi-cowork-acceptance-20261006-D2",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D2",
+      "artifactName": "carote_valuation_chart.png",
+      "producerAnalysisId": "014608fea0b94de1acdc6048ca8d5eee",
+      "run_id": "c196fd344b6544a0a18866a4d8e2faaf",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/carote_valuation_chart.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:28",
+              "text": "13.12",
+              "axes": 1
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.327,
+            "contrast_after": 15.8253
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "calculation_inputs_and_results.json",
+        "chart_data.json",
+        "dcf_sensitivity.csv",
+        "forecast_and_dcf_inputs.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/07.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "08-pi-cowork-acceptance-20261006-E2",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E2",
+      "artifactName": "图2_DCF敏感性.png",
+      "producerAnalysisId": "5cb01aa8858044a2b4cee37d4087291d",
+      "run_id": "7ea35fe8f40c4a04a65edd3878dca690",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "/input/analysis.py:95: SyntaxWarning: invalid escape sequence '\\ '\n  \n",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/图2_DCF敏感性.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:3",
+              "text": "12.07",
+              "axes": 0
+            },
+            "old_color": [
+              0.13725490196078433,
+              0.21176470588235294,
+              0.27058823529411763,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.12549019607843137,
+              0.4117647058823529,
+              0.6784313725490196
+            ],
+            "contrast_before": 2.1871,
+            "contrast_after": 5.698
+          },
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.13725490196078433,
+              0.21176470588235294,
+              0.27058823529411763,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.2698,
+            "contrast_after": 15.8253
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "chart_data.json",
+        "DCF敏感性.csv",
+        "DCF输入与计算.csv",
+        "预测底稿.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/08.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "09-pi-cowork-acceptance-20261006-E3",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "artifactName": "新旧敏感性并列.png",
+      "producerAnalysisId": "37d4928677aa411882678ea54f89ada0",
+      "run_id": "781f336c15c34afa81c40df3eae0a6e4",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "/input/analysis.py:48: UserWarning: This figure was using a layout engine that is incompatible with subplots_adjust and/or tight_layout; not calling subplots_adjust.\n  axs[0].set_ylabel('永续增长率 g');fig.suptitle('卡罗特DCF敏感性：港币每股价值（共同色标）');fig.colorbar(im,ax=axs.ravel().tolist(),label='港元/股',shrink=.86);fig.subplots_adjust(top=.82,wspace=.18,right=.90);fig.savefig(out/'新旧敏感性并列.png',dpi=180,bbox_inches='tight');plt.close(fig)\n",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/新旧敏感性并列.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:3",
+              "text": "12.07",
+              "axes": 0
+            },
+            "old_color": [
+              0.13725490196078433,
+              0.21176470588235294,
+              0.27058823529411763,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.13333333333333333,
+              0.33725490196078434,
+              0.6431372549019608
+            ],
+            "contrast_before": 1.7419,
+            "contrast_after": 7.1545
+          },
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.13725490196078433,
+              0.21176470588235294,
+              0.27058823529411763,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.2698,
+            "contrast_after": 15.8253
+          },
+          {
+            "element": {
+              "id": "text:7",
+              "text": "11.70",
+              "axes": 0
+            },
+            "old_color": [
+              0.13725490196078433,
+              0.21176470588235294,
+              0.27058823529411763,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.12156862745098039,
+              0.4549019607843137,
+              0.6980392156862745
+            ],
+            "contrast_before": 2.4921,
+            "contrast_after": 5.0008
+          },
+          {
+            "element": {
+              "id": "text:24",
+              "text": "11.87",
+              "axes": 1
+            },
+            "old_color": [
+              0.13725490196078433,
+              0.21176470588235294,
+              0.27058823529411763,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.12941176470588237,
+              0.4,
+              0.6705882352941176
+            ],
+            "contrast_before": 2.1087,
+            "contrast_after": 5.91
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "chart_data.json",
+        "估值差异拆解.csv",
+        "敏感性新旧对照.csv",
+        "新旧参数与结果.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/09.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "10-pi-cowork-acceptance-20261006-E3",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "artifactName": "新旧敏感性并列.png",
+      "producerAnalysisId": "bd549124c5af4055a1a3781355b822e6",
+      "run_id": "50b7dd7f50664e4bae4852ddeed0471a",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "/input/analysis.py:48: UserWarning: This figure was using a layout engine that is incompatible with subplots_adjust and/or tight_layout; not calling subplots_adjust.\n  axs[0].set_ylabel('永续增长率 g');fig.suptitle('卡罗特DCF敏感性：港币每股价值（共同色标）');fig.colorbar(im,ax=axs.ravel().tolist(),label='港元/股',shrink=.86);fig.subplots_adjust(top=.82,wspace=.18,right=.90);fig.savefig(out/'新旧敏感性并列.png',dpi=180,bbox_inches='tight');plt.close(fig)\n",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/新旧敏感性并列.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:3",
+              "text": "12.07",
+              "axes": 0
+            },
+            "old_color": [
+              0.13725490196078433,
+              0.21176470588235294,
+              0.27058823529411763,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.13333333333333333,
+              0.33725490196078434,
+              0.6431372549019608
+            ],
+            "contrast_before": 1.7419,
+            "contrast_after": 7.1545
+          },
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.13725490196078433,
+              0.21176470588235294,
+              0.27058823529411763,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.2698,
+            "contrast_after": 15.8253
+          },
+          {
+            "element": {
+              "id": "text:7",
+              "text": "11.70",
+              "axes": 0
+            },
+            "old_color": [
+              0.13725490196078433,
+              0.21176470588235294,
+              0.27058823529411763,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.12156862745098039,
+              0.4549019607843137,
+              0.6980392156862745
+            ],
+            "contrast_before": 2.4921,
+            "contrast_after": 5.0008
+          },
+          {
+            "element": {
+              "id": "text:24",
+              "text": "11.87",
+              "axes": 1
+            },
+            "old_color": [
+              0.13725490196078433,
+              0.21176470588235294,
+              0.27058823529411763,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.12941176470588237,
+              0.4,
+              0.6705882352941176
+            ],
+            "contrast_before": 2.1087,
+            "contrast_after": 5.91
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "chart_data.json",
+        "估值差异拆解.csv",
+        "敏感性新旧对照.csv",
+        "新旧参数与结果.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/10.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "11-pi-cowork-acceptance-20261006-D3",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D3",
+      "artifactName": "old_new_sensitivity.png",
+      "producerAnalysisId": "b0f85ea843f14cbd8b45d3657484d3d0",
+      "run_id": "b16cf62e47c0475a82e077c3c0a32151",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/old_new_sensitivity.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:3",
+              "text": "12.07",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.13333333333333333,
+              0.33725490196078434,
+              0.6431372549019608
+            ],
+            "contrast_before": 2.9352,
+            "contrast_after": 7.1545
+          },
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.327,
+            "contrast_after": 15.8253
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "old_new_params_results.csv",
+        "old_new_sensitivity.csv",
+        "updated_inputs_results.json"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/11.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "12-pi-cowork-acceptance-20261006-D3",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D3",
+      "artifactName": "old_new_sensitivity.png",
+      "producerAnalysisId": "307fa5158fb94c6abd449eaccc5b334c",
+      "run_id": "4a608aea1de64bc580130c4345f17708",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/old_new_sensitivity.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:3",
+              "text": "12.07",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.13333333333333333,
+              0.33725490196078434,
+              0.6431372549019608
+            ],
+            "contrast_before": 2.9352,
+            "contrast_after": 7.1545
+          },
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.327,
+            "contrast_after": 15.8253
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "chart_data.json",
+        "old_new_params_results.csv",
+        "old_new_sensitivity.csv",
+        "updated_inputs_results.json"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/12.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "13-pi-finance-generalization-20261006-B1",
+      "study": "pi-finance-generalization-20261006",
+      "label": "B1",
+      "artifactName": "profit_cashflow_comparison.png",
+      "producerAnalysisId": "35342524276943a680cd9df50e31b809",
+      "run_id": "414755f7acf64862b2708037216b3993",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/profit_cashflow_comparison.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "analysis_report.json",
+        "chart_data.json",
+        "comparison.csv",
+        "profit_cashflow_workpaper.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/13.png",
+      "visual_review": {
+        "opened": true,
+        "result": "residual",
+        "note": "布局改善；-18.7 仍压在底部轴线上（文字/线条关系不在本次重叠检测类别内），未与横轴文字相交。"
+      }
+    },
+    {
+      "key": "14-pi-finance-generalization-20261006-C1",
+      "study": "pi-finance-generalization-20261006",
+      "label": "C1",
+      "artifactName": "profit_cashflow_comparison.png",
+      "producerAnalysisId": "0797b0fcd88d4848b81a86b51ff5e440",
+      "run_id": "8123b439295c4b82b0be45e579189127",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/profit_cashflow_comparison.png",
+        "dpi": 180,
+        "overlap_before": [
+          {
+            "kind": "text_overlap",
+            "a": {
+              "id": "text:7",
+              "text": "-18.7",
+              "axes": 0
+            },
+            "b": {
+              "id": "text:11",
+              "text": "经营活动净现金流",
+              "axes": null
+            },
+            "area_px2": 277.075,
+            "bbox_a": [
+              1599.94954298419,
+              50.30681818181819,
+              1651.32454298419,
+              73.30681818181819
+            ],
+            "bbox_b": [
+              1456.166131422925,
+              29.700000000000003,
+              1656.166131422925,
+              55.7
+            ]
+          }
+        ],
+        "layout_repair": "constrained",
+        "contrast_changes": [],
+        "remaining_overlaps": [
+          {
+            "kind": "text_overlap",
+            "a": {
+              "id": "text:7",
+              "text": "-18.7",
+              "axes": 0
+            },
+            "b": {
+              "id": "text:11",
+              "text": "经营活动净现金流",
+              "axes": null
+            },
+            "area_px2": 277.075,
+            "bbox_a": [
+              1606.24954298419,
+              56.6068181818182,
+              1657.62454298419,
+              79.6068181818182
+            ],
+            "bbox_b": [
+              1462.4661314229252,
+              36.0,
+              1662.4661314229252,
+              62.0
+            ]
+          }
+        ],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "chart_data.json",
+        "operating_cash_bridge.csv",
+        "profit_cashflow_metrics.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/14.png",
+      "visual_review": {
+        "opened": true,
+        "result": "residual",
+        "note": "负值 -18.7 仍与横轴标签相交；其他标签可读。"
+      }
+    },
+    {
+      "key": "15-pi-finance-generalization-20261006-C2",
+      "study": "pi-finance-generalization-20261006",
+      "label": "C2",
+      "artifactName": "dcf_sensitivity.png",
+      "producerAnalysisId": "e64d0ba90a234326b7f0f8711af7b32a",
+      "run_id": "166bb61b12994fce81c967896160e2f5",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/dcf_sensitivity.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.327,
+            "contrast_after": 15.8253
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "chart_data.json",
+        "dcf_inputs.csv",
+        "dcf_sensitivity.csv",
+        "forecast.csv",
+        "valuation_inputs.json"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/15.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "16-pi-finance-generalization-20261006-A2",
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "artifactName": "dcf_sensitivity_chart.png",
+      "producerAnalysisId": "a854d816a9114f0c97e54f65c7a35ad0",
+      "run_id": "df5bf9223615465c8ea689ce3ee4b2a4",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/dcf_sensitivity_chart.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.327,
+            "contrast_after": 15.8253
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "all_dcf_inputs.csv",
+        "analysis_report.json",
+        "chart_data.json",
+        "dcf_base_inputs_and_pv.csv",
+        "dcf_sensitivity.csv",
+        "forecast_inputs.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/16.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "17-pi-finance-generalization-20261006-B3",
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "artifactName": "双版本敏感性.png",
+      "producerAnalysisId": "b778c96ebe864dc3972a7d55b1cb5766",
+      "run_id": "79673d707ec94268987bebd18e52fa88",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/双版本敏感性.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:3",
+              "text": "12.07",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.13333333333333333,
+              0.33725490196078434,
+              0.6431372549019608
+            ],
+            "contrast_before": 2.9352,
+            "contrast_after": 7.1545
+          },
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.327,
+            "contrast_after": 15.8253
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "analysis_report.json",
+        "bridge.csv",
+        "chart_data.json",
+        "sensitivity.csv",
+        "双版本敏感性.csv",
+        "局部更新_参数结果差异.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/17.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "18-pi-finance-generalization-20261006-C3",
+      "study": "pi-finance-generalization-20261006",
+      "label": "C3",
+      "artifactName": "sensitivity_comparison.png",
+      "producerAnalysisId": "50119496ebe14114bc0c05f98eb9d57a",
+      "run_id": "c2d97c86423b4cd59578a048d2beff71",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/sensitivity_comparison.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:3",
+              "text": "12.07",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.13333333333333333,
+              0.33725490196078434,
+              0.6431372549019608
+            ],
+            "contrast_before": 2.9352,
+            "contrast_after": 7.1545
+          },
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.327,
+            "contrast_after": 15.8253
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "chart_data.json",
+        "sensitivity_old_new.csv",
+        "updated_valuation_inputs.json",
+        "update_parameters.csv",
+        "update_results.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/18.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "19-pi-finance-generalization-20261006-A3",
+      "study": "pi-finance-generalization-20261006",
+      "label": "A3",
+      "artifactName": "sensitivity_comparison.png",
+      "producerAnalysisId": "87c8a1a55a3a483caf6d92181e240d22",
+      "run_id": "c52c4e6111814db3aa40973d6721c6a8",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/sensitivity_comparison.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:3",
+              "text": "12.07",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.13333333333333333,
+              0.33725490196078434,
+              0.6431372549019608
+            ],
+            "contrast_before": 2.9352,
+            "contrast_after": 7.1545
+          },
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.327,
+            "contrast_after": 15.8253
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "analysis_report.json",
+        "chart_data.json",
+        "fcf_old_new.csv",
+        "sensitivity_old_new.csv",
+        "update_parameters.csv",
+        "value_bridge.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/19.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "20-pi-finance-generalization-20261006-D2",
+      "study": "pi-finance-generalization-20261006",
+      "label": "D2",
+      "artifactName": "dcf_sensitivity_chart.png",
+      "producerAnalysisId": "2c9f5f101be34bb2a0a0b9644c72c07e",
+      "run_id": "faec28da6c5e4cdea5d4e90e65e07d62",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/dcf_sensitivity_chart.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:2",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.327,
+            "contrast_after": 15.8253
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "dcf_inputs.csv",
+        "dcf_sensitivity.csv",
+        "earnings_forecast.csv",
+        "valuation_inputs.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/20.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "21-pi-finance-generalization-20261006-E2",
+      "study": "pi-finance-generalization-20261006",
+      "label": "E2",
+      "artifactName": "carote_dcf_sensitivity.png",
+      "producerAnalysisId": "664829ea19c841f5826857d3f2b55cc9",
+      "run_id": "15193867ddcc4c108d251bb5cf843ea4",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/carote_dcf_sensitivity.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.18823529411764706,
+              0.4196078431372549
+            ],
+            "contrast_before": 1.6454,
+            "contrast_after": 12.7628
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "carote_dcf_results.json",
+        "carote_dcf_sensitivity.csv",
+        "carote_inputs_and_valuation.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/21.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "22-pi-finance-generalization-20261006-E3",
+      "study": "pi-finance-generalization-20261006",
+      "label": "E3",
+      "artifactName": "carote_update_sensitivity_comparison.png",
+      "producerAnalysisId": "1cbfd6b985b4454f9eeec049ba03a096",
+      "run_id": "3d021cf815b045a786742c4ee531f33d",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "/input/analysis.py:45: UserWarning: This figure was using a layout engine that is incompatible with subplots_adjust and/or tight_layout; not calling subplots_adjust.\n  axs[0].set_ylabel('永续增长率 g');fig.suptitle('卡罗特DCF敏感性对照｜港币/股（统一色标）');fig.colorbar(im,ax=axs.ravel().tolist(),label='HKD/股',shrink=.88);fig.subplots_adjust(top=.82,wspace=.15,right=.90);fig.savefig(out+'/carote_update_sensitivity_comparison.png',dpi=180,bbox_inches='tight');plt.close(fig)\n",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/carote_update_sensitivity_comparison.png",
+        "dpi": 180,
+        "overlap_before": [],
+        "layout_repair": null,
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:6",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.18823529411764706,
+              0.4196078431372549
+            ],
+            "contrast_before": 1.6454,
+            "contrast_after": 12.7628
+          }
+        ],
+        "remaining_overlaps": [],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "carote_update_parameters_and_results.csv",
+        "carote_update_results.json",
+        "carote_update_sensitivity.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/22.png",
+      "visual_review": {
+        "opened": true,
+        "result": "repaired",
+        "note": "逐张打开核对：深色格文字可读，标题、子图及色条未见重叠；数据、刻度、调色方案保持。"
+      }
+    },
+    {
+      "key": "23-pi-finance-generalization-20261006-D3",
+      "study": "pi-finance-generalization-20261006",
+      "label": "D3",
+      "artifactName": "dcf_sensitivity_comparison.png",
+      "producerAnalysisId": "5294c1361e34459aa66bfe42c8c01ee1",
+      "run_id": "15941325ba024b05bdf9bdc7daba0d25",
+      "status": "succeeded",
+      "error": null,
+      "stderr": "/input/analysis.py:56: UserWarning: This figure was using a layout engine that is incompatible with subplots_adjust and/or tight_layout; not calling subplots_adjust.\n  fig.subplots_adjust(right=.87,wspace=.12); cax=fig.add_axes([.90,.18,.025,.64]); fig.colorbar(im,cax=cax,label='港币/股，共用色标')\n",
+      "container_removed": true,
+      "diagnostics": {
+        "file": "/output/dcf_sensitivity_comparison.png",
+        "dpi": 190,
+        "overlap_before": [
+          {
+            "kind": "text_overlap",
+            "a": {
+              "id": "text:17",
+              "text": "旧版：WACC 12.2%，FCF ×1.00",
+              "axes": 0
+            },
+            "b": {
+              "id": "text:38",
+              "text": "DCF敏感性：新旧方案同网格比较",
+              "axes": null
+            },
+            "area_px2": 892.329,
+            "bbox_a": [
+              384.47670555555555,
+              872.0827,
+              850.8517055555556,
+              904.0827
+            ],
+            "bbox_b": [
+              809.6875,
+              861.76,
+              1280.3125,
+              893.76
+            ]
+          },
+          {
+            "kind": "text_overlap",
+            "a": {
+              "id": "text:20",
+              "text": "11.87",
+              "axes": 1
+            },
+            "b": {
+              "id": "text:37",
+              "text": "13",
+              "axes": null
+            },
+            "area_px2": 89.772,
+            "bbox_a": [
+              1889.6554907407408,
+              721.3002143518518,
+              1955.7804907407408,
+              748.3002143518518
+            ],
+            "bbox_b": [
+              1951.7222222222222,
+              716.4210294959133,
+              1981.2222222222222,
+              743.4210294959133
+            ]
+          },
+          {
+            "kind": "text_overlap",
+            "a": {
+              "id": "text:23",
+              "text": "10.59",
+              "axes": 1
+            },
+            "b": {
+              "id": "text:35",
+              "text": "11",
+              "axes": null
+            },
+            "area_px2": 99.745,
+            "bbox_a": [
+              1889.8429907407408,
+              464.4019097222222,
+              1955.5929907407408,
+              491.4019097222222
+            ],
+            "bbox_b": [
+              1951.7222222222222,
+              463.17057059923206,
+              1981.2222222222222,
+              490.17057059923206
+            ]
+          },
+          {
+            "kind": "colorbar_subplot_overlap",
+            "a": {
+              "id": "axes:2",
+              "role": "colorbar"
+            },
+            "b": {
+              "id": "axes:1",
+              "role": "subplot",
+              "title": "新版：WACC 12.7%，FCF ×0.90"
+            },
+            "area_px2": 80819.413,
+            "bbox_a": [
+              1881.0,
+              164.16,
+              2019.4652777777778,
+              747.84
+            ],
+            "bbox_b": [
+              1116.658333333333,
+              7.917299999999997,
+              2082.0827,
+              904.0827
+            ]
+          }
+        ],
+        "layout_repair": "constrained",
+        "contrast_changes": [
+          {
+            "element": {
+              "id": "text:1",
+              "text": "12.07",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.13333333333333333,
+              0.33725490196078434,
+              0.6431372549019608
+            ],
+            "contrast_before": 2.9352,
+            "contrast_after": 7.1545
+          },
+          {
+            "element": {
+              "id": "text:2",
+              "text": "13.12",
+              "axes": 0
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.03137254901960784,
+              0.11372549019607843,
+              0.34509803921568627
+            ],
+            "contrast_before": 1.327,
+            "contrast_after": 15.8253
+          },
+          {
+            "element": {
+              "id": "text:20",
+              "text": "11.87",
+              "axes": 1
+            },
+            "old_color": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "new_color": "white",
+            "background": [
+              0.06274509803921569,
+              0.13725490196078433,
+              0.4117647058823529
+            ],
+            "contrast_before": 1.4664,
+            "contrast_after": 14.3205
+          }
+        ],
+        "remaining_overlaps": [
+          {
+            "kind": "text_overlap",
+            "a": {
+              "id": "text:17",
+              "text": "旧版：WACC 12.2%，FCF ×1.00",
+              "axes": 0
+            },
+            "b": {
+              "id": "text:38",
+              "text": "DCF敏感性：新旧方案同网格比较",
+              "axes": null
+            },
+            "area_px2": 892.329,
+            "bbox_a": [
+              414.5594055555556,
+              902.1654,
+              880.9344055555556,
+              934.1654
+            ],
+            "bbox_b": [
+              839.7701999999999,
+              891.8427,
+              1310.3952,
+              923.8427
+            ]
+          },
+          {
+            "kind": "text_overlap",
+            "a": {
+              "id": "text:20",
+              "text": "11.87",
+              "axes": 1
+            },
+            "b": {
+              "id": "text:37",
+              "text": "13",
+              "axes": null
+            },
+            "area_px2": 89.772,
+            "bbox_a": [
+              1919.7381907407407,
+              751.3829143518518,
+              1985.8631907407407,
+              778.3829143518518
+            ],
+            "bbox_b": [
+              1981.804922222222,
+              746.5037294959134,
+              2011.304922222222,
+              773.5037294959134
+            ]
+          },
+          {
+            "kind": "text_overlap",
+            "a": {
+              "id": "text:23",
+              "text": "10.59",
+              "axes": 1
+            },
+            "b": {
+              "id": "text:35",
+              "text": "11",
+              "axes": null
+            },
+            "area_px2": 99.745,
+            "bbox_a": [
+              1919.9256907407407,
+              494.4846097222222,
+              1985.6756907407407,
+              521.4846097222222
+            ],
+            "bbox_b": [
+              1981.804922222222,
+              493.2532705992321,
+              2011.304922222222,
+              520.2532705992321
+            ]
+          },
+          {
+            "kind": "colorbar_subplot_overlap",
+            "a": {
+              "id": "axes:2",
+              "role": "colorbar"
+            },
+            "b": {
+              "id": "axes:1",
+              "role": "subplot",
+              "title": "新版：WACC 12.7%，FCF ×0.90"
+            },
+            "area_px2": 80819.413,
+            "bbox_a": [
+              1911.0827,
+              194.2427,
+              2049.5479777777778,
+              777.9227000000001
+            ],
+            "bbox_b": [
+              1146.7410333333332,
+              38.000000000000014,
+              2112.1654,
+              934.1654
+            ]
+          }
+        ],
+        "remaining_low_contrast": []
+      },
+      "unchanged_numeric_files": [
+        "dcf_change_bridge.csv",
+        "dcf_old_new_results.csv",
+        "dcf_parameters_old_new.csv",
+        "dcf_sensitivity_old_new.csv"
+      ],
+      "changed_numeric_files": [],
+      "image": "a3-images/23.png",
+      "visual_review": {
+        "opened": true,
+        "result": "residual",
+        "note": "深色格已改色；显式总标题与左标题相撞，手动色条遮挡右图末列并与两个数值文字重叠。"
+      }
+    }
+  ]
+}

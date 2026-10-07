@@ -84,7 +84,7 @@ def collect_tables(paths):
     """paths are already authorized, manifest-verified outputs, supplied by the runner."""
     tables, warnings = {}, []
     for name,path in paths.items():
-        if path.suffix.lower()!='.json' or name in ('analysis_report.json','numeric_tables.json','models.json','comparison_requests.json','parameter_comparison_result.json','scenario_bindings.json'):continue
+        if path.suffix.lower()!='.json' or name in ('analysis_report.json','numeric_tables.json','models.json','comparison_requests.json','parameter_comparison_result.json','scenario_bindings.json','plot_diagnostics.json'):continue
         try: data=json.loads(path.read_text(encoding='utf-8-sig'))
         except (ValueError,UnicodeError) as exc:
             warnings.append({'file':name,'error':str(exc)});continue

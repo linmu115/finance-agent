@@ -7,6 +7,19 @@ from service.analysis_tables import collect_tables, artifact_content, table_view
 
 
 class AnalysisTablesTest(unittest.TestCase):
+    def test_plot_diagnostics_are_run_metadata_not_financial_tables(self):
+        from types import SimpleNamespace
+        from service.core import FinanceService
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);diag={'files':[{'file':'plot.png','remaining_overlaps':[{'area_px2':123}]}]}
+            path=root/'plot_diagnostics.json';path.write_text(json.dumps(diag),encoding='utf8')
+            runner=SimpleNamespace(root=root,artifact_path=lambda *args,**kwargs:path)
+            service=SimpleNamespace(_runner=lambda:runner,store=SimpleNamespace(root=root))
+            result=FinanceService._analysis_presentation(service,'project','run',{'status':'succeeded','artifacts':[{'name':path.name}]})
+            self.assertEqual(result['plot_diagnostics'],diag)
+            self.assertEqual(result['numeric_tables'],{})
+            self.assertEqual(collect_tables({path.name:path}),({},[]))
+
     def test_typed_tables_keep_precision_units_rows_and_sources(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

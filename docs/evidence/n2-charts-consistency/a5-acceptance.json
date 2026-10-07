@@ -1,0 +1,4863 @@
+{
+  "schema_version": 1,
+  "mode": "observation_only",
+  "feedback_enabled": false,
+  "llm_calls": 0,
+  "replayed_cases": 29,
+  "counts": {
+    "exact": 2160,
+    "unmatched": 1526,
+    "wrong_cell": 116,
+    "order_of_magnitude": 81,
+    "rounding_consistent": 714
+  },
+  "known_defect_groups_detected": 7,
+  "known_defect_occurrences": 47,
+  "detected_occurrences": 47,
+  "known_defect_recall": [
+    {
+      "defect": "C2_forecast_x10",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "C2",
+      "expected_occurrences": 12,
+      "extracted": 12,
+      "detected": 12,
+      "recall": 1.0,
+      "checks": [
+        {
+          "index": 0,
+          "file": "answer.md",
+          "line": 11,
+          "value": "240.2",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 1,
+          "file": "answer.md",
+          "line": 11,
+          "value": "34.78",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 3,
+          "file": "answer.md",
+          "line": 12,
+          "value": "324.2",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 4,
+          "file": "answer.md",
+          "line": 12,
+          "value": "46.18",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 6,
+          "file": "answer.md",
+          "line": 13,
+          "value": "391.0",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 7,
+          "file": "answer.md",
+          "line": 13,
+          "value": "54.61",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 67,
+          "file": "5eb4f97059ba-report.md",
+          "line": 11,
+          "value": "240.2",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 68,
+          "file": "5eb4f97059ba-report.md",
+          "line": 11,
+          "value": "34.78",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 70,
+          "file": "5eb4f97059ba-report.md",
+          "line": 12,
+          "value": "324.2",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 71,
+          "file": "5eb4f97059ba-report.md",
+          "line": 12,
+          "value": "46.18",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 73,
+          "file": "5eb4f97059ba-report.md",
+          "line": 13,
+          "value": "391.0",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 74,
+          "file": "5eb4f97059ba-report.md",
+          "line": 13,
+          "value": "54.61",
+          "classification": "order_of_magnitude",
+          "issue": true
+        }
+      ]
+    },
+    {
+      "defect": "D2_csv_RMB_bn_x10",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D2",
+      "expected_occurrences": 22,
+      "extracted": 22,
+      "detected": 22,
+      "recall": 1.0,
+      "checks": [
+        {
+          "index": 68,
+          "file": "00b765e84ffd-forecast_and_dcf_inputs.csv",
+          "line": 2,
+          "value": "24.02",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 69,
+          "file": "00b765e84ffd-forecast_and_dcf_inputs.csv",
+          "line": 3,
+          "value": "3.48",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 71,
+          "file": "00b765e84ffd-forecast_and_dcf_inputs.csv",
+          "line": 5,
+          "value": "32.42",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 72,
+          "file": "00b765e84ffd-forecast_and_dcf_inputs.csv",
+          "line": 6,
+          "value": "4.62",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 74,
+          "file": "00b765e84ffd-forecast_and_dcf_inputs.csv",
+          "line": 8,
+          "value": "39.1",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 75,
+          "file": "00b765e84ffd-forecast_and_dcf_inputs.csv",
+          "line": 9,
+          "value": "5.46",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 77,
+          "file": "00b765e84ffd-forecast_and_dcf_inputs.csv",
+          "line": 11,
+          "value": "2.88",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 78,
+          "file": "00b765e84ffd-forecast_and_dcf_inputs.csv",
+          "line": 12,
+          "value": "5.12",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 79,
+          "file": "00b765e84ffd-forecast_and_dcf_inputs.csv",
+          "line": 13,
+          "value": "5.91",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 80,
+          "file": "00b765e84ffd-forecast_and_dcf_inputs.csv",
+          "line": 14,
+          "value": "5.94",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 81,
+          "file": "00b765e84ffd-forecast_and_dcf_inputs.csv",
+          "line": 15,
+          "value": "6.26",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 119,
+          "file": "a07364c7959a-forecast_and_dcf_inputs.csv",
+          "line": 2,
+          "value": "24.02",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 120,
+          "file": "a07364c7959a-forecast_and_dcf_inputs.csv",
+          "line": 3,
+          "value": "3.48",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 122,
+          "file": "a07364c7959a-forecast_and_dcf_inputs.csv",
+          "line": 5,
+          "value": "32.42",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 123,
+          "file": "a07364c7959a-forecast_and_dcf_inputs.csv",
+          "line": 6,
+          "value": "4.62",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 125,
+          "file": "a07364c7959a-forecast_and_dcf_inputs.csv",
+          "line": 8,
+          "value": "39.1",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 126,
+          "file": "a07364c7959a-forecast_and_dcf_inputs.csv",
+          "line": 9,
+          "value": "5.46",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 128,
+          "file": "a07364c7959a-forecast_and_dcf_inputs.csv",
+          "line": 11,
+          "value": "2.88",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 129,
+          "file": "a07364c7959a-forecast_and_dcf_inputs.csv",
+          "line": 12,
+          "value": "5.12",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 130,
+          "file": "a07364c7959a-forecast_and_dcf_inputs.csv",
+          "line": 13,
+          "value": "5.91",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 131,
+          "file": "a07364c7959a-forecast_and_dcf_inputs.csv",
+          "line": 14,
+          "value": "5.94",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 132,
+          "file": "a07364c7959a-forecast_and_dcf_inputs.csv",
+          "line": 15,
+          "value": "6.26",
+          "classification": "order_of_magnitude",
+          "issue": true
+        }
+      ]
+    },
+    {
+      "defect": "E2_sensitivity_wrong_cell",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E2",
+      "expected_occurrences": 1,
+      "extracted": 1,
+      "detected": 1,
+      "recall": 1.0,
+      "checks": [
+        {
+          "index": 29,
+          "file": "answer.md",
+          "line": 17,
+          "value": "12.07",
+          "classification": "wrong_cell",
+          "issue": true
+        }
+      ]
+    },
+    {
+      "defect": "C1_margin_7_74",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "C1",
+      "expected_occurrences": 1,
+      "extracted": 1,
+      "detected": 1,
+      "recall": 1.0,
+      "checks": [
+        {
+          "index": 11,
+          "file": "answer.md",
+          "line": 11,
+          "value": "-7.74",
+          "classification": "unmatched",
+          "issue": true
+        }
+      ]
+    },
+    {
+      "defect": "F2_EPS_2024",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "F2",
+      "expected_occurrences": 5,
+      "extracted": 5,
+      "detected": 5,
+      "recall": 1.0,
+      "checks": [
+        {
+          "index": 13,
+          "file": "answer.md",
+          "line": 16,
+          "value": "0.83",
+          "classification": "wrong_cell",
+          "issue": true
+        },
+        {
+          "index": 74,
+          "file": "2e16a3c8d790-analyst_forecasts.csv",
+          "line": 2,
+          "value": "0.83",
+          "classification": "wrong_cell",
+          "issue": true
+        },
+        {
+          "index": 85,
+          "file": "85a816ea926a-report.md",
+          "line": 12,
+          "value": "0.83",
+          "classification": "wrong_cell",
+          "issue": true
+        },
+        {
+          "index": 153,
+          "file": "88b0c7167ed7-report.md",
+          "line": 12,
+          "value": "0.83",
+          "classification": "wrong_cell",
+          "issue": true
+        },
+        {
+          "index": 246,
+          "file": "db4f9066fed7-analyst_forecasts.csv",
+          "line": 2,
+          "value": "0.83",
+          "classification": "wrong_cell",
+          "issue": true
+        }
+      ]
+    },
+    {
+      "defect": "F2_gap_1_3_vs_6_8",
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "F2",
+      "expected_occurrences": 3,
+      "extracted": 3,
+      "detected": 3,
+      "recall": 1.0,
+      "checks": [
+        {
+          "index": 9,
+          "file": "answer.md",
+          "line": 10,
+          "value": "1.3",
+          "classification": "unmatched",
+          "issue": true
+        },
+        {
+          "index": 198,
+          "file": "88b0c7167ed7-report.md",
+          "line": 34,
+          "value": "1.3",
+          "classification": "unmatched",
+          "issue": true
+        },
+        {
+          "index": 199,
+          "file": "88b0c7167ed7-report.md",
+          "line": 34,
+          "value": "1.3",
+          "classification": "unmatched",
+          "issue": true
+        }
+      ]
+    },
+    {
+      "defect": "prior_C2_csv_x100",
+      "study": "pi-finance-generalization-20261006",
+      "label": "C2",
+      "expected_occurrences": 3,
+      "extracted": 3,
+      "detected": 3,
+      "recall": 1.0,
+      "checks": [
+        {
+          "index": 108,
+          "file": "7eadfce05114-forecast.csv",
+          "line": 2,
+          "value": "347.8",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 111,
+          "file": "7eadfce05114-forecast.csv",
+          "line": 3,
+          "value": "461.8",
+          "classification": "order_of_magnitude",
+          "issue": true
+        },
+        {
+          "index": 114,
+          "file": "7eadfce05114-forecast.csv",
+          "line": 4,
+          "value": "546.1",
+          "classification": "order_of_magnitude",
+          "issue": true
+        }
+      ]
+    }
+  ],
+  "correct_case_count": 16,
+  "correct_case_quantities": 2592,
+  "false_positive_count": 119,
+  "false_positive_share_of_extracted_correct_quantities": 0.045910493827160496,
+  "correct_cases": [
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "B1",
+      "extracted_quantities": 147,
+      "false_positives": 5
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "F3",
+      "extracted_quantities": 151,
+      "false_positives": 0
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "C3",
+      "extracted_quantities": 137,
+      "false_positives": 1
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D1",
+      "extracted_quantities": 109,
+      "false_positives": 5
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "extracted_quantities": 212,
+      "false_positives": 26
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D3",
+      "extracted_quantities": 182,
+      "false_positives": 0
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A1",
+      "extracted_quantities": 151,
+      "false_positives": 3
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "extracted_quantities": 193,
+      "false_positives": 12
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A3",
+      "extracted_quantities": 162,
+      "false_positives": 0
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "extracted_quantities": 325,
+      "false_positives": 29
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "extracted_quantities": 166,
+      "false_positives": 15
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "C1",
+      "extracted_quantities": 123,
+      "false_positives": 1
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "C3",
+      "extracted_quantities": 125,
+      "false_positives": 2
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "extracted_quantities": 188,
+      "false_positives": 15
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "E1",
+      "extracted_quantities": 64,
+      "false_positives": 3
+    },
+    {
+      "study": "pi-cowork-postfix-20261007",
+      "label": "G1",
+      "extracted_quantities": 157,
+      "false_positives": 2
+    }
+  ],
+  "false_positives": [
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "B1",
+      "check_index": 37,
+      "claim": {
+        "value": "-61.293",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "61.293",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "利润与现金转化解读",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 26,
+        "normalizedColumn": 100,
+        "prefix": "- 所得税费用也缓冲了净利润降幅。税前利润由196.847降至121.533百万元，减少75.314百万元；所得税费用由32.763降至18.742百万元，少计14.021百万元，合并净利润因此减少",
+        "context": "- 所得税费用也缓冲了净利润降幅。税前利润由196.847降至121.533百万元，减少75.314百万元；所得税费用由32.763降至18.742百万元，少计14.021百万元，合并净利润因此减少61.293百万元。",
+        "file": "answer.md",
+        "metric": "net_profit",
+        "period": null,
+        "axes": {},
+        "surface_value": "61.293",
+        "sign_basis": "explicit_decline_verb",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "B1",
+      "check_index": 80,
+      "claim": {
+        "value": "955.192",
+        "unit": [
+          "money",
+          "CNY",
+          "1000"
+        ],
+        "raw": "955.192",
+        "unitBasis": "declared_amount_unit",
+        "where": "ff9a44196de8-report.md",
+        "section": "卡罗特2025H1利润与现金流对比",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 5,
+        "normalizedColumn": 4,
+        "prefix": "收入由",
+        "context": "收入由955.192降至836.925百万元（同比-12.4%）；毛利由395.243降至281.594百万元，毛利率由41.4%降至33.6%，下降7.8个百分点。经营利润由193.422降至96.000百万元（-50.4%）；合并净利润由164.084降至102.791百万元（-37.4%），归母净利润由164.096降至102.785百万元（-37.4%）。",
+        "file": "ff9a44196de8-report.md",
+        "metric": "revenue",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "句子“由 A 降至 B 百万元”中的 A 没有紧邻单位，扫描器继承原报表千元而不是后半句百万元；正确金额被误报为千倍差。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "B1",
+      "check_index": 88,
+      "claim": {
+        "value": "193.422",
+        "unit": [
+          "money",
+          "CNY",
+          "1000"
+        ],
+        "raw": "193.422",
+        "unitBasis": "declared_amount_unit",
+        "where": "ff9a44196de8-report.md",
+        "section": "卡罗特2025H1利润与现金流对比",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 5,
+        "normalizedColumn": 89,
+        "prefix": "收入由955.192降至836.925百万元（同比-12.4%）；毛利由395.243降至281.594百万元，毛利率由41.4%降至33.6%，下降7.8个百分点。经营利润由",
+        "context": "收入由955.192降至836.925百万元（同比-12.4%）；毛利由395.243降至281.594百万元，毛利率由41.4%降至33.6%，下降7.8个百分点。经营利润由193.422降至96.000百万元（-50.4%）；合并净利润由164.084降至102.791百万元（-37.4%），归母净利润由164.096降至102.785百万元（-37.4%）。",
+        "file": "ff9a44196de8-report.md",
+        "metric": "operating_profit",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "句子“由 A 降至 B 百万元”中的 A 没有紧邻单位，扫描器继承原报表千元而不是后半句百万元；正确金额被误报为千倍差。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "B1",
+      "check_index": 91,
+      "claim": {
+        "value": "164.084",
+        "unit": [
+          "money",
+          "CNY",
+          "1000"
+        ],
+        "raw": "164.084",
+        "unitBasis": "declared_amount_unit",
+        "where": "ff9a44196de8-report.md",
+        "section": "卡罗特2025H1利润与现金流对比",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 5,
+        "normalizedColumn": 122,
+        "prefix": "收入由955.192降至836.925百万元（同比-12.4%）；毛利由395.243降至281.594百万元，毛利率由41.4%降至33.6%，下降7.8个百分点。经营利润由193.422降至96.000百万元（-50.4%）；合并净利润由",
+        "context": "入由955.192降至836.925百万元（同比-12.4%）；毛利由395.243降至281.594百万元，毛利率由41.4%降至33.6%，下降7.8个百分点。经营利润由193.422降至96.000百万元（-50.4%）；合并净利润由164.084降至102.791百万元（-37.4%），归母净利润由164.096降至102.785百万元（-37.4%）。",
+        "file": "ff9a44196de8-report.md",
+        "metric": "net_profit",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "句子“由 A 降至 B 百万元”中的 A 没有紧邻单位，扫描器继承原报表千元而不是后半句百万元；正确金额被误报为千倍差。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "B1",
+      "check_index": 94,
+      "claim": {
+        "value": "164.096",
+        "unit": [
+          "money",
+          "CNY",
+          "1000"
+        ],
+        "raw": "164.096",
+        "unitBasis": "declared_amount_unit",
+        "where": "ff9a44196de8-report.md",
+        "section": "卡罗特2025H1利润与现金流对比",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 5,
+        "normalizedColumn": 156,
+        "prefix": "收入由955.192降至836.925百万元（同比-12.4%）；毛利由395.243降至281.594百万元，毛利率由41.4%降至33.6%，下降7.8个百分点。经营利润由193.422降至96.000百万元（-50.4%）；合并净利润由164.084降至102.791百万元（-37.4%），归母净利润由",
+        "context": "由395.243降至281.594百万元，毛利率由41.4%降至33.6%，下降7.8个百分点。经营利润由193.422降至96.000百万元（-50.4%）；合并净利润由164.084降至102.791百万元（-37.4%），归母净利润由164.096降至102.785百万元（-37.4%）。",
+        "file": "ff9a44196de8-report.md",
+        "metric": "parent_profit",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "句子“由 A 降至 B 百万元”中的 A 没有紧邻单位，扫描器继承原报表千元而不是后半句百万元；正确金额被误报为千倍差。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "C3",
+      "check_index": 128,
+      "claim": {
+        "value": "320",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "320",
+        "unitBasis": "explicit_suffix",
+        "where": "dd8727f3fd9e-update_report.md",
+        "section": "方法",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 26,
+        "normalizedColumn": 79,
+        "prefix": "EV=Σ(FCF_t/(1+WACC)^t)+PV(TV)，；TV=FCF_2028×(1+g)/(WACC−g)，末年终值折现5年。股权价值=EV+人民币",
+        "context": "EV=Σ(FCF_t/(1+WACC)^t)+PV(TV)，；TV=FCF_2028×(1+g)/(WACC−g)，末年终值折现5年。股权价值=EV+人民币320百万元净现金；港币每股=股权价值/555百万股×1.07。其他输入不变。",
+        "file": "dd8727f3fd9e-update_report.md",
+        "metric": "ev",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "公式中的净现金、股数或汇率项被最近的 EV/股权价值标签吸附；这些是计算输入，不是公式结果。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D1",
+      "check_index": 4,
+      "claim": {
+        "value": "22.108",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "22.108",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "卡罗特2025H1利润与现金流",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 3,
+        "normalizedColumn": 72,
+        "prefix": "结论：2025H1盈利和现金转化均走弱。收入同比下降12.4%，毛利率由41.4%降至33.6%，经营利润下降50.4%。净利息收益增加人民币",
+        "context": "结论：2025H1盈利和现金转化均走弱。收入同比下降12.4%，毛利率由41.4%降至33.6%，经营利润下降50.4%。净利息收益增加人民币22.108百万元，部分缓冲了经营利润下滑，合并净利润和归母净利润同比均下降约37.4%。经营活动净现金则由流入人民币89.864百万元转为流出人民币18.676百万元。",
+        "file": "answer.md",
+        "metric": "finance_net",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "新增 search_evidence 的摘要仅解析出上年净财务收益 3.4，正文的 22.108 被与其强行对齐；本项是同比增加额，不是净财务收益水平。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D1",
+      "check_index": 32,
+      "claim": {
+        "value": "3.425",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "3.425",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "利润与现金转化解读",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 22,
+        "normalizedColumn": 42,
+        "prefix": "- 经营利润与净利息收益：经营利润减少人民币97.422百万元；净利息收益由人民币",
+        "context": "- 经营利润与净利息收益：经营利润减少人民币97.422百万元；净利息收益由人民币3.425百万元升至人民币25.533百万元，增加人民币22.108百万元。利息收益增长缓和了利润下滑，但未能抵消经营利润的下降。公司说明，净利息收益上升主要因更多资金配置于定期存款。（利润净利息附注；文档 ID：）",
+        "file": "answer.md",
+        "metric": "finance_net",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "新增 search_evidence 的摘要仅解析出上年净财务收益 3.4，正文的 3.425 被与其强行对齐；原文 3.425 与摘要 3.4 的披露精度不同，扫描器按更精细的正文小数位比较。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D1",
+      "check_index": 33,
+      "claim": {
+        "value": "25.533",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "25.533",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "利润与现金转化解读",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 22,
+        "normalizedColumn": 55,
+        "prefix": "- 经营利润与净利息收益：经营利润减少人民币97.422百万元；净利息收益由人民币3.425百万元升至人民币",
+        "context": "- 经营利润与净利息收益：经营利润减少人民币97.422百万元；净利息收益由人民币3.425百万元升至人民币25.533百万元，增加人民币22.108百万元。利息收益增长缓和了利润下滑，但未能抵消经营利润的下降。公司说明，净利息收益上升主要因更多资金配置于定期存款。（利润净利息附注；文档 ID：）",
+        "file": "answer.md",
+        "metric": "finance_net",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "新增 search_evidence 的摘要仅解析出上年净财务收益 3.4，正文的 25.533 被与其强行对齐；本项为本期 25.533，上年摘要不是同期间参照。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D1",
+      "check_index": 47,
+      "claim": {
+        "value": "3.425",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "3.425",
+        "unitBasis": "explicit_suffix",
+        "where": "7bf5d092a124-report.md",
+        "section": "卡罗特2025H1利润与现金流分析",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 3,
+        "normalizedColumn": 98,
+        "prefix": "比较口径为截至6月30日止六个月，原报告金额单位人民币千元，统一换算为人民币百万元。2025H1收入同比下降12.4%，毛利率由41.4%降至33.6%；经营利润同比下滑50.4%。净利息收益从",
+        "context": "比较口径为截至6月30日止六个月，原报告金额单位人民币千元，统一换算为人民币百万元。2025H1收入同比下降12.4%，毛利率由41.4%降至33.6%；经营利润同比下滑50.4%。净利息收益从3.425百万元升至25.533百万元，增加22.108百万元，部分抵消经营利润下降；合并净利润与归母净利润均下降约37.4%。",
+        "file": "7bf5d092a124-report.md",
+        "metric": "finance_net",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "新增 search_evidence 的摘要仅解析出上年净财务收益 3.4，正文的 3.425 被与其强行对齐；原文 3.425 与摘要 3.4 的披露精度不同，扫描器按更精细的正文小数位比较。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D1",
+      "check_index": 48,
+      "claim": {
+        "value": "25.533",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "25.533",
+        "unitBasis": "explicit_suffix",
+        "where": "7bf5d092a124-report.md",
+        "section": "卡罗特2025H1利润与现金流分析",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 3,
+        "normalizedColumn": 108,
+        "prefix": "比较口径为截至6月30日止六个月，原报告金额单位人民币千元，统一换算为人民币百万元。2025H1收入同比下降12.4%，毛利率由41.4%降至33.6%；经营利润同比下滑50.4%。净利息收益从3.425百万元升至",
+        "context": "比较口径为截至6月30日止六个月，原报告金额单位人民币千元，统一换算为人民币百万元。2025H1收入同比下降12.4%，毛利率由41.4%降至33.6%；经营利润同比下滑50.4%。净利息收益从3.425百万元升至25.533百万元，增加22.108百万元，部分抵消经营利润下降；合并净利润与归母净利润均下降约37.4%。",
+        "file": "7bf5d092a124-report.md",
+        "metric": "finance_net",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "新增 search_evidence 的摘要仅解析出上年净财务收益 3.4，正文的 25.533 被与其强行对齐；本项为本期 25.533，上年摘要不是同期间参照。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 53,
+      "claim": {
+        "value": "626",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "626",
+        "unitBasis": "table_unit_cell",
+        "where": "46d1aa8287c0-局部更新报告.md",
+        "section": "更新参数",
+        "table_header": [
+          " 输入 ",
+          " 基准 ",
+          " 更新后 ",
+          " 单位 "
+        ],
+        "table_column": 1,
+        "row_label": " FY24E–FY28E FCF ",
+        "line": 10,
+        "normalizedColumn": 45,
+        "prefix": "| FY24E–FY28E FCF | 288 / 512 / 591 / 594 / ",
+        "context": "| FY24E–FY28E FCF | 288 / 512 / 591 / 594 / 626 | 259.2 / 460.8 / 531.9 / 534.6 / 563.4 | 人民币百万元 |",
+        "file": "46d1aa8287c0-局部更新报告.md",
+        "metric": "fcf",
+        "period": null,
+        "axes": {},
+        "scenario": "old",
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "FCF 五年序列的最后一年参与终值计算，另一底稿行说明含终值字样，被标签优先级识别成终值而非末年 FCF；期间列表本身正确。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 58,
+      "claim": {
+        "value": "563.4",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "563.4",
+        "unitBasis": "table_unit_cell",
+        "where": "46d1aa8287c0-局部更新报告.md",
+        "section": "更新参数",
+        "table_header": [
+          " 输入 ",
+          " 基准 ",
+          " 更新后 ",
+          " 单位 "
+        ],
+        "table_column": 2,
+        "row_label": " FY24E–FY28E FCF ",
+        "line": 10,
+        "normalizedColumn": 83,
+        "prefix": "| FY24E–FY28E FCF | 288 / 512 / 591 / 594 / 626 | 259.2 / 460.8 / 531.9 / 534.6 / ",
+        "context": "| FY24E–FY28E FCF | 288 / 512 / 591 / 594 / 626 | 259.2 / 460.8 / 531.9 / 534.6 / 563.4 | 人民币百万元 |",
+        "file": "46d1aa8287c0-局部更新报告.md",
+        "metric": "fcf",
+        "period": null,
+        "axes": {},
+        "scenario": "new",
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "FCF 五年序列的最后一年参与终值计算，另一底稿行说明含终值字样，被标签优先级识别成终值而非末年 FCF；期间列表本身正确。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 72,
+      "claim": {
+        "value": "11.2",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "11.2",
+        "unitBasis": "explicit_suffix",
+        "where": "46d1aa8287c0-局部更新报告.md",
+        "section": "敏感性对照",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 28,
+        "normalizedColumn": 19,
+        "prefix": "以下两版使用相同绝对网格（WACC ",
+        "context": "以下两版使用相同绝对网格（WACC 11.2%、12.2%、13.2%；g 1%、2%、3%）及统一色标，港币/股：",
+        "file": "46d1aa8287c0-局部更新报告.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 74,
+      "claim": {
+        "value": "13.2",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "13.2",
+        "unitBasis": "explicit_suffix",
+        "where": "46d1aa8287c0-局部更新报告.md",
+        "section": "敏感性对照",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 28,
+        "normalizedColumn": 31,
+        "prefix": "以下两版使用相同绝对网格（WACC 11.2%、12.2%、",
+        "context": "以下两版使用相同绝对网格（WACC 11.2%、12.2%、13.2%；g 1%、2%、3%）及统一色标，港币/股：",
+        "file": "46d1aa8287c0-局部更新报告.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 107,
+      "claim": {
+        "value": "0.127",
+        "unit": [
+          "ratio",
+          "",
+          "1"
+        ],
+        "where": "9797377dd6da-新旧参数与结果.csv.0.更新后",
+        "label": "WACC 增加0.5个百分点；第一步",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "9797377dd6da-新旧参数与结果.csv",
+        "row": 0,
+        "column": "更新后",
+        "artifact": "新旧参数与结果.csv",
+        "scenario": "new",
+        "file": "9797377dd6da-新旧参数与结果.csv",
+        "line": 2
+      },
+      "classification": "unmatched",
+      "reason": "CSV 中的更新后 WACC 为 0.127；排除同附件自证后，剩余候选只有从基准说明提取的 0.122 网格坐标，误当成更新参数的依据。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 124,
+      "claim": {
+        "value": "10.8912980269113089834965290946579970",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "9797377dd6da-新旧参数与结果.csv.10.基准",
+        "label": "9797377dd6da-新旧参数与结果.csv",
+        "metric": "share_price",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "9797377dd6da-新旧参数与结果.csv",
+        "row": 10,
+        "column": "基准",
+        "artifact": "新旧参数与结果.csv",
+        "scenario": "old",
+        "file": "9797377dd6da-新旧参数与结果.csv",
+        "line": 12
+      },
+      "classification": "wrong_cell",
+      "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 128,
+      "claim": {
+        "value": "9.40763954155813876107825440797074294",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "9797377dd6da-新旧参数与结果.csv.13.基准",
+        "label": "9797377dd6da-新旧参数与结果.csv",
+        "metric": "share_price_change",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "9797377dd6da-新旧参数与结果.csv",
+        "row": 13,
+        "column": "基准",
+        "artifact": "新旧参数与结果.csv",
+        "scenario": "old",
+        "role": "change",
+        "file": "9797377dd6da-新旧参数与结果.csv",
+        "line": 15
+      },
+      "classification": "wrong_cell",
+      "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 129,
+      "claim": {
+        "value": "9.40763954155813876107825440797074294",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "9797377dd6da-新旧参数与结果.csv.13.更新后",
+        "label": "9797377dd6da-新旧参数与结果.csv",
+        "metric": "share_price_change",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "9797377dd6da-新旧参数与结果.csv",
+        "row": 13,
+        "column": "更新后",
+        "artifact": "新旧参数与结果.csv",
+        "scenario": "new",
+        "role": "change",
+        "file": "9797377dd6da-新旧参数与结果.csv",
+        "line": 15
+      },
+      "classification": "wrong_cell",
+      "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 131,
+      "claim": {
+        "value": "0.127",
+        "unit": [
+          "ratio",
+          "",
+          "1"
+        ],
+        "where": "a69a1bd1c0b3-新旧参数与结果.csv.0.更新后",
+        "label": "WACC 增加0.5个百分点；第一步",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "a69a1bd1c0b3-新旧参数与结果.csv",
+        "row": 0,
+        "column": "更新后",
+        "artifact": "新旧参数与结果.csv",
+        "scenario": "new",
+        "file": "a69a1bd1c0b3-新旧参数与结果.csv",
+        "line": 2
+      },
+      "classification": "unmatched",
+      "reason": "CSV 中的更新后 WACC 为 0.127；排除同附件自证后，剩余候选只有从基准说明提取的 0.122 网格坐标，误当成更新参数的依据。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 148,
+      "claim": {
+        "value": "10.8912980269113089834965290946579970",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "a69a1bd1c0b3-新旧参数与结果.csv.10.基准",
+        "label": "a69a1bd1c0b3-新旧参数与结果.csv",
+        "metric": "share_price",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "a69a1bd1c0b3-新旧参数与结果.csv",
+        "row": 10,
+        "column": "基准",
+        "artifact": "新旧参数与结果.csv",
+        "scenario": "old",
+        "file": "a69a1bd1c0b3-新旧参数与结果.csv",
+        "line": 12
+      },
+      "classification": "wrong_cell",
+      "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 152,
+      "claim": {
+        "value": "9.40763954155813876107825440797074294",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "a69a1bd1c0b3-新旧参数与结果.csv.13.基准",
+        "label": "a69a1bd1c0b3-新旧参数与结果.csv",
+        "metric": "share_price_change",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "a69a1bd1c0b3-新旧参数与结果.csv",
+        "row": 13,
+        "column": "基准",
+        "artifact": "新旧参数与结果.csv",
+        "scenario": "old",
+        "role": "change",
+        "file": "a69a1bd1c0b3-新旧参数与结果.csv",
+        "line": 15
+      },
+      "classification": "wrong_cell",
+      "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 153,
+      "claim": {
+        "value": "9.40763954155813876107825440797074294",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "a69a1bd1c0b3-新旧参数与结果.csv.13.更新后",
+        "label": "a69a1bd1c0b3-新旧参数与结果.csv",
+        "metric": "share_price_change",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "a69a1bd1c0b3-新旧参数与结果.csv",
+        "row": 13,
+        "column": "更新后",
+        "artifact": "新旧参数与结果.csv",
+        "scenario": "new",
+        "role": "change",
+        "file": "a69a1bd1c0b3-新旧参数与结果.csv",
+        "line": 15
+      },
+      "classification": "wrong_cell",
+      "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 169,
+      "claim": {
+        "value": "626",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "626",
+        "unitBasis": "table_unit_cell",
+        "where": "c6f5848dd0b5-局部更新报告.md",
+        "section": "更新参数",
+        "table_header": [
+          " 输入 ",
+          " 基准 ",
+          " 更新后 ",
+          " 单位 "
+        ],
+        "table_column": 1,
+        "row_label": " FY24E–FY28E FCF ",
+        "line": 10,
+        "normalizedColumn": 45,
+        "prefix": "| FY24E–FY28E FCF | 288 / 512 / 591 / 594 / ",
+        "context": "| FY24E–FY28E FCF | 288 / 512 / 591 / 594 / 626 | 259.2 / 460.8 / 531.9 / 534.6 / 563.4 | 人民币百万元 |",
+        "file": "c6f5848dd0b5-局部更新报告.md",
+        "metric": "fcf",
+        "period": null,
+        "axes": {},
+        "scenario": "old",
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "FCF 五年序列的最后一年参与终值计算，另一底稿行说明含终值字样，被标签优先级识别成终值而非末年 FCF；期间列表本身正确。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 174,
+      "claim": {
+        "value": "563.4",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "563.4",
+        "unitBasis": "table_unit_cell",
+        "where": "c6f5848dd0b5-局部更新报告.md",
+        "section": "更新参数",
+        "table_header": [
+          " 输入 ",
+          " 基准 ",
+          " 更新后 ",
+          " 单位 "
+        ],
+        "table_column": 2,
+        "row_label": " FY24E–FY28E FCF ",
+        "line": 10,
+        "normalizedColumn": 83,
+        "prefix": "| FY24E–FY28E FCF | 288 / 512 / 591 / 594 / 626 | 259.2 / 460.8 / 531.9 / 534.6 / ",
+        "context": "| FY24E–FY28E FCF | 288 / 512 / 591 / 594 / 626 | 259.2 / 460.8 / 531.9 / 534.6 / 563.4 | 人民币百万元 |",
+        "file": "c6f5848dd0b5-局部更新报告.md",
+        "metric": "fcf",
+        "period": null,
+        "axes": {},
+        "scenario": "new",
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "FCF 五年序列的最后一年参与终值计算，另一底稿行说明含终值字样，被标签优先级识别成终值而非末年 FCF；期间列表本身正确。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 188,
+      "claim": {
+        "value": "11.2",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "11.2",
+        "unitBasis": "explicit_suffix",
+        "where": "c6f5848dd0b5-局部更新报告.md",
+        "section": "敏感性对照",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 28,
+        "normalizedColumn": 19,
+        "prefix": "以下两版使用相同绝对网格（WACC ",
+        "context": "以下两版使用相同绝对网格（WACC 11.2%、12.2%、13.2%；g 1%、2%、3%）及统一色标，港币/股：",
+        "file": "c6f5848dd0b5-局部更新报告.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 190,
+      "claim": {
+        "value": "13.2",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "13.2",
+        "unitBasis": "explicit_suffix",
+        "where": "c6f5848dd0b5-局部更新报告.md",
+        "section": "敏感性对照",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 28,
+        "normalizedColumn": 31,
+        "prefix": "以下两版使用相同绝对网格（WACC 11.2%、12.2%、",
+        "context": "以下两版使用相同绝对网格（WACC 11.2%、12.2%、13.2%；g 1%、2%、3%）及统一色标，港币/股：",
+        "file": "c6f5848dd0b5-局部更新报告.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 195,
+      "claim": {
+        "value": "10.8912980269113089834965290946579970",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "de5dc2fa5d7d-估值差异拆解.csv.0.港币/股",
+        "label": "de5dc2fa5d7d-估值差异拆解.csv",
+        "metric": "share_price_change",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "de5dc2fa5d7d-估值差异拆解.csv",
+        "row": 0,
+        "column": "港币/股",
+        "artifact": "估值差异拆解.csv",
+        "scenario": "old",
+        "role": "change",
+        "file": "de5dc2fa5d7d-估值差异拆解.csv",
+        "line": 2
+      },
+      "classification": "wrong_cell",
+      "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 196,
+      "claim": {
+        "value": "0",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "de5dc2fa5d7d-估值差异拆解.csv.0.相对前序贡献（港币/股）",
+        "label": "de5dc2fa5d7d-估值差异拆解.csv",
+        "metric": "share_price_change",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "de5dc2fa5d7d-估值差异拆解.csv",
+        "row": 0,
+        "column": "相对前序贡献（港币/股）",
+        "artifact": "估值差异拆解.csv",
+        "scenario": "old",
+        "role": "change",
+        "file": "de5dc2fa5d7d-估值差异拆解.csv",
+        "line": 2
+      },
+      "classification": "unmatched",
+      "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 198,
+      "claim": {
+        "value": "10.3843842754049389637606230158633880",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "de5dc2fa5d7d-估值差异拆解.csv.1.港币/股",
+        "label": "仅WACC上升",
+        "metric": "share_price",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "de5dc2fa5d7d-估值差异拆解.csv",
+        "row": 1,
+        "column": "港币/股",
+        "artifact": "估值差异拆解.csv",
+        "scenario": null,
+        "file": "de5dc2fa5d7d-估值差异拆解.csv",
+        "line": 3
+      },
+      "classification": "unmatched",
+      "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 199,
+      "claim": {
+        "value": "-0.5069137515063700197359060787946090",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "de5dc2fa5d7d-估值差异拆解.csv.1.相对前序贡献（港币/股）",
+        "label": "仅WACC上升",
+        "metric": "share_price_change",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "de5dc2fa5d7d-估值差异拆解.csv",
+        "row": 1,
+        "column": "相对前序贡献（港币/股）",
+        "artifact": "估值差异拆解.csv",
+        "scenario": null,
+        "role": "change",
+        "file": "de5dc2fa5d7d-估值差异拆解.csv",
+        "line": 3
+      },
+      "classification": "wrong_cell",
+      "reason": "两步贡献未按 WACC 第一步/FCF 第二步对齐；第一步的 -0.50691375 被拿去比较第二步 -0.97674473 和最终价格。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 201,
+      "claim": {
+        "value": "9.40763954155813876107825440797074294",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "de5dc2fa5d7d-估值差异拆解.csv.2.港币/股",
+        "label": "WACC上升+FCF下调",
+        "metric": "share_price",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "de5dc2fa5d7d-估值差异拆解.csv",
+        "row": 2,
+        "column": "港币/股",
+        "artifact": "估值差异拆解.csv",
+        "scenario": null,
+        "file": "de5dc2fa5d7d-估值差异拆解.csv",
+        "line": 4
+      },
+      "classification": "wrong_cell",
+      "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 204,
+      "claim": {
+        "value": "10.8912980269113089834965290946579970",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "ec1cf8bfb07c-估值差异拆解.csv.0.港币/股",
+        "label": "ec1cf8bfb07c-估值差异拆解.csv",
+        "metric": "share_price_change",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "ec1cf8bfb07c-估值差异拆解.csv",
+        "row": 0,
+        "column": "港币/股",
+        "artifact": "估值差异拆解.csv",
+        "scenario": "old",
+        "role": "change",
+        "file": "ec1cf8bfb07c-估值差异拆解.csv",
+        "line": 2
+      },
+      "classification": "wrong_cell",
+      "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 205,
+      "claim": {
+        "value": "0",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "ec1cf8bfb07c-估值差异拆解.csv.0.相对前序贡献（港币/股）",
+        "label": "ec1cf8bfb07c-估值差异拆解.csv",
+        "metric": "share_price_change",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "ec1cf8bfb07c-估值差异拆解.csv",
+        "row": 0,
+        "column": "相对前序贡献（港币/股）",
+        "artifact": "估值差异拆解.csv",
+        "scenario": "old",
+        "role": "change",
+        "file": "ec1cf8bfb07c-估值差异拆解.csv",
+        "line": 2
+      },
+      "classification": "unmatched",
+      "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 207,
+      "claim": {
+        "value": "10.3843842754049389637606230158633880",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "ec1cf8bfb07c-估值差异拆解.csv.1.港币/股",
+        "label": "仅WACC上升",
+        "metric": "share_price",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "ec1cf8bfb07c-估值差异拆解.csv",
+        "row": 1,
+        "column": "港币/股",
+        "artifact": "估值差异拆解.csv",
+        "scenario": null,
+        "file": "ec1cf8bfb07c-估值差异拆解.csv",
+        "line": 3
+      },
+      "classification": "unmatched",
+      "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 208,
+      "claim": {
+        "value": "-0.5069137515063700197359060787946090",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "ec1cf8bfb07c-估值差异拆解.csv.1.相对前序贡献（港币/股）",
+        "label": "仅WACC上升",
+        "metric": "share_price_change",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "ec1cf8bfb07c-估值差异拆解.csv",
+        "row": 1,
+        "column": "相对前序贡献（港币/股）",
+        "artifact": "估值差异拆解.csv",
+        "scenario": null,
+        "role": "change",
+        "file": "ec1cf8bfb07c-估值差异拆解.csv",
+        "line": 3
+      },
+      "classification": "wrong_cell",
+      "reason": "两步贡献未按 WACC 第一步/FCF 第二步对齐；第一步的 -0.50691375 被拿去比较第二步 -0.97674473 和最终价格。"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "check_index": 210,
+      "claim": {
+        "value": "9.40763954155813876107825440797074294",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "ec1cf8bfb07c-估值差异拆解.csv.2.港币/股",
+        "label": "WACC上升+FCF下调",
+        "metric": "share_price",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "ec1cf8bfb07c-估值差异拆解.csv",
+        "row": 2,
+        "column": "港币/股",
+        "artifact": "估值差异拆解.csv",
+        "scenario": null,
+        "file": "ec1cf8bfb07c-估值差异拆解.csv",
+        "line": 4
+      },
+      "classification": "wrong_cell",
+      "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A1",
+      "check_index": 4,
+      "claim": {
+        "value": "-37.4",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "37.4",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "卡罗特：2025H1利润与现金流对照",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 3,
+        "normalizedColumn": 88,
+        "prefix": "结论：2025H1收入同比下降12.4%，毛利率下滑7.73个百分点，经营利润下降50.4%。净利息收益同比增加22.108百万元，部分缓冲了经营利润下滑，但合并净利润仍下降",
+        "context": "结论：2025H1收入同比下降12.4%，毛利率下滑7.73个百分点，经营利润下降50.4%。净利息收益同比增加22.108百万元，部分缓冲了经营利润下滑，但合并净利润仍下降37.4%。与此同时，经营产生现金大幅减少，经营活动净现金由正转负，利润与现金转化均明显走弱。",
+        "file": "answer.md",
+        "metric": "net_profit",
+        "period": null,
+        "axes": {},
+        "surface_value": "37.4",
+        "sign_basis": "explicit_decline_verb",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A1",
+      "check_index": 50,
+      "claim": {
+        "value": "-61.293",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "61.293",
+        "unitBasis": "explicit_suffix",
+        "where": "1d411075ba9e-report.md",
+        "section": "结论",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 4,
+        "normalizedColumn": 126,
+        "prefix": "收入同比下降-12.4%；毛利率由41.38%降至33.65%，下降-7.73个百分点。经营利润同比减少97.422百万元（-50.4%），但净利息收益由3.425升至25.533百万元，增加22.108百万元，部分抵消经营利润下滑；合并净利润仍减少",
+        "context": "降-12.4%；毛利率由41.38%降至33.65%，下降-7.73个百分点。经营利润同比减少97.422百万元（-50.4%），但净利息收益由3.425升至25.533百万元，增加22.108百万元，部分抵消经营利润下滑；合并净利润仍减少61.293百万元（-37.4%）。",
+        "file": "1d411075ba9e-report.md",
+        "metric": "net_profit",
+        "period": null,
+        "axes": {},
+        "surface_value": "61.293",
+        "sign_basis": "explicit_decline_verb",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A1",
+      "check_index": 51,
+      "claim": {
+        "value": "-37.4",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "-37.4",
+        "unitBasis": "explicit_suffix",
+        "where": "1d411075ba9e-report.md",
+        "section": "结论",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 4,
+        "normalizedColumn": 136,
+        "prefix": "收入同比下降-12.4%；毛利率由41.38%降至33.65%，下降-7.73个百分点。经营利润同比减少97.422百万元（-50.4%），但净利息收益由3.425升至25.533百万元，增加22.108百万元，部分抵消经营利润下滑；合并净利润仍减少61.293百万元（",
+        "context": "率由41.38%降至33.65%，下降-7.73个百分点。经营利润同比减少97.422百万元（-50.4%），但净利息收益由3.425升至25.533百万元，增加22.108百万元，部分抵消经营利润下滑；合并净利润仍减少61.293百万元（-37.4%）。",
+        "file": "1d411075ba9e-report.md",
+        "metric": "net_profit",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "check_index": 34,
+      "claim": {
+        "value": "10.89",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "raw": "10.89",
+        "unitBasis": "currency_prefix_and_per_share_suffix",
+        "where": "answer.md",
+        "section": "DCF独立复算",
+        "table_header": [
+          " 独立复算项目 ",
+          " 数值 "
+        ],
+        "table_column": 1,
+        "row_label": " 每股价值 ",
+        "line": 42,
+        "normalizedColumn": 13,
+        "prefix": "| 每股价值 | HK$",
+        "context": "| 每股价值 | HK$10.89/股 |",
+        "file": "answer.md",
+        "metric": "share_price",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "独立 DCF 计算值被对齐到研报披露值。正确底稿本来就保留两套数值及差异；扫描器缺少计算值/披露值的角色区分，不能要求二者相等。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "check_index": 35,
+      "claim": {
+        "value": "1810",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "1,810",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "DCF独立复算",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 44,
+        "normalizedColumn": 27,
+        "prefix": "与报告列示值的差异：报告列出DCF（23E–27E）",
+        "context": "与报告列示值的差异：报告列出DCF（23E–27E）1,810百万元、终值现值3,527百万元、EV 5,336百万元、净现金320百万元、股权价值5,656百万元及HK$10.95/股。报告汇总数字内部存在约1百万元的加总差异：1,810＋3,527＝5,337，而非5,336；EV＋320＝5,656。另一方面，该表同时列出2024E—2028E FCF，却将DCF汇总行标作“23E–27E”。按任务指定的2024E—2028E FCF、逐年末折现和2028E终值口径，独立复算结果与报告汇总值不同；原表没有足够细节解释差额，故不将报",
+        "file": "answer.md",
+        "metric": "valuation_gap",
+        "period": null,
+        "axes": {},
+        "surface_value": "1810",
+        "comparison_basis": "absolute_gap",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "段首“与报告列示值的差异”影响了后续列举的报告原值/加总项，1,810 或 3,527 被当成差额；它们实际是组成项。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "check_index": 42,
+      "claim": {
+        "value": "1810",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "1,810",
+        "unitBasis": "shared_clause_unit",
+        "where": "answer.md",
+        "section": "DCF独立复算",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 44,
+        "normalizedColumn": 116,
+        "prefix": "与报告列示值的差异：报告列出DCF（23E–27E）1,810百万元、终值现值3,527百万元、EV 5,336百万元、净现金320百万元、股权价值5,656百万元及HK$10.95/股。报告汇总数字内部存在约1百万元的加总差异：",
+        "context": "与报告列示值的差异：报告列出DCF（23E–27E）1,810百万元、终值现值3,527百万元、EV 5,336百万元、净现金320百万元、股权价值5,656百万元及HK$10.95/股。报告汇总数字内部存在约1百万元的加总差异：1,810＋3,527＝5,337，而非5,336；EV＋320＝5,656。另一方面，该表同时列出2024E—2028E FCF，却将DCF汇总行标作“23E–27E”。按任务指定的2024E—2028E FCF、逐年末折现和2028E终值口径，独立复算结果与报告汇总值不同；原表没有足够细节解释差额，故不将报告值与独立复算混同。",
+        "file": "answer.md",
+        "metric": "valuation_gap",
+        "period": null,
+        "axes": {},
+        "surface_value": "1810",
+        "comparison_basis": "absolute_gap",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "段首“与报告列示值的差异”影响了后续列举的报告原值/加总项，1,810 或 3,527 被当成差额；它们实际是组成项。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "check_index": 43,
+      "claim": {
+        "value": "3527",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "3,527",
+        "unitBasis": "shared_clause_unit",
+        "where": "answer.md",
+        "section": "DCF独立复算",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 44,
+        "normalizedColumn": 122,
+        "prefix": "与报告列示值的差异：报告列出DCF（23E–27E）1,810百万元、终值现值3,527百万元、EV 5,336百万元、净现金320百万元、股权价值5,656百万元及HK$10.95/股。报告汇总数字内部存在约1百万元的加总差异：1,810＋",
+        "context": "报告列示值的差异：报告列出DCF（23E–27E）1,810百万元、终值现值3,527百万元、EV 5,336百万元、净现金320百万元、股权价值5,656百万元及HK$10.95/股。报告汇总数字内部存在约1百万元的加总差异：1,810＋3,527＝5,337，而非5,336；EV＋320＝5,656。另一方面，该表同时列出2024E—2028E FCF，却将DCF汇总行标作“23E–27E”。按任务指定的2024E—2028E FCF、逐年末折现和2028E终值口径，独立复算结果与报告汇总值不同；原表没有足够细节解释差额，故不将报告值与独立复算混同。",
+        "file": "answer.md",
+        "metric": "valuation_gap",
+        "period": null,
+        "axes": {},
+        "surface_value": "3527",
+        "comparison_basis": "absolute_gap",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "段首“与报告列示值的差异”影响了后续列举的报告原值/加总项，1,810 或 3,527 被当成差额；它们实际是组成项。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "check_index": 141,
+      "claim": {
+        "value": "10.89",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "raw": "10.89",
+        "unitBasis": "currency_prefix_and_per_share_suffix",
+        "where": "4e79f08298ad-report.md",
+        "section": "卡罗特（2549 HK）｜研报预测与估值复核",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 11,
+        "normalizedColumn": 249,
+        "prefix": "独立DCF（自算，不是报告原值）：按原行Unleveraged FCF，取FY24E-28E RMB mn 288/512/591/594/626；按2023年末估值、每年末折现、末年FCF乘(1+g)计算终值。WACC=12.2%、g=2%、净现金RMB320mn、稀释股数555mn、汇率1.07 HKD/RMB。计算PV(显式期FCF)=RMB 1,808.7mn，PV(终值)=RMB 3,520.5mn，EV=RMB 5,329.2mn，股权价值=RMB 5,649.2mn，价值HK$",
+        "context": "320mn、稀释股数555mn、汇率1.07 HKD/RMB。计算PV(显式期FCF)=RMB 1,808.7mn，PV(终值)=RMB 3,520.5mn，EV=RMB 5,329.2mn，股权价值=RMB 5,649.2mn，价值HK$10.89/股。机构报告字段矛盾/口径不透明：报告写DCF(23E-27E)=1,810、PV终值=3,527，却EV=5,336；前两数相加为5,337（四舍五入约1mn差），EV加净现金320得股权价值5,656。且标题写“RMB mn”，DCF明列FY24E-28E FCF，而下方汇总行标“23E-27E”；原表显示的汇总结果无法由要求的2024E-28E FCF按标准年末折现及报告WACC/g精确复现。勿将此处自算误认为原报告数字。",
+        "file": "4e79f08298ad-report.md",
+        "metric": "share_price",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "独立 DCF 计算值被对齐到研报披露值。正确底稿本来就保留两套数值及差异；扫描器缺少计算值/披露值的角色区分，不能要求二者相等。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "check_index": 142,
+      "claim": {
+        "value": "1810",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "raw": "1,810",
+        "unitBasis": "declared_amount_unit",
+        "where": "4e79f08298ad-report.md",
+        "section": "卡罗特（2549 HK）｜研报预测与估值复核",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 11,
+        "normalizedColumn": 288,
+        "prefix": "独立DCF（自算，不是报告原值）：按原行Unleveraged FCF，取FY24E-28E RMB mn 288/512/591/594/626；按2023年末估值、每年末折现、末年FCF乘(1+g)计算终值。WACC=12.2%、g=2%、净现金RMB320mn、稀释股数555mn、汇率1.07 HKD/RMB。计算PV(显式期FCF)=RMB 1,808.7mn，PV(终值)=RMB 3,520.5mn，EV=RMB 5,329.2mn，股权价值=RMB 5,649.2mn，价值HK$10.89/股。机构报告字段矛盾/口径不透明：报告写DCF(23E-27E)=",
+        "context": "FCF)=RMB 1,808.7mn，PV(终值)=RMB 3,520.5mn，EV=RMB 5,329.2mn，股权价值=RMB 5,649.2mn，价值HK$10.89/股。机构报告字段矛盾/口径不透明：报告写DCF(23E-27E)=1,810、PV终值=3,527，却EV=5,336；前两数相加为5,337（四舍五入约1mn差），EV加净现金320得股权价值5,656。且标题写“RMB mn”，DCF明列FY24E-28E FCF，而下方汇总行标“23E-27E”；原表显示的汇总结果无法由要求的2024E-28E FCF按标准年末折现及报告WACC/g精确复现。勿将此处自算误认为原报告数字。",
+        "file": "4e79f08298ad-report.md",
+        "metric": "pv_explicit",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "后文引用研报的 1,810/5,336 没有逐项重复单位，扫描器继承之前预测部分单位，未沿用当段的 RMB mn，产生数量级误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "check_index": 144,
+      "claim": {
+        "value": "5336",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "raw": "5,336",
+        "unitBasis": "declared_amount_unit",
+        "where": "4e79f08298ad-report.md",
+        "section": "卡罗特（2549 HK）｜研报预测与估值复核",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 11,
+        "normalizedColumn": 309,
+        "prefix": "独立DCF（自算，不是报告原值）：按原行Unleveraged FCF，取FY24E-28E RMB mn 288/512/591/594/626；按2023年末估值、每年末折现、末年FCF乘(1+g)计算终值。WACC=12.2%、g=2%、净现金RMB320mn、稀释股数555mn、汇率1.07 HKD/RMB。计算PV(显式期FCF)=RMB 1,808.7mn，PV(终值)=RMB 3,520.5mn，EV=RMB 5,329.2mn，股权价值=RMB 5,649.2mn，价值HK$10.89/股。机构报告字段矛盾/口径不透明：报告写DCF(23E-27E)=1,810、PV终值=3,527，却EV=",
+        "context": "(终值)=RMB 3,520.5mn，EV=RMB 5,329.2mn，股权价值=RMB 5,649.2mn，价值HK$10.89/股。机构报告字段矛盾/口径不透明：报告写DCF(23E-27E)=1,810、PV终值=3,527，却EV=5,336；前两数相加为5,337（四舍五入约1mn差），EV加净现金320得股权价值5,656。且标题写“RMB mn”，DCF明列FY24E-28E FCF，而下方汇总行标“23E-27E”；原表显示的汇总结果无法由要求的2024E-28E FCF按标准年末折现及报告WACC/g精确复现。勿将此处自算误认为原报告数字。",
+        "file": "4e79f08298ad-report.md",
+        "metric": "ev",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "后文引用研报的 1,810/5,336 没有逐项重复单位，扫描器继承之前预测部分单位，未沿用当段的 RMB mn，产生数量级误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "check_index": 184,
+      "claim": {
+        "value": "256.6844919786096",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv.0.PV_FCF_RMB_mn",
+        "label": "PV_FCF_RMB_mn",
+        "metric": "fcf",
+        "period": "2024",
+        "axes": {},
+        "origin": "delivery",
+        "table": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+        "row": 0,
+        "column": "PV_FCF_RMB_mn",
+        "artifact": "dcf_base_inputs_and_pv.csv",
+        "scenario": null,
+        "file": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+        "line": 2
+      },
+      "classification": "unmatched",
+      "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "check_index": 186,
+      "claim": {
+        "value": "406.70943470566004",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv.1.PV_FCF_RMB_mn",
+        "label": "PV_FCF_RMB_mn",
+        "metric": "fcf",
+        "period": "2025",
+        "axes": {},
+        "origin": "delivery",
+        "table": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+        "row": 1,
+        "column": "PV_FCF_RMB_mn",
+        "artifact": "dcf_base_inputs_and_pv.csv",
+        "scenario": null,
+        "file": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+        "line": 3
+      },
+      "classification": "unmatched",
+      "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "check_index": 188,
+      "claim": {
+        "value": "418.4166038447059",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv.2.PV_FCF_RMB_mn",
+        "label": "PV_FCF_RMB_mn",
+        "metric": "fcf",
+        "period": "2026",
+        "axes": {},
+        "origin": "delivery",
+        "table": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+        "row": 2,
+        "column": "PV_FCF_RMB_mn",
+        "artifact": "dcf_base_inputs_and_pv.csv",
+        "scenario": null,
+        "file": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+        "line": 4
+      },
+      "classification": "unmatched",
+      "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "check_index": 190,
+      "claim": {
+        "value": "374.8133208522298",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv.3.PV_FCF_RMB_mn",
+        "label": "PV_FCF_RMB_mn",
+        "metric": "fcf",
+        "period": "2027",
+        "axes": {},
+        "origin": "delivery",
+        "table": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+        "row": 3,
+        "column": "PV_FCF_RMB_mn",
+        "artifact": "dcf_base_inputs_and_pv.csv",
+        "scenario": null,
+        "file": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+        "line": 5
+      },
+      "classification": "unmatched",
+      "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "check_index": 192,
+      "claim": {
+        "value": "352.05462055716987",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv.4.PV_FCF_RMB_mn",
+        "label": "PV_FCF_RMB_mn",
+        "metric": "fcf",
+        "period": "2028",
+        "axes": {},
+        "origin": "delivery",
+        "table": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+        "row": 4,
+        "column": "PV_FCF_RMB_mn",
+        "artifact": "dcf_base_inputs_and_pv.csv",
+        "scenario": null,
+        "file": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+        "line": 6
+      },
+      "classification": "unmatched",
+      "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 22,
+      "claim": {
+        "value": "0.09",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "raw": "0.09",
+        "unitBasis": "currency_prefix_and_per_share_suffix",
+        "where": "answer.md",
+        "section": "PE目标价复算",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 27,
+        "normalizedColumn": 25,
+        "prefix": "- 报告目标价HK$8.97与复算值相差约HK$",
+        "context": "- 报告目标价HK$8.97与复算值相差约HK$0.09/股。报告展示的EPS、汇率及计算精度可能造成差异。",
+        "file": "answer.md",
+        "metric": "share_price",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "目标价差约 HK$0.09 被识别为每股价格水平；它实际是 8.97 与 8.881 的差额，非价格本身。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 48,
+      "claim": {
+        "value": "18.087",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "raw": "18.087",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "独立DCF复算",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 57,
+        "normalizedColumn": 17,
+        "prefix": "独立复算的显式FCF现值约人民币",
+        "context": "独立复算的显式FCF现值约人民币18.087亿元、终值现值约人民币35.205亿元。与报告列示的18.10亿元和35.27亿元略有差异；由于报告只展示有限精度输入，底稿按所列原行及任务规定复算，不为贴合报告结果调整输入。报告DCF的原表预测列延伸至FY28E，但总折现行标签写为“DCF (23E–27E)”；两种表述并不完全一致。另报告正文写风险溢价10.6%，同页参数区列11.0%。本次严格采用题设指定的WACC 12.2%，不替报告消解该冲突。报告DCF页EBITDA与同名项目数值不一致，因此复算直接使用指定的FC",
+        "file": "answer.md",
+        "metric": "fcf",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 49,
+      "claim": {
+        "value": "35.205",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "raw": "35.205",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "独立DCF复算",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 57,
+        "normalizedColumn": 34,
+        "prefix": "独立复算的显式FCF现值约人民币18.087亿元、终值现值约人民币",
+        "context": "独立复算的显式FCF现值约人民币18.087亿元、终值现值约人民币35.205亿元。与报告列示的18.10亿元和35.27亿元略有差异；由于报告只展示有限精度输入，底稿按所列原行及任务规定复算，不为贴合报告结果调整输入。报告DCF的原表预测列延伸至FY28E，但总折现行标签写为“DCF (23E–27E)”；两种表述并不完全一致。另报告正文写风险溢价10.6%，同页参数区列11.0%。本次严格采用题设指定的WACC 12.2%，不替报告消解该冲突。报告DCF页EBITDA与同名项目数值不一致，因此复算直接使用指定的FCF原行，不从其他表重构现金流。",
+        "file": "answer.md",
+        "metric": "pv_terminal",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "独立 DCF 计算值被对齐到研报披露值。正确底稿本来就保留两套数值及差异；扫描器缺少计算值/披露值的角色区分，不能要求二者相等。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 71,
+      "claim": {
+        "value": "2.5668449197860963",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "where": "10d1bf7de39a-DCF复算桥接.csv.0.现值_RMB_亿元",
+        "label": "显式FCF 2024",
+        "metric": "fcf",
+        "period": "2024",
+        "axes": {},
+        "origin": "delivery",
+        "table": "10d1bf7de39a-DCF复算桥接.csv",
+        "row": 0,
+        "column": "现值_RMB_亿元",
+        "artifact": "DCF复算桥接.csv",
+        "scenario": null,
+        "file": "10d1bf7de39a-DCF复算桥接.csv",
+        "line": 2
+      },
+      "classification": "unmatched",
+      "reason": "现值_RMB_亿元列是当年 FCF 折现后的金额；扫描器只采用 FCF 行名，未保留现值角色，与原始当年现金流比较产生误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 73,
+      "claim": {
+        "value": "4.0670943470566",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "where": "10d1bf7de39a-DCF复算桥接.csv.1.现值_RMB_亿元",
+        "label": "显式FCF 2025",
+        "metric": "fcf",
+        "period": "2025",
+        "axes": {},
+        "origin": "delivery",
+        "table": "10d1bf7de39a-DCF复算桥接.csv",
+        "row": 1,
+        "column": "现值_RMB_亿元",
+        "artifact": "DCF复算桥接.csv",
+        "scenario": null,
+        "file": "10d1bf7de39a-DCF复算桥接.csv",
+        "line": 3
+      },
+      "classification": "wrong_cell",
+      "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 75,
+      "claim": {
+        "value": "4.184166038447059",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "where": "10d1bf7de39a-DCF复算桥接.csv.2.现值_RMB_亿元",
+        "label": "显式FCF 2026",
+        "metric": "fcf",
+        "period": "2026",
+        "axes": {},
+        "origin": "delivery",
+        "table": "10d1bf7de39a-DCF复算桥接.csv",
+        "row": 2,
+        "column": "现值_RMB_亿元",
+        "artifact": "DCF复算桥接.csv",
+        "scenario": null,
+        "file": "10d1bf7de39a-DCF复算桥接.csv",
+        "line": 4
+      },
+      "classification": "wrong_cell",
+      "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 77,
+      "claim": {
+        "value": "3.7481332085222983",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "where": "10d1bf7de39a-DCF复算桥接.csv.3.现值_RMB_亿元",
+        "label": "显式FCF 2027",
+        "metric": "fcf",
+        "period": "2027",
+        "axes": {},
+        "origin": "delivery",
+        "table": "10d1bf7de39a-DCF复算桥接.csv",
+        "row": 3,
+        "column": "现值_RMB_亿元",
+        "artifact": "DCF复算桥接.csv",
+        "scenario": null,
+        "file": "10d1bf7de39a-DCF复算桥接.csv",
+        "line": 5
+      },
+      "classification": "unmatched",
+      "reason": "现值_RMB_亿元列是当年 FCF 折现后的金额；扫描器只采用 FCF 行名，未保留现值角色，与原始当年现金流比较产生误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 79,
+      "claim": {
+        "value": "3.5205462055716987",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "where": "10d1bf7de39a-DCF复算桥接.csv.4.现值_RMB_亿元",
+        "label": "显式FCF 2028",
+        "metric": "fcf",
+        "period": "2028",
+        "axes": {},
+        "origin": "delivery",
+        "table": "10d1bf7de39a-DCF复算桥接.csv",
+        "row": 4,
+        "column": "现值_RMB_亿元",
+        "artifact": "DCF复算桥接.csv",
+        "scenario": null,
+        "file": "10d1bf7de39a-DCF复算桥接.csv",
+        "line": 6
+      },
+      "classification": "wrong_cell",
+      "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 81,
+      "claim": {
+        "value": "35.205462055716986",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "where": "10d1bf7de39a-DCF复算桥接.csv.5.现值_RMB_亿元",
+        "label": "终值 2028",
+        "metric": "terminal_value",
+        "period": "2028",
+        "axes": {},
+        "origin": "delivery",
+        "table": "10d1bf7de39a-DCF复算桥接.csv",
+        "row": 5,
+        "column": "现值_RMB_亿元",
+        "artifact": "DCF复算桥接.csv",
+        "scenario": null,
+        "file": "10d1bf7de39a-DCF复算桥接.csv",
+        "line": 7
+      },
+      "classification": "unmatched",
+      "reason": "不同脚本以二进制浮点输出的同一终值现值在最后几位存在约 1e-13 百万元差异；按字符串全部小数位比较导致误报，展示精度和金融结论一致。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 112,
+      "claim": {
+        "value": "8.30",
+        "unit": [
+          "per_share",
+          "CNY",
+          "1"
+        ],
+        "raw": "8.30",
+        "unitBasis": "explicit_suffix",
+        "where": "6b9034d7a256-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "PE目标价复核。 报告以FY25E P/E 10.0倍、目标价HK$8.97为主估值（）。FY25E EPS为人民币0.83元/股，直接按10倍为人民币8.30 CNY 元/股元/股；用DCF表汇率1.07港元/人民币换算为HK$",
+        "line": 5,
+        "normalizedColumn": 77,
+        "prefix": "PE目标价复核。 报告以FY25E P/E 10.0倍、目标价HK$8.97为主估值（）。FY25E EPS为人民币0.83元/股，直接按10倍为人民币",
+        "context": "PE目标价复核。 报告以FY25E P/E 10.0倍、目标价HK$8.97为主估值（）。FY25E EPS为人民币0.83元/股，直接按10倍为人民币8.30 CNY 元/股元/股；用DCF表汇率1.07港元/人民币换算为HK$                  /股。若从报告HK$8.97倒算，则所隐含EPS约人民币                    元/股，差异来自EPS四舍五入及汇率/口径取整；因此HK$8.97应理解为报告目标价，不可将人民币EPS与港币股价直接相乘而不换汇。",
+        "file": "6b9034d7a256-report.md",
+        "metric": "eps",
+        "period": "2025",
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "EPS 乘 10 倍 PE 后的人民币每股价值 8.30 沿用了前文 EPS 标签，因此被误判成 EPS 放大 10 倍；实际是正确估值结果。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 116,
+      "claim": {
+        "value": "1",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "1",
+        "unitBasis": "table_row_label",
+        "where": "6b9034d7a256-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）",
+        "line": 7,
+        "normalizedColumn": 72,
+        "prefix": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）     ；以2023年末为估值日，年末现金流折现期为",
+        "context": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）     ；以2023年末为估值日，年末现金流折现期为1至5年，终值采用FY28E FCF乘(1+g)后按Gordon增长折现。公式为 EV=ΣFCF_t/(1+WACC)^t + [FCF_2028(1+g)/(WACC−g)]/(1+WACC)^5；股权价值=EV+人民币320百万元净现金，股价=股权价值/555百万股×1.07。基准复算EV为人民币5,329.22 CNY 百万元百万元、股权价值人民币5,649.22 CNY 百万元百万元、每股HK$10.89 HKD currency/share。敏感性为WACC 11.2",
+        "file": "6b9034d7a256-report.md",
+        "metric": "fcf",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "折现说明中的期数常量 1 被继承为 FCF 金额单位；该数字是公式/期数，不是金额。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 118,
+      "claim": {
+        "value": "320",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "320",
+        "unitBasis": "explicit_suffix",
+        "where": "6b9034d7a256-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）",
+        "line": 7,
+        "normalizedColumn": 183,
+        "prefix": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）     ；以2023年末为估值日，年末现金流折现期为1至5年，终值采用FY28E FCF乘(1+g)后按Gordon增长折现。公式为 EV=ΣFCF_t/(1+WACC)^t + [FCF_2028(1+g)/(WACC−g)]/(1+WACC)^5；股权价值=EV+人民币",
+        "context": "年末现金流折现期为1至5年，终值采用FY28E FCF乘(1+g)后按Gordon增长折现。公式为 EV=ΣFCF_t/(1+WACC)^t + [FCF_2028(1+g)/(WACC−g)]/(1+WACC)^5；股权价值=EV+人民币320百万元净现金，股价=股权价值/555百万股×1.07。基准复算EV为人民币5,329.22 CNY 百万元百万元、股权价值人民币5,649.22 CNY 百万元百万元、每股HK$10.89 HKD currency/share。敏感性为WACC 11.2%/12.2%/13.2%、g 1%/2%/3%。",
+        "file": "6b9034d7a256-report.md",
+        "metric": "ev",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "公式中的净现金、股数或汇率项被最近的 EV/股权价值标签吸附；这些是计算输入，不是公式结果。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 119,
+      "claim": {
+        "value": "555",
+        "unit": [
+          "shares",
+          "",
+          "1000000"
+        ],
+        "raw": "555",
+        "unitBasis": "explicit_suffix",
+        "where": "6b9034d7a256-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）",
+        "line": 7,
+        "normalizedColumn": 201,
+        "prefix": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）     ；以2023年末为估值日，年末现金流折现期为1至5年，终值采用FY28E FCF乘(1+g)后按Gordon增长折现。公式为 EV=ΣFCF_t/(1+WACC)^t + [FCF_2028(1+g)/(WACC−g)]/(1+WACC)^5；股权价值=EV+人民币320百万元净现金，股价=股权价值/",
+        "context": "FY28E FCF乘(1+g)后按Gordon增长折现。公式为 EV=ΣFCF_t/(1+WACC)^t + [FCF_2028(1+g)/(WACC−g)]/(1+WACC)^5；股权价值=EV+人民币320百万元净现金，股价=股权价值/555百万股×1.07。基准复算EV为人民币5,329.22 CNY 百万元百万元、股权价值人民币5,649.22 CNY 百万元百万元、每股HK$10.89 HKD currency/share。敏感性为WACC 11.2%/12.2%/13.2%、g 1%/2%/3%。",
+        "file": "6b9034d7a256-report.md",
+        "metric": "equity_value",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "公式中的净现金、股数或汇率项被最近的 EV/股权价值标签吸附；这些是计算输入，不是公式结果。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 120,
+      "claim": {
+        "value": "1.07",
+        "unit": [
+          "shares",
+          "",
+          "1000000"
+        ],
+        "raw": "1.07",
+        "unitBasis": "explicit_prefix",
+        "where": "6b9034d7a256-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）",
+        "line": 7,
+        "normalizedColumn": 208,
+        "prefix": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）     ；以2023年末为估值日，年末现金流折现期为1至5年，终值采用FY28E FCF乘(1+g)后按Gordon增长折现。公式为 EV=ΣFCF_t/(1+WACC)^t + [FCF_2028(1+g)/(WACC−g)]/(1+WACC)^5；股权价值=EV+人民币320百万元净现金，股价=股权价值/555百万股×",
+        "context": "CF乘(1+g)后按Gordon增长折现。公式为 EV=ΣFCF_t/(1+WACC)^t + [FCF_2028(1+g)/(WACC−g)]/(1+WACC)^5；股权价值=EV+人民币320百万元净现金，股价=股权价值/555百万股×1.07。基准复算EV为人民币5,329.22 CNY 百万元百万元、股权价值人民币5,649.22 CNY 百万元百万元、每股HK$10.89 HKD currency/share。敏感性为WACC 11.2%/12.2%/13.2%、g 1%/2%/3%。",
+        "file": "6b9034d7a256-report.md",
+        "metric": "equity_value",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "公式中的净现金、股数或汇率项被最近的 EV/股权价值标签吸附；这些是计算输入，不是公式结果。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 127,
+      "claim": {
+        "value": "1",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "1",
+        "unitBasis": "explicit_suffix",
+        "where": "6b9034d7a256-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）",
+        "line": 7,
+        "normalizedColumn": 329,
+        "prefix": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）     ；以2023年末为估值日，年末现金流折现期为1至5年，终值采用FY28E FCF乘(1+g)后按Gordon增长折现。公式为 EV=ΣFCF_t/(1+WACC)^t + [FCF_2028(1+g)/(WACC−g)]/(1+WACC)^5；股权价值=EV+人民币320百万元净现金，股价=股权价值/555百万股×1.07。基准复算EV为人民币5,329.22 CNY 百万元百万元、股权价值人民币5,649.22 CNY 百万元百万元、每股HK$10.89 HKD currency/share。敏感性为WACC 11.2%/12.2%/13.2%、g ",
+        "context": ".07。基准复算EV为人民币5,329.22 CNY 百万元百万元、股权价值人民币5,649.22 CNY 百万元百万元、每股HK$10.89 HKD currency/share。敏感性为WACC 11.2%/12.2%/13.2%、g 1%/2%/3%。",
+        "file": "6b9034d7a256-report.md",
+        "metric": "g",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "无“敏感性/网格”明确邻词的 g 坐标列表被当成单一永续增长率参数比较；1%/2%/3% 是网格取值。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 128,
+      "claim": {
+        "value": "2",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "2",
+        "unitBasis": "explicit_suffix",
+        "where": "6b9034d7a256-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）",
+        "line": 7,
+        "normalizedColumn": 332,
+        "prefix": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）     ；以2023年末为估值日，年末现金流折现期为1至5年，终值采用FY28E FCF乘(1+g)后按Gordon增长折现。公式为 EV=ΣFCF_t/(1+WACC)^t + [FCF_2028(1+g)/(WACC−g)]/(1+WACC)^5；股权价值=EV+人民币320百万元净现金，股价=股权价值/555百万股×1.07。基准复算EV为人民币5,329.22 CNY 百万元百万元、股权价值人民币5,649.22 CNY 百万元百万元、每股HK$10.89 HKD currency/share。敏感性为WACC 11.2%/12.2%/13.2%、g 1%/",
+        "context": "。基准复算EV为人民币5,329.22 CNY 百万元百万元、股权价值人民币5,649.22 CNY 百万元百万元、每股HK$10.89 HKD currency/share。敏感性为WACC 11.2%/12.2%/13.2%、g 1%/2%/3%。",
+        "file": "6b9034d7a256-report.md",
+        "metric": "g",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "无“敏感性/网格”明确邻词的 g 坐标列表被当成单一永续增长率参数比较；1%/2%/3% 是网格取值。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 129,
+      "claim": {
+        "value": "3",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "3",
+        "unitBasis": "explicit_suffix",
+        "where": "6b9034d7a256-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）",
+        "line": 7,
+        "normalizedColumn": 335,
+        "prefix": "独立DCF。 逐年折现FY24E–FY28E原表Unleveraged FCF（百万元）     ；以2023年末为估值日，年末现金流折现期为1至5年，终值采用FY28E FCF乘(1+g)后按Gordon增长折现。公式为 EV=ΣFCF_t/(1+WACC)^t + [FCF_2028(1+g)/(WACC−g)]/(1+WACC)^5；股权价值=EV+人民币320百万元净现金，股价=股权价值/555百万股×1.07。基准复算EV为人民币5,329.22 CNY 百万元百万元、股权价值人民币5,649.22 CNY 百万元百万元、每股HK$10.89 HKD currency/share。敏感性为WACC 11.2%/12.2%/13.2%、g 1%/2%/",
+        "context": "复算EV为人民币5,329.22 CNY 百万元百万元、股权价值人民币5,649.22 CNY 百万元百万元、每股HK$10.89 HKD currency/share。敏感性为WACC 11.2%/12.2%/13.2%、g 1%/2%/3%。",
+        "file": "6b9034d7a256-report.md",
+        "metric": "g",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "无“敏感性/网格”明确邻词的 g 坐标列表被当成单一永续增长率参数比较；1%/2%/3% 是网格取值。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 131,
+      "claim": {
+        "value": "3527",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "3,527",
+        "unitBasis": "explicit_suffix",
+        "where": "6b9034d7a256-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 9,
+        "normalizedColumn": 48,
+        "prefix": "与报告DCF的差异与原文矛盾。 报告列DCF(23E–27E)人民币1,810百万元、PV终值",
+        "context": "与报告DCF的差异与原文矛盾。 报告列DCF(23E–27E)人民币1,810百万元、PV终值3,527百万元、EV 5,336百万元、权益价值5,656百万元、HK$10.95/股；但同页FCF预测行实际延伸至FY28E，且1,810与FCF行采用5年（FY24E–FY28E）逐年折现的称谓不一致。按题设原FCF全取FY24E–FY28E复算，基准DCF不应强求复现机构EV。报告文字将WACC参数描述风险溢价10.6%（正文），同页参数表显示11.0%；本复算按用户指定WACC 12.2%，不自行替代。另损益表FY25E净利润462百万元、FY26E 546百万元（口径整数）",
+        "file": "6b9034d7a256-report.md",
+        "metric": "terminal_value",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "PV终值的写法未识别成终值现值，被识别成未折现终值；报告引用 3,527 正确。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 133,
+      "claim": {
+        "value": "5656",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "5,656",
+        "unitBasis": "explicit_suffix",
+        "where": "6b9034d7a256-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 9,
+        "normalizedColumn": 73,
+        "prefix": "与报告DCF的差异与原文矛盾。 报告列DCF(23E–27E)人民币1,810百万元、PV终值3,527百万元、EV 5,336百万元、权益价值",
+        "context": "与报告DCF的差异与原文矛盾。 报告列DCF(23E–27E)人民币1,810百万元、PV终值3,527百万元、EV 5,336百万元、权益价值5,656百万元、HK$10.95/股；但同页FCF预测行实际延伸至FY28E，且1,810与FCF行采用5年（FY24E–FY28E）逐年折现的称谓不一致。按题设原FCF全取FY24E–FY28E复算，基准DCF不应强求复现机构EV。报告文字将WACC参数描述风险溢价10.6%（正文），同页参数表显示11.0%；本复算按用户指定WACC 12.2%，不自行替代。另损益表FY25E净利润462百万元、FY26E 546百万元（口径整数），精确数461.8/546.1，显示为精度差异；D",
+        "file": "6b9034d7a256-report.md",
+        "metric": "ev",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "“权益价值/权益”的别名未识别，沿用前面的 EV 标签；股权价值含净现金，与 EV 本来不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 135,
+      "claim": {
+        "value": "10.6",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "10.6",
+        "unitBasis": "explicit_suffix",
+        "where": "6b9034d7a256-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 9,
+        "normalizedColumn": 208,
+        "prefix": "与报告DCF的差异与原文矛盾。 报告列DCF(23E–27E)人民币1,810百万元、PV终值3,527百万元、EV 5,336百万元、权益价值5,656百万元、HK$10.95/股；但同页FCF预测行实际延伸至FY28E，且1,810与FCF行采用5年（FY24E–FY28E）逐年折现的称谓不一致。按题设原FCF全取FY24E–FY28E复算，基准DCF不应强求复现机构EV。报告文字将WACC参数描述风险溢价",
+        "context": "95/股；但同页FCF预测行实际延伸至FY28E，且1,810与FCF行采用5年（FY24E–FY28E）逐年折现的称谓不一致。按题设原FCF全取FY24E–FY28E复算，基准DCF不应强求复现机构EV。报告文字将WACC参数描述风险溢价10.6%（正文），同页参数表显示11.0%；本复算按用户指定WACC 12.2%，不自行替代。另损益表FY25E净利润462百万元、FY26E 546百万元（口径整数），精确数461.8/546.1，显示为精度差异；DCF页EBITDA与EBITDA也不同，故本DCF不使用EBITDA重构FCF。",
+        "file": "6b9034d7a256-report.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "WACC 参数讨论中的风险溢价 10.6% 沿用了 WACC 标签；风险溢价并不是 WACC。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 197,
+      "claim": {
+        "value": "8.30",
+        "unit": [
+          "per_share",
+          "CNY",
+          "1"
+        ],
+        "raw": "8.30",
+        "unitBasis": "explicit_suffix",
+        "where": "914384ca8420-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 7,
+        "normalizedColumn": 61,
+        "prefix": "PE复核。 报告TP HK$8.97基于FY25E 10倍PE（）。以FY25E EPS人民币0.83元/股复算为人民币",
+        "context": "PE复核。 报告TP HK$8.97基于FY25E 10倍PE（）。以FY25E EPS人民币0.83元/股复算为人民币8.30元/股，再乘DCF表汇率1.07港元/人民币得HK$8.881/股；与报告HK$8.97差约HK$0.09。报告目标价反推EPS为HK$0.838折人民币/股，差异可由显示EPS取整及报告中汇率/股数精度造成。人民币EPS与港币股价需先换汇。",
+        "file": "914384ca8420-report.md",
+        "metric": "eps",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "EPS 乘 10 倍 PE 后的人民币每股价值 8.30 沿用了前文 EPS 标签，因此被误判成 EPS 放大 10 倍；实际是正确估值结果。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 210,
+      "claim": {
+        "value": "56.4922",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "raw": "56.4922",
+        "unitBasis": "explicit_suffix",
+        "where": "914384ca8420-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 9,
+        "normalizedColumn": 174,
+        "prefix": "独立DCF。 原Unleveraged FCF行FY24E–FY28E为人民币百万元288/512/591/594/626，独立原行使用、不以其他表代换。本模型转为人民币亿元列示。按2023年末估值、年末折现、终值为FY28E FCF×(1+g)/(WACC−g)，EV为人民币53.2922亿元，股权价值加原表净现金人民币3.20亿元后为人民币",
+        "context": "/594/626，独立原行使用、不以其他表代换。本模型转为人民币亿元列示。按2023年末估值、年末折现、终值为FY28E FCF×(1+g)/(WACC−g)，EV为人民币53.2922亿元，股权价值加原表净现金人民币3.20亿元后为人民币56.4922亿元，除以555百万股并乘1.07得HK$10.891/股。敏感性表是港元/股。",
+        "file": "914384ca8420-report.md",
+        "metric": "net_cash",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "“股权价值加净现金后为 56.4922”中的结果沿用了最近的净现金标签；该值实际是股权价值。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 217,
+      "claim": {
+        "value": "56.56",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "raw": "56.56",
+        "unitBasis": "explicit_suffix",
+        "where": "914384ca8420-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 11,
+        "normalizedColumn": 60,
+        "prefix": "与报告及矛盾。 报告列DCF(23E–27E)人民币18.10亿元、终值现值35.27亿元、EV 53.36亿元、权益",
+        "context": "与报告及矛盾。 报告列DCF(23E–27E)人民币18.10亿元、终值现值35.27亿元、EV 53.36亿元、权益56.56亿元、HK$10.95/股（）。独立复算为显式FCF现值18.0868亿元、终值现值35.2055亿元；差额小，来自表内仅显示整数百万、假设精度/舍入及折现区间标注。报告同页折现行标“DCF(23E–27E)”而预测FCF延展到FY28E；且正文WACC风险溢价10.6%，参数区显示11.0%。明确按任务指定12.2% WACC及2%永续增长，不擅自改机构参数。报告DCF的EV等是机构值，独立结果是本次重算。",
+        "file": "914384ca8420-report.md",
+        "metric": "ev",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "“权益价值/权益”的别名未识别，沿用前面的 EV 标签；股权价值含净现金，与 EV 本来不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 219,
+      "claim": {
+        "value": "18.0868",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "raw": "18.0868",
+        "unitBasis": "explicit_suffix",
+        "where": "914384ca8420-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 11,
+        "normalizedColumn": 93,
+        "prefix": "与报告及矛盾。 报告列DCF(23E–27E)人民币18.10亿元、终值现值35.27亿元、EV 53.36亿元、权益56.56亿元、HK$10.95/股（）。独立复算为显式FCF现值",
+        "context": "与报告及矛盾。 报告列DCF(23E–27E)人民币18.10亿元、终值现值35.27亿元、EV 53.36亿元、权益56.56亿元、HK$10.95/股（）。独立复算为显式FCF现值18.0868亿元、终值现值35.2055亿元；差额小，来自表内仅显示整数百万、假设精度/舍入及折现区间标注。报告同页折现行标“DCF(23E–27E)”而预测FCF延展到FY28E；且正文WACC风险溢价10.6%，参数区显示11.0%。明确按任务指定12.2% WACC及2%永续增长，不擅自改机构参数。报告DCF的EV等是机构值，独立结果是本次重算。",
+        "file": "914384ca8420-report.md",
+        "metric": "fcf",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 220,
+      "claim": {
+        "value": "35.2055",
+        "unit": [
+          "money",
+          "CNY",
+          "100000000"
+        ],
+        "raw": "35.2055",
+        "unitBasis": "explicit_suffix",
+        "where": "914384ca8420-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 11,
+        "normalizedColumn": 107,
+        "prefix": "与报告及矛盾。 报告列DCF(23E–27E)人民币18.10亿元、终值现值35.27亿元、EV 53.36亿元、权益56.56亿元、HK$10.95/股（）。独立复算为显式FCF现值18.0868亿元、终值现值",
+        "context": "与报告及矛盾。 报告列DCF(23E–27E)人民币18.10亿元、终值现值35.27亿元、EV 53.36亿元、权益56.56亿元、HK$10.95/股（）。独立复算为显式FCF现值18.0868亿元、终值现值35.2055亿元；差额小，来自表内仅显示整数百万、假设精度/舍入及折现区间标注。报告同页折现行标“DCF(23E–27E)”而预测FCF延展到FY28E；且正文WACC风险溢价10.6%，参数区显示11.0%。明确按任务指定12.2% WACC及2%永续增长，不擅自改机构参数。报告DCF的EV等是机构值，独立结果是本次重算。",
+        "file": "914384ca8420-report.md",
+        "metric": "pv_terminal",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "独立 DCF 计算值被对齐到研报披露值。正确底稿本来就保留两套数值及差异；扫描器缺少计算值/披露值的角色区分，不能要求二者相等。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 221,
+      "claim": {
+        "value": "10.6",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "10.6",
+        "unitBasis": "explicit_suffix",
+        "where": "914384ca8420-report.md",
+        "section": "卡罗特｜招银国际预测与估值复核（）",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 11,
+        "normalizedColumn": 196,
+        "prefix": "与报告及矛盾。 报告列DCF(23E–27E)人民币18.10亿元、终值现值35.27亿元、EV 53.36亿元、权益56.56亿元、HK$10.95/股（）。独立复算为显式FCF现值18.0868亿元、终值现值35.2055亿元；差额小，来自表内仅显示整数百万、假设精度/舍入及折现区间标注。报告同页折现行标“DCF(23E–27E)”而预测FCF延展到FY28E；且正文WACC风险溢价",
+        "context": "/股（）。独立复算为显式FCF现值18.0868亿元、终值现值35.2055亿元；差额小，来自表内仅显示整数百万、假设精度/舍入及折现区间标注。报告同页折现行标“DCF(23E–27E)”而预测FCF延展到FY28E；且正文WACC风险溢价10.6%，参数区显示11.0%。明确按任务指定12.2% WACC及2%永续增长，不擅自改机构参数。报告DCF的EV等是机构值，独立结果是本次重算。",
+        "file": "914384ca8420-report.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "WACC 参数讨论中的风险溢价 10.6% 沿用了 WACC 标签；风险溢价并不是 WACC。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 317,
+      "claim": {
+        "value": "3520.5462055716985",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "eeb7b27e0b13-dcf_bridge.csv.5.PV_RMB_mn",
+        "label": "Terminal value FY28 at FY28",
+        "metric": "terminal_value",
+        "period": "2028",
+        "axes": {},
+        "origin": "delivery",
+        "table": "eeb7b27e0b13-dcf_bridge.csv",
+        "row": 5,
+        "column": "PV_RMB_mn",
+        "artifact": "dcf_bridge.csv",
+        "scenario": null,
+        "file": "eeb7b27e0b13-dcf_bridge.csv",
+        "line": 7
+      },
+      "classification": "unmatched",
+      "reason": "不同脚本以二进制浮点输出的同一终值现值在最后几位存在约 1e-13 百万元差异；按字符串全部小数位比较导致误报，展示精度和金融结论一致。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 318,
+      "claim": {
+        "value": "1808.6784719383752",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "eeb7b27e0b13-dcf_bridge.csv.6.PV_RMB_mn",
+        "label": "PV explicit FCF   ",
+        "metric": "pv_explicit",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "eeb7b27e0b13-dcf_bridge.csv",
+        "row": 6,
+        "column": "PV_RMB_mn",
+        "artifact": "dcf_bridge.csv",
+        "scenario": null,
+        "file": "eeb7b27e0b13-dcf_bridge.csv",
+        "line": 8
+      },
+      "classification": "unmatched",
+      "reason": "独立 DCF 计算值被对齐到研报披露值。正确底稿本来就保留两套数值及差异；扫描器缺少计算值/披露值的角色区分，不能要求二者相等。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "check_index": 320,
+      "claim": {
+        "value": "5649.224677510074",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "eeb7b27e0b13-dcf_bridge.csv.8.PV_RMB_mn",
+        "label": "Equity value incl net cash   ",
+        "metric": "equity_value",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "eeb7b27e0b13-dcf_bridge.csv",
+        "row": 8,
+        "column": "PV_RMB_mn",
+        "artifact": "dcf_bridge.csv",
+        "scenario": null,
+        "file": "eeb7b27e0b13-dcf_bridge.csv",
+        "line": 10
+      },
+      "classification": "wrong_cell",
+      "reason": "独立 DCF 计算值被对齐到研报披露值。正确底稿本来就保留两套数值及差异；扫描器缺少计算值/披露值的角色区分，不能要求二者相等。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 24,
+      "claim": {
+        "value": "11.2",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "11.2",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "敏感性对照",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 20,
+        "normalizedColumn": 18,
+        "prefix": "两版均沿用原题绝对网格：WACC为",
+        "context": "两版均沿用原题绝对网格：WACC为11.2%、12.2%、13.2%，\\(g\\) 为1%、2%、3%。更新版在同一绝对WACC坐标下使用90% FCF；更新后的实际基准WACC为12.7%，不在该敏感性网格内，故其基准价另列于上表。图中两面板使用相同坐标及共同色标。",
+        "file": "answer.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 26,
+      "claim": {
+        "value": "13.2",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "13.2",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "敏感性对照",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 20,
+        "normalizedColumn": 30,
+        "prefix": "两版均沿用原题绝对网格：WACC为11.2%、12.2%、",
+        "context": "两版均沿用原题绝对网格：WACC为11.2%、12.2%、13.2%，\\(g\\) 为1%、2%、3%。更新版在同一绝对WACC坐标下使用90% FCF；更新后的实际基准WACC为12.7%，不在该敏感性网格内，故其基准价另列于上表。图中两面板使用相同坐标及共同色标。",
+        "file": "answer.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 27,
+      "claim": {
+        "value": "1",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "1",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "敏感性对照",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 20,
+        "normalizedColumn": 43,
+        "prefix": "两版均沿用原题绝对网格：WACC为11.2%、12.2%、13.2%，\\(g\\) 为",
+        "context": "两版均沿用原题绝对网格：WACC为11.2%、12.2%、13.2%，\\(g\\) 为1%、2%、3%。更新版在同一绝对WACC坐标下使用90% FCF；更新后的实际基准WACC为12.7%，不在该敏感性网格内，故其基准价另列于上表。图中两面板使用相同坐标及共同色标。",
+        "file": "answer.md",
+        "metric": "g",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 29,
+      "claim": {
+        "value": "3",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "3",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "敏感性对照",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 20,
+        "normalizedColumn": 49,
+        "prefix": "两版均沿用原题绝对网格：WACC为11.2%、12.2%、13.2%，\\(g\\) 为1%、2%、",
+        "context": "两版均沿用原题绝对网格：WACC为11.2%、12.2%、13.2%，\\(g\\) 为1%、2%、3%。更新版在同一绝对WACC坐标下使用90% FCF；更新后的实际基准WACC为12.7%，不在该敏感性网格内，故其基准价另列于上表。图中两面板使用相同坐标及共同色标。",
+        "file": "answer.md",
+        "metric": "g",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 30,
+      "claim": {
+        "value": "90",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "90",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "敏感性对照",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 20,
+        "normalizedColumn": 69,
+        "prefix": "两版均沿用原题绝对网格：WACC为11.2%、12.2%、13.2%，\\(g\\) 为1%、2%、3%。更新版在同一绝对WACC坐标下使用",
+        "context": "两版均沿用原题绝对网格：WACC为11.2%、12.2%、13.2%，\\(g\\) 为1%、2%、3%。更新版在同一绝对WACC坐标下使用90% FCF；更新后的实际基准WACC为12.7%，不在该敏感性网格内，故其基准价另列于上表。图中两面板使用相同坐标及共同色标。",
+        "file": "answer.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "90% 是 FCF 缩放因子，扫描器沿用了前文 WACC 标签；维度虽都是比例，参数语义不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 31,
+      "claim": {
+        "value": "12.7",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "12.7",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "敏感性对照",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 20,
+        "normalizedColumn": 90,
+        "prefix": "两版均沿用原题绝对网格：WACC为11.2%、12.2%、13.2%，\\(g\\) 为1%、2%、3%。更新版在同一绝对WACC坐标下使用90% FCF；更新后的实际基准WACC为",
+        "context": "两版均沿用原题绝对网格：WACC为11.2%、12.2%、13.2%，\\(g\\) 为1%、2%、3%。更新版在同一绝对WACC坐标下使用90% FCF；更新后的实际基准WACC为12.7%，不在该敏感性网格内，故其基准价另列于上表。图中两面板使用相同坐标及共同色标。",
+        "file": "answer.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 45,
+      "claim": {
+        "value": "10.8913",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "raw": "10.8913",
+        "unitBasis": "explicit_prefix",
+        "where": "355c233e9ebd-report.md",
+        "section": "卡罗特DCF局部更新｜WACC上调与FCF下修",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 5,
+        "normalizedColumn": 20,
+        "prefix": "结果与顺序归因。 原情景每股价值HK$",
+        "context": "结果与顺序归因。 原情景每股价值HK$10.8913；仅提高WACC后HK$10.3844；两项修改后HK$9.4076。WACC贡献HK$-0.5069/股，FCF下修贡献HK$-0.9767/股，合计差额HK$-1.4837/股。负贡献表示价值下降。归因顺序为先WACC、后FCF，贡献具有顺序依赖性。",
+        "file": "355c233e9ebd-report.md",
+        "metric": "share_price",
+        "period": null,
+        "axes": {},
+        "scenario": "new",
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 51,
+      "claim": {
+        "value": "11.2",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "11.2",
+        "unitBasis": "explicit_suffix",
+        "where": "355c233e9ebd-report.md",
+        "section": "卡罗特DCF局部更新｜WACC上调与FCF下修",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 7,
+        "normalizedColumn": 25,
+        "prefix": "敏感性对照。 两版敏感性均用原题绝对WACC网格",
+        "context": "敏感性对照。 两版敏感性均用原题绝对WACC网格11.2%、12.2%、13.2%及g网格1%、2%、3%；更新版在相同WACC坐标下使用90% FCF。共同色标与并列图见交付图。注意更新基准WACC为12.7%，不在原绝对WACC网格中；更新后的实际基准价单独列示，不将敏感性网格中心误作12.7%。其余输入不变。",
+        "file": "355c233e9ebd-report.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": "new",
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 53,
+      "claim": {
+        "value": "13.2",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "13.2",
+        "unitBasis": "explicit_suffix",
+        "where": "355c233e9ebd-report.md",
+        "section": "卡罗特DCF局部更新｜WACC上调与FCF下修",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 7,
+        "normalizedColumn": 37,
+        "prefix": "敏感性对照。 两版敏感性均用原题绝对WACC网格11.2%、12.2%、",
+        "context": "敏感性对照。 两版敏感性均用原题绝对WACC网格11.2%、12.2%、13.2%及g网格1%、2%、3%；更新版在相同WACC坐标下使用90% FCF。共同色标与并列图见交付图。注意更新基准WACC为12.7%，不在原绝对WACC网格中；更新后的实际基准价单独列示，不将敏感性网格中心误作12.7%。其余输入不变。",
+        "file": "355c233e9ebd-report.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": "new",
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 54,
+      "claim": {
+        "value": "1",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "1",
+        "unitBasis": "explicit_suffix",
+        "where": "355c233e9ebd-report.md",
+        "section": "卡罗特DCF局部更新｜WACC上调与FCF下修",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 7,
+        "normalizedColumn": 46,
+        "prefix": "敏感性对照。 两版敏感性均用原题绝对WACC网格11.2%、12.2%、13.2%及g网格",
+        "context": "敏感性对照。 两版敏感性均用原题绝对WACC网格11.2%、12.2%、13.2%及g网格1%、2%、3%；更新版在相同WACC坐标下使用90% FCF。共同色标与并列图见交付图。注意更新基准WACC为12.7%，不在原绝对WACC网格中；更新后的实际基准价单独列示，不将敏感性网格中心误作12.7%。其余输入不变。",
+        "file": "355c233e9ebd-report.md",
+        "metric": "g",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": "new",
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 56,
+      "claim": {
+        "value": "3",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "3",
+        "unitBasis": "explicit_suffix",
+        "where": "355c233e9ebd-report.md",
+        "section": "卡罗特DCF局部更新｜WACC上调与FCF下修",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 7,
+        "normalizedColumn": 52,
+        "prefix": "敏感性对照。 两版敏感性均用原题绝对WACC网格11.2%、12.2%、13.2%及g网格1%、2%、",
+        "context": "敏感性对照。 两版敏感性均用原题绝对WACC网格11.2%、12.2%、13.2%及g网格1%、2%、3%；更新版在相同WACC坐标下使用90% FCF。共同色标与并列图见交付图。注意更新基准WACC为12.7%，不在原绝对WACC网格中；更新后的实际基准价单独列示，不将敏感性网格中心误作12.7%。其余输入不变。",
+        "file": "355c233e9ebd-report.md",
+        "metric": "g",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": "new",
+        "origin": "delivery"
+      },
+      "classification": "order_of_magnitude",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 57,
+      "claim": {
+        "value": "90",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "90",
+        "unitBasis": "explicit_suffix",
+        "where": "355c233e9ebd-report.md",
+        "section": "卡罗特DCF局部更新｜WACC上调与FCF下修",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 7,
+        "normalizedColumn": 70,
+        "prefix": "敏感性对照。 两版敏感性均用原题绝对WACC网格11.2%、12.2%、13.2%及g网格1%、2%、3%；更新版在相同WACC坐标下使用",
+        "context": "敏感性对照。 两版敏感性均用原题绝对WACC网格11.2%、12.2%、13.2%及g网格1%、2%、3%；更新版在相同WACC坐标下使用90% FCF。共同色标与并列图见交付图。注意更新基准WACC为12.7%，不在原绝对WACC网格中；更新后的实际基准价单独列示，不将敏感性网格中心误作12.7%。其余输入不变。",
+        "file": "355c233e9ebd-report.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": "new",
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "90% 是 FCF 缩放因子，扫描器沿用了前文 WACC 标签；维度虽都是比例，参数语义不同。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 58,
+      "claim": {
+        "value": "12.7",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "12.7",
+        "unitBasis": "explicit_suffix",
+        "where": "355c233e9ebd-report.md",
+        "section": "卡罗特DCF局部更新｜WACC上调与FCF下修",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 7,
+        "normalizedColumn": 102,
+        "prefix": "敏感性对照。 两版敏感性均用原题绝对WACC网格11.2%、12.2%、13.2%及g网格1%、2%、3%；更新版在相同WACC坐标下使用90% FCF。共同色标与并列图见交付图。注意更新基准WACC为",
+        "context": "敏感性对照。 两版敏感性均用原题绝对WACC网格11.2%、12.2%、13.2%及g网格1%、2%、3%；更新版在相同WACC坐标下使用90% FCF。共同色标与并列图见交付图。注意更新基准WACC为12.7%，不在原绝对WACC网格中；更新后的实际基准价单独列示，不将敏感性网格中心误作12.7%。其余输入不变。",
+        "file": "355c233e9ebd-report.md",
+        "metric": "wacc",
+        "period": null,
+        "axes": {},
+        "role": "grid_axis",
+        "scenario": "new",
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 155,
+      "claim": {
+        "value": "10.891298026911315",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "e53b95678c10-局部更新_参数结果差异.csv.13.旧值",
+        "label": "旧每股价值",
+        "metric": "share_price_change",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "e53b95678c10-局部更新_参数结果差异.csv",
+        "row": 13,
+        "column": "旧值",
+        "artifact": "局部更新_参数结果差异.csv",
+        "scenario": "old",
+        "role": "change",
+        "file": "e53b95678c10-局部更新_参数结果差异.csv",
+        "line": 15
+      },
+      "classification": "wrong_cell",
+      "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "check_index": 157,
+      "claim": {
+        "value": "10.38438427540494",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "where": "e53b95678c10-局部更新_参数结果差异.csv.15.旧值",
+        "label": "中间值（仅提高WACC）",
+        "metric": "share_price_change",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "e53b95678c10-局部更新_参数结果差异.csv",
+        "row": 15,
+        "column": "旧值",
+        "artifact": "局部更新_参数结果差异.csv",
+        "scenario": "old",
+        "role": "change",
+        "file": "e53b95678c10-局部更新_参数结果差异.csv",
+        "line": 17
+      },
+      "classification": "wrong_cell",
+      "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "C1",
+      "check_index": 101,
+      "claim": {
+        "value": "102.791",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "102.791",
+        "unitBasis": "declared_amount_unit",
+        "where": "ffc8241fbf90-report.md",
+        "section": "解读",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 27,
+        "normalizedColumn": 42,
+        "prefix": "- 归母与合并净利接近但不可混同。2025H1归母净利润102.785、合并净利润",
+        "context": "- 归母与合并净利接近但不可混同。2025H1归母净利润102.785、合并净利润102.791；2024H1分别为164.096和164.084（PDF）。",
+        "file": "ffc8241fbf90-report.md",
+        "metric": "net_profit",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "合并净利润被对齐到来源的 adjusted net profit（非 HKFRS）摘要；来源摘要年度也未与 2025H1 合并口径完整对齐。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "C3",
+      "check_index": 50,
+      "claim": {
+        "value": "10.3844",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "raw": "10.3844",
+        "unitBasis": "table_column_header",
+        "where": "7cb70f2cd4d1-report.md",
+        "section": "每股价值与有序归因",
+        "table_header": [
+          " 阶段 ",
+          " WACC ",
+          " FCF乘数 ",
+          " 港币/股 ",
+          " 相对上一步变化 "
+        ],
+        "table_column": 3,
+        "row_label": " 先调WACC ",
+        "line": 21,
+        "normalizedColumn": 27,
+        "prefix": "| 先调WACC | 12.7% | 1.00 | ",
+        "context": "| 先调WACC | 12.7% | 1.00 | 10.3844 | -0.5069 |",
+        "file": "7cb70f2cd4d1-report.md",
+        "metric": "share_price",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "C3",
+      "check_index": 53,
+      "claim": {
+        "value": "9.4076",
+        "unit": [
+          "per_share",
+          "HKD",
+          "1"
+        ],
+        "raw": "9.4076",
+        "unitBasis": "table_column_header",
+        "where": "7cb70f2cd4d1-report.md",
+        "section": "每股价值与有序归因",
+        "table_header": [
+          " 阶段 ",
+          " WACC ",
+          " FCF乘数 ",
+          " 港币/股 ",
+          " 相对上一步变化 "
+        ],
+        "table_column": 3,
+        "row_label": " 再调FCF ",
+        "line": 22,
+        "normalizedColumn": 26,
+        "prefix": "| 再调FCF | 12.7% | 0.90 | ",
+        "context": "| 再调FCF | 12.7% | 0.90 | 9.4076 | -0.9767 |",
+        "file": "7cb70f2cd4d1-report.md",
+        "metric": "share_price",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 4,
+      "claim": {
+        "value": "-37.4",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "37.4",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "卡罗特2025H1｜利润与现金流对照",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 3,
+        "normalizedColumn": 87,
+        "prefix": "结论： 2025H1收入同比下降12.4%，毛利率回落7.73个百分点，经营利润下降50.4%。净财务收益增加22.108百万元，部分抵销了经营利润下滑，合并净利润同比下降",
+        "context": "结论： 2025H1收入同比下降12.4%，毛利率回落7.73个百分点，经营利润下降50.4%。净财务收益增加22.108百万元，部分抵销了经营利润下滑，合并净利润同比下降37.4%。现金转化明显走弱：经营产生现金由130.795百万元降至16.776百万元，经营活动净现金流由流入89.864百万元转为流出18.676百万元。",
+        "file": "answer.md",
+        "metric": "net_profit",
+        "period": null,
+        "axes": {},
+        "surface_value": "37.4",
+        "sign_basis": "explicit_decline_verb",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 46,
+      "claim": {
+        "value": "-37.4",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "37.4",
+        "unitBasis": "explicit_suffix",
+        "where": "550721fba8a2-report.md",
+        "section": "卡罗特2025H1利润与现金流",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 5,
+        "normalizedColumn": 53,
+        "prefix": "结论： 收入收缩、毛利率下行，经营利润同比减半；净财务收益上升部分缓冲了经营利润跌幅，合并净利润同比下降",
+        "context": "结论： 收入收缩、毛利率下行，经营利润同比减半；净财务收益上升部分缓冲了经营利润跌幅，合并净利润同比下降37.4%。现金转化更弱：经营产生现金由正130.795百万元降至16.776百万元，扣除现金利息收入并支付所得税后，经营活动净现金流转为-18.676百万元。",
+        "file": "550721fba8a2-report.md",
+        "metric": "net_profit",
+        "period": null,
+        "axes": {},
+        "surface_value": "37.4",
+        "sign_basis": "explicit_decline_verb",
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 132,
+      "claim": {
+        "value": "16.78",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "16.78",
+        "unitBasis": "table_column_header",
+        "where": "550721fba8a2-report.md",
+        "section": "bridge",
+        "table_header": [
+          " 桥接项 ",
+          " 2025H1（CNY 百万元） ",
+          " 2024H1（CNY 百万元） ",
+          " 银行利息2025H1（CNY 百万元） ",
+          " 银行利息2024H1（CNY 百万元） ",
+          " 所得税现金支出2025H1（CNY 百万元） ",
+          " 所得税现金支出2024H1（CNY 百万元） ",
+          " 经营净现金2025H1（CNY 百万元） ",
+          " 经营净现金2024H1（CNY 百万元） "
+        ],
+        "table_column": 1,
+        "row_label": " 经营产生现金到经营活动净现金流 ",
+        "line": 61,
+        "normalizedColumn": 21,
+        "prefix": "| 经营产生现金到经营活动净现金流 | ",
+        "context": "| 经营产生现金到经营活动净现金流 | 16.78 | 130.80 | 5.72 | 1.22 | -41.18 | -42.15 | -18.68 | 89.86 |",
+        "file": "550721fba8a2-report.md",
+        "metric": "cfo",
+        "period": "2025H1",
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 133,
+      "claim": {
+        "value": "130.80",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "130.80",
+        "unitBasis": "table_column_header",
+        "where": "550721fba8a2-report.md",
+        "section": "bridge",
+        "table_header": [
+          " 桥接项 ",
+          " 2025H1（CNY 百万元） ",
+          " 2024H1（CNY 百万元） ",
+          " 银行利息2025H1（CNY 百万元） ",
+          " 银行利息2024H1（CNY 百万元） ",
+          " 所得税现金支出2025H1（CNY 百万元） ",
+          " 所得税现金支出2024H1（CNY 百万元） ",
+          " 经营净现金2025H1（CNY 百万元） ",
+          " 经营净现金2024H1（CNY 百万元） "
+        ],
+        "table_column": 2,
+        "row_label": " 经营产生现金到经营活动净现金流 ",
+        "line": 61,
+        "normalizedColumn": 29,
+        "prefix": "| 经营产生现金到经营活动净现金流 | 16.78 | ",
+        "context": "| 经营产生现金到经营活动净现金流 | 16.78 | 130.80 | 5.72 | 1.22 | -41.18 | -42.15 | -18.68 | 89.86 |",
+        "file": "550721fba8a2-report.md",
+        "metric": "cfo",
+        "period": "2024H1",
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 134,
+      "claim": {
+        "value": "5.72",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "5.72",
+        "unitBasis": "table_column_header",
+        "where": "550721fba8a2-report.md",
+        "section": "bridge",
+        "table_header": [
+          " 桥接项 ",
+          " 2025H1（CNY 百万元） ",
+          " 2024H1（CNY 百万元） ",
+          " 银行利息2025H1（CNY 百万元） ",
+          " 银行利息2024H1（CNY 百万元） ",
+          " 所得税现金支出2025H1（CNY 百万元） ",
+          " 所得税现金支出2024H1（CNY 百万元） ",
+          " 经营净现金2025H1（CNY 百万元） ",
+          " 经营净现金2024H1（CNY 百万元） "
+        ],
+        "table_column": 3,
+        "row_label": " 经营产生现金到经营活动净现金流 ",
+        "line": 61,
+        "normalizedColumn": 38,
+        "prefix": "| 经营产生现金到经营活动净现金流 | 16.78 | 130.80 | ",
+        "context": "| 经营产生现金到经营活动净现金流 | 16.78 | 130.80 | 5.72 | 1.22 | -41.18 | -42.15 | -18.68 | 89.86 |",
+        "file": "550721fba8a2-report.md",
+        "metric": "cfo",
+        "period": "2025H1",
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 135,
+      "claim": {
+        "value": "1.22",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "1.22",
+        "unitBasis": "table_column_header",
+        "where": "550721fba8a2-report.md",
+        "section": "bridge",
+        "table_header": [
+          " 桥接项 ",
+          " 2025H1（CNY 百万元） ",
+          " 2024H1（CNY 百万元） ",
+          " 银行利息2025H1（CNY 百万元） ",
+          " 银行利息2024H1（CNY 百万元） ",
+          " 所得税现金支出2025H1（CNY 百万元） ",
+          " 所得税现金支出2024H1（CNY 百万元） ",
+          " 经营净现金2025H1（CNY 百万元） ",
+          " 经营净现金2024H1（CNY 百万元） "
+        ],
+        "table_column": 4,
+        "row_label": " 经营产生现金到经营活动净现金流 ",
+        "line": 61,
+        "normalizedColumn": 45,
+        "prefix": "| 经营产生现金到经营活动净现金流 | 16.78 | 130.80 | 5.72 | ",
+        "context": "| 经营产生现金到经营活动净现金流 | 16.78 | 130.80 | 5.72 | 1.22 | -41.18 | -42.15 | -18.68 | 89.86 |",
+        "file": "550721fba8a2-report.md",
+        "metric": "cfo",
+        "period": "2024H1",
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 136,
+      "claim": {
+        "value": "-41.18",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "-41.18",
+        "unitBasis": "table_column_header",
+        "where": "550721fba8a2-report.md",
+        "section": "bridge",
+        "table_header": [
+          " 桥接项 ",
+          " 2025H1（CNY 百万元） ",
+          " 2024H1（CNY 百万元） ",
+          " 银行利息2025H1（CNY 百万元） ",
+          " 银行利息2024H1（CNY 百万元） ",
+          " 所得税现金支出2025H1（CNY 百万元） ",
+          " 所得税现金支出2024H1（CNY 百万元） ",
+          " 经营净现金2025H1（CNY 百万元） ",
+          " 经营净现金2024H1（CNY 百万元） "
+        ],
+        "table_column": 5,
+        "row_label": " 经营产生现金到经营活动净现金流 ",
+        "line": 61,
+        "normalizedColumn": 52,
+        "prefix": "| 经营产生现金到经营活动净现金流 | 16.78 | 130.80 | 5.72 | 1.22 | ",
+        "context": "| 经营产生现金到经营活动净现金流 | 16.78 | 130.80 | 5.72 | 1.22 | -41.18 | -42.15 | -18.68 | 89.86 |",
+        "file": "550721fba8a2-report.md",
+        "metric": "cfo",
+        "period": "2025H1",
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 137,
+      "claim": {
+        "value": "-42.15",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "-42.15",
+        "unitBasis": "table_column_header",
+        "where": "550721fba8a2-report.md",
+        "section": "bridge",
+        "table_header": [
+          " 桥接项 ",
+          " 2025H1（CNY 百万元） ",
+          " 2024H1（CNY 百万元） ",
+          " 银行利息2025H1（CNY 百万元） ",
+          " 银行利息2024H1（CNY 百万元） ",
+          " 所得税现金支出2025H1（CNY 百万元） ",
+          " 所得税现金支出2024H1（CNY 百万元） ",
+          " 经营净现金2025H1（CNY 百万元） ",
+          " 经营净现金2024H1（CNY 百万元） "
+        ],
+        "table_column": 6,
+        "row_label": " 经营产生现金到经营活动净现金流 ",
+        "line": 61,
+        "normalizedColumn": 61,
+        "prefix": "| 经营产生现金到经营活动净现金流 | 16.78 | 130.80 | 5.72 | 1.22 | -41.18 | ",
+        "context": "| 经营产生现金到经营活动净现金流 | 16.78 | 130.80 | 5.72 | 1.22 | -41.18 | -42.15 | -18.68 | 89.86 |",
+        "file": "550721fba8a2-report.md",
+        "metric": "cfo",
+        "period": "2024H1",
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 156,
+      "claim": {
+        "value": "16.776",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "8986c0886525-bridge.csv.0.2025H1（CNY 百万元）",
+        "label": "经营产生现金到经营活动净现金流",
+        "metric": "cfo",
+        "period": "2025H1",
+        "axes": {},
+        "origin": "delivery",
+        "table": "8986c0886525-bridge.csv",
+        "row": 0,
+        "column": "2025H1（CNY 百万元）",
+        "artifact": "bridge.csv",
+        "scenario": null,
+        "file": "8986c0886525-bridge.csv",
+        "line": 2
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 157,
+      "claim": {
+        "value": "130.795",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "8986c0886525-bridge.csv.0.2024H1（CNY 百万元）",
+        "label": "经营产生现金到经营活动净现金流",
+        "metric": "cfo",
+        "period": "2024H1",
+        "axes": {},
+        "origin": "delivery",
+        "table": "8986c0886525-bridge.csv",
+        "row": 0,
+        "column": "2024H1（CNY 百万元）",
+        "artifact": "bridge.csv",
+        "scenario": null,
+        "file": "8986c0886525-bridge.csv",
+        "line": 2
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 158,
+      "claim": {
+        "value": "5.723",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "8986c0886525-bridge.csv.0.银行利息2025H1（CNY 百万元）",
+        "label": "经营产生现金到经营活动净现金流",
+        "metric": "cfo",
+        "period": "2025H1",
+        "axes": {},
+        "origin": "delivery",
+        "table": "8986c0886525-bridge.csv",
+        "row": 0,
+        "column": "银行利息2025H1（CNY 百万元）",
+        "artifact": "bridge.csv",
+        "scenario": null,
+        "file": "8986c0886525-bridge.csv",
+        "line": 2
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 159,
+      "claim": {
+        "value": "1.216",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "8986c0886525-bridge.csv.0.银行利息2024H1（CNY 百万元）",
+        "label": "经营产生现金到经营活动净现金流",
+        "metric": "cfo",
+        "period": "2024H1",
+        "axes": {},
+        "origin": "delivery",
+        "table": "8986c0886525-bridge.csv",
+        "row": 0,
+        "column": "银行利息2024H1（CNY 百万元）",
+        "artifact": "bridge.csv",
+        "scenario": null,
+        "file": "8986c0886525-bridge.csv",
+        "line": 2
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 160,
+      "claim": {
+        "value": "-41.175",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "8986c0886525-bridge.csv.0.所得税现金支出2025H1（CNY 百万元）",
+        "label": "经营产生现金到经营活动净现金流",
+        "metric": "cfo",
+        "period": "2025H1",
+        "axes": {},
+        "origin": "delivery",
+        "table": "8986c0886525-bridge.csv",
+        "row": 0,
+        "column": "所得税现金支出2025H1（CNY 百万元）",
+        "artifact": "bridge.csv",
+        "scenario": null,
+        "file": "8986c0886525-bridge.csv",
+        "line": 2
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 161,
+      "claim": {
+        "value": "-42.147",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "where": "8986c0886525-bridge.csv.0.所得税现金支出2024H1（CNY 百万元）",
+        "label": "经营产生现金到经营活动净现金流",
+        "metric": "cfo",
+        "period": "2024H1",
+        "axes": {},
+        "origin": "delivery",
+        "table": "8986c0886525-bridge.csv",
+        "row": 0,
+        "column": "所得税现金支出2024H1（CNY 百万元）",
+        "artifact": "bridge.csv",
+        "scenario": null,
+        "file": "8986c0886525-bridge.csv",
+        "line": 2
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "check_index": 178,
+      "claim": {
+        "value": "-37.35",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "where": "f1e817071807-compare.csv.0.合并净利润同比（%）",
+        "label": "合并净利润同比（%）",
+        "metric": "net_profit",
+        "period": null,
+        "axes": {},
+        "origin": "delivery",
+        "table": "f1e817071807-compare.csv",
+        "row": 0,
+        "column": "合并净利润同比（%）",
+        "artifact": "compare.csv",
+        "scenario": null,
+        "file": "f1e817071807-compare.csv",
+        "line": 2
+      },
+      "classification": "wrong_cell",
+      "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "E1",
+      "check_index": 21,
+      "claim": {
+        "value": "45.4",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "45.4",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "利润变化与现金转化",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 19,
+        "normalizedColumn": 64,
+        "prefix": "- 毛利承压是利润下降的重要背景。毛利减少人民币113.649百万元，毛利率下降约7.73个百分点。管理层称，品牌业务毛利率由",
+        "context": "- 毛利承压是利润下降的重要背景。毛利减少人民币113.649百万元，毛利率下降约7.73个百分点。管理层称，品牌业务毛利率由45.4%降至35.3%，主要受美国新增关税导致成本上升影响；同时，收入下降而销售成本仅小幅减少，管理层也提及关税和运费增加。[，]",
+        "file": "answer.md",
+        "metric": "gross_margin",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "品牌业务毛利率 45.4%/35.3% 被对齐到集团毛利率；业务分部与合并范围未区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "E1",
+      "check_index": 22,
+      "claim": {
+        "value": "35.3",
+        "unit": [
+          "ratio",
+          "",
+          "0.01"
+        ],
+        "raw": "35.3",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "利润变化与现金转化",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 19,
+        "normalizedColumn": 71,
+        "prefix": "- 毛利承压是利润下降的重要背景。毛利减少人民币113.649百万元，毛利率下降约7.73个百分点。管理层称，品牌业务毛利率由45.4%降至",
+        "context": "- 毛利承压是利润下降的重要背景。毛利减少人民币113.649百万元，毛利率下降约7.73个百分点。管理层称，品牌业务毛利率由45.4%降至35.3%，主要受美国新增关税导致成本上升影响；同时，收入下降而销售成本仅小幅减少，管理层也提及关税和运费增加。[，]",
+        "file": "answer.md",
+        "metric": "gross_margin",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "品牌业务毛利率 45.4%/35.3% 被对齐到集团毛利率；业务分部与合并范围未区分。"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "E1",
+      "check_index": 23,
+      "claim": {
+        "value": "25.533",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "25.533",
+        "unitBasis": "explicit_suffix",
+        "where": "answer.md",
+        "section": "利润变化与现金转化",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 21,
+        "normalizedColumn": 40,
+        "prefix": "- 净财务收益改善了税前利润，但不属于经营利润。2025H1净财务收益为人民币",
+        "context": "- 净财务收益改善了税前利润，但不属于经营利润。2025H1净财务收益为人民币25.533百万元，上年同期为3.425百万元；同期经营利润由193.422百万元降至96.000百万元。管理层称，净财务收益增长主要因为部分现金在2024年下半年转为定期存款、带来较高利息收入。[，]",
+        "file": "answer.md",
+        "metric": "finance_net",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "unmatched",
+      "reason": "当前标签只对齐到来源摘要的上年净财务收益 3.4，未把本期 25.533 与 2025H1 明确绑定；查询来源中摘要与报表期间对应不足。"
+    },
+    {
+      "study": "pi-cowork-postfix-20261007",
+      "label": "G1",
+      "check_index": 119,
+      "claim": {
+        "value": "16.776",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "16.776",
+        "unitBasis": "shared_clause_unit",
+        "where": "b108c486510e-report.md",
+        "section": "利润与现金转换",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 9,
+        "normalizedColumn": 56,
+        "prefix": "现金流量表披露的连接为经营产生现金 + 银行存款利息收入 − 已缴所得税 = 经营活动净现金流：2025H1为",
+        "context": "现金流量表披露的连接为经营产生现金 + 银行存款利息收入 − 已缴所得税 = 经营活动净现金流：2025H1为16.776 + 5.723 − 41.175 = -18.676百万元；2024H1为130.795 + 1.216 − 42.147 = 89.864百万元。报表未提供“经营产生现金”内部调节明细，本分析不推断营运资本、非现金项等原因，也不补造未披露项目。现金流列示的银行存款利息收入与损益表净财务收益范围并不相同。",
+        "file": "b108c486510e-report.md",
+        "metric": "cfo",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    },
+    {
+      "study": "pi-cowork-postfix-20261007",
+      "label": "G1",
+      "check_index": 120,
+      "claim": {
+        "value": "5.723",
+        "unit": [
+          "money",
+          "CNY",
+          "1000000"
+        ],
+        "raw": "5.723",
+        "unitBasis": "shared_clause_unit",
+        "where": "b108c486510e-report.md",
+        "section": "利润与现金转换",
+        "table_header": null,
+        "table_column": null,
+        "row_label": "",
+        "line": 9,
+        "normalizedColumn": 65,
+        "prefix": "现金流量表披露的连接为经营产生现金 + 银行存款利息收入 − 已缴所得税 = 经营活动净现金流：2025H1为16.776 + ",
+        "context": "现金流量表披露的连接为经营产生现金 + 银行存款利息收入 − 已缴所得税 = 经营活动净现金流：2025H1为16.776 + 5.723 − 41.175 = -18.676百万元；2024H1为130.795 + 1.216 − 42.147 = 89.864百万元。报表未提供“经营产生现金”内部调节明细，本分析不推断营运资本、非现金项等原因，也不补造未披露项目。现金流列示的银行存款利息收入与损益表净财务收益范围并不相同。",
+        "file": "b108c486510e-report.md",
+        "metric": "cfo",
+        "period": null,
+        "axes": {},
+        "scenario": null,
+        "origin": "delivery"
+      },
+      "classification": "wrong_cell",
+      "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+    }
+  ],
+  "cases": [
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "B1",
+      "counts": {
+        "exact": 89,
+        "unmatched": 26,
+        "wrong_cell": 1,
+        "order_of_magnitude": 4,
+        "rounding_consistent": 27
+      },
+      "issues": 5,
+      "references": {
+        "registry": 30,
+        "queried_sources": 51,
+        "derived": 0
+      },
+      "artifact": "a5-runs/pi-cowork-acceptance-20261006-B1.json"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "C1",
+      "counts": {
+        "exact": 86,
+        "unmatched": 33,
+        "rounding_consistent": 6,
+        "wrong_cell": 6
+      },
+      "issues": 7,
+      "references": {
+        "registry": 49,
+        "queried_sources": 120,
+        "derived": 2
+      },
+      "artifact": "a5-runs/pi-cowork-acceptance-20261006-C1.json"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "C2",
+      "counts": {
+        "order_of_magnitude": 12,
+        "exact": 63,
+        "rounding_consistent": 9,
+        "unmatched": 21,
+        "wrong_cell": 4
+      },
+      "issues": 17,
+      "references": {
+        "registry": 48,
+        "queried_sources": 312,
+        "derived": 29
+      },
+      "artifact": "a5-runs/pi-cowork-acceptance-20261006-C2.json"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "B2",
+      "counts": {},
+      "issues": 0,
+      "references": {
+        "registry": 0,
+        "queried_sources": 0,
+        "derived": 0
+      },
+      "artifact": "a5-runs/pi-cowork-acceptance-20261006-B2.json"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "F2",
+      "counts": {
+        "exact": 145,
+        "rounding_consistent": 48,
+        "unmatched": 74,
+        "wrong_cell": 9,
+        "order_of_magnitude": 1
+      },
+      "issues": 23,
+      "references": {
+        "registry": 33,
+        "queried_sources": 274,
+        "derived": 20
+      },
+      "artifact": "a5-runs/pi-cowork-acceptance-20261006-F2.json"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "F3",
+      "counts": {
+        "exact": 48,
+        "unmatched": 70,
+        "rounding_consistent": 33
+      },
+      "issues": 0,
+      "references": {
+        "registry": 53,
+        "queried_sources": 0,
+        "derived": 36
+      },
+      "artifact": "a5-runs/pi-cowork-acceptance-20261006-F3.json"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "C3",
+      "counts": {
+        "exact": 79,
+        "unmatched": 45,
+        "rounding_consistent": 12,
+        "wrong_cell": 1
+      },
+      "issues": 1,
+      "references": {
+        "registry": 57,
+        "queried_sources": 0,
+        "derived": 30
+      },
+      "artifact": "a5-runs/pi-cowork-acceptance-20261006-C3.json"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E1",
+      "counts": {
+        "exact": 128,
+        "unmatched": 23,
+        "wrong_cell": 1,
+        "rounding_consistent": 45
+      },
+      "issues": 12,
+      "references": {
+        "registry": 55,
+        "queried_sources": 92,
+        "derived": 1
+      },
+      "artifact": "a5-runs/pi-cowork-acceptance-20261006-E1.json"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D1",
+      "counts": {
+        "unmatched": 30,
+        "exact": 58,
+        "rounding_consistent": 21
+      },
+      "issues": 5,
+      "references": {
+        "registry": 24,
+        "queried_sources": 89,
+        "derived": 1
+      },
+      "artifact": "a5-runs/pi-cowork-acceptance-20261006-D1.json"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D2",
+      "counts": {
+        "exact": 91,
+        "rounding_consistent": 51,
+        "unmatched": 38,
+        "order_of_magnitude": 22
+      },
+      "issues": 23,
+      "references": {
+        "registry": 69,
+        "queried_sources": 509,
+        "derived": 57
+      },
+      "artifact": "a5-runs/pi-cowork-acceptance-20261006-D2.json"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E2",
+      "counts": {
+        "exact": 75,
+        "rounding_consistent": 32,
+        "unmatched": 32,
+        "wrong_cell": 2
+      },
+      "issues": 9,
+      "references": {
+        "registry": 36,
+        "queried_sources": 463,
+        "derived": 20
+      },
+      "artifact": "a5-runs/pi-cowork-acceptance-20261006-E2.json"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "E3",
+      "counts": {
+        "rounding_consistent": 17,
+        "unmatched": 119,
+        "exact": 60,
+        "wrong_cell": 16
+      },
+      "issues": 26,
+      "references": {
+        "registry": 60,
+        "queried_sources": 0,
+        "derived": 28
+      },
+      "artifact": "a5-runs/pi-cowork-acceptance-20261006-E3.json"
+    },
+    {
+      "study": "pi-cowork-acceptance-20261006",
+      "label": "D3",
+      "counts": {
+        "exact": 73,
+        "unmatched": 80,
+        "rounding_consistent": 29
+      },
+      "issues": 0,
+      "references": {
+        "registry": 81,
+        "queried_sources": 0,
+        "derived": 31
+      },
+      "artifact": "a5-runs/pi-cowork-acceptance-20261006-D3.json"
+    },
+    {
+      "study": "pi-cowork-postfix-20261007",
+      "label": "G1",
+      "counts": {
+        "exact": 86,
+        "rounding_consistent": 53,
+        "unmatched": 16,
+        "wrong_cell": 2
+      },
+      "issues": 2,
+      "references": {
+        "registry": 22,
+        "queried_sources": 62,
+        "derived": 1
+      },
+      "artifact": "a5-runs/pi-cowork-postfix-20261007-G1.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A1",
+      "counts": {
+        "rounding_consistent": 35,
+        "unmatched": 44,
+        "wrong_cell": 2,
+        "exact": 70
+      },
+      "issues": 3,
+      "references": {
+        "registry": 75,
+        "queried_sources": 11,
+        "derived": 1
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-A1.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B1",
+      "counts": {
+        "rounding_consistent": 18,
+        "exact": 50,
+        "unmatched": 35
+      },
+      "issues": 0,
+      "references": {
+        "registry": 57,
+        "queried_sources": 0,
+        "derived": 1
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-B1.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "C1",
+      "counts": {
+        "unmatched": 53,
+        "exact": 69,
+        "wrong_cell": 1
+      },
+      "issues": 1,
+      "references": {
+        "registry": 60,
+        "queried_sources": 86,
+        "derived": 0
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-C1.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "C2",
+      "counts": {
+        "rounding_consistent": 24,
+        "unmatched": 57,
+        "exact": 89,
+        "wrong_cell": 6,
+        "order_of_magnitude": 10
+      },
+      "issues": 19,
+      "references": {
+        "registry": 74,
+        "queried_sources": 521,
+        "derived": 68
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-C2.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B2",
+      "counts": {
+        "exact": 222,
+        "rounding_consistent": 44,
+        "unmatched": 36,
+        "order_of_magnitude": 7,
+        "wrong_cell": 16
+      },
+      "issues": 29,
+      "references": {
+        "registry": 83,
+        "queried_sources": 603,
+        "derived": 59
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-B2.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A2",
+      "counts": {
+        "exact": 90,
+        "rounding_consistent": 12,
+        "unmatched": 84,
+        "wrong_cell": 5,
+        "order_of_magnitude": 2
+      },
+      "issues": 12,
+      "references": {
+        "registry": 81,
+        "queried_sources": 581,
+        "derived": 65
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-A2.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "B3",
+      "counts": {
+        "unmatched": 63,
+        "exact": 67,
+        "rounding_consistent": 27,
+        "order_of_magnitude": 4,
+        "wrong_cell": 5
+      },
+      "issues": 15,
+      "references": {
+        "registry": 88,
+        "queried_sources": 0,
+        "derived": 38
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-B3.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "C3",
+      "counts": {
+        "unmatched": 65,
+        "rounding_consistent": 19,
+        "exact": 39,
+        "wrong_cell": 2
+      },
+      "issues": 2,
+      "references": {
+        "registry": 64,
+        "queried_sources": 0,
+        "derived": 27
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-C3.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "A3",
+      "counts": {
+        "exact": 35,
+        "unmatched": 115,
+        "rounding_consistent": 12
+      },
+      "issues": 0,
+      "references": {
+        "registry": 91,
+        "queried_sources": 0,
+        "derived": 63
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-A3.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "E1",
+      "counts": {
+        "exact": 38,
+        "unmatched": 6,
+        "rounding_consistent": 18,
+        "wrong_cell": 2
+      },
+      "issues": 3,
+      "references": {
+        "registry": 14,
+        "queried_sources": 95,
+        "derived": 1
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-E1.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D1",
+      "counts": {
+        "rounding_consistent": 51,
+        "exact": 90,
+        "unmatched": 32,
+        "wrong_cell": 15
+      },
+      "issues": 15,
+      "references": {
+        "registry": 40,
+        "queried_sources": 65,
+        "derived": 0
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-D1.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D2",
+      "counts": {
+        "exact": 76,
+        "rounding_consistent": 12,
+        "unmatched": 127,
+        "wrong_cell": 4,
+        "order_of_magnitude": 2
+      },
+      "issues": 11,
+      "references": {
+        "registry": 72,
+        "queried_sources": 332,
+        "derived": 72
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-D2.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "E2",
+      "counts": {
+        "exact": 70,
+        "wrong_cell": 4,
+        "rounding_consistent": 24,
+        "unmatched": 35,
+        "order_of_magnitude": 2
+      },
+      "issues": 6,
+      "references": {
+        "registry": 49,
+        "queried_sources": 418,
+        "derived": 71
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-E2.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "E3",
+      "counts": {
+        "rounding_consistent": 16,
+        "exact": 47,
+        "unmatched": 47,
+        "order_of_magnitude": 4,
+        "wrong_cell": 12
+      },
+      "issues": 16,
+      "references": {
+        "registry": 87,
+        "queried_sources": 0,
+        "derived": 42
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-E3.json"
+    },
+    {
+      "study": "pi-finance-generalization-20261006",
+      "label": "D3",
+      "counts": {
+        "exact": 27,
+        "unmatched": 120,
+        "rounding_consistent": 19,
+        "order_of_magnitude": 11
+      },
+      "issues": 24,
+      "references": {
+        "registry": 64,
+        "queried_sources": 0,
+        "derived": 27
+      },
+      "artifact": "a5-runs/pi-finance-generalization-20261006-D3.json"
+    }
+  ],
+  "limits": [
+    "47 occurrences cover only the seven requested defect families, not every historical defect.",
+    "Correct-case alerts are false positives against the frozen historical numerical judgments; every alert has an individual diagnosis.",
+    "The denominator is extracted unit-bearing quantities, not a fully annotated true-negative universe.",
+    "No detection of causal correctness, interest-receipt direction, evidence completeness, or text without an identifiable unit.",
+    "Replay restores the last exposed successful revision of each table and only same-run source-tool responses; ambiguous metadata remains unknown."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "merged_branch": "feat/charts-consistency",
+  "incoming_commits": [
+    "bf35d5558911acd0bf00064ea2036cbf7a1bc37a",
+    "21718d3"
+  ],
+  "conflicts_resolved": [
+    "analysis_tables keeps both scenario_bindings and plot_diagnostics out of numeric tables",
+    "core returns both scenario_context and plot_diagnostics"
+  ],
+  "tests": {
+    "delivery_consistency_analysis_tables_display_sums_scenario_tables": {
+      "passed": 24,
+      "skipped": 0
+    },
+    "plot_runtime": {
+      "passed": 9,
+      "skipped": 0,
+      "python": "D:/AI/财报agent-wt/fin-workpapers/.tmp/plot-venv/Scripts/python.exe"
+    },
+    "shared_docker_launch": {
+      "profiles": [
+        "prepared",
+        "financial"
+      ],
+      "passed": 2,
+      "evidence": "a3-shared.json"
+    }
+  },
+  "a5": "No imports/calls in server or service runtime paths; offline scripts/tests only. feedback_enabled=false.",
+  "inherited_limits": "N2 reports 24/24 historical plots rendered, 91 numeric files unchanged; 4 plots retain 8 reported overlaps plus 1 visual axis-line overlap. A5 historical strict-correct false positives 119/2592 (4.59%). Retained as observation-only.",
+  "paid_calls": 0,
+  "restart_3001": 0,
+  "held_out_read": false
+}

@@ -794,6 +794,8 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         runner = self._runner()
         paths = {item['name']: runner.artifact_path(run_id, item['name'], project_id=project_id)
                  for item in state.get('artifacts', []) if Path(item['name']).suffix.lower() in ('.csv', '.json')}
+        plot_path=paths.pop('plot_diagnostics.json',None)
+        plot_diagnostics=json.loads(plot_path.read_text(encoding='utf8')) if plot_path else None
         tables, warnings = collect_tables(paths)
         scenario_context={}
         if 'scenario_bindings.json' in paths:
@@ -804,7 +806,8 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         script=self.store.root/'exports'/project_id/run_id/'analysis.py'
         if not script.is_file():script=runner.root/run_id/'input'/'analysis.py'
         available=parameter_inventory(script.read_text(encoding='utf8')) if script.is_file() else {}
-        return {**state, **scenario_context, 'numeric_tables': {k: table_view(t) for k, t in tables.items()}, 'table_warnings': warnings,'available_params':available}
+        return {**state, **scenario_context, 'numeric_tables': {k: table_view(t) for k, t in tables.items()}, 'table_warnings': warnings,'available_params':available,
+                **({'plot_diagnostics':plot_diagnostics} if plot_diagnostics else {})}
 
     def render_answer(self, project_id, body, tables, charts=None):
         self.store.project(project_id)
