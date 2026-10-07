@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 
 const sha = (bytes: Buffer) => createHash('sha256').update(bytes).digest('hex');
-const csv = (text: string) => { const [head, ...rows] = text.replace(/^﻿/, '').trim().split('\n').map(line => line.split(',')); return rows.map(row => Object.fromEntries(head.map((key, i) => [key, row[i]]))); };
+const csv = (text: string) => { const [head, ...rows] = text.replace(/^﻿/, '').trim().split(/\r?\n/).map(line => line.split(',')); return rows.map(row => Object.fromEntries(head.map((key, i) => [key, row[i]]))); };
 
 test('saving or updating a model delivers its tables, differences and calculator in the same call', { timeout: 120000 }, async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'finance-model-delivery-'));
@@ -112,7 +112,8 @@ test('saving or updating a model delivers its tables, differences and calculator
     // 6. What the model reads back: names of what the user already has, and no instruction to export again.
     const seen: any = modelContext('run_financial_model', second).data;
     assert.deepEqual(seen.delivery, { delivered_to_user: second.data.delivery.files.map((file: any) => file.name) });
-    assert.match(seen.analysis.delivery, /already delivered/);
+    assert.match(seen.analysis.delivery, /delivery.delivered_to_user/);
+    assert.deepEqual(seen.analysis.model_refs, { model: { artifact_id: second.data.id, revision_id: second.data.revision_id } });
     assert.deepEqual(seen.changes.changed_inputs, second.data.changes.changed_inputs);
     assert.equal(seen.spec, undefined);
     // Projecting an already projected result (older history) keeps the same content.

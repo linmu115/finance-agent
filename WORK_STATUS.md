@@ -1,4 +1,14 @@
-# 当前主线：显示加总一致已验收，B4 方案待审（2026-10-07）
+# 当前主线：A3/A5 已合并，B4 已实施验收（2026-10-07）
+
+A3/A5 合并提交 c057c52bad4d5710d81a02bbb630e2385beae753。两组 Docker 均采用 A3 共享布局/对比度处理，相关 33 项测试通过；A5 仅用于离线观察，不接入回答或暴露模型工具，保留已知误报与残余图形问题。
+
+B4 已按批准修改实施。原生 Pi 前后快照确认金融 39 工具、prepared 13 工具及 schema 结构不变，共享占位符、整表嵌入、params/edits 与 get_artifact 在 prepared 可见。完整系统与工具 schema：金融 42,080 → 28,968 字符（-31.16%），粗估 token 15,423 → 9,279（-39.84%）；prepared 12,832 → 9,148 字符（-28.71%），粗估 token 3,529 → 2,798（-20.71%）。粗估并非 tokenizer/实际账单，不宣称真实会话质量提升。
+
+类型检查、构建、Python 42 项和宿主/Pi 9 项通过；首次宿主 1 项失败为测试 CSV 解析器未处理 Windows CRLF，保留原因并仅修测试后定向通过。两组各 3 次实际 Docker 验证基准 10、params 情景 11、edits 修复 22，旧值引用、对比表嵌入及精确 CSV 读取通过。无付费调用，未读 held-out 内容。诊断更正：modelContext 实际提供 analysis.model_refs 与 delivery.delivered_to_user，此前判为过时的两处结论撤回，正确接口已保留。
+
+3001 在活动会话及分析任务均为空时仅重启一次，健康 connected。Docker/WSL 持续运行，12 个已停用 Dify/mineru 容器保持不操作。N2 A 股适配、N3 入库分支等待后续通知合并。详见 [实施与测量](design/a3-a5-b4-implementation-20261007.md)、[验收记录](docs/evidence/a3-a5-b4-20261007/b4-validation.json) 和 [环境记录](docs/evidence/a3-a5-b4-20261007/environment.json)。
+
+# 上轮主线：显示加总一致已验收，B4 方案待审（2026-10-07）
 
 两组共享渲染器按表定义 `sum_relations` 分配显示末位，表格、占位符和工具 display_rows 一致；精确值与 CSV 不变。冻结 B2 贡献及 K1 卡罗特现金桥的 10 个显示关系全部严格相等，prepared/financial 的 Docker report 回放均通过。相关 Python 39 项、宿主/Pi 7 项通过，无新付费调用。3001 确认无活动任务后重启一次并 ready；Docker/WSL 继续保持运行，已停用 Dify/mineru 不操作。
 

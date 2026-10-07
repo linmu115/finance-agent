@@ -1,0 +1,1441 @@
+{
+  "method": "Actual native Pi session snapshots before and after implementation. Unicode code points; rough tokens=ceil(ASCII/4 + non-ASCII). No tokenizer/billing claim; no model inference. Full context includes compact JSON schemas; transport envelope, history and dynamic tool results excluded.",
+  "profiles": {
+    "prepared": {
+      "tools_count": 13,
+      "tool_and_schema_structure_unchanged": true,
+      "shared_entrypoints_visible": true,
+      "before": {
+        "system": {
+          "chars": 813,
+          "rough_tokens": 507
+        },
+        "tool_descriptions": {
+          "chars": 5928,
+          "rough_tokens": 1500
+        },
+        "schema_descriptions": {
+          "chars": 0,
+          "rough_tokens": 0
+        },
+        "instruction_text": {
+          "chars": 6741,
+          "rough_tokens": 2006
+        },
+        "full_context": {
+          "chars": 12832,
+          "rough_tokens": 3529
+        },
+        "tools": {
+          "list_documents": {
+            "description": {
+              "chars": 60,
+              "rough_tokens": 15
+            },
+            "schema_full": {
+              "chars": 110,
+              "rough_tokens": 28
+            },
+            "schema_descriptions": []
+          },
+          "prepare_document_sources": {
+            "description": {
+              "chars": 115,
+              "rough_tokens": 29
+            },
+            "schema_full": {
+              "chars": 214,
+              "rough_tokens": 54
+            },
+            "schema_descriptions": []
+          },
+          "query_research_records": {
+            "description": {
+              "chars": 1075,
+              "rough_tokens": 269
+            },
+            "schema_full": {
+              "chars": 347,
+              "rough_tokens": 87
+            },
+            "schema_descriptions": []
+          },
+          "get_data_catalog": {
+            "description": {
+              "chars": 290,
+              "rough_tokens": 73
+            },
+            "schema_full": {
+              "chars": 588,
+              "rough_tokens": 147
+            },
+            "schema_descriptions": []
+          },
+          "get_document_index": {
+            "description": {
+              "chars": 822,
+              "rough_tokens": 206
+            },
+            "schema_full": {
+              "chars": 749,
+              "rough_tokens": 188
+            },
+            "schema_descriptions": []
+          },
+          "query_financial_data": {
+            "description": {
+              "chars": 614,
+              "rough_tokens": 154
+            },
+            "schema_full": {
+              "chars": 345,
+              "rough_tokens": 87
+            },
+            "schema_descriptions": []
+          },
+          "get_document": {
+            "description": {
+              "chars": 70,
+              "rough_tokens": 18
+            },
+            "schema_full": {
+              "chars": 174,
+              "rough_tokens": 44
+            },
+            "schema_descriptions": []
+          },
+          "get_source_page": {
+            "description": {
+              "chars": 83,
+              "rough_tokens": 21
+            },
+            "schema_full": {
+              "chars": 225,
+              "rough_tokens": 57
+            },
+            "schema_descriptions": []
+          },
+          "get_source_table": {
+            "description": {
+              "chars": 91,
+              "rough_tokens": 23
+            },
+            "schema_full": {
+              "chars": 269,
+              "rough_tokens": 68
+            },
+            "schema_descriptions": []
+          },
+          "search_evidence": {
+            "description": {
+              "chars": 492,
+              "rough_tokens": 123
+            },
+            "schema_full": {
+              "chars": 561,
+              "rough_tokens": 141
+            },
+            "schema_descriptions": []
+          },
+          "run_analysis": {
+            "description": {
+              "chars": 1962,
+              "rough_tokens": 508
+            },
+            "schema_full": {
+              "chars": 1222,
+              "rough_tokens": 306
+            },
+            "schema_descriptions": []
+          },
+          "get_analysis_status": {
+            "description": {
+              "chars": 93,
+              "rough_tokens": 24
+            },
+            "schema_full": {
+              "chars": 166,
+              "rough_tokens": 42
+            },
+            "schema_descriptions": []
+          },
+          "get_artifact": {
+            "description": {
+              "chars": 161,
+              "rough_tokens": 41
+            },
+            "schema_full": {
+              "chars": 331,
+              "rough_tokens": 83
+            },
+            "schema_descriptions": []
+          }
+        }
+      },
+      "after": {
+        "system": {
+          "chars": 550,
+          "rough_tokens": 370
+        },
+        "tool_descriptions": {
+          "chars": 2520,
+          "rough_tokens": 909
+        },
+        "schema_descriptions": {
+          "chars": 0,
+          "rough_tokens": 0
+        },
+        "instruction_text": {
+          "chars": 3070,
+          "rough_tokens": 1279
+        },
+        "full_context": {
+          "chars": 9148,
+          "rough_tokens": 2798
+        },
+        "tools": {
+          "list_documents": {
+            "description": {
+              "chars": 45,
+              "rough_tokens": 12
+            },
+            "schema_full": {
+              "chars": 110,
+              "rough_tokens": 28
+            },
+            "schema_descriptions": []
+          },
+          "prepare_document_sources": {
+            "description": {
+              "chars": 82,
+              "rough_tokens": 21
+            },
+            "schema_full": {
+              "chars": 214,
+              "rough_tokens": 54
+            },
+            "schema_descriptions": []
+          },
+          "query_research_records": {
+            "description": {
+              "chars": 349,
+              "rough_tokens": 151
+            },
+            "schema_full": {
+              "chars": 347,
+              "rough_tokens": 87
+            },
+            "schema_descriptions": []
+          },
+          "get_data_catalog": {
+            "description": {
+              "chars": 173,
+              "rough_tokens": 44
+            },
+            "schema_full": {
+              "chars": 588,
+              "rough_tokens": 147
+            },
+            "schema_descriptions": []
+          },
+          "get_document_index": {
+            "description": {
+              "chars": 129,
+              "rough_tokens": 69
+            },
+            "schema_full": {
+              "chars": 749,
+              "rough_tokens": 188
+            },
+            "schema_descriptions": []
+          },
+          "query_financial_data": {
+            "description": {
+              "chars": 339,
+              "rough_tokens": 85
+            },
+            "schema_full": {
+              "chars": 345,
+              "rough_tokens": 87
+            },
+            "schema_descriptions": []
+          },
+          "get_document": {
+            "description": {
+              "chars": 61,
+              "rough_tokens": 16
+            },
+            "schema_full": {
+              "chars": 174,
+              "rough_tokens": 44
+            },
+            "schema_descriptions": []
+          },
+          "get_source_page": {
+            "description": {
+              "chars": 60,
+              "rough_tokens": 15
+            },
+            "schema_full": {
+              "chars": 225,
+              "rough_tokens": 57
+            },
+            "schema_descriptions": []
+          },
+          "get_source_table": {
+            "description": {
+              "chars": 73,
+              "rough_tokens": 19
+            },
+            "schema_full": {
+              "chars": 269,
+              "rough_tokens": 68
+            },
+            "schema_descriptions": []
+          },
+          "search_evidence": {
+            "description": {
+              "chars": 252,
+              "rough_tokens": 63
+            },
+            "schema_full": {
+              "chars": 561,
+              "rough_tokens": 141
+            },
+            "schema_descriptions": []
+          },
+          "run_analysis": {
+            "description": {
+              "chars": 733,
+              "rough_tokens": 325
+            },
+            "schema_full": {
+              "chars": 1222,
+              "rough_tokens": 306
+            },
+            "schema_descriptions": []
+          },
+          "get_analysis_status": {
+            "description": {
+              "chars": 115,
+              "rough_tokens": 68
+            },
+            "schema_full": {
+              "chars": 166,
+              "rough_tokens": 42
+            },
+            "schema_descriptions": []
+          },
+          "get_artifact": {
+            "description": {
+              "chars": 109,
+              "rough_tokens": 28
+            },
+            "schema_full": {
+              "chars": 331,
+              "rough_tokens": 83
+            },
+            "schema_descriptions": []
+          }
+        }
+      },
+      "reductions": {
+        "instruction_text": {
+          "chars": 0.544578,
+          "rough_tokens": 0.362413
+        },
+        "full_context": {
+          "chars": 0.287095,
+          "rough_tokens": 0.207141
+        }
+      }
+    },
+    "financial": {
+      "tools_count": 39,
+      "tool_and_schema_structure_unchanged": true,
+      "shared_entrypoints_visible": true,
+      "before": {
+        "system": {
+          "chars": 7473,
+          "rough_tokens": 5385
+        },
+        "tool_descriptions": {
+          "chars": 14549,
+          "rough_tokens": 4707
+        },
+        "schema_descriptions": {
+          "chars": 624,
+          "rough_tokens": 473
+        },
+        "instruction_text": {
+          "chars": 22646,
+          "rough_tokens": 10565
+        },
+        "full_context": {
+          "chars": 42080,
+          "rough_tokens": 15423
+        },
+        "tools": {
+          "request_database_operation": {
+            "description": {
+              "chars": 200,
+              "rough_tokens": 151
+            },
+            "schema_full": {
+              "chars": 604,
+              "rough_tokens": 151
+            },
+            "schema_descriptions": []
+          },
+          "read_project_skill": {
+            "description": {
+              "chars": 56,
+              "rough_tokens": 56
+            },
+            "schema_full": {
+              "chars": 106,
+              "rough_tokens": 27
+            },
+            "schema_descriptions": []
+          },
+          "search_web": {
+            "description": {
+              "chars": 166,
+              "rough_tokens": 125
+            },
+            "schema_full": {
+              "chars": 351,
+              "rough_tokens": 94
+            },
+            "schema_descriptions": [
+              {
+                "path": "/properties/as_of",
+                "text": "可选 YYYY-MM-DD 研究截止日期",
+                "chars": 20,
+                "rough_tokens": 11
+              }
+            ]
+          },
+          "fetch_research_source": {
+            "description": {
+              "chars": 83,
+              "rough_tokens": 65
+            },
+            "schema_full": {
+              "chars": 130,
+              "rough_tokens": 33
+            },
+            "schema_descriptions": []
+          },
+          "read_research_source": {
+            "description": {
+              "chars": 108,
+              "rough_tokens": 78
+            },
+            "schema_full": {
+              "chars": 310,
+              "rough_tokens": 78
+            },
+            "schema_descriptions": []
+          },
+          "list_research_sources": {
+            "description": {
+              "chars": 30,
+              "rough_tokens": 30
+            },
+            "schema_full": {
+              "chars": 62,
+              "rough_tokens": 16
+            },
+            "schema_descriptions": []
+          },
+          "run_financial_model": {
+            "description": {
+              "chars": 1228,
+              "rough_tokens": 640
+            },
+            "schema_full": {
+              "chars": 1578,
+              "rough_tokens": 507
+            },
+            "schema_descriptions": [
+              {
+                "path": "/properties/artifact_id",
+                "text": "仅在更新已经保存的成果时填写返回过的ID。新建时省略，由程序生成，不自造ID。",
+                "chars": 39,
+                "rough_tokens": 36
+              },
+              {
+                "path": "/properties/parent_revision_id",
+                "text": "已有成果的父版本；新建时省略。",
+                "chars": 15,
+                "rough_tokens": 15
+              },
+              {
+                "path": "/properties/source_model",
+                "text": "首选只传 {artifact_id}，自动使用该成果最新版本。仅需要固定历史版本时传 revision_id。",
+                "chars": 55,
+                "rough_tokens": 36
+              },
+              {
+                "path": "/properties/source_model/properties/revision_id",
+                "text": "可省略；默认最新版本。固定历史版本时才填写。",
+                "chars": 22,
+                "rough_tokens": 22
+              },
+              {
+                "path": "/properties/order",
+                "text": "更新DCF时用于贡献分解：列出全部变化输入路径（dcf_fcf允许fcf等整组路径）的替换顺序，例如[\"discount.wacc\",\"terminal.growth\"]；交互影响归于后替换项。",
+                "chars": 97,
+                "rough_tokens": 61
+              }
+            ]
+          },
+          "compare_financial_models": {
+            "description": {
+              "chars": 180,
+              "rough_tokens": 111
+            },
+            "schema_full": {
+              "chars": 619,
+              "rough_tokens": 199
+            },
+            "schema_descriptions": [
+              {
+                "path": "/properties/baseline",
+                "text": "首选只传 {artifact_id}，自动使用该成果最新版本。仅需要固定历史版本时传 revision_id。",
+                "chars": 55,
+                "rough_tokens": 36
+              },
+              {
+                "path": "/properties/scenario",
+                "text": "首选只传 {artifact_id}，自动使用该成果最新版本。仅需要固定历史版本时传 revision_id。",
+                "chars": 55,
+                "rough_tokens": 36
+              }
+            ]
+          },
+          "save_research_report": {
+            "description": {
+              "chars": 92,
+              "rough_tokens": 71
+            },
+            "schema_full": {
+              "chars": 583,
+              "rough_tokens": 184
+            },
+            "schema_descriptions": [
+              {
+                "path": "/properties/artifact_id",
+                "text": "仅在更新已经保存的成果时填写返回过的ID。新建时省略，由程序生成，不自造ID。",
+                "chars": 39,
+                "rough_tokens": 36
+              },
+              {
+                "path": "/properties/parent_revision_id",
+                "text": "已有成果的父版本；新建时省略。",
+                "chars": 15,
+                "rough_tokens": 15
+              }
+            ]
+          },
+          "get_research_report_schema": {
+            "description": {
+              "chars": 22,
+              "rough_tokens": 22
+            },
+            "schema_full": {
+              "chars": 154,
+              "rough_tokens": 39
+            },
+            "schema_descriptions": []
+          },
+          "list_research_artifacts": {
+            "description": {
+              "chars": 58,
+              "rough_tokens": 54
+            },
+            "schema_full": {
+              "chars": 62,
+              "rough_tokens": 16
+            },
+            "schema_descriptions": []
+          },
+          "read_research_artifact": {
+            "description": {
+              "chars": 35,
+              "rough_tokens": 35
+            },
+            "schema_full": {
+              "chars": 152,
+              "rough_tokens": 38
+            },
+            "schema_descriptions": []
+          },
+          "list_documents": {
+            "description": {
+              "chars": 60,
+              "rough_tokens": 15
+            },
+            "schema_full": {
+              "chars": 110,
+              "rough_tokens": 28
+            },
+            "schema_descriptions": []
+          },
+          "prepare_document_sources": {
+            "description": {
+              "chars": 115,
+              "rough_tokens": 29
+            },
+            "schema_full": {
+              "chars": 214,
+              "rough_tokens": 54
+            },
+            "schema_descriptions": []
+          },
+          "inspect_document_routing": {
+            "description": {
+              "chars": 222,
+              "rough_tokens": 56
+            },
+            "schema_full": {
+              "chars": 214,
+              "rough_tokens": 54
+            },
+            "schema_descriptions": []
+          },
+          "set_document_profile": {
+            "description": {
+              "chars": 745,
+              "rough_tokens": 187
+            },
+            "schema_full": {
+              "chars": 266,
+              "rough_tokens": 67
+            },
+            "schema_descriptions": []
+          },
+          "save_research_claims": {
+            "description": {
+              "chars": 688,
+              "rough_tokens": 175
+            },
+            "schema_full": {
+              "chars": 1424,
+              "rough_tokens": 356
+            },
+            "schema_descriptions": []
+          },
+          "get_research_ingestion_status": {
+            "description": {
+              "chars": 223,
+              "rough_tokens": 56
+            },
+            "schema_full": {
+              "chars": 405,
+              "rough_tokens": 102
+            },
+            "schema_descriptions": []
+          },
+          "query_research_records": {
+            "description": {
+              "chars": 1075,
+              "rough_tokens": 269
+            },
+            "schema_full": {
+              "chars": 347,
+              "rough_tokens": 87
+            },
+            "schema_descriptions": []
+          },
+          "run_cleaning_script": {
+            "description": {
+              "chars": 449,
+              "rough_tokens": 113
+            },
+            "schema_full": {
+              "chars": 424,
+              "rough_tokens": 106
+            },
+            "schema_descriptions": []
+          },
+          "get_cleaning_result": {
+            "description": {
+              "chars": 385,
+              "rough_tokens": 97
+            },
+            "schema_full": {
+              "chars": 616,
+              "rough_tokens": 154
+            },
+            "schema_descriptions": []
+          },
+          "commit_cleaning_result": {
+            "description": {
+              "chars": 526,
+              "rough_tokens": 132
+            },
+            "schema_full": {
+              "chars": 512,
+              "rough_tokens": 128
+            },
+            "schema_descriptions": []
+          },
+          "get_data_catalog": {
+            "description": {
+              "chars": 290,
+              "rough_tokens": 73
+            },
+            "schema_full": {
+              "chars": 588,
+              "rough_tokens": 147
+            },
+            "schema_descriptions": []
+          },
+          "get_processing_checkpoint": {
+            "description": {
+              "chars": 208,
+              "rough_tokens": 52
+            },
+            "schema_full": {
+              "chars": 330,
+              "rough_tokens": 83
+            },
+            "schema_descriptions": []
+          },
+          "get_document_index": {
+            "description": {
+              "chars": 822,
+              "rough_tokens": 206
+            },
+            "schema_full": {
+              "chars": 749,
+              "rough_tokens": 188
+            },
+            "schema_descriptions": []
+          },
+          "query_financial_data": {
+            "description": {
+              "chars": 614,
+              "rough_tokens": 154
+            },
+            "schema_full": {
+              "chars": 345,
+              "rough_tokens": 87
+            },
+            "schema_descriptions": []
+          },
+          "get_normalization_details": {
+            "description": {
+              "chars": 367,
+              "rough_tokens": 92
+            },
+            "schema_full": {
+              "chars": 547,
+              "rough_tokens": 137
+            },
+            "schema_descriptions": []
+          },
+          "get_document": {
+            "description": {
+              "chars": 70,
+              "rough_tokens": 18
+            },
+            "schema_full": {
+              "chars": 174,
+              "rough_tokens": 44
+            },
+            "schema_descriptions": []
+          },
+          "get_source_page": {
+            "description": {
+              "chars": 83,
+              "rough_tokens": 21
+            },
+            "schema_full": {
+              "chars": 225,
+              "rough_tokens": 57
+            },
+            "schema_descriptions": []
+          },
+          "get_source_table": {
+            "description": {
+              "chars": 91,
+              "rough_tokens": 23
+            },
+            "schema_full": {
+              "chars": 269,
+              "rough_tokens": 68
+            },
+            "schema_descriptions": []
+          },
+          "search_evidence": {
+            "description": {
+              "chars": 492,
+              "rough_tokens": 123
+            },
+            "schema_full": {
+              "chars": 561,
+              "rough_tokens": 141
+            },
+            "schema_descriptions": []
+          },
+          "get_financial_metrics": {
+            "description": {
+              "chars": 223,
+              "rough_tokens": 56
+            },
+            "schema_full": {
+              "chars": 691,
+              "rough_tokens": 173
+            },
+            "schema_descriptions": []
+          },
+          "financial_workpaper": {
+            "description": {
+              "chars": 176,
+              "rough_tokens": 112
+            },
+            "schema_full": {
+              "chars": 655,
+              "rough_tokens": 164
+            },
+            "schema_descriptions": []
+          },
+          "calculate_financial_metrics": {
+            "description": {
+              "chars": 398,
+              "rough_tokens": 100
+            },
+            "schema_full": {
+              "chars": 390,
+              "rough_tokens": 98
+            },
+            "schema_descriptions": []
+          },
+          "run_analysis": {
+            "description": {
+              "chars": 3187,
+              "rough_tokens": 817
+            },
+            "schema_full": {
+              "chars": 1524,
+              "rough_tokens": 381
+            },
+            "schema_descriptions": []
+          },
+          "get_analysis_status": {
+            "description": {
+              "chars": 93,
+              "rough_tokens": 24
+            },
+            "schema_full": {
+              "chars": 166,
+              "rough_tokens": 42
+            },
+            "schema_descriptions": []
+          },
+          "get_artifact": {
+            "description": {
+              "chars": 161,
+              "rough_tokens": 41
+            },
+            "schema_full": {
+              "chars": 331,
+              "rough_tokens": 83
+            },
+            "schema_descriptions": []
+          },
+          "get_research_model_schema": {
+            "description": {
+              "chars": 203,
+              "rough_tokens": 51
+            },
+            "schema_full": {
+              "chars": 166,
+              "rough_tokens": 42
+            },
+            "schema_descriptions": []
+          },
+          "process_documents": {
+            "description": {
+              "chars": 325,
+              "rough_tokens": 190
+            },
+            "schema_full": {
+              "chars": 601,
+              "rough_tokens": 268
+            },
+            "schema_descriptions": [
+              {
+                "path": "/properties/review_existing_only",
+                "text": "仅基于已经入库且核验原文件SHA/原表/抽取来源完整的历史事实复核review_metrics定义；保留原parser版本、数值和日期，不重新解析或清洗。必须同时提供review_metrics，不能force=true；缺来源清晰失败。",
+                "chars": 119,
+                "rough_tokens": 83
+              },
+              {
+                "path": "/properties/force",
+                "text": "用户明确要求重新清洗时设为true；默认复用当前版本的处理结果。",
+                "chars": 32,
+                "rough_tokens": 29
+              },
+              {
+                "path": "/properties/review_metrics",
+                "text": "需依据完整原文复核定义范围的实际指标ID。检查各来源的计量对象、包含/排除条件；必要时由模型拆分，复用已有清洗与期间结果。",
+                "chars": 61,
+                "rough_tokens": 59
+              }
+            ]
+          }
+        }
+      },
+      "after": {
+        "system": {
+          "chars": 2384,
+          "rough_tokens": 1695
+        },
+        "tool_descriptions": {
+          "chars": 6778,
+          "rough_tokens": 2479
+        },
+        "schema_descriptions": {
+          "chars": 405,
+          "rough_tokens": 255
+        },
+        "instruction_text": {
+          "chars": 9567,
+          "rough_tokens": 4429
+        },
+        "full_context": {
+          "chars": 28968,
+          "rough_tokens": 9279
+        },
+        "tools": {
+          "request_database_operation": {
+            "description": {
+              "chars": 180,
+              "rough_tokens": 96
+            },
+            "schema_full": {
+              "chars": 604,
+              "rough_tokens": 151
+            },
+            "schema_descriptions": []
+          },
+          "read_project_skill": {
+            "description": {
+              "chars": 81,
+              "rough_tokens": 21
+            },
+            "schema_full": {
+              "chars": 106,
+              "rough_tokens": 27
+            },
+            "schema_descriptions": []
+          },
+          "search_web": {
+            "description": {
+              "chars": 178,
+              "rough_tokens": 45
+            },
+            "schema_full": {
+              "chars": 348,
+              "rough_tokens": 92
+            },
+            "schema_descriptions": [
+              {
+                "path": "/properties/as_of",
+                "text": "研究截止日 YYYY-MM-DD。",
+                "chars": 17,
+                "rough_tokens": 9
+              }
+            ]
+          },
+          "fetch_research_source": {
+            "description": {
+              "chars": 137,
+              "rough_tokens": 35
+            },
+            "schema_full": {
+              "chars": 130,
+              "rough_tokens": 33
+            },
+            "schema_descriptions": []
+          },
+          "read_research_source": {
+            "description": {
+              "chars": 120,
+              "rough_tokens": 30
+            },
+            "schema_full": {
+              "chars": 310,
+              "rough_tokens": 78
+            },
+            "schema_descriptions": []
+          },
+          "list_research_sources": {
+            "description": {
+              "chars": 59,
+              "rough_tokens": 15
+            },
+            "schema_full": {
+              "chars": 62,
+              "rough_tokens": 16
+            },
+            "schema_descriptions": []
+          },
+          "run_financial_model": {
+            "description": {
+              "chars": 518,
+              "rough_tokens": 224
+            },
+            "schema_full": {
+              "chars": 1497,
+              "rough_tokens": 437
+            },
+            "schema_descriptions": [
+              {
+                "path": "/properties/artifact_id",
+                "text": "更新同一成果才填；新建省略。",
+                "chars": 14,
+                "rough_tokens": 14
+              },
+              {
+                "path": "/properties/parent_revision_id",
+                "text": "已有成果父版本；模型使用同 artifact_id + source_model 可省略；新建省略。",
+                "chars": 50,
+                "rough_tokens": 29
+              },
+              {
+                "path": "/properties/source_model",
+                "text": "只传 {artifact_id} 默认最新；revision_id 固定历史。",
+                "chars": 39,
+                "rough_tokens": 19
+              },
+              {
+                "path": "/properties/source_model/properties/revision_id",
+                "text": "可选，固定历史版本。",
+                "chars": 10,
+                "rough_tokens": 10
+              },
+              {
+                "path": "/properties/order",
+                "text": "全部变化路径的替换顺序；dcf_fcf 可用 fcf 整组，交互归后替换项。",
+                "chars": 38,
+                "rough_tokens": 29
+              }
+            ]
+          },
+          "compare_financial_models": {
+            "description": {
+              "chars": 50,
+              "rough_tokens": 46
+            },
+            "schema_full": {
+              "chars": 587,
+              "rough_tokens": 165
+            },
+            "schema_descriptions": [
+              {
+                "path": "/properties/baseline",
+                "text": "只传 {artifact_id} 默认最新；revision_id 固定历史。",
+                "chars": 39,
+                "rough_tokens": 19
+              },
+              {
+                "path": "/properties/scenario",
+                "text": "只传 {artifact_id} 默认最新；revision_id 固定历史。",
+                "chars": 39,
+                "rough_tokens": 19
+              }
+            ]
+          },
+          "save_research_report": {
+            "description": {
+              "chars": 73,
+              "rough_tokens": 43
+            },
+            "schema_full": {
+              "chars": 593,
+              "rough_tokens": 176
+            },
+            "schema_descriptions": [
+              {
+                "path": "/properties/artifact_id",
+                "text": "更新同一成果才填；新建省略。",
+                "chars": 14,
+                "rough_tokens": 14
+              },
+              {
+                "path": "/properties/parent_revision_id",
+                "text": "已有成果父版本；模型使用同 artifact_id + source_model 可省略；新建省略。",
+                "chars": 50,
+                "rough_tokens": 29
+              }
+            ]
+          },
+          "get_research_report_schema": {
+            "description": {
+              "chars": 14,
+              "rough_tokens": 14
+            },
+            "schema_full": {
+              "chars": 154,
+              "rough_tokens": 39
+            },
+            "schema_descriptions": []
+          },
+          "list_research_artifacts": {
+            "description": {
+              "chars": 30,
+              "rough_tokens": 26
+            },
+            "schema_full": {
+              "chars": 62,
+              "rough_tokens": 16
+            },
+            "schema_descriptions": []
+          },
+          "read_research_artifact": {
+            "description": {
+              "chars": 20,
+              "rough_tokens": 20
+            },
+            "schema_full": {
+              "chars": 152,
+              "rough_tokens": 38
+            },
+            "schema_descriptions": []
+          },
+          "list_documents": {
+            "description": {
+              "chars": 45,
+              "rough_tokens": 12
+            },
+            "schema_full": {
+              "chars": 110,
+              "rough_tokens": 28
+            },
+            "schema_descriptions": []
+          },
+          "prepare_document_sources": {
+            "description": {
+              "chars": 82,
+              "rough_tokens": 21
+            },
+            "schema_full": {
+              "chars": 214,
+              "rough_tokens": 54
+            },
+            "schema_descriptions": []
+          },
+          "inspect_document_routing": {
+            "description": {
+              "chars": 139,
+              "rough_tokens": 35
+            },
+            "schema_full": {
+              "chars": 214,
+              "rough_tokens": 54
+            },
+            "schema_descriptions": []
+          },
+          "set_document_profile": {
+            "description": {
+              "chars": 573,
+              "rough_tokens": 144
+            },
+            "schema_full": {
+              "chars": 266,
+              "rough_tokens": 67
+            },
+            "schema_descriptions": []
+          },
+          "save_research_claims": {
+            "description": {
+              "chars": 198,
+              "rough_tokens": 110
+            },
+            "schema_full": {
+              "chars": 1424,
+              "rough_tokens": 356
+            },
+            "schema_descriptions": []
+          },
+          "get_research_ingestion_status": {
+            "description": {
+              "chars": 170,
+              "rough_tokens": 43
+            },
+            "schema_full": {
+              "chars": 405,
+              "rough_tokens": 102
+            },
+            "schema_descriptions": []
+          },
+          "query_research_records": {
+            "description": {
+              "chars": 349,
+              "rough_tokens": 151
+            },
+            "schema_full": {
+              "chars": 347,
+              "rough_tokens": 87
+            },
+            "schema_descriptions": []
+          },
+          "run_cleaning_script": {
+            "description": {
+              "chars": 164,
+              "rough_tokens": 67
+            },
+            "schema_full": {
+              "chars": 424,
+              "rough_tokens": 106
+            },
+            "schema_descriptions": []
+          },
+          "get_cleaning_result": {
+            "description": {
+              "chars": 192,
+              "rough_tokens": 48
+            },
+            "schema_full": {
+              "chars": 616,
+              "rough_tokens": 154
+            },
+            "schema_descriptions": []
+          },
+          "commit_cleaning_result": {
+            "description": {
+              "chars": 76,
+              "rough_tokens": 59
+            },
+            "schema_full": {
+              "chars": 512,
+              "rough_tokens": 128
+            },
+            "schema_descriptions": []
+          },
+          "get_data_catalog": {
+            "description": {
+              "chars": 173,
+              "rough_tokens": 44
+            },
+            "schema_full": {
+              "chars": 588,
+              "rough_tokens": 147
+            },
+            "schema_descriptions": []
+          },
+          "get_processing_checkpoint": {
+            "description": {
+              "chars": 151,
+              "rough_tokens": 38
+            },
+            "schema_full": {
+              "chars": 330,
+              "rough_tokens": 83
+            },
+            "schema_descriptions": []
+          },
+          "get_document_index": {
+            "description": {
+              "chars": 129,
+              "rough_tokens": 69
+            },
+            "schema_full": {
+              "chars": 749,
+              "rough_tokens": 188
+            },
+            "schema_descriptions": []
+          },
+          "query_financial_data": {
+            "description": {
+              "chars": 339,
+              "rough_tokens": 85
+            },
+            "schema_full": {
+              "chars": 345,
+              "rough_tokens": 87
+            },
+            "schema_descriptions": []
+          },
+          "get_normalization_details": {
+            "description": {
+              "chars": 86,
+              "rough_tokens": 48
+            },
+            "schema_full": {
+              "chars": 547,
+              "rough_tokens": 137
+            },
+            "schema_descriptions": []
+          },
+          "get_document": {
+            "description": {
+              "chars": 61,
+              "rough_tokens": 16
+            },
+            "schema_full": {
+              "chars": 174,
+              "rough_tokens": 44
+            },
+            "schema_descriptions": []
+          },
+          "get_source_page": {
+            "description": {
+              "chars": 60,
+              "rough_tokens": 15
+            },
+            "schema_full": {
+              "chars": 225,
+              "rough_tokens": 57
+            },
+            "schema_descriptions": []
+          },
+          "get_source_table": {
+            "description": {
+              "chars": 73,
+              "rough_tokens": 19
+            },
+            "schema_full": {
+              "chars": 269,
+              "rough_tokens": 68
+            },
+            "schema_descriptions": []
+          },
+          "search_evidence": {
+            "description": {
+              "chars": 252,
+              "rough_tokens": 63
+            },
+            "schema_full": {
+              "chars": 561,
+              "rough_tokens": 141
+            },
+            "schema_descriptions": []
+          },
+          "get_financial_metrics": {
+            "description": {
+              "chars": 121,
+              "rough_tokens": 31
+            },
+            "schema_full": {
+              "chars": 691,
+              "rough_tokens": 173
+            },
+            "schema_descriptions": []
+          },
+          "financial_workpaper": {
+            "description": {
+              "chars": 110,
+              "rough_tokens": 67
+            },
+            "schema_full": {
+              "chars": 655,
+              "rough_tokens": 164
+            },
+            "schema_descriptions": []
+          },
+          "calculate_financial_metrics": {
+            "description": {
+              "chars": 317,
+              "rough_tokens": 80
+            },
+            "schema_full": {
+              "chars": 390,
+              "rough_tokens": 98
+            },
+            "schema_descriptions": []
+          },
+          "run_analysis": {
+            "description": {
+              "chars": 998,
+              "rough_tokens": 404
+            },
+            "schema_full": {
+              "chars": 1524,
+              "rough_tokens": 381
+            },
+            "schema_descriptions": []
+          },
+          "get_analysis_status": {
+            "description": {
+              "chars": 115,
+              "rough_tokens": 68
+            },
+            "schema_full": {
+              "chars": 166,
+              "rough_tokens": 42
+            },
+            "schema_descriptions": []
+          },
+          "get_artifact": {
+            "description": {
+              "chars": 109,
+              "rough_tokens": 28
+            },
+            "schema_full": {
+              "chars": 331,
+              "rough_tokens": 83
+            },
+            "schema_descriptions": []
+          },
+          "get_research_model_schema": {
+            "description": {
+              "chars": 38,
+              "rough_tokens": 26
+            },
+            "schema_full": {
+              "chars": 166,
+              "rough_tokens": 42
+            },
+            "schema_descriptions": []
+          },
+          "process_documents": {
+            "description": {
+              "chars": 198,
+              "rough_tokens": 88
+            },
+            "schema_full": {
+              "chars": 484,
+              "rough_tokens": 163
+            },
+            "schema_descriptions": [
+              {
+                "path": "/properties/review_existing_only",
+                "text": "配合 review_metrics 仅复核已有定义，保留解析/数值/期间；不能 force=true。",
+                "chars": 51,
+                "rough_tokens": 30
+              },
+              {
+                "path": "/properties/force",
+                "text": "仅用户明确要求重洗时开启。",
+                "chars": 13,
+                "rough_tokens": 13
+              },
+              {
+                "path": "/properties/review_metrics",
+                "text": "待复核定义范围的实际 metric ID；按完整原文判断范围。",
+                "chars": 31,
+                "rough_tokens": 24
+              }
+            ]
+          }
+        }
+      },
+      "reductions": {
+        "instruction_text": {
+          "chars": 0.577541,
+          "rough_tokens": 0.580786
+        },
+        "full_context": {
+          "chars": 0.311597,
+          "rough_tokens": 0.398366
+        }
+      }
+    }
+  }
+}

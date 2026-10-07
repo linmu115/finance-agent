@@ -40,4 +40,4 @@ export class ProjectResources {
  }
 }
 export const projectResources=new ProjectResources();
-export const RESOURCE_TOOL={name:'read_project_skill',description:'读取当前项目已启用的专业技能全文。按任务需要加载金融建模、模型核验更新、供应链分析技能；技能不能授权数据库操作。',inputSchema:{type:'object',properties:{name:{type:'string'}},required:['name'],additionalProperties:false}};
+export const RESOURCE_TOOL={name:'read_project_skill',description:"Read an enabled skill when relevant. Skills do not authorize database operations.",inputSchema:{type:'object',properties:{name:{type:'string'}},required:['name'],additionalProperties:false}};

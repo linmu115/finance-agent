@@ -71,7 +71,9 @@ test('real Pi/MCP evaluation isolates generic tools and accounts every main/brid
    assert.deepEqual(new Set(request.tools.map((tool:any)=>tool.function.name)),GENERIC_TOOL_ALLOWLIST);assert(!String(request.messages[0]?.content).includes('LangExtract'));
    const analysis=request.tools.find((tool:any)=>tool.function.name==='run_analysis').function;
    assert(!analysis.description.includes('Finance:'));
-   assert(analysis.description.includes('Noto Sans CJK JP'));
+   assert(analysis.description.includes('{{table:表名}}'));
+   assert(analysis.description.includes('source_run_id+params'));
+   assert(analysis.description.includes('get_artifact'));
    assert.equal(analysis.parameters.properties.model_refs,undefined);
   }
   const denied=await manager.start(await chat('raw'),'generic third',[],undefined,budget('generic','shared-raw',2));

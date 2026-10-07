@@ -1,5 +1,7 @@
 # B4 逐段审阅（待审，不修改运行时）
 
+> 归档更正：下文关于 analysis.model_refs 和 delivery.delivered_to_user 无效的判断只检查了宿主原始返回，遗漏 model-context.ts 的模型可见投影，现已撤回。原文与当时逐段审阅保留；最终接口、A3 后的图形要求和部署测量见 [实施记录](a3-a5-b4-implementation-20261007.md)。
+
 原文取自 current-context.json 的真实 Pi 会话快照；段号按非空行从 0 起。可删表示可从重复主提示中移除，必要接口入口仍保留。领域判断与安全授权不作为机械规则删除。每段全文保留，便于审阅实际删改。
 
 ## prepared 系统文本

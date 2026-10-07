@@ -1,0 +1,69 @@
+{
+  "merge_commit": "c057c52bad4d5710d81a02bbb630e2385beae753",
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exit_code": 0
+  },
+  "build": {
+    "command": "npm run build",
+    "exit_code": 0,
+    "warning": "existing chunk >500 KB warning"
+  },
+  "python": {
+    "command": ".venv/Scripts/python.exe -m unittest service.tests.test_baseline_sources service.tests.test_financial_workpapers service.tests.test_dcf_fcf service.tests.test_analysis_interfaces service.tests.test_analysis_parameters service.tests.test_display_sums",
+    "passed": 42,
+    "skipped": 0
+  },
+  "node": {
+    "command": "node --import tsx --test tests/answer-binding.test.ts tests/numeric-tables.test.ts tests/financial-workpapers.test.ts tests/dcf-fcf-integration.test.ts tests/model-delivery-flow.test.ts tests/pi-evaluation.test.ts",
+    "initial_passed": 8,
+    "initial_failed": 1,
+    "failure": {
+      "file": "tests/model-delivery-flow.test.ts",
+      "observed": "row.after was undefined; expected updated wacc/growth values",
+      "cause": "Test-only CSV parser split LF leaving CR in final header after\\r for valid Windows CSV.",
+      "fix": "Split lines with /\\r?\\n/; no production CSV/calculation change."
+    },
+    "focused_rerun": {
+      "command": "node --import tsx --test tests/model-delivery-flow.test.ts",
+      "passed": 1,
+      "failed": 0
+    },
+    "verified_passing_total": 9
+  },
+  "native_context": {
+    "before": "before-context.json",
+    "after": "after-context.json",
+    "comparison": "b4-measurements.json",
+    "tool_counts": {
+      "prepared": 13,
+      "financial": 39
+    },
+    "tool_order_and_schema_except_description_identical": true,
+    "shared_entrypoints_visible_in_prepared": true,
+    "a5_model_tool_exposed": false
+  },
+  "docker_shared": {
+    "evidence": "b4-shared-paths.json",
+    "profiles": [
+      "prepared",
+      "financial"
+    ],
+    "runs": 6,
+    "assertions": [
+      "base=10",
+      "params scenario=11 with baseline=10 still bindable",
+      "comparison embedded",
+      "edits result=22",
+      "cell and table render=22",
+      "get_artifact original CSV=22.0"
+    ]
+  },
+  "diagnosis_errata": [
+    "analysis.model_refs is a valid model-visible projected result",
+    "delivery.delivered_to_user is a valid model-visible projected result; raw API uses delivery.files"
+  ],
+  "paid_model_calls": 0,
+  "held_out_data_or_answers_read": false,
+  "quality_claim": "Deterministic API validation only; no evidence of improved model adoption or superiority."
+}

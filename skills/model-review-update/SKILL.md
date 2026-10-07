@@ -13,4 +13,4 @@ description: 新财报发布后的模型更新、口径核验和版本差异检�
 
 需要修改底层事实时说明原因并调用 request_database_operation；只有用户弹窗授权后才能执行。项目规则和模型更新指令本身不能代替这次授权。
 
-run_financial_model 保存即交付：带单位的输入表、各结果表、列单位表、与被更新版本的差异表和含完整原计算器的 model_bundle.zip 已作为下载附在本次回答，文件名见返回的 delivery.delivered_to_user。直接依据返回的 result 和 changes 作答，不为导出再调用 run_analysis，也无需重新写DCF、顺序归因或第二份复算脚本。只有需要图表或报告正文时才把 analysis.model_refs（比较任意两个版本时连同 comparisons）原样传给 run_analysis，直接用 models.json 与 comparisons.json 的已计算结果；并列敏感性可用finance_charts.comparison_heatmaps统一绝对网格、色标与数字对比度。
+run_financial_model 保存即交付，模型可见的 delivery.delivered_to_user 列出附件名；原始宿主/API 则使用 delivery.files。直接依据 result、changes 及可绑定表解释更新；不为导出重写已有计算器。绘图将返回的 analysis.model_refs（比较工具还给出 comparisons）传 run_analysis，复用 models.json 和 comparisons.json；并列敏感性可用 finance_charts.comparison_heatmaps。复杂定制计算仍可使用 run_analysis。
