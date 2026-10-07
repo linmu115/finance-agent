@@ -336,9 +336,11 @@ def report_sources(report):
 
 def financial_workpaper(service, project_id, kind='statement_analysis', **options):
     service.store.project(project_id)
-    if kind != 'statement_analysis':
-        raise WorkpaperInputError('kind 当前支持 statement_analysis；其他计算核心尚在实现')
+    from .workpaper_audit import report_audit
+    builders={'statement_analysis':statement_analysis,'report_audit':report_audit}
+    if kind not in builders:
+        raise WorkpaperInputError('kind 当前支持 '+', '.join(builders))
     with localcontext() as ctx:
         ctx.prec = 40
-        report, records = statement_analysis(service, project_id, **options)
+        report, records = builders[kind](service, project_id, **options)
         return publish(service, project_id, kind, report, records)
