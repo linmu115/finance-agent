@@ -1,0 +1,66 @@
+{
+  "conversation_id": "58a82940-e525-4fd0-815d-658777d5f811",
+  "run_id": "8cc0fa7e-f5c6-475e-a1c6-5c9059b44573",
+  "status": "completed",
+  "tools": [
+    "run_analysis",
+    "get_analysis_status",
+    "run_analysis",
+    "get_analysis_status"
+  ],
+  "numeric_tables_visible": true,
+  "analysis_statuses": [
+    "failed",
+    "succeeded"
+  ],
+  "initial_error": "Traceback (most recent call last):\n  File \"/opt/finance/entrypoint.py\", line 11, in <module>\n    runpy.run_path('/input/__analysis__.py', run_name='__main__')\n  File \"<frozen runpy>\", line 287, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/input/__analysis__.py\", line 14, in <module>\n    deliver()\n  File \"/input/analysis_report.py\", line 387, in deliver\n    compiled = compile_report(report, records, models)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/input/analysis_report.py\", line 211, in compile_report\n    displayed[key] = convert(quantity['value'], quantity['unit'], col['unit'])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/input/analysis_report.py\", line 94, in convert\n    raise ValueError(f'不能把 {source_unit} 换算为 {display_unit}；百分比与百分点、金额与每股金额分别处理')\nValueError: 不能把 个百分点 换算为 %；百分比与百分点、金额与每股金额分别处理\n",
+  "answer": "- 本期毛利率：**33.65%**\n- 较上期变化：**下降 7.73 个百分点**\n\n[下载 CSV：comparison.csv](sandbox:/output/comparison.csv)",
+  "usage": {
+    "input": 66048,
+    "output": 1482,
+    "calls": 6,
+    "costUsd": 0.0031064400000000007,
+    "uncachedInput": 18944,
+    "cacheRead": 47104,
+    "cacheWrite": 0,
+    "reasoning": 591,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 581,
+        "output": 38,
+        "calls": 1,
+        "costUsd": 7.71e-05,
+        "uncachedInput": 581,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 581,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 65467,
+        "output": 1444,
+        "calls": 5,
+        "costUsd": 0.0030293400000000006,
+        "uncachedInput": 18363,
+        "cacheRead": 47104,
+        "cacheWrite": 0,
+        "reasoning": 591,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 65467,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 66048,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "limits": "One real conversation. First attempt mixed % and pp and failed; model rewrote. Custom stdout only written, but report wrapper also printed numbers, so this smoke does not isolate the new table field as the sole answer source. Cost is Pi catalogue estimate, not bill; no superiority claim."
+}
