@@ -21,6 +21,11 @@ class MCPProtocolTest(unittest.IsolatedAsyncioTestCase):
                     await session.initialize()
                     tools=await session.list_tools()
                     self.assertIn("get_financial_metrics",[t.name for t in tools.tools])
+                    saved={t['name']:t for t in json.loads((Path(__file__).resolve().parents[1]/'tool-schema.json').read_text(encoding='utf8'))}
+                    for tool in tools.tools:
+                        if tool.name in {'begin_script_cleaning','get_cleaning_batch','get_cleaning_progress','set_document_profile','run_cleaning_script','get_cleaning_result'}:
+                            self.assertEqual(tool.inputSchema,saved[tool.name]['inputSchema'])
+                            self.assertEqual(tool.description,saved[tool.name]['description'])
                     created=await session.call_tool("create_project",{"project_id":"proto","name":"Protocol test"})
                     self.assertEqual(created.structuredContent["status"],"ok")
                     # Real wire error must carry match information, not just ValueError.

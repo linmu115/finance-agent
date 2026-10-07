@@ -238,8 +238,8 @@ class ScriptCleaningTests(unittest.TestCase):
         from service.cleaning_sdk import Cleaner
         cleaner=Cleaner.__new__(Cleaner)
         cleaner.source={'company':'Test'};cleaner.tables={0:{'rows':[['Revenue','100','80']]}};cleaner.results={}
-        with self.assertRaisesRegex(ValueError,'both skip_rows and row_overrides'):
-            cleaner.map_table(0,[{'column':2,'period':'2025-H1'}],statement='income',scope='consolidated_IFRS',currency='CNY',unit='千元',skip_rows={1:'header'},row_overrides={1:{'metric':'revenue'}})
+        cleaner.map_table(0,[{'column':2,'period':'2025-H1'}],statement='income',scope='consolidated_IFRS',currency='CNY',unit='千元',skip_rows={1:'header'},row_overrides={1:{'metric':'revenue'}})
+        self.assertIn('both skip_rows and row_overrides',cleaner.results[0]['mapping_error'])
 
     def test_per_share_metric_cannot_inherit_table_money_unit(self):
         self.payload['tables'][0]['rows'][0]['attributes']['metric']='basic_earnings_per_share'

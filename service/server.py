@@ -22,6 +22,10 @@ async def call(method, **kwargs):
             return response({'error':'service_shutting_down'},status='error')
         return await asyncio.to_thread(getattr(service,method), **kwargs)
     except Exception as exc:
+        from .document_identity import ProfileEvidenceError
+        from .script_cleaning import CleaningToolError
+        if isinstance(exc,(ProfileEvidenceError,CleaningToolError)):
+            return response({'error':str(exc),'details':exc.details},status='error')
         if isinstance(exc,AnalysisEditError):
             d=exc.details
             return response({"error":f"{exc}: edit {d['edit_index']} matched {d['matches']} occurrences. {d['hint']}","details":d},status="error")
@@ -72,9 +76,19 @@ async def start_document_processing(project_id: str, document_ids: list[str], ow
     return await call("start_document_processing",project_id=project_id,document_ids=document_ids,owner_run_id=owner_run_id,runtime=runtime)
 
 @mcp.tool()
-async def begin_script_cleaning(project_id: str, document_ids: list[str], owner_run_id: str, model: str, force: bool=False, require_profile: bool=False) -> dict[str, Any]:
+async def begin_script_cleaning(project_id: str, document_ids: list[str], owner_run_id: str, model: str, force: bool=False, require_profile: bool=False, source_budget_chars: int=24000) -> dict[str, Any]:
     """Host starts or resumes a financial Python cleaning attempt; returns its schema and source inventory."""
-    return await call('begin_script_cleaning',project_id=project_id,document_ids=document_ids,owner_run_id=owner_run_id,model=model,force=force,require_profile=require_profile)
+    return await call('begin_script_cleaning',project_id=project_id,document_ids=document_ids,owner_run_id=owner_run_id,model=model,force=force,require_profile=require_profile,source_budget_chars=source_budget_chars)
+
+@mcp.tool()
+async def get_cleaning_batch(project_id: str, processing_id: str, document_id: str | None=None) -> dict[str, Any]:
+    """Read the next structural batch's complete numbered rows, headings and page context. Follow the Cleaner guide returned by process_documents; full geometry and surrounding pages remain available via source tools."""
+    return await call('get_cleaning_batch',project_id=project_id,processing_id=processing_id,document_id=document_id)
+
+@mcp.tool()
+async def get_cleaning_progress(project_id: str, processing_id: str) -> dict[str, Any]:
+    """Host continuation: compact persisted table/page progress and next structural batch, without reloading the source or script guide."""
+    return await call('get_cleaning_progress',project_id=project_id,processing_id=processing_id)
 
 @mcp.tool()
 async def inspect_document_routing(project_id: str, document_ids: list[str]) -> dict[str, Any]:
@@ -83,7 +97,7 @@ async def inspect_document_routing(project_id: str, document_ids: list[str]) -> 
 
 @mcp.tool()
 async def set_document_profile(project_id: str, document_id: str, profile: dict[str, Any]) -> dict[str, Any]:
-    """Save source-grounded profile: kind=financial_report|broker_research|industry_research|mixed|other; title; publisher; authors; published_at ISO date; evidence[{field:kind|publisher|authors|published_at,page,quote}]; entities[{name,kind:company|industry|product|region|other,aliases:[],identifiers:{exchange,ticker,lei,isin},evidence:{page,quote}}]. Unknown publisher/date=null, authors=[]. broker_research means company research; industry_research means sector research. Names/IDs must occur in quotes; omit unknown IDs. Changed profiles require revisiting affected records."""
+    """Save source-grounded profile: kind=financial_report|broker_research|industry_research|mixed|other; title; publisher; authors; published_at ISO date; evidence[{field:kind|publisher|authors|published_at,page,quote}]; entities[{name,kind:company|industry|product|region|other,aliases:[],identifiers:{exchange,ticker,lei,isin},evidence:[{page,quote}]}]. Entity evidence accepts one quote object or multiple pages for name/ticker; routing/errors provide identity_candidates. Unknown publisher/date=null, authors=[]; omit unknown IDs. broker_research means company research; industry_research means sector research. Names/IDs must occur in quotes. Changed profiles require revisiting affected records."""
     return await call('set_document_profile',project_id=project_id,document_id=document_id,profile=profile)
 
 class ResearchClaim(TypedDict):
@@ -120,7 +134,7 @@ async def query_research_records(project_id: str, filters: dict[str, Any] | None
 
 @mcp.tool()
 async def run_cleaning_script(project_id: str, processing_id: str, document_id: str, code: str, script_refs: list[str] | None = None) -> dict[str, Any]:
-    """沙箱执行清洗 Python：读 /input/cleaning_source.json 和 cleaning_sdk.py，写 /output/cleaning_result.json。script_refs=[run_id] 复用同项目 /input/cleaning_<run_id>.py。保留坐标、按需分批；无主库访问。"""
+    """沙箱执行一批 Cleaner 脚本：读 /input/cleaning_source.json 和 cleaning_sdk.py，写 /output/cleaning_result.json；无主库访问。返回 run_id 和校验摘要，ready 后直接 commit_cleaning_result；有效表独立提交，失败表留原错误。未完成或需细节才 get_cleaning_result。script_refs=[run_id] 复用同项目 /input/cleaning_<run_id>.py/.json。"""
     return await call('run_cleaning_script',project_id=project_id,processing_id=processing_id,document_id=document_id,code=code,script_refs=script_refs)
 
 @mcp.tool()

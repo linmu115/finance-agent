@@ -164,15 +164,17 @@ def materialize(extractions, batch, document_id, model):
         attrs=ex["attributes"]; table=allowed[t]["table"]; row=table["rows"][r-1]
         row_metric=str(attrs.get("metric", ""))
         columns=_json(attrs.get("columns_json"),[]) or _json(schema.get("columns_json"),[])
+        unresolved={c.get('column') for c in _json(attrs.get('unresolved_cells_json'),[]) if c.get('reason')}
+        columns=[c for c in columns if c.get('column') not in unresolved]
         if _json(attrs.get("columns_json"),[]):
             declared={int(c['column']) for c in columns if isinstance(c,dict) and str(c.get('column','')).isdigit()}
             for default in _json(schema.get('columns_json'),[]):
                 if not isinstance(default,dict) or not str(default.get('column','')).isdigit():continue
                 column=int(default['column'])
-                if column not in declared and 1<=column<=len(row) and numeric_candidate(str(row[column-1])):
+                if column not in declared|unresolved and 1<=column<=len(row) and numeric_candidate(str(row[column-1])):
                     issues.append({'table':t,'row':r,'column':column,'reason':'incomplete_column_override','instruction':'行级覆盖遗漏了表级已定义且源格有数值的列。columns_json须给出全部列的完整定义，不能只写同比或改动列。'})
         numeric_columns=[col for col in columns if isinstance(col,dict) and str(col.get("column","")).isdigit() and 1<=int(col["column"])<=len(row) and _source_number(str(row[int(col["column"])-1]),col)[0] is not None]
-        if not numeric_columns and any(numeric_candidate(value) for value in row):
+        if not numeric_columns and not unresolved and any(numeric_candidate(value) for value in row):
             issues.append({"table":t,"row":r,"reason":"missing_numeric_columns"})
         for column in columns:
             if not isinstance(column,dict):continue

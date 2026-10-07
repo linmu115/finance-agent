@@ -198,6 +198,11 @@
           "default": false,
           "title": "Require Profile",
           "type": "boolean"
+        },
+        "source_budget_chars": {
+          "default": 24000,
+          "title": "Source Budget Chars",
+          "type": "integer"
         }
       },
       "required": [
@@ -247,7 +252,7 @@
   },
   {
     "name": "set_document_profile",
-    "description": "Save source-grounded profile: kind=financial_report|broker_research|industry_research|mixed|other; title; publisher; authors; published_at ISO date; evidence[{field:kind|publisher|authors|published_at,page,quote}]; entities[{name,kind:company|industry|product|region|other,aliases:[],identifiers:{exchange,ticker,lei,isin},evidence:{page,quote}}]. Unknown publisher/date=null, authors=[]. broker_research means company research; industry_research means sector research. Names/IDs must occur in quotes; omit unknown IDs. Changed profiles require revisiting affected records.",
+    "description": "Save source-grounded profile: kind=financial_report|broker_research|industry_research|mixed|other; title; publisher; authors; published_at ISO date; evidence[{field:kind|publisher|authors|published_at,page,quote}]; entities[{name,kind:company|industry|product|region|other,aliases:[],identifiers:{exchange,ticker,lei,isin},evidence:[{page,quote}]}]. Entity evidence accepts one quote object or multiple pages for name/ticker; routing/errors provide identity_candidates. Unknown publisher/date=null, authors=[]; omit unknown IDs. broker_research means company research; industry_research means sector research. Names/IDs must occur in quotes. Changed profiles require revisiting affected records.",
     "inputSchema": {
       "properties": {
         "project_id": {
@@ -513,7 +518,7 @@
   },
   {
     "name": "run_cleaning_script",
-    "description": "沙箱执行清洗 Python：读 /input/cleaning_source.json 和 cleaning_sdk.py，写 /output/cleaning_result.json。script_refs=[run_id] 复用同项目 /input/cleaning_<run_id>.py。保留坐标、按需分批；无主库访问。",
+    "description": "沙箱执行一批 Cleaner 脚本：读 /input/cleaning_source.json 和 cleaning_sdk.py，写 /output/cleaning_result.json；无主库访问。返回 run_id 和校验摘要，ready 后直接 commit_cleaning_result；有效表独立提交，失败表留原错误。未完成或需细节才 get_cleaning_result。script_refs=[run_id] 复用同项目 /input/cleaning_<run_id>.py/.json。",
     "inputSchema": {
       "properties": {
         "project_id": {
@@ -2551,6 +2556,72 @@
     "outputSchema": {
       "additionalProperties": true,
       "title": "record_attachment_readDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "get_cleaning_batch",
+    "description": "Read the next structural batch's complete numbered rows, headings and page context. Follow the Cleaner guide returned by process_documents; full geometry and surrounding pages remain available via source tools.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "processing_id": {
+          "title": "Processing Id",
+          "type": "string"
+        },
+        "document_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Document Id"
+        }
+      },
+      "required": [
+        "project_id",
+        "processing_id"
+      ],
+      "title": "get_cleaning_batchArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_cleaning_batchDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "get_cleaning_progress",
+    "description": "Host continuation: compact persisted table/page progress and next structural batch, without reloading the source or script guide.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "processing_id": {
+          "title": "Processing Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "processing_id"
+      ],
+      "title": "get_cleaning_progressArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_cleaning_progressDictOutput",
       "type": "object"
     }
   }

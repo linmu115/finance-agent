@@ -1,0 +1,63 @@
+{
+  "parent_main": "6d31cee9b3166d445cfae90194d83857c7e5d2c3",
+  "incoming": "845991ac0c9387d84616c185634bb4ee0d5d7332",
+  "branch_base": "ece4f21",
+  "tests": {
+    "python": {
+      "passed": 87,
+      "failed": 0,
+      "skipped": 0,
+      "modules": [
+        "test_ingestion_scale",
+        "test_script_cleaning",
+        "test_research_ingestion",
+        "test_semantic_sources",
+        "test_percentage_points",
+        "test_baseline_sources",
+        "test_mcp"
+      ]
+    },
+    "node": {
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "files": [
+        "ingestion-scale.test.ts",
+        "model-context.test.ts",
+        "numeric-tables.test.ts",
+        "context-compaction.test.ts",
+        "extraction-effort.test.ts",
+        "ingestion-binding-lifecycle.test.ts"
+      ]
+    },
+    "typecheck": "passed",
+    "build": "passed (existing large chunk warning)"
+  },
+  "native_pi_lifecycle": {
+    "provider": "in-process Pi faux provider; no real model requests",
+    "transport": "RunManager + native Pi + MCP stdio; ingestion progress scripted, actual answer rendering/persistence",
+    "cases": [
+      "two progressing ingestion continuations, zero A1 renders or repairs",
+      "subsequent analysis in same native session: one A1 repair, zero ingestion continuations",
+      "stalled ingestion: one continuation then explicit failure, zero A1",
+      "persisted queued recovery with assistant stop still checks remaining work and resumes once",
+      "unresolved A1: only one native followUp then failure, no ingestion continuation"
+    ]
+  },
+  "model_context": {
+    "evidence": "context.json",
+    "tools": {
+      "financial": 40,
+      "prepared": 13
+    },
+    "new_get_cleaning_batch": "financial only",
+    "get_cleaning_progress": "host only, not exposed to model",
+    "b4_shared_entries_retained": true,
+    "sdk_guide": "service/cleaning_guide.md replaces previous embedded GUIDE; only process_documents returns the complete guide, tool descriptions are short entries; continuations carry remaining work only"
+  },
+  "paid_calls": 0,
+  "new_real_ingestion_runs": 0,
+  "held_out_materials_read": false,
+  "acceptance_boundary": "Merge/interface acceptance passed. N3 overall ingestion acceptance remains FAILED: cost and full semantic quality unresolved; small report 13/13 includes 47 pending-review cells, final Ruihe run 4/50, not intermediate 50/50. No new quality/cost claim.",
+  "environment": "Docker/WSL kept running; 12 stopped Dify/mineru restart=no containers untouched."
+}

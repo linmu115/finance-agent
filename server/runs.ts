@@ -17,6 +17,7 @@ import { DATA,getSettings,redactError,requireModel } from './config.js';
 import { FinanceService, safeDataPath } from './mcp.js';
 import { RESEARCH_TOOLS, researchStore, researchEnvelope, downloadWithReader } from './research.js';
 import { modelContext, projectToolHistory } from './model-context.js';
+import {ingestionRemaining,madeIngestionProgress} from './ingestion-continuation.js';
 import { FINANCE_TASK_GUIDANCE, ANSWER_FORMAT_GUIDANCE, SHARED_TASK_GUIDANCE, FINANCE_WORKSPACE_GUIDANCE, FINANCE_EXTENSION_GUIDANCE } from './financial-guidance.js';
 import {createContextCompactionExtension,focusCompactionContext,resolveCompactionPolicy} from './context-compaction.js';
 import { ResearchWorkspace, ARTIFACT_TOOLS, reportSchema } from './research-artifacts.js';
@@ -30,6 +31,7 @@ import {routingScope,ROUTER_PROMPT,parseTaskRoute,initialEffort,fallbackRoute,ex
 
 const TOOL_ALLOWLIST = new Set(['run_cleaning_script','get_cleaning_result','commit_cleaning_result','prepare_document_sources','process_documents','get_processing_checkpoint','get_data_catalog','get_document_index','query_financial_data','get_normalization_details','list_documents','get_document','search_evidence','get_source_page','get_source_table','get_financial_metrics','calculate_financial_metrics','run_analysis','get_analysis_status','get_artifact']);
 for(const name of ['inspect_document_routing','set_document_profile','save_research_claims','get_research_ingestion_status','query_research_records'])TOOL_ALLOWLIST.add(name);
+TOOL_ALLOWLIST.add('get_cleaning_batch');
 for(const tool of RESEARCH_TOOLS)TOOL_ALLOWLIST.add(tool.name);
 for(const tool of ARTIFACT_TOOLS)TOOL_ALLOWLIST.add(tool.name);
 TOOL_ALLOWLIST.add('get_research_model_schema');
@@ -318,7 +320,7 @@ export class RunManager {
    customTools.push({name:spec.name,label:spec.name,description,parameters:schema,
     execute:async(toolCallId:string,params:Record<string,any>)=>this.executeTool(e.active!,settings,spec.name,toolCallId,params)});
   }
-  if(!generic)customTools.push({name:'process_documents',label:'处理财报与研报',description:"开始/继续完整入库。routing_required 时按原文 set_document_profile，再 run_cleaning_script→commit_cleaning_result，正文用 save_research_claims，直至 pending_tables/pending_pages 为空。本调用返回不等于完成。review_metrics 复核定义，默认复用成功结果。",
+  if(!generic)customTools.push({name:'process_documents',label:'处理财报与研报',description:"开始/继续完整入库，返回统一 Cleaner 说明和首个结构批次，后续用 get_cleaning_batch。来源未定先 set_document_profile；表格与研报正文均须完成。本调用不代表入库完成。review_metrics 复核定义，默认复用成功结果。",
    parameters:{type:'object',properties:{document_ids:{type:'array',items:{type:'string'},minItems:1},review_existing_only:{type:'boolean',description:"配合 review_metrics 仅复核已有定义，保留解析/数值/期间；不能 force=true。"},force:{type:'boolean',description:"仅用户明确要求重洗时开启。"},review_metrics:{type:'array',items:{type:'string',pattern:'^[a-z][a-z0-9_]{0,255}$'},minItems:1,description:"待复核定义范围的实际 metric ID；按完整原文判断范围。"}},required:['document_ids'],additionalProperties:false},
    execute:async(toolCallId:string,params:Record<string,any>)=>this.executeTool(e.active!,settings,'process_documents',toolCallId,params)});
   const compactionPolicy=resolveCompactionPolicy(settings.runtime.contextCompaction,model.contextWindow,Math.min(model.maxTokens,settings.llm.maxTokens));
@@ -337,10 +339,27 @@ export class RunManager {
   }
   const compactionExtension=createContextCompactionExtension({onState:state=>{compactionState=state;},audit:async(type,data)=>{if(e.active)await this.audit(e.active,type,data);}});
   const inputLifecycle:any=(pi:any)=>{
-   pi.on('agent_before_settle',async()=>{const active=e.active;if(active){active.accepting=false;await active.inputQueue;}});
+   pi.on('agent_before_settle',async()=>{
+    const active=e.active;if(!active)return;
+    active.accepting=false;await active.inputQueue;
+    if(active.controller.signal.aborted||active.run.error||!active.scriptProcessingIds?.size)return;
+    const snapshots=[];
+    for(const id of active.scriptProcessingIds)snapshots.push((await this.service.call('get_cleaning_progress',{project_id:active.run.projectId,processing_id:id},active.controller.signal)).data);
+    const remaining=ingestionRemaining(snapshots);
+    if(!remaining.keys.size){active.run.ingestionPending=undefined;return;}
+    const prior=active.run.ingestionPending?new Set(active.run.ingestionPending):undefined;
+    if(prior&&!madeIngestionProgress(prior,remaining.keys)){
+     active.run.error='自动续跑没有推进，入库未完成。剩余工作：'+JSON.stringify(remaining.work);
+     await this.audit(active,'ingestion_stalled',{remaining:remaining.work});return;
+    }
+    active.run.ingestionPending=[...remaining.keys];active.effort='low';active.usagePhase='cleaning';
+    await this.audit(active,'ingestion_continuation',{remaining:remaining.work});await this.persist(active);
+    return {continue:true,entries:[{type:'custom_message',customType:'ingestion-continuation',display:false,
+     content:'入库尚有剩余工作，按已提供的清洗说明继续，完成后再回答。\n'+JSON.stringify(remaining.work)}]};
+   });
    pi.on('turn_start',()=>{if(e.active)e.active.accepting=true;});
   };
-  const bindingExtension=answerBindingExtension({render:body=>this.renderAnswer(e.active!,body),audit:(type,data)=>this.audit(e.active!,type,data),repairSent:()=>e.active!.bindingRepairMessage===e.active!.answer.id,markRepair:()=>{e.active!.bindingRepairMessage=e.active!.answer.id;},error:error=>{e.active!.bindingError=error;}});
+  const bindingExtension=answerBindingExtension({enabled:()=>!this.isIngestion(e.active!),render:body=>this.renderAnswer(e.active!,body),audit:(type,data)=>this.audit(e.active!,type,data),repairSent:()=>e.active!.bindingRepairMessage===e.active!.answer.id,markRepair:()=>{e.active!.bindingRepairMessage=e.active!.answer.id;},error:error=>{e.active!.bindingError=error;}});
   // Explicit overrides load only application/project resources, never unrelated global instructions.
   const loader=new DefaultResourceLoader({cwd:workspace,agentDir,settingsManager:manager,noExtensions:true,extensionFactories:[compactionExtension,inputLifecycle,bindingExtension],noSkills:true,noPromptTemplates:true,noThemes:true,noContextFiles:true,skillsOverride:()=>({skills:resources?.skills.filter(s=>s.enabled)||[],diagnostics:[]}),agentsFilesOverride:()=>({agentsFiles:resources?[{path:resources.rulePath,content:resources.rules}]:[]}),systemPrompt});await loader.reload();
   const {session}=await createAgentSession({cwd:workspace,agentDir,modelRuntime:runtime,model,thinkingLevel:reasoning?'low':'off',noTools:'builtin',tools:customTools.map(t=>t.name),customTools,resourceLoader:loader,sessionManager,settingsManager:manager});
@@ -350,7 +369,8 @@ export class RunManager {
   if(!Array.isArray(documentIds)||!documentIds.length)throw new Error('请选择项目附件');
   if(!reviewExistingOnly){
    l.effort='low';l.usagePhase='cleaning';
-   const result=await this.service.call('begin_script_cleaning',{project_id:l.run.projectId,document_ids:documentIds,owner_run_id:l.run.id,model:l.run.model,force,require_profile:true},l.controller.signal);
+   const contextWindow=this.sessions.get(l.chat?.id)?.model.contextWindow||getSettings().llm.contextWindow;
+   const result=await this.service.call('begin_script_cleaning',{project_id:l.run.projectId,document_ids:documentIds,owner_run_id:l.run.id,model:l.run.model,force,require_profile:true,source_budget_chars:Math.max(4000,Math.floor(contextWindow*.04)*3)},l.controller.signal);
    if(result.data.state==='routing_required'){l.usagePhase='document_routing';return result;}
    l.processingIds.add(result.data.processing_id);(l.scriptProcessingIds??=new Set()).add(result.data.processing_id);
    await this.audit(l,'processing_started',{processingId:result.data.processing_id,documentIds,engine:'PythonScript',runtime:'Pi',ownerRunId:l.run.id,mode:'script_cleaning'});
@@ -427,6 +447,9 @@ export class RunManager {
    }
    if(['commit_cleaning_result','save_research_claims'].includes(name)&&['completed','needs_review'].includes(result.data.state)&&!result.data.pending_script_tables?.length){l.effort=l.route?.afterIngestion||'high';l.usagePhase=undefined;}
    if((name==='run_analysis'||name==='run_cleaning_script')&&result.data.run_id)l.analysisIds.add(result.data.run_id);
+   if(name==='run_cleaning_script'&&(result.data.issue_count>0||result.data.state==='failed')){
+    l.effort='high';await this.audit(l,'reasoning_stage',{stage:'local_cleaning_repair',effort:'high',runId:result.data.run_id,reason:result.data.state==='failed'?'script_error':'mapping_issues'});
+   }
    for(const item of result.source_refs||[]){const ref=source(item);if((ref.documentId||ref.url)&&!l.answer.sources!.some(x=>JSON.stringify(x)===JSON.stringify(ref)))l.answer.sources!.push(ref);}
    if(name==='get_analysis_status'||name==='get_artifact')this.collectArtifacts(l,params.run_id,result.data);
    if(name==='financial_workpaper'&&result.data.delivery?.files){
@@ -449,8 +472,9 @@ export class RunManager {
   const skill=this.resourceSnapshots.get(l.run.id)?.skills.find(s=>s.enabled&&s.name===name);if(!skill)throw new Error('此技能未在当前项目启用');
   return {status:'ok',data:{name,content:skill.content},source_refs:[],warnings:[],trace_id:randomUUID()};
  }
+ private isIngestion(l:LiveRun){return l.processingIds.size>0||l.run.tools.some(tool=>tool.name==='process_documents');}
  private async renderAnswer(l:LiveRun,body:string){
-  if(!body.includes('{{'))return body;
+  if(this.isIngestion(l)||!body.includes('{{'))return body;
   const charts:Record<string,string>={};
   for(const a of l.answer.artifacts||[])if(a.mimeType.startsWith('image/'))charts[a.name]=a.url;
   return (await this.service.call('render_answer',{project_id:l.run.projectId,body,tables:l.numericTables||{},charts},l.controller.signal)).data.body as string;
@@ -536,6 +560,9 @@ export class RunManager {
     const audit=await readFile(path.join(DATA,'audit',l.run.id+'.jsonl'),'utf8');
     for(const line of audit.split('\n').filter(Boolean)){
      const row=JSON.parse(line);
+     if(row.type==='processing_started'&&row.data.mode==='script_cleaning'){
+      l.processingIds.add(row.data.processingId);(l.scriptProcessingIds??=new Set()).add(row.data.processingId);
+     }
      if(row.type==='tool_result'&&(!row.data.messageId||row.data.messageId===l.answer.id))registerNumericTables(l.numericTables??={},row.data.result.data);
     }
    }
@@ -591,7 +618,9 @@ export class RunManager {
    const userMessage=l.chat.messages.find(m=>m.id===l.run.request?.userMessageId)!;
    const query=annotationContext(userMessage)+userMessage.content;
    const primarySeen=session.messages.some((m:any)=>m.role==='user'&&JSON.stringify(m.content).includes('应用消息标识：'+userMessage.id));
-   const tail=session.messages.at(-1);const alreadyFinished=l.resuming&&primarySeen&&tail?.role==='assistant'&&tail.stopReason==='stop'&&!(l.run.queuedInputs||[]).some(i=>!i.delivered);
+   const recoveredIngestion=[];
+   if(l.resuming)for(const id of l.scriptProcessingIds||[])recoveredIngestion.push((await this.service.call('get_cleaning_progress',{project_id:l.run.projectId,processing_id:id},l.controller.signal)).data);
+   const tail=session.messages.at(-1);const alreadyFinished=l.resuming&&primarySeen&&tail?.role==='assistant'&&tail.stopReason==='stop'&&!ingestionRemaining(recoveredIngestion).keys.size&&!(l.run.queuedInputs||[]).some(i=>!i.delivered);
    if(entry.model.reasoning&&!alreadyFinished){
     try{
      const routed=await routingScope.run({runId:l.run.id},()=>entry.runtime.completeSimple(entry.model,{systemPrompt:ROUTER_PROMPT,messages:[{role:'user',content:query,timestamp:Date.now()}]},{signal:l.controller.signal,reasoning:'low',maxTokens:4096}));
