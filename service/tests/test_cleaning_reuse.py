@@ -3,7 +3,7 @@ import json
 import unittest
 from service.tests import test_script_cleaning as fixtures
 from service.accounting_basis import identify, resolve, apply_basis
-from service.cleaning_rules import draft, context, shape, lookup
+from service.cleaning_rules import draft, context, shape, lookup, compile_rule
 from service.standard_metrics import standard_metric
 
 
@@ -150,6 +150,23 @@ class CleaningReuseTests(unittest.TestCase):
         interest=[r for r in mapped['rows'] if r['attributes']['metric']=='interest_income']
         self.assertNotIn('dimensions_json',interest[0]['attributes'])
         self.assertEqual(json.loads(interest[1]['attributes']['dimensions_json']),{'statement_section':'finance_expenses'})
+
+    def test_rule_keeps_period_logic_and_rebinds_dimension_text_without_source_quotes(self):
+        parsed=self.prepare([['项目','2025','2024'],['某客户','100','90']], '合并利润表\n单位：元\n100')
+        item={'schema':{'columns_json':json.dumps([{'column':2,'period':'2025-FY','start':'2025-01-01','end':'2025-12-31','label':'不应保存的原文','unit':'元','currency':'CNY'}, {'column':3,'period':'2024-FY'}]),'unit':'元','currency':'CNY'},
+              'mapping':[{'row':2,'attributes':{'metric':'service_revenue','dimensions_json':{'customer':'某客户'}}}],
+              'issues':[],'exclusion_reason':None}
+        rule=compile_rule(parsed,parsed['tables'][0],item)
+        encoded=json.dumps(rule,ensure_ascii=False)
+        self.assertNotIn('某客户',encoded);self.assertNotIn('不应保存的原文',encoded)
+        parsed['report_year']=2026
+        parsed['tables'][0]['rows'][0]=['项目','2026','2025']
+        parsed['pages'][0]['text']='合并利润表\n单位：万元\n100'
+        mapped=draft(parsed,parsed['tables'][0],'Next company',identify(parsed),rule)
+        columns=json.loads(mapped['schema']['columns_json'])
+        self.assertEqual(columns[0]['start'],'2026-01-01')
+        self.assertNotIn('unit',columns[0]);self.assertEqual(mapped['schema']['unit'],'万元')
+        self.assertEqual(json.loads(mapped['rows'][0]['attributes']['dimensions_json']),{'customer':'某客户'})
 
 
 if __name__=='__main__':unittest.main()

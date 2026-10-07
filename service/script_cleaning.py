@@ -98,6 +98,7 @@ class ScriptCleaningMixin:
             done=set();review_issues=[]
             if not force:
                 for result in saved:
+                    if result.get('cleaning_rule') and result['cleaning_rule'].get('version')!=cleaning_rules.VERSION:continue
                     if result.get('script_version')==VERSION and result.get('document_sha256')==doc['sha256'] and result.get('status') in {'completed','needs_review'} and (not profile or result.get('profile_revision')==profile['revision_id']):
                         index=result.get('script_table');table=next((t for t in parsed['tables'] if t['index']==index),None)
                         if table is not None and result.get('script_source_hash')==_hash(table):
@@ -187,7 +188,7 @@ class ScriptCleaningMixin:
             pending=set(item['tables'])-set(item['completed_tables'])
             failed=set()
             for job in state['jobs'].values():
-                if job['document_id']==item['document_id']:
+                if job['document_id']==item['document_id'] and not job.get('rule_payload'):
                     failed.difference_update(job.get('candidate_tables',[]))
                     failed.update(job.get('failed_tables',[]))
             for batch in item.get('batches',[]):
@@ -262,7 +263,7 @@ class ScriptCleaningMixin:
         entities=(profile or {}).get('entities',[])
         company=entities[0]['name'] if profile and profile['kind']=='financial_report' and len(entities)==1 else parsed['company']
         data={'company':company,'company_from_filename':_filename_company(doc,parsed,company),
-              'document_profile':profile,'report_year':parsed.get('report_year'),'pages':parsed['pages'],'tables':parsed['tables'],
+              'document_profile':profile,'report_year':cleaning_rules.source_year(parsed),'pages':parsed['pages'],'tables':parsed['tables'],
               'mapping_drafts':{str(t['index']):mapping for t in numeric_tables(parsed) for mapping,_ in [self._mapping_draft(project_id,document_id,parsed,t)] if mapping}}
         # The parsed document is the same for every script run on it: stored once, linked into each run.
         source=write_input(self.store.root/'exports',project_id,folder/'cleaning_source.json',dumps(data).encode('utf-8'))

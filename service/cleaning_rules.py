@@ -11,7 +11,7 @@ from .normalization import compact, decimal_value, unit_info
 from .standard_metrics import standard_metric, normalize_label, VERSION as ROW_VERSION
 from .cleaning_batches import header_rows
 
-VERSION = 'cleaning-rules-1/' + ROW_VERSION
+VERSION = 'cleaning-rules-2/' + ROW_VERSION
 
 
 def source_year(parsed):
@@ -78,7 +78,7 @@ def context(parsed, table):
         if subtopic:topic=subtopic
     scopes = re.findall(r'母公司(?:资产负债表|利润表|现金流量表|所有者权益变动表|财务报表)|合并(?:资产负债表|利润表|现金流量表|所有者权益变动表|财务报表)|Consolidated', preceding, re.I)
     scope = 'parent' if scopes and scopes[-1].startswith('母公司') else 'consolidated' if scopes else 'unspecified'
-    titles = list(re.finditer(r'资产负债表|利润表|现金流量表|所有者权益变动表|Statement\s+of\s+(?:Financial\s+Position|Comprehensive\s+Income|Profit\s+or\s+Loss|Cash\s+Flows|Changes\s+in\s+Equity)|财务报表项目注释|Notes\s+to', preceding, re.I))
+    titles = list(re.finditer(r'(?m)^\s*(?:(?:\d+|[一二三四五六七八九十]+)[、.．]\s*)?(?:合并|母公司)?(?:资产负债表|利润表|现金流量表|所有者权益变动表)\s*$|Statement\s+of\s+(?:Financial\s+Position|Comprehensive\s+Income|Profit\s+or\s+Loss|Cash\s+Flows|Changes\s+in\s+Equity)|财务报表项目注释|Notes\s+to', preceding, re.I))
     title = titles[-1].group() if titles else ''
     statement = ('balance' if re.search(r'资产负债表|Financial\s+Position', title, re.I) else
                  'income' if re.search(r'利润表|Income|Profit', title, re.I) else
@@ -241,8 +241,7 @@ def draft(parsed, table, company, basis, learned=None):
     learned = learned or {}
     year = source_year(parsed)
     if learned.get('columns') and year:
-        columns = [{**{k:v for k,v in c.items() if k != 'period_template'},
-                    'period': f"{int(year)+c['period_template'][0]}-{c['period_template'][1]}"} for c in learned['columns']]
+        columns = bind_columns(learned['columns'],year)
     if not columns: return None
     if any('\n' in str(row[0]) for row in table['rows'][len(mapping_headers(table)):]):
         packed=packed_standard(table,columns,company,basis,ctx,unit)
@@ -259,6 +258,10 @@ def draft(parsed, table, company, basis, learned=None):
         attrs = (learned.get('rows') or {}).get(row_key(row))
         if attrs:
             attrs = json.loads(json.dumps(attrs))
+            selectors=attrs.pop('dimension_columns',{})
+            dimensions=attrs.pop('dimensions',{})|{key:row[column-1] for key,column in selectors.items()}
+            if dimensions:attrs['dimensions_json']=json.dumps(dimensions,ensure_ascii=False)
+            if attrs.get('columns'):attrs['columns_json']=json.dumps(bind_columns(attrs.pop('columns'),year))
         else:
             metric = standard_metric(row[0])
             if not metric and normalize_label(row[0]) in {'合计','总计','total'}:
@@ -294,30 +297,72 @@ def draft(parsed, table, company, basis, learned=None):
     return {'index':table['index'],'schema':schema,'rows':rows,'unmapped_rows':unknown}
 
 
+def bind_columns(columns,year):
+    result=[]
+    for c in columns:
+        bound={k:v for k,v in c.items() if not k.endswith('_template')}
+        for field in ('period','start','end'):
+            if field+'_template' in c:
+                offset,suffix=c[field+'_template'];bound[field]=f'{int(year)+offset}-{suffix}'
+        result.append(bound)
+    return result
+
+
+def column_rule(columns,year,schema):
+    converted=[]
+    for c in columns:
+        if set(c)-{'column','period','unit','currency','metric','semantic_type','label','start','end'}:return None
+        period=re.fullmatch(r'(\d{4})-(FY|H1|H2|Q[1-4]|\d{2}-\d{2})',c.get('period',''))
+        if not period:return None
+        rule={k:v for k,v in c.items() if k not in {'period','label','start','end'}}|{'period_template':[int(period[1])-int(year),period[2]]}
+        for field in ('start','end'):
+            if c.get(field):
+                date=re.fullmatch(r'(\d{4})-(\d{2}-\d{2})',c[field])
+                if not date:return None
+                rule[field+'_template']=[int(date[1])-int(year),date[2]]
+        for field in ('unit','currency'):
+            if rule.get(field)==schema.get(field):rule.pop(field,None)
+        converted.append(rule)
+    return converted
+
+
 def compile_rule(parsed, table, item):
     """Learn only coordinate-independent mappings that can be rebound exactly."""
     if item['issues'] or item['exclusion_reason']: return None
     schema = item['schema']; year = source_year(parsed)
     if not year or schema.get('label_column',1) != 1: return None
     columns = json.loads(schema.get('columns_json','[]'))
-    if not columns: return None
-    converted=[]
-    for c in columns:
-        if set(c)-{'column','period','unit','currency','metric','semantic_type'}: return None
-        period = re.fullmatch(r'(\d{4})-(FY|H1|H2|Q[1-4]|\d{2}-\d{2})',c.get('period',''))
-        if not period: return None
-        converted.append({k:v for k,v in c.items() if k!='period'}|{'period_template':[int(period[1])-int(year),period[2]]})
+    converted=column_rule(columns,year,schema)
+    if converted is None:return None
     rows={}
     for row in item['mapping']:
         attrs=row['attributes']
         # Values, citations, dimensions containing company identities, custom
         # spans and unresolved cells never cross the document boundary.
-        if any(attrs.get(k) for k in ('columns_json','unresolved_cells_json','company','attribution','numeric_span')): return None
+        if any(attrs.get(k) for k in ('unresolved_cells_json','company','attribution','numeric_span')): return None
         dims=attrs.get('dimensions_json',{})
-        if (json.loads(dims) if isinstance(dims,str) else dims): return None
+        dims=json.loads(dims) if isinstance(dims,str) else dims
+        source_row=table['rows'][row['row']-1];selectors={};semantic_dimensions={}
+        for key,value in dims.items():
+            # A row subject is rebound from the new table's label, never copied
+            # out of the original company/customer/account name.
+            matches=[i+1 for i,c in enumerate(source_row) if str(c)==value and decimal_value(c) is None]
+            if len(matches)==1:selectors[key]=matches[0]
+            elif value in {'portfolio','individual','joint_venture','associate','gross','net','allowance','current','noncurrent','finance_expenses'}:semantic_dimensions[key]=value
+            else:return None
         metric=attrs.get('metric','')
         if not re.fullmatch(r'[a-z][a-z0-9_]*',metric): return None
         rows[row_key(table['rows'][row['row']-1])] = {k:attrs[k] for k in ('metric','unit','currency') if attrs.get(k)}
+        target=rows[row_key(table['rows'][row['row']-1])]
+        for field in ('unit','currency'):
+            if target.get(field)==schema.get(field):target.pop(field,None)
+        if selectors:target['dimension_columns']=selectors
+        if semantic_dimensions:target['dimensions']=semantic_dimensions
+        if attrs.get('columns_json'):
+            actual=json.loads(attrs['columns_json']) if isinstance(attrs['columns_json'],str) else attrs['columns_json']
+            override=column_rule(actual,year,schema)
+            if override is None:return None
+            target['columns']=override
     if not rows: return None
     skipped=json.loads(schema.get('skipped_columns_json','[]'))
     return {'columns':converted,'rows':rows,'skipped_columns':[{'column':v['column'],'reason':'non-data header column'} for v in skipped]}
