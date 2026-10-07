@@ -1,0 +1,1795 @@
+{
+  "kind": "statement_analysis",
+  "llm_calls": 0,
+  "new_ingestion": 0,
+  "cases": [
+    {
+      "name": "carote",
+      "project": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+      "document": "3d9d0befd8374eed9a7488dbd8dd00d2",
+      "reference": {
+        "revenue": "836.925",
+        "cfo": "-18.676",
+        "consolidated": "102.791",
+        "parent": "102.785",
+        "cash_end": "384.364",
+        "gross_margin_change": "-7.7321"
+      },
+      "actual": {
+        "revenue": "836.925",
+        "cfo": "-18.676",
+        "consolidated": "102.791",
+        "parent": "102.785",
+        "cash_end": "384.364",
+        "gross_margin_change": "-7.7321"
+      },
+      "bridge_residuals": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "interest_directions": [
+        {
+          "key": "2025-H1_operating_0bfa27c315a2439f9f892e3a7a0a7304",
+          "period": "2025-H1",
+          "bridge": "经营小计至CFO",
+          "item": "Interest received from cash at banks",
+          "direction": "加",
+          "amount": "5.723",
+          "reason": "披露的经营活动项目；符号决定方向"
+        },
+        {
+          "key": "2024-H1_operating_51cd3d0f726940a9b5d659e951d6b327",
+          "period": "2024-H1",
+          "bridge": "经营小计至CFO",
+          "item": "Interest received from cash at banks",
+          "direction": "加",
+          "amount": "1.216",
+          "reason": "披露的经营活动项目；符号决定方向"
+        }
+      ],
+      "tables": 10,
+      "delivery_files": 13,
+      "source_locators": 69,
+      "tables_data": {
+        "income": [
+          {
+            "key": "revenue",
+            "metric": "收入",
+            "2025-H1": "836.925",
+            "2024-H1": "955.192"
+          },
+          {
+            "key": "cogs",
+            "metric": "销售成本（原披露符号）",
+            "2025-H1": "-555.331",
+            "2024-H1": "-559.949"
+          },
+          {
+            "key": "gross_profit",
+            "metric": "毛利",
+            "2025-H1": "281.594",
+            "2024-H1": "395.243"
+          },
+          {
+            "key": "selling",
+            "metric": "销售费用（原披露符号）",
+            "2025-H1": "-152.183",
+            "2024-H1": "-159.654"
+          },
+          {
+            "key": "administrative",
+            "metric": "管理费用（原披露符号）",
+            "2025-H1": "-19.378",
+            "2024-H1": "-29.032"
+          },
+          {
+            "key": "research",
+            "metric": "研发费用（原披露符号）",
+            "2025-H1": "-17.838",
+            "2024-H1": "-21.192"
+          },
+          {
+            "key": "other_income",
+            "metric": "其他收入",
+            "2025-H1": "0.658",
+            "2024-H1": "2.036"
+          },
+          {
+            "key": "other_gains_net",
+            "metric": "其他净收益",
+            "2025-H1": "3.007",
+            "2024-H1": "6.048"
+          },
+          {
+            "key": "impairment",
+            "metric": "减值损失/转回",
+            "2025-H1": "0.14",
+            "2024-H1": "-0.027"
+          },
+          {
+            "key": "operating_profit",
+            "metric": "营业利润",
+            "2025-H1": "96",
+            "2024-H1": "193.422"
+          },
+          {
+            "key": "finance_net",
+            "metric": "财务净收益/费用（税前、营业利润之后，非现金收息）",
+            "2025-H1": "25.533",
+            "2024-H1": "3.425"
+          },
+          {
+            "key": "fair_value_gains",
+            "metric": "公允价值收益",
+            "2025-H1": null,
+            "2024-H1": null
+          },
+          {
+            "key": "associates",
+            "metric": "联营公司损益",
+            "2025-H1": null,
+            "2024-H1": null
+          },
+          {
+            "key": "profit_before_tax",
+            "metric": "税前利润",
+            "2025-H1": "121.533",
+            "2024-H1": "196.847"
+          },
+          {
+            "key": "tax",
+            "metric": "所得税（原披露符号）",
+            "2025-H1": "-18.742",
+            "2024-H1": "-32.763"
+          }
+        ],
+        "profit_attribution": [
+          {
+            "key": "2025-H1",
+            "period": "2025-H1",
+            "consolidated": "102.791",
+            "parent": "102.785",
+            "minority": "0.006"
+          },
+          {
+            "key": "2024-H1",
+            "period": "2024-H1",
+            "consolidated": "164.084",
+            "parent": "164.096",
+            "minority": "-0.012"
+          }
+        ],
+        "ratios": [
+          {
+            "key": "gross_profit_margin",
+            "metric": "毛利率",
+            "2025-H1": "33.64626459957582818054186456373032231084",
+            "2024-H1": "41.37838256601814085545105067881640549753",
+            "change_pp": "-7.73211796644231267490918611508608318669"
+          },
+          {
+            "key": "selling_margin",
+            "metric": "销售费用率",
+            "2025-H1": "18.18358873256265495713474923081518654599",
+            "2024-H1": "16.71433596596286401058635331954203971558",
+            "change_pp": "1.46925276659979094654839591127314683041"
+          },
+          {
+            "key": "administrative_margin",
+            "metric": "管理费用率",
+            "2025-H1": "2.315380709143591122263046270573826806464",
+            "2024-H1": "3.039388939605859345555657920083082772888",
+            "change_pp": "-0.724008230462268223292611649509255966424"
+          },
+          {
+            "key": "research_margin",
+            "metric": "研发费用率",
+            "2025-H1": "2.131373779012456313289721301191863070168",
+            "2024-H1": "2.218611546160353101784772066767728372934",
+            "change_pp": "-0.087237767147896788495050765575865302766"
+          },
+          {
+            "key": "net_profit_margin",
+            "metric": "合并净利率",
+            "2025-H1": "12.28198464617498581115392657645547689458",
+            "2024-H1": "17.17811706965719980904362683104548614310",
+            "change_pp": "-4.89613242348221399788970025459000924852"
+          }
+        ],
+        "growth": [
+          {
+            "key": "revenue",
+            "metric": "收入",
+            "change": "-12.38148979472189884337389760383252791062",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "cogs",
+            "metric": "销售成本（原披露符号）",
+            "change": "-0.8247179653861333800042503870888241607718",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "gross_profit",
+            "metric": "毛利",
+            "change": "-28.75420943571423149809104778579253775525",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "selling",
+            "metric": "销售费用（原披露符号）",
+            "change": "-4.679494406654390118631540706778408307966",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "administrative",
+            "metric": "管理费用（原披露符号）",
+            "change": "-33.25296224855332047395976853127583356297",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "research",
+            "metric": "研发费用（原披露符号）",
+            "change": "-15.82672706681766704416761041902604756512",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "other_income",
+            "metric": "其他收入",
+            "change": "-67.68172888015717092337917485265225933202",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "other_gains_net",
+            "metric": "其他净收益",
+            "change": "-50.28108465608465608465608465608465608466",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "impairment",
+            "metric": "减值损失/转回",
+            "change": "-618.5185185185185185185185185185185185185",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "operating_profit",
+            "metric": "营业利润",
+            "change": "-50.36759003629369978596023203151658032695",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "finance_net",
+            "metric": "财务净收益/费用（税前、营业利润之后，非现金收息）",
+            "change": "645.4890510948905109489051094890510948905",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "fair_value_gains",
+            "metric": "公允价值收益",
+            "change": null,
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "associates",
+            "metric": "联营公司损益",
+            "change": null,
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "profit_before_tax",
+            "metric": "税前利润",
+            "change": "-38.26017160535847638013279348935975656220",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "tax",
+            "metric": "所得税（原披露符号）",
+            "change": "-42.79522632237585080731312761346641027989",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "net_profit",
+            "metric": "合并净利润",
+            "change": "-37.35464761951195729016845030594085955974",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "parent_profit",
+            "metric": "归母净利润",
+            "change": "-37.36288514040561622464898595943837753510",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          }
+        ],
+        "cash": [
+          {
+            "key": "2025-H1_cfo",
+            "period": "2025-H1",
+            "metric": "CFO",
+            "amount": "-18.676",
+            "classification": "cfo"
+          },
+          {
+            "key": "2025-H1_cfi",
+            "period": "2025-H1",
+            "metric": "CFI",
+            "amount": "33.369",
+            "classification": "cfi"
+          },
+          {
+            "key": "2025-H1_cff",
+            "period": "2025-H1",
+            "metric": "CFF",
+            "amount": "-6.649",
+            "classification": "cff"
+          },
+          {
+            "key": "2025-H1_0bfa27c315a2439f9f892e3a7a0a7304",
+            "period": "2025-H1",
+            "metric": "Interest received from cash at banks",
+            "amount": "5.723",
+            "classification": "operating"
+          },
+          {
+            "key": "2025-H1_c67b5b4de6444f3a914ecdb38ea55a18",
+            "period": "2025-H1",
+            "metric": "Income taxes paid",
+            "amount": "-41.175",
+            "classification": "operating"
+          },
+          {
+            "key": "2025-H1_573fd81abdf245399223776c73d825f6",
+            "period": "2025-H1",
+            "metric": "Payments for property, plant and equipment",
+            "amount": "-3.685",
+            "classification": "investing"
+          },
+          {
+            "key": "2025-H1_242b3cb5d21d447c89bda0b09746502c",
+            "period": "2025-H1",
+            "metric": "Proceeds from financial assets at fair value through profit or loss",
+            "amount": "37.054",
+            "classification": "investing"
+          },
+          {
+            "key": "2025-H1_116c7ed807274feab879d5657507a247",
+            "period": "2025-H1",
+            "metric": "Acquisition of treasury shares",
+            "amount": "-3.499",
+            "classification": "financing"
+          },
+          {
+            "key": "2025-H1_0ce44cbbc2354fde918cc5676ab08af6",
+            "period": "2025-H1",
+            "metric": "Principal payments and interest paid of lease liabilities",
+            "amount": "-3.15",
+            "classification": "financing"
+          },
+          {
+            "key": "2024-H1_cfo",
+            "period": "2024-H1",
+            "metric": "CFO",
+            "amount": "89.864",
+            "classification": "cfo"
+          },
+          {
+            "key": "2024-H1_cfi",
+            "period": "2024-H1",
+            "metric": "CFI",
+            "amount": "-31.841",
+            "classification": "cfi"
+          },
+          {
+            "key": "2024-H1_cff",
+            "period": "2024-H1",
+            "metric": "CFF",
+            "amount": "-103.542",
+            "classification": "cff"
+          },
+          {
+            "key": "2024-H1_51cd3d0f726940a9b5d659e951d6b327",
+            "period": "2024-H1",
+            "metric": "Interest received from cash at banks",
+            "amount": "1.216",
+            "classification": "operating"
+          },
+          {
+            "key": "2024-H1_e05f67912a4841af82723d88cc66e660",
+            "period": "2024-H1",
+            "metric": "Income taxes paid",
+            "amount": "-42.147",
+            "classification": "operating"
+          },
+          {
+            "key": "2024-H1_db84d6fa57bb49548168993b734b45c6",
+            "period": "2024-H1",
+            "metric": "Interest received from time deposits",
+            "amount": "6.448",
+            "classification": "investing"
+          },
+          {
+            "key": "2024-H1_aa5d4fb08713484c9198aa42a837c57d",
+            "period": "2024-H1",
+            "metric": "Payments for property, plant and equipment",
+            "amount": "-0.096",
+            "classification": "investing"
+          },
+          {
+            "key": "2024-H1_981383711e3f436f8da7bfb917737480",
+            "period": "2024-H1",
+            "metric": "Proceeds from time deposits",
+            "amount": "267.5",
+            "classification": "investing"
+          },
+          {
+            "key": "2024-H1_18e0345abdc34a8c959fe0cba3c12c59",
+            "period": "2024-H1",
+            "metric": "Payments for time deposits",
+            "amount": "-305.7",
+            "classification": "investing"
+          },
+          {
+            "key": "2024-H1_50d80dd13b8d4a4aadc0fcfc2fc670c3",
+            "period": "2024-H1",
+            "metric": "Repayment of loans to related parties",
+            "amount": "0.007",
+            "classification": "investing"
+          },
+          {
+            "key": "2024-H1_7155725c8c814c8ca348e482b483d84b",
+            "period": "2024-H1",
+            "metric": "Interest paid on borrowings",
+            "amount": "-0.081",
+            "classification": "financing"
+          },
+          {
+            "key": "2024-H1_ac3d339942834c758bd7d127129327fe",
+            "period": "2024-H1",
+            "metric": "Dividend paid to the shareholders",
+            "amount": "-100",
+            "classification": "financing"
+          },
+          {
+            "key": "2024-H1_6720a0a4809642edb5a45c3fc9a5aa69",
+            "period": "2024-H1",
+            "metric": "Payments for listing expenses",
+            "amount": "-2.583",
+            "classification": "financing"
+          },
+          {
+            "key": "2024-H1_bfcf63f8ec154c3792bc23444be5c208",
+            "period": "2024-H1",
+            "metric": "Principal payments and interest paid of lease liabilities",
+            "amount": "-0.878",
+            "classification": "financing"
+          }
+        ],
+        "bridge": [
+          {
+            "key": "2025-H1_operating_0553dbf45d3c46a6a846daea2ebe2416",
+            "period": "2025-H1",
+            "bridge": "经营小计至CFO",
+            "item": "Net cash generated from operations",
+            "direction": "起点",
+            "amount": "16.776",
+            "reason": "披露的经营活动项目；符号决定方向"
+          },
+          {
+            "key": "2025-H1_operating_0bfa27c315a2439f9f892e3a7a0a7304",
+            "period": "2025-H1",
+            "bridge": "经营小计至CFO",
+            "item": "Interest received from cash at banks",
+            "direction": "加",
+            "amount": "5.723",
+            "reason": "披露的经营活动项目；符号决定方向"
+          },
+          {
+            "key": "2025-H1_operating_c67b5b4de6444f3a914ecdb38ea55a18",
+            "period": "2025-H1",
+            "bridge": "经营小计至CFO",
+            "item": "Income taxes paid",
+            "direction": "减",
+            "amount": "-41.175",
+            "reason": "披露的经营活动项目；符号决定方向"
+          },
+          {
+            "key": "2025-H1_operating_cfo",
+            "period": "2025-H1",
+            "bridge": "经营小计至CFO",
+            "item": "披露CFO",
+            "direction": "终点",
+            "amount": "-18.676",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_operating_residual",
+            "period": "2025-H1",
+            "bridge": "经营小计至CFO",
+            "item": "未解释差额",
+            "direction": "残差",
+            "amount": "0",
+            "reason": "CFO-已列经营项目；不以配平项掩盖缺失"
+          },
+          {
+            "key": "2025-H1_cash_cash_begin",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "cash_begin",
+            "direction": "起点",
+            "amount": "377.332",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_cash_cfo",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "cfo",
+            "direction": "减",
+            "amount": "-18.676",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_cash_cfi",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "cfi",
+            "direction": "加",
+            "amount": "33.369",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_cash_cff",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "cff",
+            "direction": "减",
+            "amount": "-6.649",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_cash_cash_fx",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "cash_fx",
+            "direction": "减",
+            "amount": "-1.012",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_cash_end",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "期末现金",
+            "direction": "终点",
+            "amount": "384.364",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_cash_residual",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "未解释差额",
+            "direction": "残差",
+            "amount": "0",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_operating_c24e08c94a7248578474e1266a9c86d9",
+            "period": "2024-H1",
+            "bridge": "经营小计至CFO",
+            "item": "Net cash generated from operations",
+            "direction": "起点",
+            "amount": "130.795",
+            "reason": "披露的经营活动项目；符号决定方向"
+          },
+          {
+            "key": "2024-H1_operating_51cd3d0f726940a9b5d659e951d6b327",
+            "period": "2024-H1",
+            "bridge": "经营小计至CFO",
+            "item": "Interest received from cash at banks",
+            "direction": "加",
+            "amount": "1.216",
+            "reason": "披露的经营活动项目；符号决定方向"
+          },
+          {
+            "key": "2024-H1_operating_e05f67912a4841af82723d88cc66e660",
+            "period": "2024-H1",
+            "bridge": "经营小计至CFO",
+            "item": "Income taxes paid",
+            "direction": "减",
+            "amount": "-42.147",
+            "reason": "披露的经营活动项目；符号决定方向"
+          },
+          {
+            "key": "2024-H1_operating_cfo",
+            "period": "2024-H1",
+            "bridge": "经营小计至CFO",
+            "item": "披露CFO",
+            "direction": "终点",
+            "amount": "89.864",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_operating_residual",
+            "period": "2024-H1",
+            "bridge": "经营小计至CFO",
+            "item": "未解释差额",
+            "direction": "残差",
+            "amount": "0",
+            "reason": "CFO-已列经营项目；不以配平项掩盖缺失"
+          },
+          {
+            "key": "2024-H1_cash_cash_begin",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "cash_begin",
+            "direction": "起点",
+            "amount": "236.064",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_cash_cfo",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "cfo",
+            "direction": "加",
+            "amount": "89.864",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_cash_cfi",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "cfi",
+            "direction": "减",
+            "amount": "-31.841",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_cash_cff",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "cff",
+            "direction": "减",
+            "amount": "-103.542",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_cash_cash_fx",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "cash_fx",
+            "direction": "加",
+            "amount": "0.285",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_cash_end",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "期末现金",
+            "direction": "终点",
+            "amount": "190.83",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_cash_residual",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "未解释差额",
+            "direction": "残差",
+            "amount": "0",
+            "reason": ""
+          }
+        ],
+        "working_capital": [
+          {
+            "key": "2025-H1_receivables",
+            "period": "2025-H1",
+            "item": "应收",
+            "begin": "85.774",
+            "end": "103.44",
+            "change": "17.666",
+            "basis": "2025-01-01 至 2025-06-30，不挪用其他期间"
+          },
+          {
+            "key": "2025-H1_inventory",
+            "period": "2025-H1",
+            "item": "存货",
+            "begin": "154.849",
+            "end": "172.683",
+            "change": "17.834",
+            "basis": "2025-01-01 至 2025-06-30，不挪用其他期间"
+          },
+          {
+            "key": "2025-H1_payables",
+            "period": "2025-H1",
+            "item": "应付",
+            "begin": "397.02",
+            "end": "341.829",
+            "change": "-55.191",
+            "basis": "2025-01-01 至 2025-06-30，不挪用其他期间"
+          },
+          {
+            "key": "2024-H1_receivables",
+            "period": "2024-H1",
+            "item": "应收",
+            "begin": null,
+            "end": null,
+            "change": null,
+            "basis": "2024-01-01 至 2024-06-30，不挪用其他期间"
+          },
+          {
+            "key": "2024-H1_inventory",
+            "period": "2024-H1",
+            "item": "存货",
+            "begin": null,
+            "end": null,
+            "change": null,
+            "basis": "2024-01-01 至 2024-06-30，不挪用其他期间"
+          },
+          {
+            "key": "2024-H1_payables",
+            "period": "2024-H1",
+            "item": "应付",
+            "begin": null,
+            "end": null,
+            "change": null,
+            "basis": "2024-01-01 至 2024-06-30，不挪用其他期间"
+          }
+        ],
+        "cash_quality": [
+          {
+            "key": "2025-H1",
+            "period": "2025-H1",
+            "cash_conversion": "-0.18168905838059752312945685906353669095543384148418",
+            "dso": "20.460455835349643038504047555037787137437643755414",
+            "dio": "53.376537596496503886871073287822938031552353461269",
+            "dpo": "120.40717067838820451226385705102002229301083497950",
+            "cash_conversion_cycle": "-46.570177246542057586888736208159297124020837762817",
+            "basis": "CFO/同口径净利润；应收天数采用收入代理，应付天数采用成本代理；按实际期间天数"
+          },
+          {
+            "key": "2024-H1",
+            "period": "2024-H1",
+            "cash_conversion": "0.54767070524853124009653592062602081860510470246947",
+            "dso": null,
+            "dio": null,
+            "dpo": null,
+            "cash_conversion_cycle": null,
+            "basis": "CFO/同口径净利润；应收天数采用收入代理，应付天数采用成本代理；按实际期间天数"
+          }
+        ],
+        "observations": [
+          {
+            "key": "2025-H1_profit_cash_sign",
+            "finding": "2025-H1 同口径净利润为正而CFO为负",
+            "basis": "profit_attribution / cash"
+          },
+          {
+            "key": "gross_profit_margin",
+            "finding": "毛利率下降 7.7321 个百分点",
+            "basis": "ratios.gross_profit_margin"
+          },
+          {
+            "key": "net_profit_margin",
+            "finding": "合并净利率下降 4.8961 个百分点",
+            "basis": "ratios.net_profit_margin"
+          },
+          {
+            "key": "selling_margin",
+            "finding": "销售费用率上升 1.4693 个百分点",
+            "basis": "ratios.selling_margin"
+          },
+          {
+            "key": "administrative_margin",
+            "finding": "管理费用率下降 0.7240 个百分点",
+            "basis": "ratios.administrative_margin"
+          },
+          {
+            "key": "research_margin",
+            "finding": "研发费用率下降 0.0872 个百分点",
+            "basis": "ratios.research_margin"
+          }
+        ],
+        "missing": [
+          {
+            "key": "0",
+            "metric": "fair_value_gains",
+            "period": "2025-H1",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "1",
+            "metric": "associates",
+            "period": "2025-H1",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "2",
+            "metric": "fair_value_gains",
+            "period": "2024-H1",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "3",
+            "metric": "associates",
+            "period": "2024-H1",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "4",
+            "metric": "receivables",
+            "period": "2023-12-31",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "5",
+            "metric": "receivables",
+            "period": "2024-06-30",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "6",
+            "metric": "inventory",
+            "period": "2023-12-31",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "7",
+            "metric": "inventory",
+            "period": "2024-06-30",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "8",
+            "metric": "payables",
+            "period": "2023-12-31",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "9",
+            "metric": "payables",
+            "period": "2024-06-30",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ruihe",
+      "project": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "document": "ab25c52089fd4db89fba046c9c811c46",
+      "reference": {
+        "revenue": "120.392",
+        "cfo": "-30.65",
+        "consolidated": "41.098",
+        "parent": "43.186",
+        "cash_end": "25.723"
+      },
+      "actual": {
+        "revenue": "120.392",
+        "cfo": "-30.65",
+        "consolidated": "41.098",
+        "parent": "43.186",
+        "cash_end": "25.723",
+        "gross_margin_change": "-0.4853"
+      },
+      "bridge_residuals": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "interest_directions": [],
+      "tables": 10,
+      "delivery_files": 13,
+      "source_locators": 47,
+      "tables_data": {
+        "income": [
+          {
+            "key": "revenue",
+            "metric": "收入",
+            "2025-H1": "120.392",
+            "2024-H1": "181.011"
+          },
+          {
+            "key": "cogs",
+            "metric": "销售成本（原披露符号）",
+            "2025-H1": "-111.281",
+            "2024-H1": "-166.434"
+          },
+          {
+            "key": "gross_profit",
+            "metric": "毛利",
+            "2025-H1": "9.111",
+            "2024-H1": "14.577"
+          },
+          {
+            "key": "selling",
+            "metric": "销售费用（原披露符号）",
+            "2025-H1": "-2.586",
+            "2024-H1": "-5.528"
+          },
+          {
+            "key": "administrative",
+            "metric": "管理费用（原披露符号）",
+            "2025-H1": "-20.983",
+            "2024-H1": "-24.053"
+          },
+          {
+            "key": "research",
+            "metric": "研发费用（原披露符号）",
+            "2025-H1": "-7.385",
+            "2024-H1": "-19.449"
+          },
+          {
+            "key": "other_income",
+            "metric": "其他收入",
+            "2025-H1": "0.237",
+            "2024-H1": "2.89"
+          },
+          {
+            "key": "other_gains_net",
+            "metric": "其他净收益",
+            "2025-H1": "0.309",
+            "2024-H1": "0.643"
+          },
+          {
+            "key": "impairment",
+            "metric": "减值损失/转回",
+            "2025-H1": "3.127",
+            "2024-H1": "-1.4"
+          },
+          {
+            "key": "operating_profit",
+            "metric": "营业利润",
+            "2025-H1": "-18.17",
+            "2024-H1": "-32.32"
+          },
+          {
+            "key": "finance_net",
+            "metric": "财务净收益/费用（税前、营业利润之后，非现金收息）",
+            "2025-H1": "-3.914",
+            "2024-H1": "-6.801"
+          },
+          {
+            "key": "fair_value_gains",
+            "metric": "公允价值收益",
+            "2025-H1": "63.015",
+            "2024-H1": null
+          },
+          {
+            "key": "associates",
+            "metric": "联营公司损益",
+            "2025-H1": null,
+            "2024-H1": "0.013"
+          },
+          {
+            "key": "profit_before_tax",
+            "metric": "税前利润",
+            "2025-H1": "40.931",
+            "2024-H1": "-39.108"
+          },
+          {
+            "key": "tax",
+            "metric": "所得税（原披露符号）",
+            "2025-H1": "0.167",
+            "2024-H1": "0.473"
+          }
+        ],
+        "profit_attribution": [
+          {
+            "key": "2025-H1",
+            "period": "2025-H1",
+            "consolidated": "41.098",
+            "parent": "43.186",
+            "minority": "-2.088"
+          },
+          {
+            "key": "2024-H1",
+            "period": "2024-H1",
+            "consolidated": "-38.635",
+            "parent": "-36.04",
+            "minority": "-2.595"
+          }
+        ],
+        "ratios": [
+          {
+            "key": "gross_profit_margin",
+            "metric": "毛利率",
+            "2025-H1": "7.567778589939530865838261678516844973088",
+            "2024-H1": "8.053101745197805658219666208130997563684",
+            "change_pp": "-0.485323155258274792381404529614152590596"
+          },
+          {
+            "key": "selling_margin",
+            "metric": "销售费用率",
+            "2025-H1": "2.147983254701309057080204664761778191242",
+            "2024-H1": "3.053958046748540143969151046069023429515",
+            "change_pp": "-0.905974792047231086888946381307245238273"
+          },
+          {
+            "key": "administrative_margin",
+            "metric": "管理费用率",
+            "2025-H1": "17.42889893016147252309123529802644694000",
+            "2024-H1": "13.28814270955908756926374640215235538172",
+            "change_pp": "4.14075622060238495382748889587409155828"
+          },
+          {
+            "key": "research_margin",
+            "metric": "研发费用率",
+            "2025-H1": "6.134128513522493188916207056947305468802",
+            "2024-H1": "10.74465087757097634950362132688068680909",
+            "change_pp": "-4.610522364048483160587414269933381340288"
+          },
+          {
+            "key": "net_profit_margin",
+            "metric": "合并净利率",
+            "2025-H1": "34.13681972224068044388331450594723901920",
+            "2024-H1": "-21.34400671782377866538497660363182348034",
+            "change_pp": "55.48082644006445910926829110957906249954"
+          }
+        ],
+        "growth": [
+          {
+            "key": "revenue",
+            "metric": "收入",
+            "change": "-33.48912497030567203098154255818707150394",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "cogs",
+            "metric": "销售成本（原披露符号）",
+            "change": "-33.13806073278296501916675679248230529820",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "gross_profit",
+            "metric": "毛利",
+            "change": "-37.49742745420868491459147972833916443713",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "selling",
+            "metric": "销售费用（原披露符号）",
+            "change": "-53.21997105643994211287988422575976845152",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "administrative",
+            "metric": "管理费用（原披露符号）",
+            "change": "-12.76348064690475200598677919594229410053",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "research",
+            "metric": "研发费用（原披露符号）",
+            "change": "-62.02889608720242685999280168646202889609",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "other_income",
+            "metric": "其他收入",
+            "change": "-91.79930795847750865051903114186851211073",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "other_gains_net",
+            "metric": "其他净收益",
+            "change": "-51.94401244167962674961119751166407465008",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "impairment",
+            "metric": "减值损失/转回",
+            "change": "-323.3571428571428571428571428571428571429",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "operating_profit",
+            "metric": "营业利润",
+            "change": "-43.78094059405940594059405940594059405941",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "finance_net",
+            "metric": "财务净收益/费用（税前、营业利润之后，非现金收息）",
+            "change": "-42.44963975885899132480517570945449198647",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "fair_value_gains",
+            "metric": "公允价值收益",
+            "change": null,
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "associates",
+            "metric": "联营公司损益",
+            "change": null,
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "profit_before_tax",
+            "metric": "税前利润",
+            "change": "-204.6614503426408918891275442364733558351",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "tax",
+            "metric": "所得税（原披露符号）",
+            "change": "-64.69344608879492600422832980972515856237",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "net_profit",
+            "metric": "合并净利润",
+            "change": "-206.3750485311246279280445192183253526595",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          },
+          {
+            "key": "parent_profit",
+            "metric": "归母净利润",
+            "change": "-219.8279689234184239733629300776914539401",
+            "basis": "2025-H1 对 2024-H1；(本期-基期)/基期；负基期不可解读为改善"
+          }
+        ],
+        "cash": [
+          {
+            "key": "2025-H1_cfo",
+            "period": "2025-H1",
+            "metric": "CFO",
+            "amount": "-30.65",
+            "classification": "cfo"
+          },
+          {
+            "key": "2025-H1_cfi",
+            "period": "2025-H1",
+            "metric": "CFI",
+            "amount": "-6.796",
+            "classification": "cfi"
+          },
+          {
+            "key": "2025-H1_cff",
+            "period": "2025-H1",
+            "metric": "CFF",
+            "amount": "47.079",
+            "classification": "cff"
+          },
+          {
+            "key": "2025-H1_67bbec879de14a67b69d07e37921d9a4",
+            "period": "2025-H1",
+            "metric": "Income tax paid",
+            "amount": "-0.001",
+            "classification": "operating"
+          },
+          {
+            "key": "2025-H1_9e97cc7338b247468223fba2753c5271",
+            "period": "2025-H1",
+            "metric": "Acquisition of financial assets at FVTPL",
+            "amount": "-6.197",
+            "classification": "investing"
+          },
+          {
+            "key": "2025-H1_89172a0c35c44f4fa9315ef82fc311d3",
+            "period": "2025-H1",
+            "metric": "Interests received",
+            "amount": "0.029",
+            "classification": "investing"
+          },
+          {
+            "key": "2025-H1_7111f8e1487e4a988da198ed23c8de31",
+            "period": "2025-H1",
+            "metric": "Payment for property and equipment",
+            "amount": "-0.67",
+            "classification": "investing"
+          },
+          {
+            "key": "2025-H1_f1b02c38ac004f5abf711925f88c6a1b",
+            "period": "2025-H1",
+            "metric": "Proceeds from disposal of property and equipment",
+            "amount": "0.042",
+            "classification": "investing"
+          },
+          {
+            "key": "2025-H1_1d766a558a204e9d803a40006009c365",
+            "period": "2025-H1",
+            "metric": "Advances from directors",
+            "amount": "4.2",
+            "classification": "financing"
+          },
+          {
+            "key": "2025-H1_b1c972d7a91540368267a1f7c36e4c5a",
+            "period": "2025-H1",
+            "metric": "Decrease in restricted bank deposits",
+            "amount": "4.833",
+            "classification": "financing"
+          },
+          {
+            "key": "2025-H1_9668e6477c0940b6b5dcd370e6a2cdbd",
+            "period": "2025-H1",
+            "metric": "Interests paid on bank and other borrowings",
+            "amount": "-3.012",
+            "classification": "financing"
+          },
+          {
+            "key": "2025-H1_cbff67928dec44f0b5763547a2fe6a46",
+            "period": "2025-H1",
+            "metric": "(Increase)/decrease in pledged bank deposits and other deposits",
+            "amount": "-0.303",
+            "classification": "financing"
+          },
+          {
+            "key": "2025-H1_0a3e6a7555de453e805180793656033b",
+            "period": "2025-H1",
+            "metric": "Proceeds from issues of shares",
+            "amount": "36.086",
+            "classification": "financing"
+          },
+          {
+            "key": "2025-H1_9b1ee031aa384a24ae698ac0d3e2a0ad",
+            "period": "2025-H1",
+            "metric": "Proceeds from other borrowings",
+            "amount": "22.679",
+            "classification": "financing"
+          },
+          {
+            "key": "2025-H1_621d0a08c70c442fbdd7ce28434800ab",
+            "period": "2025-H1",
+            "metric": "Proceeds from bank borrowings",
+            "amount": "21.46",
+            "classification": "financing"
+          },
+          {
+            "key": "2025-H1_c4010b9aec684962b21c705361658ba3",
+            "period": "2025-H1",
+            "metric": "Share issues expenses paid",
+            "amount": "-0.445",
+            "classification": "financing"
+          },
+          {
+            "key": "2025-H1_c0b61bdc989c4965b1a2e558186a2ed2",
+            "period": "2025-H1",
+            "metric": "Repayment of lease liabilities",
+            "amount": "-2.144",
+            "classification": "financing"
+          },
+          {
+            "key": "2025-H1_10b00dc9506e49c79efa43befb581004",
+            "period": "2025-H1",
+            "metric": "Repayment of advances from directors",
+            "amount": "-10.585",
+            "classification": "financing"
+          },
+          {
+            "key": "2025-H1_681cd418ba2c48d6ad3a3b697730ec76",
+            "period": "2025-H1",
+            "metric": "Repayment of other borrowings",
+            "amount": "-17.69",
+            "classification": "financing"
+          },
+          {
+            "key": "2025-H1_3d2b0c7712a34f2f9aa99fd1ee2c2eac",
+            "period": "2025-H1",
+            "metric": "Repayment of bank borrowings",
+            "amount": "-8",
+            "classification": "financing"
+          },
+          {
+            "key": "2024-H1_cfo",
+            "period": "2024-H1",
+            "metric": "CFO",
+            "amount": "-32.104",
+            "classification": "cfo"
+          },
+          {
+            "key": "2024-H1_cfi",
+            "period": "2024-H1",
+            "metric": "CFI",
+            "amount": "-5.308",
+            "classification": "cfi"
+          },
+          {
+            "key": "2024-H1_cff",
+            "period": "2024-H1",
+            "metric": "CFF",
+            "amount": "-7.228",
+            "classification": "cff"
+          },
+          {
+            "key": "2024-H1_3e539affa95b422e9ec917b1d7823c44",
+            "period": "2024-H1",
+            "metric": "Income tax paid",
+            "amount": "-0.151",
+            "classification": "operating"
+          },
+          {
+            "key": "2024-H1_65ca1523f48d40c48eae47c4808a2f86",
+            "period": "2024-H1",
+            "metric": "Acquisition of financial assets at FVTOCI",
+            "amount": "-1.95",
+            "classification": "investing"
+          },
+          {
+            "key": "2024-H1_9c5fb09258d5408899891724258baa82",
+            "period": "2024-H1",
+            "metric": "Interests received",
+            "amount": "0.128",
+            "classification": "investing"
+          },
+          {
+            "key": "2024-H1_ef31de616dd94f4a80fd528ec6e9d25d",
+            "period": "2024-H1",
+            "metric": "Payment for property and equipment",
+            "amount": "-1.3",
+            "classification": "investing"
+          },
+          {
+            "key": "2024-H1_3fc2567b183f4aaa93fb5e300e2f2338",
+            "period": "2024-H1",
+            "metric": "Purchase of intangible assets",
+            "amount": "-2.186",
+            "classification": "investing"
+          },
+          {
+            "key": "2024-H1_f627f6a8196a455ca4583f93306cb9a3",
+            "period": "2024-H1",
+            "metric": "Advances from directors",
+            "amount": "32.38",
+            "classification": "financing"
+          },
+          {
+            "key": "2024-H1_e09e8de4c99b4d02a970513af0b950d2",
+            "period": "2024-H1",
+            "metric": "Interests paid on bank and other borrowings",
+            "amount": "-4.037",
+            "classification": "financing"
+          },
+          {
+            "key": "2024-H1_ed4900a1558e4950be0f836518bd4a0f",
+            "period": "2024-H1",
+            "metric": "(Increase)/decrease in pledged bank deposits and other deposits",
+            "amount": "1.116",
+            "classification": "financing"
+          },
+          {
+            "key": "2024-H1_798e39161aab49fb9e14d7c094cf002c",
+            "period": "2024-H1",
+            "metric": "Proceeds from other borrowings",
+            "amount": "40",
+            "classification": "financing"
+          },
+          {
+            "key": "2024-H1_464c40df35594d4a8d005a8a6fa3c922",
+            "period": "2024-H1",
+            "metric": "Proceeds from bank borrowings",
+            "amount": "12.016",
+            "classification": "financing"
+          },
+          {
+            "key": "2024-H1_678be1c0d98546fb8393b68fa7976b65",
+            "period": "2024-H1",
+            "metric": "Repayment of lease liabilities",
+            "amount": "-2.239",
+            "classification": "financing"
+          },
+          {
+            "key": "2024-H1_c8d746adb1e04f35b1d7320e6e805bfa",
+            "period": "2024-H1",
+            "metric": "Repayment of advances from directors",
+            "amount": "-30",
+            "classification": "financing"
+          },
+          {
+            "key": "2024-H1_1c16597ede714559b3ee28aa05c10dbb",
+            "period": "2024-H1",
+            "metric": "Repayment of other borrowings",
+            "amount": "-46.464",
+            "classification": "financing"
+          },
+          {
+            "key": "2024-H1_d341ae92cbfc46bc9483b9084c2fa829",
+            "period": "2024-H1",
+            "metric": "Repayment of bank borrowings",
+            "amount": "-10",
+            "classification": "financing"
+          }
+        ],
+        "bridge": [
+          {
+            "key": "2025-H1_operating_5a7513dccc5e497d890d1ec102b2ba7b",
+            "period": "2025-H1",
+            "bridge": "经营小计至CFO",
+            "item": "Cash used in operations",
+            "direction": "起点",
+            "amount": "-30.649",
+            "reason": "披露的经营活动项目；符号决定方向"
+          },
+          {
+            "key": "2025-H1_operating_67bbec879de14a67b69d07e37921d9a4",
+            "period": "2025-H1",
+            "bridge": "经营小计至CFO",
+            "item": "Income tax paid",
+            "direction": "减",
+            "amount": "-0.001",
+            "reason": "披露的经营活动项目；符号决定方向"
+          },
+          {
+            "key": "2025-H1_operating_cfo",
+            "period": "2025-H1",
+            "bridge": "经营小计至CFO",
+            "item": "披露CFO",
+            "direction": "终点",
+            "amount": "-30.65",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_operating_residual",
+            "period": "2025-H1",
+            "bridge": "经营小计至CFO",
+            "item": "未解释差额",
+            "direction": "残差",
+            "amount": "0",
+            "reason": "CFO-已列经营项目；不以配平项掩盖缺失"
+          },
+          {
+            "key": "2025-H1_cash_cash_begin",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "cash_begin",
+            "direction": "起点",
+            "amount": "16.399",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_cash_cfo",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "cfo",
+            "direction": "减",
+            "amount": "-30.65",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_cash_cfi",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "cfi",
+            "direction": "减",
+            "amount": "-6.796",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_cash_cff",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "cff",
+            "direction": "加",
+            "amount": "47.079",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_cash_cash_fx",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "cash_fx",
+            "direction": "减",
+            "amount": "-0.309",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_cash_end",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "期末现金",
+            "direction": "终点",
+            "amount": "25.723",
+            "reason": ""
+          },
+          {
+            "key": "2025-H1_cash_residual",
+            "period": "2025-H1",
+            "bridge": "期初至期末现金",
+            "item": "未解释差额",
+            "direction": "残差",
+            "amount": "0",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_operating_50bea6e574124fd2a32d8ae0e6e8f3ef",
+            "period": "2024-H1",
+            "bridge": "经营小计至CFO",
+            "item": "Cash used in operations",
+            "direction": "起点",
+            "amount": "-31.953",
+            "reason": "披露的经营活动项目；符号决定方向"
+          },
+          {
+            "key": "2024-H1_operating_3e539affa95b422e9ec917b1d7823c44",
+            "period": "2024-H1",
+            "bridge": "经营小计至CFO",
+            "item": "Income tax paid",
+            "direction": "减",
+            "amount": "-0.151",
+            "reason": "披露的经营活动项目；符号决定方向"
+          },
+          {
+            "key": "2024-H1_operating_cfo",
+            "period": "2024-H1",
+            "bridge": "经营小计至CFO",
+            "item": "披露CFO",
+            "direction": "终点",
+            "amount": "-32.104",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_operating_residual",
+            "period": "2024-H1",
+            "bridge": "经营小计至CFO",
+            "item": "未解释差额",
+            "direction": "残差",
+            "amount": "0",
+            "reason": "CFO-已列经营项目；不以配平项掩盖缺失"
+          },
+          {
+            "key": "2024-H1_cash_cash_begin",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "cash_begin",
+            "direction": "起点",
+            "amount": "113.257",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_cash_cfo",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "cfo",
+            "direction": "减",
+            "amount": "-32.104",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_cash_cfi",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "cfi",
+            "direction": "减",
+            "amount": "-5.308",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_cash_cff",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "cff",
+            "direction": "减",
+            "amount": "-7.228",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_cash_cash_fx",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "cash_fx",
+            "direction": "加",
+            "amount": "1.615",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_cash_end",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "期末现金",
+            "direction": "终点",
+            "amount": "70.232",
+            "reason": ""
+          },
+          {
+            "key": "2024-H1_cash_residual",
+            "period": "2024-H1",
+            "bridge": "期初至期末现金",
+            "item": "未解释差额",
+            "direction": "残差",
+            "amount": "0",
+            "reason": ""
+          }
+        ],
+        "working_capital": [
+          {
+            "key": "2025-H1_receivables",
+            "period": "2025-H1",
+            "item": "应收",
+            "begin": "90.66",
+            "end": "80.662",
+            "change": "-9.998",
+            "basis": "2025-01-01 至 2025-06-30，不挪用其他期间"
+          },
+          {
+            "key": "2025-H1_inventory",
+            "period": "2025-H1",
+            "item": "存货",
+            "begin": null,
+            "end": null,
+            "change": null,
+            "basis": "2025-01-01 至 2025-06-30，不挪用其他期间"
+          },
+          {
+            "key": "2025-H1_payables",
+            "period": "2025-H1",
+            "item": "应付",
+            "begin": "91.612",
+            "end": "55.251",
+            "change": "-36.361",
+            "basis": "2025-01-01 至 2025-06-30，不挪用其他期间"
+          },
+          {
+            "key": "2024-H1_receivables",
+            "period": "2024-H1",
+            "item": "应收",
+            "begin": null,
+            "end": null,
+            "change": null,
+            "basis": "2024-01-01 至 2024-06-30，不挪用其他期间"
+          },
+          {
+            "key": "2024-H1_inventory",
+            "period": "2024-H1",
+            "item": "存货",
+            "begin": null,
+            "end": null,
+            "change": null,
+            "basis": "2024-01-01 至 2024-06-30，不挪用其他期间"
+          },
+          {
+            "key": "2024-H1_payables",
+            "period": "2024-H1",
+            "item": "应付",
+            "begin": null,
+            "end": null,
+            "change": null,
+            "basis": "2024-01-01 至 2024-06-30，不挪用其他期间"
+          }
+        ],
+        "cash_quality": [
+          {
+            "key": "2025-H1",
+            "period": "2025-H1",
+            "cash_conversion": "-0.74577838337632001557253394325757944425519489999513",
+            "dso": "128.78464515914678716193767027709482357631736327995",
+            "dio": null,
+            "dpo": "119.43729387766105624500139287030130929808323074020",
+            "cash_conversion_cycle": null,
+            "basis": "CFO/同口径净利润；应收天数采用收入代理，应付天数采用成本代理；按实际期间天数"
+          },
+          {
+            "key": "2024-H1",
+            "period": "2024-H1",
+            "cash_conversion": null,
+            "dso": null,
+            "dio": null,
+            "dpo": null,
+            "cash_conversion_cycle": null,
+            "basis": "CFO/同口径净利润；应收天数采用收入代理，应付天数采用成本代理；按实际期间天数"
+          }
+        ],
+        "observations": [
+          {
+            "key": "2025-H1_profit_cash_sign",
+            "finding": "2025-H1 同口径净利润为正而CFO为负",
+            "basis": "profit_attribution / cash"
+          },
+          {
+            "key": "net_profit_margin",
+            "finding": "合并净利率上升 55.4808 个百分点",
+            "basis": "ratios.net_profit_margin"
+          },
+          {
+            "key": "research_margin",
+            "finding": "研发费用率下降 4.6105 个百分点",
+            "basis": "ratios.research_margin"
+          },
+          {
+            "key": "administrative_margin",
+            "finding": "管理费用率上升 4.1408 个百分点",
+            "basis": "ratios.administrative_margin"
+          },
+          {
+            "key": "selling_margin",
+            "finding": "销售费用率下降 0.9060 个百分点",
+            "basis": "ratios.selling_margin"
+          },
+          {
+            "key": "gross_profit_margin",
+            "finding": "毛利率下降 0.4853 个百分点",
+            "basis": "ratios.gross_profit_margin"
+          }
+        ],
+        "missing": [
+          {
+            "key": "0",
+            "metric": "associates",
+            "period": "2025-H1",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "1",
+            "metric": "fair_value_gains",
+            "period": "2024-H1",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "2",
+            "metric": "inventory",
+            "period": "2024-12-31",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "3",
+            "metric": "inventory",
+            "period": "2025-06-30",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "4",
+            "metric": "receivables",
+            "period": "2023-12-31",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "5",
+            "metric": "receivables",
+            "period": "2024-06-30",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "6",
+            "metric": "inventory",
+            "period": "2023-12-31",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "7",
+            "metric": "inventory",
+            "period": "2024-06-30",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "8",
+            "metric": "payables",
+            "period": "2023-12-31",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          },
+          {
+            "key": "9",
+            "metric": "payables",
+            "period": "2024-06-30",
+            "reason": "缺少同口径披露",
+            "candidates": "[]"
+          }
+        ]
+      }
+    }
+  ]
+}

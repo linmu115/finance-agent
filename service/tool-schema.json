@@ -1476,6 +1476,92 @@
     }
   },
   {
+    "name": "financial_workpaper",
+    "description": "一次生成金融底稿并交付 CSV/Markdown，无需写脚本。kind=statement_analysis 默认最新合并期与上年可比期；kind=report_audit 指定研报 document_id 核对算术、精度、跨页与标注差异。返回可引用表名、列单位、行键与数值发现；完整来源随附件，宿主可绑定 {{table:income}} 等数值表。",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "kind": {
+          "default": "statement_analysis",
+          "title": "Kind",
+          "type": "string"
+        },
+        "document_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Document Id"
+        },
+        "company": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Company"
+        },
+        "scope": {
+          "default": "consolidated",
+          "title": "Scope",
+          "type": "string"
+        },
+        "periods": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Periods"
+        },
+        "focus": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Focus"
+        }
+      },
+      "required": [
+        "project_id"
+      ],
+      "title": "financial_workpaperArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "financial_workpaperDictOutput",
+      "type": "object"
+    }
+  },
+  {
     "name": "calculate_financial_metrics",
     "description": "Decimal formulas: yoy(current,previous); ratio/margin/cash_conversion/debt_ratio(numerator,denominator);\n    add/subtract/multiply/divide(a,b); sum(values). Numeric inputs may reference {fact_id:...} or {record_id:...}.\n    yoy/percentage_change/margin/debt_ratio return percentages (%), not percentage-point changes; ratio/cash_conversion return ratios. For other formulas use Python run_analysis.",
     "inputSchema": {

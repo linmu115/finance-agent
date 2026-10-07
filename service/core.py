@@ -361,6 +361,14 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         return response({"items":items,"total":total,"offset":offset,"limit":limit,"next_offset":offset+len(items) if offset+len(items)<total else None,"available_metrics":sorted(catalog | set(METRICS)) if limit is None else canonical,"catalog_tool":"get_data_catalog"},[r["source_ref"] for r in items],list(dict.fromkeys(warnings)),
                         "ok" if items else "insufficient_evidence")
 
+    def financial_workpaper(self, project_id, kind='statement_analysis', **options):
+        from .financial_workpapers import financial_workpaper, report_sources, WorkpaperInputError
+        try:
+            data = financial_workpaper(self, project_id, kind, **options)
+            return response(data, report_sources(data['report']))
+        except WorkpaperInputError as exc:
+            return response({'error': str(exc)}, status='insufficient_evidence')
+
     def calculate_financial_metrics(self, project_id, operation, inputs):
         self.store.project(project_id)
         if not isinstance(inputs,dict):raise ValueError("inputs_require_object")

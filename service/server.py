@@ -239,6 +239,14 @@ async def get_financial_metrics(project_id: str, metrics: list[str], company: st
     return await call("get_financial_metrics",project_id=project_id,metrics=metrics,company=company,years=years,document_id=document_id,scope=scope,offset=offset,limit=min(limit,80))
 
 @mcp.tool()
+async def financial_workpaper(project_id: str, kind: str = 'statement_analysis', document_id: str | None = None,
+                              company: str | None = None, scope: str = 'consolidated',
+                              periods: list[str] | str | None = None, focus: str | None = None) -> dict[str, Any]:
+    """一次生成金融底稿并交付 CSV/Markdown，无需写脚本。kind=statement_analysis 默认最新合并期与上年可比期；kind=report_audit 指定研报 document_id 核对算术、精度、跨页与标注差异。返回可引用表名、列单位、行键与数值发现；完整来源随附件，宿主可绑定 {{table:income}} 等数值表。"""
+    return await call('financial_workpaper', project_id=project_id, kind=kind, document_id=document_id,
+                      company=company, scope=scope, periods=periods, focus=focus)
+
+@mcp.tool()
 async def calculate_financial_metrics(project_id: str, operation: Literal['yoy','percentage_change','ratio','margin','cash_conversion','debt_ratio','add','subtract','multiply','divide','sum'], inputs: dict[str, Any]) -> dict[str, Any]:
     """Decimal formulas: yoy(current,previous); ratio/margin/cash_conversion/debt_ratio(numerator,denominator);
     add/subtract/multiply/divide(a,b); sum(values). Numeric inputs may reference {fact_id:...} or {record_id:...}.
