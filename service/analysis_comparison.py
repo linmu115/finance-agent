@@ -53,6 +53,13 @@ def deliver_parameter_comparison(input_dir='/input',output_dir='/output'):
             rows += [{'step':str(step),'parameter':parameter,**r} for r in change['rows']];units+=change['cell_units'];previous=next_tables
         tables['parameter_contributions']={'columns':{'step':{},'parameter':{},**changes['columns']},'rows':rows,'cell_units':units,
             'row_keys':['|'.join(r[k] for k in ('parameter','table','row','column')) for r in rows]}
+        contributions=tables['parameter_contributions'];relations=[]
+        for change,unit in zip(changes['rows'],changes['cell_units']):
+            members=[key for key,row in zip(contributions['row_keys'],rows) if all(row[k]==change[k] for k in ('table','row','column'))]
+            key='合计|'+'|'.join(change[k] for k in ('table','row','column'))
+            rows.append({'step':None,'parameter':'合计',**change});units.append(unit);contributions['row_keys'].append(key)
+            relations.append({'parts':[{'row':member,'column':'delta'} for member in members],'total':{'row':key,'column':'delta'}})
+        contributions['sum_relations']=relations
     if __package__:from .scenario_tables import scenario_tables
     else:from scenario_tables import scenario_tables
     versioned,context=scenario_tables(data['baseline'],current,data['baseline_id'],data['scenario_id'])

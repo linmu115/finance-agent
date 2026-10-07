@@ -91,8 +91,10 @@ def _compare_models(kind, baseline, scenario, order):
             from .model_units import AMOUNT_UNITS
             unit={'unit':'元/股','currency':scenario.get('price_currency',scenario['currency'])} if decomposition.get('metric')=='value_per_share' else {'unit':AMOUNT_UNITS.get(str(scenario['amount_scale']),'元'),'currency':scenario['currency']}
             multiplier=Decimal(scenario['amount_scale']) if decomposition.get('metric')!='value_per_share' and str(scenario['amount_scale']) not in AMOUNT_UNITS else Decimal(1)
+            contribution_rows=[{'parameter':step['path'],'contribution':{'value':str(Decimal(step['contribution'])*multiplier),**unit,'source':{'baseline':baseline.get('source_refs',{}),'scenario':scenario.get('source_refs',{}),'order':order}}} for step in decomposition['steps']]
+            contribution_rows.append({'parameter':'合计','contribution':{'value':str(Decimal(decomposition['total_change'])*multiplier),**unit,'source':{'formula':'scenario - baseline','order':order}}})
             report=compile_report({'tables':{'dcf_update_contributions':{'columns':{'parameter':{},'contribution':{**unit,'decimals':4}},'row_key':'parameter',
-                'rows':[{'parameter':step['path'],'contribution':{'value':str(Decimal(step['contribution'])*multiplier),**unit,'source':{'baseline':baseline.get('source_refs',{}),'scenario':scenario.get('source_refs',{}),'order':order}}} for step in decomposition['steps']]}}})
+                'rows':contribution_rows,'sum_relations':[{'parts':[{'row':step['path'],'column':'contribution'} for step in decomposition['steps']], 'total':{'row':'合计','column':'contribution'}}]}}})
             tables.update(report['tables'])
         result['report']={'title':'DCF 参数更新','tables':tables,'body':'贡献依赖替换顺序。\n\n'+'\n\n'.join(render_table(t) for t in tables.values()),'skipped':skipped}
     return result

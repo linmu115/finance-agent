@@ -216,7 +216,7 @@ def statement_analysis(service, project, document_id=None, company=None, scope='
             growth.append({'key': k, 'metric': label, 'change': st.calculate('yoy', {'current': val(a), 'previous': val(b)}, '%', [source(r) for r in (a,b) if r]),
                            'basis': f'{ps[0]} 对 {ps[1]}；(本期-基期)/基期；负基期不可解读为改善'})
     tables['growth'] = table({'key': col('行键'), 'metric': col('指标'), 'change': col('增速', '%'), 'basis': col('定义')}, growth)
-    cash_rows, bridge_rows, wc_rows, quality_rows = [], [], [], []
+    cash_rows, bridge_rows, wc_rows, quality_rows, bridge_sums = [], [], [], [], []
     for p in ps:
         picked = selected[p]
         for k in ('cfo', 'cfi', 'cff'):
@@ -241,6 +241,7 @@ def statement_analysis(service, project, document_id=None, company=None, scope='
             residual = st.calculate('subtract', {'a': val(anchor), 'b': explained['value']}, '元', [source(anchor), explained['source']])
             bridge_rows.extend([{'key': p+'_operating_cfo', 'period': p, 'bridge': '经营小计至CFO', 'item': '披露CFO', 'direction': '终点', 'amount': q(anchor), 'reason': ''},
                                 {'key': p+'_operating_residual', 'period': p, 'bridge': '经营小计至CFO', 'item': '未解释差额', 'direction': '残差', 'amount': residual, 'reason': 'CFO-已列经营项目；不以配平项掩盖缺失'}])
+            bridge_sums.append({'parts':[{'row':p+'_operating_'+r['fact_id'],'column':'amount'} for r in bridge_inputs]+[{'row':p+'_operating_residual','column':'amount'}], 'total':{'row':p+'_operating_cfo','column':'amount'}})
             for r in flows:
                 cash_rows.append({'key': p+'_'+r['fact_id'], 'period': p, 'metric': meta(r).get('label', r['metric']), 'amount': q(r), 'classification': 'operating'})
         for kind, previous in [('cfi','cfo'),('cff','cfi')]:
@@ -259,6 +260,7 @@ def statement_analysis(service, project, document_id=None, company=None, scope='
         bridge_rows += [{'key': p+'_cash_end', 'period': p, 'bridge': '期初至期末现金', 'item': '期末现金', 'direction': '终点', 'amount': q(picked['cash_end']), 'reason': ''},
                         {'key': p+'_cash_residual', 'period': p, 'bridge': '期初至期末现金', 'item': '未解释差额', 'direction': '残差',
                          'amount': st.calculate('subtract', {'a': val(picked['cash_end']), 'b': explained['value']}, '元', [source(r) for r in cash_parts if r]), 'reason': ''}]
+        bridge_sums.append({'parts':[{'row':p+'_cash_'+k,'column':'amount'} for k in ('cash_begin','cfo','cfi','cff','cash_fx')]+[{'row':p+'_cash_residual','column':'amount'}], 'total':{'row':p+'_cash_end','column':'amount'}})
         rev = picked['revenue']
         begin, end = (meta(rev).get('period_start'), meta(rev).get('period_end')) if rev else (None,None)
         days = (date.fromisoformat(end)-date.fromisoformat(begin)).days+1 if begin and end else None
@@ -286,6 +288,8 @@ def statement_analysis(service, project, document_id=None, company=None, scope='
                              'basis': 'CFO/同口径净利润；应收天数采用收入代理，应付天数采用成本代理；按实际期间天数'})
     tables['cash'] = table({'key':col('行键'),'period':col('期间'),'metric':col('现金项目'),'amount':col('披露现金流','百万元',currency),'classification':col('活动类别')},cash_rows)
     tables['bridge'] = table({'key':col('行键'),'period':col('期间'),'bridge':col('现金桥'),'item':col('项目'),'direction':col('方向'),'amount':col('有符号金额','百万元',currency),'reason':col('依据')},bridge_rows)
+    tables['bridge']['sum_relations']=bridge_sums
+    tables['profit_attribution']['sum_relations']=[{'parts':[{'row':p,'column':k} for k in ('parent','minority')],'total':{'row':p,'column':'consolidated'}} for p in ps]
     tables['working_capital'] = table({'key':col('行键'),'period':col('期间'),'item':col('项目'),**{k:col(label,'百万元',currency) for k,label in [('begin','期初'),('end','期末'),('change','变动')]},'basis':col('期间口径')},wc_rows)
     tables['cash_quality'] = table({'key':col('行键'),'period':col('期间'),'cash_conversion':col('CFO/合并净利润','ratio'),**{k:col(k,'天') for k in ('dso','dio','dpo','cash_conversion_cycle')},'basis':col('计算口径')},quality_rows)
     observations = []

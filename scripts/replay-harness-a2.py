@@ -77,10 +77,10 @@ def main():
             actual=Decimal(str(a))-Decimal(str(b));expected=Decimal(str(c))-Decimal(str(d));checks.append({'cell':'contribution.'+name,'actual':str(actual),'expected':str(expected),'pass':close(actual,expected)})
         tables=status['numeric_tables'];changes=tables['parameter_changes'];contributions=tables['parameter_contributions'];by_cell={}
         for row in contributions['rows']:
+            if row['parameter']=='合计':continue
             key=tuple(row[k] for k in ('table','row','column'));by_cell[key]=by_cell.get(key,Decimal(0))+Decimal(row['delta'])
         sums=[close(row['delta'],by_cell.get(tuple(row[k] for k in ('table','row','column')),Decimal('NaN'))) for row in changes['rows']]
         item.update(checks=checks,all_frozen_cells_pass=all(c['pass'] for c in checks),comparison_cells=len(sums),contribution_sum_pass=sum(sums),available_params=status['available_params'],input_snapshot_bytes_equal=all((TRIAL/'exports'/PROJECT/run/n).read_bytes()==(ACTIVE/'exports'/PROJECT/source/n).read_bytes() for n in ('facts.json','pages.json','tables.json','research_records.json')))
         EVIDENCE.write_text(json.dumps(evidence,ensure_ascii=False,indent=2),encoding='utf8');print(label,'checks',len(checks),'pass',item['all_frozen_cells_pass'],'contributions',sum(sums),'/',len(sums),flush=True)
     service.analysis_pool.shutdown();return evidence
 if __name__=='__main__':main()
-

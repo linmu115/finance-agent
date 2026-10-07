@@ -4,9 +4,9 @@ from decimal import Decimal, InvalidOperation
 import json
 import re
 if __package__:
-    from .analysis_report import canonical_unit, format_cell
+    from .analysis_report import canonical_unit, format_cell, display_table
 else:
-    from analysis_report import canonical_unit, format_cell
+    from analysis_report import canonical_unit, format_cell, display_table
 
 
 def numeric(value):
@@ -156,9 +156,11 @@ def json_tables(data, name):
 
 def table_view(table):
     """Exact values plus rendered cells; source evidence remains in the artifact."""
-    result = {key: table[key] for key in ('columns', 'rows', 'row_keys', 'cell_units', 'artifact', 'origin', 'unit_note', 'label', 'scenario_role', 'version_id', 'original_table') if key in table}
+    result = {key: table[key] for key in ('columns', 'rows', 'row_keys', 'cell_units', 'artifact', 'origin', 'unit_note', 'label', 'scenario_role', 'version_id', 'original_table', 'sum_relations') if key in table}
+    display=display_table(table)
     result['display_rows'] = [{k: format_cell(v, {**table['columns'][k], **table.get('cell_units', [{}] * len(table['rows']))[i].get(k, {})}, with_unit=True)
-                               for k, v in row.items() if numeric(v)} for i, row in enumerate(table['rows'])]
+                               for k, v in row.items() if numeric(v)} for i, row in enumerate(display['rows'])]
+    if display['notes']:result['display_notes']=display['notes']
     return result
 
 

@@ -46,3 +46,5 @@ fig, ax = render_chart(table, {'x': 'year', 'y': ['profit'], 'kind': 'bar'})
 支持金额元/千元/万元/百万元/亿元/十亿元及 units/thousand/million/billion（币种独立）；股/万股/百万股/亿股；ratio 与 %；个百分点；元/股；倍；个；天。美元等币种也可使用 million/billion 和 currency/share。常见写法会自动归一：`人民币百万元`、`RMB million`、`亿港元` 等同于对应单位加币种，`人民币/股`、`港元/股` 即每股金额，`百分点`、`pp` 即个百分点，`百分比` 即 %。金额须带“元”或币种（单写“百万”可能是股数，不接受）。不做隐含换汇，百分比与百分点不能互换，金额不能当每股值。
 
 `body` 的 `{{表名.从0开始的行号.列名}}` 从同一数据生成数字和单位，占位符后面不用再写单位。金融解释、假设和图形由你决定；不得把假设写成披露事实。数字表的来源详情随 chart_data.json 保留。图像自动生成支持 line/bar，复杂瀑布图、热力图等仍可用 Python；两种图都保留缺失值。
+
+贡献、现金桥、构成表可在表定义声明 `sum_relations`，例如 `[{"parts":[{"row":"wacc","column":"value"},{"row":"fcf","column":"value"}],"total":{"row":"total","column":"value"}}]`。行使用表的 row_keys（或 row_key 指定的列）；分项和合计使用同一单位、币种、decimals。渲染器用最大余数法分配显示末位并加表注“分项按显示精度调整以与合计一致”；`rows`、来源和 CSV 保持原精度。缺失仍为空，显示精度下已不相等的关系不会被强行配平。未声明关系的表仍正常逐格显示，不猜哪些行该加总。直接 `display_table(table)` 可取得显示 rows/notes；`render_table` 与答案绑定使用相同结果。`save_table(..., sum_relations=[...])` 也可登记关系，行键由行中的名称列确定。

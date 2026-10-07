@@ -6,7 +6,7 @@ mounted snapshots. Values stay Decimal until Matplotlib needs a float.
 """
 from copy import deepcopy
 import csv
-from decimal import Decimal, InvalidOperation, localcontext
+from decimal import Decimal, InvalidOperation, localcontext, ROUND_FLOOR
 import json
 from pathlib import Path
 import re
@@ -199,18 +199,56 @@ def reference_inventory(tables):
                                for k, col in t['columns'].items()}, 'row_keys': row_keys(t)} for name, t in tables.items()}
 
 
+ROUNDING_NOTE='分项按显示精度调整以与合计一致'
+
+
+def display_table(table):
+    """Allocate display quanta for explicitly declared sums. Exact rows are untouched."""
+    rows=deepcopy(table['rows']);notes=[];keys=row_keys(table)
+    def locate(ref):
+        index=keys.index(str(ref['row']));column=ref['column']
+        return index,column,cell_column(table,index,column)
+    with localcontext() as context:
+        context.prec=50
+        for relation in table.get('sum_relations',[]):
+            total=locate(relation['total']);parts=[locate(ref) for ref in relation['parts']]
+            cells=[total,*parts]
+            if any(table['rows'][i][k] is None for i,k,_ in cells):
+                notes.append('合计关系含缺失值，保留缺失，未调整显示');continue
+            if not parts:raise ValueError('sum_relations.parts 不能为空')
+            unit={(col.get('unit'),col.get('currency'),col.get('decimals',2)) for _,_,col in cells}
+            if len(unit)!=1:raise ValueError('sum_relations 的分项与合计须使用相同单位、币种和显示精度')
+            quantum=Decimal(1).scaleb(-total[2].get('decimals',2))
+            exact=[Decimal(str(table['rows'][i][k])) for i,k,_ in cells]
+            context.prec=max(50,sum(len(v.as_tuple().digits)+abs(v.as_tuple().exponent) for v in exact))
+            target=exact[0].quantize(quantum)
+            if sum(exact[1:]).quantize(quantum)!=target:
+                notes.append('所列分项与合计在显示精度下不一致，未作配平调整');continue
+            scaled=[value/quantum for value in exact[1:]]
+            floors=[value.to_integral_value(rounding=ROUND_FLOOR) for value in scaled]
+            remainder=int(target/quantum-sum(floors))
+            # Floor works for signed cash flows too; stable order resolves equal remainders.
+            order=sorted(range(len(parts)),key=lambda i:scaled[i]-floors[i],reverse=True)
+            for i in order[:remainder]:floors[i]+=1
+            for (i,k,_),value in zip(parts,floors):rows[i][k]=str(value*quantum)
+            rows[total[0]][total[1]]=str(target)
+            notes.append(ROUNDING_NOTE)
+    return {'rows':rows,'notes':list(dict.fromkeys(notes))}
+
+
 def render_table(table):
+    display=display_table(table)
     columns = table['columns']
     escape = lambda s: str(s).replace('|', '\\|').replace('\n', ' ')
     headers = [column_label(col) or key for key, col in columns.items()]
     lines = ['| ' + ' | '.join(map(escape, headers)) + ' |', '| ' + ' | '.join('---' for _ in headers) + ' |']
     lines += ['| ' + ' | '.join(escape(format_cell(row[k], cell_column(table, i, k), with_unit=bool(col.get('per_cell_unit'))))
-                               for k, col in columns.items()) + ' |' for i, row in enumerate(table['rows'])]
-    return '\n'.join(lines)
+                               for k, col in columns.items()) + ' |' for i, row in enumerate(display['rows'])]
+    return '\n'.join(lines)+''.join('\n\n注：'+note+'。' for note in display['notes'])
 
 
 def bind_text(body, tables, charts=None):
-    parts, position = [], 0
+    parts, position, notes = [], 0, []
     for match in re.finditer(r'\{\{\s*([^{}]+?)\s*\}\}', body):
         token = match.group(1); column = None; value = None
         try:
@@ -229,7 +267,8 @@ def bind_text(body, tables, charts=None):
                 if row in keys: index = keys.index(row)
                 elif row.isdigit() and int(row) < len(table['rows']): index = int(row)
                 else: raise ValueError(f'行 {row!r} 不存在；可用行键：{keys}；或从 0 开始的行号')
-                column = cell_column(table, index, key); value = table['rows'][index][key]
+                display=display_table(table);notes+=display['notes']
+                column = cell_column(table, index, key); value = display['rows'][index][key]
                 rendered = format_cell(value, column, with_unit=True)
         except (ValueError, KeyError, IndexError) as exc:
             raise ValueError(f'占位符 {{{{{token}}}}} 无法解析：{exc}。可用引用：{json.dumps(reference_inventory(tables), ensure_ascii=False)}；可用图片：{list(charts or {})}') from exc
@@ -239,7 +278,8 @@ def bind_text(body, tables, charts=None):
             for repeated in unit_spellings(column):
                 if text.startswith(repeated):
                     position += len(following) - len(text) + len(repeated); break
-    return ''.join(parts) + body[position:]
+    rendered=''.join(parts) + body[position:]
+    return rendered+''.join('\n\n注：'+note+'。' for note in dict.fromkeys(notes) if note not in rendered)
 
 
 def compile_report(report, records=(), models=None):
@@ -425,7 +465,7 @@ def write_csv(path, table):
     return headers
 
 
-def save_table(name, columns, rows, title=None, input_dir='/input', output_dir='/output'):
+def save_table(name, columns, rows, title=None, input_dir='/input', output_dir='/output', sum_relations=None):
     """Write <name>.csv from a custom script through the same unit conversion as a report.
 
     Cells are {fact_id}/{record_id}, {model, path}, or {value, unit, currency}; each column names its
@@ -436,6 +476,7 @@ def save_table(name, columns, rows, title=None, input_dir='/input', output_dir='
                for r in json.loads((root / filename).read_text(encoding='utf-8'))]
     models = json.loads((root / 'models.json').read_text(encoding='utf-8')) if (root / 'models.json').exists() else {}
     table = {'columns': columns, 'rows': rows, **({'title': title} if title else {})}
+    if sum_relations is not None:table['sum_relations']=sum_relations
     compiled = compile_report({'tables': {name: table}}, records, models)['tables'][name]
     output = Path(output_dir); output.mkdir(parents=True, exist_ok=True)
     write_csv(output / (name + '.csv'), compiled)

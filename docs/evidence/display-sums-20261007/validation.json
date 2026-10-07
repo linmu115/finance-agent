@@ -1,0 +1,31 @@
+{
+  "verified_at": "2026-10-07T15:24:23.306452+00:00",
+  "base_commit": "ece4f213d137ebdd7e07513a95619ce82d07ee3e",
+  "python": {
+    "command": ".venv/Scripts/python.exe -m unittest service.tests.test_display_sums service.tests.test_analysis_interfaces service.tests.test_financial_workpapers service.tests.test_dcf_fcf service.tests.test_model_delivery service.tests.test_analysis_parameters service.tests.test_scenario_tables",
+    "passed": 39,
+    "failed": 0
+  },
+  "host_and_pi": {
+    "command": "node --import tsx --test tests/numeric-tables.test.ts tests/answer-binding.test.ts tests/dcf-fcf-integration.test.ts tests/financial-workpapers.test.ts",
+    "passed": 7,
+    "failed": 0,
+    "provider": "local mock only; no paid model",
+    "warning": "Existing pydantic_settings IncompleteFieldDefinitionWarning (lifespan forward reference); tests passed."
+  },
+  "frozen_replay": {
+    "file": "replay.json",
+    "relations": 10,
+    "all_equal": true,
+    "exact_rows_and_csv_preserved": true
+  },
+  "docker": {
+    "file": "sandbox.json",
+    "profiles": [
+      "prepared",
+      "financial"
+    ],
+    "passed": 2
+  },
+  "scope": "Display allocation only; missing and real discrepancies retained. No LLM inference; no held-out materials read. B4 remains a proposal."
+}

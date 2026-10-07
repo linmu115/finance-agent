@@ -90,6 +90,9 @@ def result_report(spec,results,forecast,sensitivity,bridge,notes):
     tables={'dcf_summary':table,'dcf_forecast':ftable,'dcf_sensitivity':stable}
     if bridge:
         tables['dcf_target_bridge']={'columns':{'parameter':{},'before':price,'after':price,'contribution':price},'row_key':'parameter','rows':[{k:cell(v,price,per_share_paths+['target_assumptions','target_price']) if k!='parameter' else v for k,v in row.items()} for row in bridge]}
+        table=tables['dcf_target_bridge'];start=bridge[0]['before'];end=bridge[-1]['after']
+        table['rows'].append({'parameter':'合计',**{k:cell(v,price,per_share_paths+['target_assumptions','target_price']) for k,v in {'before':start,'after':end,'contribution':end-start}.items()}})
+        table['sum_relations']=[{'parts':[{'row':row['parameter'],'column':'contribution'} for row in bridge],'total':{'row':'合计','column':'contribution'}}]
     body='估值基准日：'+spec['valuation_date']+'；折现约定：'+spec['discount']['cashflow_timing']+'；汇率为每 1 '+currency+' 对应的 '+pc+'。\n\n{{table:dcf_summary}}\n\n{{table:dcf_forecast}}\n\n{{table:dcf_sensitivity}}'
     if bridge:body+='\n\n{{table:dcf_target_bridge}}\n\n贡献按表中顺序替换，依赖替换顺序；remaining_gap 为未解释差额。'
     body+='\n\n'+'\n\n'.join(notes)
