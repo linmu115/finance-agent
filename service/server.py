@@ -25,6 +25,8 @@ async def call(method, **kwargs):
         if isinstance(exc,AnalysisEditError):
             d=exc.details
             return response({"error":f"{exc}: edit {d['edit_index']} matched {d['matches']} occurrences. {d['hint']}","details":d},status="error")
+        if isinstance(exc, ValueError) and method in {'run_analysis','get_artifact','render_answer'}:
+            return response({'error':str(exc)},status='error')
         code = str(exc) if isinstance(exc, ValueError) and re.fullmatch(r"[a-z0-9_]+",str(exc)) else type(exc).__name__
         return response({"error":code},status="error")
 

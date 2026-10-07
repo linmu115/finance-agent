@@ -6,7 +6,7 @@ mounted snapshots. Values stay Decimal until Matplotlib needs a float.
 """
 from copy import deepcopy
 import csv
-from decimal import Decimal, localcontext
+from decimal import Decimal, InvalidOperation, localcontext
 import json
 from pathlib import Path
 import re
@@ -94,7 +94,12 @@ def convert(value, source_unit, display_unit):
         raise ValueError(f'不能把 {source_unit} 换算为 {display_unit}；百分比与百分点、金额与每股金额分别处理')
     if value is None:
         return None
-    number = Decimal(str(value))
+    text = unicodedata.normalize('NFKC', str(value)).strip().replace(',', '')
+    if text.endswith('%') and source_dimension == 'ratio':
+        source_scale = Decimal('0.01'); text = text[:-1]
+    try: number = Decimal(text)
+    except InvalidOperation:
+        raise ValueError(f'数值 {value!r} 不是可解析数字；单位列为 {source_unit}。缺失写 null；百分数可写 12.2% 或 {{value:0.122,unit:"ratio"}}') from None
     if not number.is_finite():
         raise ValueError('非有限数值不能作为报告金额；缺失请用 null')
     with localcontext() as ctx:
@@ -162,76 +167,169 @@ def model_quantity(model, path, source_unit=None):
                        'data_kind': 'model_calculation', 'amount_scale': model['spec']['amount_scale']}}
 
 
+def match_key(text, mapping, kind='键'):
+    if text in mapping: return text
+    folded = str(text).strip().casefold()
+    found = [key for key, col in mapping.items() if str(key).strip().casefold() == folded or
+             isinstance(col, dict) and str(col.get('label', '')).strip().casefold() == folded]
+    if len(found) == 1: return found[0]
+    raise ValueError(f'{kind} {text!r} 不唯一或不存在；可用：{list(mapping)}')
+
+
+def row_keys(table):
+    if 'row_keys' in table: return table['row_keys']
+    rows = table['rows']
+    if table.get('row_key'): return [str(row[table['row_key']]) for row in rows]
+    labels = [k for k, col in table['columns'].items() if not col.get('unit') and not col.get('per_cell_unit')
+              and any(isinstance(r.get(k), str) and not re.fullmatch(r'[-+0-9.,]+', r[k]) for r in rows)]
+    for n in range(1, len(labels) + 1):
+        keys = ['|'.join(str(r.get(k, '')) for k in labels[:n]) for r in rows]
+        if len(set(keys)) == len(rows): return keys
+    return [str(i) for i in range(len(rows))]
+
+
+def cell_column(table, row, key):
+    return {**table['columns'][key], **table.get('cell_units', [{}] * len(table['rows']))[row].get(key, {})}
+
+
+def reference_inventory(tables):
+    return {name: {'columns': {k: {a: col[a] for a in ('unit', 'currency', 'per_cell_unit') if a in col}
+                               for k, col in t['columns'].items()}, 'row_keys': row_keys(t)} for name, t in tables.items()}
+
+
+def render_table(table):
+    columns = table['columns']
+    escape = lambda s: str(s).replace('|', '\\|').replace('\n', ' ')
+    headers = [column_label(col) or key for key, col in columns.items()]
+    lines = ['| ' + ' | '.join(map(escape, headers)) + ' |', '| ' + ' | '.join('---' for _ in headers) + ' |']
+    lines += ['| ' + ' | '.join(escape(format_cell(row[k], cell_column(table, i, k), with_unit=bool(col.get('per_cell_unit'))))
+                               for k, col in columns.items()) + ' |' for i, row in enumerate(table['rows'])]
+    return '\n'.join(lines)
+
+
+def bind_text(body, tables, charts=None):
+    parts, position = [], 0
+    for match in re.finditer(r'\{\{\s*([^{}]+?)\s*\}\}', body):
+        token = match.group(1); column = None; value = None
+        try:
+            if token.startswith('table:'):
+                name = match_key(token[6:], tables, '表'); rendered = render_table(tables[name])
+            elif token.startswith('chart:'):
+                name = match_key(token[6:], charts or {}, '图片'); rendered = f'![{name}]({charts[name]})'
+            else:
+                name, rest = token.split('.', 1); name = match_key(name, tables, '表'); table = tables[name]
+                # Rows and CSV column names may themselves contain decimal points.
+                matches = [(rest[:-len(k)-1], k) for k in table['columns'] if rest.endswith('.'+k)]
+                if len(matches) == 1: row, key = matches[0]
+                else:
+                    row, key = rest.rsplit('.', 1); key = match_key(key, table['columns'], '列')
+                keys = row_keys(table)
+                if row in keys: index = keys.index(row)
+                elif row.isdigit() and int(row) < len(table['rows']): index = int(row)
+                else: raise ValueError(f'行 {row!r} 不存在；可用行键：{keys}；或从 0 开始的行号')
+                column = cell_column(table, index, key); value = table['rows'][index][key]
+                rendered = format_cell(value, column, with_unit=True)
+        except (ValueError, KeyError, IndexError) as exc:
+            raise ValueError(f'占位符 {{{{{token}}}}} 无法解析：{exc}。可用引用：{json.dumps(reference_inventory(tables), ensure_ascii=False)}；可用图片：{list(charts or {})}') from exc
+        parts += [body[position:match.start()], rendered]; position = match.end()
+        if column and value is not None and column.get('unit'):
+            following = body[position:]; text = following.lstrip(' \t')
+            for repeated in unit_spellings(column):
+                if text.startswith(repeated):
+                    position += len(following) - len(text) + len(repeated); break
+    return ''.join(parts) + body[position:]
+
+
 def compile_report(report, records=(), models=None):
-    """Resolve every numeric cell once; all consumers use this immutable result."""
+    """Resolve typed quantities once. Mixed metric tables retain per-cell units."""
     index = {r.get('fact_id') or r.get('record_id'): r for r in records}
-    compiled = deepcopy(report)
+    compiled = deepcopy(report); compiled.setdefault('tables', {})
     for name, table in compiled['tables'].items():
         if not re.fullmatch(r'[\w-]+', name):
             raise ValueError('表名用于文件名，请使用中文、字母、数字、下划线或连字符')
-        columns = table['columns']
+        columns = table['columns']; normalized = []
+        for i, row in enumerate(table['rows']):
+            new = {}
+            for key, cell in row.items():
+                try: target = match_key(key, columns, f'{name}.{i} 列键')
+                except ValueError:
+                    if row.keys() & columns.keys(): continue  # Extra source metadata is not a declared column.
+                    raise
+                if target in new: raise ValueError(f'{name}.{i} 多个数据键映射到 {target}；请只保留一个')
+                new[target] = cell
+            normalized.append(new)
+        table['rows'] = normalized
+        quantities = [{} for _ in normalized]; mixed_columns = set()
         for key, col in columns.items():
-            if 'unit' not in col:
-                continue
-            col['unit'], named = canonical_unit(col['unit'])
-            if named and col.get('currency') and col['currency'] != named:
-                raise ValueError(f'{name}.{key} 的单位与 currency 写了不同币种')
-            if named:
-                col['currency'] = named
-        values, evidence = [], []
-        for row_index, row in enumerate(table['rows']):
-            if row and not (row.keys() & columns.keys()):
-                raise ValueError(f'{name}.{row_index} 数据与列键不匹配；columns 键为 {list(columns)}，数据键为 {list(row)}。数据应使用列键而不是 label')
-            displayed, sources = {}, {}
-            for key, col in columns.items():
+            declared = col.get('unit'); named = None
+            if declared:
+                try: col['unit'], named = canonical_unit(declared)
+                except ValueError:
+                    if not re.search(r'或|见.*单位|每股除外', declared): raise
+                    col.pop('unit'); mixed_columns.add(key)
+                if named and col.get('currency') and col['currency'] != named:
+                    raise ValueError(f'{name}.{key} 的单位与 currency 写了不同币种')
+                if named: col['currency'] = named
+            for i, row in enumerate(normalized):
                 cell = row.get(key)
-                if 'unit' not in col:
-                    if isinstance(cell, dict):
-                        raise ValueError(f'{name}.{row_index}.{key} 是数值引用，请为该列指定 unit')
-                    displayed[key] = cell
+                if not isinstance(cell, dict) and not col.get('unit'):
+                    if key in mixed_columns and cell is not None:
+                        raise ValueError(f'{name}.{i}.{key} 混合列须给每个数值 {{value,unit,currency}}；不能从 {declared!r} 猜单位')
                     continue
                 ref = cell if isinstance(cell, dict) else {'value': cell, 'unit': col.get('source_unit', col['unit']), 'currency': col.get('currency')}
-                if 'fact_id' in ref or 'record_id' in ref:
-                    rid = ref.get('fact_id') or ref.get('record_id')
-                    if rid not in index:
-                        raise ValueError(f'当前导出数据没有记录 {rid}；将所属文档加入 document_ids')
+                rid = ref.get('fact_id') or ref.get('record_id')
+                if rid:
+                    if rid not in index: raise ValueError(f'当前导出数据没有记录 {rid}；将所属文档加入 document_ids')
                     quantity = record_quantity(index[rid])
                 elif 'model' in ref:
                     quantity = model_quantity((models or {})[ref['model']], ref['path'], ref.get('source_unit'))
                 else:
+                    if 'unit' not in ref: raise ValueError(f'{name}.{i}.{key} 缺少 unit；给单元格明确单位或给整列 unit。{ACCEPTED}')
                     quantity = stated_quantity(ref)
-                dimension, _ = unit_info(col['unit'])
+                dimension = unit_info(quantity['unit'])[0]
                 if dimension in {'money', 'per_share'}:
-                    currency = quantity.get('currency') or col.get('currency')
-                    if not currency and quantity['value'] is not None:
-                        raise ValueError(f'{name}.{key} 需要 currency；币种不能从金额大小推断')
-                    if col.get('currency') and col['currency'] != currency:
-                        raise ValueError(f'{name}.{key} 包含不同币种，不能共用一列；请分列或显式换汇计算')
-                    if currency:col['currency'] = currency
-                displayed[key] = convert(quantity['value'], quantity['unit'], col['unit'])
-                sources[key] = quantity
-            values.append(displayed)
-            evidence.append(sources)
-        table['rows'], table['evidence'] = values, evidence
-    body, parts, position = compiled.get('body', ''), [], 0
-    for match in re.finditer(r'\{\{\s*([^{}]+?)\s*\}\}', body):
-        token = match.group(1).split('.')
-        if len(token) != 3:
-            raise ValueError('数字占位符使用 {{表名.行号.列名}}，行号从 0 开始')
-        name, row, key = token
-        table = compiled['tables'][name]
-        column, value = table['columns'][key], table['rows'][int(row)][key]
-        parts += [body[position:match.start()], format_cell(value, column, with_unit=True)]
-        position = match.end()
-        if value is not None and 'unit' in column:
-            # The placeholder already prints the unit. "{{t.0.wacc}}%" must not become "12.20 %%".
-            following = body[position:]
-            text = following.lstrip(' \t')
-            for repeated in unit_spellings(column):
-                if text.startswith(repeated):
-                    position += len(following) - len(text) + len(repeated)
-                    break
-    compiled['body'] = ''.join(parts) + body[position:]
+                    quantity['currency'] = quantity.get('currency') or col.get('currency')
+                    if not quantity['currency'] and quantity['value'] is not None:
+                        raise ValueError(f'{name}.{i}.{key} 需要 currency；在该单元格或列写 currency，例如 CNY / HKD / USD，或用明确单位 人民币百万元 / 港元/股；币种不能从金额大小推断')
+                    if col.get('currency') and quantity['currency'] != col['currency']:
+                        raise ValueError(f'{name}.{i}.{key} 包含不同币种：列={col["currency"]}，单元格={quantity["currency"]}；请分列或显式换汇计算')
+                quantities[i][key] = quantity
+            stated = [q[key] for q in quantities if key in q and q[key]['value'] is not None]
+            dimensions = {(unit_info(q['unit'])[0], q.get('currency')) for q in stated}
+            declared_dimension = unit_info(col['unit'])[0] if col.get('unit') else None
+            if not col.get('unit') and stated: mixed_columns.add(key)
+            if len(dimensions) > 1 or stated and any(unit_info(q['unit'])[0] != declared_dimension for q in stated):
+                # A named row identifies each metric. Without it, incompatible quantities
+                # in a single series remain an error, not a silent unit change.
+                named_rows = any(not c.get('unit') and all(not isinstance(r.get(k), dict) for r in normalized) for k,c in columns.items() if k != key)
+                if named_rows: mixed_columns.add(key)
+            if key in mixed_columns:
+                if declared: col['declared_unit'] = declared
+                col.pop('unit', None); col.pop('currency', None); col['per_cell_unit'] = True
+            elif len({q.get('currency') for q in stated if q.get('currency')}) > 1:
+                raise ValueError(f'{name}.{key} 包含不同币种；请分列或用带指标行键和明确单元格单位的混合表')
+            elif stated and not col.get('currency') and stated[0].get('currency'):
+                col['currency'] = stated[0]['currency']
+        values, evidence, cell_units = [], [], []
+        for i, row in enumerate(normalized):
+            displayed, sources, units = {}, {}, {}
+            for key, col in columns.items():
+                if key not in quantities[i]: displayed[key] = row.get(key); continue
+                q = quantities[i][key]
+                if key in mixed_columns:
+                    # Explicit cell units override a mixed column label; ratio stays ratio,
+                    # unless a ratio column explicitly asks for percent display.
+                    unit = q['unit']; currency = q.get('currency')
+                    units[key] = {'unit': unit, **({'currency': currency} if currency else {})}
+                else: unit = col['unit']
+                try: displayed[key] = convert(q['value'], q['unit'], unit)
+                except ValueError as exc: raise ValueError(f'{name}.{i}.{key}: {exc}；按不同计量对象分列，或用明确单元格单位的指标行') from exc
+                sources[key] = q
+            values.append(displayed); evidence.append(sources); cell_units.append(units)
+        table['rows'], table['evidence'], table['cell_units'] = values, evidence, cell_units
+        table['row_keys'] = row_keys(table)
+    compiled['body'] = bind_text(compiled.get('body', ''), compiled['tables'],
+                                 {f'chart_{i}.png': f'chart_{i}.png' for i,_ in enumerate(compiled.get('charts', []), 1)})
     return compiled
 
 
@@ -262,7 +360,7 @@ def column_label(column):
 def format_cell(value, column, with_unit=False):
     if value is None:
         return '—'
-    if 'unit' not in column:
+    if not column.get('unit'):
         return str(value)
     text = f'{Decimal(value):,.{column.get("decimals", 2)}f}'
     return text + (' ' + ' '.join(x for x in (column.get('currency'), column['unit']) if x) if with_unit else '')
@@ -275,7 +373,9 @@ def render_chart(table, chart):
     columns, rows = table['columns'], table['rows']
     labels = {(columns[k].get('currency'), columns[k].get('unit')) for k in ys}
     if len(labels) != 1 or next(iter(labels))[1] is None:
-        raise ValueError('同一坐标轴上的数列须为同币种、同单位；不同量请分图')
+        choices = {k: columns[k] for k in ys}
+        mixed = [{k: cell_column(table, i, k) for k in ys} for i in range(len(rows))] if any(columns[k].get('per_cell_unit') for k in ys) else []
+        raise ValueError(f'图表 {chart.get("title", "")} 的 y={ys} 不是同币种同单位。列定义：{choices}；逐行单位：{mixed}。请把金额、利润率与百分点分别放入单位一致的表，再让 charts[].table/y 引用相应表列')
     fig, ax = plt.subplots(figsize=chart.get('size', [8.4, 4.8]), layout='constrained')
     background = '#fdfcf9' if chart.get('theme') == 'report' else '#ffffff'
     fig.set_facecolor(background); ax.set_facecolor(background)
@@ -319,7 +419,7 @@ def write_csv(path, table):
     headers = [column_label(col) or key for key, col in columns.items()]
     with Path(path).open('w', encoding='utf-8-sig', newline='') as f:
         writer = csv.writer(f); writer.writerow(headers)
-        writer.writerows(['' if row[k] is None else row[k] for k in columns] for row in table['rows'])
+        writer.writerows(['' if row[k] is None else str(row[k]) + ' ' + ' '.join(str(v) for v in (cell_column(table,i,k).get('currency'),cell_column(table,i,k).get('unit')) if v) if columns[k].get('per_cell_unit') else row[k] for k in columns] for i, row in enumerate(table['rows']))
     return headers
 
 
@@ -355,11 +455,7 @@ def render_report(compiled, output_dir):
     for name, table in compiled['tables'].items():
         columns, rows = table['columns'], table['rows']
         headers = write_csv(output / (name + '.csv'), table)
-        escape = lambda s: str(s).replace('|', '\\|').replace('\n', ' ')
-        # A Markdown table is one block: a blank line between rows ends the table.
-        lines = ['| ' + ' | '.join(map(escape, headers)) + ' |', '| ' + ' | '.join('---' for _ in headers) + ' |']
-        lines += ['| ' + ' | '.join(escape(format_cell(row[k], col)) for k, col in columns.items()) + ' |' for row in rows]
-        markdown += ['## ' + table.get('title', name), '\n'.join(lines)]
+        markdown += ['## ' + table.get('title', name), render_table(table)]
     charts = []
     for i, chart in enumerate(compiled.get('charts', []), 1):
         fig, _ = render_chart(compiled['tables'][chart['table']], {**chart, 'theme': chart.get('theme', compiled.get('theme', 'analysis'))})

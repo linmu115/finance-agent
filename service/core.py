@@ -22,6 +22,7 @@ from .processing import ProcessingMixin
 from .script_cleaning import ScriptCleaningMixin
 from .research_ingestion import ResearchIngestionMixin
 from .asset_dashboard import AssetDashboardMixin
+from .analysis_edits import AnalysisEditError, apply_edits
 
 def response(data=None, source_refs=None, warnings=None, status="ok"):
     return {"status":status,"data":data if data is not None else {},"source_refs":source_refs or [],
@@ -34,12 +35,6 @@ def safe_api_url(url):
     if parsed.scheme != "https" and not (parsed.scheme == "http" and parsed.hostname in {"localhost","127.0.0.1","::1"}):
         raise ValueError("api_requires_https_or_loopback")
     return url.rstrip("/")
-
-class AnalysisEditError(ValueError):
-    def __init__(self, code, index, matches):
-        super().__init__(code)
-        self.details = {'edit_index': index, 'matches': matches,
-                        'hint': 'Use exact text from analysis.py; replace_all=true replaces every match. To rerun unchanged code, omit edits.'}
 
 class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaningMixin, ProcessingMixin):
     def __init__(self, data_dir):
@@ -579,13 +574,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             if report is None:report=metadata.get('report')
         if code is None and report is not None:code='pass'
         if edits and not source_run_id:raise ValueError('edits_require_source_run_id')
-        for index,edit in enumerate(edits or [],1):
-            before,after=edit['before'],edit['after']
-            matches=code.count(before) if before else 0
-            if not matches or (matches!=1 and not edit.get('replace_all',False)):
-                raise AnalysisEditError('edit_must_match_once',index,matches)
-            if before==after:raise AnalysisEditError('edit_makes_no_change',index,matches)
-            code=code.replace(before,after,-1 if edit.get('replace_all',False) else 1)
+        code=apply_edits(code,edits)
         if not isinstance(raw_only,bool):raise ValueError("invalid_analysis_input_mode")
         if not isinstance(code,str) or not 1<=len(code)<=100000:raise ValueError("invalid_analysis_code")
         if isinstance(timeout_seconds,bool) or not isinstance(timeout_seconds,int) or not 1<=timeout_seconds<=120:

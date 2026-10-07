@@ -17,7 +17,11 @@ class PresentationTests(unittest.TestCase):
         report = {'tables': {'changes': {
             'columns': {'metric': {'label': '指标'}, 'amount': {'label': '金额', 'unit': '人民币百万元'}},
             'rows': [{'指标': '营业收入', '金额': {'value': '123', 'unit': '人民币百万元'}}]}}}
-        with self.assertRaisesRegex(ValueError, 'changes.0.*列键不匹配'):
+        # Unique labels now resolve to their column keys, preserving the actual values.
+        accepted = compile_report(report)
+        self.assertEqual(accepted['tables']['changes']['rows'][0], {'metric':'营业收入','amount':'123'})
+        report['tables']['changes']['rows'] = [{'not_a_column': '营业收入'}]
+        with self.assertRaisesRegex(ValueError, 'changes.0.*列键.*可用'):
             compile_report(report)
         # Actual unknown values remain unknown when the row uses the declared keys.
         report['tables']['changes']['rows'] = [{'metric': '营业收入', 'amount': None}]
