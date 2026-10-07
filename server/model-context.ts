@@ -53,6 +53,10 @@ export function modelContext(name:string,envelope:Envelope):Envelope {
   });
   return {...envelope,data:{...data,items},...(envelope.source_refs?{source_refs:citationIndex(items||[],envelope.source_refs)}:{})};
  }
+ if(name==='financial_workpaper'){
+  const {report,numeric_tables,...compact}=data;
+  return {...envelope,data:compact};
+ }
  if(name==='run_financial_model'||name==='save_research_report'){
   const {spec,content,source_validation,delivery,...saved}=data;
   if(!saved.id||!saved.revision_id)return envelope;
