@@ -33,4 +33,13 @@ class InterfaceTests(unittest.TestCase):
             apply_edits('WACC = 0.122',[{'before':'WACC = 0.123','after':'WACC = 0.127'}])
         self.assertEqual(error.exception.details['candidates'][0]['text'],'WACC = 0.122')
 
+    def test_three_binding_forms_use_the_report_formatter(self):
+        report=compile_report({'tables':{'forecast':{'row_key':'year','columns':{'year':{},'revenue':{'unit':'人民币亿元','decimals':2}},'rows':[{'year':'2025E','revenue':{'value':'3242','unit':'人民币百万元'}}]}}})
+        text=bind_text('{{forecast.2025E.revenue}}\n\n{{table:forecast}}\n\n{{chart:chart.png}}',report['tables'],{'chart.png':'/verified/chart.png'})
+        self.assertIn('32.42 CNY 亿元',text)
+        self.assertIn(render_table(report['tables']['forecast']),text)
+        self.assertIn('![chart.png](/verified/chart.png)',text)
+        with self.assertRaisesRegex(ValueError,'可用图片.*chart.png'):
+            bind_text('{{chart:missing.png}}',report['tables'],{'chart.png':'/verified/chart.png'})
+
 if __name__=='__main__':unittest.main()

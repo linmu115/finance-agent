@@ -1952,6 +1952,54 @@
     }
   },
   {
+    "name": "render_answer",
+    "description": "Host-only formatter shared with report.md. Not a model tool.",
+    "inputSchema": {
+      "properties": {
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "body": {
+          "title": "Body",
+          "type": "string"
+        },
+        "tables": {
+          "additionalProperties": true,
+          "title": "Tables",
+          "type": "object"
+        },
+        "charts": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Charts"
+        }
+      },
+      "required": [
+        "project_id",
+        "body",
+        "tables"
+      ],
+      "title": "render_answerArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "render_answerDictOutput",
+      "type": "object"
+    }
+  },
+  {
     "name": "rematerialize_documents",
     "description": "Host maintenance only. Rebuild facts from saved LangExtract mappings with zero model calls; preserves extraction ownership. Never expose as an Agent task.",
     "inputSchema": {

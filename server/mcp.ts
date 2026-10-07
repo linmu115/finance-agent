@@ -29,7 +29,7 @@ export class FinanceService {
    if(!result){const text=(response.content as any[]).filter(x=>x.type==='text').map(x=>x.text).join('\n');try{result=JSON.parse(text);}catch{throw new Error(response.isError?text:'金融服务返回格式无效');}}
    if(response.isError || result.status==='error'){
      const err:any=new Error(typeof result.error==='string'?result.error:result.error?.message || result.data?.error || result.data?.message || result.data?.availability?.reason || result.message || '金融服务操作失败');
-     err.code=result.error?.code || result.code || 'SERVICE_ERROR';throw err;
+     err.code=result.error?.code || result.data?.code || result.code || 'SERVICE_ERROR';err.details=result.data?.details;throw err;
    }
    return result;
  }

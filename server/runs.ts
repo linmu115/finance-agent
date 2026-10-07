@@ -1,5 +1,7 @@
 import {emptyUsage,addUsage as tallyUsage,aggregateAudit} from './usage.js';
 import {artifactMediaType} from './artifact-media.js';
+import {registerNumericTables,referenceInventory} from './numeric-tables.js';
+import {answerBindingExtension} from './answer-binding.js';
 import {repairInterruptedTools,operationKey,sideEffectTool} from './session-recovery.js';
 import {configuredModel,modelCatalogRevision,jsonOutputPayload} from './model-runtime.js';
 import { createAgentSession, DefaultResourceLoader, ModelRuntime, SessionManager, SettingsManager } from '@earendil-works/pi-coding-agent';
@@ -47,7 +49,7 @@ const INGESTION_PROMPT='\n资料入库先识别来源类型。process_documents 
 const FINANCE_PROMPT=WORKSPACE_PROMPT+DEFINITION_PROMPT+RESEARCH_PROMPT+FINANCIAL_INTERPRETATION_PROMPT+INGESTION_PROMPT+FINANCE_TASK_GUIDANCE+ANSWER_FORMAT_GUIDANCE;
 export const PROMPT_HASH=createHash('sha256').update(FINANCE_PROMPT).digest('hex');
 interface EventItem { seq:number; type:string; data:any }
-interface LiveRun { usagePhase?:string; scriptProcessingIds?:Set<string>; accepting:boolean; inputQueue:Promise<void>; nativeQueued:Set<string>; resuming?:boolean; restarting?:boolean; run:Run; events:EventItem[]; clients:Set<Response>; controller:AbortController; promise?:Promise<void>; session?:any; persistQueue:Promise<any>; chat:Conversation; answer:Message; analysisIds:Set<string>; processingIds:Set<string>; extractionRuntime?:Record<string,unknown>; contract?:string; closed:boolean; budget?:EvaluationBudget; detachBudget?:()=>void; modelPending:Set<Promise<unknown>>; researchReads:Map<string,Promise<any>>; route?:TaskRoute; effort?:Effort }
+interface LiveRun { numericTables?:Record<string,any>; bindingError?:Error; bindingRepairMessage?:string; usagePhase?:string; scriptProcessingIds?:Set<string>; accepting:boolean; inputQueue:Promise<void>; nativeQueued:Set<string>; resuming?:boolean; restarting?:boolean; run:Run; events:EventItem[]; clients:Set<Response>; controller:AbortController; promise?:Promise<void>; session?:any; persistQueue:Promise<any>; chat:Conversation; answer:Message; analysisIds:Set<string>; processingIds:Set<string>; extractionRuntime?:Record<string,unknown>; contract?:string; closed:boolean; budget?:EvaluationBudget; detachBudget?:()=>void; modelPending:Set<Promise<unknown>>; researchReads:Map<string,Promise<any>>; route?:TaskRoute; effort?:Effort }
 interface SessionEntry { session:any; runtime:ModelRuntime; model:any; active?:LiveRun; settings:Settings; signature:string }
 const extractionScope=new AsyncLocalStorage<{runId:string;requestId:string;effort:ExtractionEffort}>();
 const EXTRACTION_MAX_TOKENS=32768;
@@ -342,8 +344,9 @@ export class RunManager {
    pi.on('agent_before_settle',async()=>{const active=e.active;if(active){active.accepting=false;await active.inputQueue;}});
    pi.on('turn_start',()=>{if(e.active)e.active.accepting=true;});
   };
+  const bindingExtension=answerBindingExtension({render:body=>this.renderAnswer(e.active!,body),audit:(type,data)=>this.audit(e.active!,type,data),repairSent:()=>e.active!.bindingRepairMessage===e.active!.answer.id,markRepair:()=>{e.active!.bindingRepairMessage=e.active!.answer.id;},error:error=>{e.active!.bindingError=error;}});
   // Explicit overrides load only application/project resources, never unrelated global instructions.
-  const loader=new DefaultResourceLoader({cwd:workspace,agentDir,settingsManager:manager,noExtensions:true,extensionFactories:[compactionExtension,inputLifecycle],noSkills:true,noPromptTemplates:true,noThemes:true,noContextFiles:true,skillsOverride:()=>({skills:resources?.skills.filter(s=>s.enabled)||[],diagnostics:[]}),agentsFilesOverride:()=>({agentsFiles:resources?[{path:resources.rulePath,content:resources.rules}]:[]}),systemPrompt});await loader.reload();
+  const loader=new DefaultResourceLoader({cwd:workspace,agentDir,settingsManager:manager,noExtensions:true,extensionFactories:[compactionExtension,inputLifecycle,bindingExtension],noSkills:true,noPromptTemplates:true,noThemes:true,noContextFiles:true,skillsOverride:()=>({skills:resources?.skills.filter(s=>s.enabled)||[],diagnostics:[]}),agentsFilesOverride:()=>({agentsFiles:resources?[{path:resources.rulePath,content:resources.rules}]:[]}),systemPrompt});await loader.reload();
   const {session}=await createAgentSession({cwd:workspace,agentDir,modelRuntime:runtime,model,thinkingLevel:reasoning?'low':'off',noTools:'builtin',tools:customTools.map(t=>t.name),customTools,resourceLoader:loader,sessionManager,settingsManager:manager});
   e.session=session;this.sessions.set(l.chat.id,e);return e;
  }
@@ -431,18 +434,26 @@ export class RunManager {
    for(const item of result.source_refs||[]){const ref=source(item);if((ref.documentId||ref.url)&&!l.answer.sources!.some(x=>JSON.stringify(x)===JSON.stringify(ref)))l.answer.sources!.push(ref);}
    if(name==='get_analysis_status'||name==='get_artifact')this.collectArtifacts(l,params.run_id,result.data);
    const done={name,status:'completed',toolCallId,timestamp:iso(),summary:result.warnings?.join('；')||result.status};l.run.tools.push(done);this.emit(l,'tool',done);
-   await this.audit(l,'tool_result',{name,toolCallId,result});
+   registerNumericTables(l.numericTables??={},result.data);
+   if(result.data.numeric_tables||result.data.report?.tables||result.data.result?.report?.tables)result.data.references=referenceInventory(l.numericTables!);
+   await this.audit(l,'tool_result',{name,toolCallId,messageId:l.answer.id,result});
    l.run.uncertainWrites=l.run.uncertainWrites?.filter(item=>operationKey(item.name,item.args)!==operationKey(name,params));await this.persist(l);
    return {content:[{type:'text',text:JSON.stringify(modelContext(name,result))}],details:{traceId:result.trace_id}};
   }catch(error){
-   const message=redactError(error),done={name,status:'failed',toolCallId,timestamp:iso(),summary:message};l.run.tools.push(done);this.emit(l,'tool',done);await this.audit(l,'tool_error',{name,toolCallId,message});
+   const message=redactError(error),details=(error as any)?.details,done={name,status:'failed',toolCallId,timestamp:iso(),summary:message};l.run.tools.push(done);this.emit(l,'tool',done);await this.audit(l,'tool_error',{name,toolCallId,message,details});
    if(l.controller.signal.aborted)throw error;
-   return {content:[{type:'text',text:JSON.stringify({status:'error',message})}],details:{isError:true}};
+   return {content:[{type:'text',text:JSON.stringify({status:'error',message,details})}],details:{isError:true}};
   }
  }
  private readSkill(l:LiveRun,name:string){
   const skill=this.resourceSnapshots.get(l.run.id)?.skills.find(s=>s.enabled&&s.name===name);if(!skill)throw new Error('此技能未在当前项目启用');
   return {status:'ok',data:{name,content:skill.content},source_refs:[],warnings:[],trace_id:randomUUID()};
+ }
+ private async renderAnswer(l:LiveRun,body:string){
+  if(!body.includes('{{'))return body;
+  const charts:Record<string,string>={};
+  for(const a of l.answer.artifacts||[])if(a.mimeType.startsWith('image/'))charts[a.name]=a.url;
+  return (await this.service.call('render_answer',{project_id:l.run.projectId,body,tables:l.numericTables||{},charts},l.controller.signal)).data.body as string;
  }
  private async databaseOperation(l:LiveRun,params:Record<string,any>){
   if(!['sql','read_other_project','update_fact','delete_fact','delete_document','analysis_changes'].includes(params.operation)||!params.reason?.trim())throw new Error('必须指定操作和用途');
@@ -521,6 +532,13 @@ export class RunManager {
   let unsubscribe:(()=>void)|undefined;
   try{
    l.run.status='running';l.run.stage='分析任务';this.emit(l,'status',{stage:l.run.stage,status:l.run.status});
+   if(l.resuming){
+    const audit=await readFile(path.join(DATA,'audit',l.run.id+'.jsonl'),'utf8');
+    for(const line of audit.split('\n').filter(Boolean)){
+     const row=JSON.parse(line);
+     if(row.type==='tool_result'&&(!row.data.messageId||row.data.messageId===l.answer.id))registerNumericTables(l.numericTables??={},row.data.result.data);
+    }
+   }
    const entry=await this.sessionFor(l,settings),session=entry.session;l.session=session;
    l.extractionRuntime={...await this.bridge.register(l.run.id,l.controller.signal,async(body,signal)=>{
     const requestId=randomUUID(),started=Date.now();
@@ -552,6 +570,7 @@ export class RunManager {
       l.answer.status='completed';this.emit(l,'message',{message:l.answer});
       l.answer={id:randomUUID(),role:'assistant',content:'',createdAt:iso(),status:'running',sources:[],artifacts:[],tools:[],toolOffset:l.run.tools.length,usage:emptyUsage(),runId:l.run.id};
       l.chat.messages.push(l.answer);l.run.messageId=l.answer.id;this.emit(l,'answer_start',{message:l.answer});
+      l.numericTables={};l.bindingError=undefined;
       this.emit(l,'input',{message:user,mode:input.mode});void this.persist(l);
      }
     }
@@ -587,13 +606,13 @@ export class RunManager {
    else await this.audit(l,'recovery_completed_from_session',{messageId:l.answer.id});
    l.accepting=false;await l.inputQueue;await session.waitForIdle();
    await Promise.all([...l.modelPending]);
-   l.controller.signal.throwIfAborted();if(l.run.error)throw new Error(l.run.error);
+   l.controller.signal.throwIfAborted();if(l.run.error)throw new Error(l.run.error);if(l.bindingError)throw l.bindingError;
    // Pi has already exhausted its native recovery paths when prompt() resolves.
    // A nonempty but truncated response is still incomplete, never a completion.
    const lastAssistant=session.messages.findLast((message:any)=>message.role==='assistant');
    if(lastAssistant?.stopReason==='length')throw new Error('模型输出仍被截断，当前结果未完成；已保存会话进度，可继续完成剩余内容。');
    const answer=session.getLastAssistantText();if(!answer?.trim())throw new Error('模型没有返回有效分析结果');
-   l.answer.content=answer;l.answer.status='completed';l.run.status='completed';l.run.stage='完成';
+   l.answer.content=await this.renderAnswer(l,answer);l.answer.status='completed';l.run.status='completed';l.run.stage='完成';
   }catch(error){
    const reason=l.controller.signal.aborted?l.controller.signal.reason:error;
    l.accepting=false;

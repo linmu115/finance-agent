@@ -726,6 +726,11 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         tables, warnings = collect_tables(paths)
         return {**state, 'numeric_tables': {k: table_view(t) for k, t in tables.items()}, 'table_warnings': warnings}
 
+    def render_answer(self, project_id, body, tables, charts=None):
+        self.store.project(project_id)
+        from .analysis_report import bind_text
+        return response({'body':bind_text(body,tables,charts)})
+
     def get_artifact(self, project_id, run_id, name, rows=None):
         self.store.project(project_id)
         path=self._runner().artifact_path(run_id,name,project_id=project_id)

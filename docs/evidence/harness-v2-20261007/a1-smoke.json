@@ -1,0 +1,65 @@
+{
+  "conversation_id": "943152fd-8bf6-481f-acc8-224585e5d648",
+  "run_id": "b8c63bab-b0c6-499a-b16c-0d86a1477358",
+  "status": "completed",
+  "binding_events": 1,
+  "binding_errors": 0,
+  "template": "2025E 收入 {{forecast.2025E.revenue}}\n\n{{table:forecast}}\n\n{{chart:chart_1.png}}",
+  "answer": "2025E 收入 32.42 CNY 亿元\n\n| 年度 | 收入（CNY 亿元） |\n| --- | --- |\n| 2025E | 32.42 |\n| 2026E | 39.10 |\n\n![chart_1.png](/api/projects/0b9fb79d-e18a-479c-8653-450d3df9c264/artifacts/931a9ce04fd8493a98f1736942682d43/chart_1.png)",
+  "native_and_app_persistence_equal": true,
+  "chart_download_bytes": 26992,
+  "tools": [
+    "run_analysis",
+    "get_analysis_status",
+    "get_analysis_status",
+    "get_analysis_status",
+    "get_analysis_status"
+  ],
+  "usage": {
+    "input": 76320,
+    "output": 354,
+    "calls": 7,
+    "costUsd": 0.0026941200000000004,
+    "uncachedInput": 19488,
+    "cacheRead": 56832,
+    "cacheWrite": 0,
+    "reasoning": 0,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 646,
+        "output": 38,
+        "calls": 1,
+        "costUsd": 8.360000000000001e-05,
+        "uncachedInput": 646,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 646,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 75674,
+        "output": 316,
+        "calls": 6,
+        "costUsd": 0.0026105200000000003,
+        "uncachedInput": 18842,
+        "cacheRead": 56832,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 75674,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 76320,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  }
+}

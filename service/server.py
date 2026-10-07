@@ -305,6 +305,14 @@ async def get_artifact(project_id: str, run_id: str, name: str, rows: dict[str, 
     return await call("get_artifact",project_id=project_id,run_id=run_id,name=name,rows=rows)
 
 @mcp.tool()
+async def render_answer(project_id: str, body: str, tables: dict[str, Any], charts: dict[str, str] | None = None) -> dict[str, Any]:
+    """Host-only formatter shared with report.md. Not a model tool."""
+    try:
+        return await asyncio.to_thread(service.render_answer,project_id,body,tables,charts)
+    except ValueError as exc:
+        return response({'error':str(exc),'code':'answer_reference_error'},status='error')
+
+@mcp.tool()
 async def rematerialize_documents(project_id: str, document_ids: list[str]) -> dict[str, Any]:
     """Host maintenance only. Rebuild facts from saved LangExtract mappings with zero model calls; preserves extraction ownership. Never expose as an Agent task."""
     return await call("rematerialize_documents",project_id=project_id,document_ids=document_ids)

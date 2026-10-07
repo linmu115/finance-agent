@@ -16,6 +16,7 @@ def header_column(header):
     """Only explicit units are parsed; an unlabelled column stays unlabelled."""
     col = {'label': header}
     candidates = re.findall(r'[（(]([^()（）]+)[）)]', header)
+    candidates += [match.group(0) for match in re.finditer(r'(?:人民币|港币|港元|美元|CNY|RMB|HKD|USD|HK\$)(?:[/ _\w股元百千亿万%.-]*)$', header, re.I)]
     candidates += [header]
     for text in candidates:
         try: unit, currency = canonical_unit(text)
@@ -56,7 +57,7 @@ def csv_table(path):
     if not rows or not any(numeric(v) for row in rows for v in row.values()): return None
     columns = {key: header_column(key) for key in headers}
     for key, col in columns.items():
-        if any(numeric(row.get(key)) for row in rows): col['numeric'] = True
+        if any(numeric(row.get(key)) for row in rows) and not re.search(r'year|date|period|年度|财年|期间|年份', key, re.I): col['numeric'] = True
     cell_units = []
     unit_key = next((k for k in headers if k.casefold() in ('unit', '单位')), None)
     for row in rows:

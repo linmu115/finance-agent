@@ -35,3 +35,15 @@
 18 项相关测试通过；3001 一次真实冒烟用单次 report 参数成功提交，未改写代码，输出混合单位表与报告；4 次模型请求（含路由），目录估算 $0.0038073。
 
 验收边界：接受声明不证明声明正确。原 E2 report 的 EV 已缩小十倍、B1 原文利息方向错误、C1 原载荷金额变动标 %，均保留为未解决的金融错误，详见 a1b-replay.json。没有为增加成功数自动修改原载荷。32 条原始错误、载荷、剩余错误全文均存入证据；a1b-replay-pass1.json 保留首轮，后续只重放出现明确新问题的 7 条。
+
+### A1 已验收
+
+每次实际工具返回的数值表登记到当前回答，同名后者替换前者。使用 Pi 原生 message_end 的 message replacement，在原生会话与应用回答保存前调用 Python 的同一 bind_text / format_cell / render_table。单值支持行键，整表和图片分别用 table: / chart:；解析失败发一条精确 custom followUp，最多一次修复，正常路径无追加模型调用。恢复时从该 run 的完整审计重建本回答注册表。补齐 MCP → 模型错误链路的 details，edits 候选与完整原脚本现在不会被宿主丢掉。
+
+16 项格式化相关 Python 测试、1 项原生 Pi 修复回路测试、数值表投影测试通过；2 项原生会话恢复/取消测试通过，构建成功。原生测试实际验证同名后者取代、prepared 配置可用、错误引用触发且只触发一次修复、最终原生落盘等于应用答案。
+
+E2 九格敏感性整表回放低 WACC / 低 g 为 11.23，不再错用 12.07。C2 原始 CSV 整表保留 2,402 百万元；按 JSON 中显式 RMB_mn 字段映射的 typed 表转换为 24.02 亿元。C2 CSV 本身漏了指标名、JSON 全局 unit 本来标错，因此明确字段映射属于本次回放，不声称产品会自动纠正不良元数据。
+
+3001 单次真实冒烟生成 forecast 表与图，模型使用三类占位符，宿主渲染 32.42 / 39.10 亿元和实际图片 URL；原生/应用最终持久化一致，图片下载为有效 PNG。无绑定错误；7 次请求含路由及轮询，目录估算 $0.00269412。详见 a1-replay.json、a1-smoke.json。
+
+N2 接入约定：工具结果 data.numeric_tables，或 data.report.tables / data.result.report.tables，须是 compile_report 已解析后的 tables（columns、rows、可选 row_keys/row_key、cell_units、evidence）；由宿主统一登记。原始 record 引用应先在工具侧解析。表显示和正文引用共用 service/analysis_report.py。A4 同名附件去重尚未实施。
