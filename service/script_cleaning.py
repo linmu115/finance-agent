@@ -17,6 +17,8 @@ from .semantic import materialize, table_batches, SCHEMA_HASH, VERSION as SEMANT
 from .research_checks import valuation_warnings
 from .cleaning_batches import numeric_tables, structural_batches, batch_view
 from .cleaning_mapping import mapping_issues
+from . import cleaning_rules
+from .accounting_basis import identify as identify_basis, apply_basis
 
 VERSION='python-cleaning-3'
 
@@ -121,10 +123,56 @@ class ScriptCleaningMixin:
                 'profile_revision':(profile or {}).get('revision_id'),'document_kind':(profile or {}).get('kind','financial_report'),
                 'fact_count':self.get_document(project_id,did)['data']['fact_count'],'tables':numeric,'completed_tables':sorted(done),'reused':bool(done),'review_issues':review_issues,
                 'batches':structural_batches(parsed,numeric,source_budget_chars)})
+            item=state['documents'][-1]
+            priorities={t['index']:cleaning_rules.priority(parsed,t) for t in numeric_tables(parsed)}
+            item['core_tables']=[i for i in numeric if priorities[i]<2]
+            item['batches'].sort(key=lambda b:min(priorities[i] for i in b['tables']))
+            item['rule_reuse']={'signature_hits':[], 'completed_tables':[], 'standard_tables':[], 'validation_failures':[]}
         self._clean_progress(state);self._save_processing(state)
+        for item in state['documents']:
+            self._apply_cleaning_rules(project_id,state['processing_id'],item['document_id'])
+        state=self._clean_state(project_id,state['processing_id'])
         research=any(d['document_kind']!='financial_report' for d in state['documents'])
         return envelope(self._clean_summary(state)|{'instructions':GUIDE+('\n'+RESEARCH_GUIDE if research else ''),'documents':[self._clean_inventory(project_id,item) for item in state['documents']],
             'next_batch':self._next_clean_batch(state,include_source=True)})
+
+    def _mapping_draft(self,project_id,document_id,parsed,table):
+        profile=self._document_profile(project_id,document_id) or {}
+        entities=profile.get('entities',[])
+        company=entities[0]['name'] if len(entities)==1 else parsed['company']
+        basis=profile.get('accounting_basis') or identify_basis(parsed)
+        rules=cleaning_rules.lookup(self.store,parsed,table) if profile.get('kind','financial_report')=='financial_report' else []
+        if profile.get('kind','financial_report')!='financial_report':return None,None
+        for rule_id,rule in rules:
+            result=cleaning_rules.draft(parsed,table,company,basis,rule)
+            if result and not result['unmapped_rows']:return result,rule_id
+        return cleaning_rules.draft(parsed,table,company,basis),None
+
+    def _apply_cleaning_rules(self,project_id,processing_id,document_id):
+        state=self._clean_state(project_id,processing_id)
+        document=next(d for d in state['documents'] if d['document_id']==document_id)
+        doc,parsed=self._clean_source(project_id,document_id)
+        payload=[];origins={};reuse=document['rule_reuse']
+        for table in numeric_tables(parsed):
+            index=table['index']
+            if index in document['completed_tables']:continue
+            mapping,rule_id=self._mapping_draft(project_id,document_id,parsed,table)
+            if cleaning_rules.lookup(self.store,parsed,table):reuse['signature_hits'].append(index)
+            if not mapping or mapping['unmapped_rows']:continue
+            payload.append(mapping);origins[str(index)]=rule_id or 'standard:'+cleaning_rules.VERSION
+        if not payload:self._save_processing(state);return
+        rid=uuid.uuid4().hex
+        state['jobs'][rid]={'document_id':document_id,'profile_revision':document.get('profile_revision'),
+                           'source_hash':_hash(parsed),'code_hash':_hash(cleaning_rules.VERSION),'committed_tables':[],
+                           'rule_payload':{'tables':payload},'rule_origins':origins,'rule_version':cleaning_rules.VERSION}
+        self._save_processing(state)
+        _,validated,_=self._clean_result(project_id,state,rid)
+        valid=[t['index'] for t in validated if not any(i.get('severity')!='review' for i in t['issues'])]
+        reuse['validation_failures']=[{'table':t['index'],'reasons':[i['reason'] for i in t['issues'] if i.get('severity')!='review']} for t in validated if t['index'] not in valid]
+        reuse['completed_tables']=[i for i in valid if not origins[str(i)].startswith('standard:')]
+        reuse['standard_tables']=[i for i in valid if origins[str(i)].startswith('standard:')]
+        self._save_processing(state)
+        if valid:self.commit_cleaning_result(project_id,processing_id,rid,table_indices=valid)
 
     def _clean_inventory(self,project_id,item):
         doc,parsed=self._clean_source(project_id,item['document_id']);done=set(item['completed_tables'])
@@ -153,7 +201,10 @@ class ScriptCleaningMixin:
         batch=min(candidates,key=lambda item:item[0])[1]
         if include_source:
             _,parsed=self._clean_source(state['project_id'],batch['document_id'])
-            return batch_view(parsed,batch,batch['document_id'])
+            view=batch_view(parsed,batch,batch['document_id'])
+            view['mapping_drafts']=[mapping for table in parsed['tables'] if table['index'] in batch['tables']
+                                    for mapping,_ in [self._mapping_draft(state['project_id'],batch['document_id'],parsed,table)] if mapping]
+            return view
         return batch
 
     def get_cleaning_batch(self,project_id,processing_id,document_id=None):
@@ -166,8 +217,11 @@ class ScriptCleaningMixin:
         latest={}
         for rid,job in state['jobs'].items():
             for index in job.get('candidate_tables',[]):latest[(job['document_id'],index)]=(rid,index in job['committed_tables'])
-        pending_scripts=[{'document_id':did,'table':index,'run_id':rid} for (did,index),(rid,committed) in latest.items() if not committed]
-        return envelope(self._clean_summary(state)|{'next_batch':self._next_clean_batch(state),'pending_scripts':pending_scripts})
+        pending_scripts=[{'document_id':did,'table':index,'run_id':rid} for (did,index),(rid,committed) in latest.items()
+                         if not committed and index not in state['jobs'][rid].get('failed_tables',[])]
+        unattempted={d['document_id']:sorted(set(d['tables'])-set(d['completed_tables'])-
+                    {i for j in state['jobs'].values() if j['document_id']==d['document_id'] and not j.get('rule_payload') for i in j.get('candidate_tables',[])}) for d in state['documents']}
+        return envelope(self._clean_summary(state)|{'next_batch':self._next_clean_batch(state),'pending_scripts':pending_scripts,'unattempted_tables':unattempted})
 
     def _clean_progress(self,state):
         for d in state['documents']:
@@ -183,6 +237,8 @@ class ScriptCleaningMixin:
         for d in state['documents']:
             batches=d.get('batches',[{'tables':[i]} for i in d['tables']])
             d['coverage']={'tables_total':len(d['tables']),'tables_completed':len(d['completed_tables']),'batches_total':len(batches),'batches_completed':sum(set(b['tables'])<=set(d['completed_tables']) for b in batches)}
+            core=set(d.get('core_tables',[]))
+            d['coverage'].update(core_tables_total=len(core),core_tables_completed=len(core&set(d['completed_tables'])),core_complete=bool(core) and core<=set(d['completed_tables']))
             tc=d.get('text_coverage',{});dp=tc.get('pages_total',0);dr=tc.get('pages_reviewed',0)
             d['progress']=(len(d['completed_tables'])+dr)/max(1,len(d['tables'])+dp)
             d['state']=('needs_review' if d['review_issues'] or tc.get('review_issues') else 'ready') if len(d['completed_tables'])==len(d['tables']) and dr==dp else 'normalizing'
@@ -192,6 +248,7 @@ class ScriptCleaningMixin:
             'pending_tables':{d['document_id']:sorted(set(d['tables'])-set(d['completed_tables'])) for d in state['documents']},
             'pending_pages':{d['document_id']:d.get('text_coverage',{}).get('pending_pages',[]) for d in state['documents']},
             'research_record_count':sum(d.get('research_record_count',0) for d in state['documents']),
+            'document_progress':[{k:d.get(k) for k in ('document_id','coverage','rule_reuse')} for d in state['documents']],
             'review_issues':[issue for d in state['documents'] for issue in d['review_issues']+d.get('text_coverage',{}).get('review_issues',[])]}
 
     def run_cleaning_script(self,project_id,processing_id,document_id,code,script_refs=None):
@@ -205,7 +262,8 @@ class ScriptCleaningMixin:
         entities=(profile or {}).get('entities',[])
         company=entities[0]['name'] if profile and profile['kind']=='financial_report' and len(entities)==1 else parsed['company']
         data={'company':company,'company_from_filename':_filename_company(doc,parsed,company),
-              'document_profile':profile,'report_year':parsed.get('report_year'),'pages':parsed['pages'],'tables':parsed['tables']}
+              'document_profile':profile,'report_year':parsed.get('report_year'),'pages':parsed['pages'],'tables':parsed['tables'],
+              'mapping_drafts':{str(t['index']):mapping for t in numeric_tables(parsed) for mapping,_ in [self._mapping_draft(project_id,document_id,parsed,t)] if mapping}}
         # The parsed document is the same for every script run on it: stored once, linked into each run.
         source=write_input(self.store.root/'exports',project_id,folder/'cleaning_source.json',dumps(data).encode('utf-8'))
         sdk=folder/'cleaning_sdk.py';sdk.write_text(Path(__file__).with_name('cleaning_sdk.py').read_text(encoding='utf-8'),encoding='utf-8')
@@ -248,25 +306,30 @@ class ScriptCleaningMixin:
     def _clean_result(self,project_id,state,run_id):
         job=state['jobs'].get(run_id)
         if not job:raise CleaningToolError('script_run_not_in_attempt',{'available_runs':[{'run_id':rid,'document_id':j['document_id'],'candidate_tables':j.get('candidate_tables',[]),'committed_tables':j['committed_tables']} for rid,j in state['jobs'].items()]})
-        execution=self.get_analysis_status(project_id,run_id)['data']
-        if execution.get('state')!='succeeded':return job,None,execution
         doc,parsed=self._clean_source(project_id,job['document_id'])
         profile=self._document_profile(project_id,job['document_id'])
         if job.get('profile_revision')!=(profile or {}).get('revision_id'):raise ValueError('document_profile_changed_restart_processing')
         if _hash(parsed)!=job['source_hash']:raise ValueError('script_source_changed')
-        from sandbox import RunnerError
-        try:path=self._runner().artifact_path(run_id,'cleaning_result.json',project_id=project_id)
-        except RunnerError:
-            if any(a.get('name')=='cleaning_result.json' for a in execution.get('artifacts',[])):raise
-            return job,None,execution|{'state':'inspection_complete'}
-        if not path.is_file():
-            if any(a.get('name')=='cleaning_result.json' for a in execution.get('artifacts',[])):raise ValueError('cleaning_artifact_missing')
-            return job,None,execution|{'state':'inspection_complete'}
-        payload=json.loads(path.read_text(encoding='utf-8'))
+        if 'rule_payload' in job:
+            payload=job['rule_payload'];execution={'state':'succeeded','engine':'deterministic_rules'}
+        else:
+            execution=self.get_analysis_status(project_id,run_id)['data']
+            if execution.get('state')!='succeeded':return job,None,execution
+            from sandbox import RunnerError
+            try:path=self._runner().artifact_path(run_id,'cleaning_result.json',project_id=project_id)
+            except RunnerError:
+                if any(a.get('name')=='cleaning_result.json' for a in execution.get('artifacts',[])):raise
+                return job,None,execution|{'state':'inspection_complete'}
+            if not path.is_file():
+                if any(a.get('name')=='cleaning_result.json' for a in execution.get('artifacts',[])):raise ValueError('cleaning_artifact_missing')
+                return job,None,execution|{'state':'inspection_complete'}
+            payload=json.loads(path.read_text(encoding='utf-8'))
         if not isinstance(payload,dict) or not isinstance(payload.get('tables'),list) or not payload['tables']:raise ValueError('empty_cleaning_result')
         actual={t['index']:t for t in parsed['tables']};seen=set();results=[]
         allowed=next(d['tables'] for d in state['documents'] if d['document_id']==job['document_id'])
+        basis=(profile or {}).get('accounting_basis') or identify_basis(parsed)
         for item in payload['tables']:
+            item=apply_basis(item,basis)
             index=item.get('index')
             if type(index) is not int or index not in actual or index not in allowed or index in seen:raise ValueError('invalid_script_table')
             seen.add(index);table=actual[index];rows=item.get('rows');schema=item.get('schema')
@@ -316,11 +379,13 @@ class ScriptCleaningMixin:
                     issue['source_row']=table['rows'][issue['row']-1]
                     issue['instruction']='row 是一基原行号。对文字夹数字或合并数字行，在一次 map_table 的 row_overrides[row] 中填写 metric/label 和完整 columns_json；每个值的 numeric_span 必须来自该行该列。不要把 row 写在全表 columns 中。'
             for fact in facts:
-                fact['source']['normalization']['engine']='PythonScript'
+                fact['source']['normalization']['engine']='DeterministicRules' if job.get('rule_payload') else 'PythonScript'
+                fact['source']['normalization']['accounting_basis']={'basis':basis['basis'],'version':basis['version'],'status':basis['status']}
+                if job.get('rule_origins'):fact['source']['normalization']['cleaning_rule']={'id':job['rule_origins'][str(index)],'version':job['rule_version']}
                 fact['quality']='needs_review' if fact['source']['normalization'].get('review_warnings') else 'script_normalized'
             page=next(p['text'] for p in parsed['pages'] if p['page']==table['page'])
             results.append({'index':index,'table':table,'batch':batch,'extractions':ext,'facts':facts,'issues':issues,'page_text':page,'schema':schema,'mapping':rows,'exclusion_reason':item.get('exclusion_reason')})
-        job['result_hash']=hashlib.sha256(path.read_bytes()).hexdigest()
+        job['result_hash']=_hash(payload)
         return job,results,execution
 
     def get_cleaning_result(self,project_id,processing_id,run_id,offset=0,limit=5,review_effort='low',table_indices=None,details=False):
@@ -384,7 +449,7 @@ class ScriptCleaningMixin:
                 if review.get('evidence') and review['evidence'] not in item['page_text']:raise ValueError('review_evidence_not_in_source')
                 accepted.append((item,review))
             if failures and not accepted:raise CleaningValidationError(failures)
-            doc,_=self._clean_source(project_id,job['document_id']);document=next(d for d in state['documents'] if d['document_id']==job['document_id'])
+            doc,parsed=self._clean_source(project_id,job['document_id']);document=next(d for d in state['documents'] if d['document_id']==job['document_id'])
             current_targets=self._clean_target_hashes(doc['document_id'])
             with self.store.connect() as db:
                 durable={r[0]:json.loads(r[1]) for r in db.execute("SELECT json_extract(result_json,'$.script_table'),result_json FROM normalization_batches WHERE document_id=? AND json_extract(result_json,'$.script_run_id')=?",(doc['document_id'],run_id))}
@@ -405,7 +470,9 @@ class ScriptCleaningMixin:
                     for fact in item['facts']:
                         fact['quality']='needs_review'
                         fact['source']['normalization']['semantic_review_note']=review.get('note','')
-                detail={'engine':'PythonScript','version':SEMANTIC_VERSION,'schema_hash':SCHEMA_HASH,'script_version':VERSION,'script_run_id':run_id,
+                learned_rule=cleaning_rules.remember(self.store,parsed,item)
+                detail={'cleaning_rule':{'id':job.get('rule_origins',{}).get(str(index)),'version':job.get('rule_version')} if job.get('rule_payload') else None,
+                    'published_rule_id':learned_rule,'engine':'DeterministicRules' if job.get('rule_payload') else 'PythonScript','version':SEMANTIC_VERSION,'schema_hash':SCHEMA_HASH,'script_version':VERSION,'script_run_id':run_id,
                     'profile_revision':job.get('profile_revision'),
                     'script_table':index,'script_source_hash':_hash(item['table']),'document_sha256':doc['sha256'],'model':state['model'],
                     'code_hash':job['code_hash'],'script_dependencies':job.get('script_dependencies',{}),'referenced_results':job.get('referenced_results',{}),'result_hash':job['result_hash'],'semantic_review':review,'extractions':item['extractions'],

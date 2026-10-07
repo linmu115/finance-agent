@@ -34,3 +34,6 @@ row_overrides={行号:{metric,label,unit,dimensions_json,columns_json:[完整列
 run_cleaning_script 已等待短本地运行并返回校验摘要；ready 后直接 commit_cleaning_result，无需先 get_cleaning_result。commit 对每表独立校验，合法表正常入库，failed_tables 给原格与修复建议；不要因为一表失败重写全批。map_table/map_series 的确定映射错误按表保留，后续表继续；普通 Python 编程错误仍返回原始错误。如执行仍 running，才按需查结果。完整细节可 get_cleaning_result(details=true,table_indices=[...])。reviews 可选，仅真实疑点才标 needs_review；不要求读回/核验表单。
 
 局部修复可 script_refs:[run_id]，读取 /input/cleaning_<run_id>.json 的候选映射并只改相关表；已提交部分复用。脚本及其依赖也挂载为 .py。提交后继续 pending_tables、pending_script_tables 和研报 pending_pages，均空后再完成用户任务。无固定总步数上限；普通清洗 low，复杂疑点局部 high。
+# 程序复用
+
+process_documents 已直接应用标准行项目和规则库，成功表不会再交给模型。get_cleaning_batch 的 mapping_drafts 是尚未完整通过校验的映射草案。可用 `c.apply_draft(index, row_overrides={原行号: {'metric':'具体财务指标', ...}})` 保留已映射标准行，仅补齐剩余行；必要时用 columns 覆盖完整列定义，或改用 map_table/map_series。draft 不是正确性证明，仍由同一程序逐格校验。档案 accounting_basis 由原文判定并在提交时应用，不从示例猜准则。单表失败后处理 next_batch 的其余表，最后回到失败表；不要因一张失败表停止整个文档。

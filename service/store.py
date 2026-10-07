@@ -62,6 +62,8 @@ class Store:
             """)
             from .research_ingestion import initialize as initialize_research
             initialize_research(db)
+            from .cleaning_rules import initialize as initialize_cleaning_rules
+            initialize_cleaning_rules(db)
             # A killed parser never masquerades as a ready document; re-ingest retries cleanly.
             db.execute("UPDATE jobs SET state='failed',error='service_restarted',message='服务重启，重新上传可重试' WHERE state IN ('queued','parsing','validating')")
             db.execute("UPDATE documents SET state='failed' WHERE state IN ('queued','parsing','validating')")

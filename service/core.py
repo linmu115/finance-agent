@@ -83,7 +83,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         with self.store.connect() as db:
             rows=db.execute("SELECT * FROM documents WHERE project_id=?"+(" AND document_id=?" if document_id else "")+" ORDER BY created_at DESC",(project_id,*((document_id,) if document_id else ()))).fetchall()
             tables=dict(db.execute("SELECT document_id,count(*) FROM source_tables WHERE "+scope+" GROUP BY document_id",args).fetchall())
-            facts={r[0]:(r[1],r[2]) for r in db.execute("SELECT document_id,count(*),COALESCE(sum(json_extract(source_json,'$.normalization.engine') IN ('LangExtract','PythonScript')),0) FROM current_financial_facts WHERE "+scope+" GROUP BY document_id",args)}
+            facts={r[0]:(r[1],r[2]) for r in db.execute("SELECT document_id,count(*),COALESCE(sum(json_extract(source_json,'$.normalization.engine') IN ('LangExtract','PythonScript','DeterministicRules')),0) FROM current_financial_facts WHERE "+scope+" GROUP BY document_id",args)}
             engines={}
             for owner,engine in db.execute("SELECT DISTINCT document_id,json_extract(result_json,'$.engine') FROM normalization_batches WHERE "+scope,args):
                 if engine:engines.setdefault(owner,set()).add(engine)
