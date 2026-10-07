@@ -12,7 +12,7 @@ const dependencySchema=z.object({kind:z.enum(['source','document','artifact']),i
 const evidenceSchema=z.object({kind:z.enum(['source','document','artifact']),id:idSchema,revision_id:idSchema.optional().describe('仅用于artifact，指定已保存版本；省略时固定该报告第一次读取此成果的版本。'),locator:z.string().min(1).max(400).describe('source使用p1或p1,p2段落ID；document使用page:物理页码；artifact例如tables.scenario[0].scenario_ebit、results.scenario_valuation.value_per_share、results.value_per_share，不能使用results.tables。'),quote:z.string().max(5000).optional().describe('可选：所选字段或段落的逐字原文，不填写自行概括的解释。')}).refine(v=>v.revision_id===undefined||v.kind==='artifact',{message:'revision_id仅适用于成果引用'});
 export type Dependency=z.infer<typeof dependencySchema>;
 export interface RecordedDependency extends Dependency {version:string}
-const sourceModelSchema=z.object({artifact_id:idSchema,revision_id:idSchema.optional(),variant:z.enum(['baseline','scenario']).optional()}).strict();
+const sourceModelSchema=z.object({artifact_id:idSchema,revision_id:z.string().optional(),variant:z.enum(['baseline','scenario']).optional()}).strict();
 export interface ImportedModel {artifact_id:string;revision_id:string;variant?:'baseline'|'scenario';spec_sha256:string}
 export interface ReferenceCheck {path:string;status:'locator_exists'|'locator_and_quote_match'|'dependency_only_unverified'|'annotation_unverified';kind?:Dependency['kind'];id?:string;locator?:string;revision_id?:string;version?:string;text_sha256?:string}
 export interface SourceValidation {schema_version:1;scope:'reference_location_and_literal_quote_only';semantic_accuracy_verified:false;mode:'checked'|'inherited'|'inherited_unverified';references?:ReferenceCheck[];inherited_from?:{artifact_id:string;revision_id:string;original_mode:string|null}}
@@ -67,9 +67,10 @@ export class ArtifactStore {
  private async revisions(project:string):Promise<ResearchArtifact[]>{let files:string[];try{files=await readdir(this.folder(project));}catch(e:any){if(e.code==='ENOENT')return [];throw e;}return Promise.all(files.filter(x=>x.endsWith('.json')).map(async f=>JSON.parse(await readFile(path.join(this.folder(project),f),'utf8'))));}
  async list(project:string){const revisions=await this.revisions(project),parents=new Set(revisions.map(x=>x.parent_revision_id).filter(Boolean)),map=new Map<string,ResearchArtifact>();for(const a of revisions.filter(x=>!parents.has(x.revision_id))){const prev=map.get(a.id);if(!prev||a.created_at>prev.created_at)map.set(a.id,a);}return [...map.values()].sort((a,b)=>b.created_at.localeCompare(a.created_at));}
  async get(project:string,id:string,revision?:string){
-  idSchema.parse(id);const items=revision?(await this.revisions(project)).filter(x=>x.revision_id===idSchema.parse(revision)):await this.list(project);
+  // Revision is compared to loaded records, never interpolated into a file path.
+  idSchema.parse(id);const items=revision!==undefined?(await this.revisions(project)).filter(x=>x.revision_id===revision):await this.list(project);
   const found=items.find(x=>x.id===id);if(found)return found;
-  if(revision){const latest=(await this.list(project)).find(x=>x.id===id);if(latest)throw Object.assign(new Error(`revision_id ${revision} 不属于该成果；最新 revision_id 是 ${latest.revision_id}。source_model 推荐只传 {artifact_id:"${id}"}，省略 revision_id 即使用最新版本。`),{status:404});}
+  if(revision!==undefined){const latest=(await this.list(project)).find(x=>x.id===id);if(latest)throw Object.assign(new Error(`revision_id ${revision} 不属于该成果；最新 revision_id 是 ${latest.revision_id}。source_model 推荐只传 {artifact_id:"${id}"}，省略 revision_id 即使用最新版本。`),{status:404});}
   throw Object.assign(new Error('研究成果不存在'),{status:404});
  }
  async save(project:string,input:Omit<ResearchArtifact,'id'|'revision_id'|'created_at'>,artifactId?:string){

@@ -14,6 +14,7 @@ test('FCF model host path saves, updates with operators, publishes reports, bind
   const workspace=new ResearchWorkspace(service,new ArtifactStore(path.join(dir,'research')));
   const base=await workspace.model('dcf',{title:'Frozen values',kind:'dcf_fcf',spec:{currency:'CNY',amount_scale:'1000000',valuation_date:'2023-12-31',discount:{cashflow_timing:'year_end'},fcf:['288','512','591','594','626'],wacc:'.122',g:'.02',net_cash:'320',shares:{count:'555',scale:'1000000'},price_currency:'HKD',fx:'1.07'}});
   assert.ok(base.result.results.value_per_share.startsWith('10.8912980269'));assert.equal(base.result.tables.sensitivity.length,25);
+  await assert.rejects(workspace.model('dcf',{title:'Bad reference',kind:'dcf_fcf',source_model:{artifact_id:base.id,revision_id:'mistyped/revision'},overrides:{wacc:{'+':.005}}}),(e:Error)=>e.message.includes(base.revision_id)&&e.message.includes('省略 revision_id'));
   const changed=await workspace.model('dcf',{title:'Updated',kind:'dcf_fcf',source_model:{artifact_id:base.id,revision_id:base.revision_id},overrides:{wacc:{'+':.005},fcf:{'*':.9}},order:['wacc','fcf']});
   assert.equal(changed.spec.wacc,'0.127');assert.deepEqual(changed.spec.fcf,['259.2','460.8','531.9','534.6','563.4']);
   assert.ok(changed.result.results.value_per_share.startsWith('9.4076395415'));assert.equal(changed.changes.decomposition.steps.length,2);
