@@ -20,6 +20,7 @@ import { modelContext, projectToolHistory } from './model-context.js';
 import { FINANCE_TASK_GUIDANCE, ANSWER_FORMAT_GUIDANCE } from './financial-guidance.js';
 import {createContextCompactionExtension,focusCompactionContext,resolveCompactionPolicy} from './context-compaction.js';
 import { ResearchWorkspace, ARTIFACT_TOOLS, reportSchema } from './research-artifacts.js';
+import { latestNamedArtifacts } from './artifact-versions.js';
 import {EvaluationBudgets,normalizeEvaluation,type EvaluationBudget,type EvaluationOptions,type BudgetSnapshot,type BudgetTicket} from './evaluation-budget.js';
 import type { Conversation,Run,Message,Source,Artifact,Settings } from './types.js';
 import { ApprovalQueue, ADMIN_TOOL } from './approvals.js';
@@ -437,6 +438,7 @@ export class RunManager {
    if(name==='financial_workpaper'&&result.data.delivery?.files){
     for(const file of result.data.delivery.files)l.answer.artifacts!.push({id:'workpaper:'+result.data.delivery.id+':'+file.name,name:file.name,mimeType:artifactMediaType(file.name),url:file.url});
    }
+   l.answer.artifacts=latestNamedArtifacts(l.answer.artifacts);
    const done={name,status:'completed',toolCallId,timestamp:iso(),summary:result.warnings?.join('；')||result.status};l.run.tools.push(done);this.emit(l,'tool',done);
    registerNumericTables(l.numericTables??={},result.data);
    if(result.data.numeric_tables||result.data.report?.tables||result.data.result?.report?.tables)result.data.references=referenceInventory(l.numericTables!);
@@ -648,7 +650,9 @@ export class RunManager {
  private collectArtifacts(l:LiveRun,runId:string,data:any){
   for(const a of data.artifacts || (data.name?[data]:[])){
    const name=a.name || a.path?.split(/[\\/]/).pop();if(!name || !runId)continue;
-   const artifact:Artifact={id:runId+'_'+name,name,mimeType:artifactMediaType(name),url:'/api/projects/'+l.run.projectId+'/artifacts/'+encodeURIComponent(runId)+'/'+encodeURIComponent(name)};
+   // Reading an old file does not republish it over the latest completed output.
+   if(!data.artifacts&&l.answer.artifacts!.some(x=>x.name===name))continue;
+   const artifact:Artifact={id:runId+'_'+name,name,mimeType:artifactMediaType(name),url:'/api/projects/'+l.run.projectId+'/artifacts/'+encodeURIComponent(runId)+'/'+encodeURIComponent(name),...(data.created_at?{producedAt:data.created_at*1000}:{})};
    const index=l.answer.artifacts!.findIndex(x=>x.id===artifact.id);
    if(index<0)l.answer.artifacts!.push(artifact);else l.answer.artifacts![index]=artifact;
   }

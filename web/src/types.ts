@@ -5,6 +5,7 @@ export interface Source {
   quote?: string; text?: string; sheet?: string; cell?: string; row?: number; url?:string; snapshotUrl?:string;
 }
 export interface Artifact {
+  producedAt?: number;
   id: string; name: string; mimeType?: string; url?: string; type?: string;
   columns?: string[]; rows?: unknown[][]; data?: unknown;
 }

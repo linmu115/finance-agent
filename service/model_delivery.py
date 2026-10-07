@@ -55,6 +55,16 @@ def csv_rows(rows):
     return out.getvalue()
 
 
+def scenario_delivery(models,requests):
+    from .scenario_tables import scenario_tables
+    for request in requests.values():
+        left,right=models[request['baseline']],models[request['scenario']]
+        if request.get('scenario_update') and left['result'].get('report') and right['result'].get('report'):
+            return scenario_tables(left['result']['report']['tables'],right['result']['report']['tables'],
+                left['revision_id'],right['revision_id'],'dcf_summary' if right['kind']=='dcf_fcf' else None)
+    return {},None
+
+
 def prepare_delivery(export,models,comparison_requests,bundle='model_bundle.zip'):
     from .model_comparison import compare_models, leaves
     from .model_units import unit_label
@@ -70,7 +80,7 @@ def prepare_delivery(export,models,comparison_requests,bundle='model_bundle.zip'
     code=export/'finance_model_code.zip'
     with zipfile.ZipFile(code,'w',zipfile.ZIP_DEFLATED) as z:
         z.writestr('finance_model/__init__.py','')
-        for filename in ('research_models.py','model_review.py','model_inputs.py','model_comparison.py','three_statement.py','dcf_fcf.py','analysis_report.py','analysis_parameters.py','analysis_comparison.py','analysis_tables.py','model_units.py'):
+        for filename in ('research_models.py','model_review.py','model_inputs.py','model_comparison.py','three_statement.py','dcf_fcf.py','analysis_report.py','analysis_parameters.py','analysis_comparison.py','analysis_tables.py','model_units.py','scenario_tables.py'):
             z.write(Path(__file__).with_name(filename),'finance_model/'+filename)
     files={'models.json':json.dumps(models,ensure_ascii=False,indent=2),
            'comparison_requests.json':json.dumps(comparison_requests,ensure_ascii=False,indent=2),
@@ -94,11 +104,16 @@ def prepare_delivery(export,models,comparison_requests,bundle='model_bundle.zip'
     from .analysis_report import write_csv
     reports={name:model['result']['report'] for name,model in models.items() if model['result'].get('report')}
     reports.update({name:result['report'] for name,result in comparisons.items() if result.get('report')})
+    versioned,context=scenario_delivery(models,comparison_requests)
+    if context:
+        from .scenario_tables import scenario_report,PREFERRED
+        reports[PREFERRED]=scenario_report(versioned,context)
     for name,report in reports.items():
         files[name+'_report.md']='# '+report.get('title',name)+'\n\n'+report.get('body','')
         files[name+'_report.json']=json.dumps(report,ensure_ascii=False,indent=2)
         for table,data in report['tables'].items():
-            filename=name+'_'+safe_name(table)+'.csv';write_csv(export/filename,data)
+            if not re.fullmatch(r'[\w-]+',table):raise ValueError('report_table_name_invalid: '+table)
+            filename=name+'_'+table+'.csv';write_csv(export/filename,data)
             files[filename]=(export/filename).read_text(encoding='utf-8-sig')
     for name,text in files.items():(export/name).write_text(text,encoding='utf-8-sig' if name.endswith('.csv') else 'utf-8')
     with zipfile.ZipFile(export/bundle,'w',zipfile.ZIP_DEFLATED) as z:
@@ -108,7 +123,7 @@ def prepare_delivery(export,models,comparison_requests,bundle='model_bundle.zip'
 
 
 # Changes whenever the set or layout of delivered files changes, so an older delivery is not reused.
-DELIVERY_FORMAT='4'
+DELIVERY_FORMAT='5'
 # One service process owns the data directory; this orders its own threads.
 _publishing=threading.Lock()
 
@@ -131,7 +146,7 @@ def deliver_saved(root,project_id,references,comparison_requests):
             # The primary model's own bundle name: a later run_analysis export of other aliases cannot collide with it.
             primary=next(iter(models))
             files=prepare_delivery(folder,models,comparison_requests,primary+'_model_bundle.zip')
-            attached=[name for name in files if name.endswith('_model_bundle.zip') or name.endswith(('.csv','_report.md')) and name.startswith(tuple(key+'_' for key in [primary,*comparison_requests]))]
+            attached=[name for name in files if name.endswith('_model_bundle.zip') or name.endswith(('.csv','_report.md')) and name.startswith(tuple(key+'_' for key in [primary,*comparison_requests,'基准_情景_差额']))]
             manifest={'delivery_id':delivery_id,'models':{name:{'artifact_id':model['id'],'revision_id':model['revision_id']} for name,model in models.items()},
                       'comparisons':comparison_requests,'attachments':sorted(attached),
                       'files':[{'name':name,'size':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()} for name,path in sorted(files.items())]}
@@ -143,6 +158,10 @@ def deliver_saved(root,project_id,references,comparison_requests):
     manifest['folder']=str(folder.relative_to(root))
     manifest['results']=json.loads((folder/'comparisons.json').read_text(encoding='utf-8'))
     primary=next(iter(models));tables=dict(models[primary]['result'].get('report',{}).get('tables',{}))
+    versioned,context=scenario_delivery(models,comparison_requests)
+    if context:
+        tables=versioned
+        manifest['scenario_context']=context
     for result in manifest['results'].values():tables.update(result.get('report',{}).get('tables',{}))
     if tables:manifest['numeric_tables']=tables
     return manifest

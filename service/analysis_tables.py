@@ -84,7 +84,7 @@ def collect_tables(paths):
     """paths are already authorized, manifest-verified outputs, supplied by the runner."""
     tables, warnings = {}, []
     for name,path in paths.items():
-        if path.suffix.lower()!='.json' or name in ('analysis_report.json','numeric_tables.json','models.json','comparison_requests.json','parameter_comparison_result.json'):continue
+        if path.suffix.lower()!='.json' or name in ('analysis_report.json','numeric_tables.json','models.json','comparison_requests.json','parameter_comparison_result.json','scenario_bindings.json'):continue
         try: data=json.loads(path.read_text(encoding='utf-8-sig'))
         except (ValueError,UnicodeError) as exc:
             warnings.append({'file':name,'error':str(exc)});continue
@@ -156,7 +156,7 @@ def json_tables(data, name):
 
 def table_view(table):
     """Exact values plus rendered cells; source evidence remains in the artifact."""
-    result = {key: table[key] for key in ('columns', 'rows', 'row_keys', 'cell_units', 'artifact', 'origin', 'unit_note') if key in table}
+    result = {key: table[key] for key in ('columns', 'rows', 'row_keys', 'cell_units', 'artifact', 'origin', 'unit_note', 'label', 'scenario_role', 'version_id', 'original_table') if key in table}
     result['display_rows'] = [{k: format_cell(v, {**table['columns'][k], **table.get('cell_units', [{}] * len(table['rows']))[i].get(k, {})}, with_unit=True)
                                for k, v in row.items() if numeric(v)} for i, row in enumerate(table['rows'])]
     return result

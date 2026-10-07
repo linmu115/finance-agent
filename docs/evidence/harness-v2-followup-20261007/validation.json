@@ -1,0 +1,39 @@
+{
+  "python": {
+    "passed": 22,
+    "modules": [
+      "test_scenario_tables",
+      "test_analysis_parameters",
+      "test_dcf_fcf",
+      "test_analysis_tables",
+      "test_model_delivery",
+      "test_analysis_interfaces"
+    ]
+  },
+  "typescript": {
+    "passed": 28,
+    "files": [
+      "source-model-version",
+      "artifact-links",
+      "dcf-fcf-integration",
+      "numeric-tables",
+      "model-context",
+      "answer-binding",
+      "research-artifacts",
+      "financial-workpapers"
+    ]
+  },
+  "typecheck": "passed",
+  "build": "passed",
+  "a2_docker_replay": "scenario-replay.json",
+  "a4_frozen_g1": "a4-g1-replay.json",
+  "b2_live_smoke": "pending one authorized attempt after single shared-service restart",
+  "limitations": [
+    "Deterministic correctness and one smoke are not evidence of superiority to a general baseline.",
+    "No held-out materials or answers were read."
+  ],
+  "changes_vs_spec": [
+    "Use full immutable version IDs in table names, plus one short preferred comparison table.",
+    "Legacy same-name attachments use publication order; newly collected analysis artifacts use produced timestamp so reading an older status cannot make it latest."
+  ]
+}

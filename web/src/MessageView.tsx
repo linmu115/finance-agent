@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import UsageFooter from './UsageFooter';
 import Markdown from './Markdown';
-import { markdownArtifactUrl } from './artifact-links';
+import { markdownArtifactUrl, latestNamedArtifacts } from './artifact-links';
 import { FileText, Copy, Check, Download, ExternalLink, Table2, CircleAlert } from 'lucide-react';
 import { safeArtifactUrl, api, errorText } from './api';
 import Modal from './Modal';
@@ -63,7 +63,7 @@ export default function MessageView({ message, documents, onDocument, onSource, 
       {message.status === 'cancelled' && <p className="muted">已停止生成；以上是停止前的内容。</p>}
       {message.sources && message.sources.length > 0 && <div className="sources-row"><span>来源</span>{message.sources.map((source, index) => <button className="source-pill" key={`${source.sourceId || source.id || index}:${source.tableId || ""}:${index}`} onClick={() => void openSource(source)}><FileText />{index + 1}. {source.name || source.title || documents.find(doc => doc.id === (source.documentId || source.document_id))?.name || '原文'}{source.page || source.pageNumber ? ` · 第 ${source.page || source.pageNumber} 页` : ''}</button>)}</div>}
       {webSource&&<Modal className="settings-dialog" label="保存的来源原文" onClose={()=>setWebSource(undefined)}><div style={{padding:24,maxHeight:'80vh',overflow:'auto'}}><button className="plain-button" onClick={()=>setWebSource(undefined)}>关闭</button><h2>{webSource.title}</h2><p><a href={webSource.url} target="_blank" rel="noreferrer">打开原网址 <ExternalLink className="inline-icon"/></a></p><p className="muted">发布：{webSource.published_at||'原网页未明确标注'} · 获取：{webSource.retrieved_at||'—'}</p>{webSource.content_representation==='provider_extracted_text'&&<p className="muted">搜索服务提取的正文快照 · 可离线复查，未保存原始网页文件</p>}{sourceError?<p className="error-text">{sourceError}</p>:webSource.loading?<p>读取快照…</p>:webSource.paragraphs?.map((p:any)=><p key={p.id}><small className="muted">[{p.id}] </small>{p.text}</p>)}</div></Modal>}
-      {message.artifacts?.map(artifact => <ArtifactView key={artifact.id || artifact.name} artifact={artifact} />)}
+      {latestNamedArtifacts(message.artifacts).map(artifact => <ArtifactView key={artifact.id || artifact.name} artifact={artifact} />)}
       {message.tools && <ToolTrace tools={message.tools} />}
       {message.content && <div className="message-actions"><button className="icon-btn" aria-label="复制回复" title="复制回复" onClick={() => void copy()}>{copied ? <Check /> : <Copy />}</button>{message.createdAt && <time dateTime={message.createdAt}>{new Date(message.createdAt).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })}</time>}</div>}
       {message.usage && ['completed','failed','cancelled'].includes(message.status||'') && <UsageFooter usage={message.usage} />}

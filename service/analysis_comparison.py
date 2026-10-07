@@ -53,9 +53,14 @@ def deliver_parameter_comparison(input_dir='/input',output_dir='/output'):
             rows += [{'step':str(step),'parameter':parameter,**r} for r in change['rows']];units+=change['cell_units'];previous=next_tables
         tables['parameter_contributions']={'columns':{'step':{},'parameter':{},**changes['columns']},'rows':rows,'cell_units':units,
             'row_keys':['|'.join(r[k] for k in ('parameter','table','row','column')) for r in rows]}
+    if __package__:from .scenario_tables import scenario_tables
+    else:from scenario_tables import scenario_tables
+    versioned,context=scenario_tables(data['baseline'],current,data['baseline_id'],data['scenario_id'])
+    tables={**versioned,**tables}
+    (output/'scenario_bindings.json').write_text(json.dumps(context,ensure_ascii=False,indent=2),encoding='utf8')
     save_numeric_tables(tables,output)
     for name,table in tables.items():write_csv(output/(name+'.csv'),table)
-    text='# 参数更新\n\n'+('贡献按 '+' → '.join(data['order'])+' 顺序替换，贡献依赖顺序。' if data.get('order') else '新旧同名表逐单元比较。')
+    text='# 基准 / 情景 / 差额\n\n'+context['meaning']+'\n\n'+('贡献按 '+' → '.join(data['order'])+' 顺序替换，贡献依赖顺序。' if data.get('order') else '新旧同名表逐单元比较。')
     for name,table in tables.items():text+='\n\n## '+name+'\n\n'+render_table(table)
     if skipped:text+='\n\n无法同单位比较的单元：\n'+json.dumps(skipped,ensure_ascii=False)
     (output/'parameter_changes.md').write_text(text,encoding='utf8')

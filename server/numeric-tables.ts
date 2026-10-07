@@ -2,6 +2,7 @@
 export const NUMERIC_TABLE_CHAR_BUDGET=24000;
 export function registerNumericTables(registry:Record<string,any>,data:any){
  const tables=data.numeric_tables??data.report?.tables??data.result?.report?.tables;
+ for(const name of data.scenario_context?.unqualified_names??[])delete registry[name];
  if(tables)Object.assign(registry,structuredClone(tables));
  return registry;
 }
@@ -22,7 +23,8 @@ export function numericTableView(data:any,budget=NUMERIC_TABLE_CHAR_BUDGET){
    used+=size;count++;kept.rows.push(rows[i]);kept.display_rows.push(display_rows[i]??{});kept.row_keys.push(row_keys[i]??String(i));kept.cell_units.push(cell_units[i]??{});
   }
   if(count<rows.length){
-   const read=data.id?(name.startsWith('dcf_update')&&data.changes?.from?{tool:'compare_financial_models',baseline:data.changes.from,scenario:{artifact_id:data.id,revision_id:data.revision_id},order:data.changes.decomposition?.order}:{tool:'read_research_artifact',artifact_id:data.id,revision_id:data.revision_id}):{tool:'get_artifact',run_id:data.run_id,name:table.artifact,rows:{start:table.origin==='csv'?count:0},...(table.origin==='csv'?{}:{note:`JSON 对象按文本行读取，目标表 ${name}`})};
+   const version=table.scenario_role==='baseline'&&data.changes?.from?data.changes.from:{artifact_id:data.id,revision_id:data.revision_id};
+   const read=data.id?(name.startsWith('dcf_update')&&data.changes?.from?{tool:'compare_financial_models',baseline:data.changes.from,scenario:{artifact_id:data.id,revision_id:data.revision_id},order:data.changes.decomposition?.order}:{tool:'read_research_artifact',...version}):{tool:'get_artifact',run_id:data.run_id,name:table.artifact,rows:{start:table.origin==='csv'?count:0},...(table.origin==='csv'?{}:{note:`JSON 对象按文本行读取，目标表 ${name}`})};
    kept.truncation={remaining_rows:rows.length-count,total_rows:rows.length,message:`已截断：剩余 ${rows.length-count} 行，用 ${read.tool} 读取。`,read};
   }
   return [name,kept];

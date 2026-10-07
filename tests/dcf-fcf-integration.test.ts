@@ -19,14 +19,22 @@ test('FCF model host path saves, updates with operators, publishes reports, bind
   assert.ok(changed.result.results.value_per_share.startsWith('9.4076395415'));assert.equal(changed.changes.decomposition.steps.length,2);
   assert.ok(changed.delivery.files.some((f:any)=>f.name.endsWith('report.md')));assert.ok(changed.numeric_tables.dcf_update_contributions);
   const registry:any={};registerNumericTables(registry,base);registerNumericTables(registry,changed);
-  const rendered=(await service.call('render_answer',{project_id:'dcf',body:'{{dcf_summary.value_per_share.value}}\n{{table:dcf_update_contributions}}',tables:registry,charts:{}})).data;
+  const baselineTable=changed.scenario_context.baseline.tables.dcf_summary,scenarioTable=changed.scenario_context.scenario.tables.dcf_summary;
+  assert.equal(registry.dcf_summary,undefined);
+  const rendered=(await service.call('render_answer',{project_id:'dcf',body:`基准 {{${baselineTable}.value_per_share.value}}；情景 {{${scenarioTable}.value_per_share.value}}\n{{table:基准_情景_差额}}\n{{table:dcf_update_contributions}}`,tables:registry,charts:{}})).data;
+  assert.ok(JSON.stringify(rendered).includes('基准 10.89 HKD 元/股'));
   assert.ok(JSON.stringify(rendered).includes('9.41 HKD 元/股'));
+  assert.ok(JSON.stringify(rendered).includes('差额（情景减基准）'));
+  assert.equal(registry['基准_情景_差额'].evidence[0].old.version_id,base.revision_id);
   const raw=JSON.stringify(changed);const projected=modelContext('run_financial_model',{status:'ok',data:changed}).data;
   assert.equal(JSON.stringify(changed),raw);assert.equal(projected.result.report,undefined);assert.equal(projected.changes.report,undefined);
-  assert.equal(projected.numeric_tables.dcf_summary.rows.find((r:any)=>r.metric==='value_per_share').value,changed.result.results.value_per_share);
+  assert.equal(projected.numeric_tables[scenarioTable].rows.find((r:any)=>r.metric==='value_per_share').value,changed.result.results.value_per_share);
   assert.ok(JSON.stringify(projected).length<raw.length/2);
   const manifest=JSON.parse(await readFile(path.join(dir,'research/dcf/deliveries',changed.delivery.id,'delivery.json'),'utf8'));
   assert.ok(manifest.attachments.includes('saved_report.md'));
+  assert.ok(manifest.attachments.includes('基准_情景_差额_report.md'));
+  const comparison=await deliveryFile('dcf',changed.delivery.id,'基准_情景_差额_report.md');
+  assert.match(comparison.bytes.toString('utf8'),/10.89 HKD 元\/股/);assert.match(comparison.bytes.toString('utf8'),/9.41 HKD 元\/股/);
   const downloaded=await deliveryFile('dcf',changed.delivery.id,'saved_report.md');assert.ok(downloaded.bytes.toString('utf8').includes('9.41 HKD 元/股'));
   assert.equal((await workspace.get('dcf',base.id,base.revision_id)).spec.wacc,'.122');
  }finally{await service.close();}

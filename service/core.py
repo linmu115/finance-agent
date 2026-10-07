@@ -666,7 +666,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
                     # this new link before replacing it; never write through a snapshot.
                     target=export/name;target.unlink(missing_ok=True)
                     inputs[name]=write_input(self.store.root/'exports',project_id,target,prior.read_bytes())
-            for name in ('analysis_tables.py','analysis_comparison.py'):
+            for name in ('analysis_tables.py','analysis_comparison.py','scenario_tables.py'):
                 target=export/name;shutil.copyfile(Path(__file__).with_name(name),target);inputs[name]=target
         runner=self._runner()
         available=runner.availability()
@@ -717,8 +717,13 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         from .analysis_parameters import override_parameters
         from .analysis_tables import collect_tables
         def tables(state):
-            return collect_tables({item['name']:runner.artifact_path(state['run_id'],item['name'],project_id=project_id)
-                for item in state.get('artifacts',[]) if Path(item['name']).suffix.lower() in ('.csv','.json')})[0]
+            paths={item['name']:runner.artifact_path(state['run_id'],item['name'],project_id=project_id)
+                for item in state.get('artifacts',[]) if Path(item['name']).suffix.lower() in ('.csv','.json')}
+            values=collect_tables(paths)[0]
+            if 'scenario_bindings.json' in paths:
+                context=json.loads(paths['scenario_bindings.json'].read_text(encoding='utf8'))
+                return {name:values[qualified] for name,qualified in context['scenario']['tables'].items()}
+            return values
         baseline=self._analysis_state(project_id,plan['source_run_id'])
         if baseline.get('status')!='succeeded':raise ValueError('参数比较需要成功的 source_run_id；原运行失败时先用 edits 修复脚本')
         before=tables(baseline);steps=[];prefix={};step_ids=[];export=inputs['analysis.py'].parent
@@ -737,7 +742,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             steps.append(tables(result))
         if flag.is_set():return {'run_id':run_id,'project_id':project_id,'status':'cancelled','artifacts':[],'parameter_steps':step_ids}
         comparison=export/'parameter_comparison.json'
-        comparison.write_text(dumps({'baseline':before,'steps':steps,'order':plan['order'],'parameters':plan['changes']}),encoding='utf8')
+        comparison.write_text(dumps({'baseline':before,'steps':steps,'order':plan['order'],'parameters':plan['changes'],'baseline_id':plan['source_run_id'],'scenario_id':run_id}),encoding='utf8')
         self.analysis_children[run_id]=run_id
         return {**runner.run(launch,{**inputs,'parameter_comparison.json':comparison},project_id=project_id,run_id=run_id,timeout_seconds=timeout),
                 'parameter_changes':plan['changes'],'parameter_steps':step_ids,'params_order':plan['order'],'input_snapshot_from':plan['source_run_id']}
@@ -790,11 +795,16 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         paths = {item['name']: runner.artifact_path(run_id, item['name'], project_id=project_id)
                  for item in state.get('artifacts', []) if Path(item['name']).suffix.lower() in ('.csv', '.json')}
         tables, warnings = collect_tables(paths)
+        scenario_context={}
+        if 'scenario_bindings.json' in paths:
+            context=json.loads(paths['scenario_bindings.json'].read_text(encoding='utf8'))
+            tables={context['preferred_table']:tables[context['preferred_table']],**{k:t for k,t in tables.items() if k not in context['unqualified_names']}}
+            scenario_context={'scenario_context':context}
         from .analysis_parameters import parameter_inventory
         script=self.store.root/'exports'/project_id/run_id/'analysis.py'
         if not script.is_file():script=runner.root/run_id/'input'/'analysis.py'
         available=parameter_inventory(script.read_text(encoding='utf8')) if script.is_file() else {}
-        return {**state, 'numeric_tables': {k: table_view(t) for k, t in tables.items()}, 'table_warnings': warnings,'available_params':available}
+        return {**state, **scenario_context, 'numeric_tables': {k: table_view(t) for k, t in tables.items()}, 'table_warnings': warnings,'available_params':available}
 
     def render_answer(self, project_id, body, tables, charts=None):
         self.store.project(project_id)
