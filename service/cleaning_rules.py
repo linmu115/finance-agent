@@ -8,10 +8,21 @@ import hashlib
 import json
 import re
 from .normalization import compact, decimal_value, unit_info
-from .standard_metrics import standard_metric, normalize_label, VERSION as ROW_VERSION
+from .standard_metrics import standard_metric, normalize_label, ROWS, VERSION as ROW_VERSION
 from .cleaning_batches import header_rows
 
-VERSION = 'cleaning-rules-3/' + ROW_VERSION
+VERSION = 'cleaning-rules-4/' + ROW_VERSION
+
+# A model sometimes encodes an issuer/fund name in an English metric ID. Such
+# document-specific IDs remain local facts, not shared rule-library contents.
+# The library accepts financial vocabulary, not arbitrary identifier strings.
+FINANCIAL_WORDS=set('_'.join(ROWS).split('_'))|set('''recurring service fee counterparties counterparty rank allowance aged aging years months one two three four five six seven eight nine ten eleven twelve to under over within assessed individually portfolio portion opening closing fixed balance dedicated factoring dairy prepayment prepaid fund funds fvpl fvtpl fvoci fvtoci subtotal microloans milk medium large certificates transfers carrying buildings quote repurchase frozen desserts convertible machinery dividend subsidiaries by electronic deductible input vat land added liquid carbon emission rights industry decreases third party platform yogurt vehicles reversal self cultivation powder disposals guarantees tools transit refund consumer guarantee required reserves with bills increases out provision changes without title deed consignment accum accumulated settlement subrogation written off temporarily idle cip amortization amortisation stage gross net loans term trust structured deposits others total impairment cost project construction equipment fair value wealth management products financial tax rate principal interests prepaid intangible receivable receivables payable payables'''.split())
+FINANCIAL_WORDS.update('''account additions age allowances amount balances book budget building calf capitalization capitalized components corporate cows cumulative decrease derecognized down gains heifers investee losses mature nature or ratio recoverable taxpayer top unrealized write writeoff'''.split())
+
+
+def reusable_metric(metric):
+    parts=metric.split('_')
+    return bool(parts) and all(p in FINANCIAL_WORDS or (p.isdigit() and any(w in parts for w in ('aged','aging','rank','portfolio','stage'))) for p in parts)
 
 
 def source_year(parsed):
@@ -336,6 +347,7 @@ def column_rule(columns,year,schema):
         period=re.fullmatch(r'(\d{4})-(FY|H1|H2|Q[1-4]|\d{2}-\d{2})',c.get('period',''))
         if not period:return None
         rule={k:v for k,v in c.items() if k not in {'period','label','start','end'}}|{'period_template':[int(period[1])-int(year),period[2]]}
+        if rule.get('metric') and not reusable_metric(rule['metric']):return None
         for field in ('start','end'):
             if c.get(field):
                 date=re.fullmatch(r'(\d{4})-(\d{2}-\d{2})',c[field])
@@ -369,10 +381,10 @@ def compile_rule(parsed, table, item):
             # out of the original company/customer/account name.
             matches=[i+1 for i,c in enumerate(source_row) if str(c)==value and decimal_value(c) is None]
             if len(matches)==1:selectors[key]=matches[0]
-            elif value in {'portfolio','individual','joint_venture','associate','gross','net','allowance','current','noncurrent','finance_expenses'}:semantic_dimensions[key]=value
+            elif value in {'portfolio','individual','joint_venture','associate','gross','net','allowance','current','noncurrent','finance_expenses'} or (key=='asset_class' and value in ROWS):semantic_dimensions[key]=value
             else:return None
         metric=attrs.get('metric','')
-        if not re.fullmatch(r'[a-z][a-z0-9_]*',metric): return None
+        if not re.fullmatch(r'[a-z][a-z0-9_]*',metric) or not reusable_metric(metric): return None
         selector=row_key(table['rows'][row['row']-1])
         target={k:attrs[k] for k in ('metric','unit','currency') if attrs.get(k)}
         for field in ('unit','currency'):

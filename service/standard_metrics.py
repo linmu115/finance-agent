@@ -6,8 +6,9 @@ unknown. Context-dependent totals are resolved by the table mapper separately.
 import re
 from .normalization import compact, metric_id
 
-VERSION = 'standard-rows-3'
+VERSION = 'standard-rows-4'
 ROWS = {
+ 'impairment_allowance': '减值准备|Impairment allowance',
  'cash': '货币资金|Cash and cash equivalents',
  'cash_on_hand': '库存现金|Cash on hand',
  'bank_deposits': '银行存款|Cash at banks|Bank balances',
@@ -232,9 +233,10 @@ def standard_metric(label):
     return LOOKUP.get(key) or metric_id(key)
 
 
-def canonical_rows(table,rows,label_column=1,statement='notes'):
+def canonical_rows(table,rows,label_column=1,statement='notes',schema=None,topic=None):
     """Source labels, not English guesses, own standard row identifiers."""
     import copy
+    import json
     rows=copy.deepcopy(rows)
     # In an equity matrix a row names a movement, while columns name balances.
     # Its specialized mapper already preserves this distinction.
@@ -245,4 +247,22 @@ def canonical_rows(table,rows,label_column=1,statement='notes'):
         metric=standard_metric(raw[label_column-1])
         if metric and attrs.get('metric'):
             attrs['metric']=metric
+        if statement=='notes' and topic and metric in {'impairment_allowance','trading_financial_assets'}:
+            dims=attrs.get('dimensions_json') or {}
+            dims=json.loads(dims) if isinstance(dims,str) else copy.deepcopy(dims)
+            dims.setdefault('asset_class',topic);attrs['dimensions_json']=json.dumps(dims,ensure_ascii=False)
+            if metric=='trading_financial_assets' and topic=='other_noncurrent_financial_assets':
+                attrs['metric']='financial_assets_fvtpl'
+        label=normalize_label(raw[label_column-1])
+        endpoint=re.fullmatch(r'(期初|年初|期末|年末)(?:余额|账面价值)',label)
+        if endpoint:
+            columns=attrs.get('columns_json') or (schema or {}).get('columns_json') or []
+            columns=json.loads(columns) if isinstance(columns,str) else copy.deepcopy(columns)
+            changed=False
+            for c in columns:
+                year=re.fullmatch(r'(\d{4})-FY',c.get('period',''))
+                if year:
+                    date=f"{int(year[1])-(endpoint[1] in {'期初','年初'})}-12-31"
+                    c.update(period=date,start=date,end=date);changed=True
+            if changed:attrs['columns_json']=json.dumps(columns,ensure_ascii=False)
     return rows

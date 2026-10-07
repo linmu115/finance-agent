@@ -3,7 +3,7 @@ import json
 import unittest
 from service.tests import test_script_cleaning as fixtures
 from service.accounting_basis import identify, resolve, apply_basis
-from service.cleaning_rules import draft, context, shape, lookup, compile_rule
+from service.cleaning_rules import draft, context, shape, lookup, compile_rule, reusable_metric
 from service.standard_metrics import standard_metric
 
 
@@ -175,7 +175,7 @@ class CleaningReuseTests(unittest.TestCase):
         self.pid=self.s.begin_script_cleaning('p',[self.did],'before','fixture')['data']['processing_id']
         # Reproduce the observed old mapping before this deterministic rule.
         payload={'tables':[{'index':0,'schema':self.schema,'rows':[{'row':2,'attributes':{'metric':'materials_on_consignment_inventory'}}]}]}
-        with patch('service.script_cleaning.canonical_rows',side_effect=lambda table,rows,label_column=1,statement=None:rows):
+        with patch('service.script_cleaning.canonical_rows',side_effect=lambda table,rows,*args,**kwargs:rows):
             self.s.commit_cleaning_result('p',self.pid,self.job(payload))
         result=self.s.begin_script_cleaning('p',[self.did],'after','fixture')['data']
         self.assertEqual(result['pending_tables'][self.did],[])
@@ -211,6 +211,32 @@ class CleaningReuseTests(unittest.TestCase):
         c.map_table(1,[{'column':2,'period':'2025-FY'}],statement='income',scope='unspecified',currency='CNY',unit='元')
         self.assertIn('2 source numbers',c.results[0]['mapping_error'])
         self.assertNotIn('mapping_error',c.results[1])
+
+    def test_document_specific_metric_names_do_not_enter_shared_rules(self):
+        self.assertFalse(reusable_metric('dividend_receivable_acme_fund'))
+        self.assertFalse(reusable_metric('assets_123456789'))
+        self.assertTrue(reusable_metric('accounts_receivable_aged_one_to_two_years'))
+        self.assertTrue(reusable_metric('recurring_service_fee'))
+
+    def test_rollforward_balance_dates_are_source_endpoints_not_annual_flows(self):
+        from service.standard_metrics import canonical_rows
+        table={'rows':[['1.期初余额','100'],['2.本期增加金额','20'],['4.期末余额','120']]}
+        schema={'columns_json':json.dumps([{'column':2,'period':'2024-FY'}])}
+        rows=[{'row':i,'attributes':{'metric':'fixed_asset_line_item'}} for i in (1,2,3)]
+        mapped=canonical_rows(table,rows,schema=schema)
+        self.assertEqual(json.loads(mapped[0]['attributes']['columns_json'])[0]['period'],'2023-12-31')
+        self.assertNotIn('columns_json',mapped[1]['attributes'])
+        self.assertEqual(json.loads(mapped[2]['attributes']['columns_json'])[0]['period'],'2024-12-31')
+        self.assertNotIn('columns_json',rows[0]['attributes'])
+
+    def test_note_heading_distinguishes_allowances_and_noncurrent_fvtpl_assets(self):
+        from service.standard_metrics import canonical_rows
+        table={'rows':[['减：减值准备','100']]};rows=[{'row':1,'attributes':{'metric':'impairment_allowance'}}]
+        mapped=canonical_rows(table,rows,topic='interbank_lending')
+        self.assertEqual(json.loads(mapped[0]['attributes']['dimensions_json']),{'asset_class':'interbank_lending'})
+        table['rows']=[['以公允价值计量且其变动计入当期损益的金融资产','100']]
+        mapped=canonical_rows(table,rows,topic='other_noncurrent_financial_assets')
+        self.assertEqual(mapped[0]['attributes']['metric'],'financial_assets_fvtpl')
 
 
 if __name__=='__main__':unittest.main()

@@ -585,9 +585,9 @@ class ProcessingMixin:
                 if record and record.get('script_version'):current=record.get('script_source_hash')==hashlib.sha256(dumps(batch[0]['table']).encode()).hexdigest() and record.get('document_sha256')==doc['sha256']
                 current_issues=materialize(record.get('extractions',[]),batch,did,record.get('model',''))[1] if current else []
                 gap=any(i['reason']=='incomplete_column_override' for i in current_issues)
-                status=("failed" if record.get("request_error") or record.get("repair_error") or gap else "needs_review" if current_issues or record.get("issues") else "completed") if current else "pending"
+                status=("failed" if record.get("request_error") or record.get("repair_error") or record.get('semantic_validation') or gap else "needs_review" if current_issues or record.get("issues") else "completed") if current else "pending"
                 counts["total"]+=1;counts[status]+=1
-                if status!="completed":remaining.append({"batch_key":key,"status":status,"table_id":coords[0][0],"rows":batch[0]["rows"],"page":batch[0]["table"]["page"],"issue_count":max(len(current_issues),len(record.get("issues",[]))) if current else 0})
+                if status!="completed":remaining.append({"batch_key":key,"status":status,"table_id":coords[0][0],"rows":batch[0]["rows"],"page":batch[0]["table"]["page"],"issue_count":max(len(current_issues),len(record.get("issues",[]))+len(record.get('semantic_validation',[]))) if current else 0})
             items.append({"document_id":did,"name":doc["original_name"],"state":doc["state"],"source_sha256":doc["sha256"],"counts":counts,"remaining":remaining[offset:offset+limit],"offset":offset,"limit":limit,"remaining_total":len(remaining),"next_offset":offset+limit if offset+limit<len(remaining) else None})
         return envelope({"documents":items,"resume_tool":"process_documents","resume_arguments":{"document_ids":[d["document_id"] for d in documents],"force":False},"detail_tool":"get_normalization_details","note":"completed表示批次已提交；needs_review表示已提交但有疑点。默认恢复仅重试failed/pending，已提交疑点可按表读取复核。"})
 

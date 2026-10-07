@@ -20,6 +20,7 @@ from .cleaning_mapping import mapping_issues
 from . import cleaning_rules
 from .accounting_basis import identify as identify_basis, apply_basis
 from .standard_metrics import canonical_rows, VERSION as STANDARD_VERSION
+from .cleaning_consistency import table_semantics, document_conflicts
 
 VERSION='python-cleaning-3'
 
@@ -54,6 +55,38 @@ def _filename_company(doc,parsed,company):
     return not any(normalized(company) in normalized(p['text']) for p in parsed['pages'])
 
 class ScriptCleaningMixin:
+    def _saved_semantic_items(self,doc,parsed,profile):
+        items=[]
+        with self.store.connect() as db:
+            saved=[(r[0],json.loads(r[1])) for r in db.execute('SELECT batch_key,result_json FROM normalization_batches WHERE document_id=?',(doc['document_id'],))]
+        for key,result in saved:
+            table=next((t for t in parsed['tables'] if t['index']==result.get('script_table')),None)
+            if table is None or result.get('document_sha256')!=doc['sha256'] or result.get('script_source_hash')!=_hash(table) or result.get('profile_revision')!=(profile or {}).get('revision_id'):continue
+            ext=result.get('extractions',[]);schemas=[e['attributes'] for e in ext if e['class']=='table_schema']
+            if not schemas:continue
+            facts,_=materialize(ext,[{'table':table,'rows':list(range(1,len(table['rows'])+1))}],doc['document_id'],result.get('model',''))
+            items.append({'table':table,'facts':facts,'schema':schemas[0],'saved_key':key,'saved':result,
+                          'page_text':next(p['text'] for p in parsed['pages'] if p['page']==table['page'])})
+        return items
+
+    def _persist_semantic_reopening(self,state,document_id,issues,evaluated_tables=()):
+        """Keep failed source tables in the ordinary continuation queue."""
+        document=next(d for d in state['documents'] if d['document_id']==document_id)
+        by={int(k):v for k,v in document.get('validation_issues',{}).items() if int(k) not in evaluated_tables}
+        by.update({i['table']:[j for j in issues if j['table']==i['table']] for i in issues})
+        document['completed_tables']=[i for i in document['completed_tables'] if i not in by]
+        document['validation_issues']={str(k):v for k,v in by.items()}
+        if by:
+            with self.store.connect(write=True) as db:
+                saved=list(db.execute('SELECT batch_key,result_json FROM normalization_batches WHERE document_id=?',(document_id,)))
+                for key,raw in saved:
+                    result=json.loads(raw);index=result.get('script_table')
+                    if index in by:
+                        result.update(status='failed',semantic_validation=by[index])
+                        db.execute('UPDATE normalization_batches SET result_json=? WHERE document_id=? AND batch_key=?',(dumps(result),document_id,key))
+        self._clean_progress(state)
+        self._save_processing(state)
+
     def _clean_state(self,project_id,processing_id):
         state=self.get_processing_status(project_id,processing_id)['data']
         if state.get('mode')!='script_cleaning':raise ValueError('not_script_cleaning')
@@ -97,10 +130,17 @@ class ScriptCleaningMixin:
             with self.store.connect() as db:
                 saved=[json.loads(r[0]) for r in db.execute('SELECT result_json FROM normalization_batches WHERE document_id=?',(did,))]
             done=set();review_issues=[]
+            semantic_items=self._saved_semantic_items(doc,parsed,profile)
+            semantic_issues=document_conflicts(semantic_items)
+            for item in semantic_items:
+                page=next(p['text'] for p in parsed['pages'] if p['page']==item['table']['page'])
+                semantic_issues.extend(table_semantics(item['table'],item['schema'],item['facts'],page))
+            invalid={i['table'] for i in semantic_issues}
             if not force:
                 for result in saved:
+                    if result.get('script_table') in invalid:continue
                     if result.get('cleaning_rule') and result['cleaning_rule'].get('version')!=cleaning_rules.VERSION:continue
-                    if result.get('script_version')==VERSION and result.get('document_sha256')==doc['sha256'] and result.get('status') in {'completed','needs_review'} and (not profile or result.get('profile_revision')==profile['revision_id']):
+                    if result.get('script_version')==VERSION and result.get('document_sha256')==doc['sha256'] and (result.get('status') in {'completed','needs_review'} or result.get('semantic_validation')) and (not profile or result.get('profile_revision')==profile['revision_id']):
                         index=result.get('script_table');table=next((t for t in parsed['tables'] if t['index']==index),None)
                         if table is not None and result.get('script_source_hash')==_hash(table):
                             # Re-evaluate new deterministic mapping rules against saved
@@ -109,12 +149,16 @@ class ScriptCleaningMixin:
                             ext=result.get('extractions',[])
                             schemas=[e['attributes'] for e in ext if e['class']=='table_schema']
                             rows=[{'row':int(re.search(r':R(\d+)',e['text'])[1]),'attributes':e['attributes']} for e in ext if e['class']=='financial_row']
-                            if schemas and canonical_rows(table,rows,int(schemas[0].get('label_column',1)),schemas[0].get('statement'))!=rows:continue
+                            if schemas and (profile or {}).get('kind','financial_report')=='financial_report' and canonical_rows(table,rows,int(schemas[0].get('label_column',1)),schemas[0].get('statement'),schemas[0],cleaning_rules.context(parsed,table)['topic'])!=rows:continue
                             facts,checks=materialize(ext,[{'table':table,'rows':list(range(1,len(table['rows'])+1))}],did,model)
                             page=next(p['text'] for p in parsed['pages'] if p['page']==table['page'])
                             if schemas:checks.extend(mapping_issues(table,schemas[0],rows,page_text=page,facts=facts))
                             if schemas and not any(i.get('severity')!='review' for i in checks):
                                 done.add(index);review_issues.extend(result.get('issues',[]))
+                                if result.pop('semantic_validation',None):
+                                    result['status']='needs_review' if result.get('issues') else 'completed'
+                                    with self.store.connect(write=True) as db:
+                                        db.execute("UPDATE normalization_batches SET result_json=? WHERE document_id=? AND json_extract(result_json,'$.script_table')=?",(dumps(result),did,index))
                 # Existing valid legacy materializations remain reusable.
                 if not done and not profile and not any(r.get('script_version')==VERSION for r in saved):
                     from .completed_document import completed_document
@@ -127,11 +171,15 @@ class ScriptCleaningMixin:
                 'fact_count':self.get_document(project_id,did)['data']['fact_count'],'tables':numeric,'completed_tables':sorted(done),'reused':bool(done),'review_issues':review_issues,
                 'batches':structural_batches(parsed,numeric,source_budget_chars)})
             item=state['documents'][-1]
+            item['validation_issues']={str(i):[v for v in semantic_issues if v['table']==i] for i in invalid}
             priorities={t['index']:cleaning_rules.priority(parsed,t) for t in numeric_tables(parsed)}
             item['core_tables']=[i for i in numeric if priorities[i]<2]
             item['batches'].sort(key=lambda b:min(priorities[i] for i in b['tables']))
             item['rule_reuse']={'signature_hits':[], 'completed_tables':[], 'standard_tables':[], 'validation_failures':[]}
         self._clean_progress(state);self._save_processing(state)
+        for item in state['documents']:
+            issues=[v for values in item['validation_issues'].values() for v in values]
+            if issues:self._persist_semantic_reopening(state,item['document_id'],issues)
         for item in state['documents']:
             self._apply_cleaning_rules(project_id,state['processing_id'],item['document_id'])
         state=self._clean_state(project_id,state['processing_id'])
@@ -166,7 +214,7 @@ class ScriptCleaningMixin:
                 ext=previous.get('extractions',[])
                 schemas=[e['attributes'] for e in ext if e['class']=='table_schema']
                 rows=[{'row':int(re.search(r':R(\d+)',e['text'])[1]),'attributes':e['attributes']} for e in ext if e['class']=='financial_row']
-                if schemas and canonical_rows(table,rows,int(schemas[0].get('label_column',1)),schemas[0].get('statement'))!=rows:
+                if schemas and document.get('document_kind','financial_report')=='financial_report' and (canonical_rows(table,rows,int(schemas[0].get('label_column',1)),schemas[0].get('statement'),schemas[0],cleaning_rules.context(parsed,table)['topic'])!=rows or previous.get('cleaning_rule') and previous['cleaning_rule'].get('version')!=cleaning_rules.VERSION):
                     payload.append({'index':index,'schema':schemas[0],'rows':rows})
                     origins[str(index)]='standard-update:'+STANDARD_VERSION
                     continue
@@ -216,6 +264,8 @@ class ScriptCleaningMixin:
         if include_source:
             _,parsed=self._clean_source(state['project_id'],batch['document_id'])
             view=batch_view(parsed,batch,batch['document_id'])
+            document=next(d for d in state['documents'] if d['document_id']==batch['document_id'])
+            view['validation_issues']={str(i):document.get('validation_issues',{}).get(str(i),[]) for i in batch['tables'] if str(i) in document.get('validation_issues',{})}
             view['mapping_drafts']=[{k:v for k,v in mapping.items() if k!='rows'}|{'mapped_rows':[r['row'] for r in mapping['rows']]} for table in parsed['tables'] if table['index'] in batch['tables']
                                     for mapping,_ in [self._mapping_draft(state['project_id'],batch['document_id'],parsed,table)] if mapping]
             return view
@@ -356,15 +406,18 @@ class ScriptCleaningMixin:
             if not isinstance(rows,list) or not isinstance(schema,dict):raise ValueError('invalid_script_mapping')
             if schema.get('statement')=='nonfinancial' and not str(item.get('exclusion_reason','')).strip():raise ValueError('missing_exclusion_reason')
             marker=f'[[T{index}]]';ext=[{'class':'table_schema','text':marker,'span':[0,len(marker)],'attributes':schema}];used=set()
+            topic=cleaning_rules.context(parsed,table)['topic'] if (profile or {}).get('kind','financial_report')=='financial_report' else None
             for row in rows:
                 n=row.get('row')
                 if type(n) is not int or not 1<=n<=len(table['rows']) or n in used or not isinstance(row.get('attributes'),dict):raise ValueError('invalid_script_row')
-                row['attributes']=canonical_rows(table,[row],int(schema.get('label_column',1)),schema.get('statement'))[0]['attributes']
+                if (profile or {}).get('kind','financial_report')=='financial_report':
+                    row['attributes']=canonical_rows(table,[row],int(schema.get('label_column',1)),schema.get('statement'),schema,topic)[0]['attributes']
                 used.add(n);marker=f'[[T{index}:R{n}]]';ext.append({'class':'financial_row','text':marker,'span':[0,len(marker)],'attributes':row['attributes']})
             batch=[{'table':table,'rows':list(range(1,len(table['rows'])+1))}]
             facts,issues=materialize(ext,batch,job['document_id'],state['model'])
             page=next(p['text'] for p in parsed['pages'] if p['page']==table['page'])
             issues.extend(mapping_issues(table,schema,rows,item.get('exclusion_reason'),page,facts))
+            issues.extend(table_semantics(table,schema,facts,page))
             if schema.get('statement')!='nonfinancial':
                 companies={f['company'] for f in facts} or {schema.get('company','')}
                 if not companies or any(not c or _filename_company(doc,parsed,c) for c in companies):
@@ -401,6 +454,11 @@ class ScriptCleaningMixin:
                 fact['quality']='needs_review' if fact['source']['normalization'].get('review_warnings') else 'script_normalized'
             page=next(p['text'] for p in parsed['pages'] if p['page']==table['page'])
             results.append({'index':index,'table':table,'batch':batch,'extractions':ext,'facts':facts,'issues':issues,'page_text':page,'schema':schema,'mapping':rows,'exclusion_reason':item.get('exclusion_reason')})
+        saved=[i for i in self._saved_semantic_items(doc,parsed,profile) if i['table']['index'] not in seen]
+        conflicts=document_conflicts(saved+results)
+        for item in results:item['issues'].extend(i for i in conflicts if i['table']==item['index'])
+        job['semantic_reopenings']=conflicts+[i for item in results for i in item['issues'] if i['reason'] in {
+            'numeric_table_without_records','parallel_panel_dimension_inheritance','peer_aggregate_assigned_to_company','peer_row_company_mismatch'}]
         job['result_hash']=_hash(payload)
         return job,results,execution
 
@@ -426,6 +484,7 @@ class ScriptCleaningMixin:
             current=self._clean_state(project_id,processing_id)
             current['jobs'][run_id]['candidate_tables']=[t['index'] for t in results]
             current['jobs'][run_id]['failed_tables']=[t['index'] for t in results if any(i.get('severity')!='review' for i in t['issues'])]
+            self._persist_semantic_reopening(current,job['document_id'],job['semantic_reopenings'],[t['index'] for t in results])
             self._save_processing(current)
         offset=max(0,int(offset));limit=max(1,min(int(limit),20));selected=results[offset:offset+limit]
         if table_indices is not None:
@@ -449,6 +508,7 @@ class ScriptCleaningMixin:
             if results is None:raise ValueError('script_not_completed')
             job['candidate_tables']=[t['index'] for t in results]
             job['failed_tables']=[t['index'] for t in results if any(i.get('severity')!='review' for i in t['issues'])]
+            self._persist_semantic_reopening(state,job['document_id'],job['semantic_reopenings'],[t['index'] for t in results])
             self._save_processing(state)
             by={t['index']:t for t in results};seen=set();accepted=[];failures=[]
             if reviews is None or reviews == []:
@@ -486,7 +546,7 @@ class ScriptCleaningMixin:
                     for fact in item['facts']:
                         fact['quality']='needs_review'
                         fact['source']['normalization']['semantic_review_note']=review.get('note','')
-                learned_rule=cleaning_rules.remember(self.store,parsed,item)
+                learned_rule=cleaning_rules.remember(self.store,parsed,item) if document.get('document_kind','financial_report')=='financial_report' else None
                 detail={'cleaning_rule':{'id':job.get('rule_origins',{}).get(str(index)),'version':job.get('rule_version')} if job.get('rule_payload') else None,
                     'published_rule_id':learned_rule,'engine':'DeterministicRules' if job.get('rule_payload') else 'PythonScript','version':SEMANTIC_VERSION,'schema_hash':SCHEMA_HASH,'script_version':VERSION,'script_run_id':run_id,
                     'profile_revision':job.get('profile_revision'),
@@ -495,6 +555,7 @@ class ScriptCleaningMixin:
                     'inference_policy':{'cleaning':'low','review':review.get('effort')},'extraction_processing_id':processing_id,'reviewed_exclusions':[index] if item['exclusion_reason'] and review['verdict']=='accepted' else []}
                 self._commit_semantic_batch(project_id,doc['document_id'],processing_id,item['batch'],item['facts'],issues,detail)
                 job['committed_tables'].append(index);document['completed_tables']=sorted(set(document['completed_tables'])|{index})
+                document.get('validation_issues',{}).pop(str(index),None)
                 document['review_issues']=[i for i in document['review_issues'] if i.get('table')!=index]+issues
                 document['fact_count']=self.get_document(project_id,doc['document_id'])['data']['fact_count']
                 self._clean_progress(state);self._save_processing(state,refresh_attachment_snapshot=True)
