@@ -1,0 +1,1124 @@
+{
+  "category": "资料准备研发；不属于金融分析费用",
+  "actual_currency_cost": null,
+  "cost_note": "CPA invoice pricing unavailable. Known token totals exclude unknown usage; no estimates treated as invoices. v4 setup errors used a mismatched legacy endpoint and are not CPA ingestion efficacy trials.",
+  "totals": {
+    "requests": 649,
+    "unknown_usage_requests": 7,
+    "tokens": {
+      "total_input": 45482971,
+      "uncached_input": 4264411,
+      "cached_input": 41218560,
+      "output": 166355,
+      "reasoning": 29256
+    }
+  },
+  "trials": [
+    {
+      "trial": "n3-baseline-ruihe",
+      "run_id": "2cc52d42-2aef-4fa9-9751-2f10d5f61ed9",
+      "document_id": "30ffc3cd4e3d402fa39c4bb0472eca64",
+      "evidence_directory": "tmp\\n3-baseline-ruihe",
+      "manual_continuations": 0,
+      "setup_error": false,
+      "status": "completed",
+      "duration_ms": 219674,
+      "requests": 29,
+      "captured_payloads": 29,
+      "unknown_usage_requests": 0,
+      "tokens": {
+        "total_input": 798445,
+        "uncached_input": 69869,
+        "cached_input": 728576,
+        "output": 3613,
+        "reasoning": 0
+      },
+      "reasoning_calls": {
+        "low": 29
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 2,
+        "document_routing": 9,
+        "cleaning": 9,
+        "cleaning_review": 8
+      },
+      "processing_coverage": {
+        "tables_total": 50,
+        "tables_completed": 0,
+        "batches_total": 50,
+        "batches_completed": 0,
+        "pages_total": 0,
+        "pages_reviewed": 0
+      },
+      "facts": 0,
+      "research_observations": 0,
+      "research_claims": 0,
+      "facts_by_quality": {},
+      "raw_cell_replay": {
+        "passed": 0,
+        "total": 0,
+        "failures": []
+      },
+      "unresolved_cells": 0,
+      "excluded_tables": 0,
+      "tables_with_recorded_issues": 0,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 0,
+      "stalled": false,
+      "recorded_issues": {},
+      "final_payload": {
+        "request": 29,
+        "components_chars": {
+          "system": 7620,
+          "user_and_assistant_history": 14253,
+          "history_results": 110269,
+          "source_content": 9349,
+          "tool_definitions": 35309
+        },
+        "tool_result_chars": {
+          "read_project_skill": 3432,
+          "process_documents": 37944,
+          "get_source_page": 1484,
+          "set_document_profile": 1515,
+          "get_document_index": 7865,
+          "run_cleaning_script": 2764,
+          "get_cleaning_result": 61521,
+          "get_processing_checkpoint": 3093
+        },
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 176800
+      }
+    },
+    {
+      "trial": "n3-regression-before",
+      "run_id": "415534c0-d7e4-49f2-8002-c4999ce1d185",
+      "document_id": "8c4abf06e9a3431fb67e064503ef1eb0",
+      "evidence_directory": "tmp\\n3-regression-before",
+      "manual_continuations": 0,
+      "setup_error": false,
+      "status": "completed",
+      "duration_ms": 282815,
+      "requests": 21,
+      "captured_payloads": 21,
+      "unknown_usage_requests": 0,
+      "tokens": {
+        "total_input": 501772,
+        "uncached_input": 51724,
+        "cached_input": 450048,
+        "output": 3087,
+        "reasoning": 0
+      },
+      "reasoning_calls": {
+        "low": 21
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 1,
+        "document_routing": 11,
+        "cleaning": 5,
+        "cleaning_review": 3
+      },
+      "processing_coverage": {
+        "tables_total": 13,
+        "tables_completed": 0,
+        "batches_total": 13,
+        "batches_completed": 0,
+        "pages_total": 3,
+        "pages_reviewed": 0
+      },
+      "facts": 0,
+      "research_observations": 0,
+      "research_claims": 0,
+      "facts_by_quality": {},
+      "raw_cell_replay": {
+        "passed": 0,
+        "total": 0,
+        "failures": []
+      },
+      "unresolved_cells": 0,
+      "excluded_tables": 0,
+      "tables_with_recorded_issues": 0,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 0,
+      "stalled": false,
+      "recorded_issues": {},
+      "final_payload": {
+        "request": 21,
+        "components_chars": {
+          "system": 7644,
+          "user_and_assistant_history": 11309,
+          "history_results": 45072,
+          "source_content": 14898,
+          "tool_definitions": 32889
+        },
+        "tool_result_chars": {
+          "process_documents": 24018,
+          "set_document_profile": 2716,
+          "get_source_page": 8115,
+          "read_project_skill": 3432,
+          "get_document_index": 4837,
+          "run_cleaning_script": 776,
+          "get_cleaning_result": 14130,
+          "get_source_table": 1946
+        },
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 111812
+      }
+    },
+    {
+      "trial": "n3-regression-current",
+      "run_id": "43e8fb09-5bf2-4522-b8c3-67a110bccc05",
+      "document_id": "c682505ad8be43fca07c5ee3441d7fd5",
+      "evidence_directory": "tmp\\n3-regression-current",
+      "manual_continuations": 0,
+      "setup_error": false,
+      "status": "completed",
+      "duration_ms": 213662,
+      "requests": 13,
+      "captured_payloads": 13,
+      "unknown_usage_requests": 1,
+      "tokens": {
+        "total_input": 247122,
+        "uncached_input": 63314,
+        "cached_input": 183808,
+        "output": 1882,
+        "reasoning": 0
+      },
+      "reasoning_calls": {
+        "low": 13
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 2,
+        "document_routing": 7,
+        "cleaning": 2,
+        "research_extraction": 1
+      },
+      "processing_coverage": {
+        "tables_total": 13,
+        "tables_completed": 0,
+        "batches_total": 13,
+        "batches_completed": 0,
+        "pages_total": 3,
+        "pages_reviewed": 3
+      },
+      "facts": 0,
+      "research_observations": 0,
+      "research_claims": 4,
+      "facts_by_quality": {},
+      "raw_cell_replay": {
+        "passed": 0,
+        "total": 0,
+        "failures": []
+      },
+      "unresolved_cells": 0,
+      "excluded_tables": 0,
+      "tables_with_recorded_issues": 0,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 0,
+      "stalled": false,
+      "recorded_issues": {},
+      "final_payload": {
+        "request": 13,
+        "components_chars": {
+          "system": 7648,
+          "user_and_assistant_history": 6471,
+          "history_results": 30801,
+          "source_content": 20014,
+          "tool_definitions": 35309
+        },
+        "tool_result_chars": {
+          "read_project_skill": 3432,
+          "process_documents": 24042,
+          "set_document_profile": 2088,
+          "get_source_page": 4606,
+          "get_source_table": 15408,
+          "save_research_claims": 1239
+        },
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 100243
+      }
+    },
+    {
+      "trial": "n3-after-ruihe-v1",
+      "run_id": "eb29a15a-f7cf-425f-b320-617a62dd5da4",
+      "document_id": "585065660b5e4e45b7fb4f1cb8be6ed8",
+      "evidence_directory": "tmp\\n3-after-ruihe-v1",
+      "manual_continuations": 0,
+      "setup_error": false,
+      "status": "failed",
+      "duration_ms": 213709,
+      "requests": 23,
+      "captured_payloads": 23,
+      "unknown_usage_requests": 0,
+      "tokens": {
+        "total_input": 538429,
+        "uncached_input": 87357,
+        "cached_input": 451072,
+        "output": 3344,
+        "reasoning": 54
+      },
+      "reasoning_calls": {
+        "low": 23
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 1,
+        "document_routing": 5,
+        "cleaning": 16
+      },
+      "processing_coverage": {
+        "tables_total": 50,
+        "tables_completed": 4,
+        "batches_total": 32,
+        "batches_completed": 3,
+        "pages_total": 0,
+        "pages_reviewed": 0
+      },
+      "facts": 0,
+      "research_observations": 0,
+      "research_claims": 0,
+      "facts_by_quality": {},
+      "raw_cell_replay": {
+        "passed": 0,
+        "total": 0,
+        "failures": []
+      },
+      "unresolved_cells": 0,
+      "excluded_tables": 4,
+      "tables_with_recorded_issues": 0,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 1,
+      "stalled": true,
+      "recorded_issues": {},
+      "final_payload": {
+        "request": 23,
+        "components_chars": {
+          "system": 7632,
+          "user_and_assistant_history": 17946,
+          "history_results": 37193,
+          "source_content": 61752,
+          "tool_definitions": 35956
+        },
+        "tool_result_chars": {
+          "process_documents": 19267,
+          "set_document_profile": 7897,
+          "get_source_page": 722,
+          "get_cleaning_batch": 13884,
+          "run_cleaning_script": 6298,
+          "commit_cleaning_result": 3731,
+          "get_source_table": 47146
+        },
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 160479
+      }
+    },
+    {
+      "trial": "n3-after-ruihe-v2",
+      "run_id": "63804e8a-c9b8-44d3-943c-c999163b035b",
+      "document_id": "8c1a6d184e6249938429167a278032ab",
+      "evidence_directory": "tmp\\n3-after-ruihe-v2",
+      "manual_continuations": 0,
+      "setup_error": false,
+      "status": "failed",
+      "duration_ms": 267769,
+      "requests": 28,
+      "captured_payloads": 28,
+      "unknown_usage_requests": 0,
+      "tokens": {
+        "total_input": 767906,
+        "uncached_input": 70050,
+        "cached_input": 697856,
+        "output": 3846,
+        "reasoning": 165
+      },
+      "reasoning_calls": {
+        "low": 28
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 1,
+        "document_routing": 4,
+        "cleaning": 22
+      },
+      "processing_coverage": {
+        "tables_total": 50,
+        "tables_completed": 4,
+        "batches_total": 32,
+        "batches_completed": 3,
+        "pages_total": 0,
+        "pages_reviewed": 0
+      },
+      "facts": 16,
+      "research_observations": 0,
+      "research_claims": 0,
+      "facts_by_quality": {
+        "script_normalized": 16
+      },
+      "raw_cell_replay": {
+        "passed": 16,
+        "total": 16,
+        "failures": []
+      },
+      "unresolved_cells": 0,
+      "excluded_tables": 2,
+      "tables_with_recorded_issues": 0,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 2,
+      "stalled": true,
+      "recorded_issues": {},
+      "final_payload": {
+        "request": 28,
+        "components_chars": {
+          "system": 7632,
+          "user_and_assistant_history": 23619,
+          "history_results": 49439,
+          "source_content": 65429,
+          "tool_definitions": 35956
+        },
+        "tool_result_chars": {
+          "process_documents": 19714,
+          "set_document_profile": 7799,
+          "get_source_page": 722,
+          "get_cleaning_batch": 17561,
+          "run_cleaning_script": 11085,
+          "commit_cleaning_result": 4081,
+          "get_source_table": 47146,
+          "get_processing_checkpoint": 6760
+        },
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 182075
+      }
+    },
+    {
+      "trial": "n3-after-broker-v2",
+      "run_id": "f2eb60ca-5c80-4668-a4ec-3b7fa44b2e18",
+      "document_id": "10c26eb6e66040eca2041b195535b546",
+      "evidence_directory": "tmp\\n3-after-broker-v2",
+      "manual_continuations": 0,
+      "setup_error": false,
+      "status": "failed",
+      "duration_ms": 379024,
+      "requests": 24,
+      "captured_payloads": 24,
+      "unknown_usage_requests": 1,
+      "tokens": {
+        "total_input": 706431,
+        "uncached_input": 63871,
+        "cached_input": 642560,
+        "output": 4478,
+        "reasoning": 15
+      },
+      "reasoning_calls": {
+        "low": 24
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 2,
+        "document_routing": 7,
+        "cleaning": 14
+      },
+      "processing_coverage": {
+        "tables_total": 13,
+        "tables_completed": 2,
+        "batches_total": 13,
+        "batches_completed": 2,
+        "pages_total": 3,
+        "pages_reviewed": 0
+      },
+      "facts": 0,
+      "research_observations": 43,
+      "research_claims": 0,
+      "facts_by_quality": {},
+      "raw_cell_replay": {
+        "passed": 43,
+        "total": 43,
+        "failures": []
+      },
+      "unresolved_cells": 6,
+      "excluded_tables": 0,
+      "tables_with_recorded_issues": 1,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 1,
+      "stalled": false,
+      "recorded_issues": {
+        "unresolved_cell_semantics": 6
+      },
+      "final_payload": {
+        "request": 24,
+        "components_chars": {
+          "system": 7636,
+          "user_and_assistant_history": 18127,
+          "history_results": 71053,
+          "source_content": 25395,
+          "tool_definitions": 35956
+        },
+        "tool_result_chars": {
+          "read_project_skill": 3432,
+          "process_documents": 42803,
+          "set_document_profile": 5121,
+          "get_source_page": 4574,
+          "get_cleaning_batch": 20821,
+          "run_cleaning_script": 13186,
+          "commit_cleaning_result": 3137,
+          "get_processing_checkpoint": 3374
+        },
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 158167
+      }
+    },
+    {
+      "trial": "n3-after-ruihe-v3",
+      "run_id": "752699c5-5f60-4e69-a807-f0b2edf5731e",
+      "document_id": "ff82fc3ee381431d9a0d28a69c80fa69",
+      "evidence_directory": "tmp\\n3-after-ruihe-v3",
+      "manual_continuations": 0,
+      "setup_error": false,
+      "status": "failed",
+      "duration_ms": 388111,
+      "requests": 36,
+      "captured_payloads": 36,
+      "unknown_usage_requests": 0,
+      "tokens": {
+        "total_input": 985373,
+        "uncached_input": 102173,
+        "cached_input": 883200,
+        "output": 7359,
+        "reasoning": 1997
+      },
+      "reasoning_calls": {
+        "low": 29,
+        "high": 7
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 1,
+        "document_routing": 6,
+        "cleaning": 27,
+        "cleaning_review": 1
+      },
+      "processing_coverage": {
+        "tables_total": 50,
+        "tables_completed": 4,
+        "batches_total": 32,
+        "batches_completed": 3,
+        "pages_total": 0,
+        "pages_reviewed": 0
+      },
+      "facts": 13,
+      "research_observations": 0,
+      "research_claims": 0,
+      "facts_by_quality": {
+        "script_normalized": 13
+      },
+      "raw_cell_replay": {
+        "passed": 13,
+        "total": 13,
+        "failures": []
+      },
+      "unresolved_cells": 0,
+      "excluded_tables": 2,
+      "tables_with_recorded_issues": 0,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 3,
+      "stalled": true,
+      "recorded_issues": {},
+      "final_payload": {
+        "request": 36,
+        "components_chars": {
+          "system": 7632,
+          "user_and_assistant_history": 55127,
+          "history_results": 61798,
+          "source_content": 28292,
+          "tool_definitions": 35956
+        },
+        "tool_result_chars": {
+          "process_documents": 19306,
+          "set_document_profile": 13957,
+          "get_source_page": 1345,
+          "get_cleaning_batch": 26796,
+          "run_cleaning_script": 22104,
+          "commit_cleaning_result": 4668,
+          "get_source_table": 151,
+          "get_cleaning_result": 1763
+        },
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 188805
+      }
+    },
+    {
+      "trial": "n3-after-broker-v3",
+      "run_id": "3587d9cc-d1bd-4e1a-a767-9c190a89575e",
+      "document_id": "a816817901e541eb83cfa7a1d0d0dfc7",
+      "evidence_directory": "tmp\\n3-after-broker-v3",
+      "manual_continuations": 0,
+      "setup_error": false,
+      "status": "failed",
+      "duration_ms": 285859,
+      "requests": 27,
+      "captured_payloads": 27,
+      "unknown_usage_requests": 1,
+      "tokens": {
+        "total_input": 877235,
+        "uncached_input": 119987,
+        "cached_input": 757248,
+        "output": 4588,
+        "reasoning": 628
+      },
+      "reasoning_calls": {
+        "low": 19,
+        "high": 8
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 1,
+        "document_routing": 3,
+        "cleaning": 22
+      },
+      "processing_coverage": {
+        "tables_total": 13,
+        "tables_completed": 3,
+        "batches_total": 13,
+        "batches_completed": 3,
+        "pages_total": 3,
+        "pages_reviewed": 0
+      },
+      "facts": 0,
+      "research_observations": 40,
+      "research_claims": 0,
+      "facts_by_quality": {},
+      "raw_cell_replay": {
+        "passed": 40,
+        "total": 40,
+        "failures": []
+      },
+      "unresolved_cells": 17,
+      "excluded_tables": 0,
+      "tables_with_recorded_issues": 2,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 2,
+      "stalled": false,
+      "recorded_issues": {
+        "unresolved_cell_semantics": 17
+      },
+      "final_payload": {
+        "request": 27,
+        "components_chars": {
+          "system": 7636,
+          "user_and_assistant_history": 34314,
+          "history_results": 67458,
+          "source_content": 32795,
+          "tool_definitions": 35956
+        },
+        "tool_result_chars": {
+          "process_documents": 29455,
+          "set_document_profile": 3206,
+          "read_project_skill": 3432,
+          "run_cleaning_script": 19655,
+          "commit_cleaning_result": 8115,
+          "get_cleaning_batch": 31596,
+          "get_processing_checkpoint": 3595,
+          "get_source_table": 1199
+        },
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 178159
+      }
+    },
+    {
+      "trial": "n3-after-ruihe-v4",
+      "run_id": "2d4956ad-fe04-4000-ab98-eb06a2203f74",
+      "document_id": "7bf1a0729c88444db8a218fd1ebdd3c3",
+      "evidence_directory": "tmp\\n3-after-ruihe-v4",
+      "manual_continuations": 0,
+      "setup_error": true,
+      "status": "failed",
+      "duration_ms": 3075,
+      "requests": 2,
+      "captured_payloads": 2,
+      "unknown_usage_requests": 2,
+      "tokens": {
+        "total_input": 0,
+        "uncached_input": 0,
+        "cached_input": 0,
+        "output": 0,
+        "reasoning": 0
+      },
+      "reasoning_calls": {
+        "low": 2
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 1
+      },
+      "processing_coverage": null,
+      "facts": 0,
+      "research_observations": 0,
+      "research_claims": 0,
+      "facts_by_quality": {},
+      "raw_cell_replay": {
+        "passed": 0,
+        "total": 0,
+        "failures": []
+      },
+      "unresolved_cells": 0,
+      "excluded_tables": 0,
+      "tables_with_recorded_issues": 0,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 0,
+      "stalled": false,
+      "recorded_issues": {},
+      "final_payload": {
+        "request": 2,
+        "components_chars": {
+          "system": 7632,
+          "user_and_assistant_history": 313,
+          "tool_definitions": 36187
+        },
+        "tool_result_chars": {},
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 44132
+      }
+    },
+    {
+      "trial": "n3-scale-yili-v4",
+      "run_id": "50e957ab-4670-4c24-b998-18638bebcb7d",
+      "document_id": "b112c79eb59a498d8d024f1c5345ee72",
+      "evidence_directory": "tmp\\n3-scale-yili-v4",
+      "manual_continuations": 0,
+      "setup_error": true,
+      "status": "failed",
+      "duration_ms": 3065,
+      "requests": 2,
+      "captured_payloads": 2,
+      "unknown_usage_requests": 2,
+      "tokens": {
+        "total_input": 0,
+        "uncached_input": 0,
+        "cached_input": 0,
+        "output": 0,
+        "reasoning": 0
+      },
+      "reasoning_calls": {
+        "low": 2
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 1
+      },
+      "processing_coverage": null,
+      "facts": 0,
+      "research_observations": 0,
+      "research_claims": 0,
+      "facts_by_quality": {},
+      "raw_cell_replay": {
+        "passed": 0,
+        "total": 0,
+        "failures": []
+      },
+      "unresolved_cells": 0,
+      "excluded_tables": 0,
+      "tables_with_recorded_issues": 0,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 0,
+      "stalled": false,
+      "recorded_issues": {},
+      "final_payload": {
+        "request": 2,
+        "components_chars": {
+          "system": 7628,
+          "user_and_assistant_history": 312,
+          "tool_definitions": 36187
+        },
+        "tool_result_chars": {},
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 44127
+      }
+    },
+    {
+      "trial": "n3-after-ruihe-v5",
+      "run_id": "a123a224-aa43-443f-860e-a456162540b9",
+      "document_id": "778d0c2503ad4e6aba39315dd6d3060d",
+      "evidence_directory": "tmp\\n3-after-ruihe-v5",
+      "manual_continuations": 0,
+      "setup_error": false,
+      "status": "completed",
+      "duration_ms": 3266403,
+      "requests": 199,
+      "captured_payloads": 199,
+      "unknown_usage_requests": 0,
+      "tokens": {
+        "total_input": 21089945,
+        "uncached_input": 2500761,
+        "cached_input": 18589184,
+        "output": 79494,
+        "reasoning": 19080
+      },
+      "reasoning_calls": {
+        "low": 113,
+        "high": 86
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 2,
+        "document_routing": 4,
+        "cleaning": 173,
+        "compaction": 12,
+        "cleaning_review": 7
+      },
+      "processing_coverage": {
+        "tables_total": 50,
+        "tables_completed": 50,
+        "batches_total": 32,
+        "batches_completed": 32,
+        "pages_total": 0,
+        "pages_reviewed": 0
+      },
+      "facts": 353,
+      "research_observations": 0,
+      "research_claims": 0,
+      "facts_by_quality": {
+        "script_normalized": 278,
+        "needs_review": 75
+      },
+      "raw_cell_replay": {
+        "passed": 353,
+        "total": 353,
+        "failures": []
+      },
+      "unresolved_cells": 312,
+      "excluded_tables": 3,
+      "tables_with_recorded_issues": 30,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 12,
+      "stalled": false,
+      "recorded_issues": {
+        "unresolved_cell_semantics": 312,
+        "semantic_review_pending": 13
+      },
+      "final_payload": {
+        "request": 199,
+        "components_chars": {
+          "system": 345,
+          "user_and_assistant_history": 18939,
+          "tool_definitions": 2
+        },
+        "tool_result_chars": {},
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 19286
+      }
+    },
+    {
+      "trial": "n3-scale-yili-v5",
+      "run_id": "38b481a6-5e10-4610-8877-ea8c902b952a",
+      "document_id": "5427273aecf643418d161e7afd9c1457",
+      "evidence_directory": "tmp\\n3-scale-yili-v5",
+      "manual_continuations": 0,
+      "setup_error": false,
+      "status": "failed",
+      "duration_ms": 156486,
+      "requests": 18,
+      "captured_payloads": 18,
+      "unknown_usage_requests": 0,
+      "tokens": {
+        "total_input": 350982,
+        "uncached_input": 63750,
+        "cached_input": 287232,
+        "output": 3089,
+        "reasoning": 563
+      },
+      "reasoning_calls": {
+        "low": 14,
+        "high": 4
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 2,
+        "document_routing": 5,
+        "cleaning": 10
+      },
+      "processing_coverage": {
+        "tables_total": 51,
+        "tables_completed": 0,
+        "batches_total": 43,
+        "batches_completed": 0,
+        "pages_total": 0,
+        "pages_reviewed": 0
+      },
+      "facts": 0,
+      "research_observations": 0,
+      "research_claims": 0,
+      "facts_by_quality": {},
+      "raw_cell_replay": {
+        "passed": 0,
+        "total": 0,
+        "failures": []
+      },
+      "unresolved_cells": 0,
+      "excluded_tables": 0,
+      "tables_with_recorded_issues": 0,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 1,
+      "stalled": true,
+      "recorded_issues": {},
+      "final_payload": {
+        "request": 18,
+        "components_chars": {
+          "system": 7628,
+          "user_and_assistant_history": 17589,
+          "history_results": 28794,
+          "source_content": 7860,
+          "tool_definitions": 36187
+        },
+        "tool_result_chars": {
+          "read_project_skill": 3432,
+          "process_documents": 16088,
+          "set_document_profile": 3236,
+          "get_source_page": 138,
+          "get_cleaning_batch": 7722,
+          "get_processing_checkpoint": 1956,
+          "run_cleaning_script": 3560,
+          "commit_cleaning_result": 522
+        },
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 98058
+      }
+    },
+    {
+      "trial": "n3-scale-yili-v6",
+      "run_id": "623eb484-877e-49b2-8ee9-ee3e46d5a6b6",
+      "document_id": "352a862b401f4cbc8391e90ef54f9232",
+      "evidence_directory": "tmp\\n3-scale-yili-v6",
+      "manual_continuations": 0,
+      "setup_error": false,
+      "status": "completed",
+      "duration_ms": 1933960,
+      "requests": 163,
+      "captured_payloads": 163,
+      "unknown_usage_requests": 0,
+      "tokens": {
+        "total_input": 16168479,
+        "uncached_input": 687135,
+        "cached_input": 15481344,
+        "output": 40884,
+        "reasoning": 4736
+      },
+      "reasoning_calls": {
+        "low": 113,
+        "high": 50
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 4,
+        "document_routing": 5,
+        "cleaning": 151,
+        "compaction": 2
+      },
+      "processing_coverage": {
+        "tables_total": 51,
+        "tables_completed": 51,
+        "batches_total": 43,
+        "batches_completed": 43,
+        "pages_total": 0,
+        "pages_reviewed": 0
+      },
+      "facts": 944,
+      "research_observations": 0,
+      "research_claims": 0,
+      "facts_by_quality": {
+        "script_normalized": 944
+      },
+      "raw_cell_replay": {
+        "passed": 944,
+        "total": 944,
+        "failures": []
+      },
+      "unresolved_cells": 58,
+      "excluded_tables": 0,
+      "tables_with_recorded_issues": 17,
+      "generic_metric_facts": 102,
+      "automatic_continuations": 14,
+      "stalled": false,
+      "recorded_issues": {
+        "unresolved_cell_semantics": 58
+      },
+      "final_payload": {
+        "request": 163,
+        "components_chars": {
+          "system": 7628,
+          "user_and_assistant_history": 60990,
+          "source_content": 48382,
+          "history_results": 104493,
+          "tool_definitions": 36187
+        },
+        "tool_result_chars": {
+          "get_cleaning_batch": 48382,
+          "run_cleaning_script": 10190,
+          "commit_cleaning_result": 91201,
+          "get_processing_checkpoint": 3102
+        },
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 257680
+      }
+    },
+    {
+      "trial": "n3-after-broker-final",
+      "run_id": "c07f153f-a319-4ad3-ab8e-b51bfbfcddd8",
+      "document_id": "489965e961e646ff935f92bab7a74ed5",
+      "evidence_directory": "tmp\\n3-after-broker-final",
+      "manual_continuations": 0,
+      "setup_error": false,
+      "status": "completed",
+      "duration_ms": 1281534,
+      "requests": 39,
+      "captured_payloads": 39,
+      "unknown_usage_requests": 0,
+      "tokens": {
+        "total_input": 1864837,
+        "uncached_input": 303237,
+        "cached_input": 1561600,
+        "output": 7182,
+        "reasoning": 1472
+      },
+      "reasoning_calls": {
+        "low": 24,
+        "high": 15
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 2,
+        "document_routing": 5,
+        "cleaning": 27,
+        "research_extraction": 4
+      },
+      "processing_coverage": {
+        "tables_total": 13,
+        "tables_completed": 13,
+        "batches_total": 13,
+        "batches_completed": 13,
+        "pages_total": 3,
+        "pages_reviewed": 3
+      },
+      "facts": 0,
+      "research_observations": 40,
+      "research_claims": 1,
+      "facts_by_quality": {},
+      "raw_cell_replay": {
+        "passed": 40,
+        "total": 40,
+        "failures": []
+      },
+      "unresolved_cells": 47,
+      "excluded_tables": 8,
+      "tables_with_recorded_issues": 4,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 1,
+      "stalled": false,
+      "recorded_issues": {
+        "unresolved_cell_semantics": 47
+      },
+      "final_payload": {
+        "request": 39,
+        "components_chars": {
+          "system": 7648,
+          "user_and_assistant_history": 58855,
+          "history_results": 124798,
+          "source_content": 59228,
+          "tool_definitions": 36187
+        },
+        "tool_result_chars": {
+          "process_documents": 29715,
+          "set_document_profile": 3325,
+          "get_source_page": 16380,
+          "read_project_skill": 3432,
+          "get_cleaning_batch": 33764,
+          "run_cleaning_script": 32753,
+          "commit_cleaning_result": 16970,
+          "get_source_table": 9084,
+          "get_research_ingestion_status": 3465,
+          "save_research_claims": 35138
+        },
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 286716
+      }
+    },
+    {
+      "trial": "n3-after-ruihe-final",
+      "run_id": "203f4687-5fb1-4f7b-a208-a7004ca68812",
+      "document_id": "581aedeeba6549e9b2252c2c6bd06880",
+      "evidence_directory": "tmp\\n3-after-ruihe-final",
+      "manual_continuations": 0,
+      "setup_error": false,
+      "status": "failed",
+      "duration_ms": 192609,
+      "requests": 25,
+      "captured_payloads": 25,
+      "unknown_usage_requests": 0,
+      "tokens": {
+        "total_input": 586015,
+        "uncached_input": 81183,
+        "cached_input": 504832,
+        "output": 3509,
+        "reasoning": 546
+      },
+      "reasoning_calls": {
+        "low": 22,
+        "high": 3
+      },
+      "requests_by_phase": {
+        "router": 1,
+        "main": 2,
+        "document_routing": 3,
+        "cleaning": 18,
+        "cleaning_review": 1
+      },
+      "processing_coverage": {
+        "tables_total": 50,
+        "tables_completed": 4,
+        "batches_total": 32,
+        "batches_completed": 3,
+        "pages_total": 0,
+        "pages_reviewed": 0
+      },
+      "facts": 16,
+      "research_observations": 0,
+      "research_claims": 0,
+      "facts_by_quality": {
+        "script_normalized": 16
+      },
+      "raw_cell_replay": {
+        "passed": 16,
+        "total": 16,
+        "failures": []
+      },
+      "unresolved_cells": 0,
+      "excluded_tables": 2,
+      "tables_with_recorded_issues": 0,
+      "generic_metric_facts": 0,
+      "automatic_continuations": 2,
+      "stalled": true,
+      "recorded_issues": {},
+      "final_payload": {
+        "request": 25,
+        "components_chars": {
+          "system": 7644,
+          "user_and_assistant_history": 21613,
+          "history_results": 54763,
+          "source_content": 19362,
+          "tool_definitions": 36187
+        },
+        "tool_result_chars": {
+          "read_project_skill": 3432,
+          "process_documents": 20097,
+          "set_document_profile": 7813,
+          "get_cleaning_batch": 19362,
+          "run_cleaning_script": 11509,
+          "commit_cleaning_result": 6029,
+          "get_cleaning_result": 5883
+        },
+        "exact_duplicate_messages_chars": 0,
+        "total_chars": 139569
+      }
+    }
+  ]
+}
