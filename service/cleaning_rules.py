@@ -11,7 +11,7 @@ from .normalization import compact, decimal_value, unit_info
 from .standard_metrics import standard_metric, normalize_label, VERSION as ROW_VERSION
 from .cleaning_batches import header_rows
 
-VERSION = 'cleaning-rules-2/' + ROW_VERSION
+VERSION = 'cleaning-rules-3/' + ROW_VERSION
 
 
 def source_year(parsed):
@@ -352,8 +352,8 @@ def compile_rule(parsed, table, item):
             else:return None
         metric=attrs.get('metric','')
         if not re.fullmatch(r'[a-z][a-z0-9_]*',metric): return None
-        rows[row_key(table['rows'][row['row']-1])] = {k:attrs[k] for k in ('metric','unit','currency') if attrs.get(k)}
-        target=rows[row_key(table['rows'][row['row']-1])]
+        selector=row_key(table['rows'][row['row']-1])
+        target={k:attrs[k] for k in ('metric','unit','currency') if attrs.get(k)}
         for field in ('unit','currency'):
             if target.get(field)==schema.get(field):target.pop(field,None)
         if selectors:target['dimension_columns']=selectors
@@ -363,6 +363,10 @@ def compile_rule(parsed, table, item):
             override=column_rule(actual,year,schema)
             if override is None:return None
             target['columns']=override
+        # Repeated labels can denote different financial sections. A single
+        # label selector cannot encode both; never overwrite the earlier one.
+        if selector in rows and rows[selector]!=target:return None
+        rows[selector]=target
     if not rows: return None
     skipped=json.loads(schema.get('skipped_columns_json','[]'))
     return {'columns':converted,'rows':rows,'skipped_columns':[{'column':v['column'],'reason':'non-data header column'} for v in skipped]}

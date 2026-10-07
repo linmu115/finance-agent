@@ -150,6 +150,7 @@ class CleaningReuseTests(unittest.TestCase):
         interest=[r for r in mapped['rows'] if r['attributes']['metric']=='interest_income']
         self.assertNotIn('dimensions_json',interest[0]['attributes'])
         self.assertEqual(json.loads(interest[1]['attributes']['dimensions_json']),{'statement_section':'finance_expenses'})
+        self.assertIsNone(compile_rule(parsed,parsed['tables'][0],{'schema':mapped['schema'],'mapping':mapped['rows'],'issues':[],'exclusion_reason':None}))
 
     def test_rule_keeps_period_logic_and_rebinds_dimension_text_without_source_quotes(self):
         parsed=self.prepare([['项目','2025','2024'],['某客户','100','90']], '合并利润表\n单位：元\n100')
