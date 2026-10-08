@@ -1,0 +1,1192 @@
+[
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "B1",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 26,
+    "column": 100,
+    "value": "-61.293",
+    "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "B1",
+    "file": "ff9a44196de8-report.md",
+    "where": "ff9a44196de8-report.md",
+    "line": 5,
+    "column": 4,
+    "value": "955.192",
+    "reason": "句子“由 A 降至 B 百万元”中的 A 没有紧邻单位，扫描器继承原报表千元而不是后半句百万元；正确金额被误报为千倍差。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "B1",
+    "file": "ff9a44196de8-report.md",
+    "where": "ff9a44196de8-report.md",
+    "line": 5,
+    "column": 89,
+    "value": "193.422",
+    "reason": "句子“由 A 降至 B 百万元”中的 A 没有紧邻单位，扫描器继承原报表千元而不是后半句百万元；正确金额被误报为千倍差。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "B1",
+    "file": "ff9a44196de8-report.md",
+    "where": "ff9a44196de8-report.md",
+    "line": 5,
+    "column": 122,
+    "value": "164.084",
+    "reason": "句子“由 A 降至 B 百万元”中的 A 没有紧邻单位，扫描器继承原报表千元而不是后半句百万元；正确金额被误报为千倍差。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "B1",
+    "file": "ff9a44196de8-report.md",
+    "where": "ff9a44196de8-report.md",
+    "line": 5,
+    "column": 156,
+    "value": "164.096",
+    "reason": "句子“由 A 降至 B 百万元”中的 A 没有紧邻单位，扫描器继承原报表千元而不是后半句百万元；正确金额被误报为千倍差。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "C3",
+    "file": "dd8727f3fd9e-update_report.md",
+    "where": "dd8727f3fd9e-update_report.md",
+    "line": 26,
+    "column": 79,
+    "value": "320",
+    "reason": "公式中的净现金、股数或汇率项被最近的 EV/股权价值标签吸附；这些是计算输入，不是公式结果。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "46d1aa8287c0-局部更新报告.md",
+    "where": "46d1aa8287c0-局部更新报告.md",
+    "line": 10,
+    "column": 45,
+    "value": "626",
+    "reason": "FCF 五年序列的最后一年参与终值计算，另一底稿行说明含终值字样，被标签优先级识别成终值而非末年 FCF；期间列表本身正确。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "46d1aa8287c0-局部更新报告.md",
+    "where": "46d1aa8287c0-局部更新报告.md",
+    "line": 10,
+    "column": 83,
+    "value": "563.4",
+    "reason": "FCF 五年序列的最后一年参与终值计算，另一底稿行说明含终值字样，被标签优先级识别成终值而非末年 FCF；期间列表本身正确。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "46d1aa8287c0-局部更新报告.md",
+    "where": "46d1aa8287c0-局部更新报告.md",
+    "line": 28,
+    "column": 19,
+    "value": "11.2",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "46d1aa8287c0-局部更新报告.md",
+    "where": "46d1aa8287c0-局部更新报告.md",
+    "line": 28,
+    "column": 31,
+    "value": "13.2",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "9797377dd6da-新旧参数与结果.csv",
+    "where": "9797377dd6da-新旧参数与结果.csv.0.更新后",
+    "line": 2,
+    "column": "更新后",
+    "value": "0.127",
+    "reason": "CSV 中的更新后 WACC 为 0.127；排除同附件自证后，剩余候选只有从基准说明提取的 0.122 网格坐标，误当成更新参数的依据。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "9797377dd6da-新旧参数与结果.csv",
+    "where": "9797377dd6da-新旧参数与结果.csv.10.基准",
+    "line": 12,
+    "column": "基准",
+    "value": "10.8912980269113089834965290946579970",
+    "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "9797377dd6da-新旧参数与结果.csv",
+    "where": "9797377dd6da-新旧参数与结果.csv.13.基准",
+    "line": 15,
+    "column": "基准",
+    "value": "9.40763954155813876107825440797074294",
+    "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "9797377dd6da-新旧参数与结果.csv",
+    "where": "9797377dd6da-新旧参数与结果.csv.13.更新后",
+    "line": 15,
+    "column": "更新后",
+    "value": "9.40763954155813876107825440797074294",
+    "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "a69a1bd1c0b3-新旧参数与结果.csv",
+    "where": "a69a1bd1c0b3-新旧参数与结果.csv.0.更新后",
+    "line": 2,
+    "column": "更新后",
+    "value": "0.127",
+    "reason": "CSV 中的更新后 WACC 为 0.127；排除同附件自证后，剩余候选只有从基准说明提取的 0.122 网格坐标，误当成更新参数的依据。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "a69a1bd1c0b3-新旧参数与结果.csv",
+    "where": "a69a1bd1c0b3-新旧参数与结果.csv.10.基准",
+    "line": 12,
+    "column": "基准",
+    "value": "10.8912980269113089834965290946579970",
+    "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "a69a1bd1c0b3-新旧参数与结果.csv",
+    "where": "a69a1bd1c0b3-新旧参数与结果.csv.13.基准",
+    "line": 15,
+    "column": "基准",
+    "value": "9.40763954155813876107825440797074294",
+    "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "a69a1bd1c0b3-新旧参数与结果.csv",
+    "where": "a69a1bd1c0b3-新旧参数与结果.csv.13.更新后",
+    "line": 15,
+    "column": "更新后",
+    "value": "9.40763954155813876107825440797074294",
+    "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "c6f5848dd0b5-局部更新报告.md",
+    "where": "c6f5848dd0b5-局部更新报告.md",
+    "line": 10,
+    "column": 45,
+    "value": "626",
+    "reason": "FCF 五年序列的最后一年参与终值计算，另一底稿行说明含终值字样，被标签优先级识别成终值而非末年 FCF；期间列表本身正确。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "c6f5848dd0b5-局部更新报告.md",
+    "where": "c6f5848dd0b5-局部更新报告.md",
+    "line": 10,
+    "column": 83,
+    "value": "563.4",
+    "reason": "FCF 五年序列的最后一年参与终值计算，另一底稿行说明含终值字样，被标签优先级识别成终值而非末年 FCF；期间列表本身正确。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "c6f5848dd0b5-局部更新报告.md",
+    "where": "c6f5848dd0b5-局部更新报告.md",
+    "line": 28,
+    "column": 19,
+    "value": "11.2",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "c6f5848dd0b5-局部更新报告.md",
+    "where": "c6f5848dd0b5-局部更新报告.md",
+    "line": 28,
+    "column": 31,
+    "value": "13.2",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "de5dc2fa5d7d-估值差异拆解.csv",
+    "where": "de5dc2fa5d7d-估值差异拆解.csv.0.港币/股",
+    "line": 2,
+    "column": "港币/股",
+    "value": "10.8912980269113089834965290946579970",
+    "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "de5dc2fa5d7d-估值差异拆解.csv",
+    "where": "de5dc2fa5d7d-估值差异拆解.csv.0.相对前序贡献（港币/股）",
+    "line": 2,
+    "column": "相对前序贡献（港币/股）",
+    "value": "0",
+    "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "de5dc2fa5d7d-估值差异拆解.csv",
+    "where": "de5dc2fa5d7d-估值差异拆解.csv.1.港币/股",
+    "line": 3,
+    "column": "港币/股",
+    "value": "10.3843842754049389637606230158633880",
+    "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "de5dc2fa5d7d-估值差异拆解.csv",
+    "where": "de5dc2fa5d7d-估值差异拆解.csv.1.相对前序贡献（港币/股）",
+    "line": 3,
+    "column": "相对前序贡献（港币/股）",
+    "value": "-0.5069137515063700197359060787946090",
+    "reason": "两步贡献未按 WACC 第一步/FCF 第二步对齐；第一步的 -0.50691375 被拿去比较第二步 -0.97674473 和最终价格。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "de5dc2fa5d7d-估值差异拆解.csv",
+    "where": "de5dc2fa5d7d-估值差异拆解.csv.2.港币/股",
+    "line": 4,
+    "column": "港币/股",
+    "value": "9.40763954155813876107825440797074294",
+    "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "ec1cf8bfb07c-估值差异拆解.csv",
+    "where": "ec1cf8bfb07c-估值差异拆解.csv.0.港币/股",
+    "line": 2,
+    "column": "港币/股",
+    "value": "10.8912980269113089834965290946579970",
+    "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "ec1cf8bfb07c-估值差异拆解.csv",
+    "where": "ec1cf8bfb07c-估值差异拆解.csv.0.相对前序贡献（港币/股）",
+    "line": 2,
+    "column": "相对前序贡献（港币/股）",
+    "value": "0",
+    "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "ec1cf8bfb07c-估值差异拆解.csv",
+    "where": "ec1cf8bfb07c-估值差异拆解.csv.1.港币/股",
+    "line": 3,
+    "column": "港币/股",
+    "value": "10.3843842754049389637606230158633880",
+    "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "ec1cf8bfb07c-估值差异拆解.csv",
+    "where": "ec1cf8bfb07c-估值差异拆解.csv.1.相对前序贡献（港币/股）",
+    "line": 3,
+    "column": "相对前序贡献（港币/股）",
+    "value": "-0.5069137515063700197359060787946090",
+    "reason": "两步贡献未按 WACC 第一步/FCF 第二步对齐；第一步的 -0.50691375 被拿去比较第二步 -0.97674473 和最终价格。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "E3",
+    "file": "ec1cf8bfb07c-估值差异拆解.csv",
+    "where": "ec1cf8bfb07c-估值差异拆解.csv.2.港币/股",
+    "line": 4,
+    "column": "港币/股",
+    "value": "9.40763954155813876107825440797074294",
+    "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A1",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 3,
+    "column": 88,
+    "value": "-37.4",
+    "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A1",
+    "file": "1d411075ba9e-report.md",
+    "where": "1d411075ba9e-report.md",
+    "line": 4,
+    "column": 126,
+    "value": "-61.293",
+    "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A1",
+    "file": "1d411075ba9e-report.md",
+    "where": "1d411075ba9e-report.md",
+    "line": 4,
+    "column": 136,
+    "value": "-37.4",
+    "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A2",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 42,
+    "column": 13,
+    "value": "10.89",
+    "reason": "独立 DCF 计算值被对齐到研报披露值。正确底稿本来就保留两套数值及差异；扫描器缺少计算值/披露值的角色区分，不能要求二者相等。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A2",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 44,
+    "column": 27,
+    "value": "1810",
+    "reason": "段首“与报告列示值的差异”影响了后续列举的报告原值/加总项，1,810 或 3,527 被当成差额；它们实际是组成项。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A2",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 44,
+    "column": 116,
+    "value": "1810",
+    "reason": "段首“与报告列示值的差异”影响了后续列举的报告原值/加总项，1,810 或 3,527 被当成差额；它们实际是组成项。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A2",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 44,
+    "column": 122,
+    "value": "3527",
+    "reason": "段首“与报告列示值的差异”影响了后续列举的报告原值/加总项，1,810 或 3,527 被当成差额；它们实际是组成项。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A2",
+    "file": "4e79f08298ad-report.md",
+    "where": "4e79f08298ad-report.md",
+    "line": 11,
+    "column": 249,
+    "value": "10.89",
+    "reason": "独立 DCF 计算值被对齐到研报披露值。正确底稿本来就保留两套数值及差异；扫描器缺少计算值/披露值的角色区分，不能要求二者相等。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A2",
+    "file": "4e79f08298ad-report.md",
+    "where": "4e79f08298ad-report.md",
+    "line": 11,
+    "column": 288,
+    "value": "1810",
+    "reason": "后文引用研报的 1,810/5,336 没有逐项重复单位，扫描器继承之前预测部分单位，未沿用当段的 RMB mn，产生数量级误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A2",
+    "file": "4e79f08298ad-report.md",
+    "where": "4e79f08298ad-report.md",
+    "line": 11,
+    "column": 309,
+    "value": "5336",
+    "reason": "后文引用研报的 1,810/5,336 没有逐项重复单位，扫描器继承之前预测部分单位，未沿用当段的 RMB mn，产生数量级误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A2",
+    "file": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+    "where": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv.0.PV_FCF_RMB_mn",
+    "line": 2,
+    "column": "PV_FCF_RMB_mn",
+    "value": "256.6844919786096",
+    "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A2",
+    "file": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+    "where": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv.1.PV_FCF_RMB_mn",
+    "line": 3,
+    "column": "PV_FCF_RMB_mn",
+    "value": "406.70943470566004",
+    "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A2",
+    "file": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+    "where": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv.2.PV_FCF_RMB_mn",
+    "line": 4,
+    "column": "PV_FCF_RMB_mn",
+    "value": "418.4166038447059",
+    "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A2",
+    "file": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+    "where": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv.3.PV_FCF_RMB_mn",
+    "line": 5,
+    "column": "PV_FCF_RMB_mn",
+    "value": "374.8133208522298",
+    "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "A2",
+    "file": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv",
+    "where": "f538bdcaa0e5-dcf_base_inputs_and_pv.csv.4.PV_FCF_RMB_mn",
+    "line": 6,
+    "column": "PV_FCF_RMB_mn",
+    "value": "352.05462055716987",
+    "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 27,
+    "column": 25,
+    "value": "0.09",
+    "reason": "目标价差约 HK$0.09 被识别为每股价格水平；它实际是 8.97 与 8.881 的差额，非价格本身。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 57,
+    "column": 17,
+    "value": "18.087",
+    "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 57,
+    "column": 34,
+    "value": "35.205",
+    "reason": "独立 DCF 计算值被对齐到研报披露值。正确底稿本来就保留两套数值及差异；扫描器缺少计算值/披露值的角色区分，不能要求二者相等。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "10d1bf7de39a-DCF复算桥接.csv",
+    "where": "10d1bf7de39a-DCF复算桥接.csv.0.现值_RMB_亿元",
+    "line": 2,
+    "column": "现值_RMB_亿元",
+    "value": "2.5668449197860963",
+    "reason": "现值_RMB_亿元列是当年 FCF 折现后的金额；扫描器只采用 FCF 行名，未保留现值角色，与原始当年现金流比较产生误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "10d1bf7de39a-DCF复算桥接.csv",
+    "where": "10d1bf7de39a-DCF复算桥接.csv.1.现值_RMB_亿元",
+    "line": 3,
+    "column": "现值_RMB_亿元",
+    "value": "4.0670943470566",
+    "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "10d1bf7de39a-DCF复算桥接.csv",
+    "where": "10d1bf7de39a-DCF复算桥接.csv.2.现值_RMB_亿元",
+    "line": 4,
+    "column": "现值_RMB_亿元",
+    "value": "4.184166038447059",
+    "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "10d1bf7de39a-DCF复算桥接.csv",
+    "where": "10d1bf7de39a-DCF复算桥接.csv.3.现值_RMB_亿元",
+    "line": 5,
+    "column": "现值_RMB_亿元",
+    "value": "3.7481332085222983",
+    "reason": "现值_RMB_亿元列是当年 FCF 折现后的金额；扫描器只采用 FCF 行名，未保留现值角色，与原始当年现金流比较产生误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "10d1bf7de39a-DCF复算桥接.csv",
+    "where": "10d1bf7de39a-DCF复算桥接.csv.4.现值_RMB_亿元",
+    "line": 6,
+    "column": "现值_RMB_亿元",
+    "value": "3.5205462055716987",
+    "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "10d1bf7de39a-DCF复算桥接.csv",
+    "where": "10d1bf7de39a-DCF复算桥接.csv.5.现值_RMB_亿元",
+    "line": 7,
+    "column": "现值_RMB_亿元",
+    "value": "35.205462055716986",
+    "reason": "不同脚本以二进制浮点输出的同一终值现值在最后几位存在约 1e-13 百万元差异；按字符串全部小数位比较导致误报，展示精度和金融结论一致。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "6b9034d7a256-report.md",
+    "where": "6b9034d7a256-report.md",
+    "line": 5,
+    "column": 77,
+    "value": "8.30",
+    "reason": "EPS 乘 10 倍 PE 后的人民币每股价值 8.30 沿用了前文 EPS 标签，因此被误判成 EPS 放大 10 倍；实际是正确估值结果。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "6b9034d7a256-report.md",
+    "where": "6b9034d7a256-report.md",
+    "line": 7,
+    "column": 72,
+    "value": "1",
+    "reason": "折现说明中的期数常量 1 被继承为 FCF 金额单位；该数字是公式/期数，不是金额。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "6b9034d7a256-report.md",
+    "where": "6b9034d7a256-report.md",
+    "line": 7,
+    "column": 183,
+    "value": "320",
+    "reason": "公式中的净现金、股数或汇率项被最近的 EV/股权价值标签吸附；这些是计算输入，不是公式结果。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "6b9034d7a256-report.md",
+    "where": "6b9034d7a256-report.md",
+    "line": 7,
+    "column": 201,
+    "value": "555",
+    "reason": "公式中的净现金、股数或汇率项被最近的 EV/股权价值标签吸附；这些是计算输入，不是公式结果。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "6b9034d7a256-report.md",
+    "where": "6b9034d7a256-report.md",
+    "line": 7,
+    "column": 208,
+    "value": "1.07",
+    "reason": "公式中的净现金、股数或汇率项被最近的 EV/股权价值标签吸附；这些是计算输入，不是公式结果。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "6b9034d7a256-report.md",
+    "where": "6b9034d7a256-report.md",
+    "line": 7,
+    "column": 329,
+    "value": "1",
+    "reason": "无“敏感性/网格”明确邻词的 g 坐标列表被当成单一永续增长率参数比较；1%/2%/3% 是网格取值。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "6b9034d7a256-report.md",
+    "where": "6b9034d7a256-report.md",
+    "line": 7,
+    "column": 332,
+    "value": "2",
+    "reason": "无“敏感性/网格”明确邻词的 g 坐标列表被当成单一永续增长率参数比较；1%/2%/3% 是网格取值。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "6b9034d7a256-report.md",
+    "where": "6b9034d7a256-report.md",
+    "line": 7,
+    "column": 335,
+    "value": "3",
+    "reason": "无“敏感性/网格”明确邻词的 g 坐标列表被当成单一永续增长率参数比较；1%/2%/3% 是网格取值。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "6b9034d7a256-report.md",
+    "where": "6b9034d7a256-report.md",
+    "line": 9,
+    "column": 48,
+    "value": "3527",
+    "reason": "PV终值的写法未识别成终值现值，被识别成未折现终值；报告引用 3,527 正确。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "6b9034d7a256-report.md",
+    "where": "6b9034d7a256-report.md",
+    "line": 9,
+    "column": 73,
+    "value": "5656",
+    "reason": "“权益价值/权益”的别名未识别，沿用前面的 EV 标签；股权价值含净现金，与 EV 本来不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "6b9034d7a256-report.md",
+    "where": "6b9034d7a256-report.md",
+    "line": 9,
+    "column": 208,
+    "value": "10.6",
+    "reason": "WACC 参数讨论中的风险溢价 10.6% 沿用了 WACC 标签；风险溢价并不是 WACC。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "914384ca8420-report.md",
+    "where": "914384ca8420-report.md",
+    "line": 7,
+    "column": 61,
+    "value": "8.30",
+    "reason": "EPS 乘 10 倍 PE 后的人民币每股价值 8.30 沿用了前文 EPS 标签，因此被误判成 EPS 放大 10 倍；实际是正确估值结果。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "914384ca8420-report.md",
+    "where": "914384ca8420-report.md",
+    "line": 9,
+    "column": 174,
+    "value": "56.4922",
+    "reason": "“股权价值加净现金后为 56.4922”中的结果沿用了最近的净现金标签；该值实际是股权价值。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "914384ca8420-report.md",
+    "where": "914384ca8420-report.md",
+    "line": 11,
+    "column": 60,
+    "value": "56.56",
+    "reason": "“权益价值/权益”的别名未识别，沿用前面的 EV 标签；股权价值含净现金，与 EV 本来不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "914384ca8420-report.md",
+    "where": "914384ca8420-report.md",
+    "line": 11,
+    "column": 93,
+    "value": "18.0868",
+    "reason": "现值 PV/显式 FCF 现值与未折现 FCF 被同一个 fcf 指标标签合并；同期间的折现后金额本来应不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "914384ca8420-report.md",
+    "where": "914384ca8420-report.md",
+    "line": 11,
+    "column": 107,
+    "value": "35.2055",
+    "reason": "独立 DCF 计算值被对齐到研报披露值。正确底稿本来就保留两套数值及差异；扫描器缺少计算值/披露值的角色区分，不能要求二者相等。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "914384ca8420-report.md",
+    "where": "914384ca8420-report.md",
+    "line": 11,
+    "column": 196,
+    "value": "10.6",
+    "reason": "WACC 参数讨论中的风险溢价 10.6% 沿用了 WACC 标签；风险溢价并不是 WACC。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "eeb7b27e0b13-dcf_bridge.csv",
+    "where": "eeb7b27e0b13-dcf_bridge.csv.5.PV_RMB_mn",
+    "line": 7,
+    "column": "PV_RMB_mn",
+    "value": "3520.5462055716985",
+    "reason": "不同脚本以二进制浮点输出的同一终值现值在最后几位存在约 1e-13 百万元差异；按字符串全部小数位比较导致误报，展示精度和金融结论一致。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "eeb7b27e0b13-dcf_bridge.csv",
+    "where": "eeb7b27e0b13-dcf_bridge.csv.6.PV_RMB_mn",
+    "line": 8,
+    "column": "PV_RMB_mn",
+    "value": "1808.6784719383752",
+    "reason": "独立 DCF 计算值被对齐到研报披露值。正确底稿本来就保留两套数值及差异；扫描器缺少计算值/披露值的角色区分，不能要求二者相等。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B2",
+    "file": "eeb7b27e0b13-dcf_bridge.csv",
+    "where": "eeb7b27e0b13-dcf_bridge.csv.8.PV_RMB_mn",
+    "line": 10,
+    "column": "PV_RMB_mn",
+    "value": "5649.224677510074",
+    "reason": "独立 DCF 计算值被对齐到研报披露值。正确底稿本来就保留两套数值及差异；扫描器缺少计算值/披露值的角色区分，不能要求二者相等。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 20,
+    "column": 18,
+    "value": "11.2",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 20,
+    "column": 30,
+    "value": "13.2",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 20,
+    "column": 43,
+    "value": "1",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 20,
+    "column": 49,
+    "value": "3",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 20,
+    "column": 69,
+    "value": "90",
+    "reason": "90% 是 FCF 缩放因子，扫描器沿用了前文 WACC 标签；维度虽都是比例，参数语义不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 20,
+    "column": 90,
+    "value": "12.7",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "355c233e9ebd-report.md",
+    "where": "355c233e9ebd-report.md",
+    "line": 5,
+    "column": 20,
+    "value": "10.8913",
+    "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "355c233e9ebd-report.md",
+    "where": "355c233e9ebd-report.md",
+    "line": 7,
+    "column": 25,
+    "value": "11.2",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "355c233e9ebd-report.md",
+    "where": "355c233e9ebd-report.md",
+    "line": 7,
+    "column": 37,
+    "value": "13.2",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "355c233e9ebd-report.md",
+    "where": "355c233e9ebd-report.md",
+    "line": 7,
+    "column": 46,
+    "value": "1",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "355c233e9ebd-report.md",
+    "where": "355c233e9ebd-report.md",
+    "line": 7,
+    "column": 52,
+    "value": "3",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "355c233e9ebd-report.md",
+    "where": "355c233e9ebd-report.md",
+    "line": 7,
+    "column": 70,
+    "value": "90",
+    "reason": "90% 是 FCF 缩放因子，扫描器沿用了前文 WACC 标签；维度虽都是比例，参数语义不同。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "355c233e9ebd-report.md",
+    "where": "355c233e9ebd-report.md",
+    "line": 7,
+    "column": 102,
+    "value": "12.7",
+    "reason": "敏感性网格、基准参数和更新基准在同段出现；扫描器把从基准行提取的单一坐标当成完整网格，或把 12.7% 更新基准放进旧网格比较。坐标/参数角色未完整区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "e53b95678c10-局部更新_参数结果差异.csv",
+    "where": "e53b95678c10-局部更新_参数结果差异.csv.13.旧值",
+    "line": 15,
+    "column": "旧值",
+    "value": "10.891298026911315",
+    "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "B3",
+    "file": "e53b95678c10-局部更新_参数结果差异.csv",
+    "where": "e53b95678c10-局部更新_参数结果差异.csv.15.旧值",
+    "line": 17,
+    "column": "旧值",
+    "value": "10.38438427540494",
+    "reason": "文件名或整行包含“差异/变动”，扫描器将同表的每股价值水平、基准零贡献与变化列混为一个角色；应按单元格列义区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "C1",
+    "file": "ffc8241fbf90-report.md",
+    "where": "ffc8241fbf90-report.md",
+    "line": 27,
+    "column": 42,
+    "value": "102.791",
+    "reason": "合并净利润被对齐到来源的 adjusted net profit（非 HKFRS）摘要；来源摘要年度也未与 2025H1 合并口径完整对齐。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "C3",
+    "file": "7cb70f2cd4d1-report.md",
+    "where": "7cb70f2cd4d1-report.md",
+    "line": 21,
+    "column": 27,
+    "value": "10.3844",
+    "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "C3",
+    "file": "7cb70f2cd4d1-report.md",
+    "where": "7cb70f2cd4d1-report.md",
+    "line": 22,
+    "column": 26,
+    "value": "9.4076",
+    "reason": "旧值、中间值、新值的行标签没有完整对齐。排除同附件自证后，选中了另一阶段的每股价值；该数值在原正确底稿中属于当前阶段。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 3,
+    "column": 87,
+    "value": "-37.4",
+    "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "550721fba8a2-report.md",
+    "where": "550721fba8a2-report.md",
+    "line": 5,
+    "column": 53,
+    "value": "-37.4",
+    "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "550721fba8a2-report.md",
+    "where": "550721fba8a2-report.md",
+    "line": 61,
+    "column": 21,
+    "value": "16.78",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "550721fba8a2-report.md",
+    "where": "550721fba8a2-report.md",
+    "line": 61,
+    "column": 29,
+    "value": "130.80",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "550721fba8a2-report.md",
+    "where": "550721fba8a2-report.md",
+    "line": 61,
+    "column": 38,
+    "value": "5.72",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "550721fba8a2-report.md",
+    "where": "550721fba8a2-report.md",
+    "line": 61,
+    "column": 45,
+    "value": "1.22",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "550721fba8a2-report.md",
+    "where": "550721fba8a2-report.md",
+    "line": 61,
+    "column": 52,
+    "value": "-41.18",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "550721fba8a2-report.md",
+    "where": "550721fba8a2-report.md",
+    "line": 61,
+    "column": 61,
+    "value": "-42.15",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "8986c0886525-bridge.csv",
+    "where": "8986c0886525-bridge.csv.0.2025H1（CNY 百万元）",
+    "line": 2,
+    "column": "2025H1（CNY 百万元）",
+    "value": "16.776",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "8986c0886525-bridge.csv",
+    "where": "8986c0886525-bridge.csv.0.2024H1（CNY 百万元）",
+    "line": 2,
+    "column": "2024H1（CNY 百万元）",
+    "value": "130.795",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "8986c0886525-bridge.csv",
+    "where": "8986c0886525-bridge.csv.0.银行利息2025H1（CNY 百万元）",
+    "line": 2,
+    "column": "银行利息2025H1（CNY 百万元）",
+    "value": "5.723",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "8986c0886525-bridge.csv",
+    "where": "8986c0886525-bridge.csv.0.银行利息2024H1（CNY 百万元）",
+    "line": 2,
+    "column": "银行利息2024H1（CNY 百万元）",
+    "value": "1.216",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "8986c0886525-bridge.csv",
+    "where": "8986c0886525-bridge.csv.0.所得税现金支出2025H1（CNY 百万元）",
+    "line": 2,
+    "column": "所得税现金支出2025H1（CNY 百万元）",
+    "value": "-41.175",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "8986c0886525-bridge.csv",
+    "where": "8986c0886525-bridge.csv.0.所得税现金支出2024H1（CNY 百万元）",
+    "line": 2,
+    "column": "所得税现金支出2024H1（CNY 百万元）",
+    "value": "-42.147",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "D1",
+    "file": "f1e817071807-compare.csv",
+    "where": "f1e817071807-compare.csv.0.合并净利润同比（%）",
+    "line": 2,
+    "column": "合并净利润同比（%）",
+    "value": "-37.35",
+    "reason": "同比减少金额/增长率被归到净利润水平；候选还包含调整后净利率。应区分水平、同比和调整后口径，当前语义标签未分开。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "E1",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 19,
+    "column": 64,
+    "value": "45.4",
+    "reason": "品牌业务毛利率 45.4%/35.3% 被对齐到集团毛利率；业务分部与合并范围未区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "E1",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 19,
+    "column": 71,
+    "value": "35.3",
+    "reason": "品牌业务毛利率 45.4%/35.3% 被对齐到集团毛利率；业务分部与合并范围未区分。"
+  },
+  {
+    "study": "pi-finance-generalization-20261006",
+    "label": "E1",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 21,
+    "column": 40,
+    "value": "25.533",
+    "reason": "当前标签只对齐到来源摘要的上年净财务收益 3.4，未把本期 25.533 与 2025H1 明确绑定；查询来源中摘要与报表期间对应不足。"
+  },
+  {
+    "study": "pi-cowork-postfix-20261007",
+    "label": "G1",
+    "file": "b108c486510e-report.md",
+    "where": "b108c486510e-report.md",
+    "line": 9,
+    "column": 56,
+    "value": "16.776",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-cowork-postfix-20261007",
+    "label": "G1",
+    "file": "b108c486510e-report.md",
+    "where": "b108c486510e-report.md",
+    "line": 9,
+    "column": 65,
+    "value": "5.723",
+    "reason": "现金桥同一行/同一句中的经营产生现金、利息、税额、最终 CFO 没有分别识别。扫描器统一用行标签 CFO 比较组成项，造成错格误报。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "D1",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 3,
+    "column": 72,
+    "value": "22.108",
+    "reason": "新增 search_evidence 的摘要仅解析出上年净财务收益 3.4，正文的 22.108 被与其强行对齐；本项是同比增加额，不是净财务收益水平。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "D1",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 22,
+    "column": 42,
+    "value": "3.425",
+    "reason": "新增 search_evidence 的摘要仅解析出上年净财务收益 3.4，正文的 3.425 被与其强行对齐；原文 3.425 与摘要 3.4 的披露精度不同，扫描器按更精细的正文小数位比较。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "D1",
+    "file": "answer.md",
+    "where": "answer.md",
+    "line": 22,
+    "column": 55,
+    "value": "25.533",
+    "reason": "新增 search_evidence 的摘要仅解析出上年净财务收益 3.4，正文的 25.533 被与其强行对齐；本项为本期 25.533，上年摘要不是同期间参照。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "D1",
+    "file": "7bf5d092a124-report.md",
+    "where": "7bf5d092a124-report.md",
+    "line": 3,
+    "column": 98,
+    "value": "3.425",
+    "reason": "新增 search_evidence 的摘要仅解析出上年净财务收益 3.4，正文的 3.425 被与其强行对齐；原文 3.425 与摘要 3.4 的披露精度不同，扫描器按更精细的正文小数位比较。"
+  },
+  {
+    "study": "pi-cowork-acceptance-20261006",
+    "label": "D1",
+    "file": "7bf5d092a124-report.md",
+    "where": "7bf5d092a124-report.md",
+    "line": 3,
+    "column": 108,
+    "value": "25.533",
+    "reason": "新增 search_evidence 的摘要仅解析出上年净财务收益 3.4，正文的 25.533 被与其强行对齐；本项为本期 25.533，上年摘要不是同期间参照。"
+  }
+]

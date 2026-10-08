@@ -11,6 +11,23 @@ def forecast():
 
 
 class DeliveryConsistencyTests(unittest.TestCase):
+    def test_amount_pair_inherits_terminal_unit_before_parenthesized_percentage(self):
+        from service.delivery_quantities import text_quantities
+        qs,_=text_quantities('原文单位：千元。\n收入由1250降至1100百万元（同比-12%）；利润由20升至30百万元（增50%）。','answer')
+        byvalue={q['value']:q for q in qs}
+        self.assertEqual(byvalue['1250']['unit'],['money','CNY','1000000'])
+        self.assertEqual(byvalue['20']['unit'],['money','CNY','1000000'])
+        self.assertEqual(byvalue['-12']['unit'],['ratio','','0.01'])
+        self.assertEqual(byvalue['1250']['unitBasis'],'paired_value_unit')
+
+    def test_formula_operands_bind_their_immediate_labels_and_units(self):
+        result=scan_delivery('股权价值=EV+人民币320百万元净现金；每股价值=股权价值/555百万股。')
+        qs={c['claim']['value']:c['claim'] for c in result['checks']}
+        self.assertEqual(qs['320']['metric'],'net_cash');self.assertEqual(qs['555']['metric'],'shares')
+        result=scan_delivery('PE复核。FY30E EPS为人民币0.72元/股，直接按10倍为人民币7.20元/股。')
+        qs={c['claim']['value']:c['claim'] for c in result['checks']}
+        self.assertEqual(qs['0.72']['metric'],'eps');self.assertEqual(qs['7.20']['metric'],'share_price')
+
     def test_exact_conversion_and_decimal_rounding(self):
         result=scan_delivery('|年度|收入（人民币亿元）|EPS（元/股）|\n|---|---|---|\n|2030E|12.50|0.72|',forecast())
         self.assertEqual(result['counts'],{'exact':2});self.assertEqual(result['issue_count'],0)

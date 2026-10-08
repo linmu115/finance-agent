@@ -103,6 +103,15 @@ def text_quantities(text,where,default_unit=None,source=False):
             elif cells and any(h.strip() in ['单位','unit'] for h in (table_header or [])):
                 ix=next(i for i,h in enumerate(table_header) if h.strip() in ['单位','unit']);uh=unit_hits(cells[ix]) if ix<len(cells) else []
                 if uh:selected=uh[-1][2];basis='table_unit_cell'
+            if selected is None and not cells:
+                # In “由 A 降至 B 百万元（同比…%）”, the amount pair shares
+                # B's immediate unit; a later percentage is a separate claim.
+                pair=re.match(r'\s*(?:降至|升至|增至|减至|下降至|上升至|增加至|减少至|变为|到|至)\s*',line[end:])
+                if pair:
+                    following=NUM.match(line,end+pair.end())
+                    if following:
+                        attached=[h for h in hits if h[0]>=following.end() and not line[following.end():h[0]].strip()]
+                        if attached:selected=attached[0][2];basis='paired_value_unit'
             if selected is None:
                 # Repeated bare values in a sentence/table inherit one unambiguous dimension.
                 bounds=[0,*[x.end() for x in re.finditer('[；。]|(?<!\\d)，',line)],len(line)]
@@ -140,5 +149,5 @@ def text_quantities(text,where,default_unit=None,source=False):
                 omitted.append({'line':ln,'normalizedColumn':start+1,'raw':raw,'context':original[:240],'reason':'no unambiguous unit from token, row, column or declared scope'});continue
             if selected[0]=='money' and re.search(r'EPS|每股|value/share|per.share',rowlabel or re.split('[；。，、]',line[:start])[-1],re.I):selected=('per_share',selected[1],selected[2])
             if selected[0]=='money' and selected[1]=='HKD' and re.search(r'每股|value/share|per.share',re.split('[；。，]',line[:start])[-1],re.I):selected=('per_share',selected[1],selected[2])
-            found.append({'value':str(n),'unit':list(selected),'raw':raw,'unitBasis':basis,'where':where,'section':section,'table_header':table_header,'table_column':col,'row_label':rowlabel,'line':ln,'normalizedColumn':start+1,'prefix':line[:start],'context':line[max(0,start-120):min(len(line),end+240)]})
+            found.append({'value':str(n),'unit':list(selected),'raw':raw,'unitBasis':basis,'where':where,'section':section,'table_header':table_header,'table_column':col,'row_label':rowlabel,'line':ln,'normalizedColumn':start+1,'prefix':line[:start],'suffix':line[end:],'context':line[max(0,start-120):min(len(line),end+240)]})
     return found,omitted

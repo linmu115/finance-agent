@@ -141,6 +141,57 @@ def _tight_layout(self, *, pad=1.08, h_pad=None, w_pad=None, rect=None):
     engine.execute(self)
 
 
+def repair_negative_bar_labels(fig,renderer):
+    """Move numeric bar-end labels off spines/zero lines without changing axes.
+
+    Only unstacked negative bars and labels matching their displayed values are
+    eligible. Keep ticks, limits, bar data and palette exactly as supplied.
+    """
+    import re
+    from decimal import Decimal
+    from matplotlib.container import BarContainer
+    from matplotlib.text import Annotation
+    from matplotlib.transforms import ScaledTranslation
+    changes=[];pad=3*fig.dpi/72
+    for ax in fig.axes:
+        bars=[p for c in ax.containers if isinstance(c,BarContainer) and c.orientation=='vertical' for p in c.patches if p.get_height()<0 and p.get_y()==0]
+        for text in ax.texts:
+            label=text.get_text().strip().replace(',','').replace('−','-')
+            if not re.fullmatch(r'-\d+(?:\.\d+)?',label):continue
+            displayed=Decimal(label);tolerance=Decimal(1).scaleb(displayed.as_tuple().exponent)/2
+            anchor=text.xy if isinstance(text,Annotation) and text.xycoords=='data' else text.get_position() if text.get_transform()==ax.transData else None
+            if anchor is None:continue
+            candidates=[bar for bar in bars if abs(anchor[0]-(bar.get_x()+bar.get_width()/2))<abs(bar.get_width())/2 and abs(Decimal(str(bar.get_height()))-displayed)<=tolerance]
+            if len(candidates)!=1:continue
+            bar=candidates[0];box=text.get_window_extent(renderer)
+            lines=[spine.get_window_extent(renderer) for spine in ax.spines.values() if spine.get_visible()]
+            for line in ax.lines:
+                xy=line.get_xydata()
+                if line.get_visible() and len(xy)>1 and all(y==0 for _,y in xy):lines.append(line.get_window_extent(renderer))
+            crosses=any(box.x1>b.x0 and box.x0<b.x1 and box.y1>b.y0-pad/2 and box.y0<b.y1+pad/2 for b in lines)
+            if not crosses and box.y0>=ax.bbox.y0+pad/2:continue
+            x=bar.get_x()+bar.get_width()/2;y=bar.get_y()+bar.get_height()
+            old=list(box.bounds)
+            text.set_ha('center');text.set_va('top')
+            if isinstance(text,Annotation):
+                text.xy=(x,y);text.xycoords='data';text.set_anncoords('offset points');text.set_position((0,-3))
+            else:
+                text.set_position((x,y));text.set_transform(ax.transData+ScaledTranslation(0,-3/72,fig.dpi_scale_trans))
+            new=text.get_window_extent(renderer)
+            # If the model's fixed limits leave too little room below the bar,
+            # use its right side at the bar end, inside the existing plot bounds.
+            if new.y0<ax.bbox.y0+pad:
+                px,py=ax.transData.transform((x,y));right=bar.get_window_extent(renderer).x1
+                dx=(right+pad-px)*72/fig.dpi;dy=(max(py,ax.bbox.y0+pad+new.height/2)-py)*72/fig.dpi
+                text.set_ha('left');text.set_va('center')
+                if isinstance(text,Annotation):text.set_position((dx,dy))
+                else:text.set_transform(ax.transData+ScaledTranslation(dx/72,dy/72,fig.dpi_scale_trans))
+            changes.append({'axes':fig.axes.index(ax),'text':text.get_text(),'bar_value':bar.get_height(),
+                            'old_bbox':old,'new_bbox':list(text.get_window_extent(renderer).bounds),
+                            'reason':'negative bar label crossed axis/spine or bottom boundary'})
+    return changes
+
+
 def _savefig(self,fname,*args,**kwargs):
     from matplotlib.backends.backend_agg import FigureCanvasAgg
     from matplotlib.layout_engine import ConstrainedLayoutEngine
@@ -162,6 +213,8 @@ def _savefig(self,fname,*args,**kwargs):
                 # A tight-created gridspec colorbar cannot be switched after creation.
                 # Run its current engine; report unresolved intersections explicitly.
                 engine.execute(self);canvas.draw();layout=type(engine).__name__
+        label_changes=repair_negative_bar_labels(self,canvas.get_renderer())
+        if label_changes:canvas.draw()
         changes=repair_contrast(self,canvas.get_renderer())
         remaining=overlaps(self,canvas.get_renderer())
         # bbox_inches='tight' changes figure coordinates during the actual print.
@@ -176,7 +229,7 @@ def _savefig(self,fname,*args,**kwargs):
             canvas.mpl_disconnect(callback)
         filename=str(fname) if isinstance(fname,(str,Path)) else getattr(fname,'name','<stream>')
         entry={'file':filename,'dpi':self.dpi,'overlap_before':before,'layout_repair':layout,
-               'contrast_changes':changes,'remaining_overlaps':remaining,
+               'contrast_changes':changes,'negative_label_changes':label_changes,'remaining_overlaps':remaining,
                'remaining_low_contrast':[c for c in changes if c['contrast_after']<3]}
         _DIAGNOSTICS[filename]=entry
         destination=Path(filename).parent/'plot_diagnostics.json' if filename!='<stream>' else None

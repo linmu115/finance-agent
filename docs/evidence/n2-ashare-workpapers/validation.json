@@ -1,0 +1,106 @@
+{
+  "branch": "feat/ashare-workpapers",
+  "base": "ece4f21",
+  "dependency_merge": "2357a27",
+  "llm_calls": 0,
+  "python_focused": {
+    "tests": 56,
+    "failures": 0,
+    "includes": "K1/K2/K3, annual, A1, A5"
+  },
+  "annual_after_final_observations": {
+    "tests": 7,
+    "failures": 0
+  },
+  "plot_tests": {
+    "tests": 11,
+    "failures": 0,
+    "environment": "worktree .tmp/plot-venv"
+  },
+  "typescript": {
+    "tests": 3,
+    "failures": 0,
+    "server_typecheck": "passed"
+  },
+  "a3": {
+    "docker_replays": 3,
+    "opened_images": 3,
+    "negative_labels_repaired": 3,
+    "remaining_text_overlaps": 0,
+    "unchanged_numeric_files": 10,
+    "changed_numeric_files": 0
+  },
+  "a5": {
+    "recall": "47/47",
+    "magnitude_fp_before": 17,
+    "magnitude_fp_after": 12,
+    "total_fp_before": 119,
+    "total_fp_after": 108,
+    "adapter_roundtrip": "passed"
+  },
+  "boundaries": {
+    "primary_files_modified": false,
+    "primary_database_written": false,
+    "heldout_read": false,
+    "port_3001_operated": false,
+    "docker_stopped": false
+  },
+  "resume_validation": {
+    "date": "2026-10-08",
+    "product_code_changed": false,
+    "evidence_files_checked": 47,
+    "python": {
+      "command": "python -m unittest service.tests.test_financial_workpapers service.tests.test_workpaper_annual service.tests.test_workpaper_comparison service.tests.test_workpaper_audit service.tests.test_analysis_tables service.tests.test_delivery_consistency -q",
+      "tests": 56,
+      "failures": 0,
+      "seconds": 10.863,
+      "log": ".tmp/ashare/python-tests-resume.log"
+    },
+    "plot": {
+      "command": ".tmp/plot-venv/Scripts/python.exe -m unittest service.tests.test_plot_runtime -q",
+      "tests": 11,
+      "failures": 0,
+      "seconds": 4.853,
+      "log": ".tmp/ashare/plot-tests-resume.log",
+      "warnings": "Pyparsing deprecation warnings from Matplotlib dependencies"
+    },
+    "typescript": {
+      "command": "node --import tsx --test tests/financial-workpapers.test.ts",
+      "tests": 3,
+      "failures": 0,
+      "log": ".tmp/ashare/ts-tests-resume.log"
+    },
+    "typecheck": {
+      "command": "node D:/AI/财报agent/node_modules/typescript/bin/tsc --noEmit -p server/tsconfig.json",
+      "exit_code": 0,
+      "log": ".tmp/ashare/typecheck-resume.log"
+    },
+    "retained_evidence_verified": {
+      "pdf_value_matches": 80,
+      "pdf_pages": [
+        7,
+        8,
+        9,
+        217,
+        218
+      ],
+      "yili_residuals": "all zero",
+      "ruihe_and_carote_residuals": "all zero",
+      "a3_images_present": 3,
+      "a3_numeric_files_unchanged": 10,
+      "a5_recall": "47/47",
+      "a5_false_positives": {
+        "wrong_cell": 65,
+        "unmatched": 31,
+        "order_of_magnitude": 12
+      },
+      "a5_adapter_result_equal": true
+    },
+    "not_repeated": [
+      "PDF visual review",
+      "real-data workpaper replay",
+      "A5 historical replay",
+      "A3 Docker rendering and visual review"
+    ]
+  }
+}
