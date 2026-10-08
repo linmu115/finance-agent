@@ -3,7 +3,7 @@ import {randomUUID} from 'node:crypto';
 export interface EvaluationLimits {
  max_model_calls:number; max_input_tokens:number; max_output_tokens:number; max_total_tokens:number; max_wall_seconds:number;
 }
-export interface EvaluationOptions {profile:'financial'|'generic'|'prepared';budget_group_id:string;budget:EvaluationLimits;isolation_key?:string}
+export interface EvaluationOptions {profile:'financial'|'generic'|'prepared';budget_group_id:string;budget:EvaluationLimits;isolation_key?:string;analysis_only?:boolean}
 export interface BudgetUsage {input?:number;output?:number;cacheRead?:number;cacheWrite?:number}
 export interface BudgetTicket {id:string;run_id:string;max_output_tokens:number;created_at:string}
 export interface BudgetSnapshot extends EvaluationOptions {
@@ -22,20 +22,21 @@ export function normalizeEvaluation(value:unknown):EvaluationOptions|undefined {
  if(value===undefined)return undefined;
  if(!value||typeof value!=='object'||Array.isArray(value))throw failure('invalid_evaluation');
  const raw=value as Record<string,unknown>;
- if(Object.keys(raw).some(key=>!['profile','budget_group_id','budget','isolation_key'].includes(key))||!['financial','generic','prepared'].includes(String(raw.profile))||
+ if(Object.keys(raw).some(key=>!['profile','budget_group_id','budget','isolation_key','analysis_only'].includes(key))||!['financial','generic','prepared'].includes(String(raw.profile))||
     typeof raw.budget_group_id!=='string'||!/^[-A-Za-z0-9_]{1,120}$/.test(raw.budget_group_id)||
     !raw.budget||typeof raw.budget!=='object'||Array.isArray(raw.budget))throw failure('invalid_evaluation');
  if(raw.isolation_key!==undefined&&(typeof raw.isolation_key!=='string'||!/^[-A-Za-z0-9_]{1,120}$/.test(raw.isolation_key)))throw failure('invalid_evaluation_isolation_key');
+ if(raw.analysis_only!==undefined&&typeof raw.analysis_only!=='boolean')throw failure('invalid_evaluation_analysis_only');
  const budget=raw.budget as Record<string,unknown>;
  if(Object.keys(budget).some(key=>!keys.includes(key as typeof keys[number])))throw failure('invalid_evaluation_budget');
  for(const key of keys)if(typeof budget[key]!=='number'||!Number.isFinite(budget[key])||Number(budget[key])<0||
     (key!=='max_wall_seconds'&&!Number.isSafeInteger(budget[key]))||Number(budget[key])>Number.MAX_SAFE_INTEGER)throw failure('invalid_evaluation_budget');
- return {...(raw.isolation_key!==undefined?{isolation_key:raw.isolation_key as string}:{}),profile:raw.profile as EvaluationOptions['profile'],budget_group_id:raw.budget_group_id,
+ return {...(raw.isolation_key!==undefined?{isolation_key:raw.isolation_key as string}:{}),...(raw.analysis_only!==undefined?{analysis_only:raw.analysis_only as boolean}:{}),profile:raw.profile as EvaluationOptions['profile'],budget_group_id:raw.budget_group_id,
          budget:Object.fromEntries(keys.map(key=>[key,budget[key]])) as unknown as EvaluationLimits};
 }
 
 // Budget groups may span independent chains; artifact isolation is stored on each run request.
-const budgetOptions=(options:EvaluationOptions)=>{const {isolation_key,...budget}=normalizeEvaluation(options)!;return budget;};
+const budgetOptions=(options:EvaluationOptions)=>{const {isolation_key,analysis_only,...budget}=normalizeEvaluation(options)!;return budget;};
 
 export class EvaluationBudgetExceeded extends Error {
  readonly code='evaluation_budget_exceeded'; readonly status=429;

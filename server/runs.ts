@@ -45,7 +45,12 @@ const PREPARED_PROMPT="你是通用文档分析助手。附件先 prepare_docume
 const genericProfile=(profile?:string)=>profile==='generic'||profile==='prepared';
 const evaluationPrompt=(profile?:string)=>(profile==='prepared'?PREPARED_PROMPT:GENERIC_PROMPT)+'\n\n'+SHARED_TASK_GUIDANCE+'\n\n'+ANSWER_FORMAT_GUIDANCE;
 export const PREPARED_TOOL_ALLOWLIST=new Set([...GENERIC_TOOL_ALLOWLIST,'get_data_catalog','query_financial_data','query_research_records']);
-const toolAllowlist=(profile?:string)=>profile==='prepared'?PREPARED_TOOL_ALLOWLIST:profile==='generic'?GENERIC_TOOL_ALLOWLIST:TOOL_ALLOWLIST;
+const INGESTION_TOOLS=new Set(['process_documents','inspect_document_routing','set_document_profile','get_cleaning_batch','run_cleaning_script','get_cleaning_result','commit_cleaning_result','save_research_claims']);
+const toolAllowlist=(profile?:string,analysisOnly=false)=>{
+ const tools=profile==='prepared'?PREPARED_TOOL_ALLOWLIST:profile==='generic'?GENERIC_TOOL_ALLOWLIST:TOOL_ALLOWLIST;
+ return analysisOnly?new Set([...tools].filter(name=>!INGESTION_TOOLS.has(name))):tools;
+};
+const ANALYSIS_ONLY_GUIDANCE='本次评测只分析已有资料，不发起或续跑入库。已入库记录照常查询，原文页和原表可按需读取；缺失明确说明，不以文档处理状态阻断分析。';
 const FINANCE_PROMPT=['你是金融研究助手。',SHARED_TASK_GUIDANCE,FINANCE_TASK_GUIDANCE,FINANCE_WORKSPACE_GUIDANCE,ANSWER_FORMAT_GUIDANCE].join('\n\n');
 export const PROMPT_HASH=createHash('sha256').update(FINANCE_PROMPT).digest('hex');
 interface EventItem { seq:number; type:string; data:any }
@@ -147,8 +152,8 @@ export class RunManager {
    }
  }
  private promptFor(l:LiveRun,message:Message){
-  const docs=message.attachments||[],generic=genericProfile(l.chat.evaluationProfile);
-  return '应用消息标识：'+message.id+'\n当前项目：'+l.run.projectId+'\n本次附件 document_id：'+JSON.stringify(docs)+(docs.length?(generic?'\n附件已保存。用prepare_document_sources取得原文，然后完成用户任务。':'\n附件已保存。默认调用 process_documents 处理财务主表及附注表并入库；之后回答用户任务。'):'')+'\n用户任务：\n'+annotationContext(message)+message.content+(l.contract?'\n当前任务输出契约：\n'+l.contract:'');
+  const docs=message.attachments||[],generic=genericProfile(l.chat.evaluationProfile),analysisOnly=l.run.request?.evaluation?.analysis_only===true;
+  return '应用消息标识：'+message.id+'\n当前项目：'+l.run.projectId+'\n本次附件 document_id：'+JSON.stringify(docs)+(analysisOnly?'\n'+ANALYSIS_ONLY_GUIDANCE:'')+(docs.length?(generic||analysisOnly?'\n附件已保存。用prepare_document_sources取得原文，然后完成用户任务。':'\n附件已保存。默认调用 process_documents 处理财务主表及附注表并入库；之后回答用户任务。'):'')+'\n用户任务：\n'+annotationContext(message)+message.content+(l.contract?'\n当前任务输出契约：\n'+l.contract:'');
  }
  private async queueInputs(l:LiveRun){
   if(!l.session)return;
@@ -202,6 +207,7 @@ export class RunManager {
   bindEvaluationIsolation(chat,evaluation?.isolation_key);
   const active=[...this.live.values()].find(l=>l.run.conversationId===chat.id&&!l.closed);
   if(active){
+   if((active.run.request?.evaluation?.analysis_only===true)!==(evaluation?.analysis_only===true))throw Object.assign(new Error('evaluation_active_analysis_only_conflict'),{status:409});
    if(active.accepting)return this.appendInput(active,content,documentIds,annotationInput,mode);
    await active.promise;return this.start(await this.getConversation(chat.id),content,documentIds,contract,evaluation,annotationInput,mode);
   }
@@ -218,7 +224,7 @@ export class RunManager {
   const answer:Message={id:messageId,role:'assistant',content:'',createdAt:now,status:'running',sources:[],artifacts:[],tools:[],usage:emptyUsage(),runId};
   chat.messages.push({id:randomUUID(),role:'user',content:content.trim() || (annotations.length?'请结合这些引用及补充说明回答。':'请解析并概述这些附件。'),createdAt:now,attachments:documentIds,...(annotations.length?{annotations}:{})},answer);
   if(chat.title==='新对话')chat.title=(content.trim() || '附件分析').slice(0,28);chat.updatedAt=now;
-  run.configHash=createHash('sha256').update(run.configHash+profile+(genericProfile(profile)?evaluationPrompt(profile):'')+(evaluation?.isolation_key?'\nisolation:'+evaluation.isolation_key:'')).digest('hex');
+  run.configHash=createHash('sha256').update(run.configHash+profile+(genericProfile(profile)?evaluationPrompt(profile):'')+(evaluation?.isolation_key?'\nisolation:'+evaluation.isolation_key:'')+(evaluation?.analysis_only?'\nanalysis_only':'')).digest('hex');
   run.request={userMessageId:chat.messages[chat.messages.length-2].id,documentIds,contract,evaluation};
   const live:LiveRun={accepting:true,inputQueue:Promise.resolve(),nativeQueued:new Set(),run,events:[],clients:new Set(),controller:new AbortController(),persistQueue:Promise.resolve(),chat,answer,analysisIds:new Set(),processingIds:new Set(),contract,closed:false,budget,modelPending:new Set(),researchReads:new Map()};
   if(budget){live.detachBudget=budget.attach(run.id,live.controller);run.evaluation=budget.snapshot();await this.saveBudget(live,'attached');}
@@ -253,11 +259,11 @@ export class RunManager {
   if(settings.runtime.budgetCny&&l.run.usage.costUsd!==null&&l.run.usage.costUsd*(settings.runtime.usdToCny||7)>=settings.runtime.budgetCny)l.controller.abort(new Error('已达到本次任务费用预算'));
  }
  private async sessionFor(l:LiveRun,settings:Settings):Promise<SessionEntry>{
-  const generic=genericProfile(l.chat.evaluationProfile),allowlist=toolAllowlist(l.chat.evaluationProfile);
+  const generic=genericProfile(l.chat.evaluationProfile),analysisOnly=l.run.request?.evaluation?.analysis_only===true,allowlist=toolAllowlist(l.chat.evaluationProfile,analysisOnly);
   const resources=generic?undefined:await projectResources.load(l.run.projectId);
   if(resources){this.resourceSnapshots.set(l.run.id,resources);await this.audit(l,'project_resources',{revision:resources.revision,rules:resources.rulePath,skills:resources.skills.filter(s=>s.enabled).map(s=>({name:s.name,path:s.filePath}))});}
   const systemPrompt=(generic?evaluationPrompt(l.chat.evaluationProfile):FINANCE_PROMPT)+(resources?'\n\n'+FINANCE_EXTENSION_GUIDANCE+'\n资源版本：'+resources.revision+'\n可用技能（任务匹配时先调用 read_project_skill 读取全文）：\n'+resources.skills.filter(s=>s.enabled).map(s=>s.name+'：'+s.description).join('\n'):'');
-  const signature=createHash('sha256').update(JSON.stringify(settings)+systemPrompt+await modelCatalogRevision()).digest('hex');
+  const signature=createHash('sha256').update(JSON.stringify(settings)+systemPrompt+(analysisOnly?'\nanalysis_only':'')+await modelCatalogRevision()).digest('hex');
   let entry=this.sessions.get(l.chat.id);
   if(entry&&entry.signature===signature){entry.active=l;return entry;}
   entry?.session.dispose();
@@ -324,7 +330,7 @@ export class RunManager {
    customTools.push({name:spec.name,label:spec.name,description,parameters:schema,
     execute:async(toolCallId:string,params:Record<string,any>)=>this.executeTool(e.active!,settings,spec.name,toolCallId,params)});
   }
-  if(!generic)customTools.push({name:'process_documents',label:'处理财报与研报',description:"开始/继续完整入库，返回统一 Cleaner 说明和首个结构批次，后续用 get_cleaning_batch。来源未定先 set_document_profile；表格与研报正文均须完成。本调用不代表入库完成。review_metrics 复核定义，默认复用成功结果。",
+  if(allowlist.has('process_documents'))customTools.push({name:'process_documents',label:'处理财报与研报',description:"开始/继续完整入库，返回统一 Cleaner 说明和首个结构批次，后续用 get_cleaning_batch。来源未定先 set_document_profile；表格与研报正文均须完成。本调用不代表入库完成。review_metrics 复核定义，默认复用成功结果。",
    parameters:{type:'object',properties:{document_ids:{type:'array',items:{type:'string'},minItems:1},review_existing_only:{type:'boolean',description:"配合 review_metrics 仅复核已有定义，保留解析/数值/期间；不能 force=true。"},force:{type:'boolean',description:"仅用户明确要求重洗时开启。"},review_metrics:{type:'array',items:{type:'string',pattern:'^[a-z][a-z0-9_]{0,255}$'},minItems:1,description:"待复核定义范围的实际 metric ID；按完整原文判断范围。"}},required:['document_ids'],additionalProperties:false},
    execute:async(toolCallId:string,params:Record<string,any>)=>this.executeTool(e.active!,settings,'process_documents',toolCallId,params)});
   const compactionPolicy=resolveCompactionPolicy(settings.runtime.contextCompaction,model.contextWindow,Math.min(model.maxTokens,settings.llm.maxTokens));
@@ -430,7 +436,7 @@ export class RunManager {
   l.controller.signal.throwIfAborted();
   if('project_id' in params)throw new Error('工具已绑定当前项目');
   const args:Record<string,any>={...params,project_id:l.run.projectId};
-  if(!toolAllowlist(l.chat.evaluationProfile).has(name))throw new Error('工具不属于当前运行配置');
+  if(!toolAllowlist(l.chat.evaluationProfile,l.run.request?.evaluation?.analysis_only===true).has(name))throw new Error('工具不属于当前运行配置');
   if(['run_analysis','run_financial_model','compare_financial_models','save_research_report','get_research_model_schema'].includes(name)){l.effort='high';l.usagePhase=undefined;}
   if(name==='run_cleaning_script'){l.effort=l.cleaningRepair?'high':'low';l.usagePhase='cleaning';}
   if(name==='get_cleaning_result'){l.effort=l.cleaningRepair||params.review_effort==='high'?'high':'low';l.usagePhase='cleaning_review';}
@@ -603,9 +609,9 @@ export class RunManager {
     if(answer.stopReason==='error')throw new Error(answer.errorMessage||'结构化抽取请求失败');
     return {content,model:settings.llm.model,input:Number(answer.usage?.input||0)+Number(answer.usage?.cacheRead||0),output:Number(answer.usage?.output||0)};
    }),model:settings.llm.model,max_tokens:EXTRACTION_MAX_TOKENS};
-   const generic=genericProfile(l.chat.evaluationProfile),allowed=toolAllowlist(l.chat.evaluationProfile);
+   const generic=genericProfile(l.chat.evaluationProfile),allowed=toolAllowlist(l.chat.evaluationProfile,l.run.request?.evaluation?.analysis_only===true);
    const active=session.getActiveToolNames();if(active.some((name:string)=>!allowed.has(name)))throw new Error('工具配置不正确');
-   await this.audit(l,'run_config',{model:settings.llm.model,baseUrl:settings.llm.baseUrl,inputPricePerMillionUsd:settings.llm.inputPricePerMillionUsd,cacheReadPricePerMillionUsd:settings.llm.cacheReadPricePerMillionUsd,outputPricePerMillionUsd:settings.llm.outputPricePerMillionUsd,configHash:l.run.configHash,promptHash:generic?createHash('sha256').update(evaluationPrompt(l.chat.evaluationProfile)).digest('hex'):PROMPT_HASH,profile:l.chat.evaluationProfile||'financial',evaluation:l.run.evaluation,isolation_key:l.run.request?.evaluation?.isolation_key,tools:active,piVersion:'1.0.0',persistentSession:true,conversationId:l.chat.id});
+   await this.audit(l,'run_config',{model:settings.llm.model,baseUrl:settings.llm.baseUrl,inputPricePerMillionUsd:settings.llm.inputPricePerMillionUsd,cacheReadPricePerMillionUsd:settings.llm.cacheReadPricePerMillionUsd,outputPricePerMillionUsd:settings.llm.outputPricePerMillionUsd,configHash:l.run.configHash,promptHash:generic?createHash('sha256').update(evaluationPrompt(l.chat.evaluationProfile)).digest('hex'):PROMPT_HASH,profile:l.chat.evaluationProfile||'financial',evaluation:l.run.evaluation,isolation_key:l.run.request?.evaluation?.isolation_key,...(l.run.request?.evaluation?.analysis_only?{analysis_only:true}:{}),tools:active,piVersion:'1.0.0',persistentSession:true,conversationId:l.chat.id});
    l.controller.signal.addEventListener('abort',()=>void session.abort(),{once:true});
    unsubscribe=session.subscribe((event:any)=>{
     if(event.type==='message_start'&&event.message?.role==='user'){
