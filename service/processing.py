@@ -516,6 +516,19 @@ class ProcessingMixin:
         if detail.get("source_input_fingerprint") not in {None,source_fingerprint}:
             raise ValueError("semantic_source_input_changed")
         profile=self._document_profile(project_id,document_id)
+        from .accounting_basis import identify, apply_basis
+        from .source_dimensions import apply_source_dimensions
+        from .cleaning_rules import context
+        parsed=self._read_prepared(project_id,self.store.document(project_id,document_id))
+        basis=(profile or {}).get('accounting_basis') or identify(parsed)
+        if basis['basis']!='unknown':
+            for fact in facts:
+                fact['scope']=apply_basis({'schema':{'scope':fact['scope']}},basis)['schema']['scope']
+                fact['source']['normalization']['accounting_basis']={k:basis[k] for k in ('basis','version','status')}
+            for e in detail.get('extractions',[]):e['attributes']=apply_basis({'schema':e['attributes']},basis)['schema']
+        for part in batch:
+            local=[f for f in facts if f['source']['table_id']==f"{document_id}:t{part['table']['index']}"]
+            apply_source_dimensions(part['table'],local,context=context(parsed,part['table']))
         all_facts=facts
         research_facts=[f for f in facts if f['source']['normalization'].get('data_kind','disclosed_actual')!='disclosed_actual']
         if profile and profile['kind']!='financial_report' and len(research_facts)!=len(facts):
@@ -536,7 +549,23 @@ class ProcessingMixin:
             stamp_source_provenance(document_sha,all_facts,detail)
             overlay_saved_corrections(db,project_id,document_id,facts,detail)
             overlay_saved_definitions(db,project_id,facts)
+            from .table_identity import table_id as canonical_table_id
+            whole_tables={f"{document_id}:t{part['table']['index']}" for part in batch
+                          if detail.get('script_table')==part['table']['index'] and part['rows']==list(range(1,len(part['table']['rows'])+1))}
+            # A complete table submission supersedes the old workflow's entire
+            # table, including old header rows, aliases and unresolved columns.
+            if whole_tables:
+                for record in list(db.execute('SELECT * FROM facts WHERE document_id=?',(document_id,))):
+                    if canonical_table_id(json.loads(record['source_json']).get('table_id'),document_id) not in whole_tables:continue
+                    db.execute('INSERT INTO fact_history VALUES(?,?,?,?,?,?)',(uuid.uuid4().hex,project_id,document_id,processing_id,dumps(dict(record)),utcnow()))
+                    db.execute('DELETE FROM facts WHERE fact_id=?',(record['fact_id'],))
+                for saved_key,raw in list(db.execute('SELECT batch_key,result_json FROM normalization_batches WHERE document_id=?',(document_id,))):
+                    prior=json.loads(raw)
+                    if saved_key!=key and prior.get('coordinates') and {canonical_table_id(c[0],document_id) for c in prior['coordinates']}<=whole_tables:
+                        prior.update(superseded_by={'processing_id':processing_id,'batch_key':key},status='superseded')
+                        db.execute('UPDATE normalization_batches SET result_json=? WHERE document_id=? AND batch_key=?',(dumps(prior),document_id,saved_key))
             for table_id,r in coordinates:
+                if table_id in whole_tables:continue
                 table_index=int(table_id.rsplit(":t",1)[1])
                 row_issues=[issue for issue in issues if issue.get("table")==table_index and (issue.get("row") in {None,r})]
                 new_columns={f["source"]["column"] for f in facts if f["source"]["table_id"]==table_id and f["source"]["row"]==r}
@@ -576,7 +605,7 @@ class ProcessingMixin:
             for batch in table_batches(parsed) if parsed else []:
                 coords=[(f"{did}:t{p['table']['index']}",r) for p in batch for r in p["rows"]]
                 key=hashlib.sha256(dumps(coords).encode()).hexdigest();record=saved.get(key)
-                if not record:
+                if not record or record.get('superseded_by'):
                     # Script commits cover a whole source table. Legacy checkpoints
                     # remain row-batched; resolve them to that durable table receipt.
                     table=batch[0]['table'];table_hash=hashlib.sha256(dumps(table).encode()).hexdigest()

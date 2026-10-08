@@ -264,13 +264,20 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
     def _source_tables(self, project_id, document_id, table_id=None):
         """Complete tables with their per-row source references, in page order."""
         self.store.document(project_id,document_id)
+        if table_id is not None:
+            from .table_identity import table_id as canonical_table_id
+            table_id=canonical_table_id(table_id,document_id)
         with self.store.connect() as db:
             if table_id:
                 records=db.execute("SELECT * FROM source_tables WHERE document_id=? AND table_id=?",(document_id,table_id)).fetchall()
             else:
                 records=db.execute("SELECT * FROM source_tables WHERE document_id=? ORDER BY page,table_id",(document_id,)).fetchall()
             source_records=db.execute("SELECT source_json FROM chunks WHERE project_id=? AND document_id=? AND source_id IS NOT NULL AND source_id!='' ORDER BY rowid",(project_id,document_id)).fetchall()
-        if table_id and not records:raise ValueError("table_not_found_in_document")
+        if table_id and not records:
+            from .script_cleaning import CleaningToolError
+            with self.store.connect() as db:
+                available=[r[0] for r in db.execute('SELECT table_id FROM source_tables WHERE document_id=? ORDER BY page,table_id',(document_id,))]
+            raise CleaningToolError('table_not_found_in_document',{'document_id':document_id,'requested_table':table_id,'available_table_ids':available})
         row_sources={}
         for source_record in source_records:
             ref=json.loads(source_record["source_json"])

@@ -104,7 +104,7 @@ class IngestionScaleTests(unittest.TestCase):
         self.assertEqual(raised.exception.details['candidates']['identifiers'][0]['ticker'],'600123')
 
     def test_complex_financial_table_cannot_be_excluded_to_claim_completion(self):
-        issues=mapping_issues({'index':1},{'statement':'nonfinancial'},[],'结构复杂，保留原文待核验')
+        issues=mapping_issues({'index':1,'rows':[['项目','金额'],['营业收入','100']]},{'statement':'nonfinancial'},[],'结构复杂，保留原文待核验')
         self.assertEqual(issues[0]['reason'],'financial_complexity_is_not_exclusion')
 
     def test_series_pairs_packed_and_fragmented_columns_without_rewriting_numbers(self):

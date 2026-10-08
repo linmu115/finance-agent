@@ -1,0 +1,20 @@
+{
+  "status": "merge_validated_with_documented_existing_search_defect; deployment_receipt_written_after_commit",
+  "base_commit": "28cf04b3c4f92d339a11657e7d26ebbaa950300a",
+  "target": "2e27a108793babb2d1aca6ac54f54beb0ff8c84e",
+  "python_initial": {"tests": 145, "passed": 143, "errors": 1, "failures": 1},
+  "python_recheck": {"tests": 35, "passed": 35, "modules": ["test_ingestion_scale", "test_research_ingestion"]},
+  "python_unique_with_pass_record": 145,
+  "python_failure_disposition": ["old nonfinancial mapping fixture now includes actual rows", "FCFF keyword search metadata matching is an unchanged known defect, retained and deterministically reproduced; not fixed by retry"],
+  "node": {"tests": 19, "passed": 19},
+  "deployed_isolation_node": {"tests": 2, "passed": 2, "method": "server/dist modules, native Pi faux provider and real MCP stdio, isolated temporary data"},
+  "typecheck": "passed",
+  "build": "passed; existing Vite large-chunk warning retained",
+  "deployed_static_context_matches_source": true,
+  "profiles": {"financial": {"tools": 40, "chars": 30869, "rough_tokens": 10116}, "prepared": {"tools": 13, "chars": 9521, "rough_tokens": 3011}},
+  "paid_model_calls": 0,
+  "held_out_read": false,
+  "production_facts_written": false,
+  "docker_lifecycle_changed": false,
+  "planned_restart_count": 1
+}

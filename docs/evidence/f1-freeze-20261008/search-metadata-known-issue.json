@@ -1,0 +1,23 @@
+{
+  "status": "known_existing_defect_not_fixed_in_F1",
+  "baseline": "28cf04b",
+  "research_ingestion_file_unchanged": true,
+  "file_sha256": "b25d6bb7c90ad8329d5c3dfa35046a93234cd64784bc0cb92cc0edf358db4a8e",
+  "synthetic_setup": "Injected FCFF into one unrelated record source_key; no user or production data used.",
+  "keyword_results": {
+    "total": 3,
+    "metrics": [
+      "free_cash_flow_firm",
+      "free_cash_flow_firm",
+      "net_profit"
+    ]
+  },
+  "exact_metric_results": {
+    "total": 2,
+    "metrics": [
+      "free_cash_flow_firm",
+      "free_cash_flow_firm"
+    ]
+  },
+  "first_failure_boundary": "First test total=3 instead of 2; its temporary database was removed by teardown, so its exact extra row is unavailable. This replay proves metadata matching can cause that symptom in the unchanged premerge query."
+}

@@ -13,9 +13,15 @@ class MappingError(ValueError):
     """A table's declared mapping cannot match its source coordinates."""
 
 
+def canonical_index(index):
+    text=str(index).strip()
+    return int(re.sub(r'^[tT]','',text)) if re.fullmatch(r'[tT]?\d+',text) else index
+
+
 def table_mapping(method):
     @wraps(method)
     def apply(self, index, *args, **kwargs):
+        index=canonical_index(index)
         try:
             return method(self, index, *args, **kwargs)
         except MappingError as error:
@@ -34,6 +40,8 @@ class Cleaner:
         self.results = {}
 
     def table(self, index):
+        index=canonical_index(index)
+        if index not in self.tables:raise MappingError(f'Table {index} not found; available table IDs: {list(self.tables)}')
         return self.tables[index]
 
     @table_mapping

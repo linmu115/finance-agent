@@ -18,13 +18,14 @@ test('ingestion continuation and answer repair stay exclusive across native turn
  const faux=createFauxCore({tokensPerSecond:0});
  const sessionFor=manager.sessionFor.bind(manager);
  manager.sessionFor=async(...args:any[])=>{const entry=await sessionFor(...args);entry.runtime.streamSimple=faux.streamSimple;return entry;};
- let remaining:number[][]=[],progressCalls=0,renderCalls=0;
+ let remaining:(number[]|{pending:number[],runnable:number[],repair:boolean})[]=[],progressCalls=0,renderCalls=0;
  const original=service.call.bind(service),pid='fixture-processing';
  service.call=async(name,args,signal)=>{
   if(name==='begin_script_cleaning')return {status:'ok',data:{processing_id:pid,state:'normalizing',instructions:'Fixture cleaning instructions'}};
-  if(name==='get_cleaning_progress'){
-   progressCalls++;const pending=remaining.shift()??[],done=[1,2].filter(t=>!pending.includes(t));
-   return {status:'ok',data:{processing_id:pid,pending_tables:{doc:pending},pending_pages:{doc:[]},pending_scripts:[],document_progress:[{document_id:'doc',completed_tables:done,fact_count:done.length,table_statuses:Object.fromEntries(done.map(t=>[t,'completed']))}]}};
+  if(name==='get_cleaning_progress'||name==='advance_cleaning_round'){
+   progressCalls++;const step=remaining.shift()??[],pending=Array.isArray(step)?step:step.pending,done=[1,2].filter(t=>!pending.includes(t));
+   const runnable=Array.isArray(step)?pending:step.runnable,repair=Array.isArray(step)?false:step.repair;
+   return {status:'ok',data:{processing_id:pid,pending_tables:{doc:pending},runnable_tables:{doc:runnable},repair_phase:repair,pending_pages:{doc:[]},pending_scripts:[],document_progress:[{document_id:'doc',completed_tables:done,fact_count:done.length,table_statuses:Object.fromEntries(done.map(t=>[t,'completed']))}]}};
   }
   if(name==='get_cleaning_batch')return {status:'ok',data:{processing_id:pid,batch:{tables:[1]}}};
   if(name==='cancel_processing')return {status:'ok',data:{state:'cancelled'}};
@@ -67,12 +68,13 @@ test('ingestion continuation and answer repair stay exclusive across native turn
   assert.match((await manager.getConversation(chat.id)).messages.at(-1).content,/12.50 CNY 元/);
   assert.equal(faux.getPendingResponseCount(),0);
 
-  // One native continuation without committed progress fails honestly; no A1 repair loop.
-  const stalledChat=await makeChat(),renderBefore=renderCalls;remaining=[[1],[1]];
-  faux.setResponses([startCleaning(),answer('{{still.unresolved.value}}'),answer('{{still.unresolved.value}}')]);
+  // No submission moves to the final high repair sweep; exhausted repairs fail honestly, without A1.
+  const stalledChat=await makeChat(),renderBefore=renderCalls;remaining=[[1],{pending:[1],runnable:[1],repair:true},{pending:[1],runnable:[],repair:true}];
+  faux.setResponses([startCleaning(),answer('{{still.unresolved.value}}'),answer('{{still.unresolved.value}}'),answer('{{still.unresolved.value}}')]);
   const third=await manager.start(stalledChat,'完整入库',[]),stalled=await wait(third.id),stalledEvents=await audit(third.id);
-  assert.equal(stalled.status,'failed');assert.match(stalled.error,/自动续跑没有推进/);assert.equal(renderCalls,renderBefore);
-  assert.equal(stalledEvents.filter(e=>e.type==='ingestion_continuation').length,1);
+  assert.equal(stalled.status,'failed');assert.match(stalled.error,/自动续跑停止：可处理表已用尽/);assert.equal(renderCalls,renderBefore);
+  assert.equal(stalledEvents.filter(e=>e.type==='ingestion_continuation').length,2);
+  assert.equal(stalledEvents.filter(e=>e.type==='ingestion_continuation')[1].data.remaining[0].repair_phase,true);
   assert.equal(stalledEvents.filter(e=>e.type==='ingestion_stalled').length,1);
   assert.equal(stalledEvents.filter(e=>e.type.startsWith('answer_bind')).length,0);
   assert.equal(faux.getPendingResponseCount(),0);

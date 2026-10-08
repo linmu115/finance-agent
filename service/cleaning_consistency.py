@@ -4,7 +4,7 @@ import re
 from decimal import Decimal
 from .normalization import decimal_value, unit_info
 from .research_ingestion import norm, series_dimensions
-from .source_numbers import data_number
+from .source_numbers import numeric_cells
 
 
 def coordinates(fact):
@@ -36,9 +36,7 @@ def table_semantics(table, schema, facts, page_text=''):
     if not facts:
         title=str(rows[0][0]) if rows and rows[0] else ''
         financial=bool(re.search(r'利润表|资产负债表|现金流量表|盈利能力|费用率|每股指标|偿债能力|估值指标',title))
-        values=[{'row':r,'column':c,'raw_value':raw} for r,row in enumerate(rows,1) for c,raw in enumerate(row,1)
-                if data_number(raw)
-                and not re.search(r'邮政编码|邮编|证券代码|股票代码|联系电话|传真|postal.code|stock.code',str(row[0]),re.I)]
+        values=numeric_cells(table)
         # Chart axes and document indexes are not financial observations. These
         # exceptions require source evidence, never just a model-written reason.
         graphic=bool(re.search(r'PE.?Bands|PB.?Bands|沪深\s*300|走势图',text,re.I))
@@ -99,6 +97,11 @@ def signed_presentation_equivalent(left,right,left_item,right_item):
     if Decimal(left['value'])!=-Decimal(right['value']):return False
     def text(item):return (item.get('page_text','')+'\n'+'\n'.join(' '.join(r) for r in item['table']['rows'])).casefold()
     a,b=text(left_item),text(right_item);metric=left['metric']
+    # Opposite signs alone are never sufficient. The labels must explicitly
+    # declare opposite loss/gain presentation conventions.
+    labels=[str(item['table']['rows'][fact['source']['row']-1][0]) for fact,item in ((left,left_item),(right,right_item))]
+    if (any(re.search(r'损失.*[负－−-].*号',s) for s in labels) and
+        any(re.search(r'收益.*[负－−-].*号',s) for s in labels)):return True
     if re.search(r'(?:gain|loss)',metric):
         charged=lambda s:bool(re.search(r'charg(?:ed|ing)\s*/\s*\(?credit|charging\s+(?:and|or)\s+credit|charging.*crediting',s))
         if charged(a)!=charged(b):return True

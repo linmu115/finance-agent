@@ -5,7 +5,7 @@ from .normalization import metric_id, decimal_value
 from .semantic import numeric_candidate
 from .cleaning_batches import column_totals
 from .standard_metrics import standard_metric
-from .source_numbers import data_number
+from .source_numbers import data_number, numeric_cells, identifier_reason
 
 
 def decode(value, default):
@@ -28,9 +28,7 @@ def mapping_issues(table, schema, rows, exclusion_reason=None, page_text='', fac
     index = table['index']
     if schema.get('statement') == 'nonfinancial':
         navigation=bool(re.search(r'^\s*(?:Contents|目\s*录)\b',page_text,re.I))
-        amount_cells=[str(c) for row in table.get('rows',[]) for c in row[1:]
-                      if any((v:=decimal_value(line)) is not None and not (1900<=v<=2100 and v==int(v)) for line in str(c).splitlines())
-                      or re.search(r'(?:RMB|HK\$|CNY|人民币)\s*\d[\d,]*',str(c),re.I)]
+        amount_cells=numeric_cells(table)
         if (amount_cells and not navigation) or re.search(r'复杂|待核验|待专项|合并单元格|非标准财务|complex|needs.review|merged.cell', exclusion_reason or '', re.I):
             return [{'table': index, 'reason': 'financial_complexity_is_not_exclusion', 'instruction': '复杂财务表必须映射；局部无法判断用 unresolved_cells 留原格及具体原因。只有确属封面/目录/独立表头等非财务内容才能排除。'}]
         return []
@@ -39,7 +37,7 @@ def mapping_issues(table, schema, rows, exclusion_reason=None, page_text='', fac
         number=skipped.get('row')
         if isinstance(number,int) and 1<=number<=len(table['rows']) and re.search(r'header|表头',str(skipped.get('reason','')),re.I):
             row=table['rows'][number-1]
-            if any(data_number(c) for c in row[1:]):
+            if any(data_number(c) and not identifier_reason(table,number,k) for k,c in enumerate(row,1)):
                 issues.append({'table':index,'row':number,'reason':'numeric_data_marked_as_header','source_row':row,
                                'instruction':'此行含数据数值，不能按表头跳过；映射原格，真实歧义保留待核验。'})
     first_label=next((str(r[0]).splitlines()[0] for r in table['rows'] if r and str(r[0]).strip()),'')

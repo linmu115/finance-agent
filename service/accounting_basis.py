@@ -61,3 +61,33 @@ def apply_basis(item, basis):
     fix(item.get('schema', {}))
     for row in item.get('rows', []): fix(row['attributes'])
     return item
+
+
+def reapply_document_facts(service, project_id, document_id, parsed, basis, processing_id):
+    """Version existing interpretations; original values and source cells stay intact."""
+    import json
+    import uuid
+    from .store import dumps, utcnow
+    from .table_identity import table_index
+    from .source_dimensions import apply_source_dimensions
+    from .cleaning_rules import context
+    changed=[]
+    with service.store.connect(write=True) as db:
+        records=[dict(r) for r in db.execute('SELECT * FROM facts WHERE project_id=? AND document_id=?',(project_id,document_id))]
+        facts=[r|{'source':json.loads(r['source_json'])} for r in records]
+        for f in facts:f['source'].setdefault('normalization',{})
+        for table in parsed['tables']:
+            local=[f for f in facts if table_index(f['source'].get('table_id'),document_id)==table['index'] and
+                   isinstance(f['source'].get('row'),int) and 1<=f['source']['row']<=len(table['rows'])]
+            if local:apply_source_dimensions(table,local,context=context(parsed,table))
+        for old,fact in zip(records,facts):
+            meta=fact['source']['normalization']
+            if basis['basis']!='unknown':
+                fact['scope']=apply_basis({'schema':{'scope':fact['scope']}},basis)['schema']['scope']
+                meta['accounting_basis']={k:basis[k] for k in ('basis','version','status')}
+            if old['scope']==fact['scope'] and json.loads(old['source_json'])==fact['source']:continue
+            db.execute('INSERT INTO fact_history VALUES(?,?,?,?,?,?)',(uuid.uuid4().hex,project_id,document_id,processing_id,dumps(old),utcnow()))
+            meta['document_semantics_revision']={'processing_id':processing_id,'reason':'source_basis_and_dimensions','basis_evidence':basis['evidence']}
+            db.execute('UPDATE facts SET scope=?,source_json=? WHERE fact_id=?',(fact['scope'],dumps(fact['source']),old['fact_id']))
+            changed.append(old['fact_id'])
+    return {'updated':len(changed),'history_preserved':len(changed)}

@@ -103,6 +103,11 @@ async def get_cleaning_progress(project_id: str, processing_id: str) -> dict[str
     return await call('get_cleaning_progress',project_id=project_id,processing_id=processing_id)
 
 @mcp.tool()
+async def advance_cleaning_round(project_id: str, processing_id: str, tool_errors: list[dict[str, Any]] | None=None) -> dict[str, Any]:
+    """Host-only Pi settle boundary: defer unresolved offered tables and schedule unrelated work."""
+    return await call('advance_cleaning_round',project_id=project_id,processing_id=processing_id,tool_errors=tool_errors)
+
+@mcp.tool()
 async def inspect_document_routing(project_id: str, document_ids: list[str]) -> dict[str, Any]:
     """Read samples and existing metadata to identify source kind, publisher, authors, date and subject. Read more source pages when insufficient."""
     return await call('inspect_document_routing',project_id=project_id,document_ids=document_ids)
@@ -150,12 +155,12 @@ async def run_cleaning_script(project_id: str, processing_id: str, document_id: 
     return await call('run_cleaning_script',project_id=project_id,processing_id=processing_id,document_id=document_id,code=code,script_refs=script_refs)
 
 @mcp.tool()
-async def get_cleaning_result(project_id: str, processing_id: str, run_id: str, offset: int=0, limit: int=5, review_effort: str='low', table_indices: list[int] | None=None, details: bool=False) -> dict[str, Any]:
+async def get_cleaning_result(project_id: str, processing_id: str, run_id: str, offset: int=0, limit: int=5, review_effort: str='low', table_indices: list[int | str] | None=None, details: bool=False) -> dict[str, Any]:
     """Read results and local mapping errors as needed; not a submission prerequisite. details=true includes original data and full mappings; table_indices selects tables, offset follows table_order."""
     return await call('get_cleaning_result',project_id=project_id,processing_id=processing_id,run_id=run_id,offset=offset,limit=limit,review_effort=review_effort,table_indices=table_indices,details=details)
 
 @mcp.tool()
-async def commit_cleaning_result(project_id: str, processing_id: str, run_id: str, reviews: list[dict[str, Any]] | None=None, table_indices: list[int] | None=None) -> dict[str, Any]:
+async def commit_cleaning_result(project_id: str, processing_id: str, run_id: str, reviews: list[dict[str, Any]] | None=None, table_indices: list[int | str] | None=None) -> dict[str, Any]:
     """提交脚本全部表或 table_indices 选表。宿主读取原格值；修复返回错误并继续剩余表。reviews 只记录实际语义判断，省略不表示语义已核验。"""
     return await call('commit_cleaning_result',project_id=project_id,processing_id=processing_id,run_id=run_id,reviews=reviews,table_indices=table_indices)
 
