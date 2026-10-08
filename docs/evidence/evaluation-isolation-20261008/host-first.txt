@@ -1,0 +1,192 @@
+✔ isolation is validated, fixed for a conversation, and independent of budget grouping (2.5372ms)
+[finance-service] D:\AI\财报agent\.venv\Lib\site-packages\pydantic_settings\sources\utils.py:47: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.
+  warnings.warn(
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type ListToolsRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type ListToolsRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type ListToolsRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type ListToolsRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+✖ native runs and MCP enforce artifact scope, preserve same-chain reuse and ordinary sharing (6339.3351ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6884.5249
+
+✖ failing tests:
+
+test at tests\evaluation-isolation.test.ts:1:2092
+✖ native runs and MCP enforce artifact scope, preserve same-chain reuse and ordinary sharing (6339.3351ms)
+  Error: evaluation_budget_group_conflict
+      at failure (D:\AI\财报agent\server\evaluation-budget.ts:19:55)
+      at EvaluationBudgets.acquire (D:\AI\财报agent\server\evaluation-budget.ts:145:81)
+      at RunManager.start (D:\AI\财报agent\server\runs.ts:213:168)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async run (D:\AI\财报agent\tests\evaluation-isolation.test.ts:44:17)
+      at async TestContext.<anonymous> (D:\AI\财报agent\tests\evaluation-isolation.test.ts:116:18)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    code: 'evaluation_budget_group_conflict',
+    status: 409
+  }

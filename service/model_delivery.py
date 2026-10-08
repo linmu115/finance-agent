@@ -1,4 +1,5 @@
 """Export immutable models and the actual calculator used to produce them."""
+from .evaluation_isolation import isolation_key, visible, stamp
 import csv
 import hashlib
 import io
@@ -41,7 +42,12 @@ def select_models(root, project_id, references):
     for name,ref in references.items():
         safe_name(name)
         revision=safe_name(ref['revision_id'])
-        saved=json.loads((root/'research'/project_id/'artifacts'/(revision+'.json')).read_text(encoding='utf-8'))
+        try:
+            saved=json.loads((root/'research'/project_id/'artifacts'/(revision+'.json')).read_text(encoding='utf-8'))
+        except FileNotFoundError:
+            if isolation_key.get() is not None:raise ValueError('model_revision_not_found_in_project') from None
+            raise
+        if not visible(saved):raise ValueError('model_revision_not_found_in_project')
         if saved['id']!=ref['artifact_id'] or not saved.get('spec'):raise ValueError('model_revision_not_found_in_project')
         models[name]=saved
     return models
@@ -137,7 +143,7 @@ def deliver_saved(root,project_id,references,comparison_requests):
     The same versions and comparisons always resolve to the same delivery.
     """
     models=select_models(root,project_id,references)
-    identity=json.dumps({'format':DELIVERY_FORMAT,'models':{name:[model['id'],model['revision_id']] for name,model in models.items()},'comparisons':comparison_requests},sort_keys=True,ensure_ascii=False)
+    identity=json.dumps(stamp({'format':DELIVERY_FORMAT,'models':{name:[model['id'],model['revision_id']] for name,model in models.items()},'comparisons':comparison_requests}),sort_keys=True,ensure_ascii=False)
     delivery_id=hashlib.sha256(identity.encode('utf-8')).hexdigest()[:32]
     folder=root/'research'/project_id/'deliveries'/delivery_id
     with _publishing:
@@ -152,7 +158,7 @@ def deliver_saved(root,project_id,references,comparison_requests):
                       'files':[{'name':name,'size':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()} for name,path in sorted(files.items())]}
             # The manifest appears last and in one step. A folder without it is an unfinished delivery and is written again.
             pending=folder/('delivery.'+uuid.uuid4().hex+'.tmp')
-            pending.write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
+            pending.write_text(json.dumps(stamp(manifest),ensure_ascii=False,indent=2),encoding='utf-8')
             os.replace(pending,folder/'delivery.json')
     manifest=json.loads((folder/'delivery.json').read_text(encoding='utf-8'))
     manifest['folder']=str(folder.relative_to(root))

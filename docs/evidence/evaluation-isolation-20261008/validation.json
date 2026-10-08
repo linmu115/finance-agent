@@ -1,0 +1,47 @@
+{
+  "status": "passed; committed deployment pending",
+  "base_commit": "58a903c7c794573ed3cf767a70f057498d2d0090",
+  "field": "evaluation.isolation_key",
+  "python": {
+    "related_initial_total": 52,
+    "related_initial_passed": 52,
+    "isolation_suite_final_passed": 6,
+    "unique_final_passed": 53
+  },
+  "node": {
+    "initial_isolation_passed": 1,
+    "initial_isolation_failed": 1,
+    "initial_failure": "test fixture reused one budget_group_id across financial and prepared; existing profile conflict, fixed fixture only",
+    "related_passed": 23,
+    "final_isolation_reopen_passed": 2,
+    "unique_final_passed": 23
+  },
+  "typecheck": "passed",
+  "tool_and_prompt_snapshot": "both profiles exactly unchanged except normalized random cwd",
+  "coverage": [
+    "artifact list/read/revisions",
+    "source_model",
+    "model_refs",
+    "artifact dependencies in saved reports",
+    "analysis status/artifact",
+    "source_run_id edits and params including child runs",
+    "workpaper/model deliveries",
+    "standard report package",
+    "A/B bidirectional isolation",
+    "same-key reuse and reopened session",
+    "unkeyed product sharing",
+    "old unmarked assets invisible",
+    "nonempty facts/research records shared",
+    "MCP async scope propagation and concurrent isolation",
+    "budget grouping independent of chain scope"
+  ],
+  "model_calls_paid": 0,
+  "http_test_ports_opened": 0,
+  "docker_execution": false,
+  "production_facts_written": false,
+  "restarted": false,
+  "build_outputs_replaced": false,
+  "deployed_commit": "58a903c7c794573ed3cf767a70f057498d2d0090",
+  "f1_status": "pending N4/N3 merges and coordinated single restart",
+  "test_boundary": "Native Pi with in-process faux provider and real MCP stdio; Python analysis runner is a fixture, no participant code executed on host or Docker."
+}

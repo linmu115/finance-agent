@@ -1,3 +1,4 @@
+import {evaluationIsolation,visibleInEvaluation} from './evaluation-isolation.js';
 import { mkdir, readFile, writeFile, readdir, realpath } from 'node:fs/promises';
 import { createHash, randomUUID } from 'node:crypto';
 import path from 'node:path';
@@ -19,7 +20,7 @@ export interface SourceValidation {schema_version:1;scope:'reference_location_an
 type EvidenceContext={artifacts:Map<string,ResearchArtifact>;documents:Map<string,string>;pages:Map<string,any>;fixed:RecordedDependency[];checks:ReferenceCheck[]};
 const evidenceContext=():EvidenceContext=>({artifacts:new Map(),documents:new Map(),pages:new Map(),fixed:[],checks:[]});
 const validationRecord=(mode:SourceValidation['mode'],extra:Partial<SourceValidation>={}):SourceValidation=>({schema_version:1,scope:'reference_location_and_literal_quote_only',semantic_accuracy_verified:false,mode,...extra});
-export interface ResearchArtifact {id:string;revision_id:string;parent_revision_id?:string;kind:string;title:string;created_at:string;run_id?:string;dependencies:RecordedDependency[];spec?:any;result?:any;content?:any;source_model?:ImportedModel;source_validation?:SourceValidation;input_bindings?:any[]}
+export interface ResearchArtifact {isolation_key?:string;id:string;revision_id:string;parent_revision_id?:string;kind:string;title:string;created_at:string;run_id?:string;dependencies:RecordedDependency[];spec?:any;result?:any;content?:any;source_model?:ImportedModel;source_validation?:SourceValidation;input_bindings?:any[]}
 const MODEL_KINDS=['dcf','dcf_fcf','comparables','manufacturing_scenario','financial_quality','three_statement'] as const;
 const common=z.object({title:z.string().trim().min(1).max(200),dependencies:z.array(dependencySchema).max(100).default([]),artifact_id:idSchema.optional(),parent_revision_id:idSchema.optional()});
 const modelPath=z.string().regex(/^[A-Za-z0-9_]+(?:\.[A-Za-z0-9_]+)*$/);
@@ -64,7 +65,7 @@ export class ArtifactStore {
  private queues=new Map<string,Promise<unknown>>();
  constructor(readonly root=path.join(DATA,'research')){}
  private folder(project:string){return path.join(this.root,idSchema.parse(project),'artifacts');}
- private async revisions(project:string):Promise<ResearchArtifact[]>{let files:string[];try{files=await readdir(this.folder(project));}catch(e:any){if(e.code==='ENOENT')return [];throw e;}return Promise.all(files.filter(x=>x.endsWith('.json')).map(async f=>JSON.parse(await readFile(path.join(this.folder(project),f),'utf8'))));}
+ private async revisions(project:string):Promise<ResearchArtifact[]>{let files:string[];try{files=await readdir(this.folder(project));}catch(e:any){if(e.code==='ENOENT')return [];throw e;}return (await Promise.all(files.filter(x=>x.endsWith('.json')).map(async f=>JSON.parse(await readFile(path.join(this.folder(project),f),'utf8'))))).filter(visibleInEvaluation);}
  async list(project:string){const revisions=await this.revisions(project),parents=new Set(revisions.map(x=>x.parent_revision_id).filter(Boolean)),map=new Map<string,ResearchArtifact>();for(const a of revisions.filter(x=>!parents.has(x.revision_id))){const prev=map.get(a.id);if(!prev||a.created_at>prev.created_at)map.set(a.id,a);}return [...map.values()].sort((a,b)=>b.created_at.localeCompare(a.created_at));}
  async get(project:string,id:string,revision?:string){
   // Revision is compared to loaded records, never interpolated into a file path.
@@ -79,7 +80,7 @@ export class ArtifactStore {
    const id=artifactId?idSchema.parse(artifactId):'research_'+randomUUID();
    if(artifactId){const previous=await this.get(project,id);if(previous.revision_id!==input.parent_revision_id)throw Object.assign(new Error('该成果已有新版本，请刷新后再修改'),{status:409});}
    else if(input.parent_revision_id)throw new Error('新成果不能指定前一版本');
-   value={...input,id,revision_id:'revision_'+randomUUID(),created_at:new Date().toISOString()};
+   value={...input,isolation_key:evaluationIsolation.getStore(),id,revision_id:'revision_'+randomUUID(),created_at:new Date().toISOString()};
    const dir=this.folder(project);await publishFile(path.join(dir,value.revision_id+'.json'),JSON.stringify(value,null,2));
   });this.queues.set(project,op);await op;return value;
  }
@@ -298,6 +299,7 @@ export async function deliveryFile(project:string,deliveryId:string,name:string)
  let manifest:any;
  try{manifest=JSON.parse(await readFile(path.join(folder,'delivery.json'),'utf8'));}
  catch(error){if((error as NodeJS.ErrnoException).code==='ENOENT')throw Object.assign(new Error('交付不存在'),{status:404});throw error;}
+ if(!visibleInEvaluation(manifest))throw Object.assign(new Error('交付不存在'),{status:404});
  const listed=manifest.files.find((file:any)=>file.name===name);
  if(!listed)throw Object.assign(new Error('交付中没有此文件'),{status:404});
  const actual=await realpath(path.join(folder,listed.name));

@@ -1,3 +1,4 @@
+import {evaluationIsolation} from './evaluation-isolation.js';
 import {createReadStream} from 'node:fs';
 import {createInterface} from 'node:readline';
 import path from 'node:path';
@@ -31,7 +32,10 @@ export async function reportSnapshot(chat:Conversation,auditRoot=path.join(DATA,
  if(!turns.length)throw new Error('当前会话还没有已完成的分析回答。');
  return {title:chat.title,conversation_id:chat.id,project_id:chat.projectId,turns};
 }
-export async function exportReportPackage(service:FinanceService,chat:Conversation){
+export function exportReportPackage(service:FinanceService,chat:Conversation){
+ return evaluationIsolation.run(chat.evaluationIsolationKey,()=>exportScopedReportPackage(service,chat));
+}
+async function exportScopedReportPackage(service:FinanceService,chat:Conversation){
  const snapshot=await reportSnapshot(chat);
  const prepared=await service.call('prepare_report_package',{project_id:chat.projectId,snapshot});
  const html=renderToStaticMarkup(createElement(Markdown,{remarkPlugins:[remarkGfm],skipHtml:true,

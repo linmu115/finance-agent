@@ -4,6 +4,7 @@ Generated code is never executed by the host. Only validated mappings leave the
 existing Docker sandbox. The host derives values from immutable source cells.
 """
 from __future__ import annotations
+from contextvars import copy_context
 import hashlib
 import json
 import re
@@ -423,7 +424,7 @@ class ScriptCleaningMixin:
             self._save_analysis_state(project_id,run_id,{'run_id':run_id,'project_id':project_id,'status':'queued','artifacts':[]})
             self.analysis_flags[run_id]=threading.Event()
             self._save_processing(state)
-            self.analysis_futures[run_id]=self.analysis_pool.submit(self._analysis_job,runner,project_id,run_id,wrapper,inputs,120)
+            self.analysis_futures[run_id]=self.analysis_pool.submit(copy_context().run,self._analysis_job,runner,project_id,run_id,wrapper,inputs,120)
         # A local sandbox normally finishes in seconds. Return its diagnostics or
         # validated candidate summary directly, avoiding one LLM polling round.
         result=self.get_cleaning_result(project_id,processing_id,run_id)

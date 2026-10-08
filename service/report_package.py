@@ -115,6 +115,8 @@ def workbook(snapshot,output):
     book.save(output)
 
 def prepare(service,project,snapshot):
+    from .evaluation_isolation import isolation_key, stamp
+    snapshot=stamp(snapshot)
     service.store.project(project)
     if snapshot['project_id']!=project:raise ValueError('报告包项目不匹配')
     package_id=uuid.uuid4().hex;folder=service.store.root/'report_packages'/project/package_id;folder.mkdir(parents=True)
@@ -132,6 +134,7 @@ def prepare(service,project,snapshot):
             if not match or not artifact.get('mimeType','').startswith('image/'):continue
             if match[1]!=project:raise ValueError('报告图片跨项目')
             from urllib.parse import unquote
+            if isolation_key.get() is not None:service._analysis_state(project,match[2])
             original=service._runner().artifact_path(match[2],unquote(match[3]),project_id=project)
             asset=f'assets/{n}-{original.name}';(folder/'assets').mkdir(exist_ok=True);shutil.copyfile(original,folder/asset)
             body=body.replace(artifact['url'],asset)
@@ -164,6 +167,8 @@ def finish(service,project,package_id,html):
     if not re.fullmatch('[a-f0-9]{32}',package_id):raise ValueError('报告包标识无效')
     folder=service.store.root/'report_packages'/project/package_id
     if not (folder/'snapshot.json').is_file():raise ValueError('报告包不存在')
+    from .evaluation_isolation import visible
+    if not visible(json.loads((folder/'snapshot.json').read_text(encoding='utf8'))):raise ValueError('报告包不存在')
     css='body{font-family:sans-serif;font-size:10pt;line-height:1.5;color:#172b4d} h1{font-size:24pt} h2{font-size:17pt;color:#17365d} h3{font-size:12pt} table{border-collapse:collapse;width:100%;font-size:8pt;margin:10pt 0} th,td{border:0.5pt solid #b8c8d8;padding:4pt;overflow-wrap:anywhere} img{max-width:100%} pre{white-space:pre-wrap;font-size:8pt} a{color:#235789}'
     story=fitz.Story(html=html,user_css=css,archive=fitz.Archive(str(folder)))
     target=folder/'report.pdf';writer=fitz.DocumentWriter(str(target))

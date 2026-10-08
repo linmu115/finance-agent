@@ -368,7 +368,8 @@ def publish(service, project, kind, report, records):
     (folder/'workpaper.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     # Required by the existing delivery download endpoint; reuse its manifest contract.
     files = [{'name':p.name,'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in folder.iterdir() if p.is_file()]
-    manifest = {'delivery_id':delivery_id,'files':files,'attachments':[f['name'] for f in files]}
+    from .evaluation_isolation import stamp
+    manifest = stamp({'delivery_id':delivery_id,'files':files,'attachments':[f['name'] for f in files]})
     (folder/'delivery.json').write_text(json.dumps(manifest,ensure_ascii=False),encoding='utf-8')
     summary = {name:{'columns':t['columns'],'row_key':t.get('row_key','key'),'row_keys':[r.get('key') for r in t['rows']],'rows':len(t['rows'])} for name,t in compiled['tables'].items()}
     return {'kind':kind,'report':compiled,'numeric_tables':compiled['tables'], 'summary':summary,

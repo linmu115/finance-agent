@@ -1,3 +1,4 @@
+import {evaluationIsolation} from './evaluation-isolation.js';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { APP_VERSION,DATA,ROOT,PYTHON,redactError } from './config.js';
@@ -24,7 +25,7 @@ export class FinanceService {
  async tools(){return (await this.client.listTools()).tools;}
  async call<T=any>(name:string,args:Record<string,unknown>,signal?:AbortSignal):Promise<Envelope<T>> {
    if(!this.started)throw new Error('文档服务尚未就绪');
-   const response=await this.client.callTool({name,arguments:args},undefined,{signal,timeout:180000,resetTimeoutOnProgress:true});
+   const response=await this.client.callTool({name,arguments:args,...(evaluationIsolation.getStore()!==undefined?{_meta:{finance_evaluation_isolation_key:evaluationIsolation.getStore()}}:{})},undefined,{signal,timeout:180000,resetTimeoutOnProgress:true});
    let result:any=response.structuredContent;
    if(!result){const text=(response.content as any[]).filter(x=>x.type==='text').map(x=>x.text).join('\n');try{result=JSON.parse(text);}catch{throw new Error(response.isError?text:'金融服务返回格式无效');}}
    if(response.isError || result.status==='error'){

@@ -1,3 +1,4 @@
+import {evaluationIsolation,bindEvaluationIsolation} from './evaluation-isolation.js';
 import {emptyUsage,addUsage as tallyUsage,aggregateAudit} from './usage.js';
 import {artifactMediaType} from './artifact-media.js';
 import {registerNumericTables,referenceInventory} from './numeric-tables.js';
@@ -197,6 +198,8 @@ export class RunManager {
   req.on('close',()=>{clearInterval(interval);l.clients.delete(res);});
  }
  async start(chat:Conversation,content:string,documentIds:string[],contract?:string,evaluation?:EvaluationOptions,annotationInput?:unknown,mode:'steer'|'followUp'='steer'):Promise<Run>{
+  evaluation=normalizeEvaluation(evaluation);
+  bindEvaluationIsolation(chat,evaluation?.isolation_key);
   const active=[...this.live.values()].find(l=>l.run.conversationId===chat.id&&!l.closed);
   if(active){
    if(active.accepting)return this.appendInput(active,content,documentIds,annotationInput,mode);
@@ -215,7 +218,7 @@ export class RunManager {
   const answer:Message={id:messageId,role:'assistant',content:'',createdAt:now,status:'running',sources:[],artifacts:[],tools:[],usage:emptyUsage(),runId};
   chat.messages.push({id:randomUUID(),role:'user',content:content.trim() || (annotations.length?'请结合这些引用及补充说明回答。':'请解析并概述这些附件。'),createdAt:now,attachments:documentIds,...(annotations.length?{annotations}:{})},answer);
   if(chat.title==='新对话')chat.title=(content.trim() || '附件分析').slice(0,28);chat.updatedAt=now;
-  run.configHash=createHash('sha256').update(run.configHash+profile+(genericProfile(profile)?evaluationPrompt(profile):'')).digest('hex');
+  run.configHash=createHash('sha256').update(run.configHash+profile+(genericProfile(profile)?evaluationPrompt(profile):'')+(evaluation?.isolation_key?'\nisolation:'+evaluation.isolation_key:'')).digest('hex');
   run.request={userMessageId:chat.messages[chat.messages.length-2].id,documentIds,contract,evaluation};
   const live:LiveRun={accepting:true,inputQueue:Promise.resolve(),nativeQueued:new Set(),run,events:[],clients:new Set(),controller:new AbortController(),persistQueue:Promise.resolve(),chat,answer,analysisIds:new Set(),processingIds:new Set(),contract,closed:false,budget,modelPending:new Set(),researchReads:new Map()};
   if(budget){live.detachBudget=budget.attach(run.id,live.controller);run.evaluation=budget.snapshot();await this.saveBudget(live,'attached');}
@@ -418,7 +421,10 @@ export class RunManager {
    await delay(1000,undefined,{signal:l.controller.signal});
   }
  }
- private async executeTool(l:LiveRun,settings:Settings,name:string,toolCallId:string,params:Record<string,any>){
+ private executeTool(l:LiveRun,settings:Settings,name:string,toolCallId:string,params:Record<string,any>){
+  return evaluationIsolation.run(l.run.request?.evaluation?.isolation_key,()=>this.executeScopedTool(l,settings,name,toolCallId,params));
+ }
+ private async executeScopedTool(l:LiveRun,settings:Settings,name:string,toolCallId:string,params:Record<string,any>){
   l.controller.signal.throwIfAborted();
   if('project_id' in params)throw new Error('工具已绑定当前项目');
   const args:Record<string,any>={...params,project_id:l.run.projectId};
@@ -595,7 +601,7 @@ export class RunManager {
    }),model:settings.llm.model,max_tokens:EXTRACTION_MAX_TOKENS};
    const generic=genericProfile(l.chat.evaluationProfile),allowed=toolAllowlist(l.chat.evaluationProfile);
    const active=session.getActiveToolNames();if(active.some((name:string)=>!allowed.has(name)))throw new Error('工具配置不正确');
-   await this.audit(l,'run_config',{model:settings.llm.model,baseUrl:settings.llm.baseUrl,inputPricePerMillionUsd:settings.llm.inputPricePerMillionUsd,cacheReadPricePerMillionUsd:settings.llm.cacheReadPricePerMillionUsd,outputPricePerMillionUsd:settings.llm.outputPricePerMillionUsd,configHash:l.run.configHash,promptHash:generic?createHash('sha256').update(evaluationPrompt(l.chat.evaluationProfile)).digest('hex'):PROMPT_HASH,profile:l.chat.evaluationProfile||'financial',evaluation:l.run.evaluation,tools:active,piVersion:'1.0.0',persistentSession:true,conversationId:l.chat.id});
+   await this.audit(l,'run_config',{model:settings.llm.model,baseUrl:settings.llm.baseUrl,inputPricePerMillionUsd:settings.llm.inputPricePerMillionUsd,cacheReadPricePerMillionUsd:settings.llm.cacheReadPricePerMillionUsd,outputPricePerMillionUsd:settings.llm.outputPricePerMillionUsd,configHash:l.run.configHash,promptHash:generic?createHash('sha256').update(evaluationPrompt(l.chat.evaluationProfile)).digest('hex'):PROMPT_HASH,profile:l.chat.evaluationProfile||'financial',evaluation:l.run.evaluation,isolation_key:l.run.request?.evaluation?.isolation_key,tools:active,piVersion:'1.0.0',persistentSession:true,conversationId:l.chat.id});
    l.controller.signal.addEventListener('abort',()=>void session.abort(),{once:true});
    unsubscribe=session.subscribe((event:any)=>{
     if(event.type==='message_start'&&event.message?.role==='user'){

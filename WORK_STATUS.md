@@ -1,3 +1,9 @@
+# 当前主线：评测成果隔离已实现验收，等待 F1 统一上线（2026-10-08）
+
+evaluation.isolation_key 限定模型/报告、model_refs/source_model、底稿交付、分析产物及源运行复用范围；旧无标记成果不可见，同键续题可复用，普通项目共享行为与文档/事实/研报资料共享不变。键由运行上下文传递，不暴露为工具参数，会话开始后固定；预算组独立。Python 唯一 53 项、Node 唯一 23 项、类型检查通过，两组模型可见 schema/说明不变。首次夹具失败保留，无付费模型或生产事实改写。
+
+本轮未构建线上产物、未重启 3001；仍为 58a903c / PID 56120。后续合并 N4 feat/adoption-fixes、N3 按表搁置继续推进后，再统一构建/重启冻结 F1。N1 请求用法见 docs/evidence/evaluation-isolation-20261008/handoff.md；精确提交交接写到 data/evaluation/evaluation-isolation-20261008/manifest.json，不冒充已部署冻结。详见 design/evaluation-isolation-20261008.md。
+
 # 当前主线：N3 修复与 K4 expectations 已验收，统一冻结上线（2026-10-08）
 
 N3 合并 eb7fdd8（目标 5cc8ab1），K4 精确合并 2572972。expectations 仅金融组开放并接入 A1/报告包，未齐口径差额为 reference_gaps、跨口径关联为 version_links。K4 58 项 Python、7 项宿主、类型检查及生产构建通过；N3 唯一 110 项 Python、13 项宿主最终通过。无模型调用和主库事实改写。

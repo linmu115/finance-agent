@@ -9,6 +9,8 @@ import shutil
 import threading
 import time
 import uuid
+from contextvars import copy_context
+from .evaluation_isolation import isolation_key, visible
 from concurrent.futures import ThreadPoolExecutor
 from decimal import Decimal, localcontext
 from pathlib import Path
@@ -678,7 +680,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         self.analysis_flags[run_id]=threading.Event()
         from .plot_runtime import LAUNCH
         launch=LAUNCH if raw_only or not financial_tools else LAUNCH.replace('setup()\n','setup()\nimport finance_charts\nfinance_charts.configure()\nfrom plot_runtime import deliver_models\ndeliver_models()\n')
-        self.analysis_futures[run_id]=self.analysis_pool.submit(self._analysis_job,runner,project_id,run_id,launch,
+        self.analysis_futures[run_id]=self.analysis_pool.submit(copy_context().run,self._analysis_job,runner,project_id,run_id,launch,
                                                               inputs,timeout_seconds,parameter_plan)
         return response({"run_id":run_id,"state":"queued",'source_run_id':source_run_id,
                          'model_refs':model_refs or {},'model_data':'/input/models.json' if model_refs else None,
@@ -687,6 +689,12 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
     def _save_analysis_state(self, project_id, run_id, state):
         state=dict(state);state["state"]=state.get("status",state.get("state"))
         with self.store.connect(write=True) as db:
+            prior=db.execute("SELECT state_json FROM analysis_jobs WHERE run_id=? AND project_id=?",(run_id,project_id)).fetchone()
+            saved=json.loads(prior[0]) if prior else None
+            if saved is not None and not visible(saved):raise ValueError('analysis_not_found_in_project')
+            key=saved.get('isolation_key') if saved is not None else isolation_key.get()
+            state.pop('isolation_key',None)
+            if key is not None:state['isolation_key']=key
             db.execute("INSERT INTO analysis_jobs VALUES(?,?,?,?,?) ON CONFLICT(run_id) DO UPDATE SET state_json=excluded.state_json,updated_at=excluded.updated_at",
                        (run_id,project_id,dumps(state),utcnow(),utcnow()))
         return state
@@ -696,7 +704,9 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         with self.store.connect() as db:
             row=db.execute("SELECT state_json FROM analysis_jobs WHERE run_id=? AND project_id=?",(run_id,project_id)).fetchone()
         if not row:raise ValueError("analysis_not_found_in_project")
-        return json.loads(row[0])
+        state=json.loads(row[0])
+        if not visible(state):raise ValueError("analysis_not_found_in_project")
+        return state
 
     def _analysis_job(self, runner, project_id, run_id, code, inputs, timeout, parameter_plan=None):
         flag=self.analysis_flags[run_id]
@@ -816,6 +826,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
 
     def get_artifact(self, project_id, run_id, name, rows=None):
         self.store.project(project_id)
+        if isolation_key.get() is not None:self._analysis_state(project_id,run_id)
         path=self._runner().artifact_path(run_id,name,project_id=project_id)
         from .analysis_tables import artifact_content
         return response({"name":name,"relative_path":str(path.relative_to(self.store.root)),"sha256":hashlib.sha256(path.read_bytes()).hexdigest(),"size":path.stat().st_size,"mime_type":mimetypes.guess_type(name)[0] or "application/octet-stream", **artifact_content(path, rows)})
