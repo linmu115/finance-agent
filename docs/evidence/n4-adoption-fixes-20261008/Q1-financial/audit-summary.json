@@ -1,0 +1,437 @@
+{
+  "case": "Q1",
+  "profile": "financial",
+  "run_id": "4aff52b9-c9db-4b85-b861-9d310f58a825",
+  "question": "伊利 2024 年业绩为什么下滑？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 54232,
+  "usage": {
+    "input": 99883,
+    "output": 1761,
+    "calls": 5,
+    "costUsd": 0.0051088,
+    "uncachedInput": 35883,
+    "cacheRead": 64000,
+    "cacheWrite": 0,
+    "reasoning": 585,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 478,
+        "output": 52,
+        "calls": 1,
+        "costUsd": 7.38e-05,
+        "uncachedInput": 478,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 478,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 99405,
+        "output": 1709,
+        "calls": 4,
+        "costUsd": 0.0050349999999999995,
+        "uncachedInput": 35405,
+        "cacheRead": 64000,
+        "cacheWrite": 0,
+        "reasoning": 585,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 99405,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 99883,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "workpaper_results": [
+    {
+      "kind": "variance_attribution",
+      "line": 30,
+      "status": "ok",
+      "period_roles": {
+        "current": "2024-FY",
+        "comparison": "2023-FY"
+      },
+      "error": null
+    }
+  ],
+  "calls": [
+    {
+      "line": 20,
+      "name": "get_data_catalog",
+      "toolCallId": "call_QqmwdvXokOgOfK0nmSiIdF5o|fc_0de21d7a310c8742016ac72497e67887d090e401288f5d27e8",
+      "args": {
+        "query": "伊利 2024 营业收入 净利润",
+        "statement": null,
+        "offset": 0,
+        "limit": 40,
+        "document_id": null,
+        "company": "伊利",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 22,
+      "name": "financial_workpaper",
+      "toolCallId": "call_AoWrZWNyrLB7bwiyMf6NuvFX|fc_0de21d7a310c8742016ac72497e68887d0bd2d2d45ffca9f11",
+      "args": {
+        "kind": "variance_attribution",
+        "document_id": null,
+        "company": "伊利",
+        "scope": "consolidated",
+        "periods": [
+          "2024FY",
+          "2023FY"
+        ],
+        "focus": null,
+        "as_of": null,
+        "metrics": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 24,
+      "name": "search_evidence",
+      "toolCallId": "call_DFPtW0S9jWBX2joXoIMXP01d|fc_0de21d7a310c8742016ac72497e69087d08ed85eee91e6f130",
+      "args": {
+        "query": "2024 业绩 下滑 收入 利润 原因",
+        "company": "伊利",
+        "year": 2024,
+        "limit": 10,
+        "filters": null,
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 38,
+      "name": "get_artifact",
+      "toolCallId": "call_2cWyMNjutzhj9x2XTXuDzZki|fc_0de21d7a310c8742016ac724a3327087d09b01a0c26cd32e43",
+      "args": {
+        "run_id": "34a9cfb2cf1b4b779a2107f413e3a21b",
+        "name": "drivers_evidence.csv",
+        "rows": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 40,
+      "name": "get_source_page",
+      "toolCallId": "call_GXbWt43XrEGhGk9BP7shpJs1|fc_0de21d7a310c8742016ac724a3328487d080497b0158ef3e98",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 18,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 42,
+      "name": "get_source_page",
+      "toolCallId": "call_6FUsZfDsNf0cAbpjnExDQw7R|fc_0de21d7a310c8742016ac724a3328c87d0952da15724a82d41",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 19,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 44,
+      "name": "search_evidence",
+      "toolCallId": "call_WSW3a2bV23Ckk3c70Fcz4ry9|fc_0de21d7a310c8742016ac724a3329487d0bf548d3a661e252c",
+      "args": {
+        "query": "资产减值损失 澳优 商誉 减值 原因",
+        "company": "伊利",
+        "year": 2024,
+        "limit": 6,
+        "filters": {
+          "document_ids": [
+            "d84573bf6b584e7e874faa4c6adf454a"
+          ]
+        },
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 60,
+      "name": "get_source_page",
+      "toolCallId": "call_7kn7mFPcBbvDjVXJCAe3WU0o|fc_0de21d7a310c8742016ac724abf22087d0b93c3c292027f62d",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 82,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "line": 7,
+      "requestId": "f3abfc9c-5d23-4c88-a998-5406c6333eaf",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "beaf7412-4b37-4a3f-b3a3-a4297d42b894",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 444
+    },
+    {
+      "line": 14,
+      "requestId": "4c3c48f9-2c25-4d3d-8d7c-c00468a5f544",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "beaf7412-4b37-4a3f-b3a3-a4297d42b894",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 31355
+    },
+    {
+      "line": 32,
+      "requestId": "0dc3dec1-7e2d-4730-aa09-2df572c1d9ef",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "beaf7412-4b37-4a3f-b3a3-a4297d42b894",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 82579
+    },
+    {
+      "line": 54,
+      "requestId": "1a770d46-ad66-4255-89dc-80d99bca4d70",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "beaf7412-4b37-4a3f-b3a3-a4297d42b894",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 103481
+    },
+    {
+      "line": 64,
+      "requestId": "a5431511-15e9-450c-a80f-5658228e4fdf",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "beaf7412-4b37-4a3f-b3a3-a4297d42b894",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 109543
+    }
+  ],
+  "workpaper_kinds": [
+    "variance_attribution"
+  ],
+  "binding": {
+    "bound": 14,
+    "unbound": 6,
+    "total": 20,
+    "ratio": 0.7,
+    "placeholders": [
+      {
+        "token": "{{profit_bridge.revenue_change.previous}}",
+        "rendered": "125,758.1689 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "125,758.1689",
+            "context": "125,758.1689 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.revenue_change.current}}",
+        "rendered": "115,393.3110 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "115,393.3110",
+            "context": "115,393.3110 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.revenue_change.change}}",
+        "rendered": "-10,364.8579 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "-10,364.8579",
+            "context": "-10,364.8579 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.parent_profit_change.previous}}",
+        "rendered": "10,428.5405 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "10,428.5405",
+            "context": "10,428.5405 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.parent_profit_change.current}}",
+        "rendered": "8,452.8600 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "8,452.8600",
+            "context": "8,452.8600 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.parent_profit_change.change}}",
+        "rendered": "-1,975.6805 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "-1,975.6805",
+            "context": "-1,975.6805 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.revenue_effect.contribution}}",
+        "rendered": "-3,376.6701 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "-3,376.6701",
+            "context": "-3,376.6701 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.margin_effect.contribution}}",
+        "rendered": "1,501.5712 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "1,501.5712",
+            "context": "1,501.5712 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.asset_impairment.previous}}",
+        "rendered": "-1,525.6995 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "-1,525.6995",
+            "context": "-1,525.6995 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.asset_impairment.current}}",
+        "rendered": "-4,675.8456 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "-4,675.8456",
+            "context": "-4,675.8456 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.asset_impairment.contribution}}",
+        "rendered": "-3,150.1461 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "-3,150.1461",
+            "context": "-3,150.1461 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.selling.contribution}}",
+        "rendered": "589.2039 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": []
+      },
+      {
+        "token": "{{profit_bridge.administrative.contribution}}",
+        "rendered": "689.1083 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "1083",
+            "context": "1083 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.investment_income.contribution}}",
+        "rendered": "2,448.4196 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "2,448.4196",
+            "context": "2,448.4196 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.parent_profit_residual.contribution}}",
+        "rendered": "59.9508 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "9508",
+            "context": "9508 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      }
+    ],
+    "unbound_values": [
+      {
+        "value": "40.04%",
+        "context": "利润从  降至 ，减少 。扣非归母净利润同比下降40.04%；年报解释为“主要是收入下降，资产减值损失增加所致”（同"
+      },
+      {
+        "value": "12.32%",
+        "context": "毛利率改善抵回 。年报也显示，液体乳收入同比下降12.32%，冷饮收入下降18.41%，而奶粉及奶制品收入增长7.5"
+      },
+      {
+        "value": "18.41%",
+        "context": "示，液体乳收入同比下降12.32%，冷饮收入下降18.41%，而奶粉及奶制品收入增长7.53%（同上，PDF）。 -"
+      },
+      {
+        "value": "7.53%",
+        "context": "冷饮收入下降18.41%，而奶粉及奶制品收入增长7.53%（同上，PDF）。 - **资产减值是另一项主要拖累。*"
+      },
+      {
+        "value": "30.75亿元",
+        "context": "报披露计提澳优乳业商誉减值；减值明细中商誉减值约30.75亿元，另有存货跌价损失约12.27亿元（同上，PDF）。 -"
+      },
+      {
+        "value": "12.27亿元",
+        "context": "细中商誉减值约30.75亿元，另有存货跌价损失约12.27亿元（同上，PDF）。 - **费用节省和处置收益形成抵消。"
+      }
+    ]
+  },
+  "tags_raw": {},
+  "tags_final": {
+    "【推论/分析】": 11,
+    "【事实/数据】": 7
+  },
+  "all_labels_raw": {},
+  "all_labels_final": {
+    "【推论/分析】": 11,
+    "【事实/数据】": 7
+  },
+  "answer_bound_events": 1,
+  "answer_bound_line": 740
+}

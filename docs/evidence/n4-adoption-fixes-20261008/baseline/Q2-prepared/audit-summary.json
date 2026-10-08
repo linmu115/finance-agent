@@ -1,0 +1,404 @@
+{
+  "case": "Q2",
+  "profile": "prepared",
+  "run_id": "6913aa12-a862-492b-8a53-cb0457d8ac92",
+  "question": "伊利 2024 年利润和现金流走势一致吗，有没有值得警惕的地方？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 81271,
+  "usage": {
+    "input": 94604,
+    "output": 2668,
+    "calls": 9,
+    "costUsd": 0.00420496,
+    "uncachedInput": 21388,
+    "cacheRead": 73216,
+    "cacheWrite": 0,
+    "reasoning": 802,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 488,
+        "output": 58,
+        "calls": 1,
+        "costUsd": 7.780000000000001e-05,
+        "uncachedInput": 488,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 488,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 94116,
+        "output": 2610,
+        "calls": 8,
+        "costUsd": 0.00412716,
+        "uncachedInput": 20900,
+        "cacheRead": 73216,
+        "cacheWrite": 0,
+        "reasoning": 802,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 94116,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 94604,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "calls": [
+    {
+      "line": 19,
+      "name": "list_documents",
+      "toolCallId": "call_el3TALaTNNMypXntqPABaSrh|fc_0829f18c87890692016ac71ad51ac887d0bfa98b056617dac8",
+      "args": {
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 29,
+      "name": "get_data_catalog",
+      "toolCallId": "call_Q6nACFvPbQSmh7PcbQ5n6y1p|fc_0829f18c87890692016ac71adc04ac87d083d102e2878d9923",
+      "args": {
+        "query": "净利润 经营活动产生的现金流量净额",
+        "statement": null,
+        "offset": 0,
+        "limit": 40,
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "company": "伊利股份",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 31,
+      "name": "search_evidence",
+      "toolCallId": "call_lucTnPwkTr8ck6YoKvuNtwD8|fc_0829f18c87890692016ac71adc04c087d0a13fc0150fada856",
+      "args": {
+        "query": "归属于上市公司股东的净利润 经营活动产生的现金流量净额",
+        "company": "伊利股份",
+        "year": 2024,
+        "limit": 8,
+        "filters": {
+          "document_ids": [
+            "d84573bf6b584e7e874faa4c6adf454a"
+          ]
+        },
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 33,
+      "name": "get_document_index",
+      "toolCallId": "call_Ap0H4MQz30MbWcjDgMSBAjlo|fc_0829f18c87890692016ac71adc04c887d08b12f5e66aeb2aee",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "section": "pages",
+        "query": "现金流量表",
+        "offset": 0,
+        "limit": 10,
+        "page_start": null,
+        "page_end": null,
+        "include_preview": true,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 47,
+      "name": "get_source_table",
+      "toolCallId": "call_K1StqRkdr0zd2EbxExzZ1XrW|fc_0829f18c87890692016ac71ae6444887d08d74ef9fdd67159c",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "table_id": "d84573bf6b584e7e874faa4c6adf454a:t8",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 49,
+      "name": "get_source_table",
+      "toolCallId": "call_7yBG1aYJFHL2H6MkpvHGkvuN|fc_0829f18c87890692016ac71ae6445c87d0ac2e6a69464bd8c3",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "table_id": "d84573bf6b584e7e874faa4c6adf454a:t14",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 51,
+      "name": "get_source_table",
+      "toolCallId": "call_MdU7MnX72EZdRpk78UczrCTP|fc_0829f18c87890692016ac71ae6446487d095995f92d785e1be",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "table_id": "d84573bf6b584e7e874faa4c6adf454a:t107",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 53,
+      "name": "get_source_table",
+      "toolCallId": "call_qbW3s4ZM7KqSYhkg0Ii1v2wS|fc_0829f18c87890692016ac71ae6446887d0915e6ca67ac768b1",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "table_id": "d84573bf6b584e7e874faa4c6adf454a:t109",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 55,
+      "name": "get_source_table",
+      "toolCallId": "call_iefDOWDZ9sKCCWdN1h0VhLgL|fc_0829f18c87890692016ac71ae6447087d0aa72a6762fd794d2",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "table_id": "d84573bf6b584e7e874faa4c6adf454a:t10",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 73,
+      "name": "run_analysis",
+      "toolCallId": "call_AblCuLlUPNm5uwNdItAsXGBx|fc_0829f18c87890692016ac71af031f487d0bc22e1faf8273b87",
+      "args": {
+        "code": "import json\nrows = [\n {\"metric\":\"归母净利润\",\"2023\":10428540457.94,\"2024\":8452859993.18,\"unit\":\"元\"},\n {\"metric\":\"扣非归母净利润\",\"2023\":10026171076.03,\"2024\":6011274945.92,\"unit\":\"元\"},\n {\"metric\":\"经营活动现金流净额\",\"2023\":18290357650.56,\"2024\":21739740393.38,\"unit\":\"元\"},\n {\"metric\":\"现金及现金等价物期末余额\",\"2023\":23513044508.52,\"2024\":8471582485.64,\"unit\":\"元\"},\n {\"metric\":\"投资活动现金流净额\",\"2023\":-16044497913.83,\"2024\":-32709427280.73,\"unit\":\"元\"},\n {\"metric\":\"筹资活动现金流净额\",\"2023\":7258480466.95,\"2024\":-7277915908.33,\"unit\":\"元\"},\n]\nfor r in rows:\n r['change']=r['2024']-r['2023']\n r['yoy_pct']=(r['2024']/r['2023']-1)*100 if r['2023'] else None\nratio24=21739740393.38/8452859993.18\nratio23=18290357650.56/10428540457.94\nprint(json.dumps({'rows':rows,'cfo_to_net_profit_2023':ratio23,'cfo_to_net_profit_2024':ratio24,'cashflow_vs_profit_growth_gap_pp':18.86-(-18.94),'cfo_minus_net_profit_2024':21739740393.38-8452859993.18,'q4_net_income':-2415620352.16,'q4_cfo':7870128109.96},ensure_ascii=False,indent=2))",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6",
+        "raw_only": false,
+        "financial_tools": false,
+        "timeout_seconds": 120
+      }
+    },
+    {
+      "line": 83,
+      "name": "get_analysis_status",
+      "toolCallId": "call_WZZQU1k0yhBQUuTg1OQvpklB|fc_0829f18c87890692016ac71afa03d487d0a47af0c5da8d0d14",
+      "args": {
+        "run_id": "145d3a55e54a4fbebaa258a20e7a73c1",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 93,
+      "name": "search_evidence",
+      "toolCallId": "call_S2atNPZai7Gi3pFWTflYK6QT|fc_0829f18c87890692016ac71b0325b087d0b53ae7e48108471c",
+      "args": {
+        "query": "非经常性损益 处置交易性金融资产 投资收益",
+        "company": "伊利股份",
+        "year": 2024,
+        "limit": 6,
+        "filters": {
+          "document_ids": [
+            "d84573bf6b584e7e874faa4c6adf454a"
+          ]
+        },
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 103,
+      "name": "get_source_table",
+      "toolCallId": "call_lrQgwhBenD6tRqQTRVE0EhaE|fc_0829f18c87890692016ac71b0c2de887d086d44851ee7962e7",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "table_id": "d84573bf6b584e7e874faa4c6adf454a:t330",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "line": 6,
+      "requestId": "85c507c9-8743-4d40-ad79-7a833b37abf9",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "4b419bd7-257b-41e3-a059-456049a11e45",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 459
+    },
+    {
+      "line": 13,
+      "requestId": "73e4cde0-8262-4d75-9540-16d8211bbd55",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "4b419bd7-257b-41e3-a059-456049a11e45",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 9736
+    },
+    {
+      "line": 23,
+      "requestId": "529f1a60-c445-4b79-acd3-e0f598372805",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "4b419bd7-257b-41e3-a059-456049a11e45",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 18348
+    },
+    {
+      "line": 41,
+      "requestId": "5a41108c-3e10-4570-895d-bd5b5e1c664e",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "4b419bd7-257b-41e3-a059-456049a11e45",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 32358
+    },
+    {
+      "line": 67,
+      "requestId": "98935faa-a1ac-41d4-8dd2-7ba00d786c60",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "4b419bd7-257b-41e3-a059-456049a11e45",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 46699
+    },
+    {
+      "line": 77,
+      "requestId": "ab5f4277-6693-4619-b5c1-ea0cd995160b",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "4b419bd7-257b-41e3-a059-456049a11e45",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 52102
+    },
+    {
+      "line": 87,
+      "requestId": "d16c5334-4a4d-4c55-a159-fb46b99df019",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "4b419bd7-257b-41e3-a059-456049a11e45",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 58563
+    },
+    {
+      "line": 97,
+      "requestId": "c5a6040a-a4b3-4c0a-99e3-85d28bd771c1",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "4b419bd7-257b-41e3-a059-456049a11e45",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 66733
+    },
+    {
+      "line": 107,
+      "requestId": "d040ca9a-cd22-4b0b-9056-d42343f49f17",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "4b419bd7-257b-41e3-a059-456049a11e45",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 70790
+    }
+  ],
+  "workpaper_kinds": [],
+  "binding": {
+    "bound": 0,
+    "unbound": 12,
+    "total": 12,
+    "ratio": 0.0,
+    "placeholders": [],
+    "unbound_values": [
+      {
+        "value": "18.9%",
+        "context": "一致。** 年伊利股份归母净利润同比下降约 **18.9%**，扣非归母净利润下降约 **40.0%**；但经营活"
+      },
+      {
+        "value": "40.0%",
+        "context": " **18.9%**，扣非归母净利润下降约 **40.0%**；但经营活动现金流净额同比增长约 **18.9%**"
+      },
+      {
+        "value": "18.9%",
+        "context": ".0%**；但经营活动现金流净额同比增长约 **18.9%**。换言之，账面利润走弱，经营现金流反而改善。（年报，"
+      },
+      {
+        "value": "8.24%",
+        "context": "比归母净利润更明显。** 营业收入同比下降 **8.24%**，扣非归母净利润降幅达 **40.04%**。年报列"
+      },
+      {
+        "value": "40.04%",
+        "context": " **8.24%**，扣非归母净利润降幅达 **40.04%**。年报列示的非经常性损益中，非流动性资产处置损益约 "
+      },
+      {
+        "value": "25.64",
+        "context": "示的非经常性损益中，非流动性资产处置损益约 **25.64 亿元**；这说明当年归母利润包含了较大的非经常性项目，"
+      },
+      {
+        "value": "-327.09",
+        "context": "经营现金流增加的同时，投资活动现金流净额为 **-327.09 亿元**，筹资活动现金流净额为 **-72.78 亿元"
+      },
+      {
+        "value": "-72.78",
+        "context": "27.09 亿元**，筹资活动现金流净额为 **-72.78 亿元**；现金及现金等价物从年初约 **235.13 "
+      },
+      {
+        "value": "235.13",
+        "context": ".78 亿元**；现金及现金等价物从年初约 **235.13 亿元**降至年末约 **84.72 亿元**。现金余额"
+      },
+      {
+        "value": "84.72",
+        "context": "初约 **235.13 亿元**降至年末约 **84.72 亿元**。现金余额下降与投资、筹资现金流出有关，值得关"
+      },
+      {
+        "value": "-24.16",
+        "context": "季度表现有反差。** 第四季度归母净利润约 **-24.16 亿元**，但经营活动现金流净额约 **78.70 亿元"
+      },
+      {
+        "value": "78.70",
+        "context": "4.16 亿元**，但经营活动现金流净额约 **78.70 亿元**。单季现金流为正并不能消除利润端的波动，需要结"
+      }
+    ]
+  },
+  "tags_raw": {
+    "【推论】": 1
+  },
+  "tags_final": {
+    "【事实/数据】": 1,
+    "【推论】": 1
+  },
+  "all_labels_raw": {
+    "【推论】": 1
+  },
+  "all_labels_final": {
+    "【事实/数据】": 1,
+    "【推论】": 1
+  },
+  "answer_bound_events": 1,
+  "answer_bound_line": 708
+}

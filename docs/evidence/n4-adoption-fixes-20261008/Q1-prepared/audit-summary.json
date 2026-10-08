@@ -1,0 +1,605 @@
+{
+  "case": "Q1",
+  "profile": "prepared",
+  "run_id": "201eccb1-338a-4866-bdff-240f0e5d1f65",
+  "question": "伊利 2024 年业绩为什么下滑？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 114334,
+  "usage": {
+    "input": 247560,
+    "output": 3371,
+    "calls": 13,
+    "costUsd": 0.00750262,
+    "uncachedInput": 37128,
+    "cacheRead": 210432,
+    "cacheWrite": 0,
+    "reasoning": 667,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 478,
+        "output": 58,
+        "calls": 1,
+        "costUsd": 7.68e-05,
+        "uncachedInput": 478,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 478,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 247082,
+        "output": 3313,
+        "calls": 12,
+        "costUsd": 0.00742582,
+        "uncachedInput": 36650,
+        "cacheRead": 210432,
+        "cacheWrite": 0,
+        "reasoning": 667,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 247082,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 247560,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "workpaper_results": [],
+  "calls": [
+    {
+      "line": 19,
+      "name": "list_documents",
+      "toolCallId": "call_jlr9f2fUolQxKuGcII1ogrTF|fc_00a51e342fe0497e016ac724cdb33487d080a1b8452bb944dd",
+      "args": {
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 29,
+      "name": "get_data_catalog",
+      "toolCallId": "call_EJImiLx9vVl9xPULbBUFPr33|fc_00a51e342fe0497e016ac724d5c25887d09a0018c96a1b0977",
+      "args": {
+        "query": "营业收入 净利润 经营情况 业绩 下滑 原因",
+        "statement": null,
+        "offset": 0,
+        "limit": 40,
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "company": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 31,
+      "name": "search_evidence",
+      "toolCallId": "call_ZFShldSvqwd558Jp0qc2hj1j|fc_00a51e342fe0497e016ac724d5c27487d0b6c791baa8ed5090",
+      "args": {
+        "query": "业绩 下滑 原因 营业收入 净利润 2024",
+        "company": "伊利股份",
+        "year": 2024,
+        "limit": 10,
+        "filters": {
+          "document_ids": [
+            "d84573bf6b584e7e874faa4c6adf454a"
+          ]
+        },
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 33,
+      "name": "get_document_index",
+      "toolCallId": "call_KurhzAvheKuHZMzdAb4bW5ts|fc_00a51e342fe0497e016ac724d5c28087d0832b0a6b4522c2b9",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "section": "pages",
+        "query": "经营情况讨论与分析 营业收入 净利润 乳制品 市场",
+        "offset": 0,
+        "limit": 10,
+        "page_start": null,
+        "page_end": null,
+        "include_preview": true,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 47,
+      "name": "get_source_page",
+      "toolCallId": "call_Lbo91TY0fRuDS2brA64Xl78E|fc_00a51e342fe0497e016ac724de695887d0a7372af711e4538a",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 15,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 49,
+      "name": "get_source_page",
+      "toolCallId": "call_SzQQL2oPWCq6OycxyCk3idzb|fc_00a51e342fe0497e016ac724de696c87d0b7135fbc66d0f0b0",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 16,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 51,
+      "name": "get_source_page",
+      "toolCallId": "call_CFYHulcwcWUBUo6M9Ych6rRQ|fc_00a51e342fe0497e016ac724de697487d0b8a2a77e058ba776",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 19,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 53,
+      "name": "get_source_page",
+      "toolCallId": "call_iXtM2OgKgLMkUOyDDu93lRw3|fc_00a51e342fe0497e016ac724de697c87d0976591d9006924b5",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 20,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 55,
+      "name": "query_financial_data",
+      "toolCallId": "call_QvrZIudl828DFZzWhqVPKW8b|fc_00a51e342fe0497e016ac724de698487d082fbf07ac3193059",
+      "args": {
+        "filters": {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "metrics": [
+            "revenue",
+            "net_profit",
+            "net_profit_parent"
+          ],
+          "periods": [
+            "2024-FY",
+            "2023-FY"
+          ],
+          "scope": "consolidated_CAS"
+        },
+        "limit": 20,
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 73,
+      "name": "get_source_page",
+      "toolCallId": "call_Jv9LnmbuuFUg1OU2oXsgU1y0|fc_00a51e342fe0497e016ac724e5a68c87d0a294f210e4c6c004",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 17,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 75,
+      "name": "get_source_page",
+      "toolCallId": "call_V3Fi22ao24dAO7oqBZ8V2IGF|fc_00a51e342fe0497e016ac724e5a6a087d08bfbc864b5633274",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 18,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 77,
+      "name": "get_source_page",
+      "toolCallId": "call_HMA9qCb4wsGnYaowI6RfnGHG|fc_00a51e342fe0497e016ac724e5a6ac87d087ef50c3afda563e",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 14,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 79,
+      "name": "get_source_page",
+      "toolCallId": "call_GxB7V4wwJp25E6ZosNvtHrts|fc_00a51e342fe0497e016ac724e5a6b887d08e0b54fd8dcecdd8",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 91,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 95,
+      "name": "search_evidence",
+      "toolCallId": "call_vSI7TDK2nJMWX0V80feavs7n|fc_00a51e342fe0497e016ac724ecbddc87d0a110910b878c075d",
+      "args": {
+        "query": "资产减值损失 存货跌价 生产性生物资产 固定资产 减值原因 2024",
+        "company": "伊利股份",
+        "year": 2024,
+        "limit": 8,
+        "filters": {
+          "document_ids": [
+            "d84573bf6b584e7e874faa4c6adf454a"
+          ]
+        },
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 105,
+      "name": "search_evidence",
+      "toolCallId": "call_p25GM7aHaQFp71lwP2XmF8sp|fc_00a51e342fe0497e016ac724f5d64887d099f8fa75f41f7ac8",
+      "args": {
+        "query": "商誉减值 3,075,378,837 减值测试 原因 子公司",
+        "company": "伊利股份",
+        "year": 2024,
+        "limit": 8,
+        "filters": {
+          "document_ids": [
+            "d84573bf6b584e7e874faa4c6adf454a"
+          ]
+        },
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 121,
+      "name": "run_analysis",
+      "toolCallId": "call_hNZ5bI1dn9qEiVAaFuXhNCWK|fc_00a51e342fe0497e016ac725094e7087d085052380abff16e8",
+      "args": {
+        "code": "r23=125758168916.51;r24=115393310976.69;n23=10284306198.28;n24=8463710355.65;i23=1525699477.87;i24=4675845573.44;g24=3075378837.63\nrows={'营业收入变化额':{'value':r24-r23},'营业收入同比%':{'value':(r24/r23-1)*100},'净利润变化额':{'value':n24-n23},'净利润同比%':{'value':(n24/n23-1)*100},'资产减值损失增加额':{'value':i24-i23},'商誉减值占2024资产减值损失%':{'value':g24/i24*100},'减值增加相当于净利润减少%':{'value':(i24-i23)/(n23-n24)*100}}\nreport={'tables':{'performance':{'columns':{'value':{'unit':'元；百分比行除外'}} ,'rows':rows}},'body':'据年报披露数字计算，金额单位为人民币元。'}",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6",
+        "raw_only": false,
+        "financial_tools": false,
+        "timeout_seconds": 120
+      }
+    },
+    {
+      "line": 131,
+      "name": "get_analysis_status",
+      "toolCallId": "call_730v89CNSWF9Ttcgf6uITtYK|fc_00a51e342fe0497e016ac725124d4487d0b01875f04982fe16",
+      "args": {
+        "run_id": "b1732b32fbdb44619a3f38c340a2c02c",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 141,
+      "name": "run_analysis",
+      "toolCallId": "call_1Qo3rtBIJRH9fh263Vm8JLaH|fc_00a51e342fe0497e016ac7251aebe887d0988272c8ad5d40c0",
+      "args": {
+        "report": {
+          "tables": {
+            "performance": {
+              "columns": {
+                "value": {
+                  "unit": "元；百分比行除外"
+                }
+              },
+              "rows": {
+                "收入同比变动额": {
+                  "value": -10364857939.82
+                },
+                "收入同比变化率": {
+                  "value": -8.24
+                },
+                "净利润同比变动额": {
+                  "value": -1820595842.63
+                },
+                "净利润同比变化率": {
+                  "value": -17.7
+                },
+                "资产减值损失增量": {
+                  "value": 3150146095.57
+                },
+                "商誉减值占2024资产减值损失": {
+                  "value": 65.78
+                },
+                "减值增量占净利润降幅": {
+                  "value": 173.03
+                }
+              }
+            }
+          },
+          "body": "依据年报披露数据计算。金额单位为人民币元，比例为%。"
+        },
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6",
+        "raw_only": false,
+        "financial_tools": false,
+        "timeout_seconds": 120
+      }
+    },
+    {
+      "line": 151,
+      "name": "get_analysis_status",
+      "toolCallId": "call_9SOXcrFrKMPc8052pWsDXywK|fc_00a51e342fe0497e016ac7252155ec87d0bc819ecfba2909f5",
+      "args": {
+        "run_id": "896a8e1eef614287a01c6e965f1070a2",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "type": "tool_return_failure",
+      "line": 153,
+      "name": "get_analysis_status",
+      "error": "Analysis process exited with an error",
+      "stderr": "Traceback (most recent call last):\n  File \"/opt/finance/entrypoint.py\", line 11, in <module>\n    runpy.run_path('/input/__analysis__.py', run_name='__main__')\n  File \"<frozen runpy>\", line 287, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/input/__analysis__.py\", line 10, in <module>\n    deliver()\n  File \"/input/analysis_report.py\", line 529, in deliver\n    compiled = compile_report(report, records, models)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/input/analysis_report.py\", line 298, in compile_report\n    for key, cell in row.items():\n                     ^^^^^^^^^\nAttributeError: 'str' object has no attribute 'items'\n"
+    }
+  ],
+  "requests": [
+    {
+      "line": 6,
+      "requestId": "d31708b3-6d46-479f-bb7e-ac8022430dd0",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "6f2a1790-f5c8-4d7d-9e59-ae39f31a5c94",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 444
+    },
+    {
+      "line": 13,
+      "requestId": "5fbe5e27-5589-40f5-896e-5e5be27d5c76",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6f2a1790-f5c8-4d7d-9e59-ae39f31a5c94",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 9943
+    },
+    {
+      "line": 23,
+      "requestId": "e5d849b5-1032-401a-9efc-8f75059732ed",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6f2a1790-f5c8-4d7d-9e59-ae39f31a5c94",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 18469
+    },
+    {
+      "line": 41,
+      "requestId": "c23404b7-4126-4182-b4e4-04bae34a4350",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6f2a1790-f5c8-4d7d-9e59-ae39f31a5c94",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 34417
+    },
+    {
+      "line": 67,
+      "requestId": "65395cf9-7e58-4945-b290-1869ce7ae605",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6f2a1790-f5c8-4d7d-9e59-ae39f31a5c94",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 55141
+    },
+    {
+      "line": 89,
+      "requestId": "c6186fda-c2c5-46df-9438-193e3d925188",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6f2a1790-f5c8-4d7d-9e59-ae39f31a5c94",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 68754
+    },
+    {
+      "line": 99,
+      "requestId": "85a72fdc-69e0-49cb-8c12-cc5778b00e0c",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6f2a1790-f5c8-4d7d-9e59-ae39f31a5c94",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 77083
+    },
+    {
+      "line": 109,
+      "requestId": "d6ef4713-0ef7-480e-9358-c12255cd8cc0",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6f2a1790-f5c8-4d7d-9e59-ae39f31a5c94",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 86448
+    },
+    {
+      "line": 115,
+      "requestId": "93a35142-8fb4-4fac-83d6-561b6dd3dce3",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6f2a1790-f5c8-4d7d-9e59-ae39f31a5c94",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 92300
+    },
+    {
+      "line": 125,
+      "requestId": "a102cff4-fcbc-43a1-b9f7-121c1728b2d1",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6f2a1790-f5c8-4d7d-9e59-ae39f31a5c94",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 95634
+    },
+    {
+      "line": 135,
+      "requestId": "c84bdee0-9657-4bc1-80dc-fe4f4365116a",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6f2a1790-f5c8-4d7d-9e59-ae39f31a5c94",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 100427
+    },
+    {
+      "line": 145,
+      "requestId": "1057d274-09a6-497b-a0df-18c80be92ed2",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6f2a1790-f5c8-4d7d-9e59-ae39f31a5c94",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 103919
+    },
+    {
+      "line": 155,
+      "requestId": "5d87035a-776d-4b8b-b705-e0da2aa7f403",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6f2a1790-f5c8-4d7d-9e59-ae39f31a5c94",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 107613
+    }
+  ],
+  "workpaper_kinds": [],
+  "binding": {
+    "bound": 0,
+    "unbound": 19,
+    "total": 19,
+    "ratio": 0.0,
+    "placeholders": [],
+    "unbound_values": [
+      {
+        "value": "1,257.58",
+        "context": "# 关键表现  - **营业收入**由  年的 1,257.58 亿元降至  年的 1,153.93 亿元，同比下降 *"
+      },
+      {
+        "value": "1,153.93",
+        "context": "由  年的 1,257.58 亿元降至  年的 1,153.93 亿元，同比下降 **8.24%**；年报解释，主要因为"
+      },
+      {
+        "value": "8.24%",
+        "context": "  年的 1,153.93 亿元，同比下降 **8.24%**；年报解释，主要因为产品销量减少、销售价格下降。（年"
+      },
+      {
+        "value": "102.84",
+        "context": "销售价格下降。（年报，） - **净利润**由 102.84 亿元降至 84.64 亿元，下降约 **17.7%**"
+      },
+      {
+        "value": "84.64",
+        "context": " - **净利润**由 102.84 亿元降至 84.64 亿元，下降约 **17.7%**。利润降幅大于收入降幅"
+      },
+      {
+        "value": "17.7%",
+        "context": ".84 亿元降至 84.64 亿元，下降约 **17.7%**。利润降幅大于收入降幅；年报利润表显示，资产减值损失"
+      },
+      {
+        "value": "750.03",
+        "context": "的主要压力。**      液体乳主营业务收入 750.03 亿元，同比下降 **12.32%**。年报拆分显示，销"
+      },
+      {
+        "value": "12.32%",
+        "context": "主营业务收入 750.03 亿元，同比下降 **12.32%**。年报拆分显示，销量下降减少收入约 60.46 亿元"
+      },
+      {
+        "value": "60.46",
+        "context": ".32%**。年报拆分显示，销量下降减少收入约 60.46 亿元，销售价格变动减少约 35.21 亿元，产品结构调"
+      },
+      {
+        "value": "35.21",
+        "context": "少收入约 60.46 亿元，销售价格变动减少约 35.21 亿元，产品结构调整减少约 9.70 亿元。（年报，） "
+      },
+      {
+        "value": "9.70",
+        "context": "动减少约 35.21 亿元，产品结构调整减少约 9.70 亿元。（年报，）      冷饮收入也下降 **18."
+      },
+      {
+        "value": "18.41%",
+        "context": "亿元。（年报，）      冷饮收入也下降 **18.41%**，年报称行业规模受天气和上年基数较高等因素影响而下滑"
+      },
+      {
+        "value": "7.53%",
+        "context": "高等因素影响而下滑；奶粉及奶制品收入则增长 **7.53%**，部分抵消了下滑。（年报，） **澳优相关商誉减值显"
+      },
+      {
+        "value": "46.76",
+        "context": "低利润。**       年资产减值损失为 **46.76 亿元**，高于  年的 15.26 亿元；其中商誉减值"
+      },
+      {
+        "value": "15.26",
+        "context": "损失为 **46.76 亿元**，高于  年的 15.26 亿元；其中商誉减值为 **30.75 亿元**，主要涉"
+      },
+      {
+        "value": "30.75",
+        "context": "  年的 15.26 亿元；其中商誉减值为 **30.75 亿元**，主要涉及澳优乳业。年报披露的澳优商誉减值金额"
+      },
+      {
+        "value": "30.37",
+        "context": "主要涉及澳优乳业。年报披露的澳优商誉减值金额为 30.37 亿元。（年报，）      这是一项重要的利润表冲击："
+      },
+      {
+        "value": "31.50",
+        "context": "   这是一项重要的利润表冲击：减值损失增量约 31.50 亿元，大于净利润同比减少的约 18.21 亿元。但这并"
+      },
+      {
+        "value": "18.21",
+        "context": "量约 31.50 亿元，大于净利润同比减少的约 18.21 亿元。但这并不意味着净利润降幅全部由减值造成，其他损益"
+      }
+    ]
+  },
+  "tags_raw": {},
+  "tags_final": {
+    "【推论/分析】": 27
+  },
+  "all_labels_raw": {},
+  "all_labels_final": {
+    "【推论/分析】": 27
+  },
+  "answer_bound_events": 1,
+  "answer_bound_line": 906
+}

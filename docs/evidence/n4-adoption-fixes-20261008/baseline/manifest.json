@@ -1,0 +1,97 @@
+{
+  "code_commit": "7524cca6ad10fd48b77382efdeb01901b91c6710",
+  "expense_category": "研发预检",
+  "source": "3001 active SQLite scoped read-only transaction",
+  "documents": [
+    {
+      "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+      "project_id": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "original_name": "伊利股份2024年年度报告.pdf",
+      "company": "内蒙古伊利实业集团股份有限公司",
+      "state": "normalizing",
+      "page_count": 270,
+      "facts": 756
+    },
+    {
+      "document_id": "ab25c52089fd4db89fba046c9c811c46",
+      "project_id": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "original_name": "睿和数智_2025中期报告_57页.pdf",
+      "company": "瑞和数智科技控股有限公司",
+      "state": "needs_review",
+      "page_count": 57,
+      "facts": 612
+    },
+    {
+      "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+      "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+      "original_name": "Carote_2025_Interim_55p.pdf",
+      "company": "Carote Ltd",
+      "state": "needs_review",
+      "page_count": 55,
+      "facts": 732
+    }
+  ],
+  "copied_rows": {
+    "projects": 2,
+    "documents": 3,
+    "pages": 382,
+    "source_tables": 468,
+    "facts": 2100,
+    "chunks": 4856,
+    "document_profiles": 3,
+    "document_profile_history": 3,
+    "research_document_entities": 2,
+    "research_records": 0,
+    "research_page_reviews": 0,
+    "normalization_batches": 155,
+    "research_entities": 2,
+    "chunks_fts": 4856
+  },
+  "omitted": [
+    "historical conversations",
+    "answers",
+    "saved models",
+    "exports",
+    "other documents including held-out"
+  ],
+  "startup_note": "原生 Store 启动会把副本中 normalizing 文档标为 failed；两组一致，事实和原文不变。不将年报宣称完整入库。",
+  "common_suffix": "仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "cases": [
+    {
+      "id": "Q1",
+      "document": "d84573bf6b584e7e874faa4c6adf454a",
+      "project": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "prompt": "伊利 2024 年业绩为什么下滑？"
+    },
+    {
+      "id": "Q2",
+      "document": "d84573bf6b584e7e874faa4c6adf454a",
+      "project": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "prompt": "伊利 2024 年利润和现金流走势一致吗，有没有值得警惕的地方？"
+    },
+    {
+      "id": "Q3",
+      "document": "d84573bf6b584e7e874faa4c6adf454a",
+      "project": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "prompt": "扣非后看伊利 2024 年盈利质量如何？"
+    },
+    {
+      "id": "Q4",
+      "document": "d84573bf6b584e7e874faa4c6adf454a",
+      "project": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "prompt": "伊利 2024 年 Q4 表现怎么样？"
+    },
+    {
+      "id": "Q5",
+      "document": "ab25c52089fd4db89fba046c9c811c46",
+      "project": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "prompt": "瑞和这半年报有没有口径调整或异常？"
+    },
+    {
+      "id": "Q6",
+      "document": "3d9d0befd8374eed9a7488dbd8dd00d2",
+      "project": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+      "prompt": "卡罗特这半年利润为什么下降，主要是什么拖累？"
+    }
+  ]
+}

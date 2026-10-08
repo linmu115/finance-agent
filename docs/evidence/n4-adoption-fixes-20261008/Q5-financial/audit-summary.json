@@ -1,0 +1,522 @@
+{
+  "case": "Q5",
+  "profile": "financial",
+  "run_id": "463f04b0-eb01-41fc-be1c-3d9b9b599ef2",
+  "question": "瑞和这半年报有没有口径调整或异常？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 108337,
+  "usage": {
+    "input": 258851,
+    "output": 3553,
+    "calls": 10,
+    "costUsd": 0.00840016,
+    "uncachedInput": 44835,
+    "cacheRead": 214016,
+    "cacheWrite": 0,
+    "reasoning": 1040,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 478,
+        "output": 82,
+        "calls": 1,
+        "costUsd": 8.88e-05,
+        "uncachedInput": 478,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 28,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 478,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 258373,
+        "output": 3471,
+        "calls": 9,
+        "costUsd": 0.00831136,
+        "uncachedInput": 44357,
+        "cacheRead": 214016,
+        "cacheWrite": 0,
+        "reasoning": 1012,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 258373,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 258851,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "workpaper_results": [
+    {
+      "kind": "basis_changes",
+      "line": 38,
+      "status": "ok",
+      "period_roles": {
+        "current": "2025-H1",
+        "comparison": "2024-H1"
+      },
+      "error": null
+    },
+    {
+      "kind": "anomaly_signals",
+      "line": 40,
+      "status": "ok",
+      "period_roles": {
+        "current": "2025-H1",
+        "comparison": "2024-H1"
+      },
+      "error": null
+    }
+  ],
+  "calls": [
+    {
+      "line": 20,
+      "name": "list_documents",
+      "toolCallId": "call_ujj1GL6tSy52uixUxeQ1f3yE|fc_05a2f31897e8f8cb016ac727b2822c87d096aca98a852e88ea",
+      "args": {
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 22,
+      "name": "get_data_catalog",
+      "toolCallId": "call_dn2YS2g4ZWTc3TiFjaeag6wI|fc_05a2f31897e8f8cb016ac727b2823c87d084008520d2d0b410",
+      "args": {
+        "query": "瑞和",
+        "statement": null,
+        "offset": 0,
+        "limit": 40,
+        "document_id": null,
+        "company": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 34,
+      "name": "financial_workpaper",
+      "toolCallId": "call_zXHMs2AgluhDwSxD8gvD20GW|fc_05a2f31897e8f8cb016ac727b8c4e087d083f1fb9a641e3537",
+      "args": {
+        "kind": "basis_changes",
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "company": null,
+        "scope": "consolidated",
+        "periods": "2025-H1",
+        "focus": null,
+        "as_of": null,
+        "metrics": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 36,
+      "name": "financial_workpaper",
+      "toolCallId": "call_CeBV0UWPdOaaJtRKQPH9iQi6|fc_05a2f31897e8f8cb016ac727b8c4f887d08dd24a9539856373",
+      "args": {
+        "kind": "anomaly_signals",
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "company": null,
+        "scope": "consolidated",
+        "periods": "2025-H1",
+        "focus": null,
+        "as_of": null,
+        "metrics": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 48,
+      "name": "get_source_page",
+      "toolCallId": "call_UTMCzuWa4dvXruqMeLmeh3Wf|fc_05a2f31897e8f8cb016ac727c1765c87d0a5c8068561322403",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 28,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 50,
+      "name": "get_source_page",
+      "toolCallId": "call_9PJHb7H3aHbbZLSi6FwT23md|fc_05a2f31897e8f8cb016ac727c1766c87d09b4ef43a0cce12e7",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 29,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 52,
+      "name": "get_source_page",
+      "toolCallId": "call_WNXFr0UhIRo82jw3zUt91mb0|fc_05a2f31897e8f8cb016ac727c1767487d092d6bf0f6a5cb141",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 30,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 54,
+      "name": "get_source_page",
+      "toolCallId": "call_trvpERXs7cxznBW2rPyGSEcL|fc_05a2f31897e8f8cb016ac727c1767887d0b72bfceb058a0052",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 32,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 56,
+      "name": "get_source_page",
+      "toolCallId": "call_WW2VFS5rQiSI0ue4N9rlOYKY|fc_05a2f31897e8f8cb016ac727c1768087d0b854cb6badea32b6",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 12,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 74,
+      "name": "get_artifact",
+      "toolCallId": "call_CJEI9t5qDLM2K19dZIP0YBgH|fc_05a2f31897e8f8cb016ac727cada1c87d08ac0a54240716228",
+      "args": {
+        "run_id": "ff99e77eec4342aba19f8b66bd44717a",
+        "name": "report.md",
+        "rows": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 76,
+      "name": "get_source_page",
+      "toolCallId": "call_AQs9DVz00m2RuMPiDtu386hC|fc_05a2f31897e8f8cb016ac727cada3487d08a83f3924b097e8c",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 41,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 78,
+      "name": "get_source_page",
+      "toolCallId": "call_OiovpP2h5vUB8sFoWIwe5Zsp|fc_05a2f31897e8f8cb016ac727cada4087d09f48cc4a3d72bcc3",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 47,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 80,
+      "name": "get_source_page",
+      "toolCallId": "call_6r2wsr9Or8lFmon6reD9Z4t1|fc_05a2f31897e8f8cb016ac727cada4887d09fd6ce96e8d0ced8",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 13,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 96,
+      "name": "get_source_page",
+      "toolCallId": "call_7DFuCFs61aE0RS1Ks5affYFq|fc_05a2f31897e8f8cb016ac727d3c4dc87d0b6050f4e811e33b1",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 33,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 98,
+      "name": "get_source_page",
+      "toolCallId": "call_ZQA1lNVo9C0rz2xrCLxJMbmq|fc_05a2f31897e8f8cb016ac727d3c4ec87d095c06ffed5639fe2",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 48,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 100,
+      "name": "get_source_page",
+      "toolCallId": "call_D3v05yqDSUTxiqw8PBp4K0bA|fc_05a2f31897e8f8cb016ac727d3c4f887d0a29eb20f41db4f79",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 49,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 102,
+      "name": "get_source_page",
+      "toolCallId": "call_v20lWMJJQ9A2xUDQ1jr9AxSH|fc_05a2f31897e8f8cb016ac727d3c50087d0aa44bfc743730174",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 50,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 118,
+      "name": "get_source_page",
+      "toolCallId": "call_B3zuAzj2VvOpxTcglHvoe2lH|fc_05a2f31897e8f8cb016ac727dc7f2c87d099a13c5887965e98",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 46,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 128,
+      "name": "get_source_page",
+      "toolCallId": "call_kBlIg1y7GgcMiyUl0laDN6N4|fc_05a2f31897e8f8cb016ac727e3a17887d0a2b699e9cf5f8dcd",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 45,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "type": "answer_binding_error",
+      "line": 902,
+      "data": {
+        "message": "估值或投资判断缺少有内容的小节：假设 / 风险 / 适用范围。保留已核对数值并补全；资料不足明确说明。",
+        "code": "answer_contract_error"
+      }
+    }
+  ],
+  "requests": [
+    {
+      "line": 7,
+      "requestId": "6dd3d608-3561-48fa-b44f-803304cf8d81",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "5d63156d-8393-47d4-a286-c549035ffb98",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 444
+    },
+    {
+      "line": 14,
+      "requestId": "8a6652e9-cb5c-484f-8069-0d869f84f027",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "5d63156d-8393-47d4-a286-c549035ffb98",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 31355
+    },
+    {
+      "line": 28,
+      "requestId": "3409c894-77be-4cb9-97e7-39b7224169db",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "5d63156d-8393-47d4-a286-c549035ffb98",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 48126
+    },
+    {
+      "line": 42,
+      "requestId": "c6eca719-0992-448c-9ee1-71018991fce6",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "5d63156d-8393-47d4-a286-c549035ffb98",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 88924
+    },
+    {
+      "line": 68,
+      "requestId": "d2d3bffa-af0b-4b8e-8fda-edb8b2ce6a22",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "5d63156d-8393-47d4-a286-c549035ffb98",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 112734
+    },
+    {
+      "line": 90,
+      "requestId": "1aa3d19a-daae-4079-86e3-13a31de614e9",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "5d63156d-8393-47d4-a286-c549035ffb98",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 128748
+    },
+    {
+      "line": 112,
+      "requestId": "2aef84b5-ae2c-4ca9-97ef-2b832effdb29",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "5d63156d-8393-47d4-a286-c549035ffb98",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 145493
+    },
+    {
+      "line": 122,
+      "requestId": "fdee80bf-50da-464e-a099-8247b25453dd",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "5d63156d-8393-47d4-a286-c549035ffb98",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 151002
+    },
+    {
+      "line": 132,
+      "requestId": "1c9dd35b-3437-4d52-9c1b-efad4657df67",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "5d63156d-8393-47d4-a286-c549035ffb98",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 157079
+    },
+    {
+      "line": 904,
+      "requestId": "c0dcae85-b406-4a16-abee-68b60d621266",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "5d63156d-8393-47d4-a286-c549035ffb98",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 163654
+    }
+  ],
+  "workpaper_kinds": [
+    "basis_changes",
+    "anomaly_signals"
+  ],
+  "binding": {
+    "bound": 5,
+    "unbound": 5,
+    "total": 10,
+    "ratio": 0.5,
+    "placeholders": [
+      {
+        "token": "{{summary.basis.paired_rows}}",
+        "rendered": "0 个",
+        "values": [
+          {
+            "value": "0",
+            "context": "0 个"
+          }
+        ]
+      },
+      {
+        "token": "{{signals.2025-H1_cash_conversion.value}}",
+        "rendered": "-0.75 ratio",
+        "values": [
+          {
+            "value": "-0.75",
+            "context": "-0.75 ratio"
+          }
+        ]
+      },
+      {
+        "token": "{{signals.2025-H1_accrual.value}}",
+        "rendered": "22.33 %",
+        "values": [
+          {
+            "value": "33 %",
+            "context": "33 %"
+          }
+        ]
+      },
+      {
+        "token": "{{signals.credit_impairment_change.value}}",
+        "rendered": "323.36 %",
+        "values": [
+          {
+            "value": "36 %",
+            "context": "36 %"
+          }
+        ]
+      },
+      {
+        "token": "{{signals.debt_asset_share.value}}",
+        "rendered": "38.04 %",
+        "values": [
+          {
+            "value": "04 %",
+            "context": "04 %"
+          }
+        ]
+      }
+    ],
+    "unbound_values": [
+      {
+        "value": "30.650百万元",
+        "context": "应计比率：。报告披露本期经营活动净现金流出人民币30.650百万元（）。 - 本期确认 FVTPL 公允价值收益人民币63"
+      },
+      {
+        "value": "63.015百万元",
+        "context": "。 - 本期确认 FVTPL 公允价值收益人民币63.015百万元；期末 FVTPL 金融资产人民币67.700百万元，列"
+      },
+      {
+        "value": "67.700百万元",
+        "context": ".015百万元；期末 FVTPL 金融资产人民币67.700百万元，列为香港上市股权证券（）。**分析判断：**公允价值收"
+      },
+      {
+        "value": "89%",
+        "context": "逾一年账龄的账面余额较大，对应账龄桶预期损失率为89%（）；资产负债表另列有借款、租赁负债及净流动负债（）。 "
+      },
+      {
+        "value": "34",
+        "context": "计意见、完整信用分析或投资建议。报告为 IAS 34 下的简明中期财务信息，并称应与年报一并阅读（）；若缺少"
+      }
+    ]
+  },
+  "tags_raw": {},
+  "tags_final": {
+    "【推论/分析】": 17,
+    "【事实/数据】": 4
+  },
+  "all_labels_raw": {},
+  "all_labels_final": {
+    "【推论/分析】": 17,
+    "【事实/数据】": 4
+  },
+  "answer_bound_events": 1,
+  "answer_bound_line": 1709
+}

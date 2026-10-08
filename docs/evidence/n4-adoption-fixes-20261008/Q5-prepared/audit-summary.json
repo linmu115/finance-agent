@@ -1,0 +1,813 @@
+{
+  "case": "Q5",
+  "profile": "prepared",
+  "run_id": "4ae9f9b4-1314-4886-9a7f-d738afaa4a40",
+  "question": "瑞和这半年报有没有口径调整或异常？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 129387,
+  "usage": {
+    "input": 289714,
+    "output": 3921,
+    "calls": 12,
+    "costUsd": 0.009089980000000001,
+    "uncachedInput": 47026,
+    "cacheRead": 242688,
+    "cacheWrite": 0,
+    "reasoning": 1216,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 478,
+        "output": 49,
+        "calls": 1,
+        "costUsd": 7.23e-05,
+        "uncachedInput": 478,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 478,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 289236,
+        "output": 3872,
+        "calls": 11,
+        "costUsd": 0.00901768,
+        "uncachedInput": 46548,
+        "cacheRead": 242688,
+        "cacheWrite": 0,
+        "reasoning": 1216,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 289236,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 289714,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "workpaper_results": [],
+  "calls": [
+    {
+      "line": 19,
+      "name": "list_documents",
+      "toolCallId": "call_viaOa99Y4nWuvbZtsnKdXIUq|fc_0fee8e6bedf29aaf016ac728216dcc87d0958f077ce989126a",
+      "args": {
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 29,
+      "name": "get_document",
+      "toolCallId": "call_w8011Frr1VxOMZ0otpkwXfpN|fc_0fee8e6bedf29aaf016ac72828ca3487d0a79b72999a325a3e",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 31,
+      "name": "get_data_catalog",
+      "toolCallId": "call_bNNRJkFcY6vozWxTvuxtpuuq|fc_0fee8e6bedf29aaf016ac72828ca4c87d0b49e3bbae43bf3a5",
+      "args": {
+        "query": "会计政策 口径 变动",
+        "statement": null,
+        "offset": 0,
+        "limit": 30,
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "company": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 33,
+      "name": "search_evidence",
+      "toolCallId": "call_R48fRZOP5x5VN0R41Moo1ixd|fc_0fee8e6bedf29aaf016ac72828ca5887d0b5e29f001d77a284",
+      "args": {
+        "query": "accounting policies changes basis restated",
+        "company": "瑞和数智",
+        "year": 2025,
+        "limit": 10,
+        "filters": {
+          "document_ids": [
+            "ab25c52089fd4db89fba046c9c811c46"
+          ]
+        },
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 35,
+      "name": "get_document_index",
+      "toolCallId": "call_06QLvJx2cS2GPyX9TCmm9AWs|fc_0fee8e6bedf29aaf016ac72828ca6087d09932792b234dccb5",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "section": "overview",
+        "query": null,
+        "offset": 0,
+        "limit": 40,
+        "page_start": null,
+        "page_end": null,
+        "include_preview": true,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 51,
+      "name": "get_source_table",
+      "toolCallId": "call_LyKuZuGFCNTaeXxBliNlkP6d|fc_0fee8e6bedf29aaf016ac72832c40087d0aae110ed77156e2c",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "table_id": "ab25c52089fd4db89fba046c9c811c46:t15",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 53,
+      "name": "get_source_table",
+      "toolCallId": "call_e2F3FTxkNKmVG9vKtKcVrDYg|fc_0fee8e6bedf29aaf016ac72832c41487d0a340095ac6bac559",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "table_id": "ab25c52089fd4db89fba046c9c811c46:t16",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 55,
+      "name": "get_source_table",
+      "toolCallId": "call_DFDDG9ilE4JjE02Jizot1ELl|fc_0fee8e6bedf29aaf016ac72832c41c87d0b138f9a37c341514",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "table_id": "ab25c52089fd4db89fba046c9c811c46:t21",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 57,
+      "name": "get_source_page",
+      "toolCallId": "call_ZJ0DHg383tocGdd4F5YsXYCx|fc_0fee8e6bedf29aaf016ac72832c42487d0be1bfb0a6d9756b6",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 33,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 59,
+      "name": "get_source_page",
+      "toolCallId": "call_lGOJ9FXVflidzxHZo3Uie0V1|fc_0fee8e6bedf29aaf016ac72832c42c87d085dd40af4c31b051",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 34,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 61,
+      "name": "get_source_page",
+      "toolCallId": "call_Mn4rXl0fGz7YZFwkVomh2ErA|fc_0fee8e6bedf29aaf016ac72832c43487d098efe908b1cd4466",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 13,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 81,
+      "name": "get_source_page",
+      "toolCallId": "call_y3I4fZZslC6Sz1l3jsCoi7uE|fc_0fee8e6bedf29aaf016ac7283e525087d098d097a7d3102602",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 5,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 83,
+      "name": "get_source_page",
+      "toolCallId": "call_uP1vya11RUxjviOPI5osTSZE|fc_0fee8e6bedf29aaf016ac7283e526487d098392cd54a6409f1",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 6,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 85,
+      "name": "get_source_page",
+      "toolCallId": "call_ug5SnX7V4IGp0queAKQ2IHtJ|fc_0fee8e6bedf29aaf016ac7283e526887d0818df67511ebae0a",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 7,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 87,
+      "name": "get_source_page",
+      "toolCallId": "call_vifzrLeKF5FgjmwN04Mxo2uX|fc_0fee8e6bedf29aaf016ac7283e527087d0a6e64e10e56c7a9b",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 8,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 89,
+      "name": "get_source_page",
+      "toolCallId": "call_VNUeMvhBhmojGnBWLJmgHfqF|fc_0fee8e6bedf29aaf016ac7283e527487d0a054f78486df8535",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 30,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 91,
+      "name": "get_source_page",
+      "toolCallId": "call_ca6MYGirKQwiONxJWzEsFqvs|fc_0fee8e6bedf29aaf016ac7283e527c87d08230a18bdbcd2da8",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 35,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 111,
+      "name": "get_source_page",
+      "toolCallId": "call_Zh5jYUAXRrhWUCb1z5ooaTH4|fc_0fee8e6bedf29aaf016ac72847698487d09cddbd50f8983b17",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 36,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 113,
+      "name": "get_source_page",
+      "toolCallId": "call_UGm3CexLegozNVKmxHX0idaR|fc_0fee8e6bedf29aaf016ac72847699487d0860358017f1d35e7",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 37,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 115,
+      "name": "get_source_page",
+      "toolCallId": "call_8yVEsFwHQJUEGCAYqXeqAMVA|fc_0fee8e6bedf29aaf016ac7284769a087d0ad57539b648f3359",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 38,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 117,
+      "name": "get_source_page",
+      "toolCallId": "call_KKn7LiYiXzYBNvZ3Lj6KKmMi|fc_0fee8e6bedf29aaf016ac7284769a887d08086c29cb8f11bd5",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 40,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 119,
+      "name": "get_source_page",
+      "toolCallId": "call_4DXX91bwKhyB2geAA8Lv5NmI|fc_0fee8e6bedf29aaf016ac7284769b087d0aaf18938877fab14",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 43,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 121,
+      "name": "get_source_page",
+      "toolCallId": "call_G2cRids6a5Z7L0DWu6kVB1kY|fc_0fee8e6bedf29aaf016ac7284769b887d09b3f16df004a1eae",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 46,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 141,
+      "name": "get_source_page",
+      "toolCallId": "call_A08bz22Lty1gbrCw8l8lNTut|fc_0fee8e6bedf29aaf016ac72854c4e487d0a3ad67502fb3c9a1",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 41,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 143,
+      "name": "get_source_page",
+      "toolCallId": "call_Vuj9xCeaPi5gpzxGMhDMmKBZ|fc_0fee8e6bedf29aaf016ac72854c4f887d0b4a87c051585724c",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 42,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 145,
+      "name": "get_source_page",
+      "toolCallId": "call_iTHhssDjLq83O7QhTWdwVS1x|fc_0fee8e6bedf29aaf016ac72854c50487d087f1fc83e0851ad3",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 45,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 147,
+      "name": "get_source_page",
+      "toolCallId": "call_WxZgmfGlMIQh27FVHjJu487b|fc_0fee8e6bedf29aaf016ac72854c50c87d0b3b0dc9391ab59f2",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 47,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 149,
+      "name": "get_source_page",
+      "toolCallId": "call_CGT5rMWqT7ohFrHrTLx1l9Z1|fc_0fee8e6bedf29aaf016ac72854c51487d081f4b884187f8a75",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 12,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 151,
+      "name": "get_source_page",
+      "toolCallId": "call_Hu8qeXz9L27qk05vNGOwi6Ah|fc_0fee8e6bedf29aaf016ac72854c51887d09136d06848bb4590",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 14,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 171,
+      "name": "run_analysis",
+      "toolCallId": "call_sT1yCQT8ZjRVQEowylMSXzo6|fc_0fee8e6bedf29aaf016ac72865870087d0bedbff938fc995bc",
+      "args": {
+        "report": {
+          "tables": {
+            "key": {
+              "columns": {
+                "metric": {
+                  "unit": "项目"
+                },
+                "value": {
+                  "unit": "数值"
+                },
+                "comment": {
+                  "unit": "说明"
+                }
+              },
+              "rows": [
+                {
+                  "metric": {
+                    "value": "净利润剔除公允价值收益",
+                    "unit": "RMB’000",
+                    "source": "计算：41,098−63,015"
+                  },
+                  "value": {
+                    "value": -21917,
+                    "unit": "RMB’000"
+                  },
+                  "comment": {
+                    "value": "静态剔除该项，非公司披露的调整后利润"
+                  }
+                },
+                {
+                  "metric": {
+                    "value": "应收账款逾期超过12个月占比",
+                    "unit": "%",
+                    "source": "计算：65,272÷142,099"
+                  },
+                  "value": {
+                    "value": 45.9,
+                    "unit": "%"
+                  },
+                  "comment": {
+                    "value": "按账龄表总额计算"
+                  }
+                },
+                {
+                  "metric": {
+                    "value": "应收账款总拨备率",
+                    "unit": "%",
+                    "source": "计算：61,437÷142,099"
+                  },
+                  "value": {
+                    "value": 43.2,
+                    "unit": "%"
+                  },
+                  "comment": {
+                    "value": "拨备÷应收账款毛额"
+                  }
+                },
+                {
+                  "metric": {
+                    "value": "借款余额变化",
+                    "unit": "RMB’000",
+                    "source": "计算：(127,449+0)−(98,660+10,000)"
+                  },
+                  "value": {
+                    "value": 18789,
+                    "unit": "RMB’000"
+                  },
+                  "comment": {
+                    "value": "2025-06期末对比2024年末，银行及其他借款合计"
+                  }
+                }
+              ]
+            },
+            "body": "关键异常量化（原始披露及算术推导）"
+          }
+        },
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6",
+        "raw_only": false,
+        "financial_tools": false,
+        "timeout_seconds": 120
+      }
+    },
+    {
+      "line": 181,
+      "name": "get_analysis_status",
+      "toolCallId": "call_3hTZKNVZqxvIKfgUCq0nCa8p|fc_0fee8e6bedf29aaf016ac7286f83b487d0926f5ff123006611",
+      "args": {
+        "run_id": "da6e53e79a9142e99afd455197115445",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 191,
+      "name": "run_analysis",
+      "toolCallId": "call_dtnQo9OYNEyjWqbkkjrOQ8eA|fc_0fee8e6bedf29aaf016ac728771b3887d08f89d36599da5c32",
+      "args": {
+        "report": {
+          "tables": {
+            "key": {
+              "columns": {
+                "metric": {
+                  "unit": "个"
+                },
+                "value": {
+                  "unit": "千元"
+                },
+                "comment": {
+                  "unit": "个"
+                }
+              },
+              "rows": [
+                {
+                  "metric": {
+                    "value": "净利润剔除公允价值收益"
+                  },
+                  "value": {
+                    "value": -21917,
+                    "unit": "千元"
+                  },
+                  "comment": {
+                    "value": "静态剔除，不是公司披露的调整后利润"
+                  }
+                },
+                {
+                  "metric": {
+                    "value": "应收账款逾期超过12个月占毛额"
+                  },
+                  "value": {
+                    "value": 0.459,
+                    "unit": "ratio"
+                  },
+                  "comment": {
+                    "value": "65,272÷142,099"
+                  }
+                },
+                {
+                  "metric": {
+                    "value": "应收账款总拨备率"
+                  },
+                  "value": {
+                    "value": 0.432,
+                    "unit": "ratio"
+                  },
+                  "comment": {
+                    "value": "61,437÷142,099"
+                  }
+                },
+                {
+                  "metric": {
+                    "value": "借款余额较2024年末增加"
+                  },
+                  "value": {
+                    "value": 18789,
+                    "unit": "千元"
+                  },
+                  "comment": {
+                    "value": "127,449−(98,660+10,000)"
+                  }
+                }
+              ]
+            },
+            "body": "按报告披露数进行算术计算。"
+          }
+        },
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6",
+        "raw_only": false,
+        "financial_tools": false,
+        "timeout_seconds": 120
+      }
+    },
+    {
+      "line": 201,
+      "name": "get_analysis_status",
+      "toolCallId": "call_nMF9P4Ngx2cqqD6zR9hige3v|fc_0fee8e6bedf29aaf016ac72880290087d09539efb3e8bc0328",
+      "args": {
+        "run_id": "5297d08058544dd6ba1b2b0777373e71",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "type": "tool_return_failure",
+      "line": 183,
+      "name": "get_analysis_status",
+      "error": "Analysis process exited with an error",
+      "stderr": "Traceback (most recent call last):\n  File \"/opt/finance/entrypoint.py\", line 11, in <module>\n    runpy.run_path('/input/__analysis__.py', run_name='__main__')\n  File \"<frozen runpy>\", line 287, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/input/__analysis__.py\", line 10, in <module>\n    deliver()\n  File \"/input/analysis_report.py\", line 529, in deliver\n    compiled = compile_report(report, records, models)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/input/analysis_report.py\", line 311, in compile_report\n    try: col['unit'], named = canonical_unit(declared)\n                              ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/input/analysis_report.py\", line 76, in canonical_unit\n    raise ValueError(f'未知单位 {text!r}。{ACCEPTED}')\nValueError: 未知单位 '项目'。金额：元/千元/万元/百万元/亿元/十亿元、thousand/million/billion，可带币种（人民币百万元、RMB million、亿港元）；每股：元/股、人民币/股；股数：股/万股/百万股/亿股；比例：ratio（0.10=10%）、%；百分点：个百分点、百分点、pp；倍；个；天\n"
+    },
+    {
+      "type": "tool_return_failure",
+      "line": 203,
+      "name": "get_analysis_status",
+      "error": "Analysis process exited with an error",
+      "stderr": "Traceback (most recent call last):\n  File \"/opt/finance/entrypoint.py\", line 11, in <module>\n    runpy.run_path('/input/__analysis__.py', run_name='__main__')\n  File \"<frozen runpy>\", line 287, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/input/__analysis__.py\", line 10, in <module>\n    deliver()\n  File \"/input/analysis_report.py\", line 529, in deliver\n    compiled = compile_report(report, records, models)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/input/analysis_report.py\", line 332, in compile_report\n    if 'unit' not in ref: raise ValueError(f'{name}.{i}.{key} 缺少 unit；给单元格明确单位或给整列 unit。{ACCEPTED}')\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: key.0.metric 缺少 unit；给单元格明确单位或给整列 unit。金额：元/千元/万元/百万元/亿元/十亿元、thousand/million/billion，可带币种（人民币百万元、RMB million、亿港元）；每股：元/股、人民币/股；股数：股/万股/百万股/亿股；比例：ratio（0.10=10%）、%；百分点：个百分点、百分点、pp；倍；个；天\n"
+    }
+  ],
+  "requests": [
+    {
+      "line": 6,
+      "requestId": "420759a9-0b87-480a-86eb-c459fd0ea6df",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "fa897e68-f0ef-4625-86b7-e03545153e3d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 444
+    },
+    {
+      "line": 13,
+      "requestId": "6bf4943c-99f2-4b13-9846-521f56efb676",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fa897e68-f0ef-4625-86b7-e03545153e3d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 9943
+    },
+    {
+      "line": 23,
+      "requestId": "40e37c02-5afc-4052-9ffe-067d3dfbc8d5",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fa897e68-f0ef-4625-86b7-e03545153e3d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 18466
+    },
+    {
+      "line": 45,
+      "requestId": "9c95aa0b-da0f-4475-9976-e2da240e43d7",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fa897e68-f0ef-4625-86b7-e03545153e3d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 61742
+    },
+    {
+      "line": 75,
+      "requestId": "06fdb980-5d5e-4ed6-9ae7-69993d83d5d4",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fa897e68-f0ef-4625-86b7-e03545153e3d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 88070
+    },
+    {
+      "line": 105,
+      "requestId": "9711648a-9bb0-4d47-9233-47bda7e793ca",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fa897e68-f0ef-4625-86b7-e03545153e3d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 115147
+    },
+    {
+      "line": 135,
+      "requestId": "b6083361-d436-42ea-beab-87d21f5b3b51",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fa897e68-f0ef-4625-86b7-e03545153e3d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 140576
+    },
+    {
+      "line": 165,
+      "requestId": "c9cb48f4-18c1-448a-ae09-3043de9c38e3",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fa897e68-f0ef-4625-86b7-e03545153e3d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 164403
+    },
+    {
+      "line": 175,
+      "requestId": "e68dc667-876d-4e78-8c09-c01894cdea18",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fa897e68-f0ef-4625-86b7-e03545153e3d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 170544
+    },
+    {
+      "line": 185,
+      "requestId": "b0979fcb-2442-4e69-9f57-771b711c6aef",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fa897e68-f0ef-4625-86b7-e03545153e3d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 174510
+    },
+    {
+      "line": 195,
+      "requestId": "20f1218f-343e-40b2-9583-539a91d1dffc",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fa897e68-f0ef-4625-86b7-e03545153e3d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 178384
+    },
+    {
+      "line": 205,
+      "requestId": "f4925475-14e1-48bd-8d37-585d18274379",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fa897e68-f0ef-4625-86b7-e03545153e3d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 182366
+    }
+  ],
+  "workpaper_kinds": [],
+  "binding": {
+    "bound": 0,
+    "unbound": 18,
+    "total": 18,
+    "ratio": 0.0,
+    "placeholders": [],
+    "unbound_values": [
+      {
+        "value": "4,109.8万元",
+        "context": "动。**      公司披露上半年净利润为人民币4,109.8万元，其中对东京中央拍卖控股的投资确认公允价值收益人民币6,"
+      },
+      {
+        "value": "6,301.5万元",
+        "context": "中对东京中央拍卖控股的投资确认公允价值收益人民币6,301.5万元。静态扣除该项后，净利润约为**亏损人民币2,191.7"
+      },
+      {
+        "value": "2,191.7万元",
+        "context": "5万元。静态扣除该项后，净利润约为**亏损人民币2,191.7万元**（计算值，不是公司披露的“调整后利润”）。（PDF）"
+      },
+      {
+        "value": "33.5%",
+        "context": "转向商品贸易。**      上半年收入同比下降33.5%，其中数据解决方案、软硬件综合服务和IT维护收入均下降；"
+      },
+      {
+        "value": "6,013.4万元",
+        "context": "合服务和IT维护收入均下降；商品贸易收入约人民币6,013.4万元，已接近总收入一半。公司也明确称业务组合有所调整，并指出"
+      },
+      {
+        "value": "1.421亿元",
+        "context": "仍需跟踪。**      期末应收账款毛额人民币1.421亿元，其中逾期超过12个月约人民币6,527万元，占毛额约*"
+      },
+      {
+        "value": "12",
+        "context": "末应收账款毛额人民币1.421亿元，其中逾期超过12个月约人民币6,527万元，占毛额约**45.9%**；"
+      },
+      {
+        "value": "6,527万元",
+        "context": "民币1.421亿元，其中逾期超过12个月约人民币6,527万元，占毛额约**45.9%**；坏账准备人民币6,144万"
+      },
+      {
+        "value": "45.9%",
+        "context": "超过12个月约人民币6,527万元，占毛额约**45.9%**；坏账准备人民币6,144万元，拨备率约**43.2"
+      },
+      {
+        "value": "6,144万元",
+        "context": "万元，占毛额约**45.9%**；坏账准备人民币6,144万元，拨备率约**43.2%**。报告对超过12个月部分采用"
+      },
+      {
+        "value": "43.2%",
+        "context": "**；坏账准备人民币6,144万元，拨备率约**43.2%**。报告对超过12个月部分采用89%的加权预期损失率。"
+      },
+      {
+        "value": "12",
+        "context": "44万元，拨备率约**43.2%**。报告对超过12个月部分采用89%的加权预期损失率。（计算值；披露见PD"
+      },
+      {
+        "value": "89%",
+        "context": "约**43.2%**。报告对超过12个月部分采用89%的加权预期损失率。（计算值；披露见PDF） **短期流动"
+      },
+      {
+        "value": "4,576.5万元",
+        "context": "借款上升。**      期末净流动负债约人民币4,576.5万元；银行及其他借款合计约人民币1.274亿元，较末约增加人"
+      },
+      {
+        "value": "1.274亿元",
+        "context": "币4,576.5万元；银行及其他借款合计约人民币1.274亿元，较末约增加人民币1,878.9万元。经营活动净流出人民"
+      },
+      {
+        "value": "1,878.9万元",
+        "context": "借款合计约人民币1.274亿元，较末约增加人民币1,878.9万元。经营活动净流出人民币3,065万元，融资活动净流入人民"
+      },
+      {
+        "value": "3,065万元",
+        "context": "加人民币1,878.9万元。经营活动净流出人民币3,065万元，融资活动净流入人民币4,707.9万元，融资流入对现金"
+      },
+      {
+        "value": "4,707.9万元",
+        "context": "净流出人民币3,065万元，融资活动净流入人民币4,707.9万元，融资流入对现金形成补充。（计算及披露见PDF）  ##"
+      }
+    ]
+  },
+  "tags_raw": {},
+  "tags_final": {
+    "【推论/分析】": 27
+  },
+  "all_labels_raw": {},
+  "all_labels_final": {
+    "【推论/分析】": 27
+  },
+  "answer_bound_events": 1,
+  "answer_bound_line": 906
+}

@@ -1,0 +1,593 @@
+{
+  "case": "Q5",
+  "profile": "financial",
+  "run_id": "4decc9ca-f36b-4c9b-a92c-ef7063048c99",
+  "question": "瑞和这半年报有没有口径调整或异常？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 99321,
+  "usage": {
+    "input": 212439,
+    "output": 3102,
+    "calls": 10,
+    "costUsd": 0.00721986,
+    "uncachedInput": 39383,
+    "cacheRead": 173056,
+    "cacheWrite": 0,
+    "reasoning": 1175,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 478,
+        "output": 47,
+        "calls": 1,
+        "costUsd": 7.13e-05,
+        "uncachedInput": 478,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 478,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 211961,
+        "output": 3055,
+        "calls": 9,
+        "costUsd": 0.00714856,
+        "uncachedInput": 38905,
+        "cacheRead": 173056,
+        "cacheWrite": 0,
+        "reasoning": 1175,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 211961,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 212439,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "calls": [
+    {
+      "line": 20,
+      "name": "list_documents",
+      "toolCallId": "call_uyDm0Uz1USeLSMjpkK3Dzdtc|fc_0b056f5269ee00ef016ac71cbc611887d0bb4523bd17da9a70",
+      "args": {
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 30,
+      "name": "financial_workpaper",
+      "toolCallId": "call_K5V8ibGsibNCHialDS1q1546|fc_0b056f5269ee00ef016ac71cc477b887d0a917ff2d09c7aeaa",
+      "args": {
+        "kind": "basis_changes",
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "company": "瑞和数智科技控股有限公司",
+        "scope": "consolidated",
+        "periods": [
+          "2025-06-30",
+          "2024-06-30"
+        ],
+        "focus": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 32,
+      "name": "financial_workpaper",
+      "toolCallId": "call_r3nYxd87nHyeKA43uVmP2Ntv|fc_0b056f5269ee00ef016ac71cc477cc87d095dc5f6d629f3304",
+      "args": {
+        "kind": "anomaly_signals",
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "company": "瑞和数智科技控股有限公司",
+        "scope": "consolidated",
+        "periods": [
+          "2025-06-30",
+          "2024-06-30"
+        ],
+        "focus": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 34,
+      "name": "financial_workpaper",
+      "toolCallId": "call_DAwrT87XtVqZILo16Q9Znuz6|fc_0b056f5269ee00ef016ac71cc477d887d0ae159dd7809e176c",
+      "args": {
+        "kind": "statement_analysis",
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "company": "瑞和数智科技控股有限公司",
+        "scope": "consolidated",
+        "periods": [
+          "2025-06-30",
+          "2024-06-30"
+        ],
+        "focus": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 48,
+      "name": "get_artifact",
+      "toolCallId": "call_vx00I21JDM8k9ipS38LSgS7z|fc_0b056f5269ee00ef016ac71ccccf2487d0bb4c23f793ff99a5",
+      "args": {
+        "run_id": "a4d792e555794f99b5f65c8501a90a90",
+        "name": "workpaper.json",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 50,
+      "name": "get_artifact",
+      "toolCallId": "call_qN5Bj1fc8UnMkDapJm6fgS3j|fc_0b056f5269ee00ef016ac71ccccf3887d08b477dcc69d0c900",
+      "args": {
+        "run_id": "018f73c5d2224e4dbc9e608dab3fda52",
+        "name": "workpaper.json",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 52,
+      "name": "get_artifact",
+      "toolCallId": "call_QRCwxFER6OtQK71dxsnZe7ua|fc_0b056f5269ee00ef016ac71ccccf4087d08b8f4f2889d6180a",
+      "args": {
+        "run_id": "018f73c5d2224e4dbc9e608dab3fda52",
+        "name": "report.md",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 54,
+      "name": "get_document_index",
+      "toolCallId": "call_RyC1Y5NUbkp5H3nOMvtessKg|fc_0b056f5269ee00ef016ac71ccccf4887d09d515843b00e6257",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "section": "pages",
+        "query": "accounting policy change",
+        "offset": 0,
+        "limit": 20,
+        "page_start": null,
+        "page_end": null,
+        "include_preview": true,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 70,
+      "name": "financial_workpaper",
+      "toolCallId": "call_rQUpxiE302EnpamboM4iBY5H|fc_0b056f5269ee00ef016ac71cd575b487d0a3c849b3f7bc8d37",
+      "args": {
+        "kind": "anomaly_signals",
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "company": "瑞和数智科技控股有限公司",
+        "scope": "consolidated",
+        "periods": null,
+        "focus": "2025 interim",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 72,
+      "name": "get_source_page",
+      "toolCallId": "call_GQ9VjvxQ4zx91lZkdLVStPR1|fc_0b056f5269ee00ef016ac71cd575d087d0a6628d0d8e5753a2",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 2,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 74,
+      "name": "get_source_page",
+      "toolCallId": "call_KuucoLxbqaje6iHRtDZYiOpa|fc_0b056f5269ee00ef016ac71cd575d887d0bcfe3de0d1b0e7ca",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 27,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 76,
+      "name": "get_source_page",
+      "toolCallId": "call_ikoBYgRCwd79BoO4Nys1thOj|fc_0b056f5269ee00ef016ac71cd575e487d0aa1288ca0db46626",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 30,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 92,
+      "name": "get_source_page",
+      "toolCallId": "call_jqx8P2AKBSHKicv7a2TKy3Fo|fc_0b056f5269ee00ef016ac71cde81cc87d0a2a0ee7a49458182",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 32,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 94,
+      "name": "get_source_page",
+      "toolCallId": "call_wM1F48tykDjNM8BTjoCLUG0Q|fc_0b056f5269ee00ef016ac71cde81d887d0b5087f2cd54cceaa",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 33,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 96,
+      "name": "get_source_page",
+      "toolCallId": "call_Sc38rN2aTefyeJC8H8Jsm74e|fc_0b056f5269ee00ef016ac71cde81e487d0927a1d53727cfbc3",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 41,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 98,
+      "name": "get_source_page",
+      "toolCallId": "call_OBP3acLTFtW9r89JsMTpwGYn|fc_0b056f5269ee00ef016ac71cde81ec87d0bf020e204f9e5b68",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 47,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 100,
+      "name": "get_source_page",
+      "toolCallId": "call_rzbK5WGrHfOE4fEEIk3mMyx5|fc_0b056f5269ee00ef016ac71cde820887d0bf2dac108c95921f",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 28,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 118,
+      "name": "calculate_financial_metrics",
+      "toolCallId": "call_ENM7JtwVtOnQGIUwU1fKDE4s|fc_0b056f5269ee00ef016ac71ce91d5c87d09d50cad9850d9b69",
+      "args": {
+        "operation": "subtract",
+        "inputs": {
+          "a": 40.931,
+          "b": 63.015
+        },
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 120,
+      "name": "calculate_financial_metrics",
+      "toolCallId": "call_mgmihuWyUmUd1DrpZiO2Mjvc|fc_0b056f5269ee00ef016ac71ce91d6c87d0a6a83e58fff35017",
+      "args": {
+        "operation": "subtract",
+        "inputs": {
+          "a": -18.17,
+          "b": 63.015
+        },
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 122,
+      "name": "calculate_financial_metrics",
+      "toolCallId": "call_418pfApFKYxvEeZ5mm44groU|fc_0b056f5269ee00ef016ac71ce91d7887d0b9d6085f6a1f39d0",
+      "args": {
+        "operation": "sum",
+        "inputs": {
+          "values": [
+            127.449,
+            3.195,
+            161,
+            0
+          ]
+        },
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 124,
+      "name": "get_source_page",
+      "toolCallId": "call_AnYoBHUsgAUjuHQYbGAMejsM|fc_0b056f5269ee00ef016ac71ce91d8087d09325a68bbfa2e9da",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 29,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 140,
+      "name": "get_source_page",
+      "toolCallId": "call_1ikKACIFzhVFogpri4Pa7A71|fc_0b056f5269ee00ef016ac71cf0a31487d0ad28a16c600db46b",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 40,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 150,
+      "name": "get_source_page",
+      "toolCallId": "call_zpM6x7hzbjhEe5AxEIoU3fLB|fc_0b056f5269ee00ef016ac71cf9d39887d0b11bad9bb4ea0275",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 42,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "type": "tool_error",
+      "line": 36,
+      "data": {
+        "name": "financial_workpaper",
+        "toolCallId": "call_r3nYxd87nHyeKA43uVmP2Ntv|fc_0b056f5269ee00ef016ac71cc477cc87d095dc5f6d629f3304",
+        "message": "KeyError"
+      }
+    },
+    {
+      "type": "tool_error",
+      "line": 56,
+      "data": {
+        "name": "get_artifact",
+        "toolCallId": "call_vx00I21JDM8k9ipS38LSgS7z|fc_0b056f5269ee00ef016ac71ccccf2487d0bb4c23f793ff99a5",
+        "message": "RunnerError"
+      }
+    },
+    {
+      "type": "tool_error",
+      "line": 58,
+      "data": {
+        "name": "get_artifact",
+        "toolCallId": "call_qN5Bj1fc8UnMkDapJm6fgS3j|fc_0b056f5269ee00ef016ac71ccccf3887d08b477dcc69d0c900",
+        "message": "RunnerError"
+      }
+    },
+    {
+      "type": "tool_error",
+      "line": 60,
+      "data": {
+        "name": "get_artifact",
+        "toolCallId": "call_QRCwxFER6OtQK71dxsnZe7ua|fc_0b056f5269ee00ef016ac71ccccf4087d08b8f4f2889d6180a",
+        "message": "RunnerError"
+      }
+    },
+    {
+      "type": "tool_error",
+      "line": 126,
+      "data": {
+        "name": "calculate_financial_metrics",
+        "toolCallId": "call_418pfApFKYxvEeZ5mm44groU|fc_0b056f5269ee00ef016ac71ce91d7887d0b9d6085f6a1f39d0",
+        "message": "ValueError"
+      }
+    }
+  ],
+  "requests": [
+    {
+      "line": 7,
+      "requestId": "7fa42b28-9d8b-4c40-af30-cee690df769a",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "fb34bdca-e012-41d8-833c-a44c31ed6d97",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 444
+    },
+    {
+      "line": 14,
+      "requestId": "9f5468c0-a4ea-4f56-a130-f825fe2097b7",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fb34bdca-e012-41d8-833c-a44c31ed6d97",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 30710
+    },
+    {
+      "line": 24,
+      "requestId": "6e8801ac-1d3b-4ab2-b78d-68405c8c8b1b",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fb34bdca-e012-41d8-833c-a44c31ed6d97",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 39421
+    },
+    {
+      "line": 42,
+      "requestId": "2d4b1a8b-ee8a-4267-b5b1-71ef9eb9b0f7",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fb34bdca-e012-41d8-833c-a44c31ed6d97",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 71809
+    },
+    {
+      "line": 64,
+      "requestId": "72b62246-3db3-4d5f-91bb-6a3f698ef18e",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fb34bdca-e012-41d8-833c-a44c31ed6d97",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 77591
+    },
+    {
+      "line": 86,
+      "requestId": "870fbf83-741b-497c-b10b-5a515fa81c44",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fb34bdca-e012-41d8-833c-a44c31ed6d97",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 111484
+    },
+    {
+      "line": 112,
+      "requestId": "03b43c49-6d98-4ad8-9194-7e7e52aec1eb",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fb34bdca-e012-41d8-833c-a44c31ed6d97",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 135360
+    },
+    {
+      "line": 134,
+      "requestId": "e9f9e333-b5a5-456a-b06b-a121c465c643",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fb34bdca-e012-41d8-833c-a44c31ed6d97",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 145143
+    },
+    {
+      "line": 144,
+      "requestId": "eaafeba5-3ee0-415e-b91e-7b407afb3191",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fb34bdca-e012-41d8-833c-a44c31ed6d97",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 152210
+    },
+    {
+      "line": 154,
+      "requestId": "7143c3cd-5f17-4558-a84a-7782e0b553a6",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "fb34bdca-e012-41d8-833c-a44c31ed6d97",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 157673
+    }
+  ],
+  "workpaper_kinds": [
+    "basis_changes",
+    "anomaly_signals",
+    "statement_analysis",
+    "anomaly_signals"
+  ],
+  "binding": {
+    "bound": 0,
+    "unbound": 15,
+    "total": 15,
+    "ratio": 0.0,
+    "placeholders": [],
+    "unbound_values": [
+      {
+        "value": "63.015",
+        "context": "| 本期 FVTPL 公允价值收益 **RMB 63.015m**；税前利润 **RMB 40.931m**。扣除此"
+      },
+      {
+        "value": "40.931",
+        "context": "MB 63.015m**；税前利润 **RMB 40.931m**。扣除此项后的税前结果为 **亏损 RMB 22."
+      },
+      {
+        "value": "22.084",
+        "context": "**。扣除此项后的税前结果为 **亏损 RMB 22.084m**（计算） | 本期转盈高度依赖该项收益，不宜直接视"
+      },
+      {
+        "value": "41.098",
+        "context": "善 | | 经营现金流 | 净利润 **RMB 41.098m**，经营现金流净流出 **RMB 30.650m**"
+      },
+      {
+        "value": "30.650",
+        "context": "1.098m**，经营现金流净流出 **RMB 30.650m**；现金转换率约 **-0.75** | 利润与现金"
+      },
+      {
+        "value": "-0.75",
+        "context": "*RMB 30.650m**；现金转换率约 **-0.75** | 利润与现金背离，值得跟踪回款和营运资金 | |"
+      },
+      {
+        "value": "3.127",
+        "context": "| 本期金融及合同资产减值转回净额 **RMB 3.127m**，上年同期为减值净额 **RMB 1.400m**"
+      },
+      {
+        "value": "1.400",
+        "context": ".127m**，上年同期为减值净额 **RMB 1.400m** | 信用减值损益同比改善；是利润支撑之一，但不等"
+      },
+      {
+        "value": "12",
+        "context": "同于现金回收 | | 应收账款账龄 | 逾期超过12个月的应收账款原值 **RMB 65.202m**，对应"
+      },
+      {
+        "value": "65.202",
+        "context": "| 逾期超过12个月的应收账款原值 **RMB 65.202m**，对应准备 **RMB 58.312m**，披露预"
+      },
+      {
+        "value": "58.312",
+        "context": "MB 65.202m**，对应准备 **RMB 58.312m**，披露预期损失率 **89%** | 长账龄余额较"
+      },
+      {
+        "value": "89%",
+        "context": "RMB 58.312m**，披露预期损失率 **89%** | 长账龄余额较大；高额准备降低了净额，但回款风险"
+      },
+      {
+        "value": "25.723",
+        "context": " 流动性 | 期末现金及现金等价物 **RMB 25.723m**；净流动负债 **RMB 45.765m**；期末"
+      },
+      {
+        "value": "45.765",
+        "context": "B 25.723m**；净流动负债 **RMB 45.765m**；期末银行及其他借款 **RMB 127.449m"
+      },
+      {
+        "value": "127.449",
+        "context": ".765m**；期末银行及其他借款 **RMB 127.449m** | 短期资金压力仍存在，尽管借款口径不等于全部有"
+      }
+    ]
+  },
+  "tags_raw": {},
+  "tags_final": {
+    "【事实/数据】": 1
+  },
+  "all_labels_raw": {},
+  "all_labels_final": {
+    "【事实/数据】": 1
+  },
+  "answer_bound_events": 1,
+  "answer_bound_line": 891
+}

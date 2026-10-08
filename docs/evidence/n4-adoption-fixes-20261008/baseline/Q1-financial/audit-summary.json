@@ -1,0 +1,433 @@
+{
+  "case": "Q1",
+  "profile": "financial",
+  "run_id": "ca8c6343-d435-4a27-9e71-8495b1af34cc",
+  "question": "伊利 2024 年业绩为什么下滑？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 72199,
+  "usage": {
+    "input": 195418,
+    "output": 2690,
+    "calls": 6,
+    "costUsd": 0.00927464,
+    "uncachedInput": 66394,
+    "cacheRead": 129024,
+    "cacheWrite": 0,
+    "reasoning": 1082,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 478,
+        "output": 54,
+        "calls": 1,
+        "costUsd": 7.48e-05,
+        "uncachedInput": 478,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 478,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 194940,
+        "output": 2636,
+        "calls": 5,
+        "costUsd": 0.00919984,
+        "uncachedInput": 65916,
+        "cacheRead": 129024,
+        "cacheWrite": 0,
+        "reasoning": 1082,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 194940,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 195418,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "calls": [
+    {
+      "line": 20,
+      "name": "list_documents",
+      "toolCallId": "call_pT1V47Lw3vW64AvgB3BPRDyc|fc_097d7e545c6781de016ac71a2b582c87d0bb919bbacaac65e7",
+      "args": {
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 22,
+      "name": "get_data_catalog",
+      "toolCallId": "call_zFbawP7k0SVqT07cLficZigo|fc_097d7e545c6781de016ac71a2b584887d087b75ba865ca8d58",
+      "args": {
+        "query": "伊利 2024",
+        "statement": null,
+        "offset": 0,
+        "limit": 40,
+        "document_id": null,
+        "company": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 24,
+      "name": "search_evidence",
+      "toolCallId": "call_1SnUFASo8fvQfeD939DJsTKl|fc_097d7e545c6781de016ac71a2b585487d0a9a91f9688fe4afb",
+      "args": {
+        "query": "2024 业绩 下滑 原因 收入 净利润",
+        "company": "伊利",
+        "year": 2024,
+        "limit": 10,
+        "filters": {},
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 38,
+      "name": "financial_workpaper",
+      "toolCallId": "call_uqhNXJpIoKGXwQkRSb1obtDn|fc_097d7e545c6781de016ac71a357e1887d089a0bcf7882cc657",
+      "args": {
+        "kind": "statement_analysis",
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "company": "伊利",
+        "scope": "consolidated",
+        "periods": [
+          "2023-FY",
+          "2024-FY"
+        ],
+        "focus": "收入、归母净利润、扣非净利润及非经常损益；利润表驱动、现金流及ROE",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 40,
+      "name": "financial_workpaper",
+      "toolCallId": "call_ICl2Zfdz6YImNTGURVkzjXLi|fc_097d7e545c6781de016ac71a357e3087d0a7c91e364d3880c6",
+      "args": {
+        "kind": "variance_attribution",
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "company": "伊利",
+        "scope": "consolidated",
+        "periods": [
+          "2023-FY",
+          "2024-FY"
+        ],
+        "focus": "营业收入、营业成本、毛利、销售费用、管理费用、资产减值、投资收益、归母净利润变动原因",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 42,
+      "name": "financial_workpaper",
+      "toolCallId": "call_EwRXC6BNEBPtzbLgW1nq1kPc|fc_097d7e545c6781de016ac71a357e3887d0a1012cacc88acf83",
+      "args": {
+        "kind": "anomaly_signals",
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "company": "伊利",
+        "scope": "consolidated",
+        "periods": [
+          "2023-FY",
+          "2024-FY"
+        ],
+        "focus": "利润下降、收入与现金流、减值与费用率",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 56,
+      "name": "search_evidence",
+      "toolCallId": "call_1hcw0UT49azBOAu5zt6TekeU|fc_097d7e545c6781de016ac71a41de3087d0ae9439ec45a96d27",
+      "args": {
+        "query": "营业收入下降 2024 原因 市场 消费需求 液态奶 奶粉 业务",
+        "company": "伊利",
+        "year": 2024,
+        "limit": 8,
+        "filters": {
+          "document_ids": [
+            "d84573bf6b584e7e874faa4c6adf454a"
+          ]
+        },
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 58,
+      "name": "search_evidence",
+      "toolCallId": "call_IvOoDGwBJNKya43rtLdNEG6Z|fc_097d7e545c6781de016ac71a41de4087d0b8c6d887911088d1",
+      "args": {
+        "query": "资产减值损失增加 原因 2024 伊利",
+        "company": "伊利",
+        "year": 2024,
+        "limit": 8,
+        "filters": {
+          "document_ids": [
+            "d84573bf6b584e7e874faa4c6adf454a"
+          ]
+        },
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 60,
+      "name": "get_source_page",
+      "toolCallId": "call_tkhgKqd7FbFMQrWzqHJ8y91G|fc_097d7e545c6781de016ac71a41de4887d091170b65960b1a07",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 7,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 62,
+      "name": "get_source_page",
+      "toolCallId": "call_BrB4M34a72U5cToyifDd7eAL|fc_097d7e545c6781de016ac71a41de4c87d086e011b7ea62597f",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 8,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 78,
+      "name": "get_source_page",
+      "toolCallId": "call_N0M5VYE4MyqMaGPJuu8N4jCt|fc_097d7e545c6781de016ac71a4dd3ac87d092fb321aa7d500a3",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 82,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 80,
+      "name": "get_source_page",
+      "toolCallId": "call_ykYrwcra1mPOzh2YhSwksYU2|fc_097d7e545c6781de016ac71a4dd3c087d0be16032294a4ec8c",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 211,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 82,
+      "name": "get_source_page",
+      "toolCallId": "call_c0U78hFOc7CVI5x2XYATDLoy|fc_097d7e545c6781de016ac71a4dd3c887d083f2ef3f77b123fd",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 19,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 84,
+      "name": "get_source_page",
+      "toolCallId": "call_QP7LCvyJmAkTKPLEmADVdG6m|fc_097d7e545c6781de016ac71a4dd3d487d0a910aa18fae8321d",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 91,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "line": 7,
+      "requestId": "f0662012-fbe2-49b7-950c-bbb355d92449",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "2db38673-ca14-4a67-81ac-d99203d2fd76",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 444
+    },
+    {
+      "line": 14,
+      "requestId": "23b0c643-b8e4-4337-b7e9-ccebf44032d8",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "2db38673-ca14-4a67-81ac-d99203d2fd76",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 30710
+    },
+    {
+      "line": 32,
+      "requestId": "7ec330aa-7abc-41fc-af96-29373a220977",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "2db38673-ca14-4a67-81ac-d99203d2fd76",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 56482
+    },
+    {
+      "line": 50,
+      "requestId": "a95b1687-5941-4303-86a1-f0178eefbf89",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "2db38673-ca14-4a67-81ac-d99203d2fd76",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 157793
+    },
+    {
+      "line": 72,
+      "requestId": "ecb44548-20ea-414c-80d7-c3c8fbcbb3de",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "2db38673-ca14-4a67-81ac-d99203d2fd76",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 179952
+    },
+    {
+      "line": 94,
+      "requestId": "20d0e662-341c-4d59-931c-855bd1f0413a",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "2db38673-ca14-4a67-81ac-d99203d2fd76",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 196016
+    }
+  ],
+  "workpaper_kinds": [
+    "statement_analysis",
+    "variance_attribution",
+    "anomaly_signals"
+  ],
+  "binding": {
+    "bound": 0,
+    "unbound": 23,
+    "total": 23,
+    "ratio": 0.0,
+    "placeholders": [],
+    "unbound_values": [
+      {
+        "value": "1,153.93亿元",
+        "context": "果 | |---|---:| | 营业收入 | 1,153.93亿元，同比下降8.24% | | 归母净利润 | 84.53"
+      },
+      {
+        "value": "8.24%",
+        "context": "| 营业收入 | 1,153.93亿元，同比下降8.24% | | 归母净利润 | 84.53亿元，同比下降18."
+      },
+      {
+        "value": "84.53亿元",
+        "context": "元，同比下降8.24% | | 归母净利润 | 84.53亿元，同比下降18.94% | | 扣非归母净利润 | 60"
+      },
+      {
+        "value": "18.94%",
+        "context": "| | 归母净利润 | 84.53亿元，同比下降18.94% | | 扣非归母净利润 | 60.11亿元，同比下降4"
+      },
+      {
+        "value": "60.11亿元",
+        "context": "比下降18.94% | | 扣非归母净利润 | 60.11亿元，同比下降40.04% | | 经营活动现金流净额 | "
+      },
+      {
+        "value": "40.04%",
+        "context": "| 扣非归母净利润 | 60.11亿元，同比下降40.04% | | 经营活动现金流净额 | 217.40亿元，同比"
+      },
+      {
+        "value": "217.40亿元",
+        "context": "降40.04% | | 经营活动现金流净额 | 217.40亿元，同比增长18.86% |  （年报PDF）  ### "
+      },
+      {
+        "value": "18.86%",
+        "context": "营活动现金流净额 | 217.40亿元，同比增长18.86% |  （年报PDF）  ### 主要拖累因素 **液体"
+      },
+      {
+        "value": "12.32%",
+        "context": "奶粉及奶制品增长未能抵消。**液体乳收入同比下降12.32%，年报拆分显示，销量下降减少收入约60.46亿元，销售价"
+      },
+      {
+        "value": "60.46亿元",
+        "context": "降12.32%，年报拆分显示，销量下降减少收入约60.46亿元，销售价格变动减少约35.21亿元，产品结构调整减少约9"
+      },
+      {
+        "value": "35.21亿元",
+        "context": "下降减少收入约60.46亿元，销售价格变动减少约35.21亿元，产品结构调整减少约9.70亿元；冷饮收入下降18.41"
+      },
+      {
+        "value": "9.70亿元",
+        "context": "价格变动减少约35.21亿元，产品结构调整减少约9.70亿元；冷饮收入下降18.41%，销量影响是主要拖累。奶粉及奶"
+      },
+      {
+        "value": "18.41%",
+        "context": "元，产品结构调整减少约9.70亿元；冷饮收入下降18.41%，销量影响是主要拖累。奶粉及奶制品收入增长7.53%，但"
+      },
+      {
+        "value": "7.53%",
+        "context": "41%，销量影响是主要拖累。奶粉及奶制品收入增长7.53%，但不足以弥补前两项的下降。（） **资产减值增加，特别"
+      },
+      {
+        "value": "46.76亿元",
+        "context": "资产减值增加，特别是商誉减值。**资产减值损失为46.76亿元，上年为15.26亿元，增加约31.50亿元；其中商誉减"
+      },
+      {
+        "value": "15.26亿元",
+        "context": "誉减值。**资产减值损失为46.76亿元，上年为15.26亿元，增加约31.50亿元；其中商誉减值损失30.75亿元。"
+      },
+      {
+        "value": "31.50亿元",
+        "context": "失为46.76亿元，上年为15.26亿元，增加约31.50亿元；其中商誉减值损失30.75亿元。信用减值损失也由1.6"
+      },
+      {
+        "value": "30.75亿元",
+        "context": "26亿元，增加约31.50亿元；其中商誉减值损失30.75亿元。信用减值损失也由1.60亿元增至5.55亿元，年报称增"
+      },
+      {
+        "value": "1.60亿元",
+        "context": "其中商誉减值损失30.75亿元。信用减值损失也由1.60亿元增至5.55亿元，年报称增加主要是本期计提保理风险准备增"
+      },
+      {
+        "value": "5.55亿元",
+        "context": "30.75亿元。信用减值损失也由1.60亿元增至5.55亿元，年报称增加主要是本期计提保理风险准备增加。（）    "
+      },
+      {
+        "value": "25.64亿元",
+        "context": "幅。**非经常性损益中，非流动性资产处置损益为正25.64亿元，对报告净利润形成缓冲；因此，单看归母净利润降幅会低估主"
+      },
+      {
+        "value": "24.16亿元",
+        "context": "### 补充观察与限制  第四季度归母净利润为负24.16亿元，扣非归母净利润为负24.98亿元；但全年经营现金流仍增"
+      },
+      {
+        "value": "24.98亿元",
+        "context": "归母净利润为负24.16亿元，扣非归母净利润为负24.98亿元；但全年经营现金流仍增长。年报解释，现金流增加主要与**"
+      }
+    ]
+  },
+  "tags_raw": {},
+  "tags_final": {},
+  "all_labels_raw": {},
+  "all_labels_final": {},
+  "answer_bound_events": 1,
+  "answer_bound_line": 795
+}

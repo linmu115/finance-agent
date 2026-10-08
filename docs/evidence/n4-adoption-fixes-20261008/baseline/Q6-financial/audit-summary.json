@@ -1,0 +1,540 @@
+{
+  "case": "Q6",
+  "profile": "financial",
+  "run_id": "6a04349a-9394-44a8-8deb-1b1ecf37c108",
+  "question": "卡罗特这半年利润为什么下降，主要是什么拖累？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 75266,
+  "usage": {
+    "input": 198640,
+    "output": 2509,
+    "calls": 7,
+    "costUsd": 0.00876906,
+    "uncachedInput": 61424,
+    "cacheRead": 137216,
+    "cacheWrite": 0,
+    "reasoning": 751,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 480,
+        "output": 50,
+        "calls": 1,
+        "costUsd": 7.3e-05,
+        "uncachedInput": 480,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 480,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 198160,
+        "output": 2459,
+        "calls": 6,
+        "costUsd": 0.00869606,
+        "uncachedInput": 60944,
+        "cacheRead": 137216,
+        "cacheWrite": 0,
+        "reasoning": 751,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 198160,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 198640,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "calls": [
+    {
+      "line": 20,
+      "name": "get_data_catalog",
+      "toolCallId": "call_J9qP2KIPJQcrREJjwQPzJgNx|fc_048ade0380d32a49016ac71dd3fb6087d0a426d7b49b346f56",
+      "args": {
+        "query": "卡罗特 利润",
+        "statement": null,
+        "offset": 0,
+        "limit": 40,
+        "document_id": null,
+        "company": null,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 22,
+      "name": "query_research_records",
+      "toolCallId": "call_hYs0w9LPnxNzTlwlnA1VC5Cg|fc_048ade0380d32a49016ac71dd3fb7087d089c8261f03a35d0b",
+      "args": {
+        "filters": {
+          "entity": "卡罗特",
+          "query": "利润",
+          "latest_per_series": true
+        },
+        "offset": 0,
+        "limit": 40,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 24,
+      "name": "list_documents",
+      "toolCallId": "call_VAk67YXFttIwGJoOx8hLW9jU|fc_048ade0380d32a49016ac71dd3fb7887d0b4805cd400d7d52c",
+      "args": {
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 38,
+      "name": "financial_workpaper",
+      "toolCallId": "call_iNMijZlX0u4IczDDlTkuRkB1|fc_048ade0380d32a49016ac71ddcbc3c87d09b0b3260e1d7fc29",
+      "args": {
+        "kind": "statement_analysis",
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "company": null,
+        "scope": "consolidated",
+        "periods": [
+          "2025-H1",
+          "2024-H1"
+        ],
+        "focus": "净利润下降原因；扣非与非经常损益、现金流及ROE，重点比较收入、毛利、费用、减值及其他收益",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 40,
+      "name": "financial_workpaper",
+      "toolCallId": "call_kPCM3mcSDh2hKK0WMNW2B77t|fc_048ade0380d32a49016ac71ddcbc5087d084c95e2ff8cd3126",
+      "args": {
+        "kind": "variance_attribution",
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "company": null,
+        "scope": "consolidated",
+        "periods": [
+          "2025-H1",
+          "2024-H1"
+        ],
+        "focus": "利润同比变化及披露原因",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 42,
+      "name": "get_document_index",
+      "toolCallId": "call_hr9a4O1RzgZp64xKbhJ9CZ9A|fc_048ade0380d32a49016ac71ddcbc5887d08c67ccf69943463b",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "section": "pages",
+        "query": "profit revenue cost expenses",
+        "offset": 0,
+        "limit": 20,
+        "page_start": null,
+        "page_end": null,
+        "include_preview": true,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 56,
+      "name": "get_artifact",
+      "toolCallId": "call_l0k2DkcdyiCFJB4a4iqhdTnO|fc_048ade0380d32a49016ac71de7ed2487d0934de71b5d87e7d0",
+      "args": {
+        "run_id": "fa980b41894b412d89234b1c853523fb",
+        "name": "numeric_tables.json",
+        "rows": null,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 58,
+      "name": "get_artifact",
+      "toolCallId": "call_5QxOWaCZi0ok0vSyqCFvi4r9|fc_048ade0380d32a49016ac71de7ed3887d084304c843a59b2f9",
+      "args": {
+        "run_id": "019b1b9e8d4144d38555ade7dca552fb",
+        "name": "numeric_tables.json",
+        "rows": null,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 60,
+      "name": "get_artifact",
+      "toolCallId": "call_qNVZ6shAUONo46xthCAzv3VW|fc_048ade0380d32a49016ac71de7ed4087d09c40f695ebcbf83d",
+      "args": {
+        "run_id": "019b1b9e8d4144d38555ade7dca552fb",
+        "name": "drivers_evidence.csv",
+        "rows": null,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 62,
+      "name": "search_evidence",
+      "toolCallId": "call_47HutbjguNAkyQFAgAQCrfe1|fc_048ade0380d32a49016ac71de7ed4887d081d8a9447e07f56b",
+      "args": {
+        "query": "毛利率下降 原因 销售成本 2025 上半年",
+        "company": "Carote Ltd",
+        "year": 2025,
+        "limit": 10,
+        "filters": {
+          "document_ids": [
+            "3d9d0befd8374eed9a7488dbd8dd00d2"
+          ]
+        },
+        "offset": 0,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 78,
+      "name": "query_financial_data",
+      "toolCallId": "call_ll8ib0rZ0cXRxqic5y9AsqNj|fc_048ade0380d32a49016ac71df4495087d08bfe32e4b445c179",
+      "args": {
+        "filters": {
+          "company": "Carote Ltd",
+          "periods": [
+            "2025-H1",
+            "2024-H1"
+          ],
+          "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2"
+        },
+        "limit": 80,
+        "offset": 0,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 80,
+      "name": "get_source_table",
+      "toolCallId": "call_s8TvrEGm9BZXZpzxDnE1r2NU|fc_048ade0380d32a49016ac71df4496487d0b7a081702ed7d435",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t11",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 82,
+      "name": "get_source_page",
+      "toolCallId": "call_xVcA1LSwTRoqOZOTpUX73ZA9|fc_048ade0380d32a49016ac71df4496c87d089d561beb22dc7e9",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 8,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 84,
+      "name": "get_source_page",
+      "toolCallId": "call_z4Fmt9XjN3gVMsaMiRU6tIlu|fc_048ade0380d32a49016ac71df4497087d096fbf51737e22c33",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 9,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 100,
+      "name": "get_source_page",
+      "toolCallId": "call_xcMCacrZoD7K8NouGqNO0lBE|fc_048ade0380d32a49016ac71dfcf90087d094a4431cc302f195",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 10,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 102,
+      "name": "get_source_page",
+      "toolCallId": "call_Rsu6cCF0Llwr8WddTcgVUGZW|fc_048ade0380d32a49016ac71dfcf91487d0b499d7cb33a29684",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 11,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 104,
+      "name": "get_source_page",
+      "toolCallId": "call_ag0SUPA5sxTkmo30a073r7wm|fc_048ade0380d32a49016ac71dfcf91c87d09d6947453f1ce191",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 12,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 106,
+      "name": "get_source_page",
+      "toolCallId": "call_3DweCPDMzBMY8Pp3ux0SyPlD|fc_048ade0380d32a49016ac71dfcf92487d0b3ef248a1fbc9c8b",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 13,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "type": "tool_error",
+      "line": 64,
+      "data": {
+        "name": "get_artifact",
+        "toolCallId": "call_qNVZ6shAUONo46xthCAzv3VW|fc_048ade0380d32a49016ac71de7ed4087d09c40f695ebcbf83d",
+        "message": "RunnerError"
+      }
+    },
+    {
+      "type": "tool_error",
+      "line": 66,
+      "data": {
+        "name": "get_artifact",
+        "toolCallId": "call_5QxOWaCZi0ok0vSyqCFvi4r9|fc_048ade0380d32a49016ac71de7ed3887d084304c843a59b2f9",
+        "message": "RunnerError"
+      }
+    },
+    {
+      "type": "tool_error",
+      "line": 68,
+      "data": {
+        "name": "get_artifact",
+        "toolCallId": "call_l0k2DkcdyiCFJB4a4iqhdTnO|fc_048ade0380d32a49016ac71de7ed2487d0934de71b5d87e7d0",
+        "message": "RunnerError"
+      }
+    }
+  ],
+  "requests": [
+    {
+      "line": 7,
+      "requestId": "7b75201a-4cc3-4123-8a6d-e2863c8c0b0b",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "c0f02fc8-584d-4f21-a3df-3cf1e8781f2d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 449
+    },
+    {
+      "line": 14,
+      "requestId": "cb6d8874-81cd-4f0c-bb84-273e96657038",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "c0f02fc8-584d-4f21-a3df-3cf1e8781f2d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 30715
+    },
+    {
+      "line": 32,
+      "requestId": "93c53042-6e73-4c7c-9564-5b731c8bdeb7",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "c0f02fc8-584d-4f21-a3df-3cf1e8781f2d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 39643
+    },
+    {
+      "line": 50,
+      "requestId": "4a90f25e-067e-473b-acd6-56d71c9f9aa7",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "c0f02fc8-584d-4f21-a3df-3cf1e8781f2d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 96602
+    },
+    {
+      "line": 72,
+      "requestId": "7cde0a7b-1fe1-494f-9688-775fff035de4",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "c0f02fc8-584d-4f21-a3df-3cf1e8781f2d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 105257
+    },
+    {
+      "line": 94,
+      "requestId": "ae585624-83e7-4dd9-ab33-c5db20202516",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "c0f02fc8-584d-4f21-a3df-3cf1e8781f2d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 215997
+    },
+    {
+      "line": 116,
+      "requestId": "b39afb74-4e25-4088-a424-f2181c308f93",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "c0f02fc8-584d-4f21-a3df-3cf1e8781f2d",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 234369
+    }
+  ],
+  "workpaper_kinds": [
+    "statement_analysis",
+    "variance_attribution"
+  ],
+  "binding": {
+    "bound": 0,
+    "unbound": 26,
+    "total": 26,
+    "ratio": 0.0,
+    "placeholders": [],
+    "unbound_values": [
+      {
+        "value": "1.641亿元",
+        "context": "利损失。  **披露**：上半年净利润由约人民币1.641亿元降至1.028亿元，同比下降37.4%；收入下降12.4"
+      },
+      {
+        "value": "1.028亿元",
+        "context": "露**：上半年净利润由约人民币1.641亿元降至1.028亿元，同比下降37.4%；收入下降12.4%，毛利下降28."
+      },
+      {
+        "value": "37.4%",
+        "context": "人民币1.641亿元降至1.028亿元，同比下降37.4%；收入下降12.4%，毛利下降28.7%，净利率从17."
+      },
+      {
+        "value": "12.4%",
+        "context": "降至1.028亿元，同比下降37.4%；收入下降12.4%，毛利下降28.7%，净利率从17.2%降至12.3%。"
+      },
+      {
+        "value": "28.7%",
+        "context": "同比下降37.4%；收入下降12.4%，毛利下降28.7%，净利率从17.2%降至12.3%。【Carote 中期"
+      },
+      {
+        "value": "17.2%",
+        "context": "收入下降12.4%，毛利下降28.7%，净利率从17.2%降至12.3%。【Carote 中期报告，；docume"
+      },
+      {
+        "value": "12.3%",
+        "context": "4%，毛利下降28.7%，净利率从17.2%降至12.3%。【Carote 中期报告，；document_id：】"
+      },
+      {
+        "value": "1.136亿元",
+        "context": "id：】  ## 主要拖累  - **毛利减少约1.136亿元，是核心压力。** 分解计算显示，其中约6,471万元来"
+      },
+      {
+        "value": "6,471万元",
+        "context": "36亿元，是核心压力。** 分解计算显示，其中约6,471万元来自毛利率下降，约4,894万元来自收入减少。整体毛利率"
+      },
+      {
+        "value": "4,894万元",
+        "context": "计算显示，其中约6,471万元来自毛利率下降，约4,894万元来自收入减少。整体毛利率同比下降约7.73个百分点。 -"
+      },
+      {
+        "value": "7.73个百分点",
+        "context": "4,894万元来自收入减少。整体毛利率同比下降约7.73个百分点。 - **收入端：** 报告将收入下降归因于美国加征关"
+      },
+      {
+        "value": "48.3%",
+        "context": "本、相应减少欧洲和东南亚销售。ODM收入同比下降48.3%，品牌业务下降7.5%。【】 - **毛利率端：** 公"
+      },
+      {
+        "value": "7.5%",
+        "context": "销售。ODM收入同比下降48.3%，品牌业务下降7.5%。【】 - **毛利率端：** 公司披露，品牌业务毛利率"
+      },
+      {
+        "value": "45.4%",
+        "context": " **毛利率端：** 公司披露，品牌业务毛利率从45.4%降至35.3%，主要因为美国额外关税推高成本；ODM毛利"
+      },
+      {
+        "value": "35.3%",
+        "context": "：** 公司披露，品牌业务毛利率从45.4%降至35.3%，主要因为美国额外关税推高成本；ODM毛利率约从11.8"
+      },
+      {
+        "value": "11.8%",
+        "context": "，主要因为美国额外关税推高成本；ODM毛利率约从11.8%升至12.0%，基本稳定。因此毛利率恶化主要落在品牌业务"
+      },
+      {
+        "value": "12.0%",
+        "context": "额外关税推高成本；ODM毛利率约从11.8%升至12.0%，基本稳定。因此毛利率恶化主要落在品牌业务，而非ODM毛"
+      },
+      {
+        "value": "749万元",
+        "context": "节省和财务收入增长抵消了部分压力：销售费用减少约749万元、管理费用减少约965万元、研发费用减少约335万元；净"
+      },
+      {
+        "value": "965万元",
+        "context": "分压力：销售费用减少约749万元、管理费用减少约965万元、研发费用减少约335万元；净财务收入增加约2,211万"
+      },
+      {
+        "value": "335万元",
+        "context": "9万元、管理费用减少约965万元、研发费用减少约335万元；净财务收入增加约2,211万元，所得税费用减少对净利润"
+      },
+      {
+        "value": "2,211万元",
+        "context": "万元、研发费用减少约335万元；净财务收入增加约2,211万元，所得税费用减少对净利润贡献约1,402万元。报告称管理"
+      },
+      {
+        "value": "1,402万元",
+        "context": "加约2,211万元，所得税费用减少对净利润贡献约1,402万元。报告称管理费用下降主要因为本期没有上市费用，净财务收入"
+      },
+      {
+        "value": "1,110万元",
+        "context": "【计算；报告】  **口径提醒：** 上半年含约1,110万元上市费用；按公司披露的非HKFRS调整口径，加回该费用后"
+      },
+      {
+        "value": "1.752亿元",
+        "context": "HKFRS调整口径，加回该费用后，调整后净利润由1.752亿元降至1.028亿元，同比下降约41.3%，降幅反而大于报"
+      },
+      {
+        "value": "1.028亿元",
+        "context": "，加回该费用后，调整后净利润由1.752亿元降至1.028亿元，同比下降约41.3%，降幅反而大于报告净利润口径。该调"
+      },
+      {
+        "value": "41.3%",
+        "context": "润由1.752亿元降至1.028亿元，同比下降约41.3%，降幅反而大于报告净利润口径。该调整口径由公司定义，不等"
+      }
+    ]
+  },
+  "tags_raw": {},
+  "tags_final": {},
+  "all_labels_raw": {
+    "【Carote 2025中期报告，第9、11、13页；document_id：3d9d0befd8374eed9a7488dbd8dd00d2】": 1,
+    "【第9页】": 1,
+    "【第11页】": 1,
+    "【计算；报告第11—12页】": 1,
+    "【计算；报告第13页】": 1
+  },
+  "all_labels_final": {
+    "【Carote 2025中期报告，第9、11、13页；document_id：3d9d0befd8374eed9a7488dbd8dd00d2】": 1,
+    "【第9页】": 1,
+    "【第11页】": 1,
+    "【计算；报告第11—12页】": 1,
+    "【计算；报告第13页】": 1
+  },
+  "answer_bound_events": 1,
+  "answer_bound_line": 791
+}
