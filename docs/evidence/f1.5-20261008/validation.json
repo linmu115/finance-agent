@@ -1,0 +1,33 @@
+{
+  "version": "F1.5",
+  "base": "33a3bc895e75ba7702fbb70a341d879c8d740c35",
+  "target": "bf52838174106c83260d10091fa771b756955430",
+  "evaluation_window": "closed by user",
+  "product_files": [
+    "server/runs.ts",
+    "server/transport-retry.ts"
+  ],
+  "transport_tests": {
+    "passed": 3,
+    "failed": 0
+  },
+  "regressions": {
+    "passed": 26,
+    "failed": 0
+  },
+  "typecheck": "passed",
+  "build": "passed; pre-existing chunk-size warning retained",
+  "model_calls": 0,
+  "source_contexts": "default and analysis_only instructions, full schemas and request guidance same as F1.4 after cwd normalization",
+  "haier_preexisting_failure": {
+    "run_id": "e85349a5-4e2e-4b45-91fe-c3fc93e7e62a",
+    "finished_at": "2026-10-08T21:28:35.020+08:00",
+    "reason": "stream closed before response.completed",
+    "cancel_sent": false,
+    "tables_completed": 161,
+    "tables_total": 344,
+    "facts": 2102
+  },
+  "deployment": "pending at commit; actual runtime in data/evaluation/f1.5-20261008",
+  "bounds": "synthetic replay; no claim of real upstream or unattended overnight acceptance"
+}

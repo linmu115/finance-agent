@@ -1,0 +1,553 @@
+{
+  "timestamp": "2026-10-08T16:46:24.7967750+08:00",
+  "base_commit": "3df658fd56fbc075f340e2baba0015bd1d29fc01",
+  "branch": "feat/transport-retry",
+  "deployment": "not_merged_not_deployed",
+  "live_listener_pid": 84032,
+  "paid_model_calls": 0,
+  "source": "synthetic native Pi + RunManager + MCP stdio with isolated data",
+  "retry_policy": {
+    "max_retries": 3,
+    "logical_ingestion_progress": "existing independent mechanism",
+    "backoff_ms": [
+      2000,
+      4000,
+      8000
+    ],
+    "reset": "successful native assistant response"
+  },
+  "checks": {
+    "build": "passed",
+    "typecheck": "passed",
+    "related_regressions": {
+      "passed": 25,
+      "failed": 0
+    },
+    "targeted_tests": {
+      "passed": 3,
+      "failed": 0
+    },
+    "diff_check": "passed"
+  },
+  "prior_findings": [
+    "Initial worktree node_modules junction rejected by dependency integrity check; copied physical dependencies locally, shared main dependencies unchanged.",
+    "One budget test assertion initially used the wrong expected error name; corrected to the existing evaluation_budget_exceeded:max_model_calls.",
+    "Native Pi reports aborted budget response as retry success; host audit now reports success=false and retains nativeSuccess=true."
+  ],
+  "boundaries": [
+    "No paid model calls or held-out data.",
+    "No service restart, ingestion pause, primary database write or Docker operation.",
+    "New tests use in-process provider; three existing regression fixtures briefly used temporary loopback provider mocks and closed them.",
+    "Main assistant loop transport errors only; extraction/router/summary retry strategies were not expanded."
+  ],
+  "runs": [
+    {
+      "case": "user_cancel_during_backoff",
+      "run_id": "13791f6f-e05d-4f54-a357-d42edb75675d",
+      "requests": 1,
+      "attempts": [
+        {
+          "requestId": "da25bfb8-7b50-4056-9efe-64eccac6eb15",
+          "phase": "main",
+          "usagePhase": "main",
+          "messageId": "aed12cdf-17c4-4aaa-80b2-828df032a414",
+          "reasoningEffort": "off",
+          "stopReason": "error",
+          "usage": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 0,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          },
+          "usageKnown": false,
+          "error": "stream error: stream disconnected before completion: stream closed before response.completed"
+        }
+      ],
+      "retry_starts": [
+        {
+          "attempt": 1,
+          "maxRetries": 3,
+          "delayMs": 2000,
+          "error": "Network error: stream error: stream disconnected before completion: stream closed before response.completed"
+        }
+      ],
+      "retry_ends": [
+        {
+          "attempt": 1,
+          "success": false,
+          "nativeSuccess": false,
+          "error": "用户取消任务"
+        }
+      ],
+      "committed_tool_results": 0
+    },
+    {
+      "case": "business_error_no_retry",
+      "run_id": "415a6119-4aaf-400f-9aad-91527fbf2098",
+      "requests": 1,
+      "attempts": [
+        {
+          "requestId": "a516ce0c-b384-4866-8bc8-0c689b555587",
+          "phase": "main",
+          "usagePhase": "main",
+          "messageId": "fc5aa876-7834-4256-862c-edf131859961",
+          "reasoningEffort": "off",
+          "stopReason": "error",
+          "usage": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 0,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          },
+          "usageKnown": false,
+          "error": "invalid_request_error: HTTP 500 schema validation"
+        }
+      ],
+      "retry_starts": [],
+      "retry_ends": [],
+      "committed_tool_results": 0
+    },
+    {
+      "case": "retry_exhausted",
+      "run_id": "4b7d9b8a-9e1d-450f-9a46-3061716a084b",
+      "requests": 4,
+      "attempts": [
+        {
+          "requestId": "527f274e-389c-4cd5-a5f9-0be1c903cb73",
+          "phase": "main",
+          "usagePhase": "main",
+          "messageId": "ad544d97-f406-426f-8045-d85426254666",
+          "reasoningEffort": "off",
+          "stopReason": "error",
+          "usage": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 0,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          },
+          "usageKnown": false,
+          "error": "stream error: stream disconnected before completion: stream closed before response.completed"
+        },
+        {
+          "requestId": "a182528e-6498-4122-b4c7-4d7c7d354d14",
+          "phase": "main",
+          "usagePhase": "main",
+          "messageId": "ad544d97-f406-426f-8045-d85426254666",
+          "reasoningEffort": "off",
+          "stopReason": "error",
+          "usage": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 0,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          },
+          "usageKnown": false,
+          "error": "stream error: stream disconnected before completion: stream closed before response.completed"
+        },
+        {
+          "requestId": "f15ba1f9-a0db-4548-bfc1-cbb2cc0fe584",
+          "phase": "main",
+          "usagePhase": "main",
+          "messageId": "ad544d97-f406-426f-8045-d85426254666",
+          "reasoningEffort": "off",
+          "stopReason": "error",
+          "usage": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 0,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          },
+          "usageKnown": false,
+          "error": "stream error: stream disconnected before completion: stream closed before response.completed"
+        },
+        {
+          "requestId": "39246972-c3c5-40f1-aa7d-f6f80f8bb8b1",
+          "phase": "main",
+          "usagePhase": "main",
+          "messageId": "ad544d97-f406-426f-8045-d85426254666",
+          "reasoningEffort": "off",
+          "stopReason": "error",
+          "usage": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 0,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          },
+          "usageKnown": false,
+          "error": "stream error: stream disconnected before completion: stream closed before response.completed"
+        }
+      ],
+      "retry_starts": [
+        {
+          "attempt": 1,
+          "maxRetries": 3,
+          "delayMs": 2000,
+          "error": "Network error: stream error: stream disconnected before completion: stream closed before response.completed"
+        },
+        {
+          "attempt": 2,
+          "maxRetries": 3,
+          "delayMs": 4000,
+          "error": "Network error: stream error: stream disconnected before completion: stream closed before response.completed"
+        },
+        {
+          "attempt": 3,
+          "maxRetries": 3,
+          "delayMs": 8000,
+          "error": "Network error: stream error: stream disconnected before completion: stream closed before response.completed"
+        }
+      ],
+      "retry_ends": [
+        {
+          "attempt": 3,
+          "success": false,
+          "nativeSuccess": false,
+          "error": "Network error: stream error: stream disconnected before completion: stream closed before response.completed"
+        }
+      ],
+      "committed_tool_results": 0
+    },
+    {
+      "case": "budget_stops_retries",
+      "run_id": "588580e8-6b7b-49f4-9c2d-5bf93e0b676b",
+      "requests": 2,
+      "attempts": [
+        {
+          "requestId": "0523f83f-8581-43e9-861b-15b45d303d3c",
+          "phase": "main",
+          "usagePhase": "main",
+          "messageId": "1abfd6e5-b86a-4203-8b4b-5fc54e9cace0",
+          "reasoningEffort": "off",
+          "stopReason": "error",
+          "usage": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 0,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          },
+          "usageKnown": false,
+          "error": "stream error: stream disconnected before completion: stream closed before response.completed"
+        },
+        {
+          "requestId": "6f1fd369-5650-4fc1-bc2c-5097817e7aa5",
+          "phase": "main",
+          "usagePhase": "main",
+          "messageId": "1abfd6e5-b86a-4203-8b4b-5fc54e9cace0",
+          "reasoningEffort": "off",
+          "stopReason": "error",
+          "usage": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 0,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          },
+          "usageKnown": false,
+          "error": "stream error: stream disconnected before completion: stream closed before response.completed"
+        }
+      ],
+      "retry_starts": [
+        {
+          "attempt": 1,
+          "maxRetries": 3,
+          "delayMs": 2000,
+          "error": "Network error: stream error: stream disconnected before completion: stream closed before response.completed"
+        },
+        {
+          "attempt": 2,
+          "maxRetries": 3,
+          "delayMs": 4000,
+          "error": "Network error: stream error: stream disconnected before completion: stream closed before response.completed"
+        }
+      ],
+      "retry_ends": [
+        {
+          "attempt": 2,
+          "success": false,
+          "nativeSuccess": true,
+          "error": "evaluation_budget_exceeded:max_model_calls"
+        }
+      ],
+      "committed_tool_results": 0
+    },
+    {
+      "case": "reused_session_recovery",
+      "run_id": "82cf0ac4-642a-470f-9f2e-f8f0957b51e9",
+      "requests": 2,
+      "attempts": [
+        {
+          "requestId": "8e59b646-e0dd-4a3c-84b1-35ac8ad16c36",
+          "phase": "main",
+          "usagePhase": "main",
+          "messageId": "b679e4ec-b960-4fc3-a871-526a26b47027",
+          "reasoningEffort": "off",
+          "stopReason": "error",
+          "usage": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 0,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          },
+          "usageKnown": false,
+          "error": "HTTP 503 Service Unavailable"
+        },
+        {
+          "requestId": "07e9528e-e468-40fb-aeac-d83dfb329248",
+          "phase": "main",
+          "usagePhase": "main",
+          "messageId": "b679e4ec-b960-4fc3-a871-526a26b47027",
+          "reasoningEffort": "off",
+          "stopReason": "stop",
+          "usage": {
+            "input": 5,
+            "output": 1,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 6,
+            "cost": {
+              "input": 4.9999999999999996E-06,
+              "output": 2E-06,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 6.999999999999999E-06
+            }
+          },
+          "usageKnown": true
+        }
+      ],
+      "retry_starts": [
+        {
+          "attempt": 1,
+          "maxRetries": 3,
+          "delayMs": 2000,
+          "error": "HTTP 503 Service Unavailable"
+        }
+      ],
+      "retry_ends": [
+        {
+          "attempt": 1,
+          "success": true,
+          "nativeSuccess": true
+        }
+      ],
+      "committed_tool_results": 0
+    },
+    {
+      "case": "recovery_after_committed_tool",
+      "run_id": "8b1506b3-4f37-4f8c-9e5e-52f00eec9627",
+      "requests": 5,
+      "attempts": [
+        {
+          "requestId": "fd7f7b6b-f3f2-4a68-8a4e-5bdb5b7d81c2",
+          "phase": "main",
+          "usagePhase": "main",
+          "messageId": "bbdd418c-d934-4097-8240-92388a9938f9",
+          "reasoningEffort": "off",
+          "stopReason": "toolUse",
+          "usage": {
+            "input": 10,
+            "output": 1,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 11,
+            "cost": {
+              "input": 9.999999999999999E-06,
+              "output": 2E-06,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 1.1999999999999999E-05
+            }
+          },
+          "usageKnown": true
+        },
+        {
+          "requestId": "d3ea0343-c520-4ef7-b6d8-caac08dd5e08",
+          "phase": "main",
+          "usagePhase": "cleaning",
+          "messageId": "bbdd418c-d934-4097-8240-92388a9938f9",
+          "reasoningEffort": "off",
+          "stopReason": "toolUse",
+          "usage": {
+            "input": 20,
+            "output": 2,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 22,
+            "cost": {
+              "input": 1.9999999999999998E-05,
+              "output": 4E-06,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 2.3999999999999997E-05
+            }
+          },
+          "usageKnown": true
+        },
+        {
+          "requestId": "7ee938cf-bd16-445d-ba81-dad031cda1fc",
+          "phase": "main",
+          "usagePhase": "cleaning",
+          "messageId": "bbdd418c-d934-4097-8240-92388a9938f9",
+          "reasoningEffort": "off",
+          "stopReason": "error",
+          "usage": {
+            "input": 30,
+            "output": 3,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 33,
+            "cost": {
+              "input": 2.9999999999999997E-05,
+              "output": 6E-06,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 3.5999999999999994E-05
+            }
+          },
+          "usageKnown": true,
+          "error": "stream error: stream disconnected before completion: stream closed before response.completed"
+        },
+        {
+          "requestId": "86fa7510-e229-4f09-b6f3-75ebe2ef357c",
+          "phase": "main",
+          "usagePhase": "cleaning",
+          "messageId": "bbdd418c-d934-4097-8240-92388a9938f9",
+          "reasoningEffort": "off",
+          "stopReason": "error",
+          "usage": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 0,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          },
+          "usageKnown": false,
+          "error": "TLS connection closed"
+        },
+        {
+          "requestId": "d532f405-37b4-4682-a8d9-be0fb101b6db",
+          "phase": "main",
+          "usagePhase": "cleaning",
+          "messageId": "bbdd418c-d934-4097-8240-92388a9938f9",
+          "reasoningEffort": "off",
+          "stopReason": "stop",
+          "usage": {
+            "input": 40,
+            "output": 4,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 44,
+            "cost": {
+              "input": 3.9999999999999996E-05,
+              "output": 8E-06,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 4.7999999999999994E-05
+            }
+          },
+          "usageKnown": true
+        }
+      ],
+      "retry_starts": [
+        {
+          "attempt": 1,
+          "maxRetries": 3,
+          "delayMs": 2000,
+          "error": "Network error: stream error: stream disconnected before completion: stream closed before response.completed"
+        },
+        {
+          "attempt": 2,
+          "maxRetries": 3,
+          "delayMs": 4000,
+          "error": "Network error: TLS connection closed"
+        }
+      ],
+      "retry_ends": [
+        {
+          "attempt": 2,
+          "success": true,
+          "nativeSuccess": true
+        }
+      ],
+      "committed_tool_results": 1
+    }
+  ]
+}
