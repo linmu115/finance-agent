@@ -52,3 +52,27 @@ def dimensions_ok(record):
 def preferred_version(records):
     restated = [r for r in records if metadata(r).get('restatement') in ('restated', 'adjusted')]
     return restated or records
+
+
+def interpret_workpaper_dimensions(service, records):
+    """Interpret independent read results; never persist roles or rewrite IDs."""
+    import json
+    from .cleaning_rules import context
+    from .table_identity import table_index
+    by_document = defaultdict(list)
+    for record in records:
+        by_document[record['document_id']].append(record)
+    with service.store.connect() as db:
+        for did, rows in by_document.items():
+            saved = db.execute('SELECT prepared_json FROM prepared_documents WHERE document_id=?', (did,)).fetchone()
+            if not saved:
+                continue
+            parsed = json.loads(saved[0])
+            groups = defaultdict(list)
+            for r in rows:
+                groups[table_index(r['source_ref'].get('table_id'), did)].append({**r, 'source': r['source_ref']})
+            for table in parsed['tables']:
+                local = groups.get(table['index'])
+                if local:
+                    classify_dimensions(table, local, context(parsed, table))
+    return records

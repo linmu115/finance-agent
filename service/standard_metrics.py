@@ -350,7 +350,7 @@ def standard_metric(label, *, context=None):
 
 
 def canonical_rows(table,rows,label_column=1,statement='notes',schema=None,topic=None,context=None):
-    """Source labels, not English guesses, own standard row identifiers."""
+    """Retain mapped row IDs; only existing source dimensions/dates are applied."""
     import copy
     import json
     rows=copy.deepcopy(rows)
@@ -370,17 +370,10 @@ def canonical_rows(table,rows,label_column=1,statement='notes',schema=None,topic
         measured_columns=columns or [{'column':c} for c in range(label_column+1,len(raw)+1)]
         if any(not column_semantics(table,row['row'],c['column'],c.get('label'))['row_metric_safe'] for c in measured_columns):
             metric=None
-        if metric and attrs.get('metric'):
-            if attrs['metric'] != metric:
-                aliases=attrs.setdefault('source_metric_aliases',[])
-                if attrs['metric'] not in aliases:aliases.append(attrs['metric'])
-            attrs['metric']=metric
         if statement=='notes' and topic and metric in {'impairment_allowance','trading_financial_assets'}:
             dims=attrs.get('dimensions_json') or {}
             dims=json.loads(dims) if isinstance(dims,str) else copy.deepcopy(dims)
             dims.setdefault('asset_class',topic);attrs['dimensions_json']=json.dumps(dims,ensure_ascii=False)
-            if metric=='trading_financial_assets' and topic=='other_noncurrent_financial_assets':
-                attrs['metric']='financial_assets_fvtpl'
         label=normalize_label(raw[label_column-1])
         endpoint=re.fullmatch(r'(期初|年初|期末|年末)(?:余额|账面价值)',label)
         if endpoint:

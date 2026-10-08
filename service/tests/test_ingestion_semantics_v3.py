@@ -16,14 +16,14 @@ def fact(metric, label, value='12', dimensions=None, column=2, row=2, column_lab
 
 
 class SourceIdentityTests(unittest.TestCase):
-    def test_disclosed_deducted_profit_retains_alias_and_is_adoptable(self):
+    def test_disclosed_deducted_profit_keeps_original_id_and_read_role(self):
         label = '归属于上市公司股东的扣除非经常性损益的净利润'
         table = {'rows': [['主要会计数据', '2024年'], [label, '12']]}
         f = fact('net_profit_parent_ex_nonrecurring', label, dimensions={'financial_item': 'net_profit_excluding_nonrecurring'})
         apply_metric_normalization(table, [f]); classify_dimensions(table, [f])
-        self.assertEqual(f['metric'], 'net_profit_excluding_nonrecurring')
-        self.assertEqual(f['source']['normalization']['metric_aliases'], ['net_profit_parent_ex_nonrecurring'])
-        self.assertTrue(dimensions_ok(f))
+        self.assertEqual(f['metric'], 'net_profit_parent_ex_nonrecurring')
+        self.assertNotIn('metric_aliases', f['source']['normalization'])
+        self.assertTrue(dimensions_ok(f))  # existing concept aliases work without rewriting IDs
         before = copy.deepcopy(f)
         apply_metric_normalization(table, [f]); classify_dimensions(table, [f])
         self.assertEqual(f, before)
@@ -61,20 +61,20 @@ class SourceIdentityTests(unittest.TestCase):
     def test_parallel_table_does_not_inherit_other_row_label(self):
         table = {'rows': [['项目','本年','项目','本年'], ['营业收入','12','投资收益','8']]}
         f = fact('custom_investment', '投资收益', value='8', column=4)
-        apply_metric_normalization(table, [f]); self.assertEqual(f['metric'], 'investment_income')
+        apply_metric_normalization(table, [f]); self.assertEqual(f['metric'], 'custom_investment')
         f = fact('unknown_detail', '未识别明细', value='8', column=4)
         apply_metric_normalization(table, [f]); self.assertEqual(f['metric'], 'unknown_detail')
 
     def test_period_balance_column_next_to_change_column_can_normalize(self):
         table={'rows':[['项目','本期期末数','变动比例(%)'],['合同负债','12','3']]}
         f=fact('balance_sheet_item','合同负债',column_label='本期期末余额')
-        apply_metric_normalization(table,[f]); self.assertEqual(f['metric'],'contract_liabilities')
+        apply_metric_normalization(table,[f]); self.assertEqual(f['metric'],'balance_sheet_item')
 
     def test_explicit_metric_column_is_supported(self):
         table = {'rows': [['公司', '净利润'], ['子公司甲', '12']]}
         f = fact('subsidiary_net_profit', '子公司甲', dimensions={'subsidiary':'甲'}, column_label='净利润')
         apply_metric_normalization(table, [f]); classify_dimensions(table, [f])
-        self.assertEqual(f['metric'], 'net_profit'); self.assertFalse(dimensions_ok(f))
+        self.assertEqual(f['metric'], 'subsidiary_net_profit'); self.assertFalse(dimensions_ok(f))
 
     def test_version_is_not_a_business_slice_and_restated_is_selected(self):
         table = {'rows': [['项目','调整前','调整后'], ['营业收入','12','15']]}

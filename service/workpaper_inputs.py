@@ -123,6 +123,8 @@ def read_standard_tables(service, project, doc, company, existing):
         geometry_sources = {(r['row'], c['column'], c.get('numeric_span', {}).get('start')): c['source_geometry']
                             for r in item['rows'] for c in json.loads(r['attributes'].get('columns_json', '[]')) if c.get('source_geometry')}
         apply_source_dimensions(t, raw, context=ctx)
+        from .dimension_semantics import classify_dimensions
+        classify_dimensions(t, raw, context=ctx)  # transient workpaper rows only
         apply_source_semantics(parsed, t, raw, ctx)
         for issue in issues:
             if (locator['table_id'], issue.get('row'), issue.get('column')) in known_positions: continue

@@ -3,8 +3,6 @@ import re
 
 
 def apply_source_dimensions(table, facts, page_text='', context=None):
-    from .metric_normalization import apply_metric_normalization
-    apply_metric_normalization(table, facts, context)
     rows=table['rows']
     counterparty_columns={c for row in rows[:3] for c,raw in enumerate(row,1)
                           if re.fullmatch(r'\s*(?:关联方(?:名称)?|交易对方|往来单位(?:名称)?|Related part(?:y|ies)|Counterparty)\s*',str(raw),re.I)}
@@ -33,6 +31,4 @@ def apply_source_dimensions(table, facts, page_text='', context=None):
         if side and not re.search(r'asset|liabil|payabl|receivabl|cash|equity|debt',fact['metric'],re.I):
             dims['balance_side']=side;proof['balance_side']={'page':table['page'],'heading':headings[-1]}
         if not proof:meta.pop('source_dimension_evidence',None)
-    from .dimension_semantics import classify_dimensions
-    classify_dimensions(table, facts, context)
     return facts

@@ -59,9 +59,9 @@ class ScriptCleaningTests(unittest.TestCase):
         rid=self.job(payload)
         self.s.commit_cleaning_result('p',self.pid,rid)
         with self.s.store.connect() as db:
-            rows=[dict(r) for r in db.execute("SELECT * FROM facts WHERE metric='revenue'")]
+            rows=[dict(r) for r in db.execute("SELECT * FROM facts WHERE metric='bespoke_turnover'")]
         self.assertEqual(len(rows),2)
-        self.assertTrue(all(json.loads(r['source_json'])['normalization']['metric_aliases']==['bespoke_turnover'] for r in rows))
+        self.assertTrue(all('metric_aliases' not in json.loads(r['source_json'])['normalization'] for r in rows))
         details=self.s.get_normalization_details('p',self.did)['data']
         self.assertIn('cost',{r['metric'] for r in details['metric_review']['items']})
         reviewed=self.s.get_normalization_details('p',self.did,review_only=True)['data']

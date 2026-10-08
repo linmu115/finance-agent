@@ -54,37 +54,15 @@ def source_metric(table, fact, context=None):
 
 
 def apply_metric_normalization(table, facts, context=None):
+    """F2.0: candidates are read-only; ingestion never rewrites metric IDs."""
     review = []
     for fact in facts:
-        ref = fact['source']
-        row, column = ref.get('row'), ref.get('column')
-        contextual = isinstance(row, int) and isinstance(column, int) and 1 <= row <= len(table['rows']) and any(
-            normalize_label(c) in CONTEXTUAL_LABELS for c in table['rows'][row - 1][:column - 1])
-        previous = ref.get('normalization', {}).get('metric_normalization', {})
-        independent_column = isinstance(row, int) and isinstance(column, int) and bool(
-            column_semantics(table,row,column,ref.get('normalization',{}).get('column_label'))['measure_kinds'])
-        if fact['metric'] in STANDARD_METRICS and not contextual and not previous and not independent_column:
-            continue
         metric, evidence = source_metric(table, fact, context)
-        meta = fact['source'].setdefault('normalization', {})
-        if not metric:
-            if evidence and evidence.get('reason'):
-                # The original ID is preserved by the very rule being undone.
-                # Never invent a replacement when the prior rule lost meaning.
-                if previous and meta.get('metric_aliases'):
-                    fact['metric'] = meta['metric_aliases'][-1]
-                    meta.pop('metric_normalization', None)
-                    meta['metric_normalization_reverted'] = {'version':VERSION, **evidence}
-            review.append({'metric': fact['metric'], 'table_id': fact['source'].get('table_id'),
+        if metric != fact['metric']:
+            review.append({'metric': fact['metric'], 'canonical_candidate': metric,
+                           'table_id': fact['source'].get('table_id'),
                            'row': fact['source'].get('row'), 'column': fact['source'].get('column'),
-                           'reason': (evidence or {}).get('reason', '原行或列标签不能精确确定标准指标，保留原 ID')})
-            continue
-        if fact['metric'] != metric:
-            aliases = meta.setdefault('metric_aliases', [])
-            if fact['metric'] not in aliases:
-                aliases.append(fact['metric'])
-            fact['metric'] = metric
-            meta['metric_normalization'] = {'version': VERSION, 'canonical_metric': metric, 'evidence': evidence}
+                           'reason': 'F2.0 已停用指标 ID 改写；仅供待核', 'evidence': evidence})
     return review
 
 

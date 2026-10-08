@@ -1,7 +1,7 @@
 import copy
 import unittest
 
-from service.metric_normalization import apply_metric_normalization
+from service.metric_normalization import apply_metric_normalization, source_metric
 from service.source_dimensions import apply_source_dimensions
 from service.standard_metrics import CONTEXTUAL_LABELS, STANDARD_METRICS, canonical_rows, exact_standard_metric
 from service.tests.test_ingestion_semantics_v3 import fact
@@ -23,8 +23,9 @@ class MetricContextTests(unittest.TestCase):
                     table = {'rows':[[heading,''],[label,'12']]}
                     f = fact('original_metric', label)
                     apply_metric_normalization(table, [f])
-                    self.assertEqual(f['metric'], expected)
-                    self.assertEqual(f['source']['normalization']['metric_aliases'], ['original_metric'])
+                    self.assertEqual(source_metric(table, f)[0], expected)
+                    self.assertEqual(f['metric'], 'original_metric')
+                    self.assertNotIn('metric_aliases', f['source']['normalization'])
                     before = copy.deepcopy(f)
                     apply_metric_normalization(table, [f])
                     self.assertEqual(f, before)
@@ -45,7 +46,8 @@ class MetricContextTests(unittest.TestCase):
                        ['Other information:',''],['Non-controlling interests','12']]}
         fs=[fact('original_metric','Non-controlling interests',row=i) for i in (2,4,6)]
         apply_metric_normalization(table,fs,{'statement':'balance','text':'Consolidated Statement of Financial Position'})
-        self.assertEqual([f['metric'] for f in fs],['minority_profit','comprehensive_income_minority','original_metric'])
+        self.assertEqual([f['metric'] for f in fs],['original_metric']*3)
+        self.assertEqual([source_metric(table,f,{'statement':'balance','text':'Consolidated Statement of Financial Position'})[0] for f in fs],['minority_profit','comprehensive_income_minority',None])
 
     def test_source_statement_and_continued_attribution_heading(self):
         table={'rows':[['Non-controlling interests','12']]}
@@ -56,15 +58,16 @@ class MetricContextTests(unittest.TestCase):
                                ('Profit attributable to:\n3 OTHER INFORMATION','original_metric')]:
             f=fact('original_metric','Non-controlling interests',row=1)
             apply_metric_normalization(table,[f],{'text':text})
-            self.assertEqual(f['metric'],expected)
+            self.assertEqual(f['metric'],'original_metric')
+            self.assertEqual(source_metric(table,f,{'text':text})[0],None if expected=='original_metric' else expected)
 
-    def test_previous_wrong_canonical_metric_is_corrected_with_history_alias(self):
+    def test_existing_metric_and_alias_history_are_not_rewritten(self):
         table={'rows':[['Profit attributable to:',''],['Non-controlling interests','12']]}
         f=fact('minority_interests','Non-controlling interests')
         f['source']['normalization']['metric_aliases']=['non_controlling_interests']
         apply_metric_normalization(table,[f])
-        self.assertEqual(f['metric'],'minority_profit')
-        self.assertEqual(f['source']['normalization']['metric_aliases'],['non_controlling_interests','minority_interests'])
+        self.assertEqual(f['metric'],'minority_interests')
+        self.assertEqual(f['source']['normalization']['metric_aliases'],['non_controlling_interests'])
 
     def test_equity_movement_matrix_is_not_row_normalized(self):
         table={'rows':[['Profit attributable to:',''],['Owners of the Company','12']]}
@@ -78,14 +81,14 @@ class MetricContextTests(unittest.TestCase):
             table={'rows':[[heading,''],['Non-controlling interests','12']]}
             rows=[{'row':2,'attributes':{'metric':'custom'}}]
             out=canonical_rows(table,rows,statement='income')
-            self.assertEqual(out[0]['attributes']['metric'],expected)
+            self.assertEqual(out[0]['attributes']['metric'],'custom')
 
-    def test_descriptive_dimension_uses_same_context(self):
+    def test_submission_does_not_persist_descriptive_roles(self):
         label='Non-controlling interests'
         table={'rows':[['Profit attributable to:',''],[label,'12']]}
         f=fact('custom',label,dimensions={'financial_item':label})
         apply_source_dimensions(table,[f])
-        self.assertEqual(f['source']['normalization']['dimension_roles'],{'financial_item':'descriptive'})
+        self.assertNotIn('dimension_roles',f['source']['normalization'])
 
     def test_contextual_contract_targets_exist_and_oci_does_not_invent_tax_basis(self):
         for targets in CONTEXTUAL_LABELS.values():
@@ -97,7 +100,7 @@ class MetricContextTests(unittest.TestCase):
         table={'rows':[['项目名称','本期期末数'],['其他综合收益','12']]}
         f=fact('balance_sheet_item','其他综合收益')
         apply_metric_normalization(table,[f],{'text':'1、资产及负债状况','statement':'notes'})
-        self.assertEqual(f['metric'],'other_comprehensive_income')
+        self.assertEqual(f['metric'],'balance_sheet_item')
 
 
 class EmptySubtotalTests(unittest.TestCase):
@@ -143,7 +146,7 @@ class ColumnMeaningTests(unittest.TestCase):
         for header in ['2024年12月31日','本期期末数','2024（调整后）','As at June 30, 2024']:
             table={'rows':[['项目',header],['存货','12']]}
             f=fact('inventories','存货');apply_metric_normalization(table,[f])
-            self.assertEqual(f['metric'],'inventory',header)
+            self.assertEqual(f['metric'],'inventories',header)
         f=fact('custom_inventory','存货')
         apply_metric_normalization({'rows':[['项目','Different measure'],['存货','12']]},[f])
         self.assertEqual(f['metric'],'custom_inventory')
@@ -152,16 +155,16 @@ class ColumnMeaningTests(unittest.TestCase):
         label='经营活动产生的现金流量净额'
         table={'rows':[['项目','2024年'],[label,'12']]}
         f=fact('operating_cash_flow_net',label,column_label=label)
-        apply_metric_normalization(table,[f]);self.assertEqual(f['metric'],'operating_cash_flow')
+        apply_metric_normalization(table,[f]);self.assertEqual(f['metric'],'operating_cash_flow_net')
         table={'rows':[['','For the Six months Ended June 30,'],['','(in millions, except percentages)'],['Profit for the period','12']]}
         f=fact('profit_for_the_period','Profit for the period',row=3)
-        apply_metric_normalization(table,[f]);self.assertEqual(f['metric'],'net_profit')
+        apply_metric_normalization(table,[f]);self.assertEqual(f['metric'],'profit_for_the_period')
 
     def test_movement_neighbor_does_not_change_the_period_balance_column(self):
         table={'rows':[['项目','期末余额','变动金额'],['存货','12','2']]}
         fs=[fact('original_balance','存货'),fact('original_change','存货',column=3,value='2')]
         apply_metric_normalization(table,fs)
-        self.assertEqual([f['metric'] for f in fs],['inventory','original_change'])
+        self.assertEqual([f['metric'] for f in fs],['original_balance','original_change'])
 
     def test_shifted_header_does_not_erase_movement_and_profit_impact(self):
         table={'rows':[['','项目名称','','','期初余额','','','期末余额','','','当期变动','','','对当期利润的影响金额',''],
@@ -171,7 +174,7 @@ class ColumnMeaningTests(unittest.TestCase):
         review=apply_metric_normalization(table,fs)
         self.assertEqual([f['metric'] for f in fs],ids);self.assertEqual(len(review),4)
 
-    def test_bad_previous_normalization_is_reverted_and_second_apply_is_stable(self):
+    def test_previous_normalization_is_preserved_for_explicit_future_migration(self):
         table={'rows':[['项目','账面价值'],['库存商品','12']]}
         f=fact('finished_goods_inventory','库存商品')
         n=f['source']['normalization']
@@ -180,9 +183,9 @@ class ColumnMeaningTests(unittest.TestCase):
         n['dimension_roles']={'financial_item':'descriptive'}
         n['dimensions']={'financial_item':'finished_goods_inventory'}
         apply_source_dimensions(table,[f])
-        self.assertEqual(f['metric'],'inventory_net_carrying_amount')
-        self.assertNotIn('metric_normalization',n)
-        self.assertNotIn('dimension_roles',n)
+        self.assertEqual(f['metric'],'finished_goods_inventory')
+        self.assertIn('metric_normalization',n)
+        self.assertEqual(n['dimension_roles'],{'financial_item':'descriptive'})
         before=copy.deepcopy(f);apply_source_dimensions(table,[f]);self.assertEqual(f,before)
 
     def test_canonical_rows_do_not_overwrite_matrix_row_identity(self):

@@ -83,7 +83,9 @@ def load_facts(service, project, document_id=None, company=None):
             args.extend(['%'+company+'%',*names])
         # Keep every source row: retrieval deduplication can replace a statement
         # total by its summary occurrence, destroying the cash bridge row order.
-        return [service._expanded_fact(dict(r)) for r in db.execute(query,args)]
+        facts = [service._expanded_fact(dict(r)) for r in db.execute(query,args)]
+    from .dimension_semantics import interpret_workpaper_dimensions
+    return interpret_workpaper_dimensions(service, facts)
 
 
 class Statement:
