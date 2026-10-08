@@ -1,4 +1,5 @@
-import {evaluationIsolation,bindEvaluationIsolation} from './evaluation-isolation.js';
+import {withEvaluationScope,bindEvaluationIsolation} from './evaluation-isolation.js';
+import {ORIGINAL_PI_PROMPT,ORIGINAL_PI_TOOLS,ORIGINAL_PI_TOOL_ALLOWLIST,isOriginalPi} from './original-pi.js';
 import {emptyUsage,addUsage as tallyUsage,aggregateAudit} from './usage.js';
 import {artifactMediaType} from './artifact-media.js';
 import {registerNumericTables,referenceInventory} from './numeric-tables.js';
@@ -43,12 +44,12 @@ TOOL_ALLOWLIST.add(ADMIN_TOOL.name);TOOL_ALLOWLIST.add(RESOURCE_TOOL.name);
 export const GENERIC_TOOL_ALLOWLIST=new Set(['prepare_document_sources','list_documents','get_document','get_document_index','get_source_page','get_source_table','search_evidence','run_analysis','get_analysis_status','get_artifact']);
 const GENERIC_PROMPT="你是通用文档分析助手。附件先 prepare_document_sources，按需读取原文页表；本配置 /input/facts.json 为空。自由计算和制图用 run_analysis，状态和产物用其后续工具读取。report、save_table 和答案绑定是共享能力，可自由使用 Python/Matplotlib。";
 const PREPARED_PROMPT="你是通用文档分析助手。附件先 prepare_document_sources；已准备资料可用目录和结构化查询，也可读原文。自由计算和制图用 run_analysis，运行状态与产物由其后续工具读取。report、save_table 和答案绑定是两组共享能力；可自由使用标准 Python/Matplotlib。";
-const genericProfile=(profile?:string)=>profile==='generic'||profile==='prepared';
-const evaluationPrompt=(profile?:string)=>(profile==='prepared'?PREPARED_PROMPT:GENERIC_PROMPT)+'\n\n'+SHARED_TASK_GUIDANCE+'\n\n'+ANSWER_FORMAT_GUIDANCE;
+const genericProfile=(profile?:string)=>profile==='generic'||profile==='prepared'||isOriginalPi(profile);
+const evaluationPrompt=(profile?:string)=>isOriginalPi(profile)?ORIGINAL_PI_PROMPT:(profile==='prepared'?PREPARED_PROMPT:GENERIC_PROMPT)+'\n\n'+SHARED_TASK_GUIDANCE+'\n\n'+ANSWER_FORMAT_GUIDANCE;
 export const PREPARED_TOOL_ALLOWLIST=new Set([...GENERIC_TOOL_ALLOWLIST,'get_data_catalog','query_financial_data','query_research_records']);
 const INGESTION_TOOLS=new Set(['process_documents','inspect_document_routing','set_document_profile','get_cleaning_batch','run_cleaning_script','get_cleaning_result','commit_cleaning_result','save_research_claims']);
 const toolAllowlist=(profile?:string,analysisOnly=false)=>{
- const tools=profile==='prepared'?PREPARED_TOOL_ALLOWLIST:profile==='generic'?GENERIC_TOOL_ALLOWLIST:TOOL_ALLOWLIST;
+ const tools=isOriginalPi(profile)?ORIGINAL_PI_TOOL_ALLOWLIST:profile==='prepared'?PREPARED_TOOL_ALLOWLIST:profile==='generic'?GENERIC_TOOL_ALLOWLIST:TOOL_ALLOWLIST;
  return analysisOnly?new Set([...tools].filter(name=>!INGESTION_TOOLS.has(name))):tools;
 };
 const ANALYSIS_ONLY_GUIDANCE='本次评测只分析已有资料，不发起或续跑入库。已入库记录照常查询，原文页和原表可按需读取；缺失明确说明，不以文档处理状态阻断分析。';
@@ -154,7 +155,8 @@ export class RunManager {
  }
  private promptFor(l:LiveRun,message:Message){
   const docs=message.attachments||[],generic=genericProfile(l.chat.evaluationProfile),analysisOnly=l.run.request?.evaluation?.analysis_only===true;
-  return '应用消息标识：'+message.id+'\n当前项目：'+l.run.projectId+'\n本次附件 document_id：'+JSON.stringify(docs)+(analysisOnly?'\n'+ANALYSIS_ONLY_GUIDANCE:'')+(docs.length?(generic||analysisOnly?'\n附件已保存。用prepare_document_sources取得原文，然后完成用户任务。':'\n附件已保存。默认调用 process_documents 处理财务主表及附注表并入库；之后回答用户任务。'):'')+'\n用户任务：\n'+annotationContext(message)+message.content+(l.contract?'\n当前任务输出契约：\n'+l.contract:'');
+  const analysisGuidance=isOriginalPi(l.chat.evaluationProfile)?'本次评测只使用已准备的原文，不发起入库。':ANALYSIS_ONLY_GUIDANCE;
+  return '应用消息标识：'+message.id+'\n当前项目：'+l.run.projectId+'\n本次附件 document_id：'+JSON.stringify(docs)+(analysisOnly?'\n'+analysisGuidance:'')+(docs.length?(generic||analysisOnly?'\n附件已保存。用prepare_document_sources取得原文，然后完成用户任务。':'\n附件已保存。默认调用 process_documents 处理财务主表及附注表并入库；之后回答用户任务。'):'')+'\n用户任务：\n'+annotationContext(message)+message.content+(l.contract?'\n当前任务输出契约：\n'+l.contract:'');
  }
  private async queueInputs(l:LiveRun){
   if(!l.session)return;
@@ -318,13 +320,13 @@ export class RunManager {
   if(!generic)for(const spec of [ADMIN_TOOL,RESOURCE_TOOL])customTools.push({name:spec.name,label:spec.name,description:spec.description,parameters:spec.inputSchema,execute:async(toolCallId:string,params:Record<string,any>)=>this.executeTool(e.active!,settings,spec.name,toolCallId,params)});
   if(!generic)for(const spec of RESEARCH_TOOLS)customTools.push({name:spec.name,label:spec.name,description:spec.description,parameters:{...spec.inputSchema,additionalProperties:false},execute:async(toolCallId:string,params:Record<string,any>)=>this.executeTool(e.active!,settings,spec.name,toolCallId,params)});
   if(!generic)for(const spec of ARTIFACT_TOOLS)customTools.push({name:spec.name,label:spec.name,description:spec.description,parameters:{...spec.inputSchema,additionalProperties:false},execute:async(toolCallId:string,params:Record<string,any>)=>this.executeTool(e.active!,settings,spec.name,toolCallId,params)});
-  for(const spec of await this.service.tools()){
+  for(const spec of isOriginalPi(l.chat.evaluationProfile)?ORIGINAL_PI_TOOLS:await this.service.tools()){
    if(!allowlist.has(spec.name)||spec.name==='process_documents')continue;
    const schema:any=structuredClone(spec.inputSchema);delete schema.properties?.project_id;
    delete schema.properties?.raw_only;delete schema.properties?.financial_tools;
    schema.required=(schema.required||[]).filter((key:string)=>key!=='project_id');schema.additionalProperties=false;
    let description=spec.description||spec.name;
-   if(spec.name==='run_analysis'&&generic){
+   if(spec.name==='run_analysis'&&generic&&!isOriginalPi(l.chat.evaluationProfile)){
     description=description.split(/(?:^|\n)\s*Finance:/)[0]+' 本配置用标准 Python/Matplotlib，不挂载 finance_charts 或保存的金融模型。';
     delete schema.properties?.model_refs;delete schema.properties?.comparisons;
    }
@@ -373,7 +375,7 @@ export class RunManager {
   };
   const bindingExtension=answerBindingExtension({enabled:()=>!this.isIngestion(e.active!),render:(body,degrade)=>this.renderAnswer(e.active!,body,degrade),audit:(type,data)=>this.audit(e.active!,type,data),repairSent:()=>e.active!.bindingRepairMessage===e.active!.answer.id,markRepair:()=>{e.active!.bindingRepairMessage=e.active!.answer.id;},error:error=>{e.active!.bindingError=error;}});
   // Explicit overrides load only application/project resources, never unrelated global instructions.
-  const loader=new DefaultResourceLoader({cwd:workspace,agentDir,settingsManager:manager,noExtensions:true,extensionFactories:[compactionExtension,inputLifecycle,bindingExtension,transportRetryExtension(manager)],noSkills:true,noPromptTemplates:true,noThemes:true,noContextFiles:true,skillsOverride:()=>({skills:resources?.skills.filter(s=>s.enabled)||[],diagnostics:[]}),agentsFilesOverride:()=>({agentsFiles:resources?[{path:resources.rulePath,content:resources.rules}]:[]}),systemPrompt});await loader.reload();
+  const loader=new DefaultResourceLoader({cwd:workspace,agentDir,settingsManager:manager,noExtensions:true,extensionFactories:[compactionExtension,inputLifecycle,...(isOriginalPi(l.chat.evaluationProfile)?[]:[bindingExtension]),transportRetryExtension(manager)],noSkills:true,noPromptTemplates:true,noThemes:true,noContextFiles:true,skillsOverride:()=>({skills:resources?.skills.filter(s=>s.enabled)||[],diagnostics:[]}),agentsFilesOverride:()=>({agentsFiles:resources?[{path:resources.rulePath,content:resources.rules}]:[]}),systemPrompt});await loader.reload();
   const {session}=await createAgentSession({cwd:workspace,agentDir,modelRuntime:runtime,model,thinkingLevel:reasoning?'low':'off',noTools:'builtin',tools:customTools.map(t=>t.name),customTools,resourceLoader:loader,sessionManager,settingsManager:manager});
   e.session=session;this.sessions.set(l.chat.id,e);return e;
  }
@@ -431,20 +433,22 @@ export class RunManager {
   }
  }
  private executeTool(l:LiveRun,settings:Settings,name:string,toolCallId:string,params:Record<string,any>){
-  return evaluationIsolation.run(l.run.request?.evaluation?.isolation_key,()=>this.executeScopedTool(l,settings,name,toolCallId,params));
+  return withEvaluationScope(l.run.request?.evaluation,()=>this.executeScopedTool(l,settings,name,toolCallId,params));
  }
  private async executeScopedTool(l:LiveRun,settings:Settings,name:string,toolCallId:string,params:Record<string,any>){
   l.controller.signal.throwIfAborted();
   if('project_id' in params)throw new Error('工具已绑定当前项目');
   const args:Record<string,any>={...params,project_id:l.run.projectId};
   if(!toolAllowlist(l.chat.evaluationProfile,l.run.request?.evaluation?.analysis_only===true).has(name))throw new Error('工具不属于当前运行配置');
+  const original=isOriginalPi(l.chat.evaluationProfile);
+  if(original&&Object.keys(params).some(key=>!Object.hasOwn(ORIGINAL_PI_TOOLS.find(t=>t.name===name)!.inputSchema.properties,key)))throw new Error('original_pi 不提供此工具参数');
   if(['run_analysis','run_financial_model','compare_financial_models','save_research_report','get_research_model_schema'].includes(name)){l.effort='high';l.usagePhase=undefined;}
   if(name==='run_cleaning_script'){l.effort=l.cleaningRepair?'high':'low';l.usagePhase='cleaning';}
   if(name==='get_cleaning_result'){l.effort=l.cleaningRepair||params.review_effort==='high'?'high':'low';l.usagePhase='cleaning_review';}
   if(['inspect_document_routing','set_document_profile'].includes(name)){l.effort='low';l.usagePhase='document_routing';}
   if(name==='save_research_claims'){l.effort='low';l.usagePhase='research_extraction';}
   if(name==='query_research_records'){l.effort=l.route?.afterIngestion||'high';l.usagePhase=undefined;}
-  if(name==='run_analysis'){args.raw_only=l.chat.evaluationProfile==='generic';args.financial_tools=!genericProfile(l.chat.evaluationProfile);}
+  if(name==='run_analysis'){args.raw_only=original||l.chat.evaluationProfile==='generic';args.financial_tools=!genericProfile(l.chat.evaluationProfile);}
   if(name==='run_analysis')args.timeout_seconds=Math.min(Number(params.timeout_seconds||settings.runtime.timeoutSeconds),settings.runtime.timeoutSeconds);
   const started={name,status:'started',toolCallId,timestamp:iso()};l.run.tools.push(started);this.emit(l,'tool',started);await this.audit(l,'tool_request',{name,toolCallId,args});
   try{
@@ -473,11 +477,13 @@ export class RunManager {
    }
    l.answer.artifacts=latestNamedArtifacts(l.answer.artifacts);
    const done={name,status:'completed',toolCallId,timestamp:iso(),summary:result.warnings?.join('；')||result.status};l.run.tools.push(done);this.emit(l,'tool',done);
-   registerNumericTables(l.numericTables??={},result.data);
-   if(result.data.numeric_tables||result.data.report?.tables||result.data.result?.report?.tables)result.data.references=referenceInventory(l.numericTables!);
+   if(!original){
+    registerNumericTables(l.numericTables??={},result.data);
+    if(result.data.numeric_tables||result.data.report?.tables||result.data.result?.report?.tables)result.data.references=referenceInventory(l.numericTables!);
+   }
    await this.audit(l,'tool_result',{name,toolCallId,messageId:l.answer.id,result});
    l.run.uncertainWrites=l.run.uncertainWrites?.filter(item=>operationKey(item.name,item.args)!==operationKey(name,params));await this.persist(l);
-   return {content:[{type:'text',text:JSON.stringify(modelContext(name,result))}],details:{traceId:result.trace_id}};
+   return {content:[{type:'text',text:JSON.stringify(original?result:modelContext(name,result))}],details:{traceId:result.trace_id}};
   }catch(error){
    const message=redactError(error),details=(error as any)?.details,done={name,status:'failed',toolCallId,timestamp:iso(),summary:message};l.run.tools.push(done);this.emit(l,'tool',done);await this.audit(l,'tool_error',{name,toolCallId,message,details});
    if(l.controller.signal.aborted)throw error;
@@ -503,7 +509,7 @@ export class RunManager {
    return match&&decodeURIComponent(match[1])===l.run.projectId?[{run_id:decodeURIComponent(match[2]),name:decodeURIComponent(match[3])}]:[];
   });
   // Collect all delivery defects together so references, sections and wording share one repair.
-  const result=(await this.service.call('render_answer',{project_id:l.run.projectId,body,tables:l.numericTables||{},charts,degrade:true,files},l.controller.signal)).data;
+  const result=(await withEvaluationScope(l.run.request?.evaluation,()=>this.service.call('render_answer',{project_id:l.run.projectId,body,tables:l.numericTables||{},charts,degrade:true,files},l.controller.signal))).data;
   let bound=result.body as string;
   const issues=[...(result.issues||[]),...missing.map(section=>({kind:'valuation_section',source:'回答',text:section,message:'估值说明缺少：'+section+'。请保留已核对数值并补全；资料不足明确说明。'}))];
   for(const rewrite of result.rewrites||[])await this.audit(l,'answer_reference_rewrite',rewrite);
@@ -601,7 +607,7 @@ export class RunManager {
      if(row.type==='processing_started'&&row.data.mode==='script_cleaning'){
       l.processingIds.add(row.data.processingId);(l.scriptProcessingIds??=new Set()).add(row.data.processingId);
      }
-     if(row.type==='tool_result'&&(!row.data.messageId||row.data.messageId===l.answer.id))registerNumericTables(l.numericTables??={},row.data.result.data);
+     if(!isOriginalPi(l.chat.evaluationProfile)&&row.type==='tool_result'&&(!row.data.messageId||row.data.messageId===l.answer.id))registerNumericTables(l.numericTables??={},row.data.result.data);
     }
    }
    const entry=await this.sessionFor(l,settings),session=entry.session;l.session=session;

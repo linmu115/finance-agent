@@ -279,8 +279,10 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
                 available=[r[0] for r in db.execute('SELECT table_id FROM source_tables WHERE document_id=? ORDER BY page,table_id',(document_id,))]
             raise CleaningToolError('table_not_found_in_document',{'document_id':document_id,'requested_table':table_id,'available_table_ids':available})
         row_sources={}
+        from .evaluation_isolation import original_pi, raw_source
         for source_record in source_records:
             ref=json.loads(source_record["source_json"])
+            if original_pi() and not raw_source(ref):continue
             if ref.get("table_id") and isinstance(ref.get("row"),int):
                 row_sources[(ref["table_id"],ref["row"])]=ref
         tables=[]
@@ -317,7 +319,9 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             chunks=db.execute("SELECT source_id,text,source_json FROM chunks WHERE project_id=? AND document_id=? AND page=? AND source_id IS NOT NULL AND source_id!='' ORDER BY rowid",(project_id,document_id,page)).fetchall()
         if not row:raise ValueError("page_not_found")
         data=dict(row)
-        data["segments"]=[{"source_id":chunk["source_id"],"text":chunk["text"],"source_ref":json.loads(chunk["source_json"])} for chunk in chunks]
+        from .evaluation_isolation import original_pi, raw_source
+        data["segments"]=[{"source_id":chunk["source_id"],"text":chunk["text"],"source_ref":json.loads(chunk["source_json"])} for chunk in chunks
+                          if not original_pi() or raw_source(json.loads(chunk["source_json"]))]
         original=self.store.root/doc["relative_path"]
         if original.suffix.lower()==".pdf":
             target=self.store.root/"artifacts"/project_id/document_id/f"page-{page}.png"
@@ -579,6 +583,12 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
     def run_analysis(self, project_id, code=None, document_ids=None, timeout_seconds=120, raw_only=False, financial_tools=True,
                      model_refs=None, comparisons=None, source_run_id=None, edits=None, report=None, params=None, params_order=None):
         self.store.project(project_id)
+        from .evaluation_isolation import original_pi
+        original=original_pi()
+        if original:
+            if any(value is not None for value in (model_refs,comparisons,source_run_id,edits,report,params,params_order)):
+                raise ValueError('original_pi_analysis_argument_not_available')
+            raw_only=True;financial_tools=False
         previous=None
         if source_run_id:
             self._analysis_state(project_id,source_run_id)
@@ -652,7 +662,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             inputs={"tables.json":table_path,"facts.json":facts_path,"pages.json":pages_path,'research_records.json':research_path}
         script=export/'analysis.py';script.write_text(code,encoding='utf-8');inputs['analysis.py']=script
         plot_runtime=export/'plot_runtime.py';shutil.copyfile(Path(__file__).with_name('plot_runtime.py'),plot_runtime);inputs['plot_runtime.py']=plot_runtime
-        for name in ('analysis_report.py','model_units.py','analysis_report.md','delivery_text.py'):
+        for name in (() if original else ('analysis_report.py','model_units.py','analysis_report.md','delivery_text.py')):
             target=export/name;shutil.copyfile(Path(__file__).with_name(name),target);inputs[name]=target
         if report is not None:
             target=export/'analysis_report.json';target.write_text(dumps(report),encoding='utf-8');inputs['analysis_report.json']=target
@@ -685,15 +695,17 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             return response(result,status="error")
         self._save_analysis_state(project_id,run_id,{"run_id":run_id,"project_id":project_id,"status":"queued","artifacts":[]})
         self.analysis_flags[run_id]=threading.Event()
-        from .plot_runtime import LAUNCH
-        launch=LAUNCH if raw_only or not financial_tools else LAUNCH.replace('setup()\n','setup()\nimport finance_charts\nfinance_charts.configure()\nfrom plot_runtime import deliver_models\ndeliver_models()\n')
+        from .plot_runtime import LAUNCH, ORIGINAL_PI_LAUNCH
+        launch=ORIGINAL_PI_LAUNCH if original else LAUNCH if raw_only or not financial_tools else LAUNCH.replace('setup()\n','setup()\nimport finance_charts\nfinance_charts.configure()\nfrom plot_runtime import deliver_models\ndeliver_models()\n')
         self.analysis_futures[run_id]=self.analysis_pool.submit(copy_context().run,self._analysis_job,runner,project_id,run_id,launch,
                                                               inputs,timeout_seconds,parameter_plan)
+        if original:return response({'run_id':run_id,'state':'queued'},status='accepted')
         return response({"run_id":run_id,"state":"queued",'source_run_id':source_run_id,
                          'model_refs':model_refs or {},'model_data':'/input/models.json' if model_refs else None,
                          'model_bundle':'model_bundle.zip' if model_refs else None},status="accepted")
 
     def _save_analysis_state(self, project_id, run_id, state):
+        from .evaluation_isolation import original_pi
         state=dict(state);state["state"]=state.get("status",state.get("state"))
         with self.store.connect(write=True) as db:
             prior=db.execute("SELECT state_json FROM analysis_jobs WHERE run_id=? AND project_id=?",(run_id,project_id)).fetchone()
@@ -702,17 +714,20 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             key=saved.get('isolation_key') if saved is not None else isolation_key.get()
             state.pop('isolation_key',None)
             if key is not None:state['isolation_key']=key
+            if original_pi() or saved and saved.get('evaluation_profile')=='original_pi':state['evaluation_profile']='original_pi'
             db.execute("INSERT INTO analysis_jobs VALUES(?,?,?,?,?) ON CONFLICT(run_id) DO UPDATE SET state_json=excluded.state_json,updated_at=excluded.updated_at",
                        (run_id,project_id,dumps(state),utcnow(),utcnow()))
         return state
 
     def _analysis_state(self, project_id, run_id):
+        from .evaluation_isolation import original_pi
         self.store.project(project_id)
         with self.store.connect() as db:
             row=db.execute("SELECT state_json FROM analysis_jobs WHERE run_id=? AND project_id=?",(run_id,project_id)).fetchone()
         if not row:raise ValueError("analysis_not_found_in_project")
         state=json.loads(row[0])
         if not visible(state):raise ValueError("analysis_not_found_in_project")
+        if original_pi() and state.get('evaluation_profile')!='original_pi':raise ValueError('analysis_not_found_in_project')
         return state
 
     def _analysis_job(self, runner, project_id, run_id, code, inputs, timeout, parameter_plan=None):
@@ -767,7 +782,8 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
     def get_analysis_status(self, project_id, run_id):
         self.store.project(project_id)
         from .delivery_files import delivery_manifest, delivery_path
-        delivery=delivery_manifest(self.store.root,project_id,run_id)
+        from .evaluation_isolation import original_pi
+        delivery=None if original_pi() else delivery_manifest(self.store.root,project_id,run_id)
         if delivery:
             from .analysis_tables import collect_tables, table_view
             files=delivery[1]['files']
@@ -819,6 +835,8 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
                 time.sleep(.1)
 
     def _analysis_presentation(self, project_id, run_id, state):
+        from .evaluation_isolation import original_pi
+        if original_pi():return state
         if state.get('status') != 'succeeded': return state
         from .analysis_tables import collect_tables, table_view
         runner = self._runner()
@@ -864,6 +882,10 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
     def artifact_path(self, project_id, run_id, name):
         self.store.project(project_id)
         from .delivery_files import delivery_manifest, delivery_path
+        from .evaluation_isolation import original_pi
+        if original_pi():
+            self._analysis_state(project_id,run_id)
+            return self._runner().artifact_path(run_id,name,project_id=project_id)
         delivery=delivery_manifest(self.store.root,project_id,run_id)
         if delivery:return delivery_path(delivery,name)
         if isolation_key.get() is not None:self._analysis_state(project_id,run_id)
@@ -872,4 +894,5 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
     def get_artifact(self, project_id, run_id, name, rows=None):
         path=self.artifact_path(project_id,run_id,name)
         from .analysis_tables import artifact_content
-        return response({"name":name,"relative_path":str(path.relative_to(self.store.root)),"sha256":hashlib.sha256(path.read_bytes()).hexdigest(),"size":path.stat().st_size,"mime_type":mimetypes.guess_type(name)[0] or "application/octet-stream", **artifact_content(path, rows)})
+        from .evaluation_isolation import original_pi
+        return response({"name":name,"relative_path":str(path.relative_to(self.store.root)),"sha256":hashlib.sha256(path.read_bytes()).hexdigest(),"size":path.stat().st_size,"mime_type":mimetypes.guess_type(name)[0] or "application/octet-stream", **({} if original_pi() else artifact_content(path, rows))})
