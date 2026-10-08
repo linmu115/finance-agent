@@ -71,7 +71,9 @@ def reapply_document_facts(service, project_id, document_id, parsed, basis, proc
     from .table_identity import table_index
     from .source_dimensions import apply_source_dimensions
     from .cleaning_rules import context
+    from .source_semantics import apply_source_semantics
     changed=[]
+    profile=service._document_profile(project_id,document_id)
     with service.store.connect(write=True) as db:
         records=[dict(r) for r in db.execute('SELECT * FROM facts WHERE project_id=? AND document_id=?',(project_id,document_id))]
         facts=[r|{'source':json.loads(r['source_json'])} for r in records]
@@ -79,15 +81,19 @@ def reapply_document_facts(service, project_id, document_id, parsed, basis, proc
         for table in parsed['tables']:
             local=[f for f in facts if table_index(f['source'].get('table_id'),document_id)==table['index'] and
                    isinstance(f['source'].get('row'),int) and 1<=f['source']['row']<=len(table['rows'])]
-            if local:apply_source_dimensions(table,local,context=context(parsed,table))
+            if local:
+                ctx=context(parsed,table)
+                apply_source_dimensions(table,local,context=ctx)
+                if (profile or {}).get('kind','financial_report')=='financial_report':
+                    apply_source_semantics(parsed,table,local,ctx)
         for old,fact in zip(records,facts):
             meta=fact['source']['normalization']
             if basis['basis']!='unknown':
                 fact['scope']=apply_basis({'schema':{'scope':fact['scope']}},basis)['schema']['scope']
                 meta['accounting_basis']={k:basis[k] for k in ('basis','version','status')}
-            if old['scope']==fact['scope'] and json.loads(old['source_json'])==fact['source']:continue
+            if all(old[k]==fact[k] for k in ('scope','period','year')) and json.loads(old['source_json'])==fact['source']:continue
             db.execute('INSERT INTO fact_history VALUES(?,?,?,?,?,?)',(uuid.uuid4().hex,project_id,document_id,processing_id,dumps(old),utcnow()))
-            meta['document_semantics_revision']={'processing_id':processing_id,'reason':'source_basis_and_dimensions','basis_evidence':basis['evidence']}
-            db.execute('UPDATE facts SET scope=?,source_json=? WHERE fact_id=?',(fact['scope'],dumps(fact['source']),old['fact_id']))
+            meta['document_semantics_revision']={'processing_id':processing_id,'reason':'source_basis_dimensions_period_scope','basis_evidence':basis['evidence']}
+            db.execute('UPDATE facts SET scope=?,period=?,year=?,source_json=? WHERE fact_id=?',(fact['scope'],fact['period'],fact['year'],dumps(fact['source']),old['fact_id']))
             changed.append(old['fact_id'])
     return {'updated':len(changed),'history_preserved':len(changed)}

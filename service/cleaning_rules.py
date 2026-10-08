@@ -97,7 +97,11 @@ def context(parsed, table):
                  'income' if re.search(r'利润表|Income|Profit', title, re.I) else
                  'cashflow' if re.search(r'现金流量表|Cash', title, re.I) else
                  'equity' if re.search(r'权益变动表|Equity', title, re.I) else 'notes')
-    return {'topic': topic, 'scope': scope, 'statement': statement, 'text': prefix, 'preceding': preceding}
+    result={'topic': topic, 'scope': scope, 'statement': statement, 'text': prefix, 'preceding': preceding}
+    from .source_semantics import quarterly_scope
+    quarterly=quarterly_scope(table,result)
+    if quarterly:result['scope']=quarterly['scope']
+    return result
 
 
 def priority(parsed, table):

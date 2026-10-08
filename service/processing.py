@@ -529,6 +529,9 @@ class ProcessingMixin:
         for part in batch:
             local=[f for f in facts if f['source']['table_id']==f"{document_id}:t{part['table']['index']}"]
             apply_source_dimensions(part['table'],local,context=context(parsed,part['table']))
+            if (profile or {}).get('kind','financial_report')=='financial_report':
+                from .source_semantics import apply_source_semantics
+                apply_source_semantics(parsed,part['table'],local,context(parsed,part['table']))
         all_facts=facts
         research_facts=[f for f in facts if f['source']['normalization'].get('data_kind','disclosed_actual')!='disclosed_actual']
         if profile and profile['kind']!='financial_report' and len(research_facts)!=len(facts):
