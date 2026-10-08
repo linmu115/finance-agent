@@ -80,7 +80,7 @@ def load_period_series(service, project, document_id=None, company=None, scope='
     currency, restatement and quantity. Missing quarters are absent. See design
     handoff for the pure derive_period_series API and its input schema.
     """
-    st=Statement(service,project,load_facts(service,project,document_id,company),scope)
+    st=Statement(service,project,load_facts(service,project,document_id,company),scope,document_id=document_id,company=company)
     d=Disclosure(st)
     # Only this project and the already selected issuer; current report wins.
     others=normalize_period_records([r for r in load_facts(service,project,company=st.company) if r['document_id']!=d.doc])

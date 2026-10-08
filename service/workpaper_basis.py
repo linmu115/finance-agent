@@ -218,7 +218,7 @@ def repeated_nonrecurring(d):
 
 
 def basis_changes(service,project,document_id=None,company=None,scope='consolidated',periods=None,focus=None):
-    st=Statement(service,project,load_facts(service,project,document_id,company),scope,periods);d=Disclosure(st)
+    st=Statement(service,project,load_facts(service,project,document_id,company),scope,periods,document_id,company);d=Disclosure(st)
     tabs=[t for t in d.tabs if d.applies(t)]
     actual_scope=next(r['scope'] for r in st.facts if r['metric'] in ALIASES['revenue'])
     pairs,unknown=extract_adjustment_pairs(tabs,d.pages,d.doc,int(d.year),st.currency,actual_scope,st.periods[0].split('-',1)[1])

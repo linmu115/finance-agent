@@ -374,9 +374,17 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         from .financial_workpapers import financial_workpaper, report_sources, WorkpaperInputError
         try:
             data = financial_workpaper(self, project_id, kind, **options)
-            return response(data, report_sources(data['report']))
+            return response(data, report_sources(data.get('report') or data.get('table_data') or {}))
         except WorkpaperInputError as exc:
-            return response({'error': str(exc)}, status='insufficient_evidence')
+            if exc.selection:
+                for retry in exc.selection['retry_calls']:
+                    retry['arguments']['kind'] = kind
+                    retry['call'] = 'financial_workpaper(' + json.dumps(retry['arguments'], ensure_ascii=False) + ')'
+            data = {'error': str(exc), **({'selection': exc.selection} if exc.selection else {})}
+            if kind == 'analysis_pipeline':
+                data['context'] = {'schema_version': 'workpaper-pipeline-v1', 'status': 'selection_required',
+                                   'selection': exc.selection, 'missing': [{'reason': str(exc)}]}
+            return response(data, status='insufficient_evidence')
 
     def calculate_financial_metrics(self, project_id, operation, inputs):
         self.store.project(project_id)

@@ -87,36 +87,29 @@ def load_facts(service, project, document_id=None, company=None):
 
 
 class Statement:
-    def __init__(self, service, project, facts, scope='consolidated', periods=None):
+    def __init__(self, service, project, facts, scope='consolidated', periods=None, document_id=None, company=None):
+        from .workpaper_inputs import prepare_statement, selection_error
         self.service, self.project = service, project
         scope = {'合并': 'consolidated', '母公司': 'parent'}.get(scope, scope)
-        facts = normalize_period_records([r for r in facts if r['scope'] == scope or r['scope'].startswith(scope + '_')])
-        companies = sorted({r['company'] for r in facts})
-        if len(companies) != 1:
-            raise WorkpaperInputError(f'请指定 company 或 document_id，当前口径主体为：{companies}')
-        docs = {r['document_id'] for r in facts}
-        if len(docs) > 1:
-            # Prefer the latest statement, with its own comparatives; retain documents as a tie-break request.
-            latest = max((meta(r).get('period_end', '') for r in facts), default='')
-            docs = {r['document_id'] for r in facts if meta(r).get('period_end') == latest}
-            if len(docs) != 1:
-                raise WorkpaperInputError(f'同一最新期有多份资料，请指定 document_id：{sorted(docs)}')
-            facts = [r for r in facts if r['document_id'] in docs]
+        facts, self.selection, self.source_gaps, documents = prepare_statement(service, project, facts, scope, document_id, company)
+        def invalid(reason): selection_error(reason, project, facts, documents, self.source_gaps)
         currencies = sorted({r['currency'] for r in facts if r['metric'] in ALIASES['revenue'] and dimensions_ok(r)})
-        if len(currencies) != 1:
-            raise WorkpaperInputError(f'收入币种不唯一或缺失：{currencies}；请指定 document_id')
-        self.currency, self.company, self.facts = currencies[0], companies[0], facts
-        scopes = {r['scope'] for r in facts if r['currency'] == self.currency and r['metric'] in ALIASES['revenue']}
-        if len(scopes) != 1:
-            raise WorkpaperInputError(f'存在不同会计口径，请指定 scope：{sorted(scopes)}')
+        if len(currencies) != 1: invalid(f'收入币种不唯一或缺失：{currencies}')
+        self.currency, self.company, self.facts = currencies[0], self.selection['company'], facts
+        scopes = {r['scope'] for r in facts if r['currency'] == self.currency and r['metric'] in ALIASES['revenue'] and dimensions_ok(r)}
+        if len(scopes) != 1: invalid(f'存在不同会计口径，请指定 scope：{sorted(scopes)}')
         self.scope, self.missing = scope, []
-        candidates = sorted({r['period'] for r in facts if r['metric'] in ALIASES['revenue'] and meta(r).get('statement') == 'income' and dimensions_ok(r)})
-        if not candidates:
-            raise WorkpaperInputError('没有可定位到利润表的收入期间；请先完成财报入库')
+        candidates = sorted({r['period'] for r in facts if r['metric'] in ALIASES['revenue'] and meta(r).get('statement') == 'income' and dimensions_ok(r) and not meta(r).get('period_error')})
+        if not candidates: invalid('没有可定位到利润表的收入期间；原表直读仍未找到可识别收入列')
         windows={r['period']:(meta(r)['period_start'],meta(r)['period_end']) for r in facts
                  if r['period'] in candidates and r['metric'] in ALIASES['revenue']
                  and meta(r).get('period_start') and meta(r).get('period_end')}
-        self.periods=normalize_periods(periods,candidates,windows)
+        try:
+            self.periods=normalize_periods(periods,candidates,windows)
+        except WorkpaperInputError as exc:
+            invalid(str(exc))
+        self.selection['periods'] = self.periods
+        self.selection['resolved_scope'] = next(iter(scopes))
         self.income_pages = {}
         self.primary_tables = {}
         for statement, keys in [('income', ('revenue','cogs','net_profit')), ('cashflow', ('cfo','cfi','cff'))]:
@@ -150,6 +143,8 @@ class Statement:
             primary = [r for r in matches if r['source_ref'].get('page') in self.income_pages[period]]
             if primary: matches = primary
         if matches:
+            from .workpaper_inputs import prefer_restated
+            matches = prefer_restated(matches)
             # Alias order favours canonical totals over presentation synonyms.
             best = min(aliases.index(r['metric']) for r in matches)
             matches = [r for r in matches if aliases.index(r['metric']) == best]
@@ -176,8 +171,8 @@ class Statement:
                     data.get('formula'), data.get('reason_code'))
 
 
-def statement_analysis(service, project, document_id=None, company=None, scope='consolidated', periods=None, focus=None):
-    st = Statement(service, project, load_facts(service, project, document_id, company), scope, periods)
+def statement_analysis(service, project, document_id=None, company=None, scope='consolidated', periods=None, focus=None, _statement=None):
+    st = _statement or Statement(service, project, load_facts(service, project, document_id, company), scope, periods, document_id, company)
     currency, ps = st.currency, st.periods
     income_items = CAS_INCOME if any(r['scope'].endswith('_CAS') for r in st.facts) else INCOME
     selected = {}
@@ -306,7 +301,7 @@ def statement_analysis(service, project, document_id=None, company=None, scope='
     annual_tables(st, tables, selected)
     tables['missing'] = table({'key':col('行键'),'metric':col('指标'),'period':col('期间'),'reason':col('缺失原因'),'candidates':col('候选来源')},
                                [{'key':str(i),**m,'candidates':json.dumps(m['candidates'],ensure_ascii=False)} for i,m in enumerate(st.missing)])
-    return {'title':st.company+' 财报分析底稿','periods':st.periods,'body':f'口径：{scope}；财务净收益属于应计利润，现金桥的收付款分类依据原现金流量表。'+ (f'关注点：{focus}。' if focus else ''), 'tables':tables}, st.facts
+    return {'title':st.company+' 财报分析底稿','periods':st.periods,'body':f'口径：{scope}；财务净收益属于应计利润，现金桥的收付款分类依据原现金流量表。'+ (f'关注点：{focus}。' if focus else ''), 'tables':tables,'selection':st.selection,'source_gaps':st.source_gaps}, st.facts
 
 
 def publish(service, project, kind, report, records):
@@ -329,7 +324,7 @@ def publish(service, project, kind, report, records):
     (folder/'delivery.json').write_text(json.dumps(manifest,ensure_ascii=False),encoding='utf-8')
     summary = {name:{'columns':t['columns'],'row_key':t.get('row_key','key'),'row_keys':[r.get('key') for r in t['rows']],'rows':len(t['rows'])} for name,t in compiled['tables'].items()}
     from .workpaper_handoff import answer_handoff
-    return {'kind':kind,'report':compiled,'numeric_tables':compiled['tables'], 'summary':summary,**answer_handoff(compiled),
+    return {'kind':kind,'selection':report.get('selection'),'report':compiled,'numeric_tables':compiled['tables'], 'summary':summary,**answer_handoff(compiled),
             'observations':compiled['tables']['observations']['rows'],
             'delivery':{'id':delivery_id,'files':[{'name':f['name'],'url':f'/api/projects/{project}/research/deliveries/{delivery_id}/{f["name"]}'} for f in files]}}
 
@@ -350,6 +345,11 @@ def report_sources(report):
 
 def financial_workpaper(service, project_id, kind='statement_analysis', **options):
     service.store.project(project_id)
+    if kind in ('analysis_pipeline', 'read_table'):
+        from .workpaper_pipeline import analysis_pipeline, read_table
+        with localcontext() as ctx:
+            ctx.prec = 40
+            return (analysis_pipeline if kind == 'analysis_pipeline' else read_table)(service, project_id, **options)
     from .workpaper_audit import report_audit
     from .workpaper_comparison import comparison
     from .workpaper_periods import period_analysis

@@ -354,8 +354,8 @@ def structural_contributions(a):
     return rows,alternatives
 
 
-def variance_attribution(service,project,document_id=None,company=None,scope='consolidated',periods=None,focus=None):
-    a=AnalystData(service,project,document_id,company,scope,periods,focus)
+def variance_attribution(service,project,document_id=None,company=None,scope='consolidated',periods=None,focus=None,_analysis=None):
+    a=_analysis or AnalystData(service,project,document_id,company,scope,periods,focus)
     bridge=profit_bridge(a);contributions,alternatives=structural_contributions(a)
     drivers=[r for r in bridge if r['role']=='step']
     structural_drivers=[{'key':r['key'],'item':r['item'],'contribution':r['revenue_change']} for r in contributions if r['role']=='component' and r['revenue_change']['value'] is not None]
