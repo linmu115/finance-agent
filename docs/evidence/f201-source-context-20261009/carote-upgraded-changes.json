@@ -1,0 +1,868 @@
+{
+  "document": "carote",
+  "fact_count": 732,
+  "basis": {
+    "basis": "HKFRS",
+    "status": "identified",
+    "evidence": [
+      {
+        "basis": "HKFRS",
+        "page": 3,
+        "quote": "“HKFRS”                         Hong Kong Financial Reporting Standards, which collectively include Hong"
+      },
+      {
+        "basis": "HKFRS",
+        "page": 13,
+        "quote": "Reconciliation of Non-HKFRS Measures to the Nearest HKFRS Measures"
+      },
+      {
+        "basis": "HKFRS",
+        "page": 31,
+        "quote": "All revenue from contract with customers within the scope of HKFRS 15 is recognized at a point in time as"
+      },
+      {
+        "basis": "HKFRS",
+        "page": 52,
+        "quote": "except for the adoption of new standards, amendments and interpretations of HKFRSs effective for the"
+      },
+      {
+        "basis": "HKFRS",
+        "page": 53,
+        "quote": "Amendments to HKFRS 9 and    Amendments to the Classification and             January 1, 2026"
+      },
+      {
+        "basis": "HKFRS",
+        "page": 54,
+        "quote": "Although the adoption of HKFRS 18 will have no impact on the Group’s net profit, the Group expects"
+      },
+      {
+        "basis": "HKFRS",
+        "page": 55,
+        "quote": "December 31, 2026 will be restated in accordance with HKFRS 18."
+      }
+    ],
+    "version": "accounting-basis-1"
+  },
+  "applied": {
+    "updated": 16,
+    "history_preserved": 16
+  },
+  "repeat": {
+    "updated": 0,
+    "history_preserved": 0
+  },
+  "field_counts": {
+    "metric": 10,
+    "normalization.document_semantics_revision": 16,
+    "normalization.metric_aliases": 8,
+    "normalization.metric_normalization": 10,
+    "normalization.dimensions": 6,
+    "normalization.source_dimension_evidence": 6,
+    "normalization.metric_normalization_reverted": 2
+  },
+  "by_table": {
+    "3d9d0befd8374eed9a7488dbd8dd00d2:t12": 4,
+    "3d9d0befd8374eed9a7488dbd8dd00d2:t16": 4,
+    "3d9d0befd8374eed9a7488dbd8dd00d2:t55": 4,
+    "3d9d0befd8374eed9a7488dbd8dd00d2:t67": 2,
+    "3d9d0befd8374eed9a7488dbd8dd00d2:t1": 1,
+    "3d9d0befd8374eed9a7488dbd8dd00d2:t2": 1
+  },
+  "values_coordinates_entities_unchanged": true,
+  "history_exact": true,
+  "model_calls": 0,
+  "changes": [
+    {
+      "fact_id": "a3778a28ce3147039e71fbb22ee16938",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t12",
+      "row": 2,
+      "column": 2,
+      "changes": {
+        "metric": {
+          "before": "owners_of_the_company",
+          "after": "net_profit_parent"
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_aliases": {
+          "before": null,
+          "after": [
+            "owners_of_the_company"
+          ]
+        },
+        "normalization.metric_normalization": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "canonical_metric": "net_profit_parent",
+            "evidence": {
+              "axis": "row",
+              "row": 2,
+              "column": 1,
+              "label": "Owners of the Company",
+              "semantic_context": {
+                "kind": "profit",
+                "evidence": {
+                  "row": 1,
+                  "column": 1,
+                  "text": "Profit attributable to:",
+                  "source": "table_block"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "fact_id": "adf76f3cae6649cf9ef8d4f1e2d2af43",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t12",
+      "row": 2,
+      "column": 3,
+      "changes": {
+        "metric": {
+          "before": "owners_of_the_company",
+          "after": "net_profit_parent"
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_aliases": {
+          "before": null,
+          "after": [
+            "owners_of_the_company"
+          ]
+        },
+        "normalization.metric_normalization": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "canonical_metric": "net_profit_parent",
+            "evidence": {
+              "axis": "row",
+              "row": 2,
+              "column": 1,
+              "label": "Owners of the Company",
+              "semantic_context": {
+                "kind": "profit",
+                "evidence": {
+                  "row": 1,
+                  "column": 1,
+                  "text": "Profit attributable to:",
+                  "source": "table_block"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "fact_id": "28f74deaeefe492ea604ca26f3f0592b",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t12",
+      "row": 3,
+      "column": 2,
+      "changes": {
+        "metric": {
+          "before": "minority_interests",
+          "after": "minority_profit"
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_aliases": {
+          "before": [
+            "non_controlling_interests"
+          ],
+          "after": [
+            "non_controlling_interests",
+            "minority_interests"
+          ]
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "minority_interests",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "Non-controlling interests"
+            }
+          },
+          "after": {
+            "version": "source-metric-2",
+            "canonical_metric": "minority_profit",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "Non-controlling interests",
+              "semantic_context": {
+                "kind": "profit",
+                "evidence": {
+                  "row": 1,
+                  "column": 1,
+                  "text": "Profit attributable to:",
+                  "source": "table_block"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "fact_id": "8ab83fc343fb4976a720fbf73ba3e536",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t12",
+      "row": 3,
+      "column": 3,
+      "changes": {
+        "metric": {
+          "before": "minority_interests",
+          "after": "minority_profit"
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_aliases": {
+          "before": [
+            "non_controlling_interests"
+          ],
+          "after": [
+            "non_controlling_interests",
+            "minority_interests"
+          ]
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "minority_interests",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "Non-controlling interests"
+            }
+          },
+          "after": {
+            "version": "source-metric-2",
+            "canonical_metric": "minority_profit",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "Non-controlling interests",
+              "semantic_context": {
+                "kind": "profit",
+                "evidence": {
+                  "row": 1,
+                  "column": 1,
+                  "text": "Profit attributable to:",
+                  "source": "table_block"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "fact_id": "e6379062af3a49cda67523d1841c7e46",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t16",
+      "row": 2,
+      "column": 2,
+      "changes": {
+        "metric": {
+          "before": "owners_of_the_company",
+          "after": "comprehensive_income_parent"
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_aliases": {
+          "before": null,
+          "after": [
+            "owners_of_the_company"
+          ]
+        },
+        "normalization.metric_normalization": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "canonical_metric": "comprehensive_income_parent",
+            "evidence": {
+              "axis": "row",
+              "row": 2,
+              "column": 1,
+              "label": "Owners of the Company",
+              "semantic_context": {
+                "kind": "comprehensive",
+                "evidence": {
+                  "row": 1,
+                  "column": 1,
+                  "text": "Total comprehensive income attributable to:",
+                  "source": "table_block"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "fact_id": "2749c5ef3c70433d8e9150a4b8f3ffe3",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t16",
+      "row": 2,
+      "column": 3,
+      "changes": {
+        "metric": {
+          "before": "owners_of_the_company",
+          "after": "comprehensive_income_parent"
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_aliases": {
+          "before": null,
+          "after": [
+            "owners_of_the_company"
+          ]
+        },
+        "normalization.metric_normalization": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "canonical_metric": "comprehensive_income_parent",
+            "evidence": {
+              "axis": "row",
+              "row": 2,
+              "column": 1,
+              "label": "Owners of the Company",
+              "semantic_context": {
+                "kind": "comprehensive",
+                "evidence": {
+                  "row": 1,
+                  "column": 1,
+                  "text": "Total comprehensive income attributable to:",
+                  "source": "table_block"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "fact_id": "831d8b5c97fa41dca29bc2c43e4cb806",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t16",
+      "row": 3,
+      "column": 2,
+      "changes": {
+        "metric": {
+          "before": "minority_interests",
+          "after": "comprehensive_income_minority"
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_aliases": {
+          "before": [
+            "non_controlling_interests"
+          ],
+          "after": [
+            "non_controlling_interests",
+            "minority_interests"
+          ]
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "minority_interests",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "Non-controlling interests"
+            }
+          },
+          "after": {
+            "version": "source-metric-2",
+            "canonical_metric": "comprehensive_income_minority",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "Non-controlling interests",
+              "semantic_context": {
+                "kind": "comprehensive",
+                "evidence": {
+                  "row": 1,
+                  "column": 1,
+                  "text": "Total comprehensive income attributable to:",
+                  "source": "table_block"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "fact_id": "cafc35af750f49c49b04ef054019b5c7",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t16",
+      "row": 3,
+      "column": 3,
+      "changes": {
+        "metric": {
+          "before": "minority_interests",
+          "after": "comprehensive_income_minority"
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_aliases": {
+          "before": [
+            "non_controlling_interests"
+          ],
+          "after": [
+            "non_controlling_interests",
+            "minority_interests"
+          ]
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "minority_interests",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "Non-controlling interests"
+            }
+          },
+          "after": {
+            "version": "source-metric-2",
+            "canonical_metric": "comprehensive_income_minority",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "Non-controlling interests",
+              "semantic_context": {
+                "kind": "comprehensive",
+                "evidence": {
+                  "row": 1,
+                  "column": 1,
+                  "text": "Total comprehensive income attributable to:",
+                  "source": "table_block"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "fact_id": "3f25b9bd8b2a4353abb07284fb5b9990",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t55",
+      "row": 9,
+      "column": 2,
+      "changes": {
+        "normalization.dimensions": {
+          "before": {
+            "source_table": "55",
+            "source_line": 9,
+            "composition": "component",
+            "component": ""
+          },
+          "after": {
+            "source_table": "55",
+            "source_line": 9
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": {
+            "composition": {
+              "row": 9,
+              "column": 1,
+              "text": "",
+              "total_rows": [
+                14
+              ]
+            }
+          },
+          "after": null
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        }
+      }
+    },
+    {
+      "fact_id": "0ab61397bd6e4f4093c26bf8256d9392",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t55",
+      "row": 9,
+      "column": 3,
+      "changes": {
+        "normalization.dimensions": {
+          "before": {
+            "source_table": "55",
+            "source_line": 9,
+            "composition": "component",
+            "component": ""
+          },
+          "after": {
+            "source_table": "55",
+            "source_line": 9
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": {
+            "composition": {
+              "row": 9,
+              "column": 1,
+              "text": "",
+              "total_rows": [
+                14
+              ]
+            }
+          },
+          "after": null
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        }
+      }
+    },
+    {
+      "fact_id": "050d8eee761e4bd79dcae2aa4adb1cb2",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t55",
+      "row": 11,
+      "column": 2,
+      "changes": {
+        "normalization.dimensions": {
+          "before": {
+            "source_table": "55",
+            "source_line": 11,
+            "composition": "component",
+            "component": ""
+          },
+          "after": {
+            "source_table": "55",
+            "source_line": 11
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": {
+            "composition": {
+              "row": 11,
+              "column": 1,
+              "text": "",
+              "total_rows": [
+                14
+              ]
+            }
+          },
+          "after": null
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        }
+      }
+    },
+    {
+      "fact_id": "b05bcb14ecdd41549b8b70f29f26669f",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t55",
+      "row": 11,
+      "column": 3,
+      "changes": {
+        "normalization.dimensions": {
+          "before": {
+            "source_table": "55",
+            "source_line": 11,
+            "composition": "component",
+            "component": ""
+          },
+          "after": {
+            "source_table": "55",
+            "source_line": 11
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": {
+            "composition": {
+              "row": 11,
+              "column": 1,
+              "text": "",
+              "total_rows": [
+                14
+              ]
+            }
+          },
+          "after": null
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        }
+      }
+    },
+    {
+      "fact_id": "cb62a82a2a7f4348849b9355aa2b18e1",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t67",
+      "row": 7,
+      "column": 2,
+      "changes": {
+        "metric": {
+          "before": "selling_expenses",
+          "after": "note_t67_selling_expenses"
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "Share-based payment expenses were recognized in profit or loss for the six months ended June 30, 2025 and 2024 as",
+                "Six months ended June 30,",
+                "2025",
+                "RMB’000"
+              ],
+              "physical_headers": [
+                "Share-based payment expenses were recognized in profit or loss for the six months ended June 30, 2025 and 2024 as",
+                "Six months ended June 30,",
+                "2025",
+                "RMB’000"
+              ],
+              "measure_kinds": [],
+              "unresolved_headers": [
+                "Share-based payment expenses were recognized in profit or loss for the six months ended June 30, 2025 and 2024 as"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "selling_expenses",
+            "evidence": {
+              "axis": "row",
+              "row": 7,
+              "column": 1,
+              "label": "Selling expenses"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "14957644e3824cffb9feb190e5bb6ae3",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t67",
+      "row": 8,
+      "column": 2,
+      "changes": {
+        "metric": {
+          "before": "administrative_expenses",
+          "after": "note_t67_administrative_expenses"
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "Share-based payment expenses were recognized in profit or loss for the six months ended June 30, 2025 and 2024 as",
+                "Six months ended June 30,",
+                "2025",
+                "RMB’000"
+              ],
+              "physical_headers": [
+                "Share-based payment expenses were recognized in profit or loss for the six months ended June 30, 2025 and 2024 as",
+                "Six months ended June 30,",
+                "2025",
+                "RMB’000"
+              ],
+              "measure_kinds": [],
+              "unresolved_headers": [
+                "Share-based payment expenses were recognized in profit or loss for the six months ended June 30, 2025 and 2024 as"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "administrative_expenses",
+            "evidence": {
+              "axis": "row",
+              "row": 8,
+              "column": 1,
+              "label": "Administrative expenses"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "e0eff4e8510947669d31c126c2cd056d",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t1",
+      "row": 6,
+      "column": 2,
+      "changes": {
+        "normalization.dimensions": {
+          "before": {
+            "composition": "component",
+            "component": ""
+          },
+          "after": {}
+        },
+        "normalization.source_dimension_evidence": {
+          "before": {
+            "composition": {
+              "row": 6,
+              "column": 1,
+              "text": "",
+              "total_rows": [
+                5
+              ]
+            }
+          },
+          "after": null
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        }
+      }
+    },
+    {
+      "fact_id": "414d7b7f81b040ba965a1b8062b8c87b",
+      "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t2",
+      "row": 10,
+      "column": 2,
+      "changes": {
+        "normalization.dimensions": {
+          "before": {
+            "composition": "component",
+            "component": ""
+          },
+          "after": {}
+        },
+        "normalization.source_dimension_evidence": {
+          "before": {
+            "composition": {
+              "row": 10,
+              "column": 1,
+              "text": "",
+              "total_rows": [
+                9
+              ]
+            }
+          },
+          "after": null
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        }
+      }
+    }
+  ],
+  "shared_values": {
+    "metadata_1": {
+      "before": {
+        "processing_id": "f201-baseline",
+        "reason": "source_basis_dimensions_period_scope",
+        "basis_evidence": [
+          {
+            "basis": "HKFRS",
+            "page": 3,
+            "quote": "“HKFRS”                         Hong Kong Financial Reporting Standards, which collectively include Hong"
+          },
+          {
+            "basis": "HKFRS",
+            "page": 13,
+            "quote": "Reconciliation of Non-HKFRS Measures to the Nearest HKFRS Measures"
+          },
+          {
+            "basis": "HKFRS",
+            "page": 31,
+            "quote": "All revenue from contract with customers within the scope of HKFRS 15 is recognized at a point in time as"
+          },
+          {
+            "basis": "HKFRS",
+            "page": 52,
+            "quote": "except for the adoption of new standards, amendments and interpretations of HKFRSs effective for the"
+          },
+          {
+            "basis": "HKFRS",
+            "page": 53,
+            "quote": "Amendments to HKFRS 9 and    Amendments to the Classification and             January 1, 2026"
+          },
+          {
+            "basis": "HKFRS",
+            "page": 54,
+            "quote": "Although the adoption of HKFRS 18 will have no impact on the Group’s net profit, the Group expects"
+          },
+          {
+            "basis": "HKFRS",
+            "page": 55,
+            "quote": "December 31, 2026 will be restated in accordance with HKFRS 18."
+          }
+        ]
+      },
+      "after": {
+        "processing_id": "f201-final-recovered",
+        "reason": "source_basis_dimensions_period_scope",
+        "basis_evidence": [
+          {
+            "basis": "HKFRS",
+            "page": 3,
+            "quote": "“HKFRS”                         Hong Kong Financial Reporting Standards, which collectively include Hong"
+          },
+          {
+            "basis": "HKFRS",
+            "page": 13,
+            "quote": "Reconciliation of Non-HKFRS Measures to the Nearest HKFRS Measures"
+          },
+          {
+            "basis": "HKFRS",
+            "page": 31,
+            "quote": "All revenue from contract with customers within the scope of HKFRS 15 is recognized at a point in time as"
+          },
+          {
+            "basis": "HKFRS",
+            "page": 52,
+            "quote": "except for the adoption of new standards, amendments and interpretations of HKFRSs effective for the"
+          },
+          {
+            "basis": "HKFRS",
+            "page": 53,
+            "quote": "Amendments to HKFRS 9 and    Amendments to the Classification and             January 1, 2026"
+          },
+          {
+            "basis": "HKFRS",
+            "page": 54,
+            "quote": "Although the adoption of HKFRS 18 will have no impact on the Group’s net profit, the Group expects"
+          },
+          {
+            "basis": "HKFRS",
+            "page": 55,
+            "quote": "December 31, 2026 will be restated in accordance with HKFRS 18."
+          }
+        ]
+      }
+    }
+  }
+}

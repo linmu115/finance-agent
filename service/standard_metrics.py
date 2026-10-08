@@ -7,7 +7,7 @@ import re
 from typing import NamedTuple
 from .normalization import compact, metric_id
 
-VERSION = 'standard-rows-5'
+VERSION = 'standard-rows-6'
 class StandardMetric(NamedTuple):
     labels: str | None  # None: existing normalization.METRICS row fallback.
     concept: str | None  # Explicitly None when no workpaper consumes this item.
@@ -322,16 +322,34 @@ def normalize_label(label):
 LOOKUP = {normalize_label(label): metric for metric, aliases in ROWS.items() for label in aliases.split('|')}
 
 
-def exact_standard_metric(label):
+CONTEXTUAL_LABELS = {}
+for _labels, _meanings in (
+    ('Non-controlling interests|Non controlling interests|Non–controlling interests|Minority interests|非控股权益|非控股權益',
+     {'profit':'minority_profit', 'comprehensive':'comprehensive_income_minority',
+      'other_comprehensive':'other_comprehensive_income_minority', 'balance':'minority_interests'}),
+    ('Owners of the Company|Owners of the parent|Equity holders of the Company|Equity holders of the parent|Shareholders of the Company|本公司拥有人|本公司擁有人',
+     {'profit':'net_profit_parent', 'comprehensive':'comprehensive_income_parent',
+      'other_comprehensive':'other_comprehensive_income_parent', 'balance':'equity_parent'}),
+    ('Other comprehensive income|其他综合收益|其他綜合收益',
+     {'balance':'other_comprehensive_income'}),
+):
+    for _label in _labels.split('|'):
+        CONTEXTUAL_LABELS[normalize_label(_label)] = _meanings
+
+
+def exact_standard_metric(label, *, context=None):
+    key = normalize_label(label) if label is not None else None
+    if key in CONTEXTUAL_LABELS:
+        return CONTEXTUAL_LABELS[key].get((context or {}).get('kind'))
     return LOOKUP.get(normalize_label(label)) if label is not None else None
 
 
-def standard_metric(label):
+def standard_metric(label, *, context=None):
     key = normalize_label(label)
-    return LOOKUP.get(key) or metric_id(key)
+    return exact_standard_metric(label, context=context) or (None if key in CONTEXTUAL_LABELS else metric_id(key))
 
 
-def canonical_rows(table,rows,label_column=1,statement='notes',schema=None,topic=None):
+def canonical_rows(table,rows,label_column=1,statement='notes',schema=None,topic=None,context=None):
     """Source labels, not English guesses, own standard row identifiers."""
     import copy
     import json
@@ -342,7 +360,16 @@ def canonical_rows(table,rows,label_column=1,statement='notes',schema=None,topic
     for row in rows:
         attrs=row['attributes'];raw=table['rows'][row['row']-1]
         if attrs.get('row_subject') is False or len(raw)<label_column:continue
-        metric=standard_metric(raw[label_column-1])
+        from .metric_context import source_metric_context, column_semantics
+        label_context=source_metric_context(table,row['row'],context)
+        label_key=normalize_label(raw[label_column-1])
+        metric=(exact_standard_metric(raw[label_column-1],context=label_context) if label_key in CONTEXTUAL_LABELS
+                else standard_metric(raw[label_column-1]))
+        columns=attrs.get('columns_json') or (schema or {}).get('columns_json') or []
+        columns=json.loads(columns) if isinstance(columns,str) else columns
+        measured_columns=columns or [{'column':c} for c in range(label_column+1,len(raw)+1)]
+        if any(not column_semantics(table,row['row'],c['column'],c.get('label'))['row_metric_safe'] for c in measured_columns):
+            metric=None
         if metric and attrs.get('metric'):
             if attrs['metric'] != metric:
                 aliases=attrs.setdefault('source_metric_aliases',[])
