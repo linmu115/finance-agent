@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 _DIAGNOSTICS = {}
+_FINANCIAL = False
 
 
 def luminance(rgb):
@@ -192,6 +193,48 @@ def repair_negative_bar_labels(fig,renderer):
     return changes
 
 
+def waterfall_issues(fig):
+    """Diagnose a mixed-sign floating-bar chain without changing its geometry."""
+    from math import isclose, isfinite
+    from matplotlib.container import BarContainer
+    issues=[]
+    for ax_index,ax in enumerate(fig.axes):
+        containers=[c for c in ax.containers if isinstance(c,BarContainer) and c.orientation=='vertical']
+        # Multiple multi-bar series are grouped/stacked columns, not a single bridge.
+        if sum(len(c.patches)>1 for c in containers)>1:continue
+        bars=sorted((p for c in containers for p in c.patches if p.get_visible()),key=lambda p:p.get_x())
+        if len(bars)<3:continue
+        points=[(float(b.get_x()+b.get_width()/2),float(b.get_y()),float(b.get_height())) for b in bars]
+        if not all(isfinite(v) for p in points for v in p):continue
+        close=lambda a,b:isclose(a,b,rel_tol=1e-9,abs_tol=1e-8)
+        if any(close(a[0],b[0]) for a,b in zip(points,points[1:])):continue
+        if not any(not close(y,0) for _,y,_ in points):continue
+        current=0.;directions=[];broken=[]
+        for index,(x,bottom,height) in enumerate(points):
+            top=bottom+height
+            if close(bottom,current):after=top
+            elif close(top,current):after=bottom
+            else:
+                broken.append({'kind':'waterfall_discontinuity','axes':ax_index,'bar_index':index,
+                    'bar_number':index+1,'x':x,'expected_endpoint':current,'endpoints':[bottom,top],
+                    'message':f'瀑布图第 {index+1} 根柱的两个端点均不等于上一步运行值 {current:g}；请核对 bottom 和带符号高度。'})
+                # Follow the declared signed height to locate later independent errors;
+                # this is diagnostic arithmetic, never a correction to the image.
+                after=current+height
+            # A closing total meets the chain at its top; it is not a negative change.
+            if not (index==len(points)-1 and (close(bottom,0) or close(top,0))):
+                directions.append(after-current)
+            current=after
+        if not (any(d>0 for d in directions) and any(d<0 for d in directions)):continue
+        for item in broken:
+            labels=[label.get_text() for tick,label in zip(ax.get_xticks(),ax.get_xticklabels()) if close(float(tick),item['x'])]
+            if labels:item['label']=labels[0]
+            if _FINANCIAL:
+                item['hint']="finance_charts.waterfall(start, {'项目': signed_change, ...}, end=total, title='标题', unit='单位') 返回 (fig, ax)；changes 用带符号变化量。"
+        issues.extend(broken)
+    return issues
+
+
 def _savefig(self,fname,*args,**kwargs):
     from matplotlib.backends.backend_agg import FigureCanvasAgg
     from matplotlib.layout_engine import ConstrainedLayoutEngine
@@ -230,7 +273,8 @@ def _savefig(self,fname,*args,**kwargs):
         filename=str(fname) if isinstance(fname,(str,Path)) else getattr(fname,'name','<stream>')
         entry={'file':filename,'dpi':self.dpi,'overlap_before':before,'layout_repair':layout,
                'contrast_changes':changes,'negative_label_changes':label_changes,'remaining_overlaps':remaining,
-               'remaining_low_contrast':[c for c in changes if c['contrast_after']<3]}
+               'remaining_low_contrast':[c for c in changes if c['contrast_after']<3],
+               'waterfall_issues':waterfall_issues(self)}
         _DIAGNOSTICS[filename]=entry
         destination=Path(filename).parent/'plot_diagnostics.json' if filename!='<stream>' else None
         if destination:
@@ -253,7 +297,9 @@ def setup_fonts():
         warnings.warn('没有可用的中文字体；中文图表可能缺字。',RuntimeWarning)
 
 
-def setup():
+def setup(financial=False):
+    global _FINANCIAL
+    _FINANCIAL=financial
     setup_fonts()
     import matplotlib as mpl
     mpl.rcParams.update({'savefig.bbox':'tight','savefig.pad_inches':0.2,

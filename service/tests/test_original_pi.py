@@ -154,6 +154,9 @@ class OriginalPiTests(unittest.TestCase):
             else:
                 self.assertTrue(data['diagnostics']['files'][0]['contrast_changes'])
                 self.assertTrue(data['diagnostics']['files'][1]['negative_label_changes'])
+                issues=data['diagnostics']['files'][2]['waterfall_issues']
+                self.assertEqual(issues[0]['bar_number'],2)
+                self.assertEqual('hint' in issues[0],profile=='financial')
         if target:=os.environ.get('ORIGINAL_PI_EVIDENCE_DIR'):
             out=Path(target);out.mkdir(parents=True,exist_ok=True)
             (out/'plot-startup-capture.json').write_text(json.dumps({

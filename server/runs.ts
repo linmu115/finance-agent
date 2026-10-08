@@ -538,21 +538,26 @@ export class RunManager {
   body=annotateAnswer(body,sources);
   const charts:Record<string,string>={};
   for(const a of l.answer.artifacts||[])if(a.mimeType.startsWith('image/'))charts[a.name]=a.url;
-  const files=(l.answer.artifacts||[]).filter(a=>/\.(md|csv)$/i.test(a.name)).flatMap(a=>{
+  const files=(l.answer.artifacts||[]).filter(a=>/\.(md|csv|xlsx)$/i.test(a.name)).flatMap(a=>{
    const match=a.url.split('?')[0].match(/^\/api\/projects\/([^/]+)\/(?:artifacts|research\/deliveries)\/([^/]+)\/([^/]+)$/);
    return match&&decodeURIComponent(match[1])===l.run.projectId?[{run_id:decodeURIComponent(match[2]),name:decodeURIComponent(match[3])}]:[];
   });
   // Collect all delivery defects together so references, sections and wording share one repair.
   const result=(await withEvaluationScope(l.run.request?.evaluation,()=>this.service.call('render_answer',{project_id:l.run.projectId,body,tables:l.numericTables||{},charts,degrade:true,files},l.controller.signal))).data;
   let bound=result.body as string;
+  const location=(i:any)=>`${i.source}${i.sheet?' '+i.sheet+'!'+i.cell:i.line?' 第'+i.line+'行':''}`;
   const issues=[...basisIssues,...(result.issues||[]),...missing.map(section=>({kind:'valuation_section',source:'回答',text:section,message:'估值说明缺少：'+section+'。请保留已核对数值并补全；资料不足明确说明。'}))];
   for(const rewrite of result.rewrites||[])await this.audit(l,'answer_reference_rewrite',rewrite);
   if(issues.length){
    await this.audit(l,'answer_consistency_issues',{issues,degraded:degrade});
-   if(!degrade)throw Object.assign(new Error(issues.map(i=>`${i.source}${i.line?' 第'+i.line+'行':''}：${i.text}；${i.message}`).join('\n')+(result.references?'。可用引用：'+JSON.stringify(result.references)+'；可用图片：'+JSON.stringify(result.charts):'')),{code:issues.some(i=>i.kind==='reference')?'answer_reference_error':'answer_contract_error'});
+   if(!degrade)throw Object.assign(new Error(issues.map(i=>`${location(i)}：${i.text}；${i.message}`).join('\n')+(result.references?'。可用引用：'+JSON.stringify(result.references)+'；可用图片：'+JSON.stringify(result.charts):'')),{code:issues.some(i=>i.kind==='reference')?'answer_reference_error':'answer_contract_error'});
    bound=bound.split('\n').map(line=>line.includes('[引用无效：')?line.replace(/【事实\/数据】/g,'【推论·引用无效】'):line).join('\n');
-   bound+='\n\n> **交付说明：一次修复后仍有以下问题，相关内容请勿作为已核对结论。**\n'+issues.map(i=>'> - '+(i.kind==='reference'?'[引用无效：'+i.text+']':`${i.source}${i.line?' 第'+i.line+'行':''}：${i.text}；${i.message}`)).join('\n');
+   bound+='\n\n> **交付说明：一次修复后仍有以下问题，相关内容请勿作为已核对结论。**\n'+issues.map(i=>'> - '+(i.kind==='reference'?'[引用无效：'+i.text+']':`${location(i)}：${i.text}；${i.message}`)).join('\n');
    await this.audit(l,'answer_degraded',{issues});
+  }
+  if(result.notices?.length){
+   await this.audit(l,'answer_direction_notices',{notices:result.notices});
+   bound+='\n\n> **关系方向断言需核对**\n'+result.notices.map((i:any)=>`> - ${location(i)}：${i.text}`).join('\n');
   }
   l.answer.sources=sources;
   return bound;

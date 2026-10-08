@@ -20,11 +20,16 @@ test('native delivery: actual failures, one shared repair, retained attachments 
  const tables={...JSON.parse(await fixture('F1_X3-tables.json')),...JSON.parse(await fixture('P2_X7-tables.json'))};
  const original=service.call.bind(service),project='delivery-fixture';
  const manifests=new Map<string,any>();
- const delivery=async(text:string)=>{
+ const delivery=async(text:string,xlsx=false)=>{
   const id=randomUUID().replaceAll('-',''),folder=path.join(dir,'research',project,'deliveries',id);await mkdir(folder,{recursive:true});
   const files=[];
   for(const [name,content] of Object.entries({'report.md':text,'changes.csv':'指标,描述\n现金流,'+text,'ocf_contribution.png':'fixture image','column_choice_chart.png':'fixture image','haier_comparison.png':'fixture image'})){
    await writeFile(path.join(folder,name),content);files.push({name,size:Buffer.byteLength(content),sha256:createHash('sha256').update(content).digest('hex')});
+  }
+  if(xlsx){
+   const content=await readFile(new URL('./fixtures/f21/F1_X7.xlsx',import.meta.url));
+   await writeFile(path.join(folder,'workbook.xlsx'),content);
+   files.push({name:'workbook.xlsx',size:content.length,sha256:createHash('sha256').update(content).digest('hex')});
   }
   await writeFile(path.join(folder,'delivery.json'),JSON.stringify({delivery_id:id,isolation_key:'chain',files}));manifests.set(id,files);return id;
  };
@@ -32,7 +37,7 @@ test('native delivery: actual failures, one shared repair, retained attachments 
   if(name==='get_analysis_status')return {status:'ok',data:{status:'succeeded',artifacts:manifests.get(args.run_id),numeric_tables:tables}};
   return original(name,args,signal);
  };
- const runCase=async(profile:'financial'|'generic'|'prepared',responses:any[])=>{
+ const runCase=async(profile:'financial'|'generic'|'prepared'|'original_pi',responses:any[])=>{
   const chat:any={id:randomUUID(),projectId:project,title:'Fixture',messages:[],createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()};
   await service.putState(project,'conversations',chat.id,chat);manager.indexConversation(chat.id,project);faux.setResponses(responses);
   const run=await manager.start(chat,'分析当前资料',[],undefined,{profile,budget_group_id:chat.id,isolation_key:'chain',analysis_only:true,budget:{max_model_calls:50,max_input_tokens:0,max_output_tokens:0,max_total_tokens:0,max_wall_seconds:60}});
@@ -76,5 +81,20 @@ test('native delivery: actual failures, one shared repair, retained attachments 
   assert.equal(repaired.repairs,1);assert.equal(repaired.last.artifacts.length,5);
   assert.ok(repaired.last.artifacts.every((a:any)=>a.url.includes(clean)));
   assert.equal(repaired.audit.filter(e=>e.type==='answer_degraded').length,0);
+  // Unresolved relation assertions in the actual F1_X7 workbook are notices only.
+  const workbook=await delivery('变化已列示。',true);
+  for(const profile of ['prepared','financial','original_pi'] as const){
+   const result=await runCase(profile,[answer(tool('get_analysis_status',{run_id:workbook}),{stopReason:'toolUse'}),answer('变化已列示。')]);
+   assert.equal(result.repairs,0);assert.equal(result.last.artifacts.length,6);
+   assert.equal(result.audit.filter(e=>e.type==='answer_degraded').length,0);
+   if(profile==='original_pi'){
+    assert.doesNotMatch(result.last.content,/关系方向断言需核对/);
+    assert.equal(result.audit.filter(e=>e.type==='answer_direction_notices').length,0);
+   }else{
+    assert.match(result.last.content,/关系方向断言需核对/);
+    assert.match(result.last.content,/workbook.xlsx Calculations!F10/);
+    assert.equal(result.audit.filter(e=>e.type==='answer_direction_notices').length,1);
+   }
+  }
  }finally{await manager.shutdown();await service.close();}
 });

@@ -709,7 +709,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         self._save_analysis_state(project_id,run_id,{"run_id":run_id,"project_id":project_id,"status":"queued","artifacts":[]})
         self.analysis_flags[run_id]=threading.Event()
         from .plot_runtime import LAUNCH, ORIGINAL_PI_LAUNCH
-        launch=ORIGINAL_PI_LAUNCH if original else LAUNCH if raw_only or not financial_tools else LAUNCH.replace('setup()\n','setup()\nimport finance_charts\nfinance_charts.configure()\nfrom plot_runtime import deliver_models\ndeliver_models()\n')
+        launch=ORIGINAL_PI_LAUNCH if original else LAUNCH if raw_only or not financial_tools else LAUNCH.replace('setup()\n','setup(financial=True)\nimport finance_charts\nfinance_charts.configure()\nfrom plot_runtime import deliver_models\ndeliver_models()\n')
         self.analysis_futures[run_id]=self.analysis_pool.submit(copy_context().run,self._analysis_job,runner,project_id,run_id,launch,
                                                               inputs,timeout_seconds,parameter_plan)
         if original:return response({'run_id':run_id,'state':'queued'},status='accepted')
@@ -872,25 +872,34 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
 
     def render_answer(self, project_id, body, tables, charts=None, degrade=False, files=None):
         self.store.project(project_id)
+        from .evaluation_isolation import original_pi
+        if original_pi():return response({'body':body,'issues':[],'rewrites':[]})
         from .analysis_report import bind_text, reference_inventory
-        from .delivery_text import direction_issues
+        from .delivery_text import direction_issues, xlsx_direction_issues
+        from zipfile import BadZipFile
         from sandbox import RunnerError
         issues, rewrites = [], []
         rendered = bind_text(body,tables,charts,degrade=degrade,issues=issues,rewrites=rewrites)
         issues.extend(direction_issues(rendered))
         for file in files or []:
-            if Path(file['name']).suffix.lower() not in ('.md','.csv'):
+            suffix=Path(file['name']).suffix.lower()
+            if suffix not in ('.md','.csv','.xlsx'):
                 continue
             # Same project/isolation and manifest checks as an explicit get_artifact.
             try:
-                text = self.artifact_path(project_id,file['run_id'],file['name']).read_text(encoding='utf-8-sig')
-            except (ValueError, OSError, UnicodeError, RunnerError) as exc:
+                path=self.artifact_path(project_id,file['run_id'],file['name'])
+                if suffix=='.xlsx':
+                    issues.extend(xlsx_direction_issues(path,file['name']))
+                else:
+                    issues.extend(direction_issues(path.read_text(encoding='utf-8-sig'),file['name'],csv_text=suffix=='.csv'))
+            except (ValueError, OSError, UnicodeError, RunnerError, BadZipFile) as exc:
                 issues.append({'kind':'artifact_read','source':file['name'],'text':file['name'],
                                'message':f'交付文本未完成检查：{exc}'})
                 continue
-            issues.extend(direction_issues(text,file['name'],csv_text=file['name'].lower().endswith('.csv')))
+        notices=[i for i in issues if i.get('severity')=='notice']
+        issues=[i for i in issues if i.get('severity')!='notice']
         available = {'references':reference_inventory(tables),'charts':list(charts or {})} if any(i['kind']=='reference' for i in issues) else {}
-        return response({'body':rendered,'issues':issues,'rewrites':rewrites,**available})
+        return response({'body':rendered,'issues':issues,'rewrites':rewrites,**({'notices':notices} if notices else {}),**available})
 
     def artifact_path(self, project_id, run_id, name):
         self.store.project(project_id)

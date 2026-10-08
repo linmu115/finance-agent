@@ -40,6 +40,11 @@ fig.savefig(export/'negative.png',dpi=120)
 after={'position':list(label.get_position()),'va':label.get_va(),'xy':list(label.xy)}
 plt.close(fig)
 
+# Deliberately double-shift a negative waterfall bar; only shared harness profiles diagnose it.
+fig,ax=plt.subplots(figsize=(7,4))
+ax.bar([0,1,2],[10,-3,4],bottom=[0,7,7])
+fig.savefig(export/'waterfall.png',dpi=120)
+plt.close(fig)
 diagnostics=export/'plot_diagnostics.json'
 data={
     'savefig_patched':Figure.savefig is not original_savefig,
