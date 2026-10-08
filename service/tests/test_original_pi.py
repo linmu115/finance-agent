@@ -1,7 +1,10 @@
 """Offline mounts/source isolation. Synthetic inputs; no Docker or model calls."""
 import hashlib
+import importlib.util
 import json
 import os
+import subprocess
+import sys
 import tempfile
 import unittest
 from contextlib import contextmanager
@@ -97,7 +100,7 @@ class OriginalPiTests(unittest.TestCase):
         self.assertIn('executed_script.py',ORIGINAL_PI_LAUNCH)
         if target:=os.environ.get('ORIGINAL_PI_EVIDENCE_DIR'):
             out=Path(target);out.mkdir(parents=True,exist_ok=True)
-            (out/'sandbox-capture.json').write_text(json.dumps({'mode':'offline fake Runner; actual FinanceService export path','profiles':evidence},ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+            (out/'sandbox-capture.json').write_text(json.dumps({'mode':'offline fake Runner; actual FinanceService export path','profiles':evidence},ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n')
 
     def test_original_cannot_use_report_params_models_or_other_delivery_ids(self):
         own,_=self.run_analysis('original_pi');foreign,_=self.run_analysis('prepared')
@@ -118,6 +121,44 @@ class OriginalPiTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'^analysis_not_found_in_project$'):self.s.get_artifact('other',own,'report.md')
         # Ordinary product access remains project-wide, including original Pi's files.
         for rid in (own,foreign,wp):self.assertGreater(self.s.get_artifact('p',rid,'report.md')['data']['size'],0)
+
+    @unittest.skipUnless(importlib.util.find_spec('matplotlib'), 'Requires the plot test environment')
+    def test_captured_plot_startup_repairs_only_prepared_and_financial(self):
+        # Each sandbox starts a fresh Python process; matplotlib patches must not
+        # leak between profiles in this regression test either.
+        evidence={}
+        probe=Path(__file__).with_name('fixtures')/'original_pi_plot_probe.py'
+        for profile in ('original_pi','prepared','financial'):
+            rid,_=self.run_analysis(profile);capture=self.captures[rid]
+            export=self.root/'plot-probe'/profile;export.mkdir(parents=True)
+            for name,content in capture['inputs'].items():(export/name).write_bytes(content)
+            (export/'launch.py').write_text(capture['launch'],encoding='utf8')
+            result=subprocess.run([sys.executable,str(probe),str(export)],capture_output=True,text=True,encoding='utf8',timeout=60)
+            self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+            data=json.loads((export/'probe.json').read_text(encoding='utf8'));evidence[profile]=data
+            repairs=profile!='original_pi'
+            self.assertEqual(data['savefig_patched'],repairs)
+            self.assertEqual(data['tight_layout_patched'],repairs)
+            self.assertEqual(data['constrained_layout'],repairs)
+            self.assertEqual(data['heat_label_color'],'white' if repairs else 'black')
+            self.assertEqual(data['negative_label_moved'],repairs)
+            self.assertEqual(data['diagnostics_written'],repairs)
+            self.assertFalse(data['rc']['axes.unicode_minus'])
+            self.assertIn('DejaVu Sans',data['rc']['font.sans-serif'])
+            for font in data['installed_cjk_fonts']:self.assertIn(font,data['rc']['font.sans-serif'])
+            if not repairs:
+                self.assertEqual(data['changed_rc_keys'],['axes.unicode_minus','font.sans-serif'])
+                self.assertEqual(data['negative_label_after'],data['negative_label_before'])
+                self.assertFalse(data['rc']['figure.autolayout'])
+                self.assertIsNone(data['rc']['savefig.bbox'])
+            else:
+                self.assertTrue(data['diagnostics']['files'][0]['contrast_changes'])
+                self.assertTrue(data['diagnostics']['files'][1]['negative_label_changes'])
+        if target:=os.environ.get('ORIGINAL_PI_EVIDENCE_DIR'):
+            out=Path(target);out.mkdir(parents=True,exist_ok=True)
+            (out/'plot-startup-capture.json').write_text(json.dumps({
+                'mode':'actual FinanceService launcher captured; fresh Python/Agg per profile; only model asset copying mocked; no Docker or model calls',
+                'profiles':evidence},ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n')
 
     def test_source_pages_tables_and_search_exclude_structured_excerpts(self):
         with self.s.store.connect(write=True) as db:

@@ -1,0 +1,285 @@
+{
+  "mode": "offline fake Runner; actual FinanceService export path",
+  "profiles": {
+    "original_pi": {
+      "launch": "import runpy, shutil, sys\nsys.path.insert(0, '/input')\nfrom plot_runtime import setup_fonts\nsetup_fonts()\ntry:\n    runpy.run_path('/input/analysis.py', run_name='__main__')\nfinally:\n    shutil.copyfile('/input/analysis.py', '/output/executed_script.py')\n",
+      "mounts": {
+        "tables.json": {
+          "sha256": "4a7acac05426df35eeb5d867fd9e0fdef96e362a57e170bc1932510ed7f43972",
+          "bytes": 472
+        },
+        "facts.json": {
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "bytes": 2
+        },
+        "pages.json": {
+          "sha256": "53d094068ca5298dddb07d6f61001becba66255063f4a127a42e42ffb63083e8",
+          "bytes": 265
+        },
+        "research_records.json": {
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "bytes": 2
+        },
+        "analysis.py": {
+          "sha256": "dce6483e9502e2465e978ae88305f68b76f644ec1d2d6e60f2f9a00fe38e9902",
+          "bytes": 10
+        },
+        "plot_runtime.py": {
+          "sha256": "258f7a49a795bfe335a2f51ca2f46518ab529908e25f6c26d49ecfdada52f42e",
+          "bytes": 15405
+        }
+      },
+      "status_fields": [
+        "artifacts",
+        "evaluation_profile",
+        "isolation_key",
+        "project_id",
+        "run_id",
+        "state",
+        "status",
+        "stdout"
+      ],
+      "artifact_fields": [
+        "mime_type",
+        "name",
+        "relative_path",
+        "sha256",
+        "size"
+      ],
+      "timeout_seconds": 120
+    },
+    "prepared": {
+      "launch": "import runpy, shutil, sys\nfrom pathlib import Path\nsys.path.insert(0, '/input')\nfrom plot_runtime import setup\nsetup()\ntry:\n    runpy.run_path('/input/analysis.py', run_name='__main__')\n    if Path('/input/analysis_report.json').exists() or Path('/output/analysis_report.json').exists():\n        from analysis_report import deliver\n        deliver()\n    if Path('/input/parameter_comparison.json').exists():\n        from analysis_comparison import deliver_parameter_comparison\n        deliver_parameter_comparison()\nfinally:\n    shutil.copyfile('/input/analysis.py', '/output/executed_script.py')\n",
+      "mounts": {
+        "tables.json": {
+          "sha256": "4a7acac05426df35eeb5d867fd9e0fdef96e362a57e170bc1932510ed7f43972",
+          "bytes": 472
+        },
+        "facts.json": {
+          "sha256": "a1571a724fc612f054743a5c6a2cd17c89e5a219c126e897c85104b4a694966a",
+          "bytes": 44
+        },
+        "pages.json": {
+          "sha256": "53d094068ca5298dddb07d6f61001becba66255063f4a127a42e42ffb63083e8",
+          "bytes": 265
+        },
+        "research_records.json": {
+          "sha256": "af47e2256c094ee08268d769dc6d84a70ef0ef10bfd64e3f6cb8eed11e5120ca",
+          "bytes": 34
+        },
+        "analysis.py": {
+          "sha256": "dce6483e9502e2465e978ae88305f68b76f644ec1d2d6e60f2f9a00fe38e9902",
+          "bytes": 10
+        },
+        "plot_runtime.py": {
+          "sha256": "258f7a49a795bfe335a2f51ca2f46518ab529908e25f6c26d49ecfdada52f42e",
+          "bytes": 15405
+        },
+        "analysis_report.py": {
+          "sha256": "327749fe5534cd2e7a91deec1b46ed6d6e0e846e35111f87ea5528bcc6425df3",
+          "bytes": 35868
+        },
+        "model_units.py": {
+          "sha256": "ba269491626510d9fbac93c5a971b09125014ed015601c6bd0ca52d7b1093f57",
+          "bytes": 6579
+        },
+        "analysis_report.md": {
+          "sha256": "533997f88cdd895fd23906a184148bb8cdc424dbb172e2b73d0a5d28bff5404b",
+          "bytes": 5777
+        },
+        "delivery_text.py": {
+          "sha256": "ed769bcbcf60beeef68a9e5185a047ed62fb27c62fbbb7609da3ec1c5e77d85c",
+          "bytes": 3910
+        }
+      },
+      "status_fields": [
+        "artifacts",
+        "available_params",
+        "isolation_key",
+        "numeric_tables",
+        "project_id",
+        "run_id",
+        "state",
+        "status",
+        "stdout",
+        "table_warnings"
+      ],
+      "artifact_fields": [
+        "content",
+        "mime_type",
+        "name",
+        "relative_path",
+        "rows",
+        "sha256",
+        "size"
+      ],
+      "timeout_seconds": 120
+    },
+    "financial": {
+      "launch": "import runpy, shutil, sys\nfrom pathlib import Path\nsys.path.insert(0, '/input')\nfrom plot_runtime import setup\nsetup()\nimport finance_charts\nfinance_charts.configure()\nfrom plot_runtime import deliver_models\ndeliver_models()\ntry:\n    runpy.run_path('/input/analysis.py', run_name='__main__')\n    if Path('/input/analysis_report.json').exists() or Path('/output/analysis_report.json').exists():\n        from analysis_report import deliver\n        deliver()\n    if Path('/input/parameter_comparison.json').exists():\n        from analysis_comparison import deliver_parameter_comparison\n        deliver_parameter_comparison()\nfinally:\n    shutil.copyfile('/input/analysis.py', '/output/executed_script.py')\n",
+      "mounts": {
+        "tables.json": {
+          "sha256": "4a7acac05426df35eeb5d867fd9e0fdef96e362a57e170bc1932510ed7f43972",
+          "bytes": 472
+        },
+        "facts.json": {
+          "sha256": "a1571a724fc612f054743a5c6a2cd17c89e5a219c126e897c85104b4a694966a",
+          "bytes": 44
+        },
+        "pages.json": {
+          "sha256": "53d094068ca5298dddb07d6f61001becba66255063f4a127a42e42ffb63083e8",
+          "bytes": 265
+        },
+        "research_records.json": {
+          "sha256": "af47e2256c094ee08268d769dc6d84a70ef0ef10bfd64e3f6cb8eed11e5120ca",
+          "bytes": 34
+        },
+        "analysis.py": {
+          "sha256": "dce6483e9502e2465e978ae88305f68b76f644ec1d2d6e60f2f9a00fe38e9902",
+          "bytes": 10
+        },
+        "plot_runtime.py": {
+          "sha256": "258f7a49a795bfe335a2f51ca2f46518ab529908e25f6c26d49ecfdada52f42e",
+          "bytes": 15405
+        },
+        "analysis_report.py": {
+          "sha256": "327749fe5534cd2e7a91deec1b46ed6d6e0e846e35111f87ea5528bcc6425df3",
+          "bytes": 35868
+        },
+        "model_units.py": {
+          "sha256": "ba269491626510d9fbac93c5a971b09125014ed015601c6bd0ca52d7b1093f57",
+          "bytes": 6579
+        },
+        "analysis_report.md": {
+          "sha256": "533997f88cdd895fd23906a184148bb8cdc424dbb172e2b73d0a5d28bff5404b",
+          "bytes": 5777
+        },
+        "delivery_text.py": {
+          "sha256": "ed769bcbcf60beeef68a9e5185a047ed62fb27c62fbbb7609da3ec1c5e77d85c",
+          "bytes": 3910
+        },
+        "finance_charts.py": {
+          "sha256": "b2ddb9c68b1b9693dc51c0ecfd76c5ca23006185e09b4b96a70f4312064286cf",
+          "bytes": 11306
+        },
+        "finance_charts.md": {
+          "sha256": "9dd64a819dd31c5af1c78a717d7e5e98011aef7684a80cd69c73dee1fb7dd08c",
+          "bytes": 6146
+        },
+        "models.json": {
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "bytes": 2
+        },
+        "comparison_requests.json": {
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "bytes": 2
+        },
+        "comparisons.json": {
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "bytes": 2
+        },
+        "recompute_models.py": {
+          "sha256": "1fa22cf2d6463519acd8aab14b584a9dda8fb953b8c974638f5735d18f78f534",
+          "bytes": 1147
+        },
+        "finance_model_code.zip": {
+          "sha256": "293beb6b2f041281920de34a6b64b77f7d65f256f10858302df7b84b58577d91",
+          "bytes": 54520
+        },
+        "model_bundle.zip": {
+          "sha256": "35b404f5fa0997d2fd9f2e3e6814b2d76cb2f305d766640ff6ed1696081e8078",
+          "bytes": 55041
+        }
+      },
+      "status_fields": [
+        "artifacts",
+        "available_params",
+        "isolation_key",
+        "numeric_tables",
+        "project_id",
+        "run_id",
+        "state",
+        "status",
+        "stdout",
+        "table_warnings"
+      ],
+      "artifact_fields": [
+        "content",
+        "mime_type",
+        "name",
+        "relative_path",
+        "rows",
+        "sha256",
+        "size"
+      ],
+      "timeout_seconds": 120
+    },
+    "generic": {
+      "launch": "import runpy, shutil, sys\nfrom pathlib import Path\nsys.path.insert(0, '/input')\nfrom plot_runtime import setup\nsetup()\ntry:\n    runpy.run_path('/input/analysis.py', run_name='__main__')\n    if Path('/input/analysis_report.json').exists() or Path('/output/analysis_report.json').exists():\n        from analysis_report import deliver\n        deliver()\n    if Path('/input/parameter_comparison.json').exists():\n        from analysis_comparison import deliver_parameter_comparison\n        deliver_parameter_comparison()\nfinally:\n    shutil.copyfile('/input/analysis.py', '/output/executed_script.py')\n",
+      "mounts": {
+        "tables.json": {
+          "sha256": "4a7acac05426df35eeb5d867fd9e0fdef96e362a57e170bc1932510ed7f43972",
+          "bytes": 472
+        },
+        "facts.json": {
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "bytes": 2
+        },
+        "pages.json": {
+          "sha256": "53d094068ca5298dddb07d6f61001becba66255063f4a127a42e42ffb63083e8",
+          "bytes": 265
+        },
+        "research_records.json": {
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "bytes": 2
+        },
+        "analysis.py": {
+          "sha256": "dce6483e9502e2465e978ae88305f68b76f644ec1d2d6e60f2f9a00fe38e9902",
+          "bytes": 10
+        },
+        "plot_runtime.py": {
+          "sha256": "258f7a49a795bfe335a2f51ca2f46518ab529908e25f6c26d49ecfdada52f42e",
+          "bytes": 15405
+        },
+        "analysis_report.py": {
+          "sha256": "327749fe5534cd2e7a91deec1b46ed6d6e0e846e35111f87ea5528bcc6425df3",
+          "bytes": 35868
+        },
+        "model_units.py": {
+          "sha256": "ba269491626510d9fbac93c5a971b09125014ed015601c6bd0ca52d7b1093f57",
+          "bytes": 6579
+        },
+        "analysis_report.md": {
+          "sha256": "533997f88cdd895fd23906a184148bb8cdc424dbb172e2b73d0a5d28bff5404b",
+          "bytes": 5777
+        },
+        "delivery_text.py": {
+          "sha256": "ed769bcbcf60beeef68a9e5185a047ed62fb27c62fbbb7609da3ec1c5e77d85c",
+          "bytes": 3910
+        }
+      },
+      "status_fields": [
+        "artifacts",
+        "available_params",
+        "isolation_key",
+        "numeric_tables",
+        "project_id",
+        "run_id",
+        "state",
+        "status",
+        "stdout",
+        "table_warnings"
+      ],
+      "artifact_fields": [
+        "content",
+        "mime_type",
+        "name",
+        "relative_path",
+        "rows",
+        "sha256",
+        "size"
+      ],
+      "timeout_seconds": 120
+    }
+  }
+}

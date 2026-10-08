@@ -1,0 +1,62 @@
+{
+  "version": "F2.0.2 candidate",
+  "base_commit": "ca81187c043eea52249cfe52a69ce5534aaa153b",
+  "deployed": false,
+  "model_calls": 0,
+  "docker_started": false,
+  "production_touched": false,
+  "python": "3.11.5",
+  "matplotlib": "3.10.0",
+  "tests": {
+    "python": {
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 12.127
+    },
+    "native_request": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 14.4333586
+    }
+  },
+  "profiles": {
+    "original_pi": {
+      "tools": 10,
+      "configured_prompt_sha256": "6c71fd727034260afcaa6e29e833ff27000cb7f246b2b0ffc83aa867be20c32f",
+      "tools_sha256": "e67785cc82164f505ad823d1c7f0cf4c0172eb24aa5024dddf67bacc49697f2f",
+      "launcher_sha256": "5c11c2c1d16fe896b709b3150405606be4402971564045995779e4d80aa79187"
+    },
+    "prepared": {
+      "tools": 13,
+      "configured_prompt_sha256": "277d3f66d7117f3a26081664156724289e4db87021e0127f1816e9fbe96f448e",
+      "tools_sha256": "aa5296cc7cdebd128908aae366757f2d8166382a0deeb55e73f7365109fcb0f8",
+      "launcher_sha256": "d22dde00e37355f552c70cd30837f14c68ec4fc6f55d450f65d086b21fd2b8b4"
+    },
+    "financial": {
+      "tools": 32,
+      "configured_prompt_sha256": "13026eedb1e7667c89c4182fb39d35a64acb141ac5f53758620f9a7f4039c632",
+      "tools_sha256": "24b6ee835da7ebc05f0c6313a46745bbf2e376015bc46d82814f5603bb7b3c22",
+      "launcher_sha256": "feb50b7a5abfa3364ee6aacc6530b4856a813227b9a6255c23ec5a1908e9740e"
+    }
+  },
+  "comparison_with_F20_native_capture": {
+    "original_pi": {
+      "tool_hash_unchanged": true,
+      "configured_prompt_exact_match": true,
+      "configured_prompt_match_excluding_resource_revision": true
+    },
+    "prepared": {
+      "tool_hash_unchanged": true,
+      "configured_prompt_exact_match": true,
+      "configured_prompt_match_excluding_resource_revision": true
+    },
+    "financial": {
+      "tool_hash_unchanged": true,
+      "configured_prompt_exact_match": false,
+      "configured_prompt_match_excluding_resource_revision": true
+    }
+  },
+  "resource_revision_note": "Financial resource revision includes skill file paths (server/project-resources.ts:23-24); worktree path differs. No guidance text difference. Full hashes retained, not claimed identical."
+}

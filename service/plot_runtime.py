@@ -241,13 +241,22 @@ def _savefig(self,fname,*args,**kwargs):
         self.set_canvas(original_canvas);self.set_dpi(original_dpi)
 
 
-def setup():
+def setup_fonts():
     import matplotlib as mpl
     from matplotlib import font_manager
     installed={font.name for font in font_manager.fontManager.ttflist}
     fonts=[name for name in ('Noto Sans CJK SC','Noto Sans CJK JP','Microsoft YaHei','SimHei') if name in installed]
     mpl.rcParams.update({'font.family':'sans-serif','font.sans-serif':fonts+['DejaVu Sans'],
-        'axes.unicode_minus':False,'savefig.bbox':'tight','savefig.pad_inches':0.2,
+        'axes.unicode_minus':False})
+    if not fonts:
+        import warnings
+        warnings.warn('没有可用的中文字体；中文图表可能缺字。',RuntimeWarning)
+
+
+def setup():
+    setup_fonts()
+    import matplotlib as mpl
+    mpl.rcParams.update({'savefig.bbox':'tight','savefig.pad_inches':0.2,
         'figure.autolayout':False,'figure.constrained_layout.use':True})
     from matplotlib.figure import Figure
     if not hasattr(Figure,'_finance_original_savefig'):
@@ -255,9 +264,6 @@ def setup():
         Figure._finance_original_tight_layout=Figure.tight_layout
         Figure.savefig=_savefig
         Figure.tight_layout=_tight_layout
-    if not fonts:
-        import warnings
-        warnings.warn('没有可用的中文字体；中文图表可能缺字。',RuntimeWarning)
 
 
 def deliver_models():
@@ -290,11 +296,11 @@ finally:
     shutil.copyfile('/input/analysis.py', '/output/executed_script.py')
 '''
 
-# Same scientific runtime/font setup and executable-script delivery; no report SDK.
+# Basic fonts and executable-script delivery only; no A3 repairs or report SDK.
 ORIGINAL_PI_LAUNCH = '''import runpy, shutil, sys
 sys.path.insert(0, '/input')
-from plot_runtime import setup
-setup()
+from plot_runtime import setup_fonts
+setup_fonts()
 try:
     runpy.run_path('/input/analysis.py', run_name='__main__')
 finally:
