@@ -53,3 +53,38 @@ class SdkLabelTests(unittest.TestCase):
     def test_row_overrides_keep_working_without_metrics(self):
         c=cleaner([{'index':1,'rows':[['应\n收款','1']]}])
         self.assertEqual(map_rows(c,1,{},row_overrides={1:{'metric':'receivable'}})['rows'][0]['attributes']['metric'],'receivable')
+
+    def test_neighbor_hint_handles_both_offset_directions_without_retargeting(self):
+        for target,neighbor in [(254,255),(256,255)]:
+            with self.subTest(target=target):
+                c=cleaner([{'index':target,'rows':[['不相关项目','1']]},
+                           {'index':neighbor,'rows':[['取得子公司\n现金','2']]}])
+                before=copy.deepcopy(c.tables)
+                result=map_rows(c,f'T{target}',{'取得子公司现金':'acquisition_cash'})
+                self.assertIn(f'候选应为 t{neighbor}',result['mapping_error'])
+                self.assertIn('第 1 行',result['mapping_error'])
+                self.assertEqual(set(c.results),{target})
+                self.assertEqual(result['rows'],[])
+                self.assertEqual(c.tables,before)
+
+    def test_neighbor_hint_lists_both_candidates_instead_of_choosing(self):
+        c=cleaner([{'index':i,'rows':[[label,'1']]} for i,label in [(1,'应收款'),(2,'其他项目'),(3,'应收款')]])
+        result=map_rows(c,2,{'应收款':'receivable'})
+        self.assertIn('t1（',result['mapping_error']);self.assertIn('t3（',result['mapping_error'])
+        self.assertEqual(set(c.results),{2})
+
+    def test_shared_label_does_not_suggest_a_neighbor_with_no_better_match(self):
+        c=cleaner([{'index':1,'rows':[['其他','1']]},
+                   {'index':2,'rows':[['其他','1'],['缺失项目','2']]}])
+        self.assertNotIn('偏移',map_rows(c,2,{'其他':'other'})['mapping_error'])
+
+    def test_no_hint_for_nonadjacent_or_unmatched_tables(self):
+        c=cleaner([{'index':2,'rows':[['缺失项目','1']]},
+                   {'index':3,'rows':[['不同项目','2']]},
+                   {'index':4,'rows':[['应收款','3']]}])
+        self.assertNotIn('偏移',map_rows(c,2,{'应收款':'receivable'})['mapping_error'])
+
+    def test_neighbor_hint_respects_label_column(self):
+        c=cleaner([{'index':2,'rows':[['分部','缺失项目','1']]},
+                   {'index':3,'rows':[['分部','应收款','2']]}])
+        self.assertIn('候选应为 t3',map_rows(c,2,{'应收款':'receivable'},label_column=2)['mapping_error'])
