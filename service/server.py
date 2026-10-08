@@ -308,7 +308,7 @@ async def run_analysis(project_id: str, code: str | None = None, document_ids: l
                        params: dict[str,Any] | None = None, params_order: list[str] | None = None) -> dict[str, Any]:
     """隔离执行 Python 或声明式 report，产物写 /output。/input 的 pages.json、tables.json、facts.json、research_records.json 为项目资料；预测不等于披露。
     示例 report={tables:{t:{columns:{v:{unit:'亿元'}},rows:[{v:{record_id:'ID'}}]}},body:'{{table:t}}'}，可省 code。单元支持 fact_id/record_id 或 {value,unit,currency,source}。自写脚本可输出 /output/analysis_report.json，或用 analysis_report.save_table 导出带类型 CSV。完整接口见 /input/analysis_report.md；自由 Python/Matplotlib 及布局保留。
-    参数更新用 source_run_id+params={NAME:值|{'+':增量}|{'*':倍率}}，params_order 指定贡献顺序；修复用 edits=[{before,after,replace_all?}]，省 code/edits 复用脚本。完成后给出版本引用与首选对比表。无网络、凭据或主库访问。 聊天回答可直接用 {{表名.行键.列名}} 或 {{table:表名}}，图片用 {{chart:文件名}}；完整产物用 get_artifact 读取。状态给出 available_params。
+    参数更新用 source_run_id+params={NAME:值|{'+':增量}|{'*':倍率}}，params_order 指定贡献顺序；修复用 edits=[{before,after,replace_all?}]，省 code/edits 复用脚本。完成后给出版本引用与首选对比表。无网络、凭据或主库访问。 聊天回答可直接用 {{表名.行键.列名}} 或 {{table:表名}}，图片用 {{chart:文件名}}；get_artifact 读取完整产物，嵌入用上述 table/chart 语法。方向文字用 analysis_report.fmt_change(delta,unit,pct=None)，pct 是百分数（-5 表示 -5%）。状态给出 available_params。
     Finance: 金融版 model_refs={base:{artifact_id,revision_id}} 挂载 /input/models.json，复用 base.result；report 单元可填 {model:"base",path:"results.value_per_share"}。comparisons={change:{baseline:"base",scenario:"scenario",order:[路径]}} 导出差异。finance_charts 提供 record_values/model_values 换单位、waterfall、comparison_heatmaps；自由绘图仍可用。"""
     return await call("run_analysis",project_id=project_id,code=code,document_ids=document_ids,timeout_seconds=timeout_seconds,raw_only=raw_only,financial_tools=financial_tools,model_refs=model_refs,comparisons=comparisons,source_run_id=source_run_id,edits=edits,report=report,params=params,params_order=params_order)
 
@@ -338,10 +338,11 @@ async def finish_report_package(project_id: str, package_id: str, html: str) -> 
     return response(await scoped_thread(finish_package,service,project_id,package_id,html))
 
 @mcp.tool()
-async def render_answer(project_id: str, body: str, tables: dict[str, Any], charts: dict[str, str] | None = None) -> dict[str, Any]:
+async def render_answer(project_id: str, body: str, tables: dict[str, Any], charts: dict[str, str] | None = None,
+                        degrade: bool = False, files: list[dict[str, str]] | None = None) -> dict[str, Any]:
     """Host-only formatter shared with report.md. Not a model tool."""
     try:
-        return await asyncio.to_thread(service.render_answer,project_id,body,tables,charts)
+        return await scoped_thread(service.render_answer,project_id,body,tables,charts,degrade,files)
     except ValueError as exc:
         return response({'error':str(exc),'code':'answer_reference_error'},status='error')
 

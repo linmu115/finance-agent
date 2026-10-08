@@ -1,0 +1,146 @@
+{
+  "base_commit": "328b8e244deb2c75769846eb9093b4aa4d7d6750",
+  "branch": "feat/v3-delivery",
+  "checked_at": "2026-10-08T22:32:41.568997+08:00",
+  "paid_model_calls": 0,
+  "production_restart": false,
+  "production_data_modified": false,
+  "typescript": {
+    "unique_tests_passed": 27,
+    "first_batch_passed": 26,
+    "first_batch_environment_failure": 1,
+    "environment_fix": "worktree .venv junction to existing environment; hardcoded legacy fixture path",
+    "failed_test_rerun_passed": 1,
+    "final_semantics_rerun_passed": 9
+  },
+  "python": {
+    "unique_tests_passed": 30,
+    "batch_passed": 29,
+    "added_shared_sdk_mount_test_passed": 1
+  },
+  "typecheck": "passed",
+  "build": "passed",
+  "native_replays": [
+    {
+      "run_id": "32e7e573-d11a-4f50-b205-c9c2664d08c6",
+      "profile": "financial",
+      "status": "completed",
+      "repair_errors": 0,
+      "degraded": false,
+      "issue_kinds": [],
+      "rewrites": [],
+      "audit_sha256": "9df66405151c5b76acfa6537ef7164459735459a00db2c9727e9a9a57841f9e3"
+    },
+    {
+      "run_id": "37bd09f2-b91b-49d8-89e2-1031b37c6e27",
+      "profile": "financial",
+      "status": "completed",
+      "repair_errors": 1,
+      "degraded": true,
+      "issue_kinds": [
+        "direction",
+        "reference",
+        "valuation_section"
+      ],
+      "rewrites": [],
+      "audit_sha256": "2fbaa1731ad420843e995fb24f5cdac5069e7f32788390c3450a7e88777e3ca8"
+    },
+    {
+      "run_id": "4bff9074-d53d-4ba0-aa3d-81b7b283c959",
+      "profile": "prepared",
+      "status": "completed",
+      "repair_errors": 1,
+      "degraded": true,
+      "issue_kinds": [
+        "direction",
+        "reference",
+        "valuation_section"
+      ],
+      "rewrites": [],
+      "audit_sha256": "f0b57f249816a1b8a09fe2e98218ddc06cda2f2458faa8e1e7afde5954288040"
+    },
+    {
+      "run_id": "4d7a5c91-05a4-4f86-af7e-6afc53ca6b3e",
+      "profile": "generic",
+      "status": "completed",
+      "repair_errors": 1,
+      "degraded": true,
+      "issue_kinds": [
+        "direction",
+        "reference",
+        "valuation_section"
+      ],
+      "rewrites": [],
+      "audit_sha256": "32ee4a438111957658c3bf37309c251163b55cca2ca912cd03807a3093f15544"
+    },
+    {
+      "run_id": "8593d3a4-f848-4014-8624-c18364574c58",
+      "profile": "prepared",
+      "status": "completed",
+      "repair_errors": 1,
+      "degraded": false,
+      "issue_kinds": [],
+      "rewrites": [],
+      "audit_sha256": "7a6f3e0cf90b264ca793368b44f3163330447362f5dcb6d5d2ea065289e21101"
+    },
+    {
+      "run_id": "c12a5a6a-8b5b-452b-9cd1-3a5e21dab39c",
+      "profile": "prepared",
+      "status": "completed",
+      "repair_errors": 0,
+      "degraded": false,
+      "issue_kinds": [],
+      "rewrites": [],
+      "audit_sha256": "9b01a7514e919982a3acd4219d88813a2b17c64afaddcaf98fd607e0ba377da8"
+    },
+    {
+      "run_id": "debf8e86-3c8e-48e2-bb3c-a1e3496057aa",
+      "profile": "financial",
+      "status": "completed",
+      "repair_errors": 1,
+      "degraded": true,
+      "issue_kinds": [
+        "reference"
+      ],
+      "rewrites": [
+        {
+          "original": "{{get_artifact(4e660ebf66824ad4b5fcb09caf0c11df, cashflow_reconciliation.csv)}}",
+          "replacement": "{{table:cashflow_reconciliation}}"
+        },
+        {
+          "original": "{{get_artifact(4e660ebf66824ad4b5fcb09caf0c11df, category_contributions.csv)}}",
+          "replacement": "{{table:category_contributions}}"
+        }
+      ],
+      "audit_sha256": "24d9c81d7fac81a3e2912935e2ff5d01eec1c8e6c76e2844c5850273845bc9f8"
+    }
+  ],
+  "logs": {
+    "typescript_initial": {
+      "path": "tmp/v3-delivery-validation/typescript.log",
+      "sha256": "b8bb78eba3f49310d341c91b235bc9de207c66d872eba0fbaeaa8ece8476c414"
+    },
+    "period_basis_rerun": {
+      "path": "tmp/v3-delivery-validation/period-basis.log",
+      "sha256": "dfd725b2ce833a0d2a1ee29d445a34fa3d50e118d23bbbfda11e25da5897b5c3"
+    },
+    "python_29": {
+      "path": "tmp/v3-delivery-validation/python.log",
+      "sha256": "53423d3aec5aeb1e83311d7a78b707efe282b70a59425df45267b71ae09db0fa"
+    },
+    "typecheck": {
+      "path": "tmp/v3-delivery-typecheck.log",
+      "sha256": "17ce50c23fcb1f4074e8f2f965a60dedb24472afa8a32b19011559cbe87140fb"
+    },
+    "build": {
+      "path": "tmp/v3-delivery-validation/build.log",
+      "sha256": "907138943f0f52ef428baa452427364cee4bccb301fa5fe64d330323e8131315"
+    }
+  },
+  "limitations": [
+    "Deterministic native Pi faux provider replay, not paid financial quality or cost comparison",
+    "Charts are attachment fixtures; actual numeric tables and answer templates are from authorized development audits",
+    "Direction defects in MD/CSV are identified by file/line in the final answer; original file bytes remain unchanged",
+    "Completed degraded runs retain quality issues; count answer_degraded separately"
+  ]
+}

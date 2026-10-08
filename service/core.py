@@ -652,7 +652,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             inputs={"tables.json":table_path,"facts.json":facts_path,"pages.json":pages_path,'research_records.json':research_path}
         script=export/'analysis.py';script.write_text(code,encoding='utf-8');inputs['analysis.py']=script
         plot_runtime=export/'plot_runtime.py';shutil.copyfile(Path(__file__).with_name('plot_runtime.py'),plot_runtime);inputs['plot_runtime.py']=plot_runtime
-        for name in ('analysis_report.py','model_units.py','analysis_report.md'):
+        for name in ('analysis_report.py','model_units.py','analysis_report.md','delivery_text.py'):
             target=export/name;shutil.copyfile(Path(__file__).with_name(name),target);inputs[name]=target
         if report is not None:
             target=export/'analysis_report.json';target.write_text(dumps(report),encoding='utf-8');inputs['analysis_report.json']=target
@@ -839,10 +839,27 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         return {**state, **scenario_context, 'numeric_tables': {k: table_view(t) for k, t in tables.items()}, 'table_warnings': warnings,'available_params':available,
                 **({'plot_diagnostics':plot_diagnostics} if plot_diagnostics else {})}
 
-    def render_answer(self, project_id, body, tables, charts=None):
+    def render_answer(self, project_id, body, tables, charts=None, degrade=False, files=None):
         self.store.project(project_id)
-        from .analysis_report import bind_text
-        return response({'body':bind_text(body,tables,charts)})
+        from .analysis_report import bind_text, reference_inventory
+        from .delivery_text import direction_issues
+        from sandbox import RunnerError
+        issues, rewrites = [], []
+        rendered = bind_text(body,tables,charts,degrade=degrade,issues=issues,rewrites=rewrites)
+        issues.extend(direction_issues(rendered))
+        for file in files or []:
+            if Path(file['name']).suffix.lower() not in ('.md','.csv'):
+                continue
+            # Same project/isolation and manifest checks as an explicit get_artifact.
+            try:
+                text = self.artifact_path(project_id,file['run_id'],file['name']).read_text(encoding='utf-8-sig')
+            except (ValueError, OSError, UnicodeError, RunnerError) as exc:
+                issues.append({'kind':'artifact_read','source':file['name'],'text':file['name'],
+                               'message':f'交付文本未完成检查：{exc}'})
+                continue
+            issues.extend(direction_issues(text,file['name'],csv_text=file['name'].lower().endswith('.csv')))
+        available = {'references':reference_inventory(tables),'charts':list(charts or {})} if any(i['kind']=='reference' for i in issues) else {}
+        return response({'body':rendered,'issues':issues,'rewrites':rewrites,**available})
 
     def artifact_path(self, project_id, run_id, name):
         self.store.project(project_id)

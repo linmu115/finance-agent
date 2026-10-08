@@ -12,6 +12,10 @@ from pathlib import Path
 import re
 import unicodedata
 import zipfile
+if __package__:
+    from .delivery_text import fmt_change
+else:
+    from delivery_text import fmt_change
 
 
 MONEY = {'元': '1', '千元': '1000', '万元': '10000', '百万元': '1000000',
@@ -223,6 +227,8 @@ def display_table(table):
             if len(unit)!=1:raise ValueError('sum_relations 的分项与合计须使用相同单位、币种和显示精度')
             quantum=Decimal(1).scaleb(-total[2].get('decimals',2))
             exact=[Decimal(str(table['rows'][i][k])) for i,k,_ in cells]
+            if any(not value.is_finite() for value in exact):
+                raise ValueError('合计关系含非有限数值；缺失请用 null')
             context.prec=max(50,sum(len(v.as_tuple().digits)+abs(v.as_tuple().exponent) for v in exact))
             target=exact[0].quantize(quantum)
             if sum(exact[1:]).quantize(quantum)!=target:
@@ -250,11 +256,33 @@ def render_table(table):
     return '\n'.join(lines)+''.join('\n\n注：'+note+'。' for note in display['notes'])
 
 
-def bind_text(body, tables, charts=None):
+def tool_reference(token, tables, charts):
+    """Resolve a filename only within the supplied inventory; never execute a tool."""
+    call = re.fullmatch(r'get_artifact\s*\((.*)\)', token, re.S)
+    if not call:
+        return token
+    arguments = [s.strip().split('=', 1)[-1].strip().strip('\'"') for s in call[1].split(',')]
+    candidates = set()
+    for name, table in tables.items():
+        names = {name.casefold(), (name + '.csv').casefold()}
+        if table.get('artifact', '').endswith('.csv'):
+            names.add(table['artifact'].casefold())
+        if any(arg.casefold() in names for arg in arguments):
+            candidates.add('table:' + name)
+    for name in charts or {}:
+        if any(arg.casefold() == name.casefold() for arg in arguments):
+            candidates.add('chart:' + name)
+    if len(candidates) != 1:
+        raise ValueError('工具式引用的文件名不能唯一对应本次已登记的表或图片')
+    return candidates.pop()
+
+
+def bind_text(body, tables, charts=None, *, degrade=False, issues=None, rewrites=None):
     parts, position, notes = [], 0, []
     for match in re.finditer(r'\{\{\s*([^{}]+?)\s*\}\}', body):
-        token = match.group(1); column = None; value = None
+        token = match.group(1); original = token; column = None; value = None
         try:
+            token = tool_reference(token, tables, charts)
             if token.startswith('table:'):
                 name = match_key(token[6:], tables, '表'); rendered = render_table(tables[name])
             elif token.startswith('chart:'):
@@ -273,8 +301,16 @@ def bind_text(body, tables, charts=None):
                 display=display_table(table);notes+=display['notes']
                 column = cell_column(table, index, key); value = display['rows'][index][key]
                 rendered = format_cell(value, column, with_unit=True)
-        except (ValueError, KeyError, IndexError) as exc:
-            raise ValueError(f'占位符 {{{{{token}}}}} 无法解析：{exc}。可用引用：{json.dumps(reference_inventory(tables), ensure_ascii=False)}；可用图片：{list(charts or {})}') from exc
+        except (ValueError, KeyError, IndexError, InvalidOperation) as exc:
+            message = f'占位符 {{{{{original}}}}} 无法解析：{exc}'
+            if not degrade:
+                raise ValueError(message + f'。可用引用：{json.dumps(reference_inventory(tables), ensure_ascii=False)}；可用图片：{list(charts or {})}') from exc
+            rendered = '[引用无效：' + match[0] + ']'; column = None
+            if issues is not None:
+                issues.append({'kind':'reference', 'source':'回答', 'text':match[0], 'message':message})
+        else:
+            if token != original and rewrites is not None:
+                rewrites.append({'original':match[0], 'replacement':'{{' + token + '}}'})
         parts += [body[position:match.start()], rendered]; position = match.end()
         if column and value is not None and column.get('unit'):
             following = body[position:]; text = following.lstrip(' \t')

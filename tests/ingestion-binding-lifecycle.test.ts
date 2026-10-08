@@ -95,8 +95,10 @@ test('ingestion continuation and answer repair stay exclusive across native turn
   const invalidChat=await makeChat(),priorProgress=progressCalls;
   faux.setResponses([answer('{{absent.row.value}}'),answer('{{absent.row.value}}')]);
   const fourth=await manager.start(invalidChat,'分析',[]),invalid=await wait(fourth.id),invalidEvents=await audit(fourth.id);
-  assert.equal(invalid.status,'failed');assert.equal(progressCalls,priorProgress);
-  assert.equal(invalidEvents.filter(e=>e.type==='answer_binding_error').length,2);
+  assert.equal(invalid.status,'completed');assert.equal(progressCalls,priorProgress);
+  assert.equal(invalidEvents.filter(e=>e.type==='answer_binding_error').length,1);
+  assert.equal(invalidEvents.filter(e=>e.type==='answer_degraded').length,1);
+  assert.match((await manager.getConversation(invalidChat.id)).messages.at(-1).content,/\[引用无效：/);
   assert.equal(invalidEvents.filter(e=>e.type==='ingestion_continuation').length,0);
   assert.equal(faux.getPendingResponseCount(),0);
   const invalidNative=(await readFile(path.join(dir,'workspaces/lifecycle',invalidChat.id,'sessions/session.jsonl'),'utf8')).trim().split('\n').map(v=>JSON.parse(v));

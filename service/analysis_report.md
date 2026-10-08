@@ -48,3 +48,5 @@ fig, ax = render_chart(table, {'x': 'year', 'y': ['profit'], 'kind': 'bar'})
 `body` 的 `{{表名.从0开始的行号.列名}}` 从同一数据生成数字和单位，占位符后面不用再写单位。金融解释、假设和图形由你决定；不得把假设写成披露事实。数字表的来源详情随 chart_data.json 保留。图像自动生成支持 line/bar，复杂瀑布图、热力图等仍可用 Python；两种图都保留缺失值。
 
 贡献、现金桥、构成表可在表定义声明 `sum_relations`，例如 `[{"parts":[{"row":"wacc","column":"value"},{"row":"fcf","column":"value"}],"total":{"row":"total","column":"value"}}]`。行使用表的 row_keys（或 row_key 指定的列）；分项和合计使用同一单位、币种、decimals。渲染器用最大余数法分配显示末位并加表注“分项按显示精度调整以与合计一致”；`rows`、来源和 CSV 保持原精度。缺失仍为空，显示精度下已不相等的关系不会被强行配平。未声明关系的表仍正常逐格显示，不猜哪些行该加总。直接 `display_table(table)` 可取得显示 rows/notes；`render_table` 与答案绑定使用相同结果。`save_table(..., sum_relations=[...])` 也可登记关系，行键由行中的名称列确定。
+
+方向表述用 `from analysis_report import fmt_change`：`fmt_change(-3.2, '亿元', -5)` 返回 `减少 3.2亿元（5%）`，零值返回 `持平`。delta 是带符号变化量，pct 是可选百分数（-5 表示 -5%），两者方向矛盾会报错；原始表和 CSV 保留有符号数值。不要把期末水平值传作 delta。聊天嵌入表/图用上述绑定语法，`get_artifact` 是读取工具。

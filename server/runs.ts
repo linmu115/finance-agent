@@ -371,7 +371,7 @@ export class RunManager {
    });
    pi.on('turn_start',()=>{if(e.active)e.active.accepting=true;});
   };
-  const bindingExtension=answerBindingExtension({enabled:()=>!this.isIngestion(e.active!),render:body=>this.renderAnswer(e.active!,body),audit:(type,data)=>this.audit(e.active!,type,data),repairSent:()=>e.active!.bindingRepairMessage===e.active!.answer.id,markRepair:()=>{e.active!.bindingRepairMessage=e.active!.answer.id;},error:error=>{e.active!.bindingError=error;}});
+  const bindingExtension=answerBindingExtension({enabled:()=>!this.isIngestion(e.active!),render:(body,degrade)=>this.renderAnswer(e.active!,body,degrade),audit:(type,data)=>this.audit(e.active!,type,data),repairSent:()=>e.active!.bindingRepairMessage===e.active!.answer.id,markRepair:()=>{e.active!.bindingRepairMessage=e.active!.answer.id;},error:error=>{e.active!.bindingError=error;}});
   // Explicit overrides load only application/project resources, never unrelated global instructions.
   const loader=new DefaultResourceLoader({cwd:workspace,agentDir,settingsManager:manager,noExtensions:true,extensionFactories:[compactionExtension,inputLifecycle,bindingExtension,transportRetryExtension(manager)],noSkills:true,noPromptTemplates:true,noThemes:true,noContextFiles:true,skillsOverride:()=>({skills:resources?.skills.filter(s=>s.enabled)||[],diagnostics:[]}),agentsFilesOverride:()=>({agentsFiles:resources?[{path:resources.rulePath,content:resources.rules}]:[]}),systemPrompt});await loader.reload();
   const {session}=await createAgentSession({cwd:workspace,agentDir,modelRuntime:runtime,model,thinkingLevel:reasoning?'low':'off',noTools:'builtin',tools:customTools.map(t=>t.name),customTools,resourceLoader:loader,sessionManager,settingsManager:manager});
@@ -491,17 +491,29 @@ export class RunManager {
   return {status:'ok',data:{name,content:skill.content},source_refs:[],warnings:[],trace_id:randomUUID()};
  }
  private isIngestion(l:LiveRun){return l.processingIds.size>0||l.run.tools.some(tool=>tool.name==='process_documents');}
- private async renderAnswer(l:LiveRun,body:string){
+ private async renderAnswer(l:LiveRun,body:string,degrade=false){
   if(this.isIngestion(l))return body;
   const missing=valuationSections(body);
   const sources=[...(l.answer.sources||[]).filter(s=>s.kind!=='user_provided'),...citedUserSources(body,l.chat.messages)];
   body=annotateAnswer(body,sources);
   const charts:Record<string,string>={};
   for(const a of l.answer.artifacts||[])if(a.mimeType.startsWith('image/'))charts[a.name]=a.url;
-  let bound=body,failure:any;
-  try{if(body.includes('{{'))bound=(await this.service.call('render_answer',{project_id:l.run.projectId,body,tables:l.numericTables||{},charts},l.controller.signal)).data.body as string;}
-  catch(error){if((error as any).code!=='answer_reference_error')throw error;failure=error;}
-  if(missing.length||failure)throw Object.assign(new Error([failure?.message,missing.length?'估值或投资判断缺少有内容的小节：'+missing.join(' / ')+'。保留已核对数值并补全；资料不足明确说明。':null].filter(Boolean).join('\n')),{code:failure?'answer_reference_error':'answer_contract_error'});
+  const files=(l.answer.artifacts||[]).filter(a=>/\.(md|csv)$/i.test(a.name)).flatMap(a=>{
+   const match=a.url.split('?')[0].match(/^\/api\/projects\/([^/]+)\/(?:artifacts|research\/deliveries)\/([^/]+)\/([^/]+)$/);
+   return match&&decodeURIComponent(match[1])===l.run.projectId?[{run_id:decodeURIComponent(match[2]),name:decodeURIComponent(match[3])}]:[];
+  });
+  // Collect all delivery defects together so references, sections and wording share one repair.
+  const result=(await this.service.call('render_answer',{project_id:l.run.projectId,body,tables:l.numericTables||{},charts,degrade:true,files},l.controller.signal)).data;
+  let bound=result.body as string;
+  const issues=[...(result.issues||[]),...missing.map(section=>({kind:'valuation_section',source:'回答',text:section,message:'估值说明缺少：'+section+'。请保留已核对数值并补全；资料不足明确说明。'}))];
+  for(const rewrite of result.rewrites||[])await this.audit(l,'answer_reference_rewrite',rewrite);
+  if(issues.length){
+   await this.audit(l,'answer_consistency_issues',{issues,degraded:degrade});
+   if(!degrade)throw Object.assign(new Error(issues.map(i=>`${i.source}${i.line?' 第'+i.line+'行':''}：${i.text}；${i.message}`).join('\n')+(result.references?'。可用引用：'+JSON.stringify(result.references)+'；可用图片：'+JSON.stringify(result.charts):'')),{code:issues.some(i=>i.kind==='reference')?'answer_reference_error':'answer_contract_error'});
+   bound=bound.split('\n').map(line=>line.includes('[引用无效：')?line.replace(/【事实\/数据】/g,'【推论·引用无效】'):line).join('\n');
+   bound+='\n\n> **交付说明：一次修复后仍有以下问题，相关内容请勿作为已核对结论。**\n'+issues.map(i=>'> - '+(i.kind==='reference'?'[引用无效：'+i.text+']':`${i.source}${i.line?' 第'+i.line+'行':''}：${i.text}；${i.message}`)).join('\n');
+   await this.audit(l,'answer_degraded',{issues});
+  }
   l.answer.sources=sources;
   return bound;
  }
