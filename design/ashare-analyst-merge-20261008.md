@@ -23,3 +23,15 @@ A1 在原生 message_end 对最终分析答复统一渲染。数值绑定或当�
 9 项 Node（含两组原生 Pi+MCP 导出）、24 项 Python 通过。卡罗特 N2 底稿确定性导出 PDF 7 页逐页缩略及重点检查，工作簿由 openpyxl 和独立 Artifact Tool 成功打开并渲染。原始 N2 回放表不含证据时保留来源缺失，不能声称补齐。产品采用仓库已有 openpyxl/PyMuPDF，技能用于文件检查，不把 Codex 专用 Artifact Tool 装进产品依赖。
 
 首次 MCP Excel 导出卡在 Windows stdio 读取开启后的 NumPy 原生依赖初始化。移至 stdio 开启前加载后回放通过，保留失败与堆栈，不宣称已证明更底层锁成因。真实会话冒烟将在本实现提交后仅执行一次；正式对照尚未执行。
+
+## 真实会话、回放与上线状态
+
+实现提交 bac4a79 后，仅用现有 gpt-6-luna 配置执行 1 次隔离真实会话，匿名题给经营与 FCF 输入，不是真实公司质量对照。13 次模型调用（含路由），总输入 223,195、输出 5,350、未缓存 54,235、缓存读取 168,960，目录价格估算 $0.0097881，非账单。没有读 held-out 材料，没有另开 HTTP 服务端口，也未更改生产模型配置。
+
+会话 completed，导出 MD、3 页 PDF、Excel 和原精度 JSON。82 个非空单元格按表/行/列核对一致，其中 71 个数值；混合单位另列 11 格可见单位，未知值保持空白。PDF 逐页查看，Excel 由 openpyxl 及独立 Artifact Tool 导入渲染。界面按钮、POST、ZIP 下载有受控 API 的浏览器验证，不能把此项当成生产后端或金融质量证据。
+
+负面结果完整保留：一次 run_analysis FileNotFoundError；模型曾使用缺列名的占位符并缺估值小节，同一次 A1 提醒后修正。最终经营指标表仍手写，未保存经营数值表，只有 3 张 DCF 数值表；模型使用非约定事实别名，且其余文字未全部标为推论/观点。交付基础功能验收通过，模型采用部分通过，不宣称金融优势。根据已出现的别名补上程序识别，无绑定或已读来源的 4 句降级显示；仅用原会话模板确定性回放，没有第二次付费调用。PDF 中文标点相邻粗体及缺标签的列头也已修复；所有原始数值表严格不变。原始会话与 package 保留，最新显示修复另存 package-replay。
+
+N3 已开始 270 页完整入库，用户最新决定允许⑤本轮不重启。3001 保持第 3 步上线的 N2+N3，PID 24292；只检查活动运行元数据，存在 running 任务。⑤代码及构建产物已就绪，**⑤尚未加载到 3001，待用户安排空闲窗口上线**。Docker/WSL 继续共享，12 个停用 Dify/mineru 容器未操作。
+
+证据：docs/evidence/analyst-delivery-20261008/smoke.json、smoke-numeric-checks.json、ui-validation.json、environment.json。原始会话：data/evaluation/analyst-delivery-smoke-20261008；修复回放报告包：其中 package-replay/report_package.zip。

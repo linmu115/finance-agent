@@ -12,6 +12,7 @@ from openpyxl import Workbook
 import fitz
 
 CHAPTERS = ['结论', '关键数据', '业绩变化归因', '特殊损益与口径', '异常信号', '估值', '假设、风险与局限', '来源']
+MISSING = ['未提供分析结论。','未保存可复用的关键经营数据表。','未提供业绩归因分析或底稿。','未提供特殊损益与口径分析或底稿。','尚未提供异常信号分析，不能据此判断没有异常。','未提供估值分析。','未提供假设、风险与局限说明。','未提供可定位来源；已留存的输入与计算链见底稿工作簿。']
 # Stable metadata extension point for N2/N4: report_section can be a chapter or key below.
 SECTION_KEYS = {'conclusion':0,'key_data':1,'variance_attribution':2,'basis_changes':3,'anomaly_signals':4,'valuation':5,'limitations':6,'sources':7}
 TABLE_SECTIONS = {
@@ -22,6 +23,7 @@ TABLE_SECTIONS = {
 }
 SHEETS = {1:'指标',2:'利润桥',3:'特殊损益与口径',4:'信号',5:'估值',6:'缺项与局限',7:'来源'}
 TABLE_TITLES = {'income':'利润表','profit_attribution':'利润归属','ratios':'利润率','growth':'同比增长','cash':'现金流','working_capital':'营运资本','cash_quality':'现金转化与周转','observations':'数值关系','roe':'净资产收益率','bridge':'现金桥','indirect_bridge':'间接法现金桥','indirect_contributions':'现金桥贡献','deducted_profit':'扣非利润','nonrecurring_items':'非经常性损益','quarterly':'季度数据','quarterly_reconciliation':'季度勾稽','missing':'缺失资料','report_columns':'比较列来源','signals':'异常信号','contributions':'变化贡献','drivers_evidence':'驱动因素原文'}
+TABLE_TITLES.update(dcf_summary='DCF 估值结果',dcf_forecast='FCFF 预测与折现',dcf_sensitivity='DCF 敏感性')
 
 def table_title(name,table):
     return table.get('title') or table.get('label') or TABLE_TITLES.get(table.get('original_table',name),name)
@@ -34,7 +36,7 @@ def section_for(name,table):
 
 def presentation_table(table):
     """Keep technical row IDs in the workbook; they are not financial report columns."""
-    columns={k:c for k,c in table['columns'].items() if c.get('label')!='行键'}
+    columns={k:{**c,'label':c.get('label') or k} for k,c in table['columns'].items() if c.get('label')!='行键'}
     return {**table,'columns':columns}
 
 def prose_sections(body):
@@ -62,20 +64,26 @@ def workbook(snapshot,output):
     from openpyxl.utils import get_column_letter
     book=Workbook();book.remove(book.active)
     for name in ['指标','利润桥','贡献','特殊损益与口径','信号','估值','缺项与局限','来源']:book.create_sheet(name)
+    heading_rows={s.title:{1,2} for s in book}
     for sheet in book:
         sheet.append([snapshot['title']+' · '+sheet.title]);sheet.append(['按回答版本保存；数值保持原精度，超过 Excel 15 位有效数字的值以文本保留。'])
         sheet.freeze_panes='B4';sheet.sheet_view.showGridLines=False
     sources=book['来源'];sources.append(['回答版本','表名','行键','列名','来源链 / 缺失原因'])
+    heading_rows['来源'].add(3)
     for n,turn in enumerate(snapshot['turns'],1):
         for ref in turn['sources']:sources.append([n,'回答','','',json.dumps(ref,ensure_ascii=False)])
         for name,t in turn['tables'].items():
             section=section_for(name,t)
             sheet=book['贡献' if name.endswith('contributions') else SHEETS.get(section,'指标')]
-            sheet.append([]);sheet.append([f'回答 {n} · {table_title(name,t)}']);sheet.append([column_label(c) or k for k,c in t['columns'].items()])
+            fields=[(k,unit) for k,c in t['columns'].items() for unit in ([False,True] if c.get('per_cell_unit') else [False])]
+            sheet.append([]);sheet.append([f'回答 {n} · {table_title(name,t)}']);heading_rows[sheet.title].update([sheet.max_row,sheet.max_row+1])
+            sheet.append([(t['columns'][k].get('label') or k)+'单位' if unit else column_label({**t['columns'][k],'label':t['columns'][k].get('label') or k}) for k,unit in fields])
             for i,row in enumerate(t['rows']):
-                sheet.append([value_for_excel(row.get(k)) for k in t['columns']])
+                units=(t.get('cell_units') or [{} for _ in t['rows']])[i]
+                sheet.append([' '.join(str(units.get(k,{}).get(part,'')) for part in ('currency','unit')).strip() if unit else value_for_excel(row.get(k)) for k,unit in fields])
                 excel_row=sheet.max_row
-                for j,k in enumerate(t['columns'],1):
+                for j,(k,is_unit) in enumerate(fields,1):
+                    if is_unit:continue
                     cell=sheet.cell(excel_row,j)
                     if isinstance(cell.value,str):cell.data_type='s' # Source text cannot become an Excel formula.
                     cell.number_format='General'
@@ -91,7 +99,7 @@ def workbook(snapshot,output):
                 c.font=Font(name='Microsoft YaHei',size=10,color='172B4D')
                 c.alignment=Alignment(vertical='top',wrap_text=True)
                 if isinstance(c.value,str):c.data_type='s'
-            if row[0].row==1 or (row[0].value is not None and all(c.value is None for c in row[1:])):
+            if row[0].row in heading_rows[sheet.title]:
                 for c in row:c.fill=PatternFill('solid',fgColor='E8EEF5');c.font=Font(name='Microsoft YaHei',size=11,bold=True,color='17365D')
         for j in range(1,sheet.max_column+1):sheet.column_dimensions[get_column_letter(j)].width=32 if j==1 else 24
         if sheet.title=='来源':sheet.column_dimensions['E'].width=100
@@ -112,6 +120,9 @@ def prepare(service,project,snapshot):
         body=turn['body']
         for t in turn['tables'].values():
             body=body.replace('【事实/数据】\n\n'+render_table(t),'').replace(render_table(t),'')
+        # CommonMark does not close punctuation-ending bold spans before adjacent CJK text.
+        body=''.join(part if i%2 else re.sub(r'\*\*([^*\n]+)\*\*(?=\S)',r'**\1** ',part)
+                     for i,part in enumerate(re.split(r'(```[\s\S]*?```|`[^`\n]*`)',body)))
         for artifact in turn.get('artifacts',[]):
             match=re.fullmatch(r'/api/projects/([^/]+)/artifacts/([^/]+)/([^/?]+)',artifact.get('url',''))
             if not match or not artifact.get('mimeType','').startswith('image/'):continue
@@ -138,7 +149,7 @@ def prepare(service,project,snapshot):
                 for v in value:visit(v)
         visit(turn['tables'])
         if refs:sections[7].append('### '+label+' · 底稿来源\n\n'+'\n'.join('- '+k for k in refs))
-    markdown='# 财报分析报告\n\n'+snapshot['title']+'\n\n'+ '\n\n'.join('## '+chapter+'\n\n'+('\n\n'.join(sections[i]) if sections[i] else '本次会话未提供该部分分析或底稿；不能据此推断无异常或无风险。') for i,chapter in enumerate(CHAPTERS) if i!=5 or sections[5])
+    markdown='# 财报分析报告\n\n'+snapshot['title']+'\n\n'+ '\n\n'.join('## '+chapter+'\n\n'+('\n\n'.join(sections[i]) if sections[i] else MISSING[i]) for i,chapter in enumerate(CHAPTERS) if i!=5 or sections[5])
     (folder/'report.md').write_text(markdown,encoding='utf8')
     (folder/'snapshot.json').write_text(json.dumps(snapshot,ensure_ascii=False,indent=2),encoding='utf8')
     workbook(snapshot,folder/'workpapers.xlsx')

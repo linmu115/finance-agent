@@ -9,6 +9,8 @@ test('facts need bindings or known locators, inference and opinion remain model 
  assert.match(annotateAnswer('收入增长（doc-1 第8页）。',sources),/^【事实\/数据】/);
  assert.equal(annotateAnswer('doc-1 第9页：收入增长。',sources),'doc-1 第9页：收入增长。');
  assert.match(annotateAnswer('【事实】见 https://unread.test。',sources),/^【推论·/);
+ assert.equal(annotateAnswer('**【题给数据／计算】**收入增长。'),'【推论·缺少绑定或来源】收入增长。');
+ assert.equal(annotateAnswer('**【数据支持的结论】**收入增长。'),'【推论·缺少绑定或来源】收入增长。');
  assert.equal(annotateAnswer('【观点】现金值得关注。'),'【观点】现金值得关注。');
  assert.equal(annotateAnswer('【推论】基于 {{income.x.v}}，增长或与提价有关。'),'【推论】基于 {{income.x.v}}，增长或与提价有关。');
  assert.equal(annotateAnswer('原因未知。'),'原因未知。');

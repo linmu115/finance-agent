@@ -1,6 +1,7 @@
 import type {Source} from './types.js';
 
-const label = /【(事实(?:\/数据)?|推论|观点)(?:[^】]*)】/;
+const label = /(?:\*\*)?【(事实(?:[／/]数据)?|题给数据[／/]计算|数据支持的结论|数据|推论|观点)(?:[^】]*)】(?:\*\*)?/;
+const factual=(value?:string)=>!!value&&!['推论','观点'].includes(value);
 const valuation = /估值|目标价|合理(?:股价|价值)|投资建议|(?:建议|维持|给予).{0,8}(?:买入|卖出|增持|减持|持有)|\bDCF\b|target price|fair value|investment recommendation/i;
 export function valuationSections(body:string){
  if(!valuation.test(body.replace(/```[\s\S]*?```/g,'')))return [];
@@ -32,7 +33,7 @@ export function annotateAnswer(body:string,sources:Source[]=[]){
    // Explicit inference/opinion can contain a bound premise without becoming a fact.
    if(marked==='推论'||marked==='观点')return sentence;
    if(evidence&&!inherited)return '【事实/数据】'+sentence;
-   if((marked||inherited)?.startsWith('事实'))return evidence?'【事实/数据】'+text:'【推论·缺少绑定或来源】'+text;
+   if(factual(marked||inherited))return evidence?'【事实/数据】'+text:'【推论·缺少绑定或来源】'+text;
    return sentence;
   }).join('');
  }).join('\n');

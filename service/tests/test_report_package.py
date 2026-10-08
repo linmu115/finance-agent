@@ -22,6 +22,13 @@ class ReportPackageTests(unittest.TestCase):
             self.assertIn('"page": 7',row[1].comment.text)
             blank=next(row for row in sheet if row[0].value=='=1+1');self.assertEqual(blank[0].data_type,'s');self.assertIsNone(blank[1].value)
             self.assertIn('未披露',blank[1].comment.text)
+            mixed=compile_report({'tables':{'mixed':{'columns':{'key':{},'value':{}},'rows':[
+                {'key':'cash','value':{'value':'12','unit':'元','currency':'CNY'}},
+                {'key':'shares','value':{'value':'100','unit':'股'}}]}}})
+            from service.report_package import workbook
+            workbook({**snapshot,'turns':[{**snapshot['turns'][0],'tables':mixed['tables']}]},folder/'mixed.xlsx')
+            mixed_sheet=load_workbook(folder/'mixed.xlsx')['指标']
+            self.assertEqual(mixed_sheet['C6'].value,'CNY 元');self.assertEqual(mixed_sheet['C7'].value,'股')
             self.assertEqual(json.loads((folder/'snapshot.json').read_text('utf8')),snapshot)
             exported=finish(svc,'p',prepared['package_id'],'<h1>财报分析报告</h1><p>收入 12.12 CNY 百万元</p>')
             self.assertTrue((Path(tmp)/exported['relative_path']).is_file())
