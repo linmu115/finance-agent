@@ -243,10 +243,12 @@ async def get_financial_metrics(project_id: str, metrics: list[str], company: st
 @mcp.tool()
 async def financial_workpaper(project_id: str, kind: str = 'statement_analysis', document_id: str | None = None,
                               company: str | None = None, scope: str = 'consolidated',
-                              periods: list[str] | str | None = None, focus: str | None = None) -> dict[str, Any]:
-    """生成可绑定底稿及 CSV/Markdown。statement_analysis 含扣非与非经常损益、间接法补充资料桥、季度和 ROE；comparison 用同一报告本期/比较列生成跨期共同比、增长与杜邦；period_analysis 推导单季、环比和同比；basis_changes 识别重述及口径变化、量化调整影响；anomaly_signals 返回九类信号、经验阈值与缺项；variance_attribution 返回利润桥、结构贡献与原文原因，保留残差；report_audit 检查研报算术与跨页差异。返回引用目录、发现与缺项。"""
+                              periods: list[str] | str | None = None, focus: str | None = None,
+                              as_of: str | None = None, metrics: list[str] | str | None = None) -> dict[str, Any]:
+    """生成可绑定底稿及 CSV/Markdown。statement_analysis 含扣非与非经常损益、间接法补充资料桥、季度和 ROE；comparison 用同一报告本期/比较列生成跨期共同比、增长与杜邦；period_analysis 推导单季、环比和同比；basis_changes 识别重述及口径变化、量化调整影响；anomaly_signals 返回九类信号、经验阈值与缺项；variance_attribution 返回利润桥、结构贡献与原文原因，保留残差；report_audit 检查研报算术与跨页差异；expectations 按 company、periods（默认最新年报年度）、as_of（YYYY-MM-DD，含当日）取各机构最近预测、修正轨迹和实际差额，metrics 默认收入/归母净利/EPS，口径未齐的参照单列。返回引用目录、发现与缺项。"""
     return await call('financial_workpaper', project_id=project_id, kind=kind, document_id=document_id,
-                      company=company, scope=scope, periods=periods, focus=focus)
+                      company=company, scope=scope, periods=periods, focus=focus,
+                      **({'as_of':as_of,'metrics':metrics} if kind=='expectations' else {}))
 
 @mcp.tool()
 async def calculate_financial_metrics(project_id: str, operation: Literal['yoy','percentage_change','ratio','margin','cash_conversion','debt_ratio','add','subtract','multiply','divide','sum'], inputs: dict[str, Any]) -> dict[str, Any]:

@@ -38,7 +38,9 @@ def section_for(name,table):
 
 def presentation_table(table):
     """Keep technical row IDs in the workbook; they are not financial report columns."""
-    columns={k:{**c,'label':c.get('label') or k} for k,c in table['columns'].items() if c.get('label')!='行键'}
+    keys=table.get('report_columns') or list(table['columns'])
+    columns={k:{**table['columns'][k],'label':table['columns'][k].get('label') or k} for k in keys
+             if table['columns'][k].get('label')!='行键'}
     return {**table,'columns':columns}
 
 def prose_sections(body):
