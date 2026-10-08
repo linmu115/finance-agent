@@ -6,10 +6,55 @@ metrics are analysis_report quantities, balances have explicit _begin/_end keys.
 from datetime import date
 from decimal import Decimal, localcontext
 from itertools import combinations
+import re
 
 from .analysis_report import convert, stated_quantity
 from .financial_workpapers import WorkpaperInputError, cell, col, table
 from .research_models import financial_quality
+
+
+def comparison(service,project,document_id=None,company=None,scope='consolidated',periods=None,focus=None):
+    """One report supplies current and comparative columns for the same entity."""
+    from .financial_workpapers import Statement,load_facts,meta,source
+    from .analysis_report import record_quantity
+    from .workpaper_annual import Disclosure
+    from datetime import timedelta
+    st=Statement(service,project,load_facts(service,project,document_id,company),scope,periods)
+    disclosure=Disclosure(st);subjects=[]
+    by_id={t['table_id']:t for t in disclosure.tabs}
+    provenance=[]
+    for p in st.periods:
+        rev=st.pick('revenue',p,'income')
+        if not rev:raise WorkpaperInputError(f'{p} 缺少收入期间来源')
+        start,end=meta(rev).get('period_start'),meta(rev).get('period_end')
+        if not start or not end:raise WorkpaperInputError(f'{p} 缺少报告起止日期')
+        metrics={}
+        def add(key,r):
+            if not r:return
+            q=record_quantity(r);ref=r['source_ref'];t=by_id.get(ref.get('table_id'))
+            header=''
+            if t and ref.get('column'):
+                c=ref['column']-1
+                # Search preceding headers, including a balance subsection's dates.
+                for row in t['rows'][:ref.get('row',1)]:
+                    if c<len(row) and re.match(r'\s*(?:20\d{2}\s*年|本期|上期|本年|上年)',row[c]):header=row[c]
+            provenance.append({'key':p+'_'+key,'metric':key,'period':p,'report':disclosure.document.get('original_name'),
+                               'document_id':disclosure.doc,'page':ref.get('page'),'table_id':ref.get('table_id'),'column':ref.get('column'),
+                               'column_label':header or '见来源计算输入','basis':'同一报告内当期/比较列；没有查询另一份年报'})
+            metrics[key]=q
+        for k in INCOME+('deducted_profit',):add(k,st.pick(k,p,'income'))
+        add('cfo',st.pick('cfo',p,'cashflow'))
+        for k in ('assets','equity','parent_equity','liabilities','receivables','inventory','payables'):
+            for suffix,when in [('begin',str(date.fromisoformat(start)-timedelta(days=1))),('end',end)]:add(k+'_'+suffix,st.pick(k,when,'balance'))
+        for suffix in ('begin','end'):add('cash_'+suffix,st.pick('cash_'+suffix,p,'cashflow'))
+        subjects.append({'key':p,'company':st.company,'entity_id':st.company,'period':p,'period_start':start,'period_end':end,
+                         'scope':st.scope,'currency':st.currency,'metrics':metrics,'period_source':source(rev),
+                         'metadata':{'scope':{'value':st.scope,'source':source(rev)},'currency':{'value':st.currency,'source':source(rev)},
+                                     'restated':{'value':meta(rev).get('restatement'),'source':source(rev)}}})
+    report=comparison_report(subjects)
+    report['tables']['report_columns']=table({k:col(v) for k,v in [('key','行键'),('metric','指标'),('period','期间'),('report','数据所属报告'),('document_id','报告ID'),('page','PDF页'),('table_id','原表ID'),('column','原列号'),('column_label','原列头'),('basis','比较路径')]},provenance)
+    report['tables']['missing']=table({k:col(k) for k in ('key','metric','period','reason','candidates')},[{'key':str(i),**r,'candidates':str(r['candidates'])} for i,r in enumerate(st.missing)])
+    return report,st.facts
 
 
 INCOME = ('revenue', 'cogs', 'gross_profit', 'selling', 'administrative',

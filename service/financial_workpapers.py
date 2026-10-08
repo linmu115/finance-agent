@@ -29,24 +29,34 @@ ALIASES = {
     'finance_income': ('finance_income',), 'finance_costs': ('finance_costs',),
     'other_income': ('other_income',), 'other_gains_net': ('other_gains_net',),
     'impairment': ('impairment_reversal_loss_financial_assets', 'reversal_of_ecls_on_financial_and_contract_assets'),
-    'fair_value_gains': ('fair_value_gains_on_financial_assets_at_fvtpl',),
-    'associates': ('share_of_profits_of_associates',),
-    'profit_before_tax': ('profit_before_tax', 'profit_before_income_tax'),
+    'fair_value_gains': ('fair_value_gains_on_financial_assets_at_fvtpl', 'fair_value_change_gains_losses'),
+    'associates': ('share_of_profits_of_associates', 'share_of_profits_of_associates_and_joint_ventures'),
+    'profit_before_tax': ('profit_before_tax', 'profit_before_income_tax', 'total_profit'),
     'tax': ('income_tax_expense', 'income_tax_credit', 'income_tax_credit_expense'),
     'net_profit': ('net_profit', 'profit_for_the_period', 'profit_for_the_period_total'),
     'parent_profit': ('net_profit_parent', 'profit_attributable_to_owners_of_the_company', 'owners_of_the_company'),
-    'minority_profit': ('profit_attributable_to_non_controlling_interests', 'non_controlling_interests'),
+    'minority_profit': ('net_profit_non_controlling_interests', 'profit_attributable_to_non_controlling_interests', 'non_controlling_interests'),
+    'deducted_profit': ('net_profit_excluding_nonrecurring', 'net_profit_excluding_non_recurring', 'net_profit_parent_excluding_non_recurring'),
+    'parent_equity': ('equity_attributable_to_parent', 'equity_parent', 'equity_attributable_to_owners_of_the_company'),
+    'liabilities': ('total_liabilities', 'liabilities'),
+    'asset_impairment': ('asset_impairment_losses','asset_impairment_loss'),
+    'credit_impairment': ('credit_impairment_loss','credit_impairment_losses'),
+    'investment_income': ('investment_income','investment_gains'),
+    'asset_disposal': ('asset_disposal_gains','asset_disposal_income'),
+    'surcharges': ('taxes_and_surcharges',),
+    'nonoperating_income': ('non_operating_income',),
+    'nonoperating_expenses': ('non_operating_expenses',),
     'cfo': ('operating_cash_flow', 'net_cash_flow_operating', 'net_cash_used_in_generated_from_operating_activities', 'net_cash_used_in_operating_activities', 'net_cash_generated_from_operating_activities', 'net_cash_inflow_outflow_operating_activities'),
-    'cfi': ('investing_cash_flow', 'net_cash_generated_from_used_in_investing_activities', 'net_cash_used_in_investing_activities', 'net_cash_inflow_outflow_investing_activities'),
-    'cff': ('financing_cash_flow', 'net_cash_used_in_financing_activities', 'net_cash_generated_from_financing_activities', 'net_cash_inflow_outflow_financing_activities'),
+    'cfi': ('investing_cash_flow', 'net_cash_flow_from_investing_activities', 'net_cash_generated_from_used_in_investing_activities', 'net_cash_used_in_investing_activities', 'net_cash_inflow_outflow_investing_activities'),
+    'cff': ('financing_cash_flow', 'net_cash_flow_from_financing_activities', 'net_cash_used_in_financing_activities', 'net_cash_generated_from_financing_activities', 'net_cash_inflow_outflow_financing_activities'),
     'operations': ('net_cash_generated_from_operations', 'cash_used_in_operations', 'cash_generated_from_operations'),
     'cash_begin': ('cash_and_cash_equivalents_at_beginning_of_the_period', 'cash_and_cash_equivalents_at_beginning_of_period'),
     'cash_end': ('cash_and_cash_equivalents_at_end_of_the_period', 'cash_and_cash_equivalents_at_end_of_period'),
-    'cash_fx': ('effects_of_exchange_rate_changes_on_cash_and_cash_equivalents', 'effect_of_currency_translation_differences'),
+    'cash_fx': ('effects_of_exchange_rate_changes_on_cash_and_cash_equivalents', 'effect_of_exchange_rate_changes_on_cash_and_cash_equivalents', 'effect_of_currency_translation_differences'),
     'receivables': ('trade_receivables', 'accounts_receivable', 'trade_receivables_net'),
     'inventory': ('inventories', 'inventory'),
     'payables': ('trade_and_bills_payables', 'trade_payables', 'accounts_payable'),
-    'assets': ('total_assets',), 'equity': ('total_equity', 'owners_equity'),
+    'assets': ('total_assets', 'assets'), 'equity': ('total_equity', 'owners_equity', 'total_owners_equity'),
 }
 INCOME = [('revenue', '收入'), ('cogs', '销售成本（原披露符号）'), ('gross_profit', '毛利'),
           ('selling', '销售费用（原披露符号）'), ('administrative', '管理费用（原披露符号）'),
@@ -55,6 +65,11 @@ INCOME = [('revenue', '收入'), ('cogs', '销售成本（原披露符号）'), 
           ('finance_net', '财务净收益/费用（税前、营业利润之后，非现金收息）'),
           ('fair_value_gains','公允价值收益'), ('associates','联营公司损益'),
           ('profit_before_tax', '税前利润'), ('tax', '所得税（原披露符号）')]
+CAS_INCOME = INCOME[:6] + [('surcharges','税金及附加'),('finance_costs','财务费用（原披露符号，计入营业利润）'),
+    ('other_income','其他收益'),('investment_income','投资收益'),('associates','其中：联营及合营损益'),
+    ('fair_value_gains','公允价值变动损益'),('credit_impairment','信用减值损益'),('asset_impairment','资产减值损益'),
+    ('asset_disposal','资产处置损益'),('operating_profit','营业利润'),('nonoperating_income','营业外收入'),
+    ('nonoperating_expenses','营业外支出'),('profit_before_tax','利润总额（税前）'),('tax','所得税（原披露符号）')]
 
 
 def number(value):
@@ -76,7 +91,7 @@ def table(columns, rows, title=None):
 
 
 def source(record):
-    return {'fact_id': record['fact_id'], **record['source_ref']}
+    return {**({'fact_id':record['fact_id']} if record.get('fact_id') else {}), **record['source_ref']}
 
 
 def meta(record):
@@ -98,16 +113,15 @@ def load_facts(service, project, document_id=None, company=None):
     if document_id:
         service.store.document(project, document_id)
     with service.store.connect() as db:
-        query = 'SELECT DISTINCT metric FROM current_financial_facts WHERE project_id=?'
+        query = 'SELECT * FROM current_financial_facts WHERE project_id=?'
         args = [project]
         if document_id:
             query += ' AND document_id=?'; args.append(document_id)
-        metrics = [r[0] for r in db.execute(query, args)]
-    records = []
-    for start in range(0, len(metrics), 30):
-        result = service.get_financial_metrics(project, metrics[start:start+30], company=company, document_id=document_id)
-        records.extend(result['data']['items'])
-    return records
+        if company:
+            query += ' AND company LIKE ?'; args.append('%'+company+'%')
+        # Keep every source row: retrieval deduplication can replace a statement
+        # total by its summary occurrence, destroying the cash bridge row order.
+        return [service._expanded_fact(dict(r)) for r in db.execute(query,args)]
 
 
 class Statement:
@@ -141,10 +155,26 @@ class Statement:
         if periods:
             self.periods = list(dict.fromkeys(periods))
         else:
-            latest = candidates[-1]
+            # Quarter disclosure often shares the annual summary's income tag.
+            # At the latest year prefer the longest disclosed fiscal window.
+            def window(p):
+                anchors = [meta(r) for r in facts if r['period'] == p and r['metric'] in ALIASES['revenue']]
+                duration = max(((date.fromisoformat(m['period_end'])-date.fromisoformat(m['period_start'])).days
+                                for m in anchors if m.get('period_start') and m.get('period_end')), default=0)
+                return (p[:4], duration, p)
+            latest = max(candidates, key=window)
             previous = str(int(latest[:4])-1) + latest[4:]
             self.periods = [latest, previous]
         self.income_pages = {}
+        self.primary_tables = {}
+        for statement, keys in [('income', ('revenue','cogs','net_profit')), ('cashflow', ('cfo','cfi','cff'))]:
+            for p in self.periods:
+                groups = {}
+                for r in facts:
+                    if r['period']==p and meta(r).get('statement')==statement and dimensions_ok(r):
+                        groups.setdefault(r['source_ref'].get('table_id'),set()).add(r['metric'])
+                anchors = {tid for tid, metrics in groups.items() if all(set(ALIASES[k]) & metrics for k in keys)}
+                self.primary_tables[(statement,p)] = anchors
         for period in self.periods:
             anchors = [r for r in facts if r['period'] == period and r['metric'] == 'net_profit' and meta(r).get('statement') == 'income' and dimensions_ok(r)]
             self.income_pages[period] = {r['source_ref'].get('page') for r in anchors}
@@ -153,6 +183,14 @@ class Statement:
         aliases = ALIASES.get(key, (key,))
         matches = [r for r in self.facts if r['period'] == period and r['metric'] in aliases and dimensions_ok(r)
                    and r['currency'] == self.currency and (not statement or meta(r).get('statement') == statement)]
+        if not matches and key in ('cash_begin','cash_end'):
+            revenues=[r for r in self.facts if r['period']==period and r['metric'] in ALIASES['revenue'] and dimensions_ok(r)]
+            dates={meta(r).get('period_start' if key=='cash_begin' else 'period_end') for r in revenues}
+            if len(dates)==1 and None not in dates:
+                when=next(iter(dates))
+                matches=[r for r in self.facts if r['period']==when and r['metric'] in aliases and dimensions_ok(r) and r['currency']==self.currency]
+        primary = [r for r in matches if r['source_ref'].get('table_id') in self.primary_tables.get((statement,period),set())]
+        if primary: matches = primary
         if statement == 'income' and self.income_pages.get(period):
             primary = [r for r in matches if r['source_ref'].get('page') in self.income_pages[period]]
             if primary: matches = primary
@@ -163,6 +201,12 @@ class Statement:
             values = {r['value'] for r in matches}
             if len(values) == 1 and all(r.get('quality') != 'conflict' for r in matches):
                 return matches[0]
+        if not matches and key=='gross_profit':
+            revenue,cost=self.pick('revenue',period,'income'),self.pick('cogs',period,'income')
+            if revenue and cost:
+                value=number(revenue['value'])-abs(number(cost['value']))
+                return {'value':str(value),'currency':self.currency,'metric':'gross_profit','period':period,'scope':self.scope,'data_kind':'calculation',
+                        'source_ref':{'formula':'revenue-abs(cogs)','inputs':[source(revenue),source(cost)]}}
         reason = '来源存在冲突' if matches else '缺少同口径披露'
         self.missing.append({'metric': key, 'period': period, 'reason': reason,
                              'candidates': [source(r) for r in matches]})
@@ -180,15 +224,16 @@ class Statement:
 def statement_analysis(service, project, document_id=None, company=None, scope='consolidated', periods=None, focus=None):
     st = Statement(service, project, load_facts(service, project, document_id, company), scope, periods)
     currency, ps = st.currency, st.periods
+    income_items = CAS_INCOME if any(r['scope'].endswith('_CAS') for r in st.facts) else INCOME
     selected = {}
     for p in ps:
-        selected[p] = {k: st.pick(k, p, 'income') for k in [k for k, _ in INCOME] + ['net_profit', 'parent_profit', 'minority_profit']}
+        selected[p] = {k: st.pick(k, p, 'income') for k in [k for k, _ in income_items] + ['net_profit', 'parent_profit', 'minority_profit']}
         selected[p].update({k: st.pick(k, p, 'cashflow') for k in ('cfo', 'cfi', 'cff', 'operations', 'cash_begin', 'cash_end', 'cash_fx')})
     def val(r): return r['value'] if r else None
     def q(r, reason='缺少同期间、同口径来源'):
         return record_quantity(r) if r else cell(None, currency=currency, reason=reason)
     amount_cols = {p: col(p, '百万元', currency, scope=scope, data_kind='disclosed_actual') for p in ps}
-    income_rows = [{'key': k, 'metric': label, **{p: q(selected[p][k]) for p in ps}} for k, label in INCOME]
+    income_rows = [{'key': k, 'metric': label, **{p: q(selected[p][k]) for p in ps}} for k, label in income_items]
     # Attribution is represented in different columns, so it cannot be read as consolidated profit.
     profit_rows = [{'key': p, 'period': p, 'consolidated': q(selected[p]['net_profit']),
                     'parent': q(selected[p]['parent_profit']), 'minority': q(selected[p]['minority_profit'])} for p in ps]
@@ -211,7 +256,7 @@ def statement_analysis(service, project, document_id=None, company=None, scope='
                               **({'change_pp': col('本期减可比期', '个百分点')} if len(ps) >= 2 else {})}, ratios)
     growth = []
     if len(ps) >= 2:
-        for k, label in INCOME + [('net_profit', '合并净利润'), ('parent_profit', '归母净利润')]:
+        for k, label in income_items + [('net_profit', '合并净利润'), ('parent_profit', '归母净利润')]:
             a, b = selected[ps[0]][k], selected[ps[1]][k]
             growth.append({'key': k, 'metric': label, 'change': st.calculate('yoy', {'current': val(a), 'previous': val(b)}, '%', [source(r) for r in (a,b) if r]),
                            'basis': f'{ps[0]} 对 {ps[1]}；(本期-基期)/基期；负基期不可解读为改善'})
@@ -223,7 +268,7 @@ def statement_analysis(service, project, document_id=None, company=None, scope='
             cash_rows.append({'key': p+'_'+k, 'period': p, 'metric': k.upper(), 'amount': q(picked[k]), 'classification': k})
         # The source table containing CFO defines operating classification, not the word "interest".
         anchor = picked['cfo']
-        if anchor:
+        if anchor and picked['operations']:
             src = anchor['source_ref']
             flows = [r for r in st.facts if r['period'] == p and meta(r).get('statement') == 'cashflow'
                      and r['source_ref'].get('table_id') == src.get('table_id') and r['currency'] == currency and dimensions_ok(r)
@@ -298,6 +343,8 @@ def statement_analysis(service, project, document_id=None, company=None, scope='
         if a and b and number(a['value']) > 0 > number(b['value']):
             observations.append((Decimal('Infinity'), {'key':p+'_profit_cash_sign','finding':f'{p} 同口径净利润为正而CFO为负','basis':'profit_attribution / cash'}))
     tables['observations'] = table({'key':col('行键'),'finding':col('确定性数值发现（按百分点幅度排序，符号背离优先）'),'basis':col('对应底稿')}, [r for _,r in sorted(observations,key=lambda x:x[0],reverse=True)])
+    from .workpaper_annual import annual_tables
+    annual_tables(st, tables, selected)
     tables['missing'] = table({'key':col('行键'),'metric':col('指标'),'period':col('期间'),'reason':col('缺失原因'),'candidates':col('候选来源')},
                                [{'key':str(i),**m,'candidates':json.dumps(m['candidates'],ensure_ascii=False)} for i,m in enumerate(st.missing)])
     return {'title':st.company+' 财报分析底稿','body':f'口径：{scope}；财务净收益属于应计利润，现金桥的收付款分类依据原现金流量表。'+ (f'关注点：{focus}。' if focus else ''), 'tables':tables}, st.facts
@@ -316,7 +363,7 @@ def publish(service, project, kind, report, records):
     (folder/'delivery.json').write_text(json.dumps(manifest,ensure_ascii=False),encoding='utf-8')
     summary = {name:{'columns':t['columns'],'row_key':t.get('row_key','key'),'row_keys':[r.get('key') for r in t['rows']],'rows':len(t['rows'])} for name,t in compiled['tables'].items()}
     return {'kind':kind,'report':compiled,'numeric_tables':compiled['tables'], 'summary':summary,
-            'observations':compiled['tables']['observations']['rows'][:5],
+            'observations':compiled['tables']['observations']['rows'],
             'delivery':{'id':delivery_id,'files':[{'name':f['name'],'url':f'/api/projects/{project}/research/deliveries/{delivery_id}/{f["name"]}'} for f in files]}}
 
 
@@ -337,7 +384,8 @@ def report_sources(report):
 def financial_workpaper(service, project_id, kind='statement_analysis', **options):
     service.store.project(project_id)
     from .workpaper_audit import report_audit
-    builders={'statement_analysis':statement_analysis,'report_audit':report_audit}
+    from .workpaper_comparison import comparison
+    builders={'statement_analysis':statement_analysis,'report_audit':report_audit,'comparison':comparison}
     if kind not in builders:
         raise WorkpaperInputError('kind 当前支持 '+', '.join(builders))
     with localcontext() as ctx:

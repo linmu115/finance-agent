@@ -239,6 +239,19 @@ def _enrich_text(q,lines):
         for name,pattern in METRICS:
             for m in re.finditer(pattern,preceding,re.I):found.append((m.end(),name))
         if found:q['metric']=max(found,key=lambda x:x[0])[1]
+        # A formula operand can be labelled after its number+unit. Bind that
+        # immediate label, not EV/equity on the formula's left-hand side.
+        suffix=q.get('suffix','')
+        units=unit_hits(suffix)
+        if units and not suffix[:units[0][0]].strip():
+            tail=suffix[units[0][1]:].lstrip()
+            following=[(m.end(),name) for name,pattern in METRICS if (m:=re.match(pattern,tail,re.I))]
+            if following:q['metric']=max(following)[1];q['metricBasis']='immediate_postfix_label'
+        if q['unit'][0]=='shares' and q.get('unitBasis') in ('explicit_suffix','explicit_prefix','share_count_scale_suffix'):
+            q['metric']='shares';q['metricBasis']='explicit_share_unit'
+        if q['unit'][0]=='fx':q['metric']='exchange_rate';q['metricBasis']='explicit_fx_unit'
+        if q['metric']=='eps' and q['unit'][0]=='per_share' and re.search(r'(?:复算为|按\s*\d+(?:\.\d+)?倍为)[^；。]*$',preceding) and re.search(r'\bPE\b|P/E|\d+倍',preceding,re.I):
+            q['metric']='share_price';q['metricBasis']='explicit_pe_formula_result'
         if q['unit'][:2]==['per_share','HKD']:q['metric']='share_price'
         if q['unit'][0]=='money' and re.search('差异|差额|差约|低约|高约',preceding[-20:]) and re.search('DCF|EV|股权|估值',line,re.I):q['metric']='valuation_gap'
         if q['unit'][0]=='percentage_points' and q['metric'] in ('gross_margin','operating_margin','net_margin'):q['metric']+='_change'

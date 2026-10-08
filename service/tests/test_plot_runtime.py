@@ -35,6 +35,25 @@ class PlotRuntimeTests(unittest.TestCase):
         data=self.save(fig)
         self.assertFalse(data['remaining_overlaps'])
 
+    def test_negative_bar_label_clears_bottom_spine_without_changing_axes_or_values(self):
+        import numpy as np
+        for annotation in (True,False):
+            fig,ax=self.plt.subplots(figsize=(7,4));bars=ax.bar([0,1],[-18.7,955.2],color=['navy','orange'])
+            ax.set_ylim(-70,1050);ax.axhline(0,color='gray');ax.set_xticks([0,1],['cash','income'])
+            if annotation:text=ax.annotate('-18.7',(0,-18.7),xytext=(0,-14),textcoords='offset points',ha='center',va='top')
+            else:text=ax.text(0,-65,'-18.7',ha='center',va='top')
+            ylim=ax.get_ylim();ticks=ax.get_yticks().copy();colors=[b.get_facecolor() for b in bars]
+            result=self.save(fig);self.assertEqual(len(result['negative_label_changes']),1)
+            box=text.get_window_extent(fig.canvas.get_renderer());self.assertGreater(box.y0,ax.bbox.y0)
+            self.assertEqual(ax.get_ylim(),ylim);self.assertTrue(np.array_equal(ticks,ax.get_yticks()))
+            self.assertEqual([b.get_height() for b in bars],[-18.7,955.2]);self.assertEqual([b.get_facecolor() for b in bars],colors)
+            self.assertEqual([t.get_text() for t in ax.get_xticklabels()],['cash','income'])
+
+    def test_negative_label_requires_bar_and_matching_number(self):
+        fig,ax=self.plt.subplots();ax.bar([0],[-5]);label=ax.text(0,0,'-9.0')
+        before=label.get_position();result=self.save(fig)
+        self.assertEqual(result['negative_label_changes'],[]);self.assertEqual(label.get_position(),before)
+
     def test_heatmap_recolors_dark_cells_only_and_keeps_data_ticks_palette(self):
         import numpy as np
         fig,ax=self.plt.subplots();values=np.array([[0,1],[2,3]])

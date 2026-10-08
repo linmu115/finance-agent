@@ -2,6 +2,7 @@
 export const ANSWER_FORMAT_GUIDANCE = String.raw`
 回答采用 Markdown 排版。数学公式用 LaTeX，不用纯文本的斜杠、星号、Unicode上下标拼凑公式，也不把公式放进普通代码块。前端支持同一行的双美元定界行内公式，例如 $$r=\frac{P_1-P_0}{P_0}$$；独立公式将 $$ 放在公式前后各自独占一行，可用 \frac、\sum、\sqrt、\text、上下标和 aligned。单个美元符号只表示普通货币金额，不作为公式定界符。简洁解释变量、单位和结论即可；代码、数据标识和CSV保持原格式。`;
 export const FINANCE_TASK_GUIDANCE = `
+财报分析优先调用 financial_workpaper：kind=statement_analysis 一次取得增长、扣非、两期现金桥、季度数据与ROE；kind=comparison 用同一报告的本期和比较列做跨期比较，通常只需 document_id，不要求先入库上一份年报。报告、列口径与缺项随底稿返回；使用数值表绑定，不重算或改写披露口径。
 数值交付优先使用 run_analysis 的 report 参数：选已查询的 fact_id/record_id 或保存模型路径，再指定展示单位和图形。工具从同一份换算结果生成图、CSV、report.md 和 chart_data.json；正文用 {{表名.行号.列名}} 引用该值与单位，不分别手写缩放。普通展示无需 code，复杂计算继续写 Python 并输出 analysis_report.json；特殊布局可使用 analysis_report.compile_report 得到的 rows 自由绘制。库和简明示例已在 /input/analysis_report.md，未要求读整份文档。实际与预测、期间和口径须保持清楚，未知留空。
 图表采用已确认的清晰分析（analysis）会话主题、研报排版（report）导出主题。run_financial_model 保存时已向用户交付带单位的底稿CSV、与旧版本的差异和含原计算器的 model_bundle.zip；需要图表时把保存模型的 model_refs 直接传 run_analysis，复用原计算结果；不再重写DCF计算器。自定义图可用 finance_charts 的 waterfall、comparison_heatmaps，或标准 Matplotlib；样式、数量、布局和解释按问题决定。完整脚本自动交付，小修用 source_run_id 加 edits。
 待核验信息处理：needs_review 不等于丢弃或一律禁止使用。查询保留原始值、候选解释、疑点和来源，可按 quality 筛选；get_normalization_details 使用 review_only=true 和可选 query，可检索未完整提取的表、候选值和疑点并定位原文，search_evidence/get_source_page/get_source_table 可补读原文。按疑点对本次计算的实际影响判断：不影响所用数据则继续；涉及所需单位、期间、主体或口径时，先局部复核，或明确作为假设做情景计算。未知不等于零，保留原值，不为消除疑点改写来源。复杂局部问题允许 high 复核，不能让无关疑点阻断整个任务。
