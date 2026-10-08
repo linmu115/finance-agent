@@ -5,20 +5,34 @@ import json
 from pathlib import Path
 import re
 import tempfile
+import sqlite3
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
 from service.core import FinanceService
-from service.financial_workpapers import financial_workpaper, publish, cell, col, table
+from service.financial_workpapers import financial_workpaper, load_facts, cell, col, table
 from service.analysis_report import bind_text, compile_report
 from service.workpaper_period_selection import canonical_period, normalize_periods, normalize_period_records, WorkpaperInputError
 from service.workpaper_handoff import answer_handoff
 
 
 class PeriodSelectionTests(unittest.TestCase):
+    def test_declared_company_alias_resolves_within_project_and_document(self):
+        db=sqlite3.connect(':memory:');db.row_factory=sqlite3.Row;self.addCleanup(db.close)
+        db.executescript('CREATE TABLE current_financial_facts(project_id,document_id,company); CREATE TABLE research_entities(project_id,kind,name,aliases_json);')
+        db.executemany('INSERT INTO current_financial_facts VALUES(?,?,?)',[('p','annual','甲实业股份有限公司'),('p','otherdoc','乙有限公司'),('other','foreign','外部主体')])
+        db.executemany('INSERT INTO research_entities VALUES(?,?,?,?)',[('p','company','甲实业股份有限公司','["甲股份"]'),('other','company','外部主体','["甲股份"]')])
+        store=SimpleNamespace(project=lambda p:None,document=lambda p,d:None,connect=lambda:db)
+        service=SimpleNamespace(store=store,_expanded_fact=lambda r:r)
+        self.assertEqual([r['company'] for r in load_facts(service,'p','annual','甲股份')],['甲实业股份有限公司'])
+        self.assertEqual(load_facts(service,'p','otherdoc','甲股份'),[])
+        self.assertEqual(load_facts(service,'p','annual','未登记别名'),[])
+        self.assertEqual(len(load_facts(service,'p',company='甲')),1)
+
     def test_spellings(self):
-        cases={'2024-FY':['2024','2024FY','FY2024','2024-12-31','2024年','2024年度','2024年全年'],
-               '2025-H1':['2025H1','H1 2025','2025年上半年','2025半年度','2025-06-30','2025-6M'],
+        cases={'2024-FY':['2024','2024FY','FY2024','2024-12-31','2024年','2024年度','2024年全年','2024年报','2024年度报告','2024年年度报告'],
+               '2025-H1':['2025H1','H1 2025','2025年上半年','2025半年度','2025-06-30','2025-6M','2025年半年度报告','2025中期','2025中期报告'],
                '2024-Q3':['2024Q3','Q3 2024','2024年第三季度'],
                '2024-9M':['2024-9M','2024年前三季度','2024-09-30'],
                '2024-Q1':['2024年一季度','2024-03-31'], '2024-H2':['2024年下半年']}

@@ -115,7 +115,12 @@ def load_facts(service, project, document_id=None, company=None):
         if document_id:
             query += ' AND document_id=?'; args.append(document_id)
         if company:
-            query += ' AND company LIKE ?'; args.append('%'+company+'%')
+            # Reuse project-declared issuer aliases; a document ID still scopes
+            # the query. No fuzzy name invention or cross-project identity join.
+            names=sorted({r['name'] for r in db.execute('SELECT name,aliases_json FROM research_entities WHERE project_id=? AND kind=?',(project,'company'))
+                          if company==r['name'] or company in json.loads(r['aliases_json'])})
+            query += ' AND (company LIKE ?'+''.join(' OR company=?' for _ in names)+')'
+            args.extend(['%'+company+'%',*names])
         # Keep every source row: retrieval deduplication can replace a statement
         # total by its summary occurrence, destroying the cash bridge row order.
         return [service._expanded_fact(dict(r)) for r in db.execute(query,args)]

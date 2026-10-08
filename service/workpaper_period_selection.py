@@ -30,11 +30,11 @@ def canonical_period(value, start=None, end=None):
         if d.month in (3,6,9,12) and d.day==monthrange(d.year,d.month)[1]:
             return year+'-'+{3:'Q1',6:'H1',9:'9M',12:'FY'}[d.month]
         raise WorkpaperInputError(f'{value!r} 不是完整流量期间的期末日')
-    suffix=(text[:match.start()]+text[match.end():]).replace('半年度','H1').replace('年度','FY').replace('财年','FY').strip('-')
-    suffix=suffix.removeprefix('年')
-    if suffix.endswith('年') and suffix not in ('全年','上半年','下半年','半年'):suffix=suffix[:-1]
-    aliases={'':'FY','FY':'FY','全年':'FY','年报':'FY','12M':'FY','YTD4':'FY',
-             'H1':'H1','6M':'H1','YTD2':'H1','上半年':'H1','半年度':'H1','半年':'H1','中报':'H1',
+    suffix=(text[:match.start()]+text[match.end():]).strip('-')
+    if suffix not in ('年度','年报','年度报告'):suffix=suffix.removeprefix('年')
+    if suffix.endswith('年') and suffix not in ('全年','上半年','下半年','半年','财年'):suffix=suffix[:-1]
+    aliases={'':'FY','FY':'FY','全年':'FY','年报':'FY','年度':'FY','年度报告':'FY','财年':'FY','12M':'FY','YTD4':'FY',
+             'H1':'H1','6M':'H1','YTD2':'H1','上半年':'H1','半年度':'H1','半年':'H1','中报':'H1','半年报':'H1','半年度报告':'H1','中期':'H1','中期报告':'H1',
              'H2':'H2','下半年':'H2','9M':'9M','YTD3':'9M','前三季度':'9M','前三季':'9M','前九个月':'9M',
              '3M':'Q1','YTD1':'Q1'}
     if suffix in aliases:return year+'-'+aliases[suffix]

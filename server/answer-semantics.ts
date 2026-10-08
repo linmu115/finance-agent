@@ -21,7 +21,11 @@ function sourced(text:string,sources:Source[]){
   if(s.kind==='user_provided')return [...text.matchAll(/\buser:([\w-]+)/g)].some(m=>m[1]===s.messageId);
   if(s.url&&text.includes(s.url))return true;
   if(s.sourceId&&text.includes(s.sourceId))return true;
-  return !!s.documentId&&text.includes(s.documentId)&&(!s.page||new RegExp(`(?:第\\s*${s.page}\\s*页|[pP]\\.?\\s*${s.page}\\b|page[=: /]${s.page}\\b)`).test(text));
+  if(!s.documentId||!text.includes(s.documentId))return false;
+  const page=s.page;if(!page)return true;
+  // A source locator can name a page list/range, not just one page.
+  const locators=[...text.matchAll(/(?:第|PDF\s*第?|\bpage[=: /]+|(?<![A-Za-z])[pP]\.?)\s*(\d+(?:\s*[-–—至,，、/及与]\s*\d+)*)\s*页?/gi)];
+  return locators.some(m=>[...m[1].matchAll(/(\d+)(?:\s*[-–—至]\s*(\d+))?/g)].some(p=>page>=Number(p[1])&&page<=Number(p[2]??p[1])));
  });
 }
 /** Unsourced/unbound prose defaults to inference/analysis. Opinions are explicit;
@@ -41,7 +45,10 @@ export function annotateAnswer(body:string,sources:Source[]=[]){
   if(/^\s*(?:【事实(?:\/数据)?】\s*)?\{\{table:[^{}]+\}\}\s*$/.test(line))return '【事实/数据】\n\n'+line.replace(label,'').trim();
   const prefix=line.match(/^\s*(?:[-*+]\s+|\d+\.\s+|>\s*)?/)![0];
   let inherited:string|undefined;
-  return prefix+line.slice(prefix.length).split(/(?<=[。！？])(?=[^”’」』]|$)/u).map(sentence=>{
+  // Keep closing quotes/emphasis with their sentence, so labels cannot split **…**.
+  const sentences=line.slice(prefix.length).match(/[^]*?[。！？](?:[”’」』）)]|\*\*|__)*|[^]+$/gu)??[];
+  let displayedLabel:string|undefined;
+  const classified=sentences.map(sentence=>{
    if(!sentence.trim())return sentence;
    const marked=sentence.match(label)?.[1];if(marked)inherited=marked;
    const bound=/\{\{\s*(?!chart:)[^{}]+\}\}/.test(sentence),ref=sourced(sentence,sources);
@@ -53,6 +60,12 @@ export function annotateAnswer(body:string,sources:Source[]=[]){
    if(evidence&&!inherited)return factLabel+sentence;
    if(factual(marked||inherited))return evidence?factLabel+text:'【推论·缺少绑定或来源】'+text;
    return '【推论/分析】'+sentence;
+  });
+  return prefix+classified.map(sentence=>{
+   const marker=sentence.match(label)?.[0];
+   if(!marker)return sentence;
+   if(marker===displayedLabel)return sentence.replace(label,'');
+   displayedLabel=marker;return sentence;
   }).join('');
  }).join('\n');
 }
