@@ -242,7 +242,7 @@ async def get_financial_metrics(project_id: str, metrics: list[str], company: st
 async def financial_workpaper(project_id: str, kind: str = 'statement_analysis', document_id: str | None = None,
                               company: str | None = None, scope: str = 'consolidated',
                               periods: list[str] | str | None = None, focus: str | None = None) -> dict[str, Any]:
-    """一次生成金融底稿并交付 CSV/Markdown。statement_analysis 默认最新合并报告及其上年比较列，含扣非、完整间接法桥、季度勾稽和ROE；comparison 使用同一 document_id 的本期/比较列生成跨期共同比、增长与杜邦；anomaly_signals 批量计算九类异常信号，带基准、经验阈值、证据与缺失，只描述现象；report_audit 核对研报算术、精度与跨页差异。缺项和未识别原行保留。返回表名、行键、单位与数值发现，正文可绑定 {{table:income}}。"""
+    """一次生成金融底稿并交付 CSV/Markdown。statement_analysis 默认最新合并报告及其上年比较列，含扣非、完整间接法桥、季度勾稽和ROE；comparison 使用同一 document_id 的本期/比较列生成跨期共同比、增长与杜邦；anomaly_signals 批量计算九类异常信号，带基准、经验阈值、证据与缺失；variance_attribution 给出利润桥、分产品/地区/分部贡献、量价结构和原文原因，缺项及残差明确列出；report_audit 核对研报算术、精度与跨页差异。返回表名、行键、单位与数值发现，正文可绑定 {{table:income}}。"""
     return await call('financial_workpaper', project_id=project_id, kind=kind, document_id=document_id,
                       company=company, scope=scope, periods=periods, focus=focus)
 

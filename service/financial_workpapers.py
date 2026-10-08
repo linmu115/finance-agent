@@ -386,7 +386,8 @@ def financial_workpaper(service, project_id, kind='statement_analysis', **option
     from .workpaper_audit import report_audit
     from .workpaper_comparison import comparison
     from .workpaper_signals import anomaly_signals
-    builders={'statement_analysis':statement_analysis,'report_audit':report_audit,'comparison':comparison,'anomaly_signals':anomaly_signals}
+    from .workpaper_variance import variance_attribution
+    builders={'statement_analysis':statement_analysis,'report_audit':report_audit,'comparison':comparison,'anomaly_signals':anomaly_signals,'variance_attribution':variance_attribution}
     if kind not in builders:
         raise WorkpaperInputError('kind 当前支持 '+', '.join(builders))
     with localcontext() as ctx:

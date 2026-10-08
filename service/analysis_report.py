@@ -22,7 +22,9 @@ UNITS = {**{k: ('money', v) for k, v in MONEY.items()},
          'ratio': ('ratio', '1'), '%': ('ratio', '0.01'),
          '个百分点': ('percentage_points', '1'), 'pp': ('percentage_points', '1'),
          '元/股': ('per_share', '1'), 'currency/share': ('per_share', '1'),
-         '倍': ('multiple', '1'), 'times': ('multiple', '1'), '个': ('count', '1'), '天': ('days', '1'), '年': ('years', '1')}
+         '倍': ('multiple', '1'), 'times': ('multiple', '1'), '个': ('count', '1'), '台': ('count', '1'),
+         '吨': ('mass', '1'), '千吨': ('mass', '1000'), '万吨': ('mass', '10000'),
+         '人': ('people', '1'), '次': ('events', '1'), '天': ('days', '1'), '年': ('years', '1')}
 
 
 # Other ways the same units are commonly written. Matching ignores case, spaces, brackets and full-width forms.
@@ -116,7 +118,8 @@ def at_path(value, path):
 def record_quantity(record):
     currency = record['currency']
     special = {'percent': '%', 'percentage_points': '个百分点', 'shares': '股', '股': '股',
-               'multiple': '倍', '倍': '倍', 'count': '个', 'days': '天'}
+               'multiple': '倍', '倍': '倍', 'count': '个', 'days': '天',
+               **{u:u for u in ('个','台','吨','千吨','万吨','人','次')}}
     if currency in special:
         unit, money = special[currency], None
     elif currency.endswith('/share'):

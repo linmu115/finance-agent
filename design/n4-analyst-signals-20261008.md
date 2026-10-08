@@ -27,3 +27,5 @@
 实施与结果随两项交付更新，原始验收数据保存在 `docs/evidence/n4-analyst-signals/`。
 
 ① 已完成：九类 38 行、三份真实资料回放、16 个独立手算及 PDF 核对、A1/附件/测试/构建通过。差异及复现见 `docs/evidence/n4-analyst-signals/anomaly-acceptance.md`。N2 公共期间接口仍待交付。
+
+② 已完成：三份材料四层利润桥残差全部为零，11 个金额参考与 9 个量价结构值匹配，13 处原因经 PDF 核对。伊利产品缺精确比较期，按原文直接披露变动额计算并列未分配差额；瑞和产品收入贡献完整相加，产品毛利因缺成本保持未知。详见 `docs/evidence/n4-analyst-signals/variance-acceptance.md`。N2 公共期间函数已交付 `d349e04`，接入工作在②提交后另行记录。
