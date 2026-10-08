@@ -4,6 +4,8 @@
 
 F1 协调暂停前的准备状态与六处已知语义问题见 [分段报告](design/f1-preparation-segment-1-20261008.md)。F1.1 按最新授权继续从断点运行伊利和海尔，用量分段计为正式资料准备。上游传输失败允许从断点恢复，连续失败且期间完全无推进才停；[宿主运行内传输恢复](design/post-freeze-transport-retry-20261008.md) 仅登记为评测后待办，冻结期间未实现。
 
+F1.2 部署时计划暂停：伊利 87/303 张、1,726 条事实；海尔 66/344 张、1,142 条事实，门槛均未达到。见 [本段封存](design/f11-preparation-status-20261008.md) 和 [分段账目](design/f11-preparation-ledger-20261008.json)。等待明确重启通知后从断点续跑并优先安排门槛表。用户追加的 [部分入库文档状态问题](design/post-freeze-partial-document-status-20261008.md) 仅记评测后待办，尚未设计或实现。
+
 # 当前主线：N2 底稿合并、情景版本与 A4 已验收（2026-10-07）
 
 N2 截至 d192454 已合并，基线提交 a4ad3aa49eda36ed574b00d15d7733d4ef59e2a0；K1/K3 report.tables 接入 A1，financial_workpaper 仅金融配置暴露。后续情景版本命名、source_model 默认最新及精确错误提示、同名附件最新版本已实现。额外修复 A2 数值表行键随数值变化而漏比较的问题；冻结 D2 连续两次更新现均比较 87 个单元。G1 同名 chart_1.png 唯一定位到最新运行，历史文件仍可下载。
