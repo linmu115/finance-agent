@@ -541,6 +541,9 @@ class ScriptCleaningMixin:
             batch=[{'table':table,'rows':list(range(1,len(table['rows'])+1))}]
             facts,issues=materialize(ext,batch,job['document_id'],state['model'])
             apply_source_dimensions(table,facts,context=cleaning_rules.context(parsed,table))
+            if (profile or {}).get('kind','financial_report')=='financial_report':
+                from .source_semantics import apply_source_semantics
+                apply_source_semantics(parsed,table,facts,cleaning_rules.context(parsed,table))
             page=next(p['text'] for p in parsed['pages'] if p['page']==table['page'])
             issues.extend(mapping_issues(table,schema,rows,item.get('exclusion_reason'),page,facts))
             issues.extend(table_semantics(table,schema,facts,page))

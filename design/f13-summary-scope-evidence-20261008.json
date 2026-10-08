@@ -1,0 +1,2479 @@
+{
+  "production_applied": false,
+  "model_requests": 0,
+  "tests": {
+    "focused_source_semantics": 13,
+    "ingestion_regressions": 53
+  },
+  "documents": {
+    "yili": {
+      "model_requests": 0,
+      "facts": 1726,
+      "reapplied": {
+        "updated": 52,
+        "history_preserved": 52
+      },
+      "repeat": {
+        "updated": 0,
+        "history_preserved": 0
+      },
+      "source_review_fixed": [
+        {
+          "category": "扣非",
+          "page": 7,
+          "label": "归属于上市公司股东的扣除非经常性损益的净利润",
+          "period": "2024-FY",
+          "value": "6011274945.92",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "category": "扣非",
+          "page": 7,
+          "label": "归属于上市公司股东的扣除非经常性损益的净利润",
+          "period": "2023-FY",
+          "value": "10026171076.03",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "category": "季度表",
+          "page": 8,
+          "label": "归属于上市公司股东的净利润",
+          "period": "2024-Q1",
+          "value": "5922814507.71",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "category": "季度表",
+          "page": 8,
+          "label": "归属于上市公司股东的净利润",
+          "period": "2024-Q2",
+          "value": "1608319620.91",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "category": "季度表",
+          "page": 8,
+          "label": "归属于上市公司股东的净利润",
+          "period": "2024-Q3",
+          "value": "3337346216.72",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "category": "季度表",
+          "page": 8,
+          "label": "归属于上市公司股东的净利润",
+          "period": "2024-Q4",
+          "value": "-2415620352.16",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "category": "分部",
+          "page": 251,
+          "label": "资产总额",
+          "period": "2024-12-31",
+          "value": "66835303032.25",
+          "scope": "consolidated_CAS"
+        },
+        {
+          "category": "分部",
+          "page": 251,
+          "label": "负债总额",
+          "period": "2024-12-31",
+          "value": "15589425817.91",
+          "scope": "consolidated_CAS"
+        }
+      ],
+      "original_passed_preserved": 40,
+      "remaining_missing": 2,
+      "unchanged_records": 1674,
+      "changed_by_table": {
+        "d84573bf6b584e7e874faa4c6adf454a:t10": 16,
+        "d84573bf6b584e7e874faa4c6adf454a:t306": 12,
+        "d84573bf6b584e7e874faa4c6adf454a:t8": 24
+      },
+      "changes": [
+        {
+          "fact_id": "7b47eb2493fd4fca9c8c9551efffe4b9",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 2,
+          "column": 2,
+          "value": "32462896350.54",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q1"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q1"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "e6bee4eef7254461aeb64c13be791114",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 2,
+          "column": 3,
+          "value": "27232860611.05",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q2"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q2"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "681f1a4c5cc24610b33521b2eb50e8a3",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 2,
+          "column": 4,
+          "value": "29037177483.84",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q3"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q3"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "fb7f11f584064c28b08680e8647856f4",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 2,
+          "column": 5,
+          "value": "26660376531.26",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q4"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q4"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "7c71c28608a44c7bad36639bff40dad5",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 3,
+          "column": 2,
+          "value": "5922814507.71",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q1"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q1"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "27c3f3bf212a4e6c9ab6abe954ca6e6b",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 3,
+          "column": 3,
+          "value": "1608319620.91",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q2"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q2"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "28130a3da50643e39de4d3b9bc944a95",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 3,
+          "column": 4,
+          "value": "3337346216.72",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q3"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q3"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "6afb716a2986430a810538cea4da9cd5",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 3,
+          "column": 5,
+          "value": "-2415620352.16",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q4"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q4"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "f36c1f1ecfba462da3f2b6c365946439",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 4,
+          "column": 2,
+          "value": "3727609925.90",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q1"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q1"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "a28119b4c0df4f20b0fba0bf6d55e073",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 4,
+          "column": 3,
+          "value": "1596850118.63",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q2"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q2"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "c8a0f7d006844b6abc670f4d22a8975e",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 4,
+          "column": 4,
+          "value": "3184409980.19",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q3"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q3"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "f1aba380ac52403c834541d1d4ceb703",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 4,
+          "column": 5,
+          "value": "-2497595078.80",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q4"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q4"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "88e2cb7a4afd459e918118a411254d8a",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 5,
+          "column": 2,
+          "value": "2267600204.82",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q1"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q1"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "2977513aa2f64a9d9026aff2857cfb3a",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 5,
+          "column": 3,
+          "value": "3057943456.58",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q2"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q2"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "5d4f2abb059c4033bc7cbcd865b98a7c",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 5,
+          "column": 4,
+          "value": "8544068622.02",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q3"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q3"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "c09167e2b66c4d36845bbaec147ea6d6",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+          "row": 5,
+          "column": 5,
+          "value": "7870128109.96",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-Q4"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-Q4"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "九、2024 年分季度主要财务数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "d6091d2562074bfc9069797ace035b95",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+          "row": 6,
+          "column": 2,
+          "value": "66835303032.25",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "资产总额",
+              "column_header": "液体乳",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "7861582bb9b3449487df40f69dcccfe9",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+          "row": 6,
+          "column": 3,
+          "value": "33326081148.62",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "资产总额",
+              "column_header": "奶粉及奶制品",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "f5805915c5e449dfa66bac96398829d6",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+          "row": 6,
+          "column": 4,
+          "value": "12003519762.04",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "资产总额",
+              "column_header": "冷饮",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "bef4fc62d96c4ca9b259ec1361f657c0",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+          "row": 6,
+          "column": 5,
+          "value": "136463666605.37",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "资产总额",
+              "column_header": "其他",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "9da78e9aacf24ceb887d513c436d2366",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+          "row": 6,
+          "column": 6,
+          "value": "94910566620.31",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "资产总额",
+              "column_header": "分部间抵销",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "ef122f350cd74608bcb392aee11ee434",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+          "row": 6,
+          "column": 7,
+          "value": "153718003927.97",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "资产总额",
+              "column_header": "合计",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "05544e7793b04ad99181330e7608a91a",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+          "row": 7,
+          "column": 2,
+          "value": "39540244029.17",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "负债总额",
+              "column_header": "液体乳",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "ebb4ad442b494fb893548775a693659f",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+          "row": 7,
+          "column": 3,
+          "value": "15589425817.91",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "负债总额",
+              "column_header": "奶粉及奶制品",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "461d374517a44a598546cc7e1b2300a2",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+          "row": 7,
+          "column": 4,
+          "value": "7110065254.64",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "负债总额",
+              "column_header": "冷饮",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "b46732eadf16468bb3f38041234a9a1d",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+          "row": 7,
+          "column": 5,
+          "value": "85980546703.85",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "负债总额",
+              "column_header": "其他",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "efb5eda8b7524c409d962375f3fb89a3",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+          "row": 7,
+          "column": 6,
+          "value": "51509928554.51",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "负债总额",
+              "column_header": "分部间抵销",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "b3cf3fd6ba744243bc42a9742ffcfcb8",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+          "row": 7,
+          "column": 7,
+          "value": "96710353251.06",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "负债总额",
+              "column_header": "合计",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "cd2ae71032b04a33bcfe55f9b504264c",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 2,
+          "column": 2,
+          "value": "115393310976.69",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "c4e3d58ee9cf41adae7915512b738a09",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 2,
+          "column": 3,
+          "value": "125758168916.51",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "d94ef86c61de40dc8aff11ef6cbf4302",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 2,
+          "column": 4,
+          "value": "-8.24",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "3e15860a4a094b65ad217e5803816936",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 2,
+          "column": 5,
+          "value": "122698004080.99",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2022-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2022-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "07445279c19643938343ef463a447ee8",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 3,
+          "column": 2,
+          "value": "8452859993.18",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "7f390b8757ce43778e2dd47edccbd95b",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 3,
+          "column": 3,
+          "value": "10428540457.94",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "67d889ba640a42bb95af37048187bd37",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 3,
+          "column": 4,
+          "value": "-18.94",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "a88c4999facb4d02b055d26c82e341b3",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 3,
+          "column": 5,
+          "value": "9431064679.78",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2022-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2022-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "56cdf13ef0c14a7ab977bfba53c2e656",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 4,
+          "column": 2,
+          "value": "6011274945.92",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "68114c990fc64df48675077a4668752a",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 4,
+          "column": 3,
+          "value": "10026171076.03",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "11727bb8c5094978bd19aca2f14dadfe",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 4,
+          "column": 4,
+          "value": "-40.04",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "0e12d4069a274ddfa8591457b15b71b8",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 4,
+          "column": 5,
+          "value": "8585692731.44",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2022-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2022-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "c17ab8a1b4674fe59fdf0d93dace2c5f",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 5,
+          "column": 2,
+          "value": "21739740393.38",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "323246886908497bb52e55eaef40fbf5",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 5,
+          "column": 3,
+          "value": "18290357650.56",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "30359f914b1f47cca228ab577d084eb4",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 5,
+          "column": 4,
+          "value": "18.86",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "70bf14e09649469cb57de3210f26ca8d",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 5,
+          "column": 5,
+          "value": "13420320580.36",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2022-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2022-FY"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "73fed366ba3045aebac31bed680ecbc8",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 7,
+          "column": 2,
+          "value": "53179935140.80",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-12-31"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "11869f1711cd4b1ea220a9018fc36f26",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 7,
+          "column": 3,
+          "value": "53539331413.16",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2023-12-31"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "b9a94d4a6094452f94f9f9bd9680b5df",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 7,
+          "column": 4,
+          "value": "-0.67",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-12-31"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "5ef04ff0ceb142518cf44558e12aaf1f",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 7,
+          "column": 5,
+          "value": "50267883832.15",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2022-12-31"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2022-12-31"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "ecde060a569d46629514988a2e304f9f",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 8,
+          "column": 2,
+          "value": "153718003927.97",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-12-31"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "4df243d1c0954618a86d6b150a11ad92",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 8,
+          "column": 3,
+          "value": "151620252657.98",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2023-12-31"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "5b6f60ebdd3e48b190d06c2532f6ea45",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 8,
+          "column": 4,
+          "value": "1.38",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2024-12-31"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "e0be6b0fd3da480e931af3beec339bbe",
+          "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+          "row": 8,
+          "column": 5,
+          "value": "130965302299.22",
+          "before": {
+            "scope": "unspecified_CAS",
+            "period": "2022-12-31"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2022-12-31"
+          },
+          "evidence": {
+            "scope": {
+              "scope": "consolidated",
+              "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+            },
+            "version": "source-period-scope-2"
+          }
+        }
+      ],
+      "values_coordinates_entities_unchanged": true,
+      "complete_old_records_preserved": true,
+      "changed_cell_replay_and_pdf_literals": {
+        "passed": 52,
+        "total": 52,
+        "items": [
+          {
+            "fact_id": "7b47eb2493fd4fca9c8c9551efffe4b9",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 2,
+            "column": 2
+          },
+          {
+            "fact_id": "e6bee4eef7254461aeb64c13be791114",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 2,
+            "column": 3
+          },
+          {
+            "fact_id": "681f1a4c5cc24610b33521b2eb50e8a3",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 2,
+            "column": 4
+          },
+          {
+            "fact_id": "fb7f11f584064c28b08680e8647856f4",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 2,
+            "column": 5
+          },
+          {
+            "fact_id": "7c71c28608a44c7bad36639bff40dad5",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 3,
+            "column": 2
+          },
+          {
+            "fact_id": "27c3f3bf212a4e6c9ab6abe954ca6e6b",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 3,
+            "column": 3
+          },
+          {
+            "fact_id": "28130a3da50643e39de4d3b9bc944a95",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 3,
+            "column": 4
+          },
+          {
+            "fact_id": "6afb716a2986430a810538cea4da9cd5",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 3,
+            "column": 5
+          },
+          {
+            "fact_id": "f36c1f1ecfba462da3f2b6c365946439",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 4,
+            "column": 2
+          },
+          {
+            "fact_id": "a28119b4c0df4f20b0fba0bf6d55e073",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 4,
+            "column": 3
+          },
+          {
+            "fact_id": "c8a0f7d006844b6abc670f4d22a8975e",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 4,
+            "column": 4
+          },
+          {
+            "fact_id": "f1aba380ac52403c834541d1d4ceb703",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 4,
+            "column": 5
+          },
+          {
+            "fact_id": "88e2cb7a4afd459e918118a411254d8a",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 5,
+            "column": 2
+          },
+          {
+            "fact_id": "2977513aa2f64a9d9026aff2857cfb3a",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 5,
+            "column": 3
+          },
+          {
+            "fact_id": "5d4f2abb059c4033bc7cbcd865b98a7c",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 5,
+            "column": 4
+          },
+          {
+            "fact_id": "c09167e2b66c4d36845bbaec147ea6d6",
+            "page": 8,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t10",
+            "row": 5,
+            "column": 5
+          },
+          {
+            "fact_id": "d6091d2562074bfc9069797ace035b95",
+            "page": 251,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+            "row": 6,
+            "column": 2
+          },
+          {
+            "fact_id": "7861582bb9b3449487df40f69dcccfe9",
+            "page": 251,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+            "row": 6,
+            "column": 3
+          },
+          {
+            "fact_id": "f5805915c5e449dfa66bac96398829d6",
+            "page": 251,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+            "row": 6,
+            "column": 4
+          },
+          {
+            "fact_id": "bef4fc62d96c4ca9b259ec1361f657c0",
+            "page": 251,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+            "row": 6,
+            "column": 5
+          },
+          {
+            "fact_id": "9da78e9aacf24ceb887d513c436d2366",
+            "page": 251,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+            "row": 6,
+            "column": 6
+          },
+          {
+            "fact_id": "ef122f350cd74608bcb392aee11ee434",
+            "page": 251,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+            "row": 6,
+            "column": 7
+          },
+          {
+            "fact_id": "05544e7793b04ad99181330e7608a91a",
+            "page": 251,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+            "row": 7,
+            "column": 2
+          },
+          {
+            "fact_id": "ebb4ad442b494fb893548775a693659f",
+            "page": 251,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+            "row": 7,
+            "column": 3
+          },
+          {
+            "fact_id": "461d374517a44a598546cc7e1b2300a2",
+            "page": 251,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+            "row": 7,
+            "column": 4
+          },
+          {
+            "fact_id": "b46732eadf16468bb3f38041234a9a1d",
+            "page": 251,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+            "row": 7,
+            "column": 5
+          },
+          {
+            "fact_id": "efb5eda8b7524c409d962375f3fb89a3",
+            "page": 251,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+            "row": 7,
+            "column": 6
+          },
+          {
+            "fact_id": "b3cf3fd6ba744243bc42a9742ffcfcb8",
+            "page": 251,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t306",
+            "row": 7,
+            "column": 7
+          },
+          {
+            "fact_id": "cd2ae71032b04a33bcfe55f9b504264c",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 2,
+            "column": 2
+          },
+          {
+            "fact_id": "c4e3d58ee9cf41adae7915512b738a09",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 2,
+            "column": 3
+          },
+          {
+            "fact_id": "d94ef86c61de40dc8aff11ef6cbf4302",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 2,
+            "column": 4
+          },
+          {
+            "fact_id": "3e15860a4a094b65ad217e5803816936",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 2,
+            "column": 5
+          },
+          {
+            "fact_id": "07445279c19643938343ef463a447ee8",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 3,
+            "column": 2
+          },
+          {
+            "fact_id": "7f390b8757ce43778e2dd47edccbd95b",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 3,
+            "column": 3
+          },
+          {
+            "fact_id": "67d889ba640a42bb95af37048187bd37",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 3,
+            "column": 4
+          },
+          {
+            "fact_id": "a88c4999facb4d02b055d26c82e341b3",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 3,
+            "column": 5
+          },
+          {
+            "fact_id": "56cdf13ef0c14a7ab977bfba53c2e656",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 4,
+            "column": 2
+          },
+          {
+            "fact_id": "68114c990fc64df48675077a4668752a",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 4,
+            "column": 3
+          },
+          {
+            "fact_id": "11727bb8c5094978bd19aca2f14dadfe",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 4,
+            "column": 4
+          },
+          {
+            "fact_id": "0e12d4069a274ddfa8591457b15b71b8",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 4,
+            "column": 5
+          },
+          {
+            "fact_id": "c17ab8a1b4674fe59fdf0d93dace2c5f",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 5,
+            "column": 2
+          },
+          {
+            "fact_id": "323246886908497bb52e55eaef40fbf5",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 5,
+            "column": 3
+          },
+          {
+            "fact_id": "30359f914b1f47cca228ab577d084eb4",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 5,
+            "column": 4
+          },
+          {
+            "fact_id": "70bf14e09649469cb57de3210f26ca8d",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 5,
+            "column": 5
+          },
+          {
+            "fact_id": "73fed366ba3045aebac31bed680ecbc8",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 7,
+            "column": 2
+          },
+          {
+            "fact_id": "11869f1711cd4b1ea220a9018fc36f26",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 7,
+            "column": 3
+          },
+          {
+            "fact_id": "b9a94d4a6094452f94f9f9bd9680b5df",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 7,
+            "column": 4
+          },
+          {
+            "fact_id": "5ef04ff0ceb142518cf44558e12aaf1f",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 7,
+            "column": 5
+          },
+          {
+            "fact_id": "ecde060a569d46629514988a2e304f9f",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 8,
+            "column": 2
+          },
+          {
+            "fact_id": "4df243d1c0954618a86d6b150a11ad92",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 8,
+            "column": 3
+          },
+          {
+            "fact_id": "5b6f60ebdd3e48b190d06c2532f6ea45",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 8,
+            "column": 4
+          },
+          {
+            "fact_id": "e0be6b0fd3da480e931af3beec339bbe",
+            "page": 7,
+            "table": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 8,
+            "column": 5
+          }
+        ]
+      },
+      "snapshot": "f11r2-yili-production-20261008",
+      "snapshot_version": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "run_id": "111b00fd-d406-4dc2-91e6-3dedbdbed840",
+        "finished_at": "2026-10-08T08:21:06.998Z",
+        "facts": 1726,
+        "facts_file_sha256": "792cf677ce590c0017b0258f7a8971c639ae18e8f7b45b5c7b03fc21e784c8e2",
+        "frozen_release": "d977ccd"
+      },
+      "scope_changes": 40,
+      "period_changes": 12
+    },
+    "haier": {
+      "model_requests": 0,
+      "facts": 1142,
+      "reapplied": {
+        "updated": 24,
+        "history_preserved": 24
+      },
+      "repeat": {
+        "updated": 0,
+        "history_preserved": 0
+      },
+      "source_review_fixed": [],
+      "original_passed_preserved": 0,
+      "remaining_missing": 0,
+      "unchanged_records": 1118,
+      "changed_by_table": {
+        "e7b0d9679ddc4b739f8f35ecb6dc6227:t320": 8,
+        "e7b0d9679ddc4b739f8f35ecb6dc6227:t318": 8,
+        "e7b0d9679ddc4b739f8f35ecb6dc6227:t321": 8
+      },
+      "changes": [
+        {
+          "fact_id": "8bc8d75bfc6744438d7a046a667bcbc2",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+          "row": 6,
+          "column": 2,
+          "value": "47691504886.50",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部资产总额",
+              "column_header": "家庭美食保鲜烹饪解决方案 冰箱/冷柜",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "6bf2fd6b30db4e75856d546a1a994203",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+          "row": 6,
+          "column": 3,
+          "value": "21251460357.52",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部资产总额",
+              "column_header": " 厨电",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "0d683f3b7a104adabd6fbf8a82b93576",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+          "row": 6,
+          "column": 4,
+          "value": "23813820117.00",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部资产总额",
+              "column_header": "空气能源解决方案 ",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "4bf7725e51444e5995fbbed50880bd9a",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+          "row": 6,
+          "column": 5,
+          "value": "31675160583.53",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部资产总额",
+              "column_header": "家庭衣物洗护方案 ",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "6bcdaa2eb6b14a3aac5bf7f2ba563e03",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+          "row": 7,
+          "column": 2,
+          "value": "62419237019.15",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部负债总额",
+              "column_header": "家庭美食保鲜烹饪解决方案 冰箱/冷柜",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "115522509db9484393d19c70d8df2248",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+          "row": 7,
+          "column": 3,
+          "value": "12952916364.37",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部负债总额",
+              "column_header": " 厨电",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "ae72088aca4d4d6587098de195309821",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+          "row": 7,
+          "column": 4,
+          "value": "22843183005.69",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部负债总额",
+              "column_header": "空气能源解决方案 ",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "36dfe8944fb04af48695a9df3d2303e4",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+          "row": 7,
+          "column": 5,
+          "value": "18786107463.36",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部负债总额",
+              "column_header": "家庭衣物洗护方案 ",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "a8230cdd4f4046b1ae0603feee7f5212",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+          "row": 7,
+          "column": 2,
+          "value": "11352587655.40",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部资产总额",
+              "column_header": "全屋用水解决方案",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "9f4b8c10d8ac4f34b02beecccd6342bf",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+          "row": 7,
+          "column": 3,
+          "value": "97865643471.33",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部资产总额",
+              "column_header": "其他业务",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "189d26fd38ff47d1b49de7dd6f4fa72b",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+          "row": 7,
+          "column": 4,
+          "value": "-96864122164.65",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部资产总额",
+              "column_header": "分部间抵销",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "8cc5073d0a934d0bb839c4af818d699b",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+          "row": 7,
+          "column": 5,
+          "value": "154800283417.20",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部资产总额",
+              "column_header": "合计",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "b00fb9338a2146d08c3982dae96831f0",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+          "row": 8,
+          "column": 2,
+          "value": "4228086063.74",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部负债总额",
+              "column_header": "全屋用水解决方案",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "9ef52e81a33a424da0ebcd0e775b10ea",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+          "row": 8,
+          "column": 3,
+          "value": "81054508694.98",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部负债总额",
+              "column_header": "其他业务",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "fecefbb89828469e96a66a824b61cd59",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+          "row": 8,
+          "column": 4,
+          "value": "-96724763108.65",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部负债总额",
+              "column_header": "分部间抵销",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "9283d6b7815e4f56abbb5b0328ddfab5",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+          "row": 8,
+          "column": 5,
+          "value": "132219692071.37",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2024-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2024-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部负债总额",
+              "column_header": "合计",
+              "report_end_month": 12,
+              "previous_period": "2024-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "7038b4d46e38447f8d54746607faad19",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+          "row": 7,
+          "column": 2,
+          "value": "7188919188.97",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部资产总额",
+              "column_header": "全屋用水解决方案",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "a58de2b676f44271802957fee7940161",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+          "row": 7,
+          "column": 3,
+          "value": "78982614930.00",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部资产总额",
+              "column_header": "其他业务",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "34921719794d43a5b3588809e02e0d83",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+          "row": 7,
+          "column": 4,
+          "value": "-75049787719.42",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部资产总额",
+              "column_header": "分部间抵销",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "3a3025a57beb4674b983224c98abe062",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+          "row": 7,
+          "column": 5,
+          "value": "135553692344.10",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部资产总额",
+              "column_header": "合计",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "a730b4ec4bc848d0b9e4690c4c51747c",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+          "row": 8,
+          "column": 2,
+          "value": "6071202326.98",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部负债总额",
+              "column_header": "全屋用水解决方案",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "488f8313147043e2853c217dcd23aac5",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+          "row": 8,
+          "column": 3,
+          "value": "69157215619.58",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部负债总额",
+              "column_header": "其他业务",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "92dd66f0c6a845b595dedad250faa74f",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+          "row": 8,
+          "column": 4,
+          "value": "-74904708377.42",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部负债总额",
+              "column_header": "分部间抵销",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        },
+        {
+          "fact_id": "3d30a3f38bc44b0d84298e55e66762ed",
+          "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+          "row": 8,
+          "column": 5,
+          "value": "117325153421.71",
+          "before": {
+            "scope": "consolidated_CAS",
+            "period": "2023-FY"
+          },
+          "after": {
+            "scope": "consolidated_CAS",
+            "period": "2023-12-31"
+          },
+          "evidence": {
+            "period": {
+              "kind": "instant",
+              "row_label": "分部负债总额",
+              "column_header": "合计",
+              "report_end_month": 12,
+              "previous_period": "2023-FY"
+            },
+            "version": "source-period-scope-2"
+          }
+        }
+      ],
+      "values_coordinates_entities_unchanged": true,
+      "complete_old_records_preserved": true,
+      "changed_cell_replay_and_pdf_literals": {
+        "passed": 24,
+        "total": 24,
+        "items": [
+          {
+            "fact_id": "8bc8d75bfc6744438d7a046a667bcbc2",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+            "row": 6,
+            "column": 2
+          },
+          {
+            "fact_id": "6bf2fd6b30db4e75856d546a1a994203",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+            "row": 6,
+            "column": 3
+          },
+          {
+            "fact_id": "0d683f3b7a104adabd6fbf8a82b93576",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+            "row": 6,
+            "column": 4
+          },
+          {
+            "fact_id": "4bf7725e51444e5995fbbed50880bd9a",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+            "row": 6,
+            "column": 5
+          },
+          {
+            "fact_id": "6bcdaa2eb6b14a3aac5bf7f2ba563e03",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+            "row": 7,
+            "column": 2
+          },
+          {
+            "fact_id": "115522509db9484393d19c70d8df2248",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+            "row": 7,
+            "column": 3
+          },
+          {
+            "fact_id": "ae72088aca4d4d6587098de195309821",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+            "row": 7,
+            "column": 4
+          },
+          {
+            "fact_id": "36dfe8944fb04af48695a9df3d2303e4",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t320",
+            "row": 7,
+            "column": 5
+          },
+          {
+            "fact_id": "a8230cdd4f4046b1ae0603feee7f5212",
+            "page": 226,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+            "row": 7,
+            "column": 2
+          },
+          {
+            "fact_id": "9f4b8c10d8ac4f34b02beecccd6342bf",
+            "page": 226,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+            "row": 7,
+            "column": 3
+          },
+          {
+            "fact_id": "189d26fd38ff47d1b49de7dd6f4fa72b",
+            "page": 226,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+            "row": 7,
+            "column": 4
+          },
+          {
+            "fact_id": "8cc5073d0a934d0bb839c4af818d699b",
+            "page": 226,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+            "row": 7,
+            "column": 5
+          },
+          {
+            "fact_id": "b00fb9338a2146d08c3982dae96831f0",
+            "page": 226,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+            "row": 8,
+            "column": 2
+          },
+          {
+            "fact_id": "9ef52e81a33a424da0ebcd0e775b10ea",
+            "page": 226,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+            "row": 8,
+            "column": 3
+          },
+          {
+            "fact_id": "fecefbb89828469e96a66a824b61cd59",
+            "page": 226,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+            "row": 8,
+            "column": 4
+          },
+          {
+            "fact_id": "9283d6b7815e4f56abbb5b0328ddfab5",
+            "page": 226,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t318",
+            "row": 8,
+            "column": 5
+          },
+          {
+            "fact_id": "7038b4d46e38447f8d54746607faad19",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+            "row": 7,
+            "column": 2
+          },
+          {
+            "fact_id": "a58de2b676f44271802957fee7940161",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+            "row": 7,
+            "column": 3
+          },
+          {
+            "fact_id": "34921719794d43a5b3588809e02e0d83",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+            "row": 7,
+            "column": 4
+          },
+          {
+            "fact_id": "3a3025a57beb4674b983224c98abe062",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+            "row": 7,
+            "column": 5
+          },
+          {
+            "fact_id": "a730b4ec4bc848d0b9e4690c4c51747c",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+            "row": 8,
+            "column": 2
+          },
+          {
+            "fact_id": "488f8313147043e2853c217dcd23aac5",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+            "row": 8,
+            "column": 3
+          },
+          {
+            "fact_id": "92dd66f0c6a845b595dedad250faa74f",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+            "row": 8,
+            "column": 4
+          },
+          {
+            "fact_id": "3d30a3f38bc44b0d84298e55e66762ed",
+            "page": 227,
+            "table": "e7b0d9679ddc4b739f8f35ecb6dc6227:t321",
+            "row": 8,
+            "column": 5
+          }
+        ]
+      },
+      "snapshot": "f11-haier-production-20261008",
+      "snapshot_version": {
+        "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+        "run_id": "33acc0eb-2099-4315-a9e7-fbf9fc3ce537",
+        "finished_at": "2026-10-08T08:21:45.591Z",
+        "facts": 1142,
+        "facts_file_sha256": "2145ea4ac36391b522ccf6914e3cc61b1fbd6c1074621188884700b2345a6dc6",
+        "frozen_release": "d977ccd"
+      },
+      "scope_changes": 0,
+      "period_changes": 24,
+      "visual_source_review": {
+        "pages": [
+          226,
+          227
+        ],
+        "reviewed": true,
+        "result": "Current/prior segment asset and liability stocks; revenue, cost, attribution and dimensions unchanged."
+      }
+    }
+  }
+}
