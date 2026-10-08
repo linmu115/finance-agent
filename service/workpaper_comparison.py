@@ -42,7 +42,7 @@ def comparison(service,project,document_id=None,company=None,scope='consolidated
                                'document_id':disclosure.doc,'page':ref.get('page'),'table_id':ref.get('table_id'),'column':ref.get('column'),
                                'column_label':header or '见来源计算输入','basis':'同一报告内当期/比较列；没有查询另一份年报'})
             metrics[key]=q
-        for k in INCOME+('deducted_profit',):add(k,st.pick(k,p,'income'))
+        for k in INCOME+('deducted_profit',):add(k,st.pick(k,p,None if k=='deducted_profit' else 'income'))
         add('cfo',st.pick('cfo',p,'cashflow'))
         for k in ('assets','equity','parent_equity','liabilities','receivables','inventory','payables'):
             for suffix,when in [('begin',str(date.fromisoformat(start)-timedelta(days=1))),('end',end)]:add(k+'_'+suffix,st.pick(k,when,'balance'))

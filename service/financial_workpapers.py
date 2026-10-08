@@ -14,47 +14,7 @@ from .workpaper_period_selection import WorkpaperInputError, normalize_periods, 
 
 
 # Semantic aliases, not document-specific row numbers or company-specific values.
-ALIASES = {
-    'revenue': ('revenue', 'operating_revenue'),
-    'cogs': ('cost_of_revenue', 'cost_of_sales', 'operating_cost'),
-    'gross_profit': ('gross_profit',),
-    'selling': ('selling_expenses', 'selling_expense'),
-    'administrative': ('administrative_expenses', 'administrative_expense'),
-    'research': ('research_and_development_expenses', 'research_expense'),
-    'operating_profit': ('operating_profit', 'operating_loss'),
-    'finance_net': ('finance_income_net', 'finance_costs_net', 'net_finance_income'),
-    'finance_income': ('finance_income',), 'finance_costs': ('finance_costs',),
-    'other_income': ('other_income',), 'other_gains_net': ('other_gains_net',),
-    'impairment': ('impairment_reversal_loss_financial_assets', 'reversal_of_ecls_on_financial_and_contract_assets'),
-    'fair_value_gains': ('fair_value_gains_on_financial_assets_at_fvtpl', 'fair_value_change_gains_losses'),
-    'associates': ('share_of_profits_of_associates', 'share_of_profits_of_associates_and_joint_ventures'),
-    'profit_before_tax': ('profit_before_tax', 'profit_before_income_tax', 'total_profit'),
-    'tax': ('income_tax_expense', 'income_tax_credit', 'income_tax_credit_expense'),
-    'net_profit': ('net_profit', 'profit_for_the_period', 'profit_for_the_period_total'),
-    'parent_profit': ('net_profit_parent', 'profit_attributable_to_owners_of_the_company', 'owners_of_the_company'),
-    'minority_profit': ('net_profit_non_controlling_interests', 'profit_attributable_to_non_controlling_interests', 'non_controlling_interests'),
-    'deducted_profit': ('net_profit_excluding_nonrecurring', 'net_profit_excluding_non_recurring', 'net_profit_parent_excluding_non_recurring'),
-    'parent_equity': ('equity_attributable_to_parent', 'equity_parent', 'equity_attributable_to_owners_of_the_company'),
-    'liabilities': ('total_liabilities', 'liabilities'),
-    'asset_impairment': ('asset_impairment_losses','asset_impairment_loss'),
-    'credit_impairment': ('credit_impairment_loss','credit_impairment_losses'),
-    'investment_income': ('investment_income','investment_gains'),
-    'asset_disposal': ('asset_disposal_gains','asset_disposal_income'),
-    'surcharges': ('taxes_and_surcharges',),
-    'nonoperating_income': ('non_operating_income',),
-    'nonoperating_expenses': ('non_operating_expenses',),
-    'cfo': ('operating_cash_flow', 'net_cash_flow_operating', 'net_cash_used_in_generated_from_operating_activities', 'net_cash_used_in_operating_activities', 'net_cash_generated_from_operating_activities', 'net_cash_inflow_outflow_operating_activities'),
-    'cfi': ('investing_cash_flow', 'net_cash_flow_from_investing_activities', 'net_cash_generated_from_used_in_investing_activities', 'net_cash_used_in_investing_activities', 'net_cash_inflow_outflow_investing_activities'),
-    'cff': ('financing_cash_flow', 'net_cash_flow_from_financing_activities', 'net_cash_used_in_financing_activities', 'net_cash_generated_from_financing_activities', 'net_cash_inflow_outflow_financing_activities'),
-    'operations': ('net_cash_generated_from_operations', 'cash_used_in_operations', 'cash_generated_from_operations'),
-    'cash_begin': ('cash_and_cash_equivalents_at_beginning_of_the_period', 'cash_and_cash_equivalents_at_beginning_of_period'),
-    'cash_end': ('cash_and_cash_equivalents_at_end_of_the_period', 'cash_and_cash_equivalents_at_end_of_period'),
-    'cash_fx': ('effects_of_exchange_rate_changes_on_cash_and_cash_equivalents', 'effect_of_exchange_rate_changes_on_cash_and_cash_equivalents', 'effect_of_currency_translation_differences'),
-    'receivables': ('trade_receivables', 'accounts_receivable', 'trade_receivables_net'),
-    'inventory': ('inventories', 'inventory'),
-    'payables': ('trade_and_bills_payables', 'trade_payables', 'accounts_payable'),
-    'assets': ('total_assets', 'assets'), 'equity': ('total_equity', 'owners_equity', 'total_owners_equity'),
-}
+from .standard_metrics import WORKPAPER_ALIASES as ALIASES
 INCOME = [('revenue', '收入'), ('cogs', '销售成本（原披露符号）'), ('gross_profit', '毛利'),
           ('selling', '销售费用（原披露符号）'), ('administrative', '管理费用（原披露符号）'),
           ('research', '研发费用（原披露符号）'), ('other_income','其他收入'), ('other_gains_net','其他净收益'),
@@ -168,11 +128,14 @@ class Statement:
                 anchors = {tid for tid, metrics in groups.items() if all(set(ALIASES[k]) & metrics for k in keys)}
                 self.primary_tables[(statement,p)] = anchors
         for period in self.periods:
-            anchors = [r for r in facts if r['period'] == period and r['metric'] == 'net_profit' and meta(r).get('statement') == 'income' and dimensions_ok(r)]
+            anchors = [r for r in facts if r['period'] == period and r['metric'] in ALIASES['net_profit'] and meta(r).get('statement') == 'income' and dimensions_ok(r)]
+            if anchors:
+                best = min(ALIASES['net_profit'].index(r['metric']) for r in anchors)
+                anchors = [r for r in anchors if ALIASES['net_profit'].index(r['metric']) == best]
             self.income_pages[period] = {r['source_ref'].get('page') for r in anchors}
 
     def pick(self, key, period, statement=None):
-        aliases = ALIASES.get(key, (key,))
+        aliases = ALIASES[key]
         matches = [r for r in self.facts if r['period'] == period and r['metric'] in aliases and dimensions_ok(r)
                    and r['currency'] == self.currency and (not statement or meta(r).get('statement') == statement)]
         if not matches and key in ('cash_begin','cash_end'):

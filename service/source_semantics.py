@@ -7,7 +7,7 @@ from .source_periods import column_period, report_month
 from .standard_metrics import normalize_label
 
 
-VERSION = 'source-period-scope-2'
+VERSION = 'source-period-scope-3'
 
 
 def summary_scope(table, context):
@@ -40,8 +40,13 @@ def summary_scope(table, context):
 
 def apply_source_semantics(parsed, table, facts, context):
     from .cleaning_rules import mapping_headers, source_year
-    scope = summary_scope(table, context)
+    from .source_table_blocks import nonrecurring_block, block_scope
+    block = nonrecurring_block(parsed, table)
+    scope = block_scope(block) if block else summary_scope(table, context)
     headers = mapping_headers(table)
+    continuation = bool(block and block['tables'][0]['index'] != table['index'])
+    if continuation:
+        headers = [block['header']]
     report_end = report_month(parsed)
     year = source_year(parsed)
     for fact in facts:
@@ -58,6 +63,14 @@ def apply_source_semantics(parsed, table, facts, context):
         # segment table's total assets/liabilities are stocks, unlike revenue.
         column = ref['column']
         header = ' '.join(str(r[column-1]) for r in headers if len(r) >= column)
+        if continuation:
+            source = column_period(header, block['heading'], 'income', report_end, year)
+            if source['period'] != 'unknown':
+                start, end = source.get('start',''), source.get('end','')
+                if (fact['period'], meta.get('period_start',''), meta.get('period_end','')) != (source['period'], start, end):
+                    fact['period'] = source['period']; fact['year'] = int(source['period'][:4])
+                    meta['period_start'] = start; meta['period_end'] = end
+                    evidence['period'] = {'kind':'continuation', 'parent_table':block['tables'][0]['index'], 'column_header':header}
         endpoint = r'(?:期末|年末|期初|年初)(?:余额|账面价值)'
         stock = context['statement'] == 'balance' or bool(re.search(endpoint, compact(header))) or bool(re.fullmatch(
             r'(?:分部)?(?:资产|负债)(?:总额|总计|合计)|总资产|总负债|' + endpoint, label))

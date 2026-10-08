@@ -1,0 +1,22 @@
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+======================================================================
+ERROR: test_carote_income_and_profit_attribution_against_reviewed_source (service.tests.test_financial_workpapers.StatementWorkpapersTests.test_carote_income_and_profit_attribution_against_reviewed_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\AI\财报agent-wt\ingestion-scale\service\tests\test_financial_workpapers.py", line 44, in test_carote_income_and_profit_attribution_against_reviewed_source
+    self.assertEqual(Decimal(row['parent']),Decimal(parent))
+                     ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: conversion from NoneType to Decimal is not supported
+
+======================================================================
+FAIL: test_conflicting_profit_does_not_pick_an_arbitrary_value (service.tests.test_financial_workpapers.StatementWorkpapersTests.test_conflicting_profit_does_not_pick_an_arbitrary_value)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\AI\财报agent-wt\ingestion-scale\service\tests\test_financial_workpapers.py", line 114, in test_conflicting_profit_does_not_pick_an_arbitrary_value
+    self.assertEqual(self.row(report,'profit_attribution','2025-H1')['parent'],'102.785')
+AssertionError: None != '102.785'
+
+----------------------------------------------------------------------
+Ran 118 tests in 39.538s
+
+FAILED (failures=1, errors=1)

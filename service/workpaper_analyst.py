@@ -56,11 +56,7 @@ def locators(q):
     return list(found.values())
 
 
-EXTRA = {
-    'cash_balance': ('cash_and_cash_equivalents','cash_and_bank_balances','cash'),
-    'other_receivables': ('other_receivables',), 'prepayments': ('prepayments','prepaid_expenses'),
-    'other_noncurrent': ('other_non_current_assets','other_noncurrent_assets'), 'goodwill': ('goodwill',),
-}
+EXTRA = {'cash_balance', 'other_receivables', 'prepayments', 'other_noncurrent', 'goodwill'}
 
 
 class AnalystData:
@@ -77,7 +73,7 @@ class AnalystData:
         if statement!='balance' and key not in EXTRA:
             r=self.st.pick(key,period,statement)
             return record_quantity(r) if r else unknown(f'缺少 {period} {key} 唯一同口径披露')
-        aliases=EXTRA.get(key,ALIASES.get(key,(key,)))
+        aliases=ALIASES[key]
         matches=[r for r in self.records if r['period']==period and r['metric'] in aliases
                  and meta(r).get('statement')==statement and dimensions_ok(r) and r['currency']==self.currency]
         if statement=='balance':

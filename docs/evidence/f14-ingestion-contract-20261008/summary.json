@@ -1,0 +1,520 @@
+{
+  "baseline": "a13c1ee",
+  "model_calls": 0,
+  "production_writes": 0,
+  "canonical_labels_unchanged": 205,
+  "all_previous_aliases_preserved": true,
+  "canonical_ids": 214,
+  "concepts": 69,
+  "datasets": {
+    "yili": {
+      "facts": 2006,
+      "changed": 16,
+      "unchanged": 1990,
+      "history": 16,
+      "repeat_changes": 0,
+      "kinds": [
+        {
+          "kind": "statement_analysis",
+          "status": "ok",
+          "seconds": 0.766
+        },
+        {
+          "kind": "variance_attribution",
+          "status": "ok",
+          "seconds": 4.015
+        },
+        {
+          "kind": "anomaly_signals",
+          "status": "ok",
+          "seconds": 1.156
+        },
+        {
+          "kind": "period_analysis",
+          "status": "ok",
+          "seconds": 0.844
+        },
+        {
+          "kind": "comparison",
+          "status": "ok",
+          "seconds": 0.422
+        }
+      ],
+      "deducted_profit": [
+        {
+          "key": "2024-FY",
+          "parent": "8452.85999318",
+          "disclosed": "6011.27494592",
+          "nonrecurring": "2441.58504726",
+          "calculated": "6011.27494592",
+          "residual": "0.00",
+          "share": "28.88472125682831597489714900622967329667"
+        },
+        {
+          "key": "2023-FY",
+          "parent": "10428.54045794",
+          "disclosed": "10026.17107603",
+          "nonrecurring": "402.36938191",
+          "calculated": "10026.17107603",
+          "residual": "0.00",
+          "share": "3.858347997333099177955932704564606097468"
+        }
+      ],
+      "remaining_statement_missing": [
+        {
+          "key": "0",
+          "metric": "operations",
+          "period": "2024-FY",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        },
+        {
+          "key": "1",
+          "metric": "operations",
+          "period": "2023-FY",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        },
+        {
+          "key": "2",
+          "metric": "receivables",
+          "period": "2022-12-31",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        },
+        {
+          "key": "3",
+          "metric": "inventory",
+          "period": "2022-12-31",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        },
+        {
+          "key": "4",
+          "metric": "payables",
+          "period": "2022-12-31",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        },
+        {
+          "key": "5",
+          "metric": "parent_equity",
+          "period": "2022-12-31",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        }
+      ],
+      "remaining_signal_unknowns": [
+        {
+          "key": "2023-FY_accrual",
+          "family": "利润与现金流",
+          "signal": "应计比率",
+          "value": null,
+          "baseline": "2023-FY；未年化",
+          "threshold": "> 10%",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[{\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 5, \"column\": 4, \"text\": \"五、净利润（净亏损以“－”号填列） |  | 8,463,710,355.65 | 10,284,306,198.28\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 94, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t107\", \"row\": 28, \"column\": 4, \"text\": \"经营活动产生的现金流量净额 |  | 21,739,740,393.38 | 18,290,357,650.56\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 87, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t100\", \"row\": 49, \"column\": 4, \"text\": \"资产总计 |  | 153,718,003,927.97 | 151,620,252,657.98\"}]",
+          "missing": "缺少 2022-12-31 assets 同口径披露"
+        },
+        {
+          "key": "receivables_days_change",
+          "family": "应收",
+          "signal": "应收周转天数变化",
+          "value": null,
+          "baseline": "2024-FY 对 2023-FY；期初期末平均余额，实际期间天数；收入/成本代理",
+          "threshold": "> 10 天",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[{\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 3, \"column\": 3, \"text\": \"其中：营业收入 | 七（61） | 115,393,310,976.69 | 125,758,168,916.51\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 8, \"column\": 3, \"text\": \"其中：营业成本 | 七（61） | 76,298,833,033.93 | 84,788,592,077.34\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 17, \"column\": 3, \"text\": \"销售费用 | 七（64） | 21,982,305,923.27 | 22,571,509,868.48\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 18, \"column\": 3, \"text\": \"管理费用 | 七（65） | 4,465,110,012.57 | 5,154,218,306.42\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 19, \"column\": 3, \"text\": \"研发费用 | 七（66） | 869,976,531.80 | 850,146,147.17\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 16, \"column\": 3, \"text\": \"税金及附加 | 七（63） | 732,777,483.69 | 732,659,573.36\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 20, \"column\": 3, \"text\": \"财务费用 | 七（67） | -591,649,416.42 | -152,848,163.48\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 23, \"column\": 3, \"text\": \"加：其他收益 | 七（68） | 1,016,458,994.97 | 1,097,851,685.94\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 24, \"column\": 3, \"text\": \"投资收益（损失以“－”号填列） | 七（69） | 2,417,330,849.26 | -31,088,785.68\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 25, \"column\": 3, \"text\": \"其中：对联营企业和合营企业的投资收益 |  | -214,892,030.81 | -59,633,067.90\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 29, \"column\": 3, \"text\": \"公允价值变动收益（损失以“－”号填列） | 七（71） | -28,153,114.85 | 278,186,201.65\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 30, \"column\": 3, \"text\": \"信用减值损失（损失以“-”号填列） | 七（72） | -555,019,707.28 | -160,477,312.83\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 31, \"column\": 3, \"text\": \"资产减值损失（损失以“-”号填列） | 七（73） | -4,675,845,573.44 | -1,525,699,477.87\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 32, \"column\": 3, \"text\": \"资产处置收益（损失以“－”号填列） | 七（74） | -15,203,668.87 | -20,648,925.84\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 33, \"column\": 3, \"text\": \"三、营业利润（亏损以“－”号填列） |  | 10,181,768,860.25 | 11,873,304,166.44\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 1, \"column\": 3, \"text\": \"加：营业外收入 | 七（75） | 77,796,432.52 | 229,839,386.72\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 2, \"column\": 3, \"text\": \"减：营业外支出 | 七（76） | 132,836,299.25 | 381,955,766.51\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 3, \"column\": 3, \"text\": \"四、利润总额（亏损总额以“－”号填列） |  | 10,126,728,993.52 | 11,721,187,786.65\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 4, \"column\": 3, \"text\": \"减：所得税费用 | 七（77） | 1,663,018,637.87 | 1,436,881,588.37\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 5, \"column\": 3, \"text\": \"五、净利润（净亏损以“－”号填列） |  | 8,463,710,355.65 | 10,284,306,198.28\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 10, \"column\": 3, \"text\": \"1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 11, \"column\": 3, \"text\": \"2.少数股东损益（净亏损以“-”号填列） |  | 10,850,362.47 | -144,234,259.66\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 94, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t107\", \"row\": 28, \"column\": 3, \"text\": \"经营活动产生的现金流量净额 |  | 21,739,740,393.38 | 18,290,357,650.56\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 14, \"column\": 3, \"text\": \"投资活动产生的现金流量净额 |  | -32,709,427,280.73 | -16,044,497,913.83\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 26, \"column\": 3, \"text\": \"筹资活动产生的现金流量净额 |  | -7,277,915,908.33 | 7,258,480,466.95\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 29, \"column\": 3, \"text\": \"加：期初现金及现金等价物余额 |  | 42,812,079,851.67 | 33,188,427,044.96\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 30, \"column\": 3, \"text\": \"六、期末现金及现金等价物余额 |  | 24,546,520,007.54 | 42,812,079,851.67\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 27, \"column\": 3, \"text\": \"四、汇率变动对现金及现金等价物的影响 |  | -17,957,048.45 | 119,312,603.03\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 87, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t100\", \"row\": 9, \"column\": 4, \"text\": \"应收账款 | 七（5） | 2,878,402,047.44 | 3,084,668,398.14\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 87, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t100\", \"row\": 9, \"column\": 3, \"text\": \"应收账款 | 七（5） | 2,878,402,047.44 | 3,084,668,398.14\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 87, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t100\", \"row\": 19, \"column\": 4, \"text\": \"存货 | 七（10） | 10,744,674,420.37 | 12,511,775,911.77\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 87, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t100\", \"row\": 19, \"column\": 3, \"text\": \"存货 | 七（10） | 10,744,674,420.37 | 12,511,775,911.77\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 88, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t101\", \"row\": 8, \"column\": 4, \"text\": \"应付账款 | 七（36） | 12,312,877,232.19 | 13,798,869,047.01\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 88, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t101\", \"row\": 8, \"column\": 3, \"text\": \"应付账款 | 七（36） | 12,312,877,232.19 | 13,798,869,047.01\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 3, \"column\": 4, \"text\": \"其中：营业收入 | 七（61） | 115,393,310,976.69 | 125,758,168,916.51\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 8, \"column\": 4, \"text\": \"其中：营业成本 | 七（61） | 76,298,833,033.93 | 84,788,592,077.34\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 17, \"column\": 4, \"text\": \"销售费用 | 七（64） | 21,982,305,923.27 | 22,571,509,868.48\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 18, \"column\": 4, \"text\": \"管理费用 | 七（65） | 4,465,110,012.57 | 5,154,218,306.42\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 19, \"column\": 4, \"text\": \"研发费用 | 七（66） | 869,976,531.80 | 850,146,147.17\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 16, \"column\": 4, \"text\": \"税金及附加 | 七（63） | 732,777,483.69 | 732,659,573.36\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 20, \"column\": 4, \"text\": \"财务费用 | 七（67） | -591,649,416.42 | -152,848,163.48\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 23, \"column\": 4, \"text\": \"加：其他收益 | 七（68） | 1,016,458,994.97 | 1,097,851,685.94\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 24, \"column\": 4, \"text\": \"投资收益（损失以“－”号填列） | 七（69） | 2,417,330,849.26 | -31,088,785.68\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 25, \"column\": 4, \"text\": \"其中：对联营企业和合营企业的投资收益 |  | -214,892,030.81 | -59,633,067.90\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 29, \"column\": 4, \"text\": \"公允价值变动收益（损失以“－”号填列） | 七（71） | -28,153,114.85 | 278,186,201.65\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 30, \"column\": 4, \"text\": \"信用减值损失（损失以“-”号填列） | 七（72） | -555,019,707.28 | -160,477,312.83\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 31, \"column\": 4, \"text\": \"资产减值损失（损失以“-”号填列） | 七（73） | -4,675,845,573.44 | -1,525,699,477.87\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 32, \"column\": 4, \"text\": \"资产处置收益（损失以“－”号填列） | 七（74） | -15,203,668.87 | -20,648,925.84\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 33, \"column\": 4, \"text\": \"三、营业利润（亏损以“－”号填列） |  | 10,181,768,860.25 | 11,873,304,166.44\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 1, \"column\": 4, \"text\": \"加：营业外收入 | 七（75） | 77,796,432.52 | 229,839,386.72\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 2, \"column\": 4, \"text\": \"减：营业外支出 | 七（76） | 132,836,299.25 | 381,955,766.51\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 3, \"column\": 4, \"text\": \"四、利润总额（亏损总额以“－”号填列） |  | 10,126,728,993.52 | 11,721,187,786.65\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 4, \"column\": 4, \"text\": \"减：所得税费用 | 七（77） | 1,663,018,637.87 | 1,436,881,588.37\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 5, \"column\": 4, \"text\": \"五、净利润（净亏损以“－”号填列） |  | 8,463,710,355.65 | 10,284,306,198.28\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 10, \"column\": 4, \"text\": \"1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 11, \"column\": 4, \"text\": \"2.少数股东损益（净亏损以“-”号填列） |  | 10,850,362.47 | -144,234,259.66\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 94, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t107\", \"row\": 28, \"column\": 4, \"text\": \"经营活动产生的现金流量净额 |  | 21,739,740,393.38 | 18,290,357,650.56\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 14, \"column\": 4, \"text\": \"投资活动产生的现金流量净额 |  | -32,709,427,280.73 | -16,044,497,913.83\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 26, \"column\": 4, \"text\": \"筹资活动产生的现金流量净额 |  | -7,277,915,908.33 | 7,258,480,466.95\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 29, \"column\": 4, \"text\": \"加：期初现金及现金等价物余额 |  | 42,812,079,851.67 | 33,188,427,044.96\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 30, \"column\": 4, \"text\": \"六、期末现金及现金等价物余额 |  | 24,546,520,007.54 | 42,812,079,851.67\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 27, \"column\": 4, \"text\": \"四、汇率变动对现金及现金等价物的影响 |  | -17,957,048.45 | 119,312,603.03\"}]",
+          "missing": "missing required inputs"
+        },
+        {
+          "key": "inventory_days_change",
+          "family": "存货",
+          "signal": "存货周转天数变化",
+          "value": null,
+          "baseline": "2024-FY 对 2023-FY；期初期末平均余额，实际期间天数；收入/成本代理",
+          "threshold": "> 10 天",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[{\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 3, \"column\": 3, \"text\": \"其中：营业收入 | 七（61） | 115,393,310,976.69 | 125,758,168,916.51\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 8, \"column\": 3, \"text\": \"其中：营业成本 | 七（61） | 76,298,833,033.93 | 84,788,592,077.34\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 17, \"column\": 3, \"text\": \"销售费用 | 七（64） | 21,982,305,923.27 | 22,571,509,868.48\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 18, \"column\": 3, \"text\": \"管理费用 | 七（65） | 4,465,110,012.57 | 5,154,218,306.42\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 19, \"column\": 3, \"text\": \"研发费用 | 七（66） | 869,976,531.80 | 850,146,147.17\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 16, \"column\": 3, \"text\": \"税金及附加 | 七（63） | 732,777,483.69 | 732,659,573.36\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 20, \"column\": 3, \"text\": \"财务费用 | 七（67） | -591,649,416.42 | -152,848,163.48\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 23, \"column\": 3, \"text\": \"加：其他收益 | 七（68） | 1,016,458,994.97 | 1,097,851,685.94\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 24, \"column\": 3, \"text\": \"投资收益（损失以“－”号填列） | 七（69） | 2,417,330,849.26 | -31,088,785.68\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 25, \"column\": 3, \"text\": \"其中：对联营企业和合营企业的投资收益 |  | -214,892,030.81 | -59,633,067.90\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 29, \"column\": 3, \"text\": \"公允价值变动收益（损失以“－”号填列） | 七（71） | -28,153,114.85 | 278,186,201.65\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 30, \"column\": 3, \"text\": \"信用减值损失（损失以“-”号填列） | 七（72） | -555,019,707.28 | -160,477,312.83\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 31, \"column\": 3, \"text\": \"资产减值损失（损失以“-”号填列） | 七（73） | -4,675,845,573.44 | -1,525,699,477.87\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 32, \"column\": 3, \"text\": \"资产处置收益（损失以“－”号填列） | 七（74） | -15,203,668.87 | -20,648,925.84\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 33, \"column\": 3, \"text\": \"三、营业利润（亏损以“－”号填列） |  | 10,181,768,860.25 | 11,873,304,166.44\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 1, \"column\": 3, \"text\": \"加：营业外收入 | 七（75） | 77,796,432.52 | 229,839,386.72\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 2, \"column\": 3, \"text\": \"减：营业外支出 | 七（76） | 132,836,299.25 | 381,955,766.51\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 3, \"column\": 3, \"text\": \"四、利润总额（亏损总额以“－”号填列） |  | 10,126,728,993.52 | 11,721,187,786.65\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 4, \"column\": 3, \"text\": \"减：所得税费用 | 七（77） | 1,663,018,637.87 | 1,436,881,588.37\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 5, \"column\": 3, \"text\": \"五、净利润（净亏损以“－”号填列） |  | 8,463,710,355.65 | 10,284,306,198.28\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 10, \"column\": 3, \"text\": \"1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 11, \"column\": 3, \"text\": \"2.少数股东损益（净亏损以“-”号填列） |  | 10,850,362.47 | -144,234,259.66\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 94, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t107\", \"row\": 28, \"column\": 3, \"text\": \"经营活动产生的现金流量净额 |  | 21,739,740,393.38 | 18,290,357,650.56\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 14, \"column\": 3, \"text\": \"投资活动产生的现金流量净额 |  | -32,709,427,280.73 | -16,044,497,913.83\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 26, \"column\": 3, \"text\": \"筹资活动产生的现金流量净额 |  | -7,277,915,908.33 | 7,258,480,466.95\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 29, \"column\": 3, \"text\": \"加：期初现金及现金等价物余额 |  | 42,812,079,851.67 | 33,188,427,044.96\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 30, \"column\": 3, \"text\": \"六、期末现金及现金等价物余额 |  | 24,546,520,007.54 | 42,812,079,851.67\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 27, \"column\": 3, \"text\": \"四、汇率变动对现金及现金等价物的影响 |  | -17,957,048.45 | 119,312,603.03\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 87, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t100\", \"row\": 9, \"column\": 4, \"text\": \"应收账款 | 七（5） | 2,878,402,047.44 | 3,084,668,398.14\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 87, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t100\", \"row\": 9, \"column\": 3, \"text\": \"应收账款 | 七（5） | 2,878,402,047.44 | 3,084,668,398.14\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 87, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t100\", \"row\": 19, \"column\": 4, \"text\": \"存货 | 七（10） | 10,744,674,420.37 | 12,511,775,911.77\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 87, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t100\", \"row\": 19, \"column\": 3, \"text\": \"存货 | 七（10） | 10,744,674,420.37 | 12,511,775,911.77\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 88, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t101\", \"row\": 8, \"column\": 4, \"text\": \"应付账款 | 七（36） | 12,312,877,232.19 | 13,798,869,047.01\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 88, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t101\", \"row\": 8, \"column\": 3, \"text\": \"应付账款 | 七（36） | 12,312,877,232.19 | 13,798,869,047.01\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 3, \"column\": 4, \"text\": \"其中：营业收入 | 七（61） | 115,393,310,976.69 | 125,758,168,916.51\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 8, \"column\": 4, \"text\": \"其中：营业成本 | 七（61） | 76,298,833,033.93 | 84,788,592,077.34\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 17, \"column\": 4, \"text\": \"销售费用 | 七（64） | 21,982,305,923.27 | 22,571,509,868.48\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 18, \"column\": 4, \"text\": \"管理费用 | 七（65） | 4,465,110,012.57 | 5,154,218,306.42\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 19, \"column\": 4, \"text\": \"研发费用 | 七（66） | 869,976,531.80 | 850,146,147.17\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 16, \"column\": 4, \"text\": \"税金及附加 | 七（63） | 732,777,483.69 | 732,659,573.36\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 20, \"column\": 4, \"text\": \"财务费用 | 七（67） | -591,649,416.42 | -152,848,163.48\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 23, \"column\": 4, \"text\": \"加：其他收益 | 七（68） | 1,016,458,994.97 | 1,097,851,685.94\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 24, \"column\": 4, \"text\": \"投资收益（损失以“－”号填列） | 七（69） | 2,417,330,849.26 | -31,088,785.68\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 25, \"column\": 4, \"text\": \"其中：对联营企业和合营企业的投资收益 |  | -214,892,030.81 | -59,633,067.90\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 29, \"column\": 4, \"text\": \"公允价值变动收益（损失以“－”号填列） | 七（71） | -28,153,114.85 | 278,186,201.65\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 30, \"column\": 4, \"text\": \"信用减值损失（损失以“-”号填列） | 七（72） | -555,019,707.28 | -160,477,312.83\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 31, \"column\": 4, \"text\": \"资产减值损失（损失以“-”号填列） | 七（73） | -4,675,845,573.44 | -1,525,699,477.87\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 32, \"column\": 4, \"text\": \"资产处置收益（损失以“－”号填列） | 七（74） | -15,203,668.87 | -20,648,925.84\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 91, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t104\", \"row\": 33, \"column\": 4, \"text\": \"三、营业利润（亏损以“－”号填列） |  | 10,181,768,860.25 | 11,873,304,166.44\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 1, \"column\": 4, \"text\": \"加：营业外收入 | 七（75） | 77,796,432.52 | 229,839,386.72\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 2, \"column\": 4, \"text\": \"减：营业外支出 | 七（76） | 132,836,299.25 | 381,955,766.51\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 3, \"column\": 4, \"text\": \"四、利润总额（亏损总额以“－”号填列） |  | 10,126,728,993.52 | 11,721,187,786.65\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 4, \"column\": 4, \"text\": \"减：所得税费用 | 七（77） | 1,663,018,637.87 | 1,436,881,588.37\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 5, \"column\": 4, \"text\": \"五、净利润（净亏损以“－”号填列） |  | 8,463,710,355.65 | 10,284,306,198.28\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 10, \"column\": 4, \"text\": \"1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 11, \"column\": 4, \"text\": \"2.少数股东损益（净亏损以“-”号填列） |  | 10,850,362.47 | -144,234,259.66\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 94, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t107\", \"row\": 28, \"column\": 4, \"text\": \"经营活动产生的现金流量净额 |  | 21,739,740,393.38 | 18,290,357,650.56\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 14, \"column\": 4, \"text\": \"投资活动产生的现金流量净额 |  | -32,709,427,280.73 | -16,044,497,913.83\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 26, \"column\": 4, \"text\": \"筹资活动产生的现金流量净额 |  | -7,277,915,908.33 | 7,258,480,466.95\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 29, \"column\": 4, \"text\": \"加：期初现金及现金等价物余额 |  | 42,812,079,851.67 | 33,188,427,044.96\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 30, \"column\": 4, \"text\": \"六、期末现金及现金等价物余额 |  | 24,546,520,007.54 | 42,812,079,851.67\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 95, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t108\", \"row\": 27, \"column\": 4, \"text\": \"四、汇率变动对现金及现金等价物的影响 |  | -17,957,048.45 | 119,312,603.03\"}]",
+          "missing": "missing required inputs"
+        },
+        {
+          "key": "receivables_aging_change",
+          "family": "应收",
+          "signal": "一年以上应收账龄占比变化",
+          "value": null,
+          "baseline": "期末对期初；账面原值口径",
+          "threshold": "> 5 个百分点",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[]",
+          "missing": "未找到唯一同口径一年以上应收账龄表"
+        },
+        {
+          "key": "receivables_overdue_change",
+          "family": "应收",
+          "signal": "逾期超过一年应收占比变化",
+          "value": null,
+          "baseline": "期末对期初；逾期账龄，不与发票账龄混用",
+          "threshold": "> 5 个百分点",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[]",
+          "missing": "缺少唯一同口径逾期超过12个月应收及总额"
+        },
+        {
+          "key": "inventory_charge_rate_change",
+          "family": "存货",
+          "signal": "存货跌价准备本期计提率变化",
+          "value": null,
+          "baseline": "2024-FY 对 2023-FY；计提发生额/同期间平均存货原值；与余额覆盖率分别列示",
+          "threshold": "绝对变化 > 2 个百分点",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[]",
+          "missing": "2024-FY 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2024-FY 缺少期初存货账面原值；2024-FY 缺少期末存货账面原值；2023-FY 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2023-FY 缺少期初存货账面原值；2023-FY 缺少期末存货账面原值"
+        }
+      ],
+      "resolved_false_missing": 18,
+      "source_review_passed": 50,
+      "nonrecurring_signals": [
+        {
+          "key": "2024-FY_nonrecurring_share",
+          "family": "非经常性损益依赖",
+          "signal": "非经常性损益占归母净利润",
+          "value": "28.88472125682831597489714900622967329667",
+          "baseline": "2024-FY；各可比期间独立列示",
+          "threshold": "> 20%",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "是",
+          "evidence": "[{\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"report\": \"伊利股份2024年年度报告.pdf\", \"page\": 9, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t12\", \"row\": 14, \"column\": 2, \"column_label\": \"2024 年金额\", \"text\": \"合计\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 10, \"column\": 3, \"text\": \"1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94\"}]",
+          "missing": ""
+        },
+        {
+          "key": "2023-FY_nonrecurring_share",
+          "family": "非经常性损益依赖",
+          "signal": "非经常性损益占归母净利润",
+          "value": "3.858347997333099177955932704564606097468",
+          "baseline": "2023-FY；各可比期间独立列示",
+          "threshold": "> 20%",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "否",
+          "evidence": "[{\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"report\": \"伊利股份2024年年度报告.pdf\", \"page\": 9, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t12\", \"row\": 14, \"column\": 4, \"column_label\": \"2023 年金额\", \"text\": \"合计\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 10, \"column\": 4, \"text\": \"1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94\"}]",
+          "missing": ""
+        },
+        {
+          "key": "nonrecurring_share_change",
+          "family": "非经常性损益依赖",
+          "signal": "非经常性损益依赖比例变化",
+          "value": "25.02637325949521679694121630166506719920",
+          "baseline": "2024-FY 对 2023-FY",
+          "threshold": "上升 > 10 个百分点",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "是",
+          "evidence": "[{\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"report\": \"伊利股份2024年年度报告.pdf\", \"page\": 9, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t12\", \"row\": 14, \"column\": 2, \"column_label\": \"2024 年金额\", \"text\": \"合计\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 10, \"column\": 3, \"text\": \"1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"report\": \"伊利股份2024年年度报告.pdf\", \"page\": 9, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t12\", \"row\": 14, \"column\": 4, \"column_label\": \"2023 年金额\", \"text\": \"合计\"}, {\"document_id\": \"d84573bf6b584e7e874faa4c6adf454a\", \"page\": 92, \"table_id\": \"d84573bf6b584e7e874faa4c6adf454a:t105\", \"row\": 10, \"column\": 4, \"text\": \"1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94\"}]",
+          "missing": ""
+        }
+      ]
+    },
+    "haier": {
+      "facts": 1496,
+      "changed": 7,
+      "unchanged": 1489,
+      "history": 7,
+      "repeat_changes": 0,
+      "kinds": [
+        {
+          "kind": "statement_analysis",
+          "status": "ok",
+          "seconds": 0.703
+        },
+        {
+          "kind": "variance_attribution",
+          "status": "ok",
+          "seconds": 3.75
+        },
+        {
+          "kind": "anomaly_signals",
+          "status": "ok",
+          "seconds": 0.891
+        },
+        {
+          "kind": "period_analysis",
+          "status": "ok",
+          "seconds": 0.5
+        },
+        {
+          "kind": "comparison",
+          "status": "ok",
+          "seconds": 0.406
+        }
+      ],
+      "deducted_profit": [
+        {
+          "key": "2024-FY",
+          "parent": "18741.12012293",
+          "disclosed": null,
+          "nonrecurring": "936.3873133",
+          "calculated": "17804.73280963",
+          "residual": null,
+          "share": "4.996431948346129825208432611665011431975"
+        },
+        {
+          "key": "2023-FY",
+          "parent": "16596.61504587",
+          "disclosed": null,
+          "nonrecurring": null,
+          "calculated": null,
+          "residual": null,
+          "share": null
+        }
+      ],
+      "remaining_statement_missing": [
+        {
+          "key": "0",
+          "metric": "operations",
+          "period": "2024-FY",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        },
+        {
+          "key": "1",
+          "metric": "operations",
+          "period": "2023-FY",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        },
+        {
+          "key": "2",
+          "metric": "receivables",
+          "period": "2022-12-31",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        },
+        {
+          "key": "3",
+          "metric": "inventory",
+          "period": "2022-12-31",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        },
+        {
+          "key": "4",
+          "metric": "payables",
+          "period": "2022-12-31",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        },
+        {
+          "key": "5",
+          "metric": "deducted_profit",
+          "period": "2024-FY",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        },
+        {
+          "key": "6",
+          "metric": "deducted_profit",
+          "period": "2023-FY",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        },
+        {
+          "key": "7",
+          "metric": "parent_equity",
+          "period": "2022-12-31",
+          "reason": "缺少同口径披露",
+          "candidates": "[]"
+        }
+      ],
+      "remaining_signal_unknowns": [
+        {
+          "key": "2023-FY_accrual",
+          "family": "利润与现金流",
+          "signal": "应计比率",
+          "value": null,
+          "baseline": "2023-FY；未年化",
+          "threshold": "> 10%",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[{\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 31, \"column\": 4, \"text\": \"五、净利润（净亏损以“－”号填列） |  | 19,575,612,501.68 | 17,088,480,573.96\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 125, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t120\", \"row\": 21, \"column\": 4, \"text\": \"经营活动产生的现金流量净额 | 七、64 | 26,543,081,911.96 | 26,535,780,568.36\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 118, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t109\", \"row\": 26, \"column\": 4, \"text\": \"资产总计 |  | 290,113,822,824.61 | 261,067,684,897.49\"}]",
+          "missing": "缺少 2022-12-31 assets 同口径披露"
+        },
+        {
+          "key": "receivables_days_change",
+          "family": "应收",
+          "signal": "应收周转天数变化",
+          "value": null,
+          "baseline": "2024-FY 对 2023-FY；期初期末平均余额，实际期间天数；收入/成本代理",
+          "threshold": "> 10 天",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[{\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 200, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t252\", \"row\": 4, \"column\": 2, \"text\": \"合计 | 285,981,225,203.93 | 274,204,520,847.97\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 1, \"column\": 3, \"text\": \"其中：营业成本 | 七、47 | 206,487,065,182.92 | 198,838,470,796.47\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 10, \"column\": 3, \"text\": \"销售费用 | 七、49 | 33,585,903,561.60 | 32,726,735,817.73\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 11, \"column\": 3, \"text\": \"管理费用 | 七、50 | 12,110,235,915.35 | 11,874,420,922.31\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 12, \"column\": 3, \"text\": \"研发费用 | 七、51 | 10,740,112,353.47 | 10,380,219,803.05\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 9, \"column\": 3, \"text\": \"税金及附加 | 七、48 | 1,276,040,830.27 | 1,152,034,823.21\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 13, \"column\": 3, \"text\": \"财务费用 | 七、52 | 972,565,127.34 | 505,658,528.21\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 16, \"column\": 3, \"text\": \"加：其他收益 | 七、53 | 1,704,282,380.72 | 1,716,169,518.48\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 17, \"column\": 3, \"text\": \"投资收益（损失以“－”号填列） | 七、54 | 1,912,557,544.86 | 1,698,715,871.28\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 18, \"column\": 3, \"text\": \"其中：对联营企业和合营企业的投\\n资收益 |  | 1,816,477,749.42 | 1,575,371,896.37\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 22, \"column\": 3, \"text\": \"公允价值变动收益（损失以“－”号填\\n列） | 七、55 | 47,130,324.67 | 16,895,043.25\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 23, \"column\": 3, \"text\": \"信用减值损失（损失以“-”号填列） | 七、56 | -266,317,578.03 | -253,401,373.48\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 24, \"column\": 3, \"text\": \"资产减值损失（损失以“-”号填列） | 七、57 | -1,283,980,232.53 | -1,512,214,011.21\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 25, \"column\": 3, \"text\": \"资产处置收益（损失以“－”号填列） | 七、58 | -11,258,612.64 | -12,153,756.13\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 26, \"column\": 3, \"text\": \"三、营业利润（亏损以“－”号填列） |  | 22,911,716,060.03 | 20,380,991,449.18\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 27, \"column\": 3, \"text\": \"加：营业外收入 | 七、59 | 183,938,534.66 | 134,470,855.00\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 28, \"column\": 3, \"text\": \"减：营业外支出 | 七、60 | 362,862,166.24 | 303,818,511.47\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 29, \"column\": 3, \"text\": \"四、利润总额（亏损总额以“－”号填列） |  | 22,732,792,428.45 | 20,211,643,792.71\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 30, \"column\": 3, \"text\": \"减：所得税费用 | 七、61 | 3,157,179,926.77 | 3,123,163,218.75\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 31, \"column\": 3, \"text\": \"五、净利润（净亏损以“－”号填列） |  | 19,575,612,501.68 | 17,088,480,573.96\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 36, \"column\": 3, \"text\": \"1.归属于母公司股东的净利润（净亏损\\n以“-”号填列） |  | 18,741,120,122.93 | 16,596,615,045.87\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 37, \"column\": 3, \"text\": \"2.少数股东损益（净亏损以“-”号填列） |  | 834,492,378.75 | 491,865,528.09\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 125, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t120\", \"row\": 21, \"column\": 3, \"text\": \"经营活动产生的现金流量净额 | 七、64 | 26,543,081,911.96 | 26,535,780,568.36\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 125, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t120\", \"row\": 35, \"column\": 3, \"text\": \"投资活动产生的现金流量净额 |  | -20,074,351,808.82 | -17,340,209,537.39\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 4, \"column\": 3, \"text\": \"筹资活动产生的现金流量净额 |  | -7,913,904,092.66 | -7,920,627,373.47\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 7, \"column\": 3, \"text\": \"加：期初现金及现金等价物余额 | 七、64 | 56,683,006,209.32 | 55,157,265,320.97\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 8, \"column\": 3, \"text\": \"六、期末现金及现金等价物余额 | 七、64 | 54,980,883,247.05 | 56,683,006,209.32\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 5, \"column\": 3, \"text\": \"四、汇率变动对现金及现金等价物的影响 |  | -256,948,972.75 | 250,797,230.85\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 117, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t108\", \"row\": 9, \"column\": 10, \"text\": \"应收账款 |  |  | 七、5 |  |  | 26,473,001,745.01 |  |  | 22,682,921,254.25 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 117, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t108\", \"row\": 9, \"column\": 7, \"text\": \"应收账款 |  |  | 七、5 |  |  | 26,473,001,745.01 |  |  | 22,682,921,254.25 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 117, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t108\", \"row\": 19, \"column\": 10, \"text\": \"存货 |  |  | 七、9 |  |  | 43,044,414,227.38 |  |  | 39,524,006,616.33 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 117, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t108\", \"row\": 19, \"column\": 7, \"text\": \"存货 |  |  | 七、9 |  |  | 43,044,414,227.38 |  |  | 39,524,006,616.33 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 118, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t109\", \"row\": 34, \"column\": 4, \"text\": \"应付账款 | 七、28 | 54,587,992,129.58 | 49,917,971,699.31\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 118, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t109\", \"row\": 34, \"column\": 3, \"text\": \"应付账款 | 七、28 | 54,587,992,129.58 | 49,917,971,699.31\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 200, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t252\", \"row\": 4, \"column\": 3, \"text\": \"合计 | 285,981,225,203.93 | 274,204,520,847.97\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 1, \"column\": 4, \"text\": \"其中：营业成本 | 七、47 | 206,487,065,182.92 | 198,838,470,796.47\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 10, \"column\": 4, \"text\": \"销售费用 | 七、49 | 33,585,903,561.60 | 32,726,735,817.73\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 11, \"column\": 4, \"text\": \"管理费用 | 七、50 | 12,110,235,915.35 | 11,874,420,922.31\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 12, \"column\": 4, \"text\": \"研发费用 | 七、51 | 10,740,112,353.47 | 10,380,219,803.05\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 9, \"column\": 4, \"text\": \"税金及附加 | 七、48 | 1,276,040,830.27 | 1,152,034,823.21\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 13, \"column\": 4, \"text\": \"财务费用 | 七、52 | 972,565,127.34 | 505,658,528.21\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 16, \"column\": 4, \"text\": \"加：其他收益 | 七、53 | 1,704,282,380.72 | 1,716,169,518.48\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 17, \"column\": 4, \"text\": \"投资收益（损失以“－”号填列） | 七、54 | 1,912,557,544.86 | 1,698,715,871.28\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 18, \"column\": 4, \"text\": \"其中：对联营企业和合营企业的投\\n资收益 |  | 1,816,477,749.42 | 1,575,371,896.37\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 22, \"column\": 4, \"text\": \"公允价值变动收益（损失以“－”号填\\n列） | 七、55 | 47,130,324.67 | 16,895,043.25\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 23, \"column\": 4, \"text\": \"信用减值损失（损失以“-”号填列） | 七、56 | -266,317,578.03 | -253,401,373.48\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 24, \"column\": 4, \"text\": \"资产减值损失（损失以“-”号填列） | 七、57 | -1,283,980,232.53 | -1,512,214,011.21\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 25, \"column\": 4, \"text\": \"资产处置收益（损失以“－”号填列） | 七、58 | -11,258,612.64 | -12,153,756.13\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 26, \"column\": 4, \"text\": \"三、营业利润（亏损以“－”号填列） |  | 22,911,716,060.03 | 20,380,991,449.18\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 27, \"column\": 4, \"text\": \"加：营业外收入 | 七、59 | 183,938,534.66 | 134,470,855.00\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 28, \"column\": 4, \"text\": \"减：营业外支出 | 七、60 | 362,862,166.24 | 303,818,511.47\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 29, \"column\": 4, \"text\": \"四、利润总额（亏损总额以“－”号填列） |  | 22,732,792,428.45 | 20,211,643,792.71\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 30, \"column\": 4, \"text\": \"减：所得税费用 | 七、61 | 3,157,179,926.77 | 3,123,163,218.75\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 31, \"column\": 4, \"text\": \"五、净利润（净亏损以“－”号填列） |  | 19,575,612,501.68 | 17,088,480,573.96\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 36, \"column\": 4, \"text\": \"1.归属于母公司股东的净利润（净亏损\\n以“-”号填列） |  | 18,741,120,122.93 | 16,596,615,045.87\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 37, \"column\": 4, \"text\": \"2.少数股东损益（净亏损以“-”号填列） |  | 834,492,378.75 | 491,865,528.09\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 125, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t120\", \"row\": 21, \"column\": 4, \"text\": \"经营活动产生的现金流量净额 | 七、64 | 26,543,081,911.96 | 26,535,780,568.36\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 125, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t120\", \"row\": 35, \"column\": 4, \"text\": \"投资活动产生的现金流量净额 |  | -20,074,351,808.82 | -17,340,209,537.39\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 4, \"column\": 4, \"text\": \"筹资活动产生的现金流量净额 |  | -7,913,904,092.66 | -7,920,627,373.47\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 7, \"column\": 4, \"text\": \"加：期初现金及现金等价物余额 | 七、64 | 56,683,006,209.32 | 55,157,265,320.97\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 8, \"column\": 4, \"text\": \"六、期末现金及现金等价物余额 | 七、64 | 54,980,883,247.05 | 56,683,006,209.32\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 5, \"column\": 4, \"text\": \"四、汇率变动对现金及现金等价物的影响 |  | -256,948,972.75 | 250,797,230.85\"}]",
+          "missing": "missing required inputs"
+        },
+        {
+          "key": "inventory_days_change",
+          "family": "存货",
+          "signal": "存货周转天数变化",
+          "value": null,
+          "baseline": "2024-FY 对 2023-FY；期初期末平均余额，实际期间天数；收入/成本代理",
+          "threshold": "> 10 天",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[{\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 200, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t252\", \"row\": 4, \"column\": 2, \"text\": \"合计 | 285,981,225,203.93 | 274,204,520,847.97\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 1, \"column\": 3, \"text\": \"其中：营业成本 | 七、47 | 206,487,065,182.92 | 198,838,470,796.47\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 10, \"column\": 3, \"text\": \"销售费用 | 七、49 | 33,585,903,561.60 | 32,726,735,817.73\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 11, \"column\": 3, \"text\": \"管理费用 | 七、50 | 12,110,235,915.35 | 11,874,420,922.31\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 12, \"column\": 3, \"text\": \"研发费用 | 七、51 | 10,740,112,353.47 | 10,380,219,803.05\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 9, \"column\": 3, \"text\": \"税金及附加 | 七、48 | 1,276,040,830.27 | 1,152,034,823.21\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 13, \"column\": 3, \"text\": \"财务费用 | 七、52 | 972,565,127.34 | 505,658,528.21\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 16, \"column\": 3, \"text\": \"加：其他收益 | 七、53 | 1,704,282,380.72 | 1,716,169,518.48\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 17, \"column\": 3, \"text\": \"投资收益（损失以“－”号填列） | 七、54 | 1,912,557,544.86 | 1,698,715,871.28\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 18, \"column\": 3, \"text\": \"其中：对联营企业和合营企业的投\\n资收益 |  | 1,816,477,749.42 | 1,575,371,896.37\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 22, \"column\": 3, \"text\": \"公允价值变动收益（损失以“－”号填\\n列） | 七、55 | 47,130,324.67 | 16,895,043.25\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 23, \"column\": 3, \"text\": \"信用减值损失（损失以“-”号填列） | 七、56 | -266,317,578.03 | -253,401,373.48\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 24, \"column\": 3, \"text\": \"资产减值损失（损失以“-”号填列） | 七、57 | -1,283,980,232.53 | -1,512,214,011.21\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 25, \"column\": 3, \"text\": \"资产处置收益（损失以“－”号填列） | 七、58 | -11,258,612.64 | -12,153,756.13\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 26, \"column\": 3, \"text\": \"三、营业利润（亏损以“－”号填列） |  | 22,911,716,060.03 | 20,380,991,449.18\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 27, \"column\": 3, \"text\": \"加：营业外收入 | 七、59 | 183,938,534.66 | 134,470,855.00\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 28, \"column\": 3, \"text\": \"减：营业外支出 | 七、60 | 362,862,166.24 | 303,818,511.47\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 29, \"column\": 3, \"text\": \"四、利润总额（亏损总额以“－”号填列） |  | 22,732,792,428.45 | 20,211,643,792.71\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 30, \"column\": 3, \"text\": \"减：所得税费用 | 七、61 | 3,157,179,926.77 | 3,123,163,218.75\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 31, \"column\": 3, \"text\": \"五、净利润（净亏损以“－”号填列） |  | 19,575,612,501.68 | 17,088,480,573.96\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 36, \"column\": 3, \"text\": \"1.归属于母公司股东的净利润（净亏损\\n以“-”号填列） |  | 18,741,120,122.93 | 16,596,615,045.87\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 37, \"column\": 3, \"text\": \"2.少数股东损益（净亏损以“-”号填列） |  | 834,492,378.75 | 491,865,528.09\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 125, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t120\", \"row\": 21, \"column\": 3, \"text\": \"经营活动产生的现金流量净额 | 七、64 | 26,543,081,911.96 | 26,535,780,568.36\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 125, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t120\", \"row\": 35, \"column\": 3, \"text\": \"投资活动产生的现金流量净额 |  | -20,074,351,808.82 | -17,340,209,537.39\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 4, \"column\": 3, \"text\": \"筹资活动产生的现金流量净额 |  | -7,913,904,092.66 | -7,920,627,373.47\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 7, \"column\": 3, \"text\": \"加：期初现金及现金等价物余额 | 七、64 | 56,683,006,209.32 | 55,157,265,320.97\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 8, \"column\": 3, \"text\": \"六、期末现金及现金等价物余额 | 七、64 | 54,980,883,247.05 | 56,683,006,209.32\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 5, \"column\": 3, \"text\": \"四、汇率变动对现金及现金等价物的影响 |  | -256,948,972.75 | 250,797,230.85\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 117, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t108\", \"row\": 9, \"column\": 10, \"text\": \"应收账款 |  |  | 七、5 |  |  | 26,473,001,745.01 |  |  | 22,682,921,254.25 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 117, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t108\", \"row\": 9, \"column\": 7, \"text\": \"应收账款 |  |  | 七、5 |  |  | 26,473,001,745.01 |  |  | 22,682,921,254.25 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 117, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t108\", \"row\": 19, \"column\": 10, \"text\": \"存货 |  |  | 七、9 |  |  | 43,044,414,227.38 |  |  | 39,524,006,616.33 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 117, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t108\", \"row\": 19, \"column\": 7, \"text\": \"存货 |  |  | 七、9 |  |  | 43,044,414,227.38 |  |  | 39,524,006,616.33 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 118, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t109\", \"row\": 34, \"column\": 4, \"text\": \"应付账款 | 七、28 | 54,587,992,129.58 | 49,917,971,699.31\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 118, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t109\", \"row\": 34, \"column\": 3, \"text\": \"应付账款 | 七、28 | 54,587,992,129.58 | 49,917,971,699.31\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 200, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t252\", \"row\": 4, \"column\": 3, \"text\": \"合计 | 285,981,225,203.93 | 274,204,520,847.97\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 1, \"column\": 4, \"text\": \"其中：营业成本 | 七、47 | 206,487,065,182.92 | 198,838,470,796.47\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 10, \"column\": 4, \"text\": \"销售费用 | 七、49 | 33,585,903,561.60 | 32,726,735,817.73\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 11, \"column\": 4, \"text\": \"管理费用 | 七、50 | 12,110,235,915.35 | 11,874,420,922.31\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 12, \"column\": 4, \"text\": \"研发费用 | 七、51 | 10,740,112,353.47 | 10,380,219,803.05\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 9, \"column\": 4, \"text\": \"税金及附加 | 七、48 | 1,276,040,830.27 | 1,152,034,823.21\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 13, \"column\": 4, \"text\": \"财务费用 | 七、52 | 972,565,127.34 | 505,658,528.21\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 16, \"column\": 4, \"text\": \"加：其他收益 | 七、53 | 1,704,282,380.72 | 1,716,169,518.48\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 17, \"column\": 4, \"text\": \"投资收益（损失以“－”号填列） | 七、54 | 1,912,557,544.86 | 1,698,715,871.28\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 18, \"column\": 4, \"text\": \"其中：对联营企业和合营企业的投\\n资收益 |  | 1,816,477,749.42 | 1,575,371,896.37\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 22, \"column\": 4, \"text\": \"公允价值变动收益（损失以“－”号填\\n列） | 七、55 | 47,130,324.67 | 16,895,043.25\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 23, \"column\": 4, \"text\": \"信用减值损失（损失以“-”号填列） | 七、56 | -266,317,578.03 | -253,401,373.48\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 24, \"column\": 4, \"text\": \"资产减值损失（损失以“-”号填列） | 七、57 | -1,283,980,232.53 | -1,512,214,011.21\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 25, \"column\": 4, \"text\": \"资产处置收益（损失以“－”号填列） | 七、58 | -11,258,612.64 | -12,153,756.13\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 26, \"column\": 4, \"text\": \"三、营业利润（亏损以“－”号填列） |  | 22,911,716,060.03 | 20,380,991,449.18\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 27, \"column\": 4, \"text\": \"加：营业外收入 | 七、59 | 183,938,534.66 | 134,470,855.00\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 28, \"column\": 4, \"text\": \"减：营业外支出 | 七、60 | 362,862,166.24 | 303,818,511.47\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 29, \"column\": 4, \"text\": \"四、利润总额（亏损总额以“－”号填列） |  | 22,732,792,428.45 | 20,211,643,792.71\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 30, \"column\": 4, \"text\": \"减：所得税费用 | 七、61 | 3,157,179,926.77 | 3,123,163,218.75\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 31, \"column\": 4, \"text\": \"五、净利润（净亏损以“－”号填列） |  | 19,575,612,501.68 | 17,088,480,573.96\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 36, \"column\": 4, \"text\": \"1.归属于母公司股东的净利润（净亏损\\n以“-”号填列） |  | 18,741,120,122.93 | 16,596,615,045.87\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 37, \"column\": 4, \"text\": \"2.少数股东损益（净亏损以“-”号填列） |  | 834,492,378.75 | 491,865,528.09\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 125, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t120\", \"row\": 21, \"column\": 4, \"text\": \"经营活动产生的现金流量净额 | 七、64 | 26,543,081,911.96 | 26,535,780,568.36\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 125, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t120\", \"row\": 35, \"column\": 4, \"text\": \"投资活动产生的现金流量净额 |  | -20,074,351,808.82 | -17,340,209,537.39\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 4, \"column\": 4, \"text\": \"筹资活动产生的现金流量净额 |  | -7,913,904,092.66 | -7,920,627,373.47\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 7, \"column\": 4, \"text\": \"加：期初现金及现金等价物余额 | 七、64 | 56,683,006,209.32 | 55,157,265,320.97\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 8, \"column\": 4, \"text\": \"六、期末现金及现金等价物余额 | 七、64 | 54,980,883,247.05 | 56,683,006,209.32\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 126, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t121\", \"row\": 5, \"column\": 4, \"text\": \"四、汇率变动对现金及现金等价物的影响 |  | -256,948,972.75 | 250,797,230.85\"}]",
+          "missing": "missing required inputs"
+        },
+        {
+          "key": "receivables_aging_change",
+          "family": "应收",
+          "signal": "一年以上应收账龄占比变化",
+          "value": null,
+          "baseline": "期末对期初；账面原值口径",
+          "threshold": "> 5 个百分点",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[]",
+          "missing": "未找到唯一同口径一年以上应收账龄表"
+        },
+        {
+          "key": "receivables_overdue_change",
+          "family": "应收",
+          "signal": "逾期超过一年应收占比变化",
+          "value": null,
+          "baseline": "期末对期初；逾期账龄，不与发票账龄混用",
+          "threshold": "> 5 个百分点",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[]",
+          "missing": "缺少唯一同口径逾期超过12个月应收及总额"
+        },
+        {
+          "key": "inventory_provision_change",
+          "family": "存货",
+          "signal": "存货跌价准备余额覆盖率变化",
+          "value": null,
+          "baseline": "期末对期初；准备余额/账面原值，不等于本期费用计提率",
+          "threshold": "绝对变化 > 2 个百分点",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[]",
+          "missing": "未找到唯一同口径存货原值与跌价准备两期表"
+        },
+        {
+          "key": "inventory_charge_rate_change",
+          "family": "存货",
+          "signal": "存货跌价准备本期计提率变化",
+          "value": null,
+          "baseline": "2024-FY 对 2023-FY；计提发生额/同期间平均存货原值；与余额覆盖率分别列示",
+          "threshold": "绝对变化 > 2 个百分点",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[]",
+          "missing": "2024-FY 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2024-FY 缺少期初存货账面原值；2024-FY 缺少期末存货账面原值；2023-FY 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2023-FY 缺少期初存货账面原值；2023-FY 缺少期末存货账面原值"
+        },
+        {
+          "key": "interest_yield",
+          "family": "存贷双高",
+          "signal": "隐含年化利息收益率",
+          "value": null,
+          "baseline": "平均余额代理；利息收入可能对应其他科目存款，须核对资产范围",
+          "threshold": "< 1%",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[{\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 117, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t108\", \"row\": 3, \"column\": 10, \"text\": \"货币资金 |  |  | 七、1 |  |  | 55,583,842,589.70 |  |  | 57,255,962,206.24 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 117, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t108\", \"row\": 3, \"column\": 7, \"text\": \"货币资金 |  |  | 七、1 |  |  | 55,583,842,589.70 |  |  | 57,255,962,206.24 |  | \"}]",
+          "missing": "缺少唯一应计利息收入；不以现金收息或财务净收益替代"
+        },
+        {
+          "key": "q4_revenue_share",
+          "family": "季度集中",
+          "signal": "Q4收入占全年比例",
+          "value": null,
+          "baseline": "2024-FY全年；全年须为正，非正时比例未知",
+          "threshold": "绝对比例 > 40%",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[{\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 3, \"column\": 11, \"column_label\": \"\", \"text\": \"营业收入 | 71,866,159,446.57 |  |  | 70,060,324,906.71 |  |  | 70,811,687,817.19 |  |  | 73,243,053,033.46 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 3, \"column\": 12, \"column_label\": \"第四季度\", \"text\": \"营业收入\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 200, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t252\", \"row\": 4, \"column\": 2, \"text\": \"合计 | 285,981,225,203.93 | 274,204,520,847.97\"}]",
+          "missing": "同一优先报告、期间和口径存在不同数值；保留候选，未擅选"
+        },
+        {
+          "key": "q4_parent_profit_share",
+          "family": "季度集中",
+          "signal": "Q4归母净利润占全年比例",
+          "value": null,
+          "baseline": "2024-FY全年；全年须为正，非正时比例未知",
+          "threshold": "绝对比例 > 40%",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[{\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 4, \"column\": 11, \"column_label\": \"\", \"text\": \"归属于上市公司\\n股东的净利润 | 4,772,967,900.81 |  |  | 5,647,250,488.41 |  |  | 4,734,229,394.77 |  |  | 3,586,672,338.94 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 4, \"column\": 12, \"column_label\": \"第四季度\", \"text\": \"归属于上市公司\\n股东的净利润\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 36, \"column\": 3, \"text\": \"1.归属于母公司股东的净利润（净亏损\\n以“-”号填列） |  | 18,741,120,122.93 | 16,596,615,045.87\"}]",
+          "missing": "同一优先报告、期间和口径存在不同数值；保留候选，未擅选"
+        },
+        {
+          "key": "q4_parent_profit_direction",
+          "family": "季度集中",
+          "signal": "Q4归母净利润与前三季合计方向相反",
+          "value": null,
+          "baseline": "2024-FY；N2期间函数：单季披露或同口径累计差额",
+          "threshold": "= 1",
+          "threshold_source": "数学符号关系，不是经验阈值",
+          "triggered": "未知",
+          "evidence": "[{\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 4, \"column\": 11, \"column_label\": \"\", \"text\": \"归属于上市公司\\n股东的净利润 | 4,772,967,900.81 |  |  | 5,647,250,488.41 |  |  | 4,734,229,394.77 |  |  | 3,586,672,338.94 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 4, \"column\": 12, \"column_label\": \"第四季度\", \"text\": \"归属于上市公司\\n股东的净利润\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 4, \"column\": 2, \"column_label\": \"\", \"text\": \"归属于上市公司\\n股东的净利润 | 4,772,967,900.81 |  |  | 5,647,250,488.41 |  |  | 4,734,229,394.77 |  |  | 3,586,672,338.94 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 4, \"column\": 3, \"column_label\": \"第一季度\", \"text\": \"归属于上市公司\\n股东的净利润\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 4, \"column\": 5, \"column_label\": \"\", \"text\": \"归属于上市公司\\n股东的净利润 | 4,772,967,900.81 |  |  | 5,647,250,488.41 |  |  | 4,734,229,394.77 |  |  | 3,586,672,338.94 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 4, \"column\": 6, \"column_label\": \"第二季度\", \"text\": \"归属于上市公司\\n股东的净利润\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 4, \"column\": 8, \"column_label\": \"\", \"text\": \"归属于上市公司\\n股东的净利润 | 4,772,967,900.81 |  |  | 5,647,250,488.41 |  |  | 4,734,229,394.77 |  |  | 3,586,672,338.94 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 4, \"column\": 9, \"column_label\": \"第三季度\", \"text\": \"归属于上市公司\\n股东的净利润\"}]",
+          "missing": "同一优先报告、期间和口径存在不同数值；保留候选，未擅选；输入存在未知值"
+        },
+        {
+          "key": "q4_profit_cash_sign",
+          "family": "季度集中",
+          "signal": "Q4归母利润与合并CFO方向相反",
+          "value": null,
+          "baseline": "2024-FY；归母利润/合并现金仅比较方向",
+          "threshold": "= 1",
+          "threshold_source": "数学符号关系，不是经验阈值",
+          "triggered": "未知",
+          "evidence": "[{\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 4, \"column\": 11, \"column_label\": \"\", \"text\": \"归属于上市公司\\n股东的净利润 | 4,772,967,900.81 |  |  | 5,647,250,488.41 |  |  | 4,734,229,394.77 |  |  | 3,586,672,338.94 |  | \"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 4, \"column\": 12, \"column_label\": \"第四季度\", \"text\": \"归属于上市公司\\n股东的净利润\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 11, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t12\", \"row\": 6, \"column\": 11, \"column_label\": \"\", \"text\": \"经营活动产生的 | 2,092,240,692.01 |  |  | 6,474,726,848.67 |  |  | 6,076,169,839.77 |  |  | 11,899,944,531.51 |  | \"}]",
+          "missing": "同一优先报告、期间和口径存在不同数值；保留候选，未擅选"
+        },
+        {
+          "key": "2023-FY_nonrecurring_share",
+          "family": "非经常性损益依赖",
+          "signal": "非经常性损益占归母净利润",
+          "value": null,
+          "baseline": "2023-FY；各可比期间独立列示",
+          "threshold": "> 20%",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[]",
+          "missing": "缺少非经常损益合计或非零归母净利润"
+        },
+        {
+          "key": "nonrecurring_share_change",
+          "family": "非经常性损益依赖",
+          "signal": "非经常性损益依赖比例变化",
+          "value": null,
+          "baseline": "2024-FY 对 2023-FY",
+          "threshold": "上升 > 10 个百分点",
+          "threshold_source": "本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。方法参考 CFA Institute Evaluating Quality of Financial Reports：跨期变化、财务比率与利润/现金流差异；https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports",
+          "triggered": "未知",
+          "evidence": "[{\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"report\": \"海尔智家2024年年度报告.pdf\", \"page\": 247, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t367\", \"row\": 9, \"column\": 2, \"column_label\": \"本期发生额\", \"text\": \"合计\"}, {\"document_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227\", \"page\": 122, \"table_id\": \"e7b0d9679ddc4b739f8f35ecb6dc6227:t115\", \"row\": 36, \"column\": 3, \"text\": \"1.归属于母公司股东的净利润（净亏损\\n以“-”号填列） |  | 18,741,120,122.93 | 16,596,615,045.87\"}]",
+          "missing": "缺少非经常损益合计或非零归母净利润"
+        },
+        {
+          "key": "audit_auditor_change",
+          "family": "审计与治理",
+          "signal": "会计师事务所变更",
+          "value": null,
+          "baseline": "未知",
+          "threshold": "明确披露非无保留/强调事项/变更则标记；不推断原因",
+          "threshold_source": "披露事实分类；强调事项不等于非无保留意见，未经审计不是审计异常。",
+          "triggered": "未知",
+          "evidence": "[]",
+          "missing": "原文未找到可确定的本期披露；未检出不当作没有"
+        }
+      ]
+    }
+  },
+  "existing_numeric_changes": 54,
+  "lost_existing_numeric_values": 0,
+  "existing_numeric_changes_reason": "Previously missing contributions now enter the running profit bridge and reduce its residuals; every other pre-existing numeric value is unchanged."
+}

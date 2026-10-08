@@ -122,6 +122,10 @@ def source_unit(text):
 
 def source_columns(table, parsed, ctx):
     headers = mapping_headers(table)
+    from .source_table_blocks import nonrecurring_block
+    block = nonrecurring_block(parsed, table)
+    if block and block['tables'][0]['index'] != table['index']:
+        headers = [block['header']]
     if not headers and ctx['statement'] in {'balance','income','cashflow','equity'}:
         for prior in reversed([t for t in parsed['tables'] if t['index']<table['index']]):
             old=context(parsed,prior)

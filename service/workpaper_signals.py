@@ -1,4 +1,5 @@
 """Nine families of deterministic screening signals, never causal conclusions."""
+from .standard_metrics import WORKPAPER_ALIASES as ALIASES
 import json
 import re
 from datetime import date
@@ -8,6 +9,9 @@ from .financial_workpapers import cell, col, table, meta, dimensions_ok
 from .analysis_report import record_quantity
 from .workpaper_annual import compact
 from .workpaper_analyst import AnalystData, calc, delta, growth, ratio, value, unknown, locators
+
+DEBT_CONCEPTS=('short_term_borrowings','long_term_borrowings','bonds_payable','lease_liabilities',
+               'bank_and_other_borrowings_current','bank_and_other_borrowings_non_current','lease_liabilities_current','lease_liabilities_non_current')
 
 CFA = 'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/evaluating-quality-financial-reports'
 POLICY = ('本项目经验阈值 v1（2026-10-08），用于初筛，未经行业校准；不是文献给定的通用警戒线。'
@@ -103,9 +107,9 @@ def inventory_charge_rates(a):
     for p in a.ps:
         start,end=a.window(p)
         rs=[r for r in a.records if total(r) and r['currency']==a.currency]
-        charges=unique([r for r in rs if r['period']==p and r['metric'] in ('inventory_write_down_provision_charged','inventory_provision_charged','inventory_write_down_charge')],f'{p} 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代')
-        opening=unique([r for r in rs if r['period']==start and r['metric']=='inventory_gross_beginning_balance'],f'{p} 缺少期初存货账面原值')
-        closing=unique([r for r in rs if r['period']==end and r['metric'] in ('inventory_gross_ending_balance','inventory_gross_carrying_amount')],f'{p} 缺少期末存货账面原值')
+        charges=unique([r for r in rs if r['period']==p and r['metric'] in ALIASES['inventory_charge']],f'{p} 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代')
+        opening=unique([r for r in rs if r['period']==start and r['metric'] in ALIASES['inventory_gross_opening']],f'{p} 缺少期初存货账面原值')
+        closing=unique([r for r in rs if r['period']==end and r['metric'] in ALIASES['inventory_gross_closing']],f'{p} 缺少期末存货账面原值')
         avg=calc([opening,closing],lambda x,y:(x+y)/2,formula='同期间期初期末存货账面原值平均')
         rate=ratio(charges,avg,'当期存货跌价准备计提发生额/平均存货账面原值*100；不是期末准备余额覆盖率，未年化')
         rows.append({'key':p,'period':p,'charge':charges,'average_gross_inventory':avg,'value':rate,'missing':rate['source'].get('missing_reason') or ''})
@@ -121,7 +125,7 @@ def overdue_ratios(a,p):
         if begin:
             from datetime import timedelta
             when=str(date.fromisoformat(start)-timedelta(days=1)) if start else None
-        rs=[r for r in a.records if r['period']==when and r['metric']=='gross_carrying_amount'
+        rs=[r for r in a.records if r['period']==when and r['metric'] in ALIASES['receivables_gross']
             and 'aging_bucket' in (r.get('dimensions') or {})
             and re.search('trade receivables',a.d.pages.get(r['source_ref'].get('page'),''),re.I)]
         buckets={}
@@ -189,9 +193,7 @@ def anomaly_signals(service,project,document_id=None,company=None,scope='consoli
         add(key+'_asset_share','其他资产异动',label+'占总资产比例',ratio(q,a.balance('assets',current)),'> 10%',lambda v:v>10,current+'期末')
         add(key+'_growth','其他资产异动',label+'较期初增速',growth(q,a.balance(key,current,True)),'绝对变化 > 50%',lambda v:abs(v)>50,current+'期末对期初（不是中报同比）')
     cash=a.balance('cash_balance',current);assets=a.balance('assets',current)
-    debt_keys=('short_term_borrowings','long_term_borrowings','bonds_payable','lease_liabilities',
-               'bank_and_other_borrowings_current','bank_and_other_borrowings_non_current','lease_liabilities_current','lease_liabilities_non_current')
-    debt_q=[a.balance(k,current) for k in debt_keys]
+    debt_q=[a.balance(k,current) for k in DEBT_CONCEPTS]
     disclosed=[q for q in debt_q if q['value'] is not None]
     debt=calc(disclosed,lambda *v:sum(v),formula='已披露借款、应付债券、租赁负债之和；没有把一年内到期非流动负债整体视为有息') if disclosed else unknown('没有可定位有息负债披露项目')
     cash_share=ratio(cash,assets);debt_share=ratio(debt,assets)
@@ -202,7 +204,7 @@ def anomaly_signals(service,project,document_id=None,company=None,scope='consoli
         rows[-1].update(triggered='未知',missing='现金比例达到阈值，但仅有融资负债下限，不能据此判定完整有息负债未达阈值')
     add('cash_asset_share','存贷双高','现金占资产比例',cash_share,'> 20%',lambda v:v>20,current+'期末；单项达到阈值不等于存贷双高')
     add('debt_asset_share','存贷双高','已识别融资负债占资产比例',debt_share,'> 20%',lambda v:v>20,current+'期末；'+debt_note)
-    interest=[r for r in a.records if r['period']==current and r['metric']=='interest_income' and meta(r).get('statement')=='income'
+    interest=[r for r in a.records if r['period']==current and r['metric'] in ALIASES['interest_income'] and meta(r).get('statement')=='income'
               and ('财务费用' in str(r.get('dimensions')) or dimensions_ok(r))]
     if not interest:
         interest=[r for r in a.records if r['period']==current and meta(r).get('statement')=='notes' and dimensions_ok(r)
