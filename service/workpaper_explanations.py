@@ -227,12 +227,18 @@ def driver_evidence(a, key, label, quantity_ref=None, period=None, query_keys=No
                        'note': '优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露'}}
 
 
-def evidence_table(items):
+def evidence_table(items, quantities=None, currency=None):
     columns = {k: col(v) for k, v in [('key', '行键'), ('driver', '变动项/信号'), ('period', '解释适用期间'),
         ('status', '披露状态'), ('disclosure_status', '披露状态代码'), ('quote', '管理层原句（候选）'),
-        ('pages', 'PDF页'), ('quantitative_limit', '量化边界'), ('source', '结构化来源'), ('quantity_ref', '对应数值位置')]}
-    return table(columns, [{'key': r['key'], 'driver': r['driver'], 'period': r['period'], 'status': r['status'],
+        ('pages', 'PDF页'), ('quantitative_limit', '量化边界'), ('source', '结构化来源'), ('quantity_ref', '对应数值位置'), ('search_scope','检索范围')]}
+    rows = [{'key': r['key'], 'driver': r['driver'], 'period': r['period'], 'status': r['status'],
                            'disclosure_status': r['disclosure_status'], 'quote': '\n\n'.join(x['quote'] for x in r['evidence']) or '原文未说明',
                            'pages': ', '.join(str(p) for p in sorted({x['page'] for x in r['evidence']})),
                            'quantitative_limit': r['quantitative_limit'], 'source': json.dumps(r['evidence'], ensure_ascii=False),
-                           'quantity_ref': json.dumps(r['quantity_ref'], ensure_ascii=False)} for r in items], '管理层解释对齐')
+                           'quantity_ref': json.dumps(r['quantity_ref'], ensure_ascii=False), 'search_scope': r['search']['note']} for r in items]
+    if quantities is not None:
+        # Keep the existing variance table's A1 contribution column available.
+        # New cash/balance rows are explicitly reference changes, not profit steps.
+        columns['contribution'] = col('计算贡献/参考变动（性质见对应数值表）','百万元',currency)
+        for row in rows: row['contribution'] = quantities[row['key']]
+    return table(columns, rows, '管理层解释对齐')

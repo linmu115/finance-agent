@@ -63,12 +63,12 @@ def main():
                 baseline=compile_report(old_report,old_records)
             checked=0
             for table_name, old in baseline['tables'].items():
-                if table_name=='drivers_evidence': continue
                 new=report['tables'][table_name]
+                by_key={r['key']:r for r in new['rows']}
                 for i,row in enumerate(old['rows']):
                     for column in old['columns']:
                         if column in old.get('evidence',[{}]*len(old['rows']))[i]:
-                            assert row.get(column)==new['rows'][i].get(column),(name,table_name,i,column)
+                            assert row.get(column)==by_key[row['key']].get(column),(name,table_name,i,column)
                             checked+=1
             quote_count=0
             for row in report['drivers_evidence']:

@@ -302,7 +302,9 @@ def variance_attribution(service,project,document_id=None,company=None,scope='co
     for r in contributions:
         for k,c in cc.items():
             if c.get('unit') and k not in r:r[k]=unknown('此行不适用或未披露该项')
-    tabs={'profit_bridge':table(bc,bridge,'利润桥'),'contributions':table(cc,contributions),'drivers_evidence':evidence_table(evidence), 'context_changes':context,
+    evidence_values={r['key']:r['contribution'] for r in drivers+structural_drivers}
+    evidence_values.update({r['key']:r['change'] for r in context['rows']})
+    tabs={'profit_bridge':table(bc,bridge,'利润桥'),'contributions':table(cc,contributions),'drivers_evidence':evidence_table(evidence,evidence_values,a.currency), 'context_changes':context,
           'contribution_sources':table({k:col(k) for k in ('key','axis','table_id','reason')},[{'key':str(i),**r} for i,r in enumerate(alternatives)]),
           'observations':table({k:col(v) for k,v in [('key','行键'),('finding','确定性贡献（按绝对金额排序）'),('basis','对应底稿')]},observations)}
     # Final attribution is the sum of known drivers and the explicit unexplained

@@ -99,6 +99,9 @@ class VarianceContractTests(unittest.TestCase):
         self.assertEqual(D(rows['parent_profit_change']['contribution']),D('-1975.68046476'))
         self.assertEqual(data['numeric_tables'],tabs)
         self.assertIn('-1,975.6805',bind_text('{{profit_bridge.parent_profit_change.contribution}}',tabs))
+        evidence={r['key']:r for r in tabs['drivers_evidence']['rows']}
+        self.assertEqual(evidence['finance_costs']['contribution'],rows['finance_costs']['contribution'])
+        self.assertIn('search_scope',evidence['finance_costs'])
 
     def test_actual_error_changes_residual_and_missing_is_not_zero(self):
         for r in self.facts:
