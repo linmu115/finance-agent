@@ -21,7 +21,9 @@ def table_mapping(method):
         except MappingError as error:
             # Preserve a concrete per-table failure; later tables in the same
             # script still run. Unexpected Python errors remain fatal.
-            self.results[index]={'index':index,'mapping_error':str(error),'schema':{},'rows':[]}
+            if not self.results.get(index,{}).get('mapping_error'):
+                self.results[index]={'index':index,'mapping_error':str(error),'schema':{},'rows':[]}
+            return {}
     return apply
 
 
@@ -33,6 +35,21 @@ class Cleaner:
 
     def table(self, index):
         return self.tables[index]
+
+    @table_mapping
+    def apply_draft(self, index, *, row_overrides=None, columns=None, **changes):
+        """Keep standard/learned rows and supply only the missing meanings."""
+        draft=self.source.get('mapping_drafts',{}).get(str(index))
+        if not draft:raise MappingError(f'Table {index} has no mapping draft; use map_table or map_series.')
+        schema=dict(draft['schema'])
+        defaults=json.loads(schema.pop('columns_json'))
+        skip={v['row']:v['reason'] for v in json.loads(schema.pop('skipped_rows_json','[]'))}
+        ignored={v['column']:v['reason'] for v in json.loads(schema.pop('skipped_columns_json','[]'))}
+        rows={v['row']:dict(v['attributes']) for v in draft['rows']}
+        for row,attrs in (row_overrides or {}).items():rows[int(row)]={**rows.get(int(row),{}),**attrs}
+        schema.update(changes)
+        self.map_table(index,columns if columns is not None else defaults,
+                       row_overrides=rows,skip_rows=skip,skip_columns=ignored,**schema)
 
     def numeric_spans(self, index, row, column):
         """One-based source coordinates; choose financial meanings in the script.
@@ -51,6 +68,7 @@ class Cleaner:
                      for m in re.finditer(r'(?m)^[ \t]*[–—-][ \t]*$',raw))
         return sorted(slots,key=lambda slot:slot['start'])
 
+    @table_mapping
     def packed_row(self, index, row, columns, metrics):
         """Map a packed logical row using semantic labels chosen by the model.
         Columns retain dates/units; this helper performs only coordinate pairing.

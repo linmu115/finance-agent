@@ -3,6 +3,16 @@ import assert from 'node:assert/strict';
 import {ingestionRemaining,madeIngestionProgress} from '../server/ingestion-continuation.js';
 import {modelContext} from '../server/model-context.js';
 
+test('a failed new table advances coverage but retrying the same failure does not',()=>{
+ const snapshot=(untouched:number[])=>({pending_tables:{d:[1,2]},unattempted_tables:{d:untouched}});
+ const initial=ingestionRemaining([snapshot([1,2])]);
+ const failedFirst=ingestionRemaining([snapshot([2])]);
+ assert.equal(madeIngestionProgress(initial.keys,failedFirst.keys),true);
+ assert.equal(madeIngestionProgress(failedFirst.keys,ingestionRemaining([snapshot([2])]).keys),false);
+ assert.equal(madeIngestionProgress(failedFirst.keys,ingestionRemaining([snapshot([])]).keys),true);
+ assert.equal(ingestionRemaining([snapshot([])]).keys.size,2);
+});
+
 test('continuation uses remaining tables, research pages and pending repairs without a turn limit',()=>{
  const a={processing_id:'old',pending_tables:{d:[1,2]},pending_pages:{d:[3]},pending_scripts:[]};
  const b={processing_id:'new',pending_tables:{d:[2]},pending_pages:{d:[]},pending_scripts:[{document_id:'d',table:4,run_id:'repair'}]};

@@ -3,6 +3,7 @@ import {mkdir,copyFile,writeFile,appendFile,readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {setTimeout as delay} from 'node:timers/promises';
+import {execFileSync} from 'node:child_process';
 
 const args=process.argv.slice(2),arg=(k:string,f='')=>args.includes(k)?args[args.indexOf(k)+1]:f;
 const output=path.resolve(arg('--output'));
@@ -14,6 +15,7 @@ const {loadSettings,saveSettings,getSettings}=await import('../server/config.js'
 await loadSettings();
 if(getSettings().llm.provider!=='cpa-local')throw Error('--settings must contain the CPA provider and its matching endpoint/credential; do not relabel another provider');
 await saveSettings({llm:{model:'gpt-6-luna'},embedding:{enabled:false}});
+if(arg('--rules'))execFileSync(path.resolve('.venv/Scripts/python.exe'),[path.resolve('scripts/seed-cleaning-rules.py'),path.resolve(arg('--rules')),process.env.FINANCE_DATA_DIR],{stdio:'inherit'});
 const {FinanceService}=await import('../server/mcp.js');
 const {RunManager}=await import('../server/runs.js');
 const service=new FinanceService();await service.connect();
@@ -47,7 +49,7 @@ try{
  await service.putState(projectId,'conversations',chat.id,chat);manager.indexConversation(chat.id,projectId);
  const started=Date.now();
  const run=await manager.start(chat,'请将附件完整入库，覆盖全部财务主表、附注及其他含财务数字的表，保留原文来源与待核验疑点。直接完成全部工作，完成后简要报告覆盖和事实数。',[document.document_id]);
- await writeFile(path.join(output,'run.json'),JSON.stringify({runId:run.id,projectId,documentId:document.document_id,source,startedAt:iso(),expenseCategory:'资料准备研发',model:'cpa-local/gpt-6-luna',reasoning:'low cleaning; app routing unchanged',manualContinuations:0},null,2));
+ await writeFile(path.join(output,'run.json'),JSON.stringify({runId:run.id,projectId,documentId:document.document_id,source,startedAt:iso(),expenseCategory:'资料准备研发',model:'cpa-local/gpt-6-luna',reasoning:'low cleaning; app routing unchanged',manualContinuations:0,seedRules:arg('--rules')||null},null,2));
  let last='';
  while(manager.activeFor(chat.id)){
   const current=await manager.getRun(run.id),key=JSON.stringify([current.status,current.tools.length,current.stage]);

@@ -4,6 +4,7 @@ import re
 from .normalization import metric_id, decimal_value
 from .semantic import numeric_candidate
 from .cleaning_batches import column_totals
+from .standard_metrics import standard_metric
 
 
 def decode(value, default):
@@ -11,7 +12,7 @@ def decode(value, default):
 
 
 def metric_candidates(label, header=''):
-    canonical = metric_id(label)
+    canonical = standard_metric(label)
     english = re.sub(r'[^a-z0-9]+', '_', label.casefold()).strip('_')
     base = canonical or (english if english and english[0].isalpha() else None)
     if not base: return []

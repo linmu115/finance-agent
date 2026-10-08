@@ -226,6 +226,9 @@ class ScriptCleaningTests(unittest.TestCase):
         self.assertNotIn('inspected_mappings',self.s._clean_state('p',self.pid))
 
     def test_changed_mapping_commits_without_ceremonial_readback(self):
+        _,parsed=self.s._clean_source('p',self.did)
+        parsed['tables'][0]['rows'][1][0]='Special contract receipts'
+        self.s._persist_prepared('p',self.did,parsed)
         first=self.job();self.s.get_cleaning_result('p',self.pid,first)
         self.payload['tables'][0]['rows'][0]['attributes']['metric']='different_revenue'
         second=self.job()
@@ -242,6 +245,9 @@ class ScriptCleaningTests(unittest.TestCase):
         self.assertIn('both skip_rows and row_overrides',cleaner.results[0]['mapping_error'])
 
     def test_per_share_metric_cannot_inherit_table_money_unit(self):
+        _,parsed=self.s._clean_source('p',self.did)
+        parsed['tables'][0]['rows'][1][0]='Basic earnings per share'
+        self.s._persist_prepared('p',self.did,parsed)
         self.payload['tables'][0]['rows'][0]['attributes']['metric']='basic_earnings_per_share'
         rid=self.job();result=self.s.get_cleaning_result('p',self.pid,rid)['data']
         self.assertTrue(any(i['reason']=='metric_unit_mismatch' for t in result['tables'] for i in t['issues']))

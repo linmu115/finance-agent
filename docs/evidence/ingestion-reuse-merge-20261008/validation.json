@@ -1,0 +1,57 @@
+{
+  "parent_main": "2f65edcb6da0625a35b3c016c4b5984be125367e",
+  "incoming": "70d9df0c34988fd375bd001b7473560ca79bf5eb",
+  "range": "845991a..70d9df0",
+  "merge_conflicts": 0,
+  "integration": {
+    "mainline_files_unchanged": [
+      "server/runs.ts",
+      "server/answer-binding.ts",
+      "server/model-context.ts",
+      "server/financial-guidance.ts",
+      "service/server.py",
+      "service/tool-schema.json"
+    ],
+    "incoming_files_matching_target": 27,
+    "merged_files": [
+      "WORK_STATUS.md",
+      "service/core.py"
+    ],
+    "guide": "one cleaning_guide.md; new reuse paragraph only",
+    "pi_progress": "unattempted tables count as progress once, failed retries do not"
+  },
+  "tests": {
+    "python": {
+      "passed": 110,
+      "failed": 0,
+      "skipped": 0,
+      "command": ".venv/Scripts/python.exe -m unittest service.tests.test_cleaning_reuse service.tests.test_cleaning_consistency service.tests.test_ingestion_scale service.tests.test_script_cleaning service.tests.test_research_ingestion service.tests.test_semantic_sources service.tests.test_percentage_points service.tests.test_baseline_sources service.tests.test_mcp"
+    },
+    "node": {
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0,
+      "command": "node --import tsx --test tests/ingestion-scale.test.ts tests/ingestion-binding-lifecycle.test.ts tests/model-context.test.ts tests/numeric-tables.test.ts"
+    },
+    "typecheck": {
+      "command": "npm run typecheck",
+      "exit_code": 0
+    }
+  },
+  "validation_scope": "Deterministic merge regression only. No new real-model or source-material replay; no inference of overall quality/cost acceptance.",
+  "inherited_result": {
+    "overall": "partially_passed",
+    "total_input": "approximately unchanged; one final request usage unknown",
+    "known_uncached_input_change_percent": -36.3,
+    "elapsed_change_percent": 22.4,
+    "incremental_learned_rule_completion": "5/54, not all 11 automatic tables",
+    "ruihe_final_semantic_tables": "48/50",
+    "broker_replay": "known errors blocked; not all repaired; no claim of universal zero false positives"
+  },
+  "paid_model_calls": 0,
+  "new_real_ingestion_runs": 0,
+  "held_out_reads": false,
+  "production_rule_seed_import": false,
+  "build_or_deploy_performed": false,
+  "restart_3001": 0
+}
