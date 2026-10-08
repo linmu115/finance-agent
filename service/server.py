@@ -1,12 +1,14 @@
 """Run with: python -m service.server. Protocol messages only on stdout."""
 from __future__ import annotations
 import asyncio
+import json
 import os
 import re
 import threading
-from typing import Any, Literal
+from typing import Annotated, Any, Literal
 from typing_extensions import TypedDict, NotRequired
 from mcp.server.fastmcp import FastMCP
+from mcp.types import CallToolResult, TextContent
 from .lifecycle import ServiceOwnership, run_service_stdio
 
 ownership = ServiceOwnership(os.environ.get("FINANCE_DATA_DIR", "data"))
@@ -264,12 +266,22 @@ async def financial_workpaper(project_id: str, kind: str = 'statement_analysis',
                               company: str | None = None, scope: str = 'consolidated',
                               periods: list[str] | str | None = None, focus: str | None = None,
                               as_of: str | None = None, metrics: list[str] | str | None = None,
-                              read: dict[str, Any] | None = None) -> dict[str, Any]:
+                              read: dict[str, Any] | None = None) -> Annotated[CallToolResult, dict[str, Any]]:
     """生成可绑定底稿及 CSV/Markdown。analysis_pipeline 一次组合财报、利润归因与信号；模型只读 context，宿主登记 numeric_tables，完整表用 read_table + read={handle,table,offset,limit} 按需读取。选择不唯一时返回可直接调用的候选参数。statement_analysis 含扣非与非经常损益、间接法补充资料桥、季度和 ROE；comparison 用同一报告本期/比较列生成跨期共同比、增长与杜邦；period_analysis 推导单季、环比和同比；basis_changes 识别重述及口径变化、量化调整影响；anomaly_signals 返回九类信号、经验阈值与缺项；variance_attribution 返回利润桥、结构贡献与原文原因，保留残差；report_audit 检查研报算术与跨页差异；expectations 按 company、periods（默认最新实际期及可比期）、as_of（YYYY-MM-DD，含当日）取各机构最近预测、修正轨迹和实际差额，metrics 默认收入/归母净利/EPS，口径未齐的参照单列。periods 接受年份、FY/H1/Qn/9M、期末日或中文期间，程序按时间确定本期和比较期；单期自动补上年同期，省略取最新期。返回关键值及可直接粘贴的绑定、整表嵌入、发现与缺项。"""
-    return await call('financial_workpaper', project_id=project_id, kind=kind, document_id=document_id,
+    result = await call('financial_workpaper', project_id=project_id, kind=kind, document_id=document_id,
                       company=company, scope=scope, periods=periods, focus=focus,
                       **({'as_of':as_of,'metrics':metrics} if kind=='expectations' else {}),
                       **({'read':read or {}} if kind=='read_table' else {}))
+    if kind == 'analysis_pipeline':
+        # A1 receives numeric_tables once. The identical report.tables remains
+        # in the persisted delivery; duplicating it over stdio exceeds 10 MB.
+        result['data'].pop('report', None)
+    # FastMCP otherwise repeats the entire structured payload as text. Models
+    # need only context; A1 still receives every exact table in structuredContent.
+    text_result = ({**result, 'data': {'kind': kind, 'context': result['data'].get('context'),
+                                      'error': result['data'].get('error')}} if kind == 'analysis_pipeline' else result)
+    return CallToolResult(content=[TextContent(type='text', text=json.dumps(text_result, ensure_ascii=False))],
+                          structuredContent=result)
 
 @mcp.tool()
 async def calculate_financial_metrics(project_id: str, operation: Literal['yoy','percentage_change','ratio','margin','cash_conversion','debt_ratio','add','subtract','multiply','divide','sum'], inputs: dict[str, Any]) -> dict[str, Any]:

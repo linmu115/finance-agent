@@ -1,0 +1,477 @@
+{
+  "yili": {
+    "changes": {
+      "metric": 125,
+      "source.normalization": 125
+    },
+    "examples": {
+      "metric": {
+        "before": "basic_eps",
+        "after": "eps"
+      },
+      "source.normalization": {
+        "before": {
+          "engine": "PythonScript",
+          "version": "langextract-finance-0.4.0",
+          "model": "gpt-6-luna",
+          "label": "基本每股收益",
+          "statement": "ratios",
+          "period_start": "2024-01-01",
+          "period_end": "2024-12-31",
+          "restatement": "original",
+          "dimensions": {
+            "financial_item": "reported_profitability_ratios"
+          },
+          "scale": "1",
+          "char_interval": [
+            0,
+            11
+          ],
+          "row_metric": "reported_profitability_ratios",
+          "row_label": "归属于普通股股东净利润口径指标",
+          "column_metric": "basic_eps",
+          "column_label": "基本每股收益",
+          "dimension_labels": {
+            "financial_item": "归属于普通股股东净利润口径指标"
+          },
+          "entity_kind": "company",
+          "unit_kind": "money_per_share_basis",
+          "accounting_basis": {
+            "basis": "CAS",
+            "version": "accounting-basis-1",
+            "status": "identified"
+          },
+          "standard_row_version": "standard-rows-4",
+          "original_extraction_hash": "990915c6c5ec69cc285349895566e0bbb3b2ad91e8436405cde0a2468b85c9e2",
+          "source_key": "0352e4dc15e8f32574d4560c1b7dc92cf7a0c61adf9f01e50e146fcc5063376f",
+          "source_fingerprint": "1d35c4e4b802f552b5adc6bca67d1071721b092552d8b9f56274a3ae1fec08c7",
+          "processing_id": "59a9b61cf6364453a5fb749e0412a8f0"
+        },
+        "after": {
+          "engine": "PythonScript",
+          "version": "langextract-finance-0.4.0",
+          "model": "gpt-6-luna",
+          "label": "基本每股收益",
+          "statement": "ratios",
+          "period_start": "2024-01-01",
+          "period_end": "2024-12-31",
+          "restatement": "original",
+          "dimensions": {
+            "financial_item": "reported_profitability_ratios"
+          },
+          "scale": "1",
+          "char_interval": [
+            0,
+            11
+          ],
+          "row_metric": "reported_profitability_ratios",
+          "row_label": "归属于普通股股东净利润口径指标",
+          "column_metric": "basic_eps",
+          "column_label": "基本每股收益",
+          "dimension_labels": {
+            "financial_item": "归属于普通股股东净利润口径指标"
+          },
+          "entity_kind": "company",
+          "unit_kind": "money_per_share_basis",
+          "accounting_basis": {
+            "basis": "CAS",
+            "version": "accounting-basis-1",
+            "status": "identified"
+          },
+          "standard_row_version": "standard-rows-4",
+          "original_extraction_hash": "990915c6c5ec69cc285349895566e0bbb3b2ad91e8436405cde0a2468b85c9e2",
+          "source_key": "0352e4dc15e8f32574d4560c1b7dc92cf7a0c61adf9f01e50e146fcc5063376f",
+          "source_fingerprint": "1d35c4e4b802f552b5adc6bca67d1071721b092552d8b9f56274a3ae1fec08c7",
+          "processing_id": "59a9b61cf6364453a5fb749e0412a8f0",
+          "metric_aliases": [
+            "basic_eps"
+          ],
+          "metric_normalization": {
+            "version": "source-metric-1",
+            "canonical_metric": "eps",
+            "evidence": {
+              "axis": "column",
+              "row": 2,
+              "column": 3,
+              "label": "基本每股收益"
+            }
+          },
+          "document_semantics_revision": {
+            "processing_id": "f20-private-replay",
+            "reason": "source_basis_dimensions_period_scope",
+            "basis_evidence": [
+              {
+                "basis": "CAS",
+                "page": 83,
+                "quote": "我们认为，后附的财务报表在所有重大方面按照企业会计准则的规定编制，公允反映了伊利\n\n集团2024 年12 月31 日的合并及母公司财务状况以及2024 年度的合并及母公司经营成果和现金\n\n流量。"
+              },
+              {
+                "basis": "CAS",
+                "page": 84,
+                "quote": "管理层负责按照企业会计准则的规定编制财务报表，使其实现公允反映，并设计、执行和维\n\n护必要的内部控制，以使财务报表不存在由于舞弊或错误导致的重大错报。"
+              },
+              {
+                "basis": "CAS",
+                "page": 105,
+                "quote": "业会计准则——基本准则》和具体企业会计准则、企业会计准则应用指南、企业会计准则解释及\n\n其他相关规定（以下合称“企业会计准则”）进行确认和计量，在此基础上，结合中国证券监督\n\n管理委员会《公开发行证券的公司信息披露编报规则第15 号——财务报告的一般规定》（2023\n\n年修订）的规定，编制财务报表。"
+              },
+              {
+                "basis": "CAS",
+                "page": 106,
+                "quote": "1、遵循企业会计准则的声明\n\n  本公司所编制的财务报表符合企业会计准则的要求，真实、准确、完整地反映了公司的财务\n\n状况、经营成果、股东权益变动和现金流量等有关信息。"
+              },
+              {
+                "basis": "CAS",
+                "page": 109,
+                "quote": "司编制合并财务报表，将整个企业集团视为一个会计主体，依据相关企业会计准则的确认、计量\n\n和列报要求，按照统一的会计政策，反映本企业集团整体财务状况、经营成果和现金流量。"
+              },
+              {
+                "basis": "CAS",
+                "page": 111,
+                "quote": "本公司确认共同经营中利益份额中与本公司相关的下列项目，并按照相关企业会计准则的规"
+              },
+              {
+                "basis": "CAS",
+                "page": 127,
+                "quote": "制但不构成控制的，按照《企业会计准则第22 号——金融工具确认和计量》确定的原持有的股\n\n权投资的公允价值加上新增投资成本之和，作为改按权益法核算的初始投资成本。"
+              },
+              {
+                "basis": "CAS",
+                "page": 128,
+                "quote": "购买日之前持有的股权投资按照《企业会计准则第22 号——金融工具确认和计量》的有关\n\n规定进行会计处理的，原计入其他综合收益的累计公允价值变动在改按成本法核算时转入留存收\n\n益。"
+              },
+              {
+                "basis": "CAS",
+                "page": 129,
+                "quote": "实施共同控制或施加重大影响的，改按《企业会计准则第22 号——金融工具确认和计量》的有\n\n关规定进行会计处理，其在丧失控制之日的公允价值与账面价值间的差额计入当期损益。"
+              },
+              {
+                "basis": "CAS",
+                "page": 141,
+                "quote": "本公司对于为履行合同发生的成本，不属于除收入准则外的其他企业会计准则范围且同时满\n\n足下列条件的作为合同履约成本确认为一项资产：\n\n  1）该成本与一份当前或预期取得的合同直接相关，包括直接人工、直接材料、制造费用（或\n\n类似费用）、明确由客户承担的成本以及仅因该合同而发生的其他成本；\n\n  2）该成本增加了企业未来用于履行履约义务的资源；\n\n  3）该成本预期能够收回。"
+              },
+              {
+                "basis": "CAS",
+                "page": 144,
+                "quote": "照租赁准则进行会计处理，非租赁部分应当按照其他适用的企业会计准则进行会计处理。"
+              },
+              {
+                "basis": "CAS",
+                "page": 147,
+                "quote": "根据企业会计准则，在套期开始及之后，公司会持续地对套期有效性进行评价，以检查有关套期\n\n在套期关系被指定的会计期间内是否高度有效。"
+              },
+              {
+                "basis": "CAS",
+                "page": 205,
+                "quote": "1、由于《企业会计准则》及其相关新规定进行追溯调整，影响期初未分配利润0元。"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "haier": {
+    "changes": {
+      "metric": 92,
+      "source.normalization": 107
+    },
+    "examples": {
+      "metric": {
+        "before": "net_profit_parent_ex_nonrecurring",
+        "after": "revenue"
+      },
+      "source.normalization": {
+        "before": {
+          "engine": "PythonScript",
+          "version": "langextract-finance-0.4.0",
+          "model": "gpt-6-luna",
+          "label": "营业收入",
+          "statement": "notes",
+          "period_start": "2024-01-01",
+          "period_end": "2024-03-31",
+          "restatement": "original",
+          "dimensions": {
+            "financial_item": "revenue"
+          },
+          "scale": "1",
+          "char_interval": [
+            0,
+            10
+          ],
+          "row_metric": "revenue",
+          "row_label": "营业收入",
+          "column_metric": "net_profit_parent_ex_nonrecurring",
+          "column_label": null,
+          "dimension_labels": {
+            "financial_item": "营业收入"
+          },
+          "entity_kind": "company",
+          "unit_kind": "money",
+          "accounting_basis": {
+            "basis": "CAS",
+            "version": "accounting-basis-1",
+            "status": "identified"
+          },
+          "standard_row_version": "standard-rows-4",
+          "original_extraction_hash": "29519e072f6fcfebb0b54e3f10e00cd48b2c3eea25db39735a0f654624581f89",
+          "source_key": "09915a4afa91372cea02c014bb404bd21a3d74985d124913a8f431b6242ea7dc",
+          "source_fingerprint": "3760260f5fdafdf22ef14c1e7737297b1ee1e5668aeefaf47f0576f2637cb72e",
+          "processing_id": "cca5839a03e24316b4dedada21533f9c"
+        },
+        "after": {
+          "engine": "PythonScript",
+          "version": "langextract-finance-0.4.0",
+          "model": "gpt-6-luna",
+          "label": "营业收入",
+          "statement": "notes",
+          "period_start": "2024-01-01",
+          "period_end": "2024-03-31",
+          "restatement": "original",
+          "dimensions": {
+            "financial_item": "revenue"
+          },
+          "scale": "1",
+          "char_interval": [
+            0,
+            10
+          ],
+          "row_metric": "revenue",
+          "row_label": "营业收入",
+          "column_metric": "net_profit_parent_ex_nonrecurring",
+          "column_label": null,
+          "dimension_labels": {
+            "financial_item": "营业收入"
+          },
+          "entity_kind": "company",
+          "unit_kind": "money",
+          "accounting_basis": {
+            "basis": "CAS",
+            "version": "accounting-basis-1",
+            "status": "identified"
+          },
+          "standard_row_version": "standard-rows-4",
+          "original_extraction_hash": "29519e072f6fcfebb0b54e3f10e00cd48b2c3eea25db39735a0f654624581f89",
+          "source_key": "09915a4afa91372cea02c014bb404bd21a3d74985d124913a8f431b6242ea7dc",
+          "source_fingerprint": "3760260f5fdafdf22ef14c1e7737297b1ee1e5668aeefaf47f0576f2637cb72e",
+          "processing_id": "cca5839a03e24316b4dedada21533f9c",
+          "metric_aliases": [
+            "net_profit_parent_ex_nonrecurring"
+          ],
+          "metric_normalization": {
+            "version": "source-metric-1",
+            "canonical_metric": "revenue",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "营业收入"
+            }
+          },
+          "document_semantics_revision": {
+            "processing_id": "f20-private-replay",
+            "reason": "source_basis_dimensions_period_scope",
+            "basis_evidence": [
+              {
+                "basis": "CAS",
+                "page": 50,
+                "quote": "会计核算原则依据为《企业会计准则》。"
+              },
+              {
+                "basis": "CAS",
+                "page": 94,
+                "quote": "本公司根据财政部发布的《企业会计准则解释第18 号》的规定，将本公司计提的保证类质保\n\n费用计入“营业成本”，不再计入“销售费用”。"
+              },
+              {
+                "basis": "CAS",
+                "page": 114,
+                "quote": "我们认为，后附的财务报表在所有重大方面按照企业会计准则的规定编制，公允反映了海尔\n\n智家公司2024 年12 月31 日合并及公司的财务状况以及2024 年度合并及公司的经营成果和现金\n\n流量。"
+              },
+              {
+                "basis": "CAS",
+                "page": 115,
+                "quote": "管理层负责按照企业会计准则的规定编制财务报表，使其实现公允反映，并设计、执行和维\n\n护必要的内部控制，以使财务报表不存在由于舞弊或错误导致的重大错报。"
+              },
+              {
+                "basis": "CAS",
+                "page": 133,
+                "quote": "会计准则-基本准则》、具体会计准则和其后颁布的企业会计准则应用指南、企业会计准则解释及\n\n其他相关规定（以下简称“企业会计准则”）以及中国证券监督管理委员会《公开发行证券的公司\n\n信息披露编报规则第15号——财务报告的一般规定》(2023年修订)的披露规定，并基于以下所述\n\n重要会计政策、会计估计进行编制。"
+              },
+              {
+                "basis": "CAS",
+                "page": 134,
+                "quote": "1、 遵循企业会计准则的声明\n\n  本公司所编制的财务报表符合企业会计准则的要求，真实、完整地反映了公司的财务状况、\n\n经营成果、股东权益变动和现金流量等有关信息。"
+              },
+              {
+                "basis": "CAS",
+                "page": 138,
+                "quote": "本公司确认与共同经营中利益份额相关的下列项目，并按照相关企业会计准则的规定进行会\n\n计处理：①确认本公司单独所持有的资产，以及按本公司份额确认共同持有的资产；②确认本公\n\n司单独所承担的负债，以及按本公司份额确认共同承担的负债；③确认出售本公司享有的共同经\n\n营产出份额所产生的收入；④按本公司份额确认共同经营因出售产出所产生的收入；⑤确认单独\n\n所发生的费用，以及按本公司份额确认共同经营发生的费用。"
+              },
+              {
+                "basis": "CAS",
+                "page": 147,
+                "quote": "在编制合并财务报表时，应当按照《企业会计准则第33 号——\n\n合并财务报表》的有关规定进行会计处理。"
+              },
+              {
+                "basis": "CAS",
+                "page": 149,
+                "quote": "实际支付的价款与购买价款的现值之间的差额，除按照《企业会计准则第 17\n\n号——借款费用》应予资本化的以外，在信用期内计入当期损益。"
+              },
+              {
+                "basis": "CAS",
+                "page": 163,
+                "quote": "本公司根据财政部发布的《企业会计准则解释第18 号》的规定，将本公司计提的保证类质保\n\n费用计入“营业成本”，不再计入“销售费用”。"
+              },
+              {
+                "basis": "CAS",
+                "page": 200,
+                "quote": "执行企业会计准则调整数"
+              },
+              {
+                "basis": "CAS",
+                "page": 231,
+                "quote": "根据《企业会计准则第36 号—关联方披露》，一方控制、共同控制另一方或对另一方施加重\n\n大影响，以及两方或两方以上同受一方控制、共同控制或重大影响的，构成关联方。"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "carote": {
+    "changes": {
+      "metric": 55,
+      "scope": 732,
+      "source.normalization": 732
+    },
+    "examples": {
+      "metric": {
+        "before": "profit_for_the_period",
+        "after": "net_profit"
+      },
+      "scope": {
+        "before": "consolidated_IFRS",
+        "after": "consolidated_HKFRS"
+      },
+      "source.normalization": {
+        "before": {
+          "engine": "PythonScript",
+          "version": "langextract-finance-0.4.0",
+          "model": "gpt-6.1-sol",
+          "label": "Profit for the period",
+          "statement": "income",
+          "period_start": "2025-01-01",
+          "period_end": "2025-06-30",
+          "restatement": "original",
+          "dimensions": {
+            "source_table": "3"
+          },
+          "scale": "1000000",
+          "char_interval": [
+            0,
+            9
+          ],
+          "row_metric": "profit_for_the_period",
+          "row_label": "Profit for the period",
+          "column_metric": null,
+          "column_label": null,
+          "dimension_labels": {},
+          "entity_kind": "company",
+          "unit_kind": "money",
+          "original_extraction_hash": "27f5b8a18dbfcc8b8a6e93a11b45a72ab10845ef21d5db240cb5e2ef452786db",
+          "source_key": "2f33155691d2a0ce0f7a0a6f9ec3492802709360e401d2774353056cc5f9135e",
+          "source_fingerprint": "d63a1823c9d046aa163f8d61b55bb9417f36958a6b89225d12807726802131c9",
+          "processing_id": "006acce425e34b1dbbc6258f832ec230"
+        },
+        "after": {
+          "engine": "PythonScript",
+          "version": "langextract-finance-0.4.0",
+          "model": "gpt-6.1-sol",
+          "label": "Profit for the period",
+          "statement": "income",
+          "period_start": "2025-01-01",
+          "period_end": "2025-06-30",
+          "restatement": "original",
+          "dimensions": {
+            "source_table": "3"
+          },
+          "scale": "1000000",
+          "char_interval": [
+            0,
+            9
+          ],
+          "row_metric": "profit_for_the_period",
+          "row_label": "Profit for the period",
+          "column_metric": null,
+          "column_label": null,
+          "dimension_labels": {},
+          "entity_kind": "company",
+          "unit_kind": "money",
+          "original_extraction_hash": "27f5b8a18dbfcc8b8a6e93a11b45a72ab10845ef21d5db240cb5e2ef452786db",
+          "source_key": "2f33155691d2a0ce0f7a0a6f9ec3492802709360e401d2774353056cc5f9135e",
+          "source_fingerprint": "d63a1823c9d046aa163f8d61b55bb9417f36958a6b89225d12807726802131c9",
+          "processing_id": "006acce425e34b1dbbc6258f832ec230",
+          "metric_aliases": [
+            "profit_for_the_period"
+          ],
+          "metric_normalization": {
+            "version": "source-metric-1",
+            "canonical_metric": "net_profit",
+            "evidence": {
+              "axis": "row",
+              "row": 5,
+              "column": 1,
+              "label": "Profit for the period"
+            }
+          },
+          "accounting_basis": {
+            "basis": "HKFRS",
+            "version": "accounting-basis-1",
+            "status": "identified"
+          },
+          "document_semantics_revision": {
+            "processing_id": "f20-private-replay",
+            "reason": "source_basis_dimensions_period_scope",
+            "basis_evidence": [
+              {
+                "basis": "HKFRS",
+                "page": 3,
+                "quote": "“HKFRS”                         Hong Kong Financial Reporting Standards, which collectively include Hong"
+              },
+              {
+                "basis": "HKFRS",
+                "page": 13,
+                "quote": "Reconciliation of Non-HKFRS Measures to the Nearest HKFRS Measures"
+              },
+              {
+                "basis": "HKFRS",
+                "page": 31,
+                "quote": "All revenue from contract with customers within the scope of HKFRS 15 is recognized at a point in time as"
+              },
+              {
+                "basis": "HKFRS",
+                "page": 52,
+                "quote": "except for the adoption of new standards, amendments and interpretations of HKFRSs effective for the"
+              },
+              {
+                "basis": "HKFRS",
+                "page": 53,
+                "quote": "Amendments to HKFRS 9 and    Amendments to the Classification and             January 1, 2026"
+              },
+              {
+                "basis": "HKFRS",
+                "page": 54,
+                "quote": "Although the adoption of HKFRS 18 will have no impact on the Group’s net profit, the Group expects"
+              },
+              {
+                "basis": "HKFRS",
+                "page": 55,
+                "quote": "December 31, 2026 will be restated in accordance with HKFRS 18."
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

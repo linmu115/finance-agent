@@ -1,0 +1,2147 @@
+{
+  "schema_version": "workpaper-pipeline-v1",
+  "status": "partial",
+  "selection": {
+    "company": "内蒙古伊利实业集团股份有限公司",
+    "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+    "scope": "consolidated",
+    "basis": [
+      {
+        "rule": "document_profile_issuer",
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "company": "内蒙古伊利实业集团股份有限公司",
+        "evidence": [
+          {
+            "field": "publisher",
+            "page": 1,
+            "quote": "内蒙古伊利实业集团股份有限公司",
+            "start": 53,
+            "end": 68,
+            "offset_unit": "unicode_codepoint"
+          }
+        ]
+      },
+      {
+        "rule": "requested_scope",
+        "scope": "consolidated",
+        "reason": "默认合并口径优先；不混入母公司报表"
+      }
+    ],
+    "periods": [
+      "2024-FY",
+      "2023-FY"
+    ],
+    "resolved_scope": "consolidated_CAS"
+  },
+  "key_metrics": [
+    {
+      "metric": "收入",
+      "values": {
+        "2024-FY": {
+          "ref": "statement_income.revenue.2024-FY",
+          "display": "115,393.3110 CNY 百万元"
+        },
+        "2023-FY": {
+          "ref": "statement_income.revenue.2023-FY",
+          "display": "125,758.1689 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "毛利",
+      "values": {
+        "2024-FY": {
+          "ref": "statement_income.gross_profit.2024-FY",
+          "display": "39,094.4779 CNY 百万元"
+        },
+        "2023-FY": {
+          "ref": "statement_income.gross_profit.2023-FY",
+          "display": "40,969.5768 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "营业利润",
+      "values": {
+        "2024-FY": {
+          "ref": "statement_income.operating_profit.2024-FY",
+          "display": "10,181.7689 CNY 百万元"
+        },
+        "2023-FY": {
+          "ref": "statement_income.operating_profit.2023-FY",
+          "display": "11,873.3042 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "2024-FY",
+      "values": {
+        "consolidated": {
+          "ref": "statement_profit_attribution.2024-FY.consolidated",
+          "display": "8,463.7104 CNY 百万元"
+        },
+        "parent": {
+          "ref": "statement_profit_attribution.2024-FY.parent",
+          "display": "8,452.8600 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "2023-FY",
+      "values": {
+        "consolidated": {
+          "ref": "statement_profit_attribution.2023-FY.consolidated",
+          "display": "10,284.3062 CNY 百万元"
+        },
+        "parent": {
+          "ref": "statement_profit_attribution.2023-FY.parent",
+          "display": "10,428.5405 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "毛利率",
+      "values": {
+        "2024-FY": {
+          "ref": "statement_ratios.gross_profit_margin.2024-FY",
+          "display": "33.8793 %"
+        },
+        "2023-FY": {
+          "ref": "statement_ratios.gross_profit_margin.2023-FY",
+          "display": "32.5781 %"
+        },
+        "change_pp": {
+          "ref": "statement_ratios.gross_profit_margin.change_pp",
+          "display": "1.3013 个百分点"
+        }
+      }
+    },
+    {
+      "metric": "合并净利率",
+      "values": {
+        "2024-FY": {
+          "ref": "statement_ratios.net_profit_margin.2024-FY",
+          "display": "7.3347 %"
+        },
+        "2023-FY": {
+          "ref": "statement_ratios.net_profit_margin.2023-FY",
+          "display": "8.1778 %"
+        },
+        "change_pp": {
+          "ref": "statement_ratios.net_profit_margin.change_pp",
+          "display": "-0.8432 个百分点"
+        }
+      }
+    },
+    {
+      "metric": "CFO",
+      "values": {
+        "amount": {
+          "ref": "statement_cash.2024-FY_cfo.amount",
+          "display": "21,739.7404 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "CFO",
+      "values": {
+        "amount": {
+          "ref": "statement_cash.2023-FY_cfo.amount",
+          "display": "18,290.3577 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "2024-FY",
+      "values": {
+        "disclosed": {
+          "ref": "statement_deducted_profit.2024-FY.disclosed",
+          "display": "6,011.2749 CNY 百万元"
+        },
+        "share": {
+          "ref": "statement_deducted_profit.2024-FY.share",
+          "display": "28.8847 %"
+        }
+      }
+    },
+    {
+      "metric": "2023-FY",
+      "values": {
+        "disclosed": {
+          "ref": "statement_deducted_profit.2023-FY.disclosed",
+          "display": "10,026.1711 CNY 百万元"
+        },
+        "share": {
+          "ref": "statement_deducted_profit.2023-FY.share",
+          "display": "3.8583 %"
+        }
+      }
+    },
+    {
+      "metric": "2024-FY",
+      "values": {
+        "weighted": {
+          "ref": "statement_roe.2024-FY.weighted",
+          "display": "—",
+          "reason": "未找到唯一披露加权平均ROE"
+        },
+        "computed": {
+          "ref": "statement_roe.2024-FY.computed",
+          "display": "15.8413 %"
+        }
+      }
+    },
+    {
+      "metric": "2023-FY",
+      "values": {
+        "weighted": {
+          "ref": "statement_roe.2023-FY.weighted",
+          "display": "—",
+          "reason": "未找到唯一披露加权平均ROE"
+        },
+        "computed": {
+          "ref": "statement_roe.2023-FY.computed",
+          "display": "—",
+          "reason": "缺利润或正平均归母权益"
+        }
+      }
+    }
+  ],
+  "bridges": {
+    "profit": {
+      "table": "variance_profit_bridge",
+      "columns": [
+        "key",
+        "item",
+        "role",
+        "contribution"
+      ],
+      "rows": [
+        [
+          "revenue_change",
+          "营业收入变化（参考，不重复加到利润桥）",
+          "reference",
+          "-10,364.8579 CNY 百万元"
+        ],
+        [
+          "revenue_effect",
+          "收入变化对毛利的贡献",
+          "step",
+          "-3,376.6701 CNY 百万元"
+        ],
+        [
+          "margin_effect",
+          "毛利率变化对毛利的贡献",
+          "step",
+          "1,501.5712 CNY 百万元"
+        ],
+        [
+          "gross_change",
+          "披露/推导毛利变化",
+          "subtotal",
+          "-1,875.0989 CNY 百万元"
+        ],
+        [
+          "other_operating_revenue",
+          "营业总收入中营业收入以外项目",
+          "step",
+          "-35.0460 CNY 百万元"
+        ],
+        [
+          "surcharges",
+          "税金及附加",
+          "step",
+          "-0.1179 CNY 百万元"
+        ],
+        [
+          "selling",
+          "销售费用",
+          "step",
+          "589.2039 CNY 百万元"
+        ],
+        [
+          "administrative",
+          "管理费用",
+          "step",
+          "689.1083 CNY 百万元"
+        ],
+        [
+          "research",
+          "研发费用",
+          "step",
+          "-19.8304 CNY 百万元"
+        ],
+        [
+          "finance_costs",
+          "财务费用",
+          "step",
+          "438.8013 CNY 百万元"
+        ],
+        [
+          "other_income",
+          "其他收益",
+          "step",
+          "-81.3927 CNY 百万元"
+        ],
+        [
+          "investment_income",
+          "投资收益",
+          "step",
+          "2,448.4196 CNY 百万元"
+        ],
+        [
+          "fair_value_gains",
+          "公允价值变动",
+          "step",
+          "-306.3393 CNY 百万元"
+        ],
+        [
+          "credit_impairment",
+          "信用减值损益",
+          "step",
+          "-394.5424 CNY 百万元"
+        ],
+        [
+          "asset_impairment",
+          "资产减值损益",
+          "step",
+          "-3,150.1461 CNY 百万元"
+        ],
+        [
+          "asset_disposal",
+          "资产处置损益",
+          "step",
+          "5.4453 CNY 百万元"
+        ],
+        [
+          "operating_profit_change",
+          "营业利润变化",
+          "subtotal",
+          "-1,691.5353 CNY 百万元"
+        ],
+        [
+          "operating_profit_residual",
+          "营业利润变化减累计已知贡献",
+          "residual",
+          "0.0000 CNY 百万元"
+        ],
+        [
+          "nonoperating_income",
+          "营业外收入",
+          "step",
+          "-152.0430 CNY 百万元"
+        ],
+        [
+          "nonoperating_expenses",
+          "营业外支出",
+          "step",
+          "249.1195 CNY 百万元"
+        ],
+        [
+          "profit_before_tax_change",
+          "税前利润变化",
+          "subtotal",
+          "-1,594.4588 CNY 百万元"
+        ],
+        [
+          "profit_before_tax_residual",
+          "税前利润变化减累计已知贡献",
+          "residual",
+          "0.0000 CNY 百万元"
+        ],
+        [
+          "tax",
+          "所得税",
+          "step",
+          "-226.1370 CNY 百万元"
+        ],
+        [
+          "net_profit_change",
+          "合并净利润变化",
+          "subtotal",
+          "-1,820.5958 CNY 百万元"
+        ],
+        [
+          "net_profit_residual",
+          "合并净利润变化减累计已知贡献",
+          "residual",
+          "0.0000 CNY 百万元"
+        ],
+        [
+          "minority_profit",
+          "少数股东损益",
+          "step",
+          "-155.0846 CNY 百万元"
+        ],
+        [
+          "parent_profit_change",
+          "归母净利润变化",
+          "subtotal",
+          "-1,975.6805 CNY 百万元"
+        ],
+        [
+          "parent_profit_residual",
+          "归母净利润变化减累计已知贡献",
+          "residual",
+          "0.0000 CNY 百万元"
+        ]
+      ]
+    },
+    "cash": [
+      {
+        "table": "statement_indirect_contributions",
+        "columns": [
+          "key",
+          "period",
+          "item",
+          "direction",
+          "amount"
+        ],
+        "rows": [
+          [
+            "0_2024-FY_非现金项目",
+            "2024-FY",
+            "非现金项目",
+            "",
+            "9,507.4784 CNY 百万元"
+          ],
+          [
+            "0_2024-FY_营运资本",
+            "2024-FY",
+            "营运资本",
+            "",
+            "5,021.0454 CNY 百万元"
+          ],
+          [
+            "0_2024-FY_其他",
+            "2024-FY",
+            "其他",
+            "",
+            "-1,252.4937 CNY 百万元"
+          ],
+          [
+            "0_2023-FY_非现金项目",
+            "2023-FY",
+            "非现金项目",
+            "",
+            "5,755.1500 CNY 百万元"
+          ],
+          [
+            "0_2023-FY_营运资本",
+            "2023-FY",
+            "营运资本",
+            "",
+            "-222.4396 CNY 百万元"
+          ],
+          [
+            "0_2023-FY_其他",
+            "2023-FY",
+            "其他",
+            "",
+            "2,473.3410 CNY 百万元"
+          ]
+        ]
+      },
+      {
+        "table": "statement_bridge",
+        "columns": [
+          "key",
+          "period",
+          "item",
+          "direction",
+          "amount"
+        ],
+        "rows": [
+          [
+            "2024-FY_cash_cash_begin",
+            "2024-FY",
+            "cash_begin",
+            "起点",
+            "42,812.0799 CNY 百万元"
+          ],
+          [
+            "2024-FY_cash_cfo",
+            "2024-FY",
+            "cfo",
+            "加",
+            "21,739.7404 CNY 百万元"
+          ],
+          [
+            "2024-FY_cash_cfi",
+            "2024-FY",
+            "cfi",
+            "减",
+            "-32,709.4273 CNY 百万元"
+          ],
+          [
+            "2024-FY_cash_cff",
+            "2024-FY",
+            "cff",
+            "减",
+            "-7,277.9159 CNY 百万元"
+          ],
+          [
+            "2024-FY_cash_cash_fx",
+            "2024-FY",
+            "cash_fx",
+            "减",
+            "-17.9570 CNY 百万元"
+          ],
+          [
+            "2024-FY_cash_end",
+            "2024-FY",
+            "期末现金",
+            "终点",
+            "24,546.5200 CNY 百万元"
+          ],
+          [
+            "2024-FY_cash_residual",
+            "2024-FY",
+            "未解释差额",
+            "残差",
+            "0.0000 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_cash_begin",
+            "2023-FY",
+            "cash_begin",
+            "起点",
+            "33,188.4270 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_cfo",
+            "2023-FY",
+            "cfo",
+            "加",
+            "18,290.3577 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_cfi",
+            "2023-FY",
+            "cfi",
+            "减",
+            "-16,044.4979 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_cff",
+            "2023-FY",
+            "cff",
+            "加",
+            "7,258.4805 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_cash_fx",
+            "2023-FY",
+            "cash_fx",
+            "加",
+            "119.3126 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_end",
+            "2023-FY",
+            "期末现金",
+            "终点",
+            "42,812.0799 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_residual",
+            "2023-FY",
+            "未解释差额",
+            "残差",
+            "0.0000 CNY 百万元"
+          ]
+        ]
+      }
+    ]
+  },
+  "major_changes": [
+    "variance_profit_bridge.revenue_effect.contribution",
+    "variance_profit_bridge.asset_impairment.contribution",
+    "variance_profit_bridge.investment_income.contribution"
+  ],
+  "major_changes_basis": "已知利润桥步骤中绝对金额前三项；完整步骤和残差在利润桥，金额贡献不等于因果",
+  "triggered_signals": [
+    {
+      "key": "other_noncurrent_asset_share",
+      "signal": "其他非流动资产占总资产比例",
+      "value": {
+        "ref": "signals_signals.other_noncurrent_asset_share.value",
+        "display": "19.03 %"
+      },
+      "baseline": "2024-FY期末",
+      "threshold": "> 10%"
+    },
+    {
+      "key": "debt_asset_share",
+      "signal": "已识别融资负债占资产比例",
+      "value": {
+        "ref": "signals_signals.debt_asset_share.value",
+        "display": "26.87 %"
+      },
+      "baseline": "2024-FY期末；负债为已识别借款/债券/租赁负债下限，未计无法拆分的一年内到期非流动负债及未识别融资；现金使用主表货币资金或现金及等价物。",
+      "threshold": "> 20%"
+    },
+    {
+      "key": "q4_parent_profit_direction",
+      "signal": "Q4归母净利润与前三季合计方向相反",
+      "value": {
+        "ref": "signals_signals.q4_parent_profit_direction.value",
+        "display": "1.00 个"
+      },
+      "baseline": "2024-FY；N2期间函数：单季披露或同口径累计差额",
+      "threshold": "= 1"
+    },
+    {
+      "key": "q4_profit_cash_sign",
+      "signal": "Q4归母利润与合并CFO方向相反",
+      "value": {
+        "ref": "signals_signals.q4_profit_cash_sign.value",
+        "display": "1.00 个"
+      },
+      "baseline": "2024-FY；归母利润/合并现金仅比较方向",
+      "threshold": "= 1"
+    },
+    {
+      "key": "asset_impairment_change",
+      "signal": "资产减值损益波动",
+      "value": {
+        "ref": "signals_signals.asset_impairment_change.value",
+        "display": "-206.47 %"
+      },
+      "baseline": "2024-FY 对 2023-FY；损益原符号",
+      "threshold": "绝对变化 > 50%"
+    },
+    {
+      "key": "credit_impairment_change",
+      "signal": "信用减值损益波动",
+      "value": {
+        "ref": "signals_signals.credit_impairment_change.value",
+        "display": "-245.86 %"
+      },
+      "baseline": "2024-FY 对 2023-FY；损益原符号",
+      "threshold": "绝对变化 > 50%"
+    },
+    {
+      "key": "2024-FY_nonrecurring_share",
+      "signal": "非经常性损益占归母净利润",
+      "value": {
+        "ref": "signals_signals.2024-FY_nonrecurring_share.value",
+        "display": "28.88 %"
+      },
+      "baseline": "2024-FY；各可比期间独立列示",
+      "threshold": "> 20%"
+    },
+    {
+      "key": "nonrecurring_share_change",
+      "signal": "非经常性损益依赖比例变化",
+      "value": {
+        "ref": "signals_signals.nonrecurring_share_change.value",
+        "display": "25.03 个百分点"
+      },
+      "baseline": "2024-FY 对 2023-FY",
+      "threshold": "上升 > 10 个百分点"
+    },
+    {
+      "key": "audit_auditor_change",
+      "signal": "会计师事务所变更",
+      "value": {
+        "ref": "signals_signals.audit_auditor_change.value",
+        "display": "1.00 个"
+      },
+      "baseline": "披露改聘",
+      "threshold": "明确披露非无保留/强调事项/变更则标记；不推断原因"
+    }
+  ],
+  "management_evidence": [
+    {
+      "id": "management_1",
+      "metric": "收入变化对毛利的贡献",
+      "metrics": [
+        "收入变化对毛利的贡献"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.revenue_effect.contribution"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 18,
+          "quote": "营业收入变动原因说明：主要是本期产品销量减少、销售价格下降所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_2",
+      "metric": "收入变化对毛利的贡献",
+      "metrics": [
+        "收入变化对毛利的贡献",
+        "毛利率变化对毛利的贡献"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.revenue_effect.contribution",
+        "variance_profit_bridge.margin_effect.contribution"
+      ],
+      "status": "quantified",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 19,
+          "quote": "液体乳产品本期实现主营业务收入750.03 亿元，较上期减少105.37 亿元，同比下降12.32%，\n\n     本期主营业务成本517.70 亿元，较上期减少77.96 亿元，同比下降13.09%，其中因销量下降减\n\n     少收入60.46 亿元、减少成本46.86 亿元，因产品结构调整减少收入9.70 亿元，因销售价格变\n\n     动减少收入35.21 亿元，因材料价格变动、产品结构调整减少成本31.10 亿元。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "仅局部原因量化，不等于完整因果桥"
+    },
+    {
+      "id": "management_3",
+      "metric": "收入变化对毛利的贡献",
+      "metrics": [
+        "收入变化对毛利的贡献",
+        "毛利率变化对毛利的贡献"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.revenue_effect.contribution",
+        "variance_profit_bridge.margin_effect.contribution"
+      ],
+      "status": "quantified",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 19,
+          "quote": "奶粉及奶制品本期实现主营业务收入296.75 亿元，较上期增加20.77 亿元，同比增长7.53%，\n\n     本期主营业务成本175.03 亿元，较上期增加4.31 亿元，同比增长2.52%，因销量影响增加收入\n\n       22.58 亿元、增加成本10.99 亿元，因产品结构调整增加收入7.34 亿元，因销售价格变动减少\n\n     收入9.15 亿元，因材料价格变动、产品结构调整减少成本6.68 亿元。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "仅局部原因量化，不等于完整因果桥"
+    },
+    {
+      "id": "management_4",
+      "metric": "收入变化对毛利的贡献",
+      "metrics": [
+        "收入变化对毛利的贡献",
+        "毛利率变化对毛利的贡献"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.revenue_effect.contribution",
+        "variance_profit_bridge.margin_effect.contribution"
+      ],
+      "status": "quantified",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 19,
+          "quote": "冷饮产品本期实现主营业务收入87.21 亿元，较上期减少19.67 亿元，同比下降18.41%，\n\n    本期主营业务成本54.58 亿元，较上期减少11.21 亿元，同比下降17.04%，其中因销量下降减\n\n     少收入19.52 亿元、减少成本12.09 亿元，因产品结构调整减少收入3.18 亿元，因销售价格变\n\n     动增加收入3.03 亿元，因材料价格变动、产品结构调整增加成本0.88 亿元。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "仅局部原因量化，不等于完整因果桥"
+    },
+    {
+      "id": "management_5",
+      "metric": "资产减值损益",
+      "metrics": [
+        "资产减值损益",
+        "资产减值损益波动"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.asset_impairment.contribution",
+        "signals_signals.asset_impairment_change.value"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 25,
+          "quote": "(8)商誉减少主要原因：本期计提澳优乳业商誉减值所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_6",
+      "metric": "资产减值损益",
+      "metrics": [
+        "资产减值损益",
+        "资产减值损益波动"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.asset_impairment.contribution",
+        "signals_signals.asset_impairment_change.value"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 212,
+          "quote": "资产减值损失增加主要原因：本期计提商誉减值损失增加所致。",
+          "section": "财务附注/其他原文"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_7",
+      "metric": "投资收益",
+      "metrics": [
+        "投资收益",
+        "非经常性损益占归母净利润",
+        "非经常性损益依赖比例变化"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.investment_income.contribution",
+        "signals_signals.2024-FY_nonrecurring_share.value",
+        "signals_signals.nonrecurring_share_change.value"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 210,
+          "quote": "投资收益增加主要原因：本期转让控股子公司昌吉盛新实业有限责任公司股权，处置收益增\n\n加所致。",
+          "section": "财务附注/其他原文"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_8",
+      "metric": "毛利率变化对毛利的贡献",
+      "metrics": [
+        "毛利率变化对毛利的贡献"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.margin_effect.contribution"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 18,
+          "quote": "营业成本变动原因说明：主要是本期产品销量减少、原材料价格下降所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_9",
+      "metric": "管理费用",
+      "metrics": [
+        "管理费用"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.administrative.contribution"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 18,
+          "quote": "管理费用变动原因说明：主要是本期职工薪酬费用减少所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_10",
+      "metric": "销售费用",
+      "metrics": [
+        "销售费用"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.selling.contribution"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 18,
+          "quote": "销售费用变动原因说明：主要是本期广告营销费用和职工薪酬费用减少所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_11",
+      "metric": "财务费用",
+      "metrics": [
+        "财务费用",
+        "已识别融资负债占资产比例"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.finance_costs.contribution",
+        "signals_signals.debt_asset_share.value"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 18,
+          "quote": "财务费用变动原因说明：主要是本期利息支出减少所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_12",
+      "metric": "财务费用",
+      "metrics": [
+        "财务费用",
+        "已识别融资负债占资产比例"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.finance_costs.contribution",
+        "signals_signals.debt_asset_share.value"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 209,
+          "quote": "财务费用减少主要原因：本期利息支出减少所致。",
+          "section": "财务附注/其他原文"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_13",
+      "metric": "信用减值损益",
+      "metrics": [
+        "信用减值损益",
+        "信用减值损益波动"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.credit_impairment.contribution",
+        "signals_signals.credit_impairment_change.value"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 211,
+          "quote": "信用减值损失增加主要原因：本期计提保理风险准备增加所致。",
+          "section": "财务附注/其他原文"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_14",
+      "metric": "公允价值变动",
+      "metrics": [
+        "公允价值变动"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.fair_value_gains.contribution"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 25,
+          "quote": "(2)交易性金融资产减少原因：本期子公司持有的权益工具公允价值下降所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_15",
+      "metric": "公允价值变动",
+      "metrics": [
+        "公允价值变动"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.fair_value_gains.contribution"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 26,
+          "quote": "(10)交易性金融负债增加原因：本期子公司持有的期货合约公允价值下降所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_16",
+      "metric": "公允价值变动",
+      "metrics": [
+        "公允价值变动"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.fair_value_gains.contribution"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 26,
+          "quote": "(11)衍生金融负债增加原因：本期子公司持有的部分远期外汇合约公允价值下降所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_17",
+      "metric": "公允价值变动",
+      "metrics": [
+        "公允价值变动"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.fair_value_gains.contribution"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 210,
+          "quote": "公允价值变动收益减少原因：本期持有的权益工具公允价值下降所致。",
+          "section": "财务附注/其他原文"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_18",
+      "metric": "营业外支出",
+      "metrics": [
+        "营业外支出"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.nonoperating_expenses.contribution"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 213,
+          "quote": "营业外支出减少主要原因：本期对外捐赠支出减少所致。",
+          "section": "财务附注/其他原文"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_19",
+      "metric": "所得税",
+      "metrics": [
+        "所得税"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.tax.contribution"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_20",
+      "metric": "少数股东损益",
+      "metrics": [
+        "少数股东损益"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.minority_profit.contribution"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_21",
+      "metric": "营业外收入",
+      "metrics": [
+        "营业外收入"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.nonoperating_income.contribution"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 212,
+          "quote": "营业外收入减少主要原因：本期供应商违约金赔偿收入减少所致。",
+          "section": "财务附注/其他原文"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_22",
+      "metric": "其他收益",
+      "metrics": [
+        "其他收益"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.other_income.contribution"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_23",
+      "metric": "营业总收入中营业收入以外项目",
+      "metrics": [
+        "营业总收入中营业收入以外项目"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.other_operating_revenue.contribution"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_24",
+      "metric": "研发费用",
+      "metrics": [
+        "研发费用"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.research.contribution"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 19,
+          "quote": "研发费用变动原因说明：主要是折旧修理费用增加所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_25",
+      "metric": "资产处置损益",
+      "metrics": [
+        "资产处置损益"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.asset_disposal.contribution"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_26",
+      "metric": "税金及附加",
+      "metrics": [
+        "税金及附加"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_profit_bridge.surcharges.contribution"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_27",
+      "metric": "利息收入",
+      "metrics": [
+        "利息收入"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.interest_income.change"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_28",
+      "metric": "经营活动现金流量净额",
+      "metrics": [
+        "经营活动现金流量净额"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.cfo.change"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 19,
+          "quote": "经营活动产生的现金流量净额变动原因说明：主要因2025 年春节备货，预收经销商货款增\n\n    加使得本期经营活动现金流量净额增加所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_29",
+      "metric": "存货",
+      "metrics": [
+        "存货",
+        "存货的减少（增加以“－”号填列）"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.inventory.change",
+        "variance_context_changes.indirect_0_2024-FY_d84573bf6b584e7e874faa4c6adf454a:t254_6.change"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 20,
+          "quote": "液体乳库存量增加主要原因：2025 年春节备货导致期末库存量较大。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_30",
+      "metric": "存货",
+      "metrics": [
+        "存货",
+        "存货的减少（增加以“－”号填列）"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.inventory.change",
+        "variance_context_changes.indirect_0_2024-FY_d84573bf6b584e7e874faa4c6adf454a:t254_6.change"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 20,
+          "quote": "其他产品生产量、销售量、库存量增加主要原因：本期伊刻活泉矿泉水的产销量增加。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_31",
+      "metric": "应收账款",
+      "metrics": [
+        "应收账款"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.receivables.change"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_32",
+      "metric": "应付账款及票据",
+      "metrics": [
+        "应付账款及票据"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.payables.change"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_33",
+      "metric": "预付款项",
+      "metrics": [
+        "预付款项"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.prepayments.change"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_34",
+      "metric": "其他应收款",
+      "metrics": [
+        "其他应收款"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.other_receivables.change"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 25,
+          "quote": "(4)其他应收款减少主要原因：本期收回处置固定资产应收款项所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_35",
+      "metric": "合同资产",
+      "metrics": [
+        "合同资产"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.contract_assets.change"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_36",
+      "metric": "合同负债",
+      "metrics": [
+        "合同负债"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.contract_liabilities.change"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 19,
+          "quote": "预收经销商货款增\n\n    加使得本期经营活动现金流量净额增加所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_37",
+      "metric": "合同负债",
+      "metrics": [
+        "合同负债"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.contract_liabilities.change"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 26,
+          "quote": "(12)合同负债增加原因：本期预收经销商的货款增加所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_38",
+      "metric": "其他应付款",
+      "metrics": [
+        "其他应付款"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.other_payables.change"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_39",
+      "metric": "应交税费",
+      "metrics": [
+        "应交税费"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.taxes_payable.change"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_40",
+      "metric": "应付职工薪酬",
+      "metrics": [
+        "应付职工薪酬"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.employee_benefits_payable.change"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 26,
+          "quote": "(16)长期应付职工薪酬增加的主要原因：本期子公司计提职工长期服务金增加所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额"
+    },
+    {
+      "id": "management_41",
+      "metric": "经营性应收项目的减少（增加以“－”号\n填列）",
+      "metrics": [
+        "经营性应收项目的减少（增加以“－”号\n填列）"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.indirect_0_2024-FY_d84573bf6b584e7e874faa4c6adf454a:t254_7.change"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_42",
+      "metric": "经营性应付项目的增加（减少以“－”号\n填列）",
+      "metrics": [
+        "经营性应付项目的增加（减少以“－”号\n填列）"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "variance_context_changes.indirect_0_2024-FY_d84573bf6b584e7e874faa4c6adf454a:t254_8.change"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_43",
+      "metric": "其他非流动资产占总资产比例",
+      "metrics": [
+        "其他非流动资产占总资产比例"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "signals_signals.other_noncurrent_asset_share.value"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 25,
+          "quote": "(6)其他流动资产、其他非流动资产增加主要原因：本期大额存单及定期存款增加所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_44",
+      "metric": "其他非流动资产占总资产比例",
+      "metrics": [
+        "其他非流动资产占总资产比例"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "signals_signals.other_noncurrent_asset_share.value"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 188,
+          "quote": "其他非流动资产增加主要原因：本期大额存单及定期存款增加所致。",
+          "section": "财务附注/其他原文"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_45",
+      "metric": "已识别融资负债占资产比例",
+      "metrics": [
+        "已识别融资负债占资产比例"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "signals_signals.debt_asset_share.value"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 25,
+          "quote": "(1)货币资金减少原因：本期银行存款减少所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_46",
+      "metric": "已识别融资负债占资产比例",
+      "metrics": [
+        "已识别融资负债占资产比例"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "signals_signals.debt_asset_share.value"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 19,
+          "quote": "筹资活动产生的现金流量净额变动原因说明：主要是本期借款净增加额较同期减少所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_47",
+      "metric": "已识别融资负债占资产比例",
+      "metrics": [
+        "已识别融资负债占资产比例"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "signals_signals.debt_asset_share.value"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 26,
+          "quote": "(13)一年内到期的非流动负债增加主要原因：将于一年内到期的应付债券和长期借款增加所\n\n致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_48",
+      "metric": "已识别融资负债占资产比例",
+      "metrics": [
+        "已识别融资负债占资产比例"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "signals_signals.debt_asset_share.value"
+      ],
+      "status": "qualitative_disclosed",
+      "quotes": [
+        {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "page": 26,
+          "quote": "(15)长期借款、应付债券以及长期应付款减少的原因：转入一年内到期的非流动负债所致。",
+          "section": "管理层讨论与分析"
+        }
+      ],
+      "quantitative_gap": "未拆出该原因的独立贡献金额",
+      "alignment_note": "关联驱动的原文，不直接证明该信号或阈值的成因"
+    },
+    {
+      "id": "management_49",
+      "metric": "Q4归母净利润与前三季合计方向相反",
+      "metrics": [
+        "Q4归母净利润与前三季合计方向相反"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "signals_signals.q4_parent_profit_direction.value"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_50",
+      "metric": "Q4归母利润与合并CFO方向相反",
+      "metrics": [
+        "Q4归母利润与合并CFO方向相反"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "signals_signals.q4_profit_cash_sign.value"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    },
+    {
+      "id": "management_51",
+      "metric": "会计师事务所变更",
+      "metrics": [
+        "会计师事务所变更"
+      ],
+      "period": "2024-FY",
+      "linked_refs": [
+        "signals_signals.audit_auditor_change.value"
+      ],
+      "status": "no_statement_found",
+      "quotes": [],
+      "quantitative_gap": "已解析原文未检出适用期间原因，非所有材料均未披露",
+      "search_limit": "优先管理层讨论，再检索明确说明期间变动的附注；候选原句需按范围理解，未命中不证明其他材料未披露"
+    }
+  ],
+  "signal_followups": [
+    {
+      "signal_key": "other_noncurrent_asset_share",
+      "signal_ref": "signals_signals.other_noncurrent_asset_share",
+      "management_evidence_ids": [
+        "management_43",
+        "management_44"
+      ],
+      "alternatives": [
+        {
+          "text": "预付采购、工程或结算时点变化",
+          "status": "hypothesis",
+          "test": "核对交易对象、合同履行和期后结转"
+        },
+        {
+          "text": "存款期限变化或资产重分类",
+          "status": "hypothesis",
+          "test": "核对附注组成及到期日，区分资金用途与科目搬移"
+        }
+      ],
+      "persistence": {
+        "periods": [
+          "2024-FY"
+        ],
+        "sample_count": 1,
+        "triggered_periods": [
+          "2024-FY"
+        ],
+        "missing_periods": [],
+        "allow_continuous_claim": false,
+        "assessment": "仅有1期可计算样本，不足三期，不能判断持续性；两期作差或单次披露只形成一次信号观察"
+      },
+      "tracking_metrics": [
+        "预付款账龄",
+        "交易对手",
+        "期后结转",
+        "定期存款期限",
+        "受限资金",
+        "其他资产构成"
+      ]
+    },
+    {
+      "signal_key": "debt_asset_share",
+      "signal_ref": "signals_signals.debt_asset_share",
+      "management_evidence_ids": [
+        "management_45",
+        "management_46",
+        "management_47",
+        "management_48",
+        "management_11",
+        "management_12"
+      ],
+      "alternatives": [
+        {
+          "text": "集团地域、币种或期限错配",
+          "status": "hypothesis",
+          "test": "核对现金可动用范围与债务到期结构"
+        },
+        {
+          "text": "定期存款、季节性营运资金安排或融资备用",
+          "status": "hypothesis",
+          "test": "对齐利息分子与存款分母，核对存款收益和借款成本"
+        }
+      ],
+      "persistence": {
+        "periods": [
+          "2024-FY"
+        ],
+        "sample_count": 1,
+        "triggered_periods": [
+          "2024-FY"
+        ],
+        "missing_periods": [],
+        "allow_continuous_claim": false,
+        "assessment": "仅有1期可计算样本，不足三期，不能判断持续性；两期作差或单次披露只形成一次信号观察"
+      },
+      "tracking_metrics": [
+        "受限资金",
+        "分币种头寸",
+        "短期偿债额",
+        "定期存款余额/期限",
+        "利息收入",
+        "借款成本"
+      ]
+    },
+    {
+      "signal_key": "q4_parent_profit_direction",
+      "signal_ref": "signals_signals.q4_parent_profit_direction",
+      "management_evidence_ids": [
+        "management_49"
+      ],
+      "alternatives": [
+        {
+          "text": "节庆时点、季节性出货或结算集中",
+          "status": "hypothesis",
+          "test": "比较至少三个可比年度的同季数据及期后反转"
+        },
+        {
+          "text": "年末减值、奖金、税费或一次性处置集中",
+          "status": "hypothesis",
+          "test": "核对单季调整事项，不能把全年原因自动归给Q4"
+        }
+      ],
+      "persistence": {
+        "periods": [
+          "2024-FY"
+        ],
+        "sample_count": 1,
+        "triggered_periods": [
+          "2024-FY"
+        ],
+        "missing_periods": [],
+        "allow_continuous_claim": false,
+        "assessment": "仅有1期可计算样本，不足三期，不能判断持续性；两期作差或单次披露只形成一次信号观察"
+      },
+      "tracking_metrics": [
+        "同季收入/利润",
+        "期后退货",
+        "次季现金流",
+        "单季减值",
+        "扣非利润",
+        "一次性项目"
+      ]
+    },
+    {
+      "signal_key": "q4_profit_cash_sign",
+      "signal_ref": "signals_signals.q4_profit_cash_sign",
+      "management_evidence_ids": [
+        "management_50"
+      ],
+      "alternatives": [
+        {
+          "text": "节庆时点、季节性出货或结算集中",
+          "status": "hypothesis",
+          "test": "比较至少三个可比年度的同季数据及期后反转"
+        },
+        {
+          "text": "年末减值、奖金、税费或一次性处置集中",
+          "status": "hypothesis",
+          "test": "核对单季调整事项，不能把全年原因自动归给Q4"
+        }
+      ],
+      "persistence": {
+        "periods": [
+          "2024-FY"
+        ],
+        "sample_count": 1,
+        "triggered_periods": [
+          "2024-FY"
+        ],
+        "missing_periods": [],
+        "allow_continuous_claim": false,
+        "assessment": "仅有1期可计算样本，不足三期，不能判断持续性；两期作差或单次披露只形成一次信号观察"
+      },
+      "tracking_metrics": [
+        "同季收入/利润",
+        "期后退货",
+        "次季现金流",
+        "单季减值",
+        "扣非利润",
+        "一次性项目"
+      ]
+    },
+    {
+      "signal_key": "asset_impairment_change",
+      "signal_ref": "signals_signals.asset_impairment_change",
+      "management_evidence_ids": [
+        "management_5",
+        "management_6"
+      ],
+      "alternatives": [
+        {
+          "text": "信用、库存或资产组经营预期变化",
+          "status": "hypothesis",
+          "test": "核对对应资产组、账龄及管理层关键估计"
+        },
+        {
+          "text": "单项处置、组合变化或一次性估计更新",
+          "status": "hypothesis",
+          "test": "区分计提、转回和核销，检查下一期是否重复"
+        }
+      ],
+      "persistence": {
+        "periods": [
+          "2024-FY"
+        ],
+        "sample_count": 1,
+        "triggered_periods": [
+          "2024-FY"
+        ],
+        "missing_periods": [],
+        "allow_continuous_claim": false,
+        "assessment": "仅有1期可计算样本，不足三期，不能判断持续性；两期作差或单次披露只形成一次信号观察"
+      },
+      "tracking_metrics": [
+        "逾期率",
+        "可收回金额",
+        "预测现金流",
+        "减值新增/转回/核销",
+        "资产组范围",
+        "关键估计敏感性"
+      ]
+    },
+    {
+      "signal_key": "credit_impairment_change",
+      "signal_ref": "signals_signals.credit_impairment_change",
+      "management_evidence_ids": [
+        "management_13"
+      ],
+      "alternatives": [
+        {
+          "text": "信用、库存或资产组经营预期变化",
+          "status": "hypothesis",
+          "test": "核对对应资产组、账龄及管理层关键估计"
+        },
+        {
+          "text": "单项处置、组合变化或一次性估计更新",
+          "status": "hypothesis",
+          "test": "区分计提、转回和核销，检查下一期是否重复"
+        }
+      ],
+      "persistence": {
+        "periods": [
+          "2024-FY"
+        ],
+        "sample_count": 1,
+        "triggered_periods": [
+          "2024-FY"
+        ],
+        "missing_periods": [],
+        "allow_continuous_claim": false,
+        "assessment": "仅有1期可计算样本，不足三期，不能判断持续性；两期作差或单次披露只形成一次信号观察"
+      },
+      "tracking_metrics": [
+        "逾期率",
+        "可收回金额",
+        "预测现金流",
+        "减值新增/转回/核销",
+        "资产组范围",
+        "关键估计敏感性"
+      ]
+    },
+    {
+      "signal_key": "2024-FY_nonrecurring_share",
+      "signal_ref": "signals_signals.2024-FY_nonrecurring_share",
+      "management_evidence_ids": [
+        "management_7"
+      ],
+      "alternatives": [
+        {
+          "text": "处置、补助或公允价值等一次性收益",
+          "status": "hypothesis",
+          "test": "核对项目金额、税效与现金实现，不把发生过等同可重复"
+        },
+        {
+          "text": "经常性利润下降造成分母效应",
+          "status": "hypothesis",
+          "test": "同时看绝对额及扣非利润变化，避免只看占比"
+        }
+      ],
+      "persistence": {
+        "periods": [
+          "2024-FY",
+          "2023-FY"
+        ],
+        "sample_count": 2,
+        "triggered_periods": [
+          "2024-FY"
+        ],
+        "missing_periods": [],
+        "allow_continuous_claim": false,
+        "assessment": "仅有2期可计算样本，不足三期，不能判断持续性"
+      },
+      "tracking_metrics": [
+        "税后非经常性损益",
+        "扣非利润",
+        "处置现金流",
+        "归母利润",
+        "扣非利润增速",
+        "非经常损益绝对额"
+      ]
+    },
+    {
+      "signal_key": "nonrecurring_share_change",
+      "signal_ref": "signals_signals.nonrecurring_share_change",
+      "management_evidence_ids": [
+        "management_7"
+      ],
+      "alternatives": [
+        {
+          "text": "处置、补助或公允价值等一次性收益",
+          "status": "hypothesis",
+          "test": "核对项目金额、税效与现金实现，不把发生过等同可重复"
+        },
+        {
+          "text": "经常性利润下降造成分母效应",
+          "status": "hypothesis",
+          "test": "同时看绝对额及扣非利润变化，避免只看占比"
+        }
+      ],
+      "persistence": {
+        "periods": [
+          "2024-FY"
+        ],
+        "sample_count": 1,
+        "triggered_periods": [
+          "2024-FY"
+        ],
+        "missing_periods": [],
+        "allow_continuous_claim": false,
+        "assessment": "仅有1期可计算样本，不足三期，不能判断持续性；两期作差或单次披露只形成一次信号观察"
+      },
+      "tracking_metrics": [
+        "税后非经常性损益",
+        "扣非利润",
+        "处置现金流",
+        "归母利润",
+        "扣非利润增速",
+        "非经常损益绝对额"
+      ]
+    },
+    {
+      "signal_key": "audit_auditor_change",
+      "signal_ref": "signals_signals.audit_auditor_change",
+      "management_evidence_ids": [
+        "management_51"
+      ],
+      "alternatives": [
+        {
+          "text": "审计师轮换、任期或业务安排变化",
+          "status": "hypothesis",
+          "test": "读取变更理由及前后任沟通披露，不能仅凭变更推断问题"
+        },
+        {
+          "text": "特定事项不确定性或会计判断差异",
+          "status": "hypothesis",
+          "test": "核对审计意见原段、事项后续及是否已解决"
+        }
+      ],
+      "persistence": {
+        "periods": [
+          "2024-FY"
+        ],
+        "sample_count": 1,
+        "triggered_periods": [
+          "2024-FY"
+        ],
+        "missing_periods": [],
+        "allow_continuous_claim": false,
+        "assessment": "仅有1期可计算样本，不足三期，不能判断持续性；两期作差或单次披露只形成一次信号观察"
+      },
+      "tracking_metrics": [
+        "变更原因",
+        "审计费用",
+        "前任意见",
+        "审计意见",
+        "强调事项",
+        "整改/事项进展"
+      ]
+    }
+  ],
+  "comparability_constraints": [],
+  "missing": [
+    {
+      "table": "statement_working_capital",
+      "cells_or_source_issues": 6,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_cash_quality",
+      "cells_or_source_issues": 4,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_nonrecurring_items",
+      "cells_or_source_issues": 82,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_roe",
+      "cells_or_source_issues": 5,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "variance_profit_bridge",
+      "cells_or_source_issues": 18,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "variance_contributions",
+      "cells_or_source_issues": 74,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "variance_drivers_evidence",
+      "cells_or_source_issues": 1,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "variance_context_changes",
+      "cells_or_source_issues": 3,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "signals_signals",
+      "cells_or_source_issues": 5,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "signals_inventory_charge_rates",
+      "cells_or_source_issues": 6,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "source_tables",
+      "cells_or_source_issues": 29,
+      "details": "pipeline_gaps",
+      "reason": "原表映射缺项；逐行原文、坐标及原因可读"
+    }
+  ],
+  "source_evidence": {
+    "table": "variance_drivers_evidence",
+    "rows": 33,
+    "basis": "计算贡献与管理层原句分列；对齐状态由 management_evidence 扩展给出"
+  },
+  "full_tables": {
+    "handle": "801f547442344f33973a0349b012198e",
+    "tables": {
+      "statement_income": 20,
+      "statement_profit_attribution": 2,
+      "statement_ratios": 5,
+      "statement_growth": 23,
+      "statement_cash": 43,
+      "statement_bridge": 14,
+      "statement_working_capital": 6,
+      "statement_cash_quality": 2,
+      "statement_observations": 15,
+      "statement_nonrecurring_items": 50,
+      "statement_deducted_profit": 2,
+      "statement_roe": 2,
+      "statement_indirect_bridge": 40,
+      "statement_indirect_contributions": 6,
+      "statement_quarterly": 4,
+      "statement_quarterly_reconciliation": 4,
+      "statement_unrecognized_rows": 0,
+      "statement_missing": 6,
+      "variance_profit_bridge": 28,
+      "variance_contributions": 8,
+      "variance_drivers_evidence": 33,
+      "variance_context_changes": 15,
+      "variance_contribution_sources": 0,
+      "variance_observations": 22,
+      "signals_signals": 39,
+      "signals_drivers_evidence": 9,
+      "signals_signal_followups": 9,
+      "signals_inventory_charge_rates": 2,
+      "signals_observations": 9,
+      "pipeline_gaps": 233,
+      "observations": 0
+    },
+    "read": {
+      "tool": "financial_workpaper",
+      "arguments": {
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6",
+        "kind": "read_table",
+        "read": {
+          "handle": "801f547442344f33973a0349b012198e",
+          "table": "variance_drivers_evidence",
+          "offset": 0,
+          "limit": 50
+        }
+      }
+    }
+  },
+  "extensions": {
+    "management_evidence": "ready",
+    "signal_followups": "ready",
+    "comparability_constraints": "not_provided"
+  }
+}

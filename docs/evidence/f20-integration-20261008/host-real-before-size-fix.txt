@@ -1,0 +1,91 @@
+✔ financial analysis selects the pipeline, while ingestion and generic profiles keep their path (1.8302ms)
+✔ pipeline projection retains N4 fields and actionable project-bound examples without full host tables (1.3021ms)
+[finance-service] D:\AI\财报agent-wt\v3-integration\.venv\Lib\site-packages\pydantic_settings\sources\utils.py:47: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.
+  warnings.warn(
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type ListToolsRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type ListToolsRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] ReadBuffer exceeded maximum size of 10485760 bytes
+[finance-service] ReadBuffer exceeded maximum size of 10485760 bytes
+[finance-service] Unexpected non-whitespace character after JSON at position 3 (line 1 column 4)
+[finance-service] Connection closed unexpectedly; restart the application to resume saved work.
+✖ native host precompute before reasoning, A1 registration, profile exclusion and failure delivery (32279.3252ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 186078.5391
+
+✖ failing tests:
+
+test at tests\workpaper-precompute.test.ts:1:3356
+✖ native host precompute before reasoning, A1 registration, profile exclusion and failure delivery (32279.3252ms)
+  Error: 文档服务尚未就绪
+      at FinanceService.call (D:\AI\财报agent-wt\v3-integration\server\mcp.ts:27:27)
+      at FinanceService.service.call (D:\AI\财报agent-wt\v3-integration\tests\workpaper-precompute.test.ts:58:10)
+      at FinanceService.putState (D:\AI\财报agent-wt\v3-integration\server\mcp.ts:46:15)
+      at <anonymous> (D:\AI\财报agent-wt\v3-integration\server\runs.ts:273:87)
+      at async RunManager.saveBudget (D:\AI\财报agent-wt\v3-integration\server\runs.ts:274:38)

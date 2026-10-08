@@ -1,5 +1,6 @@
 import type { Envelope } from './types.js';
 import {numericTableView} from './numeric-tables.js';
+import {appWorkpaperContext} from './workpaper-precompute.js';
 const fields=(value:any,keys:string[])=>Object.fromEntries(keys.filter(k=>value?.[k]!==undefined).map(k=>[k,value[k]]));
 function reviewSummary(value:any){
  if(!value||typeof value!=='object')return value;
@@ -72,8 +73,9 @@ export function modelContext(name:string,envelope:Envelope):Envelope {
   return {...envelope,data:{...data,items},...(envelope.source_refs?{source_refs:citationIndex(items||[],envelope.source_refs)}:{})};
  }
  if(name==='financial_workpaper'){
+  if(data.context)return {...envelope,source_refs:[],data:{kind:data.kind||'analysis_pipeline',context:appWorkpaperContext(data.context)}};
   const {report,numeric_tables,...compact}=data;
-  return {...envelope,data:compact};
+  return {...envelope,data:appWorkpaperContext(compact)};
  }
  if(name==='run_financial_model'||name==='save_research_report'){
   const {spec,content,source_validation,delivery,...saved}=data;

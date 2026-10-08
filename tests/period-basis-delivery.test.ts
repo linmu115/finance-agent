@@ -67,7 +67,7 @@ finally:f.doCleanups()
   assert.equal(results[1].numeric_tables.markers.rows.length,0);
   assert.ok(!chapter.includes('口径变化原文'));
   const variance=md.split(/## 业绩变化归因\r?\n/)[1].split(/\r?\n## /)[0],signals=md.split(/## 异常信号\r?\n/)[1].split(/\r?\n## /)[0];
-  for(const title of ['利润桥','变化贡献','驱动因素原文'])assert.ok(variance.includes(title),title);
+  for(const title of ['利润桥','变化贡献','管理层解释对齐'])assert.ok(variance.includes(title),title);
   assert.ok(!variance.includes('现金桥'));assert.ok(signals.includes('异常信号'));assert.ok(signals.includes('存货计提率'));
   assert.ok(signals.includes('未经行业校准'));assert.ok(variance.includes('未解释差额'));
   assert.deepEqual(JSON.parse(await readFile(path.join(folder,'snapshot.json'),'utf8')),snapshot);

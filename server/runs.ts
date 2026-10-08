@@ -21,6 +21,8 @@ import { DATA,getSettings,redactError,requireModel } from './config.js';
 import { FinanceService, safeDataPath } from './mcp.js';
 import { RESEARCH_TOOLS, researchStore, researchEnvelope, downloadWithReader } from './research.js';
 import { modelContext, projectToolHistory } from './model-context.js';
+import {needsWorkpaper,pipelineArguments} from './workpaper-precompute.js';
+import {registerWorkpaperConstraints,workpaperConstraintIssues} from './workpaper-constraints.js';
 import {ingestionRemaining,continueIngestion} from './ingestion-continuation.js';
 import { FINANCE_TASK_GUIDANCE, ANSWER_FORMAT_GUIDANCE, SHARED_TASK_GUIDANCE, FINANCE_WORKSPACE_GUIDANCE, FINANCE_EXTENSION_GUIDANCE } from './financial-guidance.js';
 import {createContextCompactionExtension,focusCompactionContext,resolveCompactionPolicy} from './context-compaction.js';
@@ -56,7 +58,8 @@ const ANALYSIS_ONLY_GUIDANCE='本次评测只分析已有资料，不发起或�
 const FINANCE_PROMPT=['你是金融研究助手。',SHARED_TASK_GUIDANCE,FINANCE_TASK_GUIDANCE,FINANCE_WORKSPACE_GUIDANCE,ANSWER_FORMAT_GUIDANCE].join('\n\n');
 export const PROMPT_HASH=createHash('sha256').update(FINANCE_PROMPT).digest('hex');
 interface EventItem { seq:number; type:string; data:any }
-interface LiveRun { cleaningRepair?:boolean; ingestionToolErrors?:any[]; numericTables?:Record<string,any>; bindingError?:Error; bindingRepairMessage?:string; usagePhase?:string; scriptProcessingIds?:Set<string>; accepting:boolean; inputQueue:Promise<void>; nativeQueued:Set<string>; resuming?:boolean; restarting?:boolean; run:Run; events:EventItem[]; clients:Set<Response>; controller:AbortController; promise?:Promise<void>; session?:any; persistQueue:Promise<any>; chat:Conversation; answer:Message; analysisIds:Set<string>; processingIds:Set<string>; extractionRuntime?:Record<string,unknown>; contract?:string; closed:boolean; budget?:EvaluationBudget; detachBudget?:()=>void; modelPending:Set<Promise<unknown>>; researchReads:Map<string,Promise<any>>; route?:TaskRoute; effort?:Effort }
+type HostWorkpaper={userMessageId:string;result:any};
+interface LiveRun { workpaperConstraints?:Record<string,any>; workpapers?:Map<string,HostWorkpaper>; cleaningRepair?:boolean; ingestionToolErrors?:any[]; numericTables?:Record<string,any>; bindingError?:Error; bindingRepairMessage?:string; usagePhase?:string; scriptProcessingIds?:Set<string>; accepting:boolean; inputQueue:Promise<void>; nativeQueued:Set<string>; resuming?:boolean; restarting?:boolean; run:Run; events:EventItem[]; clients:Set<Response>; controller:AbortController; promise?:Promise<void>; session?:any; persistQueue:Promise<any>; chat:Conversation; answer:Message; analysisIds:Set<string>; processingIds:Set<string>; extractionRuntime?:Record<string,unknown>; contract?:string; closed:boolean; budget?:EvaluationBudget; detachBudget?:()=>void; modelPending:Set<Promise<unknown>>; researchReads:Map<string,Promise<any>>; route?:TaskRoute; effort?:Effort }
 interface SessionEntry { session:any; runtime:ModelRuntime; model:any; active?:LiveRun; settings:Settings; signature:string }
 const extractionScope=new AsyncLocalStorage<{runId:string;requestId:string;effort:ExtractionEffort}>();
 const EXTRACTION_MAX_TOKENS=32768;
@@ -152,6 +155,24 @@ export class RunManager {
     this.live.set(run.id,live);await this.persist(live);this.emit(live,'status',{stage:run.stage,status:'queued'});
     this.launch(live,getSettings(),run.request.documentIds,run.request.contract);
    }
+ }
+ private async prepareWorkpaper(l:LiveRun,settings:Settings,message:Message){
+  if(!needsWorkpaper(l.chat.evaluationProfile,message.content))return;
+  const cached=l.workpapers?.get(message.id);if(cached)return cached;
+  let result:any;
+  try{
+   const documents=(message.attachments?.length===1)?[]:(await withEvaluationScope(l.run.request?.evaluation,()=>this.service.call('list_documents',{project_id:l.run.projectId},l.controller.signal))).data.items;
+   const args=pipelineArguments(message.content,message.attachments||[],documents);
+   const output=await this.executeTool(l,settings,'financial_workpaper','host-workpaper:'+message.id,args,{origin:'host_precompute',userMessageId:message.id});
+   result=JSON.parse(output.content[0].text);
+  }catch(error){
+   l.controller.signal.throwIfAborted();
+   result={status:'error',message:redactError(error)};
+  }
+  const workpaper={userMessageId:message.id,result};
+  (l.workpapers??=new Map()).set(message.id,workpaper);
+  await this.audit(l,'workpaper_precompute',workpaper);
+  return workpaper;
  }
  private promptFor(l:LiveRun,message:Message){
   const docs=message.attachments||[],generic=genericProfile(l.chat.evaluationProfile),analysisOnly=l.run.request?.evaluation?.analysis_only===true;
@@ -373,9 +394,21 @@ export class RunManager {
    });
    pi.on('turn_start',()=>{if(e.active)e.active.accepting=true;});
   };
+  const workpaperExtension:any=(pi:any)=>{
+   pi.on('context',async(event:any)=>{
+    const live=e.active;if(!live)return;
+    const text=JSON.stringify(event.messages.findLast((m:any)=>m.role==='user')?.content||'');
+    const user=live.chat.messages.find(m=>m.role==='user'&&text.includes('应用消息标识：'+m.id))||live.chat.messages.findLast(m=>m.role==='user'&&m.status==='delivered')||live.chat.messages.find(m=>m.id===live.run.request?.userMessageId);
+    if(!user)return;
+    const workpaper=await this.prepareWorkpaper(live,settings,user);if(!workpaper)return;
+    const messages=[...event.messages],at=messages.findLastIndex((m:any)=>m.role==='user'&&JSON.stringify(m.content).includes('应用消息标识：'+user.id));
+    messages.splice(at+1,0,{role:'custom',customType:'financial-workpaper-context',display:false,timestamp:Date.now(),content:'宿主已执行只读财报底稿流水线。数值表已登记，可直接绑定；完整表按句柄读取。这是本次请求开始时的底稿，后续更新以工具结果为准。失败或缺失如实保留，不阻断其余分析。\n'+JSON.stringify(workpaper.result)});
+    return {messages};
+   });
+  };
   const bindingExtension=answerBindingExtension({enabled:()=>!this.isIngestion(e.active!),render:(body,degrade)=>this.renderAnswer(e.active!,body,degrade),audit:(type,data)=>this.audit(e.active!,type,data),repairSent:()=>e.active!.bindingRepairMessage===e.active!.answer.id,markRepair:()=>{e.active!.bindingRepairMessage=e.active!.answer.id;},error:error=>{e.active!.bindingError=error;}});
   // Explicit overrides load only application/project resources, never unrelated global instructions.
-  const loader=new DefaultResourceLoader({cwd:workspace,agentDir,settingsManager:manager,noExtensions:true,extensionFactories:[compactionExtension,inputLifecycle,...(isOriginalPi(l.chat.evaluationProfile)?[]:[bindingExtension]),transportRetryExtension(manager)],noSkills:true,noPromptTemplates:true,noThemes:true,noContextFiles:true,skillsOverride:()=>({skills:resources?.skills.filter(s=>s.enabled)||[],diagnostics:[]}),agentsFilesOverride:()=>({agentsFiles:resources?[{path:resources.rulePath,content:resources.rules}]:[]}),systemPrompt});await loader.reload();
+  const loader=new DefaultResourceLoader({cwd:workspace,agentDir,settingsManager:manager,noExtensions:true,extensionFactories:[compactionExtension,inputLifecycle,...(generic?[]:[workpaperExtension]),...(isOriginalPi(l.chat.evaluationProfile)?[]:[bindingExtension]),transportRetryExtension(manager)],noSkills:true,noPromptTemplates:true,noThemes:true,noContextFiles:true,skillsOverride:()=>({skills:resources?.skills.filter(s=>s.enabled)||[],diagnostics:[]}),agentsFilesOverride:()=>({agentsFiles:resources?[{path:resources.rulePath,content:resources.rules}]:[]}),systemPrompt});await loader.reload();
   const {session}=await createAgentSession({cwd:workspace,agentDir,modelRuntime:runtime,model,thinkingLevel:reasoning?'low':'off',noTools:'builtin',tools:customTools.map(t=>t.name),customTools,resourceLoader:loader,sessionManager,settingsManager:manager});
   e.session=session;this.sessions.set(l.chat.id,e);return e;
  }
@@ -432,10 +465,10 @@ export class RunManager {
    await delay(1000,undefined,{signal:l.controller.signal});
   }
  }
- private executeTool(l:LiveRun,settings:Settings,name:string,toolCallId:string,params:Record<string,any>){
-  return withEvaluationScope(l.run.request?.evaluation,()=>this.executeScopedTool(l,settings,name,toolCallId,params));
+ private executeTool(l:LiveRun,settings:Settings,name:string,toolCallId:string,params:Record<string,any>,host?:{origin:'host_precompute';userMessageId:string}){
+  return withEvaluationScope(l.run.request?.evaluation,()=>this.executeScopedTool(l,settings,name,toolCallId,params,host));
  }
- private async executeScopedTool(l:LiveRun,settings:Settings,name:string,toolCallId:string,params:Record<string,any>){
+ private async executeScopedTool(l:LiveRun,settings:Settings,name:string,toolCallId:string,params:Record<string,any>,host?:{origin:'host_precompute';userMessageId:string}){
   l.controller.signal.throwIfAborted();
   if('project_id' in params)throw new Error('工具已绑定当前项目');
   const args:Record<string,any>={...params,project_id:l.run.projectId};
@@ -450,7 +483,7 @@ export class RunManager {
   if(name==='query_research_records'){l.effort=l.route?.afterIngestion||'high';l.usagePhase=undefined;}
   if(name==='run_analysis'){args.raw_only=original||l.chat.evaluationProfile==='generic';args.financial_tools=!genericProfile(l.chat.evaluationProfile);}
   if(name==='run_analysis')args.timeout_seconds=Math.min(Number(params.timeout_seconds||settings.runtime.timeoutSeconds),settings.runtime.timeoutSeconds);
-  const started={name,status:'started',toolCallId,timestamp:iso()};l.run.tools.push(started);this.emit(l,'tool',started);await this.audit(l,'tool_request',{name,toolCallId,args});
+  const started={name,status:'started',toolCallId,timestamp:iso(),...host};l.run.tools.push(started);this.emit(l,'tool',started);await this.audit(l,'tool_request',{name,toolCallId,args,...host});
   try{
    const uncertain=l.run.uncertainWrites?.find(item=>operationKey(item.name,item.args)===operationKey(name,params));
    if(uncertain&&sideEffectTool(name)&&name!==ADMIN_TOOL.name){
@@ -476,16 +509,17 @@ export class RunManager {
     for(const file of result.data.delivery.files)l.answer.artifacts!.push({id:'workpaper:'+result.data.delivery.id+':'+file.name,name:file.name,mimeType:artifactMediaType(file.name),url:file.url});
    }
    l.answer.artifacts=latestNamedArtifacts(l.answer.artifacts);
-   const done={name,status:'completed',toolCallId,timestamp:iso(),summary:result.warnings?.join('；')||result.status};l.run.tools.push(done);this.emit(l,'tool',done);
+   const done={name,status:'completed',toolCallId,timestamp:iso(),summary:result.warnings?.join('；')||result.status,...host};l.run.tools.push(done);this.emit(l,'tool',done);
    if(!original){
     registerNumericTables(l.numericTables??={},result.data);
+    if(!genericProfile(l.chat.evaluationProfile)&&name==='financial_workpaper')registerWorkpaperConstraints(l.workpaperConstraints??={},result.data);
     if(result.data.numeric_tables||result.data.report?.tables||result.data.result?.report?.tables)result.data.references=referenceInventory(l.numericTables!);
    }
-   await this.audit(l,'tool_result',{name,toolCallId,messageId:l.answer.id,result});
+   await this.audit(l,'tool_result',{name,toolCallId,messageId:l.answer.id,result,...host});
    l.run.uncertainWrites=l.run.uncertainWrites?.filter(item=>operationKey(item.name,item.args)!==operationKey(name,params));await this.persist(l);
    return {content:[{type:'text',text:JSON.stringify(original?result:modelContext(name,result))}],details:{traceId:result.trace_id}};
   }catch(error){
-   const message=redactError(error),details=(error as any)?.details,done={name,status:'failed',toolCallId,timestamp:iso(),summary:message};l.run.tools.push(done);this.emit(l,'tool',done);await this.audit(l,'tool_error',{name,toolCallId,message,details});
+   const message=redactError(error),details=(error as any)?.details,done={name,status:'failed',toolCallId,timestamp:iso(),summary:message,...host};l.run.tools.push(done);this.emit(l,'tool',done);await this.audit(l,'tool_error',{name,toolCallId,message,details,...host});
    if(l.controller.signal.aborted)throw error;
    if(l.scriptProcessingIds?.size&&['get_source_table','get_source_page','run_cleaning_script','get_cleaning_result','commit_cleaning_result','get_cleaning_batch'].includes(name))
     (l.ingestionToolErrors??=[]).push({tool:name,document_id:params.document_id,processing_id:params.processing_id,table_id:params.table_id,message,details});
@@ -499,7 +533,7 @@ export class RunManager {
  private isIngestion(l:LiveRun){return l.processingIds.size>0||l.run.tools.some(tool=>tool.name==='process_documents');}
  private async renderAnswer(l:LiveRun,body:string,degrade=false){
   if(this.isIngestion(l))return body;
-  const missing=valuationSections(body);
+  const missing=valuationSections(body),basisIssues=workpaperConstraintIssues(body,l.workpaperConstraints||{});
   const sources=[...(l.answer.sources||[]).filter(s=>s.kind!=='user_provided'),...citedUserSources(body,l.chat.messages)];
   body=annotateAnswer(body,sources);
   const charts:Record<string,string>={};
@@ -511,7 +545,7 @@ export class RunManager {
   // Collect all delivery defects together so references, sections and wording share one repair.
   const result=(await withEvaluationScope(l.run.request?.evaluation,()=>this.service.call('render_answer',{project_id:l.run.projectId,body,tables:l.numericTables||{},charts,degrade:true,files},l.controller.signal))).data;
   let bound=result.body as string;
-  const issues=[...(result.issues||[]),...missing.map(section=>({kind:'valuation_section',source:'回答',text:section,message:'估值说明缺少：'+section+'。请保留已核对数值并补全；资料不足明确说明。'}))];
+  const issues=[...basisIssues,...(result.issues||[]),...missing.map(section=>({kind:'valuation_section',source:'回答',text:section,message:'估值说明缺少：'+section+'。请保留已核对数值并补全；资料不足明确说明。'}))];
   for(const rewrite of result.rewrites||[])await this.audit(l,'answer_reference_rewrite',rewrite);
   if(issues.length){
    await this.audit(l,'answer_consistency_issues',{issues,degraded:degrade});
@@ -604,10 +638,14 @@ export class RunManager {
     const audit=await readFile(path.join(DATA,'audit',l.run.id+'.jsonl'),'utf8');
     for(const line of audit.split('\n').filter(Boolean)){
      const row=JSON.parse(line);
+     if(!genericProfile(l.chat.evaluationProfile)&&row.type==='workpaper_precompute')(l.workpapers??=new Map()).set(row.data.userMessageId,row.data);
      if(row.type==='processing_started'&&row.data.mode==='script_cleaning'){
       l.processingIds.add(row.data.processingId);(l.scriptProcessingIds??=new Set()).add(row.data.processingId);
      }
-     if(!isOriginalPi(l.chat.evaluationProfile)&&row.type==='tool_result'&&(!row.data.messageId||row.data.messageId===l.answer.id))registerNumericTables(l.numericTables??={},row.data.result.data);
+     if(!isOriginalPi(l.chat.evaluationProfile)&&row.type==='tool_result'&&(!row.data.messageId||row.data.messageId===l.answer.id)){
+      registerNumericTables(l.numericTables??={},row.data.result.data);
+      if(!genericProfile(l.chat.evaluationProfile)&&row.data.name==='financial_workpaper')registerWorkpaperConstraints(l.workpaperConstraints??={},row.data.result.data);
+     }
     }
    }
    const entry=await this.sessionFor(l,settings),session=entry.session;l.session=session;
@@ -654,7 +692,7 @@ export class RunManager {
       l.answer.status='completed';this.emit(l,'message',{message:l.answer});
       l.answer={id:randomUUID(),role:'assistant',content:'',createdAt:iso(),status:'running',sources:[],artifacts:[],tools:[],toolOffset:l.run.tools.length,usage:emptyUsage(),runId:l.run.id};
       l.chat.messages.push(l.answer);l.run.messageId=l.answer.id;this.emit(l,'answer_start',{message:l.answer});
-      l.numericTables={};l.bindingError=undefined;
+      l.numericTables={};l.workpaperConstraints={};l.bindingError=undefined;
       this.emit(l,'input',{message:user,mode:input.mode});void this.persist(l);
      }
     }
@@ -678,6 +716,7 @@ export class RunManager {
    const recoveredIngestion=[];
    if(l.resuming)for(const id of l.scriptProcessingIds||[])recoveredIngestion.push((await this.service.call('get_cleaning_progress',{project_id:l.run.projectId,processing_id:id},l.controller.signal)).data);
    const tail=session.messages.at(-1);const alreadyFinished=l.resuming&&primarySeen&&tail?.role==='assistant'&&tail.stopReason==='stop'&&!ingestionRemaining(recoveredIngestion).keys.size&&!(l.run.queuedInputs||[]).some(i=>!i.delivered);
+   if(!alreadyFinished)await this.prepareWorkpaper(l,settings,userMessage);
    if(entry.model.reasoning&&!alreadyFinished){
     try{
      const routed=await routingScope.run({runId:l.run.id},()=>entry.runtime.completeSimple(entry.model,{systemPrompt:ROUTER_PROMPT,messages:[{role:'user',content:query,timestamp:Date.now()}]},{signal:l.controller.signal,reasoning:'low',maxTokens:4096}));
