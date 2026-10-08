@@ -91,6 +91,15 @@ class Disclosure:
 
     def blocks(self,kind):
         """Continue a headerless adjacent same-width table until the explicit end."""
+        if kind=='nonrec':
+            from .source_table_blocks import nonrecurring_blocks
+            parsed={'pages':[{'page':p,'text':text} for p,text in self.pages.items()],
+                    'tables':[{**t,'index':int(t['table_id'].rsplit(':t',1)[1]),
+                               'bbox':json.loads(t['bbox_json']) if t.get('bbox_json') else None} for t in self.tabs]}
+            return [{'header':b['header'],'page':b['tables'][0]['page'],'width':b['width'],
+                     'rows':[(t,i) for t in b['tables'] for i,row in enumerate(t['rows'])
+                             if not (i==0 and t['index']==b['tables'][0]['index'])]}
+                    for b in nonrecurring_blocks(parsed) if self.applies(b['tables'][0])]
         blocks=[];active=None
         for t in self.tabs:
             rows=t['rows']
@@ -138,19 +147,25 @@ def annual_tables(st,tables,selected):
     if not d.document:return  # Pure-core fixtures need no source-table database.
     money=lambda label:col(label,'百万元',st.currency)
     amounts={p:money(p) for p in st.periods}
-    nrrows=[];totals={};nrblocks=d.blocks('nonrec')
-    if len(nrblocks)==1:
-        block=nrblocks[0];cols=d.columns(block['header'])
+    nrrows=[];totals={};nrblocks=d.blocks('nonrec');total_candidates={}
+    for block in nrblocks:
+        cols=d.columns(block['header'])
         for t,i in block['rows']:
             label=t['rows'][i][0]
             r={'key':t['table_id']+'_'+str(i+1),'item':label}
             for p in st.periods:
                 r[p]=d.quantity(t,i,*cols[p]) if p in cols else missing('表头无该期间')
-                if compact(label)=='合计':totals[p]=r[p]
+                if compact(label) in {'合计','非经常性损益合计'} and r[p]['value'] is not None:
+                    total_candidates.setdefault(p,[]).append(r[p])
             nrrows.append(r)
-    elif nrblocks:
-        for b in nrblocks:
-            for t,i in b['rows']:d.unknown.append({'item':t['rows'][i][0],'reason':'存在多份非经常损益表，未擅选','source':{'table_id':t['table_id'],'page':t['page'],'raw_row':t['rows'][i]}})
+    # A repeated annual-report disclosure is not an economic conflict. Keep
+    # all detail rows and compare period totals; never require a single block.
+    for p,qs in total_candidates.items():
+        if len({Decimal(convert(q['value'],q['unit'],'元')) for q in qs})==1:
+            totals[p]=qs[0]
+            if len(qs)>1:totals[p]['source']['corroborating_sources']=[q['source'] for q in qs[1:]]
+        else:
+            totals[p]=cell(None,'元',st.currency,sources=[q['source'] for q in qs],reason='同口径非经常性损益合计不一致')
     if nrblocks:
         tables['nonrecurring_items']=table({'key':col('行键'),'item':col('非经常性损益原披露项目'),**amounts},nrrows)
     reconc=[];roe=[]

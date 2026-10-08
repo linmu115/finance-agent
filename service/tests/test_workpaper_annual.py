@@ -45,6 +45,22 @@ class AnnualWorkpapersTests(unittest.TestCase):
         self.assertEqual(t['nonrecurring_items']['rows'][3]['2024-FY'],None)
         self.assertEqual(len(t['nonrecurring_items']['rows']),25)
 
+    def test_deducted_alias_uses_disclosed_fact_without_changing_dimension_selection(self):
+        changed=[]
+        for f in self.facts:
+            if f['metric']=='net_profit_excluding_nonrecurring':
+                f['metric']='net_profit_parent_ex_nonrecurring';changed.append(f)
+        self.assertTrue(changed)
+        tab=self.report()['tables']['deducted_profit']
+        self.assertEqual(tab['rows'][0]['disclosed'],'6011.27494592')
+        self.assertEqual(tab['evidence'][0]['disclosed']['source']['metric'],'net_profit_parent_ex_nonrecurring')
+        for f in changed:
+            f['dimensions']={'financial_item':'net_profit_excluding_nonrecurring'}
+            f['source_ref']['normalization']['dimensions']=f['dimensions']
+        row=self.report()['tables']['deducted_profit']['rows'][0]
+        self.assertIsNone(row['disclosed'])
+        self.assertEqual(row['calculated'],'6011.27494592')
+
     def test_complete_continuation_bridge_and_quarters(self):
         t=self.report()['tables'];rows=t['indirect_bridge']['rows']
         self.assertEqual(len(rows),40)
@@ -53,6 +69,35 @@ class AnnualWorkpapersTests(unittest.TestCase):
         self.assertEqual([r['direction'] for r in investments],['减','加'])
         self.assertEqual([D(r['residual']) for r in t['quarterly_reconciliation']['rows']],[0]*4)
         self.assertTrue(any('Q4' in r['finding'] and '为负' in r['finding'] for r in t['observations']['rows']))
+
+    def repeat_nonrecurring_block(self,delta=0):
+        for index in (11,12):
+            original=next(t for t in self.data['tables'] if t['table_id'].endswith(f':t{index}'))
+            repeated=copy.deepcopy(original)
+            repeated['table_id']=self.doc+f':t{index+400}'
+            repeated['page']+=300
+            if index==12 and delta:
+                self.assertEqual(repeated['rows'][-1][0],'合计')
+                repeated['rows'][-1][1]=str(D(repeated['rows'][-1][1].replace(',',''))+delta)
+            self.data['tables'].append(repeated)
+        self.save_tables()
+
+    def test_equal_repeated_disclosure_keeps_rows_and_reconciles(self):
+        self.repeat_nonrecurring_block()
+        tables=self.report()['tables']
+        self.assertEqual(len(tables['nonrecurring_items']['rows']),50)
+        self.assertEqual([D(r['residual']) for r in tables['deducted_profit']['rows']],[0,0])
+        evidence=tables['deducted_profit']['evidence'][0]['nonrecurring']['source']
+        self.assertEqual(len(evidence['corroborating_sources']),1)
+
+    def test_conflicting_repeated_total_preserves_both_sources_and_other_year(self):
+        self.repeat_nonrecurring_block(delta=1)
+        tables=self.report()['tables'];rows=tables['deducted_profit']['rows']
+        for key in ('nonrecurring','calculated','residual','share'):self.assertIsNone(rows[0][key])
+        self.assertEqual(D(rows[1]['residual']),0)
+        evidence=tables['deducted_profit']['evidence'][0]['nonrecurring']['source']
+        self.assertIn('不一致',evidence['missing_reason'])
+        self.assertEqual(len(evidence['inputs']),2)
 
     def test_unknown_row_is_preserved_and_still_reconciled_without_guessing(self):
         t=next(t for t in self.data['tables'] if '公允价值变动损失' in t['rows'][0][0])

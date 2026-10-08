@@ -1,0 +1,681 @@
+{
+  "columns": {
+    "key": {
+      "label": "期间"
+    },
+    "parent": {
+      "label": "归母净利润",
+      "unit": "百万元",
+      "decimals": 4,
+      "currency": "CNY"
+    },
+    "disclosed": {
+      "label": "披露扣非归母",
+      "unit": "百万元",
+      "decimals": 4,
+      "currency": "CNY"
+    },
+    "nonrecurring": {
+      "label": "非经常损益合计",
+      "unit": "百万元",
+      "decimals": 4,
+      "currency": "CNY"
+    },
+    "calculated": {
+      "label": "归母减非经常损益",
+      "unit": "百万元",
+      "decimals": 4,
+      "currency": "CNY"
+    },
+    "residual": {
+      "label": "披露扣非减计算扣非",
+      "unit": "百万元",
+      "decimals": 4,
+      "currency": "CNY"
+    },
+    "share": {
+      "label": "非经常损益占归母",
+      "unit": "%",
+      "decimals": 4
+    }
+  },
+  "rows": [
+    {
+      "key": "2024-FY",
+      "parent": "18741.12012293",
+      "disclosed": null,
+      "nonrecurring": "936.3873133",
+      "calculated": "17804.73280963",
+      "residual": null,
+      "share": "4.996431948346129825208432611665011431975"
+    },
+    {
+      "key": "2023-FY",
+      "parent": "16596.61504587",
+      "disclosed": null,
+      "nonrecurring": null,
+      "calculated": null,
+      "residual": null,
+      "share": null
+    }
+  ],
+  "row_key": "key",
+  "evidence": [
+    {
+      "parent": {
+        "value": "18741120122.93",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "fact_id": "25fd11726f614e499934fbfcf9339c0b",
+          "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+          "metric": "net_profit_parent",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "quality": "script_normalized",
+          "dimensions": {},
+          "source_ref": {
+            "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+            "page": 122,
+            "table_id": "e7b0d9679ddc4b739f8f35ecb6dc6227:t115",
+            "row": 36,
+            "column": 3,
+            "cell": "C36",
+            "text": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列） |  | 18,741,120,122.93 | 16,596,615,045.87",
+            "normalization": {
+              "engine": "PythonScript",
+              "version": "langextract-finance-0.4.0",
+              "model": "gpt-6-luna",
+              "label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+              "statement": "income",
+              "period_start": "2024-01-01",
+              "period_end": "2024-12-31",
+              "restatement": "original",
+              "dimensions": {},
+              "scale": "1",
+              "char_interval": [
+                0,
+                12
+              ],
+              "row_metric": "net_profit_parent",
+              "row_label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+              "column_metric": null,
+              "column_label": null,
+              "dimension_labels": {},
+              "entity_kind": "company",
+              "unit_kind": "money",
+              "accounting_basis": {
+                "basis": "CAS",
+                "version": "accounting-basis-1",
+                "status": "identified"
+              },
+              "standard_row_version": "standard-rows-4",
+              "original_extraction_hash": "88617f1bd2fb31a72b25cec5f3b99e82bf6e941a68f22ecb15144539d3a816c3",
+              "source_key": "c104debbc201e674a00fb2b1bf6d7c62faafec087b9f950b2e510cf7924fd458",
+              "source_fingerprint": "29fc81083093014aed9d9ce97056e49a3c31be86171a6b529e9a9a52c575c531",
+              "processing_id": "cca5839a03e24316b4dedada21533f9c"
+            },
+            "bbox": [
+              342.4528503417969,
+              640.2999877929688,
+              437.37284778413317,
+              668.02001953125
+            ]
+          }
+        }
+      },
+      "disclosed": {
+        "value": null,
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [],
+          "formula": null,
+          "missing_reason": "未披露扣非归母净利润"
+        }
+      },
+      "nonrecurring": {
+        "value": "936387313.30",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+          "report": "海尔智家2024年年度报告.pdf",
+          "page": 247,
+          "table_id": "e7b0d9679ddc4b739f8f35ecb6dc6227:t367",
+          "row": 9,
+          "column": 2,
+          "column_label": "本期发生额",
+          "text": "合计",
+          "raw_value": "936,387,313.30",
+          "data_kind": "disclosed_actual"
+        }
+      },
+      "calculated": {
+        "value": "17804732809.63",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [
+            {
+              "fact_id": "25fd11726f614e499934fbfcf9339c0b",
+              "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+              "metric": "net_profit_parent",
+              "period": "2024-FY",
+              "scope": "consolidated_CAS",
+              "quality": "script_normalized",
+              "dimensions": {},
+              "source_ref": {
+                "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+                "page": 122,
+                "table_id": "e7b0d9679ddc4b739f8f35ecb6dc6227:t115",
+                "row": 36,
+                "column": 3,
+                "cell": "C36",
+                "text": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列） |  | 18,741,120,122.93 | 16,596,615,045.87",
+                "normalization": {
+                  "engine": "PythonScript",
+                  "version": "langextract-finance-0.4.0",
+                  "model": "gpt-6-luna",
+                  "label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+                  "statement": "income",
+                  "period_start": "2024-01-01",
+                  "period_end": "2024-12-31",
+                  "restatement": "original",
+                  "dimensions": {},
+                  "scale": "1",
+                  "char_interval": [
+                    0,
+                    12
+                  ],
+                  "row_metric": "net_profit_parent",
+                  "row_label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+                  "column_metric": null,
+                  "column_label": null,
+                  "dimension_labels": {},
+                  "entity_kind": "company",
+                  "unit_kind": "money",
+                  "accounting_basis": {
+                    "basis": "CAS",
+                    "version": "accounting-basis-1",
+                    "status": "identified"
+                  },
+                  "standard_row_version": "standard-rows-4",
+                  "original_extraction_hash": "88617f1bd2fb31a72b25cec5f3b99e82bf6e941a68f22ecb15144539d3a816c3",
+                  "source_key": "c104debbc201e674a00fb2b1bf6d7c62faafec087b9f950b2e510cf7924fd458",
+                  "source_fingerprint": "29fc81083093014aed9d9ce97056e49a3c31be86171a6b529e9a9a52c575c531",
+                  "processing_id": "cca5839a03e24316b4dedada21533f9c"
+                },
+                "bbox": [
+                  342.4528503417969,
+                  640.2999877929688,
+                  437.37284778413317,
+                  668.02001953125
+                ]
+              }
+            },
+            {
+              "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+              "report": "海尔智家2024年年度报告.pdf",
+              "page": 247,
+              "table_id": "e7b0d9679ddc4b739f8f35ecb6dc6227:t367",
+              "row": 9,
+              "column": 2,
+              "column_label": "本期发生额",
+              "text": "合计",
+              "raw_value": "936,387,313.30",
+              "data_kind": "disclosed_actual"
+            }
+          ],
+          "formula": "归母净利润-非经常性损益合计",
+          "missing_reason": null
+        }
+      },
+      "residual": {
+        "value": null,
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [
+            {
+              "data_kind": "calculation",
+              "inputs": [],
+              "formula": null,
+              "missing_reason": "未披露扣非归母净利润"
+            },
+            {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "fact_id": "25fd11726f614e499934fbfcf9339c0b",
+                  "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+                  "metric": "net_profit_parent",
+                  "period": "2024-FY",
+                  "scope": "consolidated_CAS",
+                  "quality": "script_normalized",
+                  "dimensions": {},
+                  "source_ref": {
+                    "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+                    "page": 122,
+                    "table_id": "e7b0d9679ddc4b739f8f35ecb6dc6227:t115",
+                    "row": 36,
+                    "column": 3,
+                    "cell": "C36",
+                    "text": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列） |  | 18,741,120,122.93 | 16,596,615,045.87",
+                    "normalization": {
+                      "engine": "PythonScript",
+                      "version": "langextract-finance-0.4.0",
+                      "model": "gpt-6-luna",
+                      "label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+                      "statement": "income",
+                      "period_start": "2024-01-01",
+                      "period_end": "2024-12-31",
+                      "restatement": "original",
+                      "dimensions": {},
+                      "scale": "1",
+                      "char_interval": [
+                        0,
+                        12
+                      ],
+                      "row_metric": "net_profit_parent",
+                      "row_label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+                      "column_metric": null,
+                      "column_label": null,
+                      "dimension_labels": {},
+                      "entity_kind": "company",
+                      "unit_kind": "money",
+                      "accounting_basis": {
+                        "basis": "CAS",
+                        "version": "accounting-basis-1",
+                        "status": "identified"
+                      },
+                      "standard_row_version": "standard-rows-4",
+                      "original_extraction_hash": "88617f1bd2fb31a72b25cec5f3b99e82bf6e941a68f22ecb15144539d3a816c3",
+                      "source_key": "c104debbc201e674a00fb2b1bf6d7c62faafec087b9f950b2e510cf7924fd458",
+                      "source_fingerprint": "29fc81083093014aed9d9ce97056e49a3c31be86171a6b529e9a9a52c575c531",
+                      "processing_id": "cca5839a03e24316b4dedada21533f9c"
+                    },
+                    "bbox": [
+                      342.4528503417969,
+                      640.2999877929688,
+                      437.37284778413317,
+                      668.02001953125
+                    ]
+                  }
+                },
+                {
+                  "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+                  "report": "海尔智家2024年年度报告.pdf",
+                  "page": 247,
+                  "table_id": "e7b0d9679ddc4b739f8f35ecb6dc6227:t367",
+                  "row": 9,
+                  "column": 2,
+                  "column_label": "本期发生额",
+                  "text": "合计",
+                  "raw_value": "936,387,313.30",
+                  "data_kind": "disclosed_actual"
+                }
+              ],
+              "formula": "归母净利润-非经常性损益合计",
+              "missing_reason": null
+            }
+          ],
+          "formula": "披露扣非-计算扣非",
+          "missing_reason": "未披露扣非归母净利润"
+        }
+      },
+      "share": {
+        "value": "4.996431948346129825208432611665011431975",
+        "unit": "%",
+        "currency": null,
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [
+            {
+              "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+              "report": "海尔智家2024年年度报告.pdf",
+              "page": 247,
+              "table_id": "e7b0d9679ddc4b739f8f35ecb6dc6227:t367",
+              "row": 9,
+              "column": 2,
+              "column_label": "本期发生额",
+              "text": "合计",
+              "raw_value": "936,387,313.30",
+              "data_kind": "disclosed_actual"
+            },
+            {
+              "fact_id": "25fd11726f614e499934fbfcf9339c0b",
+              "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+              "metric": "net_profit_parent",
+              "period": "2024-FY",
+              "scope": "consolidated_CAS",
+              "quality": "script_normalized",
+              "dimensions": {},
+              "source_ref": {
+                "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+                "page": 122,
+                "table_id": "e7b0d9679ddc4b739f8f35ecb6dc6227:t115",
+                "row": 36,
+                "column": 3,
+                "cell": "C36",
+                "text": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列） |  | 18,741,120,122.93 | 16,596,615,045.87",
+                "normalization": {
+                  "engine": "PythonScript",
+                  "version": "langextract-finance-0.4.0",
+                  "model": "gpt-6-luna",
+                  "label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+                  "statement": "income",
+                  "period_start": "2024-01-01",
+                  "period_end": "2024-12-31",
+                  "restatement": "original",
+                  "dimensions": {},
+                  "scale": "1",
+                  "char_interval": [
+                    0,
+                    12
+                  ],
+                  "row_metric": "net_profit_parent",
+                  "row_label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+                  "column_metric": null,
+                  "column_label": null,
+                  "dimension_labels": {},
+                  "entity_kind": "company",
+                  "unit_kind": "money",
+                  "accounting_basis": {
+                    "basis": "CAS",
+                    "version": "accounting-basis-1",
+                    "status": "identified"
+                  },
+                  "standard_row_version": "standard-rows-4",
+                  "original_extraction_hash": "88617f1bd2fb31a72b25cec5f3b99e82bf6e941a68f22ecb15144539d3a816c3",
+                  "source_key": "c104debbc201e674a00fb2b1bf6d7c62faafec087b9f950b2e510cf7924fd458",
+                  "source_fingerprint": "29fc81083093014aed9d9ce97056e49a3c31be86171a6b529e9a9a52c575c531",
+                  "processing_id": "cca5839a03e24316b4dedada21533f9c"
+                },
+                "bbox": [
+                  342.4528503417969,
+                  640.2999877929688,
+                  437.37284778413317,
+                  668.02001953125
+                ]
+              }
+            }
+          ],
+          "formula": "非经常性损益合计/归母净利润*100",
+          "missing_reason": null
+        }
+      }
+    },
+    {
+      "parent": {
+        "value": "16596615045.87",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "fact_id": "1dc20ccca7d1436cb313a13028844dfd",
+          "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+          "metric": "net_profit_parent",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "quality": "script_normalized",
+          "dimensions": {},
+          "source_ref": {
+            "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+            "page": 122,
+            "table_id": "e7b0d9679ddc4b739f8f35ecb6dc6227:t115",
+            "row": 36,
+            "column": 4,
+            "cell": "D36",
+            "text": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列） |  | 18,741,120,122.93 | 16,596,615,045.87",
+            "normalization": {
+              "engine": "PythonScript",
+              "version": "langextract-finance-0.4.0",
+              "model": "gpt-6-luna",
+              "label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+              "statement": "income",
+              "period_start": "2023-01-01",
+              "period_end": "2023-12-31",
+              "restatement": "original",
+              "dimensions": {},
+              "scale": "1",
+              "char_interval": [
+                0,
+                12
+              ],
+              "row_metric": "net_profit_parent",
+              "row_label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+              "column_metric": null,
+              "column_label": null,
+              "dimension_labels": {},
+              "entity_kind": "company",
+              "unit_kind": "money",
+              "accounting_basis": {
+                "basis": "CAS",
+                "version": "accounting-basis-1",
+                "status": "identified"
+              },
+              "standard_row_version": "standard-rows-4",
+              "original_extraction_hash": "88617f1bd2fb31a72b25cec5f3b99e82bf6e941a68f22ecb15144539d3a816c3",
+              "source_key": "5f82693b16f8d98d5a1f064cc2cee9833fb65fb792893aaef7c883d558308d29",
+              "source_fingerprint": "6638362545e0d60e3bae77055b0a59633d4444b1a0555b2b7edb0a10b8ac5ecb",
+              "processing_id": "cca5839a03e24316b4dedada21533f9c"
+            },
+            "bbox": [
+              437.37284778413317,
+              640.2999877929688,
+              536.9956631867782,
+              668.02001953125
+            ]
+          }
+        }
+      },
+      "disclosed": {
+        "value": null,
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [],
+          "formula": null,
+          "missing_reason": "未披露扣非归母净利润"
+        }
+      },
+      "nonrecurring": {
+        "value": null,
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [],
+          "formula": null,
+          "missing_reason": "未找到唯一非经常性损益合计"
+        }
+      },
+      "calculated": {
+        "value": null,
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [
+            {
+              "fact_id": "1dc20ccca7d1436cb313a13028844dfd",
+              "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+              "metric": "net_profit_parent",
+              "period": "2023-FY",
+              "scope": "consolidated_CAS",
+              "quality": "script_normalized",
+              "dimensions": {},
+              "source_ref": {
+                "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+                "page": 122,
+                "table_id": "e7b0d9679ddc4b739f8f35ecb6dc6227:t115",
+                "row": 36,
+                "column": 4,
+                "cell": "D36",
+                "text": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列） |  | 18,741,120,122.93 | 16,596,615,045.87",
+                "normalization": {
+                  "engine": "PythonScript",
+                  "version": "langextract-finance-0.4.0",
+                  "model": "gpt-6-luna",
+                  "label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+                  "statement": "income",
+                  "period_start": "2023-01-01",
+                  "period_end": "2023-12-31",
+                  "restatement": "original",
+                  "dimensions": {},
+                  "scale": "1",
+                  "char_interval": [
+                    0,
+                    12
+                  ],
+                  "row_metric": "net_profit_parent",
+                  "row_label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+                  "column_metric": null,
+                  "column_label": null,
+                  "dimension_labels": {},
+                  "entity_kind": "company",
+                  "unit_kind": "money",
+                  "accounting_basis": {
+                    "basis": "CAS",
+                    "version": "accounting-basis-1",
+                    "status": "identified"
+                  },
+                  "standard_row_version": "standard-rows-4",
+                  "original_extraction_hash": "88617f1bd2fb31a72b25cec5f3b99e82bf6e941a68f22ecb15144539d3a816c3",
+                  "source_key": "5f82693b16f8d98d5a1f064cc2cee9833fb65fb792893aaef7c883d558308d29",
+                  "source_fingerprint": "6638362545e0d60e3bae77055b0a59633d4444b1a0555b2b7edb0a10b8ac5ecb",
+                  "processing_id": "cca5839a03e24316b4dedada21533f9c"
+                },
+                "bbox": [
+                  437.37284778413317,
+                  640.2999877929688,
+                  536.9956631867782,
+                  668.02001953125
+                ]
+              }
+            },
+            {
+              "data_kind": "calculation",
+              "inputs": [],
+              "formula": null,
+              "missing_reason": "未找到唯一非经常性损益合计"
+            }
+          ],
+          "formula": "归母净利润-非经常性损益合计",
+          "missing_reason": "未找到唯一非经常性损益合计"
+        }
+      },
+      "residual": {
+        "value": null,
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [
+            {
+              "data_kind": "calculation",
+              "inputs": [],
+              "formula": null,
+              "missing_reason": "未披露扣非归母净利润"
+            },
+            {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "fact_id": "1dc20ccca7d1436cb313a13028844dfd",
+                  "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+                  "metric": "net_profit_parent",
+                  "period": "2023-FY",
+                  "scope": "consolidated_CAS",
+                  "quality": "script_normalized",
+                  "dimensions": {},
+                  "source_ref": {
+                    "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+                    "page": 122,
+                    "table_id": "e7b0d9679ddc4b739f8f35ecb6dc6227:t115",
+                    "row": 36,
+                    "column": 4,
+                    "cell": "D36",
+                    "text": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列） |  | 18,741,120,122.93 | 16,596,615,045.87",
+                    "normalization": {
+                      "engine": "PythonScript",
+                      "version": "langextract-finance-0.4.0",
+                      "model": "gpt-6-luna",
+                      "label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+                      "statement": "income",
+                      "period_start": "2023-01-01",
+                      "period_end": "2023-12-31",
+                      "restatement": "original",
+                      "dimensions": {},
+                      "scale": "1",
+                      "char_interval": [
+                        0,
+                        12
+                      ],
+                      "row_metric": "net_profit_parent",
+                      "row_label": "1.归属于母公司股东的净利润（净亏损\n以“-”号填列）",
+                      "column_metric": null,
+                      "column_label": null,
+                      "dimension_labels": {},
+                      "entity_kind": "company",
+                      "unit_kind": "money",
+                      "accounting_basis": {
+                        "basis": "CAS",
+                        "version": "accounting-basis-1",
+                        "status": "identified"
+                      },
+                      "standard_row_version": "standard-rows-4",
+                      "original_extraction_hash": "88617f1bd2fb31a72b25cec5f3b99e82bf6e941a68f22ecb15144539d3a816c3",
+                      "source_key": "5f82693b16f8d98d5a1f064cc2cee9833fb65fb792893aaef7c883d558308d29",
+                      "source_fingerprint": "6638362545e0d60e3bae77055b0a59633d4444b1a0555b2b7edb0a10b8ac5ecb",
+                      "processing_id": "cca5839a03e24316b4dedada21533f9c"
+                    },
+                    "bbox": [
+                      437.37284778413317,
+                      640.2999877929688,
+                      536.9956631867782,
+                      668.02001953125
+                    ]
+                  }
+                },
+                {
+                  "data_kind": "calculation",
+                  "inputs": [],
+                  "formula": null,
+                  "missing_reason": "未找到唯一非经常性损益合计"
+                }
+              ],
+              "formula": "归母净利润-非经常性损益合计",
+              "missing_reason": "未找到唯一非经常性损益合计"
+            }
+          ],
+          "formula": "披露扣非-计算扣非",
+          "missing_reason": "未披露扣非归母净利润；未找到唯一非经常性损益合计"
+        }
+      },
+      "share": {
+        "value": null,
+        "unit": "%",
+        "currency": null,
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [],
+          "formula": null,
+          "missing_reason": "缺少非经常损益合计或非零归母净利润"
+        }
+      }
+    }
+  ],
+  "cell_units": [
+    {},
+    {}
+  ],
+  "row_keys": [
+    "2024-FY",
+    "2023-FY"
+  ]
+}

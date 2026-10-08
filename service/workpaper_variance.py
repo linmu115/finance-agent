@@ -212,9 +212,9 @@ def find_explanations(a,key,label):
 
 AXES={'product':'product','business_line':'product','region':'region','geography':'region','industry':'industry','segment':'segment','business_type':'business_type'}
 TOTAL=re.compile(r'^(?:total|合计|合計|小计|小計|subtotal|全部)$',re.I)
-REVENUE={'revenue','main_business_revenue','segment_revenue'}
-COST={'cost_of_revenue','cost_of_sales','main_business_cost','segment_cost'}
-COST_PARTS={'direct_materials_cost','direct_labor_cost','manufacturing_overhead','loading_and_transportation_cost','transportation_expenses'}
+REVENUE=set(ALIASES['revenue']) | set(ALIASES['segment_revenue'])
+COST=set(ALIASES['cogs']) | set(ALIASES['segment_cost'])
+COST_PARTS={metric for concept in ('direct_materials_cost','direct_labor_cost','manufacturing_overhead','loading_and_transportation_cost','transportation_expenses') for metric in ALIASES[concept]}
 
 
 def unique_quantity(records,reason):
@@ -313,7 +313,7 @@ def structural_contributions(a):
         for r in group:
             pair={}
             for p,name in ((now,'volume_now'),(before,'volume_before')):
-                candidates=[x for x in a.records if x['period']==p and x['metric'] in ('sales_volume','sales_quantity','quantity_sold','volume_sold')
+                candidates=[x for x in a.records if x['period']==p and x['metric'] in ALIASES['sales_volume']
                             and any(AXES.get(k)==axis and v==r['item'] for k,v in (x.get('dimensions') or {}).items())]
                 pair[name]=unique_quantity(candidates,'缺少两期同单位销量')
             volume_inputs.append({'revenue_now':r['current_revenue'],'revenue_before':r['previous_revenue'],**pair})

@@ -1,0 +1,1309 @@
+{
+  "columns": {
+    "key": {
+      "label": "期间"
+    },
+    "parent": {
+      "label": "归母净利润",
+      "unit": "百万元",
+      "decimals": 4,
+      "currency": "CNY"
+    },
+    "disclosed": {
+      "label": "披露扣非归母",
+      "unit": "百万元",
+      "decimals": 4,
+      "currency": "CNY"
+    },
+    "nonrecurring": {
+      "label": "非经常损益合计",
+      "unit": "百万元",
+      "decimals": 4,
+      "currency": "CNY"
+    },
+    "calculated": {
+      "label": "归母减非经常损益",
+      "unit": "百万元",
+      "decimals": 4,
+      "currency": "CNY"
+    },
+    "residual": {
+      "label": "披露扣非减计算扣非",
+      "unit": "百万元",
+      "decimals": 4,
+      "currency": "CNY"
+    },
+    "share": {
+      "label": "非经常损益占归母",
+      "unit": "%",
+      "decimals": 4
+    }
+  },
+  "rows": [
+    {
+      "key": "2024-FY",
+      "parent": "8452.85999318",
+      "disclosed": "6011.27494592",
+      "nonrecurring": "2441.58504726",
+      "calculated": "6011.27494592",
+      "residual": "0.00",
+      "share": "28.88472125682831597489714900622967329667"
+    },
+    {
+      "key": "2023-FY",
+      "parent": "10428.54045794",
+      "disclosed": "10026.17107603",
+      "nonrecurring": "402.36938191",
+      "calculated": "10026.17107603",
+      "residual": "0.00",
+      "share": "3.858347997333099177955932704564606097468"
+    }
+  ],
+  "row_key": "key",
+  "evidence": [
+    {
+      "parent": {
+        "value": "8452859993.18",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "fact_id": "1ed35d5298574a538d2a4b6b03291210",
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "metric": "net_profit_parent",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "quality": "script_normalized",
+          "dimensions": {},
+          "source_ref": {
+            "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+            "page": 92,
+            "table_id": "d84573bf6b584e7e874faa4c6adf454a:t105",
+            "row": 10,
+            "column": 3,
+            "cell": "C10",
+            "text": "1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94",
+            "normalization": {
+              "engine": "DeterministicRules",
+              "version": "langextract-finance-0.4.0",
+              "model": "gpt-6-luna",
+              "label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+              "statement": "income",
+              "period_start": "2024-01-01",
+              "period_end": "2024-12-31",
+              "restatement": "original",
+              "dimensions": {},
+              "scale": "1",
+              "char_interval": [
+                0,
+                12
+              ],
+              "row_metric": "net_profit_parent",
+              "row_label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+              "column_metric": null,
+              "column_label": null,
+              "dimension_labels": {},
+              "unit_kind": "money",
+              "accounting_basis": {
+                "basis": "CAS",
+                "version": "accounting-basis-1",
+                "status": "identified"
+              },
+              "standard_row_version": "standard-rows-4",
+              "cleaning_rule": {
+                "id": "standard:cleaning-rules-5/standard-rows-4",
+                "version": "cleaning-rules-5/standard-rows-4"
+              },
+              "original_extraction_hash": "b3d6d9bf87824d1b32ac814215393251c2d453348ab1d80544ea23349657d9b5",
+              "source_key": "bb7db265783747ce6c53fd25d3f6b8c216bb4e8d37ef501e2c4376c733c296b0",
+              "source_fingerprint": "033c5bd8cd3b16f6cfd56849006496e6ed57a50d883d6f271dc2fdab75852089",
+              "processing_id": "59a9b61cf6364453a5fb749e0412a8f0"
+            },
+            "bbox": [
+              346.8500061035156,
+              241.69000244140625,
+              454.8999938964844,
+              260.6400146484375
+            ]
+          }
+        }
+      },
+      "disclosed": {
+        "value": "6011274945.92",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "fact_id": "56cdf13ef0c14a7ab977bfba53c2e656",
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "metric": "net_profit_excluding_nonrecurring",
+          "period": "2024-FY",
+          "scope": "consolidated_CAS",
+          "quality": "script_normalized",
+          "dimensions": {},
+          "source_ref": {
+            "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+            "page": 7,
+            "table_id": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 4,
+            "column": 2,
+            "cell": "B4",
+            "text": "归属于上市公司股东的扣除非\n经常性损益的净利润 | 6,011,274,945.92 | 10,026,171,076.03 | -40.04 | 8,585,692,731.44",
+            "normalization": {
+              "engine": "PythonScript",
+              "version": "langextract-finance-0.4.0",
+              "model": "gpt-6-luna",
+              "label": "归属于上市公司股东的扣除非\n经常性损益的净利润",
+              "statement": "notes",
+              "period_start": "2024-01-01",
+              "period_end": "2024-12-31",
+              "restatement": "original",
+              "dimensions": {},
+              "scale": "1",
+              "char_interval": [
+                0,
+                9
+              ],
+              "row_metric": "net_profit_excluding_nonrecurring",
+              "row_label": "归属于上市公司股东的扣除非\n经常性损益的净利润",
+              "column_metric": null,
+              "column_label": null,
+              "dimension_labels": {},
+              "entity_kind": "company",
+              "unit_kind": "money",
+              "accounting_basis": {
+                "basis": "CAS",
+                "version": "accounting-basis-1",
+                "status": "identified"
+              },
+              "standard_row_version": "standard-rows-4",
+              "original_extraction_hash": "3fdf19fa3abd2adbc868d39390f255e7e19c874151a607003ce285e5d933c586",
+              "source_key": "5a77ef1736dd4ac0aac9afaf08ee168383ed98ce99ddc6ea29ff4a9f4cdca39d",
+              "source_fingerprint": "088ca264dae604fc30c0c128f291790353dc1a5f0ceafbaff29534f059e2474f",
+              "processing_id": "59a9b61cf6364453a5fb749e0412a8f0",
+              "source_semantics": {
+                "scope": {
+                  "scope": "consolidated",
+                  "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+                },
+                "version": "source-period-scope-2"
+              },
+              "document_semantics_revision": {
+                "processing_id": "f1.3-live-yili-20261008",
+                "reason": "source_basis_dimensions_period_scope",
+                "basis_evidence": [
+                  {
+                    "basis": "CAS",
+                    "page": 83,
+                    "quote": "我们认为，后附的财务报表在所有重大方面按照企业会计准则的规定编制，公允反映了伊利\n\n集团2024 年12 月31 日的合并及母公司财务状况以及2024 年度的合并及母公司经营成果和现金\n\n流量。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 84,
+                    "quote": "管理层负责按照企业会计准则的规定编制财务报表，使其实现公允反映，并设计、执行和维\n\n护必要的内部控制，以使财务报表不存在由于舞弊或错误导致的重大错报。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 105,
+                    "quote": "业会计准则——基本准则》和具体企业会计准则、企业会计准则应用指南、企业会计准则解释及\n\n其他相关规定（以下合称“企业会计准则”）进行确认和计量，在此基础上，结合中国证券监督\n\n管理委员会《公开发行证券的公司信息披露编报规则第15 号——财务报告的一般规定》（2023\n\n年修订）的规定，编制财务报表。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 106,
+                    "quote": "1、遵循企业会计准则的声明\n\n  本公司所编制的财务报表符合企业会计准则的要求，真实、准确、完整地反映了公司的财务\n\n状况、经营成果、股东权益变动和现金流量等有关信息。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 109,
+                    "quote": "司编制合并财务报表，将整个企业集团视为一个会计主体，依据相关企业会计准则的确认、计量\n\n和列报要求，按照统一的会计政策，反映本企业集团整体财务状况、经营成果和现金流量。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 111,
+                    "quote": "本公司确认共同经营中利益份额中与本公司相关的下列项目，并按照相关企业会计准则的规"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 127,
+                    "quote": "制但不构成控制的，按照《企业会计准则第22 号——金融工具确认和计量》确定的原持有的股\n\n权投资的公允价值加上新增投资成本之和，作为改按权益法核算的初始投资成本。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 128,
+                    "quote": "购买日之前持有的股权投资按照《企业会计准则第22 号——金融工具确认和计量》的有关\n\n规定进行会计处理的，原计入其他综合收益的累计公允价值变动在改按成本法核算时转入留存收\n\n益。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 129,
+                    "quote": "实施共同控制或施加重大影响的，改按《企业会计准则第22 号——金融工具确认和计量》的有\n\n关规定进行会计处理，其在丧失控制之日的公允价值与账面价值间的差额计入当期损益。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 141,
+                    "quote": "本公司对于为履行合同发生的成本，不属于除收入准则外的其他企业会计准则范围且同时满\n\n足下列条件的作为合同履约成本确认为一项资产：\n\n  1）该成本与一份当前或预期取得的合同直接相关，包括直接人工、直接材料、制造费用（或\n\n类似费用）、明确由客户承担的成本以及仅因该合同而发生的其他成本；\n\n  2）该成本增加了企业未来用于履行履约义务的资源；\n\n  3）该成本预期能够收回。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 144,
+                    "quote": "照租赁准则进行会计处理，非租赁部分应当按照其他适用的企业会计准则进行会计处理。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 147,
+                    "quote": "根据企业会计准则，在套期开始及之后，公司会持续地对套期有效性进行评价，以检查有关套期\n\n在套期关系被指定的会计期间内是否高度有效。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 205,
+                    "quote": "1、由于《企业会计准则》及其相关新规定进行追溯调整，影响期初未分配利润0元。"
+                  }
+                ]
+              }
+            },
+            "bbox": [
+              183.35000610351562,
+              364.69000244140625,
+              277.54998779296875,
+              388.5400085449219
+            ]
+          }
+        }
+      },
+      "nonrecurring": {
+        "value": "2441585047.26",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "report": "伊利股份2024年年度报告.pdf",
+          "page": 9,
+          "table_id": "d84573bf6b584e7e874faa4c6adf454a:t12",
+          "row": 14,
+          "column": 2,
+          "column_label": "2024 年金额",
+          "text": "合计",
+          "raw_value": "2,441,585,047.26",
+          "data_kind": "disclosed_actual"
+        }
+      },
+      "calculated": {
+        "value": "6011274945.92",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [
+            {
+              "fact_id": "1ed35d5298574a538d2a4b6b03291210",
+              "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+              "metric": "net_profit_parent",
+              "period": "2024-FY",
+              "scope": "consolidated_CAS",
+              "quality": "script_normalized",
+              "dimensions": {},
+              "source_ref": {
+                "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+                "page": 92,
+                "table_id": "d84573bf6b584e7e874faa4c6adf454a:t105",
+                "row": 10,
+                "column": 3,
+                "cell": "C10",
+                "text": "1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94",
+                "normalization": {
+                  "engine": "DeterministicRules",
+                  "version": "langextract-finance-0.4.0",
+                  "model": "gpt-6-luna",
+                  "label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+                  "statement": "income",
+                  "period_start": "2024-01-01",
+                  "period_end": "2024-12-31",
+                  "restatement": "original",
+                  "dimensions": {},
+                  "scale": "1",
+                  "char_interval": [
+                    0,
+                    12
+                  ],
+                  "row_metric": "net_profit_parent",
+                  "row_label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+                  "column_metric": null,
+                  "column_label": null,
+                  "dimension_labels": {},
+                  "unit_kind": "money",
+                  "accounting_basis": {
+                    "basis": "CAS",
+                    "version": "accounting-basis-1",
+                    "status": "identified"
+                  },
+                  "standard_row_version": "standard-rows-4",
+                  "cleaning_rule": {
+                    "id": "standard:cleaning-rules-5/standard-rows-4",
+                    "version": "cleaning-rules-5/standard-rows-4"
+                  },
+                  "original_extraction_hash": "b3d6d9bf87824d1b32ac814215393251c2d453348ab1d80544ea23349657d9b5",
+                  "source_key": "bb7db265783747ce6c53fd25d3f6b8c216bb4e8d37ef501e2c4376c733c296b0",
+                  "source_fingerprint": "033c5bd8cd3b16f6cfd56849006496e6ed57a50d883d6f271dc2fdab75852089",
+                  "processing_id": "59a9b61cf6364453a5fb749e0412a8f0"
+                },
+                "bbox": [
+                  346.8500061035156,
+                  241.69000244140625,
+                  454.8999938964844,
+                  260.6400146484375
+                ]
+              }
+            },
+            {
+              "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 9,
+              "table_id": "d84573bf6b584e7e874faa4c6adf454a:t12",
+              "row": 14,
+              "column": 2,
+              "column_label": "2024 年金额",
+              "text": "合计",
+              "raw_value": "2,441,585,047.26",
+              "data_kind": "disclosed_actual"
+            }
+          ],
+          "formula": "归母净利润-非经常性损益合计",
+          "missing_reason": null
+        }
+      },
+      "residual": {
+        "value": "0.00",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [
+            {
+              "fact_id": "56cdf13ef0c14a7ab977bfba53c2e656",
+              "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+              "metric": "net_profit_excluding_nonrecurring",
+              "period": "2024-FY",
+              "scope": "consolidated_CAS",
+              "quality": "script_normalized",
+              "dimensions": {},
+              "source_ref": {
+                "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+                "page": 7,
+                "table_id": "d84573bf6b584e7e874faa4c6adf454a:t8",
+                "row": 4,
+                "column": 2,
+                "cell": "B4",
+                "text": "归属于上市公司股东的扣除非\n经常性损益的净利润 | 6,011,274,945.92 | 10,026,171,076.03 | -40.04 | 8,585,692,731.44",
+                "normalization": {
+                  "engine": "PythonScript",
+                  "version": "langextract-finance-0.4.0",
+                  "model": "gpt-6-luna",
+                  "label": "归属于上市公司股东的扣除非\n经常性损益的净利润",
+                  "statement": "notes",
+                  "period_start": "2024-01-01",
+                  "period_end": "2024-12-31",
+                  "restatement": "original",
+                  "dimensions": {},
+                  "scale": "1",
+                  "char_interval": [
+                    0,
+                    9
+                  ],
+                  "row_metric": "net_profit_excluding_nonrecurring",
+                  "row_label": "归属于上市公司股东的扣除非\n经常性损益的净利润",
+                  "column_metric": null,
+                  "column_label": null,
+                  "dimension_labels": {},
+                  "entity_kind": "company",
+                  "unit_kind": "money",
+                  "accounting_basis": {
+                    "basis": "CAS",
+                    "version": "accounting-basis-1",
+                    "status": "identified"
+                  },
+                  "standard_row_version": "standard-rows-4",
+                  "original_extraction_hash": "3fdf19fa3abd2adbc868d39390f255e7e19c874151a607003ce285e5d933c586",
+                  "source_key": "5a77ef1736dd4ac0aac9afaf08ee168383ed98ce99ddc6ea29ff4a9f4cdca39d",
+                  "source_fingerprint": "088ca264dae604fc30c0c128f291790353dc1a5f0ceafbaff29534f059e2474f",
+                  "processing_id": "59a9b61cf6364453a5fb749e0412a8f0",
+                  "source_semantics": {
+                    "scope": {
+                      "scope": "consolidated",
+                      "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+                    },
+                    "version": "source-period-scope-2"
+                  },
+                  "document_semantics_revision": {
+                    "processing_id": "f1.3-live-yili-20261008",
+                    "reason": "source_basis_dimensions_period_scope",
+                    "basis_evidence": [
+                      {
+                        "basis": "CAS",
+                        "page": 83,
+                        "quote": "我们认为，后附的财务报表在所有重大方面按照企业会计准则的规定编制，公允反映了伊利\n\n集团2024 年12 月31 日的合并及母公司财务状况以及2024 年度的合并及母公司经营成果和现金\n\n流量。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 84,
+                        "quote": "管理层负责按照企业会计准则的规定编制财务报表，使其实现公允反映，并设计、执行和维\n\n护必要的内部控制，以使财务报表不存在由于舞弊或错误导致的重大错报。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 105,
+                        "quote": "业会计准则——基本准则》和具体企业会计准则、企业会计准则应用指南、企业会计准则解释及\n\n其他相关规定（以下合称“企业会计准则”）进行确认和计量，在此基础上，结合中国证券监督\n\n管理委员会《公开发行证券的公司信息披露编报规则第15 号——财务报告的一般规定》（2023\n\n年修订）的规定，编制财务报表。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 106,
+                        "quote": "1、遵循企业会计准则的声明\n\n  本公司所编制的财务报表符合企业会计准则的要求，真实、准确、完整地反映了公司的财务\n\n状况、经营成果、股东权益变动和现金流量等有关信息。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 109,
+                        "quote": "司编制合并财务报表，将整个企业集团视为一个会计主体，依据相关企业会计准则的确认、计量\n\n和列报要求，按照统一的会计政策，反映本企业集团整体财务状况、经营成果和现金流量。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 111,
+                        "quote": "本公司确认共同经营中利益份额中与本公司相关的下列项目，并按照相关企业会计准则的规"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 127,
+                        "quote": "制但不构成控制的，按照《企业会计准则第22 号——金融工具确认和计量》确定的原持有的股\n\n权投资的公允价值加上新增投资成本之和，作为改按权益法核算的初始投资成本。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 128,
+                        "quote": "购买日之前持有的股权投资按照《企业会计准则第22 号——金融工具确认和计量》的有关\n\n规定进行会计处理的，原计入其他综合收益的累计公允价值变动在改按成本法核算时转入留存收\n\n益。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 129,
+                        "quote": "实施共同控制或施加重大影响的，改按《企业会计准则第22 号——金融工具确认和计量》的有\n\n关规定进行会计处理，其在丧失控制之日的公允价值与账面价值间的差额计入当期损益。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 141,
+                        "quote": "本公司对于为履行合同发生的成本，不属于除收入准则外的其他企业会计准则范围且同时满\n\n足下列条件的作为合同履约成本确认为一项资产：\n\n  1）该成本与一份当前或预期取得的合同直接相关，包括直接人工、直接材料、制造费用（或\n\n类似费用）、明确由客户承担的成本以及仅因该合同而发生的其他成本；\n\n  2）该成本增加了企业未来用于履行履约义务的资源；\n\n  3）该成本预期能够收回。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 144,
+                        "quote": "照租赁准则进行会计处理，非租赁部分应当按照其他适用的企业会计准则进行会计处理。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 147,
+                        "quote": "根据企业会计准则，在套期开始及之后，公司会持续地对套期有效性进行评价，以检查有关套期\n\n在套期关系被指定的会计期间内是否高度有效。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 205,
+                        "quote": "1、由于《企业会计准则》及其相关新规定进行追溯调整，影响期初未分配利润0元。"
+                      }
+                    ]
+                  }
+                },
+                "bbox": [
+                  183.35000610351562,
+                  364.69000244140625,
+                  277.54998779296875,
+                  388.5400085449219
+                ]
+              }
+            },
+            {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "fact_id": "1ed35d5298574a538d2a4b6b03291210",
+                  "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+                  "metric": "net_profit_parent",
+                  "period": "2024-FY",
+                  "scope": "consolidated_CAS",
+                  "quality": "script_normalized",
+                  "dimensions": {},
+                  "source_ref": {
+                    "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+                    "page": 92,
+                    "table_id": "d84573bf6b584e7e874faa4c6adf454a:t105",
+                    "row": 10,
+                    "column": 3,
+                    "cell": "C10",
+                    "text": "1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94",
+                    "normalization": {
+                      "engine": "DeterministicRules",
+                      "version": "langextract-finance-0.4.0",
+                      "model": "gpt-6-luna",
+                      "label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+                      "statement": "income",
+                      "period_start": "2024-01-01",
+                      "period_end": "2024-12-31",
+                      "restatement": "original",
+                      "dimensions": {},
+                      "scale": "1",
+                      "char_interval": [
+                        0,
+                        12
+                      ],
+                      "row_metric": "net_profit_parent",
+                      "row_label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+                      "column_metric": null,
+                      "column_label": null,
+                      "dimension_labels": {},
+                      "unit_kind": "money",
+                      "accounting_basis": {
+                        "basis": "CAS",
+                        "version": "accounting-basis-1",
+                        "status": "identified"
+                      },
+                      "standard_row_version": "standard-rows-4",
+                      "cleaning_rule": {
+                        "id": "standard:cleaning-rules-5/standard-rows-4",
+                        "version": "cleaning-rules-5/standard-rows-4"
+                      },
+                      "original_extraction_hash": "b3d6d9bf87824d1b32ac814215393251c2d453348ab1d80544ea23349657d9b5",
+                      "source_key": "bb7db265783747ce6c53fd25d3f6b8c216bb4e8d37ef501e2c4376c733c296b0",
+                      "source_fingerprint": "033c5bd8cd3b16f6cfd56849006496e6ed57a50d883d6f271dc2fdab75852089",
+                      "processing_id": "59a9b61cf6364453a5fb749e0412a8f0"
+                    },
+                    "bbox": [
+                      346.8500061035156,
+                      241.69000244140625,
+                      454.8999938964844,
+                      260.6400146484375
+                    ]
+                  }
+                },
+                {
+                  "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+                  "report": "伊利股份2024年年度报告.pdf",
+                  "page": 9,
+                  "table_id": "d84573bf6b584e7e874faa4c6adf454a:t12",
+                  "row": 14,
+                  "column": 2,
+                  "column_label": "2024 年金额",
+                  "text": "合计",
+                  "raw_value": "2,441,585,047.26",
+                  "data_kind": "disclosed_actual"
+                }
+              ],
+              "formula": "归母净利润-非经常性损益合计",
+              "missing_reason": null
+            }
+          ],
+          "formula": "披露扣非-计算扣非",
+          "missing_reason": null
+        }
+      },
+      "share": {
+        "value": "28.88472125682831597489714900622967329667",
+        "unit": "%",
+        "currency": null,
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [
+            {
+              "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 9,
+              "table_id": "d84573bf6b584e7e874faa4c6adf454a:t12",
+              "row": 14,
+              "column": 2,
+              "column_label": "2024 年金额",
+              "text": "合计",
+              "raw_value": "2,441,585,047.26",
+              "data_kind": "disclosed_actual"
+            },
+            {
+              "fact_id": "1ed35d5298574a538d2a4b6b03291210",
+              "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+              "metric": "net_profit_parent",
+              "period": "2024-FY",
+              "scope": "consolidated_CAS",
+              "quality": "script_normalized",
+              "dimensions": {},
+              "source_ref": {
+                "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+                "page": 92,
+                "table_id": "d84573bf6b584e7e874faa4c6adf454a:t105",
+                "row": 10,
+                "column": 3,
+                "cell": "C10",
+                "text": "1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94",
+                "normalization": {
+                  "engine": "DeterministicRules",
+                  "version": "langextract-finance-0.4.0",
+                  "model": "gpt-6-luna",
+                  "label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+                  "statement": "income",
+                  "period_start": "2024-01-01",
+                  "period_end": "2024-12-31",
+                  "restatement": "original",
+                  "dimensions": {},
+                  "scale": "1",
+                  "char_interval": [
+                    0,
+                    12
+                  ],
+                  "row_metric": "net_profit_parent",
+                  "row_label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+                  "column_metric": null,
+                  "column_label": null,
+                  "dimension_labels": {},
+                  "unit_kind": "money",
+                  "accounting_basis": {
+                    "basis": "CAS",
+                    "version": "accounting-basis-1",
+                    "status": "identified"
+                  },
+                  "standard_row_version": "standard-rows-4",
+                  "cleaning_rule": {
+                    "id": "standard:cleaning-rules-5/standard-rows-4",
+                    "version": "cleaning-rules-5/standard-rows-4"
+                  },
+                  "original_extraction_hash": "b3d6d9bf87824d1b32ac814215393251c2d453348ab1d80544ea23349657d9b5",
+                  "source_key": "bb7db265783747ce6c53fd25d3f6b8c216bb4e8d37ef501e2c4376c733c296b0",
+                  "source_fingerprint": "033c5bd8cd3b16f6cfd56849006496e6ed57a50d883d6f271dc2fdab75852089",
+                  "processing_id": "59a9b61cf6364453a5fb749e0412a8f0"
+                },
+                "bbox": [
+                  346.8500061035156,
+                  241.69000244140625,
+                  454.8999938964844,
+                  260.6400146484375
+                ]
+              }
+            }
+          ],
+          "formula": "非经常性损益合计/归母净利润*100",
+          "missing_reason": null
+        }
+      }
+    },
+    {
+      "parent": {
+        "value": "10428540457.94",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "fact_id": "b4a2447b0c0c48e299aba9c05825055b",
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "metric": "net_profit_parent",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "quality": "script_normalized",
+          "dimensions": {},
+          "source_ref": {
+            "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+            "page": 92,
+            "table_id": "d84573bf6b584e7e874faa4c6adf454a:t105",
+            "row": 10,
+            "column": 4,
+            "cell": "D10",
+            "text": "1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94",
+            "normalization": {
+              "engine": "DeterministicRules",
+              "version": "langextract-finance-0.4.0",
+              "model": "gpt-6-luna",
+              "label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+              "statement": "income",
+              "period_start": "2023-01-01",
+              "period_end": "2023-12-31",
+              "restatement": "original",
+              "dimensions": {},
+              "scale": "1",
+              "char_interval": [
+                0,
+                12
+              ],
+              "row_metric": "net_profit_parent",
+              "row_label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+              "column_metric": null,
+              "column_label": null,
+              "dimension_labels": {},
+              "unit_kind": "money",
+              "accounting_basis": {
+                "basis": "CAS",
+                "version": "accounting-basis-1",
+                "status": "identified"
+              },
+              "standard_row_version": "standard-rows-4",
+              "cleaning_rule": {
+                "id": "standard:cleaning-rules-5/standard-rows-4",
+                "version": "cleaning-rules-5/standard-rows-4"
+              },
+              "original_extraction_hash": "b3d6d9bf87824d1b32ac814215393251c2d453348ab1d80544ea23349657d9b5",
+              "source_key": "2baa5aa075c495002e7c1a37fd50cc4907fdc3c17a2a4e30cb45fffa56367459",
+              "source_fingerprint": "36fddf7906da505c59ee50255ff2108b05d597e8d06d962832b00926ea38f1ae",
+              "processing_id": "59a9b61cf6364453a5fb749e0412a8f0"
+            },
+            "bbox": [
+              454.8999938964844,
+              241.69000244140625,
+              554.5700073242188,
+              260.6400146484375
+            ]
+          }
+        }
+      },
+      "disclosed": {
+        "value": "10026171076.03",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "fact_id": "68114c990fc64df48675077a4668752a",
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "metric": "net_profit_excluding_nonrecurring",
+          "period": "2023-FY",
+          "scope": "consolidated_CAS",
+          "quality": "script_normalized",
+          "dimensions": {},
+          "source_ref": {
+            "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+            "page": 7,
+            "table_id": "d84573bf6b584e7e874faa4c6adf454a:t8",
+            "row": 4,
+            "column": 3,
+            "cell": "C4",
+            "text": "归属于上市公司股东的扣除非\n经常性损益的净利润 | 6,011,274,945.92 | 10,026,171,076.03 | -40.04 | 8,585,692,731.44",
+            "normalization": {
+              "engine": "PythonScript",
+              "version": "langextract-finance-0.4.0",
+              "model": "gpt-6-luna",
+              "label": "归属于上市公司股东的扣除非\n经常性损益的净利润",
+              "statement": "notes",
+              "period_start": "2023-01-01",
+              "period_end": "2023-12-31",
+              "restatement": "original",
+              "dimensions": {},
+              "scale": "1",
+              "char_interval": [
+                0,
+                9
+              ],
+              "row_metric": "net_profit_excluding_nonrecurring",
+              "row_label": "归属于上市公司股东的扣除非\n经常性损益的净利润",
+              "column_metric": null,
+              "column_label": null,
+              "dimension_labels": {},
+              "entity_kind": "company",
+              "unit_kind": "money",
+              "accounting_basis": {
+                "basis": "CAS",
+                "version": "accounting-basis-1",
+                "status": "identified"
+              },
+              "standard_row_version": "standard-rows-4",
+              "original_extraction_hash": "3fdf19fa3abd2adbc868d39390f255e7e19c874151a607003ce285e5d933c586",
+              "source_key": "8e1d56be719e005f5428c0c00c8eaa5681e4e309d9812ddf56c97006a0db3956",
+              "source_fingerprint": "9b0e671d10e475c5d7107f592ec989adacfa1caef4027c98a8fef5f3403ebcce",
+              "processing_id": "59a9b61cf6364453a5fb749e0412a8f0",
+              "source_semantics": {
+                "scope": {
+                  "scope": "consolidated",
+                  "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+                },
+                "version": "source-period-scope-2"
+              },
+              "document_semantics_revision": {
+                "processing_id": "f1.3-live-yili-20261008",
+                "reason": "source_basis_dimensions_period_scope",
+                "basis_evidence": [
+                  {
+                    "basis": "CAS",
+                    "page": 83,
+                    "quote": "我们认为，后附的财务报表在所有重大方面按照企业会计准则的规定编制，公允反映了伊利\n\n集团2024 年12 月31 日的合并及母公司财务状况以及2024 年度的合并及母公司经营成果和现金\n\n流量。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 84,
+                    "quote": "管理层负责按照企业会计准则的规定编制财务报表，使其实现公允反映，并设计、执行和维\n\n护必要的内部控制，以使财务报表不存在由于舞弊或错误导致的重大错报。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 105,
+                    "quote": "业会计准则——基本准则》和具体企业会计准则、企业会计准则应用指南、企业会计准则解释及\n\n其他相关规定（以下合称“企业会计准则”）进行确认和计量，在此基础上，结合中国证券监督\n\n管理委员会《公开发行证券的公司信息披露编报规则第15 号——财务报告的一般规定》（2023\n\n年修订）的规定，编制财务报表。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 106,
+                    "quote": "1、遵循企业会计准则的声明\n\n  本公司所编制的财务报表符合企业会计准则的要求，真实、准确、完整地反映了公司的财务\n\n状况、经营成果、股东权益变动和现金流量等有关信息。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 109,
+                    "quote": "司编制合并财务报表，将整个企业集团视为一个会计主体，依据相关企业会计准则的确认、计量\n\n和列报要求，按照统一的会计政策，反映本企业集团整体财务状况、经营成果和现金流量。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 111,
+                    "quote": "本公司确认共同经营中利益份额中与本公司相关的下列项目，并按照相关企业会计准则的规"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 127,
+                    "quote": "制但不构成控制的，按照《企业会计准则第22 号——金融工具确认和计量》确定的原持有的股\n\n权投资的公允价值加上新增投资成本之和，作为改按权益法核算的初始投资成本。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 128,
+                    "quote": "购买日之前持有的股权投资按照《企业会计准则第22 号——金融工具确认和计量》的有关\n\n规定进行会计处理的，原计入其他综合收益的累计公允价值变动在改按成本法核算时转入留存收\n\n益。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 129,
+                    "quote": "实施共同控制或施加重大影响的，改按《企业会计准则第22 号——金融工具确认和计量》的有\n\n关规定进行会计处理，其在丧失控制之日的公允价值与账面价值间的差额计入当期损益。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 141,
+                    "quote": "本公司对于为履行合同发生的成本，不属于除收入准则外的其他企业会计准则范围且同时满\n\n足下列条件的作为合同履约成本确认为一项资产：\n\n  1）该成本与一份当前或预期取得的合同直接相关，包括直接人工、直接材料、制造费用（或\n\n类似费用）、明确由客户承担的成本以及仅因该合同而发生的其他成本；\n\n  2）该成本增加了企业未来用于履行履约义务的资源；\n\n  3）该成本预期能够收回。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 144,
+                    "quote": "照租赁准则进行会计处理，非租赁部分应当按照其他适用的企业会计准则进行会计处理。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 147,
+                    "quote": "根据企业会计准则，在套期开始及之后，公司会持续地对套期有效性进行评价，以检查有关套期\n\n在套期关系被指定的会计期间内是否高度有效。"
+                  },
+                  {
+                    "basis": "CAS",
+                    "page": 205,
+                    "quote": "1、由于《企业会计准则》及其相关新规定进行追溯调整，影响期初未分配利润0元。"
+                  }
+                ]
+              }
+            },
+            "bbox": [
+              277.54998779296875,
+              364.69000244140625,
+              371.75,
+              388.5400085449219
+            ]
+          }
+        }
+      },
+      "nonrecurring": {
+        "value": "402369381.91",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+          "report": "伊利股份2024年年度报告.pdf",
+          "page": 9,
+          "table_id": "d84573bf6b584e7e874faa4c6adf454a:t12",
+          "row": 14,
+          "column": 4,
+          "column_label": "2023 年金额",
+          "text": "合计",
+          "raw_value": "402,369,381.91",
+          "data_kind": "disclosed_actual"
+        }
+      },
+      "calculated": {
+        "value": "10026171076.03",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [
+            {
+              "fact_id": "b4a2447b0c0c48e299aba9c05825055b",
+              "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+              "metric": "net_profit_parent",
+              "period": "2023-FY",
+              "scope": "consolidated_CAS",
+              "quality": "script_normalized",
+              "dimensions": {},
+              "source_ref": {
+                "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+                "page": 92,
+                "table_id": "d84573bf6b584e7e874faa4c6adf454a:t105",
+                "row": 10,
+                "column": 4,
+                "cell": "D10",
+                "text": "1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94",
+                "normalization": {
+                  "engine": "DeterministicRules",
+                  "version": "langextract-finance-0.4.0",
+                  "model": "gpt-6-luna",
+                  "label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+                  "statement": "income",
+                  "period_start": "2023-01-01",
+                  "period_end": "2023-12-31",
+                  "restatement": "original",
+                  "dimensions": {},
+                  "scale": "1",
+                  "char_interval": [
+                    0,
+                    12
+                  ],
+                  "row_metric": "net_profit_parent",
+                  "row_label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+                  "column_metric": null,
+                  "column_label": null,
+                  "dimension_labels": {},
+                  "unit_kind": "money",
+                  "accounting_basis": {
+                    "basis": "CAS",
+                    "version": "accounting-basis-1",
+                    "status": "identified"
+                  },
+                  "standard_row_version": "standard-rows-4",
+                  "cleaning_rule": {
+                    "id": "standard:cleaning-rules-5/standard-rows-4",
+                    "version": "cleaning-rules-5/standard-rows-4"
+                  },
+                  "original_extraction_hash": "b3d6d9bf87824d1b32ac814215393251c2d453348ab1d80544ea23349657d9b5",
+                  "source_key": "2baa5aa075c495002e7c1a37fd50cc4907fdc3c17a2a4e30cb45fffa56367459",
+                  "source_fingerprint": "36fddf7906da505c59ee50255ff2108b05d597e8d06d962832b00926ea38f1ae",
+                  "processing_id": "59a9b61cf6364453a5fb749e0412a8f0"
+                },
+                "bbox": [
+                  454.8999938964844,
+                  241.69000244140625,
+                  554.5700073242188,
+                  260.6400146484375
+                ]
+              }
+            },
+            {
+              "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 9,
+              "table_id": "d84573bf6b584e7e874faa4c6adf454a:t12",
+              "row": 14,
+              "column": 4,
+              "column_label": "2023 年金额",
+              "text": "合计",
+              "raw_value": "402,369,381.91",
+              "data_kind": "disclosed_actual"
+            }
+          ],
+          "formula": "归母净利润-非经常性损益合计",
+          "missing_reason": null
+        }
+      },
+      "residual": {
+        "value": "0.00",
+        "unit": "元",
+        "currency": "CNY",
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [
+            {
+              "fact_id": "68114c990fc64df48675077a4668752a",
+              "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+              "metric": "net_profit_excluding_nonrecurring",
+              "period": "2023-FY",
+              "scope": "consolidated_CAS",
+              "quality": "script_normalized",
+              "dimensions": {},
+              "source_ref": {
+                "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+                "page": 7,
+                "table_id": "d84573bf6b584e7e874faa4c6adf454a:t8",
+                "row": 4,
+                "column": 3,
+                "cell": "C4",
+                "text": "归属于上市公司股东的扣除非\n经常性损益的净利润 | 6,011,274,945.92 | 10,026,171,076.03 | -40.04 | 8,585,692,731.44",
+                "normalization": {
+                  "engine": "PythonScript",
+                  "version": "langextract-finance-0.4.0",
+                  "model": "gpt-6-luna",
+                  "label": "归属于上市公司股东的扣除非\n经常性损益的净利润",
+                  "statement": "notes",
+                  "period_start": "2023-01-01",
+                  "period_end": "2023-12-31",
+                  "restatement": "original",
+                  "dimensions": {},
+                  "scale": "1",
+                  "char_interval": [
+                    0,
+                    9
+                  ],
+                  "row_metric": "net_profit_excluding_nonrecurring",
+                  "row_label": "归属于上市公司股东的扣除非\n经常性损益的净利润",
+                  "column_metric": null,
+                  "column_label": null,
+                  "dimension_labels": {},
+                  "entity_kind": "company",
+                  "unit_kind": "money",
+                  "accounting_basis": {
+                    "basis": "CAS",
+                    "version": "accounting-basis-1",
+                    "status": "identified"
+                  },
+                  "standard_row_version": "standard-rows-4",
+                  "original_extraction_hash": "3fdf19fa3abd2adbc868d39390f255e7e19c874151a607003ce285e5d933c586",
+                  "source_key": "8e1d56be719e005f5428c0c00c8eaa5681e4e309d9812ddf56c97006a0db3956",
+                  "source_fingerprint": "9b0e671d10e475c5d7107f592ec989adacfa1caef4027c98a8fef5f3403ebcce",
+                  "processing_id": "59a9b61cf6364453a5fb749e0412a8f0",
+                  "source_semantics": {
+                    "scope": {
+                      "scope": "consolidated",
+                      "quote": "(一)主要会计数据\n归属于上市公司股东的净利润"
+                    },
+                    "version": "source-period-scope-2"
+                  },
+                  "document_semantics_revision": {
+                    "processing_id": "f1.3-live-yili-20261008",
+                    "reason": "source_basis_dimensions_period_scope",
+                    "basis_evidence": [
+                      {
+                        "basis": "CAS",
+                        "page": 83,
+                        "quote": "我们认为，后附的财务报表在所有重大方面按照企业会计准则的规定编制，公允反映了伊利\n\n集团2024 年12 月31 日的合并及母公司财务状况以及2024 年度的合并及母公司经营成果和现金\n\n流量。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 84,
+                        "quote": "管理层负责按照企业会计准则的规定编制财务报表，使其实现公允反映，并设计、执行和维\n\n护必要的内部控制，以使财务报表不存在由于舞弊或错误导致的重大错报。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 105,
+                        "quote": "业会计准则——基本准则》和具体企业会计准则、企业会计准则应用指南、企业会计准则解释及\n\n其他相关规定（以下合称“企业会计准则”）进行确认和计量，在此基础上，结合中国证券监督\n\n管理委员会《公开发行证券的公司信息披露编报规则第15 号——财务报告的一般规定》（2023\n\n年修订）的规定，编制财务报表。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 106,
+                        "quote": "1、遵循企业会计准则的声明\n\n  本公司所编制的财务报表符合企业会计准则的要求，真实、准确、完整地反映了公司的财务\n\n状况、经营成果、股东权益变动和现金流量等有关信息。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 109,
+                        "quote": "司编制合并财务报表，将整个企业集团视为一个会计主体，依据相关企业会计准则的确认、计量\n\n和列报要求，按照统一的会计政策，反映本企业集团整体财务状况、经营成果和现金流量。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 111,
+                        "quote": "本公司确认共同经营中利益份额中与本公司相关的下列项目，并按照相关企业会计准则的规"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 127,
+                        "quote": "制但不构成控制的，按照《企业会计准则第22 号——金融工具确认和计量》确定的原持有的股\n\n权投资的公允价值加上新增投资成本之和，作为改按权益法核算的初始投资成本。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 128,
+                        "quote": "购买日之前持有的股权投资按照《企业会计准则第22 号——金融工具确认和计量》的有关\n\n规定进行会计处理的，原计入其他综合收益的累计公允价值变动在改按成本法核算时转入留存收\n\n益。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 129,
+                        "quote": "实施共同控制或施加重大影响的，改按《企业会计准则第22 号——金融工具确认和计量》的有\n\n关规定进行会计处理，其在丧失控制之日的公允价值与账面价值间的差额计入当期损益。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 141,
+                        "quote": "本公司对于为履行合同发生的成本，不属于除收入准则外的其他企业会计准则范围且同时满\n\n足下列条件的作为合同履约成本确认为一项资产：\n\n  1）该成本与一份当前或预期取得的合同直接相关，包括直接人工、直接材料、制造费用（或\n\n类似费用）、明确由客户承担的成本以及仅因该合同而发生的其他成本；\n\n  2）该成本增加了企业未来用于履行履约义务的资源；\n\n  3）该成本预期能够收回。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 144,
+                        "quote": "照租赁准则进行会计处理，非租赁部分应当按照其他适用的企业会计准则进行会计处理。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 147,
+                        "quote": "根据企业会计准则，在套期开始及之后，公司会持续地对套期有效性进行评价，以检查有关套期\n\n在套期关系被指定的会计期间内是否高度有效。"
+                      },
+                      {
+                        "basis": "CAS",
+                        "page": 205,
+                        "quote": "1、由于《企业会计准则》及其相关新规定进行追溯调整，影响期初未分配利润0元。"
+                      }
+                    ]
+                  }
+                },
+                "bbox": [
+                  277.54998779296875,
+                  364.69000244140625,
+                  371.75,
+                  388.5400085449219
+                ]
+              }
+            },
+            {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "fact_id": "b4a2447b0c0c48e299aba9c05825055b",
+                  "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+                  "metric": "net_profit_parent",
+                  "period": "2023-FY",
+                  "scope": "consolidated_CAS",
+                  "quality": "script_normalized",
+                  "dimensions": {},
+                  "source_ref": {
+                    "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+                    "page": 92,
+                    "table_id": "d84573bf6b584e7e874faa4c6adf454a:t105",
+                    "row": 10,
+                    "column": 4,
+                    "cell": "D10",
+                    "text": "1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94",
+                    "normalization": {
+                      "engine": "DeterministicRules",
+                      "version": "langextract-finance-0.4.0",
+                      "model": "gpt-6-luna",
+                      "label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+                      "statement": "income",
+                      "period_start": "2023-01-01",
+                      "period_end": "2023-12-31",
+                      "restatement": "original",
+                      "dimensions": {},
+                      "scale": "1",
+                      "char_interval": [
+                        0,
+                        12
+                      ],
+                      "row_metric": "net_profit_parent",
+                      "row_label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+                      "column_metric": null,
+                      "column_label": null,
+                      "dimension_labels": {},
+                      "unit_kind": "money",
+                      "accounting_basis": {
+                        "basis": "CAS",
+                        "version": "accounting-basis-1",
+                        "status": "identified"
+                      },
+                      "standard_row_version": "standard-rows-4",
+                      "cleaning_rule": {
+                        "id": "standard:cleaning-rules-5/standard-rows-4",
+                        "version": "cleaning-rules-5/standard-rows-4"
+                      },
+                      "original_extraction_hash": "b3d6d9bf87824d1b32ac814215393251c2d453348ab1d80544ea23349657d9b5",
+                      "source_key": "2baa5aa075c495002e7c1a37fd50cc4907fdc3c17a2a4e30cb45fffa56367459",
+                      "source_fingerprint": "36fddf7906da505c59ee50255ff2108b05d597e8d06d962832b00926ea38f1ae",
+                      "processing_id": "59a9b61cf6364453a5fb749e0412a8f0"
+                    },
+                    "bbox": [
+                      454.8999938964844,
+                      241.69000244140625,
+                      554.5700073242188,
+                      260.6400146484375
+                    ]
+                  }
+                },
+                {
+                  "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+                  "report": "伊利股份2024年年度报告.pdf",
+                  "page": 9,
+                  "table_id": "d84573bf6b584e7e874faa4c6adf454a:t12",
+                  "row": 14,
+                  "column": 4,
+                  "column_label": "2023 年金额",
+                  "text": "合计",
+                  "raw_value": "402,369,381.91",
+                  "data_kind": "disclosed_actual"
+                }
+              ],
+              "formula": "归母净利润-非经常性损益合计",
+              "missing_reason": null
+            }
+          ],
+          "formula": "披露扣非-计算扣非",
+          "missing_reason": null
+        }
+      },
+      "share": {
+        "value": "3.858347997333099177955932704564606097468",
+        "unit": "%",
+        "currency": null,
+        "source": {
+          "data_kind": "calculation",
+          "inputs": [
+            {
+              "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 9,
+              "table_id": "d84573bf6b584e7e874faa4c6adf454a:t12",
+              "row": 14,
+              "column": 4,
+              "column_label": "2023 年金额",
+              "text": "合计",
+              "raw_value": "402,369,381.91",
+              "data_kind": "disclosed_actual"
+            },
+            {
+              "fact_id": "b4a2447b0c0c48e299aba9c05825055b",
+              "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+              "metric": "net_profit_parent",
+              "period": "2023-FY",
+              "scope": "consolidated_CAS",
+              "quality": "script_normalized",
+              "dimensions": {},
+              "source_ref": {
+                "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+                "page": 92,
+                "table_id": "d84573bf6b584e7e874faa4c6adf454a:t105",
+                "row": 10,
+                "column": 4,
+                "cell": "D10",
+                "text": "1.归属于母公司股东的净利润（净亏损以“-”号填列） |  | 8,452,859,993.18 | 10,428,540,457.94",
+                "normalization": {
+                  "engine": "DeterministicRules",
+                  "version": "langextract-finance-0.4.0",
+                  "model": "gpt-6-luna",
+                  "label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+                  "statement": "income",
+                  "period_start": "2023-01-01",
+                  "period_end": "2023-12-31",
+                  "restatement": "original",
+                  "dimensions": {},
+                  "scale": "1",
+                  "char_interval": [
+                    0,
+                    12
+                  ],
+                  "row_metric": "net_profit_parent",
+                  "row_label": "1.归属于母公司股东的净利润（净亏损以“-”号填列）",
+                  "column_metric": null,
+                  "column_label": null,
+                  "dimension_labels": {},
+                  "unit_kind": "money",
+                  "accounting_basis": {
+                    "basis": "CAS",
+                    "version": "accounting-basis-1",
+                    "status": "identified"
+                  },
+                  "standard_row_version": "standard-rows-4",
+                  "cleaning_rule": {
+                    "id": "standard:cleaning-rules-5/standard-rows-4",
+                    "version": "cleaning-rules-5/standard-rows-4"
+                  },
+                  "original_extraction_hash": "b3d6d9bf87824d1b32ac814215393251c2d453348ab1d80544ea23349657d9b5",
+                  "source_key": "2baa5aa075c495002e7c1a37fd50cc4907fdc3c17a2a4e30cb45fffa56367459",
+                  "source_fingerprint": "36fddf7906da505c59ee50255ff2108b05d597e8d06d962832b00926ea38f1ae",
+                  "processing_id": "59a9b61cf6364453a5fb749e0412a8f0"
+                },
+                "bbox": [
+                  454.8999938964844,
+                  241.69000244140625,
+                  554.5700073242188,
+                  260.6400146484375
+                ]
+              }
+            }
+          ],
+          "formula": "非经常性损益合计/归母净利润*100",
+          "missing_reason": null
+        }
+      }
+    }
+  ],
+  "cell_units": [
+    {},
+    {}
+  ],
+  "row_keys": [
+    "2024-FY",
+    "2023-FY"
+  ]
+}
