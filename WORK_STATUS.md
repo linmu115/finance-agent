@@ -1,3 +1,9 @@
+# 当前主线：N3 修复与 K4 expectations 已验收，统一冻结上线（2026-10-08）
+
+N3 合并 eb7fdd8（目标 5cc8ab1），K4 精确合并 2572972。expectations 仅金融组开放并接入 A1/报告包，未齐口径差额为 reference_gaps、跨口径关联为 version_links。K4 58 项 Python、7 项宿主、类型检查及生产构建通过；N3 唯一 110 项 Python、13 项宿主最终通过。无模型调用和主库事实改写。
+
+金融 30,551 字符 / 粗估 10,002 token，prepared 9,295 / 2,923；工具数 40 / 13，K4 仅新增两个可选参数。12:41:59 空闲检查通过；提交后再次查空闲并仅重启一次，①–⑤、用户提供来源、入库修复、K4 一起加载。实际冻结 SHA、运行 PID/时间、健康结果与两组摘要以 data/evaluation/analyst-freeze-20261008/manifest.json、handoff.md 为准，旧交接保留。详见 design/expectations-freeze-deploy-20261008.md。
+
 # 当前主线：N3 断点与期间修复已合并验收，继续合并 K4 后统一上线（2026-10-08）
 
 精确合并 70d9df0..5cc8ab1，保留 1828c22 正式入库记录。默认复用 processing_id、按已提交文档进度续跑、文档期间判定、数值行不能当表头。Python 唯一 110 项、宿主 13 项最终通过，类型检查通过；两处旧测试预期适配及首轮失败保留。生产事实未改，未付费调用，3001 尚未重启。用户追加 K4 expectations（2572972），两项完成后统一构建、重启一次，最终冻结以包含 K4 的版本为准。详见 design/ingestion-defects-merge-20261008.md。

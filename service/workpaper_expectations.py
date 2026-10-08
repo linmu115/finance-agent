@@ -3,6 +3,7 @@ from collections import defaultdict
 from datetime import date
 from decimal import Decimal, localcontext
 import json
+import re
 
 from .analysis_report import convert, record_quantity, stated_quantity, unit_info
 from .financial_workpapers import WorkpaperInputError, cell, col, table
@@ -12,12 +13,18 @@ BASE_UNIT = {'money':'元','per_share':'元/股','shares':'股','ratio':'ratio',
              'multiple':'倍','days':'天','count':'个','percentage_points':'个百分点'}
 
 
+def publisher_key(name):
+    """Legal suffixes do not identify a different research institution."""
+    return re.sub(r'(?:股份有限公司|有限责任公司|有限公司)$', '', name or '').strip()
+
+
 def quantity(record):
     q = stated_quantity(record) if 'unit' in record else record_quantity(record)
     dimension = unit_info(q['unit'])[0]
     unit = BASE_UNIT[dimension]
     value = convert(q['value'],q['unit'],unit)
     src = q.get('source') or {k:record[k] for k in ('record_id','fact_id','document_id','source_ref','data_kind') if k in record}
+    src = {**src, **{k:record[k] for k in ('publisher','published_at','basis','restatement','source_entity_id','basis_evidence') if k in record}}
     return dict(value=None if value is None else Decimal(value),unit=unit,currency=q['currency'],source=src,dimension=dimension)
 
 
@@ -25,7 +32,7 @@ def identity(r, q):
     # Never collapse scope, EPS basis, scenarios, segments or entities by a display label.
     dimensions = {k:v for k,v in (r.get('dimensions') or {}).items() if k != 'source_table'}
     return (r['entity_id'],r['metric'],r['period'],r.get('scope'),r.get('scenario','unspecified'),
-            r.get('basis'),json.dumps(dimensions,sort_keys=True,ensure_ascii=False),q['unit'],q['currency'])
+            r.get('basis'),r.get('restatement'),json.dumps(dimensions,sort_keys=True,ensure_ascii=False),q['unit'],q['currency'])
 
 
 def dated(r):
@@ -60,8 +67,10 @@ def _expectations(records, actuals, cutoff):
         index += 1
         return {'key':str(index),'entity':r.get('company') or r.get('entity',{}).get('name') or r['entity_id'],
                 'entity_id':r['entity_id'],'publisher':r.get('publisher'),'published_at':r.get('published_at'),
+                'institution':publisher_key(r.get('publisher')),'label':r.get('label',r['metric']),
                 'period':r['period'],'metric':r['metric'],'scope':r.get('scope'),
                 'scenario':r.get('scenario','unspecified'),'basis':r.get('basis'),
+                'restatement':r.get('restatement'),
                 'dimensions':json.dumps(r.get('dimensions',{}),sort_keys=True,ensure_ascii=False),
                 'record':r.get('record_id') or r.get('fact_id'),
                 'value':cell(q['value'],q['unit'],q['currency'],[q['source']])}
@@ -69,15 +78,16 @@ def _expectations(records, actuals, cutoff):
     for r in records:
         if r.get('value') is None and not r.get('metric'):continue  # Prose has no forecast amount.
         q=quantity(r);p=part(q);d=dated(r);row=desc(r,q)
-        if r.get('data_kind')!='analyst_forecast':reason='非机构预测，不进入当时预期'
-        elif d is None:reason='发布日期不明，不进入当时预期'
+        if d is None:reason='发布日期不明，不进入当时预期'
         elif cutoff and d>cutoff:reason='晚于预测截止日'
+        elif r.get('data_kind')!='analyst_forecast':reason='非机构预测，不进入当时预期'
+        elif r.get('exclusion_reason'):reason=r['exclusion_reason']
         elif not r.get('publisher'):reason='机构不明，不能分配预测版本'
         elif not r.get('scope'):reason='口径不明，不能与实际值匹配'
         else:reason=None
         row['status']=reason or '纳入'
         buckets[p]['excluded' if reason else 'ledger'].append(row)
-        if reason is None:groups[(r['publisher'],identity(r,q))].append((r,q,row))
+        if reason is None:groups[(publisher_key(r['publisher']),identity(r,q))].append((r,q,row))
     for r in actuals:
         if not r.get('fact_id') and r.get('data_kind')!='reported_actual':
             raise WorkpaperInputError('actuals 必须是原财报事实或显式 reported_actual；不能把研报 quoted_actual/预测当作实际值')
@@ -103,10 +113,12 @@ def _expectations(records, actuals, cutoff):
                 'status':reason or '可比较'})
             previous={'date':publication,'value':v,'refs':refs,'reason':reason,'record':r,'q':q,'base':base}
         latest=previous;r=latest['record'];q=latest['q'];v=latest['value'];p=part(q)
+        if r.get('superseded_for_comparison'):continue
         candidates=actual_groups.get(actual_identity(ident),[])
         actual_values={x[1]['value'] for x in candidates}
         actual=next(iter(actual_values)) if len(actual_values)==1 else None
         reason=latest['reason']
+        if r.get('scope')=='unspecified':reason=reason or '机构会计/合并口径不明，不能计算同口径误差；数值参照另列'
         if not candidates:reason=reason or '缺少相同主体、年度、指标、口径、每股/重述口径和币种的原财报实际值'
         elif len(actual_values)>1:reason=reason or '同口径实际值冲突，未任取一条'
         elif actual is None:reason=reason or '实际值缺失'
@@ -140,7 +152,7 @@ def _expectations(records, actuals, cutoff):
     observation_rows.sort(key=lambda r:(r['difference_rate']['value'] is not None,abs(Decimal(r['difference_rate']['value'] or '0'))),reverse=True)
     tabs={}
     common={k:col(v) for k,v in [('key','行键'),('entity','主体'),('entity_id','主体身份'),('publisher','机构'),('published_at','预测发布日期'),
-                                ('period','预测/实际期间'),('metric','指标'),('scope','报告口径'),('scenario','情景'),('basis','每股/重述口径'),('dimensions','维度'),('record','原记录'),('status','状态')]}
+                                ('institution','机构归组（法律后缀统一）'),('label','来源标签'),('period','预测/实际期间'),('metric','指标'),('scope','报告口径'),('scenario','情景'),('basis','每股口径'),('restatement','重述口径'),('dimensions','维度'),('record','原记录'),('status','状态')]}
     for (dimension,unit,currency),families in sorted(buckets.items(),key=lambda pair:str(pair[0])):
         suffix=f'{currency or "unitless"}_{dimension}'
         for family,rows in families.items():

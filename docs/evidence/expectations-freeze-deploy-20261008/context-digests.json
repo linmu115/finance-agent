@@ -1,0 +1,102 @@
+{
+  "method": "Native Pi session, empty b4_measurement project; no prompt/model call. Tool array retains order and full name, description and parameters. UTF-8 SHA-256. tools=JSON.stringify(tools), combined=JSON.stringify({system,tools}) with this key order. Raw snapshot unchanged. Normalized instructions replace only the path inside the trailing <cwd> block with <WORKSPACE>, because Pi assigns a random workspace UUID per conversation. No other normalization or sorting.",
+  "normalization_js": "s.replace(/(<cwd>\\n)[^\\n]+(\\n<\\/cwd>)$/, '$1<WORKSPACE>$2')",
+  "scope": "Captured static model-visible instructions and tool schema; no history, dynamic results or attachments. Evaluation-project-specific resources/configuration and actual model-visible context must still be retained by formal runs.",
+  "profiles": {
+    "prepared": {
+      "before": {
+        "chars": 9295,
+        "rough_tokens": 2923,
+        "system_chars": 697,
+        "tool_count": 13
+      },
+      "after": {
+        "chars": 9295,
+        "rough_tokens": 2923,
+        "system_chars": 697,
+        "tool_count": 13
+      },
+      "tools": [
+        "list_documents",
+        "prepare_document_sources",
+        "query_research_records",
+        "get_data_catalog",
+        "get_document_index",
+        "query_financial_data",
+        "get_document",
+        "get_source_page",
+        "get_source_table",
+        "search_evidence",
+        "run_analysis",
+        "get_analysis_status",
+        "get_artifact"
+      ],
+      "system_raw_sha256": "7304206f2c0a926a644315276b11c2cd37e5662d76fd85657be47e41bf1860cb",
+      "instructions_sha256": "a1397cc8b4a495084d1da0fbadbca565c533a807043eb8508b36e29b3a385ab4",
+      "tools_sha256": "0ce711e6e7f76c7f1314e80898524ca5324b2368948e84aed7939af846d42c37",
+      "context_raw_sha256": "2f0cb421c0e27fec596361ead464464546df0589b2071434cda02b0859bf150f",
+      "context_normalized_sha256": "2a2852ab46b5f9bbc178f2a2a3b75eba48330768af62d43e98b52f727e850612"
+    },
+    "financial": {
+      "before": {
+        "chars": 30156,
+        "rough_tokens": 9837,
+        "system_chars": 2702,
+        "tool_count": 40
+      },
+      "after": {
+        "chars": 30551,
+        "rough_tokens": 10002,
+        "system_chars": 2767,
+        "tool_count": 40
+      },
+      "tools": [
+        "request_database_operation",
+        "read_project_skill",
+        "search_web",
+        "fetch_research_source",
+        "read_research_source",
+        "list_research_sources",
+        "run_financial_model",
+        "compare_financial_models",
+        "save_research_report",
+        "get_research_report_schema",
+        "list_research_artifacts",
+        "read_research_artifact",
+        "list_documents",
+        "prepare_document_sources",
+        "get_cleaning_batch",
+        "inspect_document_routing",
+        "set_document_profile",
+        "save_research_claims",
+        "get_research_ingestion_status",
+        "query_research_records",
+        "run_cleaning_script",
+        "get_cleaning_result",
+        "commit_cleaning_result",
+        "get_data_catalog",
+        "get_processing_checkpoint",
+        "get_document_index",
+        "query_financial_data",
+        "get_normalization_details",
+        "get_document",
+        "get_source_page",
+        "get_source_table",
+        "search_evidence",
+        "get_financial_metrics",
+        "financial_workpaper",
+        "calculate_financial_metrics",
+        "run_analysis",
+        "get_analysis_status",
+        "get_artifact",
+        "get_research_model_schema",
+        "process_documents"
+      ],
+      "system_raw_sha256": "8039a82a77afb2def4651fa0eb881fbe2ddebb2122aaa0b6410b19e426909568",
+      "instructions_sha256": "11b4bcded99579dbba1c120bf91a1af3f68c1727781073e6979259133e998fcb",
+      "tools_sha256": "4e661bc000fa3042a8b7b7f86f46a81c80eaead67fe49551ffd6818c99cfbeea",
+      "context_raw_sha256": "bdcc2caa467ffcc0b4b39c50015d5202232fc560783a4e6df6f5e518d22f4c66",
+      "context_normalized_sha256": "ac117217d9e35b9e88913fa0a73119a2edeac3370a4464cd9487690d3e138d4a"
+    }
+  }
+}
