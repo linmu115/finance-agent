@@ -266,6 +266,8 @@ def materialize(extractions, batch, document_id, model):
                       "statement":statement, "period_start":start, "period_end":end, "restatement":version,
                       "dimensions":dims, "scale":str(factor), "char_interval":ex["span"]}
             metadata.update(row_metric=row_metric,row_label=attrs.get("label"),column_metric=column.get("metric"),column_label=column.get("label"),dimension_labels=dimension_labels)
+            if metric == row_metric and attrs.get('source_metric_aliases'):
+                metadata['metric_aliases']=list(attrs['source_metric_aliases'])
             # Interpretation fields travel with the original coordinate. A mixed
             # A/E table is materialized once and separated only at commit time.
             for field in ('data_kind','entity_kind','entity_identifiers','scenario','attribution','upstream_source','period_label'):

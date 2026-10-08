@@ -91,9 +91,9 @@ def reapply_document_facts(service, project_id, document_id, parsed, basis, proc
             if basis['basis']!='unknown':
                 fact['scope']=apply_basis({'schema':{'scope':fact['scope']}},basis)['schema']['scope']
                 meta['accounting_basis']={k:basis[k] for k in ('basis','version','status')}
-            if all(old[k]==fact[k] for k in ('scope','period','year')) and json.loads(old['source_json'])==fact['source']:continue
+            if all(old[k]==fact[k] for k in ('metric','scope','period','year')) and json.loads(old['source_json'])==fact['source']:continue
             db.execute('INSERT INTO fact_history VALUES(?,?,?,?,?,?)',(uuid.uuid4().hex,project_id,document_id,processing_id,dumps(old),utcnow()))
             meta['document_semantics_revision']={'processing_id':processing_id,'reason':'source_basis_dimensions_period_scope','basis_evidence':basis['evidence']}
-            db.execute('UPDATE facts SET scope=?,period=?,year=?,source_json=? WHERE fact_id=?',(fact['scope'],fact['period'],fact['year'],dumps(fact['source']),old['fact_id']))
+            db.execute('UPDATE facts SET metric=?,scope=?,period=?,year=?,source_json=? WHERE fact_id=?',(fact['metric'],fact['scope'],fact['period'],fact['year'],dumps(fact['source']),old['fact_id']))
             changed.append(old['fact_id'])
     return {'updated':len(changed),'history_preserved':len(changed)}

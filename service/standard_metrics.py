@@ -7,7 +7,7 @@ import re
 from typing import NamedTuple
 from .normalization import compact, metric_id
 
-VERSION = 'standard-rows-4'
+VERSION = 'standard-rows-5'
 class StandardMetric(NamedTuple):
     labels: str | None  # None: existing normalization.METRICS row fallback.
     concept: str | None  # Explicitly None when no workpaper consumes this item.
@@ -221,15 +221,15 @@ STANDARD_METRICS = {
  'cash_beginning': StandardMetric('期初现金及现金等价物余额|Cash and cash equivalents at beginning of period|Cash and cash equivalents at beginning of the period', 'cash_begin'),
  'cash_ending': StandardMetric('期末现金及现金等价物余额|Cash and cash equivalents at end of period|Cash and cash equivalents at end of the period', 'cash_end'),
  'exchange_effect_on_cash': StandardMetric('汇率变动对现金及现金等价物的影响|Effect of foreign exchange rate changes, net|Effect of currency translation differences', 'cash_fx'),
- 'revenue': StandardMetric(None, 'revenue'),
- 'net_profit_parent': StandardMetric(None, 'parent_profit'),
- 'assets': StandardMetric(None, 'assets'),
- 'liabilities': StandardMetric(None, 'liabilities'),
- 'cost_of_revenue': StandardMetric(None, 'cogs'),
- 'gross_profit': StandardMetric(None, 'gross_profit'),
- 'net_profit_excluding_nonrecurring': StandardMetric(None, 'deducted_profit'),
- 'eps': StandardMetric(None, None),
- 'roe': StandardMetric(None, None),
+ 'revenue': StandardMetric('营业收入|revenue|revenues|net sales', 'revenue'),
+ 'net_profit_parent': StandardMetric('归属于上市公司股东的净利润|归属于母公司所有者的净利润|归属于母公司股东的净利润|归母净利润', 'parent_profit'),
+ 'assets': StandardMetric('总资产|资产总计|total assets', 'assets'),
+ 'liabilities': StandardMetric('负债合计|负债总计|total liabilities', 'liabilities'),
+ 'cost_of_revenue': StandardMetric('营业成本|cost of revenue|cost of sales', 'cogs'),
+ 'gross_profit': StandardMetric('毛利润|毛利|gross profit', 'gross_profit'),
+ 'net_profit_excluding_nonrecurring': StandardMetric('归属于上市公司股东的扣除非经常性损益的净利润|归属于上市公司股东的扣除非经常性损益后的净利润|扣除非经常性损益后的归属于上市公司股东的净利润|扣非归母净利润', 'deducted_profit'),
+ 'eps': StandardMetric('基本每股收益|basic earnings per share', None),
+ 'roe': StandardMetric('加权平均净资产收益率|return on equity', None),
 }
 ROWS = {key: definition.labels for key, definition in STANDARD_METRICS.items() if definition.labels is not None}
 
@@ -322,6 +322,10 @@ def normalize_label(label):
 LOOKUP = {normalize_label(label): metric for metric, aliases in ROWS.items() for label in aliases.split('|')}
 
 
+def exact_standard_metric(label):
+    return LOOKUP.get(normalize_label(label)) if label is not None else None
+
+
 def standard_metric(label):
     key = normalize_label(label)
     return LOOKUP.get(key) or metric_id(key)
@@ -340,6 +344,9 @@ def canonical_rows(table,rows,label_column=1,statement='notes',schema=None,topic
         if attrs.get('row_subject') is False or len(raw)<label_column:continue
         metric=standard_metric(raw[label_column-1])
         if metric and attrs.get('metric'):
+            if attrs['metric'] != metric:
+                aliases=attrs.setdefault('source_metric_aliases',[])
+                if attrs['metric'] not in aliases:aliases.append(attrs['metric'])
             attrs['metric']=metric
         if statement=='notes' and topic and metric in {'impairment_allowance','trading_financial_assets'}:
             dims=attrs.get('dimensions_json') or {}
