@@ -67,5 +67,17 @@ class MetricContractTests(unittest.TestCase):
         self.assertNotIn('impairment_allowance',ALIASES['inventory_charge'])
         self.assertNotIn('minority_interests',ALIASES['minority_profit'])
 
+    def test_exact_core_spelling_aliases_and_excluded_nearby_concepts(self):
+        expected={'net_profit_parent_ex_nonrecurring':'deducted_profit','net_assets_parent':'parent_equity',
+                  'operating_cash_flow_net':'cfo','net_cash_from_operating_activities':'cfo',
+                  'cash_and_cash_equivalents_ending':'cash_end'}
+        for metric,concept in expected.items():
+            with self.subTest(metric=metric):self.assertEqual(workpaper_concepts(metric),(concept,))
+        for metric in ('cash_ending_balance','cash_equivalents_ending_balance','business_segment_revenue',
+                       'subsidiary_total_assets','research_development_expense',
+                       'net_profit_attributable_to_parent_common_shareholders',
+                       'net_profit_parent_ex_nonrecurring_growth_rate','notes_amount'):
+            with self.subTest(metric=metric):self.assertEqual(workpaper_concepts(metric),())
+
 
 if __name__=='__main__':unittest.main()

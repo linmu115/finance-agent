@@ -1,0 +1,237 @@
+{
+  "baseline": "85a2f07",
+  "model_calls": 0,
+  "database_writes": 0,
+  "added_aliases": {
+    "net_assets_parent": "parent_equity",
+    "operating_cash_flow_net": "cfo",
+    "net_cash_from_operating_activities": "cfo",
+    "cash_and_cash_equivalents_ending": "cash_end",
+    "net_profit_parent_ex_nonrecurring": "deducted_profit"
+  },
+  "canonical_labels_unchanged": true,
+  "concept_count": 69,
+  "datasets": {
+    "yili": {
+      "statement_analysis": {
+        "status": "ok",
+        "tables": 18,
+        "row_counts_unchanged": true,
+        "all_numeric_values_unchanged": true
+      },
+      "variance_attribution": {
+        "status": "ok",
+        "tables": 5,
+        "row_counts_unchanged": true,
+        "all_numeric_values_unchanged": true
+      },
+      "anomaly_signals": {
+        "status": "ok",
+        "tables": 3,
+        "row_counts_unchanged": true,
+        "all_numeric_values_unchanged": true
+      },
+      "period_analysis": {
+        "status": "ok",
+        "tables": 7,
+        "row_counts_unchanged": true,
+        "all_numeric_values_unchanged": true
+      },
+      "comparison": {
+        "status": "ok",
+        "tables": 11,
+        "row_counts_unchanged": true,
+        "all_numeric_values_unchanged": true
+      }
+    },
+    "haier": {
+      "statement_analysis": {
+        "status": "ok",
+        "tables": 18,
+        "row_counts_unchanged": true,
+        "all_numeric_values_unchanged": true
+      },
+      "variance_attribution": {
+        "status": "ok",
+        "tables": 5,
+        "row_counts_unchanged": true,
+        "all_numeric_values_unchanged": true
+      },
+      "anomaly_signals": {
+        "status": "ok",
+        "tables": 3,
+        "row_counts_unchanged": true,
+        "all_numeric_values_unchanged": true
+      },
+      "period_analysis": {
+        "status": "ok",
+        "tables": 7,
+        "row_counts_unchanged": true,
+        "all_numeric_values_unchanged": true
+      },
+      "comparison": {
+        "status": "ok",
+        "tables": 11,
+        "row_counts_unchanged": true,
+        "all_numeric_values_unchanged": true
+      }
+    }
+  },
+  "row_changes": [
+    {
+      "dataset": "haier",
+      "kind": "period_analysis",
+      "table": "quarters",
+      "row": "4",
+      "metric": "deducted_profit",
+      "period": "2024-Q1",
+      "changes": {
+        "basis": {
+          "before": "unspecified",
+          "after": "original"
+        },
+        "origin": {
+          "before": "披露",
+          "after": "推导"
+        },
+        "missing": {
+          "before": "原披露为空白",
+          "after": "同一优先报告、期间和口径存在不同数值；保留候选，未擅选"
+        }
+      }
+    },
+    {
+      "dataset": "haier",
+      "kind": "period_analysis",
+      "table": "quarters",
+      "row": "5",
+      "metric": "deducted_profit",
+      "period": "2024-Q2",
+      "changes": {
+        "basis": {
+          "before": "unspecified",
+          "after": "original"
+        },
+        "origin": {
+          "before": "披露",
+          "after": "推导"
+        },
+        "missing": {
+          "before": "原披露为空白",
+          "after": "同一优先报告、期间和口径存在不同数值；保留候选，未擅选"
+        }
+      }
+    },
+    {
+      "dataset": "haier",
+      "kind": "period_analysis",
+      "table": "quarters",
+      "row": "6",
+      "metric": "deducted_profit",
+      "period": "2024-Q3",
+      "changes": {
+        "basis": {
+          "before": "unspecified",
+          "after": "original"
+        },
+        "origin": {
+          "before": "披露",
+          "after": "推导"
+        },
+        "missing": {
+          "before": "原披露为空白",
+          "after": "同一优先报告、期间和口径存在不同数值；保留候选，未擅选"
+        }
+      }
+    },
+    {
+      "dataset": "haier",
+      "kind": "period_analysis",
+      "table": "quarters",
+      "row": "7",
+      "metric": "deducted_profit",
+      "period": "2024-Q4",
+      "changes": {
+        "basis": {
+          "before": "unspecified",
+          "after": "original"
+        },
+        "origin": {
+          "before": "披露",
+          "after": "推导"
+        },
+        "missing": {
+          "before": "原披露为空白",
+          "after": "同一优先报告、期间和口径存在不同数值；保留候选，未擅选"
+        }
+      }
+    },
+    {
+      "dataset": "haier",
+      "kind": "period_analysis",
+      "table": "cumulatives",
+      "row": "5",
+      "metric": "deducted_profit",
+      "period": "2024-YTD1",
+      "changes": {
+        "basis": {
+          "before": "unspecified",
+          "after": "original"
+        },
+        "origin": {
+          "before": "披露",
+          "after": "推导"
+        },
+        "missing": {
+          "before": "原披露为空白",
+          "after": "同一优先报告、期间和口径存在不同数值；保留候选，未擅选"
+        }
+      }
+    },
+    {
+      "dataset": "haier",
+      "kind": "period_analysis",
+      "table": "cumulatives",
+      "row": "6",
+      "metric": "deducted_profit",
+      "period": "2024-YTD2",
+      "changes": {
+        "basis": {
+          "before": "unspecified",
+          "after": "original"
+        }
+      }
+    },
+    {
+      "dataset": "haier",
+      "kind": "period_analysis",
+      "table": "cumulatives",
+      "row": "7",
+      "metric": "deducted_profit",
+      "period": "2024-YTD3",
+      "changes": {
+        "basis": {
+          "before": "unspecified",
+          "after": "original"
+        }
+      }
+    },
+    {
+      "dataset": "haier",
+      "kind": "period_analysis",
+      "table": "cumulatives",
+      "row": "8",
+      "metric": "deducted_profit",
+      "period": "2024-YTD4",
+      "changes": {
+        "basis": {
+          "before": "unspecified",
+          "after": "original"
+        }
+      }
+    }
+  ],
+  "all_facts_and_history_unchanged": true,
+  "haier_known_limitation": "X7: disclosed deducted profit remains null because financial_item/version dimensions are excluded by existing selection. Calculated profit is kept separately, never adopted as disclosed.",
+  "haier_period_limitation": "Eight quarter/cumulative rows retain null amounts; basis changes to original after alias recognition. Five missing reasons now preserve conflicting fact/blank source-table candidates. No numeric value or count changes."
+}

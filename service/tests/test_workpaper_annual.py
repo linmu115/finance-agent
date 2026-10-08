@@ -45,6 +45,22 @@ class AnnualWorkpapersTests(unittest.TestCase):
         self.assertEqual(t['nonrecurring_items']['rows'][3]['2024-FY'],None)
         self.assertEqual(len(t['nonrecurring_items']['rows']),25)
 
+    def test_deducted_alias_uses_disclosed_fact_without_changing_dimension_selection(self):
+        changed=[]
+        for f in self.facts:
+            if f['metric']=='net_profit_excluding_nonrecurring':
+                f['metric']='net_profit_parent_ex_nonrecurring';changed.append(f)
+        self.assertTrue(changed)
+        tab=self.report()['tables']['deducted_profit']
+        self.assertEqual(tab['rows'][0]['disclosed'],'6011.27494592')
+        self.assertEqual(tab['evidence'][0]['disclosed']['source']['metric'],'net_profit_parent_ex_nonrecurring')
+        for f in changed:
+            f['dimensions']={'financial_item':'net_profit_excluding_nonrecurring'}
+            f['source_ref']['normalization']['dimensions']=f['dimensions']
+        row=self.report()['tables']['deducted_profit']['rows'][0]
+        self.assertIsNone(row['disclosed'])
+        self.assertEqual(row['calculated'],'6011.27494592')
+
     def test_complete_continuation_bridge_and_quarters(self):
         t=self.report()['tables'];rows=t['indirect_bridge']['rows']
         self.assertEqual(len(rows),40)
