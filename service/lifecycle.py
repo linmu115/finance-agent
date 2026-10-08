@@ -98,9 +98,10 @@ def shutdown_service(service):
 
 
 class _EofStdin:
-    def __init__(self, stream, service):
+    def __init__(self, stream, service, payloads=None):
         self.stream = stream
         self.service = service
+        self.payloads = payloads
 
     def __aiter__(self):
         return self
@@ -108,6 +109,17 @@ class _EofStdin:
     async def __anext__(self):
         line = await self.stream.readline()
         if line:
+            if self.payloads:
+                import anyio
+                try:
+                    return await anyio.to_thread.run_sync(self.payloads.unpack, line)
+                except (OSError, ValueError) as exc:
+                    # Let MCP report an error for this request, retaining its ID.
+                    import json
+                    message=json.loads(line)
+                    message['method']='tools/call'
+                    message['params']={'name':'mcp_payload_failure','arguments':{'error':str(exc)}}
+                    return json.dumps(message)+'\n'
             return line
         import anyio
         await anyio.to_thread.run_sync(request_service_shutdown, self.service)
@@ -120,9 +132,12 @@ def run_service_stdio(mcp, service, ownership):
     from mcp.server.stdio import stdio_server
 
     async def serve():
-        stream = _EofStdin(anyio.wrap_file(TextIOWrapper(sys.stdin.buffer, encoding='utf-8')), service)
+        from .mcp_payloads import PayloadFiles, PayloadStdout
+        payloads=PayloadFiles(service.store.root)
+        stream = _EofStdin(anyio.wrap_file(TextIOWrapper(sys.stdin.buffer, encoding='utf-8')), service, payloads)
+        output=PayloadStdout(anyio.wrap_file(TextIOWrapper(sys.stdout.buffer, encoding='utf-8')),payloads)
         # Equivalent to FastMCP.run_stdio_async with an EOF-aware input adapter.
-        async with stdio_server(stdin=stream) as (read_stream, write_stream):
+        async with stdio_server(stdin=stream,stdout=output) as (read_stream, write_stream):
             await mcp._mcp_server.run(read_stream, write_stream, mcp._mcp_server.create_initialization_options())
 
     try:

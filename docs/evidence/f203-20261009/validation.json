@@ -1,0 +1,72 @@
+{
+  "base": "b559f06149d1e4d431cb18521c027ce00dd44891",
+  "version": "F2.0.3 candidate",
+  "deployed": false,
+  "paid_calls": 0,
+  "production_writes": 0,
+  "tests": {
+    "python": {
+      "passed": 15,
+      "skipped": 1,
+      "preexisting_failure": 1,
+      "failure": "test_mcp snapshot mismatch also reproduced on unchanged F2.0.2 main; new host-only metadata tool is not in the compared set",
+      "skipped_reason": "unmodified matplotlib plot test requires plot environment"
+    },
+    "node_unique": {
+      "passed": 17,
+      "failed": 0,
+      "includes": [
+        "payload transport",
+        "actual 7.22MB/32MiB download",
+        "private process reconnect",
+        "in-flight reads and uncertain mutation",
+        "service ownership lifecycle",
+        "three-arm native capture",
+        "research-artifact regression"
+      ]
+    },
+    "real_sdk": {
+      "cases": 15,
+      "all_deep_equal": true,
+      "max_wire_bytes": 1528447
+    }
+  },
+  "checks": {
+    "typecheck_server": "passed",
+    "typecheck_web": "passed",
+    "build_server": "passed",
+    "build_web": "passed",
+    "dependency_integrity_main": "passed",
+    "worktree_note": "node_modules junction rejected by npm pre-hook; verified real dependency directory, invoked same tsc/vite binaries explicitly",
+    "request_handle_failure": "actual MCP: failed request not executed, concurrent read succeeded, no reconnect"
+  },
+  "model_visible": {
+    "original_pi": {
+      "tools": 10,
+      "tools_sha256": "e67785cc82164f505ad823d1c7f0cf4c0172eb24aa5024dddf67bacc49697f2f",
+      "preamble_sha256": "6c71fd727034260afcaa6e29e833ff27000cb7f246b2b0ffc83aa867be20c32f"
+    },
+    "prepared": {
+      "tools": 13,
+      "tools_sha256": "aa5296cc7cdebd128908aae366757f2d8166382a0deeb55e73f7365109fcb0f8",
+      "preamble_sha256": "277d3f66d7117f3a26081664156724289e4db87021e0127f1816e9fbe96f448e"
+    },
+    "financial": {
+      "tools": 32,
+      "tools_sha256": "24b6ee835da7ebc05f0c6313a46745bbf2e376015bc46d82814f5603bb7b3c22",
+      "preamble_sha256": "fae4ef92017b6812f0aa7cc83e6400cb63c376709364a5af2d29cc0a56f39554"
+    }
+  },
+  "transport": {
+    "inline_bytes": 2097152,
+    "sdk_limit": 10485760,
+    "automatic_read_replays": 1,
+    "reconnect_backoff_ms": [
+      0,
+      250,
+      1000
+    ],
+    "unknown_mutations": "MCP_RESULT_UNKNOWN; no automatic replay",
+    "payload_files": ".mcp-payloads/*.json; full data retained locally, not published as project artifacts"
+  }
+}

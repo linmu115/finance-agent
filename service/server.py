@@ -341,6 +341,17 @@ async def cancel_analysis(project_id: str, run_id: str) -> dict[str, Any]:
     return await call("cancel_analysis",project_id=project_id,run_id=run_id)
 
 @mcp.tool()
+async def mcp_payload_failure(error: str) -> dict[str, Any]:
+    """Host transport only: report an unreadable request payload without executing it."""
+    return response({'error':'MCP 请求未执行；检查载荷目录文件/权限后重试本次请求。'+error,
+                     'code':'MCP_REQUEST_UNAVAILABLE'},status='error')
+
+@mcp.tool()
+async def get_artifact_metadata(project_id: str, run_id: str, name: str) -> dict[str, Any]:
+    """Host download only: project/manifest checked path, size and digest; no file content."""
+    return await call('get_artifact',project_id=project_id,run_id=run_id,name=name,include_content=False)
+
+@mcp.tool()
 async def get_artifact(project_id: str, run_id: str, name: str, rows: dict[str, int] | None = None) -> dict[str, Any]:
     """Read an attachment by analysis run ID OR workpaper/model delivery.id in run_id. Use a returned file name; workpapers include numeric_tables.json, workpaper.json, report.md and table CSVs. rows={start,end} selects zero-based, end-exclusive CSV records, JSON items or text lines."""
     return await call("get_artifact",project_id=project_id,run_id=run_id,name=name,rows=rows)

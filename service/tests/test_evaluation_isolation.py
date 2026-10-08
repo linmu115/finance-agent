@@ -107,11 +107,13 @@ class IsolationTests(unittest.TestCase):
             with scoped(key):
                 for identifier,name in deliveries[key]:
                     self.assertGreater(self.s.get_artifact('p',identifier,name)['data']['size'],0)
+                    self.assertNotIn('content',self.s.get_artifact('p',identifier,name,include_content=False)['data'])
                     self.assertEqual(self.s.get_analysis_status('p',identifier)['data']['status'],'succeeded')
                 foreign=[*deliveries[None],*deliveries['b' if key=='a' else 'a'],('0'*32,'missing.txt')]
                 for identifier,name in foreign:
                     with self.subTest(key=key,identifier=identifier):
                         for fn in (lambda:self.s.get_artifact('p',identifier,name),
+                                   lambda:self.s.get_artifact('p',identifier,name,include_content=False),
                                    lambda:self.s.get_artifact('p',identifier,'not-listed.txt'),
                                    lambda:self.s.get_analysis_status('p',identifier),
                                    lambda:self.s.artifact_path('p',identifier,name)):

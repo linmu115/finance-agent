@@ -904,8 +904,9 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         if isolation_key.get() is not None:self._analysis_state(project_id,run_id)
         return self._runner().artifact_path(run_id,name,project_id=project_id)
 
-    def get_artifact(self, project_id, run_id, name, rows=None):
+    def get_artifact(self, project_id, run_id, name, rows=None, include_content=True):
         path=self.artifact_path(project_id,run_id,name)
         from .analysis_tables import artifact_content
         from .evaluation_isolation import original_pi
-        return response({"name":name,"relative_path":str(path.relative_to(self.store.root)),"sha256":hashlib.sha256(path.read_bytes()).hexdigest(),"size":path.stat().st_size,"mime_type":mimetypes.guess_type(name)[0] or "application/octet-stream", **({} if original_pi() else artifact_content(path, rows))})
+        with path.open('rb') as stream: digest=hashlib.file_digest(stream,'sha256').hexdigest()
+        return response({"name":name,"relative_path":str(path.relative_to(self.store.root)),"sha256":digest,"size":path.stat().st_size,"mime_type":mimetypes.guess_type(name)[0] or "application/octet-stream", **({} if original_pi() or not include_content else artifact_content(path, rows))})

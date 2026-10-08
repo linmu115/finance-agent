@@ -160,7 +160,7 @@ app.get('/api/projects/:projectId/artifacts/:runId/:name',route(async(req,res)=>
  // The runner validates the exact relative name against its project-owned
  // manifest, rejects traversal/links, and verifies the file hash.
  const name=z.string().min(1).parse(req.params.name);
- const r=await service.call('get_artifact',{project_id:readId(req.params.projectId),run_id:readId(req.params.runId),name});
+ const r=await service.call('get_artifact_metadata',{project_id:readId(req.params.projectId),run_id:readId(req.params.runId),name});
  const d=r.data,filename=safeDataPath(d.relative_path),actual=await realpath(filename);
  if(!actual.startsWith((await realpath(DATA))+path.sep))throw new Error('产物路径越界');
  const type=artifactMediaType(actual);

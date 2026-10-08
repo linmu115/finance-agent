@@ -112,7 +112,7 @@ class OriginalPiTests(unittest.TestCase):
                 with self.subTest(extra=extra),self.assertRaisesRegex(ValueError,'original_pi_analysis_argument_not_available'):
                     self.s.run_analysis('p',code='pass',**extra)
             for rid in (foreign,wp,'absent'):
-                for fn in (lambda:self.s.get_analysis_status('p',rid),lambda:self.s.get_artifact('p',rid,'report.md')):
+                for fn in (lambda:self.s.get_analysis_status('p',rid),lambda:self.s.get_artifact('p',rid,'report.md'),lambda:self.s.get_artifact('p',rid,'report.md',include_content=False)):
                     with self.assertRaisesRegex(ValueError,'^analysis_not_found_in_project$'):fn()
             self.assertEqual(self.s.get_analysis_status('p',own)['data']['status'],'succeeded')
         with scope('original_pi','other-chain'):

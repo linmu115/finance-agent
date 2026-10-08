@@ -295,7 +295,7 @@ export class ResearchWorkspace {
 /** A published delivery file, checked against its manifest: listed name, inside the delivery folder, unchanged bytes. The checked bytes are the ones returned. */
 export async function deliveryFile(project:string,deliveryId:string,name:string,service:FinanceService){
  // Both IDs use the same project/manifest checks as the model-facing reader.
- const file=(await service.call('get_artifact',{project_id:project,run_id:deliveryId,name})).data;
+ const file=(await service.call('get_artifact_metadata',{project_id:project,run_id:deliveryId,name})).data;
  const actual=await realpath(path.join(DATA,file.relative_path));
  const relative=path.relative(await realpath(DATA),actual);
  if(relative.startsWith('..')||path.isAbsolute(relative))throw new Error('文件路径越界');
