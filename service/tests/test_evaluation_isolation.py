@@ -52,6 +52,12 @@ class IsolationTests(unittest.TestCase):
         (folder/(revision+'.json')).write_text(json.dumps(model),encoding='utf8')
         return {'artifact_id':model['id'],'revision_id':revision}
 
+    def test_direction_formatter_is_mounted_in_every_analysis_profile(self):
+        for raw_only,financial_tools in [(True,False),(False,False),(False,True)]:
+            rid=self.run_analysis(None,code='pass',raw_only=raw_only,financial_tools=financial_tools)
+            self.assertIn('delivery_text.py',self.inputs[rid])
+            self.assertIn(b'fmt_change',self.inputs[rid]['analysis_report.py'])
+
     def test_analysis_artifacts_status_and_rerun_hide_old_and_other_chains(self):
         old=self.run_analysis(None,code='pass');a=self.run_analysis('a',code='pass');b=self.run_analysis('b',code='pass')
         for key,own,foreign in [('a',a,b),('b',b,a)]:
