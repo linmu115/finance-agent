@@ -1,0 +1,133 @@
+{
+  "version": "F2.1 candidate",
+  "base": "14b9bde",
+  "components": {
+    "A": "6ce31119e583f72da8e235a554cd335c62a2e4f4",
+    "BC": "b8c1410"
+  },
+  "deployed": false,
+  "paid_calls": 0,
+  "production_db_writes": 0,
+  "tests": {
+    "python": {
+      "passed": 64,
+      "failed": 0,
+      "skipped": 0,
+      "breakdown": {
+        "delivery_and_N2_core": 44,
+        "plots_and_original_pi": 20
+      },
+      "N2_related_included": 19
+    },
+    "node_native": {
+      "passed": 3,
+      "failed": 0
+    },
+    "typecheck_server": "passed",
+    "typecheck_web": "passed",
+    "build_server": "passed",
+    "build_web": "passed",
+    "build_location": "isolated worktree only; online dist untouched"
+  },
+  "profiles": {
+    "original_pi": {
+      "tool_count": 10,
+      "tool_names": [
+        "prepare_document_sources",
+        "list_documents",
+        "get_document",
+        "get_document_index",
+        "get_source_page",
+        "get_source_table",
+        "search_evidence",
+        "run_analysis",
+        "get_analysis_status",
+        "get_artifact"
+      ],
+      "tool_schema_description_sha256": "e67785cc82164f505ad823d1c7f0cf4c0172eb24aa5024dddf67bacc49697f2f",
+      "preamble_sha256": "6c71fd727034260afcaa6e29e833ff27000cb7f246b2b0ffc83aa867be20c32f"
+    },
+    "prepared": {
+      "tool_count": 13,
+      "tool_names": [
+        "list_documents",
+        "prepare_document_sources",
+        "query_research_records",
+        "get_data_catalog",
+        "get_document_index",
+        "query_financial_data",
+        "get_document",
+        "get_source_page",
+        "get_source_table",
+        "search_evidence",
+        "run_analysis",
+        "get_analysis_status",
+        "get_artifact"
+      ],
+      "tool_schema_description_sha256": "aa5296cc7cdebd128908aae366757f2d8166382a0deeb55e73f7365109fcb0f8",
+      "preamble_sha256": "277d3f66d7117f3a26081664156724289e4db87021e0127f1816e9fbe96f448e"
+    },
+    "financial": {
+      "tool_count": 32,
+      "tool_names": [
+        "request_database_operation",
+        "read_project_skill",
+        "search_web",
+        "fetch_research_source",
+        "read_research_source",
+        "list_research_sources",
+        "run_financial_model",
+        "compare_financial_models",
+        "save_research_report",
+        "get_research_report_schema",
+        "list_research_artifacts",
+        "read_research_artifact",
+        "list_documents",
+        "prepare_document_sources",
+        "get_research_ingestion_status",
+        "query_research_records",
+        "get_data_catalog",
+        "get_processing_checkpoint",
+        "get_document_index",
+        "query_financial_data",
+        "get_normalization_details",
+        "get_document",
+        "get_source_page",
+        "get_source_table",
+        "search_evidence",
+        "get_financial_metrics",
+        "financial_workpaper",
+        "calculate_financial_metrics",
+        "run_analysis",
+        "get_analysis_status",
+        "get_artifact",
+        "get_research_model_schema"
+      ],
+      "tool_schema_description_sha256": "24b6ee835da7ebc05f0c6313a46745bbf2e376015bc46d82814f5603bb7b3c22",
+      "preamble_sha256": "528f46f7bbfa8ea4c0acc8a7d71fd8c254dd4cdf583aacd2510b778b531b74e6"
+    }
+  },
+  "historical_text": {
+    "cases": 12,
+    "files": 70,
+    "false_positive_files": 0,
+    "notices": 0
+  },
+  "xlsx": {
+    "workbooks": 2,
+    "string_cells": 92,
+    "false_positive_cells": 0,
+    "notices": 0,
+    "strict_two_review_agreement": {
+      "workbooks": 1,
+      "string_cells": 43,
+      "false_positive_cells": 0,
+      "notices": 0
+    }
+  },
+  "limitations": [
+    "XLSX sample below 10; P2_X7 passed first review only; disagreement retained.",
+    "G2_X3 replay activates the shared runtime diagnostically; original_pi still disables it.",
+    "No new blind evaluation; deterministic detection does not establish lower task error rate."
+  ]
+}
