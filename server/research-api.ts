@@ -31,7 +31,7 @@ export function installResearchApi(app:Express,ensureProject:(id:string)=>Promis
  app.post('/api/projects/:projectId/research/models',route(async(req,res)=>{const p=await ensureProject(req.params.projectId);res.status(201).json(await workspace.model(p,req.body));}));
  app.get('/api/projects/:projectId/research/models/schema/:kind',route(async(req,res)=>{const p=await ensureProject(req.params.projectId);res.json((await service.call('get_research_model_schema',{project_id:p,kind:req.params.kind})).data);}));
  app.get('/api/projects/:projectId/research/deliveries/:deliveryId/:name',route(async(req,res)=>{
-  const p=await ensureProject(req.params.projectId),file=await deliveryFile(p,String(req.params.deliveryId),String(req.params.name));
+  const p=await ensureProject(req.params.projectId),file=await deliveryFile(p,String(req.params.deliveryId),String(req.params.name),service);
   res.type(artifactMediaType(file.name)).setHeader('X-Content-Type-Options','nosniff');
   res.setHeader('Content-Disposition',"attachment; filename*=UTF-8''"+encodeURIComponent(String(req.query.as||file.name).replace(/[\\/:*?"<>|\x00-\x1f]/g,'_')));
   res.send(file.bytes);

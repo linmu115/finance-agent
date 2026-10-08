@@ -249,7 +249,7 @@ def anomaly_signals(service,project,document_id=None,company=None,scope='consoli
     observations.sort(key=lambda r:abs(value(next(x['value'] for x in rows if x['key']==r['key']))),reverse=True)
     columns={k:col(v) for k,v in [('key','行键'),('family','信号类别'),('signal','现象'),('value','计算值'),('baseline','比较基准/口径'),('threshold','触发条件'),('threshold_source','阈值来源'),('triggered','是否触发'),('evidence','文档/页/表/行列'),('missing','缺失或局限')]}
     columns['value']['per_cell_unit']=True
-    return {'title':a.st.company+' 异常信号雷达','body':'信号只陈述数值现象，不是风险结论。模型应结合引用原文分别说明可能业务解释与需警惕情形，区分事实与推论。经验阈值没有行业校准。',
+    return {'title':a.st.company+' 异常信号雷达','periods':a.ps,'body':'信号只陈述数值现象，不是风险结论。模型应结合引用原文分别说明可能业务解释与需警惕情形，区分事实与推论。经验阈值没有行业校准。',
             'tables':{'signals':table(columns,rows),
                       'inventory_charge_rates':table({'key':col('行键'),'period':col('期间'),'charge':col('当期计提发生额','百万元',a.currency),
                           'average_gross_inventory':col('平均存货账面原值','百万元',a.currency),'value':col('当期计提率','%'),'missing':col('缺失说明')},inventory_rates),

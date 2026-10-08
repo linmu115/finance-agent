@@ -99,7 +99,7 @@ class ExpectationsDataTests(unittest.TestCase):
         self.assertEqual(selection['actual_exclusions'][0]['key'],'b')
         with patch('service.workpaper_expectations_data.load_facts',return_value=[f,{**f,'fact_id':'future','document_id':'quarter','period':'2025-FY','value':'80'}]):
             _,_,default=load_inputs(svc,'p','甲',None,None,None,'consolidated')
-        self.assertEqual(default['periods'],['2024-FY'])
+        self.assertEqual(default['periods'],['2024-FY','2023-FY'])
         db.execute('INSERT INTO research_entities VALUES(?,?,?,?,?,?)',('p','company','conflict','甲','[]','{"ticker":"999999"}'))
         with self.assertRaisesRegex(WorkpaperInputError,'证券身份'):load_inputs(svc,'p','甲',None,'2024',None,'consolidated')
         db.close()

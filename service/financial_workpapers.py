@@ -10,10 +10,7 @@ from decimal import Decimal, localcontext
 
 from .analysis_report import compile_report, record_quantity, render_report
 from .research_models import financial_quality
-
-
-class WorkpaperInputError(ValueError):
-    pass
+from .workpaper_period_selection import WorkpaperInputError, normalize_periods, normalize_period_records
 
 
 # Semantic aliases, not document-specific row numbers or company-specific values.
@@ -118,7 +115,12 @@ def load_facts(service, project, document_id=None, company=None):
         if document_id:
             query += ' AND document_id=?'; args.append(document_id)
         if company:
-            query += ' AND company LIKE ?'; args.append('%'+company+'%')
+            # Reuse project-declared issuer aliases; a document ID still scopes
+            # the query. No fuzzy name invention or cross-project identity join.
+            names=sorted({r['name'] for r in db.execute('SELECT name,aliases_json FROM research_entities WHERE project_id=? AND kind=?',(project,'company'))
+                          if company==r['name'] or company in json.loads(r['aliases_json'])})
+            query += ' AND (company LIKE ?'+''.join(' OR company=?' for _ in names)+')'
+            args.extend(['%'+company+'%',*names])
         # Keep every source row: retrieval deduplication can replace a statement
         # total by its summary occurrence, destroying the cash bridge row order.
         return [service._expanded_fact(dict(r)) for r in db.execute(query,args)]
@@ -128,7 +130,7 @@ class Statement:
     def __init__(self, service, project, facts, scope='consolidated', periods=None):
         self.service, self.project = service, project
         scope = {'合并': 'consolidated', '母公司': 'parent'}.get(scope, scope)
-        facts = [r for r in facts if r['scope'] == scope or r['scope'].startswith(scope + '_')]
+        facts = normalize_period_records([r for r in facts if r['scope'] == scope or r['scope'].startswith(scope + '_')])
         companies = sorted({r['company'] for r in facts})
         if len(companies) != 1:
             raise WorkpaperInputError(f'请指定 company 或 document_id，当前口径主体为：{companies}')
@@ -151,20 +153,10 @@ class Statement:
         candidates = sorted({r['period'] for r in facts if r['metric'] in ALIASES['revenue'] and meta(r).get('statement') == 'income' and dimensions_ok(r)})
         if not candidates:
             raise WorkpaperInputError('没有可定位到利润表的收入期间；请先完成财报入库')
-        if isinstance(periods, str): periods = [periods]
-        if periods:
-            self.periods = list(dict.fromkeys(periods))
-        else:
-            # Quarter disclosure often shares the annual summary's income tag.
-            # At the latest year prefer the longest disclosed fiscal window.
-            def window(p):
-                anchors = [meta(r) for r in facts if r['period'] == p and r['metric'] in ALIASES['revenue']]
-                duration = max(((date.fromisoformat(m['period_end'])-date.fromisoformat(m['period_start'])).days
-                                for m in anchors if m.get('period_start') and m.get('period_end')), default=0)
-                return (p[:4], duration, p)
-            latest = max(candidates, key=window)
-            previous = str(int(latest[:4])-1) + latest[4:]
-            self.periods = [latest, previous]
+        windows={r['period']:(meta(r)['period_start'],meta(r)['period_end']) for r in facts
+                 if r['period'] in candidates and r['metric'] in ALIASES['revenue']
+                 and meta(r).get('period_start') and meta(r).get('period_end')}
+        self.periods=normalize_periods(periods,candidates,windows)
         self.income_pages = {}
         self.primary_tables = {}
         for statement, keys in [('income', ('revenue','cogs','net_profit')), ('cashflow', ('cfo','cfi','cff'))]:
@@ -351,7 +343,7 @@ def statement_analysis(service, project, document_id=None, company=None, scope='
     annual_tables(st, tables, selected)
     tables['missing'] = table({'key':col('行键'),'metric':col('指标'),'period':col('期间'),'reason':col('缺失原因'),'candidates':col('候选来源')},
                                [{'key':str(i),**m,'candidates':json.dumps(m['candidates'],ensure_ascii=False)} for i,m in enumerate(st.missing)])
-    return {'title':st.company+' 财报分析底稿','body':f'口径：{scope}；财务净收益属于应计利润，现金桥的收付款分类依据原现金流量表。'+ (f'关注点：{focus}。' if focus else ''), 'tables':tables}, st.facts
+    return {'title':st.company+' 财报分析底稿','periods':st.periods,'body':f'口径：{scope}；财务净收益属于应计利润，现金桥的收付款分类依据原现金流量表。'+ (f'关注点：{focus}。' if focus else ''), 'tables':tables}, st.facts
 
 
 def publish(service, project, kind, report, records):
@@ -365,6 +357,7 @@ def publish(service, project, kind, report, records):
     folder = service.store.root/'research'/project/'deliveries'/delivery_id
     folder.mkdir(parents=True)
     render_report(compiled, folder)
+    (folder/'numeric_tables.json').write_text(json.dumps(compiled['tables'],ensure_ascii=False,indent=2),encoding='utf-8')
     (folder/'workpaper.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     # Required by the existing delivery download endpoint; reuse its manifest contract.
     files = [{'name':p.name,'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in folder.iterdir() if p.is_file()]
@@ -372,7 +365,8 @@ def publish(service, project, kind, report, records):
     manifest = stamp({'delivery_id':delivery_id,'files':files,'attachments':[f['name'] for f in files]})
     (folder/'delivery.json').write_text(json.dumps(manifest,ensure_ascii=False),encoding='utf-8')
     summary = {name:{'columns':t['columns'],'row_key':t.get('row_key','key'),'row_keys':[r.get('key') for r in t['rows']],'rows':len(t['rows'])} for name,t in compiled['tables'].items()}
-    return {'kind':kind,'report':compiled,'numeric_tables':compiled['tables'], 'summary':summary,
+    from .workpaper_handoff import answer_handoff
+    return {'kind':kind,'report':compiled,'numeric_tables':compiled['tables'], 'summary':summary,**answer_handoff(compiled),
             'observations':compiled['tables']['observations']['rows'],
             'delivery':{'id':delivery_id,'files':[{'name':f['name'],'url':f'/api/projects/{project}/research/deliveries/{delivery_id}/{f["name"]}'} for f in files]}}
 

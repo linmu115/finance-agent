@@ -1,0 +1,527 @@
+{
+  "case": "Q5",
+  "profile": "prepared",
+  "run_id": "c4d00a4d-98c5-4743-bd4e-d6871b148e19",
+  "question": "瑞和这半年报有没有口径调整或异常？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 81282,
+  "usage": {
+    "input": 209107,
+    "output": 3134,
+    "calls": 7,
+    "costUsd": 0.009483140000000001,
+    "uncachedInput": 64723,
+    "cacheRead": 144384,
+    "cacheWrite": 0,
+    "reasoning": 1108,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 478,
+        "output": 52,
+        "calls": 1,
+        "costUsd": 7.38e-05,
+        "uncachedInput": 478,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 478,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 208629,
+        "output": 3082,
+        "calls": 6,
+        "costUsd": 0.00940934,
+        "uncachedInput": 64245,
+        "cacheRead": 144384,
+        "cacheWrite": 0,
+        "reasoning": 1108,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 208629,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 209107,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "calls": [
+    {
+      "line": 19,
+      "name": "list_documents",
+      "toolCallId": "call_NW9Pg2jaxMGMYbt7khuNUxFL|fc_05749809f11006a6016ac71d21e0d487d0bca87d1b6292b8c1",
+      "args": {
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 29,
+      "name": "get_document",
+      "toolCallId": "call_y0E2ZEb2vUdRiByNu04ySh9F|fc_05749809f11006a6016ac71d28e50887d0b5f0adabe3b2a9bd",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 31,
+      "name": "get_document_index",
+      "toolCallId": "call_Ui84l8piJRXXfxLNJdwNYUIH|fc_05749809f11006a6016ac71d28e52487d08db14637a2d1ea4e",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "section": "overview",
+        "query": null,
+        "offset": 0,
+        "limit": 20,
+        "page_start": null,
+        "page_end": null,
+        "include_preview": false,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 33,
+      "name": "get_data_catalog",
+      "toolCallId": "call_DOklSelwg2bOaUkridD81sKJ|fc_05749809f11006a6016ac71d28e53087d0b13cbfadceb81cd7",
+      "args": {
+        "query": "accounting policy change",
+        "statement": null,
+        "offset": 0,
+        "limit": 40,
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "company": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 35,
+      "name": "query_financial_data",
+      "toolCallId": "call_maA4muGti9yzFFAqFalfU7U3|fc_05749809f11006a6016ac71d28e54087d09a3b06f998d55e75",
+      "args": {
+        "filters": {
+          "document_id": "ab25c52089fd4db89fba046c9c811c46"
+        },
+        "limit": 100,
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 51,
+      "name": "search_evidence",
+      "toolCallId": "call_dpEZsVvFMUZhKat7AXYOsJCB|fc_05749809f11006a6016ac71d3466dc87d0ab8c7c7ebe13df1d",
+      "args": {
+        "query": "accounting policies changes",
+        "company": "瑞和数智",
+        "year": 2025,
+        "limit": 10,
+        "filters": {
+          "document_ids": [
+            "ab25c52089fd4db89fba046c9c811c46"
+          ]
+        },
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 53,
+      "name": "search_evidence",
+      "toolCallId": "call_AvhmYxGMdpu52GTAelJIto6t|fc_05749809f11006a6016ac71d3466f087d08a9379049180280a",
+      "args": {
+        "query": "reclassification comparative figures",
+        "company": "瑞和数智",
+        "year": 2025,
+        "limit": 10,
+        "filters": {
+          "document_ids": [
+            "ab25c52089fd4db89fba046c9c811c46"
+          ]
+        },
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 55,
+      "name": "search_evidence",
+      "toolCallId": "call_jK3vwDh2lEgDT8OrynryWMan|fc_05749809f11006a6016ac71d3466fc87d0a93308b3452006ad",
+      "args": {
+        "query": "contingent liabilities litigation audit",
+        "company": "瑞和数智",
+        "year": 2025,
+        "limit": 10,
+        "filters": {
+          "document_ids": [
+            "ab25c52089fd4db89fba046c9c811c46"
+          ]
+        },
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 57,
+      "name": "get_source_page",
+      "toolCallId": "call_tDBnxWoZD5SCEA8EYZCxS2Ei|fc_05749809f11006a6016ac71d34670487d097e91e095e8d81e0",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 35,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 59,
+      "name": "get_source_page",
+      "toolCallId": "call_PCEYmCaDqYCBJpETfhOioh3e|fc_05749809f11006a6016ac71d3467b487d0984f8282ce42d97b",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 36,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 61,
+      "name": "get_source_page",
+      "toolCallId": "call_OZy7gnU0qrucGYoTXOUYOXRD|fc_05749809f11006a6016ac71d3467c487d0822cbeb052b9273a",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 37,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 63,
+      "name": "get_source_page",
+      "toolCallId": "call_ITQnvpoQQ7cM182darTRMtdE|fc_05749809f11006a6016ac71d3467cc87d08cb581ca84c074c1",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 38,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 85,
+      "name": "get_source_page",
+      "toolCallId": "call_fzqh44ujI3x5RIq6isQQiiZg|fc_05749809f11006a6016ac71d4118a487d0a5f26074a5193151",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 33,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 87,
+      "name": "get_source_page",
+      "toolCallId": "call_LLfSvA7mmRCsCFaefnZ1ryBp|fc_05749809f11006a6016ac71d4118bc87d08196dbfb01226095",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 5,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 89,
+      "name": "get_source_page",
+      "toolCallId": "call_o5PZO6rZ78ViLuA55nKYEZ2s|fc_05749809f11006a6016ac71d4118c487d082f799e2831b970e",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 13,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 91,
+      "name": "get_source_page",
+      "toolCallId": "call_olEHt9We7Jr5C3eetc1OwBOC|fc_05749809f11006a6016ac71d4118d087d09320f8154c9d047c",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 14,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 93,
+      "name": "get_source_page",
+      "toolCallId": "call_FXWxCtTZlhweUUqSlk4byp6W|fc_05749809f11006a6016ac71d4118d887d094d9922eec259156",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 15,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 95,
+      "name": "get_source_page",
+      "toolCallId": "call_joynf7u3CuozL82LIzR0zJSN|fc_05749809f11006a6016ac71d4118e087d0989ff9c8e368d899",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 27,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 97,
+      "name": "get_source_page",
+      "toolCallId": "call_CWXYTmjH06y84QnMJ5ItL77r|fc_05749809f11006a6016ac71d4118e887d0a359a2b32f3391bc",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 47,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 99,
+      "name": "get_source_page",
+      "toolCallId": "call_jnFOIxeW7VzmuTaFxEYd3LQ9|fc_05749809f11006a6016ac71d4118f087d095b0bf23778bf6ff",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 48,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 101,
+      "name": "get_source_page",
+      "toolCallId": "call_llgkdGJaz7jphcFpmdzaXZC1|fc_05749809f11006a6016ac71d4118fc87d089eaf561e64d09ce",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 53,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 127,
+      "name": "get_source_page",
+      "toolCallId": "call_66URQ62db4rmGSXwo8KqPhtg|fc_05749809f11006a6016ac71d4d419087d0b807225e32fb5a0f",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 45,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 129,
+      "name": "get_source_page",
+      "toolCallId": "call_EAu56lwmwMjGmbpX1mxoIL8b|fc_05749809f11006a6016ac71d4d41b087d08ab247f6a1fa521f",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 46,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 131,
+      "name": "get_source_page",
+      "toolCallId": "call_PnM6eaZ1s6bAKhRKnscJbKPk|fc_05749809f11006a6016ac71d4d41c087d0ab592f0c2695f708",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 52,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 133,
+      "name": "get_source_page",
+      "toolCallId": "call_JOO9pDxqMQYXgfZk8nDZ2iuG|fc_05749809f11006a6016ac71d4d41c887d0b7390c99bc24e73e",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 54,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 135,
+      "name": "get_source_page",
+      "toolCallId": "call_2kDPuHLDRyzEI8O9FwTTNnQr|fc_05749809f11006a6016ac71d4d41cc87d095d0aedd10e08a18",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 30,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 137,
+      "name": "get_source_page",
+      "toolCallId": "call_win4Et8oY7DuOc7v2fQ7FyCU|fc_05749809f11006a6016ac71d4d41d487d0b51b9769d3add2fc",
+      "args": {
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "page": 31,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "line": 6,
+      "requestId": "72f3d573-35e1-4a46-997e-66e4a55467d3",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "bb09e759-12ce-42cf-ae1c-ad357557052b",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 444
+    },
+    {
+      "line": 13,
+      "requestId": "d4a57520-516e-448f-8a72-6da2a929dc45",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "bb09e759-12ce-42cf-ae1c-ad357557052b",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 9721
+    },
+    {
+      "line": 23,
+      "requestId": "2bad2d91-481d-4b7b-ad86-513636273f93",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "bb09e759-12ce-42cf-ae1c-ad357557052b",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 18283
+    },
+    {
+      "line": 45,
+      "requestId": "b1bb7baa-31d7-474f-9dbd-614fa08d1176",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "bb09e759-12ce-42cf-ae1c-ad357557052b",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 132890
+    },
+    {
+      "line": 79,
+      "requestId": "bb431173-8972-41da-969a-2960bc7dee45",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "bb09e759-12ce-42cf-ae1c-ad357557052b",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 181942
+    },
+    {
+      "line": 121,
+      "requestId": "ce9b8736-3611-46af-bf4d-65381ffce0c8",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "bb09e759-12ce-42cf-ae1c-ad357557052b",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 215895
+    },
+    {
+      "line": 151,
+      "requestId": "0fc23480-9c25-40b2-95af-efd191f86751",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "bb09e759-12ce-42cf-ae1c-ad357557052b",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 242537
+    }
+  ],
+  "workpaper_kinds": [],
+  "binding": {
+    "bound": 0,
+    "unbound": 14,
+    "total": 14,
+    "ratio": 0.0,
+    "placeholders": [],
+    "unbound_values": [
+      {
+        "value": "6,301.5万元",
+        "context": "公司披露持有东京中央拍卖相关股票，并确认约人民币6,301.5万元公允价值收益；同期净利润约4,109.8万元。该项收益高"
+      },
+      {
+        "value": "4,109.8万元",
+        "context": "民币6,301.5万元公允价值收益；同期净利润约4,109.8万元。该项收益高于当期净利润，说明利润转正不能简单理解为主营"
+      },
+      {
+        "value": "6,770万元",
+        "context": "）报告同时列示期末以公允价值计入损益的港股投资约6,770万元。（同文，PDF） **收入下滑、经营现金流仍为负。**"
+      },
+      {
+        "value": "1.204亿元",
+        "context": "**收入下滑、经营现金流仍为负。**上半年收入约1.204亿元，同比下降约33.5%；经营活动净流出约3,065万元。"
+      },
+      {
+        "value": "33.5%",
+        "context": "为负。**上半年收入约1.204亿元，同比下降约33.5%；经营活动净流出约3,065万元。公司解释收入下降与业务"
+      },
+      {
+        "value": "3,065万元",
+        "context": "04亿元，同比下降约33.5%；经营活动净流出约3,065万元。公司解释收入下降与业务结构调整有关，但现金流尚未随账面"
+      },
+      {
+        "value": "1.421亿元",
+        "context": "） **应收账款账龄偏长。**期末应收账款总额约1.421亿元，其中账龄超过一年的约6,527万元；该账龄档预期损失率"
+      },
+      {
+        "value": "6,527万元",
+        "context": "收账款总额约1.421亿元，其中账龄超过一年的约6,527万元；该账龄档预期损失率为89%，对应坏账准备约5,831万"
+      },
+      {
+        "value": "89%",
+        "context": "超过一年的约6,527万元；该账龄档预期损失率为89%，对应坏账准备约5,831万元。公司给予客户的信用期最长"
+      },
+      {
+        "value": "5,831万元",
+        "context": "万元；该账龄档预期损失率为89%，对应坏账准备约5,831万元。公司给予客户的信用期最长为60天，长账龄余额值得持续跟"
+      },
+      {
+        "value": "60",
+        "context": "准备约5,831万元。公司给予客户的信用期最长为60天，长账龄余额值得持续跟踪回款和核销情况。（同文，PDF"
+      },
+      {
+        "value": "4,577万元",
+        "context": " **流动性及债务压力仍在。**期末净流动负债约4,577万元；银行及其他借款合计约1.274亿元，均列为流动负债。另"
+      },
+      {
+        "value": "1.274亿元",
+        "context": "净流动负债约4,577万元；银行及其他借款合计约1.274亿元，均列为流动负债。另有约2,000万元借款列为“按要求偿"
+      },
+      {
+        "value": "2,000万元",
+        "context": "借款合计约1.274亿元，均列为流动负债。另有约2,000万元借款列为“按要求偿还”；附注称公司仍在与新投资者协商还款"
+      }
+    ]
+  },
+  "tags_raw": {},
+  "tags_final": {},
+  "all_labels_raw": {},
+  "all_labels_final": {},
+  "answer_bound_events": 1,
+  "answer_bound_line": 923
+}

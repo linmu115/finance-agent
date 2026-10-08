@@ -1,0 +1,445 @@
+{
+  "case": "Q6",
+  "profile": "prepared",
+  "run_id": "9cbc570b-db9f-44ff-900b-6d40827c5751",
+  "question": "卡罗特这半年利润为什么下降，主要是什么拖累？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 75251,
+  "usage": {
+    "input": 138485,
+    "output": 2342,
+    "calls": 9,
+    "costUsd": 0.00515838,
+    "uncachedInput": 28917,
+    "cacheRead": 109568,
+    "cacheWrite": 0,
+    "reasoning": 693,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 480,
+        "output": 42,
+        "calls": 1,
+        "costUsd": 6.9e-05,
+        "uncachedInput": 480,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 480,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 138005,
+        "output": 2300,
+        "calls": 8,
+        "costUsd": 0.00508938,
+        "uncachedInput": 28437,
+        "cacheRead": 109568,
+        "cacheWrite": 0,
+        "reasoning": 693,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 138005,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 138485,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "workpaper_results": [],
+  "calls": [
+    {
+      "line": 19,
+      "name": "list_documents",
+      "toolCallId": "call_WlEva5IfaQ6jVZcXAOYW5sKS|fc_08c4a78c3745951e016ac728a61b2087d0ae73188b80a72f16",
+      "args": {
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 29,
+      "name": "get_data_catalog",
+      "toolCallId": "call_Q5NcG5k1S6rnd2YvmHVUGJ31|fc_08c4a78c3745951e016ac728ad2de487d098d587fddb5aad27",
+      "args": {
+        "query": "profit revenue cost gross profit expenses",
+        "statement": null,
+        "offset": 0,
+        "limit": 40,
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "company": null,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 31,
+      "name": "search_evidence",
+      "toolCallId": "call_1kRAOf689KHVor526VOB56YN|fc_08c4a78c3745951e016ac728ad2df887d0b47f64e4907014a4",
+      "args": {
+        "query": "profit decreased 2025 six months reasons",
+        "company": "Carote",
+        "year": 2025,
+        "limit": 10,
+        "filters": {
+          "document_ids": [
+            "3d9d0befd8374eed9a7488dbd8dd00d2"
+          ]
+        },
+        "offset": 0,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 33,
+      "name": "get_document_index",
+      "toolCallId": "call_a0PKLbyQZW7xwMnPnPEeQIEW|fc_08c4a78c3745951e016ac728ad2e0087d0b9ffe93febcc0d10",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "section": "overview",
+        "query": null,
+        "offset": 0,
+        "limit": 20,
+        "page_start": null,
+        "page_end": null,
+        "include_preview": true,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 47,
+      "name": "query_financial_data",
+      "toolCallId": "call_R7uE7jbDA7Xi7qrAukvSzYe0|fc_08c4a78c3745951e016ac728b3909c87d0a2b44a5ef822d003",
+      "args": {
+        "filters": {
+          "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+          "metrics": [
+            "revenue",
+            "cost_of_revenue",
+            "gross_profit",
+            "selling_expenses",
+            "administrative_expenses",
+            "research_and_development_expenses",
+            "operating_profit",
+            "profit_before_tax",
+            "profit_for_the_period",
+            "net_profit",
+            "finance_costs",
+            "adjusted_net_profit_non_hkfrs_measure",
+            "other_income",
+            "other_gains",
+            "finance_income_net"
+          ],
+          "periods": [
+            "2025-H1",
+            "2024-H1"
+          ],
+          "scopes": [
+            "consolidated_IFRS"
+          ]
+        },
+        "limit": 80,
+        "offset": 0,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 57,
+      "name": "get_source_page",
+      "toolCallId": "call_z4F8skD9NuBKREOLd1d9f0Tm|fc_08c4a78c3745951e016ac728bc704087d089b062bc9e20edcf",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 9,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 67,
+      "name": "get_source_page",
+      "toolCallId": "call_MCwIzT7zLCDMUZ5XC7XhP5pz|fc_08c4a78c3745951e016ac728c0f44087d0b8eab4ad6e85c55f",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 10,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 77,
+      "name": "run_analysis",
+      "toolCallId": "call_LJpdX1FS1ldeq3DD8kvMYV7u|fc_08c4a78c3745951e016ac728caf3fc87d08397fa3a43b1428e",
+      "args": {
+        "code": "import json\nrev24,rev25=955.192,836.925\ngp24,gp25=395.243,281.594\nnp24,np25=164.084,102.791\nop24,op25=193.422,96.000\nbrandgp24,brandgp25=381.6,274.5\nodmgp24,odmgp25=13.6,7.1\nvals={\n 'revenue':{'2024H1':rev24,'2025H1':rev25,'change':rev25-rev24,'pct':(rev25/rev24-1)*100},\n 'gross_profit':{'2024H1':gp24,'2025H1':gp25,'change':gp25-gp24,'pct':(gp25/gp24-1)*100},\n 'operating_profit':{'2024H1':op24,'2025H1':op25,'change':op25-op24,'pct':(op25/op24-1)*100},\n 'net_profit':{'2024H1':np24,'2025H1':np25,'change':np25-np24,'pct':(np25/np24-1)*100},\n 'branded_gross_profit':{'2024H1':brandgp24,'2025H1':brandgp25,'change':brandgp25-brandgp24},\n 'ODM_gross_profit':{'2024H1':odmgp24,'2025H1':odmgp25,'change':odmgp25-odmgp24},\n 'brand_contribution_to_gp_drop_pct':(brandgp24-brandgp25)/(gp24-gp25)*100,\n 'pretax_gap_after_finance_income_increase':(25.533-3.425),\n}\nprint(json.dumps(vals,ensure_ascii=False,indent=2))\n",
+        "document_ids": [
+          "3d9d0befd8374eed9a7488dbd8dd00d2"
+        ],
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+        "raw_only": false,
+        "financial_tools": false,
+        "timeout_seconds": 120
+      }
+    },
+    {
+      "line": 87,
+      "name": "get_analysis_status",
+      "toolCallId": "call_YEK1eLI6udweZnIFVGZJPMqr|fc_08c4a78c3745951e016ac728d6533c87d0964436adbdb34d1b",
+      "args": {
+        "run_id": "47a67cab7fb24e8897911c4834511aac",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "line": 6,
+      "requestId": "842ca86a-f893-4c55-97d6-5979f188d4c6",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "9a246a0c-e6f8-4b3c-91a9-54e1359c133a",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 449
+    },
+    {
+      "line": 13,
+      "requestId": "6cfb4fbd-55fd-4243-8ba1-81f6c6d821e6",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "9a246a0c-e6f8-4b3c-91a9-54e1359c133a",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 9948
+    },
+    {
+      "line": 23,
+      "requestId": "6844428d-5e96-4ae1-911d-9f27815ddb09",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "9a246a0c-e6f8-4b3c-91a9-54e1359c133a",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 14027
+    },
+    {
+      "line": 41,
+      "requestId": "ae5bf654-d301-4451-bbe4-3953ad33fd3c",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "9a246a0c-e6f8-4b3c-91a9-54e1359c133a",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 47204
+    },
+    {
+      "line": 51,
+      "requestId": "27c3fe44-1c08-491f-9995-a982af5e296b",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "9a246a0c-e6f8-4b3c-91a9-54e1359c133a",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 84362
+    },
+    {
+      "line": 61,
+      "requestId": "44ddc935-ad76-44a0-ad8a-ddf2476bfaa7",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "9a246a0c-e6f8-4b3c-91a9-54e1359c133a",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 91757
+    },
+    {
+      "line": 71,
+      "requestId": "1a85f1a9-f90e-434f-b9cc-231bf11fe5d4",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "9a246a0c-e6f8-4b3c-91a9-54e1359c133a",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 96311
+    },
+    {
+      "line": 81,
+      "requestId": "5667f753-71d4-40fd-9ea7-2cad214d1ea1",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "9a246a0c-e6f8-4b3c-91a9-54e1359c133a",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 101507
+    },
+    {
+      "line": 91,
+      "requestId": "ba47d7fc-f7b9-4b16-b146-7ab5bc55fe1c",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "9a246a0c-e6f8-4b3c-91a9-54e1359c133a",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 107277
+    }
+  ],
+  "workpaper_kinds": [],
+  "binding": {
+    "bound": 0,
+    "unbound": 27,
+    "total": 27,
+    "ratio": 0.0,
+    "placeholders": [],
+    "unbound_values": [
+      {
+        "value": "1.03亿元",
+        "context": "利润确实明显下降。** 上半年利润约 **人民币1.03亿元**，上年同期约 **1.64亿元**，下降约 **37"
+      },
+      {
+        "value": "1.64亿元",
+        "context": "约 **人民币1.03亿元**，上年同期约 **1.64亿元**，下降约 **37.4%**；净利率从 **17.2"
+      },
+      {
+        "value": "37.4%",
+        "context": "，上年同期约 **1.64亿元**，下降约 **37.4%**；净利率从 **17.2%降至12.3%**。（《C"
+      },
+      {
+        "value": "17.2%",
+        "context": "**，下降约 **37.4%**；净利率从 **17.2%降至12.3%**。（《Carote  Interim "
+      },
+      {
+        "value": "12.3%",
+        "context": "**37.4%**；净利率从 **17.2%降至12.3%**。（《Carote  Interim Report》"
+      },
+      {
+        "value": "9.55亿元",
+        "context": "- **最大拖累是毛利减少。** 收入从约 **9.55亿元降至8.37亿元**（约降12.4%），但毛利从约 **"
+      },
+      {
+        "value": "8.37亿元",
+        "context": "是毛利减少。** 收入从约 **9.55亿元降至8.37亿元**（约降12.4%），但毛利从约 **3.95亿元降至"
+      },
+      {
+        "value": "12.4%",
+        "context": "从约 **9.55亿元降至8.37亿元**（约降12.4%），但毛利从约 **3.95亿元降至2.82亿元**（约"
+      },
+      {
+        "value": "3.95亿元",
+        "context": "37亿元**（约降12.4%），但毛利从约 **3.95亿元降至2.82亿元**（约降28.7%）。品牌业务毛利减少"
+      },
+      {
+        "value": "2.82亿元",
+        "context": "降12.4%），但毛利从约 **3.95亿元降至2.82亿元**（约降28.7%）。品牌业务毛利减少约 **1.07"
+      },
+      {
+        "value": "28.7%",
+        "context": "从约 **3.95亿元降至2.82亿元**（约降28.7%）。品牌业务毛利减少约 **1.07亿元**，约占整体毛"
+      },
+      {
+        "value": "1.07亿元",
+        "context": "**（约降28.7%）。品牌业务毛利减少约 **1.07亿元**，约占整体毛利减少额的九成以上；其中品牌业务毛利率从"
+      },
+      {
+        "value": "45.4%",
+        "context": "毛利减少额的九成以上；其中品牌业务毛利率从 **45.4%降至35.3%**，公司称主要由于美国额外关税增加成本。"
+      },
+      {
+        "value": "35.3%",
+        "context": "成以上；其中品牌业务毛利率从 **45.4%降至35.3%**，公司称主要由于美国额外关税增加成本。ODM毛利减少"
+      },
+      {
+        "value": "650万元",
+        "context": "由于美国额外关税增加成本。ODM毛利减少约 **650万元**，其毛利率大致稳定。（同上，；占比为据披露数计算） "
+      },
+      {
+        "value": "48.3%",
+        "context": "少欧洲和东南亚投入有关。ODM收入同比下降 **48.3%**；品牌业务收入下降 **7.5%**。品牌业务中，西"
+      },
+      {
+        "value": "7.5%",
+        "context": "下降 **48.3%**；品牌业务收入下降 **7.5%**。品牌业务中，西欧收入降 **73.2%**、东南亚"
+      },
+      {
+        "value": "73.2%",
+        "context": " **7.5%**。品牌业务中，西欧收入降 **73.2%**、东南亚降 **29.9%**，而美国和日本分别增长"
+      },
+      {
+        "value": "29.9%",
+        "context": "，西欧收入降 **73.2%**、东南亚降 **29.9%**，而美国和日本分别增长 **4.0%**、**13."
+      },
+      {
+        "value": "4.0%",
+        "context": " **29.9%**，而美国和日本分别增长 **4.0%**、**13.6%**。（同上，） - **其他变化部"
+      },
+      {
+        "value": "13.6%",
+        "context": "*，而美国和日本分别增长 **4.0%**、**13.6%**。（同上，） - **其他变化部分缓冲了下滑。** "
+      },
+      {
+        "value": "750万元",
+        "context": "他变化部分缓冲了下滑。** 销售费用减少约 **750万元**，行政费用减少约 **960万元**（公司称主要因本"
+      },
+      {
+        "value": "960万元",
+        "context": "减少约 **750万元**，行政费用减少约 **960万元**（公司称主要因本期没有上市开支）；净财务收入则从约 "
+      },
+      {
+        "value": "340万元",
+        "context": "主要因本期没有上市开支）；净财务收入则从约 **340万元增至2,550万元**。这些有助于托底，但未能抵消毛利下"
+      },
+      {
+        "value": "2,550万元",
+        "context": "上市开支）；净财务收入则从约 **340万元增至2,550万元**。这些有助于托底，但未能抵消毛利下降。（同上，）  "
+      },
+      {
+        "value": "6",
+        "context": "了影响。以上依据为项目内中期报告，比较期均为截至6月30日的六个月；部分差额和贡献比例为据报告披露金额计算"
+      },
+      {
+        "value": "30",
+        "context": "响。以上依据为项目内中期报告，比较期均为截至6月30日的六个月；部分差额和贡献比例为据报告披露金额计算。"
+      }
+    ]
+  },
+  "tags_raw": {},
+  "tags_final": {
+    "【推论/分析】": 20,
+    "【事实/数据】": 1
+  },
+  "all_labels_raw": {},
+  "all_labels_final": {
+    "【推论/分析】": 20,
+    "【事实/数据】": 1
+  },
+  "answer_bound_events": 1,
+  "answer_bound_line": 725
+}

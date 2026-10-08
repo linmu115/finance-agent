@@ -6,6 +6,7 @@ from .analysis_report import record_quantity
 from .financial_workpapers import ALIASES, Statement, cell, col, dimensions_ok, load_facts, meta, table
 from .period_algebra import change, derive_period_series, observation, quarter_window
 from .workpaper_annual import Disclosure, quarter, row_kind
+from .workpaper_period_selection import canonical_period, normalize_periods, normalize_period_records
 
 FLOW_METRICS=('revenue','net_profit','parent_profit','deducted_profit','cfo')
 
@@ -79,15 +80,19 @@ def load_period_series(service, project, document_id=None, company=None, scope='
     currency, restatement and quantity. Missing quarters are absent. See design
     handoff for the pure derive_period_series API and its input schema.
     """
-    st=Statement(service,project,load_facts(service,project,document_id,company),scope,periods)
+    st=Statement(service,project,load_facts(service,project,document_id,company),scope)
     d=Disclosure(st)
     # Only this project and the already selected issuer; current report wins.
-    others=[r for r in load_facts(service,project,company=st.company) if r['document_id']!=d.doc]
+    others=normalize_period_records([r for r in load_facts(service,project,company=st.company) if r['document_id']!=d.doc])
     inputs,unknown=period_inputs(st,d,others)
-    years={int(p[:4]) for p in st.periods}
-    inputs=[x for x in inputs if not x['start'] or int(x['start'][:4]) in years]
     result=derive_period_series(inputs,d.doc)
-    result.update(company=st.company,currency=st.currency,document_id=d.doc,unknown_rows=unknown,records=[*st.facts,*others],inputs=inputs)
+    available={canonical_period(x.get('period',x['end']),x['start'],x['end']):(x['start'],x['end'])
+               for x in [*inputs,*result['quarters'],*result['cumulatives']] if x.get('kind') in ('quarter','ytd','annual')}
+    selected=normalize_periods(periods,available,available)
+    years={int(p[:4]) for p in selected}
+    for key in ('quarters','cumulatives','reconciliations','missing'):
+        result[key]=[x for x in result[key] if int(x['period'][:4]) in years]
+    result.update(company=st.company,currency=st.currency,document_id=d.doc,periods=selected,unknown_rows=unknown,records=[*st.facts,*others],inputs=inputs)
     return result
 
 
@@ -127,4 +132,4 @@ def period_analysis(service, project, document_id=None, company=None, scope='con
     tabs['unrecognized']=table({'key':col('行键'),'label':col('原指标'),'reason':col('原因'),'source':col('原文与来源')},[{'key':str(i),**r,'source':json.dumps(r['source'],ensure_ascii=False)} for i,r in enumerate(unknown)])
     tabs['missing']=table({k:col(v) for k,v in [('key','行键'),('metric','指标'),('period','缺失单季'),('reason','所缺输入')]},
         [{'key':str(i),**{k:r[k] for k in ('metric','period','reason')}} for i,r in enumerate(result['missing'])])
-    return {'title':result['company']+' 期间推导与季报底稿','body':'按起止日识别单季和累计；优先当前报告比较列及调整后数。单季=累计差额；所有输入和口径随来源链保存。非正基期只列金额变化，常规增长率未知。无比较金额时不从百分比倒算。','tables':tabs},result['records']
+    return {'title':result['company']+' 期间推导与季报底稿','periods':result['periods'],'body':'按起止日识别单季和累计；优先当前报告比较列及调整后数。单季=累计差额；所有输入和口径随来源链保存。非正基期只列金额变化，常规增长率未知。无比较金额时不从百分比倒算。','tables':tabs},result['records']

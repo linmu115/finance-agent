@@ -1,0 +1,18 @@
+{
+  "provider": "cpa-local",
+  "id": "gpt-6-luna",
+  "api": "openai-responses",
+  "reasoning": true,
+  "contextWindow": 272000,
+  "maxTokens": 32768,
+  "runtime": {
+    "timeoutSeconds": 120,
+    "contextCompaction": {
+      "enabled": true,
+      "mode": "auto",
+      "targetTokens": 96000,
+      "keepRecentTokens": 24000
+    }
+  },
+  "expenseCategory": "研发预检"
+}

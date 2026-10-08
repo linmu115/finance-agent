@@ -6,6 +6,7 @@ import re
 
 from .financial_workpapers import WorkpaperInputError, cell, col, table, load_facts, meta, source
 from .workpaper_expectations import expectations_report, identity, publisher_key, quantity
+from .workpaper_period_selection import canonical_period, normalize_periods, normalize_period_records
 
 METRICS = {'revenue':'revenue','营业收入':'revenue','收入':'revenue',
            'net_profit_parent':'net_profit_parent','归母净利润':'net_profit_parent',
@@ -89,14 +90,17 @@ def load_inputs(service, project, company, document_id, periods, metrics, scope)
         docs={r['document_id'] for r in raw}
         source_tables={r['table_id']:json.loads(r['rows_json']) for d in docs for r in db.execute('SELECT table_id,rows_json FROM source_tables WHERE document_id=?',(d,))}
         pages={(d,r['page']):r['text'] for d in docs for r in db.execute('SELECT page,text FROM pages WHERE document_id=?',(d,))}
-    facts=[r for r in load_facts(service,project,document_id) if r['company'] in names and (r['scope']==scope or r['scope'].startswith(scope+'_'))]
+    facts=normalize_period_records([r for r in load_facts(service,project,document_id) if r['company'] in names and (r['scope']==scope or r['scope'].startswith(scope+'_'))])
+    for r in raw:
+        r.update(json.loads(r.pop('record_json')));r['source_ref']=json.loads(r.pop('source_json'))
+        if r.get('period'):r['period']=canonical_period(r['period'])
+    available={r['period'] for r in raw if r.get('period')}
+    available.update(r['period'] for r in facts if meta(r).get('statement')=='income')
     if not periods:
-        ps={r['period'] for r in facts if r['metric']=='revenue' and re.fullmatch(r'\d{4}-?FY',r['period'])
-            and not re.search(r'季度|半年度|中期|interim|quarter',profiles.get(r['document_id'],{}).get('title',''),re.I)}
-        if not ps:raise WorkpaperInputError('未指定 periods，且没有可确定预测年度的年报实际值')
-        periods=[max(ps)]
-    if isinstance(periods,str):periods=[periods]
-    periods=[re.sub(r'^(\d{4})(?:-?FY)?$',r'\1-FY',p) for p in periods]
+        actual_periods={r['period'] for r in facts if r['metric']=='revenue' and meta(r).get('statement')=='income'
+                        and not (r['period'].endswith('FY') and re.search(r'季度|半年度|中期|interim|quarter',profiles.get(r['document_id'],{}).get('title',''),re.I))}
+        periods=normalize_periods(None,actual_periods or available)[:1]
+    periods=normalize_periods(periods,available)
     if isinstance(metrics,str):metrics=[m for m in re.split(r'[,，、\s]+',metrics) if m]
     requested={METRICS.get(m,m) for m in (metrics or ['revenue','net_profit_parent','eps'])}
     unsupported=requested-{'revenue','net_profit_parent','eps','net_profit'}
@@ -104,7 +108,6 @@ def load_inputs(service, project, company, document_id, periods, metrics, scope)
     wanted=requested|({'net_profit'} if 'net_profit_parent' in requested else set())
     records=[]
     for r in raw:
-        r.update(json.loads(r.pop('record_json')));r['source_ref']=json.loads(r.pop('source_json'))
         metric=METRICS.get(r.get('metric'))
         if metric not in wanted or r.get('period') not in periods:continue
         r.update(source_entity_id=r['entity_id'],entity_id=canonical,company=company,source_metric=r['metric'],metric=metric)
@@ -216,6 +219,7 @@ def expectations(service, project, company=None, document_id=None, periods=None,
     records,actuals,selection=load_inputs(service,project,company,document_id,periods,metrics,scope)
     links,latest=context_tables(records,actuals,as_of)
     report=expectations_report(records,actuals,as_of)
+    report['periods']=selection['periods']
     report['tables'].update(links)
     report['tables'].update(reference_tables(latest,actuals))
     for r in actuals:

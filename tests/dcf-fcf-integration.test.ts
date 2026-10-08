@@ -34,9 +34,9 @@ test('FCF model host path saves, updates with operators, publishes reports, bind
   const manifest=JSON.parse(await readFile(path.join(dir,'research/dcf/deliveries',changed.delivery.id,'delivery.json'),'utf8'));
   assert.ok(manifest.attachments.includes('saved_report.md'));
   assert.ok(manifest.attachments.includes('基准_情景_差额_report.md'));
-  const comparison=await deliveryFile('dcf',changed.delivery.id,'基准_情景_差额_report.md');
+  const comparison=await deliveryFile('dcf',changed.delivery.id,'基准_情景_差额_report.md',service);
   assert.match(comparison.bytes.toString('utf8'),/10.89 HKD 元\/股/);assert.match(comparison.bytes.toString('utf8'),/9.41 HKD 元\/股/);
-  const downloaded=await deliveryFile('dcf',changed.delivery.id,'saved_report.md');assert.ok(downloaded.bytes.toString('utf8').includes('9.41 HKD 元/股'));
+  const downloaded=await deliveryFile('dcf',changed.delivery.id,'saved_report.md',service);assert.ok(downloaded.bytes.toString('utf8').includes('9.41 HKD 元/股'));
   assert.equal((await workspace.get('dcf',base.id,base.revision_id)).spec.wacc,'.122');
  }finally{await service.close();}
 });

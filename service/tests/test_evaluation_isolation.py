@@ -89,6 +89,38 @@ class IsolationTests(unittest.TestCase):
             self.assertEqual(json.loads(self.inputs[rid]['models.json'])['x']['id'],refs[key]['artifact_id'])
         self.assertEqual(len(select_models(self.root,'p',refs)),3)
 
+    def test_delivery_ids_cannot_bypass_isolation_for_reads_status_or_report_images(self):
+        deliveries={}
+        report={'title':'fixture','body':'','tables':{'observations':{'columns':{'key':{},'finding':{}},'rows':[{'key':'x','finding':'fixture'}]}}}
+        for key in (None,'a','b'):
+            with scoped(key):
+                wp=publish(self.s,'p','statement_analysis',report,[])
+                model=deliver_saved(self.root,'p',{'saved':self.saved_model(key,key or 'old')},{})
+                deliveries[key]=[(wp['delivery']['id'],'report.md'),(model['delivery_id'],model['files'][0]['name'])]
+        for key in ('a','b'):
+            with scoped(key):
+                for identifier,name in deliveries[key]:
+                    self.assertGreater(self.s.get_artifact('p',identifier,name)['data']['size'],0)
+                    self.assertEqual(self.s.get_analysis_status('p',identifier)['data']['status'],'succeeded')
+                foreign=[*deliveries[None],*deliveries['b' if key=='a' else 'a'],('0'*32,'missing.txt')]
+                for identifier,name in foreign:
+                    with self.subTest(key=key,identifier=identifier):
+                        for fn in (lambda:self.s.get_artifact('p',identifier,name),
+                                   lambda:self.s.get_artifact('p',identifier,'not-listed.txt'),
+                                   lambda:self.s.get_analysis_status('p',identifier),
+                                   lambda:self.s.artifact_path('p',identifier,name)):
+                            with self.assertRaisesRegex(ValueError,'^analysis_not_found_in_project$'):fn()
+                        # Report image collection uses the same resolver; no foreign bytes are copied.
+                        snapshot={'project_id':'p','conversation_id':'c','title':'Report','turns':[{
+                            'id':'m','created_at':'today','body':'Result','sources':[],'tables':{},
+                            'artifacts':[{'mimeType':'image/png','url':f'/api/projects/p/artifacts/{identifier}/{name}'}]}]}
+                        with self.assertRaisesRegex(ValueError,'^analysis_not_found_in_project$'):prepare(self.s,'p',snapshot)
+        # Ordinary product access retains the complete project view.
+        for items in deliveries.values():
+            for identifier,name in items:
+                self.assertGreater(self.s.get_artifact('p',identifier,name)['data']['size'],0)
+                self.assertEqual(self.s.get_analysis_status('p',identifier)['data']['status'],'succeeded')
+
     def test_nonempty_prepared_research_records_remain_shared(self):
         from service.tests.test_research_ingestion import ResearchIngestionTests
         fixture=ResearchIngestionTests();fixture.setUp()

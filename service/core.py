@@ -758,6 +758,19 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
                 'parameter_changes':plan['changes'],'parameter_steps':step_ids,'params_order':plan['order'],'input_snapshot_from':plan['source_run_id']}
 
     def get_analysis_status(self, project_id, run_id):
+        self.store.project(project_id)
+        from .delivery_files import delivery_manifest, delivery_path
+        delivery=delivery_manifest(self.store.root,project_id,run_id)
+        if delivery:
+            from .analysis_tables import collect_tables, table_view
+            files=delivery[1]['files']
+            paths={f['name']:delivery_path(delivery,f['name']) for f in files if Path(f['name']).suffix in ('.json','.csv')}
+            if 'numeric_tables.json' in paths:
+                tables=json.loads(paths['numeric_tables.json'].read_text(encoding='utf-8'));warnings=[]
+            else:
+                tables,warnings=collect_tables(paths)
+            return response({'run_id':run_id,'delivery_id':run_id,'project_id':project_id,'status':'succeeded',
+                             'artifacts':files,'numeric_tables':{k:table_view(t) for k,t in tables.items()},'table_warnings':warnings})
         saved=self._analysis_state(project_id,run_id)
         if saved.get("status") not in {"queued","running"}:return response(self._analysis_presentation(project_id,run_id,saved))
         try:
@@ -824,9 +837,15 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
         from .analysis_report import bind_text
         return response({'body':bind_text(body,tables,charts)})
 
-    def get_artifact(self, project_id, run_id, name, rows=None):
+    def artifact_path(self, project_id, run_id, name):
         self.store.project(project_id)
+        from .delivery_files import delivery_manifest, delivery_path
+        delivery=delivery_manifest(self.store.root,project_id,run_id)
+        if delivery:return delivery_path(delivery,name)
         if isolation_key.get() is not None:self._analysis_state(project_id,run_id)
-        path=self._runner().artifact_path(run_id,name,project_id=project_id)
+        return self._runner().artifact_path(run_id,name,project_id=project_id)
+
+    def get_artifact(self, project_id, run_id, name, rows=None):
+        path=self.artifact_path(project_id,run_id,name)
         from .analysis_tables import artifact_content
         return response({"name":name,"relative_path":str(path.relative_to(self.store.root)),"sha256":hashlib.sha256(path.read_bytes()).hexdigest(),"size":path.stat().st_size,"mime_type":mimetypes.guess_type(name)[0] or "application/octet-stream", **artifact_content(path, rows)})

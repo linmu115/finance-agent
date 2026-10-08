@@ -1,0 +1,353 @@
+{
+  "case": "Q6",
+  "profile": "financial",
+  "run_id": "3e4451e7-d61d-4cd4-b7b4-bbb19f463446",
+  "question": "卡罗特这半年利润为什么下降，主要是什么拖累？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 39209,
+  "usage": {
+    "input": 62338,
+    "output": 1115,
+    "calls": 5,
+    "costUsd": 0.00301274,
+    "uncachedInput": 20354,
+    "cacheRead": 41984,
+    "cacheWrite": 0,
+    "reasoning": 135,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 480,
+        "output": 52,
+        "calls": 1,
+        "costUsd": 7.4e-05,
+        "uncachedInput": 480,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 480,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 61858,
+        "output": 1063,
+        "calls": 4,
+        "costUsd": 0.0029387400000000004,
+        "uncachedInput": 19874,
+        "cacheRead": 41984,
+        "cacheWrite": 0,
+        "reasoning": 135,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 61858,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 62338,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "workpaper_results": [
+    {
+      "kind": "variance_attribution",
+      "line": 32,
+      "status": "ok",
+      "period_roles": {
+        "current": "2025-H1",
+        "comparison": "2024-H1"
+      },
+      "error": null
+    }
+  ],
+  "calls": [
+    {
+      "line": 20,
+      "name": "get_data_catalog",
+      "toolCallId": "call_tZfI2sydOyhvs8rlhIMUkADq|fc_06f5b33588230245016ac728f5905487d0acab66de53e69c4b",
+      "args": {
+        "query": "卡罗特 利润",
+        "statement": null,
+        "offset": 0,
+        "limit": 40,
+        "document_id": null,
+        "company": null,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 30,
+      "name": "financial_workpaper",
+      "toolCallId": "call_6zbzGg0A8tPzCeSQFkbOmNIz|fc_06f5b33588230245016ac728faaad087d0a8dfb7829c0fbd82",
+      "args": {
+        "kind": "variance_attribution",
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "company": "Carote Ltd",
+        "scope": "consolidated_IFRS",
+        "periods": [
+          "2025-H1",
+          "2024-H1"
+        ],
+        "focus": null,
+        "as_of": null,
+        "metrics": null,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 40,
+      "name": "get_source_page",
+      "toolCallId": "call_E81EcGa1eaZ7AoroyhLN9zQ9|fc_06f5b33588230245016ac729043ba087d0b5f28c85c8edb6d5",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 23,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 42,
+      "name": "get_source_page",
+      "toolCallId": "call_Odv08CehCfpGwJ28eqIiGgWn|fc_06f5b33588230245016ac729043bb087d08a76040ec737be5b",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 9,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 44,
+      "name": "get_source_page",
+      "toolCallId": "call_QifWoTXG5DYOB4y1ok5JdSPb|fc_06f5b33588230245016ac729043bb887d0a3f47c706f29fed8",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 10,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "line": 7,
+      "requestId": "176b0cca-4a2d-496d-be8c-dabc77a34ed9",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "f95011b5-07dd-4012-856a-14121c61056b",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 449
+    },
+    {
+      "line": 14,
+      "requestId": "8b96f8d1-3c2c-4255-9961-fbf964cf8bb2",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "f95011b5-07dd-4012-856a-14121c61056b",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 31360
+    },
+    {
+      "line": 24,
+      "requestId": "e6b1bde9-911f-4e64-a12c-ef91758b5e5f",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "f95011b5-07dd-4012-856a-14121c61056b",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 35588
+    },
+    {
+      "line": 34,
+      "requestId": "fbc44904-1c29-4753-9e50-60e88100d982",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "f95011b5-07dd-4012-856a-14121c61056b",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 73272
+    },
+    {
+      "line": 52,
+      "requestId": "3128aa3a-7cbe-420a-a2f0-265c3dd6222f",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "f95011b5-07dd-4012-856a-14121c61056b",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 88102
+    }
+  ],
+  "workpaper_kinds": [
+    "variance_attribution"
+  ],
+  "binding": {
+    "bound": 8,
+    "unbound": 12,
+    "total": 20,
+    "ratio": 0.4,
+    "placeholders": [
+      {
+        "token": "{{profit_bridge.revenue_change.current}}",
+        "rendered": "836.9250 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "9250",
+            "context": "9250 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.revenue_change.change}}",
+        "rendered": "-118.2670 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "-118.2670",
+            "context": "-118.2670 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.gross_change.current}}",
+        "rendered": "281.5940 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "5940",
+            "context": "5940 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.gross_change.change}}",
+        "rendered": "-113.6490 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "-113.6490",
+            "context": "-113.6490 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.parent_profit_change.current}}",
+        "rendered": "102.7850 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "7850",
+            "context": "7850 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.parent_profit_change.change}}",
+        "rendered": "-61.3110 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "-61.3110",
+            "context": "-61.3110 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.revenue_effect.contribution}}",
+        "rendered": "-48.9370 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "-48.9370",
+            "context": "-48.9370 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      },
+      {
+        "token": "{{profit_bridge.margin_effect.contribution}}",
+        "rendered": "-64.7120 CNY 百万元\n\n注：分项按显示精度调整以与合计一致。",
+        "values": [
+          {
+            "value": "-64.7120",
+            "context": "-64.7120 CNY 百万元  注：分项按显示精度调整以与合计一致。"
+          }
+        ]
+      }
+    ],
+    "unbound_values": [
+      {
+        "value": "6,131万元",
+        "context": "论  卡罗特上半年归母净利润同比减少 **人民币6,131万元**，降至约 **1.028亿元**。主要拖累是**毛利"
+      },
+      {
+        "value": "1.028亿元",
+        "context": "减少 **人民币6,131万元**，降至约 **1.028亿元**。主要拖累是**毛利大幅减少**：收入下滑与毛利率下"
+      },
+      {
+        "value": "1.136亿元",
+        "context": "*：收入下滑与毛利率下降共同导致毛利少了约 **1.136亿元**。销售、管理、研发费用下降，以及财务净收益增加，部分"
+      },
+      {
+        "value": "12.4%",
+        "context": "  - **毛利下降是核心。** 收入同比减少约12.4%；按底稿拆分，收入收缩对应毛利减少约 **4,894万元"
+      },
+      {
+        "value": "4,894万元",
+        "context": ".4%；按底稿拆分，收入收缩对应毛利减少约 **4,894万元**，毛利率下降对应毛利减少约 **6,471万元**。"
+      },
+      {
+        "value": "6,471万元",
+        "context": ",894万元**，毛利率下降对应毛利减少约 **6,471万元**。这是对毛利变动的计算拆分，不等于报告披露的因果归因"
+      },
+      {
+        "value": "48.3%",
+        "context": "、欧洲和东南亚销售减少影响。ODM收入同比下降约48.3%；品牌业务收入下降约7.5%。（） - **区域表现不一"
+      },
+      {
+        "value": "7.5%",
+        "context": "DM收入同比下降约48.3%；品牌业务收入下降约7.5%。（） - **区域表现不一。** 品牌业务中，西欧收入"
+      },
+      {
+        "value": "6,040万元",
+        "context": "区域表现不一。** 品牌业务中，西欧收入从人民币6,040万元降至1,620万元，东南亚从2,980万元降至2,090"
+      },
+      {
+        "value": "1,620万元",
+        "context": " 品牌业务中，西欧收入从人民币6,040万元降至1,620万元，东南亚从2,980万元降至2,090万元；美国、日本收"
+      },
+      {
+        "value": "2,980万元",
+        "context": "人民币6,040万元降至1,620万元，东南亚从2,980万元降至2,090万元；美国、日本收入增长，但未抵消其他市场"
+      },
+      {
+        "value": "2,090万元",
+        "context": "元降至1,620万元，东南亚从2,980万元降至2,090万元；美国、日本收入增长，但未抵消其他市场的下降。（）  *"
+      }
+    ]
+  },
+  "tags_raw": {},
+  "tags_final": {
+    "【推论/分析】": 19,
+    "【事实/数据】": 2
+  },
+  "all_labels_raw": {},
+  "all_labels_final": {
+    "【推论/分析】": 19,
+    "【事实/数据】": 2
+  },
+  "answer_bound_events": 1,
+  "answer_bound_line": 702
+}

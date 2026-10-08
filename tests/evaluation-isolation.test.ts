@@ -105,9 +105,9 @@ test('native runs and MCP enforce artifact scope, preserve same-chain reuse and 
    for(const run_id of ['foreign-analysis','absent'])await assert.rejects(()=>service.call('get_artifact',{project_id:'p',run_id,name:'result.txt'}),/^Error: analysis_not_found_in_project$/);
   });
   const delivery=own.delivery,filename=decodeURIComponent(delivery.files[0].url.split('/').at(-1)!);
-  await evaluationIsolation.run('chain_a',()=>deliveryFile('p',delivery.id,filename));
-  for(const id of [delivery.id,'0'.repeat(32)])await assert.rejects(()=>evaluationIsolation.run('chain_b',()=>deliveryFile('p',id,filename)),/^Error: 交付不存在$/);
-  await deliveryFile('p',delivery.id,filename);
+  await evaluationIsolation.run('chain_a',()=>deliveryFile('p',delivery.id,filename,service));
+  for(const id of [delivery.id,'0'.repeat(32)])await assert.rejects(()=>evaluationIsolation.run('chain_b',()=>deliveryFile('p',id,filename,service)),/^Error: analysis_not_found_in_project$/);
+  await deliveryFile('p',delivery.id,filename,service);
 
   // Report dependencies and revisions use the same filtered artifact store.
   const content={original_text:'Original',issues:[],verified_claims:[]};
@@ -125,8 +125,8 @@ test('native runs and MCP enforce artifact scope, preserve same-chain reuse and 
   const id='1'.repeat(32),folder=path.join(dir,'research/p/deliveries',id),bytes=Buffer.from('own workpaper');await mkdir(folder,{recursive:true});
   await writeFile(path.join(folder,'table.csv'),bytes);
   await writeFile(path.join(folder,'delivery.json'),JSON.stringify({isolation_key:'chain_a',files:[{name:'table.csv',size:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')}]}));
-  assert.equal((await evaluationIsolation.run('chain_a',()=>deliveryFile('p',id,'table.csv'))).bytes.toString(),'own workpaper');
-  await assert.rejects(()=>evaluationIsolation.run('chain_b',()=>deliveryFile('p',id,'table.csv')),/^Error: 交付不存在$/);
-  assert.equal((await deliveryFile('p',id,'table.csv')).bytes.toString(),'own workpaper');
+  assert.equal((await evaluationIsolation.run('chain_a',()=>deliveryFile('p',id,'table.csv',service))).bytes.toString(),'own workpaper');
+  await assert.rejects(()=>evaluationIsolation.run('chain_b',()=>deliveryFile('p',id,'table.csv',service)),/^Error: analysis_not_found_in_project$/);
+  assert.equal((await deliveryFile('p',id,'table.csv',service)).bytes.toString(),'own workpaper');
  }finally{await manager.shutdown();await service.close();}
 });

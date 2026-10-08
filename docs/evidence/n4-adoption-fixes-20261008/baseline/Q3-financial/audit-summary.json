@@ -1,0 +1,249 @@
+{
+  "case": "Q3",
+  "profile": "financial",
+  "run_id": "a84cbe8e-6b3b-46a4-95c7-d7d03814205d",
+  "question": "扣非后看伊利 2024 年盈利质量如何？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 30146,
+  "usage": {
+    "input": 24621,
+    "output": 1044,
+    "calls": 3,
+    "costUsd": 0.00238506,
+    "uncachedInput": 17965,
+    "cacheRead": 6656,
+    "cacheWrite": 0,
+    "reasoning": 386,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 480,
+        "output": 49,
+        "calls": 1,
+        "costUsd": 7.25e-05,
+        "uncachedInput": 480,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 480,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 24141,
+        "output": 995,
+        "calls": 2,
+        "costUsd": 0.00231256,
+        "uncachedInput": 17485,
+        "cacheRead": 6656,
+        "cacheWrite": 0,
+        "reasoning": 386,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 24141,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 24621,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "calls": [
+    {
+      "line": 20,
+      "name": "financial_workpaper",
+      "toolCallId": "call_173ZiiHeI2l06IK0bvJU8DwP|fc_03ab868c547459b7016ac71b8a385087d092a81cd165834b60",
+      "args": {
+        "kind": "statement_analysis",
+        "document_id": null,
+        "company": "伊利",
+        "scope": "consolidated",
+        "periods": [
+          "2024"
+        ],
+        "focus": "扣非后盈利质量；覆盖扣非与非经常损益、间接法补充资料桥、季度数据和ROE",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "line": 7,
+      "requestId": "7d026ead-6a5b-4836-9e84-695d94042792",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "211afad7-fe9f-4887-8815-c005f02b93a1",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 447
+    },
+    {
+      "line": 14,
+      "requestId": "05f171cb-0069-4a47-b3f1-d01296307997",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "211afad7-fe9f-4887-8815-c005f02b93a1",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 30713
+    },
+    {
+      "line": 24,
+      "requestId": "2c5cb479-a7c5-42a0-a51b-3da80cd5c057",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "211afad7-fe9f-4887-8815-c005f02b93a1",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 60509
+    }
+  ],
+  "workpaper_kinds": [
+    "statement_analysis"
+  ],
+  "binding": {
+    "bound": 19,
+    "unbound": 2,
+    "total": 21,
+    "ratio": 0.9047619047619048,
+    "placeholders": [
+      {
+        "token": "{{table:deducted_profit}}",
+        "rendered": "| 期间 | 归母净利润（CNY 百万元） | 披露扣非归母（CNY 百万元） | 非经常损益合计（CNY 百万元） | 归母减非经常损益（CNY 百万元） | 披露扣非减计算扣非（CNY 百万元） | 非经常损益占归母（%） |\n| --- | --- | --- | --- | --- | --- | --- |\n| 2024 | — | — | — | — | — | — |",
+        "values": []
+      },
+      {
+        "token": "{{table:cash_quality}}",
+        "rendered": "| 行键 | 期间 | CFO/合并净利润（ratio） | dso（天） | dio（天） | dpo（天） | cash_conversion_cycle（天） | 计算口径 |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| 2024 | 2024 | — | — | — | — | — | CFO/同口径净利润；应收天数采用收入代理，应付天数采用成本代理；按实际期间天数 |",
+        "values": []
+      },
+      {
+        "token": "{{table:roe}}",
+        "rendered": "| 期间 | 披露加权平均ROE（%） | 期初归母权益（CNY 百万元） | 期末归母权益（CNY 百万元） | 平均归母权益（CNY 百万元） | 平均归母权益ROE（%） | 口径差异 |\n| --- | --- | --- | --- | --- | --- | --- |\n| 2024 | — | 53,539.3314 | 53,179.9351 | 53,359.6333 | — | 披露加权平均ROE原样取用；对照为归母净利润/期初期末平均归母权益，未年化；权重口径不同，不强行对齐 |",
+        "values": [
+          {
+            "value": "53,539.3314 CNY 百万元",
+            "context": "table:roe[0].begin"
+          },
+          {
+            "value": "53,179.9351 CNY 百万元",
+            "context": "table:roe[0].end"
+          },
+          {
+            "value": "53,359.6333 CNY 百万元",
+            "context": "table:roe[0].average"
+          }
+        ]
+      },
+      {
+        "token": "{{table:quarterly}}",
+        "rendered": "| 行键 | 原披露指标 | 指标映射 | 2024 Q1（CNY 百万元） | 2024 Q2（CNY 百万元） | 2024 Q3（CNY 百万元） | 2024 Q4（CNY 百万元） |\n| --- | --- | --- | --- | --- | --- | --- |\n| d84573bf6b584e7e874faa4c6adf454a:t10_2 | 营业收入 | revenue | 32,462.8964 | 27,232.8606 | 29,037.1775 | 26,660.3765 |\n| d84573bf6b584e7e874faa4c6adf454a:t10_3 | 归属于上市公司股东的净利润 | parent_profit | 5,922.8145 | 1,608.3196 | 3,337.3462 | -2,415.6204 |\n| d84573bf6b584e7e874faa4c6adf454a:t10_4 | 归属于上市公司股东的扣除非经 常性损益后的净利润 | deducted_profit | 3,727.6099 | 1,596.8501 | 3,184.4100 | -2,497.5951 |\n| d84573bf6b584e7e874faa4c6adf454a:t10_5 | 经营活动产生的现金流量净额 | cfo | 2,267.6002 | 3,057.9435 | 8,544.0686 | 7,870.1281 |",
+        "values": [
+          {
+            "value": "32,462.8964 CNY 百万元",
+            "context": "table:quarterly[0].Q1"
+          },
+          {
+            "value": "27,232.8606 CNY 百万元",
+            "context": "table:quarterly[0].Q2"
+          },
+          {
+            "value": "29,037.1775 CNY 百万元",
+            "context": "table:quarterly[0].Q3"
+          },
+          {
+            "value": "26,660.3765 CNY 百万元",
+            "context": "table:quarterly[0].Q4"
+          },
+          {
+            "value": "5,922.8145 CNY 百万元",
+            "context": "table:quarterly[1].Q1"
+          },
+          {
+            "value": "1,608.3196 CNY 百万元",
+            "context": "table:quarterly[1].Q2"
+          },
+          {
+            "value": "3,337.3462 CNY 百万元",
+            "context": "table:quarterly[1].Q3"
+          },
+          {
+            "value": "-2,415.6204 CNY 百万元",
+            "context": "table:quarterly[1].Q4"
+          },
+          {
+            "value": "3,727.6099 CNY 百万元",
+            "context": "table:quarterly[2].Q1"
+          },
+          {
+            "value": "1,596.8501 CNY 百万元",
+            "context": "table:quarterly[2].Q2"
+          },
+          {
+            "value": "3,184.4100 CNY 百万元",
+            "context": "table:quarterly[2].Q3"
+          },
+          {
+            "value": "-2,497.5951 CNY 百万元",
+            "context": "table:quarterly[2].Q4"
+          },
+          {
+            "value": "2,267.6002 CNY 百万元",
+            "context": "table:quarterly[3].Q1"
+          },
+          {
+            "value": "3,057.9435 CNY 百万元",
+            "context": "table:quarterly[3].Q2"
+          },
+          {
+            "value": "8,544.0686 CNY 百万元",
+            "context": "table:quarterly[3].Q3"
+          },
+          {
+            "value": "7,870.1281 CNY 百万元",
+            "context": "table:quarterly[3].Q4"
+          }
+        ]
+      },
+      {
+        "token": "{{table:indirect_contributions}}",
+        "rendered": "| 行键 | 期间 | 类别 | 调节贡献（CNY 百万元） | 归类与解释边界 |\n| --- | --- | --- | --- | --- |\n| 0_2024_非现金项目 | 2024 | 非现金项目 | — | 按各行归类依据汇总；这是净利润至CFO调节贡献，不是收入或现金收支归因 |\n| 0_2024_营运资本 | 2024 | 营运资本 | — | 按各行归类依据汇总；这是净利润至CFO调节贡献，不是收入或现金收支归因 |\n| 0_2024_其他 | 2024 | 其他 | — | 按各行归类依据汇总；这是净利润至CFO调节贡献，不是收入或现金收支归因 |",
+        "values": []
+      }
+    ],
+    "unbound_values": [
+      {
+        "value": "-24.16",
+        "context": "显波动。**底稿显示， 年  归母净利润为 **-24.16 亿元**，扣非归母净利润为 **-24.98 亿元**"
+      },
+      {
+        "value": "-24.98",
+        "context": "*-24.16 亿元**，扣非归母净利润为 **-24.98 亿元**；这说明全年盈利掩盖了第四季度的亏损，不能据全"
+      }
+    ]
+  },
+  "tags_raw": {},
+  "tags_final": {
+    "【事实/数据】": 6
+  },
+  "all_labels_raw": {},
+  "all_labels_final": {
+    "【事实/数据】": 6
+  },
+  "answer_bound_events": 1,
+  "answer_bound_line": 551
+}

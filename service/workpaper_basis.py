@@ -262,6 +262,6 @@ def basis_changes(service,project,document_id=None,company=None,scope='consolida
         'occurrences':cell(r['occurrences'],'个',sources=[q['source'] for q in r['values'].values()],formula='独立披露年度中非零金额的个数'),**r['values']} for r in repeated])
     report_tables['unrecognized']=table({k:col(v) for k,v in [('key','行键'),('item','原文项目'),('reason','原因'),('source','原格和来源')]},[{'key':str(i),**r,'source':json.dumps(r['source'],ensure_ascii=False)} for i,r in enumerate([*unknown,*d.unknown])])
     confirmed=any(not p['metric'].startswith('unrecognized:') for p in pairs) or any(x['status']=='restatement_disclosed' for x in markers)
-    report_tables['summary']=table({'key':col('行键'),'restatement_detected':col('识别到重述依据'),'paired_rows':col('调整数值行数'),'note':col('识别边界')},[{'key':'basis','restatement_detected':confirmed,'paired_rows':len(pairs),'note':'原文标记不等于结论；未发现调整列/明确追溯声明时不报重述。政策变更适用与数值影响分开。'}])
+    report_tables['summary']=table({'key':col('行键'),'restatement_detected':col('识别到重述依据'),'paired_rows':col('已识别调整数值行数','个',decimals=0),'note':col('识别边界')},[{'key':'basis','restatement_detected':confirmed,'paired_rows':len(pairs),'note':'原文标记不等于结论；未发现调整列/明确追溯声明时不报重述，调整行数不是调整金额。政策变更适用与数值影响分开。'}])
     report_tables['observations']=table({'key':col('行键'),'finding':col('确定性关系'),'basis':col('底稿')},observations)
-    return {'title':st.company+' 口径变化与特殊损益底稿','body':'保留政策、估计、差错、同控合并和重述原文标记及否定证据；量化原报与重述的同口径差额。多期非经常项目只提示，不重新分类。加权披露ROE与平均权益ROE分开。','tables':report_tables},allfacts
+    return {'title':st.company+' 口径变化与特殊损益底稿','periods':st.periods,'body':'保留政策、估计、差错、同控合并和重述原文标记及否定证据；量化原报与重述的同口径差额。多期非经常项目只提示，不重新分类。加权披露ROE与平均权益ROE分开。','tables':report_tables},allfacts

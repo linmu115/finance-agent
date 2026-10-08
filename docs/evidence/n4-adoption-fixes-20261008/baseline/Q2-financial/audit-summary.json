@@ -1,0 +1,533 @@
+{
+  "case": "Q2",
+  "profile": "financial",
+  "run_id": "fd2364b2-628e-49c9-9fba-9640d53ef85c",
+  "question": "伊利 2024 年利润和现金流走势一致吗，有没有值得警惕的地方？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 90298,
+  "usage": {
+    "input": 287652,
+    "output": 2805,
+    "calls": 9,
+    "costUsd": 0.009523860000000002,
+    "uncachedInput": 58276,
+    "cacheRead": 229376,
+    "cacheWrite": 0,
+    "reasoning": 913,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 488,
+        "output": 43,
+        "calls": 1,
+        "costUsd": 7.03e-05,
+        "uncachedInput": 488,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 488,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 287164,
+        "output": 2762,
+        "calls": 8,
+        "costUsd": 0.009453560000000001,
+        "uncachedInput": 57788,
+        "cacheRead": 229376,
+        "cacheWrite": 0,
+        "reasoning": 913,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 287164,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 287652,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "calls": [
+    {
+      "line": 20,
+      "name": "get_data_catalog",
+      "toolCallId": "call_rPBlmqBsXIE0h7cFrhgQeS48|fc_0ffd8359717ff880016ac71b2a220087d0b6510f593c2fba8f",
+      "args": {
+        "query": "伊利 2024",
+        "statement": null,
+        "offset": 0,
+        "limit": 40,
+        "document_id": null,
+        "company": null,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 22,
+      "name": "list_documents",
+      "toolCallId": "call_ay1rnnPLM5EF7VYOHAoMdHFi|fc_0ffd8359717ff880016ac71b2a221487d08ba4d2a52b973b64",
+      "args": {
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 24,
+      "name": "query_financial_data",
+      "toolCallId": "call_aaB2BCc2NwhPvaIupGJmZrZG|fc_0ffd8359717ff880016ac71b2a222087d0a76652036594b812",
+      "args": {
+        "filters": {
+          "company": "伊利",
+          "periods": [
+            "2024"
+          ],
+          "years": [
+            2024
+          ]
+        },
+        "limit": 40,
+        "offset": 0,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 38,
+      "name": "financial_workpaper",
+      "toolCallId": "call_ReRb3Mxx6v93NSSKih14PSaq|fc_0ffd8359717ff880016ac71b2f12c887d0be4d0472dfba13bd",
+      "args": {
+        "kind": "statement_analysis",
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "company": "内蒙古伊利实业集团股份有限公司",
+        "scope": "consolidated",
+        "periods": [
+          "2024-FY",
+          "2023-FY"
+        ],
+        "focus": "利润与现金流走势一致性；净利润、扣非、经营现金流、销售收现、现金流质量及异常信号，季度数据和ROE",
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 48,
+      "name": "get_source_page",
+      "toolCallId": "call_elz6swYdgQ1xaxwPJ2kIhFvT|fc_0ffd8359717ff880016ac71b38719c87d0adb6d4bab2b30f20",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 7,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 50,
+      "name": "get_source_page",
+      "toolCallId": "call_NMoq0OXLnyDhMXaPFwWlnBD4|fc_0ffd8359717ff880016ac71b3871c487d0bd56456e652f3574",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 8,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 52,
+      "name": "get_source_page",
+      "toolCallId": "call_7gplzUb9WXi3s4qPYOua10Xf|fc_0ffd8359717ff880016ac71b3871cc87d085e4e497fc69f1b4",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 90,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 54,
+      "name": "get_document_index",
+      "toolCallId": "call_sjFbzgpU5hQOdNeeGP8yrEzs|fc_0ffd8359717ff880016ac71b3871d487d089813fa28832957f",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "section": "tables",
+        "query": "现金流量表",
+        "offset": 0,
+        "limit": 20,
+        "page_start": 80,
+        "page_end": 110,
+        "include_preview": true,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 70,
+      "name": "get_source_page",
+      "toolCallId": "call_gnsZVerMwrwX7RWl4C5eNhLO|fc_0ffd8359717ff880016ac71b49852887d081521151f33f8ab5",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 85,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 72,
+      "name": "get_source_page",
+      "toolCallId": "call_rPpc7OiKvtjIakYQFGaL4d9t|fc_0ffd8359717ff880016ac71b49854887d0a686f91cf74bd6ec",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 86,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 74,
+      "name": "get_source_page",
+      "toolCallId": "call_YYJT5i7ZSmnYNZSv0iD8fuXb|fc_0ffd8359717ff880016ac71b49855487d08038f33cb9966de0",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 87,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 76,
+      "name": "get_source_page",
+      "toolCallId": "call_11PsxGeNnccF7ZW1Omq2x52V|fc_0ffd8359717ff880016ac71b49855c87d0a88847eb5e6001b9",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 217,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 78,
+      "name": "get_source_page",
+      "toolCallId": "call_JYS971GXymV0gwMbYR666W5G|fc_0ffd8359717ff880016ac71b49856087d0a8c1ae0b47daf0c2",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 218,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 96,
+      "name": "get_source_page",
+      "toolCallId": "call_RfIk9AqwlsVXb6vWYTjeCDjs|fc_0ffd8359717ff880016ac71b5142a487d0a96d18fed3443cab",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 94,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 106,
+      "name": "get_source_page",
+      "toolCallId": "call_xyFLZ4r99i32zJymxNzQAbXH|fc_0ffd8359717ff880016ac71b579f7887d09e62f7b5bab30617",
+      "args": {
+        "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+        "page": 95,
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 116,
+      "name": "calculate_financial_metrics",
+      "toolCallId": "call_4Z1LyPWhiiNY1FzeahyHuxAc|fc_0ffd8359717ff880016ac71b623ee087d08700dd50b787dcc0",
+      "args": {
+        "operation": "ratio",
+        "inputs": {
+          "numerator": 21739.74039338,
+          "denominator": 8463.71035565
+        },
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 118,
+      "name": "calculate_financial_metrics",
+      "toolCallId": "call_plI08Cb9uQ6YhrSUdcp0YOLj|fc_0ffd8359717ff880016ac71b623ef487d0879e8c7d44da3580",
+      "args": {
+        "operation": "margin",
+        "inputs": {
+          "numerator": 21739.74039338,
+          "denominator": 115393.31097669
+        },
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 120,
+      "name": "calculate_financial_metrics",
+      "toolCallId": "call_eeh4177CYHDS71qMhwm0T6eu|fc_0ffd8359717ff880016ac71b623efc87d0b0eb4524370572e7",
+      "args": {
+        "operation": "ratio",
+        "inputs": {
+          "numerator": 18290.35765056,
+          "denominator": 10284.30619828
+        },
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    },
+    {
+      "line": 122,
+      "name": "calculate_financial_metrics",
+      "toolCallId": "call_xdTKH2tzWVGxLyYsj9Xl7mbS|fc_0ffd8359717ff880016ac71b623f0487d09d6a1b6e65a1d176",
+      "args": {
+        "operation": "margin",
+        "inputs": {
+          "numerator": 18290.35765056,
+          "denominator": 125758.16891651
+        },
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6"
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "line": 7,
+      "requestId": "77caed81-9cb2-4eb7-a3b8-8887e7af1d9f",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "d5db0633-b490-449f-9a62-78a416e20520",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 459
+    },
+    {
+      "line": 14,
+      "requestId": "4e785b5c-7fef-47fd-af5a-d2836967665d",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "d5db0633-b490-449f-9a62-78a416e20520",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 30725
+    },
+    {
+      "line": 32,
+      "requestId": "c29fd824-4ed9-4676-beb7-45ee9aeaf33e",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "d5db0633-b490-449f-9a62-78a416e20520",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 50691
+    },
+    {
+      "line": 42,
+      "requestId": "503a52a7-7b27-45e6-81d8-29f14f4cac2a",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "d5db0633-b490-449f-9a62-78a416e20520",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 113570
+    },
+    {
+      "line": 64,
+      "requestId": "5fd0372a-5542-47bd-9486-b2e8f382947b",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "d5db0633-b490-449f-9a62-78a416e20520",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 128610
+    },
+    {
+      "line": 90,
+      "requestId": "cc1f45e9-bfd4-4d2c-ad26-2eb729b20056",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "d5db0633-b490-449f-9a62-78a416e20520",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 147286
+    },
+    {
+      "line": 100,
+      "requestId": "72aca36f-2676-4aa8-a6ba-48222c652c34",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "d5db0633-b490-449f-9a62-78a416e20520",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 152636
+    },
+    {
+      "line": 110,
+      "requestId": "3dc07a2f-4dba-4754-9285-396d876ccc10",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "d5db0633-b490-449f-9a62-78a416e20520",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 158757
+    },
+    {
+      "line": 132,
+      "requestId": "fc46f640-5b24-434d-8812-1e0e456dd67a",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "d5db0633-b490-449f-9a62-78a416e20520",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 165543
+    }
+  ],
+  "workpaper_kinds": [
+    "statement_analysis"
+  ],
+  "binding": {
+    "bound": 0,
+    "unbound": 27,
+    "total": 27,
+    "ratio": 0.0,
+    "placeholders": [],
+    "unbound_values": [
+      {
+        "value": "1,153.93亿元",
+        "context": "果 | |---|---:| | 营业收入 | 1,153.93亿元，同比-8.24% | | 归母净利润 | 84.53亿"
+      },
+      {
+        "value": "-8.24%",
+        "context": "| | 营业收入 | 1,153.93亿元，同比-8.24% | | 归母净利润 | 84.53亿元，同比-18.9"
+      },
+      {
+        "value": "84.53亿元",
+        "context": "亿元，同比-8.24% | | 归母净利润 | 84.53亿元，同比-18.94% | | 扣非归母净利润 | 60."
+      },
+      {
+        "value": "-18.94%",
+        "context": "% | | 归母净利润 | 84.53亿元，同比-18.94% | | 扣非归母净利润 | 60.11亿元，同比-40"
+      },
+      {
+        "value": "60.11亿元",
+        "context": "同比-18.94% | | 扣非归母净利润 | 60.11亿元，同比-40.04% | | 经营活动现金流净额（CFO"
+      },
+      {
+        "value": "-40.04%",
+        "context": "| | 扣非归母净利润 | 60.11亿元，同比-40.04% | | 经营活动现金流净额（CFO） | 217.40"
+      },
+      {
+        "value": "217.40亿元",
+        "context": "4% | | 经营活动现金流净额（CFO） | 217.40亿元，同比+18.86% | | CFO / 合并净利润 |"
+      },
+      {
+        "value": "+18.86%",
+        "context": "现金流净额（CFO） | 217.40亿元，同比+18.86% | | CFO / 合并净利润 | 2.57倍（计算）"
+      },
+      {
+        "value": "2.57倍",
+        "context": "8.86% | | CFO / 合并净利润 | 2.57倍（计算） | | CFO / 营业收入 | 18.84%"
+      },
+      {
+        "value": "18.84%",
+        "context": "7倍（计算） | | CFO / 营业收入 | 18.84%；为14.54%（计算） |  年报披露，归母净利润和扣"
+      },
+      {
+        "value": "14.54%",
+        "context": " | CFO / 营业收入 | 18.84%；为14.54%（计算） |  年报披露，归母净利润和扣非归母净利润均下"
+      },
+      {
+        "value": "24.42亿元",
+        "context": "归母净利润。**归母净利润与扣非归母净利润相差约24.42亿元（计算）。年报列示非流动性资产处置损益约25.64亿元，"
+      },
+      {
+        "value": "25.64亿元",
+        "context": "42亿元（计算）。年报列示非流动性资产处置损益约25.64亿元，是非经常性损益中的大额项目。也就是说，**报告净利润没"
+      },
+      {
+        "value": "46.76亿元",
+        "context": "**现金流量表补充资料显示，资产减值准备调整为约46.76亿元，上年约15.26亿元；经营性应收项目减少带来约18.2"
+      },
+      {
+        "value": "15.26亿元",
+        "context": "显示，资产减值准备调整为约46.76亿元，上年约15.26亿元；经营性应收项目减少带来约18.25亿元现金贡献，经营性"
+      },
+      {
+        "value": "18.25亿元",
+        "context": "，上年约15.26亿元；经营性应收项目减少带来约18.25亿元现金贡献，经营性应付项目增加带来约26.11亿元现金贡献"
+      },
+      {
+        "value": "26.11亿元",
+        "context": "18.25亿元现金贡献，经营性应付项目增加带来约26.11亿元现金贡献。**这些项目能抬高当年CFO，但不代表利润趋势"
+      },
+      {
+        "value": "24.16亿元",
+        "context": " **单季背离尤其明显。**第四季度归母净亏损约24.16亿元、扣非归母净亏损约24.98亿元，但当季经营现金流净额约"
+      },
+      {
+        "value": "24.98亿元",
+        "context": "季度归母净亏损约24.16亿元、扣非归母净亏损约24.98亿元，但当季经营现金流净额约78.70亿元。利润与现金流在该"
+      },
+      {
+        "value": "78.70亿元",
+        "context": "母净亏损约24.98亿元，但当季经营现金流净额约78.70亿元。利润与现金流在该季度显著背离，提示应进一步关注非现金损"
+      },
+      {
+        "value": "327.09亿元",
+        "context": "，需与经营现金流分开看。**投资活动现金净流出约327.09亿元，较上年约160.44亿元扩大；筹资活动现金净流出约72"
+      },
+      {
+        "value": "160.44亿元",
+        "context": "*投资活动现金净流出约327.09亿元，较上年约160.44亿元扩大；筹资活动现金净流出约72.78亿元。年末现金及现金"
+      },
+      {
+        "value": "72.78亿元",
+        "context": "上年约160.44亿元扩大；筹资活动现金净流出约72.78亿元。年末现金及现金等价物约245.47亿元，较年初减少约1"
+      },
+      {
+        "value": "245.47亿元",
+        "context": "金净流出约72.78亿元。年末现金及现金等价物约245.47亿元，较年初减少约182.66亿元。年报中投资支付现金约34"
+      },
+      {
+        "value": "182.66亿元",
+        "context": "现金及现金等价物约245.47亿元，较年初减少约182.66亿元。年报中投资支付现金约342.54亿元，上年约149.8"
+      },
+      {
+        "value": "342.54亿元",
+        "context": "年初减少约182.66亿元。年报中投资支付现金约342.54亿元，上年约149.82亿元；因此，现金减少更直接地反映投资"
+      },
+      {
+        "value": "149.82亿元",
+        "context": "元。年报中投资支付现金约342.54亿元，上年约149.82亿元；因此，现金减少更直接地反映投资现金支出增加，而非CFO"
+      }
+    ]
+  },
+  "tags_raw": {},
+  "tags_final": {
+    "【事实/数据】": 1
+  },
+  "all_labels_raw": {},
+  "all_labels_final": {
+    "【事实/数据】": 1
+  },
+  "answer_bound_events": 1,
+  "answer_bound_line": 1065
+}

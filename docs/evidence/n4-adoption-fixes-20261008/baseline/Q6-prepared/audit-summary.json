@@ -1,0 +1,793 @@
+{
+  "case": "Q6",
+  "profile": "prepared",
+  "run_id": "75c4d207-5395-4c7e-947b-75831c9fd073",
+  "question": "卡罗特这半年利润为什么下降，主要是什么拖累？\n仅基于当前项目已有材料分析，不联网，不重新入库或清洗。",
+  "status": "completed",
+  "duration_ms": 87257,
+  "usage": {
+    "input": 154086,
+    "output": 3025,
+    "calls": 10,
+    "costUsd": 0.00595406,
+    "uncachedInput": 32230,
+    "cacheRead": 121856,
+    "cacheWrite": 0,
+    "reasoning": 552,
+    "unknownCalls": 0,
+    "cacheUnknownCalls": 0,
+    "costUnknownCalls": 0,
+    "phases": {
+      "router": {
+        "input": 480,
+        "output": 48,
+        "calls": 1,
+        "costUsd": 7.2e-05,
+        "uncachedInput": 480,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 480,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      },
+      "main": {
+        "input": 153606,
+        "output": 2977,
+        "calls": 9,
+        "costUsd": 0.00588206,
+        "uncachedInput": 31750,
+        "cacheRead": 121856,
+        "cacheWrite": 0,
+        "reasoning": 552,
+        "unknownCalls": 0,
+        "cacheUnknownCalls": 0,
+        "costUnknownCalls": 0,
+        "cacheKnownInput": 153606,
+        "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+      }
+    },
+    "cacheKnownInput": 154086,
+    "priceSource": "Pi 模型目录标价估算；非账单，未扣时段优惠"
+  },
+  "calls": [
+    {
+      "line": 19,
+      "name": "list_documents",
+      "toolCallId": "call_EJQEIaCpJ1Bqgo2OBEHXHHu0|fc_0e9a38c7616aedb2016ac71d76189487d09537d562d52c8991",
+      "args": {
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 29,
+      "name": "get_data_catalog",
+      "toolCallId": "call_jSKpefJvHbHFQmNdfMuZCBdS|fc_0e9a38c7616aedb2016ac71d7cf20487d0857f1774d4abf5f8",
+      "args": {
+        "query": "profit revenue cost gross profit net profit",
+        "statement": null,
+        "offset": 0,
+        "limit": 50,
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "company": null,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 31,
+      "name": "search_evidence",
+      "toolCallId": "call_yE9ueaL6xUaRZifC5ppUc2Fs|fc_0e9a38c7616aedb2016ac71d7cf22087d0b0c42fd368e69a8a",
+      "args": {
+        "query": "半年 利润 下降 成本 费用 毛利率 2025 2024",
+        "company": "Carote",
+        "year": 2025,
+        "limit": 10,
+        "filters": {
+          "document_ids": [
+            "3d9d0befd8374eed9a7488dbd8dd00d2"
+          ]
+        },
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 33,
+      "name": "get_document_index",
+      "toolCallId": "call_StJ8GKEc5pbaSe93y19aafXH|fc_0e9a38c7616aedb2016ac71d7cf22887d08e3e86c5741356f2",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "section": "overview",
+        "query": null,
+        "offset": 0,
+        "limit": 20,
+        "page_start": null,
+        "page_end": null,
+        "include_preview": true,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 47,
+      "name": "query_financial_data",
+      "toolCallId": "call_KmOLzaUOyH3Q4RtZPF65OgJH|fc_0e9a38c7616aedb2016ac71d85c20487d0b86d47fa26488bfe",
+      "args": {
+        "filters": {
+          "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+          "metrics": [
+            "revenue",
+            "cost_of_revenue",
+            "gross_profit",
+            "operating_profit",
+            "profit_before_tax",
+            "net_profit",
+            "other_gains_net",
+            "finance_income_net",
+            "finance_costs"
+          ],
+          "periods": [
+            "2025-H1",
+            "2024-H1"
+          ]
+        },
+        "limit": 100,
+        "offset": 0,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 49,
+      "name": "get_source_table",
+      "toolCallId": "call_Nu6rrNCMKqkejudQuYd1OMFm|fc_0e9a38c7616aedb2016ac71d85c21c87d0b8f55a189b61f0be",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t3",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 51,
+      "name": "get_source_page",
+      "toolCallId": "call_qqchlxzDoK65trC1XDVratFL|fc_0e9a38c7616aedb2016ac71d85c22887d0bf72d153043430ea",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 9,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 53,
+      "name": "get_source_page",
+      "toolCallId": "call_Q8qL2olThTeg3uhMPssXy9ol|fc_0e9a38c7616aedb2016ac71d85c24087d0901ed48ae1a96a12",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 10,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 55,
+      "name": "get_source_page",
+      "toolCallId": "call_TSyqjEJoE8AuNKhcuKY1fzPj|fc_0e9a38c7616aedb2016ac71d85c24887d0b9d4f2cddfa286da",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 11,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 73,
+      "name": "get_source_page",
+      "toolCallId": "call_cZfdRx99sdrq2ng09XtFakGa|fc_0e9a38c7616aedb2016ac71d8ddd3087d0872b79ea4ccf45e7",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "page": 12,
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 75,
+      "name": "get_source_table",
+      "toolCallId": "call_FoautAs4Osp3j161xbKLS4pe|fc_0e9a38c7616aedb2016ac71d8ddd4487d0bba3be3ab2676ef1",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t11",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 77,
+      "name": "get_source_table",
+      "toolCallId": "call_olDXsszrXNU0ebu26NPVPdtm|fc_0e9a38c7616aedb2016ac71d8ddd5087d0b84d8b29bbe27ee2",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t1",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 79,
+      "name": "get_source_table",
+      "toolCallId": "call_kOV5KSV78i0FmT4Uc4zWtumu|fc_0e9a38c7616aedb2016ac71d8ddd5c87d0b3a7caa33be28bee",
+      "args": {
+        "document_id": "3d9d0befd8374eed9a7488dbd8dd00d2",
+        "table_id": "3d9d0befd8374eed9a7488dbd8dd00d2:t2",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 95,
+      "name": "run_analysis",
+      "toolCallId": "call_jShYMNd1Icr9wahu56KSQKEj|fc_0e9a38c7616aedb2016ac71d952e6487d096ecee3f761b12b7",
+      "args": {
+        "code": "import json\nitems = [\n('Revenue',955192,836925),('Cost of sales',-559949,-555331),('Gross profit',395243,281594),('Selling expenses',-159654,-152183),('Administrative expenses',-29032,-19378),('R&D expenses',-21192,-17838),('Other income',2036,658),('Other gains, net',6048,3007),('Operating profit',193422,96000),('Net finance income',3425,25533),('Profit before tax',196847,121533),('Income tax expense',-32763,-18742),('Net profit',164084,102791)]\nrows=[]\nfor name,old,new in items:\n    rows.append({'row_key':name,'label':name,'2024H1':old/1000,'2025H1':new/1000,'change':(new-old)/1000,'change_pct':((new-old)/abs(old)*100 if old else None)})\nreport={'tables':{'bridge':{'title':'卡罗特2025H1利润变化（人民币百万元）','columns':{'2024H1':{'unit':'RMB million'},'2025H1':{'unit':'RMB million'},'change':{'unit':'RMB million'},'change_pct':{'unit':'%'}},'rows':rows}},'body':'2024H1与2025H1同比变动。'}\nprint(json.dumps(report,ensure_ascii=False))",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+        "raw_only": false,
+        "financial_tools": false,
+        "timeout_seconds": 120
+      }
+    },
+    {
+      "line": 105,
+      "name": "get_analysis_status",
+      "toolCallId": "call_kNcAgN9i4xnoiecyyb1mPw1a|fc_0e9a38c7616aedb2016ac71d9de0f887d09f48120de9f48e79",
+      "args": {
+        "run_id": "ded652ac3fb24a399af741fdaaef96b4",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    },
+    {
+      "line": 115,
+      "name": "run_analysis",
+      "toolCallId": "call_Mco8KYH5dDncles0af9tya6i|fc_0e9a38c7616aedb2016ac71da368a087d0bd599a287a548de1",
+      "args": {
+        "report": {
+          "tables": {
+            "bridge": {
+              "title": "卡罗特2025H1利润变化（人民币百万元）",
+              "columns": {
+                "2024H1": {
+                  "unit": "RMB million"
+                },
+                "2025H1": {
+                  "unit": "RMB million"
+                },
+                "change": {
+                  "unit": "RMB million"
+                },
+                "change_pct": {
+                  "unit": "%"
+                }
+              },
+              "rows": [
+                {
+                  "row_key": "Revenue",
+                  "label": "Revenue",
+                  "2024H1": 955.192,
+                  "2025H1": 836.925,
+                  "change": -118.267,
+                  "change_pct": -12.38
+                },
+                {
+                  "row_key": "Gross profit",
+                  "label": "Gross profit",
+                  "2024H1": 395.243,
+                  "2025H1": 281.594,
+                  "change": -113.649,
+                  "change_pct": -28.75
+                },
+                {
+                  "row_key": "Operating profit",
+                  "label": "Operating profit",
+                  "2024H1": 193.422,
+                  "2025H1": 96,
+                  "change": -97.422,
+                  "change_pct": -50.37
+                },
+                {
+                  "row_key": "Net finance income",
+                  "label": "Net finance income",
+                  "2024H1": 3.425,
+                  "2025H1": 25.533,
+                  "change": 22.108,
+                  "change_pct": 645.49
+                },
+                {
+                  "row_key": "Profit before tax",
+                  "label": "Profit before tax",
+                  "2024H1": 196.847,
+                  "2025H1": 121.533,
+                  "change": -75.314,
+                  "change_pct": -38.26
+                },
+                {
+                  "row_key": "Net profit",
+                  "label": "Net profit",
+                  "2024H1": 164.084,
+                  "2025H1": 102.791,
+                  "change": -61.293,
+                  "change_pct": -37.35
+                }
+              ]
+            }
+          },
+          "body": "Source values from 2025 interim report income statement page 23; arithmetic changes computed."
+        },
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+        "raw_only": false,
+        "financial_tools": false,
+        "timeout_seconds": 120
+      }
+    },
+    {
+      "line": 125,
+      "name": "get_analysis_status",
+      "toolCallId": "call_PdPff7hU3Lo72ZKN0oCzNwBl|fc_0e9a38c7616aedb2016ac71dadf2ec87d0b28548554f1e7603",
+      "args": {
+        "run_id": "1832befb27204efcb563872b13e608de",
+        "project_id": "03b52dde-19da-49c1-949a-ee6d93bf036b"
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "line": 6,
+      "requestId": "1042a56b-7efe-4201-b3f3-eb5204e74677",
+      "phase": "router",
+      "usagePhase": "router",
+      "messageId": "6b645bdc-c0da-477d-8a43-fd54505dfab0",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "low",
+      "sentReasoningEffort": "low",
+      "maxTokens": 4096,
+      "contextCharacters": 449
+    },
+    {
+      "line": 13,
+      "requestId": "f5781b83-393f-4c5b-8141-94201184bc44",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6b645bdc-c0da-477d-8a43-fd54505dfab0",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 9726
+    },
+    {
+      "line": 23,
+      "requestId": "d16b463d-dd3b-4ced-9327-d07be158439a",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6b645bdc-c0da-477d-8a43-fd54505dfab0",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 13742
+    },
+    {
+      "line": 41,
+      "requestId": "5d555bf7-dfc0-4c1a-a0d5-021cd1a0b99d",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6b645bdc-c0da-477d-8a43-fd54505dfab0",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 37565
+    },
+    {
+      "line": 67,
+      "requestId": "d2dd811a-1049-4826-b6b6-c06e02550071",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6b645bdc-c0da-477d-8a43-fd54505dfab0",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 75066
+    },
+    {
+      "line": 89,
+      "requestId": "965894c2-3993-4593-9d6f-4e65543486d0",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6b645bdc-c0da-477d-8a43-fd54505dfab0",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 85542
+    },
+    {
+      "line": 99,
+      "requestId": "7f3afc30-00c3-4092-8a40-c2b424f314ba",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6b645bdc-c0da-477d-8a43-fd54505dfab0",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 89966
+    },
+    {
+      "line": 109,
+      "requestId": "0ab16aba-cb83-4910-92bd-8ed3c2f70707",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6b645bdc-c0da-477d-8a43-fd54505dfab0",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 97597
+    },
+    {
+      "line": 119,
+      "requestId": "51b1ce35-4e8b-479d-af20-8d7755daf3b2",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6b645bdc-c0da-477d-8a43-fd54505dfab0",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 101623
+    },
+    {
+      "line": 129,
+      "requestId": "169fd55f-42e4-4dd6-bede-04f27492d904",
+      "phase": "main",
+      "usagePhase": "main",
+      "messageId": "6b645bdc-c0da-477d-8a43-fd54505dfab0",
+      "api": "openai-responses",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "high",
+      "sentReasoningEffort": "high",
+      "maxTokens": 32768,
+      "contextCharacters": 110487
+    }
+  ],
+  "workpaper_kinds": [],
+  "binding": {
+    "bound": 23,
+    "unbound": 18,
+    "total": 41,
+    "ratio": 0.5609756097560976,
+    "placeholders": [
+      {
+        "token": "{{bridge.0.2024H1}}",
+        "rendered": "955.19 CNY million",
+        "values": [
+          {
+            "value": "19",
+            "context": "19 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.0.2025H1}}",
+        "rendered": "836.92 CNY million",
+        "values": [
+          {
+            "value": "92",
+            "context": "92 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.0.change}}",
+        "rendered": "-118.27 CNY million",
+        "values": [
+          {
+            "value": "-118.27",
+            "context": "-118.27 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.0.change_pct}}",
+        "rendered": "-12.38 %",
+        "values": [
+          {
+            "value": "-12.38 %",
+            "context": "-12.38 %"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.1.2024H1}}",
+        "rendered": "395.24 CNY million",
+        "values": [
+          {
+            "value": "24",
+            "context": "24 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.1.2025H1}}",
+        "rendered": "281.59 CNY million",
+        "values": [
+          {
+            "value": "59",
+            "context": "59 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.1.change}}",
+        "rendered": "-113.65 CNY million",
+        "values": [
+          {
+            "value": "-113.65",
+            "context": "-113.65 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.1.change_pct}}",
+        "rendered": "-28.75 %",
+        "values": [
+          {
+            "value": "-28.75 %",
+            "context": "-28.75 %"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.2.2024H1}}",
+        "rendered": "193.42 CNY million",
+        "values": [
+          {
+            "value": "42",
+            "context": "42 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.2.2025H1}}",
+        "rendered": "96.00 CNY million",
+        "values": [
+          {
+            "value": "00",
+            "context": "00 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.2.change}}",
+        "rendered": "-97.42 CNY million",
+        "values": [
+          {
+            "value": "-97.42",
+            "context": "-97.42 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.2.change_pct}}",
+        "rendered": "-50.37 %",
+        "values": [
+          {
+            "value": "-50.37 %",
+            "context": "-50.37 %"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.3.2024H1}}",
+        "rendered": "3.42 CNY million",
+        "values": [
+          {
+            "value": "42",
+            "context": "42 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.3.2025H1}}",
+        "rendered": "25.53 CNY million",
+        "values": [
+          {
+            "value": "53",
+            "context": "53 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.3.change}}",
+        "rendered": "22.11 CNY million",
+        "values": [
+          {
+            "value": "11",
+            "context": "11 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.4.2024H1}}",
+        "rendered": "196.85 CNY million",
+        "values": [
+          {
+            "value": "85",
+            "context": "85 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.4.2025H1}}",
+        "rendered": "121.53 CNY million",
+        "values": [
+          {
+            "value": "53",
+            "context": "53 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.4.change}}",
+        "rendered": "-75.31 CNY million",
+        "values": [
+          {
+            "value": "-75.31",
+            "context": "-75.31 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.4.change_pct}}",
+        "rendered": "-38.26 %",
+        "values": [
+          {
+            "value": "-38.26 %",
+            "context": "-38.26 %"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.5.2024H1}}",
+        "rendered": "164.08 CNY million",
+        "values": [
+          {
+            "value": "08",
+            "context": "08 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.5.2025H1}}",
+        "rendered": "102.79 CNY million",
+        "values": [
+          {
+            "value": "79",
+            "context": "79 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.5.change}}",
+        "rendered": "-61.29 CNY million",
+        "values": [
+          {
+            "value": "-61.29",
+            "context": "-61.29 CNY million"
+          }
+        ]
+      },
+      {
+        "token": "{{bridge.5.change_pct}}",
+        "rendered": "-37.35 %",
+        "values": [
+          {
+            "value": "-37.35 %",
+            "context": "-37.35 %"
+          }
+        ]
+      }
+    ],
+    "unbound_values": [
+      {
+        "value": "37%",
+        "context": "## 结论  卡罗特上半年净利润同比下降约37%，**最大拖累是毛利大幅减少**：收入下滑的同时，销售成"
+      },
+      {
+        "value": "12.4%",
+        "context": "主要拖累 **毛利下滑是核心。** 收入同比下降12.4%，但销售成本仅下降0.8%，毛利因此减少约1.14亿元。"
+      },
+      {
+        "value": "0.8%",
+        "context": "。** 收入同比下降12.4%，但销售成本仅下降0.8%，毛利因此减少约1.14亿元。公司说明销售成本下降被关税"
+      },
+      {
+        "value": "1.14亿元",
+        "context": ".4%，但销售成本仅下降0.8%，毛利因此减少约1.14亿元。公司说明销售成本下降被关税、运费增加部分抵消；品牌业务"
+      },
+      {
+        "value": "45.4%",
+        "context": "本下降被关税、运费增加部分抵消；品牌业务毛利率由45.4%降至35.3%，主要归因于美国额外关税。ODM毛利率则大"
+      },
+      {
+        "value": "35.3%",
+        "context": "运费增加部分抵消；品牌业务毛利率由45.4%降至35.3%，主要归因于美国额外关税。ODM毛利率则大致稳定，约为1"
+      },
+      {
+        "value": "11.8%",
+        "context": "归因于美国额外关税。ODM毛利率则大致稳定，约为11.8%至12.0%。【披露：】 **收入下降有业务结构和市场取"
+      },
+      {
+        "value": "12.0%",
+        "context": "外关税。ODM毛利率则大致稳定，约为11.8%至12.0%。【披露：】 **收入下降有业务结构和市场取舍因素。**"
+      },
+      {
+        "value": "1.148亿元",
+        "context": "下降有业务结构和市场取舍因素。** ODM收入由1.148亿元降至0.593亿元，跌幅48.3%；公司将这与加大品牌业"
+      },
+      {
+        "value": "0.593亿元",
+        "context": "场取舍因素。** ODM收入由1.148亿元降至0.593亿元，跌幅48.3%；公司将这与加大品牌业务侧重相联系。品牌"
+      },
+      {
+        "value": "48.3%",
+        "context": "DM收入由1.148亿元降至0.593亿元，跌幅48.3%；公司将这与加大品牌业务侧重相联系。品牌业务收入也下降7"
+      },
+      {
+        "value": "7.5%",
+        "context": "将这与加大品牌业务侧重相联系。品牌业务收入也下降7.5%，其中西欧和东南亚分别下降73.2%和29.9%；美国、"
+      },
+      {
+        "value": "73.2%",
+        "context": "业务收入也下降7.5%，其中西欧和东南亚分别下降73.2%和29.9%；美国、日本收入虽增长，但未抵消其他市场下滑"
+      },
+      {
+        "value": "29.9%",
+        "context": "降7.5%，其中西欧和东南亚分别下降73.2%和29.9%；美国、日本收入虽增长，但未抵消其他市场下滑。【披露：】"
+      },
+      {
+        "value": "9,742万元",
+        "context": "层面的利润降幅尤其明显。** 经营利润同比减少约9,742万元。销售、行政及研发费用合计较上年减少，部分缓冲了毛利下滑"
+      },
+      {
+        "value": "2,211万元",
+        "context": "滑；但其他收入及其他收益也减少。净财务收入增加约2,211万元、所得税费用减少约1,402万元，进一步缓冲了净利润降幅"
+      },
+      {
+        "value": "1,402万元",
+        "context": "净财务收入增加约2,211万元、所得税费用减少约1,402万元，进一步缓冲了净利润降幅，但净利润最终仍减少约6,129"
+      },
+      {
+        "value": "6,129万元",
+        "context": "元，进一步缓冲了净利润降幅，但净利润最终仍减少约6,129万元。【披露：】  **简言之：主要拖累不是费用失控，而是“"
+      }
+    ]
+  },
+  "tags_raw": {},
+  "tags_final": {},
+  "all_labels_raw": {
+    "【披露：第9、11页】": 1,
+    "【披露：第9–10页】": 1,
+    "【披露：第11–12、23页】": 1
+  },
+  "all_labels_final": {
+    "【披露：第9、11页】": 1,
+    "【披露：第9–10页】": 1,
+    "【披露：第11–12、23页】": 1
+  },
+  "answer_bound_events": 1,
+  "answer_bound_line": 957
+}

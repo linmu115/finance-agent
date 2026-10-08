@@ -396,4 +396,4 @@ def variance_attribution(service,project,document_id=None,company=None,scope='co
          'total':{'row':total['key'],'column':column}}
         for total in contributions if total['role']=='total'
         for column in ('revenue_change','gross_change')]
-    return {'title':a.st.company+' 业绩变动归因底稿','body':'利润桥以两期金额变化计算；收入效应取上期毛利率，交叉项归本期毛利率效应。原文原因与确定性金额贡献分开，未解释差额显式列示。未披露的精确比较期不由舍入增速倒算。','tables':tabs},a.records
+    return {'title':a.st.company+' 业绩变动归因底稿','periods':a.ps,'body':'利润桥以两期金额变化计算；收入效应取上期毛利率，交叉项归本期毛利率效应。原文原因与确定性金额贡献分开，未解释差额显式列示。未披露的精确比较期不由舍入增速倒算。','tables':tabs},a.records

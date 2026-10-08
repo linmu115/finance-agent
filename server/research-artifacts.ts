@@ -293,20 +293,15 @@ export class ResearchWorkspace {
  }
 }
 /** A published delivery file, checked against its manifest: listed name, inside the delivery folder, unchanged bytes. The checked bytes are the ones returned. */
-export async function deliveryFile(project:string,deliveryId:string,name:string){
- if(!/^[a-f0-9]{32}$/.test(deliveryId))throw Object.assign(new Error('交付不存在'),{status:404});
- const folder=path.join(DATA,'research',idSchema.parse(project),'deliveries',deliveryId);
- let manifest:any;
- try{manifest=JSON.parse(await readFile(path.join(folder,'delivery.json'),'utf8'));}
- catch(error){if((error as NodeJS.ErrnoException).code==='ENOENT')throw Object.assign(new Error('交付不存在'),{status:404});throw error;}
- if(!visibleInEvaluation(manifest))throw Object.assign(new Error('交付不存在'),{status:404});
- const listed=manifest.files.find((file:any)=>file.name===name);
- if(!listed)throw Object.assign(new Error('交付中没有此文件'),{status:404});
- const actual=await realpath(path.join(folder,listed.name));
- if(path.dirname(actual)!==await realpath(folder))throw new Error('文件路径越界');
+export async function deliveryFile(project:string,deliveryId:string,name:string,service:FinanceService){
+ // Both IDs use the same project/manifest checks as the model-facing reader.
+ const file=(await service.call('get_artifact',{project_id:project,run_id:deliveryId,name})).data;
+ const actual=await realpath(path.join(DATA,file.relative_path));
+ const relative=path.relative(await realpath(DATA),actual);
+ if(relative.startsWith('..')||path.isAbsolute(relative))throw new Error('文件路径越界');
  const bytes=await readFile(actual);
- if(bytes.length!==listed.size||hash256(bytes)!==listed.sha256)throw new Error('交付文件与清单不一致');
- return {name:listed.name as string,bytes};
+ if(bytes.length!==file.size||hash256(bytes)!==file.sha256)throw new Error('交付文件与清单不一致');
+ return {name:file.name as string,bytes};
 }
 const hash256=(bytes:Buffer)=>createHash('sha256').update(bytes).digest('hex');
 export function artifactCsv(artifact:ResearchArtifact,table:string){
