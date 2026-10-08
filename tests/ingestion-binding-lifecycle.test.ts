@@ -23,7 +23,8 @@ test('ingestion continuation and answer repair stay exclusive across native turn
  service.call=async(name,args,signal)=>{
   if(name==='begin_script_cleaning')return {status:'ok',data:{processing_id:pid,state:'normalizing',instructions:'Fixture cleaning instructions'}};
   if(name==='get_cleaning_progress'){
-   progressCalls++;return {status:'ok',data:{processing_id:pid,pending_tables:{doc:remaining.shift()??[]},pending_pages:{doc:[]},pending_scripts:[]}};
+   progressCalls++;const pending=remaining.shift()??[],done=[1,2].filter(t=>!pending.includes(t));
+   return {status:'ok',data:{processing_id:pid,pending_tables:{doc:pending},pending_pages:{doc:[]},pending_scripts:[],document_progress:[{document_id:'doc',completed_tables:done,fact_count:done.length,table_statuses:Object.fromEntries(done.map(t=>[t,'completed']))}]}};
   }
   if(name==='get_cleaning_batch')return {status:'ok',data:{processing_id:pid,batch:{tables:[1]}}};
   if(name==='cancel_processing')return {status:'ok',data:{state:'cancelled'}};

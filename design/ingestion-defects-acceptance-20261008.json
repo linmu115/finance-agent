@@ -1,0 +1,1047 @@
+{
+  "baseline_commit": "1828c22",
+  "usage": {
+    "category": "development",
+    "model_requests": 0,
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "checkpoint_transition": {
+    "continue": true,
+    "processing_id": "59a9b61cf6364453a5fb749e0412a8f0",
+    "before": [
+      {
+        "tables": 26,
+        "facts": 756
+      }
+    ],
+    "after": [
+      {
+        "tables": 27,
+        "facts": 756
+      }
+    ],
+    "remaining_tables": 276,
+    "duplicate_work_items": 1,
+    "unchanged_transition_progress": false,
+    "model_calls": 0
+  },
+  "annual": {
+    "facts_preserved": 756,
+    "periods_unchanged": 756,
+    "post_revalidation_completed_tables": 24,
+    "reopened_tables": [
+      87,
+      100,
+      101
+    ],
+    "t87_issues": [
+      {
+        "table": 87,
+        "page": 77,
+        "reason": "numeric_table_without_records",
+        "source_heading": "债券名称",
+        "numeric_cell_count": 1,
+        "numeric_samples": [
+          {
+            "row": 2,
+            "column": 2,
+            "raw_value": "2024 年5 月17 日和2024 年11 月18 日各兑付利息4,062,500 美元。"
+          }
+        ],
+        "instruction": "数值表不能以缺口说明计为完成。映射原格；若解析只剩表头，依据本页原文重建表体后重新处理。"
+      }
+    ],
+    "new_processing_runs": 0,
+    "canonical_processing_id": "59a9b61cf6364453a5fb749e0412a8f0",
+    "repeat_processing_id": "59a9b61cf6364453a5fb749e0412a8f0"
+  },
+  "q3": {
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "facts_before": 610,
+    "facts_after": 610,
+    "corrected_periods": 211,
+    "unchanged_periods": 399,
+    "changes": {
+      "2024-FY -> 2024-9M": 105,
+      "2023-FY -> 2023-9M": 106
+    },
+    "source_review": {
+      "passed": 30,
+      "total": 30,
+      "samples": [
+        {
+          "page": 7,
+          "metric": "total_operating_revenue",
+          "period": "2024-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t7",
+          "row": 2,
+          "column": 2,
+          "expected_literal": "89,039,388,538.88",
+          "value": "89039388538.88",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 7,
+          "metric": "total_operating_revenue",
+          "period": "2023-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t7",
+          "row": 2,
+          "column": 3,
+          "expected_literal": "97,404,475,913.37",
+          "value": "97404475913.37",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 7,
+          "metric": "revenue",
+          "period": "2024-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t7",
+          "row": 3,
+          "column": 2,
+          "expected_literal": "88,732,934,445.43",
+          "value": "88732934445.43",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 7,
+          "metric": "revenue",
+          "period": "2023-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t7",
+          "row": 3,
+          "column": 3,
+          "expected_literal": "97,090,826,912.59",
+          "value": "97090826912.59",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 7,
+          "metric": "total_operating_cost",
+          "period": "2024-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t7",
+          "row": 7,
+          "column": 2,
+          "expected_literal": "78,861,832,375.69",
+          "value": "78861832375.69",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 7,
+          "metric": "total_operating_cost",
+          "period": "2023-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t7",
+          "row": 7,
+          "column": 3,
+          "expected_literal": "87,019,341,810.84",
+          "value": "87019341810.84",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 8,
+          "metric": "income_tax_expense",
+          "period": "2024-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t8",
+          "row": 1,
+          "column": 2,
+          "expected_literal": "1,606,949,379.21",
+          "value": "1606949379.21",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 8,
+          "metric": "income_tax_expense",
+          "period": "2023-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t8",
+          "row": 1,
+          "column": 3,
+          "expected_literal": "1,547,744,049.58",
+          "value": "1547744049.58",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 8,
+          "metric": "net_profit",
+          "period": "2024-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t8",
+          "row": 2,
+          "column": 2,
+          "expected_literal": "10,896,767,162.20",
+          "value": "10896767162.20",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 8,
+          "metric": "net_profit",
+          "period": "2023-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t8",
+          "row": 2,
+          "column": 3,
+          "expected_literal": "9,370,223,499.38",
+          "value": "9370223499.38",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 8,
+          "metric": "net_profit_parent",
+          "period": "2024-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t8",
+          "row": 7,
+          "column": 2,
+          "expected_literal": "10,868,480,345.34",
+          "value": "10868480345.34",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 8,
+          "metric": "net_profit_parent",
+          "period": "2023-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t8",
+          "row": 7,
+          "column": 3,
+          "expected_literal": "9,380,094,922.17",
+          "value": "9380094922.17",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 9,
+          "metric": "cash_received_from_sales",
+          "period": "2024-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t9",
+          "row": 3,
+          "column": 2,
+          "expected_literal": "94,743,756,737.74",
+          "value": "94743756737.74",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 9,
+          "metric": "cash_received_from_sales",
+          "period": "2023-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t9",
+          "row": 3,
+          "column": 3,
+          "expected_literal": "101,735,054,498.37",
+          "value": "101735054498.37",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 9,
+          "metric": "taxes_paid",
+          "period": "2024-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t9",
+          "row": 25,
+          "column": 2,
+          "expected_literal": "5,224,476,083.67",
+          "value": "5224476083.67",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 9,
+          "metric": "taxes_paid",
+          "period": "2023-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t9",
+          "row": 25,
+          "column": 3,
+          "expected_literal": "4,973,427,798.65",
+          "value": "4973427798.65",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 9,
+          "metric": "operating_cash_flow",
+          "period": "2024-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t9",
+          "row": 28,
+          "column": 2,
+          "expected_literal": "13,869,612,283.42",
+          "value": "13869612283.42",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 9,
+          "metric": "operating_cash_flow",
+          "period": "2023-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t9",
+          "row": 28,
+          "column": 3,
+          "expected_literal": "11,708,284,111.40",
+          "value": "11708284111.40",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 10,
+          "metric": "investing_cash_flow",
+          "period": "2024-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t10",
+          "row": 14,
+          "column": 2,
+          "expected_literal": "-5,076,062,812.82",
+          "value": "-5076062812.82",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 10,
+          "metric": "investing_cash_flow",
+          "period": "2023-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t10",
+          "row": 14,
+          "column": 3,
+          "expected_literal": "-12,545,592,646.38",
+          "value": "-12545592646.38",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 10,
+          "metric": "financing_cash_flow",
+          "period": "2024-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t10",
+          "row": 26,
+          "column": 2,
+          "expected_literal": "-5,345,393,020.73",
+          "value": "-5345393020.73",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 10,
+          "metric": "financing_cash_flow",
+          "period": "2023-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t10",
+          "row": 26,
+          "column": 3,
+          "expected_literal": "13,078,932,528.98",
+          "value": "13078932528.98",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 10,
+          "metric": "net_change_in_cash",
+          "period": "2024-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t10",
+          "row": 28,
+          "column": 2,
+          "expected_literal": "3,430,938,490.76",
+          "value": "3430938490.76",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 10,
+          "metric": "net_change_in_cash",
+          "period": "2023-9M",
+          "scope": "consolidated_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t10",
+          "row": 28,
+          "column": 3,
+          "expected_literal": "12,350,793,534.99",
+          "value": "12350793534.99",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 13,
+          "metric": "revenue",
+          "period": "2024-9M",
+          "scope": "parent_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t13",
+          "row": 2,
+          "column": 2,
+          "expected_literal": "79,392,045,094.85",
+          "value": "79392045094.85",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 13,
+          "metric": "revenue",
+          "period": "2023-9M",
+          "scope": "parent_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t13",
+          "row": 2,
+          "column": 3,
+          "expected_literal": "87,270,752,369.55",
+          "value": "87270752369.55",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 13,
+          "metric": "cost_of_revenue",
+          "period": "2024-9M",
+          "scope": "parent_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t13",
+          "row": 3,
+          "column": 2,
+          "expected_literal": "57,218,992,736.61",
+          "value": "57218992736.61",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 13,
+          "metric": "cost_of_revenue",
+          "period": "2023-9M",
+          "scope": "parent_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t13",
+          "row": 3,
+          "column": 3,
+          "expected_literal": "64,471,448,355.88",
+          "value": "64471448355.88",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        },
+        {
+          "page": 13,
+          "metric": "net_profit",
+          "period": "2024-9M",
+          "scope": "parent_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t13",
+          "row": 25,
+          "column": 2,
+          "expected_literal": "10,749,764,397.35",
+          "value": "10749764397.35",
+          "start": "2024-01-01",
+          "end": "2024-09-30",
+          "source_match": true
+        },
+        {
+          "page": 13,
+          "metric": "net_profit",
+          "period": "2023-9M",
+          "scope": "parent_unknown",
+          "table_id": "4c3e9228d37e49fca132e0e79377b04d:t13",
+          "row": 25,
+          "column": 3,
+          "expected_literal": "7,934,479,462.06",
+          "value": "7934479462.06",
+          "start": "2023-01-01",
+          "end": "2023-09-30",
+          "source_match": true
+        }
+      ]
+    },
+    "raw_cell_replay": {
+      "passed": 610,
+      "total": 610
+    },
+    "tables_completed": 15,
+    "tables_total": 15,
+    "new_processing_runs": 0,
+    "canonical_processing_id": "611400eadef34ddd94492704a4115178",
+    "repeat_processing_id": "611400eadef34ddd94492704a4115178"
+  },
+  "period_regression": {
+    "model_calls": 0,
+    "results": {
+      "annual": {
+        "tables_checked": 16,
+        "source_pages": 16,
+        "unchanged_known_columns": 26,
+        "changed_columns": [],
+        "unchanged_columns": [
+          {
+            "table": 100,
+            "page": 87,
+            "column": 3,
+            "before": "2024-12-31",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 100,
+            "page": 87,
+            "column": 4,
+            "before": "2023-12-31",
+            "after": "2023-12-31"
+          },
+          {
+            "table": 101,
+            "page": 88,
+            "column": 3,
+            "before": "2024-12-31",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 101,
+            "page": 88,
+            "column": 4,
+            "before": "2023-12-31",
+            "after": "2023-12-31"
+          },
+          {
+            "table": 102,
+            "page": 89,
+            "column": 3,
+            "before": "2024-12-31",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 102,
+            "page": 89,
+            "column": 4,
+            "before": "2023-12-31",
+            "after": "2023-12-31"
+          },
+          {
+            "table": 103,
+            "page": 90,
+            "column": 3,
+            "before": "2024-12-31",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 103,
+            "page": 90,
+            "column": 4,
+            "before": "2023-12-31",
+            "after": "2023-12-31"
+          },
+          {
+            "table": 104,
+            "page": 91,
+            "column": 3,
+            "before": "2024-FY",
+            "after": "2024-FY"
+          },
+          {
+            "table": 104,
+            "page": 91,
+            "column": 4,
+            "before": "2023-FY",
+            "after": "2023-FY"
+          },
+          {
+            "table": 105,
+            "page": 92,
+            "column": 3,
+            "before": "2024-FY",
+            "after": "2024-FY"
+          },
+          {
+            "table": 105,
+            "page": 92,
+            "column": 4,
+            "before": "2023-FY",
+            "after": "2023-FY"
+          },
+          {
+            "table": 106,
+            "page": 93,
+            "column": 3,
+            "before": "2024-FY",
+            "after": "2024-FY"
+          },
+          {
+            "table": 106,
+            "page": 93,
+            "column": 4,
+            "before": "2023-FY",
+            "after": "2023-FY"
+          },
+          {
+            "table": 107,
+            "page": 94,
+            "column": 3,
+            "before": "2024-FY",
+            "after": "2024-FY"
+          },
+          {
+            "table": 107,
+            "page": 94,
+            "column": 4,
+            "before": "2023-FY",
+            "after": "2023-FY"
+          },
+          {
+            "table": 108,
+            "page": 95,
+            "column": 3,
+            "before": "2024-FY",
+            "after": "2024-FY"
+          },
+          {
+            "table": 108,
+            "page": 95,
+            "column": 4,
+            "before": "2023-FY",
+            "after": "2023-FY"
+          },
+          {
+            "table": 109,
+            "page": 96,
+            "column": 3,
+            "before": "2024-FY",
+            "after": "2024-FY"
+          },
+          {
+            "table": 109,
+            "page": 96,
+            "column": 4,
+            "before": "2023-FY",
+            "after": "2023-FY"
+          },
+          {
+            "table": 110,
+            "page": 97,
+            "column": 2,
+            "before": "2024-FY",
+            "after": "2024-FY"
+          },
+          {
+            "table": 111,
+            "page": 98,
+            "column": 2,
+            "before": "2024-FY",
+            "after": "2024-FY"
+          },
+          {
+            "table": 112,
+            "page": 99,
+            "column": 2,
+            "before": "2023-FY",
+            "after": "2023-FY"
+          },
+          {
+            "table": 113,
+            "page": 100,
+            "column": 2,
+            "before": "2023-FY",
+            "after": "2023-FY"
+          },
+          {
+            "table": 114,
+            "page": 101,
+            "column": 2,
+            "before": "2024-FY",
+            "after": "2024-FY"
+          },
+          {
+            "table": 115,
+            "page": 102,
+            "column": 2,
+            "before": "2023-FY",
+            "after": "2023-FY"
+          }
+        ]
+      },
+      "ruihe": {
+        "tables_checked": 16,
+        "source_pages": 11,
+        "unchanged_known_columns": 20,
+        "changed_columns": [],
+        "unchanged_columns": [
+          {
+            "table": 1,
+            "page": 2,
+            "column": 3,
+            "before": "2025-H1",
+            "after": "2025-H1"
+          },
+          {
+            "table": 1,
+            "page": 2,
+            "column": 4,
+            "before": "2024-H1",
+            "after": "2024-H1"
+          },
+          {
+            "table": 2,
+            "page": 3,
+            "column": 3,
+            "before": "2025-06-30",
+            "after": "2025-06-30"
+          },
+          {
+            "table": 2,
+            "page": 3,
+            "column": 4,
+            "before": "2024-12-31",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 3,
+            "page": 4,
+            "column": 3,
+            "before": "2025-06-30",
+            "after": "2025-06-30"
+          },
+          {
+            "table": 3,
+            "page": 4,
+            "column": 4,
+            "before": "2024-12-31",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 7,
+            "page": 6,
+            "column": 2,
+            "before": "2025-H1",
+            "after": "2025-H1"
+          },
+          {
+            "table": 7,
+            "page": 6,
+            "column": 3,
+            "before": "2024-H1",
+            "after": "2024-H1"
+          },
+          {
+            "table": 9,
+            "page": 10,
+            "column": 2,
+            "before": "2025-H1",
+            "after": "2025-H1"
+          },
+          {
+            "table": 9,
+            "page": 10,
+            "column": 3,
+            "before": "2024-H1",
+            "after": "2024-H1"
+          },
+          {
+            "table": 10,
+            "page": 11,
+            "column": 5,
+            "before": "2025-06-30",
+            "after": "2025-06-30"
+          },
+          {
+            "table": 11,
+            "page": 11,
+            "column": 5,
+            "before": "2024-12-31",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 12,
+            "page": 12,
+            "column": 2,
+            "before": "2025-H1",
+            "after": "2025-H1"
+          },
+          {
+            "table": 12,
+            "page": 12,
+            "column": 3,
+            "before": "2024-H1",
+            "after": "2024-H1"
+          },
+          {
+            "table": 13,
+            "page": 13,
+            "column": 2,
+            "before": "2025-H1",
+            "after": "2025-H1"
+          },
+          {
+            "table": 13,
+            "page": 13,
+            "column": 5,
+            "before": "2024-H1",
+            "after": "2024-H1"
+          },
+          {
+            "table": 14,
+            "page": 14,
+            "column": 2,
+            "before": "2025-H1",
+            "after": "2025-H1"
+          },
+          {
+            "table": 14,
+            "page": 14,
+            "column": 3,
+            "before": "2024-H1",
+            "after": "2024-H1"
+          },
+          {
+            "table": 15,
+            "page": 14,
+            "column": 2,
+            "before": "2025-H1",
+            "after": "2025-H1"
+          },
+          {
+            "table": 15,
+            "page": 14,
+            "column": 3,
+            "before": "2024-H1",
+            "after": "2024-H1"
+          }
+        ]
+      },
+      "carote": {
+        "tables_checked": 44,
+        "source_pages": 17,
+        "unchanged_known_columns": 11,
+        "changed_columns": [
+          {
+            "table": 31,
+            "page": 16,
+            "column": 2,
+            "before": "2025-FY",
+            "after": "2025-06-30"
+          },
+          {
+            "table": 31,
+            "page": 16,
+            "column": 3,
+            "before": "2024-FY",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 34,
+            "page": 17,
+            "column": 2,
+            "before": "2025-FY",
+            "after": "2025-06-30"
+          },
+          {
+            "table": 34,
+            "page": 17,
+            "column": 3,
+            "before": "2024-FY",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 35,
+            "page": 17,
+            "column": 2,
+            "before": "2025-H1",
+            "after": "2025-06-30"
+          },
+          {
+            "table": 35,
+            "page": 17,
+            "column": 3,
+            "before": "2024-H1",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 36,
+            "page": 18,
+            "column": 3,
+            "before": "2024-FY",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 37,
+            "page": 18,
+            "column": 2,
+            "before": "2025-FY",
+            "after": "2025-06-30"
+          },
+          {
+            "table": 37,
+            "page": 18,
+            "column": 3,
+            "before": "2024-FY",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 39,
+            "page": 20,
+            "column": 2,
+            "before": "2025-FY",
+            "after": "2025-06-30"
+          },
+          {
+            "table": 39,
+            "page": 20,
+            "column": 3,
+            "before": "2024-FY",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 40,
+            "page": 20,
+            "column": 2,
+            "before": "2025-FY",
+            "after": "2025-06-30"
+          },
+          {
+            "table": 40,
+            "page": 20,
+            "column": 3,
+            "before": "2024-FY",
+            "after": "2024-12-31"
+          },
+          {
+            "table": 42,
+            "page": 21,
+            "column": 2,
+            "before": "2025-FY",
+            "after": "2025-06-30"
+          },
+          {
+            "table": 42,
+            "page": 21,
+            "column": 3,
+            "before": "2024-FY",
+            "after": "2024-12-31"
+          }
+        ],
+        "unchanged_columns": [
+          {
+            "table": 1,
+            "page": 6,
+            "column": 3,
+            "before": "2025-H1",
+            "after": "2025-H1"
+          },
+          {
+            "table": 1,
+            "page": 6,
+            "column": 4,
+            "before": "2024-H1",
+            "after": "2024-H1"
+          },
+          {
+            "table": 3,
+            "page": 6,
+            "column": 3,
+            "before": "2025-H1",
+            "after": "2025-H1"
+          },
+          {
+            "table": 3,
+            "page": 6,
+            "column": 4,
+            "before": "2024-H1",
+            "after": "2024-H1"
+          },
+          {
+            "table": 24,
+            "page": 13,
+            "column": 2,
+            "before": "2025-H1",
+            "after": "2025-H1"
+          },
+          {
+            "table": 24,
+            "page": 13,
+            "column": 3,
+            "before": "2024-H1",
+            "after": "2024-H1"
+          },
+          {
+            "table": 25,
+            "page": 14,
+            "column": 2,
+            "before": "2025-H1",
+            "after": "2025-H1"
+          },
+          {
+            "table": 25,
+            "page": 14,
+            "column": 3,
+            "before": "2024-H1",
+            "after": "2024-H1"
+          },
+          {
+            "table": 26,
+            "page": 14,
+            "column": 3,
+            "before": "2024-H1",
+            "after": "2024-H1"
+          },
+          {
+            "table": 33,
+            "page": 16,
+            "column": 2,
+            "before": "2025-H1",
+            "after": "2025-H1"
+          },
+          {
+            "table": 33,
+            "page": 16,
+            "column": 3,
+            "before": "2024-H1",
+            "after": "2024-H1"
+          }
+        ]
+      }
+    }
+  },
+  "validation": {
+    "python_tests_passed": 87,
+    "typescript_tests_passed": 4,
+    "server_typecheck": "passed"
+  },
+  "runtime_boundary": "No HTTP, model calls, Docker operations, or production writes; native Pi continuation branch checked deterministically, not executed against production."
+}

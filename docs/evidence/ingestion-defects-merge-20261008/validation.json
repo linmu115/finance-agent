@@ -1,0 +1,34 @@
+{
+  "target": "5cc8ab1c58e7c699e8928f4c64039a05e6372241",
+  "base_main": "7524cca6ad10fd48b77382efdeb01901b91c6710",
+  "python": {
+    "initial": {
+      "total": 110,
+      "passed": 109,
+      "failed": 1
+    },
+    "diagnostic_repeat": "same failure; captured periodic traceback was diagnostic, not test timeout",
+    "final_changed_suite": {
+      "name": "research_ingestion",
+      "passed": 25
+    },
+    "unique_final_passed": 110
+  },
+  "host": {
+    "initial": {
+      "passed": 4,
+      "failed": 1
+    },
+    "final_passed": 13
+  },
+  "typecheck": "passed",
+  "product_deviations": [],
+  "test_adaptations": [
+    "durable document_progress fixture",
+    "default checkpoint reuse plus explicit force snapshot isolation"
+  ],
+  "model_calls": 0,
+  "production_facts_written": false,
+  "restarted": false,
+  "next": "Merge 2572972 before shared deployment"
+}

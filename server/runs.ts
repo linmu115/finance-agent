@@ -347,13 +347,13 @@ export class RunManager {
     const snapshots=[];
     for(const id of active.scriptProcessingIds)snapshots.push((await this.service.call('get_cleaning_progress',{project_id:active.run.projectId,processing_id:id},active.controller.signal)).data);
     const remaining=ingestionRemaining(snapshots);
-    if(!remaining.keys.size){active.run.ingestionPending=undefined;return;}
-    const prior=active.run.ingestionPending?new Set(active.run.ingestionPending):undefined;
-    if(prior&&!madeIngestionProgress(prior,remaining.keys)){
+    if(!remaining.keys.size){active.run.ingestionPending=undefined;active.run.ingestionProgress=undefined;return;}
+    const prior=active.run.ingestionProgress;
+    if(prior&&!madeIngestionProgress(prior,remaining.progress)){
      active.run.error='自动续跑没有推进，入库未完成。剩余工作：'+JSON.stringify(remaining.work);
      await this.audit(active,'ingestion_stalled',{remaining:remaining.work});return;
     }
-    active.run.ingestionPending=[...remaining.keys];active.effort='low';active.usagePhase='cleaning';
+    active.run.ingestionPending=[...remaining.keys];active.run.ingestionProgress=remaining.progress;active.effort='low';active.usagePhase='cleaning';
     await this.audit(active,'ingestion_continuation',{remaining:remaining.work});await this.persist(active);
     return {continue:true,entries:[{type:'custom_message',customType:'ingestion-continuation',display:false,
      content:'入库尚有剩余工作，按已提供的清洗说明继续，完成后再回答。\n'+JSON.stringify(remaining.work)}]};

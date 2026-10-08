@@ -100,7 +100,13 @@ class ResearchIngestionTests(unittest.TestCase):
     def test_repair_refreshes_only_its_own_completed_attachment_snapshot(self):
         self.commit();self.finish_text()
         old_id=self.pid
-        self.pid=self.s.begin_script_cleaning('p',[self.did],'repair-owner','fixture')['data']['processing_id']
+        reused=self.s.begin_script_cleaning('p',[self.did],'repeat-owner','fixture')['data']['processing_id']
+        self.assertEqual(reused,old_id)
+        # A new historical snapshot belongs to an explicit rewash. Ordinary
+        # repeated requests now reuse the original processing attempt.
+        self.pid=self.s.begin_script_cleaning('p',[self.did],'repair-owner','fixture',force=True)['data']['processing_id']
+        self.assertNotEqual(self.pid,old_id)
+        self.commit()
         self.finish_text('Updated interpretation, same exact source')
         with self.s.store.connect() as db:
             snapshots={r['flow_id']:json.loads(r['snapshot_json']) for r in db.execute('SELECT * FROM attachment_flows')}

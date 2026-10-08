@@ -1,0 +1,63 @@
+[finance-service] D:\AI\财报agent\.venv\Lib\site-packages\pydantic_settings\sources\utils.py:47: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.
+  warnings.warn(
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type ListToolsRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+✖ ingestion continuation and answer repair stay exclusive across native turns and reused sessions (3873.2339ms)
+✔ only committed document progress advances continuation (0.6899ms)
+✔ duplicate refreshed checkpoints use one stable processing ID regardless of order (6.6833ms)
+✔ source projection preserves every raw row, merged geometry and distinct text (0.4566ms)
+✔ commit projection keeps new doubts and failures without repeating prior cumulative issues (0.1508ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4333.6396
+
+✖ failing tests:
+
+test at tests\ingestion-binding-lifecycle.test.ts:1:492
+✖ ingestion continuation and answer repair stay exclusive across native turns and reused sessions (3873.2339ms)
+  AssertionError [ERR_ASSERTION]: 自动续跑没有推进，入库未完成。剩余工作：[{"processing_id":"[REDACTED]-processing","document_id":"doc","pending_tables":[2],"pending_pages":[],"pending_scripts":[]}]
+  + actual - expected
+  
+  + 'failed'
+  - 'completed'
+  
+      at TestContext.<anonymous> (D:\AI\财报agent\tests\ingestion-binding-lifecycle.test.ts:50:10)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'failed',
+    expected: 'completed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
