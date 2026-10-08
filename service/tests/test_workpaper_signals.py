@@ -28,6 +28,7 @@ class SyntheticData:
         if t=='deducted_profit':return {'share':cell(10,'%')}
         return {}
     def quarters(self,k):return [self.q(20),self.q(20),self.q(20),self.q(20)]
+    def first_three_quarters(self,k):return self.q(60)
     def source_text(self,p,q,**kw):return {'document_id':'synthetic','page':int(p),'quote':q,**kw}
 
 

@@ -1,0 +1,526 @@
+{
+  "n2_dependency_commit": "d349e04",
+  "llm_calls": 0,
+  "cases": [
+    {
+      "company": "yili",
+      "current_period": "2024-FY",
+      "q4_values": {
+        "revenue": {
+          "value": "26660376531.26",
+          "unit": "元",
+          "currency": "CNY",
+          "source": {
+            "fact_id": "c92c7b147f114581b6c35588b5ba51bc",
+            "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+            "metric": "revenue",
+            "period": "2024-Q4",
+            "scope": "consolidated_CAS",
+            "quality": "llm_normalized",
+            "dimensions": {},
+            "source_ref": {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 2,
+              "column": 5,
+              "cell": "E2",
+              "text": "营业收入 | 32,462,896,350.54 | 27,232,860,611.05 | 29,037,177,483.84 | 26,660,376,531.26",
+              "normalization": {
+                "engine": "LangExtract",
+                "version": "langextract-finance-0.4.0",
+                "model": "deepseek-flash",
+                "label": "营业收入",
+                "statement": "income",
+                "period_start": "2024-10-01",
+                "period_end": "2024-12-31",
+                "restatement": "original",
+                "dimensions": {},
+                "scale": "1",
+                "char_interval": [
+                  9458,
+                  9468
+                ],
+                "row_metric": "revenue",
+                "row_label": "营业收入",
+                "column_metric": null,
+                "column_label": null,
+                "dimension_labels": {},
+                "unit_kind": "money",
+                "original_extraction_hash": "fc379a434aa54b46b82d611ab448e99672499d9a2883ec6cde93aadb83bbceda",
+                "source_key": "54c4f42eea557515764b949b5f29534691b8476a7717d61fd6e9aff145074297",
+                "source_fingerprint": "5521ffe148eb6aa83577aaccefce662c05a9e17d238e705d49e5a7d13cc96759",
+                "processing_id": "f1f6169aaf4e426f8e966a917c3269d9",
+                "original_metric": "revenue",
+                "original_label": "营业收入",
+                "canonical_alias": {
+                  "status": "reviewed",
+                  "engine": "LangExtract",
+                  "version": "catalog-langextract-0.3.7",
+                  "model": "deepseek-flash",
+                  "catalog_hash": "1eda4eb9162cd24e6766151e4bb74d399fbf4e2a838bbb89c0fba2e1fd7eedfb",
+                  "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+                  "source_metric": "revenue",
+                  "canonical_metric": "revenue",
+                  "canonical_label": "营业收入",
+                  "decision": "keep",
+                  "result_hash": "a0418ebf6fa3dcaa6a0b71cbbce30fb1328aa03b36538b929f292e27d07e5a88",
+                  "source_provenance": {
+                    "processing_id": "f1f6169aaf4e426f8e966a917c3269d9",
+                    "owner_run_id": "d098968a-534c-497e-ad48-03ce812b2d56"
+                  },
+                  "batch_catalog_hash": "d5f2a6e64a45ee55529ebe53b73a4314d4969c30e0af8859b9610e0e8f9b6a80",
+                  "batch_result_hash": "9d93e8538c31b8a02d0f5ad3de436868d1a4d6f5f4e5708697071c5d6d273f20"
+                }
+              },
+              "bbox": [
+                458.6499938964844,
+                238.63999938964844,
+                545.9949951171875,
+                258.989990234375
+              ],
+              "column_label": "第四季度\n（10-12 月份）",
+              "report": "伊利股份2024年年度报告.pdf"
+            },
+            "selection": "优先当前报告比较列，再取调整后列",
+            "alternatives": []
+          }
+        },
+        "parent_profit": {
+          "value": "-2415620352.16",
+          "unit": "元",
+          "currency": "CNY",
+          "source": {
+            "fact_id": "d576b75750c34035b6c3bf37d117526e",
+            "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+            "metric": "net_profit_parent",
+            "period": "2024-Q4",
+            "scope": "consolidated_CAS",
+            "quality": "llm_normalized",
+            "dimensions": {},
+            "source_ref": {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 3,
+              "column": 5,
+              "cell": "E3",
+              "text": "归属于上市公司股东的净利润 | 5,922,814,507.71 | 1,608,319,620.91 | 3,337,346,216.72 | -2,415,620,352.16",
+              "normalization": {
+                "engine": "LangExtract",
+                "version": "langextract-finance-0.4.0",
+                "model": "deepseek-flash",
+                "label": "归属于上市公司股东的净利润",
+                "statement": "income",
+                "period_start": "2024-10-01",
+                "period_end": "2024-12-31",
+                "restatement": "original",
+                "dimensions": {},
+                "scale": "1",
+                "char_interval": [
+                  9569,
+                  9579
+                ],
+                "row_metric": "net_profit_parent",
+                "row_label": "归属于上市公司股东的净利润",
+                "column_metric": null,
+                "column_label": null,
+                "dimension_labels": {},
+                "unit_kind": "money",
+                "original_extraction_hash": "5a51f5706ee75cb725e9e60df8d5456338858ddf65b3c5bcf09aed7ab7aa2808",
+                "source_key": "fa899b592c42eb6ad796a6add920f0e0c76856ac7669baefeddfdce1ff5d895f",
+                "source_fingerprint": "4194c66d417ea80e6c233d94de171ccd66ed5bc0ce427cf1e79352f5e8594990",
+                "processing_id": "f1f6169aaf4e426f8e966a917c3269d9",
+                "original_metric": "net_profit_parent",
+                "original_label": "归属于上市公司股东的净利润",
+                "canonical_alias": {
+                  "status": "reviewed",
+                  "engine": "LangExtract",
+                  "version": "catalog-langextract-0.3.7",
+                  "model": "deepseek-flash",
+                  "catalog_hash": "1eda4eb9162cd24e6766151e4bb74d399fbf4e2a838bbb89c0fba2e1fd7eedfb",
+                  "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+                  "source_metric": "net_profit_parent",
+                  "canonical_metric": "net_profit_parent",
+                  "canonical_label": "归属于上市公司股东的净利润",
+                  "decision": "keep",
+                  "result_hash": "a0418ebf6fa3dcaa6a0b71cbbce30fb1328aa03b36538b929f292e27d07e5a88",
+                  "source_provenance": {
+                    "processing_id": "f1f6169aaf4e426f8e966a917c3269d9",
+                    "owner_run_id": "d098968a-534c-497e-ad48-03ce812b2d56"
+                  },
+                  "batch_catalog_hash": "d359bc5cfb19e8b74e4312ff933c62eb3ab5dc6fccfb2b40f5a026d820cc68da",
+                  "batch_result_hash": "a60083f877166f53e0426e16170c4bb87d9132d34e10f40b8310f29e55c16ee6"
+                }
+              },
+              "bbox": [
+                458.6499938964844,
+                258.989990234375,
+                545.9949951171875,
+                279.3399963378906
+              ],
+              "column_label": "第四季度\n（10-12 月份）",
+              "report": "伊利股份2024年年度报告.pdf"
+            },
+            "selection": "优先当前报告比较列，再取调整后列",
+            "alternatives": []
+          }
+        },
+        "cfo": {
+          "value": "7870128109.96",
+          "unit": "元",
+          "currency": "CNY",
+          "source": {
+            "fact_id": "8801aa11103a46b4a846698085925910",
+            "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+            "metric": "operating_cash_flow",
+            "period": "2024-Q4",
+            "scope": "consolidated_CAS",
+            "quality": "llm_normalized",
+            "dimensions": {},
+            "source_ref": {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 5,
+              "column": 5,
+              "cell": "E5",
+              "text": "经营活动产生的现金流量净额 | 2,267,600,204.82 | 3,057,943,456.58 | 8,544,068,622.02 | 7,870,128,109.96",
+              "normalization": {
+                "engine": "LangExtract",
+                "version": "langextract-finance-0.4.0",
+                "model": "deepseek-flash",
+                "label": "经营活动产生的现金流量净额",
+                "statement": "cashflow",
+                "period_start": "2024-10-01",
+                "period_end": "2024-12-31",
+                "restatement": "original",
+                "dimensions": {},
+                "scale": "1",
+                "char_interval": [
+                  9814,
+                  9824
+                ],
+                "row_metric": "operating_cash_flow",
+                "row_label": "经营活动产生的现金流量净额",
+                "column_metric": null,
+                "column_label": null,
+                "dimension_labels": {},
+                "unit_kind": "money",
+                "original_extraction_hash": "69016e4508015ebdb26c0b56fb444c248cf4e4cb75c21eea2433b11d971fec83",
+                "source_key": "772ef67061126e5469dfa956957f34ae2bd03f038d727cd01d4ed13c2eb68074",
+                "source_fingerprint": "cdd8697db63d8dde9310ca7271114ba01e0333eae14aa0000d14d72b9b5d6747",
+                "processing_id": "f1f6169aaf4e426f8e966a917c3269d9",
+                "original_metric": "operating_cash_flow",
+                "original_label": "经营活动产生的现金流量净额",
+                "canonical_alias": {
+                  "status": "reviewed",
+                  "engine": "LangExtract",
+                  "version": "catalog-langextract-0.3.7",
+                  "model": "deepseek-flash",
+                  "catalog_hash": "1eda4eb9162cd24e6766151e4bb74d399fbf4e2a838bbb89c0fba2e1fd7eedfb",
+                  "prompt_hash": "54e1bbd37dfe71eeba2df2ecdd66ca1e9e00656008c2cb79e78db356f3584bb6",
+                  "source_metric": "operating_cash_flow",
+                  "canonical_metric": "operating_cash_flow",
+                  "canonical_label": "经营活动产生的现金流量净额",
+                  "decision": "keep",
+                  "result_hash": "a0418ebf6fa3dcaa6a0b71cbbce30fb1328aa03b36538b929f292e27d07e5a88",
+                  "source_provenance": {
+                    "processing_id": "f1f6169aaf4e426f8e966a917c3269d9",
+                    "owner_run_id": "d098968a-534c-497e-ad48-03ce812b2d56"
+                  },
+                  "batch_catalog_hash": "d359bc5cfb19e8b74e4312ff933c62eb3ab5dc6fccfb2b40f5a026d820cc68da",
+                  "batch_result_hash": "a60083f877166f53e0426e16170c4bb87d9132d34e10f40b8310f29e55c16ee6"
+                }
+              },
+              "bbox": [
+                458.6499938964844,
+                303.19000244140625,
+                545.9949951171875,
+                323.5400085449219
+              ],
+              "column_label": "第四季度\n（10-12 月份）",
+              "report": "伊利股份2024年年度报告.pdf"
+            },
+            "selection": "优先当前报告比较列，再取调整后列",
+            "alternatives": []
+          }
+        }
+      },
+      "q4_reconciliations": [
+        {
+          "metric": "cfo",
+          "residual": "0.00",
+          "disclosed": "7870128109.96",
+          "derived": "7870128109.96",
+          "sources": [
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 7,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t8",
+              "row": 5,
+              "column": 2,
+              "column_label": "2024年",
+              "text": "经营活动产生的现金流量净额 | 21,739,740,393.38 | 18,290,357,650.56 | 18.86 | 13,420,320,580.36"
+            },
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 5,
+              "column": 2,
+              "column_label": "第一季度\n（1-3 月份）",
+              "text": "经营活动产生的现金流量净额 | 2,267,600,204.82 | 3,057,943,456.58 | 8,544,068,622.02 | 7,870,128,109.96"
+            },
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 5,
+              "column": 3,
+              "column_label": "第二季度\n（4-6 月份）",
+              "text": "经营活动产生的现金流量净额 | 2,267,600,204.82 | 3,057,943,456.58 | 8,544,068,622.02 | 7,870,128,109.96"
+            },
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 5,
+              "column": 4,
+              "column_label": "第三季度\n（7-9 月份）",
+              "text": "经营活动产生的现金流量净额 | 2,267,600,204.82 | 3,057,943,456.58 | 8,544,068,622.02 | 7,870,128,109.96"
+            }
+          ]
+        },
+        {
+          "metric": "deducted_profit",
+          "residual": "0.00",
+          "disclosed": "-2497595078.80",
+          "derived": "-2497595078.80",
+          "sources": [
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 7,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t8",
+              "row": 4,
+              "column": 2,
+              "column_label": "2024年",
+              "text": "归属于上市公司股东的扣除非\n经常性损益的净利润 | 6,011,274,945.92 | 10,026,171,076.03 | -40.04 | 8,585,692,731.44"
+            },
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 4,
+              "column": 2,
+              "column_label": "第一季度\n（1-3 月份）",
+              "text": "归属于上市公司股东的扣除非经\n常性损益后的净利润 | 3,727,609,925.90 | 1,596,850,118.63 | 3,184,409,980.19 | -2,497,595,078.80"
+            },
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 4,
+              "column": 3,
+              "column_label": "第二季度\n（4-6 月份）",
+              "text": "归属于上市公司股东的扣除非经\n常性损益后的净利润 | 3,727,609,925.90 | 1,596,850,118.63 | 3,184,409,980.19 | -2,497,595,078.80"
+            },
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 4,
+              "column": 4,
+              "column_label": "第三季度\n（7-9 月份）",
+              "text": "归属于上市公司股东的扣除非经\n常性损益后的净利润 | 3,727,609,925.90 | 1,596,850,118.63 | 3,184,409,980.19 | -2,497,595,078.80"
+            }
+          ]
+        },
+        {
+          "metric": "parent_profit",
+          "residual": "0.00",
+          "disclosed": "-2415620352.16",
+          "derived": "-2415620352.16",
+          "sources": [
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 7,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t8",
+              "row": 3,
+              "column": 2,
+              "column_label": "2024年",
+              "text": "归属于上市公司股东的净利润 | 8,452,859,993.18 | 10,428,540,457.94 | -18.94 | 9,431,064,679.78"
+            },
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 3,
+              "column": 2,
+              "column_label": "第一季度\n（1-3 月份）",
+              "text": "归属于上市公司股东的净利润 | 5,922,814,507.71 | 1,608,319,620.91 | 3,337,346,216.72 | -2,415,620,352.16"
+            },
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 3,
+              "column": 3,
+              "column_label": "第二季度\n（4-6 月份）",
+              "text": "归属于上市公司股东的净利润 | 5,922,814,507.71 | 1,608,319,620.91 | 3,337,346,216.72 | -2,415,620,352.16"
+            },
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 3,
+              "column": 4,
+              "column_label": "第三季度\n（7-9 月份）",
+              "text": "归属于上市公司股东的净利润 | 5,922,814,507.71 | 1,608,319,620.91 | 3,337,346,216.72 | -2,415,620,352.16"
+            }
+          ]
+        },
+        {
+          "metric": "revenue",
+          "residual": "0.00",
+          "disclosed": "26660376531.26",
+          "derived": "26660376531.26",
+          "sources": [
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 7,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t8",
+              "row": 2,
+              "column": 2,
+              "column_label": "2024年",
+              "text": "营业收入 | 115,393,310,976.69 | 125,758,168,916.51 | -8.24 | 122,698,004,080.99"
+            },
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 2,
+              "column": 2,
+              "column_label": "第一季度\n（1-3 月份）",
+              "text": "营业收入 | 32,462,896,350.54 | 27,232,860,611.05 | 29,037,177,483.84 | 26,660,376,531.26"
+            },
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 2,
+              "column": 3,
+              "column_label": "第二季度\n（4-6 月份）",
+              "text": "营业收入 | 32,462,896,350.54 | 27,232,860,611.05 | 29,037,177,483.84 | 26,660,376,531.26"
+            },
+            {
+              "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
+              "report": "伊利股份2024年年度报告.pdf",
+              "page": 8,
+              "table_id": "1f94f25a3cb74d528f10ddac0be06a0d:t10",
+              "row": 2,
+              "column": 4,
+              "column_label": "第三季度\n（7-9 月份）",
+              "text": "营业收入 | 32,462,896,350.54 | 27,232,860,611.05 | 29,037,177,483.84 | 26,660,376,531.26"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "company": "ruihe",
+      "current_period": "2025-H1",
+      "q4_values": {
+        "revenue": {
+          "value": null,
+          "unit": "元",
+          "currency": null,
+          "source": {
+            "data_kind": "calculation",
+            "inputs": [],
+            "formula": null,
+            "missing_reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母"
+          }
+        },
+        "parent_profit": {
+          "value": null,
+          "unit": "元",
+          "currency": null,
+          "source": {
+            "data_kind": "calculation",
+            "inputs": [],
+            "formula": null,
+            "missing_reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母"
+          }
+        },
+        "cfo": {
+          "value": null,
+          "unit": "元",
+          "currency": null,
+          "source": {
+            "data_kind": "calculation",
+            "inputs": [],
+            "formula": null,
+            "missing_reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母"
+          }
+        }
+      },
+      "q4_reconciliations": []
+    },
+    {
+      "company": "carote",
+      "current_period": "2025-H1",
+      "q4_values": {
+        "revenue": {
+          "value": null,
+          "unit": "元",
+          "currency": null,
+          "source": {
+            "data_kind": "calculation",
+            "inputs": [],
+            "formula": null,
+            "missing_reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母"
+          }
+        },
+        "parent_profit": {
+          "value": null,
+          "unit": "元",
+          "currency": null,
+          "source": {
+            "data_kind": "calculation",
+            "inputs": [],
+            "formula": null,
+            "missing_reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母"
+          }
+        },
+        "cfo": {
+          "value": null,
+          "unit": "元",
+          "currency": null,
+          "source": {
+            "data_kind": "calculation",
+            "inputs": [],
+            "formula": null,
+            "missing_reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母"
+          }
+        }
+      },
+      "q4_reconciliations": []
+    }
+  ]
+}

@@ -71,6 +71,7 @@ class AnalystData:
         self.d=Disclosure(self.st)
         self.ps=self.st.periods
         self.currency=self.st.currency
+        self._period_series=None
 
     def pick(self,key,period,statement):
         if statement!='balance' and key not in EXTRA:
@@ -110,10 +111,39 @@ class AnalystData:
         return next((r for r in self.base['tables'].get(table_name,{}).get('rows',[]) if r['key']==key),{})
 
     def quarters(self,metric):
-        """Single adapter for the K1 four-quarter disclosures; N2 period API joins here."""
-        rows=[r for r in self.base['tables'].get('quarterly',{}).get('rows',[]) if r['recognized']==metric]
-        if len(rows)==1 and self.ps[0]==self.d.year+'-FY':return [rows[0]['Q'+str(i)] for i in range(1,5)]
-        return [unknown('缺少该全年唯一的同口径单季披露；中报不外推第四季度') for _ in range(4)]
+        """N2 public period adapter: disclosed quarters or sourced YTD differences."""
+        year=self.ps[0][:4]
+        if self.window(self.ps[0])!=(year+'-01-01',year+'-12-31'):
+            return [unknown('当前不是完整全年；中报/季报不外推第四季度或冒充全年分母') for _ in range(4)]
+        series=self.period_series()
+        result=[]
+        for i in range(1,5):
+            period=f'{year}-Q{i}'
+            row=next((r for r in series['quarters'] if r['metric']==metric and r['period']==period),None)
+            missing=next((r for r in series['missing'] if r['metric']==metric and r['period']==period),{})
+            result.append(row['quantity'] if row else unknown(missing.get('reason','缺少同口径单季或可推导累计来源')))
+        return result
+
+    def first_three_quarters(self,metric):
+        year=self.ps[0][:4]
+        if self.window(self.ps[0])!=(year+'-01-01',year+'-12-31'):
+            return unknown('当前不是完整全年，不进行Q4与前三季方向比较')
+        row=next((r for r in self.period_series()['cumulatives'] if r['metric']==metric and r['period']==year+'-YTD3'),None)
+        return row['quantity'] if row else unknown('缺少同口径前三季累计或三个可加单季')
+
+    def period_series(self):
+        if self._period_series is None:
+            from .financial_workpapers import load_facts
+            from .workpaper_periods import period_inputs
+            from .period_algebra import derive_period_series
+            others=[r for r in load_facts(self.st.service,self.st.project,company=self.st.company) if r['document_id']!=self.d.doc]
+            inputs,unrecognized=period_inputs(self.st,self.d,others)
+            years={p[:4] for p in self.ps}
+            inputs=[r for r in inputs if not r['start'] or r['start'][:4] in years]
+            self._period_series=derive_period_series(inputs,self.d.doc)
+            self._period_series['unknown_rows']=unrecognized
+            self.records=[*self.records,*others]
+        return self._period_series
 
     def source_text(self,page,quote,**extra):
         text=self.d.pages.get(int(page),'')

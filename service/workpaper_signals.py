@@ -188,9 +188,9 @@ def anomaly_signals(service,project,document_id=None,company=None,scope='consoli
         annual=inc(key,current)
         add('q4_'+key+'_share','季度集中','Q4'+label+'占全年比例',ratio(qs[key][3],annual),'绝对比例 > 40%',lambda v:abs(v)>40,current+'全年；全年须为正，非正时比例未知')
     for key,label in [('parent_profit','归母净利润'),('cfo','CFO')]:
-        total=calc(qs[key][:3],lambda *v:sum(v),formula='Q1+Q2+Q3')
+        total=a.first_three_quarters(key)
         sign=calc([qs[key][3],total],lambda x,y:int(x*y<0),'个','Q4×前三季合计<0；1=符号相反')
-        add('q4_'+key+'_direction','季度集中','Q4'+label+'与前三季合计方向相反',sign,'= 1',lambda v:v==1,current+'；K1 单季披露','数学符号关系，不是经验阈值')
+        add('q4_'+key+'_direction','季度集中','Q4'+label+'与前三季合计方向相反',sign,'= 1',lambda v:v==1,current+'；N2期间函数：单季披露或同口径累计差额','数学符号关系，不是经验阈值')
     sign=calc([qs['parent_profit'][3],qs['cfo'][3]],lambda x,y:int(x*y<0),'个','Q4归母净利润×Q4CFO<0；仅比较方向，归母与合并不算转化率')
     add('q4_profit_cash_sign','季度集中','Q4归母利润与合并CFO方向相反',sign,'= 1',lambda v:v==1,current+'；归母利润/合并现金仅比较方向','数学符号关系，不是经验阈值')
     for key,label in [('asset_impairment','资产减值'),('credit_impairment','信用减值')]:
