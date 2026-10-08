@@ -385,7 +385,8 @@ def financial_workpaper(service, project_id, kind='statement_analysis', **option
     service.store.project(project_id)
     from .workpaper_audit import report_audit
     from .workpaper_comparison import comparison
-    builders={'statement_analysis':statement_analysis,'report_audit':report_audit,'comparison':comparison}
+    from .workpaper_periods import period_analysis
+    builders={'statement_analysis':statement_analysis,'report_audit':report_audit,'comparison':comparison,'period_analysis':period_analysis}
     if kind not in builders:
         raise WorkpaperInputError('kind 当前支持 '+', '.join(builders))
     with localcontext() as ctx:
