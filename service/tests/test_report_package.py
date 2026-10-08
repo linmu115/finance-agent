@@ -14,10 +14,12 @@ class ReportPackageTests(unittest.TestCase):
             report=compile_report({'tables':{'income':{'columns':{'key':{},'value':{'unit':'百万元','currency':'CNY'}},'rows':[
                 {'key':'revenue','value':{'value':'12.1234567890123456789','unit':'百万元','currency':'CNY','source':{'document_id':'d','page':7}}},
                 {'key':'=1+1','value':{'value':None,'unit':'百万元','currency':'CNY','source':{'missing_reason':'未披露'}}}]}}})
-            snapshot={'project_id':'p','conversation_id':'c','title':'测试报告','turns':[{'id':'m','created_at':'2026-10-08','body':'【观点】关注现金转换。','sources':[],'tables':report['tables']}]}
+            user_source={'kind':'user_provided','messageId':'question','sourceId':'user:question','title':'用户提供','quote':'收入由用户提供。'}
+            snapshot={'project_id':'p','conversation_id':'c','title':'测试报告','turns':[{'id':'m','created_at':'2026-10-08','body':'【观点】关注现金转换。','sources':[user_source],'tables':report['tables']}]}
             svc=SimpleNamespace(store=SimpleNamespace(root=Path(tmp),project=lambda p:None))
             prepared=prepare(svc,'p',snapshot);folder=Path(tmp)/'report_packages/p'/prepared['package_id']
             book=load_workbook(folder/'workpapers.xlsx');sheet=book['指标']
+            self.assertEqual(json.loads(book['来源']['E4'].value),user_source)
             row=next(row for row in sheet if row[0].value=='revenue');self.assertEqual(row[1].value,'12.1234567890123456789')
             self.assertIn('"page": 7',row[1].comment.text)
             blank=next(row for row in sheet if row[0].value=='=1+1');self.assertEqual(blank[0].data_type,'s');self.assertIsNone(blank[1].value)

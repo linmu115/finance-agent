@@ -2,7 +2,7 @@ import {emptyUsage,addUsage as tallyUsage,aggregateAudit} from './usage.js';
 import {artifactMediaType} from './artifact-media.js';
 import {registerNumericTables,referenceInventory} from './numeric-tables.js';
 import {answerBindingExtension} from './answer-binding.js';
-import {annotateAnswer,valuationSections} from './answer-semantics.js';
+import {annotateAnswer,citedUserSources,valuationSections} from './answer-semantics.js';
 import {repairInterruptedTools,operationKey,sideEffectTool} from './session-recovery.js';
 import {configuredModel,modelCatalogRevision,jsonOutputPayload} from './model-runtime.js';
 import { createAgentSession, DefaultResourceLoader, ModelRuntime, SessionManager, SettingsManager } from '@earendil-works/pi-coding-agent';
@@ -336,7 +336,7 @@ export class RunManager {
    await this.persist(l);
   }
   if(sessionManager.getEntryCount()===0&&l.chat.messages.length>2){
-   sessionManager.appendCustomMessageEntry('imported_conversation','此前的完整对话记录，财务数据仍需工具核验：\n'+JSON.stringify(l.chat.messages.slice(0,l.chat.messages.findIndex(m=>m.id===l.run.request?.userMessageId)).map(m=>({role:m.role,content:m.content,attachments:m.attachments,annotations:m.annotations}))),false);
+   sessionManager.appendCustomMessageEntry('imported_conversation','此前的完整对话记录，财务数据仍需工具核验：\n'+JSON.stringify(l.chat.messages.slice(0,l.chat.messages.findIndex(m=>m.id===l.run.request?.userMessageId)).map(m=>({id:m.id,role:m.role,content:m.content,attachments:m.attachments,annotations:m.annotations}))),false);
   }
   const compactionExtension=createContextCompactionExtension({onState:state=>{compactionState=state;},audit:async(type,data)=>{if(e.active)await this.audit(e.active,type,data);}});
   const inputLifecycle:any=(pi:any)=>{
@@ -477,13 +477,15 @@ export class RunManager {
  private async renderAnswer(l:LiveRun,body:string){
   if(this.isIngestion(l))return body;
   const missing=valuationSections(body);
-  body=annotateAnswer(body,l.answer.sources);
+  const sources=[...(l.answer.sources||[]).filter(s=>s.kind!=='user_provided'),...citedUserSources(body,l.chat.messages)];
+  body=annotateAnswer(body,sources);
   const charts:Record<string,string>={};
   for(const a of l.answer.artifacts||[])if(a.mimeType.startsWith('image/'))charts[a.name]=a.url;
   let bound=body,failure:any;
   try{if(body.includes('{{'))bound=(await this.service.call('render_answer',{project_id:l.run.projectId,body,tables:l.numericTables||{},charts},l.controller.signal)).data.body as string;}
   catch(error){if((error as any).code!=='answer_reference_error')throw error;failure=error;}
   if(missing.length||failure)throw Object.assign(new Error([failure?.message,missing.length?'估值或投资判断缺少有内容的小节：'+missing.join(' / ')+'。保留已核对数值并补全；资料不足明确说明。':null].filter(Boolean).join('\n')),{code:failure?'answer_reference_error':'answer_contract_error'});
+  l.answer.sources=sources;
   return bound;
  }
  private async databaseOperation(l:LiveRun,params:Record<string,any>){

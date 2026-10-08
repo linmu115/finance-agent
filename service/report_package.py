@@ -23,6 +23,7 @@ TABLE_SECTIONS = {
 }
 SHEETS = {1:'指标',2:'利润桥',3:'特殊损益与口径',4:'信号',5:'估值',6:'缺项与局限',7:'来源'}
 TABLE_TITLES = {'income':'利润表','profit_attribution':'利润归属','ratios':'利润率','growth':'同比增长','cash':'现金流','working_capital':'营运资本','cash_quality':'现金转化与周转','observations':'数值关系','roe':'净资产收益率','bridge':'现金桥','indirect_bridge':'间接法现金桥','indirect_contributions':'现金桥贡献','deducted_profit':'扣非利润','nonrecurring_items':'非经常性损益','quarterly':'季度数据','quarterly_reconciliation':'季度勾稽','missing':'缺失资料','report_columns':'比较列来源','signals':'异常信号','contributions':'变化贡献','drivers_evidence':'驱动因素原文'}
+TABLE_TITLES.update(quarters='单季数据', cumulatives='累计数据', changes='期间变化', reconciliation='期间勾稽', markers='口径变化原文', adjustments='重述调整', ratio_impacts='比率影响', repeated_nonrecurring='多期非经常项目', summary='口径识别结论', unrecognized='未识别资料')
 TABLE_TITLES.update(dcf_summary='DCF 估值结果',dcf_forecast='FCFF 预测与折现',dcf_sensitivity='DCF 敏感性')
 
 def table_title(name,table):

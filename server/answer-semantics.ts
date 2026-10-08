@@ -1,6 +1,6 @@
-import type {Source} from './types.js';
+import type {Message,Source} from './types.js';
 
-const label = /(?:\*\*)?【(事实(?:[／/]数据)?|题给数据[／/]计算|数据支持的结论|数据|推论|观点)(?:[^】]*)】(?:\*\*)?/;
+const label = /(?:\*\*)?【(事实(?:[／/]数据)?|题给事实|用户提供|题给数据[／/]计算|数据支持的结论|数据|推论|观点)(?:[^】]*)】(?:\*\*)?/;
 const factual=(value?:string)=>!!value&&!['推论','观点'].includes(value);
 const valuation = /估值|目标价|合理(?:股价|价值)|投资建议|(?:建议|维持|给予).{0,8}(?:买入|卖出|增持|减持|持有)|\bDCF\b|target price|fair value|investment recommendation/i;
 export function valuationSections(body:string){
@@ -9,8 +9,16 @@ export function valuationSections(body:string){
  const sections=[...body.matchAll(/(?:^|\n)(?:#{1,6}\s+|\*\*)([^\n*]+)(?:\*\*)?([^]*?)(?=\n#{1,6}\s|\n\*\*[^\n*]+\*\*|$)/g)];
  return ['假设','风险','适用范围'].filter(name=>!sections.some(m=>m[1].includes(name)&&m[2].replace(/[\s:：\/、*]/g,'').length>0));
 }
+/** Only saved, delivered user messages from this conversation can be cited. */
+export function citedUserSources(body:string,messages:Message[]):Source[]{
+ const ids=new Set([...body.matchAll(/\buser:([\w-]+)/g)].map(m=>m[1]));
+ return messages.filter(m=>m.role==='user'&&m.status!=='queued'&&ids.has(m.id)).map(m=>({
+  kind:'user_provided',messageId:m.id,sourceId:'user:'+m.id,documentId:'',title:'用户提供',quote:m.content,
+ }));
+}
 function sourced(text:string,sources:Source[]){
- return sources.some(s=>{
+ return sources.find(s=>{
+  if(s.kind==='user_provided')return [...text.matchAll(/\buser:([\w-]+)/g)].some(m=>m[1]===s.messageId);
   if(s.url&&text.includes(s.url))return true;
   if(s.sourceId&&text.includes(s.sourceId))return true;
   return !!s.documentId&&text.includes(s.documentId)&&(!s.page||new RegExp(`(?:第\\s*${s.page}\\s*页|[pP]\\.?\\s*${s.page}\\b|page[=: /]${s.page}\\b)`).test(text));
@@ -28,12 +36,13 @@ export function annotateAnswer(body:string,sources:Source[]=[]){
   return prefix+line.slice(prefix.length).split(/(?<=[。！？])(?=[^”’」』]|$)/u).map(sentence=>{
    if(!sentence.trim())return sentence;
    const marked=sentence.match(label)?.[1];if(marked)inherited=marked;
-   const evidence=/\{\{\s*(?!chart:)[^{}]+\}\}/.test(sentence)||sourced(sentence,sources);
+   const bound=/\{\{\s*(?!chart:)[^{}]+\}\}/.test(sentence),ref=sourced(sentence,sources);
+   const evidence=bound||!!ref,factLabel=!bound&&ref?.kind==='user_provided'?'【事实/用户提供】':'【事实/数据】';
    const text=sentence.replace(label,'');
    // Explicit inference/opinion can contain a bound premise without becoming a fact.
    if(marked==='推论'||marked==='观点')return sentence;
-   if(evidence&&!inherited)return '【事实/数据】'+sentence;
-   if(factual(marked||inherited))return evidence?'【事实/数据】'+text:'【推论·缺少绑定或来源】'+text;
+   if(evidence&&!inherited)return factLabel+sentence;
+   if(factual(marked||inherited))return evidence?factLabel+text:'【推论·缺少绑定或来源】'+text;
    return sentence;
   }).join('');
  }).join('\n');

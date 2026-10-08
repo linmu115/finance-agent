@@ -3,7 +3,7 @@ export interface SearchConfig { provider:'tavily'|'brave'; baseUrl:string; apiKe
 export interface ContextCompactionSettings { enabled:boolean; mode?:'auto'|'manual'; targetTokens:number; keepRecentTokens:number }
 export const DEFAULT_CONTEXT_COMPACTION:ContextCompactionSettings={enabled:true,mode:'auto',targetTokens:96000,keepRecentTokens:24000};
 export interface Settings { llm: LlmConfig; embedding: { enabled: boolean; baseUrl: string; model: string; apiKey: string; dimensions?: number }; ocr: { mode: 'local'|'api'; baseUrl: string; model: string; apiKey: string }; search?:SearchConfig; runtime: { timeoutSeconds: number; budgetCny?: number; usdToCny?: number; contextCompaction?:ContextCompactionSettings } }
-export interface Source { documentId: string; page?: number; tableId?: string; cell?: string; sheet?: string; quote?: string; sourceId?: string; url?:string; title?:string; snapshotUrl?:string }
+export interface Source { kind?: 'user_provided'; messageId?: string; documentId: string; page?: number; tableId?: string; cell?: string; sheet?: string; quote?: string; sourceId?: string; url?:string; title?:string; snapshotUrl?:string }
 export interface Artifact { id: string; name: string; mimeType: string; url: string; producedAt?: number }
 export interface MessageAnnotation { id: string; messageId: string; role: 'user'|'assistant'; text: string; comment: string; occurrence?: number }
 export interface Message { usage?:import('./usage.js').UsageTotals; toolOffset?:number; id: string; role: 'user'|'assistant'; content: string; createdAt: string; attachments?: string[]; annotations?: MessageAnnotation[]; sources?: Source[]; artifacts?: Artifact[]; status?: string; tools?: ToolEvent[]; runId?: string }

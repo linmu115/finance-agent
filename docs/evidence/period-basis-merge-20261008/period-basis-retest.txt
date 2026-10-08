@@ -1,0 +1,38 @@
+[finance-service] D:\AI\财报agent\.venv\Lib\site-packages\pydantic_settings\sources\utils.py:47: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.
+  warnings.warn(
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+[finance-service] Processing request of type CallToolRequest
+
+✖ period and basis workpapers bind exact cells and export their chapter with provenance (3852.0507ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4085.0095
+
+✖ failing tests:
+
+test at tests\period-basis-delivery.test.ts:1:377
+✖ period and basis workpapers bind exact cells and export their chapter with provenance (3852.0507ms)
+  AssertionError [ERR_ASSERTION]: 口径变化原文
+      at TestContext.<anonymous> (D:\AI\财报agent\tests\period-basis-delivery.test.ts:56:80)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -355,6 +355,9 @@ def statement_analysis(service, project, document_id=None, company=None, scope='
 
 
 def publish(service, project, kind, report, records):
+    if kind in ('period_analysis', 'basis_changes'):
+        for name, t in report['tables'].items():
+            t['report_section'] = 'limitations' if name in ('missing', 'unrecognized') else 'basis_changes'
     compiled = compile_report(report, records)
     delivery_id = uuid.uuid4().hex
     folder = service.store.root/'research'/project/'deliveries'/delivery_id
@@ -389,7 +392,9 @@ def financial_workpaper(service, project_id, kind='statement_analysis', **option
     service.store.project(project_id)
     from .workpaper_audit import report_audit
     from .workpaper_comparison import comparison
-    builders={'statement_analysis':statement_analysis,'report_audit':report_audit,'comparison':comparison}
+    from .workpaper_periods import period_analysis
+    from .workpaper_basis import basis_changes
+    builders={'statement_analysis':statement_analysis,'report_audit':report_audit,'comparison':comparison,'period_analysis':period_analysis,'basis_changes':basis_changes}
     if kind not in builders:
         raise WorkpaperInputError('kind 当前支持 '+', '.join(builders))
     with localcontext() as ctx:

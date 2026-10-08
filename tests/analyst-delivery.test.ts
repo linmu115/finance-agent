@@ -38,6 +38,23 @@ test('shared native A1 repair handles section and reference failures once, then 
    const zip=await readFile(path.join(dir,exported.relative_path));assert.equal(zip.subarray(0,2).toString(),'PK');
    const md=await readFile(path.join(dir,path.dirname(exported.relative_path),'report.md'),'utf8');
    for(const heading of ['结论','关键数据','业绩变化归因','特殊损益与口径','异常信号','估值','假设、风险与局限','来源'])assert.ok(md.includes('## '+heading));
+
+   // A prior user message is a source in both profiles, independent of financial tools.
+   faux.setResponses([answer('已收到数据。')]);
+   const given=await manager.start(await manager.getConversation(chat.id),'2024 年收入 1120 百万元。',[],undefined,evaluation(profile));
+   assert.equal((await wait(given.id)).status,'completed');
+   faux.setResponses([answer(`【题给事实】2024 年收入 1120 百万元（user:${given.userMessageId}）。`)]);
+   const recall=await manager.start(await manager.getConversation(chat.id),'引用刚才给出的收入。',[],undefined,evaluation(profile));
+   assert.equal((await wait(recall.id)).status,'completed');
+   const cited=await manager.getConversation(chat.id),last=cited.messages.at(-1);
+   assert.match(last.content,/【事实\/用户提供】/);
+   assert.deepEqual(last.sources,[{kind:'user_provided',messageId:given.userMessageId,sourceId:'user:'+given.userMessageId,documentId:'',title:'用户提供',quote:'2024 年收入 1120 百万元。'}]);
+   const sourcedPackage=await exportReportPackage(service,cited);
+   const packageFolder=path.join(dir,path.dirname(sourcedPackage.relative_path));
+   const sourcedMd=await readFile(path.join(packageFolder,'report.md'),'utf8');
+   assert.match(sourcedMd,/用户提供/);assert.ok(sourcedMd.includes(given.userMessageId));
+   const persisted=JSON.parse(await readFile(path.join(packageFolder,'snapshot.json'),'utf8'));
+   assert.deepEqual(persisted.turns.at(-1).sources,last.sources);
   }
   const chat=await make('prepared');faux.setResponses([answer('目标价 20 元。'),answer('目标价 21 元。')]);
   const run=await manager.start(chat,'估值',[],undefined,evaluation('prepared')),failed=await wait(run.id);assert.equal(failed.status,'failed');assert.match(failed.error,/假设/);assert.equal(faux.getPendingResponseCount(),0);

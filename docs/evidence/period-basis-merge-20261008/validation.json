@@ -1,0 +1,54 @@
+{
+  "base": "f7f74d4913422ea48e903fcd640b0fc1abbe4e20",
+  "merge_target": "868f406a1d9944b04fd00aabdce825c08f31ece7",
+  "included_period_commit": "d349e0431195fe09910fad1d77071164ebe4c613",
+  "conflict_resolution": "service/server.py only: retain B4 compact description, add period_analysis and basis_changes; synchronize cached schema description. No duplicate guidance.",
+  "python": {
+    "unique_tests": 54,
+    "passed": 54,
+    "log": "python-tests.txt",
+    "report_source_test_after_assertion_added": "report-source-test.txt"
+  },
+  "node": {
+    "unique_tests": 11,
+    "passed_after_test_fixes": 11,
+    "initial_pass": 10,
+    "initial_fail": 1,
+    "initial_log": "node-tests.txt",
+    "retest_log": "period-basis-retest.txt",
+    "final_log": "period-basis-final-test.txt",
+    "test_failures_preserved": [
+      "New chapter assertion assumed LF; generated Markdown uses Windows CRLF. Test changed to accept both.",
+      "The frozen fixture has no textual policy markers; test incorrectly required a nonempty marker section. It now asserts the empty section is absent and the real period/basis sections are present. No product fallback or discarded rows."
+    ]
+  },
+  "typecheck": "passed",
+  "candidate_ui_build": "passed; tmp/period-basis-merge-web, not production web/dist",
+  "ui": "user source modal shows original question, all requests intercepted, source PNG visually checked",
+  "coverage": [
+    "Both shared profiles persist user_provided provenance and export it to MD/snapshot; workbook source sheet preserves exact source object.",
+    "Known user message IDs only; pending user messages, assistant IDs, invented/cross-chat IDs excluded. Explicit inference remains inference. Citation type identifies source, not independently verified truth.",
+    "Both new financial_workpaper kinds dispatch and publish typed tables; full cells and evidence register before model projection.",
+    "A1 scalar and table binding on actual compiled workpaper output; snapshot tables equal tool tables.",
+    "Period/basis chapter and workbook sheet contain expected nonempty results; empty marker table not invented; cell source comments retained; PDF generated.",
+    "Native Pi ingestion continuation and A1 repair stay exclusive and one-shot; financial-only workpaper tool absent from generic/prepared."
+  ],
+  "model_calls": 0,
+  "paid_smoke": false,
+  "production_data_written": false,
+  "held_out_read": false,
+  "limitations": [
+    "N2 historic acceptance reports retained, not rerun on live ingestion. Quarterly/full Haier ingestion acceptance still pending.",
+    "This deterministic merge acceptance is not evidence of superiority over generic baseline.",
+    "Source tags describe provenance. They do not check every cited sentence against the source or certify model arithmetic."
+  ],
+  "deployment": {
+    "restarted_3001": false,
+    "pid_before": 24292,
+    "pid_after": 24292,
+    "start_time": "2026-10-08T11:06:10.3327738+08:00",
+    "loaded_commit": "a8bbb3e",
+    "new_capabilities_loaded": false,
+    "docker_wsl": "unchanged; shared running environment retained; 12 stopped Dify/mineru containers not touched"
+  }
+}

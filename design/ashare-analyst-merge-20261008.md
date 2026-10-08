@@ -35,3 +35,8 @@ A1 在原生 message_end 对最终分析答复统一渲染。数值绑定或当�
 N3 已开始 270 页完整入库，用户最新决定允许⑤本轮不重启。3001 保持第 3 步上线的 N2+N3，PID 24292；只检查活动运行元数据，存在 running 任务。⑤代码及构建产物已就绪，**⑤尚未加载到 3001，待用户安排空闲窗口上线**。Docker/WSL 继续共享，12 个停用 Dify/mineru 容器未操作。
 
 证据：docs/evidence/analyst-delivery-20261008/smoke.json、smoke-numeric-checks.json、ui-validation.json、environment.json。原始会话：data/evaluation/analyst-delivery-smoke-20261008；修复回放报告包：其中 package-replay/report_package.zip。
+
+
+## 后续口径修正（2026-10-08）
+
+用户指出原冒烟经营数据来自题目，属于有来源的题给事实。复查 6 个输入与 11 个派生显示值均一致，手写表格本身不是转写错误；先前 4 句标签降级反映来源类型/绑定覆盖不足，不能作为数值错误证据。经营数值表未登记的复用与工作簿交付缺口继续保留。本轮新增用户提供来源，详见 design/period-basis-merge-20261008.md 及其 smoke-source-correction.json；原始会话和历史回放未覆盖。

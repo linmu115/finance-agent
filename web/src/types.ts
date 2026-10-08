@@ -1,5 +1,6 @@
 export interface Project { id: string; name: string; createdAt?: string; documentCount?: number; document_count?: number }
 export interface Source {
+  kind?: 'user_provided'; messageId?: string;
   id?: string; source_id?: string; sourceId?: string; tableId?: string; documentId?: string; document_id?: string;
   page?: number; pageNumber?: number; name?: string; title?: string; table_id?: string; column?: number;
   quote?: string; text?: string; sheet?: string; cell?: string; row?: number; url?:string; snapshotUrl?:string;
