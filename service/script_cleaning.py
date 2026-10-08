@@ -21,6 +21,10 @@ from . import cleaning_rules
 from .accounting_basis import identify as identify_basis, apply_basis
 from .standard_metrics import canonical_rows, VERSION as STANDARD_VERSION
 from .cleaning_consistency import table_semantics, document_conflicts
+from .source_dimensions import apply_source_dimensions
+from .source_numbers import identifier_table_exclusion
+from .table_identity import table_index
+from .cleaning_queue import runnable_tables, record_attempt, settle_tables, submitted_table
 
 VERSION='python-cleaning-3'
 
@@ -60,11 +64,16 @@ class ScriptCleaningMixin:
         with self.store.connect() as db:
             saved=[(r[0],json.loads(r[1])) for r in db.execute('SELECT batch_key,result_json FROM normalization_batches WHERE document_id=?',(doc['document_id'],))]
         for key,result in saved:
+            if result.get('superseded_by'):continue
             table=next((t for t in parsed['tables'] if t['index']==result.get('script_table')),None)
             if table is None or result.get('document_sha256')!=doc['sha256'] or result.get('script_source_hash')!=_hash(table) or result.get('profile_revision')!=(profile or {}).get('revision_id'):continue
-            ext=result.get('extractions',[]);schemas=[e['attributes'] for e in ext if e['class']=='table_schema']
+            ext=json.loads(dumps(result.get('extractions',[])))
+            basis=(profile or {}).get('accounting_basis') or identify_basis(parsed)
+            for e in ext:e['attributes']=apply_basis({'schema':e['attributes']},basis)['schema']
+            schemas=[e['attributes'] for e in ext if e['class']=='table_schema']
             if not schemas:continue
             facts,_=materialize(ext,[{'table':table,'rows':list(range(1,len(table['rows'])+1))}],doc['document_id'],result.get('model',''))
+            apply_source_dimensions(table,facts,context=cleaning_rules.context(parsed,table))
             items.append({'table':table,'facts':facts,'schema':schemas[0],'saved_key':key,'saved':result,
                           'page_text':next(p['text'] for p in parsed['pages'] if p['page']==table['page'])})
         return items
@@ -137,10 +146,14 @@ class ScriptCleaningMixin:
         unfinished=[s for s in related if s.get('state') not in {'completed','needs_review'} or
                     any(set(d['tables'])-set(d['completed_tables']) for d in s['documents'])]
         candidates=unfinished or ([] if force else related)
+        prior_documents={};same_owner=False
         if candidates:
             # Oldest unfinished attempt is canonical. Keep historical jobs and
             # rebuild submitted table inventory from the durable commit ledger.
             state=candidates[0]
+            same_owner=state['owner_run_id']==owner_run_id
+            prior_documents={d['document_id']:d for d in state['documents']}
+            if not same_owner:state.pop('repair_phase',None)
             document_ids=list(dict.fromkeys(document_ids+[d['document_id'] for d in state['documents']]))
             documents=[self.store.document(project_id,i) for i in document_ids]
             related=self._related_cleanings(project_id,document_ids)
@@ -155,6 +168,8 @@ class ScriptCleaningMixin:
             if parsed is None:
                 prepare_document_sources(self,project_id,[did]);doc,parsed=self._clean_source(project_id,did)
             else:doc,parsed=self._clean_source(project_id,did)
+            from .accounting_basis import reapply_document_facts
+            reapply_document_facts(self,project_id,did,parsed,(profile or {}).get('accounting_basis') or identify_basis(parsed),state['processing_id'])
             numeric=[t['index'] for t in numeric_tables(parsed)]
             with self.store.connect() as db:
                 saved=[json.loads(r[0]) for r in db.execute('SELECT result_json FROM normalization_batches WHERE document_id=?',(did,))]
@@ -167,6 +182,7 @@ class ScriptCleaningMixin:
             invalid={i['table'] for i in semantic_issues}
             if not force or candidates:
                 for result in saved:
+                    if result.get('superseded_by'):continue
                     if force and result.get('extraction_processing_id')!=state['processing_id']:continue
                     if result.get('script_table') in invalid:continue
                     if result.get('cleaning_rule') and result['cleaning_rule'].get('version')!=cleaning_rules.VERSION:continue
@@ -201,6 +217,8 @@ class ScriptCleaningMixin:
                 'fact_count':self.get_document(project_id,did)['data']['fact_count'],'tables':numeric,'completed_tables':sorted(done),'reused':bool(done),'review_issues':review_issues,
                 'batches':structural_batches(parsed,numeric,source_budget_chars)})
             item=state['documents'][-1]
+            if same_owner:
+                item.update({k:v for k,v in prior_documents.get(did,{}).items() if k in {'deferred_tables','offered_tables','round_attempts'}})
             item['validation_issues']={str(i):[v for v in semantic_issues if v['table']==i] for i in invalid}
             priorities={t['index']:cleaning_rules.priority(parsed,t) for t in numeric_tables(parsed)}
             item['core_tables']=[i for i in numeric if priorities[i]<2]
@@ -214,8 +232,10 @@ class ScriptCleaningMixin:
             self._apply_cleaning_rules(project_id,state['processing_id'],item['document_id'])
         state=self._clean_state(project_id,state['processing_id'])
         research=any(d['document_kind']!='financial_report' for d in state['documents'])
+        batch=self._next_clean_batch(state,include_source=True)
+        self._save_processing(state)
         return envelope(self._clean_summary(state)|{'instructions':GUIDE+('\n'+RESEARCH_GUIDE if research else ''),'documents':[self._clean_inventory(project_id,item) for item in state['documents']],
-            'next_batch':self._next_clean_batch(state,include_source=True)})
+            'next_batch':batch})
 
     def _mapping_draft(self,project_id,document_id,parsed,table):
         profile=self._document_profile(project_id,document_id) or {}
@@ -239,6 +259,13 @@ class ScriptCleaningMixin:
         for table in numeric_tables(parsed):
             index=table['index']
             if index in document['completed_tables']:continue
+            if str(index) in document.get('deferred_tables',{}):continue
+            exclusion=identifier_table_exclusion(table)
+            if exclusion:
+                payload.append({'index':index,'schema':{'statement':'nonfinancial'},'rows':[],
+                                'exclusion_reason':dumps(exclusion)})
+                origins[str(index)]='source-identifiers-1'
+                continue
             previous=saved.get(index)
             if previous and previous.get('document_sha256')==doc['sha256'] and previous.get('script_source_hash')==_hash(table) and previous.get('profile_revision')==document.get('profile_revision'):
                 ext=previous.get('extractions',[])
@@ -264,6 +291,7 @@ class ScriptCleaningMixin:
                            'rule_payload':{'tables':payload},'rule_origins':origins,'rule_version':cleaning_rules.VERSION}
         self._save_processing(state)
         _,validated,_=self._clean_result(project_id,state,rid)
+        record_attempt(state,document_id,validated,state['jobs'][rid]['semantic_reopenings'])
         valid=[t['index'] for t in validated if not any(i.get('severity')!='review' for i in t['issues'])]
         reuse['validation_failures']=[{'table':t['index'],'reasons':[i['reason'] for i in t['issues'] if i.get('severity')!='review']} for t in validated if t['index'] not in valid]
         reuse['completed_tables']=[i for i in valid if not origins[str(i)].startswith('standard')]
@@ -281,7 +309,7 @@ class ScriptCleaningMixin:
         candidates=[]
         for item in state['documents']:
             if document_id and item['document_id']!=document_id:continue
-            pending=set(item['tables'])-set(item['completed_tables'])
+            pending=runnable_tables(state,item)
             failed=set()
             for job in state['jobs'].values():
                 if job['document_id']==item['document_id'] and not job.get('rule_payload'):
@@ -300,6 +328,9 @@ class ScriptCleaningMixin:
             _,parsed=self._clean_source(state['project_id'],batch['document_id'])
             view=batch_view(parsed,batch,batch['document_id'])
             document=next(d for d in state['documents'] if d['document_id']==batch['document_id'])
+            document['offered_tables']=sorted(set(document.get('offered_tables',[]))|set(batch['tables']))
+            view['repair_phase']=bool(state.get('repair_phase'))
+            view['deferred_reasons']={str(i):document.get('deferred_tables',{}).get(str(i)) for i in batch['tables'] if str(i) in document.get('deferred_tables',{})}
             view['validation_issues']={str(i):document.get('validation_issues',{}).get(str(i),[]) for i in batch['tables'] if str(i) in document.get('validation_issues',{})}
             view['mapping_drafts']=[{k:v for k,v in mapping.items() if k!='rows'}|{'mapped_rows':[r['row'] for r in mapping['rows']]} for table in parsed['tables'] if table['index'] in batch['tables']
                                     for mapping,_ in [self._mapping_draft(state['project_id'],batch['document_id'],parsed,table)] if mapping]
@@ -310,7 +341,24 @@ class ScriptCleaningMixin:
         state=self._clean_state(project_id,processing_id)
         self._refresh_cleaning_commits(state);self._clean_progress(state)
         if document_id and document_id not in {d['document_id'] for d in state['documents']}:raise ValueError('document_not_in_cleaning_attempt')
-        return envelope({'processing_id':processing_id,'batch':self._next_clean_batch(state,True,document_id),'pending_pages':self._clean_summary(state)['pending_pages']})
+        batch=self._next_clean_batch(state,True,document_id)
+        self._save_processing(state)
+        return envelope({'processing_id':processing_id,'batch':batch,'pending_pages':self._clean_summary(state)['pending_pages']})
+
+    def advance_cleaning_round(self,project_id,processing_id,tool_errors=None):
+        with self.processing_lock:
+            state=self._clean_state(project_id,processing_id)
+            self._refresh_cleaning_commits(state)
+            sources={d['document_id']:self._clean_source(project_id,d['document_id'])[1] for d in state['documents']}
+            newly=settle_tables(state,sources,tool_errors or [])
+            batch=self._next_clean_batch(state)
+            if batch:
+                document=next(d for d in state['documents'] if d['document_id']==batch['document_id'])
+                document['offered_tables']=batch['tables']
+            self._clean_progress(state);self._save_processing(state)
+        result=self.get_cleaning_progress(project_id,processing_id)
+        result['data']['newly_deferred']=newly
+        return result
 
     def get_cleaning_progress(self,project_id,processing_id):
         with self.processing_lock:
@@ -322,6 +370,7 @@ class ScriptCleaningMixin:
             for index in job.get('candidate_tables',[]):latest[(job['document_id'],index)]=(rid,index in job['committed_tables'])
         pending_scripts=[{'document_id':did,'table':index,'run_id':rid} for (did,index),(rid,committed) in latest.items()
                          if not committed and index not in state['jobs'][rid].get('failed_tables',[]) and
+                         index in runnable_tables(state,next(d for d in state['documents'] if d['document_id']==did)) and
                          index not in next(d['completed_tables'] for d in state['documents'] if d['document_id']==did)]
         unattempted={d['document_id']:sorted(set(d['tables'])-set(d['completed_tables'])-
                     {i for j in state['jobs'].values() if j['document_id']==d['document_id'] and not j.get('rule_payload') for i in j.get('candidate_tables',[])}) for d in state['documents']}
@@ -341,6 +390,7 @@ class ScriptCleaningMixin:
                 d['fact_count']=db.execute('SELECT count(*) FROM facts WHERE document_id=?',(did,)).fetchone()[0]
             statuses={}
             for saved in batches:
+                if saved.get('superseded_by'):continue
                 index=saved.get('script_table')
                 if index not in tables or saved.get('document_sha256')!=doc['sha256'] or saved.get('script_source_hash')!=_hash(tables[index]) or saved.get('profile_revision')!=d.get('profile_revision'):continue
                 if state.get('force') and saved.get('extraction_processing_id')!=state['processing_id']:continue
@@ -349,6 +399,9 @@ class ScriptCleaningMixin:
             if any(b.get('script_table') is not None for b in batches):
                 d['completed_tables']=sorted(i for i,status in statuses.items() if status in {'completed','needs_review'})
             d['table_statuses']={str(i):status for i,status in statuses.items()}
+            for i in list(d.get('deferred_tables',{})):
+                if int(i) in d['completed_tables']:d['deferred_tables'].pop(i)
+                else:d['table_statuses'][i]='deferred'
 
     def _clean_progress(self,state):
         for d in state['documents']:
@@ -372,6 +425,9 @@ class ScriptCleaningMixin:
 
     def _clean_summary(self,state):
         return {k:state[k] for k in ('processing_id','state','message','progress','coverage','fact_count')}|{
+            'repair_phase':bool(state.get('repair_phase')),
+            'runnable_tables':{d['document_id']:sorted(runnable_tables(state,d)) for d in state['documents']},
+            'deferred_tables':{d['document_id']:d.get('deferred_tables',{}) for d in state['documents']},
             'pending_tables':{d['document_id']:sorted(set(d['tables'])-set(d['completed_tables'])) for d in state['documents']},
             'pending_pages':{d['document_id']:d.get('text_coverage',{}).get('pending_pages',[]) for d in state['documents']},
             'research_record_count':sum(d.get('research_record_count',0) for d in state['documents']),
@@ -388,9 +444,12 @@ class ScriptCleaningMixin:
         profile=self._document_profile(project_id,document_id)
         entities=(profile or {}).get('entities',[])
         company=entities[0]['name'] if profile and profile['kind']=='financial_report' and len(entities)==1 else parsed['company']
+        document=next(d for d in state['documents'] if d['document_id']==document_id)
+        selected=[t for t in parsed['tables'] if not state.get('repair_phase') or t['index'] in runnable_tables(state,document)]
+        pages=parsed['pages'] if not state.get('repair_phase') else [p for p in parsed['pages'] if p['page'] in {t['page'] for t in selected}]
         data={'company':company,'company_from_filename':_filename_company(doc,parsed,company),
-              'document_profile':profile,'report_year':cleaning_rules.source_year(parsed),'pages':parsed['pages'],'tables':parsed['tables'],
-              'mapping_drafts':{str(t['index']):mapping for t in numeric_tables(parsed) for mapping,_ in [self._mapping_draft(project_id,document_id,parsed,t)] if mapping}}
+              'document_profile':profile,'report_year':cleaning_rules.source_year(parsed),'pages':pages,'tables':selected,
+              'mapping_drafts':{str(t['index']):mapping for t in selected for mapping,_ in [self._mapping_draft(project_id,document_id,parsed,t)] if mapping}}
         # The parsed document is the same for every script run on it: stored once, linked into each run.
         source=write_input(self.store.root/'exports',project_id,folder/'cleaning_source.json',dumps(data).encode('utf-8'))
         sdk=folder/'cleaning_sdk.py';sdk.write_text(Path(__file__).with_name('cleaning_sdk.py').read_text(encoding='utf-8'),encoding='utf-8')
@@ -420,6 +479,7 @@ class ScriptCleaningMixin:
             state=self._clean_state(project_id,processing_id)
             if state['state'] in {'cancelled','failed'}:raise ValueError('cleaning_attempt_stopped')
             state['jobs'][run_id]={'document_id':document_id,'profile_revision':(data['document_profile'] or {}).get('revision_id'),'source_hash':_hash(parsed),'code_hash':hashlib.sha256(code.encode()).hexdigest(),'script_dependencies':dependencies,'referenced_results':referenced_results,'target_hashes':self._clean_target_hashes(document_id),'committed_tables':[]}
+            state['jobs'][run_id]['offered_tables']=next(d.get('offered_tables',[]) for d in state['documents'] if d['document_id']==document_id)
             self._save_analysis_state(project_id,run_id,{'run_id':run_id,'project_id':project_id,'status':'queued','artifacts':[]})
             self.analysis_flags[run_id]=threading.Event()
             self._save_processing(state)
@@ -457,8 +517,9 @@ class ScriptCleaningMixin:
         basis=(profile or {}).get('accounting_basis') or identify_basis(parsed)
         for item in payload['tables']:
             item=apply_basis(item,basis)
-            index=item.get('index')
-            if type(index) is not int or index not in actual or index not in allowed or index in seen:raise ValueError('invalid_script_table')
+            index=table_index(item.get('index'),job['document_id'])
+            if type(index) is not int or index not in actual or index not in allowed or index in seen:
+                raise CleaningToolError('invalid_script_table',{'requested_table':item.get('index'),'available_table_ids':[f"{job['document_id']}:t{i}" for i in allowed],'duplicate':index in seen})
             seen.add(index);table=actual[index];rows=item.get('rows');schema=item.get('schema')
             if item.get('mapping_error'):
                 page=next(p['text'] for p in parsed['pages'] if p['page']==table['page'])
@@ -478,6 +539,7 @@ class ScriptCleaningMixin:
                 used.add(n);marker=f'[[T{index}:R{n}]]';ext.append({'class':'financial_row','text':marker,'span':[0,len(marker)],'attributes':row['attributes']})
             batch=[{'table':table,'rows':list(range(1,len(table['rows'])+1))}]
             facts,issues=materialize(ext,batch,job['document_id'],state['model'])
+            apply_source_dimensions(table,facts,context=cleaning_rules.context(parsed,table))
             page=next(p['text'] for p in parsed['pages'] if p['page']==table['page'])
             issues.extend(mapping_issues(table,schema,rows,item.get('exclusion_reason'),page,facts))
             issues.extend(table_semantics(table,schema,facts,page))
@@ -542,18 +604,25 @@ class ScriptCleaningMixin:
                     path=self._runner().root/run_id/name
                     if path.is_file():
                         value=path.read_text(encoding='utf-8',errors='replace');logs[name]={'text':value[-12000:],'truncated':len(value)>12000}
+                with self.processing_lock:
+                    current=self._clean_state(project_id,processing_id)
+                    reason='script_produced_no_mapping' if execution.get('state')=='inspection_complete' else 'script_execution_failed'
+                    record_attempt(current,job['document_id'],[{'index':i,'issues':[{'table':i,'reason':reason,'run_id':run_id,'execution':execution,'diagnostics':logs}]} for i in job.get('offered_tables',[])])
+                    self._save_processing(current)
             return envelope({'execution':execution,'diagnostics':logs,'state':execution.get('state'),'next':'get_cleaning_result' if execution.get('state') in {'queued','running'} else '脚本已执行。可用 print 检查结构并读取 diagnostics；要清洗时再用 c.save() 生成候选映射。' if execution.get('state')=='inspection_complete' else '根据 diagnostics 修正脚本后重新执行'})
         with self.processing_lock:
             current=self._clean_state(project_id,processing_id)
             current['jobs'][run_id]['candidate_tables']=[t['index'] for t in results]
             current['jobs'][run_id]['failed_tables']=[t['index'] for t in results if any(i.get('severity')!='review' for i in t['issues'])]
+            record_attempt(current,job['document_id'],results,job['semantic_reopenings'])
             self._persist_semantic_reopening(current,job['document_id'],job['semantic_reopenings'],[t['index'] for t in results])
             self._save_processing(current)
         offset=max(0,int(offset));limit=max(1,min(int(limit),20));selected=results[offset:offset+limit]
         if table_indices is not None:
-            if not isinstance(table_indices,list) or not 1<=len(table_indices)<=20 or any(type(i) is not int for i in table_indices):raise ValueError('invalid_review_table_indices')
+            if not isinstance(table_indices,list) or not 1<=len(table_indices)<=20:raise ValueError('invalid_review_table_indices')
+            table_indices=[table_index(i,job['document_id']) for i in table_indices]
             by_index={t['index']:t for t in results}
-            if any(i not in by_index for i in table_indices):raise ValueError('review_table_not_in_script_result')
+            if any(i not in by_index for i in table_indices):raise CleaningToolError('review_table_not_in_script_result',{'available_table_ids':list(by_index)})
             selected=[by_index[i] for i in dict.fromkeys(table_indices)]
         return envelope({'state':'ready','run_id':run_id,'total_tables':len(results),'table_order':[t['index'] for t in results],'offset':offset,'next_offset':offset+limit if table_indices is None and offset+limit<len(results) else None,
             'fact_count':sum(len(t['facts']) for t in results),'issue_count':sum(len(t['issues']) for t in results),
@@ -572,6 +641,7 @@ class ScriptCleaningMixin:
             if results is None:raise ValueError('script_not_completed')
             job['candidate_tables']=[t['index'] for t in results]
             job['failed_tables']=[t['index'] for t in results if any(i.get('severity')!='review' for i in t['issues'])]
+            record_attempt(state,job['document_id'],results,job['semantic_reopenings'])
             self._persist_semantic_reopening(state,job['document_id'],job['semantic_reopenings'],[t['index'] for t in results])
             self._save_processing(state)
             by={t['index']:t for t in results};seen=set();accepted=[];failures=[]
@@ -579,8 +649,8 @@ class ScriptCleaningMixin:
                 indices=table_indices if table_indices is not None else list(by)
                 reviews=[{'table_index':index,'verdict':'unreviewed','note':'脚本标准化；未额外声明模型语义核验。'} for index in indices]
             for review in reviews:
-                index=review.get('table_index')
-                if index not in by or index in seen:raise ValueError(f'invalid_script_table_{index}')
+                index=table_index(review.get('table_index'),job['document_id'])
+                if index not in by or index in seen:raise CleaningToolError(f'invalid_script_table_{index}',{'available_table_ids':list(by)})
                 seen.add(index);item=by[index]
                 errors=[i for i in item['issues'] if i.get('severity')!='review']
                 if errors:
@@ -603,6 +673,7 @@ class ScriptCleaningMixin:
                     if index not in job['committed_tables']:job['committed_tables'].append(index)
                     document['completed_tables']=sorted(set(document['completed_tables'])|{index})
                     if index in durable:document['review_issues']=[i for i in document['review_issues'] if i.get('table')!=index]+durable[index].get('issues',[])
+                    submitted_table(document,index)
                     continue
                 if self.processing_documents.get((project_id,doc['document_id'])):raise ValueError('document_processing_active')
                 issues=[i for i in item['issues'] if i.get('severity')=='review']+([{'table':index,'reason':'semantic_review_pending','detail':review.get('note','')}] if review['verdict']=='needs_review' else [])
@@ -616,10 +687,12 @@ class ScriptCleaningMixin:
                     'profile_revision':job.get('profile_revision'),
                     'script_table':index,'script_source_hash':_hash(item['table']),'document_sha256':doc['sha256'],'model':state['model'],
                     'code_hash':job['code_hash'],'script_dependencies':job.get('script_dependencies',{}),'referenced_results':job.get('referenced_results',{}),'result_hash':job['result_hash'],'semantic_review':review,'extractions':item['extractions'],
+                    'exclusion_reason':item['exclusion_reason'],
                     'inference_policy':{'cleaning':'low','review':review.get('effort')},'extraction_processing_id':processing_id,'reviewed_exclusions':[index] if item['exclusion_reason'] and review['verdict']=='accepted' else []}
                 self._commit_semantic_batch(project_id,doc['document_id'],processing_id,item['batch'],item['facts'],issues,detail)
                 job['committed_tables'].append(index);document['completed_tables']=sorted(set(document['completed_tables'])|{index})
                 document.get('validation_issues',{}).pop(str(index),None)
+                submitted_table(document,index)
                 document['review_issues']=[i for i in document['review_issues'] if i.get('table')!=index]+issues
                 document['fact_count']=self.get_document(project_id,doc['document_id'])['data']['fact_count']
                 self._clean_progress(state);self._save_processing(state,refresh_attachment_snapshot=True)

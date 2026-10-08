@@ -1,9 +1,23 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {ingestionRemaining,madeIngestionProgress} from '../server/ingestion-continuation.js';
+import {ingestionRemaining,madeIngestionProgress,continueIngestion} from '../server/ingestion-continuation.js';
 import {modelContext} from '../server/model-context.js';
 
 const snapshot=(id:string,done:number[],facts=0)=>({processing_id:id,pending_tables:{d:[1,2,3].filter(t=>!done.includes(t))},pending_pages:{d:[]},document_progress:[{document_id:'d',completed_tables:done,fact_count:facts,table_statuses:{}}]});
+
+test('Pi settle continues unrelated tables without a fact increase and stops after the repair sweep',()=>{
+ const start=ingestionRemaining([snapshot('p',[1],2)]);
+ const local=ingestionRemaining([{...snapshot('p',[1],2),runnable_tables:{d:[3]},deferred_tables:{d:{2:{reason:'mapping_error'}}},next_batch:{tables:[3]}}]);
+ assert.equal(madeIngestionProgress(start.progress,local.progress),false);
+ assert.equal(continueIngestion(local,start.progress),true);
+ const repair=ingestionRemaining([{...snapshot('p',[1],2),runnable_tables:{d:[2]},repair_phase:true}]);
+ assert.equal(repair.repair,true);assert.equal(continueIngestion(repair,local.progress),true);
+ const stopped=ingestionRemaining([{...snapshot('p',[1],2),runnable_tables:{d:[]},repair_phase:true,deferred_tables:{d:{2:{reason:'conflict'},3:{reason:'no_submission_in_round'}}}}]);
+ assert.equal(continueIngestion(stopped,repair.progress),false);
+ assert.equal(stopped.work[0].deferred_tables[2].reason,'conflict');assert.equal(stopped.keys.size,2);
+ const pages=ingestionRemaining([{...snapshot('p',[1,2,3],2),pending_pages:{d:[1]},runnable_tables:{d:[]}}]);
+ assert.equal(continueIngestion(pages,pages.progress),false);
+});
 
 test('only committed document progress advances continuation',()=>{
  const a=ingestionRemaining([snapshot('p',[1],2)]);

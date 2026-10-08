@@ -17,7 +17,7 @@ import { DATA,getSettings,redactError,requireModel } from './config.js';
 import { FinanceService, safeDataPath } from './mcp.js';
 import { RESEARCH_TOOLS, researchStore, researchEnvelope, downloadWithReader } from './research.js';
 import { modelContext, projectToolHistory } from './model-context.js';
-import {ingestionRemaining,madeIngestionProgress} from './ingestion-continuation.js';
+import {ingestionRemaining,continueIngestion} from './ingestion-continuation.js';
 import { FINANCE_TASK_GUIDANCE, ANSWER_FORMAT_GUIDANCE } from './financial-guidance.js';
 import {createContextCompactionExtension,focusCompactionContext,resolveCompactionPolicy} from './context-compaction.js';
 import { ResearchWorkspace, ARTIFACT_TOOLS, reportSchema } from './research-artifacts.js';
@@ -53,7 +53,7 @@ const INGESTION_PROMPT='\n资料入库先识别来源类型。process_documents 
 const FINANCE_PROMPT=WORKSPACE_PROMPT+DEFINITION_PROMPT+RESEARCH_PROMPT+FINANCIAL_INTERPRETATION_PROMPT+INGESTION_PROMPT+FINANCE_TASK_GUIDANCE+ANSWER_FORMAT_GUIDANCE;
 export const PROMPT_HASH=createHash('sha256').update(FINANCE_PROMPT).digest('hex');
 interface EventItem { seq:number; type:string; data:any }
-interface LiveRun { numericTables?:Record<string,any>; bindingError?:Error; bindingRepairMessage?:string; usagePhase?:string; scriptProcessingIds?:Set<string>; accepting:boolean; inputQueue:Promise<void>; nativeQueued:Set<string>; resuming?:boolean; restarting?:boolean; run:Run; events:EventItem[]; clients:Set<Response>; controller:AbortController; promise?:Promise<void>; session?:any; persistQueue:Promise<any>; chat:Conversation; answer:Message; analysisIds:Set<string>; processingIds:Set<string>; extractionRuntime?:Record<string,unknown>; contract?:string; closed:boolean; budget?:EvaluationBudget; detachBudget?:()=>void; modelPending:Set<Promise<unknown>>; researchReads:Map<string,Promise<any>>; route?:TaskRoute; effort?:Effort }
+interface LiveRun { cleaningRepair?:boolean; ingestionToolErrors?:any[]; numericTables?:Record<string,any>; bindingError?:Error; bindingRepairMessage?:string; usagePhase?:string; scriptProcessingIds?:Set<string>; accepting:boolean; inputQueue:Promise<void>; nativeQueued:Set<string>; resuming?:boolean; restarting?:boolean; run:Run; events:EventItem[]; clients:Set<Response>; controller:AbortController; promise?:Promise<void>; session?:any; persistQueue:Promise<any>; chat:Conversation; answer:Message; analysisIds:Set<string>; processingIds:Set<string>; extractionRuntime?:Record<string,unknown>; contract?:string; closed:boolean; budget?:EvaluationBudget; detachBudget?:()=>void; modelPending:Set<Promise<unknown>>; researchReads:Map<string,Promise<any>>; route?:TaskRoute; effort?:Effort }
 interface SessionEntry { session:any; runtime:ModelRuntime; model:any; active?:LiveRun; settings:Settings; signature:string }
 const extractionScope=new AsyncLocalStorage<{runId:string;requestId:string;effort:ExtractionEffort}>();
 const EXTRACTION_MAX_TOKENS=32768;
@@ -350,18 +350,19 @@ export class RunManager {
     active.accepting=false;await active.inputQueue;
     if(active.controller.signal.aborted||active.run.error||!active.scriptProcessingIds?.size)return;
     const snapshots=[];
-    for(const id of active.scriptProcessingIds)snapshots.push((await this.service.call('get_cleaning_progress',{project_id:active.run.projectId,processing_id:id},active.controller.signal)).data);
+    for(const id of active.scriptProcessingIds)snapshots.push((await this.service.call('advance_cleaning_round',{project_id:active.run.projectId,processing_id:id,tool_errors:active.ingestionToolErrors||[]},active.controller.signal)).data);
+    active.ingestionToolErrors=[];
     const remaining=ingestionRemaining(snapshots);
     if(!remaining.keys.size){active.run.ingestionPending=undefined;active.run.ingestionProgress=undefined;return;}
     const prior=active.run.ingestionProgress;
-    if(prior&&!madeIngestionProgress(prior,remaining.progress)){
-     active.run.error='自动续跑没有推进，入库未完成。剩余工作：'+JSON.stringify(remaining.work);
+    if(!continueIngestion(remaining,prior)){
+     active.run.error='自动续跑停止：可处理表已用尽或正文未推进，入库未完成。搁置表及剩余工作：'+JSON.stringify(remaining.work);
      await this.audit(active,'ingestion_stalled',{remaining:remaining.work});return;
     }
-    active.run.ingestionPending=[...remaining.keys];active.run.ingestionProgress=remaining.progress;active.effort='low';active.usagePhase='cleaning';
+    active.run.ingestionPending=[...remaining.keys];active.run.ingestionProgress=remaining.progress;active.cleaningRepair=remaining.repair;active.effort=remaining.repair?'high':'low';active.usagePhase='cleaning';
     await this.audit(active,'ingestion_continuation',{remaining:remaining.work});await this.persist(active);
     return {continue:true,entries:[{type:'custom_message',customType:'ingestion-continuation',display:false,
-     content:'入库尚有剩余工作，继续当前任务，无需用户继续。用 get_cleaning_batch 取得下一组完整原行并写一个可复用脚本；run_cleaning_script 返回校验摘要后直接 commit_cleaning_result。失败只修相关表；不能因结构复杂排除财务表。完成后再回答。\n'+JSON.stringify(remaining.work)}]};
+     content:(remaining.repair?'最后一轮集中修复，只处理宿主给出的搁置表。':'入库尚有可处理表，宿主已搁置本轮未提交表，继续下一组。')+'用 get_cleaning_batch 取得完整原行；run_cleaning_script 后提交有效表。\n'+JSON.stringify(remaining.work)}]};
    });
    pi.on('turn_start',()=>{if(e.active)e.active.accepting=true;});
   };
@@ -378,6 +379,7 @@ export class RunManager {
    const contextWindow=this.sessions.get(l.chat?.id)?.model.contextWindow||getSettings().llm.contextWindow;
    const result=await this.service.call('begin_script_cleaning',{project_id:l.run.projectId,document_ids:documentIds,owner_run_id:l.run.id,model:l.run.model,force,require_profile:true,source_budget_chars:Math.max(4000,Math.floor(contextWindow*.04)*3)},l.controller.signal);
    if(result.data.state==='routing_required'){l.usagePhase='document_routing';return result;}
+   l.cleaningRepair=!!result.data.repair_phase;l.effort=l.cleaningRepair?'high':'low';
    l.processingIds.add(result.data.processing_id);(l.scriptProcessingIds??=new Set()).add(result.data.processing_id);
    await this.audit(l,'processing_started',{processingId:result.data.processing_id,documentIds,engine:'PythonScript',runtime:'Pi',ownerRunId:l.run.id,mode:'script_cleaning'});
    if(['completed','needs_review'].includes(result.data.state)){l.effort=l.route?.afterIngestion||'high';l.usagePhase=undefined;}
@@ -429,8 +431,8 @@ export class RunManager {
   const args:Record<string,any>={...params,project_id:l.run.projectId};
   if(!toolAllowlist(l.chat.evaluationProfile).has(name))throw new Error('工具不属于当前运行配置');
   if(['run_analysis','run_financial_model','compare_financial_models','save_research_report','get_research_model_schema'].includes(name)){l.effort='high';l.usagePhase=undefined;}
-  if(name==='run_cleaning_script'){l.effort='low';l.usagePhase='cleaning';}
-  if(name==='get_cleaning_result'){l.effort=params.review_effort==='high'?'high':'low';l.usagePhase='cleaning_review';}
+  if(name==='run_cleaning_script'){l.effort=l.cleaningRepair?'high':'low';l.usagePhase='cleaning';}
+  if(name==='get_cleaning_result'){l.effort=l.cleaningRepair||params.review_effort==='high'?'high':'low';l.usagePhase='cleaning_review';}
   if(['inspect_document_routing','set_document_profile'].includes(name)){l.effort='low';l.usagePhase='document_routing';}
   if(name==='save_research_claims'){l.effort='low';l.usagePhase='research_extraction';}
   if(name==='query_research_records'){l.effort=l.route?.afterIngestion||'high';l.usagePhase=undefined;}
@@ -471,6 +473,8 @@ export class RunManager {
   }catch(error){
    const message=redactError(error),details=(error as any)?.details,done={name,status:'failed',toolCallId,timestamp:iso(),summary:message};l.run.tools.push(done);this.emit(l,'tool',done);await this.audit(l,'tool_error',{name,toolCallId,message,details});
    if(l.controller.signal.aborted)throw error;
+   if(l.scriptProcessingIds?.size&&['get_source_table','get_source_page','run_cleaning_script','get_cleaning_result','commit_cleaning_result','get_cleaning_batch'].includes(name))
+    (l.ingestionToolErrors??=[]).push({tool:name,document_id:params.document_id,processing_id:params.processing_id,table_id:params.table_id,message,details});
    return {content:[{type:'text',text:JSON.stringify({status:'error',message,details})}],details:{isError:true}};
   }
  }

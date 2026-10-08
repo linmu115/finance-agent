@@ -48,8 +48,8 @@ class ConsistencyTests(unittest.TestCase):
         f['source']['normalization']['dimensions']={};self.assertEqual(table_semantics(table,{},[f]),[])
 
     def test_opposite_signs_require_source_presentation_evidence(self):
-        a={'table':{'index':0,'rows':[['Gain on disposal','16']]},'facts':[fact(value='16',metric='gain_disposal_ppe')]}
-        b={'table':{'index':1,'rows':[['Gain on disposal','(16)']]},'facts':[fact(1,value='-16',raw='(16)',metric='gain_disposal_ppe')]}
+        a={'table':{'index':0,'rows':[['Gain on disposal','16']]},'facts':[fact(row=1,value='16',metric='gain_disposal_ppe')]}
+        b={'table':{'index':1,'rows':[['Gain on disposal','(16)']]},'facts':[fact(1,row=1,value='-16',raw='(16)',metric='gain_disposal_ppe')]}
         self.assertTrue(document_conflicts([a,b]))
         b['page_text']='Profit before tax arrived at after charging/(crediting)'
         self.assertEqual(document_conflicts([a,b]),[])

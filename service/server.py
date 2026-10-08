@@ -91,6 +91,11 @@ async def get_cleaning_progress(project_id: str, processing_id: str) -> dict[str
     return await call('get_cleaning_progress',project_id=project_id,processing_id=processing_id)
 
 @mcp.tool()
+async def advance_cleaning_round(project_id: str, processing_id: str, tool_errors: list[dict[str, Any]] | None=None) -> dict[str, Any]:
+    """Host-only Pi settle boundary: defer unresolved offered tables and schedule unrelated work."""
+    return await call('advance_cleaning_round',project_id=project_id,processing_id=processing_id,tool_errors=tool_errors)
+
+@mcp.tool()
 async def inspect_document_routing(project_id: str, document_ids: list[str]) -> dict[str, Any]:
     """Prepare/reuse immutable sources and read compact routing samples and saved profile. No LLM call or financial writes. Continue source reading if samples do not establish type, publisher, authors, publication date, subjects."""
     return await call('inspect_document_routing',project_id=project_id,document_ids=document_ids)
@@ -138,12 +143,12 @@ async def run_cleaning_script(project_id: str, processing_id: str, document_id: 
     return await call('run_cleaning_script',project_id=project_id,processing_id=processing_id,document_id=document_id,code=code,script_refs=script_refs)
 
 @mcp.tool()
-async def get_cleaning_result(project_id: str, processing_id: str, run_id: str, offset: int=0, limit: int=5, review_effort: str='low', table_indices: list[int] | None=None, details: bool=False) -> dict[str, Any]:
+async def get_cleaning_result(project_id: str, processing_id: str, run_id: str, offset: int=0, limit: int=5, review_effort: str='low', table_indices: list[int | str] | None=None, details: bool=False) -> dict[str, Any]:
     """Read execution, sample facts and concrete mapping issues when useful; not required before commit. details=true includes full source rows, page text and mappings for selected tables. table_indices selects exact table IDs; offset paginates table_order. Original sources remain available. Fix only affected mappings with script_refs; reading results does not certify semantic correctness."""
     return await call('get_cleaning_result',project_id=project_id,processing_id=processing_id,run_id=run_id,offset=offset,limit=limit,review_effort=review_effort,table_indices=table_indices,details=details)
 
 @mcp.tool()
-async def commit_cleaning_result(project_id: str, processing_id: str, run_id: str, reviews: list[dict[str, Any]] | None=None, table_indices: list[int] | None=None) -> dict[str, Any]:
+async def commit_cleaning_result(project_id: str, processing_id: str, run_id: str, reviews: list[dict[str, Any]] | None=None, table_indices: list[int | str] | None=None) -> dict[str, Any]:
     """Commit completed script mappings; no prior inspection call or per-table review form required. Default commits this script's tables, table_indices optionally selects a subset. Values are derived from original cells; invalid mappings still need correction. Optional reviews=[{table_index,verdict:'accepted'|'needs_review',note}] records genuine semantic decisions, not ceremonial confirmation. Without reviews, records remain script_normalized rather than semantically verified. Return remaining tables; continue full ingestion."""
     return await call('commit_cleaning_result',project_id=project_id,processing_id=processing_id,run_id=run_id,reviews=reviews,table_indices=table_indices)
 

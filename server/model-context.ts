@@ -48,7 +48,7 @@ export function modelContext(name:string,envelope:Envelope):Envelope {
  }
  if(name==='commit_cleaning_result'&&Array.isArray(data.committed_tables)&&!data.projection){
   const committed=new Set(data.committed_tables||[]);
-  return {...envelope,data:{...fields(data,['processing_id','state','message','coverage','fact_count','research_record_count','committed_tables','failed_tables','pending_script_tables','pending_pages','next_batch']),
+  return {...envelope,data:{...fields(data,['processing_id','state','message','coverage','fact_count','research_record_count','committed_tables','failed_tables','pending_script_tables','pending_pages','next_batch','repair_phase']),
    pending_table_counts:Object.fromEntries(Object.entries(data.pending_tables||{}).map(([id,values]:any)=>[id,values.length])),
    review_issues:data.review_issues?.filter((issue:any)=>committed.has(issue.table)),
    detail_tool:'get_normalization_details',projection:'保留本次提交的疑点与下一批；先前已返回的累积疑点和待办目录不重复附加。完整状态保留在审计与进度 API。'}};
