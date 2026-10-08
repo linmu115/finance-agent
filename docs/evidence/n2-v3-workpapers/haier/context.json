@@ -1,0 +1,747 @@
+{
+  "schema_version": "workpaper-pipeline-v1",
+  "status": "partial",
+  "selection": {
+    "company": "海尔智家股份有限公司",
+    "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+    "scope": "consolidated",
+    "basis": [
+      {
+        "rule": "document_profile_issuer",
+        "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+        "company": "海尔智家股份有限公司",
+        "evidence": [
+          {
+            "field": "publisher",
+            "page": 1,
+            "quote": "海尔智家股份有限公司",
+            "start": 18,
+            "end": 28,
+            "offset_unit": "unicode_codepoint"
+          }
+        ]
+      },
+      {
+        "rule": "explicit_restated_comparative_preferred",
+        "reason": "同一报告同期间优先显式调整后列；原报数保留，逐格来源记录原列和重述状态"
+      },
+      {
+        "rule": "requested_scope",
+        "scope": "consolidated",
+        "reason": "默认合并口径优先；不混入母公司报表"
+      }
+    ],
+    "periods": [
+      "2024-FY",
+      "2023-FY"
+    ],
+    "resolved_scope": "consolidated_CAS"
+  },
+  "key_metrics": [
+    {
+      "metric": "收入",
+      "values": {
+        "2024-FY": {
+          "ref": "statement_income.revenue.2024-FY",
+          "display": "285,981.2252 CNY 百万元"
+        },
+        "2023-FY": {
+          "ref": "statement_income.revenue.2023-FY",
+          "display": "274,204.5208 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "毛利",
+      "values": {
+        "2024-FY": {
+          "ref": "statement_income.gross_profit.2024-FY",
+          "display": "79,494.1600 CNY 百万元"
+        },
+        "2023-FY": {
+          "ref": "statement_income.gross_profit.2023-FY",
+          "display": "75,366.0501 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "营业利润",
+      "values": {
+        "2024-FY": {
+          "ref": "statement_income.operating_profit.2024-FY",
+          "display": "22,911.7161 CNY 百万元"
+        },
+        "2023-FY": {
+          "ref": "statement_income.operating_profit.2023-FY",
+          "display": "20,380.9914 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "2024-FY",
+      "values": {
+        "consolidated": {
+          "ref": "statement_profit_attribution.2024-FY.consolidated",
+          "display": "19,575.6125 CNY 百万元"
+        },
+        "parent": {
+          "ref": "statement_profit_attribution.2024-FY.parent",
+          "display": "18,741.1201 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "2023-FY",
+      "values": {
+        "consolidated": {
+          "ref": "statement_profit_attribution.2023-FY.consolidated",
+          "display": "17,088.4806 CNY 百万元"
+        },
+        "parent": {
+          "ref": "statement_profit_attribution.2023-FY.parent",
+          "display": "16,596.6150 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "毛利率",
+      "values": {
+        "2024-FY": {
+          "ref": "statement_ratios.gross_profit_margin.2024-FY",
+          "display": "27.7970 %"
+        },
+        "2023-FY": {
+          "ref": "statement_ratios.gross_profit_margin.2023-FY",
+          "display": "27.4853 %"
+        },
+        "change_pp": {
+          "ref": "statement_ratios.gross_profit_margin.change_pp",
+          "display": "0.3116 个百分点"
+        }
+      }
+    },
+    {
+      "metric": "合并净利率",
+      "values": {
+        "2024-FY": {
+          "ref": "statement_ratios.net_profit_margin.2024-FY",
+          "display": "6.8451 %"
+        },
+        "2023-FY": {
+          "ref": "statement_ratios.net_profit_margin.2023-FY",
+          "display": "6.2320 %"
+        },
+        "change_pp": {
+          "ref": "statement_ratios.net_profit_margin.change_pp",
+          "display": "0.6130 个百分点"
+        }
+      }
+    },
+    {
+      "metric": "CFO",
+      "values": {
+        "amount": {
+          "ref": "statement_cash.2024-FY_cfo.amount",
+          "display": "26,543.0819 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "CFO",
+      "values": {
+        "amount": {
+          "ref": "statement_cash.2023-FY_cfo.amount",
+          "display": "26,535.7806 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "2024-FY",
+      "values": {
+        "disclosed": {
+          "ref": "statement_deducted_profit.2024-FY.disclosed",
+          "display": "—",
+          "reason": "未披露扣非归母净利润"
+        },
+        "share": {
+          "ref": "statement_deducted_profit.2024-FY.share",
+          "display": "4.9964 %"
+        }
+      }
+    },
+    {
+      "metric": "2023-FY",
+      "values": {
+        "disclosed": {
+          "ref": "statement_deducted_profit.2023-FY.disclosed",
+          "display": "—",
+          "reason": "未披露扣非归母净利润"
+        },
+        "share": {
+          "ref": "statement_deducted_profit.2023-FY.share",
+          "display": "—",
+          "reason": "缺少非经常损益合计或非零归母净利润"
+        }
+      }
+    },
+    {
+      "metric": "2024-FY",
+      "values": {
+        "weighted": {
+          "ref": "statement_roe.2024-FY.weighted",
+          "display": "—",
+          "reason": "未找到唯一披露加权平均ROE"
+        },
+        "computed": {
+          "ref": "statement_roe.2024-FY.computed",
+          "display": "17.6277 %"
+        }
+      }
+    },
+    {
+      "metric": "2023-FY",
+      "values": {
+        "weighted": {
+          "ref": "statement_roe.2023-FY.weighted",
+          "display": "—",
+          "reason": "未找到唯一披露加权平均ROE"
+        },
+        "computed": {
+          "ref": "statement_roe.2023-FY.computed",
+          "display": "—",
+          "reason": "缺利润或正平均归母权益"
+        }
+      }
+    }
+  ],
+  "bridges": {
+    "profit": {
+      "table": "variance_profit_bridge",
+      "columns": [
+        "key",
+        "item",
+        "role",
+        "contribution"
+      ],
+      "rows": [
+        [
+          "revenue_change",
+          "营业收入变化（参考，不重复加到利润桥）",
+          "reference",
+          "11,776.7044 CNY 百万元"
+        ],
+        [
+          "revenue_effect",
+          "收入变化对毛利的贡献",
+          "step",
+          "3,236.8675 CNY 百万元"
+        ],
+        [
+          "margin_effect",
+          "毛利率变化对毛利的贡献",
+          "step",
+          "891.2425 CNY 百万元"
+        ],
+        [
+          "gross_change",
+          "披露/推导毛利变化",
+          "subtotal",
+          "4,128.1100 CNY 百万元"
+        ],
+        [
+          "other_operating_revenue",
+          "营业总收入中营业收入以外项目",
+          "step",
+          "0.0000 CNY 百万元"
+        ],
+        [
+          "surcharges",
+          "税金及附加",
+          "step",
+          "-124.0060 CNY 百万元"
+        ],
+        [
+          "selling",
+          "销售费用",
+          "step",
+          "-859.1677 CNY 百万元"
+        ],
+        [
+          "administrative",
+          "管理费用",
+          "step",
+          "-235.8150 CNY 百万元"
+        ],
+        [
+          "research",
+          "研发费用",
+          "step",
+          "-359.8926 CNY 百万元"
+        ],
+        [
+          "finance_costs",
+          "财务费用",
+          "step",
+          "-466.9066 CNY 百万元"
+        ],
+        [
+          "other_income",
+          "其他收益",
+          "step",
+          "-11.8871 CNY 百万元"
+        ],
+        [
+          "investment_income",
+          "投资收益",
+          "step",
+          "213.8417 CNY 百万元"
+        ],
+        [
+          "fair_value_gains",
+          "公允价值变动",
+          "step",
+          "30.2353 CNY 百万元"
+        ],
+        [
+          "credit_impairment",
+          "信用减值损益",
+          "step",
+          "-12.9162 CNY 百万元"
+        ],
+        [
+          "asset_impairment",
+          "资产减值损益",
+          "step",
+          "228.2338 CNY 百万元"
+        ],
+        [
+          "asset_disposal",
+          "资产处置损益",
+          "step",
+          "0.8951 CNY 百万元"
+        ],
+        [
+          "operating_profit_change",
+          "营业利润变化",
+          "subtotal",
+          "2,530.7246 CNY 百万元"
+        ],
+        [
+          "operating_profit_residual",
+          "营业利润变化减累计已知贡献",
+          "residual",
+          "0.0000 CNY 百万元"
+        ],
+        [
+          "nonoperating_income",
+          "营业外收入",
+          "step",
+          "49.4677 CNY 百万元"
+        ],
+        [
+          "nonoperating_expenses",
+          "营业外支出",
+          "step",
+          "-59.0437 CNY 百万元"
+        ],
+        [
+          "profit_before_tax_change",
+          "税前利润变化",
+          "subtotal",
+          "2,521.1486 CNY 百万元"
+        ],
+        [
+          "profit_before_tax_residual",
+          "税前利润变化减累计已知贡献",
+          "residual",
+          "0.0000 CNY 百万元"
+        ],
+        [
+          "tax",
+          "所得税",
+          "step",
+          "-34.0167 CNY 百万元"
+        ],
+        [
+          "net_profit_change",
+          "合并净利润变化",
+          "subtotal",
+          "2,487.1319 CNY 百万元"
+        ],
+        [
+          "net_profit_residual",
+          "合并净利润变化减累计已知贡献",
+          "residual",
+          "0.0000 CNY 百万元"
+        ],
+        [
+          "minority_profit",
+          "少数股东损益",
+          "step",
+          "-342.6269 CNY 百万元"
+        ],
+        [
+          "parent_profit_change",
+          "归母净利润变化",
+          "subtotal",
+          "2,144.5051 CNY 百万元"
+        ],
+        [
+          "parent_profit_residual",
+          "归母净利润变化减累计已知贡献",
+          "residual",
+          "0.0000 CNY 百万元"
+        ]
+      ]
+    },
+    "cash": [
+      {
+        "table": "statement_indirect_contributions",
+        "columns": [
+          "key",
+          "period",
+          "item",
+          "direction",
+          "amount"
+        ],
+        "rows": [
+          [
+            "0_2024-FY_非现金项目",
+            "2024-FY",
+            "非现金项目",
+            "",
+            "—"
+          ],
+          [
+            "0_2024-FY_营运资本",
+            "2024-FY",
+            "营运资本",
+            "",
+            "—"
+          ],
+          [
+            "0_2024-FY_其他",
+            "2024-FY",
+            "其他",
+            "",
+            "—"
+          ],
+          [
+            "0_2024-FY_未识别",
+            "2024-FY",
+            "未识别",
+            "",
+            "—"
+          ],
+          [
+            "0_2023-FY_非现金项目",
+            "2023-FY",
+            "非现金项目",
+            "",
+            "—"
+          ],
+          [
+            "0_2023-FY_营运资本",
+            "2023-FY",
+            "营运资本",
+            "",
+            "—"
+          ],
+          [
+            "0_2023-FY_其他",
+            "2023-FY",
+            "其他",
+            "",
+            "—"
+          ],
+          [
+            "0_2023-FY_未识别",
+            "2023-FY",
+            "未识别",
+            "",
+            "—"
+          ]
+        ]
+      },
+      {
+        "table": "statement_bridge",
+        "columns": [
+          "key",
+          "period",
+          "item",
+          "direction",
+          "amount"
+        ],
+        "rows": [
+          [
+            "2024-FY_cash_cash_begin",
+            "2024-FY",
+            "cash_begin",
+            "起点",
+            "56,683.0062 CNY 百万元"
+          ],
+          [
+            "2024-FY_cash_cfo",
+            "2024-FY",
+            "cfo",
+            "加",
+            "26,543.0819 CNY 百万元"
+          ],
+          [
+            "2024-FY_cash_cfi",
+            "2024-FY",
+            "cfi",
+            "减",
+            "-20,074.3518 CNY 百万元"
+          ],
+          [
+            "2024-FY_cash_cff",
+            "2024-FY",
+            "cff",
+            "减",
+            "-7,913.9041 CNY 百万元"
+          ],
+          [
+            "2024-FY_cash_cash_fx",
+            "2024-FY",
+            "cash_fx",
+            "减",
+            "-256.9490 CNY 百万元"
+          ],
+          [
+            "2024-FY_cash_end",
+            "2024-FY",
+            "期末现金",
+            "终点",
+            "54,980.8832 CNY 百万元"
+          ],
+          [
+            "2024-FY_cash_residual",
+            "2024-FY",
+            "未解释差额",
+            "残差",
+            "0.0000 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_cash_begin",
+            "2023-FY",
+            "cash_begin",
+            "起点",
+            "55,157.2653 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_cfo",
+            "2023-FY",
+            "cfo",
+            "加",
+            "26,535.7806 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_cfi",
+            "2023-FY",
+            "cfi",
+            "减",
+            "-17,340.2095 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_cff",
+            "2023-FY",
+            "cff",
+            "减",
+            "-7,920.6274 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_cash_fx",
+            "2023-FY",
+            "cash_fx",
+            "加",
+            "250.7972 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_end",
+            "2023-FY",
+            "期末现金",
+            "终点",
+            "56,683.0062 CNY 百万元"
+          ],
+          [
+            "2023-FY_cash_residual",
+            "2023-FY",
+            "未解释差额",
+            "残差",
+            "0.0000 CNY 百万元"
+          ]
+        ]
+      }
+    ]
+  },
+  "major_changes": [
+    "variance_profit_bridge.revenue_effect.contribution",
+    "variance_profit_bridge.margin_effect.contribution",
+    "variance_profit_bridge.selling.contribution"
+  ],
+  "major_changes_basis": "已知利润桥步骤中绝对金额前三项；完整步骤和残差在利润桥，金额贡献不等于因果",
+  "triggered_signals": [
+    {
+      "key": "prepayments_growth",
+      "signal": "预付款项较期初增速",
+      "value": {
+        "ref": "signals_signals.prepayments_growth.value",
+        "display": "71.24 %"
+      },
+      "baseline": "2024-FY期末对期初（不是中报同比）",
+      "threshold": "绝对变化 > 50%"
+    }
+  ],
+  "management_evidence": [],
+  "signal_followups": [],
+  "comparability_constraints": [],
+  "missing": [
+    {
+      "table": "statement_growth",
+      "cells_or_source_issues": 1,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_working_capital",
+      "cells_or_source_issues": 6,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_cash_quality",
+      "cells_or_source_issues": 4,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_nonrecurring_items",
+      "cells_or_source_issues": 9,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_deducted_profit",
+      "cells_or_source_issues": 7,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_roe",
+      "cells_or_source_issues": 5,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_indirect_bridge",
+      "cells_or_source_issues": 42,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_indirect_contributions",
+      "cells_or_source_issues": 8,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_quarterly",
+      "cells_or_source_issues": 20,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_quarterly_reconciliation",
+      "cells_or_source_issues": 7,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "variance_profit_bridge",
+      "cells_or_source_issues": 18,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "variance_contributions",
+      "cells_or_source_issues": 187,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "signals_signals",
+      "cells_or_source_issues": 22,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "signals_inventory_charge_rates",
+      "cells_or_source_issues": 6,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "source_tables",
+      "cells_or_source_issues": 10,
+      "details": "pipeline_gaps",
+      "reason": "原表映射缺项；逐行原文、坐标及原因可读"
+    }
+  ],
+  "source_evidence": {
+    "table": "variance_drivers_evidence",
+    "rows": 20,
+    "basis": "计算贡献与管理层原句分列；对齐状态由 management_evidence 扩展给出"
+  },
+  "full_tables": {
+    "handle": "33d5f7b42ce546fca3da2b522c038162",
+    "tables": {
+      "statement_income": 20,
+      "statement_profit_attribution": 2,
+      "statement_ratios": 5,
+      "statement_growth": 23,
+      "statement_cash": 27,
+      "statement_bridge": 14,
+      "statement_working_capital": 6,
+      "statement_cash_quality": 2,
+      "statement_observations": 10,
+      "statement_nonrecurring_items": 8,
+      "statement_deducted_profit": 2,
+      "statement_roe": 2,
+      "statement_indirect_bridge": 42,
+      "statement_indirect_contributions": 8,
+      "statement_quarterly": 5,
+      "statement_quarterly_reconciliation": 3,
+      "statement_unrecognized_rows": 10,
+      "statement_missing": 8,
+      "variance_profit_bridge": 28,
+      "variance_contributions": 21,
+      "variance_drivers_evidence": 20,
+      "variance_contribution_sources": 1,
+      "variance_observations": 22,
+      "signals_signals": 39,
+      "signals_inventory_charge_rates": 2,
+      "signals_observations": 1,
+      "pipeline_gaps": 352,
+      "observations": 0
+    },
+    "read": {
+      "tool": "financial_workpaper",
+      "arguments": {
+        "project_id": "d324c744-4113-4213-aa22-af3bb91a3c84",
+        "kind": "read_table",
+        "read": {
+          "handle": "33d5f7b42ce546fca3da2b522c038162",
+          "table": "variance_drivers_evidence",
+          "offset": 0,
+          "limit": 50
+        }
+      }
+    }
+  },
+  "extensions": {
+    "management_evidence": "pending",
+    "signal_followups": "pending",
+    "comparability_constraints": "pending"
+  }
+}

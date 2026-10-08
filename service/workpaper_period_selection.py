@@ -11,11 +11,18 @@ import unicodedata
 
 
 class WorkpaperInputError(ValueError):
-    pass
+    def __init__(self, message, selection=None):
+        super().__init__(message)
+        self.selection = selection
 
 
 def canonical_period(value, start=None, end=None):
     text=re.sub(r'\s+', '', unicodedata.normalize('NFKC', str(value))).upper()
+    text=re.sub(r'\((?:经?重述|调整[前后]|RESTATED|ADJUSTED|UNADJUSTED)\)', '', text)
+    interval=re.fullmatch(r'(\d{4})[年/.-](\d{1,2})[月/.-](\d{1,2})日?(?:至|到|~|—|–|--)(\d{4})[年/.-](\d{1,2})[月/.-](\d{1,2})日?',text)
+    if interval and not (start and end):
+        y,m,d,Y,M,D=map(int,interval.groups())
+        start,end=str(date(y,m,d)),str(date(Y,M,D))
     if start and end and start != end:
         a,b=date.fromisoformat(start),date.fromisoformat(end)
         if a.year==b.year and b.day==monthrange(b.year,b.month)[1]:
@@ -32,6 +39,8 @@ def canonical_period(value, start=None, end=None):
         raise WorkpaperInputError(f'{value!r} 不是完整流量期间的期末日')
     suffix=(text[:match.start()]+text[match.end():]).strip('-')
     if suffix not in ('年度','年报','年度报告'):suffix=suffix.removeprefix('年')
+    span=re.fullmatch(r'1[-至~—–](3|6|9|12)月',suffix)
+    if span:return year+'-'+{'3':'Q1','6':'H1','9':'9M','12':'FY'}[span[1]]
     if suffix.endswith('年') and suffix not in ('全年','上半年','下半年','半年','财年'):suffix=suffix[:-1]
     aliases={'':'FY','FY':'FY','全年':'FY','年报':'FY','年度':'FY','年度报告':'FY','财年':'FY','12M':'FY','YTD4':'FY',
              'H1':'H1','6M':'H1','YTD2':'H1','上半年':'H1','半年度':'H1','半年':'H1','中报':'H1','半年报':'H1','半年度报告':'H1','中期':'H1','中期报告':'H1',
@@ -62,8 +71,15 @@ def normalize_period_records(records):
         if n.get('statement') in ('income','cashflow'):
             # Cash-flow statements also contain point-in-time opening/closing cash.
             if re.fullmatch(r'\d{4}-\d{2}-\d{2}',r['period']) and (not n.get('period_start') or n.get('period_start')==n.get('period_end')):
+                from .standard_metrics import workpaper_concepts
+                if not set(workpaper_concepts(r['metric'])) & {'cash_begin','cash_end'}:
+                    r={**r,'source_ref':{**r['source_ref'],'normalization':{**n,'period_error':'流量行只有时点，缺少期间起点；需从原表列头定位'}}}
                 result.append(r);continue
-            p=canonical_period(r['period'],n.get('period_start'),n.get('period_end'))
+            try:
+                p=canonical_period(r['period'],n.get('period_start'),n.get('period_end'))
+            except WorkpaperInputError as exc:
+                result.append({**r,'source_ref':{**r['source_ref'],'normalization':{**n,'period_error':str(exc)}}})
+                continue
             if p!=r['period']:
                 r={**r,'period':p,'source_ref':{**r['source_ref'],'normalization':{**n,'record_period':r['period']}}}
         result.append(r)

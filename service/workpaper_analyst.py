@@ -61,9 +61,9 @@ EXTRA = {'cash_balance', 'other_receivables', 'prepayments', 'other_noncurrent',
 
 class AnalystData:
     def __init__(self,service,project,document_id=None,company=None,scope='consolidated',periods=None,focus=None):
-        from .financial_workpapers import statement_analysis
-        self.base,self.records=statement_analysis(service,project,document_id,company,scope,periods,focus)
-        self.st=Statement(service,project,self.records,scope,periods)
+        from .financial_workpapers import statement_analysis, load_facts
+        self.st=Statement(service,project,load_facts(service,project,document_id,company),scope,periods,document_id,company)
+        self.base,self.records=statement_analysis(service,project,document_id,company,scope,periods,focus,_statement=self.st)
         self.d=Disclosure(self.st)
         self.ps=self.st.periods
         self.currency=self.st.currency

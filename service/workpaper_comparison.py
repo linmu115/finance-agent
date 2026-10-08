@@ -19,7 +19,7 @@ def comparison(service,project,document_id=None,company=None,scope='consolidated
     from .analysis_report import record_quantity
     from .workpaper_annual import Disclosure
     from datetime import timedelta
-    st=Statement(service,project,load_facts(service,project,document_id,company),scope,periods)
+    st=Statement(service,project,load_facts(service,project,document_id,company),scope,periods,document_id,company)
     disclosure=Disclosure(st);subjects=[]
     by_id={t['table_id']:t for t in disclosure.tabs}
     provenance=[]

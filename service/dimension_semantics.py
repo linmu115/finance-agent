@@ -47,5 +47,5 @@ def dimensions_ok(record):
 
 
 def preferred_version(records):
-    restated = [r for r in records if metadata(r).get('restatement') == 'restated']
+    restated = [r for r in records if metadata(r).get('restatement') in ('restated', 'adjusted')]
     return restated or records

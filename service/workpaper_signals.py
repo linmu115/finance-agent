@@ -137,8 +137,8 @@ def overdue_ratios(a,p):
     return qs
 
 
-def anomaly_signals(service,project,document_id=None,company=None,scope='consolidated',periods=None,focus=None):
-    a=AnalystData(service,project,document_id,company,scope,periods,focus)
+def anomaly_signals(service,project,document_id=None,company=None,scope='consolidated',periods=None,focus=None,_analysis=None):
+    a=_analysis or AnalystData(service,project,document_id,company,scope,periods,focus)
     ps=a.ps;current=ps[0];previous=ps[1] if len(ps)>1 else None
     rows=[]
     def add(key,family,label,q,threshold,trigger,basis,source_policy=POLICY,extra=''):

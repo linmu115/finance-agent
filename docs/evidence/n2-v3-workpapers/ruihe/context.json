@@ -1,0 +1,746 @@
+{
+  "schema_version": "workpaper-pipeline-v1",
+  "status": "partial",
+  "selection": {
+    "company": "瑞和数智科技控股有限公司",
+    "document_id": "ab25c52089fd4db89fba046c9c811c46",
+    "scope": "consolidated",
+    "basis": [
+      {
+        "rule": "document_profile_issuer",
+        "document_id": "ab25c52089fd4db89fba046c9c811c46",
+        "company": "瑞和数智科技控股有限公司",
+        "evidence": [
+          {
+            "field": "publisher",
+            "page": 1,
+            "quote": "瑞和数智科技控股有限公司\nRUIHEDATATECHNOLOGYHOLDINGSLIMITED",
+            "start": 16,
+            "end": 63,
+            "offset_unit": "unicode_codepoint"
+          }
+        ]
+      },
+      {
+        "rule": "requested_scope",
+        "scope": "consolidated",
+        "reason": "默认合并口径优先；不混入母公司报表"
+      }
+    ],
+    "periods": [
+      "2025-H1",
+      "2024-H1"
+    ],
+    "resolved_scope": "consolidated_IFRS"
+  },
+  "key_metrics": [
+    {
+      "metric": "收入",
+      "values": {
+        "2025-H1": {
+          "ref": "statement_income.revenue.2025-H1",
+          "display": "120.3920 CNY 百万元"
+        },
+        "2024-H1": {
+          "ref": "statement_income.revenue.2024-H1",
+          "display": "181.0110 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "毛利",
+      "values": {
+        "2025-H1": {
+          "ref": "statement_income.gross_profit.2025-H1",
+          "display": "9.1110 CNY 百万元"
+        },
+        "2024-H1": {
+          "ref": "statement_income.gross_profit.2024-H1",
+          "display": "14.5770 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "营业利润",
+      "values": {
+        "2025-H1": {
+          "ref": "statement_income.operating_profit.2025-H1",
+          "display": "-18.1700 CNY 百万元"
+        },
+        "2024-H1": {
+          "ref": "statement_income.operating_profit.2024-H1",
+          "display": "-32.3200 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "2025-H1",
+      "values": {
+        "consolidated": {
+          "ref": "statement_profit_attribution.2025-H1.consolidated",
+          "display": "41.0980 CNY 百万元"
+        },
+        "parent": {
+          "ref": "statement_profit_attribution.2025-H1.parent",
+          "display": "43.1860 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "2024-H1",
+      "values": {
+        "consolidated": {
+          "ref": "statement_profit_attribution.2024-H1.consolidated",
+          "display": "-38.6350 CNY 百万元"
+        },
+        "parent": {
+          "ref": "statement_profit_attribution.2024-H1.parent",
+          "display": "-36.0400 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "毛利率",
+      "values": {
+        "2025-H1": {
+          "ref": "statement_ratios.gross_profit_margin.2025-H1",
+          "display": "7.5678 %"
+        },
+        "2024-H1": {
+          "ref": "statement_ratios.gross_profit_margin.2024-H1",
+          "display": "8.0531 %"
+        },
+        "change_pp": {
+          "ref": "statement_ratios.gross_profit_margin.change_pp",
+          "display": "-0.4853 个百分点"
+        }
+      }
+    },
+    {
+      "metric": "合并净利率",
+      "values": {
+        "2025-H1": {
+          "ref": "statement_ratios.net_profit_margin.2025-H1",
+          "display": "34.1368 %"
+        },
+        "2024-H1": {
+          "ref": "statement_ratios.net_profit_margin.2024-H1",
+          "display": "-21.3440 %"
+        },
+        "change_pp": {
+          "ref": "statement_ratios.net_profit_margin.change_pp",
+          "display": "55.4808 个百分点"
+        }
+      }
+    },
+    {
+      "metric": "CFO",
+      "values": {
+        "amount": {
+          "ref": "statement_cash.2025-H1_cfo.amount",
+          "display": "-30.6500 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "CFO",
+      "values": {
+        "amount": {
+          "ref": "statement_cash.2024-H1_cfo.amount",
+          "display": "-32.1040 CNY 百万元"
+        }
+      }
+    },
+    {
+      "metric": "2025-H1",
+      "values": {
+        "disclosed": {
+          "ref": "statement_deducted_profit.2025-H1.disclosed",
+          "display": "—",
+          "reason": "未披露扣非归母净利润"
+        },
+        "share": {
+          "ref": "statement_deducted_profit.2025-H1.share",
+          "display": "—",
+          "reason": "缺少非经常损益合计或非零归母净利润"
+        }
+      }
+    },
+    {
+      "metric": "2024-H1",
+      "values": {
+        "disclosed": {
+          "ref": "statement_deducted_profit.2024-H1.disclosed",
+          "display": "—",
+          "reason": "未披露扣非归母净利润"
+        },
+        "share": {
+          "ref": "statement_deducted_profit.2024-H1.share",
+          "display": "—",
+          "reason": "缺少非经常损益合计或非零归母净利润"
+        }
+      }
+    },
+    {
+      "metric": "2025-H1",
+      "values": {
+        "weighted": {
+          "ref": "statement_roe.2025-H1.weighted",
+          "display": "—",
+          "reason": "未找到唯一披露加权平均ROE"
+        },
+        "computed": {
+          "ref": "statement_roe.2025-H1.computed",
+          "display": "73.3464 %"
+        }
+      }
+    },
+    {
+      "metric": "2024-H1",
+      "values": {
+        "weighted": {
+          "ref": "statement_roe.2024-H1.weighted",
+          "display": "—",
+          "reason": "未找到唯一披露加权平均ROE"
+        },
+        "computed": {
+          "ref": "statement_roe.2024-H1.computed",
+          "display": "—",
+          "reason": "缺利润或正平均归母权益"
+        }
+      }
+    }
+  ],
+  "bridges": {
+    "profit": {
+      "table": "variance_profit_bridge",
+      "columns": [
+        "key",
+        "item",
+        "role",
+        "contribution"
+      ],
+      "rows": [
+        [
+          "revenue_change",
+          "营业收入变化（参考，不重复加到利润桥）",
+          "reference",
+          "-60.6190 CNY 百万元"
+        ],
+        [
+          "revenue_effect",
+          "收入变化对毛利的贡献",
+          "step",
+          "-4.8817 CNY 百万元"
+        ],
+        [
+          "margin_effect",
+          "毛利率变化对毛利的贡献",
+          "step",
+          "-0.5843 CNY 百万元"
+        ],
+        [
+          "gross_change",
+          "披露/推导毛利变化",
+          "subtotal",
+          "-5.4660 CNY 百万元"
+        ],
+        [
+          "selling",
+          "销售费用",
+          "step",
+          "2.9420 CNY 百万元"
+        ],
+        [
+          "administrative",
+          "管理费用",
+          "step",
+          "3.0700 CNY 百万元"
+        ],
+        [
+          "research",
+          "研发费用",
+          "step",
+          "12.0640 CNY 百万元"
+        ],
+        [
+          "other_income",
+          "其他收入",
+          "step",
+          "-2.6530 CNY 百万元"
+        ],
+        [
+          "other_gains_net",
+          "其他净收益",
+          "step",
+          "-0.3340 CNY 百万元"
+        ],
+        [
+          "impairment",
+          "金融及合同资产减值/转回",
+          "step",
+          "4.5270 CNY 百万元"
+        ],
+        [
+          "operating_profit_change",
+          "营业利润变化",
+          "subtotal",
+          "14.1500 CNY 百万元"
+        ],
+        [
+          "operating_profit_residual",
+          "营业利润变化减累计已知贡献",
+          "residual",
+          "0.0000 CNY 百万元"
+        ],
+        [
+          "finance_net",
+          "财务净收益/费用",
+          "step",
+          "2.8870 CNY 百万元"
+        ],
+        [
+          "fair_value_gains",
+          "营业利润后公允价值变动",
+          "step",
+          "63.0150 CNY 百万元"
+        ],
+        [
+          "associates",
+          "联营及合营损益",
+          "step",
+          "-0.0130 CNY 百万元"
+        ],
+        [
+          "profit_before_tax_change",
+          "税前利润变化",
+          "subtotal",
+          "80.0390 CNY 百万元"
+        ],
+        [
+          "profit_before_tax_residual",
+          "税前利润变化减累计已知贡献",
+          "residual",
+          "0.0000 CNY 百万元"
+        ],
+        [
+          "tax",
+          "所得税",
+          "step",
+          "-0.3060 CNY 百万元"
+        ],
+        [
+          "net_profit_change",
+          "合并净利润变化",
+          "subtotal",
+          "79.7330 CNY 百万元"
+        ],
+        [
+          "net_profit_residual",
+          "合并净利润变化减累计已知贡献",
+          "residual",
+          "0.0000 CNY 百万元"
+        ],
+        [
+          "minority_profit",
+          "少数股东损益",
+          "step",
+          "-0.5070 CNY 百万元"
+        ],
+        [
+          "parent_profit_change",
+          "归母净利润变化",
+          "subtotal",
+          "79.2260 CNY 百万元"
+        ],
+        [
+          "parent_profit_residual",
+          "归母净利润变化减累计已知贡献",
+          "residual",
+          "0.0000 CNY 百万元"
+        ]
+      ]
+    },
+    "cash": [
+      {
+        "table": "statement_indirect_contributions",
+        "columns": [
+          "key",
+          "period",
+          "item",
+          "direction",
+          "amount"
+        ],
+        "rows": []
+      },
+      {
+        "table": "statement_bridge",
+        "columns": [
+          "key",
+          "period",
+          "item",
+          "direction",
+          "amount"
+        ],
+        "rows": [
+          [
+            "2025-H1_operating_5a7513dccc5e497d890d1ec102b2ba7b",
+            "2025-H1",
+            "Cash used in operations",
+            "起点",
+            "-30.6490 CNY 百万元"
+          ],
+          [
+            "2025-H1_operating_67bbec879de14a67b69d07e37921d9a4",
+            "2025-H1",
+            "Income tax paid",
+            "减",
+            "-0.0010 CNY 百万元"
+          ],
+          [
+            "2025-H1_operating_cfo",
+            "2025-H1",
+            "披露CFO",
+            "终点",
+            "-30.6500 CNY 百万元"
+          ],
+          [
+            "2025-H1_operating_residual",
+            "2025-H1",
+            "未解释差额",
+            "残差",
+            "0.0000 CNY 百万元"
+          ],
+          [
+            "2025-H1_cash_cash_begin",
+            "2025-H1",
+            "cash_begin",
+            "起点",
+            "16.3990 CNY 百万元"
+          ],
+          [
+            "2025-H1_cash_cfo",
+            "2025-H1",
+            "cfo",
+            "减",
+            "-30.6500 CNY 百万元"
+          ],
+          [
+            "2025-H1_cash_cfi",
+            "2025-H1",
+            "cfi",
+            "减",
+            "-6.7960 CNY 百万元"
+          ],
+          [
+            "2025-H1_cash_cff",
+            "2025-H1",
+            "cff",
+            "加",
+            "47.0790 CNY 百万元"
+          ],
+          [
+            "2025-H1_cash_cash_fx",
+            "2025-H1",
+            "cash_fx",
+            "减",
+            "-0.3090 CNY 百万元"
+          ],
+          [
+            "2025-H1_cash_end",
+            "2025-H1",
+            "期末现金",
+            "终点",
+            "25.7230 CNY 百万元"
+          ],
+          [
+            "2025-H1_cash_residual",
+            "2025-H1",
+            "未解释差额",
+            "残差",
+            "0.0000 CNY 百万元"
+          ],
+          [
+            "2024-H1_operating_50bea6e574124fd2a32d8ae0e6e8f3ef",
+            "2024-H1",
+            "Cash used in operations",
+            "起点",
+            "-31.9530 CNY 百万元"
+          ],
+          [
+            "2024-H1_operating_3e539affa95b422e9ec917b1d7823c44",
+            "2024-H1",
+            "Income tax paid",
+            "减",
+            "-0.1510 CNY 百万元"
+          ],
+          [
+            "2024-H1_operating_cfo",
+            "2024-H1",
+            "披露CFO",
+            "终点",
+            "-32.1040 CNY 百万元"
+          ],
+          [
+            "2024-H1_operating_residual",
+            "2024-H1",
+            "未解释差额",
+            "残差",
+            "0.0000 CNY 百万元"
+          ],
+          [
+            "2024-H1_cash_cash_begin",
+            "2024-H1",
+            "cash_begin",
+            "起点",
+            "113.2570 CNY 百万元"
+          ],
+          [
+            "2024-H1_cash_cfo",
+            "2024-H1",
+            "cfo",
+            "减",
+            "-32.1040 CNY 百万元"
+          ],
+          [
+            "2024-H1_cash_cfi",
+            "2024-H1",
+            "cfi",
+            "减",
+            "-5.3080 CNY 百万元"
+          ],
+          [
+            "2024-H1_cash_cff",
+            "2024-H1",
+            "cff",
+            "减",
+            "-7.2280 CNY 百万元"
+          ],
+          [
+            "2024-H1_cash_cash_fx",
+            "2024-H1",
+            "cash_fx",
+            "加",
+            "1.6150 CNY 百万元"
+          ],
+          [
+            "2024-H1_cash_end",
+            "2024-H1",
+            "期末现金",
+            "终点",
+            "70.2320 CNY 百万元"
+          ],
+          [
+            "2024-H1_cash_residual",
+            "2024-H1",
+            "未解释差额",
+            "残差",
+            "0.0000 CNY 百万元"
+          ]
+        ]
+      }
+    ]
+  },
+  "major_changes": [
+    "variance_profit_bridge.fair_value_gains.contribution",
+    "variance_profit_bridge.research.contribution",
+    "variance_profit_bridge.revenue_effect.contribution"
+  ],
+  "major_changes_basis": "已知利润桥步骤中绝对金额前三项；完整步骤和残差在利润桥，金额贡献不等于因果",
+  "triggered_signals": [
+    {
+      "key": "2025-H1_cash_conversion",
+      "signal": "CFO/合并净利润",
+      "value": {
+        "ref": "signals_signals.2025-H1_cash_conversion.value",
+        "display": "-0.75 ratio"
+      },
+      "baseline": "2025-H1；同期间合并利润与现金流",
+      "threshold": "< 1"
+    },
+    {
+      "key": "2025-H1_accrual",
+      "signal": "应计比率",
+      "value": {
+        "ref": "signals_signals.2025-H1_accrual.value",
+        "display": "22.33 %"
+      },
+      "baseline": "2025-H1；未年化",
+      "threshold": "> 10%"
+    },
+    {
+      "key": "2025-H1_profit_cash_sign",
+      "signal": "净利润为正而CFO为负",
+      "value": {
+        "ref": "signals_signals.2025-H1_profit_cash_sign.value",
+        "display": "1.00 个"
+      },
+      "baseline": "2025-H1",
+      "threshold": "= 1"
+    },
+    {
+      "key": "debt_asset_share",
+      "signal": "已识别融资负债占资产比例",
+      "value": {
+        "ref": "signals_signals.debt_asset_share.value",
+        "display": "38.04 %"
+      },
+      "baseline": "2025-H1期末；负债为已识别借款/债券/租赁负债下限，未计无法拆分的一年内到期非流动负债及未识别融资；现金使用主表货币资金或现金及等价物。",
+      "threshold": "> 20%"
+    },
+    {
+      "key": "interest_yield",
+      "signal": "隐含年化利息收益率",
+      "value": {
+        "ref": "signals_signals.interest_yield.value",
+        "display": "0.28 %"
+      },
+      "baseline": "平均余额代理；利息收入可能对应其他科目存款，须核对资产范围",
+      "threshold": "< 1%"
+    },
+    {
+      "key": "credit_impairment_change",
+      "signal": "金融/合同资产信用减值损益波动",
+      "value": {
+        "ref": "signals_signals.credit_impairment_change.value",
+        "display": "323.36 %"
+      },
+      "baseline": "2025-H1 对 2024-H1；损益原符号",
+      "threshold": "绝对变化 > 50%"
+    }
+  ],
+  "management_evidence": [],
+  "signal_followups": [],
+  "comparability_constraints": [],
+  "missing": [
+    {
+      "table": "statement_income",
+      "cells_or_source_issues": 2,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_growth",
+      "cells_or_source_issues": 3,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_working_capital",
+      "cells_or_source_issues": 12,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_cash_quality",
+      "cells_or_source_issues": 7,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_deducted_profit",
+      "cells_or_source_issues": 10,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "statement_roe",
+      "cells_or_source_issues": 6,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "variance_profit_bridge",
+      "cells_or_source_issues": 18,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "variance_contributions",
+      "cells_or_source_issues": 107,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "signals_signals",
+      "cells_or_source_issues": 25,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "signals_inventory_charge_rates",
+      "cells_or_source_issues": 6,
+      "details": "pipeline_gaps",
+      "reason": "存在缺失或不可算项；每格具体原因可读"
+    },
+    {
+      "table": "source_tables",
+      "cells_or_source_issues": 2,
+      "details": "pipeline_gaps",
+      "reason": "原表映射缺项；逐行原文、坐标及原因可读"
+    },
+    {
+      "table": "statement_indirect_bridge",
+      "cells_or_source_issues": 1,
+      "details": "pipeline_gaps",
+      "reason": "未定位到该披露表"
+    },
+    {
+      "table": "statement_quarterly",
+      "cells_or_source_issues": 1,
+      "details": "pipeline_gaps",
+      "reason": "未定位到该披露表"
+    }
+  ],
+  "source_evidence": {
+    "table": "variance_drivers_evidence",
+    "rows": 20,
+    "basis": "计算贡献与管理层原句分列；对齐状态由 management_evidence 扩展给出"
+  },
+  "full_tables": {
+    "handle": "739b618c715149c79a3198abe20d89d6",
+    "tables": {
+      "statement_income": 15,
+      "statement_profit_attribution": 2,
+      "statement_ratios": 5,
+      "statement_growth": 18,
+      "statement_cash": 37,
+      "statement_bridge": 22,
+      "statement_working_capital": 6,
+      "statement_cash_quality": 2,
+      "statement_observations": 6,
+      "statement_deducted_profit": 2,
+      "statement_roe": 2,
+      "statement_unrecognized_rows": 0,
+      "statement_missing": 16,
+      "variance_profit_bridge": 23,
+      "variance_contributions": 14,
+      "variance_drivers_evidence": 20,
+      "variance_contribution_sources": 2,
+      "variance_observations": 17,
+      "signals_signals": 39,
+      "signals_inventory_charge_rates": 2,
+      "signals_observations": 6,
+      "pipeline_gaps": 200,
+      "observations": 0
+    },
+    "read": {
+      "tool": "financial_workpaper",
+      "arguments": {
+        "project_id": "374beac2-a970-4972-b210-e91018bbd6e6",
+        "kind": "read_table",
+        "read": {
+          "handle": "739b618c715149c79a3198abe20d89d6",
+          "table": "variance_drivers_evidence",
+          "offset": 0,
+          "limit": 50
+        }
+      }
+    }
+  },
+  "extensions": {
+    "management_evidence": "pending",
+    "signal_followups": "pending",
+    "comparability_constraints": "pending"
+  }
+}
