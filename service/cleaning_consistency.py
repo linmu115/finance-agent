@@ -4,6 +4,7 @@ import re
 from decimal import Decimal
 from .normalization import decimal_value, unit_info
 from .research_ingestion import norm, series_dimensions
+from .source_numbers import data_number
 
 
 def coordinates(fact):
@@ -36,7 +37,7 @@ def table_semantics(table, schema, facts, page_text=''):
         title=str(rows[0][0]) if rows and rows[0] else ''
         financial=bool(re.search(r'利润表|资产负债表|现金流量表|盈利能力|费用率|每股指标|偿债能力|估值指标',title))
         values=[{'row':r,'column':c,'raw_value':raw} for r,row in enumerate(rows,1) for c,raw in enumerate(row,1)
-                if (v:=decimal_value(str(raw))) is not None and not (1900<=v<=2100 and v==int(v))
+                if data_number(raw)
                 and not re.search(r'邮政编码|邮编|证券代码|股票代码|联系电话|传真|postal.code|stock.code',str(row[0]),re.I)]
         # Chart axes and document indexes are not financial observations. These
         # exceptions require source evidence, never just a model-written reason.

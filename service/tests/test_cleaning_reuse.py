@@ -43,7 +43,7 @@ class CleaningReuseTests(unittest.TestCase):
 
     def test_standard_auto_commit_uses_same_source_validator_and_records_rule_version(self):
         parsed=self.prepare([['项目','期末余额','期初余额'],['库存现金','120.50','90'],['银行存款','800','700'],['合计','920.50','790']],
-                            '按照企业会计准则编制。\n七、合并财务报表项目注释\n1、货币资金\n单位：元 币种：人民币\n120.50')
+                            '2025 年年度报告\n按照企业会计准则编制。\n七、合并财务报表项目注释\n1、货币资金\n单位：元 币种：人民币\n120.50')
         result=self.s.begin_script_cleaning('p',[self.did],'auto','fixture')['data']
         self.assertEqual(result['coverage']['tables_completed'],1)
         self.assertEqual(result['fact_count'],6)
@@ -63,7 +63,7 @@ class CleaningReuseTests(unittest.TestCase):
 
     def test_learned_rule_rebinds_company_year_and_values_without_cross_project_data(self):
         parsed=self.prepare([['项目','2025','2024'],['Custom recurring fee','123','90']],
-                            '合并利润表\n单位：元\n123')
+                            '2025 年年度报告\n合并利润表\n单位：元\n123')
         self.pid=self.s.begin_script_cleaning('p',[self.did],'learn','fixture')['data']['processing_id']
         payload={'tables':[{'index':0,'schema':{'company':'Test','statement':'income','scope':'consolidated_unknown','currency':'CNY','unit':'元',
                   'columns_json':json.dumps([{'column':2,'period':'2025-FY'},{'column':3,'period':'2024-FY'}]),
@@ -74,7 +74,7 @@ class CleaningReuseTests(unittest.TestCase):
         did=self.s.register_document('q',str(p),'second.csv')['data']['document_id']
         parsed=copy.deepcopy(parsed);parsed['company']='Second';parsed['report_year']=2026
         parsed['tables'][0]['rows']=[['项目','2026','2025'],['Custom recurring fee','456','200']]
-        parsed['pages'][0]['text']='合并利润表\n单位：万元\n456'
+        parsed['pages'][0]['text']='2026 年年度报告\n合并利润表\n单位：万元\n456'
         self.s._persist_prepared('q',did,parsed)
         result=self.s.begin_script_cleaning('q',[did],'reuse','fixture')['data']
         self.assertEqual(result['coverage']['tables_completed'],1)
@@ -162,7 +162,7 @@ class CleaningReuseTests(unittest.TestCase):
         self.assertNotIn('某客户',encoded);self.assertNotIn('不应保存的原文',encoded)
         parsed['report_year']=2026
         parsed['tables'][0]['rows'][0]=['项目','2026','2025']
-        parsed['pages'][0]['text']='合并利润表\n单位：万元\n100'
+        parsed['pages'][0]['text']='2026 年年度报告\n合并利润表\n单位：万元\n100'
         mapped=draft(parsed,parsed['tables'][0],'Next company',identify(parsed),rule)
         columns=json.loads(mapped['schema']['columns_json'])
         self.assertEqual(columns[0]['start'],'2026-01-01')

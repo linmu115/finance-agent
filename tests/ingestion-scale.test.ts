@@ -3,24 +3,25 @@ import assert from 'node:assert/strict';
 import {ingestionRemaining,madeIngestionProgress} from '../server/ingestion-continuation.js';
 import {modelContext} from '../server/model-context.js';
 
-test('a failed new table advances coverage but retrying the same failure does not',()=>{
- const snapshot=(untouched:number[])=>({pending_tables:{d:[1,2]},unattempted_tables:{d:untouched}});
- const initial=ingestionRemaining([snapshot([1,2])]);
- const failedFirst=ingestionRemaining([snapshot([2])]);
- assert.equal(madeIngestionProgress(initial.keys,failedFirst.keys),true);
- assert.equal(madeIngestionProgress(failedFirst.keys,ingestionRemaining([snapshot([2])]).keys),false);
- assert.equal(madeIngestionProgress(failedFirst.keys,ingestionRemaining([snapshot([])]).keys),true);
- assert.equal(ingestionRemaining([snapshot([])]).keys.size,2);
+const snapshot=(id:string,done:number[],facts=0)=>({processing_id:id,pending_tables:{d:[1,2,3].filter(t=>!done.includes(t))},pending_pages:{d:[]},document_progress:[{document_id:'d',completed_tables:done,fact_count:facts,table_statuses:{}}]});
+
+test('only committed document progress advances continuation',()=>{
+ const a=ingestionRemaining([snapshot('p',[1],2)]);
+ const failed=ingestionRemaining([{...snapshot('p',[1],2),unattempted_tables:{d:[]}}]);
+ assert.equal(madeIngestionProgress(a.progress,failed.progress),false);
+ assert.equal(madeIngestionProgress(a.progress,ingestionRemaining([snapshot('p',[1,2],2)]).progress),true);
+ assert.equal(madeIngestionProgress(a.progress,ingestionRemaining([snapshot('p',[1],4)]).progress),true);
+ assert.equal(madeIngestionProgress(a.progress,ingestionRemaining([snapshot('p',[1],1)]).progress),false);
 });
 
-test('continuation uses remaining tables, research pages and pending repairs without a turn limit',()=>{
- const a={processing_id:'old',pending_tables:{d:[1,2]},pending_pages:{d:[3]},pending_scripts:[]};
- const b={processing_id:'new',pending_tables:{d:[2]},pending_pages:{d:[]},pending_scripts:[{document_id:'d',table:4,run_id:'repair'}]};
- const first=ingestionRemaining([a]),next=ingestionRemaining([a,b]);
- assert.equal(next.work.length,1);assert.equal(next.work[0].processing_id,'new');
- assert.equal(madeIngestionProgress(first.keys,next.keys),true);
- assert.equal(madeIngestionProgress(next.keys,ingestionRemaining([b]).keys),false);
- assert.equal(ingestionRemaining([{...b,pending_tables:{d:[]},pending_scripts:[]}]).keys.size,0);
+test('duplicate refreshed checkpoints use one stable processing ID regardless of order',()=>{
+ const a=snapshot('a',[1,2],4),b=snapshot('b',[1,2],4);
+ const before=ingestionRemaining([snapshot('b',[1],4)]),after=ingestionRemaining([b,a]);
+ assert.equal(after.work.length,1);assert.equal(after.work[0].processing_id,'a');
+ assert.deepEqual(after,ingestionRemaining([a,b]));
+ assert.equal(madeIngestionProgress(before.progress,after.progress),true);
+ assert.equal(madeIngestionProgress(after.progress,ingestionRemaining([a]).progress),false);
+ assert.equal(ingestionRemaining([snapshot('a',[1,2,3],4)]).keys.size,0);
 });
 
 test('source projection preserves every raw row, merged geometry and distinct text',()=>{

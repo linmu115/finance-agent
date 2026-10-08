@@ -128,7 +128,7 @@ class ProcessingMixin:
         from .attachment_flows import record_processing
         state["updated_at"]=utcnow()
         with self.store.connect(write=True) as db:
-            db.execute("INSERT INTO processing_runs VALUES(?,?,?,?,?,?) ON CONFLICT(processing_id) DO UPDATE SET state_json=excluded.state_json,updated_at=excluded.updated_at",
+            db.execute("INSERT INTO processing_runs VALUES(?,?,?,?,?,?) ON CONFLICT(processing_id) DO UPDATE SET owner_run_id=excluded.owner_run_id,state_json=excluded.state_json,updated_at=excluded.updated_at",
                        (state["processing_id"],state["project_id"],state["owner_run_id"],dumps(state),state["created_at"],state["updated_at"]))
             record_processing(db, state, refresh_snapshot=refresh_attachment_snapshot)
 

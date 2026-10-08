@@ -5,6 +5,7 @@ from .normalization import metric_id, decimal_value
 from .semantic import numeric_candidate
 from .cleaning_batches import column_totals
 from .standard_metrics import standard_metric
+from .source_numbers import data_number
 
 
 def decode(value, default):
@@ -34,6 +35,13 @@ def mapping_issues(table, schema, rows, exclusion_reason=None, page_text='', fac
             return [{'table': index, 'reason': 'financial_complexity_is_not_exclusion', 'instruction': '复杂财务表必须映射；局部无法判断用 unresolved_cells 留原格及具体原因。只有确属封面/目录/独立表头等非财务内容才能排除。'}]
         return []
     issues = []
+    for skipped in decode(schema.get('skipped_rows_json'),[]):
+        number=skipped.get('row')
+        if isinstance(number,int) and 1<=number<=len(table['rows']) and re.search(r'header|表头',str(skipped.get('reason','')),re.I):
+            row=table['rows'][number-1]
+            if any(data_number(c) for c in row[1:]):
+                issues.append({'table':index,'row':number,'reason':'numeric_data_marked_as_header','source_row':row,
+                               'instruction':'此行含数据数值，不能按表头跳过；映射原格，真实歧义保留待核验。'})
     first_label=next((str(r[0]).splitlines()[0] for r in table['rows'] if r and str(r[0]).strip()),'')
     total_metric=metric_id(first_label)
     if total_metric:

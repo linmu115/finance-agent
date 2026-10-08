@@ -10,8 +10,10 @@ import re
 from .normalization import compact, decimal_value, unit_info
 from .standard_metrics import standard_metric, normalize_label, ROWS, VERSION as ROW_VERSION
 from .cleaning_batches import header_rows
+from .source_numbers import data_number
+from .source_periods import report_month, column_period
 
-VERSION = 'cleaning-rules-4/' + ROW_VERSION
+VERSION = 'cleaning-rules-5/' + ROW_VERSION
 
 # A model sometimes encodes an issuer/fund name in an English metric ID. Such
 # document-specific IDs remain local facts, not shared rule-library contents.
@@ -27,7 +29,7 @@ def reusable_metric(metric):
 
 def source_year(parsed):
     for page in parsed['pages']:
-        match=re.search(r'((?:19|20)\d{2})\s*年\s*(?:年度|半年度|中期)报告',page['text'])
+        match=re.search(r'((?:19|20)\d{2})\s*年\s*(?:年度|半年度|中期|第?[一三13]季度)报告',page['text'])
         if match:return int(match[1])
         match=re.search(r'(?:six months|year)\s+ended\s+\d{1,2}\s+[A-Za-z]+\s+((?:19|20)\d{2})',page['text'],re.I)
         if match:return int(match[1])
@@ -43,13 +45,13 @@ def mapping_headers(table):
     headers=[]
     for row in table['rows']:
         if standard_metric(row[0]) if row else False:break
+        if any(data_number(c) for c in row[1:]):break
         numeric=[decimal_value(c) for c in row[1:] if decimal_value(c) is not None]
-        if numeric and normalize_label(row[0]) not in {'','项目','item','label','类别'}:break
+        if numeric and normalize_label(row[0]) not in {'','项目','item','label','类别','note'}:break
         if any(decimal_value(c) is not None and not (1900<=decimal_value(c)<=2100 and decimal_value(c)==int(decimal_value(c))) for c in row[1:]):break
         if any(sum(decimal_value(line) is not None for line in str(c).splitlines())>1 for c in row[1:]):break
-        if any(str(c).strip() for c in row[1:]):headers.append(row)
-        if len(headers)>=4:break
-    return headers
+        headers.append(row)
+    return headers if any(str(c).strip() for row in headers for c in row[1:]) else []
 
 
 def digest(value):
@@ -128,32 +130,19 @@ def source_columns(table, parsed, ctx):
     date_context=ctx['text']+' '+' '.join(str(c) for row in headers for c in row)
     columns = []
     for col in range(1, width):
-        text = compact(' '.join(str(row[col]) for row in headers if len(row) > col))
-        years = re.findall(r'(?<!\d)((?:19|20)\d{2})(?!\d)', text)
+        labels=[str(row[col]) for row in headers if len(row)>col]
+        if any(re.fullmatch(r'\s*(?:19|20)\d{2}\s*',s) for s in labels):
+            # A prose introduction can mention both comparative years above
+            # the actual date/year header. The separate year row disambiguates.
+            labels=[s for s in labels if len(set(re.findall(r'(?:19|20)\d{2}',s)))<=1]
+        text = compact(' '.join(labels))
         if re.search(r'附注|^note', text, re.I): continue
-        role = 'closing' if re.search(r'期末|年末|本期期末', text) else 'opening' if re.search(r'期初|年初|上年年末', text) else 'current' if re.search(r'本期|本年', text) else 'previous' if re.search(r'上期|上年', text) else None
-        if years and len(set(years)) == 1: period_year = int(years[0])
-        elif role: period_year = int(year) - (role in {'opening', 'previous'})
-        else: continue
-        balance = ctx['statement'] == 'balance' or role in {'closing', 'opening'} or '余额' in text
-        # Explicit month/day takes precedence; interim performance is H1.
-        date_match = re.search(r'(?:年)?(\d{1,2})月(\d{1,2})日', text)
-        english_date=re.search(r'(\d{1,2})(January|February|March|April|May|June|July|August|September|October|November|December)',text,re.I)
-        flow_header=ctx['statement'] in {'income','cashflow'} or bool(re.search(r'(?:six|twelve)monthsended|本期发生|本年发生|年度',text,re.I))
-        if date_match and not flow_header: period = f'{period_year}-{int(date_match[1]):02d}-{int(date_match[2]):02d}'
-        elif english_date and not flow_header:
-            month=['january','february','march','april','may','june','july','august','september','october','november','december'].index(english_date[2].casefold())+1
-            period=f'{period_year}-{month:02d}-{int(english_date[1]):02d}'
-        elif balance:
-            interim = bool(re.search(r'30\s+June|6\s*月\s*30', ctx['text'], re.I)) and period_year == int(year)
-            period = f'{period_year}-06-30' if interim else f'{period_year}-12-31'
-        else:
-            interim = bool(re.search(r'six months ended|六个月|半年度|中期', date_context, re.I))
-            period = f'{period_year}-H1' if interim else f'{period_year}-FY'
+        period = column_period(text,date_context,ctx['statement'],report_month(parsed),year)
+        if period['period']=='unknown' and not any(len(row)>col and data_number(row[col]) for row in table['rows'][len(mapping_headers(table)):]):continue
         # Complex subcolumns require a learned mapping or the model. No amount
         # interpretation is inferred from a year shared by a merged header.
         if re.search(r'比例|增减|增长|计提|坏账|减值|账面价值|终止确认', text): continue
-        columns.append({'column': col+1, 'period': period})
+        columns.append({'column': col+1, **period})
     return columns
 
 
@@ -232,7 +221,7 @@ def shape(parsed, table):
     headers = mapping_headers(table)
     pattern = [[re.sub(r'(?:19|20)\d{2}', '<year>', compact(c).casefold()) for c in row] for row in headers]
     # All original text, including header wording, is hashed before storage.
-    return digest([VERSION, ctx['statement'], ctx['topic'], max(map(len, table['rows']), default=0), pattern])
+    return digest([VERSION, report_month(parsed), ctx['statement'], ctx['topic'], max(map(len, table['rows']), default=0), pattern])
 
 
 def row_key(row):
@@ -273,7 +262,7 @@ def draft(parsed, table, company, basis, learned=None):
     learned = learned or {}
     year = source_year(parsed)
     if learned.get('columns') and year:
-        columns = bind_columns(learned['columns'],year)
+        columns = rebind_periods(bind_columns(learned['columns'],year),columns)
     if not columns: return None
     if any('\n' in str(row[0]) for row in table['rows'][len(mapping_headers(table)):]):
         packed=packed_standard(table,columns,company,basis,ctx,unit)
@@ -293,7 +282,7 @@ def draft(parsed, table, company, basis, learned=None):
             selectors=attrs.pop('dimension_columns',{})
             dimensions=attrs.pop('dimensions',{})|{key:row[column-1] for key,column in selectors.items()}
             if dimensions:attrs['dimensions_json']=json.dumps(dimensions,ensure_ascii=False)
-            if attrs.get('columns'):attrs['columns_json']=json.dumps(bind_columns(attrs.pop('columns'),year))
+            if attrs.get('columns'):attrs['columns_json']=json.dumps(rebind_periods(bind_columns(attrs.pop('columns'),year),columns))
         else:
             metric = standard_metric(row[0])
             if not metric and normalize_label(row[0]) in {'合计','总计','total'}:
@@ -329,6 +318,12 @@ def draft(parsed, table, company, basis, learned=None):
     return {'index':table['index'],'schema':schema,'rows':rows,'unmapped_rows':unknown}
 
 
+def rebind_periods(columns,source):
+    periods={c['column']:{k:c[k] for k in ('period','start','end') if k in c} for c in source}
+    return [{k:v for k,v in c.items() if k not in {'period','start','end'}} |
+            periods.get(c['column'],{'period':'unknown'}) for c in columns]
+
+
 def bind_columns(columns,year):
     result=[]
     for c in columns:
@@ -344,7 +339,7 @@ def column_rule(columns,year,schema):
     converted=[]
     for c in columns:
         if set(c)-{'column','period','unit','currency','metric','semantic_type','label','start','end'}:return None
-        period=re.fullmatch(r'(\d{4})-(FY|H1|H2|Q[1-4]|\d{2}-\d{2})',c.get('period',''))
+        period=re.fullmatch(r'(\d{4})-(FY|H1|H2|9M|Q[1-4]|\d{2}-\d{2})',c.get('period',''))
         if not period:return None
         rule={k:v for k,v in c.items() if k not in {'period','label','start','end'}}|{'period_template':[int(period[1])-int(year),period[2]]}
         if rule.get('metric') and not reusable_metric(rule['metric']):return None
