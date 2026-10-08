@@ -26,3 +26,9 @@ test('workpaper tables register before projection and preserve typed cells and e
  assert.equal(registry.income.rows[0].value,'836.925');assert.equal(registry.income.evidence[0].value.record_id,'fact1');
  assert.deepEqual(referenceInventory(registry).income.row_keys,['revenue']);
 });
+
+test('model receives ready-to-paste key values and whole-table bindings while A1 keeps exact values',()=>{
+ const data={key_values:['本期收入=836.93 CNY 百万元 `{{income.revenue.2025-H1}}`'],table_bindings:{income:'{{table:income}}'},period_roles:{current:'2025-H1',comparison:'2024-H1'},numeric_tables:{}};
+ const projected=modelContext('financial_workpaper',{status:'ok',data}).data;
+ assert.deepEqual(projected.key_values,data.key_values);assert.deepEqual(projected.table_bindings,data.table_bindings);assert.deepEqual(projected.period_roles,data.period_roles);
+});

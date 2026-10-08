@@ -293,8 +293,12 @@ def audit_targets(audit,records,pages):
                     '元/股',money,reason=reason,note='目标PE是方法参数，EPS及汇率按披露精度传播区间；使用原文币种，保留入库标注差异')
 
 
-def report_audit(service,project,document_id=None,**_):
+def report_audit(service,project,document_id=None,periods=None,**_):
     records,pages,profile=load_research(service,project,document_id)
+    from .workpaper_period_selection import normalize_periods
+    available={r['period'] for r in records if r.get('period')}
+    selected=normalize_periods(periods,available) if periods or available else []
     with localcontext() as ctx:
         ctx.prec=40
-        return audit_records(records,pages,profile),records
+        report=audit_records(records,pages,profile);report['periods']=selected
+        return report,records

@@ -245,7 +245,7 @@ async def financial_workpaper(project_id: str, kind: str = 'statement_analysis',
                               company: str | None = None, scope: str = 'consolidated',
                               periods: list[str] | str | None = None, focus: str | None = None,
                               as_of: str | None = None, metrics: list[str] | str | None = None) -> dict[str, Any]:
-    """生成可绑定底稿及 CSV/Markdown。statement_analysis 含扣非与非经常损益、间接法补充资料桥、季度和 ROE；comparison 用同一报告本期/比较列生成跨期共同比、增长与杜邦；period_analysis 推导单季、环比和同比；basis_changes 识别重述及口径变化、量化调整影响；anomaly_signals 返回九类信号、经验阈值与缺项；variance_attribution 返回利润桥、结构贡献与原文原因，保留残差；report_audit 检查研报算术与跨页差异；expectations 按 company、periods（默认最新年报年度）、as_of（YYYY-MM-DD，含当日）取各机构最近预测、修正轨迹和实际差额，metrics 默认收入/归母净利/EPS，口径未齐的参照单列。返回引用目录、发现与缺项。"""
+    """生成可绑定底稿及 CSV/Markdown。statement_analysis 含扣非与非经常损益、间接法补充资料桥、季度和 ROE；comparison 用同一报告本期/比较列生成跨期共同比、增长与杜邦；period_analysis 推导单季、环比和同比；basis_changes 识别重述及口径变化、量化调整影响；anomaly_signals 返回九类信号、经验阈值与缺项；variance_attribution 返回利润桥、结构贡献与原文原因，保留残差；report_audit 检查研报算术与跨页差异；expectations 按 company、periods（默认最新实际期及可比期）、as_of（YYYY-MM-DD，含当日）取各机构最近预测、修正轨迹和实际差额，metrics 默认收入/归母净利/EPS，口径未齐的参照单列。periods 接受年份、FY/H1/Qn/9M、期末日或中文期间，程序按时间确定本期和比较期；单期自动补上年同期，省略取最新期。返回关键值及可直接粘贴的绑定、整表嵌入、发现与缺项。"""
     return await call('financial_workpaper', project_id=project_id, kind=kind, document_id=document_id,
                       company=company, scope=scope, periods=periods, focus=focus,
                       **({'as_of':as_of,'metrics':metrics} if kind=='expectations' else {}))
@@ -299,7 +299,7 @@ async def run_analysis(project_id: str, code: str | None = None, document_ids: l
 
 @mcp.tool()
 async def get_analysis_status(project_id: str, run_id: str) -> dict[str, Any]:
-    """读取运行状态、精确表、显示值及附件；聊天回答可直接用 {{表名.行键.列名}}、{{table:表名}} 或 {{chart:文件名}}。完整内容用 get_artifact，参数更新用 source_run_id+params。"""
+    """run_id 接受分析运行 ID 或底稿/模型交付 ID。读取状态、精确表、显示值及附件；聊天回答可直接用 {{表名.行键.列名}}、{{table:表名}} 或 {{chart:文件名}}。完整内容用 get_artifact，参数更新用 source_run_id+params。"""
     return await call("get_analysis_status",project_id=project_id,run_id=run_id)
 
 @mcp.tool()
@@ -309,7 +309,7 @@ async def cancel_analysis(project_id: str, run_id: str) -> dict[str, Any]:
 
 @mcp.tool()
 async def get_artifact(project_id: str, run_id: str, name: str, rows: dict[str, int] | None = None) -> dict[str, Any]:
-    """Read an attachment. rows={start,end} selects zero-based, end-exclusive CSV records, JSON items or text lines."""
+    """Read an attachment by analysis run ID OR workpaper/model delivery.id in run_id. Use a returned file name; workpapers include numeric_tables.json, workpaper.json, report.md and table CSVs. rows={start,end} selects zero-based, end-exclusive CSV records, JSON items or text lines."""
     return await call("get_artifact",project_id=project_id,run_id=run_id,name=name,rows=rows)
 
 @mcp.tool()

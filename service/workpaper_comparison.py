@@ -25,7 +25,7 @@ def comparison(service,project,document_id=None,company=None,scope='consolidated
     provenance=[]
     for p in st.periods:
         rev=st.pick('revenue',p,'income')
-        if not rev:raise WorkpaperInputError(f'{p} 缺少收入期间来源')
+        if not rev:continue  # An automatic comparator may be missing; st.pick records it.
         start,end=meta(rev).get('period_start'),meta(rev).get('period_end')
         if not start or not end:raise WorkpaperInputError(f'{p} 缺少报告起止日期')
         metrics={}
@@ -52,6 +52,7 @@ def comparison(service,project,document_id=None,company=None,scope='consolidated
                          'metadata':{'scope':{'value':st.scope,'source':source(rev)},'currency':{'value':st.currency,'source':source(rev)},
                                      'restated':{'value':meta(rev).get('restatement'),'source':source(rev)}}})
     report=comparison_report(subjects)
+    report['periods']=st.periods
     report['tables']['report_columns']=table({k:col(v) for k,v in [('key','行键'),('metric','指标'),('period','期间'),('report','数据所属报告'),('document_id','报告ID'),('page','PDF页'),('table_id','原表ID'),('column','原列号'),('column_label','原列头'),('basis','比较路径')]},provenance)
     report['tables']['missing']=table({k:col(k) for k in ('key','metric','period','reason','candidates')},[{'key':str(i),**r,'candidates':str(r['candidates'])} for i,r in enumerate(st.missing)])
     return report,st.facts

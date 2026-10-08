@@ -132,7 +132,7 @@ def prepare(service,project,snapshot):
             if not match or not artifact.get('mimeType','').startswith('image/'):continue
             if match[1]!=project:raise ValueError('报告图片跨项目')
             from urllib.parse import unquote
-            original=service._runner().artifact_path(match[2],unquote(match[3]),project_id=project)
+            original=service.artifact_path(project,match[2],unquote(match[3]))
             asset=f'assets/{n}-{original.name}';(folder/'assets').mkdir(exist_ok=True);shutil.copyfile(original,folder/asset)
             body=body.replace(artifact['url'],asset)
         for i,lines in prose_sections(body).items():
