@@ -137,8 +137,8 @@ def overdue_ratios(a,p):
     return qs
 
 
-def anomaly_signals(service,project,document_id=None,company=None,scope='consolidated',periods=None,focus=None):
-    a=AnalystData(service,project,document_id,company,scope,periods,focus)
+def anomaly_signals(service,project,document_id=None,company=None,scope='consolidated',periods=None,focus=None,_analysis=None):
+    a=_analysis or AnalystData(service,project,document_id,company,scope,periods,focus)
     ps=a.ps;current=ps[0];previous=ps[1] if len(ps)>1 else None
     rows=[]
     def add(key,family,label,q,threshold,trigger,basis,source_policy=POLICY,extra=''):
@@ -167,8 +167,8 @@ def anomaly_signals(service,project,document_id=None,company=None,scope='consoli
         if q['value'] is None:missing=True;break
         if value(q)>=1:break
         count+=1
-    run=cell(None if missing else count,'个',sources=[q['source'] for q in series],formula='从最新期开始 CFO/正合并净利润<1 的连续可比年数',reason='期间不连续或序列中存在缺值，连续期数未知' if missing else None)
-    add('cash_divergence_run','利润与现金流','连续利润现金转化不足期数',run,'>= 2 个可比期间',lambda v:v>=2,'同报告可用比较列；观察窗之外未知')
+    run=cell(None if missing else count,'个',sources=[q['source'] for q in series],formula='从最新期开始按相邻可比年度观察 CFO/正合并净利润<1 的期数',reason='期间不相邻或序列中存在缺值，期数未知' if missing else None)
+    add('cash_divergence_run','利润与现金流','利润现金转化不足观察期数',run,'>= 2 个可比期间',lambda v:v>=2,'同报告可用比较列；不足三期不判断持续性，观察窗之外未知')
     for key,family,flow,days in [('receivables','应收','revenue','dso'),('inventory','存货','cogs','dio')]:
         # For interim reports year-end balance growth is NOT YoY. Require the
         # same date one year earlier for comparison with income growth.
@@ -251,8 +251,12 @@ def anomaly_signals(service,project,document_id=None,company=None,scope='consoli
     observations.sort(key=lambda r:abs(value(next(x['value'] for x in rows if x['key']==r['key']))),reverse=True)
     columns={k:col(v) for k,v in [('key','行键'),('family','信号类别'),('signal','现象'),('value','计算值'),('baseline','比较基准/口径'),('threshold','触发条件'),('threshold_source','阈值来源'),('triggered','是否触发'),('evidence','文档/页/表/行列'),('missing','缺失或局限')]}
     columns['value']['per_cell_unit']=True
+    from .workpaper_signal_followups import signal_followups
+    from .workpaper_explanations import evidence_table
+    followups,evidence,followup_table=signal_followups(a,rows)
     return {'title':a.st.company+' 异常信号雷达','periods':a.ps,'body':'信号只陈述数值现象，不是风险结论。模型应结合引用原文分别说明可能业务解释与需警惕情形，区分事实与推论。经验阈值没有行业校准。',
-            'tables':{'signals':table(columns,rows),
+            'drivers_evidence':evidence,'signal_followups':followups,
+            'tables':{'signals':table(columns,rows),'drivers_evidence':evidence_table(evidence),'signal_followups':followup_table,
                       'inventory_charge_rates':table({'key':col('行键'),'period':col('期间'),'charge':col('当期计提发生额','百万元',a.currency),
                           'average_gross_inventory':col('平均存货账面原值','百万元',a.currency),'value':col('当期计提率','%'),'missing':col('缺失说明')},inventory_rates),
                       'observations':table({k:col(v) for k,v in [('key','行键'),('finding','已触发现象（按绝对数值幅度，跨单位不代表严重度）'),('basis','底稿位置')]},observations)}},a.records

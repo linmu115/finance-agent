@@ -4,6 +4,12 @@
 
 ## 组合入口
 
+已读取 N2 工作树的 `design/n2-v3-workpaper-contract-20261008.md` 与主线回执。接受其公共入口 **`service/workpaper_depth.py::enrich_workpaper_context(service, project_id, *, selection, reports, context)`**。不修改 N2 的流水线。该函数把本文的 kind 原始字段映射为 N2 的 `management_evidence / signal_followups / comparability_constraints / extensions`，同时把 A1 表名转为 `statement_ / variance_ / signals_` 前缀。可接 raw 或 compiled report，不重复取数或检索。相同原句合并为一条并保留所有 linked_refs；信号通过 management_evidence_ids 关联。未传 comparison/expectations 等报告时约束扩展为 `not_provided`，不冒充已完成口径检查。
+
+披露状态映射：quantitative → quantified，qualitative → qualitative_disclosed，not_stated → no_statement_found；未带 drivers_evidence 的旧报告保持 pending/partial，不能写成原文未说明。信号持续性同时返回 sample_count、allow_continuous_claim、assessment。约束同时返回 affected_refs、issues、record_ids、forbidden_claims，主线无需解析自然语言原因。
+
+`variance_attribution` / `anomaly_signals` 已接受 N2 草案的 `_analysis=None` 内部参数，支持复用同一个 AnalystData；外部工具参数不变。N2 的实际函数传入 raw reports，与草案写的 compiled reports 略有不同，本适配器对两者均适用，因为只读取顶层深度字段。
+
 三个字段均位于 **report 顶层**，并由 `answer_handoff` 原样投影到工具结果顶层。它们是普通 JSON 对象/数组，不需要反解析 CSV 或中文状态。`compile_report` 保留 report 顶层扩展字段。原有数值表、A1 绑定、交付文件继续保留。
 
 - `variance_attribution`: `drivers_evidence[]`，含利润、现金和营运资金变动。
@@ -28,6 +34,8 @@
 ```
 
 `disclosure_status` 固定三值：`quantitative` / `qualitative` / `not_stated`，中文分别为“原文给出定量原因” / “原文只给定性原因” / “原文未说明”。定量要求**原因自身**有金额、比例、数量等明确量化，不因同段含本期/上期金额就判定为定量原因。候选原句是管理层披露，不是程序证明的因果。来源保留 document_id 与 PDF 页；多个相关原因保留多条。检索缺页和报告期限制在 search 中明示，不把缺少定量桥写成原因未知。
+
+每条 evidence 另含 matched_topic 与 relation（direct_driver / related_driver）；关联驱动解释不等于管理层直接解释了筛选阈值。alignment_note 明示这一边界。被重复披露的相同原句优先保留管理层讨论页，其他页在 corroborating_pages 中保留。
 
 `quantity_ref` 指向现有 A1 表；没有可用金额时仍保留原因检索与缺失说明。`drivers_evidence` 表继续作为可读交付；顶层数组是组合器使用的结构化版本。
 
@@ -63,9 +71,11 @@
 
 另有 `profit_attribution_unknown`，禁止 `label_as_parent_profit` / `parent_profit_comparison`；`comparison_basis_unaligned` 用于期间、范围、经济维度、收入边界、每股、重述等未齐。数值缺失与口径未齐分别记录，缺失不能证明口径相同。机器字段直接伴随对应数值/来源，主线交付检查按 `subject` 及 `prohibited_uses` 使用；N4 不实现答案扫描或重试。已可比项目不被无关约束阻断。
 
+comparison 的同一列对适用多行时，subject.row_key 为 `*`，同时必须提供明确的 `row_keys[]`；适配器只展开所列行，避免无限通配。它的禁止用途为 same_basis_comparison / same_basis_error / unqualified_cross_period_growth。跨口径预测版本另禁止 same_basis_revision。前值利润归属未明、后值明确归母时，禁止改标的约束只覆盖 previous 单元格及前值记录；整对另带禁止跨归属比较的约束，不能误伤后值已经明确的归母标签。
+
 ## 工作记录与验收计划
 
 - 已确认：全部主要驱动项检索原文；每个触发信号四项追问；口径约束必须进入工具结果，不能只留中文脚注。
 - 拒绝：把任意带数字段落认作定量原因；用两期异常断言长期趋势；利润归属不明时改标归母；关键词命中即认定经济因果。
 - 验收：卡罗特中报 PDF p11–12、p14；伊利至少5处人工核对；构造误匹配/缺页/时期/口径样例；单测及真实隔离底稿交付，无模型付费调用。
-- 对接状态：字段草案先交付，等待 N2 对命名或投影的反馈；实现保持在新增公共模块和对应 kind 的小接入点，避免改 N2 的流水线入口。
+- 对接状态：已读取并接受 N2 的函数/输出契约并提供适配器；未直接连接 N2 会话，尚无 N2 端合并回执。独立分支不合并、不部署；主线需要在收集工具结果时承接 answer_constraints，并在流水线提供 comparison/expectations report 时承接 comparability_constraints。尚未执行宿主答案修复或正式盲评。
