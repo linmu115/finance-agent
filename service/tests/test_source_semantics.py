@@ -82,6 +82,31 @@ class SourceSemanticsTests(unittest.TestCase):
         facts=[fact(2),fact(3)];self.apply(parsed,table,facts)
         self.assertEqual([f['period'] for f in facts],['2023-12-31','2024-FY'])
 
+    def test_main_financial_summary_uses_chapter_and_attributable_rows(self):
+        for heading in ['六、主要会计数据和财务指标','主要财务指标','近三年主要会计数据']:
+            parsed,table=document([['主要会计数据','2024年'],['营业收入','100'],
+                                   ['归属于上市公司股东的扣除非经常性损益的净利润','100']],heading=heading)
+            facts=[fact(2,scope='unspecified_CAS'),fact(3,scope='unspecified_CAS')]
+            self.apply(parsed,table,facts)
+            self.assertEqual([f['scope'] for f in facts],['consolidated_CAS']*2)
+            self.assertEqual(context(parsed,table)['scope'],'consolidated')
+
+    def test_parent_summary_chapter_is_not_erased_by_generic_subheading(self):
+        parsed,table=document([['主要会计数据','2024年'],['营业收入','100'],
+                               ['归属于上市公司股东的净利润','100']],
+                              heading='六、母公司主要会计数据和财务指标\n（一）主要会计数据')
+        facts=[fact(2,scope='unspecified_CAS'),fact(3,scope='unspecified_CAS')]
+        self.apply(parsed,table,facts)
+        self.assertEqual([f['scope'] for f in facts],['parent_CAS']*2)
+
+    def test_summary_without_attribution_or_wrong_chapter_does_not_guess(self):
+        cases=[('主要会计数据和财务指标','净利润'),('主要财务指标','每股收益'),
+               ('分部信息','归属于上市公司股东的净利润')]
+        for heading,label in cases:
+            parsed,table=document([['项目','2024年'],[label,'100']],heading=heading)
+            facts=[fact(2,scope='unspecified_CAS')];before=copy.deepcopy(facts)
+            self.apply(parsed,table,facts);self.assertEqual(facts,before)
+
 
 class ReapplicationTests(unittest.TestCase):
     setUp=fixtures.ScriptCleaningTests.setUp

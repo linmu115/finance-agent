@@ -98,9 +98,9 @@ def context(parsed, table):
                  'cashflow' if re.search(r'现金流量表|Cash', title, re.I) else
                  'equity' if re.search(r'权益变动表|Equity', title, re.I) else 'notes')
     result={'topic': topic, 'scope': scope, 'statement': statement, 'text': prefix, 'preceding': preceding}
-    from .source_semantics import quarterly_scope
-    quarterly=quarterly_scope(table,result)
-    if quarterly:result['scope']=quarterly['scope']
+    from .source_semantics import summary_scope
+    summary=summary_scope(table,result)
+    if summary:result['scope']=summary['scope']
     return result
 
 

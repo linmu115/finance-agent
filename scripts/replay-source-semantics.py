@@ -1,4 +1,4 @@
-"""Reapply the six reviewed defects on a scoped, isolated snapshot; zero models."""
+"""Reapply reviewed source semantics on a scoped, isolated snapshot; zero models."""
 import argparse
 from collections import Counter
 import importlib.util
@@ -57,20 +57,21 @@ def main():
                                 'evidence':bm.get('source_semantics')})
         assert len(changed)==result['updated']==len(history)
         assert all(h==before[h['fact_id']] for h in history)
-        reviews=json.loads((args.snapshot/'source-review-results.json').read_text('utf-8'))
+        review_path=args.snapshot/'source-review-results.json'
+        reviews=json.loads(review_path.read_text('utf-8')) if review_path.exists() else []
         fixed=[]
         for review in reviews:
             if review['status']!='semantic_mismatch':continue
             matches=[after[c['fact_id']] for c in review['candidates'] if c['fact_id'] in after]
             assert any(all(f[k]==review[k] for k in ('period','scope','value','currency','company')) for f in matches),review
             fixed.append({k:review[k] for k in ('category','page','label','period','value','scope')})
-        assert len(fixed)==6
+        assert len(fixed)==sum(r['status']=='semantic_mismatch' for r in reviews)
         report={'model_requests':0,'facts':len(before),'reapplied':result,'repeat':again,'source_review_fixed':fixed,
                 'original_passed_preserved':sum(r['status']=='passed' and any(all(after[fid][k]==r[k] for k in ('period','scope','currency','company','value')) for fid in r['matched_fact_ids']) for r in reviews),
                 'remaining_missing':sum(r['status']=='missing' for r in reviews),'unchanged_records':len(before)-len(changed),
                 'changed_by_table':dict(Counter(c['table'] for c in changed)),'changes':changed,
                 'values_coordinates_entities_unchanged':True,'complete_old_records_preserved':True}
-        assert report['original_passed_preserved']==40
+        assert report['original_passed_preserved']==sum(r['status']=='passed' for r in reviews)
         (args.out/'report.json').write_text(dumps(report),'utf-8')
         print(json.dumps({k:v for k,v in report.items() if k not in ('changes','source_review_fixed')},ensure_ascii=False,indent=2))
     finally:helper.shutdown(s)

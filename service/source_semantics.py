@@ -1,4 +1,4 @@
-"""Resolve stock dates and quarterly scope from the table's source evidence."""
+"""Resolve stock dates and financial-summary scope from source evidence."""
 import calendar
 import re
 
@@ -7,35 +7,40 @@ from .source_periods import column_period, report_month
 from .standard_metrics import normalize_label
 
 
-VERSION = 'source-period-scope-1'
+VERSION = 'source-period-scope-2'
 
 
-def quarterly_scope(table, context):
+def summary_scope(table, context):
     headers = ' '.join(str(c) for row in table['rows'][:2] for c in row)
-    if not re.search(r'第?[一二三四1234]季度', compact(headers)):
-        return None
-    text = context['text'] + '\n' + headers
-    headings = [line for line in text.splitlines()
-                if re.search(r'(?:分季度|季度).*(?:财务|会计)数据', compact(line))]
+    quarterly = bool(re.search(r'第?[一二三四1234]季度', compact(headers)))
+    pattern = r'(?:分季度|季度).*(?:财务|会计)数据' if quarterly else r'主要(?:会计数据|财务指标|财务数据)'
+    headings = [line for line in context['text'].splitlines()
+                if re.search(pattern, compact(line)) and (quarterly or not re.search(r'分季度|季度', line))]
+    if not headings:
+        headings = [str(c) for row in table['rows'][:1] for c in row if re.search(pattern, compact(c))]
     if not headings:
         return None
-    heading = compact(headings[-1])
+    # A generic subheading/table header (主要会计数据) does not erase the
+    # explicitly named parent/consolidated perspective of its local chapter.
+    qualified = [h for h in headings if re.search(r'母公司|合并', h)]
+    title = qualified[-1] if qualified else headings[-1]
+    heading = compact(title)
     if '母公司' in heading:
-        return {'scope': 'parent', 'quote': headings[-1]}
+        return {'scope': 'parent', 'quote': title}
     if '合并' in heading:
-        return {'scope': 'consolidated', 'quote': headings[-1]}
+        return {'scope': 'consolidated', 'quote': title}
     # Attributable profit/equity names the group reporting perspective even
     # before the first consolidated statement appears later in the report.
     for row in table['rows']:
         label = compact(row[0]) if row else ''
         if re.search(r'归属于(?:上市公司股东|母公司(?:股东|所有者)).*(?:净利润|净资产|权益)', label):
-            return {'scope': 'consolidated', 'quote': headings[-1] + '\n' + str(row[0])}
+            return {'scope': 'consolidated', 'quote': title + '\n' + str(row[0])}
     return None
 
 
 def apply_source_semantics(parsed, table, facts, context):
     from .cleaning_rules import mapping_headers, source_year
-    scope = quarterly_scope(table, context)
+    scope = summary_scope(table, context)
     headers = mapping_headers(table)
     report_end = report_month(parsed)
     year = source_year(parsed)
