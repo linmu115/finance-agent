@@ -3,6 +3,7 @@ import {emptyUsage,addUsage as tallyUsage,aggregateAudit} from './usage.js';
 import {artifactMediaType} from './artifact-media.js';
 import {registerNumericTables,referenceInventory} from './numeric-tables.js';
 import {answerBindingExtension} from './answer-binding.js';
+import {TRANSPORT_RETRY,transportRetryExtension} from './transport-retry.js';
 import {annotateAnswer,citedUserSources,valuationSections} from './answer-semantics.js';
 import {repairInterruptedTools,operationKey,sideEffectTool} from './session-recovery.js';
 import {configuredModel,modelCatalogRevision,jsonOutputPayload} from './model-runtime.js';
@@ -292,7 +293,7 @@ export class RunManager {
     if(history?.projection.modified_tool_results)await this.audit(live,'context_projection',{requestId,...history.projection});
    });
    void before.catch(error=>live.controller.abort(error));
-   const output=stream(requestModel,requestContext,{...options,reasoning:effort,signal:options?.signal?AbortSignal.any([options.signal,live.controller.signal]):live.controller.signal,temperature:0,maxTokens,
+   const output=stream(requestModel,requestContext,{...options,...(phase==='main'?{maxRetries:0}:{}),reasoning:effort,signal:options?.signal?AbortSignal.any([options.signal,live.controller.signal]):live.controller.signal,temperature:0,maxTokens,
     onPayload:async(payload:unknown,m:any)=>{await before;const prepared=(await priorHook?.(payload,m)??payload) as Record<string,unknown>;await this.audit(live,'model_request',{requestId,phase,usagePhase,messageId:usageAnswer.id,api:requestModel.api,model:requestModel.id,reasoningEffort:effort||'off',sentReasoningEffort:(prepared.reasoning as any)?.effort??prepared.reasoning_effort,thinking:prepared.thinking,maxTokens,contextCharacters:JSON.stringify(requestContext).length});return json?jsonOutputPayload(prepared,requestModel.api):prepared;},
     onResponse:async(response,m)=>{await options?.onResponse?.(response,m);await this.audit(live,'provider_response',{requestId,status:response.status,providerRequestId:response.headers['x-request-id'],contentType:response.headers['content-type']});},
     onProviderStreamEvent:async(event:any,m)=>{await options?.onProviderStreamEvent?.(event,m);if(['response.completed','response.incomplete','response.failed','error'].includes(event.type))await this.audit(live,'provider_terminal',{requestId,type:event.type,responseId:event.response?.id,model:event.response?.model,status:event.response?.status,incompleteDetails:event.response?.incomplete_details,error:event.error?.message||event.response?.error?.message?redactError(event.error?.message||event.response?.error?.message):undefined});}});
@@ -301,7 +302,7 @@ export class RunManager {
     const failed=['error','aborted','length'].includes(answer.stopReason),known=Number(answer.usage?.input||0)+Number(answer.usage?.cacheRead||0)+Number(answer.usage?.cacheWrite||0)+Number(answer.usage?.output||0)>0||!failed;
     this.addUsage(live,answer.usage,known,usagePhase,usageAnswer);
     if(ticket)live.budget!.settle(ticket,known?answer.usage:undefined,{failed});
-    await this.audit(live,'model_usage',{requestId,phase,usagePhase,messageId:usageAnswer.id,reasoningEffort:effort||'off',stopReason:answer.stopReason,usage:answer.usage,usageKnown:known});
+    await this.audit(live,'model_usage',{requestId,phase,usagePhase,messageId:usageAnswer.id,reasoningEffort:effort||'off',stopReason:answer.stopReason,usage:answer.usage,usageKnown:known,...(answer.errorMessage?{error:redactError(answer.errorMessage)}:{})});
     await this.saveBudget(live,'settled',{requestId,phase});return answer;
    },async error=>{
     this.addUsage(live,undefined,false,usagePhase,usageAnswer);
@@ -334,8 +335,8 @@ export class RunManager {
    parameters:{type:'object',properties:{document_ids:{type:'array',items:{type:'string'},minItems:1},review_existing_only:{type:'boolean',description:"配合 review_metrics 仅复核已有定义，保留解析/数值/期间；不能 force=true。"},force:{type:'boolean',description:"仅用户明确要求重洗时开启。"},review_metrics:{type:'array',items:{type:'string',pattern:'^[a-z][a-z0-9_]{0,255}$'},minItems:1,description:"待复核定义范围的实际 metric ID；按完整原文判断范围。"}},required:['document_ids'],additionalProperties:false},
    execute:async(toolCallId:string,params:Record<string,any>)=>this.executeTool(e.active!,settings,'process_documents',toolCallId,params)});
   const compactionPolicy=resolveCompactionPolicy(settings.runtime.contextCompaction,model.contextWindow,Math.min(model.maxTokens,settings.llm.maxTokens));
-  // Use Pi's own loop, between-step compaction and default transient retry policy.
-  const manager=SettingsManager.inMemory({compaction:{enabled:compactionPolicy.enabled,reserveTokens:compactionPolicy.reserveTokens,keepRecentTokens:compactionPolicy.keepRecentTokens},defaultThinkingLevel:reasoning?'low':'off'});
+  // Pi owns the loop, failed-attempt history and bounded backoff; the host classifies transport errors.
+  const manager=SettingsManager.inMemory({retry:TRANSPORT_RETRY,compaction:{enabled:compactionPolicy.enabled,reserveTokens:compactionPolicy.reserveTokens,keepRecentTokens:compactionPolicy.keepRecentTokens},defaultThinkingLevel:reasoning?'low':'off'});
   const sessionManager=SessionManager.open(path.join(sessionDir,'session.jsonl'),sessionDir,workspace);
   if(l.resuming){
    const uncertain=await repairInterruptedTools(sessionManager,path.join(DATA,'audit',l.run.id+'.jsonl'));
@@ -372,7 +373,7 @@ export class RunManager {
   };
   const bindingExtension=answerBindingExtension({enabled:()=>!this.isIngestion(e.active!),render:body=>this.renderAnswer(e.active!,body),audit:(type,data)=>this.audit(e.active!,type,data),repairSent:()=>e.active!.bindingRepairMessage===e.active!.answer.id,markRepair:()=>{e.active!.bindingRepairMessage=e.active!.answer.id;},error:error=>{e.active!.bindingError=error;}});
   // Explicit overrides load only application/project resources, never unrelated global instructions.
-  const loader=new DefaultResourceLoader({cwd:workspace,agentDir,settingsManager:manager,noExtensions:true,extensionFactories:[compactionExtension,inputLifecycle,bindingExtension],noSkills:true,noPromptTemplates:true,noThemes:true,noContextFiles:true,skillsOverride:()=>({skills:resources?.skills.filter(s=>s.enabled)||[],diagnostics:[]}),agentsFilesOverride:()=>({agentsFiles:resources?[{path:resources.rulePath,content:resources.rules}]:[]}),systemPrompt});await loader.reload();
+  const loader=new DefaultResourceLoader({cwd:workspace,agentDir,settingsManager:manager,noExtensions:true,extensionFactories:[compactionExtension,inputLifecycle,bindingExtension,transportRetryExtension(manager)],noSkills:true,noPromptTemplates:true,noThemes:true,noContextFiles:true,skillsOverride:()=>({skills:resources?.skills.filter(s=>s.enabled)||[],diagnostics:[]}),agentsFilesOverride:()=>({agentsFiles:resources?[{path:resources.rulePath,content:resources.rules}]:[]}),systemPrompt});await loader.reload();
   const {session}=await createAgentSession({cwd:workspace,agentDir,modelRuntime:runtime,model,thinkingLevel:reasoning?'low':'off',noTools:'builtin',tools:customTools.map(t=>t.name),customTools,resourceLoader:loader,sessionManager,settingsManager:manager});
   e.session=session;this.sessions.set(l.chat.id,e);return e;
  }
@@ -614,6 +615,19 @@ export class RunManager {
    await this.audit(l,'run_config',{model:settings.llm.model,baseUrl:settings.llm.baseUrl,inputPricePerMillionUsd:settings.llm.inputPricePerMillionUsd,cacheReadPricePerMillionUsd:settings.llm.cacheReadPricePerMillionUsd,outputPricePerMillionUsd:settings.llm.outputPricePerMillionUsd,configHash:l.run.configHash,promptHash:generic?createHash('sha256').update(evaluationPrompt(l.chat.evaluationProfile)).digest('hex'):PROMPT_HASH,profile:l.chat.evaluationProfile||'financial',evaluation:l.run.evaluation,isolation_key:l.run.request?.evaluation?.isolation_key,...(l.run.request?.evaluation?.analysis_only?{analysis_only:true}:{}),tools:active,piVersion:'1.0.0',persistentSession:true,conversationId:l.chat.id});
    l.controller.signal.addEventListener('abort',()=>void session.abort(),{once:true});
    unsubscribe=session.subscribe((event:any)=>{
+    if(event.type==='auto_retry_start'){
+     l.run.stage=`上游传输失败，${event.delayMs/1000} 秒后重试（${event.attempt}/${event.maxAttempts}）`;
+     this.emit(l,'status',{stage:l.run.stage,status:l.run.status});
+     void this.audit(l,'transport_retry_start',{attempt:event.attempt,maxRetries:event.maxAttempts,delayMs:event.delayMs,error:redactError(event.errorMessage)});
+    }
+    if(event.type==='auto_retry_end'){
+     // Pi reports any non-error assistant stop (including aborted) as retry success.
+     // Host cancellation/budget rejection must retain its failed/cancelled outcome.
+     const success=event.success&&!l.controller.signal.aborted,error=l.controller.signal.aborted?redactError(l.controller.signal.reason):event.finalError?redactError(event.finalError):undefined;
+     if(!success&&!l.controller.signal.aborted)l.run.error=`上游请求重试后仍未完成（已重试 ${event.attempt} 次）：${error}`;
+     if(success){l.run.stage='继续分析';this.emit(l,'status',{stage:l.run.stage,status:l.run.status});}
+     void this.audit(l,'transport_retry_end',{attempt:event.attempt,success,nativeSuccess:event.success,...(error?{error}:{})});
+    }
     if(event.type==='message_start'&&event.message?.role==='user'){
      const text=typeof event.message.content==='string'?event.message.content:event.message.content?.map((b:any)=>b.text||'').join('\n');
      const input=l.run.queuedInputs?.find(i=>!i.delivered&&text?.includes('应用消息标识：'+i.messageId));
