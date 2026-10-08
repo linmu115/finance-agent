@@ -242,7 +242,7 @@ async def get_financial_metrics(project_id: str, metrics: list[str], company: st
 async def financial_workpaper(project_id: str, kind: str = 'statement_analysis', document_id: str | None = None,
                               company: str | None = None, scope: str = 'consolidated',
                               periods: list[str] | str | None = None, focus: str | None = None) -> dict[str, Any]:
-    """一次生成金融底稿并交付 CSV/Markdown。statement_analysis 含扣非、间接法桥、季度勾稽和ROE；comparison 用本报告比较列做共同比、增长与杜邦；period_analysis 推导单季、环比/同比/累计同比并保留来源和口径冲突；report_audit 核对研报算术、精度与跨页差异。缺项和未识别原行保留。返回表名、行键、单位与数值发现，正文可绑定 {{table:income}}。"""
+    """一次生成金融底稿并交付 CSV/Markdown。statement_analysis 含扣非、间接法桥、季度勾稽和ROE；comparison 用本报告比较列做共同比、增长与杜邦；period_analysis 推导单季、环比/同比/累计同比并保留来源和口径冲突；basis_changes 检索政策/估计/差错/重述标记，量化调整数与比率影响，提示多期非经常项目；report_audit 核对研报算术、精度与跨页差异。缺项和未识别原行保留。返回表名、行键、单位与数值发现，正文可绑定 {{table:income}}。"""
     return await call('financial_workpaper', project_id=project_id, kind=kind, document_id=document_id,
                       company=company, scope=scope, periods=periods, focus=focus)
 

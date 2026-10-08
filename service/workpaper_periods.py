@@ -29,12 +29,7 @@ def period_inputs(st, disclosure=None, additional_facts=()):
     """
     d=disclosure or Disclosure(st);tabs={t['table_id']:t for t in d.tabs};items=[];unknown=[]
     facts=[*st.facts,*additional_facts]
-    has_restated=any(meta(r).get('restatement')=='restated' for r in st.facts)
     actual_scope=next(r['scope'] for r in st.facts if r['metric'] in ALIASES['revenue'])
-    def basis(version,end,doc):
-        if has_restated and doc==d.doc:
-            return doc+(':current' if version=='restated' or end and end[:4]==d.year else ':before')
-        return None
     for r in facts:
         if r['company']!=st.company or r['scope']!=actual_scope or not dimensions_ok(r):continue
         metric=next((k for k in FLOW_METRICS if r['metric'] in ALIASES[k]),None)
@@ -49,7 +44,7 @@ def period_inputs(st, disclosure=None, additional_facts=()):
         q=record_quantity(r);q['source']['source_ref']={**ref,'column_label':header,'report':d.document.get('original_name') if r['document_id']==d.doc else None}
         items.append(observation(metric,q,entity=r['company'],scope=r['scope'],start=n.get('period_start'),end=n.get('period_end'),
             period=r['period'],label=header or n.get('period_label',''),document_id=r['document_id'],restatement=version,
-            basis_id=basis(version,n.get('period_end'),r['document_id'])))
+            basis_id=None))
     for t in d.tabs:
         if not t['rows'] or not d.applies(t):continue
         cols={quarter(h):(c,h) for c,h in enumerate(t['rows'][0]) if quarter(h)}
@@ -63,7 +58,17 @@ def period_inputs(st, disclosure=None, additional_facts=()):
                 mapped=[x for x in items if x['quantity']['source'].get('source_ref',{}).get('table_id')==t['table_id'] and x['quantity']['source'].get('source_ref',{}).get('row')==i+1 and x['quantity']['source'].get('source_ref',{}).get('column')==c+1]
                 version=mapped[0]['restatement'] if mapped else 'unspecified'
                 items.append(observation(metric,q,entity=st.company,scope=actual_scope,start=start,end=end,document_id=d.doc,
-                    restatement=version,basis_id=basis(version,end,d.doc)))
+                    restatement=version,basis_id=None))
+    adjusted=[x for x in items if x['document_id']==d.doc and x['restatement']=='restated']
+    if adjusted:
+        same_year=any(x['end'] and x['end'][:4]==d.year for x in adjusted)
+        for x in items:
+            if x['document_id']!=d.doc:continue
+            # Current-year amounts and last-year adjusted comparatives share
+            # the current report's basis. An explicitly mixed current-year
+            # quarter/YTD pair cannot acquire that permission automatically.
+            current=x['end'] and x['end'][:4]==d.year and not same_year
+            x['basis_id']=d.doc+(':current' if x['restatement']=='restated' or current else ':before')
     return items,[*unknown,*d.unknown]
 
 

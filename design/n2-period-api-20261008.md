@@ -53,3 +53,5 @@ series = derive_period_series([item, ...], preferred_document_id='本期报告ID
 伊利年报季度表：四指标 2024 Q4 披露减“全年−前三季”全部 0；12 个季度环比与 5 个全年同比共 17 个手算核对通过。Q2/Q3 的累计数在仅有年报季度表时来自前序单季相加，属于代数自洽验证；Q4 有独立全年披露校验。缺少上年季度金额时保持未知，不由披露增长率倒算。
 
 伊利真实三季报已找到，完整入库仍待确认；批准前不宣称季报入库适配已验收。瑞和/卡罗特中报缺少所需前一累计期，单季未虚构。
+
+③ 补充：同年重述累计数与未重述单季不会自动共享 basis_id；增加服务适配回归验证此路径。`service.workpaper_basis.quantify_restatement(pairs)` 是单一主体的纯计算入口，pairs 每项包含 `metric / label / period / scope / original / restated`，后两项为 typed quantities，返回 `(changes, ratio_impacts)`。`extract_adjustment_pairs` 可从原始 source_tables 获取配对，未知指标/期间另行保留。产品 kind 为 `basis_changes`；文本标记和多期非经常提示通过此 kind 获得。

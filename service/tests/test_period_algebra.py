@@ -1,11 +1,12 @@
 from decimal import Decimal as D
 import unittest
 from unittest.mock import patch
+from types import SimpleNamespace
 
 from service.period_algebra import (change, derive_period_series, identify_period,
     observation, quarter_window, select_observation, single_quarter, sum_periods)
 from service.financial_workpapers import cell, financial_workpaper
-from service.workpaper_periods import load_period_series
+from service.workpaper_periods import load_period_series,period_inputs
 from service.tests import test_workpaper_annual
 
 
@@ -113,6 +114,19 @@ class PeriodWorkpaperTests(unittest.TestCase):
             result=financial_workpaper(f.s,'p','period_analysis',document_id=f.doc)
         self.assertIn('reconciliation',result['numeric_tables'])
         self.assertTrue(result['delivery']['files'])
+
+    def test_adapter_does_not_silently_mix_same_year_versions(self):
+        facts=[]
+        for value,end,version in [('30','2024-06-30','restated'),('10','2024-03-31','original')]:
+            facts.append({'metric':'revenue','value':value,'company':'issuer','document_id':'d','scope':'consolidated_CAS','currency':'CNY','period':'2024-H1',
+                'source_ref':{'normalization':{'period_start':'2024-01-01','period_end':end,'restatement':version}}})
+        st=SimpleNamespace(facts=facts,company='issuer',currency='CNY')
+        d=SimpleNamespace(tabs=[],doc='d',year='2024',document={'original_name':'report'},unknown=[])
+        inputs,_=period_inputs(st,d)
+        result=derive_period_series(inputs,'d')
+        q2=next(x for x in result['quarters'] if x['period']=='2024-Q2')
+        self.assertIsNone(q2['quantity']['value'])
+        self.assertIn('重述',q2['quantity']['source']['missing_reason'])
 
 
 if __name__=='__main__':unittest.main()
