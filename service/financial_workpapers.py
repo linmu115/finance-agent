@@ -56,8 +56,8 @@ def meta(record):
 
 
 def dimensions_ok(record):
-    # source_table locates evidence; it is not a business segment.
-    return not (set(record.get('dimensions') or meta(record).get('dimensions', {})) - {'source_table'})
+    from .dimension_semantics import dimensions_ok as classified_dimensions_ok
+    return classified_dimensions_ok(record)
 
 
 def source_position(record):
@@ -150,6 +150,8 @@ class Statement:
             primary = [r for r in matches if r['source_ref'].get('page') in self.income_pages[period]]
             if primary: matches = primary
         if matches:
+            from .dimension_semantics import preferred_version
+            matches = preferred_version(matches)
             # Alias order favours canonical totals over presentation synonyms.
             best = min(aliases.index(r['metric']) for r in matches)
             matches = [r for r in matches if aliases.index(r['metric']) == best]

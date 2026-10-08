@@ -52,3 +52,29 @@ def identifier_table_exclusion(table):
     if all(i['reason'] in {'date','year','序号','编号','页码'} for i in identifiers):return None
     if any(re.search(r'利润表|资产负债表|现金流量表|每股|比率|收入|余额',str(c)) for row in table['rows'] for c in row):return None
     return {'reason':'identifier_only_table','cells':identifiers}
+
+
+def policy_table_exclusion(table):
+    """Thresholds define a policy; an actual-period amount is not a threshold."""
+    rows=table['rows']
+    if not rows:return None
+    heading=' '.join(str(c) for c in rows[0])
+    policy=re.search(r'重要性(?:标准|水平|判断)|(?:会计政策|确认|计量|判断)(?:的)?(?:标准|阈值)|政策参数',heading)
+    if not policy:return None
+    if re.search(r'本期(?:数|金额)|上期(?:数|金额)|(?:19|20)\d{2}\s*年|期末余额|期初余额',heading):return None
+    cells=[]
+    for r,row in enumerate(rows[1:],2):
+        if any(re.search(r'实际支付|实际发生|实付|本期发生额|实际金额',str(c)) for c in row):return None
+        for c,raw in enumerate(row,1):
+            text=re.sub(r'\s+','',str(raw))
+            if not re.search(r'\d',text) or identifier_reason(table,r,c):continue
+            # The subject label may contain an aging window. Values still need
+            # criterion wording, or a numeric threshold beneath a policy header.
+            if c==1 and not data_number(raw):continue
+            criterion=bool(re.search(r'≥|≤|>|<|以上|以下|超过|大于|小于|不低于|不高于|至少|至多|阈值',text))
+            threshold=decimal_value(text) is not None and bool(re.search(r'标准|阈值',heading))
+            if not criterion and not threshold:return None
+            cells.append({'row':r,'column':c,'raw_value':raw,'reason':'政策阈值，非报告期实际金额'})
+    if not cells:return None
+    return {'reason':'nonfinancial_policy_parameters','note':'非财务事实表：政策参数；保留完整原表供检索',
+            'source_heading':heading,'cells':cells}

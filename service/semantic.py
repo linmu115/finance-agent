@@ -158,10 +158,13 @@ def materialize(extractions, batch, document_id, model):
                 if r not in covered|skipped and any(numeric_candidate(v) for v in item["table"]["rows"][r-1]):
                     issues.append({"table":t,"row":r,"reason":"unmapped_numeric_row"})
     seen={}
+    from .derived_comparisons import complete_comparison_columns, comparison_checks
+    first_rows={t:min(r for mt,r,_ in mappings if mt==t) for t in {m[0] for m in mappings}}
     for t,r,ex in mappings:
         schema=schemas.get(t,{})
         if schema.get("statement") == "nonfinancial": continue
         attrs=ex["attributes"]; table=allowed[t]["table"]; row=table["rows"][r-1]
+        complete_comparison_columns(table,schema,attrs,r,first_rows[t])
         row_metric=str(attrs.get("metric", ""))
         columns=_json(attrs.get("columns_json"),[]) or _json(schema.get("columns_json"),[])
         unresolved={c.get('column') for c in _json(attrs.get('unresolved_cells_json'),[]) if c.get('reason')}
@@ -266,6 +269,8 @@ def materialize(extractions, batch, document_id, model):
                       "statement":statement, "period_start":start, "period_end":end, "restatement":version,
                       "dimensions":dims, "scale":str(factor), "char_interval":ex["span"]}
             metadata.update(row_metric=row_metric,row_label=attrs.get("label"),column_metric=column.get("metric"),column_label=column.get("label"),dimension_labels=dimension_labels)
+            if metric == row_metric and attrs.get('source_metric_aliases'):
+                metadata['metric_aliases']=list(attrs['source_metric_aliases'])
             # Interpretation fields travel with the original coordinate. A mixed
             # A/E table is materialized once and separated only at commit time.
             for field in ('data_kind','entity_kind','entity_identifiers','scenario','attribution','upstream_source','period_label'):
@@ -290,6 +295,9 @@ def materialize(extractions, batch, document_id, model):
                           "scope":column.get("scope") or attrs.get('scope') or schema.get("scope") or "unspecified","currency":currency,"raw_value":raw,"raw_unit":raw_unit,
                           "value":number_text(number*factor),"source":ref,"priority":120 if statement in {"income","balance","cashflow"} and not dims else 100,
                           "unit_kind":unit_kind(currency),"quality":"llm_normalized"})
+    for t,item in allowed.items():
+        mapped=[{'row':r,'attributes':ex['attributes']} for mt,r,ex in mappings if mt==t]
+        issues.extend(comparison_checks(item['table'],schemas.get(t,{}),mapped,[f for f in facts if f['source']['table_id']==f'{document_id}:t{t}']))
     return facts,issues
 
 

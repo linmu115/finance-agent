@@ -23,7 +23,7 @@ from .accounting_basis import identify as identify_basis, apply_basis
 from .standard_metrics import canonical_rows, VERSION as STANDARD_VERSION
 from .cleaning_consistency import table_semantics, document_conflicts
 from .source_dimensions import apply_source_dimensions
-from .source_numbers import identifier_table_exclusion
+from .source_numbers import identifier_table_exclusion, policy_table_exclusion
 from .table_identity import table_index
 from .cleaning_queue import runnable_tables, record_attempt, settle_tables, submitted_table
 
@@ -261,11 +261,11 @@ class ScriptCleaningMixin:
             index=table['index']
             if index in document['completed_tables']:continue
             if str(index) in document.get('deferred_tables',{}):continue
-            exclusion=identifier_table_exclusion(table)
+            exclusion=identifier_table_exclusion(table) or policy_table_exclusion(table)
             if exclusion:
                 payload.append({'index':index,'schema':{'statement':'nonfinancial'},'rows':[],
                                 'exclusion_reason':dumps(exclusion)})
-                origins[str(index)]='source-identifiers-1'
+                origins[str(index)]='source-policy-1' if exclusion['reason']=='nonfinancial_policy_parameters' else 'source-identifiers-1'
                 continue
             previous=saved.get(index)
             if previous and previous.get('document_sha256')==doc['sha256'] and previous.get('script_source_hash')==_hash(table) and previous.get('profile_revision')==document.get('profile_revision'):
@@ -530,6 +530,8 @@ class ScriptCleaningMixin:
                 continue
             if not isinstance(rows,list) or not isinstance(schema,dict):raise ValueError('invalid_script_mapping')
             if schema.get('statement')=='nonfinancial' and not str(item.get('exclusion_reason','')).strip():raise ValueError('missing_exclusion_reason')
+            if schema.get('statement')=='nonfinancial' and (policy:=policy_table_exclusion(table)):
+                item['exclusion_reason']=dumps(policy)
             marker=f'[[T{index}]]';ext=[{'class':'table_schema','text':marker,'span':[0,len(marker)],'attributes':schema}];used=set()
             topic=cleaning_rules.context(parsed,table)['topic'] if (profile or {}).get('kind','financial_report')=='financial_report' else None
             for row in rows:

@@ -628,7 +628,7 @@ class ProcessingMixin:
         superseded=bool(meta.get("directory_alias_superseded_by_definition") and meta.get("definition_review",{}).get("source_fingerprint")==meta.get("source_fingerprint"))
         return item|{"source_ref":ref,"label":meta.get("label") or METRICS.get(item["metric"],[item["metric"]])[0],"statement":meta.get("statement","notes"),
                      "period_start":meta.get("period_start",""),"period_end":meta.get("period_end",""),"dimensions":meta.get("dimensions",{}),"dimension_labels":meta.get("dimension_labels",{}),"unit_conversion":meta.get("unit_conversion"),
-                     "original_metric":meta.get("original_metric",item["metric"]),"canonical_alias":None if superseded else meta.get("canonical_alias"),"previous_canonical_alias":meta.get("canonical_alias") if superseded else None,"temporal_correction":meta.get("temporal_correction"),
+                     "metric_aliases":meta.get("metric_aliases",[]),"dimension_roles":meta.get("dimension_roles",{}),"original_metric":meta.get("original_metric",(meta.get("metric_aliases") or [item["metric"]])[0]),"canonical_alias":None if superseded else meta.get("canonical_alias"),"previous_canonical_alias":meta.get("canonical_alias") if superseded else None,"temporal_correction":meta.get("temporal_correction"),
                      "definition_review":meta.get("definition_review"),"definition":meta.get("definition_review",{}).get("after",{}).get("definition"),"definition_scope":meta.get("definition_review",{}).get("after",{}).get("definition_scope"),
                      "version":meta.get("restatement","original"),"restatement":meta.get("restatement","original"),"normalization_engine":meta.get("engine","legacy_rules"),
                      "unit_kind":meta.get("unit_kind") or unit_kind(item["currency"]),"numeric_span":meta.get("numeric_span"),
@@ -756,7 +756,13 @@ class ProcessingMixin:
     def get_normalization_details(self, project_id, document_id, table_id=None, limit=20, offset=0, review_only=False, query=None):
         if review_only:
             from .evidence_review import review_details
-            return envelope(review_details(self.store,project_id,document_id,query,offset,limit,table_id))
+            from .metric_normalization import pending_metric_review
+            result=review_details(self.store,project_id,document_id,query,offset,limit,table_id)
+            metrics=pending_metric_review(self.store,document_id,table_id)
+            if query:metrics=[m for m in metrics if str(query).casefold() in dumps(m).casefold()]
+            start=max(0,int(offset));size=max(1,min(int(limit),20))
+            result['metric_review']={'items':metrics[start:start+size],'total':len(metrics),'offset':start,'next_offset':start+size if start+size<len(metrics) else None}
+            return envelope(result)
         doc=self.get_document(project_id,document_id)["data"]
         limit=max(1,min(int(limit),20));offset=max(0,int(offset))
         with self.store.connect() as db:
@@ -769,7 +775,9 @@ class ProcessingMixin:
             batches=[dict(r) for r in db.execute("SELECT batch_key,processing_id,result_json,created_at FROM normalization_batches"+where+" ORDER BY created_at LIMIT ? OFFSET ?",args+[limit,offset])]
             versions=db.execute("SELECT count(*) FROM fact_history WHERE document_id=?",(document_id,)).fetchone()[0]
         for b in batches:b["result"]=json.loads(b.pop("result_json"))
-        return envelope({"document":doc,"batches":batches,"total":total,"limit":limit,"offset":offset,"summary":summary,"archived_fact_count":versions,"engine":doc.get('normalization_engine','unprocessed'),"version":VERSION})
+        from .metric_normalization import pending_metric_review
+        metric_review=pending_metric_review(self.store,document_id,table_id)
+        return envelope({"metric_review":{"items":metric_review[offset:offset+limit],"total":len(metric_review),"offset":offset,"next_offset":offset+limit if offset+limit<len(metric_review) else None},"document":doc,"batches":batches,"total":total,"limit":limit,"offset":offset,"summary":summary,"archived_fact_count":versions,"engine":doc.get('normalization_engine','unprocessed'),"version":VERSION})
 
     def get_document_index(self, project_id, document_id, section="overview", query=None,
                            offset=0, limit=40, page_start=None, page_end=None, include_preview=False):

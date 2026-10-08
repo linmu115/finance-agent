@@ -49,7 +49,7 @@ const projects=async()=>{
 const ensureProject=async(id:string)=>{
  id=readId(id);const all=await projects();if(!all.some((p:any)=>(p.project_id||p.id)===id)){const e:any=new Error('项目不存在');e.status=404;throw e;}return id;
 };
-const toDoc=(d:any)=>({id:d.document_id || d.id,name:d.original_name || d.name,status:d.state || d.status,pageCount:d.page_count,company:d.company,sha256:d.sha256,warnings:d.warnings || [],jobId:d.job_id,createdAt:d.created_at,error:d.error,tableCount:d.table_count,factCount:d.fact_count,researchRecordCount:d.research_record_count,profile:d.profile,processing:d.processing,normalization:d.normalization,normalization_engine:d.normalization_engine,normalized_fact_count:d.normalized_fact_count,legacy_fact_count:d.legacy_fact_count});
+const toDoc=(d:any)=>({id:d.document_id || d.id,name:d.original_name || d.name,status:d.state || d.status,statusLabel:d.status_label,ingestion:d.ingestion,pageCount:d.page_count,company:d.company,sha256:d.sha256,warnings:d.warnings || [],jobId:d.job_id,createdAt:d.created_at,error:d.error,tableCount:d.table_count,factCount:d.fact_count,researchRecordCount:d.research_record_count,profile:d.profile,processing:d.processing,normalization:d.normalization,normalization_engine:d.normalization_engine,normalized_fact_count:d.normalized_fact_count,legacy_fact_count:d.legacy_fact_count});
 const docList=(r:any)=>r.data?.documents || r.data?.items || (Array.isArray(r.data)?r.data:[]);
 const documentInfo=async(projectId:string,documentId:string)=>{
  const r=await service.call('get_document',{project_id:readId(projectId),document_id:readId(documentId)});return r.data?.document || r.data;

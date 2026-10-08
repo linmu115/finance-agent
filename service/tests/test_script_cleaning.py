@@ -53,6 +53,20 @@ class ScriptCleaningTests(unittest.TestCase):
         self.assertEqual(checkpoint['counts']['pending'],0)
         self.assertEqual(self.s.get_document('p',self.did)['data']['normalization_engine'],'PythonScript')
         self.assertEqual(self.s.get_document('p',self.did)['data']['legacy_fact_count'],0)
+    def test_source_normalization_retains_original_id_and_lists_unrecognized_ids(self):
+        payload=json.loads(dumps(self.payload))
+        payload['tables'][0]['rows'][0]['attributes']['metric']='bespoke_turnover'
+        rid=self.job(payload)
+        self.s.commit_cleaning_result('p',self.pid,rid)
+        with self.s.store.connect() as db:
+            rows=[dict(r) for r in db.execute("SELECT * FROM facts WHERE metric='revenue'")]
+        self.assertEqual(len(rows),2)
+        self.assertTrue(all(json.loads(r['source_json'])['normalization']['metric_aliases']==['bespoke_turnover'] for r in rows))
+        details=self.s.get_normalization_details('p',self.did)['data']
+        self.assertIn('cost',{r['metric'] for r in details['metric_review']['items']})
+        reviewed=self.s.get_normalization_details('p',self.did,review_only=True)['data']
+        self.assertEqual(reviewed['metric_review']['total'],details['metric_review']['total'])
+
     def test_empty_optional_reviews_commit_selected_tables_without_claiming_review(self):
         rid=self.job()
         result=self.s.commit_cleaning_result('p',self.pid,rid,reviews=[],table_indices=[0])['data']

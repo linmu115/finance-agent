@@ -55,7 +55,15 @@ def period_inputs(st, disclosure=None, additional_facts=()):
             if metric is None:
                 unknown.append({'label':row[0],'reason':'季度指标未识别','source':{'document_id':d.doc,'page':t['page'],'table_id':t['table_id'],'row':i+1,'raw_row':row}});continue
             for number,(c,header) in cols.items():
-                start,end=quarter_window(int(d.year),int(number));q=d.quantity(t,i,c,header)
+                start,end=quarter_window(int(d.year),int(number))
+                # A merged heading can be in a blank neighbour of its amount.
+                # Existing mapped source cells for this row/window already own
+                # the disclosure; do not append a fabricated blank candidate.
+                existing=[x for x in items if x['metric']==metric and x['start']==start and x['end']==end
+                          and x['quantity']['source'].get('source_ref',{}).get('table_id')==t['table_id']
+                          and x['quantity']['source'].get('source_ref',{}).get('row')==i+1]
+                if existing:continue
+                q=d.quantity(t,i,c,header)
                 mapped=[x for x in items if x['quantity']['source'].get('source_ref',{}).get('table_id')==t['table_id'] and x['quantity']['source'].get('source_ref',{}).get('row')==i+1 and x['quantity']['source'].get('source_ref',{}).get('column')==c+1]
                 version=mapped[0]['restatement'] if mapped else 'unspecified'
                 items.append(observation(metric,q,entity=st.company,scope=actual_scope,start=start,end=end,document_id=d.doc,

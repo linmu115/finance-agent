@@ -11,7 +11,7 @@ export interface Artifact {
   columns?: string[]; rows?: unknown[][]; data?: unknown;
 }
 export interface Document {
-  id: string; name: string; status: string; pageCount?: number; warnings?: string[];
+  id: string; name: string; status: string; statusLabel?: string; pageCount?: number; warnings?: string[];
   size?: number; mimeType?: string; error?: string; createdAt?: string; tableCount?: number; factCount?: number;
   tables?: { name?: string; sheet?: string; columns?: string[]; headers?: string[]; rows?: unknown[][]; rowCount?: number }[];
   pages?: { page?: number; text?: string }[];

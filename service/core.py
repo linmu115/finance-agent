@@ -91,7 +91,12 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
                 if engine:engines.setdefault(owner,set()).add(engine)
             research=dict(db.execute("SELECT r.document_id,count(*) FROM research_records r LEFT JOIN document_profiles p USING(document_id) WHERE r.project_id=? AND r."+scope+" AND r.is_current=1 AND (r.profile_revision IS NULL OR r.profile_revision=p.revision_id) GROUP BY r.document_id",(project_id,*args)).fetchall())
             profiles={r['document_id']:{**json.loads(r['profile_json']),'revision_id':r['revision_id'],'source_hash':r['source_hash']} for r in db.execute("SELECT * FROM document_profiles WHERE project_id=? AND "+scope,(project_id,*args))}
+            progress=[{'processing_id':r[0],'mode':r[1],'state':r[2],'documents':json.loads(r[3])} for r in db.execute("SELECT processing_id,json_extract(state_json,'$.mode'),json_extract(state_json,'$.state'),json_extract(state_json,'$.documents') FROM processing_runs WHERE project_id=? ORDER BY created_at,processing_id",(project_id,))]
+            receipts={}
+            for receipt in db.execute("SELECT document_id,json_extract(result_json,'$.script_table') script_table,json_extract(result_json,'$.status') status,json_extract(result_json,'$.superseded_by') superseded_by,json_extract(result_json,'$.document_sha256') document_sha256,json_extract(result_json,'$.profile_revision') profile_revision FROM normalization_batches WHERE "+scope+' ORDER BY created_at,rowid',args):
+                receipts.setdefault(receipt['document_id'],[]).append(dict(receipt))
         documents=[]
+        from .document_availability import describe_availability
         for row in rows:
             doc=dict(row);doc["warnings"]=json.loads(doc.pop("warnings_json"));key=doc["document_id"]
             doc["table_count"]=tables.get(key,0)
@@ -101,7 +106,7 @@ class FinanceService(AssetDashboardMixin, ResearchIngestionMixin, ScriptCleaning
             doc["normalization_engine"]=next(iter(found)) if len(found)==1 else 'mixed' if found else "legacy_rules" if doc["fact_count"] else "unprocessed"
             doc['research_record_count']=research.get(key,0)
             doc['profile']=profiles.get(key)
-            documents.append(doc)
+            documents.append(describe_availability(doc,progress,receipts.get(key,[])))
         return documents
 
     def list_documents(self, project_id):

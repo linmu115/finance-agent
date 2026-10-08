@@ -9,10 +9,10 @@ import { AnnotationRail } from './Annotations';
 import type { Message, Source, Artifact, Document, ToolEvent } from './types';
 
 export function docStatus(status: string) {
-  return ({ registered: '已附加 · 发送后处理', uploaded: '已附加 · 发送后处理', queued: '等待处理', parsing: '正在解析', processing: '正在处理', normalizing: '模型正在清洗', validating: '正在入库', indexed: '已建立索引', sources_ready: '已建立原文索引', cancelled: '已停止', ready: '已入库', needs_review: '已入库 · 部分待处理', failed: '解析失败', error: '解析失败' } as Record<string, string>)[status] || status || '等待解析';
+  return ({ registered: '已附加 · 发送后处理', uploaded: '已附加 · 发送后处理', queued: '等待处理', parsing: '正在解析', processing: '正在处理', normalizing: '模型正在清洗', validating: '正在入库', indexed: '已建立索引', sources_ready: '已建立原文索引', cancelled: '已停止', partial: '资料可用 · 入库未完成', ready: '已入库', needs_review: '已入库 · 部分待处理', failed: '解析失败', error: '解析失败' } as Record<string, string>)[status] || status || '等待解析';
 }
 export function FileChip({ document, onClick, onRemove }: { document: Document; onClick: () => void; onRemove?: () => void }) {
-  return <div className="file-chip"><button className="file-chip-main" onClick={onClick}><FileText /><span className="file-chip-text"><b>{document.name}</b><small>{docStatus(document.status)}{document.pageCount ? ` · ${document.pageCount} 页` : ''}</small></span></button>{onRemove && <button className="icon-btn remove-file" aria-label={`移除附件 ${document.name}`} onClick={onRemove}>×</button>}</div>;
+  return <div className="file-chip"><button className="file-chip-main" onClick={onClick}><FileText /><span className="file-chip-text"><b>{document.name}</b><small>{document.statusLabel || docStatus(document.status)}{document.pageCount ? ` · ${document.pageCount} 页` : ''}</small></span></button>{onRemove && <button className="icon-btn remove-file" aria-label={`移除附件 ${document.name}`} onClick={onRemove}>×</button>}</div>;
 }
 function tableCell(value: unknown): string {
   if (value == null) return '—';

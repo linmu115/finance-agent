@@ -44,6 +44,12 @@ class ResearchIngestionTests(unittest.TestCase):
                         {'field':'publisher','page':1,'quote':publisher},{'field':'authors','page':1,'quote':'Analyst Alice'},
                         {'field':'published_at','page':1,'quote':'Published '+day}]}
     def set_profile(self,did,profile):return self.s.set_document_profile('p',did,profile)['data']
+    def source_row_label(self,label):
+        _,parsed=self.s._clean_source('p',self.did)
+        original=parsed['tables'][0]['rows'][1][0]
+        parsed['tables'][0]['rows'][1][0]=label
+        parsed['pages'][0]['text']=parsed['pages'][0]['text'].replace(original,label)
+        self.s._persist_prepared('p',self.did,parsed)
     def job(self,pid=None,did=None,payload=None):
         pid=pid or self.pid;did=did or self.did
         rid=self.s.run_cleaning_script('p',pid,did,'# never executed on host')['data']['run_id']
@@ -117,11 +123,14 @@ class ResearchIngestionTests(unittest.TestCase):
         self.commit(payload=changed)
         with self.s.store.connect() as db:
             fresh=json.loads(db.execute('SELECT snapshot_json FROM attachment_flows WHERE flow_id=?',(self.pid+':'+self.did,)).fetchone()[0])
-        self.assertIn('operating_revenue',{r.get('metric') for r in fresh['research_records']})
+        normalized=[r for r in fresh['research_records'] if r.get('metric')=='revenue']
+        self.assertEqual(len(normalized),2)
+        self.assertTrue(all('operating_revenue' in r['source']['normalization']['metric_aliases'] for r in normalized))
 
     def test_unresolved_research_semantics_preserve_raw_numbers_with_warning(self):
+        self.source_row_label('Installed capacity')
         payload=copy.deepcopy(self.payload)
-        payload['tables'][0]['rows'][0]['attributes'].update(metric='installed_capacity',unit='GWh')
+        payload['tables'][0]['rows'][0]['attributes'].update(metric='installed_capacity',label='Installed capacity',unit='GWh')
         cols=json.loads(payload['tables'][0]['schema']['columns_json']);cols[1].update(period='unknown',period_label='远期',data_kind='unclassified')
         payload['tables'][0]['schema']['columns_json']=dumps(cols)
         rid=self.job(payload=payload);check=self.s.get_cleaning_result('p',self.pid,rid)['data']
@@ -307,8 +316,9 @@ class ResearchIngestionTests(unittest.TestCase):
         self.assertEqual(self.s.query_research_records('p',{'query':'%'})['data']['total'],0)
 
     def test_financial_acronym_matches_stored_metric_without_new_ingestion(self):
+        self.source_row_label('Free cash flow to firm')
         payload=copy.deepcopy(self.payload)
-        payload['tables'][0]['rows'][0]['attributes']['metric']='free_cash_flow_firm'
+        payload['tables'][0]['rows'][0]['attributes'].update(metric='free_cash_flow_firm',label='Free cash flow to firm')
         self.commit(payload=payload)
         got=self.s.query_research_records('p',{'query':'FCFF','record_type':'observation'})['data']
         self.assertEqual(got['total'],2)
