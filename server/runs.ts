@@ -2,6 +2,7 @@ import {emptyUsage,addUsage as tallyUsage,aggregateAudit} from './usage.js';
 import {artifactMediaType} from './artifact-media.js';
 import {registerNumericTables,referenceInventory} from './numeric-tables.js';
 import {answerBindingExtension} from './answer-binding.js';
+import {annotateAnswer,valuationSections} from './answer-semantics.js';
 import {repairInterruptedTools,operationKey,sideEffectTool} from './session-recovery.js';
 import {configuredModel,modelCatalogRevision,jsonOutputPayload} from './model-runtime.js';
 import { createAgentSession, DefaultResourceLoader, ModelRuntime, SessionManager, SettingsManager } from '@earendil-works/pi-coding-agent';
@@ -474,10 +475,16 @@ export class RunManager {
  }
  private isIngestion(l:LiveRun){return l.processingIds.size>0||l.run.tools.some(tool=>tool.name==='process_documents');}
  private async renderAnswer(l:LiveRun,body:string){
-  if(this.isIngestion(l)||!body.includes('{{'))return body;
+  if(this.isIngestion(l))return body;
+  const missing=valuationSections(body);
+  body=annotateAnswer(body,l.answer.sources);
   const charts:Record<string,string>={};
   for(const a of l.answer.artifacts||[])if(a.mimeType.startsWith('image/'))charts[a.name]=a.url;
-  return (await this.service.call('render_answer',{project_id:l.run.projectId,body,tables:l.numericTables||{},charts},l.controller.signal)).data.body as string;
+  let bound=body,failure:any;
+  try{if(body.includes('{{'))bound=(await this.service.call('render_answer',{project_id:l.run.projectId,body,tables:l.numericTables||{},charts},l.controller.signal)).data.body as string;}
+  catch(error){if((error as any).code!=='answer_reference_error')throw error;failure=error;}
+  if(missing.length||failure)throw Object.assign(new Error([failure?.message,missing.length?'估值或投资判断缺少有内容的小节：'+missing.join(' / ')+'。保留已核对数值并补全；资料不足明确说明。':null].filter(Boolean).join('\n')),{code:failure?'answer_reference_error':'answer_contract_error'});
+  return bound;
  }
  private async databaseOperation(l:LiveRun,params:Record<string,any>){
   if(!['sql','read_other_project','update_fact','delete_fact','delete_document','analysis_changes'].includes(params.operation)||!params.reason?.trim())throw new Error('必须指定操作和用途');
@@ -641,7 +648,8 @@ export class RunManager {
    const lastAssistant=session.messages.findLast((message:any)=>message.role==='assistant');
    if(lastAssistant?.stopReason==='length')throw new Error('模型输出仍被截断，当前结果未完成；已保存会话进度，可继续完成剩余内容。');
    const answer=session.getLastAssistantText();if(!answer?.trim())throw new Error('模型没有返回有效分析结果');
-   l.answer.content=await this.renderAnswer(l,answer);l.answer.status='completed';l.run.status='completed';l.run.stage='完成';
+   // Native message_end already rendered and persisted this answer, including labels.
+   l.answer.content=answer;l.answer.status='completed';l.run.status='completed';l.run.stage='完成';
   }catch(error){
    const reason=l.controller.signal.aborted?l.controller.signal.reason:error;
    l.accepting=false;

@@ -166,6 +166,13 @@ app.get('/api/projects/:projectId/artifacts/:runId/:name',route(async(req,res)=>
  const type=artifactMediaType(actual);
  res.type(type).setHeader('X-Content-Type-Options','nosniff');if(req.query.download||artifactDownloadOnly(actual))res.setHeader('Content-Disposition',"attachment; filename*=UTF-8''"+encodeURIComponent(d.name||path.basename(actual)));res.sendFile(actual);
 }));
+app.post('/api/conversations/:id/report-package',route(async(req,res)=>{
+ const chat=await runs.getConversation(readId(req.params.id));
+ const {exportReportPackage}=await import('./report-package.js');
+ const result=await exportReportPackage(service,chat);
+ res.type('application/zip').setHeader('Content-Disposition',"attachment; filename*=UTF-8''"+encodeURIComponent('财报分析报告.zip'));
+ res.sendFile(safeDataPath(result.relative_path));
+}));
 app.get('/api/conversations/:id/export',route(async(req,res)=>{
  const chat=await runs.getConversation(readId(req.params.id));
  const text='# '+chat.title+'\n\n'+chat.messages.map(m=>'## '+(m.role==='user'?'用户':'金融研究')+'\n\n'+m.content+'\n\n'+(m.annotations||[]).map((a,i)=>`引用 ${i+1}\n> ${a.text.replace(/\n/g,'\n> ')}\n补充说明：${a.comment||'无'}\n`).join('\n')+(m.sources||[]).map(s=>'- 来源 '+s.documentId+(s.page?' 第'+s.page+'页':'')+(s.quote?'：'+s.quote:'')).join('\n')).join('\n\n');

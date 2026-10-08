@@ -8,7 +8,6 @@ export function answerBindingExtension(options:{enabled:()=>boolean;render:(body
    if(message.role!=='assistant'||message.stopReason!=='stop')return;
    if(!options.enabled()){options.error();return;}
    const body=message.content.filter(b=>b.type==='text').map(b=>b.text).join('');
-   if(!body.includes('{{')){options.error();return;}
    try{
     const rendered=await options.render(body);options.error();
     await options.audit('answer_bound',{template:body,rendered});
@@ -16,9 +15,9 @@ export function answerBindingExtension(options:{enabled:()=>boolean;render:(body
    }catch(error){
     const failure=error as Error & {code?:string};options.error(failure);
     await options.audit('answer_binding_error',{message:failure.message,code:failure.code});
-    if(failure.code!=='answer_reference_error'||options.repairSent())return;
+    if(!['answer_reference_error','answer_contract_error'].includes(failure.code||'')||options.repairSent())return;
     options.markRepair();
-    pi.sendMessage({customType:'answer_reference_error',content:'回答中的数值引用无法解析，请按下列实际表键修正回答：\n'+failure.message,display:false},{deliverAs:'followUp',triggerTurn:true});
+    pi.sendMessage({customType:'answer_reference_error',content:'请一次修复回答中以下问题：\n'+failure.message,display:false},{deliverAs:'followUp',triggerTurn:true});
    }
   });
  };
