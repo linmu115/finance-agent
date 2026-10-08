@@ -1,7 +1,7 @@
 {
   "llm_calls": 0,
   "database_mode": "copied sqlite mode=ro; legacy TEMP view only",
-  "checked_computations": 16,
+  "checked_computations": 17,
   "checks": [
     {
       "company": "yili",
@@ -499,7 +499,7 @@
           "row": 2,
           "column": 5,
           "column_label": "第四季度\n（10-12 月份）",
-          "text": "营业收入"
+          "text": "营业收入 | 32,462,896,350.54 | 27,232,860,611.05 | 29,037,177,483.84 | 26,660,376,531.26"
         },
         {
           "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
@@ -530,7 +530,7 @@
           "row": 3,
           "column": 5,
           "column_label": "第四季度\n（10-12 月份）",
-          "text": "归属于上市公司股东的净利润"
+          "text": "归属于上市公司股东的净利润 | 5,922,814,507.71 | 1,608,319,620.91 | 3,337,346,216.72 | -2,415,620,352.16"
         },
         {
           "document_id": "1f94f25a3cb74d528f10ddac0be06a0d",
@@ -614,12 +614,23 @@
           "text": " |  | 41,098 | "
         }
       ]
+    },
+    {
+      "company": "yili",
+      "key": "2024-FY_inventory_charge_rate",
+      "expected": "10.00036072820675745665254105432300243107",
+      "actual": "10.00036072820675745665254105432300243107",
+      "pdf_pages": [
+        164,
+        165
+      ],
+      "match": true
     }
   ],
   "cases": [
     {
       "company": "yili",
-      "signals": 38,
+      "signals": 39,
       "families": 9,
       "known": 35,
       "triggered": [
@@ -645,12 +656,16 @@
         {
           "key": "receivables_overdue_change",
           "reason": "缺少唯一同口径逾期超过12个月应收及总额"
+        },
+        {
+          "key": "inventory_charge_rate_change",
+          "reason": "2023-FY 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2023-FY 缺少期初存货账面原值；2023-FY 缺少期末存货账面原值"
         }
       ]
     },
     {
       "company": "ruihe",
-      "signals": 38,
+      "signals": 39,
       "families": 9,
       "known": 14,
       "triggered": [
@@ -699,6 +714,10 @@
           "reason": "未找到唯一同口径存货原值与跌价准备两期表"
         },
         {
+          "key": "inventory_charge_rate_change",
+          "reason": "2025-H1 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2025-H1 缺少期初存货账面原值；2025-H1 缺少期末存货账面原值；2024-H1 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2024-H1 缺少期初存货账面原值；2024-H1 缺少期末存货账面原值"
+        },
+        {
           "key": "other_noncurrent_asset_share",
           "reason": "缺少 2025-06-30 other_noncurrent 同口径披露"
         },
@@ -708,23 +727,23 @@
         },
         {
           "key": "q4_revenue_share",
-          "reason": "缺少该全年唯一的同口径单季披露；中报不外推第四季度"
+          "reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母"
         },
         {
           "key": "q4_parent_profit_share",
-          "reason": "缺少该全年唯一的同口径单季披露；中报不外推第四季度"
+          "reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母"
         },
         {
           "key": "q4_parent_profit_direction",
-          "reason": "缺少该全年唯一的同口径单季披露；中报不外推第四季度"
+          "reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母；当前不是完整全年，不进行Q4与前三季方向比较"
         },
         {
           "key": "q4_cfo_direction",
-          "reason": "缺少该全年唯一的同口径单季披露；中报不外推第四季度"
+          "reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母；当前不是完整全年，不进行Q4与前三季方向比较"
         },
         {
           "key": "q4_profit_cash_sign",
-          "reason": "缺少该全年唯一的同口径单季披露；中报不外推第四季度"
+          "reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母"
         },
         {
           "key": "asset_impairment_change",
@@ -762,7 +781,7 @@
     },
     {
       "company": "carote",
-      "signals": 38,
+      "signals": 39,
       "families": 9,
       "known": 11,
       "triggered": [
@@ -807,6 +826,10 @@
           "reason": "未找到唯一同口径存货原值与跌价准备两期表"
         },
         {
+          "key": "inventory_charge_rate_change",
+          "reason": "2025-H1 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2025-H1 缺少期初存货账面原值；2025-H1 缺少期末存货账面原值；2024-H1 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2024-H1 缺少期初存货账面原值；2024-H1 缺少期末存货账面原值"
+        },
+        {
           "key": "other_receivables_asset_share",
           "reason": "缺少 2025-06-30 other_receivables 同口径披露"
         },
@@ -832,23 +855,23 @@
         },
         {
           "key": "q4_revenue_share",
-          "reason": "缺少该全年唯一的同口径单季披露；中报不外推第四季度"
+          "reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母"
         },
         {
           "key": "q4_parent_profit_share",
-          "reason": "缺少该全年唯一的同口径单季披露；中报不外推第四季度"
+          "reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母"
         },
         {
           "key": "q4_parent_profit_direction",
-          "reason": "缺少该全年唯一的同口径单季披露；中报不外推第四季度"
+          "reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母；当前不是完整全年，不进行Q4与前三季方向比较"
         },
         {
           "key": "q4_cfo_direction",
-          "reason": "缺少该全年唯一的同口径单季披露；中报不外推第四季度"
+          "reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母；当前不是完整全年，不进行Q4与前三季方向比较"
         },
         {
           "key": "q4_profit_cash_sign",
-          "reason": "缺少该全年唯一的同口径单季披露；中报不外推第四季度"
+          "reason": "当前不是完整全年；中报/季报不外推第四季度或冒充全年分母"
         },
         {
           "key": "asset_impairment_change",
@@ -885,6 +908,62 @@
       ]
     }
   ],
+  "inventory_charge_rates": {
+    "yili": [
+      {
+        "key": "2024-FY",
+        "period": "2024-FY",
+        "charge": "1260.26931115",
+        "average_gross_inventory": "12602.23851321",
+        "value": "10.00036072820675745665254105432300243107",
+        "missing": ""
+      },
+      {
+        "key": "2023-FY",
+        "period": "2023-FY",
+        "charge": null,
+        "average_gross_inventory": null,
+        "value": null,
+        "missing": "2023-FY 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2023-FY 缺少期初存货账面原值；2023-FY 缺少期末存货账面原值"
+      }
+    ],
+    "ruihe": [
+      {
+        "key": "2025-H1",
+        "period": "2025-H1",
+        "charge": null,
+        "average_gross_inventory": null,
+        "value": null,
+        "missing": "2025-H1 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2025-H1 缺少期初存货账面原值；2025-H1 缺少期末存货账面原值"
+      },
+      {
+        "key": "2024-H1",
+        "period": "2024-H1",
+        "charge": null,
+        "average_gross_inventory": null,
+        "value": null,
+        "missing": "2024-H1 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2024-H1 缺少期初存货账面原值；2024-H1 缺少期末存货账面原值"
+      }
+    ],
+    "carote": [
+      {
+        "key": "2025-H1",
+        "period": "2025-H1",
+        "charge": null,
+        "average_gross_inventory": null,
+        "value": null,
+        "missing": "2025-H1 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2025-H1 缺少期初存货账面原值；2025-H1 缺少期末存货账面原值"
+      },
+      {
+        "key": "2024-H1",
+        "period": "2024-H1",
+        "charge": null,
+        "average_gross_inventory": null,
+        "value": null,
+        "missing": "2024-H1 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代；2024-H1 缺少期初存货账面原值；2024-H1 缺少期末存货账面原值"
+      }
+    ]
+  },
   "visual_review": {
     "yili_pdf_pages": [
       8,
@@ -892,6 +971,7 @@
       92,
       153,
       164,
+      165,
       62
     ],
     "ruihe_pdf_pages": [

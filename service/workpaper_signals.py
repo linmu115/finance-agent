@@ -86,6 +86,32 @@ def audit_signals(a):
     return results
 
 
+def inventory_charge_rates(a):
+    """Period expense additions are distinct from an allowance balance.
+
+    Ratio denominator is average gross inventory over the same period. Opening
+    balance dated on period start is allowed only when explicitly labelled as
+    opening, never as a substitute for a prior-year period expense.
+    """
+    def total(r):
+        dims=r.get('dimensions') or {}
+        return all(k in ('source_table','financial_item') or str(v).lower() in ('total','合计','合計') for k,v in dims.items())
+    def unique(rs,reason):
+        if rs and len({r['value'] for r in rs})==1 and all(r.get('quality')!='conflict' for r in rs):return record_quantity(rs[0])
+        return cell(None,'元',a.currency,sources=[record_quantity(r)['source'] for r in rs],reason=reason if not rs else '同口径存货披露存在冲突')
+    rows=[]
+    for p in a.ps:
+        start,end=a.window(p)
+        rs=[r for r in a.records if total(r) and r['currency']==a.currency]
+        charges=unique([r for r in rs if r['period']==p and r['metric'] in ('inventory_write_down_provision_charged','inventory_provision_charged','inventory_write_down_charge')],f'{p} 缺少同口径存货跌价本期计提合计；净减值损失或准备余额不能替代')
+        opening=unique([r for r in rs if r['period']==start and r['metric']=='inventory_gross_beginning_balance'],f'{p} 缺少期初存货账面原值')
+        closing=unique([r for r in rs if r['period']==end and r['metric'] in ('inventory_gross_ending_balance','inventory_gross_carrying_amount')],f'{p} 缺少期末存货账面原值')
+        avg=calc([opening,closing],lambda x,y:(x+y)/2,formula='同期间期初期末存货账面原值平均')
+        rate=ratio(charges,avg,'当期存货跌价准备计提发生额/平均存货账面原值*100；不是期末准备余额覆盖率，未年化')
+        rows.append({'key':p,'period':p,'charge':charges,'average_gross_inventory':avg,'value':rate,'missing':rate['source'].get('missing_reason') or ''})
+    return rows
+
+
 def overdue_ratios(a,p):
     """Invoice age and days past due are different bases; never combine them."""
     qs=[]
@@ -154,6 +180,10 @@ def anomaly_signals(service,project,document_id=None,company=None,scope='consoli
     overdue=overdue_ratios(a,current)
     add('receivables_overdue_change','应收','逾期超过一年应收占比变化',delta(*overdue,'个百分点'),'> 5 个百分点',lambda v:v>5,'期末对期初；逾期账龄，不与发票账龄混用')
     add('inventory_provision_change','存货','存货跌价准备余额覆盖率变化',delta(*provision,'个百分点'),'绝对变化 > 2 个百分点',lambda v:abs(v)>2,'期末对期初；准备余额/账面原值，不等于本期费用计提率')
+    inventory_rates=inventory_charge_rates(a)
+    current_rate=inventory_rates[0]['value'];prior_rate=inventory_rates[1]['value'] if len(inventory_rates)>1 else unknown('缺少比较期存货计提率','%')
+    add('inventory_charge_rate_change','存货','存货跌价准备本期计提率变化',delta(current_rate,prior_rate,'个百分点'),'绝对变化 > 2 个百分点',lambda v:abs(v)>2,
+        f'{current} 对 {previous}；计提发生额/同期间平均存货原值；与余额覆盖率分别列示')
     for key,label in [('other_receivables','其他应收款'),('prepayments','预付款项'),('other_noncurrent','其他非流动资产')]:
         q=a.balance(key,current)
         add(key+'_asset_share','其他资产异动',label+'占总资产比例',ratio(q,a.balance('assets',current)),'> 10%',lambda v:v>10,current+'期末')
@@ -220,4 +250,7 @@ def anomaly_signals(service,project,document_id=None,company=None,scope='consoli
     columns={k:col(v) for k,v in [('key','行键'),('family','信号类别'),('signal','现象'),('value','计算值'),('baseline','比较基准/口径'),('threshold','触发条件'),('threshold_source','阈值来源'),('triggered','是否触发'),('evidence','文档/页/表/行列'),('missing','缺失或局限')]}
     columns['value']['per_cell_unit']=True
     return {'title':a.st.company+' 异常信号雷达','body':'信号只陈述数值现象，不是风险结论。模型应结合引用原文分别说明可能业务解释与需警惕情形，区分事实与推论。经验阈值没有行业校准。',
-            'tables':{'signals':table(columns,rows),'observations':table({k:col(v) for k,v in [('key','行键'),('finding','已触发现象（按绝对数值幅度，跨单位不代表严重度）'),('basis','底稿位置')]},observations)}},a.records
+            'tables':{'signals':table(columns,rows),
+                      'inventory_charge_rates':table({'key':col('行键'),'period':col('期间'),'charge':col('当期计提发生额','百万元',a.currency),
+                          'average_gross_inventory':col('平均存货账面原值','百万元',a.currency),'value':col('当期计提率','%'),'missing':col('缺失说明')},inventory_rates),
+                      'observations':table({k:col(v) for k,v in [('key','行键'),('finding','已触发现象（按绝对数值幅度，跨单位不代表严重度）'),('basis','底稿位置')]},observations)}},a.records

@@ -47,7 +47,7 @@ def manual_references():
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--old-copy',type=Path,required=True);p.add_argument('--current-copy',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
-    args=p.parse_args();reports={};summaries=[]
+    args=p.parse_args();reports={};summaries=[];inventory_rates={}
     for name,which,project,doc in CASES:
         s=legacy.FinanceService.__new__(legacy.FinanceService);s.store=legacy.ReadOnlyCopy(args.old_copy if which=='old' else args.current_copy)
         with localcontext() as ctx:
@@ -56,6 +56,7 @@ def main():
         (destination/'workpaper.json').write_text(json.dumps(raw,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
         (destination/'result.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
         rows=report['tables']['signals']['rows'];reports[name]={r['key']:r for r in rows}
+        inventory_rates[name]=report['tables']['inventory_charge_rates']['rows']
         assert len({r['family'] for r in rows})==9
         assert all(r['missing'] for r in rows if r['value'] is None)
         assert all(r['evidence']!='[]' for r in rows if r['value'] is not None)
@@ -69,9 +70,14 @@ def main():
         for name,key,expected,pages in manual_references():
             r=reports[name][key];actual=D(r['value']);assert abs(actual-expected)<D('1e-25'),(name,key,actual,expected)
             checks.append({'company':name,'key':key,'expected':str(expected),'actual':str(actual),'pdf_pages':pages,'match':True,'source_positions':json.loads(r['evidence'])})
-    result={'llm_calls':0,'database_mode':'copied sqlite mode=ro; legacy TEMP view only','checked_computations':len(checks),'checks':checks,'cases':summaries,
-            'visual_review':{'yili_pdf_pages':[8,87,92,153,164,62],'ruihe_pdf_pages':[47]},'not_proven':'专业优势与正式对照由N1验收；本脚本无付费分析或入库'}
-    args.output.mkdir(parents=True,exist_ok=True);(args.output/'acceptance.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+        rate=next(r for r in inventory_rates['yili'] if r['period']=='2024-FY')
+        expected=D('1260269311.15')/((D('13616875208.22')+D('11587601818.20'))/2)*100
+        assert abs(D(rate['value'])-expected)<D('1e-25')
+        assert next(r for r in inventory_rates['yili'] if r['period']=='2023-FY')['value'] is None
+        checks.append({'company':'yili','key':'2024-FY_inventory_charge_rate','expected':str(expected),'actual':rate['value'],'pdf_pages':[164,165],'match':True})
+    result={'llm_calls':0,'database_mode':'copied sqlite mode=ro; legacy TEMP view only','checked_computations':len(checks),'checks':checks,'cases':summaries,'inventory_charge_rates':inventory_rates,
+            'visual_review':{'yili_pdf_pages':[8,87,92,153,164,165,62],'ruihe_pdf_pages':[47]},'not_proven':'专业优势与正式对照由N1验收；本脚本无付费分析或入库'}
+    args.output.mkdir(parents=True,exist_ok=True);(args.output/'acceptance.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n')
     print(json.dumps({'checked_computations':len(checks),'cases':[{k:v for k,v in r.items() if k!='missing'} for r in summaries]},ensure_ascii=False))
 
 

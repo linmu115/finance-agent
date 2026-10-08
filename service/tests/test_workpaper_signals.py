@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 from service.analysis_report import compile_report, bind_text
 from service.financial_workpapers import cell, financial_workpaper
-from service.workpaper_signals import anomaly_signals, audit_signals, note_ratios
+from service.workpaper_signals import anomaly_signals, audit_signals, note_ratios, inventory_charge_rates
 from service.tests import test_workpaper_annual as annual_tests
 
 
@@ -82,6 +82,24 @@ class SignalTests(unittest.TestCase):
         self.assertEqual(D(aging[0]['value'])-D(aging[1]['value']),20)
         t['rows'][3][1]=None
         aging,_=note_ratios(a);self.assertIsNone(aging[0]['value'])
+
+    def test_inventory_period_charge_is_not_balance_or_net_impairment(self):
+        a=SyntheticData()
+        for year,charge in [('2024',30),('2023',10)]:
+            for metric,p,amount in [('inventory_write_down_provision_charged',year+'-FY',charge),('inventory_gross_beginning_balance',year+'-01-01',100),('inventory_gross_ending_balance',year+'-12-31',100)]:
+                a.records.append({'metric':metric,'period':p,'value':str(amount),'currency':'CNY','dimensions':{'financial_item':'inventory_total'},'source_ref':{'page':1,'table_id':'t','row':1,'column':2},'document_id':'synthetic'})
+        _,rows=self.report(a)
+        self.assertEqual(D(rows['inventory_charge_rate_change']['value']),20)
+        self.assertEqual(rows['inventory_charge_rate_change']['triggered'],'是')
+        a.records[0]['value']='10'
+        _,rows=self.report(a);self.assertEqual(rows['inventory_charge_rate_change']['triggered'],'否')
+        # A category is not the total; a net loss cannot replace gross charges.
+        a.records[3]['metric']='inventory_and_contract_performance_cost_impairment_loss'
+        category=copy.deepcopy(a.records[0]);category['value']='999';category['dimensions']['inventory_category']='类别甲';a.records.append(category)
+        rates=inventory_charge_rates(a)
+        self.assertEqual(D(rates[0]['value']['value']),10)
+        self.assertIsNone(rates[1]['value']['value'])
+        _,rows=self.report(a);self.assertEqual(rows['inventory_charge_rate_change']['triggered'],'未知')
 
 
 class SignalContractTests(unittest.TestCase):
