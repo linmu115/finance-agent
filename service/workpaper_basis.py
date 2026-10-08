@@ -13,43 +13,68 @@ from .workpaper_annual import Disclosure,compact,literal,row_kind
 from .workpaper_periods import column_context
 
 MARKERS={
-    'accounting_policy':r'会计政策(?:的)?变更|會計政策(?:的)?變更|changes? (?:in|to) (?:the .{0,25})?accounting policies',
+    'accounting_policy':r'会计政策(?:的)?变更|會計政策(?:的)?變更|会计政策(?=、会计估计变更)|执行[^。；;]*?准则|執行[^。；;]*?準則|解释第\s*[0-9一二三四五六七八九十]+\s*号|解釋第\s*[0-9一二三四五六七八九十]+\s*號|重分类|重分類|changes? (?:in|to) (?:the .{0,25})?accounting policies|reclassifi(?:ed|cation)',
     'accounting_estimate':r'会计估计(?:的)?变更|會計估計(?:的)?變更|changes? in accounting estimates',
     'prior_error':r'(?:前期|重大)?会计差错更正|前期差错更正|前期差錯更正|prior.period errors?',
     'common_control':r'(?<!非)同一控制下(?:的)?企业(?:吸收)?合并|同一控制下(?:的)?企業合併|business combinations? under common control',
-    'restatement':r'追溯(?:调整|重述)|追溯(?:調整|重列)|\brestat(?:ed|ement)\b|retrospective(?:ly)? (?:adjust|restat)\w*',
+    'restatement':r'追溯(?:调整|重述)|追溯(?:調整|重列)|(?<!追溯)重述|\brestat(?:ed|ement)\b|retrospective(?:ly)? (?:adjust|restat)\w*',
 }
+
+
+def _marker_sentences(text):
+    # PDF line wraps belong to the sentence; numbered headings and checkbox
+    # blocks do not. In particular a combined policy/estimate heading must not
+    # lend its type or checkbox to the following policy implementation sentence.
+    text=re.sub(r'(?m)^(?=\s*(?:[一二三四五六七八九十]+、|[（(](?:[一二三四五六七八九十]+|\d+)[）)]|\d+、))','\0',text)
+    text=re.sub(r'(?:[√✓☑□]\s*(?:不适用|不適用|适用|適用)\s*)+',lambda m:m[0]+'\0',text)
+    clean=re.sub(r'\s+',' ',text)
+    clean=re.sub(r'(?<=[\u4e00-\u9fff])\s+(?=[\u4e00-\u9fff])','',clean)
+    return [s.strip() for s in re.split(r'\x00|(?<=。)|(?<=\.)\s+',clean) if s.strip()]
+
+
+def _completion_evidence(sentence):
+    """Explicit implementation language, not conditional accounting mechanics."""
+    # These are actual policy-template constructions, not absence of evidence.
+    if re.search(r'若|如为|如為|如果|倘|视同|視同|应当|應當|应按|應按|拟|擬|将于|將於|将会|將會|\b(?:if|would|will|shall|should)\b',sentence,re.I):return None
+    subject=r'(?:报告期(?:内|间)?|報告期(?:內|間)?|本期|本年度|本年|本公司|本集团|本集團|the group|the company)'
+    action=r'(?:已(?:经|經)?(?:对|對|按|根据|根據|发生|發生|完成|进行|進行|采用|採用|执行|執行|实施|實施|纳入|納入|并表|併表|收购|收購|追溯|重述|重列|变更|變更|更正|调整|調整)|完成|进行了|進行了|have (?:adopted|completed|restated)|has (?:adopted|completed|restated))'
+    # Present-tense implementation disclosures also explicitly describe an
+    # action: "本公司根据…规定，将…计入…" / "本公司采用…对…进行调整".
+    for pattern in (
+        subject+r'[^。；;]*?'+action,
+        r'(?:报告期(?:内|间)?|報告期(?:內|間)?|本期|本年度)[^。；;]*?(?:纳入|納入|并表|併表|收购完成|收購完成)',
+        subject+r'[^。；;]*?(?:根据|根據|按照)[^。；;]*?(?:准则|準則|解释|解釋)[^。；;]*?将[^。；;]*?(?:计入|計入|重分类|重分類)',
+        subject+r'[^。；;]*?采用追溯(?:调整|重述)法对[^。；;]*?进行(?:相应)?调整',
+    ):
+        match=re.search(pattern,sentence,re.I)
+        if match and not re.search(r'(?:未|尚未|未曾|没有|沒有|不曾)(?:发生|發生|完成|进行|進行|执行|執行|纳入|納入|收购|收購|将|將)|\b(?:has|have) not\b',match[0],re.I):return match[0]
+    return None
 
 
 def scan_basis_markers(pages,document_id):
     """Return every textual hit with a status, including negated/template hits."""
     found=[]
     for page,text in pages.items():
-        # Collapse spaces only between CJK characters, preserving English words.
-        clean=re.sub(r'\s+',' ',text)
-        clean=re.sub(r'(?<=[\u4e00-\u9fff])\s+(?=[\u4e00-\u9fff])','',clean)
-        for kind,pattern in MARKERS.items():
-            for m in re.finditer(pattern,clean,re.I):
-                left=max(clean.rfind('。',0,m.start()),clean.rfind('. ',0,m.start()))+1
-                ends=[v for v in (clean.find('。',m.end()),clean.find('. ',m.end())) if v>=0]
-                right=min(ends)+1 if ends else len(clean)
-                sentence=clean[left:right].strip()
-                # A heading's checkbox belongs to that heading, before the next
-                # numbered subsection; a generic accounting-policy paragraph is
-                # retained but never turned into a company-specific event.
-                tail=clean[m.end():]
-                stop=re.search(r'(?:\(\d+\)|（[一二三四五六七八九十]+）|\d+、)',tail)
-                local=tail[:stop.start()] if stop else tail.split('。')[0]
-                first_check=re.search(r'[√✓☑]\s*(?:不适用|不適用|适用|適用)|\b(?:not applicable|no change)\b',local,re.I)
-                status='reference_only';reason='仅出现词语或会计处理政策描述，不证明本期发生'
+        for sentence in _marker_sentences(text):
+            hits=[(kind,m) for kind,pattern in MARKERS.items() for m in re.finditer(pattern,sentence,re.I)]
+            kinds={kind for kind,_ in hits}
+            completion=_completion_evidence(sentence)
+            for kind,m in hits:
+                first_check=re.search(r'[√✓☑]\s*(?:不适用|不適用|适用|適用)|\bnot applicable\b',sentence[m.end():],re.I)
+                status='unclassified';reason='未自动判定是否本期发生，需对照原文核对'
                 if first_check:
-                    active=not re.search(r'不|not|no ',first_check[0],re.I)
-                    status='change_disclosed' if active else 'not_applicable'
-                    reason='原文适用/不适用标记；不由适用自动推断追溯重述'
-                if re.search(r'影响.{0,20}(?:为|是)?\s*0(?:\.0+)?\s*元|did not result in significant changes|无(?:重大|实质)?影响|無(?:重大|重大性)?影響|未(?:发生|發生|进行|進行)|无需|毋須',sentence,re.I):
-                    status='no_impact_or_no_change';reason='原文明示未发生或零/无重大影响，保留原句'
-                if kind=='restatement' and status=='reference_only' and re.search(r'(?:本公司|本集团|本集團|报告期内|报告期间|the group|the company).{0,100}(?:已|进行了|予以|have|has|were).{0,80}(?:追溯|restat)',sentence,re.I):
-                    status='restatement_disclosed';reason='原文明确本期对既有报表实施追溯调整/重述'
+                    active=not re.search(r'不|not',first_check[0],re.I)
+                    if not active:
+                        status='not_applicable';reason='原文明示不适用，保留原文标记'
+                    elif len(kinds)==1:
+                        status='change_disclosed';reason='原文该项勾选适用；发生时间与具体执行需对照正文'
+                impact=re.search(r'影响.{0,20}(?:为|是)?\s*0(?:\.0+)?\s*元|did not result in significant changes|无(?:重大|实质)?影响|無(?:重大|重大性)?影響|未(?:发生|發生|进行|進行)|无需|毋須',sentence,re.I)
+                if impact:
+                    status='no_impact_or_no_change';reason='原文明示“'+impact[0]+'”，保留其限定范围'
+                negated=re.search(r'(?:无需|无须|毋須|未|尚未|没有|沒有|未曾)[^，,；;。]*$',sentence[:m.start()])
+                if completion and status!='not_applicable' and not negated:
+                    status='restatement_disclosed' if kind=='restatement' else 'change_disclosed'
+                    reason='原文明确执行/完成：“'+completion+'”；保留原句'
                 found.append({'kind':kind,'status':status,'reason':reason,'quote':sentence,
                     'source':{'document_id':document_id,'page':page,'text':sentence,'match':m[0]}})
     return found
