@@ -1,0 +1,106 @@
+{
+  "method": "Native Pi session, empty b4_measurement project; no prompt/model call. Tool array retains order and full name, description and parameters. UTF-8 SHA-256. tools=JSON.stringify(tools), combined=JSON.stringify({system,tools}) with this key order. Raw snapshot unchanged. Normalized instructions replace only the path inside the trailing <cwd> block with <WORKSPACE>, because Pi assigns a random workspace UUID per conversation. No other normalization or sorting.",
+  "normalization_js": "s.replace(/(<cwd>\\n)[^\\n]+(\\n<\\/cwd>)$/, '$1<WORKSPACE>$2')",
+  "measurement": "Unicode code points of raw system + JSON.stringify(tools); ceil(ASCII/4+non-ASCII) rough token estimate, not billing tokens.",
+  "scope": "Captured static model-visible instructions and tool schema; no history, dynamic results or attachments. Evaluation-project-specific resources/configuration and actual model-visible context must still be retained by formal runs.",
+  "context_file_sha256": "2d6fbc74415dacb5b87a1584c367570eec3e753576b78bc40d720b0b19a149a2",
+  "tool_names_and_schemas_unchanged": true,
+  "prepared_instructions_and_tools_unchanged": true,
+  "profiles": {
+    "prepared": {
+      "before": {
+        "chars": 9295,
+        "rough_tokens": 2923,
+        "system_chars": 697,
+        "tool_count": 13
+      },
+      "after": {
+        "chars": 9295,
+        "rough_tokens": 2923,
+        "system_chars": 697,
+        "tool_count": 13
+      },
+      "tools": [
+        "list_documents",
+        "prepare_document_sources",
+        "query_research_records",
+        "get_data_catalog",
+        "get_document_index",
+        "query_financial_data",
+        "get_document",
+        "get_source_page",
+        "get_source_table",
+        "search_evidence",
+        "run_analysis",
+        "get_analysis_status",
+        "get_artifact"
+      ],
+      "system_raw_sha256": "0ce9edafd18e262c3450954302b7afbd35d46743960ddee0eb37bcff3956d59c",
+      "instructions_sha256": "a1397cc8b4a495084d1da0fbadbca565c533a807043eb8508b36e29b3a385ab4",
+      "tools_sha256": "0ce711e6e7f76c7f1314e80898524ca5324b2368948e84aed7939af846d42c37",
+      "context_raw_sha256": "471c88c558cf1993672aefd12985a9fc67a17d3075e9a1acade1c367600b9176",
+      "context_normalized_sha256": "2a2852ab46b5f9bbc178f2a2a3b75eba48330768af62d43e98b52f727e850612"
+    },
+    "financial": {
+      "before": {
+        "chars": 30017,
+        "rough_tokens": 9754,
+        "system_chars": 2636,
+        "tool_count": 40
+      },
+      "after": {
+        "chars": 30156,
+        "rough_tokens": 9837,
+        "system_chars": 2702,
+        "tool_count": 40
+      },
+      "tools": [
+        "request_database_operation",
+        "read_project_skill",
+        "search_web",
+        "fetch_research_source",
+        "read_research_source",
+        "list_research_sources",
+        "run_financial_model",
+        "compare_financial_models",
+        "save_research_report",
+        "get_research_report_schema",
+        "list_research_artifacts",
+        "read_research_artifact",
+        "list_documents",
+        "prepare_document_sources",
+        "get_cleaning_batch",
+        "inspect_document_routing",
+        "set_document_profile",
+        "save_research_claims",
+        "get_research_ingestion_status",
+        "query_research_records",
+        "run_cleaning_script",
+        "get_cleaning_result",
+        "commit_cleaning_result",
+        "get_data_catalog",
+        "get_processing_checkpoint",
+        "get_document_index",
+        "query_financial_data",
+        "get_normalization_details",
+        "get_document",
+        "get_source_page",
+        "get_source_table",
+        "search_evidence",
+        "get_financial_metrics",
+        "financial_workpaper",
+        "calculate_financial_metrics",
+        "run_analysis",
+        "get_analysis_status",
+        "get_artifact",
+        "get_research_model_schema",
+        "process_documents"
+      ],
+      "system_raw_sha256": "5f9c7c240d49b6e2e4a126ee46b7a449d0d41d69612e12ec862c1cf6bbe63226",
+      "instructions_sha256": "fd6a2a464229c61b30a00809879b0ea32ac6fdbdebf6b84fdd75205f464b5e3e",
+      "tools_sha256": "111693b3d3274e80241bca0ad9de2304dae5151f89812fde44713b9d0eac44b6",
+      "context_raw_sha256": "9fe9387a0bfb5c49cf5fb205fa41f45d5f08dd21e5b2af8ff651f31c0df1c397",
+      "context_normalized_sha256": "2bf66b354ad99cff98aad3c9b01b5ab51d3149733cef1bba2ed6ef38649f400b"
+    }
+  }
+}

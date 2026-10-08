@@ -355,9 +355,11 @@ def statement_analysis(service, project, document_id=None, company=None, scope='
 
 
 def publish(service, project, kind, report, records):
-    if kind in ('period_analysis', 'basis_changes'):
+    section = {'period_analysis':'basis_changes','basis_changes':'basis_changes',
+               'anomaly_signals':'anomaly_signals','variance_attribution':'variance_attribution'}.get(kind)
+    if section:
         for name, t in report['tables'].items():
-            t['report_section'] = 'limitations' if name in ('missing', 'unrecognized') else 'basis_changes'
+            t['report_section'] = 'limitations' if name in ('missing', 'unrecognized') else section
     compiled = compile_report(report, records)
     delivery_id = uuid.uuid4().hex
     folder = service.store.root/'research'/project/'deliveries'/delivery_id
@@ -394,7 +396,11 @@ def financial_workpaper(service, project_id, kind='statement_analysis', **option
     from .workpaper_comparison import comparison
     from .workpaper_periods import period_analysis
     from .workpaper_basis import basis_changes
-    builders={'statement_analysis':statement_analysis,'report_audit':report_audit,'comparison':comparison,'period_analysis':period_analysis,'basis_changes':basis_changes}
+    from .workpaper_signals import anomaly_signals
+    from .workpaper_variance import variance_attribution
+    builders={'statement_analysis':statement_analysis,'report_audit':report_audit,'comparison':comparison,
+              'period_analysis':period_analysis,'basis_changes':basis_changes,
+              'anomaly_signals':anomaly_signals,'variance_attribution':variance_attribution}
     if kind not in builders:
         raise WorkpaperInputError('kind 当前支持 '+', '.join(builders))
     with localcontext() as ctx:

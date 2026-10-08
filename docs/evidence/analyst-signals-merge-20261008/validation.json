@@ -1,0 +1,65 @@
+{
+  "base": "8170b9219c269fa7a09a770c0285194b1033c9fd",
+  "merge_target": "bef95d4415d394f7abf30a121a9bc55009992cd8",
+  "conflicts_resolved": [
+    "server/financial-guidance.ts: preserve main B4 and add concise kind entry",
+    "service/server.py: preserve main compact description, add N4 kinds and synchronize cached tool description",
+    "service/financial_workpapers.py: retain all N2 kinds and append two N4 kinds",
+    "service/workpaper_periods.py: preserve main byte-for-byte; N4 copy predates main restatement fix"
+  ],
+  "period_modules": {
+    "service/period_algebra.py": {
+      "main_and_N4_git_blob": "b125cd2bb9033e2d26d13cc329b5ed2e8051874e"
+    },
+    "service/workpaper_periods.py": {
+      "main_preserved_git_blob": "019998635ec15438d86704db999c0eaca0d5c838",
+      "N4_and_d349e04_git_blob": "6702249bf2560a6f0a6830f77938f1da76e28ebd"
+    },
+    "duplicate_function_definitions": false
+  },
+  "acceptance": {
+    "python_unique_tests": 84,
+    "node_unique_tests": 11,
+    "result": "passed; initial related suite 82 Python, followed by changed variance suite 9 including 2 new tests; 11 Node followed by expanded all-kind export test",
+    "logs": [
+      "python-tests.txt",
+      "variance-names-display-tests.txt",
+      "node-tests.txt",
+      "all-workpaper-final-test.txt"
+    ],
+    "typecheck": "passed",
+    "isolated_server_and_web_build": "passed; tmp/analyst-signals-merge-build only, production outputs not replaced",
+    "paid_model_calls": 0,
+    "real_document_ingestion_replayed": false
+  },
+  "cross_checks": [
+    "Both new kinds use existing financial-only financial_workpaper; generic and prepared do not expose it.",
+    "All four analyst kinds publish typed tables with explicit report_section; host retains exact table/evidence before model projection.",
+    "A1 scalar and whole-table rendering, persisted audit snapshot, MD/PDF/Excel chapter and provenance export passed on frozen fixtures.",
+    "Statement cash bridge and variance profit_bridge coexist and both embed in one answer.",
+    "Profit final total and independent product/region revenue/gross totals use existing display rounding metadata; exact numeric rows/CSV precision are unchanged.",
+    "Both shared profiles retain user-provided sources, one native repair followUp, and ingestion exclusion.",
+    "Native context snapshots preserve ordered tool names and complete schemas; only financial guidance/tool description changes."
+  ],
+  "mainline_adjustments": [
+    "variance_attribution bridge table renamed profit_bridge, avoiding overwrite of statement_analysis cash bridge; observations, replay helper and tests use new key.",
+    "Profit bridge title set explicitly; report package no longer calls it cash bridge.",
+    "N4 final profit attribution and structural totals define sum_relations; reproduced 0.0001 million CNY display discrepancy now zero."
+  ],
+  "limitations": [
+    "N4 empirical thresholds are uncalibrated screening rules; signals are not risk conclusions.",
+    "Unknown inventory-charge comparison, partial financing debt and incomplete structural attribution remain unknown or explicit unallocated amounts.",
+    "Original N4 historical report figures preserved; not rerun against live Yili ingestion. No held-out read and no claim of formal superiority.",
+    "Per-conversation cwd makes raw system hashes vary; raw and cwd-only-normalized hashes are both recorded."
+  ],
+  "runtime": {
+    "port": 3001,
+    "pid": 24292,
+    "loaded_version": "a8bbb3e",
+    "restarted": false,
+    "deployment_restart_required": 1,
+    "deployment_condition": "Wait for coordinated ingestion idle window, build deployed outputs and restart once. This turn does not deploy.",
+    "docker_wsl": "unchanged; stopped Dify/mineru containers untouched"
+  },
+  "freeze_handoff": "data/evaluation/analyst-freeze-20261008/handoff.md and manifest.json, generated after merge commit; contain exact frozen commit and hashes without changing its tree"
+}
