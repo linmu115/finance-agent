@@ -7,6 +7,7 @@ import re
 
 from .analysis_report import convert, record_quantity, stated_quantity, unit_info
 from .financial_workpapers import WorkpaperInputError, cell, col, table
+from .workpaper_constraints import constraint, issue, record_issues, profit_identity_constraint, attach_constraints
 
 
 BASE_UNIT = {'money':'元','per_share':'元/股','shares':'股','ratio':'ratio',
@@ -61,6 +62,7 @@ def _expectations(records, actuals, cutoff):
     buckets = defaultdict(lambda: defaultdict(list))
     groups, actual_groups = defaultdict(list), defaultdict(list)
     observation_rows = []
+    constraints = []
     index = 0
     def desc(r,q):
         nonlocal index
@@ -87,6 +89,13 @@ def _expectations(records, actuals, cutoff):
         else:reason=None
         row['status']=reason or '纳入'
         buckets[p]['excluded' if reason else 'ledger'].append(row)
+        table_name = ('excluded' if reason else 'ledger') + f'_{q["currency"] or "unitless"}_{q["dimension"]}'
+        profit_limit = profit_identity_constraint(table_name, row, r, [q['source']])
+        if profit_limit: constraints.append(profit_limit)
+        if reason and (r.get('exclusion_reason') or not r.get('scope')):
+            constraints.append(constraint(table_name, row['key'], ['value'],
+                record_issues(r, []) + [issue('source_identity', reason)], metric=r['metric'], period=r['period'],
+                record_ids=[row['record']], evidence=[q['source']]))
         if reason is None:groups[(publisher_key(r['publisher']),identity(r,q))].append((r,q,row))
     for r in actuals:
         if not r.get('fact_id') and r.get('data_kind')!='reported_actual':
@@ -135,6 +144,12 @@ def _expectations(records, actuals, cutoff):
              'actual_timing':'回测实际值（披露日晚于预测截止日）' if cutoff and actual_dates and any(date.fromisoformat(d)>cutoff for d in actual_dates) else ('实际披露日期不明' if candidates and not actual_dates else '已提供的原财报实际值'),
              'status':reason or '可比较','rank':None}
         buckets[p]['actual_vs_expected'].append(row)
+        if reason:
+            near = [a for a in actuals if (a['entity_id'], a['metric'], a['period']) == (r['entity_id'], r['metric'], r['period'])]
+            constraints.append(constraint(f'actual_vs_expected_{q["currency"] or "unitless"}_{q["dimension"]}', row['key'],
+                ['value','actual','difference','difference_rate','absolute_error'],
+                record_issues(r, near) + [issue('actual_match', reason)], metric=r['metric'], period=r['period'],
+                record_ids=[row['record'], *[a.get('fact_id') for a in near]], evidence=refs))
         comparisons.append((ident,q,row,diff))
     ranked=defaultdict(list)
     for ident,q,row,diff in comparisons:
@@ -166,4 +181,4 @@ def _expectations(records, actuals, cutoff):
             tabs[family+'_'+suffix]=table(cols,rows)
     tabs['observations']=table({'key':col('行键'),'finding':col('确定性数值关系（差异率绝对幅度降序）'),
                                 'difference_rate':col('差异率','%'),'rank':col('同口径排名'),'table':col('详细数值表')},observation_rows)
-    return {'title':'预期差账本','body':f'预测冻结截至 {cutoff.isoformat() if cutoff else "所提供的全部明确发布日期"}（含当日）；日期不明和晚于截止日的记录单列。实际值为显式提供的原财报回测参照，披露日在表中保留，不代表预测截止日已知。修正轨迹不跨机构、主体、期间、口径、情景或币种；差异率=(实际-预测)/abs(预测)，零预测差异率留空。最大/最小按同口径绝对金额偏差排名，只有一家时两者相同，平局保留。','tables':tabs}
+    return attach_constraints({'title':'预期差账本','body':f'预测冻结截至 {cutoff.isoformat() if cutoff else "所提供的全部明确发布日期"}（含当日）；日期不明和晚于截止日的记录单列。实际值为显式提供的原财报回测参照，披露日在表中保留，不代表预测截止日已知。修正轨迹不跨机构、主体、期间、口径、情景或币种；差异率=(实际-预测)/abs(预测)，零预测差异率留空。最大/最小按同口径绝对金额偏差排名，只有一家时两者相同，平局保留。','tables':tabs}, constraints)

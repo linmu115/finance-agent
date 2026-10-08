@@ -148,7 +148,11 @@ class WorkpaperInputTests(unittest.TestCase):
         with patch('service.financial_workpapers.load_facts', return_value=self.facts):
             data = financial_workpaper(self.s, 'p', 'analysis_pipeline')
         context = data['context']; self.assertTrue(context['key_metrics']); self.assertTrue(context['missing'])
-        self.assertEqual(context['extensions']['management_evidence'], 'pending')
+        self.assertEqual(context['extensions']['management_evidence'], 'ready')
+        self.assertEqual(context['extensions']['signal_followups'], 'ready')
+        self.assertTrue(context['management_evidence'])
+        self.assertTrue(context['signal_followups'])
+        self.assertEqual(context['extensions']['comparability_constraints'], 'not_provided')
         response = financial_workpaper(self.s, 'p', 'read_table', read={'handle': data['handle'], 'table': 'variance_profit_bridge', 'limit': 2})
         self.assertEqual(len(response['table_data']['rows']), 2); self.assertEqual(response['next_offset'], 2)
         self.assertEqual(response['table_data']['rows'], data['numeric_tables']['variance_profit_bridge']['rows'][:2])

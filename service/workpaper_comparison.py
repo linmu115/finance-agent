@@ -11,6 +11,7 @@ import re
 from .analysis_report import convert, stated_quantity
 from .financial_workpapers import WorkpaperInputError, cell, col, table
 from .research_models import financial_quality
+from .workpaper_constraints import attach_constraints, constraint, issue
 
 
 def comparison(service,project,document_id=None,company=None,scope='consolidated',periods=None,focus=None):
@@ -108,6 +109,7 @@ def _comparison(raws):
     if not subjects or len({s.key for s in subjects}) != len(subjects):
         raise WorkpaperInputError('comparison 需要至少一个主体期间，且 key 唯一')
     tabs = {}
+    constraints = []
     tabs['amounts'] = table({'key':col('指标'), **{s.key:col(f'{s.raw["company"]} {s.raw["period"]}', '元', s.currency, scope=s.raw['scope']) for s in subjects}},
                             [{'key':metric, **{s.key:s.calc((metric,),lambda x:x,'元',metric) for s in subjects}}
                              for metric in sorted({k for s in subjects for k in s.raw['metrics']})])
@@ -191,6 +193,30 @@ def _comparison(raws):
         row['difference'] = '存在已披露差异' if len(vals)>1 else ('已披露值相同' if len(vals)==1 and row['value'] is not None else '未知')
     tabs['comparability'] = table({k:col(v) for k,v in [('key','行键'),('company','主体'),('period','期间'),('field','比较口径'),('value','披露值'),('source','来源'),('difference','差异'),('note','缺项')]},comparability)
     for a,b in combinations(subjects,2):
+        issues=[];evidence=[]
+        for field in META:
+            left=a.raw.get('metadata',{}).get(field,{})
+            right=b.raw.get('metadata',{}).get(field,{})
+            av=a.raw.get(field) if field in ('scope','currency') else left.get('value')
+            bv=b.raw.get(field) if field in ('scope','currency') else right.get('value')
+            evidence.extend(x['source'] for x in (left,right) if x.get('source'))
+            if av in (None,'','unspecified') or bv in (None,'','unspecified'):
+                issues.append(issue(field,'缺少可引用披露；不能断言两侧口径一致',left=av,right=bv))
+            elif av!=bv:
+                issues.append(issue(field,'存在已披露差异','different',left=av,right=bv))
+        if (a.raw['period_start'][5:],a.raw['period_end'][5:]) != (b.raw['period_start'][5:],b.raw['period_end'][5:]):
+            issues.append(issue('period_window','报告期间窗口不同，不能将全年与中期原数当作同比','different',
+                                left=[a.raw['period_start'],a.raw['period_end']],right=[b.raw['period_start'],b.raw['period_end']]))
+        if issues:
+            metrics=sorted(set(a.raw['metrics']) & set(b.raw['metrics']))
+            limit=constraint('amounts','*',[a.key,b.key],issues,
+                             period=[a.raw['period'],b.raw['period']],evidence=evidence)
+            limit['id']=f'amounts:{a.key}:{b.key}:comparison_basis_unaligned'
+            limit['subject']['row_keys']=metrics
+            limit['prohibited_uses']=['same_basis_comparison','same_basis_error','unqualified_cross_period_growth']
+            limit['message']='这两列存在未知或不同的口径；不能声称已完成同口径比较。原数、各列内部比率及明确说明限制的比较可保留。'
+            constraints.append(limit)
+    for a,b in combinations(subjects,2):
         if (a.raw['period_start'],a.raw['period_end'],a.raw['scope']) != (b.raw['period_start'],b.raw['period_end'],b.raw['scope']):continue
         for metric in ('gross_profit','net_profit'):
             qa = a.calc((metric,'revenue'),lambda p,v:p/v*100,positive=('revenue',))
@@ -201,4 +227,4 @@ def _comparison(raws):
                                      'gap_pp':cell(gap,'个百分点',sources=[qa['source'],qb['source']]),'magnitude':abs(gap)})
     observations.sort(key=lambda x:x.pop('magnitude'),reverse=True)
     tabs['observations'] = table({'key':col('行键'),'finding':col('确定性数值关系（按数值幅度降序，单位分列）'),'change':col('同比变化','%'),'gap_pp':col('同期利润率差异','个百分点')},observations)
-    return {'title':'同业与跨期比较底稿','body':'杜邦以同一报表口径的净利润和平均总权益计算，未年化；归母利润单列，不代替合并利润。现金转化按正利润分母。周转以收入和销售成本代理，财年天数取实际起止日。金额未隐含换汇，重述和会计准则仅列来源披露。','tables':tabs}
+    return attach_constraints({'title':'同业与跨期比较底稿','body':'杜邦以同一报表口径的净利润和平均总权益计算，未年化；归母利润单列，不代替合并利润。现金转化按正利润分母。周转以收入和销售成本代理，财年天数取实际起止日。金额未隐含换汇，重述和会计准则仅列来源披露。','tables':tabs},constraints)

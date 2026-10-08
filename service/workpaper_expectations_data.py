@@ -7,6 +7,7 @@ import re
 from .financial_workpapers import WorkpaperInputError, cell, col, table, load_facts, meta, source
 from .workpaper_expectations import expectations_report, identity, publisher_key, quantity
 from .workpaper_period_selection import canonical_period, normalize_periods, normalize_period_records
+from .workpaper_constraints import constraint, issue, record_issues, attach_constraints
 
 METRICS = {'revenue':'revenue','营业收入':'revenue','收入':'revenue',
            'net_profit_parent':'net_profit_parent','归母净利润':'net_profit_parent',
@@ -170,6 +171,18 @@ def context_tables(records, actuals, cutoff):
                 'value':cell(qb['value'],qb['unit'],qb['currency'],[qb['source']]),
                 'change':cell(qb['value']-qa['value'] if same_metric and qa['value'] is not None and qb['value'] is not None else None,qb['unit'],qb['currency'],refs,'current_forecast-previous_forecast',None if same_metric else reason),
                 'previous_dimensions':json.dumps(a.get('dimensions',{}),ensure_ascii=False),'dimensions':json.dumps(b.get('dimensions',{}),ensure_ascii=False),'status':reason})
+            if not aligned:
+                limits=t.setdefault('answer_constraints', [])
+                pair=constraint(name, b['record_id'], ['previous','value','change'],
+                    record_issues(b, [a]) + [issue('metric' if not same_metric else 'version_identity', reason)],
+                    metric=b['metric'], period=b['period'], record_ids=[a['record_id'], b['record_id']], evidence=refs)
+                pair['prohibited_uses'].append('same_basis_revision')
+                if not same_metric and a['metric']=='net_profit':
+                    pair['prohibited_uses'].append('parent_profit_comparison')
+                    limits.append(constraint(name, b['record_id'], ['previous'],
+                        [issue('profit_attribution','前值利润归属未明；本次归母标签不回填给前值')],
+                        metric=a['metric'],period=a['period'],record_ids=[a['record_id']],evidence=[qa['source']],code='profit_attribution_unknown'))
+                limits.append(pair)
     return tabs,latest
 
 
@@ -211,6 +224,9 @@ def reference_tables(latest, actuals):
             'forecast_basis':str(r.get('scope'))+' / '+str(r.get('basis')),
             'actual_basis':', '.join(sorted({a['scope']+' / '+str(a.get('basis')) for a in candidates})),
             'status':(blocked+'；' if blocked else '')+'仅数值参照；'+reason})
+        t.setdefault('answer_constraints', []).append(constraint(name, r['record_id'], ['forecast','actual','difference','difference_rate'],
+            record_issues(r, candidates) + [issue('comparison_identity', reason)], metric=r['metric'], period=r['period'],
+            record_ids=[r['record_id'], *[a.get('fact_id') for a in candidates]], evidence=refs))
     return tabs
 
 
@@ -222,6 +238,7 @@ def expectations(service, project, company=None, document_id=None, periods=None,
     report['periods']=selection['periods']
     report['tables'].update(links)
     report['tables'].update(reference_tables(latest,actuals))
+    attach_constraints(report, [c for t in report['tables'].values() for c in t.get('answer_constraints', [])])
     for r in actuals:
         q=quantity(r);name=f'actuals_{q["currency"] or "unitless"}_{q["dimension"]}'
         t=report['tables'].setdefault(name,table({'key':col('行键'),'metric':col('指标'),'label':col('原行名'),'period':col('期间'),

@@ -8,6 +8,7 @@ from .analysis_report import record_quantity
 from .financial_workpapers import ALIASES, cell, col, table, meta, source
 from .workpaper_annual import compact, literal
 from .workpaper_analyst import AnalystData, calc, delta, ratio, value, unknown, locators
+from .workpaper_explanations import mdna_pages, parent_note_start, find_explanations, driver_evidence, evidence_table
 
 
 def gross_profit_effects(revenue_now,revenue_before,gross_now,gross_before):
@@ -129,85 +130,6 @@ def profit_bridge(a):
         if key=='tax':checkpoint('net_profit','合并净利润')
     checkpoint('parent_profit','归母净利润')
     return rows
-
-
-def mdna_pages(a):
-    """Named report sections; no issuer-specific page boundaries."""
-    result=set();active=False
-    for page,text in sorted(a.d.pages.items()):
-        if re.search(r'(?im)^\s*Management Discussion and Analysis\s*$',text):result.add(page)
-        for m in re.finditer(r'第[一二三四五六七八九十]+节\s*([^\n]+)',text):
-            title=compact(m[1])
-            if re.search(r'\.{3}|…{2}|[.．·]{3}',title):continue
-            active=bool(re.search('管理层讨论|经营情况讨论|董事会报告',title))
-        if active:result.add(page)
-    return result
-
-
-def parent_note_start(a):
-    found=[p for p,text in a.d.pages.items() if re.search(r'(?m)^\s*(?:[一二三四五六七八九十]+[、.])?\s*母公司财务报表.{0,8}注释',text)]
-    return min(found) if found else None
-
-
-def sentences(text):
-    # Keep original whitespace and offsets. Decimal points do not end sentences.
-    return [m.group().strip() for m in re.finditer(r'.+?(?:[。；]|\.(?=\s+[A-Z(]|\s*$)|$)',text,re.S) if m.group().strip()]
-
-
-DRIVER_TERMS={
-    'revenue_effect':r'营业收入|revenue', 'margin_effect':r'营业成本|毛利率|gross profit|cost of sales',
-    'selling':r'销售费用|selling expenses', 'administrative':r'管理费用|administrative expenses',
-    'research':r'研发费用|research and development', 'finance_costs':r'财务费用|finance costs|financing costs',
-    'finance_net':r'财务费用|finance costs|finance income|financing costs',
-    'other_income':r'其他收益|其他收入|other income|government grants',
-    'other_gains_net':r'其他.*收益|other gains', 'investment_income':r'投资收益|investment income',
-    'asset_impairment':r'资产减值|商誉|goodwill|asset impairment', 'credit_impairment':r'信用减值|保理风险准备|credit losses',
-    'impairment':r'减值|credit losses|impairment', 'fair_value_gains':r'公允价值|fair\s+value',
-    'tax':r'所得税|income tax', 'minority_profit':r'少数股东|non.controlling',
-    'nonoperating_income':r'营业外收入', 'nonoperating_expenses':r'营业外支出',
-    'asset_disposal':r'资产处置|disposal', 'surcharges':r'税金及附加', 'other_operating_revenue':r'利息收入|interest income',
-}
-CAUSE=r'原因|所致|由于|主要是|导致|因.{0,25}(?:增加|减少)|due to|because|attribut|result|driven|reason|recogni[sz]ed'
-
-
-def find_explanations(a,key,label):
-    terms=DRIVER_TERMS.get(key,re.escape(label).replace('_',r'\s+'))
-    preferred=mdna_pages(a);candidates=[];parent=parent_note_start(a)
-    for page,text in sorted(a.d.pages.items()):
-        if parent and page>=parent and a.st.scope=='consolidated':continue
-        snippets=sentences(text)
-        for index,quote in enumerate(snippets):
-            if re.search(r'main reason for this change',quote,re.I) and index:
-                quote=snippets[index-1]+'\n'+quote
-            normalized=re.sub(r'\s+',' ',quote)
-            # Keep spaces for English; remove wrapped whitespace for CJK.
-            searchable=normalized if re.search(terms,normalized,re.I) else compact(quote)
-            matches=list(re.finditer(terms,searchable,re.I));cause=re.search(CAUSE,searchable,re.I)
-            if not matches or not cause:continue
-            if key.startswith('contribution_'):
-                topic=re.escape(label).replace('_',r'\s+')
-                if not re.search(r'(?:'+topic+r').{0,65}(?:收入|revenue)|(?:收入|revenue).{0,65}(?:'+topic+r')',searchable,re.I):continue
-            if page not in preferred and not re.search(r'(?:本期|本年|报告期).*(?:所致|导致)|变动原因|减少原因|增加主要原因',compact(quote)):
-                continue # Accounting policy and recognition boilerplate is not a period-change cause.
-            # A table and its first explanatory sentence may be one extracted
-            # paragraph. Start from the final subject occurrence before cause.
-            if re.search('[\u4e00-\u9fff]',searchable):
-                # The subject must belong to the causal clause itself. A
-                # keyword in a preceding numeric table is not aligned evidence.
-                local=re.search('(?:'+terms+r')[^。；:：\d]{0,35}(?:变动原因|减少(?:主要)?原因|增加(?:主要)?原因|主要原因|主要是|主要因|所致|导致)',compact(quote),re.I)
-                if not local:continue
-                clean=compact(quote);start=local.start()
-                enumerators=list(re.finditer(r'[（(]\d+[）)]',clean[:start]))
-                if enumerators and start-enumerators[-1].start()<80:start=enumerators[-1].start()
-                quote=clean[start:]
-            if re.search(r'□适用\s*√不适用|不适用。?$',quote):continue
-            section='管理层讨论与分析' if page in preferred else '财务附注/其他原文'
-            # Prefer a statement about a change, then named causal wording.
-            score=(page in preferred,bool(re.search('变动原因|减少原因|增加主要原因|main reason|mainly due',searchable,re.I)), -len(quote))
-            candidates.append((score,a.source_text(page,quote,section=section)))
-    # One best relevant cause avoids padding an exact match with an unrelated
-    # second hit. The full original document remains available for judgment.
-    return [x[1] for x in sorted(candidates,key=lambda x:x[0],reverse=True)[:1]]
 
 
 AXES={'product':'product','business_line':'product','region':'region','geography':'region','industry':'industry','segment':'segment','business_type':'business_type'}
@@ -359,14 +281,16 @@ def variance_attribution(service,project,document_id=None,company=None,scope='co
     bridge=profit_bridge(a);contributions,alternatives=structural_contributions(a)
     drivers=[r for r in bridge if r['role']=='step']
     structural_drivers=[{'key':r['key'],'item':r['item'],'contribution':r['revenue_change']} for r in contributions if r['role']=='component' and r['revenue_change']['value'] is not None]
-    evidence=[]
-    for r in sorted(drivers+structural_drivers,key=lambda x:abs(value(x['contribution']) or 0),reverse=True):
-        direct=r['contribution']['source']
-        refs=[direct] if r['key'].startswith('contribution_') and direct.get('quote') else find_explanations(a,r['key'],r['item'])
-        evidence.append({'key':r['key'],'driver':r['item'],'contribution':r['contribution'],'status':'原文相关原因披露（不证明贡献公式的经济因果）' if refs else '原文未说明',
-                         'quote':'\n\n'.join(x['quote'] for x in refs) if refs else '原文未说明',
-                         'pages':', '.join(str(x['page']) for x in refs),'source':json.dumps(refs,ensure_ascii=False),
-                         'search_scope':'先检索管理层讨论与分析，再检索同口径附注；未检出原因不补写推论'})
+    # Cash and balance movements are references, not extra profit contributions.
+    from .workpaper_depth_context import context_changes
+    context = context_changes(a)
+    evidence = [driver_evidence(a, r['key'], r['item'],
+                    {'table': 'profit_bridge' if r in drivers else 'contributions',
+                     'row_key': r['key'], 'column': 'contribution' if r in drivers else 'revenue_change'})
+                for r in sorted(drivers+structural_drivers, key=lambda x:abs(value(x['contribution']) or 0), reverse=True)]
+    evidence += [driver_evidence(a, r['key'], r['item'],
+                    {'table':'context_changes','row_key':r['key'],'column':'change'}, query_keys=r['query_keys'])
+                 for r in context['rows']]
     observations=[{'key':r['key'],'finding':r['item']+'贡献 '+str(r['contribution']['value'])+' 元','basis':'profit_bridge.'+r['key']} for r in sorted(drivers,key=lambda x:abs(value(x['contribution']) or 0),reverse=True) if r['contribution']['value'] is not None]
     observations += [{'key':r['key'],'finding':r['item']+'：'+str(r['contribution']['value'])+' 元','basis':'profit_bridge.'+r['key']} for r in bridge if r['role']=='residual']
     money=lambda label:col(label,'百万元',a.currency)
@@ -378,8 +302,9 @@ def variance_attribution(service,project,document_id=None,company=None,scope='co
     for r in contributions:
         for k,c in cc.items():
             if c.get('unit') and k not in r:r[k]=unknown('此行不适用或未披露该项')
-    ec={k:col(label) for k,label in [('key','行键'),('driver','驱动项'),('status','证据状态'),('quote','原句'),('pages','PDF页'),('source','来源'),('search_scope','检索范围')]};ec['contribution']=money('计算贡献')
-    tabs={'profit_bridge':table(bc,bridge,'利润桥'),'contributions':table(cc,contributions),'drivers_evidence':table(ec,evidence),
+    evidence_values={r['key']:r['contribution'] for r in drivers+structural_drivers}
+    evidence_values.update({r['key']:r['change'] for r in context['rows']})
+    tabs={'profit_bridge':table(bc,bridge,'利润桥'),'contributions':table(cc,contributions),'drivers_evidence':evidence_table(evidence,evidence_values,a.currency), 'context_changes':context,
           'contribution_sources':table({k:col(k) for k in ('key','axis','table_id','reason')},[{'key':str(i),**r} for i,r in enumerate(alternatives)]),
           'observations':table({k:col(v) for k,v in [('key','行键'),('finding','确定性贡献（按绝对金额排序）'),('basis','对应底稿')]},observations)}
     # Final attribution is the sum of known drivers and the explicit unexplained
@@ -396,4 +321,4 @@ def variance_attribution(service,project,document_id=None,company=None,scope='co
          'total':{'row':total['key'],'column':column}}
         for total in contributions if total['role']=='total'
         for column in ('revenue_change','gross_change')]
-    return {'title':a.st.company+' 业绩变动归因底稿','periods':a.ps,'body':'利润桥以两期金额变化计算；收入效应取上期毛利率，交叉项归本期毛利率效应。原文原因与确定性金额贡献分开，未解释差额显式列示。未披露的精确比较期不由舍入增速倒算。','tables':tabs},a.records
+    return {'title':a.st.company+' 业绩变动归因底稿','periods':a.ps,'drivers_evidence':evidence,'body':'利润桥以两期金额变化计算；收入效应取上期毛利率，交叉项归本期毛利率效应。原文原因与确定性金额贡献分开，未解释差额显式列示。未披露的精确比较期不由舍入增速倒算。','tables':tabs},a.records

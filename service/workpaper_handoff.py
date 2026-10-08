@@ -8,7 +8,7 @@ from .analysis_report import cell_column, display_table, format_cell, row_keys
 # Detail/evidence tables are accessed as whole tables, not duplicated cell by cell.
 DETAIL_TABLES={'cash','bridge','working_capital','nonrecurring_items','indirect_bridge',
                'quarterly_reconciliation','reconciliation','drivers_evidence',
-               'report_columns','contribution_sources','inventory_charge_rates'}
+               'report_columns','contribution_sources','inventory_charge_rates','signal_followups'}
 CONTEXT=('period','metric_label','metric','item','signal','driver','axis','view','mode',
          'comparison','institution','publisher','published_at','role')
 
@@ -38,5 +38,6 @@ def answer_handoff(report):
             lines.append(name+' / '+context+'：'+'；'.join(cells)+('；'+'；'.join(dict.fromkeys(notes)) if notes else ''))
     periods=report.get('periods',[])
     return {'periods':periods,'period_roles':{'current':periods[0] if periods else None,'comparison':periods[1] if len(periods)>1 else None},
+            **{k:report[k] for k in ('drivers_evidence','signal_followups','answer_constraints') if k in report},
             'key_values':lines,'table_bindings':bindings,
             'answer_usage':'关键值后的表达式可直接粘贴，已带单位；整表使用 table_bindings。缺失为未知。明细、原文与来源在交付文件中，get_artifact 的 run_id 可直接填 delivery.id。'}
