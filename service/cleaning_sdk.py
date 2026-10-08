@@ -18,6 +18,20 @@ def canonical_index(index):
     return int(re.sub(r'^[tT]','',text)) if re.fullmatch(r'[tT]?\d+',text) else index
 
 
+def label_key(label):
+    """Ignore only whitespace; leave punctuation, case and financial words intact."""
+    return re.sub(r'\s+', '', str(label))
+
+
+def row_mapping(metrics, label):
+    if label in metrics:return metrics[label]
+    matches=[(key,value) for key,value in metrics.items() if label_key(key)==label_key(label)]
+    if not matches:return None
+    if any(value!=matches[0][1] for _,value in matches[1:]):
+        raise MappingError(f'Ambiguous whitespace-only row mappings for {label!r}: {[key for key,_ in matches]}')
+    return matches[0][1]
+
+
 def table_mapping(method):
     @wraps(method)
     def apply(self, index, *args, **kwargs):
@@ -118,7 +132,7 @@ class Cleaner:
                   metrics=None, skip_rows=None, row_overrides=None, label_column=1,
                   company=None, dimensions=None, data_kind=None, entity_kind='company',
                   scenario=None, attribution=None, skip_columns=None):
-        """One-based columns/rows. metrics maps exact row labels to metric IDs or
+        """One-based columns/rows. metrics maps row labels (ignoring whitespace) to metric IDs or
         {metric,label,dimensions_json,...}. row_overrides maps one-based rows to
         attributes; columns_json may override a table's complete column mapping.
         Numeric header rows must be explicitly listed in skip_rows with a reason.
@@ -147,7 +161,7 @@ class Cleaner:
             if reason:skipped.append({'row':number,'reason':reason});continue
             if not attributes and not any(numeric(c) for c in row):continue
             label=str(row[label_column-1]).strip() if len(row)>=label_column else ''
-            mapped=(metrics or {}).get(label)
+            mapped=row_mapping(metrics or {},label)
             if isinstance(mapped,str):mapped={'metric':mapped}
             if mapped is None:
                 name=re.sub('[^a-z0-9]+','_',label.lower()).strip('_')
