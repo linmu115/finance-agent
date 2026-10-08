@@ -4,7 +4,7 @@ import re
 from decimal import Decimal
 from .normalization import decimal_value, unit_info
 from .research_ingestion import norm, series_dimensions
-from .source_numbers import numeric_cells
+from .source_numbers import numeric_cells, policy_table_exclusion
 
 
 def coordinates(fact):
@@ -50,7 +50,7 @@ def table_semantics(table, schema, facts, page_text=''):
         index_only=bool(re.search(r'报告日期|报告名称|报告标题|报告类型',text))
         index_only=index_only or bool(re.search(r'\bCONTENTS\b|目\s*录',page_text,re.I)
                                      and values and all(re.fullmatch(r'\d{1,3}',str(v['raw_value'])) for v in values))
-        if financial or (values and not graphic and not index_only):
+        if (financial or (values and not graphic and not index_only)) and not policy_table_exclusion(table):
             issues.append({'table':index,'page':table['page'],'reason':'numeric_table_without_records',
                            'source_heading':title,'numeric_cell_count':len(values),'numeric_samples':values[:8],
                            'instruction':'数值表不能以缺口说明计为完成。映射原格；若解析只剩表头，依据本页原文重建表体后重新处理。'})

@@ -5,7 +5,7 @@ from .normalization import metric_id, decimal_value
 from .semantic import numeric_candidate
 from .cleaning_batches import column_totals
 from .standard_metrics import standard_metric
-from .source_numbers import data_number, numeric_cells, identifier_reason
+from .source_numbers import data_number, numeric_cells, identifier_reason, policy_table_exclusion
 
 
 def decode(value, default):
@@ -27,6 +27,7 @@ def metric_candidates(label, header=''):
 def mapping_issues(table, schema, rows, exclusion_reason=None, page_text='', facts=()):
     index = table['index']
     if schema.get('statement') == 'nonfinancial':
+        if policy_table_exclusion(table):return []
         navigation=bool(re.search(r'^\s*(?:Contents|目\s*录)\b',page_text,re.I))
         amount_cells=numeric_cells(table)
         if (amount_cells and not navigation) or re.search(r'复杂|待核验|待专项|合并单元格|非标准财务|complex|needs.review|merged.cell', exclusion_reason or '', re.I):
@@ -70,7 +71,12 @@ def mapping_issues(table, schema, rows, exclusion_reason=None, page_text='', fac
             unresolved_columns.add(c)
             issues.append({'table': index, 'row': number, 'column': c, 'reason': 'unresolved_cell_semantics', 'severity': 'review', 'raw_value': row[c-1], 'label': label, 'detail': cell['reason']})
         for c, raw in enumerate(row, 1):
-            if c in ignored and re.search(r'\d[.,，]\d|\d\s*[%％]',str(raw)):
+            deferred=next((x for x in decode(attrs.get('derived_comparisons_json'),[]) if x['column']==c),None)
+            if deferred:
+                issues.append({'table':index,'row':number,'column':c,'severity':'review',
+                               'reason':'derived_comparison_not_materialized','raw_value':raw,**deferred})
+                continue
+            if c in ignored - declared and re.search(r'\d[.,，]\d|\d\s*[%％]',str(raw)):
                 issues.append({'table':index,'row':number,'column':c,'reason':'skipped_numeric_data_column','raw_value':raw,
                                'instruction':'skip_columns 不能排除含金额/小数/比例的数据列。文字夹数字仍需 numeric_span 和财务指标；局部真实歧义用 unresolved_cells 保存原格。附注编号等非数据列才可跳过。'})
             if c == label_column or c in ignored | declared | unresolved_columns or not numeric_candidate(str(raw)): continue
