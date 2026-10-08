@@ -1,0 +1,1042 @@
+{
+  "document": "moutai",
+  "fact_count": 680,
+  "basis": {
+    "basis": "unknown",
+    "status": "missing",
+    "evidence": [],
+    "version": "accounting-basis-1"
+  },
+  "applied": {
+    "updated": 13,
+    "history_preserved": 13
+  },
+  "repeat": {
+    "updated": 0,
+    "history_preserved": 0
+  },
+  "field_counts": {
+    "metric": 13,
+    "normalization.dimensions": 13,
+    "normalization.metric_normalization_reverted": 13,
+    "normalization.source_dimension_evidence": 13,
+    "normalization.document_semantics_revision": 13,
+    "normalization.metric_normalization": 13,
+    "normalization.dimension_roles": 4
+  },
+  "by_table": {
+    "8806d020dcf04227b4ed356523190a08:t18": 1,
+    "8806d020dcf04227b4ed356523190a08:t55": 4,
+    "8806d020dcf04227b4ed356523190a08:t36": 8
+  },
+  "values_coordinates_entities_unchanged": true,
+  "history_exact": true,
+  "model_calls": 0,
+  "changes": [
+    {
+      "fact_id": "2f55c6fdd8884b4cbfcdd3324deff714",
+      "table_id": "8806d020dcf04227b4ed356523190a08:t18",
+      "row": 2,
+      "column": 2,
+      "changes": {
+        "metric": {
+          "before": "bank_acceptance_notes",
+          "after": "notes_receivable_derecognized_amount"
+        },
+        "normalization.dimensions": {
+          "before": {
+            "financial_item": "bank_acceptance_bills"
+          },
+          "after": {
+            "financial_item": "bank_acceptance_bills",
+            "composition": "component",
+            "component": "银行承兑票据"
+          }
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "期末终止确认金额"
+              ],
+              "physical_headers": [
+                "期末终止确认金额"
+              ],
+              "measure_kinds": [],
+              "unresolved_headers": [
+                "期末终止确认金额"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": null,
+          "after": {
+            "composition": {
+              "row": 2,
+              "column": 1,
+              "text": "银行承兑票据",
+              "total_rows": [
+                3
+              ]
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "bank_acceptance_notes",
+            "evidence": {
+              "axis": "row",
+              "row": 2,
+              "column": 1,
+              "label": "银行承兑票据"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "8a24fa3818f446c0bdbac91f53f210da",
+      "table_id": "8806d020dcf04227b4ed356523190a08:t55",
+      "row": 3,
+      "column": 2,
+      "changes": {
+        "metric": {
+          "before": "construction_in_progress",
+          "after": "construction_account_gross"
+        },
+        "normalization.dimensions": {
+          "before": {
+            "financial_item": "construction_in_progress"
+          },
+          "after": {
+            "financial_item": "construction_in_progress",
+            "composition": "component",
+            "component": "在建工程"
+          }
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "期末余额",
+                "账面余额"
+              ],
+              "physical_headers": [
+                "期末余额",
+                "账面余额"
+              ],
+              "measure_kinds": [
+                "gross"
+              ],
+              "unresolved_headers": [
+                "账面余额"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": null,
+          "after": {
+            "composition": {
+              "row": 3,
+              "column": 1,
+              "text": "在建工程",
+              "total_rows": [
+                4
+              ]
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.dimension_roles": {
+          "before": {
+            "financial_item": "descriptive"
+          },
+          "after": null
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "construction_in_progress",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "在建工程"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "35ffd040519a42d1a65f60d0ebd47a05",
+      "table_id": "8806d020dcf04227b4ed356523190a08:t55",
+      "row": 3,
+      "column": 4,
+      "changes": {
+        "metric": {
+          "before": "construction_in_progress",
+          "after": "construction_account_net"
+        },
+        "normalization.dimensions": {
+          "before": {
+            "financial_item": "construction_in_progress"
+          },
+          "after": {
+            "financial_item": "construction_in_progress",
+            "composition": "component",
+            "component": "在建工程"
+          }
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "账面价值"
+              ],
+              "physical_headers": [
+                "账面价值"
+              ],
+              "measure_kinds": [
+                "net"
+              ],
+              "unresolved_headers": [
+                "账面价值"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": null,
+          "after": {
+            "composition": {
+              "row": 3,
+              "column": 1,
+              "text": "在建工程",
+              "total_rows": [
+                4
+              ]
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.dimension_roles": {
+          "before": {
+            "financial_item": "descriptive"
+          },
+          "after": null
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "construction_in_progress",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "在建工程"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "02c1225b5c2d4f1297d549c2acae43b8",
+      "table_id": "8806d020dcf04227b4ed356523190a08:t55",
+      "row": 3,
+      "column": 5,
+      "changes": {
+        "metric": {
+          "before": "construction_in_progress",
+          "after": "construction_account_gross"
+        },
+        "normalization.dimensions": {
+          "before": {
+            "financial_item": "construction_in_progress"
+          },
+          "after": {
+            "financial_item": "construction_in_progress",
+            "composition": "component",
+            "component": "在建工程"
+          }
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "期初余额",
+                "账面余额"
+              ],
+              "physical_headers": [
+                "期初余额",
+                "账面余额"
+              ],
+              "measure_kinds": [
+                "gross"
+              ],
+              "unresolved_headers": [
+                "账面余额"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": null,
+          "after": {
+            "composition": {
+              "row": 3,
+              "column": 1,
+              "text": "在建工程",
+              "total_rows": [
+                4
+              ]
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.dimension_roles": {
+          "before": {
+            "financial_item": "descriptive"
+          },
+          "after": null
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "construction_in_progress",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "在建工程"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "0b0d9cd900d94410addd7398529c49d1",
+      "table_id": "8806d020dcf04227b4ed356523190a08:t55",
+      "row": 3,
+      "column": 7,
+      "changes": {
+        "metric": {
+          "before": "construction_in_progress",
+          "after": "construction_account_net"
+        },
+        "normalization.dimensions": {
+          "before": {
+            "financial_item": "construction_in_progress"
+          },
+          "after": {
+            "financial_item": "construction_in_progress",
+            "composition": "component",
+            "component": "在建工程"
+          }
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "账面价值"
+              ],
+              "physical_headers": [
+                "账面价值"
+              ],
+              "measure_kinds": [
+                "net"
+              ],
+              "unresolved_headers": [
+                "账面价值"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": null,
+          "after": {
+            "composition": {
+              "row": 3,
+              "column": 1,
+              "text": "在建工程",
+              "total_rows": [
+                4
+              ]
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.dimension_roles": {
+          "before": {
+            "financial_item": "descriptive"
+          },
+          "after": null
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "construction_in_progress",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "在建工程"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "ff5a99e8c6684487959446593b0d1ee3",
+      "table_id": "8806d020dcf04227b4ed356523190a08:t36",
+      "row": 3,
+      "column": 2,
+      "changes": {
+        "metric": {
+          "before": "raw_materials_inventory",
+          "after": "inventory_gross_cost"
+        },
+        "normalization.dimensions": {
+          "before": {
+            "financial_item": "inventory_raw_materials"
+          },
+          "after": {
+            "financial_item": "inventory_raw_materials",
+            "composition": "component",
+            "component": "原材料"
+          }
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "期末余额",
+                "账面余额",
+                "期末存货账面余额"
+              ],
+              "physical_headers": [
+                "期末余额",
+                "账面余额"
+              ],
+              "measure_kinds": [
+                "gross"
+              ],
+              "unresolved_headers": [
+                "账面余额"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": null,
+          "after": {
+            "composition": {
+              "row": 3,
+              "column": 1,
+              "text": "原材料",
+              "total_rows": [
+                7
+              ]
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "raw_materials_inventory",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "原材料"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "3a2e98ee5b4742ada08bd17e962a1284",
+      "table_id": "8806d020dcf04227b4ed356523190a08:t36",
+      "row": 3,
+      "column": 4,
+      "changes": {
+        "metric": {
+          "before": "raw_materials_inventory",
+          "after": "inventory_net_value"
+        },
+        "normalization.dimensions": {
+          "before": {
+            "financial_item": "inventory_raw_materials"
+          },
+          "after": {
+            "financial_item": "inventory_raw_materials",
+            "composition": "component",
+            "component": "原材料"
+          }
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "账面价值",
+                "期末存货账面价值"
+              ],
+              "physical_headers": [
+                "账面价值"
+              ],
+              "measure_kinds": [
+                "net"
+              ],
+              "unresolved_headers": [
+                "账面价值"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": null,
+          "after": {
+            "composition": {
+              "row": 3,
+              "column": 1,
+              "text": "原材料",
+              "total_rows": [
+                7
+              ]
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "raw_materials_inventory",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "原材料"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "32431a3737784a95b08c11b6d86e900b",
+      "table_id": "8806d020dcf04227b4ed356523190a08:t36",
+      "row": 3,
+      "column": 5,
+      "changes": {
+        "metric": {
+          "before": "raw_materials_inventory",
+          "after": "inventory_gross_cost"
+        },
+        "normalization.dimensions": {
+          "before": {
+            "financial_item": "inventory_raw_materials"
+          },
+          "after": {
+            "financial_item": "inventory_raw_materials",
+            "composition": "component",
+            "component": "原材料"
+          }
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "期初余额",
+                "账面余额",
+                "期初存货账面余额"
+              ],
+              "physical_headers": [
+                "期初余额",
+                "账面余额"
+              ],
+              "measure_kinds": [
+                "gross"
+              ],
+              "unresolved_headers": [
+                "账面余额"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": null,
+          "after": {
+            "composition": {
+              "row": 3,
+              "column": 1,
+              "text": "原材料",
+              "total_rows": [
+                7
+              ]
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "raw_materials_inventory",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "原材料"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "1b0482ea60b542c890f55ee18c301770",
+      "table_id": "8806d020dcf04227b4ed356523190a08:t36",
+      "row": 3,
+      "column": 7,
+      "changes": {
+        "metric": {
+          "before": "raw_materials_inventory",
+          "after": "inventory_net_value"
+        },
+        "normalization.dimensions": {
+          "before": {
+            "financial_item": "inventory_raw_materials"
+          },
+          "after": {
+            "financial_item": "inventory_raw_materials",
+            "composition": "component",
+            "component": "原材料"
+          }
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "账面价值",
+                "期初存货账面价值"
+              ],
+              "physical_headers": [
+                "账面价值"
+              ],
+              "measure_kinds": [
+                "net"
+              ],
+              "unresolved_headers": [
+                "账面价值"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": null,
+          "after": {
+            "composition": {
+              "row": 3,
+              "column": 1,
+              "text": "原材料",
+              "total_rows": [
+                7
+              ]
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "raw_materials_inventory",
+            "evidence": {
+              "axis": "row",
+              "row": 3,
+              "column": 1,
+              "label": "原材料"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "83a600acc0824ff7abc762c77e2ff2a6",
+      "table_id": "8806d020dcf04227b4ed356523190a08:t36",
+      "row": 5,
+      "column": 2,
+      "changes": {
+        "metric": {
+          "before": "finished_goods_inventory",
+          "after": "inventory_gross_cost"
+        },
+        "normalization.dimensions": {
+          "before": {
+            "financial_item": "inventory_finished_goods"
+          },
+          "after": {
+            "financial_item": "inventory_finished_goods",
+            "composition": "component",
+            "component": "库存商品"
+          }
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "期末余额",
+                "账面余额",
+                "期末存货账面余额"
+              ],
+              "physical_headers": [
+                "期末余额",
+                "账面余额"
+              ],
+              "measure_kinds": [
+                "gross"
+              ],
+              "unresolved_headers": [
+                "账面余额"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": null,
+          "after": {
+            "composition": {
+              "row": 5,
+              "column": 1,
+              "text": "库存商品",
+              "total_rows": [
+                7
+              ]
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "finished_goods_inventory",
+            "evidence": {
+              "axis": "row",
+              "row": 5,
+              "column": 1,
+              "label": "库存商品"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "9a0548a46de445cda2f365b12f081974",
+      "table_id": "8806d020dcf04227b4ed356523190a08:t36",
+      "row": 5,
+      "column": 4,
+      "changes": {
+        "metric": {
+          "before": "finished_goods_inventory",
+          "after": "inventory_net_value"
+        },
+        "normalization.dimensions": {
+          "before": {
+            "financial_item": "inventory_finished_goods"
+          },
+          "after": {
+            "financial_item": "inventory_finished_goods",
+            "composition": "component",
+            "component": "库存商品"
+          }
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "账面价值",
+                "期末存货账面价值"
+              ],
+              "physical_headers": [
+                "账面价值"
+              ],
+              "measure_kinds": [
+                "net"
+              ],
+              "unresolved_headers": [
+                "账面价值"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": null,
+          "after": {
+            "composition": {
+              "row": 5,
+              "column": 1,
+              "text": "库存商品",
+              "total_rows": [
+                7
+              ]
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "finished_goods_inventory",
+            "evidence": {
+              "axis": "row",
+              "row": 5,
+              "column": 1,
+              "label": "库存商品"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "a3dcec216ee142b1b5e72fb30876ff35",
+      "table_id": "8806d020dcf04227b4ed356523190a08:t36",
+      "row": 5,
+      "column": 5,
+      "changes": {
+        "metric": {
+          "before": "finished_goods_inventory",
+          "after": "inventory_gross_cost"
+        },
+        "normalization.dimensions": {
+          "before": {
+            "financial_item": "inventory_finished_goods"
+          },
+          "after": {
+            "financial_item": "inventory_finished_goods",
+            "composition": "component",
+            "component": "库存商品"
+          }
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "期初余额",
+                "账面余额",
+                "期初存货账面余额"
+              ],
+              "physical_headers": [
+                "期初余额",
+                "账面余额"
+              ],
+              "measure_kinds": [
+                "gross"
+              ],
+              "unresolved_headers": [
+                "账面余额"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": null,
+          "after": {
+            "composition": {
+              "row": 5,
+              "column": 1,
+              "text": "库存商品",
+              "total_rows": [
+                7
+              ]
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "finished_goods_inventory",
+            "evidence": {
+              "axis": "row",
+              "row": 5,
+              "column": 1,
+              "label": "库存商品"
+            }
+          },
+          "after": null
+        }
+      }
+    },
+    {
+      "fact_id": "f7d58aa9b31e4dd2a1ec7ba8e6ba07c6",
+      "table_id": "8806d020dcf04227b4ed356523190a08:t36",
+      "row": 5,
+      "column": 7,
+      "changes": {
+        "metric": {
+          "before": "finished_goods_inventory",
+          "after": "inventory_net_value"
+        },
+        "normalization.dimensions": {
+          "before": {
+            "financial_item": "inventory_finished_goods"
+          },
+          "after": {
+            "financial_item": "inventory_finished_goods",
+            "composition": "component",
+            "component": "库存商品"
+          }
+        },
+        "normalization.metric_normalization_reverted": {
+          "before": null,
+          "after": {
+            "version": "source-metric-2",
+            "reason": "列含独立计量含义，行名不能唯一确定该格指标，保留原 ID",
+            "column_semantics": {
+              "labels": [
+                "账面价值",
+                "期初存货账面价值"
+              ],
+              "physical_headers": [
+                "账面价值"
+              ],
+              "measure_kinds": [
+                "net"
+              ],
+              "unresolved_headers": [
+                "账面价值"
+              ],
+              "row_metric_safe": false
+            }
+          }
+        },
+        "normalization.source_dimension_evidence": {
+          "before": null,
+          "after": {
+            "composition": {
+              "row": 5,
+              "column": 1,
+              "text": "库存商品",
+              "total_rows": [
+                7
+              ]
+            }
+          }
+        },
+        "normalization.document_semantics_revision": {
+          "shared_value": "metadata_1"
+        },
+        "normalization.metric_normalization": {
+          "before": {
+            "version": "source-metric-1",
+            "canonical_metric": "finished_goods_inventory",
+            "evidence": {
+              "axis": "row",
+              "row": 5,
+              "column": 1,
+              "label": "库存商品"
+            }
+          },
+          "after": null
+        }
+      }
+    }
+  ],
+  "shared_values": {
+    "metadata_1": {
+      "before": {
+        "processing_id": "f201-baseline",
+        "reason": "source_basis_dimensions_period_scope",
+        "basis_evidence": []
+      },
+      "after": {
+        "processing_id": "f201-final-recovered",
+        "reason": "source_basis_dimensions_period_scope",
+        "basis_evidence": []
+      }
+    }
+  }
+}

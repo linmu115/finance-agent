@@ -196,7 +196,7 @@ class ScriptCleaningMixin:
                             ext=result.get('extractions',[])
                             schemas=[e['attributes'] for e in ext if e['class']=='table_schema']
                             rows=[{'row':int(re.search(r':R(\d+)',e['text'])[1]),'attributes':e['attributes']} for e in ext if e['class']=='financial_row']
-                            if schemas and (profile or {}).get('kind','financial_report')=='financial_report' and canonical_rows(table,rows,int(schemas[0].get('label_column',1)),schemas[0].get('statement'),schemas[0],cleaning_rules.context(parsed,table)['topic'])!=rows:continue
+                            if schemas and (profile or {}).get('kind','financial_report')=='financial_report' and canonical_rows(table,rows,int(schemas[0].get('label_column',1)),schemas[0].get('statement'),schemas[0],cleaning_rules.context(parsed,table)['topic'],context=cleaning_rules.context(parsed,table))!=rows:continue
                             facts,checks=materialize(ext,[{'table':table,'rows':list(range(1,len(table['rows'])+1))}],did,model)
                             page=next(p['text'] for p in parsed['pages'] if p['page']==table['page'])
                             if schemas:checks.extend(mapping_issues(table,schemas[0],rows,page_text=page,facts=facts))
@@ -277,7 +277,7 @@ class ScriptCleaningMixin:
                     if mapping and not mapping['unmapped_rows']:
                         payload.append(mapping);origins[str(index)]='standard:'+cleaning_rules.VERSION
                     continue
-                if schemas and document.get('document_kind','financial_report')=='financial_report' and canonical_rows(table,rows,int(schemas[0].get('label_column',1)),schemas[0].get('statement'),schemas[0],cleaning_rules.context(parsed,table)['topic'])!=rows:
+                if schemas and document.get('document_kind','financial_report')=='financial_report' and canonical_rows(table,rows,int(schemas[0].get('label_column',1)),schemas[0].get('statement'),schemas[0],cleaning_rules.context(parsed,table)['topic'],context=cleaning_rules.context(parsed,table))!=rows:
                     payload.append({'index':index,'schema':schemas[0],'rows':rows})
                     origins[str(index)]='standard-update:'+STANDARD_VERSION
                     continue
@@ -538,7 +538,7 @@ class ScriptCleaningMixin:
                 n=row.get('row')
                 if type(n) is not int or not 1<=n<=len(table['rows']) or n in used or not isinstance(row.get('attributes'),dict):raise ValueError('invalid_script_row')
                 if (profile or {}).get('kind','financial_report')=='financial_report':
-                    row['attributes']=canonical_rows(table,[row],int(schema.get('label_column',1)),schema.get('statement'),schema,topic)[0]['attributes']
+                    row['attributes']=canonical_rows(table,[row],int(schema.get('label_column',1)),schema.get('statement'),schema,topic,context=cleaning_rules.context(parsed,table))[0]['attributes']
                 used.add(n);marker=f'[[T{index}:R{n}]]';ext.append({'class':'financial_row','text':marker,'span':[0,len(marker)],'attributes':row['attributes']})
             batch=[{'table':table,'rows':list(range(1,len(table['rows'])+1))}]
             facts,issues=materialize(ext,batch,job['document_id'],state['model'])

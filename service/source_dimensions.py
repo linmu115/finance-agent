@@ -4,7 +4,7 @@ import re
 
 def apply_source_dimensions(table, facts, page_text='', context=None):
     from .metric_normalization import apply_metric_normalization
-    apply_metric_normalization(table, facts)
+    apply_metric_normalization(table, facts, context)
     rows=table['rows']
     counterparty_columns={c for row in rows[:3] for c,raw in enumerate(row,1)
                           if re.fullmatch(r'\s*(?:关联方(?:名称)?|交易对方|往来单位(?:名称)?|Related part(?:y|ies)|Counterparty)\s*',str(raw),re.I)}
@@ -22,7 +22,10 @@ def apply_source_dimensions(table, facts, page_text='', context=None):
             if column<=len(cells) and str(cells[column-1]).strip() and column!=ref['column']:
                 value=str(cells[column-1]).strip()
                 dims['related_party']=value;proof['related_party']={'row':row,'column':column,'text':value}
-        if total_rows.get(fact['metric']) and row not in total_rows[fact['metric']]:
+        # Repair only empty component names introduced by this source rule.
+        if not str(cells[0]).strip() and dims.get('component') == '' and 'composition' in proof:
+            dims.pop('composition', None);dims.pop('component', None);proof.pop('composition', None)
+        if str(cells[0]).strip() and total_rows.get(fact['metric']) and row not in total_rows[fact['metric']]:
             dims['composition']='component';dims['component']=str(cells[0]).strip()
             proof['composition']={'row':row,'column':1,'text':cells[0],'total_rows':sorted(total_rows[fact['metric']])}
         # Direction-neutral instrument labels can appear on both sides of the
@@ -31,5 +34,5 @@ def apply_source_dimensions(table, facts, page_text='', context=None):
             dims['balance_side']=side;proof['balance_side']={'page':table['page'],'heading':headings[-1]}
         if not proof:meta.pop('source_dimension_evidence',None)
     from .dimension_semantics import classify_dimensions
-    classify_dimensions(table, facts)
+    classify_dimensions(table, facts, context)
     return facts

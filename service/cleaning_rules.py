@@ -12,6 +12,7 @@ from .standard_metrics import standard_metric, normalize_label, ROWS, VERSION as
 from .cleaning_batches import header_rows
 from .source_numbers import data_number
 from .source_periods import report_month, column_period
+from .metric_context import source_metric_context, column_semantics
 
 VERSION = 'cleaning-rules-5/' + ROW_VERSION
 
@@ -186,7 +187,7 @@ def equity_draft(parsed,table,company,basis,ctx,unit):
     year=years.pop();columns=[]
     for c in range(1,max(map(len,table['rows']),default=0)):
         labels=[normalize_label(row[c]) for row in inherited if len(row)>c and str(row[c]).strip()]
-        metric=next((standard_metric(label) for label in reversed(labels) if standard_metric(label)),None)
+        metric=next((standard_metric(label,context={'kind':'balance'}) for label in reversed(labels) if standard_metric(label,context={'kind':'balance'})),None)
         if labels and labels[-1]=='小计':metric='equity_parent'
         if labels and labels[-1]=='优先股':metric='preferred_shares'
         if labels and labels[-1]=='永续债':metric='perpetual_bonds'
@@ -292,7 +293,9 @@ def draft(parsed, table, company, basis, learned=None):
             if dimensions:attrs['dimensions_json']=json.dumps(dimensions,ensure_ascii=False)
             if attrs.get('columns'):attrs['columns_json']=json.dumps(rebind_periods(bind_columns(attrs.pop('columns'),year),columns))
         else:
-            metric = standard_metric(row[0])
+            metric = standard_metric(row[0],context=source_metric_context(table,number,ctx))
+            if any(not column_semantics(table,number,c['column'])['row_metric_safe'] for c in columns):
+                unknown.append(number);continue
             if not metric and normalize_label(row[0]) in {'合计','总计','total'}:
                 # The total of a complex allowance/movement matrix is not the
                 # note's asset balance. Only the plain two-period form applies.
