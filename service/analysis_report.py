@@ -407,7 +407,7 @@ def format_cell(value, column, with_unit=False):
         return '—'
     if not column.get('unit'):
         return str(value)
-    text = f'{Decimal(value):,.{column.get("decimals", 2)}f}'
+    text = f'{Decimal(convert(value, column["unit"], column["unit"])):,.{column.get("decimals", 2)}f}'
     return text + (' ' + ' '.join(x for x in (column.get('currency'), column['unit']) if x) if with_unit else '')
 
 
