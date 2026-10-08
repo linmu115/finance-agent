@@ -436,7 +436,8 @@ class ResearchIngestionMixin:
     def _evidence_filters(self, company=None, year=None, filters=None):
         filters=filters or {}
         if not isinstance(filters,dict) or set(filters)-{'document_ids','entity_id','publisher','as_of','data_kind','document_kind'}:raise ValueError('invalid_evidence_filters')
-        sql='';args=[]
+        from .evaluation_isolation import original_pi, raw_source_clause
+        sql=raw_source_clause('c') if original_pi() else '';args=[]
         # Never retrieve a superseded structured excerpt, even if its embedding
         # remains in the content-addressed cache for future reuse.
         sql+=" AND (json_extract(c.source_json,'$.research_record_id') IS NULL OR EXISTS(SELECT 1 FROM research_records rr LEFT JOIN document_profiles rp USING(document_id) WHERE rr.record_id=json_extract(c.source_json,'$.research_record_id') AND rr.is_current=1 AND (rr.profile_revision IS NULL OR rr.profile_revision=rp.revision_id)))"

@@ -2,6 +2,22 @@
 from contextvars import ContextVar
 
 isolation_key = ContextVar('evaluation_isolation_key', default=None)
+evaluation_profile = ContextVar('evaluation_profile', default=None)
+analysis_only = ContextVar('evaluation_analysis_only', default=False)
+
+
+def original_pi():
+    return evaluation_profile.get() == 'original_pi'
+
+
+def raw_source(ref):
+    return not any(ref.get(key) is not None for key in ('research_record_id','fact_id','record_id','normalization','data_kind'))
+
+
+def raw_source_clause(alias=''):
+    prefix = alias + '.' if alias else ''
+    return ''.join(f" AND json_extract({prefix}source_json,'$.{key}') IS NULL"
+                   for key in ('research_record_id','fact_id','record_id','normalization','data_kind'))
 
 
 def visible(value):

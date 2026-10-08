@@ -9,6 +9,7 @@ import uuid
 from pathlib import Path
 
 from .parser import PARSER_VERSION, parse_document
+from .evaluation_isolation import analysis_only
 
 
 def prepare_document_sources(service, project_id, document_ids, progress=lambda value,message:None, cancelled=lambda:False):
@@ -31,6 +32,7 @@ def prepare_document_sources(service, project_id, document_ids, progress=lambda 
             if hashlib.sha256(original.read_bytes()).hexdigest()!=document['sha256']:raise ValueError('document_source_hash_changed')
             parsed=service._read_prepared(project_id,document);reused=parsed is not None
             if parsed is None:
+                if analysis_only.get():raise ValueError('analysis_sources_not_prepared')
                 with service.store.connect() as db:
                     if db.execute('SELECT 1 FROM facts WHERE document_id=? LIMIT 1',(document_id,)).fetchone() or db.execute('SELECT 1 FROM normalization_batches WHERE document_id=? LIMIT 1',(document_id,)).fetchone():
                         raise ValueError('baseline_sources_missing_for_prepared_document')

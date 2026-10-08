@@ -3,6 +3,10 @@ import type {Conversation} from './types.js';
 
 /** Trusted run context, never a model-supplied tool argument. Undefined keeps product sharing. */
 export const evaluationIsolation = new AsyncLocalStorage<string|undefined>();
+export const evaluationRuntime = new AsyncLocalStorage<{profile?:string;analysis_only?:boolean}|undefined>();
+export function withEvaluationScope<T>(evaluation:{profile?:string;isolation_key?:string;analysis_only?:boolean}|undefined,fn:()=>T):T{
+ return evaluationIsolation.run(evaluation?.isolation_key,()=>evaluationRuntime.run(evaluation,fn));
+}
 export const visibleInEvaluation = (value:{isolation_key?:string}) =>
  evaluationIsolation.getStore()===undefined || value.isolation_key===evaluationIsolation.getStore();
 

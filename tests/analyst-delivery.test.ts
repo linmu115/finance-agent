@@ -57,6 +57,7 @@ test('shared native A1 repair handles section and reference failures once, then 
    assert.deepEqual(persisted.turns.at(-1).sources,last.sources);
   }
   const chat=await make('prepared');faux.setResponses([answer('目标价 20 元。'),answer('目标价 21 元。')]);
-  const run=await manager.start(chat,'估值',[],undefined,evaluation('prepared')),failed=await wait(run.id);assert.equal(failed.status,'failed');assert.match(failed.error,/假设/);assert.equal(faux.getPendingResponseCount(),0);
+  const run=await manager.start(chat,'估值',[],undefined,evaluation('prepared')),degraded=await wait(run.id);
+  assert.equal(degraded.status,'completed');assert.match((await manager.getConversation(chat.id)).messages.at(-1).content,/假设/);assert.equal(faux.getPendingResponseCount(),0);
  }finally{await manager.shutdown();await service.close();}
 });

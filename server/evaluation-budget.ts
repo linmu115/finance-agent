@@ -3,7 +3,7 @@ import {randomUUID} from 'node:crypto';
 export interface EvaluationLimits {
  max_model_calls:number; max_input_tokens:number; max_output_tokens:number; max_total_tokens:number; max_wall_seconds:number;
 }
-export interface EvaluationOptions {profile:'financial'|'generic'|'prepared';budget_group_id:string;budget:EvaluationLimits;isolation_key?:string;analysis_only?:boolean}
+export interface EvaluationOptions {profile:'financial'|'generic'|'prepared'|'original_pi';budget_group_id:string;budget:EvaluationLimits;isolation_key?:string;analysis_only?:boolean}
 export interface BudgetUsage {input?:number;output?:number;cacheRead?:number;cacheWrite?:number}
 export interface BudgetTicket {id:string;run_id:string;max_output_tokens:number;created_at:string}
 export interface BudgetSnapshot extends EvaluationOptions {
@@ -22,7 +22,7 @@ export function normalizeEvaluation(value:unknown):EvaluationOptions|undefined {
  if(value===undefined)return undefined;
  if(!value||typeof value!=='object'||Array.isArray(value))throw failure('invalid_evaluation');
  const raw=value as Record<string,unknown>;
- if(Object.keys(raw).some(key=>!['profile','budget_group_id','budget','isolation_key','analysis_only'].includes(key))||!['financial','generic','prepared'].includes(String(raw.profile))||
+ if(Object.keys(raw).some(key=>!['profile','budget_group_id','budget','isolation_key','analysis_only'].includes(key))||!['financial','generic','prepared','original_pi'].includes(String(raw.profile))||
     typeof raw.budget_group_id!=='string'||!/^[-A-Za-z0-9_]{1,120}$/.test(raw.budget_group_id)||
     !raw.budget||typeof raw.budget!=='object'||Array.isArray(raw.budget))throw failure('invalid_evaluation');
  if(raw.isolation_key!==undefined&&(typeof raw.isolation_key!=='string'||!/^[-A-Za-z0-9_]{1,120}$/.test(raw.isolation_key)))throw failure('invalid_evaluation_isolation_key');

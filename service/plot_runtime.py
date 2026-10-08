@@ -289,3 +289,14 @@ try:
 finally:
     shutil.copyfile('/input/analysis.py', '/output/executed_script.py')
 '''
+
+# Same scientific runtime/font setup and executable-script delivery; no report SDK.
+ORIGINAL_PI_LAUNCH = '''import runpy, shutil, sys
+sys.path.insert(0, '/input')
+from plot_runtime import setup
+setup()
+try:
+    runpy.run_path('/input/analysis.py', run_name='__main__')
+finally:
+    shutil.copyfile('/input/analysis.py', '/output/executed_script.py')
+'''

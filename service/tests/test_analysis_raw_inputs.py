@@ -48,7 +48,7 @@ class AnalysisRawInputTests(unittest.TestCase):
                 self.assertEqual(captured[-1]['analysis.py'],'print(2)\nprint(2)')
                 with self.assertRaisesRegex(ValueError,'edit_makes_no_change'):
                     service.run_analysis('p',source_run_id=run,edits=[{'before':'pass','after':'pass'}],financial_tools=False)
-                self.assertEqual(set(captured[0]),{"pages.json","tables.json","facts.json","research_records.json","analysis.py","plot_runtime.py","analysis_report.py","model_units.py","analysis_report.md"})
+                self.assertEqual(set(captured[0]),{"pages.json","tables.json","facts.json","research_records.json","analysis.py","plot_runtime.py","analysis_report.py","model_units.py","analysis_report.md","delivery_text.py"})
                 self.assertEqual(captured[0]['analysis.py'],'pass')
                 self.assertEqual(captured[0]['plot_runtime.py'],captured[1]['plot_runtime.py'])
                 self.assertEqual(captured[0]['analysis_report.py'],captured[2]['analysis_report.py'])

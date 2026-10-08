@@ -33,6 +33,7 @@ export async function reportSnapshot(chat:Conversation,auditRoot=path.join(DATA,
  return {title:chat.title,conversation_id:chat.id,project_id:chat.projectId,turns};
 }
 export function exportReportPackage(service:FinanceService,chat:Conversation){
+ if(chat.evaluationProfile==='original_pi')throw Object.assign(new Error('original_pi 不提供标准报告包；自行生成的文件仍可下载。'),{status:400});
  return evaluationIsolation.run(chat.evaluationIsolationKey,()=>exportScopedReportPackage(service,chat));
 }
 async function exportScopedReportPackage(service:FinanceService,chat:Conversation){

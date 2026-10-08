@@ -1,0 +1,70 @@
+{
+  "branch": "feat/original-pi",
+  "base": "e07cd6a7915ffabfae92d8412bc8df9cb358fba3",
+  "legacy_source": "db23e5b151a39ea5084da576716e8fa4a129ed20",
+  "versions": {
+    "@earendil-works/pi-coding-agent": "1.0.0",
+    "@earendil-works/pi-ai": "1.0.0",
+    "@modelcontextprotocol/sdk": "1.32.0"
+  },
+  "profiles": {
+    "original_pi": {
+      "tool_count": 10,
+      "configured_prompt_sha256": "6c71fd727034260afcaa6e29e833ff27000cb7f246b2b0ffc83aa867be20c32f",
+      "actual_tool_schema_sha256": "e67785cc82164f505ad823d1c7f0cf4c0172eb24aa5024dddf67bacc49697f2f",
+      "captured_full_native_prompt_sha256": "0f683dd83c46322ba250deae7e011aaf007bf86ca9be2e6f8ed035651798db92",
+      "native_system_sections": [
+        "preamble",
+        "cwd"
+      ],
+      "main_requests": 5
+    },
+    "prepared": {
+      "tool_count": 13,
+      "configured_prompt_sha256": "277d3f66d7117f3a26081664156724289e4db87021e0127f1816e9fbe96f448e",
+      "actual_tool_schema_sha256": "aa5296cc7cdebd128908aae366757f2d8166382a0deeb55e73f7365109fcb0f8",
+      "captured_full_native_prompt_sha256": "b5605f950bd3bf51317e34984411a915ab390ca86367fbaf546643434baf2118",
+      "native_system_sections": [
+        "preamble",
+        "cwd"
+      ],
+      "main_requests": 6
+    },
+    "financial": {
+      "tool_count": 32,
+      "configured_prompt_sha256": "caaaa94ce7118793bfb460c7c4361c140def198ffa1a7f517d015b54edd7a19f",
+      "actual_tool_schema_sha256": "92670cab07d5d63488176715276bdacf6cbb7482b080d1ebe7ce0c1fd54ba13c",
+      "captured_full_native_prompt_sha256": "c019ac4e75177d88e5b4b87797b7ddf0867a109efc6917641867af91b8166fa8",
+      "native_system_sections": [
+        "preamble",
+        "project_context",
+        "cwd"
+      ],
+      "main_requests": 6
+    }
+  },
+  "common_source_sha256": {
+    "server/runs.ts": "f4cc5654518de26230262fae54dbd19384968f1654d187608e232917da67e76f",
+    "server/mcp.ts": "46a1fbdc0d3681c70f92821e40a08bac0376688341a51fa78e7491632978a17e",
+    "server/config.ts": "69ffcfbc9d8d32ef4b29b7d8c4eac53a35c4cce25f8c35fca998b472b5526383",
+    "server/transport-retry.ts": "9c3e5b7ac369a9d1b7d57e29a43019fa377b40704fb99856b2b7c36275b07f7a",
+    "server/context-compaction.ts": "4f13896c2a9c82d7817ce3f78851f177eb07e390bbd5c9a3939a29a589489a13",
+    "server/main.ts": "e0fa1030fc49d295469312c5949d0b17e2c63a0a40e729396c624f2e7e420f63",
+    "service/core.py": "b0052b4371b82c302a90a01be490a4b22ac6e5dfb90856cd38f214795e9ff738",
+    "service/plot_runtime.py": "e420601d4047439fa69bfa094f4570b3f5caf0b38a379a370d2bcc3780e055fc",
+    "sandbox/launcher.py": "33067f1db652c2cd68b2d9f3783b15a94a1ebf986a7323f8cb8d88179237b28a",
+    "sandbox/entrypoint.py": "51398c15d556263608f21b438794484a9b4e1ce13fcb9ba6e8b61875f8d800d7",
+    "sandbox/Dockerfile": "d716957cf7c9f466f93f2a0722808606faaa42da8fef44fb37f839bc6d2d3073",
+    "sandbox/requirements.lock": "2bedf155e8d0eb3752feb2a38cb8458656dc1a93dc8054a59d2cddcd88ce890c",
+    "package-lock.json": "e13fabe38d091fc5ae87f23dc365669d9880cc7bb9e68291444648ceecef1056"
+  },
+  "compiled_frozen_schema_present": true,
+  "deployment": "not deployed; no merge; no 3001 operation",
+  "paid_model_calls": 0,
+  "sandbox_execution": "fake runner capture, no Docker run",
+  "limits": [
+    "native full prompt includes per-session cwd; legacy audit hash covers configured preamble",
+    "no provider network serialization or real model quality comparison",
+    "two Windows symlink tests skipped by existing OS policy"
+  ]
+}

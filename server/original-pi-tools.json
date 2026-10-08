@@ -1,0 +1,328 @@
+[
+  {
+    "name": "prepare_document_sources",
+    "description": "Read raw document pages and source-coordinate tables. No model, metric mapping, or standardized facts are produced.",
+    "inputSchema": {
+      "properties": {
+        "document_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Document Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "document_ids"
+      ],
+      "title": "prepare_document_sourcesArguments",
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "list_documents",
+    "description": "List only this project's documents and actual parsing state.",
+    "inputSchema": {
+      "properties": {},
+      "required": [],
+      "title": "list_documentsArguments",
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "get_document",
+    "description": "Get verified document ownership, hash, source path and quality counts.",
+    "inputSchema": {
+      "properties": {
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id"
+      ],
+      "title": "get_documentArguments",
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "get_document_index",
+    "description": "Read paginated YAML navigation, not the full catalog. section selects pages, tables, or both (overview).\nDefault 40 entries per section, maximum 100. pagination.pages/tables have separate filtered total,\nreturned, offset, limit, has_more and next_offset; totals are full document counts. Continue each\nsection separately with its next_offset. page_start/page_end are inclusive physical page numbers.\nquery matches all whitespace-separated terms, case-insensitively, in page headings or table IDs,\nsheet names, page headings and saved table previews. This searches navigation, not full page text;\nuse search_evidence for body text. Table preview rows appear only with include_preview=true.\nindex_path/original_path locate full files. get_source_page/get_source_table read exact original content.",
+    "inputSchema": {
+      "properties": {
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "section": {
+          "default": "overview",
+          "enum": [
+            "overview",
+            "pages",
+            "tables"
+          ],
+          "title": "Section",
+          "type": "string"
+        },
+        "query": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Query"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "limit": {
+          "default": 40,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "page_start": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page Start"
+        },
+        "page_end": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page End"
+        },
+        "include_preview": {
+          "default": false,
+          "title": "Include Preview",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "document_id"
+      ],
+      "title": "get_document_indexArguments",
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "get_source_page",
+    "description": "Read a source page (1-based physical page) and render an image for citation review.",
+    "inputSchema": {
+      "properties": {
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "page": {
+          "title": "Page",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "document_id",
+        "page"
+      ],
+      "title": "get_source_pageArguments",
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "get_source_table",
+    "description": "List source tables or read one table's actual rows, cells, formulas and source coordinates.",
+    "inputSchema": {
+      "properties": {
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "table_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Table Id"
+        }
+      },
+      "required": [
+        "document_id"
+      ],
+      "title": "get_source_tableArguments",
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "search_evidence",
+    "description": "Project-scoped FTS5 search plus configured embeddings/RRF. Filters: document_ids [], entity_id, publisher (report publisher), as_of ISO date, data_kind (structured excerpts only), document_kind. Company matches document subject associations as well as its issuer. Date/entity filters apply to both retrieval branches; unknown publication dates are excluded for as_of. Precise numeric comparisons use query_research_records or query_financial_data. Follow next_offset for more ranked evidence.",
+    "inputSchema": {
+      "properties": {
+        "query": {
+          "title": "Query",
+          "type": "string"
+        },
+        "company": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Company"
+        },
+        "year": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Year"
+        },
+        "limit": {
+          "default": 8,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "filters": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Filters"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "search_evidenceArguments",
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "run_analysis",
+    "description": "Run Python only in the isolated scientific container. /input/pages.json, /input/tables.json and /input/facts.json are project exports.\n/input/research_records.json contains separate, attributed research observations/forecasts/claims. Never treat estimates as disclosures.\nWrite artifacts under /output. No network, no keys, no database; missing Docker fails closed. Returns run_id.",
+    "inputSchema": {
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "document_ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Document Ids"
+        },
+        "timeout_seconds": {
+          "default": 120,
+          "title": "Timeout Seconds",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "title": "run_analysisArguments",
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "get_analysis_status",
+    "description": "Poll isolated analysis state and verified artifact manifest.",
+    "inputSchema": {
+      "properties": {
+        "run_id": {
+          "title": "Run Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id"
+      ],
+      "title": "get_analysis_statusArguments",
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "get_artifact",
+    "description": "Get a successful sandbox artifact after project, path and hash verification.",
+    "inputSchema": {
+      "properties": {
+        "run_id": {
+          "title": "Run Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id",
+        "name"
+      ],
+      "title": "get_artifactArguments",
+      "type": "object",
+      "additionalProperties": false
+    }
+  }
+]
