@@ -1,0 +1,698 @@
+{
+  "management_evidence": [],
+  "signal_followups": [],
+  "comparability_constraints": [
+    {
+      "id": "expectations:excluded_CNY_money:1:profit_attribution_unknown",
+      "kind": "profit_attribution_unknown",
+      "affected_refs": [
+        "expectations_excluded_CNY_money.1.value"
+      ],
+      "status": "unknown",
+      "reason": "原标签或指标未声明归属于母公司股东",
+      "issues": [
+        {
+          "dimension": "profit_attribution",
+          "status": "unknown",
+          "detail": "原标签或指标未声明归属于母公司股东"
+        }
+      ],
+      "record_ids": [
+        "unknown_profit"
+      ],
+      "forbidden_claims": [
+        "label_as_parent_profit",
+        "parent_profit_comparison"
+      ],
+      "required_qualification": "利润归属未明或仅为合并净利润，不得改标归母、计算归母误差或跨归属修正",
+      "evidence": [
+        {
+          "record_id": "unknown_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-05-01"
+        }
+      ]
+    },
+    {
+      "id": "expectations:excluded_CNY_money:1:comparison_basis_unaligned",
+      "kind": "comparison_basis_unaligned",
+      "affected_refs": [
+        "expectations_excluded_CNY_money.1.value"
+      ],
+      "status": "unknown",
+      "reason": "披露口径尚未明确；净利润归母身份未定，不能与归母预测或实际值混算",
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": []
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": []
+        },
+        {
+          "dimension": "source_identity",
+          "status": "unknown",
+          "detail": "净利润归母身份未定，不能与归母预测或实际值混算"
+        }
+      ],
+      "record_ids": [
+        "unknown_profit"
+      ],
+      "forbidden_claims": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "required_qualification": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "unknown_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-05-01"
+        }
+      ]
+    },
+    {
+      "id": "expectations:actual_vs_expected_CNY_money:0:comparison_basis_unaligned",
+      "kind": "comparison_basis_unaligned",
+      "affected_refs": [
+        "expectations_actual_vs_expected_CNY_money.0.value",
+        "expectations_actual_vs_expected_CNY_money.0.actual",
+        "expectations_actual_vs_expected_CNY_money.0.difference",
+        "expectations_actual_vs_expected_CNY_money.0.difference_rate",
+        "expectations_actual_vs_expected_CNY_money.0.absolute_error"
+      ],
+      "status": "unknown",
+      "reason": "披露口径尚未明确；机构会计/合并口径不明，不能计算同口径误差；数值参照另列",
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "consolidated"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "actual_match",
+          "status": "unknown",
+          "detail": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+        }
+      ],
+      "record_ids": [
+        "parent_profit",
+        "fact1"
+      ],
+      "forbidden_claims": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "required_qualification": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "parent_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-11-01"
+        }
+      ]
+    },
+    {
+      "id": "expectations:actual_vs_expected_CNY_money:1:comparison_basis_unaligned",
+      "kind": "comparison_basis_unaligned",
+      "affected_refs": [
+        "expectations_actual_vs_expected_CNY_money.1.value",
+        "expectations_actual_vs_expected_CNY_money.1.actual",
+        "expectations_actual_vs_expected_CNY_money.1.difference",
+        "expectations_actual_vs_expected_CNY_money.1.difference_rate",
+        "expectations_actual_vs_expected_CNY_money.1.absolute_error"
+      ],
+      "status": "unknown",
+      "reason": "披露口径尚未明确；营业收入、营业总收入及主营业务范围尚未对齐；机构会计/合并口径不明，不能计算同口径误差；数值参照另列",
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "consolidated"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "revenue_boundary",
+          "status": "unknown",
+          "detail": "营业收入、营业总收入及主营业务范围尚未对齐",
+          "left": null,
+          "right": [
+            "total_operating_revenue"
+          ]
+        },
+        {
+          "dimension": "actual_match",
+          "status": "unknown",
+          "detail": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+        }
+      ],
+      "record_ids": [
+        "revenue_reference",
+        "fact1"
+      ],
+      "forbidden_claims": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "required_qualification": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "revenue_reference",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-09-01"
+        }
+      ]
+    },
+    {
+      "id": "expectations:actual_vs_expected_CNY_per_share:2:comparison_basis_unaligned",
+      "kind": "comparison_basis_unaligned",
+      "affected_refs": [
+        "expectations_actual_vs_expected_CNY_per_share.2.value",
+        "expectations_actual_vs_expected_CNY_per_share.2.actual",
+        "expectations_actual_vs_expected_CNY_per_share.2.difference",
+        "expectations_actual_vs_expected_CNY_per_share.2.difference_rate",
+        "expectations_actual_vs_expected_CNY_per_share.2.absolute_error"
+      ],
+      "status": "unaligned",
+      "reason": "披露口径尚未明确；两侧披露口径不同；机构会计/合并口径不明，不能计算同口径误差；数值参照另列",
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "consolidated"
+          ]
+        },
+        {
+          "dimension": "basis",
+          "status": "different",
+          "detail": "两侧披露口径不同",
+          "left": "latest_shares",
+          "right": [
+            "basic"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "actual_match",
+          "status": "unknown",
+          "detail": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+        }
+      ],
+      "record_ids": [
+        "eps_reference",
+        "fact1"
+      ],
+      "forbidden_claims": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "required_qualification": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "eps_reference",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-09-01",
+          "basis": "latest_shares"
+        }
+      ]
+    },
+    {
+      "id": "expectations:version_links_CNY_money:parent_profit:profit_attribution_unknown",
+      "kind": "profit_attribution_unknown",
+      "affected_refs": [
+        "expectations_version_links_CNY_money.parent_profit.previous"
+      ],
+      "status": "unknown",
+      "reason": "前值利润归属未明；本次归母标签不回填给前值",
+      "issues": [
+        {
+          "dimension": "profit_attribution",
+          "status": "unknown",
+          "detail": "前值利润归属未明；本次归母标签不回填给前值"
+        }
+      ],
+      "record_ids": [
+        "unknown_profit"
+      ],
+      "forbidden_claims": [
+        "label_as_parent_profit",
+        "parent_profit_comparison"
+      ],
+      "required_qualification": "利润归属未明或仅为合并净利润，不得改标归母、计算归母误差或跨归属修正",
+      "evidence": [
+        {
+          "record_id": "unknown_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-05-01"
+        }
+      ]
+    },
+    {
+      "id": "expectations:version_links_CNY_money:parent_profit:comparison_basis_unaligned",
+      "kind": "comparison_basis_unaligned",
+      "affected_refs": [
+        "expectations_version_links_CNY_money.parent_profit.previous",
+        "expectations_version_links_CNY_money.parent_profit.value",
+        "expectations_version_links_CNY_money.parent_profit.change"
+      ],
+      "status": "unknown",
+      "reason": "披露口径尚未明确；前值净利润归母身份未定；保留关联，不计算归母修正",
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "unspecified"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "metric",
+          "status": "unknown",
+          "detail": "前值净利润归母身份未定；保留关联，不计算归母修正"
+        }
+      ],
+      "record_ids": [
+        "unknown_profit",
+        "parent_profit"
+      ],
+      "forbidden_claims": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion",
+        "same_basis_revision",
+        "parent_profit_comparison"
+      ],
+      "required_qualification": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "unknown_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-05-01"
+        },
+        {
+          "record_id": "parent_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-11-01"
+        }
+      ]
+    },
+    {
+      "id": "expectations:reference_gaps_CNY_money:parent_profit:comparison_basis_unaligned",
+      "kind": "comparison_basis_unaligned",
+      "affected_refs": [
+        "expectations_reference_gaps_CNY_money.parent_profit.forecast",
+        "expectations_reference_gaps_CNY_money.parent_profit.actual",
+        "expectations_reference_gaps_CNY_money.parent_profit.difference",
+        "expectations_reference_gaps_CNY_money.parent_profit.difference_rate"
+      ],
+      "status": "unknown",
+      "reason": "披露口径尚未明确；机构会计/合并范围未明确",
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "consolidated"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "comparison_identity",
+          "status": "unknown",
+          "detail": "机构会计/合并范围未明确"
+        }
+      ],
+      "record_ids": [
+        "parent_profit",
+        "fact1"
+      ],
+      "forbidden_claims": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "required_qualification": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "parent_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-11-01"
+        },
+        {
+          "fact_id": "fact1",
+          "page": 50,
+          "publisher": null,
+          "published_at": "2025-04-30"
+        }
+      ]
+    },
+    {
+      "id": "expectations:reference_gaps_CNY_money:revenue_reference:comparison_basis_unaligned",
+      "kind": "comparison_basis_unaligned",
+      "affected_refs": [
+        "expectations_reference_gaps_CNY_money.revenue_reference.forecast",
+        "expectations_reference_gaps_CNY_money.revenue_reference.actual",
+        "expectations_reference_gaps_CNY_money.revenue_reference.difference",
+        "expectations_reference_gaps_CNY_money.revenue_reference.difference_rate"
+      ],
+      "status": "unknown",
+      "reason": "披露口径尚未明确；营业收入、营业总收入及主营业务范围尚未对齐；机构会计/合并范围未明确；按营业收入标签参照；需另核营业总收入边界，未自动改标",
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "consolidated"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "revenue_boundary",
+          "status": "unknown",
+          "detail": "营业收入、营业总收入及主营业务范围尚未对齐",
+          "left": null,
+          "right": [
+            "total_operating_revenue"
+          ]
+        },
+        {
+          "dimension": "comparison_identity",
+          "status": "unknown",
+          "detail": "机构会计/合并范围未明确；按营业收入标签参照；需另核营业总收入边界，未自动改标"
+        }
+      ],
+      "record_ids": [
+        "revenue_reference",
+        "fact1"
+      ],
+      "forbidden_claims": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "required_qualification": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "revenue_reference",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-09-01"
+        },
+        {
+          "fact_id": "fact1",
+          "page": 50,
+          "publisher": null,
+          "published_at": "2025-04-30"
+        }
+      ]
+    },
+    {
+      "id": "expectations:reference_gaps_CNY_per_share:eps_reference:comparison_basis_unaligned",
+      "kind": "comparison_basis_unaligned",
+      "affected_refs": [
+        "expectations_reference_gaps_CNY_per_share.eps_reference.forecast",
+        "expectations_reference_gaps_CNY_per_share.eps_reference.actual",
+        "expectations_reference_gaps_CNY_per_share.eps_reference.difference",
+        "expectations_reference_gaps_CNY_per_share.eps_reference.difference_rate"
+      ],
+      "status": "unaligned",
+      "reason": "披露口径尚未明确；两侧披露口径不同；机构会计/合并范围未明确；EPS 分母口径不同或未明确，实际参照为基本 EPS",
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "consolidated"
+          ]
+        },
+        {
+          "dimension": "basis",
+          "status": "different",
+          "detail": "两侧披露口径不同",
+          "left": "latest_shares",
+          "right": [
+            "basic"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "comparison_identity",
+          "status": "unknown",
+          "detail": "机构会计/合并范围未明确；EPS 分母口径不同或未明确，实际参照为基本 EPS"
+        }
+      ],
+      "record_ids": [
+        "eps_reference",
+        "fact1"
+      ],
+      "forbidden_claims": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "required_qualification": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "eps_reference",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-09-01",
+          "basis": "latest_shares"
+        },
+        {
+          "fact_id": "fact1",
+          "page": 50,
+          "publisher": null,
+          "published_at": "2025-04-30",
+          "basis": "basic"
+        }
+      ]
+    },
+    {
+      "id": "comparison:amounts:a24:previous:comparison_basis_unaligned",
+      "kind": "comparison_basis_unaligned",
+      "affected_refs": [
+        "comparison_amounts.administrative.a24",
+        "comparison_amounts.administrative.previous",
+        "comparison_amounts.assets_begin.a24",
+        "comparison_amounts.assets_begin.previous",
+        "comparison_amounts.assets_end.a24",
+        "comparison_amounts.assets_end.previous",
+        "comparison_amounts.cash_end.a24",
+        "comparison_amounts.cash_end.previous",
+        "comparison_amounts.cfo.a24",
+        "comparison_amounts.cfo.previous",
+        "comparison_amounts.cogs.a24",
+        "comparison_amounts.cogs.previous",
+        "comparison_amounts.equity_begin.a24",
+        "comparison_amounts.equity_begin.previous",
+        "comparison_amounts.equity_end.a24",
+        "comparison_amounts.equity_end.previous",
+        "comparison_amounts.gross_profit.a24",
+        "comparison_amounts.gross_profit.previous",
+        "comparison_amounts.inventory_begin.a24",
+        "comparison_amounts.inventory_begin.previous",
+        "comparison_amounts.inventory_end.a24",
+        "comparison_amounts.inventory_end.previous",
+        "comparison_amounts.liabilities_end.a24",
+        "comparison_amounts.liabilities_end.previous",
+        "comparison_amounts.net_profit.a24",
+        "comparison_amounts.net_profit.previous",
+        "comparison_amounts.operating_profit.a24",
+        "comparison_amounts.operating_profit.previous",
+        "comparison_amounts.parent_profit.a24",
+        "comparison_amounts.parent_profit.previous",
+        "comparison_amounts.payables_begin.a24",
+        "comparison_amounts.payables_begin.previous",
+        "comparison_amounts.payables_end.a24",
+        "comparison_amounts.payables_end.previous",
+        "comparison_amounts.receivables_begin.a24",
+        "comparison_amounts.receivables_begin.previous",
+        "comparison_amounts.receivables_end.a24",
+        "comparison_amounts.receivables_end.previous",
+        "comparison_amounts.research.a24",
+        "comparison_amounts.research.previous",
+        "comparison_amounts.revenue.a24",
+        "comparison_amounts.revenue.previous",
+        "comparison_amounts.selling.a24",
+        "comparison_amounts.selling.previous"
+      ],
+      "status": "unaligned",
+      "reason": "缺少可引用披露；不能断言两侧口径一致；存在已披露差异；报告期间窗口不同，不能将全年与中期原数当作同比",
+      "issues": [
+        {
+          "dimension": "fiscal_year_end",
+          "status": "unknown",
+          "detail": "缺少可引用披露；不能断言两侧口径一致",
+          "left": "12-31",
+          "right": null
+        },
+        {
+          "dimension": "scope",
+          "status": "different",
+          "detail": "存在已披露差异",
+          "left": "consolidated",
+          "right": "parent"
+        },
+        {
+          "dimension": "accounting_standard",
+          "status": "unknown",
+          "detail": "缺少可引用披露；不能断言两侧口径一致",
+          "left": "CAS",
+          "right": null
+        },
+        {
+          "dimension": "restated",
+          "status": "unknown",
+          "detail": "缺少可引用披露；不能断言两侧口径一致",
+          "left": false,
+          "right": null
+        },
+        {
+          "dimension": "period_window",
+          "status": "different",
+          "detail": "报告期间窗口不同，不能将全年与中期原数当作同比",
+          "left": [
+            "2024-01-01",
+            "2024-12-31"
+          ],
+          "right": [
+            "2023-01-01",
+            "2023-06-30"
+          ]
+        }
+      ],
+      "record_ids": [],
+      "forbidden_claims": [
+        "same_basis_comparison",
+        "same_basis_error",
+        "unqualified_cross_period_growth"
+      ],
+      "required_qualification": "这两列存在未知或不同的口径；不能声称已完成同口径比较。原数、各列内部比率及明确说明限制的比较可保留。",
+      "evidence": [
+        {
+          "document_id": "a24",
+          "page": 1
+        },
+        {
+          "document_id": "a24",
+          "page": 1
+        },
+        {
+          "document_id": "a24",
+          "page": 1
+        },
+        {
+          "document_id": "a24",
+          "page": 1
+        },
+        {
+          "document_id": "a24",
+          "page": 1
+        }
+      ]
+    }
+  ],
+  "extensions": {
+    "management_evidence": "pending",
+    "signal_followups": "pending",
+    "comparability_constraints": "ready"
+  }
+}

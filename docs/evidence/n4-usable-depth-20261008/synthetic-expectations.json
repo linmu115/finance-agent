@@ -1,0 +1,3023 @@
+{
+  "title": "预期差账本",
+  "body": "预测冻结截至 所提供的全部明确发布日期（含当日）；日期不明和晚于截止日的记录单列。实际值为显式提供的原财报回测参照，披露日在表中保留，不代表预测截止日已知。修正轨迹不跨机构、主体、期间、口径、情景或币种；差异率=(实际-预测)/abs(预测)，零预测差异率留空。最大/最小按同口径绝对金额偏差排名，只有一家时两者相同，平局保留。",
+  "tables": {
+    "excluded_CNY_money": {
+      "columns": {
+        "key": {
+          "label": "行键"
+        },
+        "entity": {
+          "label": "主体"
+        },
+        "entity_id": {
+          "label": "主体身份"
+        },
+        "publisher": {
+          "label": "机构"
+        },
+        "published_at": {
+          "label": "预测发布日期"
+        },
+        "institution": {
+          "label": "机构归组（法律后缀统一）"
+        },
+        "label": {
+          "label": "来源标签"
+        },
+        "period": {
+          "label": "预测/实际期间"
+        },
+        "metric": {
+          "label": "指标"
+        },
+        "scope": {
+          "label": "报告口径"
+        },
+        "scenario": {
+          "label": "情景"
+        },
+        "basis": {
+          "label": "每股口径"
+        },
+        "restatement": {
+          "label": "重述口径"
+        },
+        "dimensions": {
+          "label": "维度"
+        },
+        "record": {
+          "label": "原记录"
+        },
+        "status": {
+          "label": "状态"
+        },
+        "value": {
+          "label": "原记录值",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        }
+      },
+      "rows": [
+        {
+          "key": "1",
+          "entity": "甲",
+          "entity_id": "e1",
+          "publisher": "A",
+          "published_at": "2024-05-01",
+          "institution": "A",
+          "label": "净利润",
+          "period": "2024",
+          "metric": "net_profit",
+          "scope": "unspecified",
+          "scenario": "base",
+          "basis": null,
+          "restatement": null,
+          "dimensions": "{}",
+          "record": "unknown_profit",
+          "status": "净利润归母身份未定，不能与归母预测或实际值混算",
+          "value": "100"
+        }
+      ],
+      "row_key": "key",
+      "evidence": [
+        {
+          "value": {
+            "value": "100",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "unknown_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-05-01"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          }
+        }
+      ],
+      "cell_units": [
+        {}
+      ],
+      "row_keys": [
+        "1"
+      ]
+    },
+    "ledger_CNY_money": {
+      "columns": {
+        "key": {
+          "label": "行键"
+        },
+        "entity": {
+          "label": "主体"
+        },
+        "entity_id": {
+          "label": "主体身份"
+        },
+        "publisher": {
+          "label": "机构"
+        },
+        "published_at": {
+          "label": "预测发布日期"
+        },
+        "institution": {
+          "label": "机构归组（法律后缀统一）"
+        },
+        "label": {
+          "label": "来源标签"
+        },
+        "period": {
+          "label": "预测/实际期间"
+        },
+        "metric": {
+          "label": "指标"
+        },
+        "scope": {
+          "label": "报告口径"
+        },
+        "scenario": {
+          "label": "情景"
+        },
+        "basis": {
+          "label": "每股口径"
+        },
+        "restatement": {
+          "label": "重述口径"
+        },
+        "dimensions": {
+          "label": "维度"
+        },
+        "record": {
+          "label": "原记录"
+        },
+        "status": {
+          "label": "状态"
+        },
+        "value": {
+          "label": "机构预测",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        }
+      },
+      "rows": [
+        {
+          "key": "2",
+          "entity": "甲",
+          "entity_id": "e1",
+          "publisher": "A",
+          "published_at": "2024-11-01",
+          "institution": "A",
+          "label": "归属母公司净利润",
+          "period": "2024",
+          "metric": "net_profit_parent",
+          "scope": "unspecified",
+          "scenario": "base",
+          "basis": null,
+          "restatement": null,
+          "dimensions": "{}",
+          "record": "parent_profit",
+          "status": "纳入",
+          "value": "110"
+        },
+        {
+          "key": "3",
+          "entity": "甲",
+          "entity_id": "e1",
+          "publisher": "A",
+          "published_at": "2024-09-01",
+          "institution": "A",
+          "label": "收入",
+          "period": "2024",
+          "metric": "revenue",
+          "scope": "unspecified",
+          "scenario": "base",
+          "basis": null,
+          "restatement": null,
+          "dimensions": "{}",
+          "record": "revenue_reference",
+          "status": "纳入",
+          "value": "100"
+        }
+      ],
+      "row_key": "key",
+      "evidence": [
+        {
+          "value": {
+            "value": "110",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "parent_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-11-01"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          }
+        },
+        {
+          "value": {
+            "value": "100",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "revenue_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          }
+        }
+      ],
+      "cell_units": [
+        {},
+        {}
+      ],
+      "row_keys": [
+        "2",
+        "3"
+      ]
+    },
+    "revisions_CNY_money": {
+      "columns": {
+        "key": {
+          "label": "行键"
+        },
+        "entity": {
+          "label": "主体"
+        },
+        "entity_id": {
+          "label": "主体身份"
+        },
+        "publisher": {
+          "label": "机构"
+        },
+        "published_at": {
+          "label": "预测发布日期"
+        },
+        "institution": {
+          "label": "机构归组（法律后缀统一）"
+        },
+        "label": {
+          "label": "来源标签"
+        },
+        "period": {
+          "label": "预测/实际期间"
+        },
+        "metric": {
+          "label": "指标"
+        },
+        "scope": {
+          "label": "报告口径"
+        },
+        "scenario": {
+          "label": "情景"
+        },
+        "basis": {
+          "label": "每股口径"
+        },
+        "restatement": {
+          "label": "重述口径"
+        },
+        "dimensions": {
+          "label": "维度"
+        },
+        "record": {
+          "label": "原记录"
+        },
+        "status": {
+          "label": "状态"
+        },
+        "value": {
+          "label": "机构预测",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "previous_date": {
+          "label": "上一版本发布日期"
+        },
+        "previous": {
+          "label": "上一版本预测",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "change": {
+          "label": "本次预测减上次预测",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        }
+      },
+      "rows": [
+        {
+          "key": "2",
+          "entity": "甲",
+          "entity_id": "e1",
+          "publisher": "A",
+          "published_at": "2024-11-01",
+          "institution": "A",
+          "label": "归属母公司净利润",
+          "period": "2024",
+          "metric": "net_profit_parent",
+          "scope": "unspecified",
+          "scenario": "base",
+          "basis": null,
+          "restatement": null,
+          "dimensions": "{}",
+          "record": "parent_profit",
+          "status": "可比较",
+          "value": "110",
+          "previous_date": null,
+          "previous": null,
+          "change": null
+        },
+        {
+          "key": "3",
+          "entity": "甲",
+          "entity_id": "e1",
+          "publisher": "A",
+          "published_at": "2024-09-01",
+          "institution": "A",
+          "label": "收入",
+          "period": "2024",
+          "metric": "revenue",
+          "scope": "unspecified",
+          "scenario": "base",
+          "basis": null,
+          "restatement": null,
+          "dimensions": "{}",
+          "record": "revenue_reference",
+          "status": "可比较",
+          "value": "100",
+          "previous_date": null,
+          "previous": null,
+          "change": null
+        }
+      ],
+      "row_key": "key",
+      "evidence": [
+        {
+          "value": {
+            "value": "110",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "parent_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-11-01"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "previous": {
+            "value": null,
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [],
+              "formula": null,
+              "missing_reason": "无更早版本"
+            }
+          },
+          "change": {
+            "value": null,
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "parent_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-11-01"
+                }
+              ],
+              "formula": "current_forecast-previous_forecast",
+              "missing_reason": "无更早版本"
+            }
+          }
+        },
+        {
+          "value": {
+            "value": "100",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "revenue_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "previous": {
+            "value": null,
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [],
+              "formula": null,
+              "missing_reason": "无更早版本"
+            }
+          },
+          "change": {
+            "value": null,
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "revenue_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01"
+                }
+              ],
+              "formula": "current_forecast-previous_forecast",
+              "missing_reason": "无更早版本"
+            }
+          }
+        }
+      ],
+      "cell_units": [
+        {},
+        {}
+      ],
+      "row_keys": [
+        "2",
+        "3"
+      ]
+    },
+    "actual_vs_expected_CNY_money": {
+      "columns": {
+        "key": {
+          "label": "行键"
+        },
+        "entity": {
+          "label": "主体"
+        },
+        "entity_id": {
+          "label": "主体身份"
+        },
+        "publisher": {
+          "label": "机构"
+        },
+        "published_at": {
+          "label": "预测发布日期"
+        },
+        "institution": {
+          "label": "机构归组（法律后缀统一）"
+        },
+        "label": {
+          "label": "来源标签"
+        },
+        "period": {
+          "label": "预测/实际期间"
+        },
+        "metric": {
+          "label": "指标"
+        },
+        "scope": {
+          "label": "报告口径"
+        },
+        "scenario": {
+          "label": "情景"
+        },
+        "basis": {
+          "label": "每股口径"
+        },
+        "restatement": {
+          "label": "重述口径"
+        },
+        "dimensions": {
+          "label": "维度"
+        },
+        "record": {
+          "label": "原记录"
+        },
+        "status": {
+          "label": "状态"
+        },
+        "value": {
+          "label": "机构预测",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "actual": {
+          "label": "财报实际值",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "difference": {
+          "label": "实际减预测",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "difference_rate": {
+          "label": "差异率（绝对预测为分母）",
+          "unit": "%",
+          "decimals": 4
+        },
+        "absolute_error": {
+          "label": "绝对偏差",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "actual_published_at": {
+          "label": "实际披露日期"
+        },
+        "actual_timing": {
+          "label": "实际值时间身份"
+        },
+        "rank": {
+          "label": "同口径机构绝对偏差排名（并列保留）"
+        }
+      },
+      "rows": [
+        {
+          "key": "0",
+          "entity": "甲",
+          "entity_id": "e1",
+          "publisher": "A",
+          "published_at": "2024-11-01",
+          "institution": "A",
+          "label": "归属母公司净利润",
+          "period": "2024",
+          "metric": "net_profit_parent",
+          "scope": "unspecified",
+          "scenario": "base",
+          "basis": null,
+          "restatement": null,
+          "dimensions": "{}",
+          "record": "parent_profit",
+          "status": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列",
+          "value": "110",
+          "actual": null,
+          "difference": null,
+          "difference_rate": null,
+          "absolute_error": null,
+          "actual_published_at": null,
+          "actual_timing": "已提供的原财报实际值",
+          "rank": null
+        },
+        {
+          "key": "1",
+          "entity": "甲",
+          "entity_id": "e1",
+          "publisher": "A",
+          "published_at": "2024-09-01",
+          "institution": "A",
+          "label": "收入",
+          "period": "2024",
+          "metric": "revenue",
+          "scope": "unspecified",
+          "scenario": "base",
+          "basis": null,
+          "restatement": null,
+          "dimensions": "{}",
+          "record": "revenue_reference",
+          "status": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列",
+          "value": "100",
+          "actual": null,
+          "difference": null,
+          "difference_rate": null,
+          "absolute_error": null,
+          "actual_published_at": null,
+          "actual_timing": "已提供的原财报实际值",
+          "rank": null
+        }
+      ],
+      "row_key": "key",
+      "evidence": [
+        {
+          "value": {
+            "value": "110",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "parent_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-11-01"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "actual": {
+            "value": null,
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [],
+              "formula": null,
+              "missing_reason": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+            }
+          },
+          "difference": {
+            "value": null,
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "parent_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-11-01"
+                }
+              ],
+              "formula": "actual-forecast",
+              "missing_reason": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+            }
+          },
+          "difference_rate": {
+            "value": null,
+            "unit": "%",
+            "currency": null,
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "parent_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-11-01"
+                }
+              ],
+              "formula": "(actual-forecast)/abs(forecast)*100",
+              "missing_reason": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+            }
+          },
+          "absolute_error": {
+            "value": null,
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "parent_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-11-01"
+                }
+              ],
+              "formula": "abs(actual-forecast)",
+              "missing_reason": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+            }
+          }
+        },
+        {
+          "value": {
+            "value": "100",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "revenue_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "actual": {
+            "value": null,
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [],
+              "formula": null,
+              "missing_reason": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+            }
+          },
+          "difference": {
+            "value": null,
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "revenue_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01"
+                }
+              ],
+              "formula": "actual-forecast",
+              "missing_reason": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+            }
+          },
+          "difference_rate": {
+            "value": null,
+            "unit": "%",
+            "currency": null,
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "revenue_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01"
+                }
+              ],
+              "formula": "(actual-forecast)/abs(forecast)*100",
+              "missing_reason": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+            }
+          },
+          "absolute_error": {
+            "value": null,
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "revenue_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01"
+                }
+              ],
+              "formula": "abs(actual-forecast)",
+              "missing_reason": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+            }
+          }
+        }
+      ],
+      "cell_units": [
+        {},
+        {}
+      ],
+      "row_keys": [
+        "0",
+        "1"
+      ]
+    },
+    "ledger_CNY_per_share": {
+      "columns": {
+        "key": {
+          "label": "行键"
+        },
+        "entity": {
+          "label": "主体"
+        },
+        "entity_id": {
+          "label": "主体身份"
+        },
+        "publisher": {
+          "label": "机构"
+        },
+        "published_at": {
+          "label": "预测发布日期"
+        },
+        "institution": {
+          "label": "机构归组（法律后缀统一）"
+        },
+        "label": {
+          "label": "来源标签"
+        },
+        "period": {
+          "label": "预测/实际期间"
+        },
+        "metric": {
+          "label": "指标"
+        },
+        "scope": {
+          "label": "报告口径"
+        },
+        "scenario": {
+          "label": "情景"
+        },
+        "basis": {
+          "label": "每股口径"
+        },
+        "restatement": {
+          "label": "重述口径"
+        },
+        "dimensions": {
+          "label": "维度"
+        },
+        "record": {
+          "label": "原记录"
+        },
+        "status": {
+          "label": "状态"
+        },
+        "value": {
+          "label": "机构预测",
+          "unit": "元/股",
+          "decimals": 4,
+          "currency": "CNY"
+        }
+      },
+      "rows": [
+        {
+          "key": "4",
+          "entity": "甲",
+          "entity_id": "e1",
+          "publisher": "A",
+          "published_at": "2024-09-01",
+          "institution": "A",
+          "label": "EPS",
+          "period": "2024",
+          "metric": "eps",
+          "scope": "unspecified",
+          "scenario": "base",
+          "basis": "latest_shares",
+          "restatement": null,
+          "dimensions": "{}",
+          "record": "eps_reference",
+          "status": "纳入",
+          "value": "1.92"
+        }
+      ],
+      "row_key": "key",
+      "evidence": [
+        {
+          "value": {
+            "value": "1.92",
+            "unit": "元/股",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "eps_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01",
+                  "basis": "latest_shares"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          }
+        }
+      ],
+      "cell_units": [
+        {}
+      ],
+      "row_keys": [
+        "4"
+      ]
+    },
+    "revisions_CNY_per_share": {
+      "columns": {
+        "key": {
+          "label": "行键"
+        },
+        "entity": {
+          "label": "主体"
+        },
+        "entity_id": {
+          "label": "主体身份"
+        },
+        "publisher": {
+          "label": "机构"
+        },
+        "published_at": {
+          "label": "预测发布日期"
+        },
+        "institution": {
+          "label": "机构归组（法律后缀统一）"
+        },
+        "label": {
+          "label": "来源标签"
+        },
+        "period": {
+          "label": "预测/实际期间"
+        },
+        "metric": {
+          "label": "指标"
+        },
+        "scope": {
+          "label": "报告口径"
+        },
+        "scenario": {
+          "label": "情景"
+        },
+        "basis": {
+          "label": "每股口径"
+        },
+        "restatement": {
+          "label": "重述口径"
+        },
+        "dimensions": {
+          "label": "维度"
+        },
+        "record": {
+          "label": "原记录"
+        },
+        "status": {
+          "label": "状态"
+        },
+        "value": {
+          "label": "机构预测",
+          "unit": "元/股",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "previous_date": {
+          "label": "上一版本发布日期"
+        },
+        "previous": {
+          "label": "上一版本预测",
+          "unit": "元/股",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "change": {
+          "label": "本次预测减上次预测",
+          "unit": "元/股",
+          "decimals": 4,
+          "currency": "CNY"
+        }
+      },
+      "rows": [
+        {
+          "key": "4",
+          "entity": "甲",
+          "entity_id": "e1",
+          "publisher": "A",
+          "published_at": "2024-09-01",
+          "institution": "A",
+          "label": "EPS",
+          "period": "2024",
+          "metric": "eps",
+          "scope": "unspecified",
+          "scenario": "base",
+          "basis": "latest_shares",
+          "restatement": null,
+          "dimensions": "{}",
+          "record": "eps_reference",
+          "status": "可比较",
+          "value": "1.92",
+          "previous_date": null,
+          "previous": null,
+          "change": null
+        }
+      ],
+      "row_key": "key",
+      "evidence": [
+        {
+          "value": {
+            "value": "1.92",
+            "unit": "元/股",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "eps_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01",
+                  "basis": "latest_shares"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "previous": {
+            "value": null,
+            "unit": "元/股",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [],
+              "formula": null,
+              "missing_reason": "无更早版本"
+            }
+          },
+          "change": {
+            "value": null,
+            "unit": "元/股",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "eps_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01",
+                  "basis": "latest_shares"
+                }
+              ],
+              "formula": "current_forecast-previous_forecast",
+              "missing_reason": "无更早版本"
+            }
+          }
+        }
+      ],
+      "cell_units": [
+        {}
+      ],
+      "row_keys": [
+        "4"
+      ]
+    },
+    "actual_vs_expected_CNY_per_share": {
+      "columns": {
+        "key": {
+          "label": "行键"
+        },
+        "entity": {
+          "label": "主体"
+        },
+        "entity_id": {
+          "label": "主体身份"
+        },
+        "publisher": {
+          "label": "机构"
+        },
+        "published_at": {
+          "label": "预测发布日期"
+        },
+        "institution": {
+          "label": "机构归组（法律后缀统一）"
+        },
+        "label": {
+          "label": "来源标签"
+        },
+        "period": {
+          "label": "预测/实际期间"
+        },
+        "metric": {
+          "label": "指标"
+        },
+        "scope": {
+          "label": "报告口径"
+        },
+        "scenario": {
+          "label": "情景"
+        },
+        "basis": {
+          "label": "每股口径"
+        },
+        "restatement": {
+          "label": "重述口径"
+        },
+        "dimensions": {
+          "label": "维度"
+        },
+        "record": {
+          "label": "原记录"
+        },
+        "status": {
+          "label": "状态"
+        },
+        "value": {
+          "label": "机构预测",
+          "unit": "元/股",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "actual": {
+          "label": "财报实际值",
+          "unit": "元/股",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "difference": {
+          "label": "实际减预测",
+          "unit": "元/股",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "difference_rate": {
+          "label": "差异率（绝对预测为分母）",
+          "unit": "%",
+          "decimals": 4
+        },
+        "absolute_error": {
+          "label": "绝对偏差",
+          "unit": "元/股",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "actual_published_at": {
+          "label": "实际披露日期"
+        },
+        "actual_timing": {
+          "label": "实际值时间身份"
+        },
+        "rank": {
+          "label": "同口径机构绝对偏差排名（并列保留）"
+        }
+      },
+      "rows": [
+        {
+          "key": "2",
+          "entity": "甲",
+          "entity_id": "e1",
+          "publisher": "A",
+          "published_at": "2024-09-01",
+          "institution": "A",
+          "label": "EPS",
+          "period": "2024",
+          "metric": "eps",
+          "scope": "unspecified",
+          "scenario": "base",
+          "basis": "latest_shares",
+          "restatement": null,
+          "dimensions": "{}",
+          "record": "eps_reference",
+          "status": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列",
+          "value": "1.92",
+          "actual": null,
+          "difference": null,
+          "difference_rate": null,
+          "absolute_error": null,
+          "actual_published_at": null,
+          "actual_timing": "已提供的原财报实际值",
+          "rank": null
+        }
+      ],
+      "row_key": "key",
+      "evidence": [
+        {
+          "value": {
+            "value": "1.92",
+            "unit": "元/股",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "eps_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01",
+                  "basis": "latest_shares"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "actual": {
+            "value": null,
+            "unit": "元/股",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [],
+              "formula": null,
+              "missing_reason": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+            }
+          },
+          "difference": {
+            "value": null,
+            "unit": "元/股",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "eps_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01",
+                  "basis": "latest_shares"
+                }
+              ],
+              "formula": "actual-forecast",
+              "missing_reason": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+            }
+          },
+          "difference_rate": {
+            "value": null,
+            "unit": "%",
+            "currency": null,
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "eps_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01",
+                  "basis": "latest_shares"
+                }
+              ],
+              "formula": "(actual-forecast)/abs(forecast)*100",
+              "missing_reason": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+            }
+          },
+          "absolute_error": {
+            "value": null,
+            "unit": "元/股",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "eps_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01",
+                  "basis": "latest_shares"
+                }
+              ],
+              "formula": "abs(actual-forecast)",
+              "missing_reason": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+            }
+          }
+        }
+      ],
+      "cell_units": [
+        {}
+      ],
+      "row_keys": [
+        "2"
+      ]
+    },
+    "observations": {
+      "columns": {
+        "key": {
+          "label": "行键"
+        },
+        "finding": {
+          "label": "确定性数值关系（差异率绝对幅度降序）"
+        },
+        "difference_rate": {
+          "label": "差异率",
+          "unit": "%",
+          "decimals": 4
+        },
+        "rank": {
+          "label": "同口径排名"
+        },
+        "table": {
+          "label": "详细数值表"
+        }
+      },
+      "rows": [],
+      "row_key": "key",
+      "evidence": [],
+      "cell_units": [],
+      "row_keys": []
+    },
+    "answer_constraints": {
+      "columns": {
+        "key": {
+          "label": "约束ID"
+        },
+        "code": {
+          "label": "约束类别"
+        },
+        "subject": {
+          "label": "适用数值位置"
+        },
+        "issues": {
+          "label": "未齐维度"
+        },
+        "prohibited_uses": {
+          "label": "禁止用途"
+        },
+        "message": {
+          "label": "回答约束"
+        }
+      },
+      "rows": [
+        {
+          "key": "excluded_CNY_money:1:profit_attribution_unknown",
+          "code": "profit_attribution_unknown",
+          "subject": "{\"table\": \"excluded_CNY_money\", \"row_key\": \"1\", \"columns\": [\"value\"], \"record_ids\": [\"unknown_profit\"], \"metric\": \"net_profit\", \"period\": \"2024\"}",
+          "issues": "[{\"dimension\": \"profit_attribution\", \"status\": \"unknown\", \"detail\": \"原标签或指标未声明归属于母公司股东\"}]",
+          "prohibited_uses": "[\"label_as_parent_profit\", \"parent_profit_comparison\"]",
+          "message": "利润归属未明或仅为合并净利润，不得改标归母、计算归母误差或跨归属修正"
+        },
+        {
+          "key": "excluded_CNY_money:1:comparison_basis_unaligned",
+          "code": "comparison_basis_unaligned",
+          "subject": "{\"table\": \"excluded_CNY_money\", \"row_key\": \"1\", \"columns\": [\"value\"], \"record_ids\": [\"unknown_profit\"], \"metric\": \"net_profit\", \"period\": \"2024\"}",
+          "issues": "[{\"dimension\": \"scope\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": \"unspecified\", \"right\": []}, {\"dimension\": \"restatement\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": null, \"right\": []}, {\"dimension\": \"source_identity\", \"status\": \"unknown\", \"detail\": \"净利润归母身份未定，不能与归母预测或实际值混算\"}]",
+          "prohibited_uses": "[\"same_basis_error\", \"forecast_accuracy_ranking\", \"beat_miss_conclusion\"]",
+          "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照"
+        },
+        {
+          "key": "actual_vs_expected_CNY_money:0:comparison_basis_unaligned",
+          "code": "comparison_basis_unaligned",
+          "subject": "{\"table\": \"actual_vs_expected_CNY_money\", \"row_key\": \"0\", \"columns\": [\"value\", \"actual\", \"difference\", \"difference_rate\", \"absolute_error\"], \"record_ids\": [\"parent_profit\", \"fact1\"], \"metric\": \"net_profit_parent\", \"period\": \"2024\"}",
+          "issues": "[{\"dimension\": \"scope\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": \"unspecified\", \"right\": [\"consolidated\"]}, {\"dimension\": \"restatement\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": null, \"right\": [null]}, {\"dimension\": \"actual_match\", \"status\": \"unknown\", \"detail\": \"机构会计/合并口径不明，不能计算同口径误差；数值参照另列\"}]",
+          "prohibited_uses": "[\"same_basis_error\", \"forecast_accuracy_ranking\", \"beat_miss_conclusion\"]",
+          "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照"
+        },
+        {
+          "key": "actual_vs_expected_CNY_money:1:comparison_basis_unaligned",
+          "code": "comparison_basis_unaligned",
+          "subject": "{\"table\": \"actual_vs_expected_CNY_money\", \"row_key\": \"1\", \"columns\": [\"value\", \"actual\", \"difference\", \"difference_rate\", \"absolute_error\"], \"record_ids\": [\"revenue_reference\", \"fact1\"], \"metric\": \"revenue\", \"period\": \"2024\"}",
+          "issues": "[{\"dimension\": \"scope\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": \"unspecified\", \"right\": [\"consolidated\"]}, {\"dimension\": \"restatement\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": null, \"right\": [null]}, {\"dimension\": \"revenue_boundary\", \"status\": \"unknown\", \"detail\": \"营业收入、营业总收入及主营业务范围尚未对齐\", \"left\": null, \"right\": [\"total_operating_revenue\"]}, {\"dimension\": \"actual_match\", \"status\": \"unknown\", \"detail\": \"机构会计/合并口径不明，不能计算同口径误差；数值参照另列\"}]",
+          "prohibited_uses": "[\"same_basis_error\", \"forecast_accuracy_ranking\", \"beat_miss_conclusion\"]",
+          "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照"
+        },
+        {
+          "key": "actual_vs_expected_CNY_per_share:2:comparison_basis_unaligned",
+          "code": "comparison_basis_unaligned",
+          "subject": "{\"table\": \"actual_vs_expected_CNY_per_share\", \"row_key\": \"2\", \"columns\": [\"value\", \"actual\", \"difference\", \"difference_rate\", \"absolute_error\"], \"record_ids\": [\"eps_reference\", \"fact1\"], \"metric\": \"eps\", \"period\": \"2024\"}",
+          "issues": "[{\"dimension\": \"scope\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": \"unspecified\", \"right\": [\"consolidated\"]}, {\"dimension\": \"basis\", \"status\": \"different\", \"detail\": \"两侧披露口径不同\", \"left\": \"latest_shares\", \"right\": [\"basic\"]}, {\"dimension\": \"restatement\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": null, \"right\": [null]}, {\"dimension\": \"actual_match\", \"status\": \"unknown\", \"detail\": \"机构会计/合并口径不明，不能计算同口径误差；数值参照另列\"}]",
+          "prohibited_uses": "[\"same_basis_error\", \"forecast_accuracy_ranking\", \"beat_miss_conclusion\"]",
+          "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照"
+        },
+        {
+          "key": "version_links_CNY_money:parent_profit:profit_attribution_unknown",
+          "code": "profit_attribution_unknown",
+          "subject": "{\"table\": \"version_links_CNY_money\", \"row_key\": \"parent_profit\", \"columns\": [\"previous\"], \"record_ids\": [\"unknown_profit\"], \"metric\": \"net_profit\", \"period\": \"2024\"}",
+          "issues": "[{\"dimension\": \"profit_attribution\", \"status\": \"unknown\", \"detail\": \"前值利润归属未明；本次归母标签不回填给前值\"}]",
+          "prohibited_uses": "[\"label_as_parent_profit\", \"parent_profit_comparison\"]",
+          "message": "利润归属未明或仅为合并净利润，不得改标归母、计算归母误差或跨归属修正"
+        },
+        {
+          "key": "version_links_CNY_money:parent_profit:comparison_basis_unaligned",
+          "code": "comparison_basis_unaligned",
+          "subject": "{\"table\": \"version_links_CNY_money\", \"row_key\": \"parent_profit\", \"columns\": [\"previous\", \"value\", \"change\"], \"record_ids\": [\"unknown_profit\", \"parent_profit\"], \"metric\": \"net_profit_parent\", \"period\": \"2024\"}",
+          "issues": "[{\"dimension\": \"scope\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": \"unspecified\", \"right\": [\"unspecified\"]}, {\"dimension\": \"restatement\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": null, \"right\": [null]}, {\"dimension\": \"metric\", \"status\": \"unknown\", \"detail\": \"前值净利润归母身份未定；保留关联，不计算归母修正\"}]",
+          "prohibited_uses": "[\"same_basis_error\", \"forecast_accuracy_ranking\", \"beat_miss_conclusion\", \"same_basis_revision\", \"parent_profit_comparison\"]",
+          "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照"
+        },
+        {
+          "key": "reference_gaps_CNY_money:parent_profit:comparison_basis_unaligned",
+          "code": "comparison_basis_unaligned",
+          "subject": "{\"table\": \"reference_gaps_CNY_money\", \"row_key\": \"parent_profit\", \"columns\": [\"forecast\", \"actual\", \"difference\", \"difference_rate\"], \"record_ids\": [\"parent_profit\", \"fact1\"], \"metric\": \"net_profit_parent\", \"period\": \"2024\"}",
+          "issues": "[{\"dimension\": \"scope\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": \"unspecified\", \"right\": [\"consolidated\"]}, {\"dimension\": \"restatement\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": null, \"right\": [null]}, {\"dimension\": \"comparison_identity\", \"status\": \"unknown\", \"detail\": \"机构会计/合并范围未明确\"}]",
+          "prohibited_uses": "[\"same_basis_error\", \"forecast_accuracy_ranking\", \"beat_miss_conclusion\"]",
+          "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照"
+        },
+        {
+          "key": "reference_gaps_CNY_money:revenue_reference:comparison_basis_unaligned",
+          "code": "comparison_basis_unaligned",
+          "subject": "{\"table\": \"reference_gaps_CNY_money\", \"row_key\": \"revenue_reference\", \"columns\": [\"forecast\", \"actual\", \"difference\", \"difference_rate\"], \"record_ids\": [\"revenue_reference\", \"fact1\"], \"metric\": \"revenue\", \"period\": \"2024\"}",
+          "issues": "[{\"dimension\": \"scope\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": \"unspecified\", \"right\": [\"consolidated\"]}, {\"dimension\": \"restatement\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": null, \"right\": [null]}, {\"dimension\": \"revenue_boundary\", \"status\": \"unknown\", \"detail\": \"营业收入、营业总收入及主营业务范围尚未对齐\", \"left\": null, \"right\": [\"total_operating_revenue\"]}, {\"dimension\": \"comparison_identity\", \"status\": \"unknown\", \"detail\": \"机构会计/合并范围未明确；按营业收入标签参照；需另核营业总收入边界，未自动改标\"}]",
+          "prohibited_uses": "[\"same_basis_error\", \"forecast_accuracy_ranking\", \"beat_miss_conclusion\"]",
+          "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照"
+        },
+        {
+          "key": "reference_gaps_CNY_per_share:eps_reference:comparison_basis_unaligned",
+          "code": "comparison_basis_unaligned",
+          "subject": "{\"table\": \"reference_gaps_CNY_per_share\", \"row_key\": \"eps_reference\", \"columns\": [\"forecast\", \"actual\", \"difference\", \"difference_rate\"], \"record_ids\": [\"eps_reference\", \"fact1\"], \"metric\": \"eps\", \"period\": \"2024\"}",
+          "issues": "[{\"dimension\": \"scope\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": \"unspecified\", \"right\": [\"consolidated\"]}, {\"dimension\": \"basis\", \"status\": \"different\", \"detail\": \"两侧披露口径不同\", \"left\": \"latest_shares\", \"right\": [\"basic\"]}, {\"dimension\": \"restatement\", \"status\": \"unknown\", \"detail\": \"披露口径尚未明确\", \"left\": null, \"right\": [null]}, {\"dimension\": \"comparison_identity\", \"status\": \"unknown\", \"detail\": \"机构会计/合并范围未明确；EPS 分母口径不同或未明确，实际参照为基本 EPS\"}]",
+          "prohibited_uses": "[\"same_basis_error\", \"forecast_accuracy_ranking\", \"beat_miss_conclusion\"]",
+          "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照"
+        }
+      ],
+      "row_key": "key",
+      "title": "回答中的口径约束",
+      "report_section": "limitations",
+      "evidence": [
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {}
+      ],
+      "cell_units": [
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {}
+      ],
+      "row_keys": [
+        "excluded_CNY_money:1:profit_attribution_unknown",
+        "excluded_CNY_money:1:comparison_basis_unaligned",
+        "actual_vs_expected_CNY_money:0:comparison_basis_unaligned",
+        "actual_vs_expected_CNY_money:1:comparison_basis_unaligned",
+        "actual_vs_expected_CNY_per_share:2:comparison_basis_unaligned",
+        "version_links_CNY_money:parent_profit:profit_attribution_unknown",
+        "version_links_CNY_money:parent_profit:comparison_basis_unaligned",
+        "reference_gaps_CNY_money:parent_profit:comparison_basis_unaligned",
+        "reference_gaps_CNY_money:revenue_reference:comparison_basis_unaligned",
+        "reference_gaps_CNY_per_share:eps_reference:comparison_basis_unaligned"
+      ]
+    },
+    "version_links_CNY_money": {
+      "columns": {
+        "key": {
+          "label": "行键"
+        },
+        "institution": {
+          "label": "机构"
+        },
+        "period": {
+          "label": "年度"
+        },
+        "metric": {
+          "label": "当前指标"
+        },
+        "previous_date": {
+          "label": "前次日期"
+        },
+        "published_at": {
+          "label": "本次日期"
+        },
+        "previous": {
+          "label": "前值",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "value": {
+          "label": "本次值",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "change": {
+          "label": "原数变化（非必然同口径）",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "previous_dimensions": {
+          "label": "前次维度"
+        },
+        "dimensions": {
+          "label": "本次维度"
+        },
+        "status": {
+          "label": "可比性"
+        }
+      },
+      "rows": [
+        {
+          "key": "parent_profit",
+          "institution": "A",
+          "period": "2024",
+          "metric": "net_profit_parent",
+          "previous_date": "2024-05-01",
+          "published_at": "2024-11-01",
+          "previous": "100",
+          "value": "110",
+          "change": null,
+          "previous_dimensions": "{}",
+          "dimensions": "{}",
+          "status": "前值净利润归母身份未定；保留关联，不计算归母修正"
+        }
+      ],
+      "row_key": "key",
+      "answer_constraints": [
+        {
+          "id": "version_links_CNY_money:parent_profit:profit_attribution_unknown",
+          "code": "profit_attribution_unknown",
+          "subject": {
+            "table": "version_links_CNY_money",
+            "row_key": "parent_profit",
+            "columns": [
+              "previous"
+            ],
+            "record_ids": [
+              "unknown_profit"
+            ],
+            "metric": "net_profit",
+            "period": "2024"
+          },
+          "issues": [
+            {
+              "dimension": "profit_attribution",
+              "status": "unknown",
+              "detail": "前值利润归属未明；本次归母标签不回填给前值"
+            }
+          ],
+          "prohibited_uses": [
+            "label_as_parent_profit",
+            "parent_profit_comparison"
+          ],
+          "allowed_uses": [
+            "quoted_source_value",
+            "qualified_numeric_reference"
+          ],
+          "message": "利润归属未明或仅为合并净利润，不得改标归母、计算归母误差或跨归属修正",
+          "evidence": [
+            {
+              "record_id": "unknown_profit",
+              "page": 2,
+              "publisher": "A",
+              "published_at": "2024-05-01"
+            }
+          ]
+        },
+        {
+          "id": "version_links_CNY_money:parent_profit:comparison_basis_unaligned",
+          "code": "comparison_basis_unaligned",
+          "subject": {
+            "table": "version_links_CNY_money",
+            "row_key": "parent_profit",
+            "columns": [
+              "previous",
+              "value",
+              "change"
+            ],
+            "record_ids": [
+              "unknown_profit",
+              "parent_profit"
+            ],
+            "metric": "net_profit_parent",
+            "period": "2024"
+          },
+          "issues": [
+            {
+              "dimension": "scope",
+              "status": "unknown",
+              "detail": "披露口径尚未明确",
+              "left": "unspecified",
+              "right": [
+                "unspecified"
+              ]
+            },
+            {
+              "dimension": "restatement",
+              "status": "unknown",
+              "detail": "披露口径尚未明确",
+              "left": null,
+              "right": [
+                null
+              ]
+            },
+            {
+              "dimension": "metric",
+              "status": "unknown",
+              "detail": "前值净利润归母身份未定；保留关联，不计算归母修正"
+            }
+          ],
+          "prohibited_uses": [
+            "same_basis_error",
+            "forecast_accuracy_ranking",
+            "beat_miss_conclusion",
+            "same_basis_revision",
+            "parent_profit_comparison"
+          ],
+          "allowed_uses": [
+            "quoted_source_value",
+            "qualified_numeric_reference"
+          ],
+          "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+          "evidence": [
+            {
+              "record_id": "unknown_profit",
+              "page": 2,
+              "publisher": "A",
+              "published_at": "2024-05-01"
+            },
+            {
+              "record_id": "parent_profit",
+              "page": 2,
+              "publisher": "A",
+              "published_at": "2024-11-01"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "previous": {
+            "value": "100",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "unknown_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-05-01"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "value": {
+            "value": "110",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "parent_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-11-01"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "change": {
+            "value": null,
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "unknown_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-05-01"
+                },
+                {
+                  "record_id": "parent_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-11-01"
+                }
+              ],
+              "formula": "current_forecast-previous_forecast",
+              "missing_reason": "前值净利润归母身份未定；保留关联，不计算归母修正"
+            }
+          }
+        }
+      ],
+      "cell_units": [
+        {}
+      ],
+      "row_keys": [
+        "parent_profit"
+      ]
+    },
+    "reference_gaps_CNY_money": {
+      "columns": {
+        "key": {
+          "label": "行键"
+        },
+        "institution": {
+          "label": "机构"
+        },
+        "published_at": {
+          "label": "预测日期"
+        },
+        "period": {
+          "label": "年度"
+        },
+        "metric": {
+          "label": "指标"
+        },
+        "forecast": {
+          "label": "最近预测",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "actual": {
+          "label": "年报参照",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "difference": {
+          "label": "实际参照减预测",
+          "unit": "元",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "difference_rate": {
+          "label": "参照差异率",
+          "unit": "%",
+          "decimals": 4
+        },
+        "forecast_basis": {
+          "label": "预测口径"
+        },
+        "actual_basis": {
+          "label": "实际口径"
+        },
+        "status": {
+          "label": "限制（不参与误差排名）"
+        }
+      },
+      "rows": [
+        {
+          "key": "parent_profit",
+          "institution": "A",
+          "published_at": "2024-11-01",
+          "period": "2024",
+          "metric": "net_profit_parent",
+          "forecast": "110",
+          "actual": "120",
+          "difference": "10",
+          "difference_rate": "9.090909090909090909090909091",
+          "forecast_basis": "unspecified / None",
+          "actual_basis": "consolidated / None",
+          "status": "仅数值参照；机构会计/合并范围未明确"
+        },
+        {
+          "key": "revenue_reference",
+          "institution": "A",
+          "published_at": "2024-09-01",
+          "period": "2024",
+          "metric": "revenue",
+          "forecast": "100",
+          "actual": "110",
+          "difference": "10",
+          "difference_rate": "10.0",
+          "forecast_basis": "unspecified / None",
+          "actual_basis": "consolidated / None",
+          "status": "仅数值参照；机构会计/合并范围未明确；按营业收入标签参照；需另核营业总收入边界，未自动改标"
+        }
+      ],
+      "row_key": "key",
+      "answer_constraints": [
+        {
+          "id": "reference_gaps_CNY_money:parent_profit:comparison_basis_unaligned",
+          "code": "comparison_basis_unaligned",
+          "subject": {
+            "table": "reference_gaps_CNY_money",
+            "row_key": "parent_profit",
+            "columns": [
+              "forecast",
+              "actual",
+              "difference",
+              "difference_rate"
+            ],
+            "record_ids": [
+              "parent_profit",
+              "fact1"
+            ],
+            "metric": "net_profit_parent",
+            "period": "2024"
+          },
+          "issues": [
+            {
+              "dimension": "scope",
+              "status": "unknown",
+              "detail": "披露口径尚未明确",
+              "left": "unspecified",
+              "right": [
+                "consolidated"
+              ]
+            },
+            {
+              "dimension": "restatement",
+              "status": "unknown",
+              "detail": "披露口径尚未明确",
+              "left": null,
+              "right": [
+                null
+              ]
+            },
+            {
+              "dimension": "comparison_identity",
+              "status": "unknown",
+              "detail": "机构会计/合并范围未明确"
+            }
+          ],
+          "prohibited_uses": [
+            "same_basis_error",
+            "forecast_accuracy_ranking",
+            "beat_miss_conclusion"
+          ],
+          "allowed_uses": [
+            "quoted_source_value",
+            "qualified_numeric_reference"
+          ],
+          "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+          "evidence": [
+            {
+              "record_id": "parent_profit",
+              "page": 2,
+              "publisher": "A",
+              "published_at": "2024-11-01"
+            },
+            {
+              "fact_id": "fact1",
+              "page": 50,
+              "publisher": null,
+              "published_at": "2025-04-30"
+            }
+          ]
+        },
+        {
+          "id": "reference_gaps_CNY_money:revenue_reference:comparison_basis_unaligned",
+          "code": "comparison_basis_unaligned",
+          "subject": {
+            "table": "reference_gaps_CNY_money",
+            "row_key": "revenue_reference",
+            "columns": [
+              "forecast",
+              "actual",
+              "difference",
+              "difference_rate"
+            ],
+            "record_ids": [
+              "revenue_reference",
+              "fact1"
+            ],
+            "metric": "revenue",
+            "period": "2024"
+          },
+          "issues": [
+            {
+              "dimension": "scope",
+              "status": "unknown",
+              "detail": "披露口径尚未明确",
+              "left": "unspecified",
+              "right": [
+                "consolidated"
+              ]
+            },
+            {
+              "dimension": "restatement",
+              "status": "unknown",
+              "detail": "披露口径尚未明确",
+              "left": null,
+              "right": [
+                null
+              ]
+            },
+            {
+              "dimension": "revenue_boundary",
+              "status": "unknown",
+              "detail": "营业收入、营业总收入及主营业务范围尚未对齐",
+              "left": null,
+              "right": [
+                "total_operating_revenue"
+              ]
+            },
+            {
+              "dimension": "comparison_identity",
+              "status": "unknown",
+              "detail": "机构会计/合并范围未明确；按营业收入标签参照；需另核营业总收入边界，未自动改标"
+            }
+          ],
+          "prohibited_uses": [
+            "same_basis_error",
+            "forecast_accuracy_ranking",
+            "beat_miss_conclusion"
+          ],
+          "allowed_uses": [
+            "quoted_source_value",
+            "qualified_numeric_reference"
+          ],
+          "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+          "evidence": [
+            {
+              "record_id": "revenue_reference",
+              "page": 2,
+              "publisher": "A",
+              "published_at": "2024-09-01"
+            },
+            {
+              "fact_id": "fact1",
+              "page": 50,
+              "publisher": null,
+              "published_at": "2025-04-30"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "forecast": {
+            "value": "110",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "parent_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-11-01"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "actual": {
+            "value": "120",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "fact_id": "fact1",
+                  "page": 50,
+                  "publisher": null,
+                  "published_at": "2025-04-30"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "difference": {
+            "value": "10",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "parent_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-11-01"
+                },
+                {
+                  "fact_id": "fact1",
+                  "page": 50,
+                  "publisher": null,
+                  "published_at": "2025-04-30"
+                }
+              ],
+              "formula": "actual_reference-forecast",
+              "missing_reason": null
+            }
+          },
+          "difference_rate": {
+            "value": "9.090909090909090909090909091",
+            "unit": "%",
+            "currency": null,
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "parent_profit",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-11-01"
+                },
+                {
+                  "fact_id": "fact1",
+                  "page": 50,
+                  "publisher": null,
+                  "published_at": "2025-04-30"
+                }
+              ],
+              "formula": "(actual_reference-forecast)/abs(forecast)*100",
+              "missing_reason": null
+            }
+          }
+        },
+        {
+          "forecast": {
+            "value": "100",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "revenue_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "actual": {
+            "value": "110",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "fact_id": "fact1",
+                  "page": 50,
+                  "publisher": null,
+                  "published_at": "2025-04-30"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "difference": {
+            "value": "10",
+            "unit": "元",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "revenue_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01"
+                },
+                {
+                  "fact_id": "fact1",
+                  "page": 50,
+                  "publisher": null,
+                  "published_at": "2025-04-30"
+                }
+              ],
+              "formula": "actual_reference-forecast",
+              "missing_reason": null
+            }
+          },
+          "difference_rate": {
+            "value": "10.0",
+            "unit": "%",
+            "currency": null,
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "revenue_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01"
+                },
+                {
+                  "fact_id": "fact1",
+                  "page": 50,
+                  "publisher": null,
+                  "published_at": "2025-04-30"
+                }
+              ],
+              "formula": "(actual_reference-forecast)/abs(forecast)*100",
+              "missing_reason": null
+            }
+          }
+        }
+      ],
+      "cell_units": [
+        {},
+        {}
+      ],
+      "row_keys": [
+        "parent_profit",
+        "revenue_reference"
+      ]
+    },
+    "reference_gaps_CNY_per_share": {
+      "columns": {
+        "key": {
+          "label": "行键"
+        },
+        "institution": {
+          "label": "机构"
+        },
+        "published_at": {
+          "label": "预测日期"
+        },
+        "period": {
+          "label": "年度"
+        },
+        "metric": {
+          "label": "指标"
+        },
+        "forecast": {
+          "label": "最近预测",
+          "unit": "元/股",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "actual": {
+          "label": "年报参照",
+          "unit": "元/股",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "difference": {
+          "label": "实际参照减预测",
+          "unit": "元/股",
+          "decimals": 4,
+          "currency": "CNY"
+        },
+        "difference_rate": {
+          "label": "参照差异率",
+          "unit": "%",
+          "decimals": 4
+        },
+        "forecast_basis": {
+          "label": "预测口径"
+        },
+        "actual_basis": {
+          "label": "实际口径"
+        },
+        "status": {
+          "label": "限制（不参与误差排名）"
+        }
+      },
+      "rows": [
+        {
+          "key": "eps_reference",
+          "institution": "A",
+          "published_at": "2024-09-01",
+          "period": "2024",
+          "metric": "eps",
+          "forecast": "1.92",
+          "actual": "1.33",
+          "difference": "-0.59",
+          "difference_rate": "-30.72916666666666666666666667",
+          "forecast_basis": "unspecified / latest_shares",
+          "actual_basis": "consolidated / basic",
+          "status": "仅数值参照；机构会计/合并范围未明确；EPS 分母口径不同或未明确，实际参照为基本 EPS"
+        }
+      ],
+      "row_key": "key",
+      "answer_constraints": [
+        {
+          "id": "reference_gaps_CNY_per_share:eps_reference:comparison_basis_unaligned",
+          "code": "comparison_basis_unaligned",
+          "subject": {
+            "table": "reference_gaps_CNY_per_share",
+            "row_key": "eps_reference",
+            "columns": [
+              "forecast",
+              "actual",
+              "difference",
+              "difference_rate"
+            ],
+            "record_ids": [
+              "eps_reference",
+              "fact1"
+            ],
+            "metric": "eps",
+            "period": "2024"
+          },
+          "issues": [
+            {
+              "dimension": "scope",
+              "status": "unknown",
+              "detail": "披露口径尚未明确",
+              "left": "unspecified",
+              "right": [
+                "consolidated"
+              ]
+            },
+            {
+              "dimension": "basis",
+              "status": "different",
+              "detail": "两侧披露口径不同",
+              "left": "latest_shares",
+              "right": [
+                "basic"
+              ]
+            },
+            {
+              "dimension": "restatement",
+              "status": "unknown",
+              "detail": "披露口径尚未明确",
+              "left": null,
+              "right": [
+                null
+              ]
+            },
+            {
+              "dimension": "comparison_identity",
+              "status": "unknown",
+              "detail": "机构会计/合并范围未明确；EPS 分母口径不同或未明确，实际参照为基本 EPS"
+            }
+          ],
+          "prohibited_uses": [
+            "same_basis_error",
+            "forecast_accuracy_ranking",
+            "beat_miss_conclusion"
+          ],
+          "allowed_uses": [
+            "quoted_source_value",
+            "qualified_numeric_reference"
+          ],
+          "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+          "evidence": [
+            {
+              "record_id": "eps_reference",
+              "page": 2,
+              "publisher": "A",
+              "published_at": "2024-09-01",
+              "basis": "latest_shares"
+            },
+            {
+              "fact_id": "fact1",
+              "page": 50,
+              "publisher": null,
+              "published_at": "2025-04-30",
+              "basis": "basic"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "forecast": {
+            "value": "1.92",
+            "unit": "元/股",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "eps_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01",
+                  "basis": "latest_shares"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "actual": {
+            "value": "1.33",
+            "unit": "元/股",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "fact_id": "fact1",
+                  "page": 50,
+                  "publisher": null,
+                  "published_at": "2025-04-30",
+                  "basis": "basic"
+                }
+              ],
+              "formula": null,
+              "missing_reason": null
+            }
+          },
+          "difference": {
+            "value": "-0.59",
+            "unit": "元/股",
+            "currency": "CNY",
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "eps_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01",
+                  "basis": "latest_shares"
+                },
+                {
+                  "fact_id": "fact1",
+                  "page": 50,
+                  "publisher": null,
+                  "published_at": "2025-04-30",
+                  "basis": "basic"
+                }
+              ],
+              "formula": "actual_reference-forecast",
+              "missing_reason": null
+            }
+          },
+          "difference_rate": {
+            "value": "-30.72916666666666666666666667",
+            "unit": "%",
+            "currency": null,
+            "source": {
+              "data_kind": "calculation",
+              "inputs": [
+                {
+                  "record_id": "eps_reference",
+                  "page": 2,
+                  "publisher": "A",
+                  "published_at": "2024-09-01",
+                  "basis": "latest_shares"
+                },
+                {
+                  "fact_id": "fact1",
+                  "page": 50,
+                  "publisher": null,
+                  "published_at": "2025-04-30",
+                  "basis": "basic"
+                }
+              ],
+              "formula": "(actual_reference-forecast)/abs(forecast)*100",
+              "missing_reason": null
+            }
+          }
+        }
+      ],
+      "cell_units": [
+        {}
+      ],
+      "row_keys": [
+        "eps_reference"
+      ]
+    }
+  },
+  "answer_constraints": [
+    {
+      "id": "excluded_CNY_money:1:profit_attribution_unknown",
+      "code": "profit_attribution_unknown",
+      "subject": {
+        "table": "excluded_CNY_money",
+        "row_key": "1",
+        "columns": [
+          "value"
+        ],
+        "record_ids": [
+          "unknown_profit"
+        ],
+        "metric": "net_profit",
+        "period": "2024"
+      },
+      "issues": [
+        {
+          "dimension": "profit_attribution",
+          "status": "unknown",
+          "detail": "原标签或指标未声明归属于母公司股东"
+        }
+      ],
+      "prohibited_uses": [
+        "label_as_parent_profit",
+        "parent_profit_comparison"
+      ],
+      "allowed_uses": [
+        "quoted_source_value",
+        "qualified_numeric_reference"
+      ],
+      "message": "利润归属未明或仅为合并净利润，不得改标归母、计算归母误差或跨归属修正",
+      "evidence": [
+        {
+          "record_id": "unknown_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-05-01"
+        }
+      ]
+    },
+    {
+      "id": "excluded_CNY_money:1:comparison_basis_unaligned",
+      "code": "comparison_basis_unaligned",
+      "subject": {
+        "table": "excluded_CNY_money",
+        "row_key": "1",
+        "columns": [
+          "value"
+        ],
+        "record_ids": [
+          "unknown_profit"
+        ],
+        "metric": "net_profit",
+        "period": "2024"
+      },
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": []
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": []
+        },
+        {
+          "dimension": "source_identity",
+          "status": "unknown",
+          "detail": "净利润归母身份未定，不能与归母预测或实际值混算"
+        }
+      ],
+      "prohibited_uses": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "allowed_uses": [
+        "quoted_source_value",
+        "qualified_numeric_reference"
+      ],
+      "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "unknown_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-05-01"
+        }
+      ]
+    },
+    {
+      "id": "actual_vs_expected_CNY_money:0:comparison_basis_unaligned",
+      "code": "comparison_basis_unaligned",
+      "subject": {
+        "table": "actual_vs_expected_CNY_money",
+        "row_key": "0",
+        "columns": [
+          "value",
+          "actual",
+          "difference",
+          "difference_rate",
+          "absolute_error"
+        ],
+        "record_ids": [
+          "parent_profit",
+          "fact1"
+        ],
+        "metric": "net_profit_parent",
+        "period": "2024"
+      },
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "consolidated"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "actual_match",
+          "status": "unknown",
+          "detail": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+        }
+      ],
+      "prohibited_uses": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "allowed_uses": [
+        "quoted_source_value",
+        "qualified_numeric_reference"
+      ],
+      "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "parent_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-11-01"
+        }
+      ]
+    },
+    {
+      "id": "actual_vs_expected_CNY_money:1:comparison_basis_unaligned",
+      "code": "comparison_basis_unaligned",
+      "subject": {
+        "table": "actual_vs_expected_CNY_money",
+        "row_key": "1",
+        "columns": [
+          "value",
+          "actual",
+          "difference",
+          "difference_rate",
+          "absolute_error"
+        ],
+        "record_ids": [
+          "revenue_reference",
+          "fact1"
+        ],
+        "metric": "revenue",
+        "period": "2024"
+      },
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "consolidated"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "revenue_boundary",
+          "status": "unknown",
+          "detail": "营业收入、营业总收入及主营业务范围尚未对齐",
+          "left": null,
+          "right": [
+            "total_operating_revenue"
+          ]
+        },
+        {
+          "dimension": "actual_match",
+          "status": "unknown",
+          "detail": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+        }
+      ],
+      "prohibited_uses": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "allowed_uses": [
+        "quoted_source_value",
+        "qualified_numeric_reference"
+      ],
+      "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "revenue_reference",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-09-01"
+        }
+      ]
+    },
+    {
+      "id": "actual_vs_expected_CNY_per_share:2:comparison_basis_unaligned",
+      "code": "comparison_basis_unaligned",
+      "subject": {
+        "table": "actual_vs_expected_CNY_per_share",
+        "row_key": "2",
+        "columns": [
+          "value",
+          "actual",
+          "difference",
+          "difference_rate",
+          "absolute_error"
+        ],
+        "record_ids": [
+          "eps_reference",
+          "fact1"
+        ],
+        "metric": "eps",
+        "period": "2024"
+      },
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "consolidated"
+          ]
+        },
+        {
+          "dimension": "basis",
+          "status": "different",
+          "detail": "两侧披露口径不同",
+          "left": "latest_shares",
+          "right": [
+            "basic"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "actual_match",
+          "status": "unknown",
+          "detail": "机构会计/合并口径不明，不能计算同口径误差；数值参照另列"
+        }
+      ],
+      "prohibited_uses": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "allowed_uses": [
+        "quoted_source_value",
+        "qualified_numeric_reference"
+      ],
+      "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "eps_reference",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-09-01",
+          "basis": "latest_shares"
+        }
+      ]
+    },
+    {
+      "id": "version_links_CNY_money:parent_profit:profit_attribution_unknown",
+      "code": "profit_attribution_unknown",
+      "subject": {
+        "table": "version_links_CNY_money",
+        "row_key": "parent_profit",
+        "columns": [
+          "previous"
+        ],
+        "record_ids": [
+          "unknown_profit"
+        ],
+        "metric": "net_profit",
+        "period": "2024"
+      },
+      "issues": [
+        {
+          "dimension": "profit_attribution",
+          "status": "unknown",
+          "detail": "前值利润归属未明；本次归母标签不回填给前值"
+        }
+      ],
+      "prohibited_uses": [
+        "label_as_parent_profit",
+        "parent_profit_comparison"
+      ],
+      "allowed_uses": [
+        "quoted_source_value",
+        "qualified_numeric_reference"
+      ],
+      "message": "利润归属未明或仅为合并净利润，不得改标归母、计算归母误差或跨归属修正",
+      "evidence": [
+        {
+          "record_id": "unknown_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-05-01"
+        }
+      ]
+    },
+    {
+      "id": "version_links_CNY_money:parent_profit:comparison_basis_unaligned",
+      "code": "comparison_basis_unaligned",
+      "subject": {
+        "table": "version_links_CNY_money",
+        "row_key": "parent_profit",
+        "columns": [
+          "previous",
+          "value",
+          "change"
+        ],
+        "record_ids": [
+          "unknown_profit",
+          "parent_profit"
+        ],
+        "metric": "net_profit_parent",
+        "period": "2024"
+      },
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "unspecified"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "metric",
+          "status": "unknown",
+          "detail": "前值净利润归母身份未定；保留关联，不计算归母修正"
+        }
+      ],
+      "prohibited_uses": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion",
+        "same_basis_revision",
+        "parent_profit_comparison"
+      ],
+      "allowed_uses": [
+        "quoted_source_value",
+        "qualified_numeric_reference"
+      ],
+      "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "unknown_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-05-01"
+        },
+        {
+          "record_id": "parent_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-11-01"
+        }
+      ]
+    },
+    {
+      "id": "reference_gaps_CNY_money:parent_profit:comparison_basis_unaligned",
+      "code": "comparison_basis_unaligned",
+      "subject": {
+        "table": "reference_gaps_CNY_money",
+        "row_key": "parent_profit",
+        "columns": [
+          "forecast",
+          "actual",
+          "difference",
+          "difference_rate"
+        ],
+        "record_ids": [
+          "parent_profit",
+          "fact1"
+        ],
+        "metric": "net_profit_parent",
+        "period": "2024"
+      },
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "consolidated"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "comparison_identity",
+          "status": "unknown",
+          "detail": "机构会计/合并范围未明确"
+        }
+      ],
+      "prohibited_uses": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "allowed_uses": [
+        "quoted_source_value",
+        "qualified_numeric_reference"
+      ],
+      "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "parent_profit",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-11-01"
+        },
+        {
+          "fact_id": "fact1",
+          "page": 50,
+          "publisher": null,
+          "published_at": "2025-04-30"
+        }
+      ]
+    },
+    {
+      "id": "reference_gaps_CNY_money:revenue_reference:comparison_basis_unaligned",
+      "code": "comparison_basis_unaligned",
+      "subject": {
+        "table": "reference_gaps_CNY_money",
+        "row_key": "revenue_reference",
+        "columns": [
+          "forecast",
+          "actual",
+          "difference",
+          "difference_rate"
+        ],
+        "record_ids": [
+          "revenue_reference",
+          "fact1"
+        ],
+        "metric": "revenue",
+        "period": "2024"
+      },
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "consolidated"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "revenue_boundary",
+          "status": "unknown",
+          "detail": "营业收入、营业总收入及主营业务范围尚未对齐",
+          "left": null,
+          "right": [
+            "total_operating_revenue"
+          ]
+        },
+        {
+          "dimension": "comparison_identity",
+          "status": "unknown",
+          "detail": "机构会计/合并范围未明确；按营业收入标签参照；需另核营业总收入边界，未自动改标"
+        }
+      ],
+      "prohibited_uses": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "allowed_uses": [
+        "quoted_source_value",
+        "qualified_numeric_reference"
+      ],
+      "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "revenue_reference",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-09-01"
+        },
+        {
+          "fact_id": "fact1",
+          "page": 50,
+          "publisher": null,
+          "published_at": "2025-04-30"
+        }
+      ]
+    },
+    {
+      "id": "reference_gaps_CNY_per_share:eps_reference:comparison_basis_unaligned",
+      "code": "comparison_basis_unaligned",
+      "subject": {
+        "table": "reference_gaps_CNY_per_share",
+        "row_key": "eps_reference",
+        "columns": [
+          "forecast",
+          "actual",
+          "difference",
+          "difference_rate"
+        ],
+        "record_ids": [
+          "eps_reference",
+          "fact1"
+        ],
+        "metric": "eps",
+        "period": "2024"
+      },
+      "issues": [
+        {
+          "dimension": "scope",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": "unspecified",
+          "right": [
+            "consolidated"
+          ]
+        },
+        {
+          "dimension": "basis",
+          "status": "different",
+          "detail": "两侧披露口径不同",
+          "left": "latest_shares",
+          "right": [
+            "basic"
+          ]
+        },
+        {
+          "dimension": "restatement",
+          "status": "unknown",
+          "detail": "披露口径尚未明确",
+          "left": null,
+          "right": [
+            null
+          ]
+        },
+        {
+          "dimension": "comparison_identity",
+          "status": "unknown",
+          "detail": "机构会计/合并范围未明确；EPS 分母口径不同或未明确，实际参照为基本 EPS"
+        }
+      ],
+      "prohibited_uses": [
+        "same_basis_error",
+        "forecast_accuracy_ranking",
+        "beat_miss_conclusion"
+      ],
+      "allowed_uses": [
+        "quoted_source_value",
+        "qualified_numeric_reference"
+      ],
+      "message": "这两个数不能作为同口径误差、预测准确度排名或超/低预期结论；只允许明确标注限制的数值参照",
+      "evidence": [
+        {
+          "record_id": "eps_reference",
+          "page": 2,
+          "publisher": "A",
+          "published_at": "2024-09-01",
+          "basis": "latest_shares"
+        },
+        {
+          "fact_id": "fact1",
+          "page": 50,
+          "publisher": null,
+          "published_at": "2025-04-30",
+          "basis": "basic"
+        }
+      ]
+    }
+  ]
+}
