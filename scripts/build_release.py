@@ -21,8 +21,22 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = json.loads((ROOT/'package.json').read_text(encoding='utf-8'))['version']
 PACKAGE = f'finance-agent-{VERSION}-windows-x64'
-EXTRA_FILES = {'README.md','README.txt','THIRD_PARTY_NOTICES.md','.gitattributes','install.cmd','stop-finance.cmd','check-install.cmd','start-finance.cmd','CONTINUATION.md','AGENTS.md','design/history/readme-before-release-v01.txt'}
-EXTRA_ROOTS = {'docs','licenses','skills','paper/v0.2.0','paper/v0.3.0','paper/experiments','samples/holdout-20261006'}
+# A runnable product release is not a research handoff. Keep an explicit,
+# reviewed allowlist; never recurse over historical evidence or sample folders.
+EXTRA_FILES = {
+    'README.md', 'README.txt', 'THIRD_PARTY_NOTICES.md', '.gitattributes',
+    'install.cmd', 'stop-finance.cmd', 'check-install.cmd', 'start-finance.cmd',
+    'package.json', 'package-lock.json', 'requirements.lock.txt', '.env.example',
+    '.gitignore', 'tsconfig.tools.json', 'docs/START_AND_USE.md',
+    f'docs/RELEASE-{VERSION}.md',
+    'scripts/manage.ps1', 'scripts/runtime.ps1', 'scripts/fix_dependency.mjs',
+    'scripts/build_release.py', 'scripts/verify_release.py',
+    'scripts/scan_release.py',
+    'scripts/verify_release_offline.py', 'scripts/package_handoff.py',
+    'scripts/package_delivery.py',
+    'benchmark/versions/v0.5-holdout/inputs/cnooc_2025_en_whole_tables.pdf',
+}
+EXTRA_ROOTS = {'licenses', 'skills'}
 spec = importlib.util.spec_from_file_location('handoff', ROOT/'scripts/package_handoff.py')
 handoff = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
@@ -33,8 +47,17 @@ def sha256(file):
 
 def collect():
     downloads = handoff.application_downloads(ROOT)
+    def product_source(name):
+        parts = Path(name).parts
+        if name in EXTRA_FILES or parts[0] in EXTRA_ROOTS or parts[0] == 'vendor':
+            return True
+        if parts[0] in {'server', 'service', 'sandbox'}:
+            return not any(p in {'tests', 'runs', 'results', 'fixtures', 'evidence'} for p in parts[1:]) and not Path(name).name.startswith('test_')
+        if parts[0] == 'web':
+            return len(parts) == 2 or parts[1] in {'src', 'public'}
+        return False
     selected = {name: file for name,file,_ in handoff.collect_inputs(ROOT,set(),downloads)
-                if not name.startswith('web/test-results/')}
+                if product_source(name)}
     for name in EXTRA_FILES:
         file = ROOT/name
         if file.is_file(): selected[name] = file

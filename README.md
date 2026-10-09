@@ -1,12 +1,10 @@
-# Finance Agent · 金融研究工作台 0.3.0
+# Finance Agent v0.4.0
 
-在本机上传财报与研报，通过模型完成资料抽取、财务分析、来源核验、金融建模和联网研究。项目下组织会话，数据按项目隔离保存，附件处理进度与入库去向在“附件流向”中查看。研报的机构预测、行业数据与观点保留来源和发布日期，和公司的正式财务披露分别查询。
+面向财报研究的本地智能体。此版本打包 F2.1 的 v3 底稿流水线、来源追溯与交付检查能力。正式三组评测的总体 E4 优势均未证实，具体深度收益、缺陷与成本见 [发布说明](docs/RELEASE-0.4.0.md)。
 
-**首次使用请下载 [v0.3.0 Release](https://github.com/linmu115/finance-agent/releases/tag/v0.3.0) 中的 `finance-agent-0.3.0-windows-x64.zip`。** GitHub 自动提供的 “Source code” 是源码包，不包含运行环境。
+**使用本次提供的 `finance-agent-0.4.0-windows-x64.zip` 和 `SHA256SUMS.txt`。本版尚未推送或发布 GitHub Release。** 完整解压后运行 `install.cmd`，默认地址 `http://127.0.0.1:3001/`；API 在界面配置。便携包包含 Node、Python 与生产依赖，Docker 和分析镜像另行准备。[启动与使用](docs/START_AND_USE.md)。
 
-应用版本为 **0.3.0**；历史 benchmark 的 v0.2、v0.3、v0.5 等编号是测试集版本，并非应用发布版本。旧 v0.1 发布包仍保留。
-
-本版包含脚本清洗、研报入库、统一资产看板、附件看板、Pi 原生长任务接入及任务费用明细；新增来源记录绑定、统一数值报告和 Markdown/TeX 渲染。先看 [服务启动与使用 README](docs/START_AND_USE.md)、[发布说明](docs/RELEASE-0.3.0.md)。设计理念、演进、优化后同数据 Pi 对照及负面结果见 [技术论文](paper/v0.3.0/finance-agent-technical-paper.md)；论文 PDF 随 Release 和部署 ZIP 提供。
+可运行包按允许列表收录产品源码、运行依赖与安装资料，不附带真实项目数据库、会话、评测私有资料或完整研究样本。源码仓库中的历史论文、评测和大样本保持原位置，不代表随部署包分发。历史 benchmark 编号与应用版本独立。
 
 ## 三步开始
 
@@ -65,13 +63,13 @@
 7. 研报完整入库同时检查数值表和正文页。同一表中的历史值与预测只清洗一次；每个公司、机构、发布日期、期间和情景分别保存。按“截至某日”提问可避免混入后续报告，日期不明的材料会明确排除。无法可靠提取的图形和歧义保留为待核验，完成处理不代表人工核验通过。
 8. SQL、数据删改、跨项目读取等受控操作逐次显示授权卡片。核对操作和参数后再同意；授权只对该次请求有效。
 
-首次验收建议使用包内 `samples/native-pdf/Ruihe_Data_2025_Interim_57p.pdf` 与 `Guosen_Yili_20250716_38p.pdf`，分别测试财报和研报。来源、哈希与提问见 [启动与使用 README](docs/START_AND_USE.md) 和 [样本清单](samples/native-pdf/release-0.2.0-sources.json)。原有 5 份完整年报和 [分析题](samples/native-pdf/验收提问.md) 保留；不同版本的样本结果不合并为同一评测成绩。
+首次使用可上传自己合法取得的财报与研报，按 [启动与使用](docs/START_AND_USE.md) 中的示例任务处理。包内仅保留一个公开 PDF 小样，供安装脚本验证原文解析；历史研究样本与评测资料不随本包分发。
 
-**附件看板**按当前项目逐条列出已登记资料、类型、处理状态和入库数量，可查看原文。删除某份资料时，在该行确认后清除其财务事实、全部历史研究记录、预测、观点、原文解析、检索条目及关联处理快照/产物。其他资料保留；正在执行任务的项目需先完成或停止任务，防止写入与删除同时进行。历史会话文字、已存在的备份不会被改写；依赖已删来源的保存模型会显示来源失效。“附件流向”仍用于当前会话的处理进度，“附件看板”用于项目层面的资料清单。原“数据集与测试”导航已移除，开发评测脚本和历史证据继续随源码保留。
+**附件看板**按当前项目逐条列出已登记资料、类型、处理状态和入库数量，可查看原文。删除某份资料时，在该行确认后清除其财务事实、全部历史研究记录、预测、观点、原文解析、检索条目及关联处理快照/产物。其他资料保留；正在执行任务的项目需先完成或停止任务，防止写入与删除同时进行。历史会话文字、已存在的备份不会被改写；依赖已删来源的保存模型会显示来源失效。“附件流向”仍用于当前会话的处理进度，“附件看板”用于项目层面的资料清单。原“数据集与测试”导航已移除，开发评测脚本和历史证据继续在源码仓库保留。
 
 资产看板的 **观点与证据** 展示已从研报提取的定性研究记录，包括研究观点、风险、催化因素及引用的管理层表述，保留提出者/机构、发布日期、原句、页码与待核验状态。可搜索、过滤、查看原文或选中记录继续分析；这里的“证据”表示可追溯依据，不表示观点已被证实。机构预期侧重预测数值，模型与成果保存应用计算或撰写的研究产物。
 
-本版实验观察到金融组累计输入少 47.81%、输出少 23.26%，但未缓存输入多 14.51%；金额/比率导出、自由图形布局及模型复用仍有已知问题。费用和整体金融正确性不能据此宣称优于通用基线，详情见论文与发布说明。
+本版正式评测显示局部分析深度提升，同时保留材料范围、单位与币种标签、可比口径语义等交付缺陷。两个主对比的总体 E4 优势均未证实；输入成本的完整口径见 [发布说明](docs/RELEASE-0.4.0.md)。
 
 ## 端口、数据与迁移
 
@@ -85,7 +83,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\manage.ps1 -Ac
 
 停止时须使用相同的端口和 `-DataDirectory`。同一个数据目录不可同时启动多个服务。
 
-备份前先停止会话任务，再停止服务，复制实际数据目录。v0.1 默认数据在 `data/`，v0.3.0 默认在 `data/active/`；升级时必须确认数据库 `finance.sqlite` 的实际位置，不能只移动配置文件。具体步骤见 [升级迁移](docs/START_AND_USE.md#从-01-或当前开发目录升级)。**跨电脑或跨 Windows 用户迁移时重新配置 API**，DPAPI 加密与原用户绑定。保留旧备份。
+备份前先停止会话任务，再停止服务，复制实际数据目录。v0.1 默认数据在 `data/`，v0.3.0 及本版默认在 `data/active/`；升级时必须确认数据库 `finance.sqlite` 的实际位置，不能只移动配置文件。具体步骤见 [升级迁移](docs/START_AND_USE.md#从-01-或当前开发目录升级)。**跨电脑或跨 Windows 用户迁移时重新配置 API**，DPAPI 加密与原用户绑定。保留旧备份。
 
 便携卸载：停止服务，删除属于这份安装的桌面快捷方式；确认已备份所需数据后，再自行删除整个安装目录。启动器不提供一键清空研究数据。
 
@@ -127,7 +125,8 @@ npm run build
 .\.venv\Scripts\python.exe scripts/build_release.py --plan
 .\.venv\Scripts\python.exe scripts/build_release.py --stage
 .\.venv\Scripts\python.exe scripts/build_release.py --archive
-.\.venv\Scripts\python.exe scripts/verify_release_offline.py --zip dist/release-0.3.0/finance-agent-0.3.0-windows-x64.zip
+.\.venv\Scripts\python.exe scripts/verify_release.py --zip dist/release-0.4.0/finance-agent-0.4.0-windows-x64.zip
+.\.venv\Scripts\python.exe scripts/verify_release_offline.py --zip dist/release-0.4.0/finance-agent-0.4.0-windows-x64.zip
 ```
 
 构建器先扫描源码与嵌套样本压缩包，排除凭据及运行数据，再建立独立运行目录。归档后检查 ZIP CRC 和逐文件 SHA-256，输出 `SHA256SUMS.txt`。重复构建使用新的 `--output dist/另一个目录`，不会覆盖既有发行包。
@@ -154,10 +153,10 @@ npm test
 .\.venv\Scripts\python.exe -m unittest discover -s service/tests -v
 ```
 
-真实模型验收会调用外部 API。已知边界与本次部署验收见 [docs/RELEASE-0.3.0.md](docs/RELEASE-0.3.0.md)。
+真实模型验收会调用外部 API。已知边界与本次部署验收见 [docs/RELEASE-0.4.0.md](docs/RELEASE-0.4.0.md)。
 
 ## 目录与第三方组件
 
-`web/` 界面；`server/` 本地 API 与 Agent；`service/` 文档、数据库和模型工具；`skills/` 专业技能；`sandbox/` 可选隔离计算；`samples/` 示例；`benchmark/` 冻结评测与历史证据；`scripts/` 管理和构建工具。
+`web/` 界面；`server/` 本地 API 与 Agent；`service/` 文档、数据库和模型工具；`skills/` 专业技能；`sandbox/` 可选隔离计算；源码仓库中的 `samples/` 示例与 `benchmark/` 历史评测不整体随可运行包发布；`scripts/` 管理和构建工具。
 
 第三方授权见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)、`licenses/`，以及包内各依赖自身的 LICENSE/NOTICE。报告样本保留原披露来源和版权；仓库设为私有。
