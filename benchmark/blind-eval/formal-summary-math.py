@@ -78,8 +78,9 @@ def cost_comparison(frows, brows, usage):
     cross=median(fu)<=median(bl) if all(v is not None for v in fu+bl) else None
     price_verified=all(v.get('host_and_raw_catalog_agree') is True for v in list(fmap.values())+list(bmap.values()))
     both=all(v is True for v in checks.values())
-    result='不确定' if not price_verified else '成立' if both else '不确定' if any(v is None for v in checks.values()) or len(set(checks.values()))>1 else '不成立'
-    return {'scenarios':scenarios,'checks':checks,'host_catalog_reconciled':price_verified,'protocol_cost_result':result,'cross_bound_dominance_descriptive_only':cross,
+    has_unknown=any(v['unknown_calls'] for v in list(fmap.values())+list(bmap.values()))
+    result='不确定' if not price_verified else '成立' if both else '不确定' if has_unknown or any(v is None for v in checks.values()) or len(set(checks.values()))>1 else '不成立'
+    return {'scenarios':scenarios,'checks':checks,'has_unknown_requests':has_unknown,'host_catalog_reconciled':price_verified,'protocol_cost_result':result,'cross_bound_dominance_descriptive_only':cross,
             'interpretation':'Two protocol-defined observational scenarios; not a guaranteed bound on unknown actual bills.'}
 
 
