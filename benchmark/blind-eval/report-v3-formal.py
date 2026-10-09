@@ -41,6 +41,7 @@ def request_component_totals(requests):
 def main():
     assert (BASE/'all-reviews-sealed-before-unblinding.json').exists()
     state=read(BASE/'experiment.json')
+    protocol=read(PUBLIC/'protocol-freeze.json')
     runs={r['label']:r for r in state['runs']}
     reviews={rd:read(BASE/f'{rd}-decoded.json') for rd in ['round1','round2']}
     assessment=read(BASE/'critical-unreviewed-assessment.json')
@@ -121,6 +122,9 @@ def main():
                 for calls in [[q for q in requests if (q.get('phase') or 'unrecorded')==phase]]}
             totals.append(total)
     summary={'version':'F2.1','deployed_commit':state['deployedCommit'],'batch':state['batchId'],
+        'participant_configuration':{k:state['config'][k] for k in ['model','provider','main_reasoning','router_reasoning','arms']},
+        'baseline_contract':state['runtimeFreeze']['contract'],
+        'protocol_files':protocol['protocolFiles'],'schedule_seeds':protocol['seeds'],
         'protocol_commit':'207e105','cases':162,'review_threads':18,'review_model':'gpt-6-astra','reasoning_effort':'high',
         'statuses':dict(Counter(r['status'] for r in runs.values())),'splits':splits,'usage_totals':totals,
         'failures':failures,'incident_usage':costs['incident_usage'],'actual_billed_cost':None,
@@ -138,6 +142,7 @@ def main():
                   'Held-out review prose and every disagreement original remain in the private directory.',
                   'Frozen X3 reference retains the previously disclosed 160-yuan tail-note error; no reference revision during formal evaluation.',
                   'Held-out frozen data retains 14 review flags: one required-table overlap, zero required reference-input overlaps; no database repair for evaluation.']}
+    summary['limits'].append('Yili annual report retains 304 review issues on 29 tables: six issues overlap one required table, zero overlap required reference inputs; source coordinates independently checked and no database repair for evaluation.')
     write(BASE/'formal-results.json',summary)
     write(BASE/'execution-timings.json',timings)
     write(BASE/'all-score-disagreements-originals.json',differences)
@@ -153,6 +158,7 @@ def main():
           for r in differences if r['split']=='heldout'])
     lines=['# F2.1 正式三组评测','',
         '162 个预定题位，18 个全新 gpt-6-astra/high 评审线程。先封存全部原始评分，再统一揭盲。两遍独立判定，不取平均、不追加裁决。',
+        '', '参评模型为 cpa-local 的 gpt-6-luna，主推理 high、路由 low；评审模型与参评模型不同。运行 F2.1（7e702ff），P3 未纳入。三组实际工具/提示摘要与协议、seed 见 formal-results.json；方法和复现边界见 benchmark/blind-eval/F21_FORMAL_METHODS.md。',
         '',f"完成状态：{summary['statuses']}。首回合环境前置失败按用户特批作废，事故用量保留；替代尝试占原题位。后续失败不补跑。",'']
     for comparator,title in [('original_pi','整套系统 vs 原版 Pi'),('prepared','金融层 vs prepared')]:
         lines += [f'## {title}','','| split | 第一遍 E4 | 倒序遍 E4 | 修订协议结论 |',
@@ -161,13 +167,13 @@ def main():
             c=splits[split]['comparisons'][comparator]
             lines.append(f"| {split} | {c['passes']['round1']['result']} | {c['passes']['round2']['result']} | {c['verdict']} |")
         lines += ['',f"开发核心与 held-out 同时满足 E4：{'是' if summary['overall_E4_by_comparator'][comparator] else '否'}。扩展集单列，不抵消其他 split 的失败。",'']
-    lines += ['## 两遍质量与补充成本指标','','| split | 评审 | 组别 | 完成且无实质缺陷 | 缺陷回合/条目 | R1 | R2 | R3 | R4 | R5 | C | 每完成且无缺陷回合已知输入 |',
-              '|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|']
+    lines += ['## 两遍质量与补充成本指标','','| split | 评审 | 组别 | 完成且无实质缺陷 | 缺陷回合/条目 | R1 | R2 | R3 | R4 | R5 | C | 每完成且无缺陷回合已知输入 | 每完成且无缺陷回合已知目录费用 USD |',
+              '|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|']
     for split,v in splits.items():
         for rd,groups in v['groups'].items():
             for profile,g in groups.items():
                 scores=' | '.join(fmt(g['scores'][d]) for d in math.DIMS)
-                lines.append(f"| {split} | {rd} | {profile} | {g['completed_without_material_defect']}/{g['cases']} | {g['material_defective_cases']}/{g['reviewer_material_entries']} | {scores} | {fmt(g['known_input_per_complete_clean_case'])} |")
+                lines.append(f"| {split} | {rd} | {profile} | {g['completed_without_material_defect']}/{g['cases']} | {g['material_defective_cases']}/{g['reviewer_material_entries']} | {scores} | {fmt(g['known_input_per_complete_clean_case'])} | {fmt(g['catalog_cost_per_complete_clean_case'])} |")
     lines += ['','缺陷条目采用评审各自的原始机制划分，不由 N1 根据工具告警去重。补充成本指标包含失败尝试的已知输入；分母为该遍完成且无实质缺陷题位，不能替代 E4 成本判据。R3/R4/R5 按冻结题别的直接主考、辅助适用另在 depth_by_frozen_coverage 中分层，模型更新与估值辅助分数不作为完整经营归因能力的证明。','',
               '## 可靠性','','| split | 有/无一致率 | κ | 适用维度平均绝对差 | 最大差 | 分歧分布 G/P/F | 下限通过 |','|---|---:|---:|---:|---:|---|---|']
     for split,v in splits.items():
