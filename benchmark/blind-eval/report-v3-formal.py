@@ -143,6 +143,7 @@ def main():
                   'Frozen X3 reference retains the previously disclosed 160-yuan tail-note error; no reference revision during formal evaluation.',
                   'Held-out frozen data retains 14 review flags: one required-table overlap, zero required reference-input overlaps; no database repair for evaluation.']}
     summary['limits'].append('Yili annual report retains 304 review issues on 29 tables: six issues overlap one required table, zero overlap required reference inputs; source coordinates independently checked and no database repair for evaluation.')
+    summary['limits'].append('Haier is explicitly authorized at 338/344 tables, core 43/43, 4568 facts. Six missing tables, 414 needs-review facts and 120 review issues have zero overlaps with X7 required tables and reference inputs. These are separate counts. The no-impact conclusion is limited to X7; missing tables include operating information, not only front matter. Shared frozen state retained without database repair.')
     write(BASE/'formal-results.json',summary)
     write(BASE/'execution-timings.json',timings)
     write(BASE/'all-score-disagreements-originals.json',differences)
