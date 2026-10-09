@@ -1,6 +1,7 @@
 """Pure aggregation under V3_PROTOCOL_REVISION_20261009; no score access/IO."""
 from collections import Counter
 from statistics import mean, median
+import random
 
 DIMS = ['reading','substantive','explanation','adjustments','anomalies','common']
 DEPTH = ['explanation','adjustments','anomalies']
@@ -106,3 +107,42 @@ def independent_verdict(first, second, reliability_passed):
     if first==second=='不成立':return '不成立'
     if first==second=='未证实':return '未证实'
     return '两遍不一致，未证实'
+
+
+def paired_task_summary(one_pass, comparator, resamples=10000, seed=2026100903):
+    """Equal task weight; bootstrap repeats within each fixed task, not companies.
+
+    These intervals describe repeat variation conditional on these exact prompts.
+    They do not enter E4 or imply a population-level significance result.
+    """
+    selected=[r for r in one_pass if r['profile'] in {'financial',comparator}]
+    keyed={(r['task'],r['repeat'],r['profile']):r for r in selected}
+    assert len(keyed)==len(selected)
+    results={}
+    for dim in DIMS:
+        tasks={}
+        for task in sorted({r['task'] for r in selected}):
+            repeats=sorted({r['repeat'] for r in selected if r['task']==task})
+            pairs=[(keyed[(task,i,'financial')]['scores'][dim],keyed[(task,i,comparator)]['scores'][dim]) for i in repeats]
+            assert all((a is None)==(b is None) for a,b in pairs)
+            values=[(a,b) for a,b in pairs if a is not None]
+            if not values:continue
+            diffs=[a-b for a,b in values]
+            tasks[task]={'n':len(values),'financial_mean':mean(a for a,b in values),
+                'comparator_mean':mean(b for a,b in values),'paired_differences':diffs,
+                'paired_mean':mean(diffs),'paired_median':median(diffs),'paired_range':[min(diffs),max(diffs)],
+                'win_tie_loss':[sum(x>0 for x in diffs),sum(x==0 for x in diffs),sum(x<0 for x in diffs)]}
+        if not tasks:
+            results[dim]=None;continue
+        rng=random.Random(seed)
+        bootstrap=[]
+        for _ in range(resamples):
+            bootstrap.append(mean(mean(rng.choices(t['paired_differences'],k=t['n'])) for t in tasks.values()))
+        bootstrap.sort()
+        def quantile(p):
+            at=(len(bootstrap)-1)*p;lo=int(at);hi=min(lo+1,len(bootstrap)-1)
+            return bootstrap[lo]+(bootstrap[hi]-bootstrap[lo])*(at-lo)
+        results[dim]={'tasks':tasks,'equal_task_weight_mean_difference':mean(t['paired_mean'] for t in tasks.values()),
+            'conditional_repeat_bootstrap_95_interval':[quantile(.025),quantile(.975)]}
+    return {'comparator':comparator,'dimensions':results,'seed':seed,'resamples':resamples,
+        'scope':'Paired repeat resampling within each fixed task, equal task weights. No company resampling, no population inference, no p value; descriptive and excluded from E4.'}
