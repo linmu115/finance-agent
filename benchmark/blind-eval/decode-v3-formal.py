@@ -60,7 +60,8 @@ def decode():
                 assert all(k in review for k in ['reasons','material_defects','minor_defects','unreviewed','identity_clues','inspection','common_checks'])
                 output[rd].append({**review,'label':run['label'],'task':run['taskId'],
                     'profile':run['profile'],'repeat':run['repeat'],'split':run['split'],
-                    'packet':packet,'critical_unreviewed':None})
+                    'packet':packet,'critical_unreviewed':None,
+                    'task_coverage':{dim:reference['task_requirements'][identity['task']][req]['coverage'] for dim,req in DIMS.items()}})
     assert all(len(rows) == 162 and len({r['label'] for r in rows}) == 162 for rows in output.values())
     for rd, rows in output.items():
         with (BASE/f'{rd}-decoded.json').open('x',encoding='utf-8') as h:

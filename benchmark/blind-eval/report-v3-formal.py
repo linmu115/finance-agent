@@ -3,7 +3,9 @@ import hashlib
 import importlib.util
 import json
 from collections import Counter
+from datetime import datetime
 from pathlib import Path
+from statistics import mean, median
 
 ROOT=Path(__file__).resolve().parents[2]
 BASE=ROOT/'data/evaluation/blind-eval-F21-formal-private-20261009'
@@ -38,6 +40,15 @@ def main():
     costs=read(BASE/'usage-bounds-final.json')
     usage={r['label']:r for r in costs['rows']}
     assert set(usage)==set(runs) and len(usage)==162
+    timings=[]
+    for label,run in runs.items():
+        path=BASE/f'{label}-run.json'
+        raw=read(path) if path.exists() else {}
+        start=raw.get('createdAt',run.get('requestedAt'))
+        end=raw.get('finishedAt',run.get('finishedAt'))
+        seconds=(datetime.fromisoformat(end.replace('Z','+00:00'))-datetime.fromisoformat(start.replace('Z','+00:00'))).total_seconds() if start and end else None
+        timings.append({'label':label,'split':run['split'],'profile':run['profile'],
+                        'created_at':start,'finished_at':end,'end_to_end_seconds':seconds})
     # Verify sealed originals remain intact; reporting never rewrites them.
     for receipt in read(BASE/'all-reviews-sealed-before-unblinding.json')['packets']:
         folder=BASE/'review-packets'/receipt['packet']
@@ -58,7 +69,13 @@ def main():
                 'repeat_statistics':{rd:math.paired_task_summary(rows,comparator) for rd,rows in passes.items()}}
         groups={rd:{p:math.group_summary([x for x in rows if x['profile']==p],usage)
                     for p in ['original_pi','prepared','financial']} for rd,rows in passes.items()}
-        splits[split]={'reliability':reliability,'comparisons':comparisons,'groups':groups}
+        coverage={rd:{profile:{dim:{coverage:{
+            'scored_cases':len(values),'mean':mean(values) if values else None}
+            for coverage in sorted({r['task_coverage'][dim] for r in rows})
+            for values in [[r['scores'][dim] for r in rows if r['profile']==profile and r['task_coverage'][dim]==coverage and r['scores'][dim] is not None]]}
+            for dim in ['explanation','adjustments','anomalies']}
+            for profile in ['original_pi','prepared','financial']} for rd,rows in passes.items()}
+        splits[split]={'reliability':reliability,'comparisons':comparisons,'groups':groups,'depth_by_frozen_coverage':coverage}
         keyed=[{r['label']:r for r in rows} for rows in passes.values()]
         for delta in reliability['disagreements']:
             differences.append({'split':split,**delta,'round1':keyed[0][delta['label']],
@@ -71,6 +88,10 @@ def main():
             rows=[r for r in usage.values() if r['split']==split and r['profile']==profile]
             total={'split':split,'profile':profile,'positions':len(rows),
                    'completed':sum(r['status']=='completed' for r in rows)}
+            elapsed=[t['end_to_end_seconds'] for t in timings if t['split']==split and t['profile']==profile and t['end_to_end_seconds'] is not None]
+            total['end_to_end_seconds']={'median':median(elapsed) if elapsed else None,
+                'range':[min(elapsed),max(elapsed)] if elapsed else None,'observations':len(elapsed),
+                'measurement':'non-isolated; includes queue and overlapping participant/other-project work'}
             for key in ['request_count','input_lower','input_upper_observed_scenario','output_lower',
                         'output_upper_observed_scenario','catalog_cost_lower','catalog_cost_upper_observed_scenario','unknown_calls']:
                 values=[r[key] for r in rows];total[key]=sum(values) if all(v is not None for v in values) else None
@@ -92,8 +113,11 @@ def main():
                   'Both passes reported independently; no averaging, pass selection, adjudication or result-driven threshold change.',
                   'Known input per completed clean case is supplementary, not an E4 substitute.',
                   'Missing and unknown values retained; catalog cost is not the provider invoice.',
-                  'Held-out review prose and every disagreement original remain in the private directory.']}
+                  'Held-out review prose and every disagreement original remain in the private directory.',
+                  'Frozen X3 reference retains the previously disclosed 160-yuan tail-note error; no reference revision during formal evaluation.',
+                  'Held-out frozen data retains 14 review flags: one required-table overlap, zero required reference-input overlaps; no database repair for evaluation.']}
     write(BASE/'formal-results.json',summary)
+    write(BASE/'execution-timings.json',timings)
     write(BASE/'all-score-disagreements-originals.json',differences)
     # All raw per-case mechanism descriptions remain available, even where equal
     # scores/material-presence hide differing explanations or defect taxonomies.
@@ -120,7 +144,7 @@ def main():
             for profile,g in groups.items():
                 scores=' | '.join(fmt(g['scores'][d]) for d in math.DIMS)
                 lines.append(f"| {split} | {rd} | {profile} | {g['completed_without_material_defect']}/{g['cases']} | {g['material_defective_cases']}/{g['reviewer_material_entries']} | {scores} | {fmt(g['known_input_per_complete_clean_case'])} |")
-    lines += ['','缺陷条目采用评审各自的原始机制划分，不由 N1 根据工具告警去重。补充成本指标包含失败尝试的已知输入；分母为该遍完成且无实质缺陷题位，不能替代 E4 成本判据。','',
+    lines += ['','缺陷条目采用评审各自的原始机制划分，不由 N1 根据工具告警去重。补充成本指标包含失败尝试的已知输入；分母为该遍完成且无实质缺陷题位，不能替代 E4 成本判据。R3/R4/R5 按冻结题别的直接主考、辅助适用另在 depth_by_frozen_coverage 中分层，模型更新与估值辅助分数不作为完整经营归因能力的证明。','',
               '## 可靠性','','| split | 有/无一致率 | κ | 适用维度平均绝对差 | 最大差 | 分歧分布 G/P/F | 下限通过 |','|---|---:|---:|---:|---:|---|---|']
     for split,v in splits.items():
         r=v['reliability'];dist='/'.join(str(r['material_disagreement_by_group'][p]) for p in ['original_pi','prepared','financial'])
