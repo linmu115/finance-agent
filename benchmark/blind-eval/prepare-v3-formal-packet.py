@@ -8,6 +8,7 @@ import json
 import os
 import shutil
 import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -50,7 +51,7 @@ def main(packet):
     reference = BASE / 'reference-packets' / packet
     assert reference.exists()
     # Same anonymization seed/mechanics as the valid gate. Formal source positions are already frozen.
-    result = subprocess.run(['python','-B','benchmark/blind-eval/blind.py',str(source),str(dest),'--reference-dir',str(reference),'--seed','2026100903'],cwd=ROOT,capture_output=True,text=True,encoding='utf-8')
+    result = subprocess.run([sys.executable,'-B','benchmark/blind-eval/blind.py',str(source),str(dest),'--reference-dir',str(reference),'--seed','2026100903'],cwd=ROOT,capture_output=True,text=True,encoding='utf-8')
     (source/'anonymization.log').write_text(result.stdout+result.stderr,encoding='utf-8')
     if not (dest/'private-map.json').exists():
         raise RuntimeError('Anonymization failed before a complete packet; inspect private log')
@@ -74,7 +75,7 @@ def main(packet):
             shutil.copytree(reference/'complete-originals',dest/rd/'reference/complete-originals')
     if (reference/'complete-originals').exists():
         shutil.copytree(reference/'complete-originals',dest/'reference/complete-originals')
-    verify = subprocess.run(['python','-B','benchmark/blind-eval/verify-anonymous-attachments.py',str(source),str(dest)],cwd=ROOT,capture_output=True,text=True,encoding='utf-8')
+    verify = subprocess.run([sys.executable,'-B','benchmark/blind-eval/verify-anonymous-attachments.py',str(source),str(dest)],cwd=ROOT,capture_output=True,text=True,encoding='utf-8')
     (source/'attachment-verification.log').write_text(verify.stdout+verify.stderr,encoding='utf-8')
     write(dest/'pre-release-status.json',{'packet':packet,'cases':18,'anonymizer_exit':result.returncode,'attachment_verification_exit':verify.returncode,'visual_identity_review':'required before release','reviewers_started':False,'scores_read':False})
     print(json.dumps({'packet':packet,'cases':18,'anonymizer_exit':result.returncode,'attachment_verification_exit':verify.returncode,'released':False}))
