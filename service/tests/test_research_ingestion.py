@@ -123,9 +123,11 @@ class ResearchIngestionTests(unittest.TestCase):
         self.commit(payload=changed)
         with self.s.store.connect() as db:
             fresh=json.loads(db.execute('SELECT snapshot_json FROM attachment_flows WHERE flow_id=?',(self.pid+':'+self.did,)).fetchone()[0])
-        normalized=[r for r in fresh['research_records'] if r.get('metric')=='revenue']
-        self.assertEqual(len(normalized),2)
-        self.assertTrue(all('operating_revenue' in r['source']['normalization']['metric_aliases'] for r in normalized))
+        # F2.0 disabled persisted metric-ID rewriting. Refresh the snapshot
+        # with the submitted ID, while keeping the previous snapshot intact.
+        retained=[r for r in fresh['research_records'] if r.get('metric')=='operating_revenue']
+        self.assertEqual(len(retained),2)
+        self.assertTrue(all(not r['source']['normalization'].get('metric_aliases') for r in retained))
 
     def test_unresolved_research_semantics_preserve_raw_numbers_with_warning(self):
         self.source_row_label('Installed capacity')

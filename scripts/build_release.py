@@ -34,6 +34,12 @@ EXTRA_FILES = {
     'scripts/scan_release.py',
     'scripts/verify_release_offline.py', 'scripts/package_handoff.py',
     'scripts/package_delivery.py',
+    # The offline verifier runs these synthetic regressions in its extracted
+    # copy. Include only their explicit fixture dependency, no evaluation data.
+    'service/tests/test_script_cleaning.py',
+    'service/tests/test_asset_dashboard.py',
+    'service/tests/test_document_library.py',
+    'service/tests/test_research_ingestion.py',
     'benchmark/versions/v0.5-holdout/inputs/cnooc_2025_en_whole_tables.pdf',
 }
 EXTRA_ROOTS = {'licenses', 'skills'}

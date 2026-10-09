@@ -126,7 +126,7 @@ try{
         result=run('bundled_stdio_parse_and_reconnect',[str(node),'--input-type=module','-e',script],timeout=240)
         report['stdio_result']=json.loads(result.splitlines()[-1])
         run('packaged_dimension_and_dashboard_regressions',[str(python),'-B','-m','unittest','service.tests.test_script_cleaning','service.tests.test_asset_dashboard','service.tests.test_document_library.DocumentLibraryTests','-v'],timeout=240)
-        for filename in ['web/dist/index.html','skills/research-ingestion/SKILL.md','docs/START_AND_USE.md',f"paper/v{metadata['version']}/finance-agent-technical-paper.md",f"paper/v{metadata['version']}/finance-agent-technical-paper.pdf"]:
+        for filename in ['web/dist/index.html','skills/research-ingestion/SKILL.md','docs/START_AND_USE.md',f"docs/RELEASE-{metadata['version']}.md",'THIRD_PARTY_NOTICES.md']:
             check('included_'+filename,(package/filename).is_file() and (package/filename).stat().st_size>0)
         report['status']='passed'
     except BaseException as error:
