@@ -50,6 +50,9 @@ def main():
         for row in rows:
             row['critical_unreviewed']=assessed[(rd,row['label'])]['critical_unreviewed']
     costs=read(BASE/'usage-bounds-final.json')
+    delivery_supplement=read(BASE/'delivery-supplement.json')
+    assert {r['label'] for r in delivery_supplement['rows']}==set(runs)
+    assert all(r['status']==runs[r['label']]['status'] for r in delivery_supplement['rows'])
     usage={r['label']:r for r in costs['rows']}
     assert set(usage)==set(runs) and len(usage)==162
     timings=[]
@@ -121,6 +124,7 @@ def main():
         'protocol_commit':'207e105','cases':162,'review_threads':18,'review_model':'gpt-6-astra','reasoning_effort':'high',
         'statuses':dict(Counter(r['status'] for r in runs.values())),'splits':splits,'usage_totals':totals,
         'failures':failures,'incident_usage':costs['incident_usage'],'actual_billed_cost':None,
+        'delivery_supplement':{k:delivery_supplement[k] for k in ['groups','scope','limitations']},
         'overall_E4_by_comparator':{p:all(splits[s]['comparisons'][p]['verdict']=='成立' for s in ['development','heldout'])
                                    for p in ['original_pi','prepared']},
         'bound_policy':costs['bound_policy'],'cost_upper_cache_assumption':costs['cost_upper_cache_assumption'],
@@ -178,6 +182,13 @@ def main():
         '', '原版 Pi 成本判据不成立时不得写“更省”或“成本更低”。入库、连通性准备、事故与独立评审分账，未取得的账单及评审 token 保持未知。',
         '', '题级重复明细、胜平负、条件于本题集的配对重复区间均在 formal-results.json。区间只描述固定题目的重复波动，不作跨公司或跨行业显著性推断。耗时为非隔离测量。',
         '', '全部评分与分歧原文留存私有目录；开发/扩展分歧另提供公开副本。held-out 对外只提供编号和指标，不披露题面、回答、源文及原始评语。A5、程序数值选择器、交付下载和沙箱复放须结合各自覆盖记录理解，均不能替代金融语义正确性。']
+    lines += ['','## 交付与程序观察（不参与 E4）','',
+        '| split | 组别 | 已收集/预定 | 下载失败/链接 | A5覆盖回合 | 脚本复放成功/版本 | 模型包复算成功/版本 | 有明确数值绑定回合 | 绑定单元格 |',
+        '|---|---|---:|---:|---:|---:|---:|---:|---:|']
+    for d in delivery_supplement['groups']:
+        lines.append(f"| {d['split']} | {d['profile']} | {d['collected_positions']}/{d['planned_positions']} | {d['failed_artifact_links']}/{d['downloaded_artifact_links']+d['failed_artifact_links']} | {d['a5_observed_positions']} | {d['analysis_replay_statuses'].get('succeeded',0)}/{d['analysis_versions_replayed']} | {d['model_bundle_statuses'].get('succeeded',0)}/{d['model_bundles_replayed']} | {d['numeric_positions_with_bindings']} | {d['numeric_explicit_cells']} |")
+    lines += ['', '上表分母为已覆盖的文件版本或题位。未绑定单元格、未复放文件和未覆盖格式保持未知，不能把未观察到失败当作通过。重复交付版本保留，单元格和工具告警的数量不用于推断哪组更优；实质缺陷由两遍评审各自判断。',
+        '', '逐回合绑定范围、单位证据、A5原始分类、下载结果、复放错误和字节差异解释留在私有补充记录；对外仅汇总类别与计数。首个正确或有效金融交付时间未知。']
     (PUBLIC/'FORMAL_REPORT.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
     print(json.dumps({'report':str(PUBLIC/'FORMAL_REPORT.md'),'cases':162,'heldout_prose_exported':False}))
 
