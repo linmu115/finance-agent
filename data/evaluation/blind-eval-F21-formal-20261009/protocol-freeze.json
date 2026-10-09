@@ -1,0 +1,100 @@
+{
+  "schema": "blind-eval-v3-formal-protocol-seal-1",
+  "sealedAt": "2026-10-09T00:19:51.573337+00:00",
+  "batchId": "F21_formal_b2356dc414e349dd83520d4f44bf870c",
+  "status": "protocol_sealed_runtime_preflight_blocked",
+  "authority": "2026-10-09 coordinator confirms user authorization for 162 formal turns and protocol revision",
+  "version": "F2.1",
+  "deployedCommit": "7e702ff3f53eba8686254895ad98300445eac759",
+  "p3": "deferred",
+  "protocolFiles": {
+    "benchmark/blind-eval/V3_PROTOCOL_REVISION_20261009.md": "a83e0edee772c6d667fa08cd818790b7e093e52dee40cd9b96514b5c257a681c",
+    "benchmark/blind-eval/V3_THREE_ARM_PLAN_20261008.md": "4317eb9a1bb46d34c2a873264bce157da3d76d2442531566dd2c349902aa6c7e",
+    "benchmark/blind-eval/v3-formal-schedule.json": "8937147c758db82182422734a4604ad5e6f157af8fa806832c0accf13fe4ad48",
+    "benchmark/blind-eval/v3-gate-plan.json": "0f7e816f1b5823708d296976d9a047ee4a32b17d7ee5de7b6524a7762f491b4a",
+    "benchmark/blind-eval/review-protocol.md": "0762686bd01a1b66d710f3c5ee7a9662318139a2dde7376b87055c4d0211a845",
+    "benchmark/blind-eval/rubric.md": "12809bfb47373b8f796adbfd10583cdce4fe13a0eb5b969ba24e10c8b8d08ca9",
+    "benchmark/blind-eval/reference-development.json": "a5f442280cac1c47ec1040b212a3b64c84217608eeb30d0352896bfaf32ed338",
+    "benchmark/blind-eval/reference-phase1.json": "bf6044d054356255fddeafd22e19132162f22182781329a33ac3a746f7478439",
+    "benchmark/blind-eval/reference-stage-b-additions.json": "bd09330d4b7bf1e4086116912e08918c3c5da1cc1b4bc84d54a2f1abcfedb793",
+    "benchmark/blind-eval/reference-stage-c-X7.json": "38ae2f7b9b4cc5e02a45c635e2ac263bf51f9a6c1867592a9f19d414e039413f",
+    "benchmark/blind-eval/selectors-phase1.json": "0aee89380989f0990e98c5fabf0baa3724a8817572a51fc461cc9e10e629b9ec",
+    "benchmark/blind-eval/selectors-stage-b-additions.json": "8835c2125a18d679fe2b674ffa98f6b1be3d8c6c4db1994a8c67a50ce2d5cefd",
+    "benchmark/blind-eval/selectors-stage-c-X7.json": "1c6c6fa6b6c1a019f5c549419b00f53b10b3644f71d21d8d50580169d4439164",
+    "benchmark/blind-eval/f1-config.json": "2fda7c1222dc8746254f7df71d37d5e0a12bc2e2b292929b65affa08ed3d04bb",
+    "benchmark/blind-eval/f14-stage-b-config.json": "33023350fba13dc44f0fc2cadd396abd7593bd514d9d50f8ba81c547a5859f9b",
+    "benchmark/blind-eval/f14-x7-config.json": "df7e52e5a57067aec838c02d09ab5d41c5fe53ed2dcc8873862a947ac47b9704"
+  },
+  "judgeInstructionFiles": {
+    "judge-round1-prompt.txt": "a00ae5f2289690aa1e56ff8f0a12ca941695e74149da241a1680a1edab5b2089",
+    "judge-round2-prompt.txt": "0e0e55066d06b931dc8c0a55bbf4976903fafde0af08da149182b36eb5a30391"
+  },
+  "participantTurns": 162,
+  "chains": 144,
+  "reviewPackets": {
+    "heldout-BH3": 18,
+    "heldout-BH2": 18,
+    "development-D2-D3-r1-3": 18,
+    "development-D1": 18,
+    "heldout-BH1": 18,
+    "development-D2-D3-r4-6": 18,
+    "extension-X4-X5": 18,
+    "extension-X6-X7": 18,
+    "extension-X1-X3": 18
+  },
+  "reviewThreads": 18,
+  "seeds": {
+    "core_and_heldout": 20261008,
+    "extension": 20261009
+  },
+  "schedule_sha256": "8937147c758db82182422734a4604ad5e6f157af8fa806832c0accf13fe4ad48",
+  "ready_material_task_ids": [
+    "BH1",
+    "BH2",
+    "BH3",
+    "D1",
+    "D2",
+    "D3"
+  ],
+  "ready_material_turns": 108,
+  "pending_full_ingestion_and_freeze": [
+    "X1",
+    "X3",
+    "X4",
+    "X5",
+    "X6",
+    "X7"
+  ],
+  "dispatch": "stable filter of approved schedule by frozen material block; unchanged order inside each block",
+  "concurrency": {
+    "maximum_chains": 2,
+    "different_active_arms": true,
+    "dependent_turns_same_session": true
+  },
+  "request": {
+    "analysis_only": true,
+    "documentIds": [],
+    "fresh_isolation_key_per_chain": true
+  },
+  "stability": {
+    "per_split_min_material_presence_agreement": 0.8,
+    "mean_absolute_score_delta_max": 0.5,
+    "maximum_delta": "report_only",
+    "kappa": "report_only",
+    "independent_E4_each_pass": true,
+    "adjudication": false,
+    "averaging_pass_scores": false
+  },
+  "heldout_review_issues": {
+    "total": 14,
+    "required_table_overlap": 1,
+    "required_reference_overlap": 0,
+    "answerability_affected": false
+  },
+  "privacy": "Public outputs contain IDs and aggregate metrics only. All held-out content, raw reviews and disagreement quotations stay N1-private.",
+  "model_connectivity": "not_tested: 3001 has no listener; not evidence of authentication or quota failure",
+  "participant_requests_submitted": 0,
+  "paid_probe_requests_submitted": 0,
+  "runtime_freeze": "pending_service_restoration_and_current_live_verification",
+  "code_or_database_changed": false
+}
