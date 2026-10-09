@@ -124,6 +124,8 @@ def main():
     write(BASE/'all-reviews-side-by-side.json',[{'label':label,'round1':next(r for r in reviews['round1'] if r['label']==label),
         'round2':next(r for r in reviews['round2'] if r['label']==label)} for label in runs])
     write(PUBLIC/'formal-results.json',summary)
+    write(PUBLIC/'development-extension-reviews.json',
+          {rd:[r for r in rows if r['split']!='heldout'] for rd,rows in reviews.items()})
     write(PUBLIC/'development-extension-disagreements-originals.json',[r for r in differences if r['split']!='heldout'])
     write(PUBLIC/'heldout-disagreement-indicators.json',[{k:v for k,v in r.items() if k not in {'round1','round2'}}
           for r in differences if r['split']=='heldout'])

@@ -134,10 +134,17 @@ def paired_task_summary(one_pass, comparator, resamples=10000, seed=2026100903):
                 'win_tie_loss':[sum(x>0 for x in diffs),sum(x==0 for x in diffs),sum(x<0 for x in diffs)]}
         if not tasks:
             results[dim]=None;continue
+        families={task:('D2-D3' if task in {'D2','D3'} else task) for task in tasks}
+        sizes={}
+        for task,t in tasks.items():
+            family=families[task]
+            if family in sizes:assert sizes[family]==t['n']
+            sizes[family]=t['n']
         rng=random.Random(seed)
         bootstrap=[]
         for _ in range(resamples):
-            bootstrap.append(mean(mean(rng.choices(t['paired_differences'],k=t['n'])) for t in tasks.values()))
+            indices={family:rng.choices(range(n),k=n) for family,n in sizes.items()}
+            bootstrap.append(mean(mean(t['paired_differences'][i] for i in indices[families[task]]) for task,t in tasks.items()))
         bootstrap.sort()
         def quantile(p):
             at=(len(bootstrap)-1)*p;lo=int(at);hi=min(lo+1,len(bootstrap)-1)
@@ -145,4 +152,4 @@ def paired_task_summary(one_pass, comparator, resamples=10000, seed=2026100903):
         results[dim]={'tasks':tasks,'equal_task_weight_mean_difference':mean(t['paired_mean'] for t in tasks.values()),
             'conditional_repeat_bootstrap_95_interval':[quantile(.025),quantile(.975)]}
     return {'comparator':comparator,'dimensions':results,'seed':seed,'resamples':resamples,
-        'scope':'Paired repeat resampling within each fixed task, equal task weights. No company resampling, no population inference, no p value; descriptive and excluded from E4.'}
+        'scope':'Paired repeat resampling within each fixed task, equal task weights; D2/D3 share repeat draws to preserve the conversation chain. No company resampling, no population inference, no p value; descriptive and excluded from E4.'}
