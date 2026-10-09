@@ -26,6 +26,18 @@ def fmt(value):
     return '未知/不适用' if value is None else f'{value:.4f}' if isinstance(value,float) else str(value)
 
 
+def request_component_totals(requests):
+    result={}
+    for key in ['input','cacheRead','cacheWrite','output','reasoning']:
+        # Pi records zero placeholders for some failed requests. A numeric field
+        # is not known usage unless the request's usageKnown contract says so.
+        known=[q['raw_usage'][key] for q in requests if q['known']
+               and isinstance((q.get('raw_usage') or {}).get(key),(int,float))]
+        result['raw_'+key]={'known_sum':sum(known) if known else None,
+                           'unknown_request_count':len(requests)-len(known)}
+    return result
+
+
 def main():
     assert (BASE/'all-reviews-sealed-before-unblinding.json').exists()
     state=read(BASE/'experiment.json')
@@ -95,11 +107,15 @@ def main():
             for key in ['request_count','input_lower','input_upper_observed_scenario','output_lower',
                         'output_upper_observed_scenario','catalog_cost_lower','catalog_cost_upper_observed_scenario','unknown_calls']:
                 values=[r[key] for r in rows];total[key]=sum(values) if all(v is not None for v in values) else None
-            for key in ['input','cacheRead','cacheWrite','output','reasoning']:
-                requests=[q for r in rows for q in r['request_usage']]
-                values=[(q.get('raw_usage') or {}).get(key) for q in requests]
-                known=[v for v in values if isinstance(v,(int,float))]
-                total['raw_'+key]={'known_sum':sum(known) if known else None,'unknown_request_count':len(values)-len(known)}
+            requests=[q for r in rows for q in r['request_usage']]
+            total.update(request_component_totals(requests))
+            total['by_usage_phase']={phase:{
+                'requests':len(calls),'unknown_requests':sum(not q['known'] for q in calls),
+                'known_input':sum(q['input'] for q in calls if q['known']),
+                'known_output':sum(q['output'] for q in calls if q['known']),
+                **request_component_totals(calls)}
+                for phase in sorted({q.get('phase') or 'unrecorded' for q in requests})
+                for calls in [[q for q in requests if (q.get('phase') or 'unrecorded')==phase]]}
             totals.append(total)
     summary={'version':'F2.1','deployed_commit':state['deployedCommit'],'batch':state['batchId'],
         'protocol_commit':'207e105','cases':162,'review_threads':18,'review_model':'gpt-6-astra','reasoning_effort':'high',
@@ -108,6 +124,8 @@ def main():
         'overall_E4_by_comparator':{p:all(splits[s]['comparisons'][p]['verdict']=='成立' for s in ['development','heldout'])
                                    for p in ['original_pi','prepared']},
         'bound_policy':costs['bound_policy'],'cost_upper_cache_assumption':costs['cost_upper_cache_assumption'],
+        'catalog_price_function':costs['catalog_price_function'],
+        'catalog_tier_request_counts':costs['catalog_tier_request_counts'],
         'elapsed_measurement':'Non-isolated: at most two different-arm chains; other-project ingestion could overlap.',
         'limits':['One new held-out company; repeats are not independent companies.',
                   'Both passes reported independently; no averaging, pass selection, adjudication or result-driven threshold change.',
