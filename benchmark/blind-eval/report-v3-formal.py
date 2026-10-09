@@ -91,7 +91,10 @@ def main():
             for values in [[r['scores'][dim] for r in rows if r['profile']==profile and r['task_coverage'][dim]==coverage and r['scores'][dim] is not None]]}
             for dim in ['explanation','adjustments','anomalies']}
             for profile in ['original_pi','prepared','financial']} for rd,rows in passes.items()}
-        splits[split]={'reliability':reliability,'comparisons':comparisons,'groups':groups,'depth_by_frozen_coverage':coverage}
+        splits[split]={'reliability':reliability,'comparisons':comparisons,'groups':groups,'depth_by_frozen_coverage':coverage,
+            'reviewer_material_kind_counts':{rd:{profile:dict(Counter(d['kind'] for row in rows if row['profile']==profile for d in row['material_defects']))
+                for profile in ['original_pi','prepared','financial']} for rd,rows in passes.items()},
+            'critical_unreviewed_cases':{rd:[r['label'] for r in rows if r['critical_unreviewed']] for rd,rows in passes.items()}}
         keyed=[{r['label']:r for r in rows} for rows in passes.values()]
         for delta in reliability['disagreements']:
             differences.append({'split':split,**delta,'round1':keyed[0][delta['label']],
@@ -168,6 +171,18 @@ def main():
             c=splits[split]['comparisons'][comparator]
             lines.append(f"| {split} | {c['passes']['round1']['result']} | {c['passes']['round2']['result']} | {c['verdict']} |")
         lines += ['',f"开发核心与 held-out 同时满足 E4：{'是' if summary['overall_E4_by_comparator'][comparator] else '否'}。扩展集单列，不抵消其他 split 的失败。",'']
+        lines += ['| split | 评审 | 实质缺陷回合 F/对照 | R3差 F−对照 | R4差 | R5差 | 配对费用中位数比 下/上 | 成本项 |',
+                  '|---|---|---:|---:|---:|---:|---:|---|']
+        for split in ['development','heldout','extension']:
+            for rd,result in splits[split]['comparisons'][comparator]['passes'].items():
+                fg,bg=result['groups']['financial'],result['groups'][comparator]
+                delta=[fmt(fg['scores'][d]-bg['scores'][d]) if fg['scores'][d] is not None and bg['scores'][d] is not None else '不适用' for d in math.DEPTH]
+                ratios=[]
+                for scenario in result['cost']['scenarios'].values():
+                    fcost,bcost=scenario['financial_paired_median'],scenario['comparator_paired_median']
+                    ratios.append(fmt(fcost/bcost) if fcost is not None and bcost else '未知')
+                lines.append(f"| {split} | {rd} | {fg['material_defective_cases']}/{bg['material_defective_cases']} | "+' | '.join(delta)+f" | {' / '.join(ratios)} | {result['cost']['protocol_cost_result']} |")
+        lines += ['', '分差为各适用维度均分之差，费用比小于或等于 1 才满足相应情景的成本要求。E4 还同时要求缺陷条目不更多、参评完成与关键交付评审完整；不能只凭单个分差或单个成本比宣称成立。','']
     lines += ['## 两遍质量与补充成本指标','','| split | 评审 | 组别 | 完成且无实质缺陷 | 缺陷回合/条目 | R1 | R2 | R3 | R4 | R5 | C | 每完成且无缺陷回合已知输入 | 每完成且无缺陷回合已知目录费用 USD |',
               '|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|']
     for split,v in splits.items():
@@ -185,6 +200,11 @@ def main():
     for t in totals:
         values=[fmt(t[k]) for k in ['request_count','unknown_calls','input_lower','input_upper_observed_scenario','output_lower','catalog_cost_lower','catalog_cost_upper_observed_scenario']]
         lines.append(f"| {t['split']} | {t['profile']} | {t['completed']}/{t['positions']} | "+' | '.join(values)+' |')
+    lines += ['', '| split | 组别 | 已知未缓存输入 | 已知缓存读 | 已知缓存写 | 已知 reasoning（含在输出内） | 非隔离耗时中位数（秒） |',
+              '|---|---|---:|---:|---:|---:|---:|']
+    for t in totals:
+        parts=[fmt(t['raw_'+k]['known_sum']) for k in ['input','cacheRead','cacheWrite','reasoning']]
+        lines.append(f"| {t['split']} | {t['profile']} | "+' | '.join(parts)+f" | {fmt(t['end_to_end_seconds']['median'])} |")
     lines += ['','费用主判据为各对比配对题位费用中位数，上下界两种情景分别判定；数值见 formal-results.json。未知请求的上界使用同批、同组、同题观测最大值，是预声明的敏感性情景，不是数学保证或实付账单。没有同层观测时保持未知。',
         '', '原版 Pi 成本判据不成立时不得写“更省”或“成本更低”。入库、连通性准备、事故与独立评审分账，未取得的账单及评审 token 保持未知。',
         '', '题级重复明细、胜平负、条件于本题集的配对重复区间均在 formal-results.json。区间只描述固定题目的重复波动，不作跨公司或跨行业显著性推断。耗时为非隔离测量。',
@@ -196,6 +216,27 @@ def main():
         lines.append(f"| {d['split']} | {d['profile']} | {d['collected_positions']}/{d['planned_positions']} | {d['failed_artifact_links']}/{d['downloaded_artifact_links']+d['failed_artifact_links']} | {d['a5_observed_positions']} | {d['analysis_replay_statuses'].get('succeeded',0)}/{d['analysis_versions_replayed']} | {d['model_bundle_statuses'].get('succeeded',0)}/{d['model_bundles_replayed']} | {d['numeric_positions_with_bindings']} | {d['numeric_explicit_cells']} |")
     lines += ['', '上表分母为已覆盖的文件版本或题位。未绑定单元格、未复放文件和未覆盖格式保持未知，不能把未观察到失败当作通过。重复交付版本保留，单元格和工具告警的数量不用于推断哪组更优；实质缺陷由两遍评审各自判断。',
         '', '逐回合绑定范围、单位证据、A5原始分类、下载结果、复放错误和字节差异解释留在私有补充记录；对外仅汇总类别与计数。首个正确或有效金融交付时间未知。']
+    preparation=read(BASE/'preparation-cost-summary.json')
+    lines += ['', '## 资料准备与其他支出（不计入分析对比）','',
+        '| 年报资料 | 入库分段 | 请求 | 已知输入 | 已知输出 | 未知请求 | 已知目录费用 USD |',
+        '|---|---:|---:|---:|---:|---:|---:|']
+    for item in preparation['annual_report_ledgers']:
+        u=item['known_usage']
+        lines.append(f"| {item['material']} | {item['segments']} | {u['calls']} | {u['input']} | {u['output']} | {u['unknownCalls']} | {fmt(item['known_catalog_cost_usd'])} |")
+    lines += ['', '这是截至各材料冻结时点的历史准备累计，含旧版本失败、续跑和修复；不把本段与累计相加，不把资产建设费用重复分摊到每个回答。Carote 历史准备、伊利三季报和研报的完整准备费用未在此归并，保持未知。18 个独立评审线程的 token 和实际账单未知。详情见 preparation-cost-summary.json。',
+        '', '初始环境检查作废尝试另计事故账：8 请求、已知输入 48,494、输出 8,486，目录估算 0.00674232 USD，不进入 162 题位能力统计。连通性检查单列 model-connectivity-after-restore.json，未混入分析费用。',
+        '', '## 完整性与异常','',
+        'F4_D1 为上游 503 基础设施失败，保留缺失、没有补跑；其余 161 回合完成。全批 8 个请求用量未知，按预声明上下界情景列示。海尔采用用户批准的部分入库冻结状态；资料重叠检查与边界见 F21_FORMAL_METHODS.md 和各 readiness 记录。',
+        '', '全部原始分数和关键未审范围判断各自留存，没有改写评审原件。all-score-disagreements-originals.json 保存每一处分数或实质缺陷有无分歧；all-reviews-side-by-side.json 保留包括同分不同理由在内的全部逐案原文。开发/扩展公开副本及 heldout-disagreement-indicators.json 位于本目录；held-out 原文仅留 N1 私有目录。']
+    omissions=[(rd,r['label']) for rd,rows in reviews.items() for r in rows if r['critical_unreviewed']]
+    lines += ['', f"关键交付评审覆盖不足：{omissions}。这是对评审明确声明遗漏范围的覆盖判断，不改分、不追加裁决。原生 Excel 界面和全部通用库分支未执行验收；已经逐格读过的计算和已打开的图像按实际覆盖报告，不能推广为所有题外内容完整审计。",
+        '', '## 原始缺陷类别计数','',
+        '| split | 评审 | 组别 | 类别:条目数 |', '|---|---|---|---|']
+    for split,v in splits.items():
+        for rd,groups in v['reviewer_material_kind_counts'].items():
+            for profile,counts in groups.items():
+                lines.append(f"| {split} | {rd} | {profile} | "+'；'.join(f'{k}:{n}' for k,n in sorted(counts.items()))+' |')
+    lines += ['', '以上保留评审各自原始 kind 分类与跨版本去重，不根据工具告警自行改判；同案可以有多个机制。类别名的差异及同分不同理由均保留在原始评分中。']
     (PUBLIC/'FORMAL_REPORT.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
     print(json.dumps({'report':str(PUBLIC/'FORMAL_REPORT.md'),'cases':162,'heldout_prose_exported':False}))
 
