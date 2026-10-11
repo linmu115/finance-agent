@@ -4,11 +4,13 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
-// Models also use TeX's native delimiters. Normalize prose only: code examples
+// Normalize TeX and bold delimiters in prose only: code examples
 // retain their literal content, including while a fenced block is streaming.
-function normalizeTex(source: string) {
-  const prose = (text: string) => text.replace(/(`+)[\s\S]*?\1(?!`)|\\\(([\s\S]*?)\\\)|\\\[([\s\S]*?)\\\]/g,
-    (match, code, inline, block) => code ? match : inline !== undefined ? `$$${inline}$$` : `\n$$\n${block.trim()}\n$$\n`);
+function normalizeMarkdown(source: string) {
+  // Same bold rule as service/report_package.py: **text**(?=\S) -> **text** .
+  // A closing punctuation mark followed by CJK otherwise leaves literal stars.
+  const prose = (text: string) => text.replace(/(`+)[\s\S]*?\1(?!`)|\\\(([\s\S]*?)\\\)|\\\[([\s\S]*?)\\\]|(\*\*[^*\n]+\*\*)(?=\S)/g,
+    (match, code, inline, block, bold) => code ? match : bold ? `${bold} ` : inline !== undefined ? `$$${inline}$$` : `\n$$\n${block.trim()}\n$$\n`);
   const output: string[] = [];
   let pending: string[] = [], fence: { char: string; length: number } | undefined;
   for (const line of source.split('\n')) {
@@ -17,9 +19,9 @@ function normalizeTex(source: string) {
       if (new RegExp(`^ {0,3}${fence.char}{${fence.length},}\\s*$`).test(line)) fence = undefined;
     } else {
       const opening = /^ {0,3}(`{3,}|~{3,})/.exec(line);
-      if (opening) {
+      if (opening || /^( {4}|\t)/.test(line)) {
         if (pending.length) output.push(prose(pending.join('\n')));
-        pending = []; fence = { char: opening[1][0], length: opening[1].length };
+        pending = []; if (opening) fence = { char: opening[1][0], length: opening[1].length };
         output.push(line);
       } else pending.push(line);
     }
@@ -29,7 +31,7 @@ function normalizeTex(source: string) {
 }
 
 export default function Markdown(props: Options) {
-  return createElement(ReactMarkdown, { ...props, children: normalizeTex(props.children || ''),
+  return createElement(ReactMarkdown, { ...props, children: normalizeMarkdown(props.children || ''),
     remarkPlugins: [remarkGfm, [remarkMath, { singleDollarTextMath: false }]],
     rehypePlugins: [[rehypeKatex, { trust: false }]],
   });
