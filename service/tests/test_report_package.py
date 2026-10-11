@@ -1,14 +1,101 @@
 import json
 from pathlib import Path
 import tempfile
+import subprocess
+import time
+from concurrent.futures import ThreadPoolExecutor
+from html import escape
+from threading import Event
 import unittest
+from unittest.mock import patch
 from types import SimpleNamespace
 from openpyxl import load_workbook
 import fitz
 from service.analysis_report import compile_report
-from service.report_package import prepare, finish, section_for
+from service.report_package import prepare, finish, section_for, pdf_html, readable_inline_locators
 
 class ReportPackageTests(unittest.TestCase):
+    def test_inline_provenance_is_readable_without_changing_other_json(self):
+        locator=json.dumps([{'document_id':'doc','page':61,'row':2,'text':'原文|值'},{'page':64}],ensure_ascii=False).replace('|','\\|')
+        text='关系方向需核对：'+locator+'；数值 {"value": -3}；普通 [说明]。'
+        shown=readable_inline_locators(text)
+        self.assertIn('第61、64页',shown);self.assertNotIn(locator,shown)
+        self.assertIn('数值 {"value": -3}；普通 [说明]。',shown)
+
+    def snapshot(self, tables=None):
+        return {'project_id':'p','conversation_id':'same-conversation','title':'长定位报告','turns':[
+            {'id':'m','created_at':'2026-10-12','body':'现金流分析。','sources':[],'tables':tables or {}}]}
+
+    def test_long_locator_and_tall_html_cells_finish_with_exact_workbook(self):
+        locator=json.dumps([{'document_id':'doc','page':61+i%5,'row':i,'text':'原文|证据'*5} for i in range(190)],ensure_ascii=False)
+        self.assertGreater(len(locator),15000)
+        report=compile_report({'tables':{'signals':{'columns':{'key':{},'evidence':{'label':'文档/页/行/坐标'}},
+            'rows':[{'key':'signal','evidence':locator}]}}})
+        snapshot=self.snapshot(report['tables'])
+        with tempfile.TemporaryDirectory() as tmp:
+            svc=SimpleNamespace(store=SimpleNamespace(root=Path(tmp),project=lambda p:None))
+            prepared=prepare(svc,'p',snapshot);folder=Path(tmp)/'report_packages/p'/prepared['package_id']
+            self.assertNotIn(locator,prepared['markdown']);self.assertIn('第61、62、63、64、65页',prepared['markdown'])
+            self.assertIn('workpapers.xlsx / snapshot.json',prepared['markdown'])
+            self.assertEqual(json.loads((folder/'snapshot.json').read_text('utf8')),snapshot)
+            book=load_workbook(folder/'workpapers.xlsx')
+            row=next(row for row in book['信号'] if row[0].value=='signal');self.assertEqual(row[1].value,locator);book.close()
+            # finish also bounds old / independently supplied HTML, including
+            # nested block markup and wide rows, not only new prepare output.
+            html='<h1>异常信号</h1><table><tr>'+''.join('<th>列'+str(i)+'</th>' for i in range(12))+'</tr><tr>'
+            html+=''.join('<td>'+escape(locator)+'</td>' for _ in range(11))+'<td>'+'<p>长段落<br/>来源</p>'*1000+'</td></tr></table>'
+            bounded=pdf_html(html);self.assertLess(len(bounded),6000);self.assertIn('列组',bounded)
+            start=time.monotonic();finish(svc,'p',prepared['package_id'],html)
+            self.assertLess(time.monotonic()-start,30)
+            with fitz.open(folder/'report.pdf') as pdf:self.assertGreater(len(pdf),0)
+            self.assertFalse((folder/'.render.html').exists());self.assertFalse((folder/'.report.pdf').exists())
+
+    def test_same_conversation_render_is_exclusive_even_for_different_packages(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            svc=SimpleNamespace(store=SimpleNamespace(root=Path(tmp),project=lambda p:None))
+            first=prepare(svc,'p',self.snapshot());second=prepare(svc,'p',self.snapshot())
+            entered=Event();release=Event();calls=[]
+            def worker(args,**kwargs):
+                calls.append(args);entered.set();self.assertTrue(release.wait(5))
+                with fitz.open() as doc:
+                    doc.new_page();doc.save(Path(args[-1])/'.report.pdf')
+                return SimpleNamespace(returncode=0)
+            with patch('service.report_package.subprocess.run',side_effect=worker),ThreadPoolExecutor() as pool:
+                running=pool.submit(finish,svc,'p',first['package_id'],'<p>test</p>')
+                try:
+                    self.assertTrue(entered.wait(5))
+                    with self.assertRaisesRegex(ValueError,'仍在导出'):finish(svc,'p',second['package_id'],'<p>test</p>')
+                    self.assertEqual(len(calls),1)
+                finally:release.set()
+                running.result(timeout=5)
+
+    def test_long_table_finishes_without_repeating_or_losing_rows(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            svc=SimpleNamespace(store=SimpleNamespace(root=Path(tmp),project=lambda p:None))
+            prepared=prepare(svc,'p',self.snapshot());folder=Path(tmp)/'report_packages/p'/prepared['package_id']
+            html='<table><tr><th>行标识</th>'+('<th>来源说明</th>'*7)+'</tr>'
+            html+=''.join('<tr><td>ROW-'+str(i).zfill(3)+'</td>'+('<td>'+'变动原因与适用范围。'*14+'</td>')*7+'</tr>' for i in range(70))
+            html+='</table><p>END-OF-REPORT</p>'
+            start=time.monotonic();finish(svc,'p',prepared['package_id'],html)
+            self.assertLess(time.monotonic()-start,30)
+            with fitz.open(folder/'report.pdf') as pdf:
+                text='\n'.join(page.get_text() for page in pdf)
+                self.assertIn('END-OF-REPORT',text)
+                for i in range(70):self.assertEqual(text.count('ROW-'+str(i).zfill(3)),3)
+
+    def test_worker_timeout_cleans_partial_pdf_and_releases_conversation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            svc=SimpleNamespace(store=SimpleNamespace(root=Path(tmp),project=lambda p:None))
+            prepared=prepare(svc,'p',self.snapshot());folder=Path(tmp)/'report_packages/p'/prepared['package_id']
+            def timeout(*args,**kwargs):
+                (folder/'.report.pdf').write_bytes(b'');raise subprocess.TimeoutExpired(args[0],kwargs['timeout'])
+            with patch('service.report_package.subprocess.run',side_effect=timeout):
+                with self.assertRaisesRegex(RuntimeError,'已结束渲染进程'):finish(svc,'p',prepared['package_id'],'<p>test</p>')
+            self.assertFalse((folder/'report.pdf').exists());self.assertFalse((folder/'.report.pdf').exists())
+            self.assertTrue((folder/'workpapers.xlsx').is_file())
+            finish(svc,'p',prepared['package_id'],'<p>Retry completes</p>')
+            with fitz.open(folder/'report.pdf') as pdf:self.assertEqual(len(pdf),1)
+
     def test_exact_cells_unknowns_and_provenance_survive_workbook_and_zip(self):
         with tempfile.TemporaryDirectory() as tmp:
             report=compile_report({'tables':{'income':{'columns':{'key':{},'value':{'unit':'百万元','currency':'CNY'}},'rows':[

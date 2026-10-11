@@ -1,15 +1,158 @@
 """Shared delivery infrastructure: immutable conversation snapshots, no inference calls."""
 from decimal import Decimal, InvalidOperation
 import json
+from html import escape
+from html.parser import HTMLParser
 from pathlib import Path
 import re
 import shutil
+import subprocess
+import sys
+from threading import Lock
 import uuid
 import zipfile
 
 from .analysis_report import render_table, column_label
 from openpyxl import Workbook
 import fitz
+
+MARKDOWN_CELL_CHARS = 240
+PDF_CELL_CHARS = 120
+PDF_COLUMNS = 4
+PDF_ROWS = 4
+PDF_TIMEOUT_SECONDS = 25
+DETAIL_NOTE = '表内定位与长文本为阅读摘要；完整内容见 workpapers.xlsx / snapshot.json。'
+_rendering = set()
+_rendering_lock = Lock()
+
+
+def readable_locator(value):
+    """Summarize source coordinates, not the immutable evidence itself."""
+    locations = set(); pages = set(); documents = set()
+    def visit(item):
+        if isinstance(item, dict):
+            doc = item.get('document_id') or item.get('documentId')
+            page = item.get('page')
+            if doc or page is not None:
+                if doc: documents.add(str(doc))
+                if page is not None: pages.add(str(page))
+                locations.add(json.dumps([doc, page, *[item.get(k) for k in ('table_id','row','column','cell')]], ensure_ascii=False))
+            for child in item.values(): visit(child)
+        elif isinstance(item, list):
+            for child in item: visit(child)
+    visit(value)
+    if not locations: return None
+    ordered = sorted(pages, key=lambda p: (not p.isdecimal(), int(p) if p.isdecimal() else p))
+    doc = '来源' if not documents else '文档 ' + next(iter(documents))[:8] if len(documents) == 1 else f'{len(documents)} 份文档'
+    where = '，第' + '、'.join(ordered[:6]) + ('页等' + str(len(pages)) + '页' if len(pages) > 6 else '页') if pages else ''
+    return f'{doc}{where}，共 {len(locations)} 处〔完整定位见底稿〕'
+
+
+def compact_text(text, limit):
+    text = re.sub(r'\s+', ' ', str(text)).strip()
+    if text.startswith(('{', '[')):
+        try: value = json.loads(text)
+        except json.JSONDecodeError: pass
+        else: text = readable_locator(value) or text
+    suffix = '…〔完整内容见底稿〕'
+    return text if len(text) <= limit else text[:limit-len(suffix)] + suffix
+
+
+def readable_inline_locators(text):
+    """Delivery lint quotations can also contain complete coordinate arrays."""
+    decoder = json.JSONDecoder(); parts = []; position = 0
+    while match := re.search(r'[\[{]', text[position:]):
+        start = position + match.start()
+        parts.append(text[position:start])
+        # GFM escapes pipes inside JSON strings. A same-width replacement lets
+        # the JSON decoder return offsets into the original Markdown unchanged.
+        try: value, length = decoder.raw_decode(text[start:].replace('\\|', ' |'))
+        except json.JSONDecodeError:
+            parts.append(text[start]); position = start + 1
+        else:
+            parts.append(readable_locator(value) or text[start:start+length])
+            position = start + length
+    parts.append(text[position:])
+    return ''.join(parts)
+
+
+def readable_markdown_tables(markdown):
+    lines = []; fenced = False
+    for line in markdown.splitlines():
+        if line.lstrip().startswith('```'): fenced = not fenced
+        if not fenced and line.strip().startswith('|') and line.strip().endswith('|'):
+            cells = re.split(r'(?<!\\)\|', line.strip())[1:-1]
+            line = '| ' + ' | '.join(compact_text(c.replace('\\|','|'), MARKDOWN_CELL_CHARS).replace('|','\\|') for c in cells) + ' |'
+        lines.append(line)
+    return '\n'.join(lines)
+
+
+class PdfTables(HTMLParser):
+    """GFM tables become bounded plain-text cells and narrow column groups.
+
+    Flatten cell markup so nested lists, images, styles or line breaks cannot
+    turn a short cell into a page-tall row. Full data remains in the workbook.
+    """
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.output = []; self.depth = 0; self.rows = []; self.row = []; self.cell = None
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'table':
+            self.depth += 1
+            return
+        if not self.depth:
+            self.output.append(self.get_starttag_text())
+        elif self.depth == 1 and tag == 'tr': self.row = []
+        elif self.depth == 1 and tag in ('td', 'th'): self.cell = [tag, []]
+        elif self.cell is not None and tag in ('br', 'p', 'li', 'div'): self.cell[1].append(' ')
+
+    def handle_startendtag(self, tag, attrs):
+        self.handle_starttag(tag, attrs)
+
+    def handle_data(self, data):
+        if not self.depth: self.output.append(escape(data))
+        elif self.cell is not None: self.cell[1].append(data)
+
+    def handle_endtag(self, tag):
+        if tag == 'table':
+            self.depth -= 1
+            if not self.depth: self.emit_table()
+        elif not self.depth: self.output.append('</' + tag + '>')
+        elif self.depth == 1 and tag in ('td','th') and self.cell is not None:
+            self.row.append((self.cell[0], ''.join(self.cell[1]))); self.cell = None
+        elif self.depth == 1 and tag == 'tr': self.rows.append(self.row)
+
+    def emit_table(self):
+        width = max(map(len, self.rows), default=0)
+        groups = [list(range(width))] if width <= PDF_COLUMNS else [[0, *range(i,min(i+PDF_COLUMNS-1,width))] for i in range(1,width,PDF_COLUMNS-1)]
+        for n, keys in enumerate(groups, 1):
+            if len(groups) > 1: self.output.append(f'<p>表格列组 {n}/{len(groups)}（首列为同一行标识）</p>')
+            header = self.rows[:1] if self.rows and all(tag == 'th' for tag, _ in self.rows[0]) else []
+            body = self.rows[len(header):]
+            chunks = [header + body[i:i+PDF_ROWS] for i in range(0,len(body),PDF_ROWS)] or [header]
+            for rows in chunks: self.emit_rows(rows, keys)
+        self.rows = []
+
+    def emit_rows(self, rows, keys):
+        # Story can repeat an oversized multi-page table instead of advancing.
+        # Bound the whole table fragment as well as each cell; repeat headings.
+        self.output.append('<table style="page-break-inside:avoid">')
+        for row in rows:
+            self.output.append('<tr>')
+            for k in keys:
+                tag, text = row[k] if k < len(row) else ('td', '')
+                text = compact_text(text, 48 if tag == 'th' else PDF_CELL_CHARS)
+                # Explicit breaks also handle long ASCII identifiers / URLs.
+                text = re.sub(r'\S{25,}', lambda m: '\n'.join(m[0][i:i+12] for i in range(0,len(m[0]),12)), text)
+                self.output.append(f'<{tag} style="width:{100/len(keys):.2f}%">' + escape(text).replace('\n','<br/>') + f'</{tag}>')
+            self.output.append('</tr>')
+        self.output.append('</table>')
+
+
+def pdf_html(html):
+    parser = PdfTables(); parser.feed(html); parser.close()
+    return ('' if DETAIL_NOTE in html else '<p>' + DETAIL_NOTE + '</p>') + ''.join(parser.output)
 
 CHAPTERS = ['结论', '关键数据', '业绩变化归因', '特殊损益与口径', '异常信号', '估值', '假设、风险与局限', '来源']
 MISSING = ['未提供分析结论。','未保存可复用的关键经营数据表。','未提供业绩归因分析或底稿。','未提供特殊损益与口径分析或底稿。','尚未提供异常信号分析，不能据此判断没有异常。','未提供估值分析。','未提供假设、风险与局限说明。','未提供可定位来源；已留存的输入与计算链见底稿工作簿。']
@@ -125,7 +268,8 @@ def prepare(service,project,snapshot):
         label=f'回答 {n} · {turn["created_at"]}'
         body=turn['body']
         for t in turn['tables'].values():
-            body=body.replace('【事实/数据】\n\n'+render_table(t),'').replace(render_table(t),'')
+            rendered=render_table(t)
+            body=body.replace('【事实/数据】\n\n'+rendered,'').replace(rendered,'')
         # CommonMark does not close punctuation-ending bold spans before adjacent CJK text.
         body=''.join(part if i%2 else re.sub(r'\*\*([^*\n]+)\*\*(?=\S)',r'**\1** ',part)
                      for i,part in enumerate(re.split(r'(```[\s\S]*?```|`[^`\n]*`)',body)))
@@ -137,12 +281,13 @@ def prepare(service,project,snapshot):
             original=service.artifact_path(project,match[2],unquote(match[3]))
             asset=f'assets/{n}-{original.name}';(folder/'assets').mkdir(exist_ok=True);shutil.copyfile(original,folder/asset)
             body=body.replace(artifact['url'],asset)
+        body=readable_inline_locators(body)
         for i,lines in prose_sections(body).items():
             text='\n'.join(lines).strip()
             if text:sections[i].append('### '+label+'\n\n'+text)
         for name,t in turn['tables'].items():
             if t['rows']:sections[section_for(name,t)].append('### '+label+' · '+table_title(name,t)+'\n\n【事实/数据】\n\n'+render_table(presentation_table(t)))
-        if turn['sources']:sections[7].append('### '+label+'\n\n'+'\n'.join('- '+json.dumps(ref,ensure_ascii=False) for ref in turn['sources']))
+        if turn['sources']:sections[7].append('### '+label+'\n\n'+'\n'.join('- '+compact_text(json.dumps(ref,ensure_ascii=False),MARKDOWN_CELL_CHARS) for ref in turn['sources']))
         # Full per-cell provenance is in the workbook and snapshot; retain a readable locator list here.
         refs={}
         def visit(value):
@@ -154,8 +299,9 @@ def prepare(service,project,snapshot):
             elif isinstance(value,list):
                 for v in value:visit(v)
         visit(turn['tables'])
-        if refs:sections[7].append('### '+label+' · 底稿来源\n\n'+'\n'.join('- '+k for k in refs))
-    markdown='# 财报分析报告\n\n'+snapshot['title']+'\n\n'+ '\n\n'.join('## '+chapter+'\n\n'+('\n\n'.join(sections[i]) if sections[i] else MISSING[i]) for i,chapter in enumerate(CHAPTERS) if i!=5 or sections[5])
+        if refs:sections[7].append('### '+label+' · 底稿来源\n\n'+'\n'.join('- '+compact_text(k,MARKDOWN_CELL_CHARS) for k in refs))
+    markdown='# 财报分析报告\n\n'+snapshot['title']+'\n\n'+DETAIL_NOTE+'\n\n'+ '\n\n'.join('## '+chapter+'\n\n'+('\n\n'.join(sections[i]) if sections[i] else MISSING[i]) for i,chapter in enumerate(CHAPTERS) if i!=5 or sections[5])
+    markdown=readable_markdown_tables(markdown)
     (folder/'report.md').write_text(markdown,encoding='utf8')
     (folder/'snapshot.json').write_text(json.dumps(snapshot,ensure_ascii=False,indent=2),encoding='utf8')
     workbook(snapshot,folder/'workpapers.xlsx')
@@ -166,19 +312,54 @@ def finish(service,project,package_id,html):
     if not re.fullmatch('[a-f0-9]{32}',package_id):raise ValueError('报告包标识无效')
     folder=service.store.root/'report_packages'/project/package_id
     if not (folder/'snapshot.json').is_file():raise ValueError('报告包不存在')
-    from .evaluation_isolation import visible
-    if not visible(json.loads((folder/'snapshot.json').read_text(encoding='utf8'))):raise ValueError('报告包不存在')
-    css='body{font-family:sans-serif;font-size:10pt;line-height:1.5;color:#172b4d} h1{font-size:24pt} h2{font-size:17pt;color:#17365d} h3{font-size:12pt} table{border-collapse:collapse;width:100%;font-size:8pt;margin:10pt 0} th,td{border:0.5pt solid #b8c8d8;padding:4pt;overflow-wrap:anywhere} img{max-width:100%} pre{white-space:pre-wrap;font-size:8pt} a{color:#235789}'
+    from .evaluation_isolation import visible, isolation_key
+    snapshot=json.loads((folder/'snapshot.json').read_text(encoding='utf8'))
+    if not visible(snapshot):raise ValueError('报告包不存在')
+    key=(str(service.store.root.resolve()),project,snapshot['conversation_id'],isolation_key.get())
+    with _rendering_lock:
+        if key in _rendering:raise ValueError('此会话的报告仍在导出，请等待当前导出完成后再试。')
+        _rendering.add(key)
+    try:
+        return finish_render(folder,service.store.root,package_id,html)
+    finally:
+        with _rendering_lock:_rendering.remove(key)
+
+
+def finish_render(folder,root,package_id,html):
+    html_path=folder/'.render.html';temporary=folder/'.report.pdf'
+    html_path.write_text(pdf_html(html),encoding='utf8')
+    try:
+        result=subprocess.run([sys.executable,'-B','-m','service.report_package','--render-pdf',str(folder.resolve())],
+            cwd=Path(__file__).resolve().parents[1],stdin=subprocess.DEVNULL,capture_output=True,timeout=PDF_TIMEOUT_SECONDS,
+            creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+        if result.returncode:
+            raise RuntimeError('PDF 渲染失败；Markdown、完整底稿和快照已保留。'+result.stderr.decode('utf8',errors='replace')[-2000:])
+        temporary.replace(folder/'report.pdf')
+    except subprocess.TimeoutExpired as exc:
+        raise RuntimeError(f'PDF 渲染超过 {PDF_TIMEOUT_SECONDS} 秒，已结束渲染进程；Markdown、完整底稿和快照已保留，未生成 PDF。') from exc
+    finally:
+        html_path.unlink(missing_ok=True);temporary.unlink(missing_ok=True)
+    archive=folder/'report_package.zip'
+    with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
+        for p in sorted(folder.rglob('*')):
+            if p.is_file() and p!=archive:z.write(p,p.relative_to(folder).as_posix())
+    return {'package_id':package_id,'relative_path':str(archive.relative_to(root)),'files':['report.md','report.pdf','workpapers.xlsx','snapshot.json']}
+
+
+def render_pdf(folder):
+    html=(folder/'.render.html').read_text(encoding='utf8')
+    css='body{font-family:sans-serif;font-size:10pt;line-height:1.5;color:#172b4d} h1{font-size:24pt} h2{font-size:17pt;color:#17365d} h3{font-size:12pt} table{border-collapse:collapse;table-layout:fixed;width:100%;font-size:8pt;margin:10pt 0} th,td{border:0.5pt solid #b8c8d8;padding:4pt;font-size:8pt;line-height:12pt;overflow-wrap:anywhere} img{max-width:100%} pre{white-space:pre-wrap;font-size:8pt} a{color:#235789}'
     story=fitz.Story(html=html,user_css=css,archive=fitz.Archive(str(folder)))
-    target=folder/'report.pdf';writer=fitz.DocumentWriter(str(target))
+    target=folder/'.report.pdf';writer=fitz.DocumentWriter(str(target))
     page=fitz.paper_rect('a4');rect=page+(36,42,-36,-42)
     def rectfn(rect_num,filled):return page,rect,None
     story.write(writer,rectfn);writer.close()
     with fitz.open(target) as doc:
         for i,p in enumerate(doc):p.insert_text((page.width-75,page.height-22),f'{i+1} / {len(doc)}',fontsize=8,color=(.35,.4,.45))
         doc.saveIncr()
-    archive=folder/'report_package.zip'
-    with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
-        for p in sorted(folder.rglob('*')):
-            if p.is_file() and p!=archive:z.write(p,p.relative_to(folder).as_posix())
-    return {'package_id':package_id,'relative_path':str(archive.relative_to(service.store.root)),'files':['report.md','report.pdf','workpapers.xlsx','snapshot.json']}
+
+
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser();parser.add_argument('--render-pdf',type=Path,required=True)
+    render_pdf(parser.parse_args().render_pdf)
