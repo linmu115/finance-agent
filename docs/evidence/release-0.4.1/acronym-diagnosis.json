@@ -1,0 +1,78 @@
+{
+  "original_failure": "test_financial_acronym_matches_stored_metric_without_new_ingestion: expected 2, got 3",
+  "initial_results": "56/57",
+  "unchanged_rerun_results": "57/57",
+  "v040_and_v041_files_identical": {
+    "service/research_ingestion.py": true,
+    "service/tests/test_research_ingestion.py": true
+  },
+  "v040": [
+    {
+      "forced_uuid_collision": false,
+      "total": 2,
+      "metrics": [
+        "free_cash_flow_firm",
+        "free_cash_flow_firm"
+      ],
+      "query_terms": [
+        "FCFF",
+        "fcff",
+        "free_cash_flow_firm",
+        "企业自由现金流",
+        "公司自由现金流"
+      ]
+    },
+    {
+      "forced_uuid_collision": true,
+      "total": 4,
+      "metrics": [
+        "free_cash_flow_firm",
+        "free_cash_flow_firm",
+        "net_profit",
+        "net_profit"
+      ],
+      "query_terms": [
+        "FCFF",
+        "fcff",
+        "free_cash_flow_firm",
+        "企业自由现金流",
+        "公司自由现金流"
+      ]
+    }
+  ],
+  "v041": [
+    {
+      "forced_uuid_collision": false,
+      "total": 2,
+      "metrics": [
+        "free_cash_flow_firm",
+        "free_cash_flow_firm"
+      ],
+      "query_terms": [
+        "FCFF",
+        "fcff",
+        "free_cash_flow_firm",
+        "企业自由现金流",
+        "公司自由现金流"
+      ]
+    },
+    {
+      "forced_uuid_collision": true,
+      "total": 4,
+      "metrics": [
+        "free_cash_flow_firm",
+        "free_cash_flow_firm",
+        "net_profit",
+        "net_profit"
+      ],
+      "query_terms": [
+        "FCFF",
+        "fcff",
+        "free_cash_flow_firm",
+        "企业自由现金流",
+        "公司自由现金流"
+      ]
+    }
+  ],
+  "finding": "Query matches serialized record_json, including identifiers. A synthetic UUID containing fcff causes unrelated records to match. Existing behavior not fixed by this release."
+}
