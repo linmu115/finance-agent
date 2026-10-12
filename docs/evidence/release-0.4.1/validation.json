@@ -1,0 +1,95 @@
+{
+  "created_at": "2026-10-12T02:55:06.264701+00:00",
+  "status": "passed_with_inherited_limitation_documented",
+  "version": "0.4.1",
+  "fast_forward_merge": "b27582521746a64b4a95264d88682439afbe7bbe",
+  "package_source_commit": "ec48a62d6e55055658e0e2747978980bea3f176a",
+  "archive": "dist/release-0.4.1/finance-agent-0.4.1-windows-x64.zip",
+  "bytes": 305115505,
+  "mib": 290.98,
+  "sha256": "68bad2b274bea5152057f013977db2f41868393571cc7fd041808771b42518d5",
+  "manifest_files": 50601,
+  "http": {
+    "passed": 22,
+    "total": 22
+  },
+  "offline": {
+    "passed": 15,
+    "total": 15
+  },
+  "synthetic_regression": {
+    "passed": 57,
+    "total": 57,
+    "seconds": 74.498
+  },
+  "report_package_regression": {
+    "passed": 6,
+    "total": 6,
+    "seconds": 3.438
+  },
+  "markdown_math_links_single_flight": {
+    "passed": 12,
+    "total": 12,
+    "skipped": 0
+  },
+  "typecheck": "passed",
+  "build": "passed",
+  "build_warning": "Existing Vite chunk size warning (>500 kB)",
+  "portable_http_report": {
+    "pages": 1,
+    "locator_characters": 21171,
+    "full_workbook_text": true,
+    "snapshot_preserved": true,
+    "requests": [
+      {
+        "status": 200,
+        "seconds": 8.157
+      },
+      {
+        "status": 200,
+        "seconds": 8.141
+      }
+    ],
+    "packages_created": 1,
+    "identical_responses": true,
+    "zip_bytes": 1782150
+  },
+  "sensitive_scan": {
+    "unresolved": 0,
+    "forbidden_paths": 0,
+    "reviewed_matches": 16,
+    "numeric_substring_hits": 3
+  },
+  "preserved_initial_failure": {
+    "result": "56/57",
+    "evidence": "offline-first-failure.json",
+    "raw_test_output": "regression-first-failure.txt",
+    "diagnosis": "acronym-diagnosis.json",
+    "unchanged_rerun": "57/57",
+    "fixed": false,
+    "reason": "Existing whole-record JSON query can match FCFF inside random IDs; reproduced in unchanged v0.4.0 and v0.4.1."
+  },
+  "v040_unchanged": true,
+  "v040_sha256": "e073bce92bdbdc0e6c5c86f3fcffc87503068901b62fa2e2f621570f64868582",
+  "production_3001": {
+    "pid_before": 9592,
+    "pid_after": 9592,
+    "restarted": false,
+    "repository_data_active_touched": false
+  },
+  "isolated_ports": [
+    3011,
+    3012
+  ],
+  "isolated_ports_closed": true,
+  "external_model_calls": 0,
+  "docker_wsl_started": false,
+  "required_acceptance_skipped": [],
+  "not_exercised": [
+    "Optional browser cold-start automation",
+    "Real model calls",
+    "Docker execution"
+  ],
+  "pushed": false,
+  "github_release_created": false
+}

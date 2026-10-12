@@ -1,0 +1,100 @@
+{
+  "mode": "offline-stdio",
+  "external_api_calls": 0,
+  "http_ports_opened": [],
+  "archive": "finance-agent-0.4.1-windows-x64.zip",
+  "archive_sha256": "31d607be2901575270d9980c6b92a96365dcd9aeb6f9a4fa263b61208447abed",
+  "checks": [
+    {
+      "name": "exact_members",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_files_sha256_size_and_crc",
+      "passed": true,
+      "detail": {
+        "files": 50601
+      }
+    },
+    {
+      "name": "version_matches",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "clean_install_no_credentials_or_data",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "bundled_doctor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "compiled_node_syntax",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "bundled_stdio_parse_and_reconnect",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "packaged_dimension_and_dashboard_regressions",
+      "passed": true,
+      "evidence": "docs\\evidence\\release-0.4.1\\regression-rc1-rerun.log"
+    },
+    {
+      "name": "packaged_report_package_regressions",
+      "passed": true,
+      "evidence": "docs\\evidence\\release-0.4.1\\report-tests-rc1.log"
+    },
+    {
+      "name": "packaged_markdown_and_single_flight_regressions",
+      "passed": true,
+      "evidence": "docs\\evidence\\release-0.4.1\\node-tests-rc1.log"
+    },
+    {
+      "name": "included_web/dist/index.html",
+      "passed": true
+    },
+    {
+      "name": "included_skills/research-ingestion/SKILL.md",
+      "passed": true
+    },
+    {
+      "name": "included_docs/START_AND_USE.md",
+      "passed": true
+    },
+    {
+      "name": "included_docs/RELEASE-0.4.1.md",
+      "passed": true
+    },
+    {
+      "name": "included_THIRD_PARTY_NOTICES.md",
+      "passed": true
+    }
+  ],
+  "not_exercised": [
+    "HTTP install/start/stop",
+    "fresh-package browser",
+    "live LLM",
+    "Docker execution"
+  ],
+  "version": "0.4.1",
+  "stdio_result": {
+    "version": "0.4.1",
+    "pages": 3,
+    "tables": 4,
+    "facts_written": 0,
+    "reconnected": true,
+    "unicode_preserved": true
+  },
+  "status": "passed_after_diagnosis_and_unmodified_rerun",
+  "failure": null,
+  "finished_at": "2026-10-12T02:36:08.419304+00:00",
+  "original_failure_retained": "dist\\offline-deployment-20261012T023155482378Z\\deployment-verification.json"
+}
