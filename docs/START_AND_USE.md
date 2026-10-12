@@ -1,20 +1,20 @@
-# Finance Agent 0.4.0：服务启动与使用 README
+# Finance Agent 0.4.1：服务启动与使用 README
 
-适用环境：Windows 10/11 x64，单用户本机运行。页面统一为 **http://127.0.0.1:3001/**。本指南对应本地发布候选 `v0.4.0`（产品能力为 F2.1）；安装包、源代码和当前运行进程是三个不同对象，下载或更新代码不会自动替换已经运行的旧进程。
+适用环境：Windows 10/11 x64，单用户本机运行。页面统一为 **http://127.0.0.1:3001/**。本指南对应本地发布候选 `v0.4.1`（F2.1 产品能力加报告导出与中文加粗修复）；安装包、源代码和当前运行进程是三个不同对象，下载或更新代码不会自动替换已经运行的旧进程。
 
 ## 1. 下载与安装
 
-取得本次提供的 `finance-agent-0.4.0-windows-x64.zip` 和 `SHA256SUMS.txt`。本版尚未发布 GitHub Release。
+取得本次提供的 `finance-agent-0.4.1-windows-x64.zip` 和 `SHA256SUMS.txt`。本版尚未发布 GitHub Release。
 
 GitHub 自动生成的 Source code ZIP 不含运行环境；普通使用请选上面的 Windows 部署 ZIP。部署包包含 Node.js 24.7.0、Python 3.12.11、生产依赖、构建后的前后端、中文文档和用于解析验证的历史公开 PDF 小样，不要求另装 Node、Python 或 Excel。Docker 引擎及计算镜像需要另行准备。
 
 可在 PowerShell 核对下载文件：
 
 ```powershell
-Get-FileHash .\finance-agent-0.4.0-windows-x64.zip -Algorithm SHA256
+Get-FileHash .\finance-agent-0.4.1-windows-x64.zip -Algorithm SHA256
 ```
 
-将结果与同批提供的校验文件比较。完整解压到可写目录，例如 `D:\Apps\FinanceAgent-0.4.0`，不要在压缩包预览窗口运行。建议至少预留 3 GB 空间，再为资料和计算结果留额外空间。
+将结果与同批提供的校验文件比较。完整解压到可写目录，例如 `D:\Apps\FinanceAgent-0.4.1`，不要在压缩包预览窗口运行。建议至少预留 3 GB 空间，再为资料和计算结果留额外空间。
 
 确认旧实例已停止后，双击 `install.cmd`。它检查内置环境、创建当前用户桌面快捷方式、启动本机服务并打开页面。无需管理员权限，不修改系统 PATH，不注册 Windows 服务或开机自启，不自动启动 Docker/WSL。
 
@@ -44,7 +44,7 @@ Get-FileHash .\finance-agent-0.4.0-windows-x64.zip -Algorithm SHA256
 
 关闭浏览器只关闭页面，后台服务仍运行。启动器会核对进程的启动时间、可执行路径和所属目录，不按“node.exe”名称批量结束进程。端口冲突时先确认旧实例归属再停止，不通过另开 3002/3003 规避。
 
-健康检查地址为 `/api/health`。新版成功启动时应返回 `ok: true`、`service: "connected"`、`version: "0.4.0"`。`modelConfigured` 表示填过模型 ID，不证明密钥、余额或上游模型可用。
+健康检查地址为 `/api/health`。新版成功启动时应返回 `ok: true`、`service: "connected"`、`version: "0.4.1"`。`modelConfigured` 表示填过模型 ID，不证明密钥、余额或上游模型可用。
 
 如果旧进程由开发命令启动，便携启动器可能因缺少自己的进程登记而拒绝接管；应回到原启动终端停止，或由操作者核对进程后停止。不要为了消除端口提示删除未知 PID 文件或结束全部 Node/Python 进程。
 
@@ -121,7 +121,7 @@ docker build -t finance-analysis:0.1 .\sandbox
 1. 等待/停止会话任务，解决待授权项，使用原实例对应的方式停止服务。
 2. 找到实际数据库位置：v0.1 常见为 `data/finance.sqlite`，新版开发目录常见为 `data/active/finance.sqlite`；自定义 `FINANCE_DATA_DIR` 时以该目录为准。不要把多个历史测试库合并到一个目录。
 3. 在服务停止后复制整个实际数据目录到备份位置，包含数据库及其他文件。不要只复制 SQLite 主文件而漏掉 WAL、原件或成果。
-4. 解压 v0.4.0 到新目录，把要继续使用的旧数据目录的**内容**复制到新安装的 `data/active/`。若使用自定义数据路径，启动和停止均传相同 `-DataDirectory`。
+4. 解压 v0.4.1 到新目录，把要继续使用的旧数据目录的**内容**复制到新安装的 `data/active/`。若使用自定义数据路径，启动和停止均传相同 `-DataDirectory`。
 5. 同一 Windows 用户可保留 DPAPI 配置；跨电脑或用户需重新填写密钥。旧备份保留，以便回退。
 6. 在 3001 启动新版，核对健康版本、项目、会话、原文与成果。新增数据结构由服务初始化；不要再让旧程序对升级后的同一个数据目录写入。回退应使用升级前备份。
 

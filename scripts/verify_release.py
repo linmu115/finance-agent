@@ -7,6 +7,7 @@ Leaves evidence and synthetic test data under dist; cleans up only its own app.
 from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
+from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
 import os
@@ -160,15 +161,27 @@ def main():
         # packaged Python to prepare deterministic sources in the isolated data.
         script = """
 import {FinanceService} from './server/dist/mcp.js';
+import {mkdir,writeFile} from 'node:fs/promises';
+import path from 'node:path';
 const service=new FinanceService();
 try {
  await service.connect();
  const parsed=await service.call('prepare_document_sources',{project_id:process.env.VERIFY_PROJECT,document_ids:[process.env.VERIFY_DOCUMENT]});
  const page=await service.call('get_source_page',{project_id:process.env.VERIFY_PROJECT,document_id:process.env.VERIFY_DOCUMENT,page:1});
+ // Synthetic report fixture only: no model request, real company or prior chat.
+ const chat=await service.getState(process.env.VERIFY_PROJECT,'conversations',process.env.VERIFY_CHAT);
+ const locator=JSON.stringify(Array.from({length:190},(_,i)=>({document_id:'synthetic-document',page:61+i%5,row:i,text:'合成来源|完整定位'.repeat(5)})));
+ const tables={signals:{columns:{key:{label:'信号'},evidence:{label:'文档/页/行/坐标'}},rows:[{key:'synthetic-signal',evidence:locator}],row_keys:['synthetic-signal']}};
+ const runId='synthetic-release-report';
+ chat.messages=[{id:'synthetic-answer',role:'assistant',status:'completed',createdAt:new Date().toISOString(),runId,
+  content:'【推论/分析】**适用范围 / 风险：**本报告仅用于合成安装验收。',sources:[],artifacts:[]}];
+ await service.putState(chat.projectId,'conversations',chat.id,chat);
+ const audit=path.join(process.env.FINANCE_DATA_DIR,'audit');await mkdir(audit,{recursive:true});
+ await writeFile(path.join(audit,runId+'.jsonl'),JSON.stringify({type:'tool_result',data:{messageId:'synthetic-answer',name:'get_analysis_status',result:{data:{numeric_tables:tables}}}})+'\\n');
  console.log(JSON.stringify({parsed:parsed.data,page:page.data}));
 } finally { await service.close(); }
 """
-        parse_env = {**env, 'FINANCE_DATA_DIR': str(data), 'VERIFY_PROJECT': project['id'], 'VERIFY_DOCUMENT': document['id']}
+        parse_env = {**env, 'FINANCE_DATA_DIR': str(data), 'VERIFY_PROJECT': project['id'], 'VERIFY_DOCUMENT': document['id'], 'VERIFY_CHAT':chat['id']}
         parse = subprocess.run([str(package/'runtime/node/node.exe'), '--input-type=module', '-e', script], cwd=package,
                                env=parse_env, capture_output=True, timeout=120)
         (evidence/'parse.stderr.log').write_bytes(parse.stderr)
@@ -187,6 +200,40 @@ try {
             with http.open(base+page['imageUrl'], timeout=20) as response:
                 image = response.read()
             check('source_image_after_restart', image.startswith(b'\x89PNG') or image.startswith(b'\xff\xd8'))
+        def export_report():
+            started=time.monotonic()
+            req=urllib.request.Request(base+f'/api/conversations/{chat["id"]}/report-package',data=b'{}',headers={'Content-Type':'application/json'})
+            with http.open(req,timeout=35) as response:
+                result=response.read()
+                return {'status':response.status,'seconds':round(time.monotonic()-started,3),'bytes':result}
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            exports=list(pool.map(lambda _:export_report(),range(2)))
+        packages=list((data/'report_packages'/project['id']).iterdir())
+        check('packaged_report_single_flight',len(packages)==1 and all(x['status']==200 for x in exports) and exports[0]['bytes']==exports[1]['bytes'])
+        downloaded_report=evidence/'synthetic-report-package.zip';downloaded_report.write_bytes(exports[0]['bytes'])
+        inspect_report="""
+import io,json,sys,zipfile
+import fitz
+from openpyxl import load_workbook
+with zipfile.ZipFile(sys.argv[1]) as z:
+ snapshot=json.loads(z.read('snapshot.json'))
+ original=snapshot['turns'][0]['tables']['signals']['rows'][0]['evidence']
+ md=z.read('report.md').decode('utf8')
+ with fitz.open(stream=z.read('report.pdf'),filetype='pdf') as doc:pages=len(doc)
+ book=load_workbook(io.BytesIO(z.read('workpapers.xlsx')))
+ cell=next(row[1].value for row in book['信号'] if row[0].value=='synthetic-signal')
+ book.close()
+ assert len(original)>15000 and cell==original
+ assert original not in md and '完整内容见 workpapers.xlsx / snapshot.json' in md
+ assert '**适用范围 / 风险：** 本报告' in md
+ print(json.dumps({'pages':pages,'locator_characters':len(original),'full_workbook_text':cell==original,'snapshot_preserved':True}))
+"""
+        inspected=subprocess.run([str(package/'runtime/python/python.exe'),'-B','-c',inspect_report,str(downloaded_report)],cwd=package,env=env,capture_output=True,timeout=30)
+        (evidence/'report-inspection.stderr.log').write_bytes(inspected.stderr)
+        check('packaged_report_full_evidence_preserved',inspected.returncode==0)
+        report['report_package']={**json.loads(inspected.stdout),'requests':[{k:v for k,v in row.items() if k!='bytes'} for row in exports],
+            'packages_created':len(packages),'identical_responses':True,'zip_bytes':len(exports[0]['bytes'])}
+        check('packaged_report_pdf_under_30_seconds',report['report_package']['pages']>0 and max(x['seconds'] for x in exports)<30,report['report_package'])
         if args.browser:
             browser_env = {**os.environ, 'RELEASE_URL': base, 'RELEASE_EVIDENCE': str(evidence), 'RELEASE_PROJECT_ID': project['id']}
             ui = subprocess.run(['node', 'web/tests/release-deployment.cjs'], cwd=ROOT, env=browser_env, capture_output=True, timeout=75)

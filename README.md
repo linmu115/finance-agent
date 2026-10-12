@@ -1,8 +1,8 @@
-# Finance Agent v0.4.0
+# Finance Agent v0.4.1
 
-面向财报研究的本地智能体。此版本打包 F2.1 的 v3 底稿流水线、来源追溯与交付检查能力。正式三组评测的总体 E4 优势均未证实，具体深度收益、缺陷与成本见 [发布说明](docs/RELEASE-0.4.0.md)。
+面向财报研究的本地智能体。此版本保留 F2.1 的 v3 底稿流水线、来源追溯与交付检查能力，并修复报告包导出卡死和聊天中文加粗渲染。正式三组评测的总体 E4 优势均未证实，具体深度收益、缺陷与成本见 [发布说明](docs/RELEASE-0.4.1.md)。
 
-**使用本次提供的 `finance-agent-0.4.0-windows-x64.zip` 和 `SHA256SUMS.txt`。本版尚未推送或发布 GitHub Release。** 完整解压后运行 `install.cmd`，默认地址 `http://127.0.0.1:3001/`；API 在界面配置。便携包包含 Node、Python 与生产依赖，Docker 和分析镜像另行准备。[启动与使用](docs/START_AND_USE.md)。
+**使用本次提供的 `finance-agent-0.4.1-windows-x64.zip` 和 `SHA256SUMS.txt`。本版尚未推送或发布 GitHub Release。** 完整解压后运行 `install.cmd`，默认地址 `http://127.0.0.1:3001/`；API 在界面配置。便携包包含 Node、Python 与生产依赖，Docker 和分析镜像另行准备。[启动与使用](docs/START_AND_USE.md)。
 
 可运行包按允许列表收录产品源码、运行依赖与安装资料，不附带真实项目数据库、会话、评测私有资料或完整研究样本。源码仓库中的历史论文、评测和大样本保持原位置，不代表随部署包分发。历史 benchmark 编号与应用版本独立。
 
@@ -69,7 +69,7 @@
 
 资产看板的 **观点与证据** 展示已从研报提取的定性研究记录，包括研究观点、风险、催化因素及引用的管理层表述，保留提出者/机构、发布日期、原句、页码与待核验状态。可搜索、过滤、查看原文或选中记录继续分析；这里的“证据”表示可追溯依据，不表示观点已被证实。机构预期侧重预测数值，模型与成果保存应用计算或撰写的研究产物。
 
-本版正式评测显示局部分析深度提升，同时保留材料范围、单位与币种标签、可比口径语义等交付缺陷。两个主对比的总体 E4 优势均未证实；输入成本的完整口径见 [发布说明](docs/RELEASE-0.4.0.md)。
+本版正式评测显示局部分析深度提升，同时保留材料范围、单位与币种标签、可比口径语义等交付缺陷。两个主对比的总体 E4 优势均未证实；输入成本的完整口径见 [发布说明](docs/RELEASE-0.4.1.md)。
 
 ## 端口、数据与迁移
 
@@ -125,8 +125,8 @@ npm run build
 .\.venv\Scripts\python.exe scripts/build_release.py --plan
 .\.venv\Scripts\python.exe scripts/build_release.py --stage
 .\.venv\Scripts\python.exe scripts/build_release.py --archive
-.\.venv\Scripts\python.exe scripts/verify_release.py --zip dist/release-0.4.0/finance-agent-0.4.0-windows-x64.zip
-.\.venv\Scripts\python.exe scripts/verify_release_offline.py --zip dist/release-0.4.0/finance-agent-0.4.0-windows-x64.zip
+.\.venv\Scripts\python.exe scripts/verify_release.py --zip dist/release-0.4.1/finance-agent-0.4.1-windows-x64.zip
+.\.venv\Scripts\python.exe scripts/verify_release_offline.py --zip dist/release-0.4.1/finance-agent-0.4.1-windows-x64.zip
 ```
 
 构建器先扫描源码与嵌套样本压缩包，排除凭据及运行数据，再建立独立运行目录。归档后检查 ZIP CRC 和逐文件 SHA-256，输出 `SHA256SUMS.txt`。重复构建使用新的 `--output dist/另一个目录`，不会覆盖既有发行包。
@@ -153,7 +153,7 @@ npm test
 .\.venv\Scripts\python.exe -m unittest discover -s service/tests -v
 ```
 
-真实模型验收会调用外部 API。已知边界与本次部署验收见 [docs/RELEASE-0.4.0.md](docs/RELEASE-0.4.0.md)。
+真实模型验收会调用外部 API。已知边界与本次部署验收见 [docs/RELEASE-0.4.1.md](docs/RELEASE-0.4.1.md)。
 
 ## 目录与第三方组件
 

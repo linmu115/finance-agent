@@ -40,6 +40,9 @@ EXTRA_FILES = {
     'service/tests/test_asset_dashboard.py',
     'service/tests/test_document_library.py',
     'service/tests/test_research_ingestion.py',
+    'service/tests/test_report_package.py',
+    'tests/report-package.test.ts', 'tests/markdown-bold.test.ts',
+    'tests/markdown-math.test.ts', 'tests/artifact-links.test.ts',
     'benchmark/versions/v0.5-holdout/inputs/cnooc_2025_en_whole_tables.pdf',
 }
 EXTRA_ROOTS = {'licenses', 'skills'}

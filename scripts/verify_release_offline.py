@@ -126,6 +126,8 @@ try{
         result=run('bundled_stdio_parse_and_reconnect',[str(node),'--input-type=module','-e',script],timeout=240)
         report['stdio_result']=json.loads(result.splitlines()[-1])
         run('packaged_dimension_and_dashboard_regressions',[str(python),'-B','-m','unittest','service.tests.test_script_cleaning','service.tests.test_asset_dashboard','service.tests.test_document_library.DocumentLibraryTests','-v'],timeout=240)
+        run('packaged_report_package_regressions',[str(python),'-B','-m','unittest','service.tests.test_report_package','-v'],timeout=120)
+        run('packaged_markdown_and_single_flight_regressions',[str(node),'--import','tsx','--test','tests/markdown-bold.test.ts','tests/markdown-math.test.ts','tests/artifact-links.test.ts','tests/report-package.test.ts'],timeout=120)
         for filename in ['web/dist/index.html','skills/research-ingestion/SKILL.md','docs/START_AND_USE.md',f"docs/RELEASE-{metadata['version']}.md",'THIRD_PARTY_NOTICES.md']:
             check('included_'+filename,(package/filename).is_file() and (package/filename).stat().st_size>0)
         report['status']='passed'
