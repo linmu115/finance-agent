@@ -1,0 +1,96 @@
+{
+  "schema": "f1-approved-20261008",
+  "model": "gpt-6-luna",
+  "provider": "cpa-local",
+  "repeats": 2,
+  "tasks": [
+    {
+      "id": "H1",
+      "split": "heldout",
+      "type": "earnings_cash_quality",
+      "prompt": "请分析青岛啤酒2024年的盈利和现金质量。收入下降而归母净利润增长，能否据此认为经营全面改善？比较2023/2024的收入、毛利率、营业利润、合并及归母净利润、扣非归母净利润、经营现金流和第四季度表现。用现金流量表补充资料定量解释净利润到经营现金流、以及现金流同比改善的主要驱动，指出哪些改善未必可以持续。请只依据给定资料，以人民币百万元展示金额，比例与百分点分开。先给简洁结论，再给关键数值、来源文件页码、口径和局限，附支持结论的图、明细CSV、Markdown报告和可复算计算文件。",
+      "materials": [
+        "tsingtao_2024"
+      ],
+      "phase": 1,
+      "projectId": "8513b99f-9168-4156-a92f-8df20d84d51b",
+      "scheduleIndex": 9
+    },
+    {
+      "id": "H2",
+      "split": "heldout",
+      "type": "local_update",
+      "prompt": "沿用刚才的青岛啤酒分析做一个压力情景：只把2024年“经营性应付项目的增加（减少）”对现金流的贡献替换为2023年的金额，其他利润和调节项保持2024年不变。重算经营现金流、与原值的差额及其对合并净利润的覆盖倍数。并列展示原值与压力值，说明这能说明什么、不能说明什么；不要把这个机械情景写成公司的实际预测。请只依据给定资料，以人民币百万元展示金额，比例与百分点分开。先给简洁结论，再给关键数值、来源文件页码、口径和局限，附支持结论的图、明细CSV、Markdown报告和可复算计算文件。",
+      "materials": [
+        "tsingtao_2024"
+      ],
+      "continuationOf": "H1",
+      "phase": 1,
+      "projectId": "8513b99f-9168-4156-a92f-8df20d84d51b",
+      "scheduleIndex": 10
+    }
+  ],
+  "evaluationLimits": {
+    "max_model_calls": 1000,
+    "max_input_tokens": 50000000,
+    "max_output_tokens": 2000000,
+    "max_total_tokens": 52000000,
+    "max_wall_seconds": 43200
+  },
+  "phases": {
+    "1": {
+      "name": "C-H-heldout",
+      "blocks": [
+        [
+          "H1",
+          "H2"
+        ]
+      ],
+      "referenceFiles": [
+        "benchmark/blind-eval/reference-heldout.json",
+        "benchmark/blind-eval/selectors-heldout.json"
+      ]
+    }
+  },
+  "referenceFiles": [
+    "benchmark/blind-eval/rubric.md",
+    "benchmark/blind-eval/metrics.py",
+    "benchmark/blind-eval/blind.py",
+    "benchmark/blind-eval/replay.py",
+    "benchmark/blind-eval/make-judge-reference.py",
+    "benchmark/blind-eval/runner-f12.mjs",
+    "benchmark/blind-eval/study-f12.mjs",
+    "benchmark/blind-eval/snapshot-f1.py",
+    "benchmark/blind-eval/a5-adapter.py",
+    "benchmark/blind-eval/selectors-f1.py",
+    "benchmark/blind-eval/F1_EXECUTION.md",
+    "scripts/collect-pi-analysis.mjs",
+    "scripts/scan-delivery-consistency.py",
+    "benchmark/blind-eval/F1_STAGE_ABC.md",
+    "benchmark/blind-eval/blind-structure-preserving.py"
+  ],
+  "preparationLedgers": [
+    "data/evaluation/blind-eval-ingestion-20261007/preparation.json",
+    "data/evaluation/blind-eval-tsingtao-resume-20261008/preparation.json",
+    "data/evaluation/blind-eval-tsingtao-F1-20261008/preparation.json"
+  ],
+  "failurePolicy": "No automatic paid retry. Terminal failures retained, descendants without delivered parent blocked; independent chains proceed. Uncertain POST stops for read-only reconciliation. Input drift stops phase; all usage retained, unknown stays unknown. Any cancellation stops the entire batch; no subsequent independent chain may be posted.",
+  "status": "H1_H2_authorized_on_F1.2",
+  "excluded": [
+    {
+      "id": "X2",
+      "status": "未执行",
+      "reason": "美的未入库；本轮不做"
+    }
+  ],
+  "executionConcurrency": "Stage A isolated reviews; N3 separate-project preparation may run; disclose shared infrastructure load.",
+  "freezeVersion": "F1.2",
+  "versionSplit": {
+    "development": "F1",
+    "heldout": "F1.2",
+    "prior_heldout": "F1.1 aborted; original records and usage preserved",
+    "stage_B": "pending F1.3 ingestion-only correction, N3 verification and coordinator notice",
+    "runtime_diff": "data/evaluation/f1.2-freeze-20261008/F1.1-to-F1.2.diff"
+  },
+  "analysisOnly": true
+}

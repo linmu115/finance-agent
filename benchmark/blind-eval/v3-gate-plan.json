@@ -1,0 +1,142 @@
+{
+  "schema": "blind-eval-v3-design-1",
+  "status": "approved_waiting_v3_implementation_and_freeze",
+  "executionEnabled": false,
+  "model": "gpt-6-luna",
+  "provider": "cpa-local",
+  "main_reasoning": "high",
+  "router_reasoning": "low",
+  "arms": [
+    "original_pi",
+    "prepared",
+    "financial"
+  ],
+  "original_pi_api_profile": "original_pi",
+  "baseline_contract": "V3_THREE_ARM_PLAN_20261008.md",
+  "freeze": null,
+  "dataSnapshots": {},
+  "concurrency": {
+    "max_chains": 2,
+    "distinct_active_arms": true,
+    "dispatch": "preserve planned chain launch order; wait if next arm already active",
+    "rotation": [
+      "original_pi+prepared",
+      "prepared+financial",
+      "financial+original_pi"
+    ],
+    "latency_is_isolated": false
+  },
+  "repeats": 2,
+  "tasks": [
+    {
+      "id": "D1",
+      "name": "卡罗特中报利润和现金",
+      "prompt": "优化验收｜利润与现金流\n仅分析指定项目已有资料，不重新入库、清洗、修改数据或联网。只使用指定报告及本会话新建的成果，不读取其他会话成果。计算用工具或Python。中文简洁专业回答，给来源页码，区分事实、机构预测和自己的假设；交付研报风格图表、底稿CSV、Markdown报告及可复算脚本。图、表、正文须使用一致币种和单位，未知保留缺口。\n使用 3d9d0befd8374eed9a7488dbd8dd00d2（卡罗特2025中报，55页）。比较2025H1和2024H1的收入、毛利率、经营利润、合并净利润、归母净利润及经营现金流。解释利润与现金转化的变化，区分经营利润和净利息收益的作用；用报表可确认项目连接经营产生现金与经营活动净现金，说明未获得的调节明细，不凭空补平。金额统一展示人民币百万元，并给一张与结论直接相关的图。",
+      "split": "development",
+      "type": "statement_analysis",
+      "projectId": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+      "phase": 1
+    },
+    {
+      "id": "X3",
+      "split": "extension",
+      "type": "earnings_cash_quality",
+      "prompt": "伊利2024年净利润下降而经营现金流上升，这是否意味着盈利质量改善？请从合并净利润出发，用年报现金流量表补充资料完成到经营现金流的调节，并按同比变化解释现金流改善的主要贡献。区分减值等非现金项目、营运资金释放、投资收益以及持续经营因素；归母和扣非归母数据另列，不把它们直接代入合并现金桥。请只依据给定资料，以人民币百万元展示金额，比例与百分点分开。先给简洁结论，再给关键数值、来源文件页码、口径和局限，附支持结论的图、明细CSV、Markdown报告和可复算计算文件。",
+      "materials": [
+        "yili_2024"
+      ],
+      "phase": 1,
+      "projectId": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "scheduleIndex": 4
+    },
+    {
+      "id": "X7",
+      "split": "extension",
+      "type": "restatement",
+      "prompt": "海尔2024年年报里2023年数据有调整前、调整后两列。我想知道，选错列会把增长和盈利判断带偏多少。请只用这份年报，找出重述和会计政策变化的原因，列出主要指标的调整额，分别按两列计算2024年收入、归母利润、经营现金流的增速，以及归母净利率和披露ROE的变化。再单独量化质保费用重分类对毛利率、销售费用率和营业利润的影响；不能把其他并表变化混进这项影响。结合非经常性损益表，说明连续出现的项目对盈利判断有什么启示，不要直接改判其性质。最后指出现有披露能解释哪些差异、哪些还不能精确拆开。请用人民币百万元展示金额，比例与百分点分开；先给结论，再给数据、原文页码和局限，清楚区分事实、推论和观点。交付清晰图表、Markdown/PDF报告、Excel/CSV底稿及可复算计算文件；估值或投资判断如有，说明假设、风险和适用范围。",
+      "materials": [
+        "haier_2024"
+      ],
+      "phase": 1,
+      "projectId": "d324c744-4113-4213-aa22-af3bb91a3c84",
+      "scheduleIndex": 8
+    }
+  ],
+  "evaluationLimits": {
+    "max_model_calls": 1000,
+    "max_input_tokens": 50000000,
+    "max_output_tokens": 2000000,
+    "max_total_tokens": 52000000,
+    "max_wall_seconds": 43200
+  },
+  "request_contract": {
+    "evaluation.analysis_only": true,
+    "documentIds": [],
+    "isolation_key": "fresh per chain/arm/repeat/freeze",
+    "budget_group_id": "same scope per chain; no cross-arm sharing"
+  },
+  "cancel_policy": "atomic stop-queue; check before every POST including same-chain successor; no successor after cancel",
+  "infrastructure_failure": "retain_no_manual_retry_continue",
+  "validity_failure": "stop_queue",
+  "judge": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "high",
+    "passes": 2,
+    "fresh_thread_each_pass": true,
+    "fork_turns": "none",
+    "seal_before_unblind": true
+  },
+  "gate": {
+    "status": "approved_20261008",
+    "material_defective_cases": {
+      "financial_lte_prepared_minus": 2,
+      "financial_lte_prepared_fraction": 0.5,
+      "if_prepared_lte_1": "inconclusive_floor"
+    },
+    "deduplicated_material_entries": "F <= P",
+    "R3_tasks": [
+      "D1",
+      "X3",
+      "X7"
+    ],
+    "R5_primary_tasks": [
+      "D1",
+      "X3"
+    ],
+    "R5_auxiliary_tasks": [
+      "X7"
+    ],
+    "R3_R5": "paired mean F >= P in each pass",
+    "completion": "F >= P",
+    "product_failures_all_arms": 0,
+    "known_input_total_and_paired_median": "F <= P",
+    "unknown_usage_or_incomplete_pairs": "inconclusive",
+    "stability": {
+      "all_material_presence_agree": true,
+      "mean_abs_score_delta_max": 0.5,
+      "single_score_delta_max": 1
+    }
+  },
+  "blocking_items": [
+    "original_pi request capture verified against approved contract",
+    "v3 P0/P1.0/P2 merged and frozen",
+    "fresh project snapshots after ingestion paused",
+    "actual HTTP adapter cancellation verified with offline request capture"
+  ],
+  "referenceFiles": [
+    "reference-development.json",
+    "reference-stage-b-additions.json",
+    "reference-stage-c-X7.json",
+    "selectors-stage-b-additions.json",
+    "selectors-stage-c-X7.json",
+    "rubric.md"
+  ],
+  "referenceDigests": {
+    "reference-development.json": "a5f442280cac1c47ec1040b212a3b64c84217608eeb30d0352896bfaf32ed338",
+    "reference-stage-b-additions.json": "bd09330d4b7bf1e4086116912e08918c3c5da1cc1b4bc84d54a2f1abcfedb793",
+    "reference-stage-c-X7.json": "38ae2f7b9b4cc5e02a45c635e2ac263bf51f9a6c1867592a9f19d414e039413f",
+    "selectors-stage-b-additions.json": "8835c2125a18d679fe2b674ffa98f6b1be3d8c6c4db1994a8c67a50ce2d5cefd",
+    "selectors-stage-c-X7.json": "1c6c6fa6b6c1a019f5c549419b00f53b10b3644f71d21d8d50580169d4439164",
+    "rubric.md": "12809bfb47373b8f796adbfd10583cdce4fe13a0eb5b969ba24e10c8b8d08ca9"
+  }
+}

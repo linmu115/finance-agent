@@ -1,0 +1,458 @@
+{
+  "version": "stage-b-additions-v1-20261008",
+  "status": "frozen_before_any_X1_X3_answer",
+  "rubric_version": "analyst-requirements-v2-20261008",
+  "evidence_root": "data/evaluation/blind-eval-yili-reference-additions-20261008",
+  "sources": {
+    "annual": {
+      "file": "samples/native-pdf/伊利股份2024年年度报告.pdf",
+      "sha256": "a82a81e52f52da3cd1b7f38ded08625dc18e3d4522b15d3ef76bf921e54c1f43",
+      "document_id": "d84573bf6b584e7e874faa4c6adf454a",
+      "visually_verified_pdf_pages": [
+        7,
+        8,
+        9,
+        18,
+        19,
+        217,
+        218
+      ],
+      "page_numbering": "1-based physical PDF pages; annual printed pages are PDF minus 4",
+      "page_evidence": [
+        {
+          "text": "source-pages/annual-p7.txt",
+          "text_sha256": "42e23a93c0c478beb32a54e0a3a5e01555c4060deda1eb0502b12950e9a1dc35",
+          "image": "source-pages/annual-p7.png",
+          "image_sha256": "bda649d60188bc4a560906a6b2238e7c948ea36cdfb2d51cfcd1768393107829"
+        },
+        {
+          "text": "source-pages/annual-p8.txt",
+          "text_sha256": "38e3437f7c28928ca4efe03efdc6520a0b018d0d047c7c29aaf280920870673b",
+          "image": "source-pages/annual-p8.png",
+          "image_sha256": "5401a981885e8834c629948f6363ef2fce08991686af5170f2968e41dc25a729"
+        },
+        {
+          "text": "source-pages/annual-p9.txt",
+          "text_sha256": "e47df8d33d731fc6cc3a62c94e7943a6caf5db295243d57e9eb711773b620200",
+          "image": "source-pages/annual-p9.png",
+          "image_sha256": "b8ebddadf70b9b263a81727d5651ccf8f514dd2b9e3a77fe17044e50d8349f50"
+        },
+        {
+          "text": "source-pages/annual-p18.txt",
+          "text_sha256": "f1d7d586113b1ebf70de070c6544ca6965ca7bb6444ac57fa96881c6020747f0",
+          "image": "source-pages/annual-p18.png",
+          "image_sha256": "360c1d7e43a888065cb674e98e65410c94121b9e1515bb03b73540c5dc5a2bfb"
+        },
+        {
+          "text": "source-pages/annual-p19.txt",
+          "text_sha256": "9f625e31daa3a347e9f8d20be21b3a5b0e89fc67087375a1e2a3fa36859e39e4",
+          "image": "source-pages/annual-p19.png",
+          "image_sha256": "f19645aa812c8769d00bc23c51dba5e23858a765dcbb3acf5688b7151ca8d7cd"
+        },
+        {
+          "text": "source-pages/annual-p24.txt",
+          "text_sha256": "bd7e5c94ce54728457f9e323e5ed1458558f7afed24d6da54673fc5081ac00f8",
+          "image": "source-pages/annual-p24.png",
+          "image_sha256": "892879c2f627a80ea6ed7b602a3a4783494efe8b2e5164d4a49b63c0e18dcf53"
+        },
+        {
+          "text": "source-pages/annual-p91.txt",
+          "text_sha256": "b3cfc0da670e7f9f5c27b59c1d25f510998833bb6c477ab70d56bec04192612c",
+          "image": "source-pages/annual-p91.png",
+          "image_sha256": "d63467f2df7d5f6f30a7e6d0548d0ca9752e7f0a7c8967848b2ff23cb0a8377e"
+        },
+        {
+          "text": "source-pages/annual-p92.txt",
+          "text_sha256": "01cf4282b4eb20337c9d0604a1d0b65ef2eff08a82527f6f8af951075cd7248c",
+          "image": "source-pages/annual-p92.png",
+          "image_sha256": "65af766c0a72330bd33de9edfc9922d174743b272828e24370047be70e12cd27"
+        },
+        {
+          "text": "source-pages/annual-p217.txt",
+          "text_sha256": "9e753425a5c8ea3765226affcfa5cdb9ab500db22762f687f1ca7e53189fbfd9",
+          "image": "source-pages/annual-p217.png",
+          "image_sha256": "2c7a113f0298d7c331151ae25feb6083c2e60d8ab7846c85ccd40e666dd2b7ac"
+        },
+        {
+          "text": "source-pages/annual-p218.txt",
+          "text_sha256": "233481794737c0e310edcac83c82ad63850e0d2d45cefe46e9ad47547ff26a26",
+          "image": "source-pages/annual-p218.png",
+          "image_sha256": "389ce568a9c6d0a7e495f219d0d5a829253618d6dd1f38637eac5b0d223774fc"
+        }
+      ]
+    }
+  },
+  "tasks": {
+    "X1": {
+      "source_pages": {
+        "yili_2024": [
+          7,
+          8,
+          9
+        ]
+      },
+      "raw": {
+        "revenue": [
+          "115393310976.69",
+          "125758168916.51"
+        ],
+        "parent_profit": [
+          "8452859993.18",
+          "10428540457.94"
+        ],
+        "adjusted_parent_profit": [
+          "6011274945.92",
+          "10026171076.03"
+        ]
+      },
+      "computed": {
+        "growth_percent": {
+          "revenue": "-8.241896354821418612289434970",
+          "parent_profit": "-18.94493743135236118253367394",
+          "adjusted_parent_profit": "-40.04416142178728121647965201"
+        },
+        "parent_net_margin_percent": [
+          "7.325259949328881025164935398",
+          "8.292535226768002371940231716"
+        ],
+        "adjusted_parent_net_margin_percent": [
+          "5.209379031627150599979134670",
+          "7.972580359917857377913492940"
+        ],
+        "nonrecurring_net_parent_profit_CNY": [
+          "2441585047.26",
+          "402369381.91"
+        ],
+        "parent_profit_change_bridge_CNY": {
+          "adjusted_parent_profit_change": "-4014896130.11",
+          "nonrecurring_change": "2039215665.35",
+          "parent_profit_change": "-1975680464.76"
+        }
+      },
+      "parent_equity_yearend_2024_2023": [
+        "53179935140.80",
+        "53539331413.16"
+      ],
+      "simple_average_parent_ROE_2024_percent": "15.84130076251230053998577907",
+      "disclosed_weighted_ROE_2024_percent": "15.81",
+      "must_mention": [
+        "Use only2024 annual report and its2023 comparative; no2023 report required.",
+        "Revenue is operating revenue, not total operating income including interest.",
+        "Parent and adjusted parent profit differ; nonrecurring contribution is not recurring profit.",
+        "2024 simple-average ROE uses2023/2024 year-end parent equity; no2023 simple-average ROE is requested.",
+        "Simple-average ROE and disclosed weighted ROE are distinct methods; do not force agreement.",
+        "Net nonrecurring parent contribution rose from402.36938191m to2441.58504726m, offsetting part of the adjusted-profit decline; p8 asset-disposal gain is before separate tax/minority deductions, not equal to net nonrecurring contribution."
+      ],
+      "unresolved": [],
+      "nonrecurring_detail_CNY": {
+        "noncurrent_asset_disposal_gain": [
+          "2564344409.05",
+          "-20343335.84"
+        ],
+        "net_parent_total": [
+          "2441585047.26",
+          "402369381.91"
+        ]
+      },
+      "common_errors": [
+        "Use total operating income as operating revenue without naming scope.",
+        "Mix parent profit and adjusted parent profit.",
+        "Use year-end equity alone instead of2023/2024 average parent equity.",
+        "Demand2023 annual report or calculate unrequested2023 simple-average ROE.",
+        "Equate simple-average ROE with weighted disclosed ROE."
+      ],
+      "task_requirements": {
+        "R1": {
+          "coverage": "direct",
+          "must_mention": [
+            "只用伊利2024年报的2023比较列；营业收入不混营业总收入，归母/扣非分开。"
+          ],
+          "scope": ""
+        },
+        "R2": {
+          "coverage": "direct",
+          "must_mention": [
+            "两年收入、归母、扣非同比；归母及扣非净利率，比例与百分点分开。",
+            "2024简单平均归母权益ROE用2023/2024期末余额，与披露加权ROE区分，不要求2023平均ROE。"
+          ],
+          "scope": ""
+        },
+        "R3": {
+          "coverage": "direct",
+          "must_mention": [
+            "解释扣非与归母利润降幅差异；主要业绩原因联系原文，未核实原因保留缺口。"
+          ],
+          "scope": ""
+        },
+        "R4": {
+          "coverage": "direct",
+          "must_mention": [
+            "净非经常归母贡献由402.36938191增至2441.58504726百万元；p8资产处置收益是税/少数股东扣除前项目，不等于净差额。",
+            "非经常性贡献减缓归母下降，不代表经常性经营改善；不得凭无披露断言会计重述。"
+          ],
+          "scope": "直接考扣非/非经常；无调整前后材料，不能据此证明重述探测。"
+        },
+        "R5": {
+          "coverage": "not_tested",
+          "must_mention": [],
+          "scope": "按审定范围增长、扣非和ROE为重点，现金质量交X3。"
+        },
+        "C": {
+          "coverage": "direct",
+          "must_mention": [
+            "按原题交付图、CSV、Markdown及可复算代码；正文和全部仍交付版本的金额、单位、方向一致。",
+            "核心源值注明文件页码、指标口径，推导列输入与公式；未实际运行的复现不声称已验证。",
+            "事实、机构观点及自己的推论/假设在语言上可辨；不以引用代替因果证据。",
+            "出现估值或投资判断时列关键假设、风险及适用时点/范围；不追罚原题未要求的PDF/Excel。"
+          ],
+          "scope": ""
+        }
+      },
+      "status": "frozen_independent_original_page_review_before_answers",
+      "cause_source_review": {
+        "pages": [
+          18,
+          19
+        ],
+        "management_disclosure": [
+          "收入减少主要因销量减少和销售价格下降；成本减少主要因销量减少与原材料价格下降。",
+          "销售费用减少归于广告营销及薪酬减少，管理费用减少归于薪酬；财务费用变动归于利息支出减少。",
+          "p19分产品显示液体乳/冷饮收入下降，奶粉及奶制品收入增长；有量价结构拆分，可作为深化证据，不强制额外做全分部分析。"
+        ],
+        "nonrecurring_scope": "p8–9净非经常合计已扣所得税460205151.79/131789332.31元和少数股东4176518.66/20757711.39元；非流动资产处置损益2564344409.05/-20343335.84元是税前组成项，不能直接当归母净差额。",
+        "causal_limit": "扣非下降、净非经常贡献增加可严格桥接归母下降；财务结果桥不等于每项业务原因已精确分摊。"
+      }
+    },
+    "X3": {
+      "source_pages": {
+        "yili_2024": [
+          7,
+          217,
+          218
+        ]
+      },
+      "raw": {
+        "revenue": [
+          "115393310976.69",
+          "125758168916.51"
+        ],
+        "parent_profit": [
+          "8452859993.18",
+          "10428540457.94"
+        ],
+        "adjusted_parent_profit": [
+          "6011274945.92",
+          "10026171076.03"
+        ],
+        "cfo": [
+          "21739740393.38",
+          "18290357650.56"
+        ],
+        "consolidated_profit": [
+          "8463710355.65",
+          "10284306198.28"
+        ]
+      },
+      "computed": {
+        "growth_percent": {
+          "revenue": "-8.241896354821418612289434970",
+          "parent_profit": "-18.94493743135236118253367394",
+          "adjusted_parent_profit": "-40.04416142178728121647965201",
+          "cfo": "18.85902292738594683306610300",
+          "consolidated_profit": "-17.70266080695347019013883199"
+        },
+        "parent_net_margin_percent": [
+          "7.325259949328881025164935398",
+          "8.292535226768002371940231716"
+        ],
+        "cfo_parent_profit_ratio": [
+          "2.571879862072744687518321464",
+          "1.753875120332321436655248127"
+        ]
+      },
+      "cash_bridge": {
+        "net_profit": [
+          "8463710355.65",
+          "10284306198.28"
+        ],
+        "impairment": [
+          "4675845573.44",
+          "1525699477.87"
+        ],
+        "credit_losses": [
+          "555019707.28",
+          "160477312.83"
+        ],
+        "depreciation": [
+          "4055643135.37",
+          "3900295097.42"
+        ],
+        "lease_amortisation": [
+          "146790888.18",
+          "151581488.10"
+        ],
+        "intangibles": [
+          "268693885.32",
+          "235202257.14"
+        ],
+        "deferred_expenses": [
+          "140620901.18",
+          "144262757.84"
+        ],
+        "disposals": [
+          "15203668.87",
+          "61496104.10"
+        ],
+        "retirements": [
+          "42089507.17",
+          "23415123.64"
+        ],
+        "fair_value": [
+          "28153114.85",
+          "-278186201.65"
+        ],
+        "finance": [
+          "1026190054.25",
+          "2224989299.63"
+        ],
+        "investment": [
+          "-2417330849.26",
+          "31088785.68"
+        ],
+        "deferred_tax_asset": [
+          "-388802754.25",
+          "-208817859.08"
+        ],
+        "deferred_tax_liability": [
+          "25513908.30",
+          "124635685.72"
+        ],
+        "inventory": [
+          "585324717.44",
+          "1789456605.89"
+        ],
+        "receivables": [
+          "1824572724.85",
+          "-260526292.91"
+        ],
+        "payables": [
+          "2611147936.03",
+          "-1751369897.44"
+        ],
+        "other": [
+          "81353918.71",
+          "132351707.50"
+        ]
+      },
+      "bridge_checks": {
+        "sums_CNY": [
+          "21739740393.38",
+          "18290357650.56"
+        ],
+        "residual_CNY": [
+          "0.00",
+          "0.00"
+        ],
+        "contribution_to_change_CNY": {
+          "net_profit": "-1820595842.63",
+          "impairment": "3150146095.57",
+          "credit_losses": "394542394.45",
+          "depreciation": "155348037.95",
+          "lease_amortisation": "-4790599.92",
+          "intangibles": "33491628.18",
+          "deferred_expenses": "-3641856.66",
+          "disposals": "-46292435.23",
+          "retirements": "18674383.53",
+          "fair_value": "306339316.50",
+          "finance": "-1198799245.38",
+          "investment": "-2448419634.94",
+          "deferred_tax_asset": "-179984895.17",
+          "deferred_tax_liability": "-99121777.42",
+          "inventory": "-1204131888.45",
+          "receivables": "2085099017.76",
+          "payables": "4362517833.47",
+          "other": "-50997788.79"
+        }
+      },
+      "must_mention": [
+        "Cash bridge starts consolidated net profit, not parent or adjusted parent profit.",
+        "Cash growth does not establish better recurring earnings; impairment addbacks and working-capital payables differ from profit generation.",
+        "Compare contribution changes using2024 report comparative columns; preserve noncash signs and distinguish causal interpretation."
+      ],
+      "unresolved": [],
+      "common_errors": [
+        "Start consolidated cash bridge with parent profit.",
+        "Treat noncash impairment addbacks as new cash receipts.",
+        "Conclude persistent earnings improved solely because CFO rose.",
+        "Lose adjustment signs or confuse the level of an adjustment with its contribution to the year-on-year change."
+      ],
+      "task_requirements": {
+        "R1": {
+          "coverage": "direct",
+          "must_mention": [
+            "2024年报p217–218合并现金流补充资料及比较列，保留每个调节项原符号。"
+          ],
+          "scope": ""
+        },
+        "R2": {
+          "coverage": "direct",
+          "must_mention": [
+            "从合并净利润到CFO完整桥，两年残差应为0或显式列出。",
+            "逐项2024减2023贡献加总为CFO同比变化，归母/扣非另列不代入桥。"
+          ],
+          "scope": ""
+        },
+        "R3": {
+          "coverage": "direct",
+          "must_mention": [
+            "将减值加回、营运资金、投资收益各项变化量与业务解释分开，现金桥不是因果证明。"
+          ],
+          "scope": ""
+        },
+        "R4": {
+          "coverage": "supporting",
+          "must_mention": [
+            "减值等非现金项并不自动等同非经常性损益；不把投资收益/处置收益和归母扣非差机械混用。"
+          ],
+          "scope": "现金桥中的性质辨析；未直接测试调整前后/重述。"
+        },
+        "R5": {
+          "coverage": "direct",
+          "must_mention": [
+            "净利润下降而CFO上升；非现金加回与应付贡献改善不能单独证明持续盈利质量提高。",
+            "给出主要贡献、相反证据与持续性局限，未知原因不编造。"
+          ],
+          "scope": ""
+        },
+        "C": {
+          "coverage": "direct",
+          "must_mention": [
+            "按原题交付图、CSV、Markdown及可复算代码；正文和全部仍交付版本的金额、单位、方向一致。",
+            "核心源值注明文件页码、指标口径，推导列输入与公式；未实际运行的复现不声称已验证。",
+            "事实、机构观点及自己的推论/假设在语言上可辨；不以引用代替因果证据。",
+            "出现估值或投资判断时列关键假设、风险及适用时点/范围；不追罚原题未要求的PDF/Excel。"
+          ],
+          "scope": ""
+        }
+      },
+      "status": "frozen_independent_original_page_review_before_answers",
+      "cause_source_review": {
+        "pages": [
+          19,
+          24,
+          217,
+          218
+        ],
+        "management_disclosure": "公司明确称CFO增加主要因2025春节备货、预收经销商货款增加。不是N1根据应付调节额猜测供应商延付。",
+        "must_connect": [
+          "应付调节同比+4362.51783347百万元、应收同比+2085.09901776百万元，存货贡献同比-1204.13188845百万元；不能将全部营运资金项统称正贡献。",
+          "资产减值准备加回同比+3150.14609557百万元，信用减值+394.54239445百万元是非现金调节，对现金桥正贡献不等于新现金流入或盈利改善。",
+          "投资损失（收益负号）同比-2448.41963494百万元，合并净利润同比-1820.59584263百万元；其他调节仍纳入完整合计。",
+          "预收款时点改善的持续性取决于后续发货、渠道销售与后续补货，不能由单期CFO推断永久改善。"
+        ],
+        "precision_scope": "现金桥资产减值准备4675845573.44元，与利润表资产减值损失绝对值4675845733.44元相差160元。各自保留原表值，桥用p217值；不能擅自改数勾平或声称两行完全相同。",
+        "limits": "归母/扣非旁列，不替代合并现金桥起点；非现金不等于非经常；披露的财务费用调节值也不能替换为利润表财务费用值。"
+      }
+    }
+  }
+}

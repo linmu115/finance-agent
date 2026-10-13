@@ -1,0 +1,217 @@
+{
+  "schema": "f1-approved-20261008",
+  "model": "gpt-6-luna",
+  "provider": "cpa-local",
+  "repeats": 2,
+  "tasks": [
+    {
+      "id": "D1",
+      "name": "卡罗特中报利润和现金",
+      "prompt": "优化验收｜利润与现金流\n仅分析指定项目已有资料，不重新入库、清洗、修改数据或联网。只使用指定报告及本会话新建的成果，不读取其他会话成果。计算用工具或Python。中文简洁专业回答，给来源页码，区分事实、机构预测和自己的假设；交付研报风格图表、底稿CSV、Markdown报告及可复算脚本。图、表、正文须使用一致币种和单位，未知保留缺口。\n使用 3d9d0befd8374eed9a7488dbd8dd00d2（卡罗特2025中报，55页）。比较2025H1和2024H1的收入、毛利率、经营利润、合并净利润、归母净利润及经营现金流。解释利润与现金转化的变化，区分经营利润和净利息收益的作用；用报表可确认项目连接经营产生现金与经营活动净现金，说明未获得的调节明细，不凭空补平。金额统一展示人民币百万元，并给一张与结论直接相关的图。",
+      "split": "development",
+      "type": "statement_analysis",
+      "projectId": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+      "phase": 1
+    },
+    {
+      "id": "D2",
+      "name": "卡罗特研报预测与DCF",
+      "prompt": "优化验收｜研报预测与估值\n仅分析指定项目已有资料，不重新入库、清洗、修改数据或联网。只使用指定报告及本会话新建的成果，不读取其他会话成果。计算用工具或Python。中文简洁专业回答，给来源页码，区分事实、机构预测和自己的假设；交付研报风格图表、底稿CSV、Markdown报告及可复算脚本。图、表、正文须使用一致币种和单位，未知保留缺口。\n仅使用 cebeadc4df2147a4ab7c1c5c85b8032c（招银国际2024-11-08卡罗特报告，47页），站在报告发布日期，不使用2025中报。概括投资逻辑与主要风险，列出2024E至2026E收入、净利润和EPS并说明身份，展示金额为人民币亿元，每股值保持原单位。复算PE目标价，区分人民币盈利与港币股价。另按报告DCF表的2024E至2028E Unleveraged FCF原行（不从别表替换口径），按2023年末估值、每年末折现、末年FCF乘(1+g)延伸终值进行独立复算：WACC=12.2%，g=2%，股数、净现金及人民币到港币的汇率取该DCF表。列出EV、股权价值与港币每股值，解释与报告目标值的差异；来源内字段矛盾应指出。敏感性为WACC=[11.2%,12.2%,13.2%]，g=[1%,2%,3%]。保留所有输入，供下一条问题更新。",
+      "split": "development",
+      "type": "valuation",
+      "projectId": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+      "phase": 1
+    },
+    {
+      "id": "D3",
+      "name": "卡罗特DCF局部更新",
+      "continuationOf": "D2",
+      "prompt": "优化验收｜局部更新\n沿用本会话刚建的DCF及其输入和方法，不重读整份报告、不使用其他会话成果。依次作两项变化：WACC增加0.5个百分点；2024E至2028E各年的原FCF乘0.90。其他输入全部保持不变，终值继续依修改后的末年FCF计算。计算新旧港币每股值和差额，按上述顺序拆出两项贡献；敏感性仍使用原问题的绝对WACC/g网格，给两版并列且同坐标、同色标图。用简洁金融语言解释，交付新旧参数、结果、差异CSV、Markdown及可复算脚本。",
+      "split": "development",
+      "type": "local_update",
+      "projectId": "03b52dde-19da-49c1-949a-ee6d93bf036b",
+      "phase": 1
+    },
+    {
+      "id": "X1",
+      "split": "extension",
+      "type": "cross_period",
+      "prompt": "请只用伊利2024年年报及其中的2023年比较数据，分析这一年的增长和股东盈利表现。比较营业收入、归母净利润、扣非归母净利润及其增速，计算两年的归母净利率和扣非归母净利率，解释为什么扣非利润与归母利润的变化幅度不同。用2023年末和2024年末的平均归母净资产计算2024年的ROE，并与年报披露的加权平均ROE区分；说明这些指标对盈利表现的判断有什么启示，主要原因须有原文支持。请只依据给定资料，以人民币百万元展示金额，比例与百分点分开。先给简洁结论，再给关键数值、来源文件页码、口径和局限，附支持结论的图、明细CSV、Markdown报告和可复算计算文件。",
+      "materials": [
+        "yili_2024"
+      ],
+      "phase": 2,
+      "projectId": "374beac2-a970-4972-b210-e91018bbd6e6"
+    },
+    {
+      "id": "X3",
+      "split": "extension",
+      "type": "earnings_cash_quality",
+      "prompt": "伊利2024年净利润下降而经营现金流上升，这是否意味着盈利质量改善？请从合并净利润出发，用年报现金流量表补充资料完成到经营现金流的调节，并按同比变化解释现金流改善的主要贡献。区分减值等非现金项目、营运资金释放、投资收益以及持续经营因素；归母和扣非归母数据另列，不把它们直接代入合并现金桥。请只依据给定资料，以人民币百万元展示金额，比例与百分点分开。先给简洁结论，再给关键数值、来源文件页码、口径和局限，附支持结论的图、明细CSV、Markdown报告和可复算计算文件。",
+      "materials": [
+        "yili_2024"
+      ],
+      "phase": 2,
+      "projectId": "374beac2-a970-4972-b210-e91018bbd6e6"
+    },
+    {
+      "id": "X4",
+      "split": "extension",
+      "type": "research_audit",
+      "prompt": "站在2025年7月16日，只看国信证券这份伊利深度报告。请核对2025—2027年收入、归母净利润、EPS、增速、PE与目标价是否自洽，并核对正文与不同表格中的价格及估值区间。将可以由披露精度解释的差异、确切不一致和资料不足分开；列出报告投资逻辑及风险。不要用后续实际结果评判预测，也不要为了凑目标价反推未披露参数。请只依据给定资料，以人民币百万元展示金额，比例与百分点分开。先给简洁结论，再给关键数值、来源文件页码、口径和局限，附支持结论的图、明细CSV、Markdown报告和可复算计算文件。",
+      "materials": [
+        "guosen_yili_20250716"
+      ],
+      "phase": 2,
+      "projectId": "374beac2-a970-4972-b210-e91018bbd6e6"
+    },
+    {
+      "id": "X5",
+      "split": "extension",
+      "type": "expectations",
+      "prompt": "我想复盘伊利 2024 年的业绩与年末预期有多大差距。请以 2024 年 12 月 31 日为信息截止日，从给定研报中找出各机构当时对 2024 全年收入、归母净利润和 EPS 的最近预测，再与 2024 年报实际值比较，说明差额、偏离比例及方向。把光大两份报告的预测变化单独列出来，解释能从原文支持的调整原因；同一机构不要重复计入年末预期。材料里还有一份国信后续报告，请说明它能用于哪些比较、不能用于哪些比较。遇到日期、收入口径、利润归属或 EPS 股本口径不一致的情况，先说明可比范围，不强行补数，也不要把这几份报告说成整个市场的一致预期。先给简洁结论，再给关键数值、来源文件页码和局限，附支持结论的图、明细 CSV、Markdown 报告和可复算计算文件；金额以人民币百万元展示，EPS 用元/股，比例与百分点分开。",
+      "materials": [
+        "yili_2024",
+        "everbright_20240512",
+        "huatai_20241030",
+        "everbright_20241104",
+        "guosen_yili_20250716"
+      ],
+      "phase": 2,
+      "projectId": "374beac2-a970-4972-b210-e91018bbd6e6"
+    },
+    {
+      "id": "X6",
+      "split": "extension",
+      "type": "quarter_algebra",
+      "prompt": "我想看伊利2024年第四季度到底发生了什么，不想把前三季度累计数当成单季。请结合2024年年报和三季报，先识别报表口径，用全年减前三季度推导2024和2023第四季度的营业收入、归母净利润、经营现金流，算2024年第四季度的同比和相对第三季度的环比，并用年报分季度数据核对。另列2024年第四季度扣非归母净利润及环比。解释单季利润与现金表现给全年判断带来的变化，哪些原因有报告支持、哪些只能作为推论；说明哪些指标不能简单相减。请用人民币百万元展示金额，比例与百分点分开；先给结论，再给数据、原文页码和局限，清楚区分事实、推论和观点。交付清晰图表、Markdown/PDF报告、Excel/CSV底稿及可复算计算文件；估值或投资判断如有，说明假设、风险和适用范围。",
+      "materials": [
+        "yili_2024",
+        "yili_q3_2024"
+      ],
+      "phase": 2,
+      "projectId": "374beac2-a970-4972-b210-e91018bbd6e6"
+    },
+    {
+      "id": "X7",
+      "split": "extension",
+      "type": "restatement",
+      "prompt": "海尔2024年年报里2023年数据有调整前、调整后两列。我想知道，选错列会把增长和盈利判断带偏多少。请只用这份年报，找出重述和会计政策变化的原因，列出主要指标的调整额，分别按两列计算2024年收入、归母利润、经营现金流的增速，以及归母净利率和披露ROE的变化。再单独量化质保费用重分类对毛利率、销售费用率和营业利润的影响；不能把其他并表变化混进这项影响。结合非经常性损益表，说明连续出现的项目对盈利判断有什么启示，不要直接改判其性质。最后指出现有披露能解释哪些差异、哪些还不能精确拆开。请用人民币百万元展示金额，比例与百分点分开；先给结论，再给数据、原文页码和局限，清楚区分事实、推论和观点。交付清晰图表、Markdown/PDF报告、Excel/CSV底稿及可复算计算文件；估值或投资判断如有，说明假设、风险和适用范围。",
+      "materials": [
+        "haier_2024"
+      ],
+      "phase": 3,
+      "projectId": "d324c744-4113-4213-aa22-af3bb91a3c84"
+    },
+    {
+      "id": "H1",
+      "split": "heldout",
+      "type": "earnings_cash_quality",
+      "prompt": "请分析青岛啤酒2024年的盈利和现金质量。收入下降而归母净利润增长，能否据此认为经营全面改善？比较2023/2024的收入、毛利率、营业利润、合并及归母净利润、扣非归母净利润、经营现金流和第四季度表现。用现金流量表补充资料定量解释净利润到经营现金流、以及现金流同比改善的主要驱动，指出哪些改善未必可以持续。请只依据给定资料，以人民币百万元展示金额，比例与百分点分开。先给简洁结论，再给关键数值、来源文件页码、口径和局限，附支持结论的图、明细CSV、Markdown报告和可复算计算文件。",
+      "materials": [
+        "tsingtao_2024"
+      ],
+      "phase": 3,
+      "projectId": "8513b99f-9168-4156-a92f-8df20d84d51b"
+    },
+    {
+      "id": "H2",
+      "split": "heldout",
+      "type": "local_update",
+      "prompt": "沿用刚才的青岛啤酒分析做一个压力情景：只把2024年“经营性应付项目的增加（减少）”对现金流的贡献替换为2023年的金额，其他利润和调节项保持2024年不变。重算经营现金流、与原值的差额及其对合并净利润的覆盖倍数。并列展示原值与压力值，说明这能说明什么、不能说明什么；不要把这个机械情景写成公司的实际预测。请只依据给定资料，以人民币百万元展示金额，比例与百分点分开。先给简洁结论，再给关键数值、来源文件页码、口径和局限，附支持结论的图、明细CSV、Markdown报告和可复算计算文件。",
+      "materials": [
+        "tsingtao_2024"
+      ],
+      "continuationOf": "H1",
+      "phase": 3,
+      "projectId": "8513b99f-9168-4156-a92f-8df20d84d51b"
+    }
+  ],
+  "evaluationLimits": {
+    "max_model_calls": 1000,
+    "max_input_tokens": 50000000,
+    "max_output_tokens": 2000000,
+    "max_total_tokens": 52000000,
+    "max_wall_seconds": 43200
+  },
+  "phases": {
+    "1": {
+      "name": "A",
+      "blocks": [
+        [
+          "D1",
+          "D2",
+          "D3"
+        ]
+      ],
+      "referenceFiles": [
+        "benchmark/blind-eval/reference-development.json",
+        "benchmark/blind-eval/reference-notes.md"
+      ]
+    },
+    "2": {
+      "name": "B",
+      "blocks": [
+        [
+          "X1",
+          "X3",
+          "X4",
+          "X5",
+          "X6"
+        ]
+      ],
+      "referenceFiles": [
+        "benchmark/blind-eval/reference-phase1.json",
+        "benchmark/blind-eval/selectors-phase1.json",
+        "benchmark/blind-eval/reference-stage-b-additions.json",
+        "benchmark/blind-eval/selectors-stage-b-additions.json"
+      ]
+    },
+    "3": {
+      "name": "C",
+      "blocks": [
+        [
+          "X7"
+        ],
+        [
+          "H1",
+          "H2"
+        ]
+      ],
+      "referenceFiles": [
+        "benchmark/blind-eval/reference-stage-c.json",
+        "benchmark/blind-eval/selectors-stage-c.json"
+      ]
+    }
+  },
+  "referenceFiles": [
+    "benchmark/blind-eval/rubric.md",
+    "benchmark/blind-eval/metrics.py",
+    "benchmark/blind-eval/blind.py",
+    "benchmark/blind-eval/replay.py",
+    "benchmark/blind-eval/make-judge-reference.py",
+    "benchmark/blind-eval/runner-f1.mjs",
+    "benchmark/blind-eval/study-f1.mjs",
+    "benchmark/blind-eval/snapshot-f1.py",
+    "benchmark/blind-eval/a5-adapter.py",
+    "benchmark/blind-eval/selectors-f1.py",
+    "benchmark/blind-eval/F1_EXECUTION.md",
+    "scripts/collect-pi-analysis.mjs",
+    "scripts/scan-delivery-consistency.py",
+    "benchmark/blind-eval/F1_STAGE_ABC.md"
+  ],
+  "preparationLedgers": [
+    "data/evaluation/blind-eval-ingestion-20261007/preparation.json",
+    "data/evaluation/blind-eval-tsingtao-resume-20261008/preparation.json"
+  ],
+  "failurePolicy": "No automatic paid retry. Terminal failures retained, descendants without delivered parent blocked; independent chains proceed. Uncertain POST stops for read-only reconciliation. Input drift stops phase; all usage retained, unknown stays unknown.",
+  "status": "stage_A_authorized_B_C_wait_materials",
+  "excluded": [
+    {
+      "id": "X2",
+      "status": "未执行",
+      "reason": "美的未入库；本轮不做"
+    }
+  ],
+  "executionConcurrency": "A analysis concurrent with separate-project Qingdao/Yili ingestion; disclose shared infrastructure load."
+}

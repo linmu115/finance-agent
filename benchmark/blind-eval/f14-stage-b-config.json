@@ -1,0 +1,140 @@
+{
+  "schema": "f1-approved-20261008",
+  "model": "gpt-6-luna",
+  "provider": "cpa-local",
+  "repeats": 2,
+  "tasks": [
+    {
+      "id": "X1",
+      "split": "extension",
+      "type": "cross_period",
+      "prompt": "请只用伊利2024年年报及其中的2023年比较数据，分析这一年的增长和股东盈利表现。比较营业收入、归母净利润、扣非归母净利润及其增速，计算两年的归母净利率和扣非归母净利率，解释为什么扣非利润与归母利润的变化幅度不同。用2023年末和2024年末的平均归母净资产计算2024年的ROE，并与年报披露的加权平均ROE区分；说明这些指标对盈利表现的判断有什么启示，主要原因须有原文支持。请只依据给定资料，以人民币百万元展示金额，比例与百分点分开。先给简洁结论，再给关键数值、来源文件页码、口径和局限，附支持结论的图、明细CSV、Markdown报告和可复算计算文件。",
+      "materials": [
+        "yili_2024"
+      ],
+      "phase": 1,
+      "projectId": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "scheduleIndex": 3
+    },
+    {
+      "id": "X3",
+      "split": "extension",
+      "type": "earnings_cash_quality",
+      "prompt": "伊利2024年净利润下降而经营现金流上升，这是否意味着盈利质量改善？请从合并净利润出发，用年报现金流量表补充资料完成到经营现金流的调节，并按同比变化解释现金流改善的主要贡献。区分减值等非现金项目、营运资金释放、投资收益以及持续经营因素；归母和扣非归母数据另列，不把它们直接代入合并现金桥。请只依据给定资料，以人民币百万元展示金额，比例与百分点分开。先给简洁结论，再给关键数值、来源文件页码、口径和局限，附支持结论的图、明细CSV、Markdown报告和可复算计算文件。",
+      "materials": [
+        "yili_2024"
+      ],
+      "phase": 1,
+      "projectId": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "scheduleIndex": 4
+    },
+    {
+      "id": "X4",
+      "split": "extension",
+      "type": "research_audit",
+      "prompt": "站在2025年7月16日，只看国信证券这份伊利深度报告。请核对2025—2027年收入、归母净利润、EPS、增速、PE与目标价是否自洽，并核对正文与不同表格中的价格及估值区间。将可以由披露精度解释的差异、确切不一致和资料不足分开；列出报告投资逻辑及风险。不要用后续实际结果评判预测，也不要为了凑目标价反推未披露参数。请只依据给定资料，以人民币百万元展示金额，比例与百分点分开。先给简洁结论，再给关键数值、来源文件页码、口径和局限，附支持结论的图、明细CSV、Markdown报告和可复算计算文件。",
+      "materials": [
+        "guosen_yili_20250716"
+      ],
+      "phase": 1,
+      "projectId": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "scheduleIndex": 5
+    },
+    {
+      "id": "X5",
+      "split": "extension",
+      "type": "expectations",
+      "prompt": "我想复盘伊利 2024 年的业绩与年末预期有多大差距。请以 2024 年 12 月 31 日为信息截止日，从给定研报中找出各机构当时对 2024 全年收入、归母净利润和 EPS 的最近预测，再与 2024 年报实际值比较，说明差额、偏离比例及方向。把光大两份报告的预测变化单独列出来，解释能从原文支持的调整原因；同一机构不要重复计入年末预期。材料里还有一份国信后续报告，请说明它能用于哪些比较、不能用于哪些比较。遇到日期、收入口径、利润归属或 EPS 股本口径不一致的情况，先说明可比范围，不强行补数，也不要把这几份报告说成整个市场的一致预期。先给简洁结论，再给关键数值、来源文件页码和局限，附支持结论的图、明细 CSV、Markdown 报告和可复算计算文件；金额以人民币百万元展示，EPS 用元/股，比例与百分点分开。",
+      "materials": [
+        "yili_2024",
+        "everbright_20240512",
+        "huatai_20241030",
+        "everbright_20241104",
+        "guosen_yili_20250716"
+      ],
+      "phase": 1,
+      "projectId": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "scheduleIndex": 6
+    },
+    {
+      "id": "X6",
+      "split": "extension",
+      "type": "quarter_algebra",
+      "prompt": "我想看伊利2024年第四季度到底发生了什么，不想把前三季度累计数当成单季。请结合2024年年报和三季报，先识别报表口径，用全年减前三季度推导2024和2023第四季度的营业收入、归母净利润、经营现金流，算2024年第四季度的同比和相对第三季度的环比，并用年报分季度数据核对。另列2024年第四季度扣非归母净利润及环比。解释单季利润与现金表现给全年判断带来的变化，哪些原因有报告支持、哪些只能作为推论；说明哪些指标不能简单相减。请用人民币百万元展示金额，比例与百分点分开；先给结论，再给数据、原文页码和局限，清楚区分事实、推论和观点。交付清晰图表、Markdown/PDF报告、Excel/CSV底稿及可复算计算文件；估值或投资判断如有，说明假设、风险和适用范围。",
+      "materials": [
+        "yili_2024",
+        "yili_q3_2024"
+      ],
+      "phase": 1,
+      "projectId": "374beac2-a970-4972-b210-e91018bbd6e6",
+      "scheduleIndex": 7
+    }
+  ],
+  "evaluationLimits": {
+    "max_model_calls": 1000,
+    "max_input_tokens": 50000000,
+    "max_output_tokens": 2000000,
+    "max_total_tokens": 52000000,
+    "max_wall_seconds": 43200
+  },
+  "phases": {
+    "1": {
+      "name": "B-F1.4",
+      "blocks": [
+        [
+          "X1",
+          "X3",
+          "X4",
+          "X5",
+          "X6"
+        ]
+      ],
+      "referenceFiles": [
+        "benchmark/blind-eval/reference-phase1.json",
+        "benchmark/blind-eval/selectors-phase1.json",
+        "benchmark/blind-eval/reference-stage-b-additions.json",
+        "benchmark/blind-eval/selectors-stage-b-additions.json"
+      ]
+    }
+  },
+  "referenceFiles": [
+    "benchmark/blind-eval/rubric.md",
+    "benchmark/blind-eval/metrics.py",
+    "benchmark/blind-eval/blind.py",
+    "benchmark/blind-eval/replay.py",
+    "benchmark/blind-eval/make-judge-reference.py",
+    "benchmark/blind-eval/runner-f14.mjs",
+    "benchmark/blind-eval/study-f14.mjs",
+    "benchmark/blind-eval/snapshot-f14.py",
+    "benchmark/blind-eval/a5-adapter.py",
+    "benchmark/blind-eval/selectors-f1.py",
+    "scripts/collect-pi-analysis.mjs",
+    "scripts/scan-delivery-consistency.py",
+    "benchmark/blind-eval/blind-structure-preserving.py",
+    "benchmark/blind-eval/F14_STAGE_B_PREPARATION.md"
+  ],
+  "preparationLedgers": [
+    "data/evaluation/blind-eval-ingestion-20261007/preparation.json",
+    "data/evaluation/blind-eval-broker-resume-20261008/preparation.json",
+    "data/evaluation/blind-eval-F14-B-20261008/preparation-evidence/summary.json"
+  ],
+  "failurePolicy": "No automatic paid retry. Terminal failures retained, descendants without delivered parent blocked; independent chains proceed. Uncertain POST stops for read-only reconciliation. Input drift stops phase; all usage retained, unknown stays unknown. Any cancellation stops the entire batch; no subsequent independent chain may be posted.",
+  "status": "stage_B_authorized_F1.4_material_pause_confirmed",
+  "excluded": [
+    {
+      "id": "X2",
+      "status": "未执行",
+      "reason": "美的未入库；本轮不做"
+    }
+  ],
+  "executionConcurrency": "No material writes to project 374beac2 during B. Other-project load disclosed.",
+  "freezeVersion": "F1.4",
+  "versionSplit": {
+    "development": "F1 completed; original failures retained",
+    "heldout": "F1.2 completed; F1.1 aborted batch separately retained",
+    "stage_B": "F1.4 only; isolated extension report; no cross-version pooling",
+    "X7": "await t298 and separate coordinator notice; not included"
+  },
+  "analysisOnly": true,
+  "preparationUsageNote": "N3 zero-model production validation is archived separately; historical annual and Q3 ingestion usage remains in N3 preparation ledgers, not participant analysis; total preparation bill unknown."
+}

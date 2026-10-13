@@ -1,0 +1,1168 @@
+{
+  "version": "stage-c-X7-v1-20261008",
+  "reference": "reference-stage-c-X7.json",
+  "binding_policy": "One gold key -> all still-delivered occurrences. Locate cells without changing expected values. Every file/row/path and unit must have submitted evidence. Ambiguous or unbound values remain unknown; no guessed unit or numeric-only semantic pass. Prose/figures/PDF-only answers remain independent-review scope.",
+  "checks": [
+    {
+      "key": "X7.revenue_2024",
+      "task": "X7",
+      "expected": {
+        "value": "285981.22520393",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.revenue_2023_adjusted",
+      "task": "X7",
+      "expected": {
+        "value": "274204.52084797",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.revenue_2023_original",
+      "task": "X7",
+      "expected": {
+        "value": "261427.7830501",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.revenue_adjustment_2023",
+      "task": "X7",
+      "expected": {
+        "value": "12776.73779787",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "adjusted - original",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.revenue_growth_using_adjusted_percent",
+      "task": "X7",
+      "expected": {
+        "value": "4.294861484975106561283741400",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.revenue_growth_using_original_percent",
+      "task": "X7",
+      "expected": {
+        "value": "9.392055376579688263788541600",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.revenue_growth_difference_pp",
+      "task": "X7",
+      "expected": {
+        "value": "5.097193891604581702504800200",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_profit_2024",
+      "task": "X7",
+      "expected": {
+        "value": "18741.12012293",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_profit_2023_adjusted",
+      "task": "X7",
+      "expected": {
+        "value": "16596.61504587",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_profit_2023_original",
+      "task": "X7",
+      "expected": {
+        "value": "16596.61504587",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_profit_adjustment_2023",
+      "task": "X7",
+      "expected": {
+        "value": "0.00",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "adjusted - original",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_profit_growth_using_adjusted_percent",
+      "task": "X7",
+      "expected": {
+        "value": "12.92134011142019797947687040",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_profit_growth_using_original_percent",
+      "task": "X7",
+      "expected": {
+        "value": "12.92134011142019797947687040",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_profit_growth_difference_pp",
+      "task": "X7",
+      "expected": {
+        "value": "0E-26",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.adjusted_parent_profit_2024",
+      "task": "X7",
+      "expected": {
+        "value": "17804.73280963",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.adjusted_parent_profit_2023_adjusted",
+      "task": "X7",
+      "expected": {
+        "value": "15824.16416143",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.adjusted_parent_profit_2023_original",
+      "task": "X7",
+      "expected": {
+        "value": "15824.16416143",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.adjusted_parent_profit_adjustment_2023",
+      "task": "X7",
+      "expected": {
+        "value": "0.00",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "adjusted - original",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.adjusted_parent_profit_growth_using_adjusted_percent",
+      "task": "X7",
+      "expected": {
+        "value": "12.51610276533569360073991790",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "supporting_if_present",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.adjusted_parent_profit_growth_using_original_percent",
+      "task": "X7",
+      "expected": {
+        "value": "12.51610276533569360073991790",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "supporting_if_present",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.adjusted_parent_profit_growth_difference_pp",
+      "task": "X7",
+      "expected": {
+        "value": "0E-26",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "supporting_if_present",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.cfo_2024",
+      "task": "X7",
+      "expected": {
+        "value": "26543.08191196",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.cfo_2023_adjusted",
+      "task": "X7",
+      "expected": {
+        "value": "26535.78056836",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.cfo_2023_original",
+      "task": "X7",
+      "expected": {
+        "value": "25262.3762283",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.cfo_adjustment_2023",
+      "task": "X7",
+      "expected": {
+        "value": "1273.40434006",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "adjusted - original",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.cfo_growth_using_adjusted_percent",
+      "task": "X7",
+      "expected": {
+        "value": "0.027515088848397299876804500",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.cfo_growth_using_original_percent",
+      "task": "X7",
+      "expected": {
+        "value": "5.069616856649052790086777600",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.cfo_growth_difference_pp",
+      "task": "X7",
+      "expected": {
+        "value": "5.042101767800655490209973100",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_equity_2024",
+      "task": "X7",
+      "expected": {
+        "value": "111366.11899917",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_equity_2023_adjusted",
+      "task": "X7",
+      "expected": {
+        "value": "101265.98477117",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_equity_2023_original",
+      "task": "X7",
+      "expected": {
+        "value": "103514.15353504",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_equity_adjustment_2023",
+      "task": "X7",
+      "expected": {
+        "value": "-2248.16876387",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "adjusted - original",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_equity_growth_using_adjusted_percent",
+      "task": "X7",
+      "expected": {
+        "value": "9.973866595800355796835387700",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "supporting_if_present",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_equity_growth_using_original_percent",
+      "task": "X7",
+      "expected": {
+        "value": "7.585402764726347176514260900",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "supporting_if_present",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_equity_growth_difference_pp",
+      "task": "X7",
+      "expected": {
+        "value": "-2.388463831074008620321126800",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "supporting_if_present",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.assets_2024",
+      "task": "X7",
+      "expected": {
+        "value": "290113.82282461",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.assets_2023_adjusted",
+      "task": "X7",
+      "expected": {
+        "value": "261067.68489749",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.assets_2023_original",
+      "task": "X7",
+      "expected": {
+        "value": "253379.85997797",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.assets_adjustment_2023",
+      "task": "X7",
+      "expected": {
+        "value": "7687.82491952",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "adjusted - original",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.assets_growth_using_adjusted_percent",
+      "task": "X7",
+      "expected": {
+        "value": "11.12590320725644898477518800",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "supporting_if_present",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.assets_growth_using_original_percent",
+      "task": "X7",
+      "expected": {
+        "value": "14.49758589725079892820382450",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "supporting_if_present",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.assets_growth_difference_pp",
+      "task": "X7",
+      "expected": {
+        "value": "3.37168268999434994342863650",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "supporting_if_present",
+      "formula": "((2024 / comparative) - 1) * 100; difference = original-basis growth - adjusted-basis growth",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_margin_2024",
+      "task": "X7",
+      "expected": {
+        "value": "6.553269400662899360343725129",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "parent profit / revenue * 100",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_margin_2023_adjusted",
+      "task": "X7",
+      "expected": {
+        "value": "6.052640924571710470676875320",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "parent profit / revenue * 100",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_margin_2023_original",
+      "task": "X7",
+      "expected": {
+        "value": "6.348451129499662239082167184",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "parent profit / revenue * 100",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_margin_2023_adjustment_pp",
+      "task": "X7",
+      "expected": {
+        "value": "-0.295810204927951768405291864",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "difference of percentage margins",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_margin_2024_change_adjusted_pp",
+      "task": "X7",
+      "expected": {
+        "value": "0.500628476091188889666849809",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "difference of percentage margins",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.parent_margin_2024_change_original_pp",
+      "task": "X7",
+      "expected": {
+        "value": "0.204818271163237121261557945",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "difference of percentage margins",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.warranty_cost_adjustment_CNY",
+      "task": "X7",
+      "expected": {
+        "value": "8328.08751115",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          121,
+          122,
+          163
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Hold adjusted revenue and consolidation scope fixed; reverse only the disclosed cost/selling-expense reclassification.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.warranty_sales_expense_adjustment_CNY",
+      "task": "X7",
+      "expected": {
+        "value": "-8328.08751115",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          121,
+          122,
+          163
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Hold adjusted revenue and consolidation scope fixed; reverse only the disclosed cost/selling-expense reclassification.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.warranty_gross_margin_adjustment_pp",
+      "task": "X7",
+      "expected": {
+        "value": "-3.037180964557264254740865066",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          121,
+          122,
+          163
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Hold adjusted revenue and consolidation scope fixed; reverse only the disclosed cost/selling-expense reclassification.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.warranty_sales_expense_ratio_adjustment_pp",
+      "task": "X7",
+      "expected": {
+        "value": "-3.037180964557264254740865066",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          121,
+          122,
+          163
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Hold adjusted revenue and consolidation scope fixed; reverse only the disclosed cost/selling-expense reclassification.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.warranty_reported_adjusted_gross_margin_percent",
+      "task": "X7",
+      "expected": {
+        "value": "27.48534189678293644388128023",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          121,
+          122,
+          163
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Hold adjusted revenue and consolidation scope fixed; reverse only the disclosed cost/selling-expense reclassification.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.warranty_same_scope_before_this_policy_gross_margin_percent",
+      "task": "X7",
+      "expected": {
+        "value": "30.52252286134020069862214530",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          121,
+          122,
+          163
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Hold adjusted revenue and consolidation scope fixed; reverse only the disclosed cost/selling-expense reclassification.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.warranty_reported_adjusted_sales_ratio_percent",
+      "task": "X7",
+      "expected": {
+        "value": "11.93515545131183917738153891",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          121,
+          122,
+          163
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Hold adjusted revenue and consolidation scope fixed; reverse only the disclosed cost/selling-expense reclassification.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.warranty_same_scope_before_this_policy_sales_ratio_percent",
+      "task": "X7",
+      "expected": {
+        "value": "14.97233641586910343212240397",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          121,
+          122,
+          163
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Hold adjusted revenue and consolidation scope fixed; reverse only the disclosed cost/selling-expense reclassification.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.warranty_operating_profit_effect_CNY",
+      "task": "X7",
+      "expected": {
+        "value": "0",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          121,
+          122,
+          163
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Hold adjusted revenue and consolidation scope fixed; reverse only the disclosed cost/selling-expense reclassification.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.weighted_ROE_reported_percent_2024",
+      "task": "X7",
+      "expected": {
+        "value": "17.70",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          11
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Disclosed weighted ROE, or difference in percentage points; not average-equity ROE.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.weighted_ROE_2023_adjusted",
+      "task": "X7",
+      "expected": {
+        "value": "17.24",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          11
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Disclosed weighted ROE, or difference in percentage points; not average-equity ROE.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.weighted_ROE_2023_original",
+      "task": "X7",
+      "expected": {
+        "value": "16.85",
+        "unit": "%",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          11
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Disclosed weighted ROE, or difference in percentage points; not average-equity ROE.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.weighted_ROE_2023_adjustment_pp",
+      "task": "X7",
+      "expected": {
+        "value": "0.39",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          11
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Disclosed weighted ROE, or difference in percentage points; not average-equity ROE.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.weighted_ROE_2024_change_adjusted_pp",
+      "task": "X7",
+      "expected": {
+        "value": "0.46",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          11
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Disclosed weighted ROE, or difference in percentage points; not average-equity ROE.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.weighted_ROE_2024_change_original_pp",
+      "task": "X7",
+      "expected": {
+        "value": "0.85",
+        "unit": "pp",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          11
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "Disclosed weighted ROE, or difference in percentage points; not average-equity ROE.",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.net_parent_contribution_2024",
+      "task": "X7",
+      "expected": {
+        "value": "936.3873133",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10,
+          12
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.net_parent_contribution_2023",
+      "task": "X7",
+      "expected": {
+        "value": "772.45088444",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10,
+          12
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.government_grants_2024",
+      "task": "X7",
+      "expected": {
+        "value": "1324.18147811",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10,
+          12
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X7.government_grants_2023",
+      "task": "X7",
+      "expected": {
+        "value": "1093.58440607",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          10,
+          12
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    }
+  ]
+}

@@ -1,0 +1,303 @@
+{
+  "scope": "第一阶段，仅公开及指定证据；正式结果待填；没有访问held-out私有目录",
+  "entries": [
+    {
+      "claim": "比赛年份、10/18 截止、七项维度、15–25/10–12 页要求",
+      "source": [
+        "submission/编制说明与待填清单.md"
+      ],
+      "basis": "用户本轮要求，尚未独立取得官方原件"
+    },
+    {
+      "claim": "F2.1 / 7e702ff、原版10 / prepared13 / financial32、原版SHA",
+      "source": [
+        "benchmark/blind-eval/V3_PROTOCOL_REVISION_20261009.md",
+        "docs/evidence/f21-20261009/acceptance.json",
+        "server/original-pi.ts"
+      ],
+      "values": {
+        "commit": "7e702ff3f53eba8686254895ad98300445eac759",
+        "tree": "9ac9fd6ca6b8b33988dffef729b3edd010677071",
+        "tool_counts": [
+          10,
+          13,
+          32
+        ],
+        "original_pi_prompt_sha256": "6c71fd727034260afcaa6e29e833ff27000cb7f246b2b0ffc83aa867be20c32f"
+      }
+    },
+    {
+      "claim": "P1.4 持续性至少三个可比期间",
+      "source": [
+        "design/harness-v3-usable-depth-20261008.md"
+      ],
+      "values": {
+        "minimum_periods_for_continuity": 3
+      }
+    },
+    {
+      "claim": "F2.1 历史文本及工作簿误报",
+      "source": [
+        "docs/evidence/f21-20261009/README.md",
+        "docs/evidence/f21-20261009/history-replay.json",
+        "docs/evidence/f21-20261009/xlsx-history-replay.json"
+      ],
+      "values": {
+        "text_files": 70,
+        "text_false_positive_files": 0,
+        "text_notices": 0,
+        "xlsx_workbooks": 2,
+        "xlsx_string_cells": 92,
+        "xlsx_false_positive_cells": 0,
+        "xlsx_notices": 0,
+        "strict_both_review_clear_workbooks": 1,
+        "strict_string_cells": 43
+      }
+    },
+    {
+      "claim": "162 回合计划、54/54/54、12题、6/3次重复、6/3种顺序、并发上限2、0–4评分",
+      "source": [
+        "benchmark/blind-eval/V3_THREE_ARM_PLAN_20261008.md"
+      ],
+      "basis": "计划规模，不是完成分母"
+    },
+    {
+      "claim": "正式协议可靠性80%、MAD≤0.5；经验上下界；正式冻结",
+      "source": [
+        "benchmark/blind-eval/V3_PROTOCOL_REVISION_20261009.md"
+      ],
+      "basis": "仅正式适用，不回溯改判门槛"
+    },
+    {
+      "claim": "F203门槛全量数字",
+      "source": [
+        "data/evaluation/blind-eval-F203-gate-20261009/GATE_REPORT.md"
+      ],
+      "values": {
+        "scheduled": 18,
+        "completed": 17,
+        "material_case_round1": [
+          "3/6",
+          "3/6",
+          "3/5 + 1 missing"
+        ],
+        "material_case_round2": [
+          "3/6",
+          "4/6",
+          "3/5 + 1 missing"
+        ],
+        "known_input_GPF": [
+          1637538,
+          3973147,
+          2138475
+        ],
+        "unknown_GPF": [
+          0,
+          0,
+          1
+        ],
+        "agreement": "17/18",
+        "MAD": 0.32353,
+        "max_gap": 2,
+        "failure_status": 503
+      }
+    },
+    {
+      "claim": "F21门槛全量数字",
+      "source": [
+        "data/evaluation/blind-eval-F21-gate-20261009/GATE_REPORT.md"
+      ],
+      "values": {
+        "scheduled": 18,
+        "completed": 18,
+        "material_case_round1": [
+          "3/6",
+          "3/6",
+          "1/6"
+        ],
+        "material_case_round2": [
+          "4/6",
+          "4/6",
+          "2/6"
+        ],
+        "R3_round1_GPF": [
+          2.5,
+          2.333,
+          3.167
+        ],
+        "R3_round2_GPF": [
+          2.5,
+          2.5,
+          2.833
+        ],
+        "R4_round2_FP": [
+          2.5,
+          2.75
+        ],
+        "known_input_GPF": [
+          2346651,
+          3823832,
+          2913088
+        ],
+        "unknown_GPF": [
+          0,
+          0,
+          1
+        ],
+        "agreement": "15/18",
+        "MAD": 0.38235,
+        "max_gap": 2,
+        "F_P_input_pct": 76.18,
+        "F_G_input_pct": 124.14
+      },
+      "derivations": [
+        "2913088 / 3823832 × 100 = 76.18%（四舍五入）",
+        "2913088 / 2346651 × 100 = 124.14%（四舍五入）"
+      ]
+    },
+    {
+      "claim": "F21 B/C实际触发机会和提示噪声",
+      "source": [
+        "data/evaluation/blind-eval-F21-gate-20261009/ABC_DESCRIPTIVE_REPORT.md"
+      ],
+      "values": {
+        "X3_zero_baseline_charts": 7,
+        "financial_C_unique_positions": 40,
+        "blocking_records": 2,
+        "final_notices": 38,
+        "conditional_metadata_notices": 36,
+        "qualitative_relation_notices": 2
+      }
+    },
+    {
+      "claim": "历史v0.2样本规模，仅用于计划书背景",
+      "source": [
+        "docs/evidence/v0.2.0/acceptance-summary.json"
+      ],
+      "values": {
+        "financial_pages": 57,
+        "financial_tables": 50,
+        "financial_facts": 612,
+        "broker_pages": 38,
+        "broker_numeric_records": 998,
+        "broker_claims": 78
+      }
+    },
+    {
+      "claim": "第三方组件声明版本",
+      "source": [
+        "package.json",
+        "package-lock.json",
+        "service/requirements.txt",
+        "sandbox/requirements.lock",
+        "THIRD_PARTY_NOTICES.md"
+      ],
+      "basis": "具体安装与许可证以冻结依赖和发布核对为准，不推断全部许可证"
+    },
+    {
+      "claim": "本次PDF实际页数",
+      "source": [
+        "submission/document-manifest.json"
+      ],
+      "basis": "PDF实际解析，后续结果填充时重新排版测量"
+    }
+  ],
+  "sources_at_compilation": {
+    "THIRD_PARTY_NOTICES.md": {
+      "bytes": 2499,
+      "sha256": "b1ccf07a6c224278b4d18b56af0ea7b22fd78fcbb810d31dc737f2706ebcf17c"
+    },
+    "benchmark/blind-eval/V3_PROTOCOL_REVISION_20261009.md": {
+      "bytes": 5626,
+      "sha256": "a83e0edee772c6d667fa08cd818790b7e093e52dee40cd9b96514b5c257a681c"
+    },
+    "benchmark/blind-eval/V3_THREE_ARM_PLAN_20261008.md": {
+      "bytes": 14631,
+      "sha256": "4317eb9a1bb46d34c2a873264bce157da3d76d2442531566dd2c349902aa6c7e"
+    },
+    "data/evaluation/blind-eval-F203-gate-20261009/GATE_REPORT.md": {
+      "bytes": 7756,
+      "sha256": "0cdefb8ad72a0da174b92256ef324a62cc9c38b055552a6e59e9e157f6a9d7e7"
+    },
+    "data/evaluation/blind-eval-F21-gate-20261009/ABC_DESCRIPTIVE_REPORT.md": {
+      "bytes": 3880,
+      "sha256": "de1f157f8d05e86b64a3c9702a0fb18a91b13995833d8382bd6cf021e89c6daa"
+    },
+    "data/evaluation/blind-eval-F21-gate-20261009/GATE_REPORT.md": {
+      "bytes": 7369,
+      "sha256": "93aaf46d110254c65e38e7806b697272dea56b52d5857655448e26dce8f742f6"
+    },
+    "design/f20-p04-disabled-20261009.md": {
+      "bytes": 3514,
+      "sha256": "1476d2e0ef89f4c34d4e302649ace5c9e45bad6c9abe91f14bfcd24a5ab38c42"
+    },
+    "design/f203-gate-diagnosis-20261009.md": {
+      "bytes": 6546,
+      "sha256": "584e128d042f58e276edcb840d94f472e777435b9d12e0949f290f2648adf455"
+    },
+    "design/followup-roadmap-20261009.md": {
+      "bytes": 4484,
+      "sha256": "063e9d5e809e31f290f0f9bffa18abd8ae3adc09caba7eac216377ad17eff85d"
+    },
+    "design/harness-v3-usable-depth-20261008.md": {
+      "bytes": 14330,
+      "sha256": "59811c5ab06ed1dccb2e7d6a42505764417024fa66327414a76d9cfa533254c7"
+    },
+    "docs/evidence/f21-20261009/README.md": {
+      "bytes": 4165,
+      "sha256": "5a4fbda5bd44de6e7071019913f7ae8be077ac57ada7ea65bb599a7bbe822076"
+    },
+    "docs/evidence/f21-20261009/acceptance.json": {
+      "bytes": 3904,
+      "sha256": "d1a1f2f2fa81b6c914f6b8d332f9e9bcdf28f9c1274108bac4b81af8e43e2251"
+    },
+    "docs/evidence/f21-20261009/history-replay.json": {
+      "bytes": 17671,
+      "sha256": "558f36ecf28d2b3d40f2e5f7e318f21c24649d381dc7b8a3406b74d2826fe3c7"
+    },
+    "docs/evidence/f21-20261009/xlsx-history-replay.json": {
+      "bytes": 6951,
+      "sha256": "887d5a8bba649b382c6a253a3e8af6e4a43580f7cb14c83a83091752905d99e3"
+    },
+    "docs/evidence/v0.2.0/acceptance-summary.json": {
+      "bytes": 43287,
+      "sha256": "5167ebad79dbf54b9c857c12aa1f3c7b4454bcf08932fe7886cf4ace6c3b34ac"
+    },
+    "package-lock.json": {
+      "bytes": 309058,
+      "sha256": "e13fabe38d091fc5ae87f23dc365669d9880cc7bb9e68291444648ceecef1056"
+    },
+    "package.json": {
+      "bytes": 2328,
+      "sha256": "a6ef5e6c1e118a05f2f60ad0a4c1ab7109a1aaeff1c90202422bc6cce41007e9"
+    },
+    "paper/v0.3.0/finance-agent-technical-paper.md": {
+      "bytes": 57384,
+      "sha256": "f572e2961289923b6ea232d4df7f39ffc37cd84dc654ddd0baef44caafc46421"
+    },
+    "sandbox/requirements.lock": {
+      "bytes": 383,
+      "sha256": "2bedf155e8d0eb3752feb2a38cb8458656dc1a93dc8054a59d2cddcd88ce890c"
+    },
+    "server/original-pi.ts": {
+      "bytes": 1179,
+      "sha256": "149a1c7b39b0fc8f9b738f8b5d41bbe57babd4a3f138dab94adfc25f709d0d4f"
+    },
+    "service/requirements.txt": {
+      "bytes": 175,
+      "sha256": "865373e41b0a3260d07ebb399d30b3d8586a348b5cbf576bb751afbd96a27b64"
+    },
+    "submission/document-manifest.json": {
+      "bytes": 6103,
+      "sha256": "ebd275bf4c530d8f62bd2a4d04606c6e0a054929681fb921b7dee613950a72de"
+    },
+    "submission/plan/项目计划书-草稿.md": {
+      "bytes": 18200,
+      "sha256": "674031c45b7193521bbcff4c14f5cf46b1c2f021bf4a41b86fa13e41eb60ee7f"
+    },
+    "submission/编制说明与待填清单.md": {
+      "bytes": 6024,
+      "sha256": "4a5048911b8810e7842c7ad8145558e43987b4cdcdc277e7e9e860dacf2d4c44"
+    }
+  }
+}

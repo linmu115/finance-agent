@@ -1,0 +1,384 @@
+{
+  "version": "stage-c-X7-v1-20261008",
+  "status": "frozen_before_any_X7_answer",
+  "rubric_version": "analyst-requirements-v2-20261008",
+  "task_prompt": "海尔2024年年报里2023年数据有调整前、调整后两列。我想知道，选错列会把增长和盈利判断带偏多少。请只用这份年报，找出重述和会计政策变化的原因，列出主要指标的调整额，分别按两列计算2024年收入、归母利润、经营现金流的增速，以及归母净利率和披露ROE的变化。再单独量化质保费用重分类对毛利率、销售费用率和营业利润的影响；不能把其他并表变化混进这项影响。结合非经常性损益表，说明连续出现的项目对盈利判断有什么启示，不要直接改判其性质。最后指出现有披露能解释哪些差异、哪些还不能精确拆开。请用人民币百万元展示金额，比例与百分点分开；先给结论，再给数据、原文页码和局限，清楚区分事实、推论和观点。交付清晰图表、Markdown/PDF报告、Excel/CSV底稿及可复算计算文件；估值或投资判断如有，说明假设、风险和适用范围。",
+  "tasks": {
+    "X7": {
+      "status": "frozen_before_any_X7_answer",
+      "values": {
+        "revenue": {
+          "values_CNY_2024_2023adjusted_2023original": [
+            "285981225203.93",
+            "274204520847.97",
+            "261427783050.10"
+          ],
+          "adjustment_2023_CNY": "12776737797.87",
+          "growth_using_adjusted_percent": "4.294861484975106561283741400",
+          "growth_using_original_percent": "9.392055376579688263788541600",
+          "growth_difference_pp": "5.097193891604581702504800200",
+          "pdf_page": 10
+        },
+        "parent_profit": {
+          "values_CNY_2024_2023adjusted_2023original": [
+            "18741120122.93",
+            "16596615045.87",
+            "16596615045.87"
+          ],
+          "adjustment_2023_CNY": "0.00",
+          "growth_using_adjusted_percent": "12.92134011142019797947687040",
+          "growth_using_original_percent": "12.92134011142019797947687040",
+          "growth_difference_pp": "0E-26",
+          "pdf_page": 10
+        },
+        "adjusted_parent_profit": {
+          "values_CNY_2024_2023adjusted_2023original": [
+            "17804732809.63",
+            "15824164161.43",
+            "15824164161.43"
+          ],
+          "adjustment_2023_CNY": "0.00",
+          "growth_using_adjusted_percent": "12.51610276533569360073991790",
+          "growth_using_original_percent": "12.51610276533569360073991790",
+          "growth_difference_pp": "0E-26",
+          "pdf_page": 10
+        },
+        "cfo": {
+          "values_CNY_2024_2023adjusted_2023original": [
+            "26543081911.96",
+            "26535780568.36",
+            "25262376228.30"
+          ],
+          "adjustment_2023_CNY": "1273404340.06",
+          "growth_using_adjusted_percent": "0.027515088848397299876804500",
+          "growth_using_original_percent": "5.069616856649052790086777600",
+          "growth_difference_pp": "5.042101767800655490209973100",
+          "pdf_page": 10
+        },
+        "parent_equity": {
+          "values_CNY_2024_2023adjusted_2023original": [
+            "111366118999.17",
+            "101265984771.17",
+            "103514153535.04"
+          ],
+          "adjustment_2023_CNY": "-2248168763.87",
+          "growth_using_adjusted_percent": "9.973866595800355796835387700",
+          "growth_using_original_percent": "7.585402764726347176514260900",
+          "growth_difference_pp": "-2.388463831074008620321126800",
+          "pdf_page": 10
+        },
+        "assets": {
+          "values_CNY_2024_2023adjusted_2023original": [
+            "290113822824.61",
+            "261067684897.49",
+            "253379859977.97"
+          ],
+          "adjustment_2023_CNY": "7687824919.52",
+          "growth_using_adjusted_percent": "11.12590320725644898477518800",
+          "growth_using_original_percent": "14.49758589725079892820382450",
+          "growth_difference_pp": "3.37168268999434994342863650",
+          "pdf_page": 10
+        },
+        "warranty_reclassification_2023": {
+          "cost_adjustment_CNY": "8328087511.15",
+          "sales_expense_adjustment_CNY": "-8328087511.15",
+          "gross_margin_adjustment_pp": "-3.037180964557264254740865066",
+          "sales_expense_ratio_adjustment_pp": "-3.037180964557264254740865066",
+          "reported_adjusted_gross_margin_percent": "27.48534189678293644388128023",
+          "same_scope_before_this_policy_gross_margin_percent": "30.52252286134020069862214530",
+          "reported_adjusted_sales_ratio_percent": "11.93515545131183917738153891",
+          "same_scope_before_this_policy_sales_ratio_percent": "14.97233641586910343212240397",
+          "operating_profit_effect_CNY": "0",
+          "note": "只隔离此项营业成本/销售费用重分类，收入/合并范围及其他项不变；逆推旧列报不是原2023已发布全口径。",
+          "pdf_pages": [
+            94,
+            121,
+            122,
+            163
+          ],
+          "source_inputs_CNY": {
+            "adjusted_revenue_2023": "274204520847.97",
+            "adjusted_cost_2023": "198838470796.47",
+            "adjusted_sales_expense_2023": "32726735817.73"
+          }
+        },
+        "weighted_parent_ROE": {
+          "reported_percent_2024": "17.70",
+          "2023_adjusted": "17.24",
+          "2023_original": "16.85",
+          "2023_adjustment_pp": "0.39",
+          "2024_change_adjusted_pp": "0.46",
+          "2024_change_original_pp": "0.85",
+          "pdf_page": 11
+        },
+        "nonrecurring": {
+          "net_parent_contribution_2024_2023_CNY": [
+            "936387313.30",
+            "772450884.44"
+          ],
+          "government_grants_2024_2023_CNY": [
+            "1324181478.11",
+            "1093584406.07"
+          ],
+          "note": "政府补助连续两期出现是持续性分析线索；不自动重分类为经常性。政府补助为税/少数股东前金额，不等于净归母非经常贡献。",
+          "pdf_page": 12,
+          "component_sign_note": "Page 12 income-tax and minority-interest effects are shown as negative contributions; do not subtract their signed values a second time. Government grants are not the net parent contribution.",
+          "continuity_boundary": "Two disclosed periods support a recurrence observation, not a permanent forecast or a unilateral change to statutory nonrecurring classification."
+        },
+        "parent_margin_percent": {
+          "2024": "6.553269400662899360343725129",
+          "2023_adjusted": "6.052640924571710470676875320",
+          "2023_original": "6.348451129499662239082167184",
+          "2023_adjustment_pp": "-0.295810204927951768405291864",
+          "2024_change_adjusted_pp": "0.500628476091188889666849809",
+          "2024_change_original_pp": "0.204818271163237121261557945"
+        }
+      },
+      "task_requirements": {
+        "R1": {
+          "coverage": "direct",
+          "must_mention": [
+            "CAS版2024年报p10/11的2023调整后/前不可交换；p12季度重述说明、p94/163政策、p213/214并表说明分开。"
+          ],
+          "scope": ""
+        },
+        "R2": {
+          "coverage": "direct",
+          "must_mention": [
+            "调整额=调整后−调整前；选错基数的增速影响用百分点。",
+            "净利率按同一收入/利润基础；ROE用报告已披露数比较，不拿简单平均ROE冒充加权ROE。"
+          ],
+          "scope": ""
+        },
+        "R3": {
+          "coverage": "direct",
+          "must_mention": [
+            "报告变化要区分业务表现、并表范围和列报规则；没有逐项披露的总调整原因保留未分解部分。"
+          ],
+          "scope": ""
+        },
+        "R4": {
+          "coverage": "direct",
+          "must_mention": [
+            "物流同一控制合并重述与质保费用由销售费用重分类到成本是不同事项。",
+            "隔离质保重分类时毛利率与销售费用率同降约3.03718个百分点，营业利润不变；不能用这项解释收入/CFO/权益调整。",
+            "准经常性观察以两期政府补助为线索，保留法定非经常归类、税和少数股东影响，不自动改判。"
+          ],
+          "scope": ""
+        },
+        "R5": {
+          "coverage": "supporting",
+          "must_mention": [
+            "先排除比较基准/列报变化造成的伪异常，调整后CFO增长接近0而非原列口径的5%左右。"
+          ],
+          "scope": "重点口径造成的表观信号，不等同完整异常雷达。"
+        },
+        "C": {
+          "coverage": "direct",
+          "must_mention": [
+            "按题面交付图表、Markdown/PDF报告、Excel/CSV及可复算文件；所有单位一致。",
+            "保存来源列、推导公式、输入参数和版本；事实/推论/观点可辨；估值时说明假设风险范围。"
+          ],
+          "scope": ""
+        }
+      },
+      "unresolved": [
+        "合并范围变更与其他因素对各项总调整的逐项拆分并未全部核实；不能用被合并方原收入直接冒充集团抵销后收入增量。",
+        "已读CAS版原文；不扩大为国际准则版对照，不额外入2023年报。"
+      ],
+      "tolerance": "源金额0.01元；百万元/百分比两位采用最后显示位半单位，披露ROE保留两位。",
+      "restatement_evidence": {
+        "quarter_restatement": {
+          "pages": [
+            12
+          ],
+          "fact": "2024年12月物流业务同一控制合并，前三季度财务数据重述。"
+        },
+        "policy_reclassification": {
+          "pages": [
+            94,
+            163
+          ],
+          "fact": "准则解释第18号；保证类质保费用从销售费用转营业成本，追溯调整；本项不改变营业利润。"
+        },
+        "combination": {
+          "pages": [
+            213,
+            214
+          ],
+          "fact": "优瑾（上海）企业管理有限公司，取得45%权益，合并前后均受海尔集团控制；2024年12月，表决权转让。",
+          "comparative_acquiree_revenue_CNY": "18423619653.79",
+          "group_revenue_comparative_adjustment_CNY": "12776737797.87",
+          "boundary": "被合并方收入不等于集团抵销后比较收入增量。两数差额不得无证据全认作内部抵销；CFO、权益、资产与ROE的逐项变化未从披露构成完整定量桥。"
+        },
+        "cross_disclosure_limit": {
+          "pages": [
+            12,
+            123,
+            214
+          ],
+          "fact": "合并利润表下方的被合并方合并前净利润（当期0、上期-2,581,701.76）与并购附注的被合并方净利润不直接相同。范围/抵销未逐项闭合，不能拿附注净利润直接解释归母利润调整。",
+          "grading": "Supporting source conflict only; no extra mandatory numerical bridge beyond original question."
+        }
+      },
+      "delivery_interpretation": "按已批准题面的 Markdown/PDF、Excel/CSV 选择满足，不追加必须同时提交两种格式；图表与可复算文件须按题面检查。"
+    }
+  },
+  "task_requirements": {
+    "X7": {
+      "R1": {
+        "coverage": "direct",
+        "must_mention": [
+          "CAS版2024年报p10/11的2023调整后/前不可交换；p12季度重述说明、p94/163政策、p213/214并表说明分开。"
+        ],
+        "scope": ""
+      },
+      "R2": {
+        "coverage": "direct",
+        "must_mention": [
+          "调整额=调整后−调整前；选错基数的增速影响用百分点。",
+          "净利率按同一收入/利润基础；ROE用报告已披露数比较，不拿简单平均ROE冒充加权ROE。"
+        ],
+        "scope": ""
+      },
+      "R3": {
+        "coverage": "direct",
+        "must_mention": [
+          "报告变化要区分业务表现、并表范围和列报规则；没有逐项披露的总调整原因保留未分解部分。"
+        ],
+        "scope": ""
+      },
+      "R4": {
+        "coverage": "direct",
+        "must_mention": [
+          "物流同一控制合并重述与质保费用由销售费用重分类到成本是不同事项。",
+          "隔离质保重分类时毛利率与销售费用率同降约3.03718个百分点，营业利润不变；不能用这项解释收入/CFO/权益调整。",
+          "准经常性观察以两期政府补助为线索，保留法定非经常归类、税和少数股东影响，不自动改判。"
+        ],
+        "scope": ""
+      },
+      "R5": {
+        "coverage": "supporting",
+        "must_mention": [
+          "先排除比较基准/列报变化造成的伪异常，调整后CFO增长接近0而非原列口径的5%左右。"
+        ],
+        "scope": "重点口径造成的表观信号，不等同完整异常雷达。"
+      },
+      "C": {
+        "coverage": "direct",
+        "must_mention": [
+          "按题面交付图表、Markdown/PDF报告、Excel/CSV及可复算文件；所有单位一致。",
+          "保存来源列、推导公式、输入参数和版本；事实/推论/观点可辨；估值时说明假设风险范围。"
+        ],
+        "scope": ""
+      }
+    }
+  },
+  "sources": {
+    "annual": {
+      "file": "samples/native-pdf/海尔智家2024年年度报告.pdf",
+      "sha256": "cb2830d04860a0c18a491b9998c0928d1b77e740f07824a34f7543d823f7b10b",
+      "document_id": "e7b0d9679ddc4b739f8f35ecb6dc6227",
+      "page_numbering": "1-based physical PDF pages equal printed page numbers",
+      "evidence": [
+        {
+          "page": 10,
+          "image_visually_verified_this_freeze": true,
+          "txt": "source-pages/annual-p10.txt",
+          "txt_sha256": "f984c025175aaa08b28deea202cb6fd932e57f3b56aee801f322f555dda0818c",
+          "png": "source-pages/annual-p10.png",
+          "png_sha256": "5b997b49fafe5621c38ec4116cdc2e4840af0e62d380a21b98f17a6f1f7798de"
+        },
+        {
+          "page": 11,
+          "image_visually_verified_this_freeze": true,
+          "txt": "source-pages/annual-p11.txt",
+          "txt_sha256": "18dfa72e33bf50bf85c11434686f31892800597fcc38e53bf50098ea7a55e09f",
+          "png": "source-pages/annual-p11.png",
+          "png_sha256": "7b9376e79aa024f3236842b9e60f7a0ab1593c8b5c498e621de86a951c9e1dfe"
+        },
+        {
+          "page": 12,
+          "image_visually_verified_this_freeze": true,
+          "txt": "source-pages/annual-p12.txt",
+          "txt_sha256": "21c2ea57c7b7cce9fd5eab333b1767a5b2746c858cc5ec67deb4db7287060db7",
+          "png": "source-pages/annual-p12.png",
+          "png_sha256": "8ef70a45c402aaf4b8351d265eeefcc8a4e3cfcd4f9ad800c809080de75a72f2"
+        },
+        {
+          "page": 94,
+          "image_visually_verified_this_freeze": false,
+          "txt": "source-pages/annual-p94.txt",
+          "txt_sha256": "abda369f3f79a6ab46006bf74febb478851b0eee3b6db6f85591dc343097c48e",
+          "png": "source-pages/annual-p94.png",
+          "png_sha256": "dcdbc72a0b65ba6d03168420911c6cf26023804efda26413958d30c4df6bf287"
+        },
+        {
+          "page": 121,
+          "image_visually_verified_this_freeze": true,
+          "txt": "source-pages/annual-p121.txt",
+          "txt_sha256": "2be68724b4c4b6040ab7d129e5b19ba5a863cb67b045f44b6efc809d1588e2b6",
+          "png": "source-pages/annual-p121.png",
+          "png_sha256": "410cfe18d3f4e996de9962677e61eaf66bf4229517c9ee423501dee780918e17"
+        },
+        {
+          "page": 122,
+          "image_visually_verified_this_freeze": true,
+          "txt": "source-pages/annual-p122.txt",
+          "txt_sha256": "cd42d7dafac7db90a0ad33de398d28f7f37bc87eb42bfed8f9de55dea624a6c3",
+          "png": "source-pages/annual-p122.png",
+          "png_sha256": "0eaf8dcc5486544a35b574a1da950baae7a280b554e561210e09e5ab043fea1b"
+        },
+        {
+          "page": 123,
+          "image_visually_verified_this_freeze": true,
+          "txt": "source-pages/annual-p123.txt",
+          "txt_sha256": "9c6eae812d5db2da5776280a598ee240d88e1c694c772b6d1dcd09f04a773311",
+          "png": "source-pages/annual-p123.png",
+          "png_sha256": "61593571b9df03ab4e6232ea250b601a4e6e36b5f9ea945a0ca9f8d4d36a9818"
+        },
+        {
+          "page": 135,
+          "image_visually_verified_this_freeze": false,
+          "txt": "source-pages/annual-p135.txt",
+          "txt_sha256": "4ff07fc59683c5d85fa883233fd178bffc2edbb9fc1e9368388e142b7d2d54d1",
+          "png": "source-pages/annual-p135.png",
+          "png_sha256": "ffb81fa29f3a9daf1677289bd09764cc005fff25bfe71fc347ea1af4d16d04ae"
+        },
+        {
+          "page": 137,
+          "image_visually_verified_this_freeze": false,
+          "txt": "source-pages/annual-p137.txt",
+          "txt_sha256": "d1ab9305749ef33453ff548b81be114e1d94aab5605d5c6e8188ece31e74df05",
+          "png": "source-pages/annual-p137.png",
+          "png_sha256": "8da794ed84949a5a1994b94da948f122414289eb5de8d38cb3a4dc7f112e020c"
+        },
+        {
+          "page": 163,
+          "image_visually_verified_this_freeze": true,
+          "txt": "source-pages/annual-p163.txt",
+          "txt_sha256": "6c0ae46812e649357914dc179d9ff1211bf215a9b6186141929bdc9758567be8",
+          "png": "source-pages/annual-p163.png",
+          "png_sha256": "e9d89f2ca53206ee864f31009b83e2112003f67a0a28002322deeca7818548df"
+        },
+        {
+          "page": 213,
+          "image_visually_verified_this_freeze": true,
+          "txt": "source-pages/annual-p213.txt",
+          "txt_sha256": "c0aec1d57a40cbf66356b413e2a1c1c8c6f421f4b12eed0202774abc62cd7cea",
+          "png": "source-pages/annual-p213.png",
+          "png_sha256": "8ad7ba4aaeac7883e9b718471ddaba9026b52acca8f201359af4f20872658af7"
+        },
+        {
+          "page": 214,
+          "image_visually_verified_this_freeze": true,
+          "txt": "source-pages/annual-p214.txt",
+          "txt_sha256": "e05dd9520b19259426e5b079f8fdf3f513033920837b6d43ee4bd02c97937a58",
+          "png": "source-pages/annual-p214.png",
+          "png_sha256": "19cb07b4d78576c771e393b2976a602bc83e04dc737871088821bbc929d69480"
+        }
+      ]
+    }
+  },
+  "preparation_status": "Reference freeze only; project data freeze and execution require coordinator notice."
+}

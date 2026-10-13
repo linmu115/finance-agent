@@ -1,0 +1,1731 @@
+{
+  "version": "stage-b-additions-v1-20261008",
+  "reference": "reference-stage-b-additions.json",
+  "binding_policy": "One gold key -> all still-delivered occurrences. Locate cells without changing expected values. Every file/row/path and unit must have submitted evidence. Ambiguous or unbound values remain unknown; no guessed unit or numeric-only semantic pass. Prose/figures/PDF-only answers remain independent-review scope.",
+  "checks": [
+    {
+      "key": "X1.revenue_2024",
+      "task": "X1",
+      "expected": {
+        "value": "115393.31097669",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.revenue_2023",
+      "task": "X1",
+      "expected": {
+        "value": "125758.16891651",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.revenue_growth",
+      "task": "X1",
+      "expected": {
+        "value": "-8.241896354821418612289434970",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7,
+          217
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "(2024 / 2023 - 1) * 100",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.parent_profit_2024",
+      "task": "X1",
+      "expected": {
+        "value": "8452.85999318",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.parent_profit_2023",
+      "task": "X1",
+      "expected": {
+        "value": "10428.54045794",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.parent_profit_growth",
+      "task": "X1",
+      "expected": {
+        "value": "-18.94493743135236118253367394",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7,
+          217
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "(2024 / 2023 - 1) * 100",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.adjusted_parent_profit_2024",
+      "task": "X1",
+      "expected": {
+        "value": "6011.27494592",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.adjusted_parent_profit_2023",
+      "task": "X1",
+      "expected": {
+        "value": "10026.17107603",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.adjusted_parent_profit_growth",
+      "task": "X1",
+      "expected": {
+        "value": "-40.04416142178728121647965201",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7,
+          217
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "(2024 / 2023 - 1) * 100",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.parent_net_margin_percent_2024",
+      "task": "X1",
+      "expected": {
+        "value": "7.325259949328881025164935398",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.parent_net_margin_percent_2023",
+      "task": "X1",
+      "expected": {
+        "value": "8.292535226768002371940231716",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.parent_net_margin_percent_change",
+      "task": "X1",
+      "expected": {
+        "value": "-0.967275277439121346775296318",
+        "unit": "pp",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.adjusted_parent_net_margin_percent_2024",
+      "task": "X1",
+      "expected": {
+        "value": "5.209379031627150599979134670",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.adjusted_parent_net_margin_percent_2023",
+      "task": "X1",
+      "expected": {
+        "value": "7.972580359917857377913492940",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.adjusted_parent_net_margin_percent_change",
+      "task": "X1",
+      "expected": {
+        "value": "-2.763201328290706777934358270",
+        "unit": "pp",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.parent_equity_2024",
+      "task": "X1",
+      "expected": {
+        "value": "53179.9351408",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.parent_equity_2023",
+      "task": "X1",
+      "expected": {
+        "value": "53539.33141316",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.average_equity_2024",
+      "task": "X1",
+      "expected": {
+        "value": "53359.63327698",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.simple_average_ROE_2024",
+      "task": "X1",
+      "expected": {
+        "value": "15.84130076251230053998577907",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "parent profit / ((2023 year-end parent equity + 2024 year-end parent equity) / 2) * 100",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.weighted_ROE_2024",
+      "task": "X1",
+      "expected": {
+        "value": "15.81",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.nonrecurring_parent_2024",
+      "task": "X1",
+      "expected": {
+        "value": "2441.58504726",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7,
+          8,
+          9
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.nonrecurring_parent_2023",
+      "task": "X1",
+      "expected": {
+        "value": "402.36938191",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7,
+          8,
+          9
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.adjusted_parent_profit_change",
+      "task": "X1",
+      "expected": {
+        "value": "-4014.89613011",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7,
+          8,
+          9
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.nonrecurring_change",
+      "task": "X1",
+      "expected": {
+        "value": "2039.21566535",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7,
+          8,
+          9
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X1.parent_profit_change",
+      "task": "X1",
+      "expected": {
+        "value": "-1975.68046476",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7,
+          8,
+          9
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.revenue_2024",
+      "task": "X3",
+      "expected": {
+        "value": "115393.31097669",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.revenue_2023",
+      "task": "X3",
+      "expected": {
+        "value": "125758.16891651",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.revenue_growth",
+      "task": "X3",
+      "expected": {
+        "value": "-8.241896354821418612289434970",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7,
+          217
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "(2024 / 2023 - 1) * 100",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.parent_profit_2024",
+      "task": "X3",
+      "expected": {
+        "value": "8452.85999318",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.parent_profit_2023",
+      "task": "X3",
+      "expected": {
+        "value": "10428.54045794",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.parent_profit_growth",
+      "task": "X3",
+      "expected": {
+        "value": "-18.94493743135236118253367394",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7,
+          217
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "(2024 / 2023 - 1) * 100",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.adjusted_parent_profit_2024",
+      "task": "X3",
+      "expected": {
+        "value": "6011.27494592",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.adjusted_parent_profit_2023",
+      "task": "X3",
+      "expected": {
+        "value": "10026.17107603",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.adjusted_parent_profit_growth",
+      "task": "X3",
+      "expected": {
+        "value": "-40.04416142178728121647965201",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7,
+          217
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "(2024 / 2023 - 1) * 100",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.cfo_2024",
+      "task": "X3",
+      "expected": {
+        "value": "21739.74039338",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.cfo_2023",
+      "task": "X3",
+      "expected": {
+        "value": "18290.35765056",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          7
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.cfo_growth",
+      "task": "X3",
+      "expected": {
+        "value": "18.85902292738594683306610300",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7,
+          217
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "(2024 / 2023 - 1) * 100",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.consolidated_profit_2024",
+      "task": "X3",
+      "expected": {
+        "value": "8463.71035565",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.consolidated_profit_2023",
+      "task": "X3",
+      "expected": {
+        "value": "10284.30619828",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.consolidated_profit_growth",
+      "task": "X3",
+      "expected": {
+        "value": "-17.70266080695347019013883199",
+        "unit": "%",
+        "absolute_tolerance": "0.05"
+      },
+      "source_pages": {
+        "annual": [
+          7,
+          217
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "(2024 / 2023 - 1) * 100",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_net_profit_2024",
+      "task": "X3",
+      "expected": {
+        "value": "8463.71035565",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_net_profit_2023",
+      "task": "X3",
+      "expected": {
+        "value": "10284.30619828",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_net_profit",
+      "task": "X3",
+      "expected": {
+        "value": "-1820.59584263",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_impairment_2024",
+      "task": "X3",
+      "expected": {
+        "value": "4675.84557344",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_impairment_2023",
+      "task": "X3",
+      "expected": {
+        "value": "1525.69947787",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_impairment",
+      "task": "X3",
+      "expected": {
+        "value": "3150.14609557",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_credit_losses_2024",
+      "task": "X3",
+      "expected": {
+        "value": "555.01970728",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_credit_losses_2023",
+      "task": "X3",
+      "expected": {
+        "value": "160.47731283",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_credit_losses",
+      "task": "X3",
+      "expected": {
+        "value": "394.54239445",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_depreciation_2024",
+      "task": "X3",
+      "expected": {
+        "value": "4055.64313537",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_depreciation_2023",
+      "task": "X3",
+      "expected": {
+        "value": "3900.29509742",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_depreciation",
+      "task": "X3",
+      "expected": {
+        "value": "155.34803795",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_lease_amortisation_2024",
+      "task": "X3",
+      "expected": {
+        "value": "146.79088818",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_lease_amortisation_2023",
+      "task": "X3",
+      "expected": {
+        "value": "151.5814881",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_lease_amortisation",
+      "task": "X3",
+      "expected": {
+        "value": "-4.79059992",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_intangibles_2024",
+      "task": "X3",
+      "expected": {
+        "value": "268.69388532",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_intangibles_2023",
+      "task": "X3",
+      "expected": {
+        "value": "235.20225714",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_intangibles",
+      "task": "X3",
+      "expected": {
+        "value": "33.49162818",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_deferred_expenses_2024",
+      "task": "X3",
+      "expected": {
+        "value": "140.62090118",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_deferred_expenses_2023",
+      "task": "X3",
+      "expected": {
+        "value": "144.26275784",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_deferred_expenses",
+      "task": "X3",
+      "expected": {
+        "value": "-3.64185666",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_disposals_2024",
+      "task": "X3",
+      "expected": {
+        "value": "15.20366887",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_disposals_2023",
+      "task": "X3",
+      "expected": {
+        "value": "61.4961041",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_disposals",
+      "task": "X3",
+      "expected": {
+        "value": "-46.29243523",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_retirements_2024",
+      "task": "X3",
+      "expected": {
+        "value": "42.08950717",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_retirements_2023",
+      "task": "X3",
+      "expected": {
+        "value": "23.41512364",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_retirements",
+      "task": "X3",
+      "expected": {
+        "value": "18.67438353",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_fair_value_2024",
+      "task": "X3",
+      "expected": {
+        "value": "28.15311485",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_fair_value_2023",
+      "task": "X3",
+      "expected": {
+        "value": "-278.18620165",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_fair_value",
+      "task": "X3",
+      "expected": {
+        "value": "306.3393165",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_finance_2024",
+      "task": "X3",
+      "expected": {
+        "value": "1026.19005425",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_finance_2023",
+      "task": "X3",
+      "expected": {
+        "value": "2224.98929963",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_finance",
+      "task": "X3",
+      "expected": {
+        "value": "-1198.79924538",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_investment_2024",
+      "task": "X3",
+      "expected": {
+        "value": "-2417.33084926",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_investment_2023",
+      "task": "X3",
+      "expected": {
+        "value": "31.08878568",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_investment",
+      "task": "X3",
+      "expected": {
+        "value": "-2448.41963494",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_deferred_tax_asset_2024",
+      "task": "X3",
+      "expected": {
+        "value": "-388.80275425",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_deferred_tax_asset_2023",
+      "task": "X3",
+      "expected": {
+        "value": "-208.81785908",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_deferred_tax_asset",
+      "task": "X3",
+      "expected": {
+        "value": "-179.98489517",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_deferred_tax_liability_2024",
+      "task": "X3",
+      "expected": {
+        "value": "25.5139083",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_deferred_tax_liability_2023",
+      "task": "X3",
+      "expected": {
+        "value": "124.63568572",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_deferred_tax_liability",
+      "task": "X3",
+      "expected": {
+        "value": "-99.12177742",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_inventory_2024",
+      "task": "X3",
+      "expected": {
+        "value": "585.32471744",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_inventory_2023",
+      "task": "X3",
+      "expected": {
+        "value": "1789.45660589",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_inventory",
+      "task": "X3",
+      "expected": {
+        "value": "-1204.13188845",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_receivables_2024",
+      "task": "X3",
+      "expected": {
+        "value": "1824.57272485",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_receivables_2023",
+      "task": "X3",
+      "expected": {
+        "value": "-260.52629291",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_receivables",
+      "task": "X3",
+      "expected": {
+        "value": "2085.09901776",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_payables_2024",
+      "task": "X3",
+      "expected": {
+        "value": "2611.14793603",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_payables_2023",
+      "task": "X3",
+      "expected": {
+        "value": "-1751.36989744",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_payables",
+      "task": "X3",
+      "expected": {
+        "value": "4362.51783347",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_other_2024",
+      "task": "X3",
+      "expected": {
+        "value": "81.35391871",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_other_2023",
+      "task": "X3",
+      "expected": {
+        "value": "132.3517075",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.bridge_change_other",
+      "task": "X3",
+      "expected": {
+        "value": "-50.99778879",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": "2024 signed adjustment - 2023 signed adjustment",
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.cfo_change",
+      "task": "X3",
+      "expected": {
+        "value": "3449.38274282",
+        "unit": "CNY_million",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "required_numeric",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.cfo_consolidated_coverage_2024",
+      "task": "X3",
+      "expected": {
+        "value": "2.568582746793491991442827465",
+        "unit": "ratio",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "conditional_if_reported",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    },
+    {
+      "key": "X3.cfo_consolidated_coverage_2023",
+      "task": "X3",
+      "expected": {
+        "value": "1.778472684294344816083585015",
+        "unit": "ratio",
+        "absolute_tolerance": "0.005"
+      },
+      "source_pages": {
+        "annual": [
+          217,
+          218
+        ]
+      },
+      "role": "conditional_if_reported",
+      "formula": null,
+      "missing_policy": "report_missing_for_review_not_automatic_material_defect"
+    }
+  ]
+}

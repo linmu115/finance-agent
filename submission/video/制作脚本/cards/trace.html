@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<style>
+:root{--ink:#1f2a2e;--sub:#5b6d6a;--mute:#8a968f;--line:#d9e2e0;--accent:#2e6f6a;--accent2:#7fb3ad}
+html,body{margin:0;width:1920px;height:1080px;background:transparent;overflow:hidden;
+  font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif;-webkit-font-smoothing:antialiased;color:var(--ink)}
+.num{font-family:"Segoe UI","Microsoft YaHei",sans-serif;font-variant-numeric:tabular-nums}
+.patch{position:absolute;left:1114px;top:678px;width:40px;height:44px;background:#fff}
+.panel{position:absolute;left:636px;top:376px;width:680px;background:#fff;border:1px solid var(--line);border-radius:18px;
+  padding:26px 30px 14px;box-shadow:0 14px 40px rgba(31,42,46,.09)}
+.head{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.head b{font-size:25px;font-weight:650}
+.head .chip{display:flex;align-items:center;gap:12px;font-size:18px;color:var(--sub)}
+.head .chip .sep{width:1px;height:16px;background:var(--line)}
+.head .clock{font-weight:650;color:var(--ink);font-size:20px}
+.foot{font-size:15px;color:var(--mute);padding:10px 0 2px}
+.wrap{overflow:hidden;height:0}
+.row{display:grid;grid-template-columns:76px 1fr 104px;align-items:center;padding:13px 0;border-bottom:1px solid #eef2f1;
+  opacity:0;transform:translateY(10px)}
+.t{font-size:19px;color:var(--mute)}
+.lab{font-size:21px;font-weight:600}
+.det{font-size:16px;color:var(--sub);margin-top:3px}
+.st{justify-self:end;font-size:17px;display:flex;align-items:center;gap:8px;color:var(--accent2)}
+.st.done{color:var(--accent);font-weight:600}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--accent2)}
+</style></head><body>
+<div class="patch"></div>
+<div class="panel">
+  <div class="head"><b>执行轨迹</b><span class="chip"><span>加速 ×<span class="num" id="speed"></span></span><span class="sep"></span><span>实际用时 <span class="num clock" id="clock">00:00</span></span></span></div>
+  <div id="rows"></div>
+  <div class="foot">时间与步骤取自本次运行日志</div>
+</div>
+<script>
+// Run-relative seconds from the audit log of run dda0926d (2026-10-11 16:00:30.959Z).
+const ROWS=[
+  {s:0.1,  e:14.4,  lab:'金融底稿 · 初步检索', det:'按问题匹配资料与口径'},
+  {s:31.8, e:162.6, lab:'金融底稿 · 并行生成三份底稿', det:'利润与现金桥 · 变动归因 · 异常信号'},
+  {s:181.4,e:197.9, lab:'断网沙箱 · 计算并绘制现金桥', det:'脚本与图表一并留档'},
+  {s:207.0,e:220.6, lab:'沙箱复跑 · 调整图表配色', det:''},
+  {s:232.2,e:246.0, lab:'沙箱复跑 · 校正分项尾差', det:'分项与合计保持一致'},
+  {s:246.1,e:283.4, lab:'撰写回答 · 数值绑定底稿', det:''},
+];
+const mmss=x=>{x=Math.max(0,Math.floor(x));return String(Math.floor(x/60)).padStart(2,'0')+':'+String(x%60).padStart(2,'0')};
+const box=document.getElementById('rows');
+ROWS.forEach(r=>{const w=document.createElement('div');w.className='wrap';const d=document.createElement('div');d.className='row';
+  d.innerHTML=`<div class="t num">${mmss(r.s)}</div><div><div class="lab">${r.lab}</div>${r.det?`<div class="det">${r.det}</div>`:''}</div><div class="st"></div>`;
+  w.appendChild(d);box.appendChild(w);r.el=d;r.w=w;});
+ROWS.forEach(r=>{r.h=r.el.getBoundingClientRect().height;});
+let E0=0,SP=1;
+function setup(e0,sp){E0=e0;SP=sp;document.getElementById('speed').textContent=Math.round(sp);}
+function seek(t){
+  const e=E0+t*SP;
+  document.querySelector('.panel').style.opacity=Math.min(1,t/0.4);
+  document.getElementById('clock').textContent=mmss(e);
+  ROWS.forEach(r=>{
+    const since=(e-r.s)/SP;               // output seconds since this row started
+    const k=Math.max(0,Math.min(1,since/0.35));
+    const g=Math.max(0,Math.min(1,since/0.3)), ease=g*g*(3-2*g);
+    r.w.style.height=(r.h*ease)+'px';
+    r.el.style.opacity=Math.max(0,(since-0.12)/0.3>1?1:(since-0.12)/0.3); r.el.style.transform=`translateY(${(1-k)*10}px)`;
+    const st=r.el.querySelector('.st');
+    if(e>=r.e){st.className='st done';st.innerHTML='✓ 完成';}
+    else{const pulse=0.45+0.55*Math.abs(Math.sin(t*3.2));st.className='st';st.innerHTML=`<span class="dot" style="opacity:${pulse}"></span>进行中`;}
+  });
+}
+</script></body></html>

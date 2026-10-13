@@ -1,0 +1,92 @@
+{
+  "schema": "f1-approved-20261008",
+  "model": "gpt-6-luna",
+  "provider": "cpa-local",
+  "repeats": 2,
+  "tasks": [
+    {
+      "id": "X7",
+      "split": "extension",
+      "type": "restatement",
+      "prompt": "海尔2024年年报里2023年数据有调整前、调整后两列。我想知道，选错列会把增长和盈利判断带偏多少。请只用这份年报，找出重述和会计政策变化的原因，列出主要指标的调整额，分别按两列计算2024年收入、归母利润、经营现金流的增速，以及归母净利率和披露ROE的变化。再单独量化质保费用重分类对毛利率、销售费用率和营业利润的影响；不能把其他并表变化混进这项影响。结合非经常性损益表，说明连续出现的项目对盈利判断有什么启示，不要直接改判其性质。最后指出现有披露能解释哪些差异、哪些还不能精确拆开。请用人民币百万元展示金额，比例与百分点分开；先给结论，再给数据、原文页码和局限，清楚区分事实、推论和观点。交付清晰图表、Markdown/PDF报告、Excel/CSV底稿及可复算计算文件；估值或投资判断如有，说明假设、风险和适用范围。",
+      "materials": [
+        "haier_2024"
+      ],
+      "phase": 1,
+      "projectId": "d324c744-4113-4213-aa22-af3bb91a3c84",
+      "scheduleIndex": 8
+    }
+  ],
+  "evaluationLimits": {
+    "max_model_calls": 1000,
+    "max_input_tokens": 50000000,
+    "max_output_tokens": 2000000,
+    "max_total_tokens": 52000000,
+    "max_wall_seconds": 43200
+  },
+  "phases": {
+    "1": {
+      "name": "X7-F1.4",
+      "blocks": [
+        [
+          "X7"
+        ]
+      ],
+      "referenceFiles": [
+        "benchmark/blind-eval/reference-stage-c-X7.json",
+        "benchmark/blind-eval/selectors-stage-c-X7.json"
+      ]
+    }
+  },
+  "referenceFiles": [
+    "benchmark/blind-eval/rubric.md",
+    "benchmark/blind-eval/metrics.py",
+    "benchmark/blind-eval/blind.py",
+    "benchmark/blind-eval/replay.py",
+    "benchmark/blind-eval/make-judge-reference.py",
+    "benchmark/blind-eval/runner-f14.mjs",
+    "benchmark/blind-eval/study-f14.mjs",
+    "benchmark/blind-eval/snapshot-f14.py",
+    "benchmark/blind-eval/a5-adapter.py",
+    "benchmark/blind-eval/selectors-f1.py",
+    "scripts/collect-pi-analysis.mjs",
+    "scripts/scan-delivery-consistency.py",
+    "benchmark/blind-eval/blind-structure-preserving.py",
+    "benchmark/blind-eval/F14_STAGE_B_PREPARATION.md"
+  ],
+  "preparationLedgers": [
+    "D:/AI/财报agent-wt/ingestion-scale/tmp/x7-freeze-pause-haier-20261008/pause-record.json"
+  ],
+  "failurePolicy": "No automatic paid retry. Infrastructure stream interruption or 5xx failures retained and independent chains continue; all known and unknown usage retained. Stop immediately for material writes, version/config drift, ingestion routing, scheduling race or snapshot mismatch. Uncertain POST stops for read-only reconciliation, never resubmit blindly. Any cancellation stops subsequent submissions. Descendants without delivered parent blocked.",
+  "status": "X7_authorized_Haier_pause_confirmed_wait_B_participants_completed",
+  "excluded": [
+    {
+      "id": "X2",
+      "status": "未执行",
+      "reason": "美的未入库；本轮不做"
+    }
+  ],
+  "executionConcurrency": "After all B participant rounds; Haier same-project ingestion must be paused and confirmed idle before freeze.",
+  "freezeVersion": "F1.4",
+  "versionSplit": {
+    "development": "F1 completed; original failures retained",
+    "heldout": "F1.2 completed; F1.1 aborted batch separately retained",
+    "stage_B": "F1.4 only; isolated extension report; no cross-version pooling",
+    "X7": "F1.4, separate extension report and material freeze; after B participant runs"
+  },
+  "analysisOnly": true,
+  "preparationUsageNote": "N3 Haier preparation ledger to archive at freeze; costs never included in participant analysis.",
+  "knownMaterialLimitations": [
+    "Disclosed deducted profit in t9 exists but financial_item dimension prevents workpaper adoption; calculated value separately labeled, not substituted as disclosed.",
+    "Eight period-table rows have unresolved candidate conflicts and null amounts."
+  ],
+  "haierPauseConfirmed": {
+    "at": "2026-10-08T12:17:50.749Z",
+    "facts": 1880,
+    "tablesCompleted": 147,
+    "tablesTotal": 344,
+    "pid": 35916,
+    "coordinatorConfirmedIdle": true,
+    "freezeAfterAllBParticipants": true
+  }
+}
